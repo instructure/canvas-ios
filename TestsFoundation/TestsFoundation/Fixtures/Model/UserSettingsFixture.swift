@@ -24,7 +24,7 @@ extension UserSettings {
         from api: APIUserSettings = .make(),
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> UserSettings {
-        let model = try! UserSettings.save(api, in: context)
+        let model = UserSettings.save(api, in: context)
         try! context.save()
         return model
     }

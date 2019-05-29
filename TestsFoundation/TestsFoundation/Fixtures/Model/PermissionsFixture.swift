@@ -25,7 +25,7 @@ extension Permissions {
         for context: Context = ContextModel(.account, id: "1"),
         in db: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Permissions {
-        let model = try! Permissions.save(api, for: context, in: db)
+        let model = Permissions.save(api, for: context, in: db)
         try! db.save()
         return model
     }

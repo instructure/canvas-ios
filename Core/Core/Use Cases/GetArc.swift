@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
 
 public class GetArc: CollectionUseCase {
@@ -41,7 +42,7 @@ public class GetArc: CollectionUseCase {
         self.courseID = courseID
     }
 
-    public func write(response: [APIExternalTool]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+    public func write(response: [APIExternalTool]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         if let arc = response?.first(where: { $0.arc }) {
             ExternalTool.save(arc, courseID: courseID, in: client)
         }

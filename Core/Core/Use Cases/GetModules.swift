@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
 
 public struct GetModules: APIUseCase {
@@ -39,7 +40,7 @@ public struct GetModules: APIUseCase {
         return GetModulesRequest(courseID: courseID)
     }
 
-    public func write(response: [APIModule]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+    public func write(response: [APIModule]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         Module.save(response, forCourse: courseID, in: client)
     }

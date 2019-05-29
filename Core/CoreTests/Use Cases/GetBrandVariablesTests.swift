@@ -22,11 +22,11 @@ import TestsFoundation
 class GetBrandVariablesTest: CoreTestCase {
     func testItUpdatesBrandVariables() {
         let prev = Brand.shared
-        XCTAssertNoThrow(try GetBrandVariables().write(response: nil, urlResponse: nil, to: databaseClient))
+        GetBrandVariables().write(response: nil, urlResponse: nil, to: databaseClient)
         XCTAssertEqual(Brand.shared, prev)
 
         let brand = APIBrandVariables.make(primary: "#ffff00")
-        XCTAssertNoThrow(try GetBrandVariables().write(response: brand, urlResponse: nil, to: databaseClient))
+        GetBrandVariables().write(response: brand, urlResponse: nil, to: databaseClient)
         XCTAssertEqual(Brand.shared.primary.hexString, "#ffff00")
     }
 }

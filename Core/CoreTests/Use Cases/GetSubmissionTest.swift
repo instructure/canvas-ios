@@ -26,7 +26,7 @@ class GetSubmissionTest: CoreTestCase {
         )
 
         let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3")
-        try! getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
+        getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
 
         let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 1)
@@ -47,7 +47,7 @@ class GetSubmissionTest: CoreTestCase {
             ]
         )
         let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3")
-        try! getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
+        getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
 
         let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 2)
@@ -68,7 +68,7 @@ class GetSubmissionTest: CoreTestCase {
         )
 
         let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3")
-        try! getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
+        getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
 
         let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 2)

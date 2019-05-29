@@ -44,7 +44,7 @@ class GetArcTests: CoreTestCase {
             .make(id: "1", domain: "bad.instructure.com"),
             .make(id: "2", domain: "arc.instructure.com"),
         ]
-        try useCase.write(response: response, urlResponse: nil, to: databaseClient)
+        useCase.write(response: response, urlResponse: nil, to: databaseClient)
         let results: [ExternalTool] = databaseClient.fetch(useCase.scope.predicate)
         XCTAssertEqual(results.count, 1)
         XCTAssertEqual(results.first?.id, "2")

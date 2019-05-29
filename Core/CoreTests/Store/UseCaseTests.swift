@@ -28,7 +28,7 @@ class UseCaseTests: CoreTestCase {
         func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
             completionHandler(nil, nil, nil)
         }
-        func write(response: APICourse?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+        func write(response: APICourse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         }
     }
 
@@ -62,7 +62,7 @@ class UseCaseTests: CoreTestCase {
     func testGetNextUseCase() {
         class ParentUseCase: TestUseCase {
             let expectation = XCTestExpectation(description: "write was called")
-            override func write(response: APICourse?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+            override func write(response: APICourse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
                 expectation.fulfill()
             }
         }
@@ -70,7 +70,7 @@ class UseCaseTests: CoreTestCase {
         let useCase = GetNextUseCase(parent: parent, request: GetNextRequest(path: "/"))
         XCTAssertEqual(useCase.ttl, 0)
         XCTAssertEqual(useCase.scope, parent.scope)
-        try! useCase.write(response: nil, urlResponse: nil, to: databaseClient)
+        useCase.write(response: nil, urlResponse: nil, to: databaseClient)
         wait(for: [parent.expectation], timeout: 0.1)
     }
 
@@ -108,7 +108,7 @@ class UseCaseTests: CoreTestCase {
                 makeRequestExpectation.fulfill()
             }
 
-            override func write(response: APICourse?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+            override func write(response: APICourse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
                 writeExpectation.fulfill()
             }
         }
@@ -122,30 +122,13 @@ class UseCaseTests: CoreTestCase {
             fetchExpectation.fulfill()
         }
 
-        wait(for: [useCase.makeRequestExpectation, useCase.writeExpectation, fetchExpectation], timeout: 0.1)
+        wait(for: [useCase.makeRequestExpectation, useCase.writeExpectation, fetchExpectation], timeout: 1)
     }
 
     func testFetchMakeRequestError() {
         class UseCase: TestUseCase {
             override func makeRequest(environment: AppEnvironment, completionHandler: @escaping UseCaseTests.TestUseCase.RequestCallback) {
                 completionHandler(nil, nil, NSError.instructureError("request failed"))
-            }
-        }
-        var error: Error?
-        let expectation = XCTestExpectation(description: "fetch callback")
-        let useCase = UseCase()
-        useCase.fetch(environment: environment, force: true) { _, _, e in
-            error = e
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 0.1)
-        XCTAssertNotNil(error)
-    }
-
-    func testFetchWriteError() {
-        class UseCase: TestUseCase {
-            override func write(response: APICourse?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
-                throw NSError.instructureError("write failed")
             }
         }
         var error: Error?
@@ -170,7 +153,7 @@ class CollectionUseCaseTests: CoreTestCase {
 
         let scope = Scope.all(orderBy: "name")
         let cacheKey: String? = "test-collection-use-case"
-        func write(response: [APICourse]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+        func write(response: [APICourse]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) throws {
         }
     }
 
@@ -197,7 +180,7 @@ class APIUseCaseTests: CoreTestCase {
         }
         let scope = Scope.all(orderBy: "name")
         let cacheKey: String? = "api-use-case"
-        func write(response: [APICourse]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+        func write(response: [APICourse]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         }
     }
 
@@ -227,7 +210,7 @@ class WriteableModelTests: CoreTestCase {
 
     func testWrite() {
         let useCase = TestUseCase()
-        try! useCase.write(response: APIGroup.make(id: "1"), urlResponse: nil, to: databaseClient)
+        useCase.write(response: APIGroup.make(id: "1"), urlResponse: nil, to: databaseClient)
         let group: Group = databaseClient.fetch().first!
         XCTAssertEqual(group.id, "1")
     }

@@ -47,7 +47,7 @@ class GetModulesTests: CoreTestCase {
 
     func testWrite() {
         let item = APIModule.make(items: [.make()])
-        try! useCase.write(response: [item], urlResponse: nil, to: databaseClient)
+        useCase.write(response: [item], urlResponse: nil, to: databaseClient)
 
         let module: Module = databaseClient.fetch().first!
         XCTAssertEqual(module.id, item.id.value)

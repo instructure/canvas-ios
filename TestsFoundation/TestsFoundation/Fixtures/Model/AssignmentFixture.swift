@@ -25,7 +25,7 @@ extension Assignment {
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Assignment {
         let model: Assignment = context.insert()
-        try! model.update(fromApiModel: api, in: context, updateSubmission: true)
+        model.update(fromApiModel: api, in: context, updateSubmission: true)
         try! context.save()
         return model
     }

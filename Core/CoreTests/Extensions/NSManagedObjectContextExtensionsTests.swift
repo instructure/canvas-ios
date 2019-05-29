@@ -39,6 +39,5 @@ class NSManagedObjectContextExtensionsTests: CoreTestCase {
         }
         XCTAssertTrue(result == yes || result == yess)
         XCTAssertFalse(result == no)
-
     }
 }

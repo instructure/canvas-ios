@@ -37,7 +37,7 @@ extension DiscussionTopic {
         from api: APIDiscussionTopic = .make(),
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> DiscussionTopic {
-        let model = try! DiscussionTopic.save(api, in: context)
+        let model = DiscussionTopic.save(api, in: context)
         try! context.save()
         return model
     }

@@ -24,7 +24,7 @@ extension CalendarEventItem {
         from api: APICalendarEvent = .make(),
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> CalendarEventItem {
-        let model = try! CalendarEventItem.save(api, in: context)
+        let model = CalendarEventItem.save(api, in: context)
         try! context.save()
         return model
     }

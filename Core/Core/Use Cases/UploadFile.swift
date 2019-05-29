@@ -182,7 +182,7 @@ public class UploadFile: NSObject, URLSessionDelegate, URLSessionTaskDelegate, U
                 decoder.dateDecodingStrategy = .iso8601
                 let response = try decoder.decode(APIFile.self, from: data)
                 Logger.shared.log("Created a file with id \(response.id)")
-                try file.update(fromAPIModel: response)
+                file.update(fromAPIModel: response)
             } catch {
                 #if DEBUG
                 print(String(data: data, encoding: .utf8) ?? "", error)
@@ -292,7 +292,7 @@ extension UploadFile {
             }
             do {
                 if let response = response {
-                    try Submission.save(response, in: context)
+                    Submission.save(response, in: context)
                 }
                 try context.save()
             } catch {

@@ -27,10 +27,6 @@ extension NSManagedObjectContext {
         }
     }
 
-    public func fetch<T>(_ predicate: NSPredicate? = nil) -> [T] {
-        return self.fetch(predicate: predicate, sortDescriptors: nil)
-    }
-
     public func first<T>(where key: String, equals value: CVarArg) -> T? {
         return all(where: key, equals: value).first
     }
@@ -44,28 +40,17 @@ extension NSManagedObjectContext {
         refreshAllObjects()
     }
 
-    public func fetch<T>(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil) -> [T] {
+    public func fetch<T>(_ predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil) -> [T] {
         let name = String(describing: T.self)
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: name)
         request.predicate = predicate
         request.sortDescriptors = sortDescriptors
         return (try? fetch(request)) as? [T] ?? []
     }
-}
 
-// TODO: remove with Persistence
-extension NSManagedObjectContext: PersistenceClient {
-    public func delete<T>(_ object: T) {
-        if let managedObject = object as? NSManagedObject {
-            delete(managedObject)
-        }
-    }
-
-    public func delete<T>(_ objects: [T]) {
+    public func delete<T: NSManagedObject>(_ objects: [T]) {
         for o in objects {
-            if let managedObject = o as? NSManagedObject {
-                delete(managedObject)
-            }
+            delete(o)
         }
     }
 }

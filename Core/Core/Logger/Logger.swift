@@ -35,7 +35,7 @@ public protocol LoggerProtocol {
 }
 
 public class Logger: LoggerProtocol {
-    public var database: Persistence
+    public var database: NSPersistentContainer
 
     public static let shared = Logger()
 
@@ -69,7 +69,7 @@ public class Logger: LoggerProtocol {
     public func clearAll() {
         database.performBackgroundTask { client in
             let events: [LogEvent] = client.fetch()
-            try? client.delete(events)
+            client.delete(events)
             try? client.save()
         }
     }

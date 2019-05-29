@@ -79,39 +79,9 @@ extension NSPersistentContainer {
         }
     }
 
-    public func fetchedResultsController<T>(
-        predicate: NSPredicate? = nil,
-        sortDescriptors: [NSSortDescriptor],
-        sectionNameKeyPath: String? = nil
-    ) -> NSFetchedResultsController<T> {
-        let request = NSFetchRequest<T>(entityName: String(describing: T.self))
-        request.predicate = predicate ?? NSPredicate(value: true)
-        request.sortDescriptors = sortDescriptors
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: viewContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
-    }
-}
-
-extension NSPersistentContainer: Persistence {
-    public func perform(block: @escaping PersistenceBlockHandler) {
+    public func perform(block: @escaping (NSManagedObjectContext) -> Void) {
         DispatchQueue.main.async {
             block(self.viewContext)
         }
-    }
-
-    public func performBackgroundTask(block: @escaping PersistenceBlockHandler) {
-        performBackgroundTask { (context: NSManagedObjectContext) in
-            block(context)
-        }
-    }
-
-    public var mainClient: PersistenceClient {
-        return viewContext
-    }
-
-    public func fetchedResultsController<T>(predicate: NSPredicate, sortDescriptors: [NSSortDescriptor], sectionNameKeyPath: String?) -> FetchedResultsController<T> {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: T.self))
-        request.predicate = predicate
-        request.sortDescriptors = sortDescriptors
-        return CoreDataFetchedResultsController(fetchRequest: request, managedObjectContext: viewContext, sectionNameKeyPath: sectionNameKeyPath)
     }
 }

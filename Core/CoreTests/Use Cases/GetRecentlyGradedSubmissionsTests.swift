@@ -31,14 +31,14 @@ class GetRecentlyGradedSubmissionsTests: CoreTestCase {
         )
 
         let useCase = GetRecentlyGradedSubmissions(userID: "1")
-        try! useCase.write(response: [apiSubmission], urlResponse: nil, to: databaseClient)
+        useCase.write(response: [apiSubmission], urlResponse: nil, to: databaseClient)
 
-        let submissions: [Submission] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
+        let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 1)
         XCTAssertEqual(submissions[0].id, "1")
         XCTAssertEqual(submissions[0].assignmentID, "2")
 
-        let assignments: [Assignment] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
+        let assignments: [Assignment] = databaseClient.fetch()
         XCTAssertEqual(assignments.count, 1)
         XCTAssertEqual(assignments[0].id, "2")
         XCTAssertEqual(assignments[0].submission, submissions[0])
@@ -55,7 +55,7 @@ class GetRecentlyGradedSubmissionsTests: CoreTestCase {
 
         let useCase = GetRecentlyGradedSubmissions(userID: "self")
 
-        let submissions: [Submission] = databaseClient.fetch(predicate: useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+        let submissions: [Submission] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
 
         XCTAssertEqual(submissions.count, 2)
         XCTAssertEqual(submissions[0], firstSubmission)

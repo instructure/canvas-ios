@@ -25,7 +25,7 @@ class GetUserGroupsTest: CoreTestCase {
         api.mock(request, value: [group])
 
         let getUserGroups = GetUserGroups()
-        try! getUserGroups.write(response: [group], urlResponse: nil, to: databaseClient)
+        getUserGroups.write(response: [group], urlResponse: nil, to: databaseClient)
 
         let groups: [Group] = databaseClient.fetch()
         XCTAssertEqual(groups.count, 1)

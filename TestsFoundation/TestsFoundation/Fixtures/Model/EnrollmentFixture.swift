@@ -26,7 +26,7 @@ extension Enrollment {
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Enrollment {
         let model: Enrollment = context.insert()
-        try! model.update(fromApiModel: api, course: course, in: context)
+        model.update(fromApiModel: api, course: course, in: context)
         try! context.save()
         return model
     }

@@ -24,7 +24,7 @@ extension Course {
         from api: APICourse = .make(),
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Course {
-        let model = try! Course.save(api, in: context)
+        let model = Course.save(api, in: context)
         try! context.save()
         return model
     }

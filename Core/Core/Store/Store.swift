@@ -71,11 +71,15 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         self.env = env
         self.useCase = useCase
         let scope = useCase.scope
-        let frc = env.database.fetchedResultsController(
-            predicate: scope.predicate,
-            sortDescriptors: scope.order,
-            sectionNameKeyPath: scope.sectionNameKeyPath
-        ) as NSFetchedResultsController<U.Model>
+        let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
+        request.predicate = scope.predicate
+        request.sortDescriptors = scope.order
+        let frc = NSFetchedResultsController<U.Model>(
+            fetchRequest: request,
+            managedObjectContext: env.database.viewContext,
+            sectionNameKeyPath: scope.sectionNameKeyPath,
+            cacheName: nil
+        )
         self.frc = frc
         self.eventHandler = eventHandler
 

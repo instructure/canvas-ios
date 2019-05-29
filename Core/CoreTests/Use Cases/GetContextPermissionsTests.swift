@@ -24,9 +24,9 @@ class GetContextPermissionsTests: CoreTestCase {
         let context = ContextModel(.account, id: "1")
 
         let getContextPermissions = GetContextPermissions(context: context, permissions: [.becomeUser])
-        try! getContextPermissions.write(response: response, urlResponse: nil, to: databaseClient)
+        getContextPermissions.write(response: response, urlResponse: nil, to: databaseClient)
 
-        let permissions: Permissions = databaseClient.fetch(predicate: nil, sortDescriptors: nil).first!
+        let permissions: Permissions = databaseClient.fetch().first!
         XCTAssertEqual(permissions.context, context.canvasContextID)
         XCTAssertTrue(permissions.becomeUser)
         XCTAssertFalse(permissions.manageSis)
@@ -39,7 +39,7 @@ class GetContextPermissionsTests: CoreTestCase {
         let context = ContextModel(.account, id: "1")
 
         let getContextPermissions = GetContextPermissions(context: context, permissions: [.becomeUser])
-        try! getContextPermissions.write(response: response, urlResponse: nil, to: databaseClient)
+        getContextPermissions.write(response: response, urlResponse: nil, to: databaseClient)
 
         databaseClient.refresh()
         XCTAssertFalse(permissions.becomeUser)
@@ -54,7 +54,7 @@ class GetContextPermissionsTests: CoreTestCase {
         let model = Permissions.make(from: .make(become_user: true))
         let getContextPermissions = GetContextPermissions(context: ContextModel(.account, id: "1"), permissions: [.becomeUser])
 
-        let permissions: Permissions = databaseClient.fetch(predicate: getContextPermissions.scope.predicate, sortDescriptors: getContextPermissions.scope.order).first!
+        let permissions: Permissions = databaseClient.fetch(getContextPermissions.scope.predicate, sortDescriptors: getContextPermissions.scope.order).first!
         XCTAssertEqual(permissions, model)
     }
 }
