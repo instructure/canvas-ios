@@ -25,11 +25,10 @@ import {
   View,
   LayoutAnimation,
   NativeModules,
-  I18nManager,
 } from 'react-native'
 
-import { ColorPicker } from './'
-import images from '../../../images'
+import ColorPicker, { getColors } from './ColorPicker'
+import icon, { type InstIconName } from '../../../images/inst-icons'
 import colors from '../../colors'
 import i18n from 'format-message'
 
@@ -51,14 +50,14 @@ type State = {
 }
 
 type Item = {
-  image: string,
+  image: InstIconName,
+  state: ?string,
   action: string,
   accessibilityLabel: string,
-  flipImageForRTL: boolean,
 }
 
-function item (image: string, action: string, accessibilityLabel: string, flipImageForRTL?: boolean = false): Item {
-  return { image, action, accessibilityLabel, flipImageForRTL }
+function item (image: InstIconName, state: ?string, action: string, accessibilityLabel: string): Item {
+  return { image, state, action, accessibilityLabel }
 }
 
 const ColorPickerAnimation = {
@@ -81,17 +80,19 @@ export default class RichTextToolbar extends Component<Props, State> {
     colorPickerVisible: false,
   }
 
+  COLORS = getColors()
+
   render () {
     const ITEMS = [
-      item('undo', 'undo', i18n('Undo'), true),
-      item('redo', 'redo', i18n('Redo'), true),
-      item('bold', 'setBold', i18n('Bold')),
-      item('italic', 'setItalic', i18n('Italic')),
-      item('textColor', 'setTextColor', i18n('Text Color')),
-      item('unorderedList', 'setUnorderedList', i18n('Unordered List'), true),
-      item('orderedList', 'setOrderedList', i18n('Ordered List'), true),
-      item('link', 'insertLink', i18n('Insert Link')),
-      item('embedImage', 'insertImage', i18n('Insert Image')),
+      item('reply', null, 'undo', i18n('Undo')),
+      item('forward', null, 'redo', i18n('Redo')),
+      item('bold', 'bold', 'setBold', i18n('Bold')),
+      item('italic', 'italic', 'setItalic', i18n('Italic')),
+      item('textColor', null, 'setTextColor', ''),
+      item('bulletList', 'unorderedList', 'setUnorderedList', i18n('Unordered List')),
+      item('numberedList', 'orderedList', 'setOrderedList', i18n('Ordered List')),
+      item('link', null, 'insertLink', i18n('Insert Link')),
+      item('image', null, 'insertImage', i18n('Insert Image')),
     ]
 
     return (
@@ -107,9 +108,9 @@ export default class RichTextToolbar extends Component<Props, State> {
                   style={styles.item}
                   onPress={this._actionForItem(item)}
                   underlayColor={colors.grey1}
-                  key={item.image}
-                  testID={`rich-text-toolbar-item-${item.image}`}
-                  accessibilityLabel={item.accessibilityLabel}
+                  key={item.action}
+                  testID={`rich-text-toolbar-item-${item.action}`}
+                  accessibilityLabel={item.accessibilityLabel || this.getTextColorLabel()}
                   accessibilityTraits={['button']}
                 >
                   {this._renderItem(item)}
@@ -122,24 +123,43 @@ export default class RichTextToolbar extends Component<Props, State> {
     )
   }
 
-  _renderItem ({ image, flipImageForRTL }: Item) {
-    switch (image) {
-      case 'textColor':
-        const textColorKey = this.props.active && this.props.active.find((s) => s.startsWith('textColor'))
-        const textColor = textColorKey && textColorKey.split(':')[1]
-        const style = {
-          backgroundColor: textColor || 'black',
-          borderWidth: textColor && isWhite(textColor) ? 1 : 0,
-          borderColor: textColor && isWhite(textColor) ? '#E6E9EA' : 'transparent',
-        }
-        return <View style={[styles.textColor, style]} />
-      default:
-        const isActive = (this.props.active || []).includes(image) && images.rce.active[image]
-        const icon = images.rce[image]
-        const tintColor = isActive ? colors.primaryBrandColor : colors.secondaryButton
-        const transform = [{ scaleX: I18nManager.isRTL && flipImageForRTL ? -1 : 1 }]
-        return <Image source={icon} style={{ tintColor, transform }} />
+  getTextColor () {
+    const textColorKey = this.props.active && this.props.active.find((s) => s.startsWith('textColor'))
+    return (textColorKey && textColorKey.split(':')[1] || '#2D3B45').replace(/\brgba?\s*\(\s*(\d+)\D+(\d+)\D+(\d+)\D*(\d+)?\D*\)/g, (s, r, g, b, a) => {
+      return '#' + [a || 255, r, g, b]
+        .map(n => (+n).toString(16).padStart(2, '0'))
+        .join('')
+        .replace(/^ff/i, '')
+        .toUpperCase()
+    })
+  }
+
+  getTextColorLabel () {
+    const colorHex = this.getTextColor()
+    const colorName = this.COLORS[colorHex]
+    return colorName
+      ? i18n('Text Color {colorName} ({colorHex})', { colorName, colorHex })
+      : i18n('Text Color ({colorHex})', { colorHex })
+  }
+
+  _renderItem ({ image, state }: Item) {
+    if (image === 'textColor') {
+      const textColor = this.getTextColor()
+      const style = {
+        backgroundColor: textColor,
+        borderWidth: isWhite(textColor) ? 1 : 0,
+        borderColor: isWhite(textColor) ? colors.seperatorColor : 'transparent',
+      }
+      return (
+        <View style={styles.textColor}>
+          <Image source={icon(image, 'solid')} style={styles.icon} />
+          <View style={[styles.textColorSwatch, style]} />
+        </View>
+      )
     }
+    const isActive = (this.props.active || []).includes(state)
+    const tintColor = isActive ? colors.primaryBrandColor : colors.darkText
+    return <Image source={icon(image, 'solid')} style={[styles.icon, { tintColor }]} />
   }
 
   _toggleColorPicker = () => {
@@ -169,8 +189,8 @@ export default class RichTextToolbar extends Component<Props, State> {
 }
 
 function isWhite (color: string): boolean {
-  const whites = ['white', 'rgb(255,255,255)']
-  return whites.includes(color.replace(/[ ]/g, ''))
+  const whites = ['white', 'rgb(255,255,255)', '#fff', '#ffffff']
+  return whites.includes(color.toLowerCase().replace(/[ ]/g, ''))
 }
 
 const styles = StyleSheet.create({
@@ -181,7 +201,7 @@ const styles = StyleSheet.create({
   },
   itemsContainer: {
     borderTopWidth: 1,
-    borderTopColor: '#C7CDD1',
+    borderTopColor: colors.seperatorColor,
     backgroundColor: 'white',
   },
   item: {
@@ -190,9 +210,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 8,
   },
+  icon: {
+    tintColor: colors.darkText,
+    height: 18,
+    width: 18,
+  },
   textColor: {
-    width: 26,
-    height: 26,
-    borderRadius: 13,
+    width: 18,
+    height: 18,
+  },
+  textColorSwatch: {
+    position: 'absolute',
+    top: 13,
+    left: 0,
+    height: 5,
+    width: 18,
   },
 })

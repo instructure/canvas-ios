@@ -41,6 +41,7 @@ import api from '../../canvas-api'
 import Screen from '../../routing/Screen'
 import Colors from '../../common/colors'
 import Images from '../../images'
+import icon from '../../images/inst-icons'
 import Navigator from '../../routing/Navigator'
 import Video from '../../common/components/Video'
 import { isTeacher } from '../app'
@@ -399,7 +400,7 @@ export default class ViewFile extends Component<Props, State> {
               testID='view-file.copy-btn'
               accessibilityLabel={i18n('Copy Link')}
             >
-              <Image source={Images.rce.link} style={styles.toolbarIcon} />
+              <Image source={icon('link')} style={styles.toolbarIcon} />
             </TouchableHighlight>
           </SafeAreaView>
         </View>

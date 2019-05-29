@@ -52,22 +52,6 @@ const images = {
   assignments: {
     calendar: require('./assignments/Calendar.png'),
   },
-  rce: {
-    bold: require('./rce/bold.png'),
-    embedImage: require('./rce/embed-image.png'),
-    italic: require('./rce/italic.png'),
-    link: require('./rce/link.png'),
-    orderedList: require('./rce/ordered-list.png'),
-    unorderedList: require('./rce/unordered-list.png'),
-    redo: require('./rce/redo.png'),
-    undo: require('./rce/undo.png'),
-    active: {
-      bold: require('./rce/bold-active.png'),
-      italic: require('./rce/italic-active.png'),
-      orderedList: require('./rce/ordered-list-active.png'),
-      unorderedList: require('./rce/unordered-list-active.png'),
-    },
-  },
   speedGrader: {
     chatBubbleMe: require('./speedgrader/bubble-me.png'),
     chatBubbleThem: require('./speedgrader/bubble-them.png'),

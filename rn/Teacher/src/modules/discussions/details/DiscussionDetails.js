@@ -28,7 +28,6 @@ import {
   ActionSheetIOS,
   AlertIOS,
   NativeModules,
-  I18nManager,
 } from 'react-native'
 import i18n from 'format-message'
 import DetailActions from './actions'
@@ -41,6 +40,7 @@ import Avatar from '../../../common/components/Avatar'
 import PublishedIcon from '../../assignment-details/components/PublishedIcon'
 import SubmissionBreakdownGraphSection from '../../assignment-details/components/SubmissionBreakdownGraphSection'
 import Images from '../../../images'
+import icon from '../../../images/inst-icons'
 import {
   Heading1,
   Text,
@@ -328,11 +328,8 @@ export class DiscussionDetails extends Component<Props, any> {
               >
                 <View style={[{ backgroundColor: colors.primaryButtonColor }, style.replyButtonWrapper]}>
                   <Image
-                    source={Images.rce.undo}
-                    style={[
-                      style.replyButtonImage,
-                      { transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] },
-                    ]}
+                    source={icon('reply')}
+                    style={style.replyButtonImage}
                   />
                   <Text style={[{ color: colors.primaryButtonTextColor }, style.reply]}>{i18n('Reply')}</Text>
                 </View>
