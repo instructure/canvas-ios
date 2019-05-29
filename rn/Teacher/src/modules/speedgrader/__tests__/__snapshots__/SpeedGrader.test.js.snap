@@ -232,7 +232,7 @@ exports[`SpeedGrader renders 1`] = `
 `;
 
 exports[`SpeedGrader renders submissions if there are some 1`] = `
-<View
+<A11yGroup
   style={
     Array [
       Object {
@@ -1981,5 +1981,5 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
     }
     userID="55"
   />
-</View>
+</A11yGroup>
 `;
