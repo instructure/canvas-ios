@@ -29,13 +29,16 @@ public protocol ProfileViewControllerProtocol: class {
     func reload()
     func show(_ route: Route, options: Core.Router.RouteOptions?)
     func show(_ route: String, options: Core.Router.RouteOptions?)
-    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?)}
+    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?)
+}
+
+public typealias ProfileViewCellBlock = (UITableViewCell) -> Void
 
 public struct ProfileViewCell {
     let name: String
-    let block: () -> Void
+    let block: ProfileViewCellBlock
 
-    public init(name: String, block: @escaping () -> Void) {
+    public init(name: String, block: @escaping ProfileViewCellBlock) {
         self.name = name
         self.block = block
     }
@@ -113,7 +116,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter?.cells[indexPath.row].block()
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        presenter?.cells[indexPath.row].block(cell)
     }
 }
 
