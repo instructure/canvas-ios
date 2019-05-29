@@ -189,7 +189,7 @@ exports[`SubmissionList loaded 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel="Profile"
+                  accessibilityLabel="S1 Profile"
                   accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
@@ -404,7 +404,7 @@ exports[`SubmissionList loaded 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel="Profile"
+                  accessibilityLabel="S2 Profile"
                   accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
@@ -650,7 +650,7 @@ exports[`SubmissionList loaded 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel="Profile"
+                  accessibilityLabel="S3 Profile"
                   accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
@@ -910,7 +910,7 @@ exports[`SubmissionList loaded 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel="Profile"
+                  accessibilityLabel="S4 Profile"
                   accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
@@ -1455,7 +1455,7 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel="Profile"
+                  accessibilityLabel="S2 Profile"
                   accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
@@ -1701,7 +1701,7 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel="Profile"
+                  accessibilityLabel="S4 Profile"
                   accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
@@ -1947,7 +1947,7 @@ exports[`SubmissionList renders correctly with graded filter 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel="Profile"
+                  accessibilityLabel="S5 Profile"
                   accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
@@ -2327,7 +2327,7 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel="Profile"
+                  accessibilityLabel="S1 Profile"
                   accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}
@@ -2676,7 +2676,7 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
               >
                 <View
                   accessibilityComponentType={undefined}
-                  accessibilityLabel="Profile"
+                  accessibilityLabel="S3 Profile"
                   accessibilityTraits="button"
                   accessible={true}
                   hasTVPreferredFocus={undefined}

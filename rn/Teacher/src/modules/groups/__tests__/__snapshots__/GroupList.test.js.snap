@@ -130,7 +130,7 @@ exports[`GroupList renders properly 1`] = `
             >
               <View
                 accessibilityComponentType={undefined}
-                accessibilityLabel="Profile"
+                accessibilityLabel="Donald Trump Profile"
                 accessibilityTraits="button"
                 accessible={true}
                 hasTVPreferredFocus={undefined}

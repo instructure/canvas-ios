@@ -102,7 +102,7 @@ exports[`comments render properly 1`] = `
           </View>
           <View
             accessibilityComponentType={undefined}
-            accessibilityLabel="Profile"
+            accessibilityLabel="Mrs. Fig Profile"
             accessibilityTraits="button"
             accessible={true}
             hasTVPreferredFocus={undefined}
@@ -276,7 +276,7 @@ exports[`comments render properly 1`] = `
         >
           <View
             accessibilityComponentType={undefined}
-            accessibilityLabel="Profile"
+            accessibilityLabel="Dim Whitted Profile"
             accessibilityTraits="button"
             accessible={true}
             hasTVPreferredFocus={undefined}
@@ -579,7 +579,7 @@ exports[`comments render properly 1`] = `
           </View>
           <View
             accessibilityComponentType={undefined}
-            accessibilityLabel="Profile"
+            accessibilityLabel="Mrs. Fig Profile"
             accessibilityTraits="button"
             accessible={true}
             hasTVPreferredFocus={undefined}
@@ -683,7 +683,7 @@ exports[`comments render properly 1`] = `
         >
           <View
             accessibilityComponentType={undefined}
-            accessibilityLabel="Profile"
+            accessibilityLabel="Dim Whitted Profile"
             accessibilityTraits="button"
             accessible={true}
             hasTVPreferredFocus={undefined}
@@ -915,7 +915,7 @@ exports[`comments render properly 1`] = `
           </View>
           <View
             accessibilityComponentType={undefined}
-            accessibilityLabel="Profile"
+            accessibilityLabel="Dim Whitted Profile"
             accessibilityTraits="button"
             accessible={true}
             hasTVPreferredFocus={undefined}
@@ -1023,7 +1023,7 @@ exports[`comments render properly 1`] = `
         >
           <View
             accessibilityComponentType={undefined}
-            accessibilityLabel="Profile"
+            accessibilityLabel="Dim Whitted Profile"
             accessibilityTraits="button"
             accessible={true}
             hasTVPreferredFocus={undefined}
