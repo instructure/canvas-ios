@@ -235,7 +235,7 @@ exports[`render correctly without image url 1`] = `
         }
       >
         <Text
-          accessible={true}
+          accessible={false}
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
