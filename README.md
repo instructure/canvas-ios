@@ -46,7 +46,7 @@ Any static keys, tokens, passwords, or other secrets that need to be available i
 The secrets necessary for a particular build are generated as data assets using a script.
 
 ```sh
-yarn secrets "studentPSPDFKitLicense=token1" "teacherPSPDFKitLicense=token2"
+yarn build-secrets "studentPSPDFKitLicense=token1" "teacherPSPDFKitLicense=token2"
 ```
 
 You will need to purchase PSPDFKitLicenses to distribute custom apps. Instructure's licenses are only used for official builds and are not included in the repository.
