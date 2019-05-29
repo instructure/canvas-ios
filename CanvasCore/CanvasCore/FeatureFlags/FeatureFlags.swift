@@ -23,7 +23,6 @@ import Core
 // from here and see where the compiler tells us we are still trying to use it
 public enum FeatureFlagName: String {
     case favoriteGroups
-    case newGroupNavigation
     case newStudentAssignmentView
     case conferences
 }

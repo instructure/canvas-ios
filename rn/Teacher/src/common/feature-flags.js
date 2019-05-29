@@ -38,7 +38,6 @@ const { FeatureFlagsManager } = NativeModules
 // This should be an enum so when adding more feature flags it should look like
 // type FeatureFlagName = 'someFeatureFlag' | 'otherFeatureFlag'
 export type FeatureFlagName = 'favoriteGroups' |
-                              'newGroupNavigation' |
                               'simpleDiscussionRenderer' |
                               'newStudentAssignmentView' |
                               'conferences'
@@ -49,7 +48,6 @@ export type FeatureFlagName = 'favoriteGroups' |
 // or the domain has been added as an exceptions
 export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
   favoriteGroups: {},
-  newGroupNavigation: {},
   simpleDiscussionRenderer: {},
   newStudentAssignmentView: {},
   conferences: {},
