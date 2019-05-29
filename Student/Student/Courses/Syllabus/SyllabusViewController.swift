@@ -123,7 +123,7 @@ class SyllabusViewController: UIViewController {
 
     func showAssignments() {
         guard let assignments = assignments else { return }
-        scrollView.scrollRectToVisible(assignments.view.frame, animated: true)
+        scrollView.scrollRectToVisible(assignments.view.frame, animated: !UIAccessibility.isVoiceOverRunning)
     }
 }
 
