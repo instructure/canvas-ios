@@ -138,7 +138,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
 
     func testSubmitTypeMissingSubmission() {
         let a = Assignment.make(from: .make(submission: nil))
-        presenter.submitType(.online_text_entry, for: a)
+        presenter.submitType(.online_text_entry, for: a, button: UIView())
         XCTAssertNil(view.presented)
         XCTAssert(router.calls.isEmpty)
     }
@@ -148,7 +148,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
             discussion_topic: .make(html_url: URL(string: "/discussion"))
         ))
         var asyncDone = expectation(description: "async task complete")
-        presenter.submitType(.external_tool, for: a)
+        presenter.submitType(.external_tool, for: a, button: UIView())
         DispatchQueue.main.async { asyncDone.fulfill() }
         wait(for: [asyncDone], timeout: 1)
         XCTAssert(router.viewControllerCalls.isEmpty)
@@ -156,7 +156,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         let request = GetSessionlessLaunchURLRequest(context: ContextModel(.course, id: "1"), id: nil, url: nil, assignmentID: "1", moduleItemID: nil, launchType: .assessment)
         api.mock(request, value: APIGetSessionlessLaunchResponse(url: URL(string: "https://instructure.com")!))
         asyncDone = expectation(description: "async task complete")
-        presenter.submitType(.external_tool, for: a)
+        presenter.submitType(.external_tool, for: a, button: UIView())
         DispatchQueue.main.async { asyncDone.fulfill() }
         wait(for: [asyncDone], timeout: 1)
         XCTAssert(router.viewControllerCalls.first?.0 is SFSafariViewController)
@@ -165,41 +165,41 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     func testSubmitTypeDiscussion() {
         let url = URL(string: "/discussion")!
         let a = Assignment.make(from: .make(discussion_topic: .make()))
-        presenter.submitType(.discussion_topic, for: a)
+        presenter.submitType(.discussion_topic, for: a, button: UIView())
         XCTAssert(router.calls.isEmpty)
 
         a.discussionTopic?.htmlUrl = url
-        presenter.submitType(.discussion_topic, for: a)
+        presenter.submitType(.discussion_topic, for: a, button: UIView())
         XCTAssert(router.lastRoutedTo(URL(string: "/discussion")!))
     }
 
     func testSubmitTypeMedia() {
         let a = Assignment.make()
-        presenter.submitType(.media_recording, for: a)
+        presenter.submitType(.media_recording, for: a, button: UIView())
         XCTAssert(view.presented is UIAlertController)
     }
 
     func testSubmitTypeText() {
         let a = Assignment.make()
-        presenter.submitType(.online_text_entry, for: a)
+        presenter.submitType(.online_text_entry, for: a, button: UIView())
         XCTAssert(router.lastRoutedTo(Route.assignmentTextSubmission(courseID: "1", assignmentID: "1", userID: "1")))
     }
 
     func testSubmitTypeQuiz() {
         let a = Assignment.make()
-        presenter.submitType(.online_quiz, for: a)
+        presenter.submitType(.online_quiz, for: a, button: UIView())
         XCTAssert(router.calls.isEmpty) // Not done yet
     }
 
     func testSubmitTypeUpload() {
         let a = Assignment.make()
-        presenter.submitType(.online_upload, for: a)
+        presenter.submitType(.online_upload, for: a, button: UIView())
         XCTAssert(view.presented is UINavigationController)
     }
 
     func testSubmitTypeURL() {
         let a = Assignment.make()
-        presenter.submitType(.online_url, for: a)
+        presenter.submitType(.online_url, for: a, button: UIView())
         XCTAssert(router.lastRoutedTo(Route.assignmentUrlSubmission(courseID: "1", assignmentID: "1", userID: "1")))
     }
 
@@ -214,7 +214,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
 
     func testSubmitTypeBad() {
         let a = Assignment.make()
-        presenter.submitType(.on_paper, for: a)
+        presenter.submitType(.on_paper, for: a, button: UIView())
         XCTAssertNil(view.presented)
         XCTAssert(router.calls.isEmpty)
     }
@@ -268,7 +268,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     }
 
     func testPickMediaRecordingType() {
-        presenter.pickMediaRecordingType()
+        presenter.pickMediaRecordingType(button: UIView())
         XCTAssert(view.presented is UIAlertController)
     }
 

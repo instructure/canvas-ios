@@ -24,7 +24,7 @@ enum SubmissionButtonAlertView {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         for type in assignment.submissionTypes {
             let action = UIAlertAction(title: type.localizedString, style: .default) { [weak presenter] _ in
-                presenter?.submitType(type, for: assignment)
+                presenter?.submitType(type, for: assignment, button: button)
             }
             alert.addAction(action)
         }
@@ -41,7 +41,7 @@ enum SubmissionButtonAlertView {
         return alert
     }
 
-    static func chooseMediaTypeAlert(_ presenter: SubmissionButtonPresenter) -> UIAlertController {
+    static func chooseMediaTypeAlert(_ presenter: SubmissionButtonPresenter, button: UIView) -> UIAlertController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Record Audio", bundle: .student, comment: ""), style: .default) { [weak presenter] _ in
             AudioRecorderViewController.requestPermission { allowed in
@@ -65,6 +65,9 @@ enum SubmissionButtonAlertView {
             presenter?.view?.present(cameraController, animated: true, completion: nil)
         })
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
+        alert.popoverPresentationController?.sourceView = button
+        alert.popoverPresentationController?.sourceRect = CGRect(origin: button.center, size: .zero)
+        alert.popoverPresentationController?.permittedArrowDirections = []
         return alert
     }
 
