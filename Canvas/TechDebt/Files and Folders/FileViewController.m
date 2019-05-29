@@ -387,6 +387,14 @@
     } else {
         CanvasWebView *webView = [CanvasWebView new];
         webView.presentingViewController = self;
+        @weakify(webView);
+        webView.finishedLoading = ^{
+            @strongify(webView);
+            // Allow VO to access images even when "Navigate Images" is set to only "With descriptions"
+            NSString *alt = NSLocalizedStringFromTableInBundle(@"File", nil, [NSBundle bundleForClass:self.class], nil);
+            NSString *script = [NSString stringWithFormat:@"document.querySelectorAll('img').forEach((img) => img.alt = '%@')", alt];
+            [webView evaluateJavaScript:script completionHandler:nil];
+        };
         [webView setNavigationHandlerWithRouteToURL:^(NSURL * _Nonnull url) {
             CanvasWebView *webView = [CanvasWebView new];
             [webView loadRequest:[NSURLRequest requestWithURL:url]];
