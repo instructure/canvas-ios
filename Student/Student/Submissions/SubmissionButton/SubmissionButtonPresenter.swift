@@ -80,13 +80,13 @@ class SubmissionButtonPresenter: NSObject {
         let types = assignment.submissionTypes
         let arc = types.contains(.online_upload) && arcID != .pending && arcID != .none
         if !arc && types.count == 1, let type = types.first {
-            return submitType(type, for: assignment)
+            return submitType(type, for: assignment, button: button)
         }
         let alert = SubmissionButtonAlertView.chooseTypeAlert(self, assignment: assignment, arc: arc, button: button)
         view?.present(alert, animated: true, completion: nil)
     }
 
-    func submitType(_ type: SubmissionType, for assignment: Assignment) {
+    func submitType(_ type: SubmissionType, for assignment: Assignment, button: UIView) {
         guard let view = view as? UIViewController, let userID = assignment.submission?.userID else { return }
         let courseID = assignment.courseID
         switch type {
@@ -105,7 +105,7 @@ class SubmissionButtonPresenter: NSObject {
             guard let url = assignment.discussionTopic?.htmlUrl else { return }
             env.router.route(to: url, from: view)
         case .media_recording:
-            pickMediaRecordingType()
+            pickMediaRecordingType(button: button)
         case .online_text_entry:
             let route = Route.assignmentTextSubmission(courseID: courseID, assignmentID: assignment.id, userID: userID)
             env.router.route(to: route, from: view, options: [.modal, .embedInNav])
@@ -184,8 +184,8 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 
 // MARK: - media_recording
 extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func pickMediaRecordingType() {
-        let alert = SubmissionButtonAlertView.chooseMediaTypeAlert(self)
+    func pickMediaRecordingType(button: UIView) {
+        let alert = SubmissionButtonAlertView.chooseMediaTypeAlert(self, button: button)
         view?.present(alert, animated: true, completion: nil)
     }
 
