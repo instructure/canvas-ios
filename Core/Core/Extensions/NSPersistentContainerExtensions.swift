@@ -78,10 +78,4 @@ extension NSPersistentContainer {
             print(error)
         }
     }
-
-    public func perform(block: @escaping (NSManagedObjectContext) -> Void) {
-        DispatchQueue.main.async {
-            block(self.viewContext)
-        }
-    }
 }

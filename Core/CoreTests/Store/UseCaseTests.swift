@@ -71,7 +71,7 @@ class UseCaseTests: CoreTestCase {
         XCTAssertEqual(useCase.ttl, 0)
         XCTAssertEqual(useCase.scope, parent.scope)
         useCase.write(response: nil, urlResponse: nil, to: databaseClient)
-        wait(for: [parent.expectation], timeout: 0.1)
+        wait(for: [parent.expectation], timeout: 1)
     }
 
     func testFetchCached() {
@@ -85,6 +85,7 @@ class UseCaseTests: CoreTestCase {
         let now = Date()
         Clock.mockNow(now)
         useCase.updateTTL(in: databaseClient)
+        try! databaseClient.save()
 
         let expectation = XCTestExpectation(description: "fetch completion block")
         var response: APICourse?
@@ -93,7 +94,7 @@ class UseCaseTests: CoreTestCase {
             expectation.fulfill()
         }
 
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
         XCTAssertNil(response)
     }
 
