@@ -42,12 +42,6 @@ import ModalOverlay from '../../../common/components/ModalOverlay'
 
 const HapticFeedback = NativeModules.HapticFeedback
 
-const PICKER_COLORS = [
-  '#F26090', '#EA1661', '#903A99', '#65469F', '#4452A6',
-  '#1482C8', '#2CA3DE', '#00BCD5', '#009788', '#3FA142',
-  '#89C540', '#FFC100', '#FA9800', '#F2581B', '#F2422E',
-]
-
 const PICKER_COLOR_WIDTH = 64
 const CONTAINER_PADDING = 16 * 2
 
@@ -112,11 +106,30 @@ export class UserCoursePreferences extends Component<Props, any> {
     }
   }
 
+  PICKER_COLORS = {
+    '#BD3C14': i18n('Brick'),
+    '#FF2717': i18n('Red'),
+    '#E71F63': i18n('Magenta'),
+    '#8F3E97': i18n('Purple'),
+    '#65499D': i18n('Deep Purple'),
+    '#4554A4': i18n('Indigo'),
+    '#1770AB': i18n('Blue'),
+    '#0B9BE3': i18n('Light Blue'),
+    '#06A3B7': i18n('Cyan'),
+    '#009688': i18n('Teal'),
+    '#009606': i18n('Green'),
+    '#8D9900': i18n('Olive'),
+    '#D97900': i18n('Pumpkin'),
+    '#FD5D10': i18n('Orange'),
+    '#F06291': i18n('Pink'),
+  }
+
   _hiddenCircles () {
     if (this.state.width > 0) {
+      const numOfColors = Object.keys(this.PICKER_COLORS).length
       const perRow = Math.floor((this.state.width - CONTAINER_PADDING) / PICKER_COLOR_WIDTH)
-      const numOfRows = Math.floor(PICKER_COLORS.length / perRow)
-      const numOnLastRow = PICKER_COLORS.length - (numOfRows * perRow)
+      const numOfRows = Math.floor(numOfColors / perRow)
+      const numOnLastRow = numOfColors - (numOfRows * perRow)
       const numOfHiddenCircles = numOnLastRow === 0 ? 0 : perRow - numOnLastRow
       let hiddenCircles = []
       for (let i = 0; i < numOfHiddenCircles; i++) {
@@ -128,11 +141,12 @@ export class UserCoursePreferences extends Component<Props, any> {
   }
 
   _renderColorButtons () {
-    let colors = PICKER_COLORS.map(color => (
+    let colors = Object.keys(this.PICKER_COLORS).map(color => (
       <ColorButton
         selected={color === this.props.color}
         onPress={this.updateColor}
         color={color}
+        colorName={this.PICKER_COLORS[color]}
         key={color}
       />
     ))
@@ -140,6 +154,7 @@ export class UserCoursePreferences extends Component<Props, any> {
       <ColorButton
         selected={false}
         color={color}
+        hidden
         onPress={() => {}}
         key={`hidden${index}`}
       />

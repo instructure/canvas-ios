@@ -116,10 +116,10 @@ describe('UserCoursePreferences', () => {
       <UserCoursePreferences {...defaultProps} />
     ).toJSON()
 
-    let color = explore(tree).selectByID('colorButton.#F26090') || {}
+    let color = explore(tree).selectByID('colorButton.#F06291') || {}
     color.props.onPress()
 
-    expect(defaultProps.updateCourseColor).toHaveBeenCalledWith(defaultProps.course.id, '#F26090')
+    expect(defaultProps.updateCourseColor).toHaveBeenCalledWith(defaultProps.course.id, '#F06291')
   })
 
   it('presents error alert', () => {

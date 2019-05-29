@@ -3,6 +3,7 @@
 exports[`ColorButton renders selected 1`] = `
 <TouchableHighlight
   accessibilityLabel="Choose #333"
+  accessible={true}
   onPress={[Function]}
   style={
     Object {
@@ -43,6 +44,7 @@ exports[`ColorButton renders selected 1`] = `
 exports[`ColorButton renders unselected 1`] = `
 <TouchableHighlight
   accessibilityLabel="Choose #fff"
+  accessible={true}
   onPress={[Function]}
   style={
     Object {
