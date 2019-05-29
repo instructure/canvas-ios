@@ -302,7 +302,7 @@ exports[`render correctly 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
@@ -506,7 +506,7 @@ exports[`render correctly 1`] = `
               }
             >
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={

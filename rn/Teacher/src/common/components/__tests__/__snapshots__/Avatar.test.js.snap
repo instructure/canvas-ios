@@ -22,7 +22,7 @@ exports[`Avatar renders with border 1`] = `
   }
 >
   <Text
-    accessible={true}
+    accessible={false}
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
@@ -102,7 +102,7 @@ exports[`Avatar renders without default canvas avatar 1`] = `
   }
 >
   <Text
-    accessible={true}
+    accessible={false}
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
@@ -145,7 +145,7 @@ exports[`Avatar renders without image 1`] = `
   }
 >
   <Text
-    accessible={true}
+    accessible={false}
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
@@ -188,7 +188,7 @@ exports[`Avatar renders without image but it has a funky name 1`] = `
   }
 >
   <Text
-    accessible={true}
+    accessible={false}
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
