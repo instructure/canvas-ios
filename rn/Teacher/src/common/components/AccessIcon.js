@@ -27,7 +27,7 @@ import {
 
 import Images from '../../images'
 import i18n from 'format-message'
-import { isTeacher } from '../../modules/app'
+import { isTeacher, isStudent } from '../../modules/app'
 
 export type Props = {
   entry: Object, /* {
@@ -68,6 +68,7 @@ export default class AccessIcon extends React.Component<Props> {
       iconStyle = styles.unpublishedIcon
       accessibilityLabel = i18n('Not Published')
     }
+    if (isStudent()) { accessibilityLabel = '' }
     let isIcon = typeof this.props.image === 'number'
     return (
       <View style={styles.container} accessibilityLabel={accessibilityLabel}>
