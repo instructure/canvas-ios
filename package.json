@@ -9,7 +9,7 @@
     "danger": "danger",
     "export-translations": "./scripts/translations/export.js",
     "import-translations": "./scripts/translations/import.js",
-    "svg-to-pdf": "./scripts/svg2pdf.js",
+    "svg2pdf": "./scripts/svg2pdf.js",
     "test": "./scripts/coverage/coverage.js --test",
     "update-headers": "./scripts/update-headers.js"
   },
