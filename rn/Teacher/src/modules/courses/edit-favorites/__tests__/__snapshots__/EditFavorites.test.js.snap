@@ -8,252 +8,282 @@ exports[`renders correctly 1`] = `
     }
   }
 >
-  <list>
-    <section>
-      <View
-        accessibilityTraits="header"
+  <RCTSafeAreaView
+    style={
+      Object {
+        "backgroundColor": "white",
+        "flexDirection": "column",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 16,
+          "paddingVertical": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
         style={
-          Array [
-            Object {
-              "backgroundColor": "#f5f5f5",
-              "flex": 1,
-              "justifyContent": "center",
-              "paddingLeft": 16,
-              "paddingRight": 8,
-              "paddingVertical": 4,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-          ]
+          Object {
+            "fontWeight": "500",
+          }
         }
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        Select which courses you would like to see on the Dashboard.
+      </Text>
+    </View>
+    <list>
+      <section>
+        <View
+          accessibilityTraits="header"
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
               },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
               Array [
                 Object {
-                  "backgroundColor": "#f5f5f5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
+                  "fontFamily": ".SFUIDisplay",
                 },
-                undefined,
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-        >
-          Courses
-        </Text>
-      </View>
-      <item>
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "selected",
-              "button",
-            ]
-          }
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "borderBottomColor": "#e3e3e3",
-                "borderBottomWidth": 1,
-              },
-            ]
-          }
-          testID="edit-favorites.course-favorite.1-favorited"
-          tvParallaxProperties={undefined}
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "flexDirection": "row",
-                "paddingHorizontal": 16,
-                "paddingVertical": 16,
-              }
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "backgroundColor": "#f5f5f5",
+                    "color": "#73818C",
+                    "fontSize": 14,
+                    "fontWeight": "600",
+                  },
+                  undefined,
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/star-filled.png",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "height": 20,
-                    "marginRight": 10,
-                    "width": 20,
-                  },
-                  Object {
-                    "tintColor": "#374A59",
-                  },
-                ]
-              }
-            />
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "500",
-                    "marginRight": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
-                ]
-              }
-            >
-              Learn React Native
-            </Text>
-          </View>
+            Courses
+          </Text>
         </View>
-      </item>
-      <item>
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "selected",
-              "button",
-            ]
-          }
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "borderBottomColor": "#e3e3e3",
-                "borderBottomWidth": 1,
-              },
-            ]
-          }
-          testID="edit-favorites.course-favorite.2-favorited"
-          tvParallaxProperties={undefined}
-        >
+        <item>
           <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "flexDirection": "row",
-                "paddingHorizontal": 16,
-                "paddingVertical": 16,
-              }
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "selected",
+                "button",
+              ]
             }
-          >
-            <Image
-              source={
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
                 Object {
-                  "testUri": "../../../src/images/star-filled.png",
+                  "backgroundColor": "transparent",
+                },
+                Object {
+                  "borderBottomColor": "#e3e3e3",
+                  "borderBottomWidth": 1,
+                },
+              ]
+            }
+            testID="edit-favorites.course-favorite.1-favorited"
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
                 }
               }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/star-filled.png",
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 20,
+                      "marginRight": 10,
+                      "width": 20,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
+                }
+              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "500",
+                      "marginRight": 16,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-medium",
+                    },
+                  ]
+                }
+              >
+                Learn React Native
+              </Text>
+            </View>
+          </View>
+        </item>
+        <item>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "selected",
+                "button",
+              ]
+            }
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                Object {
+                  "borderBottomColor": "#e3e3e3",
+                  "borderBottomWidth": 1,
+                },
+              ]
+            }
+            testID="edit-favorites.course-favorite.2-favorited"
+            tvParallaxProperties={undefined}
+          >
+            <View
               style={
-                Array [
-                  Object {
-                    "height": 20,
-                    "marginRight": 10,
-                    "width": 20,
-                  },
-                  Object {
-                    "tintColor": "#374A59",
-                  },
-                ]
-              }
-            />
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "500",
-                    "marginRight": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
+                }
               }
             >
-              Learn React Native
-            </Text>
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/star-filled.png",
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 20,
+                      "marginRight": 10,
+                      "width": 20,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
+                }
+              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "500",
+                      "marginRight": 16,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-medium",
+                    },
+                  ]
+                }
+              >
+                Learn React Native
+              </Text>
+            </View>
           </View>
-        </View>
-      </item>
-    </section>
-  </list>
+        </item>
+      </section>
+    </list>
+  </RCTSafeAreaView>
 </RCTSafeAreaView>
 `;
 
@@ -265,493 +295,523 @@ exports[`renders correctly as student 1`] = `
     }
   }
 >
-  <list>
-    <section>
-      <View
-        accessibilityTraits="header"
+  <RCTSafeAreaView
+    style={
+      Object {
+        "backgroundColor": "white",
+        "flexDirection": "column",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 16,
+          "paddingVertical": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
         style={
-          Array [
-            Object {
-              "backgroundColor": "#f5f5f5",
-              "flex": 1,
-              "justifyContent": "center",
-              "paddingLeft": 16,
-              "paddingRight": 8,
-              "paddingVertical": 4,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-          ]
+          Object {
+            "fontWeight": "500",
+          }
         }
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        Select which courses you would like to see on the Dashboard.
+      </Text>
+    </View>
+    <list>
+      <section>
+        <View
+          accessibilityTraits="header"
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
               },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
               Array [
                 Object {
-                  "backgroundColor": "#f5f5f5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
+                  "fontFamily": ".SFUIDisplay",
                 },
-                undefined,
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-        >
-          Courses
-        </Text>
-      </View>
-      <item>
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "selected",
-              "button",
-            ]
-          }
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "borderBottomColor": "#e3e3e3",
-                "borderBottomWidth": 1,
-              },
-            ]
-          }
-          testID="edit-favorites.course-favorite.1-favorited"
-          tvParallaxProperties={undefined}
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "flexDirection": "row",
-                "paddingHorizontal": 16,
-                "paddingVertical": 16,
-              }
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "backgroundColor": "#f5f5f5",
+                    "color": "#73818C",
+                    "fontSize": 14,
+                    "fontWeight": "600",
+                  },
+                  undefined,
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/star-filled.png",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "height": 20,
-                    "marginRight": 10,
-                    "width": 20,
-                  },
-                  Object {
-                    "tintColor": "#374A59",
-                  },
-                ]
-              }
-            />
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "500",
-                    "marginRight": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
-                ]
-              }
-            >
-              Learn React Native
-            </Text>
-          </View>
+            Courses
+          </Text>
         </View>
-      </item>
-      <item>
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "selected",
-              "button",
-            ]
-          }
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "borderBottomColor": "#e3e3e3",
-                "borderBottomWidth": 1,
-              },
-            ]
-          }
-          testID="edit-favorites.course-favorite.2-favorited"
-          tvParallaxProperties={undefined}
-        >
+        <item>
           <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "flexDirection": "row",
-                "paddingHorizontal": 16,
-                "paddingVertical": 16,
-              }
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "selected",
+                "button",
+              ]
             }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/star-filled.png",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "height": 20,
-                    "marginRight": 10,
-                    "width": 20,
-                  },
-                  Object {
-                    "tintColor": "#374A59",
-                  },
-                ]
-              }
-            />
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "500",
-                    "marginRight": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
-                ]
-              }
-            >
-              Learn React Native
-            </Text>
-          </View>
-        </View>
-      </item>
-    </section>
-    <section>
-      <View
-        accessibilityTraits="header"
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#f5f5f5",
-              "flex": 1,
-              "justifyContent": "center",
-              "paddingLeft": 16,
-              "paddingRight": 8,
-              "paddingVertical": 4,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-            undefined,
-          ]
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
               Array [
                 Object {
-                  "backgroundColor": "#f5f5f5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
+                  "backgroundColor": "transparent",
                 },
-                undefined,
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-        >
-          Groups
-        </Text>
-      </View>
-      <item>
+                Object {
+                  "borderBottomColor": "#e3e3e3",
+                  "borderBottomWidth": 1,
+                },
+              ]
+            }
+            testID="edit-favorites.course-favorite.1-favorited"
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/star-filled.png",
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 20,
+                      "marginRight": 10,
+                      "width": 20,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
+                }
+              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "500",
+                      "marginRight": 16,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-medium",
+                    },
+                  ]
+                }
+              >
+                Learn React Native
+              </Text>
+            </View>
+          </View>
+        </item>
+        <item>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "selected",
+                "button",
+              ]
+            }
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                Object {
+                  "borderBottomColor": "#e3e3e3",
+                  "borderBottomWidth": 1,
+                },
+              ]
+            }
+            testID="edit-favorites.course-favorite.2-favorited"
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/star-filled.png",
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 20,
+                      "marginRight": 10,
+                      "width": 20,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
+                }
+              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "500",
+                      "marginRight": 16,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-medium",
+                    },
+                  ]
+                }
+              >
+                Learn React Native
+              </Text>
+            </View>
+          </View>
+        </item>
+      </section>
+      <section>
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "selected",
-              "button",
-            ]
-          }
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+          accessibilityTraits="header"
           style={
             Array [
               Object {
-                "backgroundColor": "transparent",
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
-                "borderBottomColor": "#e3e3e3",
-                "borderBottomWidth": 1,
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
               },
+              undefined,
             ]
           }
-          testID="edit-favorites.course-favorite.1-favorited"
-          tvParallaxProperties={undefined}
         >
-          <View
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
             style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "flexDirection": "row",
-                "paddingHorizontal": 16,
-                "paddingVertical": 16,
-              }
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "backgroundColor": "#f5f5f5",
+                    "color": "#73818C",
+                    "fontSize": 14,
+                    "fontWeight": "600",
+                  },
+                  undefined,
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/star-filled.png",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "height": 20,
-                    "marginRight": 10,
-                    "width": 20,
-                  },
-                  Object {
-                    "tintColor": "#374A59",
-                  },
-                ]
-              }
-            />
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "500",
-                    "marginRight": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
-                ]
-              }
-            >
-              Red Squadron
-            </Text>
-          </View>
+            Groups
+          </Text>
         </View>
-      </item>
-      <item>
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "selected",
-              "button",
-            ]
-          }
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "borderBottomColor": "#e3e3e3",
-                "borderBottomWidth": 1,
-              },
-            ]
-          }
-          testID="edit-favorites.course-favorite.2-favorited"
-          tvParallaxProperties={undefined}
-        >
+        <item>
           <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "flexDirection": "row",
-                "paddingHorizontal": 16,
-                "paddingVertical": 16,
-              }
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "selected",
+                "button",
+              ]
             }
-          >
-            <Image
-              source={
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
                 Object {
-                  "testUri": "../../../src/images/star-filled.png",
+                  "backgroundColor": "transparent",
+                },
+                Object {
+                  "borderBottomColor": "#e3e3e3",
+                  "borderBottomWidth": 1,
+                },
+              ]
+            }
+            testID="edit-favorites.course-favorite.1-favorited"
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
                 }
               }
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/star-filled.png",
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 20,
+                      "marginRight": 10,
+                      "width": 20,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
+                }
+              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "500",
+                      "marginRight": 16,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-medium",
+                    },
+                  ]
+                }
+              >
+                Red Squadron
+              </Text>
+            </View>
+          </View>
+        </item>
+        <item>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "selected",
+                "button",
+              ]
+            }
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                Object {
+                  "borderBottomColor": "#e3e3e3",
+                  "borderBottomWidth": 1,
+                },
+              ]
+            }
+            testID="edit-favorites.course-favorite.2-favorited"
+            tvParallaxProperties={undefined}
+          >
+            <View
               style={
-                Array [
-                  Object {
-                    "height": 20,
-                    "marginRight": 10,
-                    "width": 20,
-                  },
-                  Object {
-                    "tintColor": "#374A59",
-                  },
-                ]
-              }
-            />
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "500",
-                    "marginRight": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
+                }
               }
             >
-              Red Squadron
-            </Text>
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/star-filled.png",
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 20,
+                      "marginRight": 10,
+                      "width": 20,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
+                }
+              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "500",
+                      "marginRight": 16,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-medium",
+                    },
+                  ]
+                }
+              >
+                Red Squadron
+              </Text>
+            </View>
           </View>
-        </View>
-      </item>
-    </section>
-  </list>
+        </item>
+      </section>
+    </list>
+  </RCTSafeAreaView>
 </RCTSafeAreaView>
 `;
 
@@ -763,158 +823,188 @@ exports[`updates when courses prop changes 1`] = `
     }
   }
 >
-  <list>
-    <section>
-      <View
-        accessibilityTraits="header"
+  <RCTSafeAreaView
+    style={
+      Object {
+        "backgroundColor": "white",
+        "flexDirection": "column",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 16,
+          "paddingVertical": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
         style={
-          Array [
-            Object {
-              "backgroundColor": "#f5f5f5",
-              "flex": 1,
-              "justifyContent": "center",
-              "paddingLeft": 16,
-              "paddingRight": 8,
-              "paddingVertical": 4,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-          ]
+          Object {
+            "fontWeight": "500",
+          }
         }
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        Select which courses you would like to see on the Dashboard.
+      </Text>
+    </View>
+    <list>
+      <section>
+        <View
+          accessibilityTraits="header"
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
               },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
               Array [
                 Object {
-                  "backgroundColor": "#f5f5f5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
+                  "fontFamily": ".SFUIDisplay",
                 },
-                undefined,
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-        >
-          Courses
-        </Text>
-      </View>
-      <item>
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "selected",
-              "button",
-            ]
-          }
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "borderBottomColor": "#e3e3e3",
-                "borderBottomWidth": 1,
-              },
-            ]
-          }
-          testID="edit-favorites.course-favorite.1-favorited"
-          tvParallaxProperties={undefined}
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "flexDirection": "row",
-                "paddingHorizontal": 16,
-                "paddingVertical": 16,
-              }
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "backgroundColor": "#f5f5f5",
+                    "color": "#73818C",
+                    "fontSize": 14,
+                    "fontWeight": "600",
+                  },
+                  undefined,
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
-            <Image
-              source={
+            Courses
+          </Text>
+        </View>
+        <item>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "selected",
+                "button",
+              ]
+            }
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
                 Object {
-                  "testUri": "../../../src/images/star-filled.png",
+                  "backgroundColor": "transparent",
+                },
+                Object {
+                  "borderBottomColor": "#e3e3e3",
+                  "borderBottomWidth": 1,
+                },
+              ]
+            }
+            testID="edit-favorites.course-favorite.1-favorited"
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
                 }
               }
-              style={
-                Array [
-                  Object {
-                    "height": 20,
-                    "marginRight": 10,
-                    "width": 20,
-                  },
-                  Object {
-                    "tintColor": "#374A59",
-                  },
-                ]
-              }
-            />
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "500",
-                    "marginRight": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
-                ]
-              }
             >
-              Learn React Native
-            </Text>
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/star-filled.png",
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 20,
+                      "marginRight": 10,
+                      "width": 20,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
+                }
+              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "500",
+                      "marginRight": 16,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-medium",
+                    },
+                  ]
+                }
+              >
+                Learn React Native
+              </Text>
+            </View>
           </View>
-        </View>
-      </item>
-    </section>
-  </list>
+        </item>
+      </section>
+    </list>
+  </RCTSafeAreaView>
 </RCTSafeAreaView>
 `;
 
@@ -926,157 +1016,187 @@ exports[`updates when courses prop changes 2`] = `
     }
   }
 >
-  <list>
-    <section>
-      <View
-        accessibilityTraits="header"
+  <RCTSafeAreaView
+    style={
+      Object {
+        "backgroundColor": "white",
+        "flexDirection": "column",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "paddingHorizontal": 16,
+          "paddingVertical": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
         style={
-          Array [
-            Object {
-              "backgroundColor": "#f5f5f5",
-              "flex": 1,
-              "justifyContent": "center",
-              "paddingLeft": 16,
-              "paddingRight": 8,
-              "paddingVertical": 4,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-          ]
+          Object {
+            "fontWeight": "500",
+          }
         }
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
+        Select which courses you would like to see on the Dashboard.
+      </Text>
+    </View>
+    <list>
+      <section>
+        <View
+          accessibilityTraits="header"
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "backgroundColor": "#f5f5f5",
+                "flex": 1,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
               },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
               Array [
                 Object {
-                  "backgroundColor": "#f5f5f5",
-                  "color": "#73818C",
-                  "fontSize": 14,
-                  "fontWeight": "600",
+                  "fontFamily": ".SFUIDisplay",
                 },
-                undefined,
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-        >
-          Courses
-        </Text>
-      </View>
-      <item>
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "selected",
-              "button",
-            ]
-          }
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "borderBottomColor": "#e3e3e3",
-                "borderBottomWidth": 1,
-              },
-            ]
-          }
-          testID="edit-favorites.course-favorite.1-favorited"
-          tvParallaxProperties={undefined}
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "flexDirection": "row",
-                "paddingHorizontal": 16,
-                "paddingVertical": 16,
-              }
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Array [
+                  Object {
+                    "backgroundColor": "#f5f5f5",
+                    "color": "#73818C",
+                    "fontSize": 14,
+                    "fontWeight": "600",
+                  },
+                  undefined,
+                ],
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
             }
           >
-            <Image
-              source={
+            Courses
+          </Text>
+        </View>
+        <item>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "selected",
+                "button",
+              ]
+            }
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
                 Object {
-                  "testUri": "../../../src/images/star-filled.png",
+                  "backgroundColor": "transparent",
+                },
+                Object {
+                  "borderBottomColor": "#e3e3e3",
+                  "borderBottomWidth": 1,
+                },
+              ]
+            }
+            testID="edit-favorites.course-favorite.1-favorited"
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flexDirection": "row",
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 16,
                 }
               }
-              style={
-                Array [
-                  Object {
-                    "height": 20,
-                    "marginRight": 10,
-                    "width": 20,
-                  },
-                  Object {
-                    "tintColor": "#374A59",
-                  },
-                ]
-              }
-            />
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontWeight": "500",
-                    "marginRight": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
-                ]
-              }
             >
-              Learn React Native
-            </Text>
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/star-filled.png",
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 20,
+                      "marginRight": 10,
+                      "width": 20,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
+                }
+              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "500",
+                      "marginRight": 16,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-medium",
+                    },
+                  ]
+                }
+              >
+                Learn React Native
+              </Text>
+            </View>
           </View>
-        </View>
-      </item>
-    </section>
-  </list>
+        </item>
+      </section>
+    </list>
+  </RCTSafeAreaView>
 </RCTSafeAreaView>
 `;
