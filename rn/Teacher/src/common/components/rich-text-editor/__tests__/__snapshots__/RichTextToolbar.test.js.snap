@@ -38,9 +38,321 @@ exports[`RichTextToolbar renders active items 1`] = `
     }
   }
 >
-  <ColorPicker
-    pickedColor={[Function]}
-  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      horizontal={true}
+      testID="color-picker.options"
+    >
+      <View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <TouchableHighlight
+            accessibilityLabel="Set text color to white (#FFFFFF)"
+            accessibilityTraits="button"
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 44,
+                "width": 44,
+              }
+            }
+            testID="color-picker-option-#FFFFFF"
+            underlayColor="transparent"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 19,
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "margin": 6,
+                  },
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#E6E9EA",
+                    "borderWidth": 1,
+                  },
+                ]
+              }
+            />
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Set text color to black (#2D3B45)"
+            accessibilityTraits="button"
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 44,
+                "width": 44,
+              }
+            }
+            testID="color-picker-option-#2D3B45"
+            underlayColor="transparent"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 19,
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "margin": 6,
+                  },
+                  Object {
+                    "backgroundColor": "#2D3B45",
+                    "borderColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                ]
+              }
+            />
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Set text color to grey (#8B969E)"
+            accessibilityTraits="button"
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 44,
+                "width": 44,
+              }
+            }
+            testID="color-picker-option-#8B969E"
+            underlayColor="transparent"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 19,
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "margin": 6,
+                  },
+                  Object {
+                    "backgroundColor": "#8B969E",
+                    "borderColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                ]
+              }
+            />
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Set text color to red (#EE0612)"
+            accessibilityTraits="button"
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 44,
+                "width": 44,
+              }
+            }
+            testID="color-picker-option-#EE0612"
+            underlayColor="transparent"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 19,
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "margin": 6,
+                  },
+                  Object {
+                    "backgroundColor": "#EE0612",
+                    "borderColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                ]
+              }
+            />
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Set text color to orange (#FC5E13)"
+            accessibilityTraits="button"
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 44,
+                "width": 44,
+              }
+            }
+            testID="color-picker-option-#FC5E13"
+            underlayColor="transparent"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 19,
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "margin": 6,
+                  },
+                  Object {
+                    "backgroundColor": "#FC5E13",
+                    "borderColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                ]
+              }
+            />
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Set text color to yellow (#FFC100)"
+            accessibilityTraits="button"
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 44,
+                "width": 44,
+              }
+            }
+            testID="color-picker-option-#FFC100"
+            underlayColor="transparent"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 19,
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "margin": 6,
+                  },
+                  Object {
+                    "backgroundColor": "#FFC100",
+                    "borderColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                ]
+              }
+            />
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Set text color to green (#89C540)"
+            accessibilityTraits="button"
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 44,
+                "width": 44,
+              }
+            }
+            testID="color-picker-option-#89C540"
+            underlayColor="transparent"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 19,
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "margin": 6,
+                  },
+                  Object {
+                    "backgroundColor": "#89C540",
+                    "borderColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                ]
+              }
+            />
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Set text color to blue (#1482C8)"
+            accessibilityTraits="button"
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 44,
+                "width": 44,
+              }
+            }
+            testID="color-picker-option-#1482C8"
+            underlayColor="transparent"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 19,
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "margin": 6,
+                  },
+                  Object {
+                    "backgroundColor": "#1482C8",
+                    "borderColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                ]
+              }
+            />
+          </TouchableHighlight>
+          <TouchableHighlight
+            accessibilityLabel="Set text color to purple (#65469F)"
+            accessibilityTraits="button"
+            onPress={[Function]}
+            style={
+              Object {
+                "height": 44,
+                "width": 44,
+              }
+            }
+            testID="color-picker-option-#65469F"
+            underlayColor="transparent"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 19,
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "margin": 6,
+                  },
+                  Object {
+                    "backgroundColor": "#65469F",
+                    "borderColor": "transparent",
+                    "borderWidth": 0,
+                  },
+                ]
+              }
+            />
+          </TouchableHighlight>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
   <View
     style={
       Object {
@@ -70,94 +382,31 @@ exports[`RichTextToolbar renders active items 1`] = `
               "width": 50,
             }
           }
-          testID="rich-text-toolbar-item-bold"
+          testID="rich-text-toolbar-item-setBold"
           underlayColor="#f5f5f5"
         >
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/rce/bold.png",
+                "uri": "boldSolid",
               }
             }
-            style={
-              Object {
-                "tintColor": "#374A59",
-                "transform": Array [
-                  Object {
-                    "scaleX": 1,
-                  },
-                ],
-              }
-            }
-          />
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Text Color"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "justifyContent": "center",
-              "padding": 8,
-              "width": 50,
-            }
-          }
-          testID="rich-text-toolbar-item-textColor"
-          underlayColor="#f5f5f5"
-        >
-          <View
             style={
               Array [
                 Object {
-                  "borderRadius": 13,
-                  "height": 26,
-                  "width": 26,
+                  "height": 18,
+                  "tintColor": "#2D3B45",
+                  "width": 18,
                 },
                 Object {
-                  "backgroundColor": "white",
-                  "borderColor": "#E6E9EA",
-                  "borderWidth": 1,
+                  "tintColor": "#374A59",
                 },
               ]
             }
           />
         </TouchableHighlight>
-      </View>
-    </RCTScrollView>
-  </View>
-</View>
-`;
-
-exports[`RichTextToolbar renders icons in RTL 1`] = `
-<View
-  style={
-    Object {
-      "backgroundColor": "white",
-      "flexDirection": "column",
-      "justifyContent": "flex-end",
-    }
-  }
->
-  <View
-    style={
-      Object {
-        "backgroundColor": "white",
-        "borderTopColor": "#C7CDD1",
-        "borderTopWidth": 1,
-      }
-    }
-  >
-    <RCTScrollView
-      horizontal={true}
-    >
-      <View>
         <TouchableHighlight
-          accessibilityLabel="Undo"
+          accessibilityLabel="Text Color (white)"
           accessibilityTraits={
             Array [
               "button",
@@ -172,63 +421,50 @@ exports[`RichTextToolbar renders icons in RTL 1`] = `
               "width": 50,
             }
           }
-          testID="rich-text-toolbar-item-undo"
+          testID="rich-text-toolbar-item-setTextColor"
           underlayColor="#f5f5f5"
         >
-          <Image
-            source={
-              Object {
-                "testUri": "../../../src/images/rce/undo.png",
-              }
-            }
+          <View
             style={
               Object {
-                "tintColor": "#73818C",
-                "transform": Array [
+                "height": 18,
+                "width": 18,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "textColorSolid",
+                }
+              }
+              style={
+                Object {
+                  "height": 18,
+                  "tintColor": "#2D3B45",
+                  "width": 18,
+                }
+              }
+            />
+            <View
+              style={
+                Array [
                   Object {
-                    "scaleX": -1,
+                    "height": 5,
+                    "left": 0,
+                    "position": "absolute",
+                    "top": 13,
+                    "width": 18,
                   },
-                ],
-              }
-            }
-          />
-        </TouchableHighlight>
-        <TouchableHighlight
-          accessibilityLabel="Redo"
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
-          onPress={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "justifyContent": "center",
-              "padding": 8,
-              "width": 50,
-            }
-          }
-          testID="rich-text-toolbar-item-redo"
-          underlayColor="#f5f5f5"
-        >
-          <Image
-            source={
-              Object {
-                "testUri": "../../../src/images/rce/redo.png",
-              }
-            }
-            style={
-              Object {
-                "tintColor": "#73818C",
-                "transform": Array [
                   Object {
-                    "scaleX": -1,
+                    "backgroundColor": "white",
+                    "borderColor": "#C7CDD1",
+                    "borderWidth": 1,
                   },
-                ],
+                ]
               }
-            }
-          />
+            />
+          </View>
         </TouchableHighlight>
       </View>
     </RCTScrollView>

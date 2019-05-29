@@ -57,11 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         if let session = Keychain.mostRecentSession {
             window?.rootViewController = LoadingViewController.create()
+            window?.makeKeyAndVisible()
             userDidLogin(keychainEntry: session)
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
+            window?.makeKeyAndVisible()
         }
-        window?.makeKeyAndVisible()
         return true
     }
 

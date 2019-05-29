@@ -1695,26 +1695,17 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/rce/undo.png",
+                        "uri": "replyLine",
                       }
                     }
                     style={
-                      Array [
-                        Object {
-                          "height": 18,
-                          "marginRight": 6,
-                          "resizeMode": "contain",
-                          "tintColor": "white",
-                          "width": 18,
-                        },
-                        Object {
-                          "transform": Array [
-                            Object {
-                              "scaleX": 1,
-                            },
-                          ],
-                        },
-                      ]
+                      Object {
+                        "height": 18,
+                        "marginRight": 6,
+                        "resizeMode": "contain",
+                        "tintColor": "white",
+                        "width": 18,
+                      }
                     }
                   />
                   <Text
@@ -2677,26 +2668,17 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     <Image
                       source={
                         Object {
-                          "testUri": "../../../src/images/rce/undo.png",
+                          "uri": "replyLine",
                         }
                       }
                       style={
-                        Array [
-                          Object {
-                            "height": 18,
-                            "marginRight": 6,
-                            "resizeMode": "contain",
-                            "tintColor": "white",
-                            "width": 18,
-                          },
-                          Object {
-                            "transform": Array [
-                              Object {
-                                "scaleX": 1,
-                              },
-                            ],
-                          },
-                        ]
+                        Object {
+                          "height": 18,
+                          "marginRight": 6,
+                          "resizeMode": "contain",
+                          "tintColor": "white",
+                          "width": 18,
+                        }
                       }
                     />
                     <Text
@@ -4107,26 +4089,17 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/rce/undo.png",
+                        "uri": "replyLine",
                       }
                     }
                     style={
-                      Array [
-                        Object {
-                          "height": 18,
-                          "marginRight": 6,
-                          "resizeMode": "contain",
-                          "tintColor": "white",
-                          "width": 18,
-                        },
-                        Object {
-                          "transform": Array [
-                            Object {
-                              "scaleX": 1,
-                            },
-                          ],
-                        },
-                      ]
+                      Object {
+                        "height": 18,
+                        "marginRight": 6,
+                        "resizeMode": "contain",
+                        "tintColor": "white",
+                        "width": 18,
+                      }
                     }
                   />
                   <Text
@@ -4534,26 +4507,17 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     <Image
                       source={
                         Object {
-                          "testUri": "../../../src/images/rce/undo.png",
+                          "uri": "replyLine",
                         }
                       }
                       style={
-                        Array [
-                          Object {
-                            "height": 18,
-                            "marginRight": 6,
-                            "resizeMode": "contain",
-                            "tintColor": "white",
-                            "width": 18,
-                          },
-                          Object {
-                            "transform": Array [
-                              Object {
-                                "scaleX": 1,
-                              },
-                            ],
-                          },
-                        ]
+                        Object {
+                          "height": 18,
+                          "marginRight": 6,
+                          "resizeMode": "contain",
+                          "tintColor": "white",
+                          "width": 18,
+                        }
                       }
                     />
                     <Text
@@ -5198,26 +5162,17 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/rce/undo.png",
+                        "uri": "replyLine",
                       }
                     }
                     style={
-                      Array [
-                        Object {
-                          "height": 18,
-                          "marginRight": 6,
-                          "resizeMode": "contain",
-                          "tintColor": "white",
-                          "width": 18,
-                        },
-                        Object {
-                          "transform": Array [
-                            Object {
-                              "scaleX": 1,
-                            },
-                          ],
-                        },
-                      ]
+                      Object {
+                        "height": 18,
+                        "marginRight": 6,
+                        "resizeMode": "contain",
+                        "tintColor": "white",
+                        "width": 18,
+                      }
                     }
                   />
                   <Text
@@ -6174,26 +6129,17 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     <Image
                       source={
                         Object {
-                          "testUri": "../../../src/images/rce/undo.png",
+                          "uri": "replyLine",
                         }
                       }
                       style={
-                        Array [
-                          Object {
-                            "height": 18,
-                            "marginRight": 6,
-                            "resizeMode": "contain",
-                            "tintColor": "white",
-                            "width": 18,
-                          },
-                          Object {
-                            "transform": Array [
-                              Object {
-                                "scaleX": 1,
-                              },
-                            ],
-                          },
-                        ]
+                        Object {
+                          "height": 18,
+                          "marginRight": 6,
+                          "resizeMode": "contain",
+                          "tintColor": "white",
+                          "width": 18,
+                        }
                       }
                     />
                     <Text
@@ -6511,26 +6457,17 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/rce/undo.png",
+                        "uri": "replyLine",
                       }
                     }
                     style={
-                      Array [
-                        Object {
-                          "height": 18,
-                          "marginRight": 6,
-                          "resizeMode": "contain",
-                          "tintColor": "white",
-                          "width": 18,
-                        },
-                        Object {
-                          "transform": Array [
-                            Object {
-                              "scaleX": -1,
-                            },
-                          ],
-                        },
-                      ]
+                      Object {
+                        "height": 18,
+                        "marginRight": 6,
+                        "resizeMode": "contain",
+                        "tintColor": "white",
+                        "width": 18,
+                      }
                     }
                   />
                   <Text
@@ -7519,26 +7456,17 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                     <Image
                       source={
                         Object {
-                          "testUri": "../../../src/images/rce/undo.png",
+                          "uri": "replyLine",
                         }
                       }
                       style={
-                        Array [
-                          Object {
-                            "height": 18,
-                            "marginRight": 6,
-                            "resizeMode": "contain",
-                            "tintColor": "white",
-                            "width": 18,
-                          },
-                          Object {
-                            "transform": Array [
-                              Object {
-                                "scaleX": -1,
-                              },
-                            ],
-                          },
-                        ]
+                        Object {
+                          "height": 18,
+                          "marginRight": 6,
+                          "resizeMode": "contain",
+                          "tintColor": "white",
+                          "width": 18,
+                        }
                       }
                     />
                     <Text
@@ -8276,26 +8204,17 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/rce/undo.png",
+                        "uri": "replyLine",
                       }
                     }
                     style={
-                      Array [
-                        Object {
-                          "height": 18,
-                          "marginRight": 6,
-                          "resizeMode": "contain",
-                          "tintColor": "white",
-                          "width": 18,
-                        },
-                        Object {
-                          "transform": Array [
-                            Object {
-                              "scaleX": 1,
-                            },
-                          ],
-                        },
-                      ]
+                      Object {
+                        "height": 18,
+                        "marginRight": 6,
+                        "resizeMode": "contain",
+                        "tintColor": "white",
+                        "width": 18,
+                      }
                     }
                   />
                   <Text
@@ -9356,26 +9275,17 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     <Image
                       source={
                         Object {
-                          "testUri": "../../../src/images/rce/undo.png",
+                          "uri": "replyLine",
                         }
                       }
                       style={
-                        Array [
-                          Object {
-                            "height": 18,
-                            "marginRight": 6,
-                            "resizeMode": "contain",
-                            "tintColor": "white",
-                            "width": 18,
-                          },
-                          Object {
-                            "transform": Array [
-                              Object {
-                                "scaleX": 1,
-                              },
-                            ],
-                          },
-                        ]
+                        Object {
+                          "height": 18,
+                          "marginRight": 6,
+                          "resizeMode": "contain",
+                          "tintColor": "white",
+                          "width": 18,
+                        }
                       }
                     />
                     <Text
@@ -10588,26 +10498,17 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   <Image
                     source={
                       Object {
-                        "testUri": "../../../src/images/rce/undo.png",
+                        "uri": "replyLine",
                       }
                     }
                     style={
-                      Array [
-                        Object {
-                          "height": 18,
-                          "marginRight": 6,
-                          "resizeMode": "contain",
-                          "tintColor": "white",
-                          "width": 18,
-                        },
-                        Object {
-                          "transform": Array [
-                            Object {
-                              "scaleX": 1,
-                            },
-                          ],
-                        },
-                      ]
+                      Object {
+                        "height": 18,
+                        "marginRight": 6,
+                        "resizeMode": "contain",
+                        "tintColor": "white",
+                        "width": 18,
+                      }
                     }
                   />
                   <Text
@@ -11596,26 +11497,17 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     <Image
                       source={
                         Object {
-                          "testUri": "../../../src/images/rce/undo.png",
+                          "uri": "replyLine",
                         }
                       }
                       style={
-                        Array [
-                          Object {
-                            "height": 18,
-                            "marginRight": 6,
-                            "resizeMode": "contain",
-                            "tintColor": "white",
-                            "width": 18,
-                          },
-                          Object {
-                            "transform": Array [
-                              Object {
-                                "scaleX": 1,
-                              },
-                            ],
-                          },
-                        ]
+                        Object {
+                          "height": 18,
+                          "marginRight": 6,
+                          "resizeMode": "contain",
+                          "tintColor": "white",
+                          "width": 18,
+                        }
                       }
                     />
                     <Text
