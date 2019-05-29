@@ -6,7 +6,7 @@ Depends on node
  brew install node
 
 Run this script from the repo root directory
- yarn svg-to-pdf file.svg out.pdf 24x24
+ yarn svg2pdf file.svg out.pdf 24x24
 */
 
 const fs = require('fs')
