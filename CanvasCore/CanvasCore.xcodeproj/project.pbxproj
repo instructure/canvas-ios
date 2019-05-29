@@ -502,6 +502,7 @@
 		9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */; };
 		9FD18B6B2052DE6800119927 /* LTITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD18B6A2052DE6800119927 /* LTITools.m */; };
 		B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */; };
+		B190BA3F229EE60D003B612A /* NSObject+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B190BA3E229EE60D003B612A /* NSObject+Reactive.swift */; };
 		B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B196F79A206AB60400DE640F /* CoreDataSync.m */; };
 		B1A6BC94218CAB51000515E3 /* SessionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC93218CAB51000515E3 /* SessionToken.swift */; };
 		B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE249620AB13FE00C521C3 /* SafariActivity.swift */; };
@@ -1149,6 +1150,7 @@
 		9FFBF1B11FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FFBF1B21FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSyncHelper.swift; sourceTree = "<group>"; };
+		B190BA3E229EE60D003B612A /* NSObject+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Reactive.swift"; sourceTree = "<group>"; };
 		B196F79A206AB60400DE640F /* CoreDataSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataSync.m; sourceTree = "<group>"; };
 		B1A6BC93218CAB51000515E3 /* SessionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionToken.swift; sourceTree = "<group>"; };
 		B1BE249620AB13FE00C521C3 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
@@ -1299,6 +1301,7 @@
 				3B1B0455205090F800CB256A /* String+Core.swift */,
 				3B10AC0A206D8838007EFC2F /* Array+Core.swift */,
 				2CCBD44620C0943B0082E616 /* URL+Core.swift */,
+				B190BA3E229EE60D003B612A /* NSObject+Reactive.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3229,6 +3232,7 @@
 				49CE97971F900D0000121A43 /* User+Network.swift in Sources */,
 				4961F6711F8FB9620093EC86 /* NewUpload.swift in Sources */,
 				49CE97A91F900D0000121A43 /* Peeps.xcdatamodeld in Sources */,
+				B190BA3F229EE60D003B612A /* NSObject+Reactive.swift in Sources */,
 				49CE965E1F8FF41B00121A43 /* QuizDetailCell.swift in Sources */,
 				4961F59F1F8FB2970093EC86 /* UIColor+RGB.swift in Sources */,
 				49DD239C1F8F9EBE004727F7 /* DiscussionTopicAPI.swift in Sources */,

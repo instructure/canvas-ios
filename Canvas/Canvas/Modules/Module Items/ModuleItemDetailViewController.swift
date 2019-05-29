@@ -21,7 +21,6 @@ import Result
 import Cartography
 import TechDebt
 
-
 class ModuleItemDetailViewController: UIViewController {
     @objc let session: Session
     @objc let courseID: String
@@ -48,6 +47,10 @@ class ModuleItemDetailViewController: UIViewController {
         let nextAction = self.viewModel.nextAction
         btn.reactive.pressed = CocoaAction(nextAction)
         btn.reactive.isEnabled <~ nextAction.isEnabled
+        btn.reactive.isAccessibilityElement <~ nextAction.isEnabled.map { enabled in
+            if UIAccessibility.isSwitchControlRunning { return enabled }
+            return true
+        }
         
         return btn
     }()
@@ -60,7 +63,11 @@ class ModuleItemDetailViewController: UIViewController {
         let previousAction = self.viewModel.previousAction
         btn.reactive.pressed = CocoaAction(previousAction)
         btn.reactive.isEnabled <~ previousAction.isEnabled
-        
+        btn.reactive.isAccessibilityElement <~ previousAction.isEnabled.map { enabled in
+            if UIAccessibility.isSwitchControlRunning { return enabled }
+            return true
+        }
+
         return btn
     }()
     @objc lazy var markDoneButton: UIBarButtonItem = {
