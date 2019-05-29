@@ -158,7 +158,7 @@ extension SyllabusViewController: SyllabuseViewProtocol {
 }
 
 extension SyllabusViewController: HorizontalMenuDelegate {
-    func accessibilityLabel(at: IndexPath) -> String {
+    func accessibilityIdentifier(at: IndexPath) -> String {
         guard let menuItem = MenuItem(rawValue: at.row) else { return "" }
         var identifier: String
         switch menuItem {
