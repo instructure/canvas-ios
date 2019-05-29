@@ -23,7 +23,7 @@ public protocol HorizontalMenuDelegate: class {
     func menuItemCount() -> Int
     func menuItemTitle(at: IndexPath) -> String
     func didSelectItem(at: IndexPath)
-    func accessibilityLabel(at: IndexPath) -> String
+    func accessibilityIdentifier(at: IndexPath) -> String
 }
 
 public class HorizontalMenuView: UIView {
@@ -98,10 +98,14 @@ extension HorizontalMenuView: UICollectionViewDataSource, UICollectionViewDelega
         cell.title = delegate?.menuItemTitle(at: indexPath)
         cell.selectionColor = delegate?.selectedColor
         cell.titleFont = delegate?.measurementFont
+        cell.isAccessibilityElement = true
+        cell.accessibilityTraits = [.button, .header]
         if indexPath == selectedIndexPath {
             cell.isSelected = true
+            cell.accessibilityTraits.insert(.selected)
         }
-        cell.accessibilityLabel = delegate?.accessibilityLabel(at: indexPath)
+        cell.accessibilityIdentifier = delegate?.accessibilityIdentifier(at: indexPath)
+        cell.accessibilityLabel = cell.title
         return cell
     }
 

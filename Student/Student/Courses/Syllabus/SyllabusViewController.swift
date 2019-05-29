@@ -123,7 +123,7 @@ class SyllabusViewController: UIViewController {
 
     func showAssignments() {
         guard let assignments = assignments else { return }
-        scrollView.scrollRectToVisible(assignments.view.frame, animated: true)
+        scrollView.scrollRectToVisible(assignments.view.frame, animated: !UIAccessibility.isVoiceOverRunning)
     }
 }
 
@@ -158,7 +158,7 @@ extension SyllabusViewController: SyllabuseViewProtocol {
 }
 
 extension SyllabusViewController: HorizontalMenuDelegate {
-    func accessibilityLabel(at: IndexPath) -> String {
+    func accessibilityIdentifier(at: IndexPath) -> String {
         guard let menuItem = MenuItem(rawValue: at.row) else { return "" }
         var identifier: String
         switch menuItem {
