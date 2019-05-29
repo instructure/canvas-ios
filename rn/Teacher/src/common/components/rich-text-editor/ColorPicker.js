@@ -30,8 +30,8 @@ type Props = {
   pickedColor: (color: string) => void,
 }
 
-export default class ColorPicker extends Component<Props, any> {
-  COLORS = {
+export function getColors () {
+  return {
     '#FFFFFF': i18n('white'),
     '#2D3B45': i18n('black'),
     '#8B969E': i18n('grey'),
@@ -42,6 +42,10 @@ export default class ColorPicker extends Component<Props, any> {
     '#1482C8': i18n('blue'),
     '#65469F': i18n('purple'),
   }
+}
+
+export default class ColorPicker extends Component<Props, any> {
+  COLORS = getColors()
 
   render () {
     return (
@@ -51,8 +55,8 @@ export default class ColorPicker extends Component<Props, any> {
             {Object.keys(this.COLORS).map(color => {
               const style = {
                 backgroundColor: color,
-                borderWidth: color === 'white' ? 1 : 0,
-                borderColor: color === 'white' ? '#E6E9EA' : 'transparent',
+                borderWidth: color === '#FFFFFF' ? 1 : 0,
+                borderColor: color === '#FFFFFF' ? '#E6E9EA' : 'transparent',
               }
               return (
                 <TouchableHighlight

@@ -49,8 +49,8 @@ exports[`ColorPicker renders 1`] = `
                 },
                 Object {
                   "backgroundColor": "#FFFFFF",
-                  "borderColor": "transparent",
-                  "borderWidth": 0,
+                  "borderColor": "#E6E9EA",
+                  "borderWidth": 1,
                 },
               ]
             }
