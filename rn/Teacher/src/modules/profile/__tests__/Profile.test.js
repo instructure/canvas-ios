@@ -138,15 +138,18 @@ describe('Profile Tests', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('logout methods called', () => {
+  it('logout methods called', async () => {
     const instance = renderer.create(
       <Profile { ...defaultProps } />
     ).getInstance()
 
-    instance.logout()
+    await instance.logout()
     expect(NativeModules.NativeLogin.logout).toHaveBeenCalled()
-    instance.switchUser()
+    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
+    defaultProps.navigator.dismiss.mockClear()
+    await instance.switchUser()
     expect(NativeModules.NativeLogin.changeUser).toHaveBeenCalled()
+    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
   })
 
   it('navigate to lti gauge tool', async () => {
