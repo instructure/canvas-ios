@@ -2,6 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <TouchableHighlight
+  accessibilityLabel="May 31, 2037, learn to write code"
   onPress={[Function]}
   testID="inbox.conversation-123456789"
 >
@@ -120,10 +121,7 @@ exports[`renders correctly 1`] = `
           >
             artorias of the abyss, solaire of astora
           </Text>
-          <View
-            accessibilityLabel="May 31, 2037"
-            accessible={true}
-          >
+          <View>
             <Text
               accessible={true}
               allowFontScaling={true}
@@ -212,6 +210,7 @@ exports[`renders correctly 1`] = `
 
 exports[`renders correctly with a bunch of people in there 1`] = `
 <TouchableHighlight
+  accessibilityLabel="May 31, 2037, learn to write code"
   onPress={[Function]}
   testID="inbox.conversation-123456789"
 >
@@ -334,10 +333,7 @@ exports[`renders correctly with a bunch of people in there 1`] = `
           >
             0, 2, 3, 4, 5 + 94 more
           </Text>
-          <View
-            accessibilityLabel="May 31, 2037"
-            accessible={true}
-          >
+          <View>
             <Text
               accessible={true}
               allowFontScaling={true}
@@ -426,6 +422,7 @@ exports[`renders correctly with a bunch of people in there 1`] = `
 
 exports[`renders correctly with different data 1`] = `
 <TouchableHighlight
+  accessibilityLabel="May 31, 2037, No Subject, Starred, Unread"
   onPress={[Function]}
   testID="inbox.conversation-123456789"
 >
@@ -451,7 +448,6 @@ exports[`renders correctly with different data 1`] = `
     }
   >
     <View
-      accessibilityLabel="Unread"
       style={
         Object {
           "backgroundColor": "#008EE2",
@@ -526,8 +522,6 @@ exports[`renders correctly with different data 1`] = `
         }
       >
         <Image
-          accessibilityLabel="Starred"
-          accessible={true}
           source={
             Object {
               "testUri": "../../../src/images/star-filled.png",
@@ -579,10 +573,7 @@ exports[`renders correctly with different data 1`] = `
           >
             
           </Text>
-          <View
-            accessibilityLabel="May 31, 2037"
-            accessible={true}
-          >
+          <View>
             <Text
               accessible={true}
               allowFontScaling={true}

@@ -83,35 +83,46 @@ export default class ConversationRow extends Component<ConversationRowProps, any
     const date = new Date(ConversationRow.extractDate(c))
     const dateTitle = i18n.date(date, 'M/d/yyyy')
     const accessibilityDateTitle = i18n.date(date, 'long')
-    return (<TouchableHighlight onPress={this._onPress} testID={`inbox.conversation-${c.id}`}>
-      <View style={containerStyles}>
-        { unread && <View style={styles.unreadDot} accessibilityLabel={i18n('Unread')} /> }
-        <View style={styles.avatar}>
-          <Avatar avatarURL={c.avatar_url} userName={avatarUserName}/>
-        </View>
-        <View style={styles.contentContainer}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            { c.starred &&
-              <Image source={Images.starFilled}
-                accessible={true}
-                accessibilityLabel={i18n('Starred')}
-                style={{ tintColor: branding.primaryBrandColor, height: 14, width: 14, marginRight: 2 }}
-              />
-            }
-            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-              <Text style={styles.names} numberOfLines={1}>{title}</Text>
-              <View accessible={true} accessibilityLabel={accessibilityDateTitle}>
-                <Text style={styles.date}>{dateTitle}</Text>
+    const accessibilityLabel = [accessibilityDateTitle, subject]
+    if (c.starred) {
+      accessibilityLabel.push(i18n('Starred'))
+    }
+    if (unread) {
+      accessibilityLabel.push(i18n('Unread'))
+    }
+    return (
+      <TouchableHighlight
+        onPress={this._onPress}
+        testID={`inbox.conversation-${c.id}`}
+        accessibilityLabel={accessibilityLabel.join(', ')}
+      >
+        <View style={containerStyles}>
+          { unread && <View style={styles.unreadDot} /> }
+          <View style={styles.avatar}>
+            <Avatar avatarURL={c.avatar_url} userName={avatarUserName}/>
+          </View>
+          <View style={styles.contentContainer}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              { c.starred &&
+                <Image source={Images.starFilled}
+                  style={{ tintColor: branding.primaryBrandColor, height: 14, width: 14, marginRight: 2 }}
+                />
+              }
+              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Text style={styles.names} numberOfLines={1}>{title}</Text>
+                <View>
+                  <Text style={styles.date}>{dateTitle}</Text>
+                </View>
               </View>
             </View>
+            <Text style={styles.subject} numberOfLines={1}>{subject}</Text>
+            { c.last_message &&
+              <Text style={styles.message} numberOfLines={1}>{c.last_message}</Text>
+            }
           </View>
-          <Text style={styles.subject} numberOfLines={1}>{subject}</Text>
-          { c.last_message &&
-            <Text style={styles.message} numberOfLines={1}>{c.last_message}</Text>
-          }
         </View>
-      </View>
-    </TouchableHighlight>)
+      </TouchableHighlight>
+    )
   }
 }
 
