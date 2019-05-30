@@ -144,6 +144,7 @@
 {
     [super viewWillAppear:animated];
     [self.impactButton setTitle:self.ticket.impactString forState:UIControlStateNormal];
+    [self.impactButton setAccessibilityLabel:[self getImpactButtonAccessibilityLabel]];
     [self.impactButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [self.impactButton setContentEdgeInsets:UIEdgeInsetsMake(0, -7, 0, 0)];
     [self enableSendIfValidates];
@@ -266,11 +267,20 @@
     [self.subjectTextField setAccessibilityIdentifier:@"ticketSubjectTextField"];
     [self.subjectTextField setAccessibilityLabel:NSLocalizedString(@"Enter ticket subject", @"Text field to enter subject of the ticket")];
 
-    [self.impactButton setAccessibilityLabel:NSLocalizedString(@"Select ticket impact level", @"Button to select the severity of the ticket")];
+    [self.impactButton setAccessibilityLabel: [self getImpactButtonAccessibilityLabel]];
     [self.impactButton setAccessibilityIdentifier:@"ticketImpactButton"];
 
     [self.bodyTextView setAccessibilityIdentifier:@"ticketBodyTextView"];
     [self.bodyTextView setAccessibilityLabel:NSLocalizedString(@"Enter ticket description", @"Text view to enter the description of the ticket")];
+}
+
+- (NSString *)getImpactButtonAccessibilityLabel
+{
+    if (self.ticket == nil || self.ticket.impactValue == SupportTicketImpactLevelNone) {
+        return NSLocalizedString(@"Select ticket impact level", @"Button to select the severity of the ticket");
+    } else {
+        return [NSString localizedStringWithFormat:@"Select ticket impact level. %@ currently selected", self.ticket.impactString];
+    }
 }
 
 @end
