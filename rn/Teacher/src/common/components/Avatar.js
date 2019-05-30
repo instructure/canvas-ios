@@ -116,7 +116,7 @@ export default class Avatar extends PureComponent<Props, any> {
         : ''
 
       comp = (
-        <View style={[styles.altImage, { height, width, borderRadius }]} accessible={false}>
+        <View style={[styles.altImage, { height, width, borderRadius }]}>
           <Text style={[styles.altImageText, { fontSize }]} accessible={false}>{altText}</Text>
         </View>
       )
