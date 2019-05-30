@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
 
 public struct GetContextPermissions: APIUseCase {
@@ -42,10 +43,10 @@ public struct GetContextPermissions: APIUseCase {
         )
     }
 
-    public func write(response: APIPermissions?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+    public func write(response: APIPermissions?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let item = response else {
             return
         }
-        try Permissions.save(item, for: context, in: client)
+        Permissions.save(item, for: context, in: client)
     }
 }

@@ -61,11 +61,11 @@ public class CreateSubmission: APIUseCase {
         return Scope(predicate: predicate, order: [sort])
     }
 
-    public func write(response: APISubmission?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
-        guard let item = response, let context = client as? NSManagedObjectContext else {
+    public func write(response: APISubmission?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response else {
             return
         }
-        try Submission.save(item, in: context)
+        Submission.save(item, in: client)
         Logger.shared.log("created a submission")
     }
 }

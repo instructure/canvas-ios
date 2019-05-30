@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
 
 public class GetContextTabs: CollectionUseCase {
@@ -38,7 +39,7 @@ public class GetContextTabs: CollectionUseCase {
         return Scope(predicate: pred, order: [sort])
     }
 
-    public func write(response: [APITab]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+    public func write(response: [APITab]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else {
             return
         }
@@ -46,7 +47,7 @@ public class GetContextTabs: CollectionUseCase {
         for item in response {
             let predicate = NSPredicate(format: "%K == %@", #keyPath(Tab.htmlURL), item.html_url as CVarArg)
             let model: Tab = client.fetch(predicate).first ?? client.insert()
-            try model.save(item, in: client, context: context)
+            model.save(item, in: client, context: context)
         }
     }
 }

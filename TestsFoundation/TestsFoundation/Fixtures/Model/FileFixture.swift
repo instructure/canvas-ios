@@ -31,7 +31,7 @@ extension File {
         uploadError: String? = nil,
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> File {
-        let model = try! File.save(api, in: context)
+        let model = File.save(api, in: context)
         model.batchID = batchID
         if let assignmentID = assignmentID, let courseID = courseID {
             model.prepareForSubmission(courseID: courseID, assignmentID: assignmentID)

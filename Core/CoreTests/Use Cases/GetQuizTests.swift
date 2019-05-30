@@ -40,7 +40,7 @@ class GetQuizTest: CoreTestCase {
         let quiz = APIQuiz.make(id: ID(stringLiteral: quizID))
         GetQuiz(courseID: courseID, quizID: quizID).write(response: quiz, urlResponse: nil, to: databaseClient)
         XCTAssertNoThrow(try databaseClient.save())
-        let quizzes: [Quiz] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
+        let quizzes: [Quiz] = databaseClient.fetch()
         XCTAssertEqual(quizzes.count, 1)
         XCTAssertEqual(quizzes.first?.title, "What kind of pokemon are you?")
         XCTAssertEqual(quizzes.first?.quizType, .survey)

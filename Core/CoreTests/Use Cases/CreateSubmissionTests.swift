@@ -37,7 +37,7 @@ class CreateSubmissionTests: CoreTestCase {
 
         //  when
         let createSubmission = CreateSubmission(context: context, assignmentID: "1", userID: "1", submissionType: submissionType, url: url)
-        try! createSubmission.write(response: template, urlResponse: nil, to: databaseClient)
+        createSubmission.write(response: template, urlResponse: nil, to: databaseClient)
 
         //  then
         let subs: [Submission] = databaseClient.fetch()

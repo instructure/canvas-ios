@@ -33,7 +33,7 @@ class GetCustomColorsTests: CoreTestCase {
 
     func testWrite() {
         let response = APICustomColors(custom_colors: ["course_1": "#fff", "group_2": "#000"])
-        try! useCase.write(response: response, urlResponse: nil, to: databaseClient)
+        useCase.write(response: response, urlResponse: nil, to: databaseClient)
         let colors: [Color] = databaseClient.fetch()
         XCTAssertEqual(colors.count, 2)
     }

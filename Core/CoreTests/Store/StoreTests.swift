@@ -25,13 +25,11 @@ class StoreTests: CoreTestCase {
 
         let courses: [APICourse]?
         let requestError: Error?
-        let writeError: Error?
         let urlResponse: URLResponse?
 
-        init(courses: [APICourse]? = nil, requestError: Error? = nil, writeError: Error? = nil, urlResponse: URLResponse? = nil) {
+        init(courses: [APICourse]? = nil, requestError: Error? = nil, urlResponse: URLResponse? = nil) {
             self.courses = courses
             self.requestError = requestError
-            self.writeError = writeError
             self.urlResponse = urlResponse
         }
 
@@ -47,10 +45,7 @@ class StoreTests: CoreTestCase {
             completionHandler(courses, urlResponse, requestError)
         }
 
-        func write(response: [APICourse]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
-            if let error = writeError {
-                throw error
-            }
+        func write(response: [APICourse]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
             guard let response = response else {
                 return
             }
@@ -196,29 +191,6 @@ class StoreTests: CoreTestCase {
         XCTAssertEqual(ttls.count, 0)
     }
 
-    func testSubscribeWithWriteError() {
-        let writeError = NSError.instructureError("write error")
-        let useCase = TestUseCase(writeError: writeError)
-        eventsExpectation.expectedFulfillmentCount = 2
-        store = environment.subscribe(useCase, storeUpdated)
-        store.refresh()
-
-        wait(for: [eventsExpectation], timeout: 1.0)
-
-        let loading = snapshots.first!
-        XCTAssertEqual(loading.count, 0)
-        XCTAssertTrue(loading.pending)
-        XCTAssertNil(loading.error)
-
-        let error = snapshots.last!
-        XCTAssertEqual(error.count, 0)
-        XCTAssertFalse(error.pending)
-        XCTAssertEqual(error.error?.localizedDescription, "write error")
-
-        let ttls: [TTL] = databaseClient.fetch()
-        XCTAssertEqual(ttls.count, 0)
-    }
-
     func testGetNextPage() {
         let prev = "https://cgnuonline-eniversity.edu/api/v1/date"
         let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
@@ -253,7 +225,7 @@ class StoreTests: CoreTestCase {
     func testSequence() {
         Course.make(from: .make(id: "1"))
         Course.make(from: .make(id: "2"))
-        let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
+        let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
         let ids = store.map { $0.id }
@@ -265,7 +237,7 @@ class StoreTests: CoreTestCase {
     func testSubscriptInt() {
         let one = Course.make(from: .make(id: "1", name: "A"))
         let two = Course.make(from: .make(id: "2", name: "B"))
-        let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
+        let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
         XCTAssertEqual(one, store[0])
@@ -275,7 +247,7 @@ class StoreTests: CoreTestCase {
     func testFirst() {
         let one = Course.make(from: .make(id: "1", name: "A"))
         Course.make(from: .make(id: "2", name: "B"))
-        let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
+        let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
         XCTAssertEqual(store.first, one)
@@ -284,7 +256,7 @@ class StoreTests: CoreTestCase {
     func testLast() {
         Course.make(from: .make(id: "1", name: "A"))
         let two = Course.make(from: .make(id: "2", name: "B"))
-        let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
+        let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
         XCTAssertEqual(store.last, two)
@@ -293,20 +265,24 @@ class StoreTests: CoreTestCase {
     func testAll() {
         let one = Course.make(from: .make(id: "1", name: "A"))
         let two = Course.make(from: .make(id: "2", name: "B"))
-        let useCase = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
+        let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
         let store = Store(env: environment, useCase: useCase) { }
 
         XCTAssertEqual(store.all, [one, two])
     }
 
     func testChanges() {
-        let use = TestUseCase(courses: nil, requestError: nil, writeError: nil, urlResponse: nil)
+        let use = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
         let notified = expectation(description: "notified")
         let store = Store(env: environment, useCase: use) { notified.fulfill() }
-        let frc: NSFetchedResultsController<Course> = environment.database.fetchedResultsController(
-            predicate: use.scope.predicate,
-            sortDescriptors: use.scope.order,
-            sectionNameKeyPath: use.scope.sectionNameKeyPath
+        let request = NSFetchRequest<Course>(entityName: String(describing: Course.self))
+        request.predicate = use.scope.predicate
+        request.sortDescriptors = use.scope.order
+        let frc: NSFetchedResultsController<Course> = NSFetchedResultsController(
+            fetchRequest: request,
+            managedObjectContext: databaseClient,
+            sectionNameKeyPath: use.scope.sectionNameKeyPath,
+            cacheName: nil
         )
         try? frc.performFetch()
         let frc2 = frc as! NSFetchedResultsController<NSFetchRequestResult>

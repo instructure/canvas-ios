@@ -24,8 +24,8 @@ class PersistenceTestCase: XCTestCase {
     var database: NSPersistentContainer {
         return TestsFoundation.singleSharedTestDatabase
     }
-    var databaseClient: PersistenceClient {
-        return database.mainClient
+    var databaseClient: NSManagedObjectContext {
+        return database.viewContext
     }
 
     var api = MockURLSession.self

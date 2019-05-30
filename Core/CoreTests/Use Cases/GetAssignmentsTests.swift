@@ -36,9 +36,9 @@ class GetAssignmentsTests: CoreTestCase {
         )
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [.submission])
-        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
+        getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
-        let assignments: [Assignment] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
+        let assignments: [Assignment] = databaseClient.fetch()
         XCTAssertEqual(assignments.count, 1)
         let assignment = assignments.first!
         XCTAssertEqual(assignment.id, "2")
@@ -74,7 +74,7 @@ class GetAssignmentsTests: CoreTestCase {
         api.mock(request, value: apiAssignment, response: nil, error: nil)
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [.submission])
-        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
+        getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
         let assignments: [Assignment] = databaseClient.fetch()
         let assignment = assignments.first
@@ -103,7 +103,7 @@ class GetAssignmentsTests: CoreTestCase {
         api.mock(request, value: apiAssignment, response: nil, error: nil)
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [.submission])
-        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
+        getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
         let assignments: [Assignment] = databaseClient.fetch()
         let assignment = assignments.first
@@ -125,7 +125,7 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual((databaseClient.fetch() as [Submission]).count, 1)
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "1", include: [.submission])
-        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
+        getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
         let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 0)
@@ -143,7 +143,7 @@ class GetAssignmentsTests: CoreTestCase {
         )
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "1", include: [])
-        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
+        getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
         databaseClient.refresh()
         let submissions: [Submission] = databaseClient.fetch()
@@ -161,7 +161,7 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual((databaseClient.fetch() as [Submission]).count, 1)
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "1", include: [])
-        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
+        getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
         databaseClient.refresh()
         let submissions: [Submission] = databaseClient.fetch()
@@ -183,9 +183,9 @@ class GetAssignmentsTests: CoreTestCase {
             position: 0
         )
         let getAssignments = GetAssignments(courseID: "1")
-        try! getAssignments.write(response: [apiAssignment], urlResponse: nil, to: databaseClient)
+        getAssignments.write(response: [apiAssignment], urlResponse: nil, to: databaseClient)
 
-        let assignments: [Assignment] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
+        let assignments: [Assignment] = databaseClient.fetch()
         XCTAssertEqual(assignments.count, 1)
         let assignment = assignments.first!
         XCTAssertEqual(assignment.id, "2")
@@ -219,16 +219,16 @@ class GetAssignmentsTests: CoreTestCase {
         let a7 = Assignment.make(from: .make(id: "7"))
 
        //   must do this so dueAtOrder property gets updated
-        try? a2.update(fromApiModel: api2, in: databaseClient, updateSubmission: false)
-        try? a3.update(fromApiModel: api3, in: databaseClient, updateSubmission: false)
-        try? a4.update(fromApiModel: api4, in: databaseClient, updateSubmission: false)
-        try? a5.update(fromApiModel: api5, in: databaseClient, updateSubmission: false)
-        try? a6.update(fromApiModel: api6, in: databaseClient, updateSubmission: false)
-        try? a7.update(fromApiModel: api7, in: databaseClient, updateSubmission: false)
+        a2.update(fromApiModel: api2, in: databaseClient, updateSubmission: false)
+        a3.update(fromApiModel: api3, in: databaseClient, updateSubmission: false)
+        a4.update(fromApiModel: api4, in: databaseClient, updateSubmission: false)
+        a5.update(fromApiModel: api5, in: databaseClient, updateSubmission: false)
+        a6.update(fromApiModel: api6, in: databaseClient, updateSubmission: false)
+        a7.update(fromApiModel: api7, in: databaseClient, updateSubmission: false)
 
         let useCase = GetAssignments(courseID: "1", sort: .dueAt)
 
-        let assignments: [Assignment] = databaseClient.fetch(predicate: nil, sortDescriptors: useCase.scope.order)
+        let assignments: [Assignment] = databaseClient.fetch(sortDescriptors: useCase.scope.order)
         XCTAssertEqual(assignments.count, 6)
         let order = assignments.map { "\($0.id)" }.joined(separator: " ")
         print("** order: \(order)")
@@ -243,7 +243,7 @@ class GetAssignmentsTests: CoreTestCase {
 
         let useCase = GetAssignments(courseID: "1")
 
-        let assignments: [Assignment] = databaseClient.fetch(predicate: nil, sortDescriptors: useCase.scope.order)
+        let assignments: [Assignment] = databaseClient.fetch(sortDescriptors: useCase.scope.order)
         XCTAssertEqual(assignments.count, 4)
         XCTAssertEqual([b, a, d, c], assignments)
     }
@@ -255,7 +255,7 @@ class GetAssignmentsTests: CoreTestCase {
         )
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [])
-        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
+        getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
         let assignments: [Assignment] = databaseClient.fetch()
         let assignment = assignments.first
@@ -275,7 +275,7 @@ class GetAssignmentsTests: CoreTestCase {
         )
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [])
-        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
+        getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
         let assignments: [Assignment] = databaseClient.fetch()
         let assignment = assignments.first
@@ -294,7 +294,7 @@ class GetAssignmentsTests: CoreTestCase {
         let apiAssignment = APIAssignment.make(id: "2")
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [])
-        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
+        getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
         let assignments: [Assignment] = databaseClient.fetch()
         let assignment = assignments.first
@@ -316,7 +316,7 @@ class GetAssignmentsTests: CoreTestCase {
         )
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [])
-        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
+        getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
         assignments = databaseClient.fetch()
         assignment = assignments.first
@@ -335,7 +335,7 @@ class GetAssignmentsTests: CoreTestCase {
         )
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [])
-        try! getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
+        getAssignment.write(response: apiAssignment, urlResponse: nil, to: databaseClient)
 
         let assignments: [Assignment] = databaseClient.fetch()
         let assignment = assignments.first

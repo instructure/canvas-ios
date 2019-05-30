@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
 
 public class GetCustomColors: APIUseCase {
@@ -25,7 +26,7 @@ public class GetCustomColors: APIUseCase {
 
     public init() {}
 
-    public func write(response: APICustomColors?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+    public func write(response: APICustomColors?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         Color.save(response, in: client)
     }

@@ -28,7 +28,7 @@ public protocol UseCase {
     var clearsBeforeWrite: Bool { get }
 
     func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback)
-    func write(response: Response?, urlResponse: URLResponse?, to client: PersistenceClient) throws
+    func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext)
     func getNext(from response: URLResponse) -> GetNextRequest<Response>?
 }
 
@@ -49,7 +49,7 @@ extension UseCase {
         return nil
     }
 
-    public func hasExpired(in client: PersistenceClient) -> Bool {
+    public func hasExpired(in client: NSManagedObjectContext) -> Bool {
         guard let cacheKey = cacheKey else { return true }
         var expired = true
         let predicate = NSPredicate(format: "%K == %@", #keyPath(TTL.key), cacheKey)
@@ -59,7 +59,7 @@ extension UseCase {
         return expired
     }
 
-    public func updateTTL(in client: PersistenceClient) {
+    public func updateTTL(in client: NSManagedObjectContext) {
         guard let cacheKey = cacheKey else { return }
         let predicate = NSPredicate(format: "%K == %@", #keyPath(TTL.key), cacheKey)
         let cache: TTL = client.fetch(predicate).first ?? client.insert()
@@ -70,8 +70,7 @@ extension UseCase {
     public func fetch(environment: AppEnvironment = .shared, force: Bool = false, _ callback: @escaping RequestCallback) {
         // Make sure we write to the database that initiated this request
         let database = environment.database
-
-        environment.database.perform { client in
+        database.performBackgroundTask { client in
             guard force || self.hasExpired(in: client) else {
                 callback(nil, nil, nil) // FIXME: Return cached data?
                 return
@@ -85,9 +84,9 @@ extension UseCase {
                     do {
                         if self.clearsBeforeWrite {
                             let all: [Model] = client.fetch(self.scope.predicate)
-                            try client.delete(all)
+                            client.delete(all)
                         }
-                        try self.write(response: response, urlResponse: urlResponse, to: client)
+                        self.write(response: response, urlResponse: urlResponse, to: client)
                         self.updateTTL(in: client)
                         try client.save()
                         callback(response, urlResponse, error)
@@ -143,8 +142,8 @@ public struct GetNextUseCase<U: UseCase>: APIUseCase {
         return 0
     }
 
-    public func write(response: U.Response?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
-        try parent.write(response: response, urlResponse: urlResponse, to: client)
+    public func write(response: U.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        parent.write(response: response, urlResponse: urlResponse, to: client)
     }
 }
 
@@ -152,34 +151,34 @@ public protocol WriteableModel {
     associatedtype JSON
 
     @discardableResult
-    static func save(_ item: JSON, in context: PersistenceClient) throws -> Self
+    static func save(_ item: JSON, in context: NSManagedObjectContext) -> Self
 
     @discardableResult
-    static func save(_ items: [JSON], in context: PersistenceClient) throws -> [Self]
+    static func save(_ items: [JSON], in context: NSManagedObjectContext) -> [Self]
 }
 
 extension WriteableModel {
     @discardableResult
-    public static func save(_ items: [JSON], in context: PersistenceClient) throws -> [Self] {
-        return try items.map { try save($0, in: context) }
+    public static func save(_ items: [JSON], in context: NSManagedObjectContext) -> [Self] {
+        return items.map { save($0, in: context) }
     }
 }
 
 extension UseCase where Model: WriteableModel, Model.JSON == Response {
-    public func write(response: Model.JSON?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+    public func write(response: Model.JSON?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else {
             return
         }
-        try Model.save(response, in: client)
+        Model.save(response, in: client)
     }
 }
 
 extension UseCase where Model: WriteableModel, Response: Collection, Model.JSON == Response.Element {
-    public func write(response: [Model.JSON]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+    public func write(response: [Model.JSON]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else {
             return
         }
-        try Model.save(response, in: client)
+        Model.save(response, in: client)
     }
 }
 
@@ -200,5 +199,5 @@ public struct LocalUseCase<T>: UseCase where T: NSManagedObject {
         completionHandler(1, nil, nil)
     }
 
-    public func write(response: Int?, urlResponse: URLResponse?, to client: PersistenceClient) throws {}
+    public func write(response: Int?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {}
 }
