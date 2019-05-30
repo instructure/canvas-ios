@@ -24,8 +24,9 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
     var resultingError: NSError?
     var navigationController: UINavigationController?
 
+    var onUpdate: (() -> Void)?
     lazy var expectUpdate: XCTestExpectation = {
-        let expect = expectation(description: "update called")
+        let expect = XCTestExpectation(description: "update called")
         expect.assertForOverFulfill = false
         return expect
     }()
@@ -61,15 +62,15 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
     }
 
     func testUseCaseFetchesData() {
-        //  given
-        tab()
-
-        //   when
+        let tab = self.tab()
+        let expectation = XCTestExpectation(description: "fetches data")
+        onUpdate = {
+            if self.presenter.tabs.first?.label == tab.label {
+                expectation.fulfill()
+            }
+        }
         presenter.viewIsReady()
-        wait(for: [expectUpdate], timeout: 1)
-
-        //  then
-        XCTAssertEqual(presenter.tabs.first?.label, Tab.make().label)
+        wait(for: [expectation], timeout: 1)
     }
 }
 
@@ -78,6 +79,7 @@ extension CourseNavigationPresenterTests: CourseNavigationViewProtocol {
     }
 
     func update() {
+        onUpdate?()
         expectUpdate.fulfill()
     }
 

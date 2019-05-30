@@ -25,13 +25,15 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
     var resultingTitle = ""
     lazy var presenter = GroupNavigationPresenter(groupID: Group.make().id, view: self, env: env)
     var resultingError: NSError?
+    var onUpdateNavBar: (() -> Void)?
     lazy var expectUpdateNavBar: XCTestExpectation = {
-        let expect = expectation(description: "updateNavBar called")
+        let expect = XCTestExpectation(description: "updateNavBar called")
         expect.assertForOverFulfill = false
         return expect
     }()
+    var onUpdate: (() -> Void)?
     lazy var expectUpdate: XCTestExpectation = {
-        let expect = expectation(description: "update called")
+        let expect = XCTestExpectation(description: "update called")
         expect.assertForOverFulfill = false
         return expect
     }()
@@ -63,31 +65,39 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
     }
 
     func testUseCaseFetchesData() {
-        //  given
         let group = Group.make()
         let color = Color.make(canvasContextID: group.canvasContextID, color: UIColor(hexString: "#ff0")!)
         Tab.make()
 
-       //   when
+        let expectData = XCTestExpectation(description: "fetches data")
+        expectData.assertForOverFulfill = false
+        let expectTitle = XCTestExpectation(description: "fetches group")
+        expectTitle.assertForOverFulfill = false
+        onUpdateNavBar = {
+            if self.resultingTitle == group.name {
+                expectTitle.fulfill()
+            }
+        }
+        onUpdate = {
+            if self.resultingColor == color.color && self.presenter.tabs.count == 1 {
+                expectData.fulfill()
+            }
+        }
         presenter.viewIsReady()
-        wait(for: [expectUpdate, expectUpdateNavBar], timeout: 1)
-
-        //  then
-        XCTAssertEqual(presenter.tabs.first?.label, Tab.make().label)
-        XCTAssertEqual(presenter.tabs.first?.icon.renderingMode, .alwaysTemplate)
-        XCTAssertEqual(resultingTitle, group.name)
-        XCTAssertEqual(resultingColor, color.color )
+        wait(for: [expectData, expectTitle], timeout: 1)
     }
 }
 
 extension GroupNavigationPresenterTests: GroupNavigationViewProtocol {
     func updateNavBar(title: String, backgroundColor: UIColor) {
         resultingTitle = title
+        onUpdateNavBar?()
         expectUpdateNavBar.fulfill()
     }
 
     func update(color: UIColor) {
         resultingColor = color
+        onUpdate?()
         expectUpdate.fulfill()
     }
 
