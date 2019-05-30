@@ -45,11 +45,17 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
         let expected = Tab.make()
 
         //  when
+        let expectation = XCTestExpectation(description: "on update")
+        expectation.assertForOverFulfill = false
+        onUpdate = {
+            if self.presenter.tabs.first?.id == expected.id {
+                expectation.fulfill()
+            }
+        }
         presenter.viewIsReady()
-        wait(for: [expectUpdate, expectUpdateNavBar], timeout: 1)
 
-        //  then
-        XCTAssertEqual(presenter.tabs.first?.id, expected.id)
+        // then
+        wait(for: [expectation], timeout: 1)
     }
 
     func testTabsAreOrderedByPosition() {
