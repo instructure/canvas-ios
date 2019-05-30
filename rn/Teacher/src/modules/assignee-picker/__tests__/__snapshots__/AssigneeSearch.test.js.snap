@@ -81,7 +81,6 @@ exports[`render correctly 1`] = `
                 }
               >
                 <View
-                  accessible={false}
                   style={
                     Array [
                       Object {
@@ -270,7 +269,6 @@ exports[`render correctly 1`] = `
                 }
               >
                 <View
-                  accessible={false}
                   style={
                     Array [
                       Object {
@@ -485,7 +483,6 @@ exports[`render correctly 1`] = `
                 }
               >
                 <View
-                  accessible={false}
                   style={
                     Array [
                       Object {
@@ -910,7 +907,6 @@ exports[`render correctly 2`] = `
                 }
               >
                 <View
-                  accessible={false}
                   style={
                     Array [
                       Object {
@@ -1125,7 +1121,6 @@ exports[`render correctly 2`] = `
                 }
               >
                 <View
-                  accessible={false}
                   style={
                     Array [
                       Object {
