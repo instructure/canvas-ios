@@ -20,18 +20,15 @@ import Core
 import TestsFoundation
 
 class CourseNavigationPresenterTests: PersistenceTestCase {
-
-    var presenter: CourseNavigationPresenter!
+    lazy var presenter = CourseNavigationPresenter(courseID: "1", view: self, env: env)
     var resultingError: NSError?
     var navigationController: UINavigationController?
 
-    var expectation = XCTestExpectation(description: "expectation")
-
-    override func setUp() {
-        super.setUp()
-        expectation = XCTestExpectation(description: "expectation")
-        presenter = CourseNavigationPresenter(courseID: "1", view: self, env: env)
-    }
+    lazy var expectUpdate: XCTestExpectation = {
+        let expect = expectation(description: "update called")
+        expect.assertForOverFulfill = false
+        return expect
+    }()
 
     @discardableResult
     func tab() -> Tab {
@@ -45,7 +42,7 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
 
         //  when
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectUpdate], timeout: 1)
         //  then
         XCTAssertEqual(presenter.tabs.first?.id, expected.id)
     }
@@ -56,7 +53,7 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
         Tab.make(from: .make(id: "a", position: 1), context: ContextModel(.course, id: "1"))
 
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectUpdate], timeout: 1)
 
         XCTAssertEqual(presenter.tabs.count, 3)
         XCTAssertEqual(presenter.tabs.first?.id, "a")
@@ -69,7 +66,7 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
 
         //   when
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectUpdate], timeout: 1)
 
         //  then
         XCTAssertEqual(presenter.tabs.first?.label, Tab.make().label)
@@ -81,7 +78,7 @@ extension CourseNavigationPresenterTests: CourseNavigationViewProtocol {
     }
 
     func update() {
-        expectation.fulfill()
+        expectUpdate.fulfill()
     }
 
     func showError(_ error: Error) {
