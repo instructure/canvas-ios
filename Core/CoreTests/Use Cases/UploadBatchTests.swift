@@ -107,39 +107,20 @@ class UploadBatchTests: CoreTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
 
-    func testSubscribeOnlyGetsCompletedOnce() {
+    func testRemoveAllSubscribers() {
         let expectation = self.expectation(description: "completed more than once")
         expectation.assertForOverFulfill = true
         expectation.isInverted = true
-        expectation.expectedFulfillmentCount = 2
         let batch = UploadBatch(environment: environment, batchID: "1", callback: nil)
         batch.subscribe {
             if $0 == .completed(fileIDs: ["1"]) {
                 expectation.fulfill()
             }
         }
+        batch.removeAllSubscribers()
         let file = File.make()
         file.batchID = "1"
         file.id = "1"
-        file.size = 2 // trigger update
-        try! databaseClient.save()
-        wait(for: [expectation], timeout: 0.5)
-    }
-
-    func testSubscribeOnlyGetsFailedOnce() {
-        let expectation = self.expectation(description: "failed more than once")
-        expectation.assertForOverFulfill = true
-        expectation.isInverted = true
-        expectation.expectedFulfillmentCount = 2
-        let batch = UploadBatch(environment: environment, batchID: "1", callback: nil)
-        batch.subscribe {
-            if $0 == .completed(fileIDs: ["1"]) {
-                expectation.fulfill()
-            }
-        }
-        let file = File.make()
-        file.batchID = "1"
-        file.uploadError = "doh"
         file.size = 2 // trigger update
         try! databaseClient.save()
         wait(for: [expectation], timeout: 0.5)

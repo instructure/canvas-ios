@@ -78,12 +78,16 @@ public class UploadFileComment {
                 UploadFileComment.placeholderSuffix += 1
                 let context = FileUploadContext.submissionComment(courseID: self.courseID, assignmentID: self.assignmentID)
                 self.uploadBatch.upload(to: context) { state in
+                    // strongly retain self so that the caller does not have to retain this use case
+                    // but to avoid a retain cycle we must call `uploadBatch.removeAllSubscribers()`
                     switch state {
                     case .staged?, .uploading?, nil: break
                     case let .completed(fileIDs: fileIDs)?:
                         self.putComment(fileIDs: Array(fileIDs))
+                        self.uploadBatch.removeAllSubscribers()
                     case .failed(let error)?:
                         self.callback(nil, error)
+                        self.uploadBatch.removeAllSubscribers()
                     }
                 }
             } catch {
