@@ -26,6 +26,7 @@ import { AppRegistry } from 'react-native'
 import Navigator from './Navigator'
 import { getSession } from '../canvas-api/session'
 import ErrorScreen from './ErrorScreen'
+import app from '../modules/app'
 
 import { ApolloProvider } from 'react-apollo'
 import { ApolloClient } from 'apollo-client'
@@ -78,7 +79,14 @@ export function wrapComponentInProviders (moduleName: string, generator: (props:
       componentDidCatch (error, info) {
         global.crashReporter.setString('screenUrl', moduleName)
         global.crashReporter.setBool('screenError', true)
-        global.crashReporter.recordError(error)
+
+        let domain = `com.instructure.ios.${app.current().appId}`
+        global.crashReporter.recordError({
+          domain,
+          userInfo: {
+            errorMessage: error.message.split('\n')[0]
+          }
+        })
         this.setState({ hasError: true })
       }
 
