@@ -67,7 +67,7 @@ class RubricCircleView: UIView {
             let bgColor: UIColor
             let format = NSLocalizedString("g_points", bundle: .core, comment: "")
             var a11yLabel: String = String.localizedStringWithFormat(format, Int(r))
-            a11yLabel += description
+            a11yLabel += " " + description
 
             if selected {
                 font = UIFont.scaledNamedFont(.semibold20)
@@ -84,6 +84,9 @@ class RubricCircleView: UIView {
             buttons.append(button)
 
             button.isUserInteractionEnabled = false
+            // Pretend to be a label in VO
+            button.accessibilityTraits = button.isSelected ? [.selected, .staticText] : .staticText
+
             button.backgroundColor = bgColor
             button.titleLabel?.font = font
             button.setTitleColor(color, for: .normal)
