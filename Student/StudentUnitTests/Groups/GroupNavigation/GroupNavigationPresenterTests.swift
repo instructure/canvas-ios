@@ -23,16 +23,19 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
 
     var resultingColor: UIColor?
     var resultingTitle = ""
-    var presenter: GroupNavigationPresenter!
+    lazy var presenter = GroupNavigationPresenter(groupID: Group.make().id, view: self, env: env)
     var resultingError: NSError?
-    var expectation = XCTestExpectation(description: "expectation")
+    lazy var expectUpdateNavBar: XCTestExpectation = {
+        let expect = expectation(description: "updateNavBar called")
+        expect.assertForOverFulfill = false
+        return expect
+    }()
+    lazy var expectUpdate: XCTestExpectation = {
+        let expect = expectation(description: "update called")
+        expect.assertForOverFulfill = false
+        return expect
+    }()
     var navigationController: UINavigationController?
-
-    override func setUp() {
-        super.setUp()
-        expectation = XCTestExpectation(description: "expectation")
-        presenter = GroupNavigationPresenter(groupID: Group.make().id, view: self, env: env)
-    }
 
     func testLoadTabs() {
         //  given
@@ -41,19 +44,18 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
 
         //  when
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectUpdate, expectUpdateNavBar], timeout: 1)
 
         //  then
         XCTAssertEqual(presenter.tabs.first?.id, expected.id)
     }
 
     func testTabsAreOrderedByPosition() {
-        presenter.viewIsReady()
         Tab.make(from: .make(id: "b", position: 2), context: ContextModel(.group, id: "1"))
         Tab.make(from: .make(id: "c", position: 3), context: ContextModel(.group, id: "1"))
         Tab.make(from: .make(id: "a", position: 1), context: ContextModel(.group, id: "1"))
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectUpdate, expectUpdateNavBar], timeout: 1)
 
         XCTAssertEqual(presenter.tabs.count, 3)
         XCTAssertEqual(presenter.tabs.first?.id, "a")
@@ -62,17 +64,13 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
 
     func testUseCaseFetchesData() {
         //  given
-        var color: Color!
-        var group: Group!
-        group = Group.make()
-        color = Color.make(canvasContextID: group.canvasContextID, color: UIColor(hexString: "#ff0")!)
+        let group = Group.make()
+        let color = Color.make(canvasContextID: group.canvasContextID, color: UIColor(hexString: "#ff0")!)
         Tab.make()
-
-        presenter = GroupNavigationPresenter(groupID: Group.make().id, view: self, env: env)
 
        //   when
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectUpdate, expectUpdateNavBar], timeout: 1)
 
         //  then
         XCTAssertEqual(presenter.tabs.first?.label, Tab.make().label)
@@ -85,11 +83,12 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
 extension GroupNavigationPresenterTests: GroupNavigationViewProtocol {
     func updateNavBar(title: String, backgroundColor: UIColor) {
         resultingTitle = title
-        expectation.fulfill()
+        expectUpdateNavBar.fulfill()
     }
 
     func update(color: UIColor) {
         resultingColor = color
+        expectUpdate.fulfill()
     }
 
     func showError(_ error: Error) {
