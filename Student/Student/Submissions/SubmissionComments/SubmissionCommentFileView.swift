@@ -47,8 +47,9 @@ class SubmissionCommentFileView: UIControl {
     func update(submission: Submission) {
         accessibilityIdentifier = "SubmissionComments.attemptView.\(submission.attempt)"
         accessibilityLabel = String.localizedStringWithFormat(
-            NSLocalizedString("View submission attempt %d", bundle: .student, comment: ""),
-            submission.attempt
+            NSLocalizedString("View submission attempt %d. %@", bundle: .student, comment: ""),
+            submission.attempt,
+            submission.type?.localizedString ?? ""
         )
         iconView?.image = submission.icon
         nameLabel?.text = submission.type?.localizedString
