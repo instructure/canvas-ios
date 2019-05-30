@@ -23,7 +23,7 @@ class LoginFindSchoolViewController: UIViewController, LoginFindSchoolViewProtoc
     @IBOutlet weak var resultsTableView: UITableView?
     @IBOutlet weak var searchField: UITextField?
 
-    var accounts = [APIAccountResults]()
+    var accounts = [APIAccountResult]()
     let logoView = UIImageView()
     var presenter: LoginFindSchoolPresenter?
 
@@ -84,7 +84,7 @@ class LoginFindSchoolViewController: UIViewController, LoginFindSchoolViewProtoc
         NotificationCenter.default.removeObserver(self)
     }
 
-    func update(results: [APIAccountResults]) {
+    func update(results: [APIAccountResult]) {
         accounts = results
         loadingView?.stopAnimating()
         resultsTableView?.reloadData()

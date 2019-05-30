@@ -15,17 +15,8 @@
 //
 
 import Foundation
+import SwiftUITest
 
-enum LoginFindSchoolPage: String, UITestElement, CaseIterable {
-    case searchField
-}
-
-struct LoginFindAccountResult: RawRepresentable, UITestElement {
-    let rawValue: String
-
-    static var emptyCell = LoginFindAccountResult(rawValue: "emptyCell")
-
-    static func item(host: String) -> LoginFindAccountResult {
-        return LoginFindAccountResult(rawValue: host)
-    }
+enum LoginWeb: String, ElementWrapper {
+    case webView
 }

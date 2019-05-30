@@ -17,7 +17,7 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/account_domain_lookups.html#method.account_domain_lookups.search
-public struct APIAccountResults: Codable, Equatable {
+public struct APIAccountResult: Codable, Equatable {
     public let name: String
     public let domain: String
     public let authentication_provider: String?

@@ -37,7 +37,7 @@ class LoginWebViewController: UIViewController, LoginWebViewProtocol {
     }
 
     override func loadView() {
-        webView.accessibilityIdentifier = "LoginWebPage.webView"
+        webView.accessibilityIdentifier = "LoginWeb.webView"
         webView.backgroundColor = .named(.backgroundLightest)
         webView.customUserAgent = UserAgent.safari.description
         webView.navigationDelegate = self

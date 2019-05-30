@@ -15,8 +15,9 @@
 //
 
 import Core
+import SwiftUITest
 
-enum LoginStartPage: String, UITestElement, CaseIterable {
+enum LoginStart: String, ElementWrapper {
     case authenticationMethodLabel
     case canvasNetworkButton
     case findSchoolButton
@@ -26,14 +27,18 @@ enum LoginStartPage: String, UITestElement, CaseIterable {
     case whatsNewLink
 }
 
-struct LoginPreviousUserItem: RawRepresentable, UITestElement {
-    let rawValue: String
-
-    static func item(entry: KeychainEntry) -> LoginPreviousUserItem {
-        return LoginPreviousUserItem(rawValue: "\(entry.baseURL.host ?? "").\(entry.userID)")
+enum LoginStartKeychainEntry {
+    static func cell(host: String, userID: String) -> Element {
+        return app.find(id: "LoginStartKeychainEntry.\(host).\(userID)")
     }
 
-    static func removeButton(entry: KeychainEntry) -> LoginPreviousUserItem {
-        return LoginPreviousUserItem(rawValue: "\(entry.baseURL.host ?? "").\(entry.userID).removeButton")
+    static func removeButton(host: String, userID: String) -> Element {
+        return app.find(id: "LoginStartKeychainEntry.\(host).\(userID).removeButton")
+    }
+}
+
+enum LoginStartMDMLogin {
+    static func cell(host: String, username: String) -> Element {
+        return app.find(id: "LoginStartMDMLogin.\(host).\(username)")
     }
 }

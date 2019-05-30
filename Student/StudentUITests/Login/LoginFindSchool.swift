@@ -15,7 +15,16 @@
 //
 
 import Foundation
+import SwiftUITest
 
-enum LoginWebPage: String, UITestElement, CaseIterable {
-    case webView
+enum LoginFindSchool: String, ElementWrapper {
+    case searchField
+}
+
+enum LoginFindAccountResult {
+    static var emptyCell = app.find(id: "LoginFindAccountResult.emptyCell")
+
+    static func item(host: String) -> Element {
+        return app.find(id: "LoginFindAccountResult.\(host)")
+    }
 }
