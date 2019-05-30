@@ -197,7 +197,6 @@ class ModuleListPresenterTests: TeacherTestCase {
     }
 
     func testForceRefresh() {
-        presenter.viewIsReady()
         let first = expectation(description: "first load")
         first.assertForOverFulfill = false
         let firstRequest = GetModulesRequest(courseID: "1")
@@ -208,6 +207,7 @@ class ModuleListPresenterTests: TeacherTestCase {
                 first.fulfill()
             }
         }
+        presenter.viewIsReady()
         wait(for: [first], timeout: 9)
 
         let request = GetModulesRequest(courseID: "1")
