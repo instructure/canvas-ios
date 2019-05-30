@@ -56,10 +56,15 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
         Tab.make(from: .make(id: "b", position: 2), context: ContextModel(.group, id: "1"))
         Tab.make(from: .make(id: "c", position: 3), context: ContextModel(.group, id: "1"))
         Tab.make(from: .make(id: "a", position: 1), context: ContextModel(.group, id: "1"))
+        let expectation = XCTestExpectation(description: "on update")
+        expectation.assertForOverFulfill = false
+        onUpdate = {
+            if self.presenter.tabs.count == 3 {
+                expectation.fulfill()
+            }
+        }
         presenter.viewIsReady()
-        wait(for: [expectUpdate, expectUpdateNavBar], timeout: 1)
-
-        XCTAssertEqual(presenter.tabs.count, 3)
+        wait(for: [expectation], timeout: 1)
         XCTAssertEqual(presenter.tabs.first?.id, "a")
         XCTAssertEqual(presenter.tabs.last?.id, "c", "\(String(describing: presenter.tabs.last?.id)) was the last" )
     }
