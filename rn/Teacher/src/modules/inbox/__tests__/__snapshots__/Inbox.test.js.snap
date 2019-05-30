@@ -457,6 +457,7 @@ exports[`Inbox filters conversations based on course 1`] = `
     <list>
       <item>
         <TouchableHighlight
+          accessibilityLabel="May 31, 2037, learn to write code"
           onPress={[Function]}
           testID="inbox.conversation-1"
         >
@@ -579,10 +580,7 @@ exports[`Inbox filters conversations based on course 1`] = `
                   >
                     artorias of the abyss, solaire of astora
                   </Text>
-                  <View
-                    accessibilityLabel="May 31, 2037"
-                    accessible={true}
-                  >
+                  <View>
                     <Text
                       accessible={true}
                       allowFontScaling={true}
@@ -1671,6 +1669,7 @@ exports[`Inbox renders correctly 1`] = `
     <list>
       <item>
         <TouchableHighlight
+          accessibilityLabel="May 31, 2037, learn to write code"
           onPress={[Function]}
           testID="inbox.conversation-1"
         >
@@ -1793,10 +1792,7 @@ exports[`Inbox renders correctly 1`] = `
                   >
                     artorias of the abyss, solaire of astora
                   </Text>
-                  <View
-                    accessibilityLabel="May 31, 2037"
-                    accessible={true}
-                  >
+                  <View>
                     <Text
                       accessible={true}
                       allowFontScaling={true}
@@ -1884,6 +1880,7 @@ exports[`Inbox renders correctly 1`] = `
       </item>
       <item>
         <TouchableHighlight
+          accessibilityLabel="May 31, 2037, learn to write code"
           onPress={[Function]}
           testID="inbox.conversation-2"
         >
@@ -2002,10 +1999,7 @@ exports[`Inbox renders correctly 1`] = `
                   >
                     artorias of the abyss, solaire of astora
                   </Text>
-                  <View
-                    accessibilityLabel="May 31, 2037"
-                    accessible={true}
-                  >
+                  <View>
                     <Text
                       accessible={true}
                       allowFontScaling={true}
