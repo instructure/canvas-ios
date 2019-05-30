@@ -87,16 +87,16 @@
     [self.casualQuestionCell setAccessibilityLabel:NSLocalizedString(@"Casual question or suggestion", nil)];
     [self.casualQuestionCell setAccessibilityIdentifier:@"ticketImpactCasualCell"];
 
-    [self.needHelpCell setAccessibilityLabel:NSLocalizedString(@"Non-urgent help needed", nil)];
+    [self.needHelpCell setAccessibilityLabel:NSLocalizedString(@"I need help but it's not urgent", nil)];
     [self.needHelpCell setAccessibilityIdentifier:@"ticketImpactNeedHelpCell"];
 
     [self.somethingBrokenCell setAccessibilityLabel:NSLocalizedString(@"Something is broken but I can work around it", nil)];
     [self.somethingBrokenCell setAccessibilityIdentifier:@"ticketImpactSomethingBrokenCell"];
 
-    [self.stuckCell setAccessibilityLabel:NSLocalizedString(@"I am stuck and can't get things done", nil)];
+    [self.stuckCell setAccessibilityLabel:NSLocalizedString(@"I can't get things done until I hear back from you", nil)];
     [self.stuckCell setAccessibilityIdentifier:@"ticketImpactStuckCell"];
 
-    [self.emergencyCell setAccessibilityLabel:NSLocalizedString(@"Emergency", nil)];
+    [self.emergencyCell setAccessibilityLabel:NSLocalizedString(@"Extremely critical emergency", nil)];
     [self.emergencyCell setAccessibilityIdentifier:@"ticketImpactEmergencyCell"];
 }
 
