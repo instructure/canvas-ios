@@ -27,6 +27,7 @@ import {
   SafeAreaView,
   Clipboard,
   NativeModules,
+  AccessibilityInfo,
 } from 'react-native'
 import {
   downloadFile,
@@ -236,6 +237,7 @@ export default class ViewFile extends Component<Props, State> {
   copyURL = () => {
     if (this.props.file) {
       Clipboard.setString(this.props.file.url.split('?')[0])
+      AccessibilityInfo.announceForAccessibility(i18n('Copied'))
       this.setState({ showCopied: true })
       this.modalTimeout = setTimeout(() => {
         this.setState({ showCopied: false })

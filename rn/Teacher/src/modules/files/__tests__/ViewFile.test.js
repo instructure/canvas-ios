@@ -17,7 +17,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ActionSheetIOS, Clipboard, NativeModules } from 'react-native'
+import { ActionSheetIOS, Clipboard, NativeModules, AccessibilityInfo } from 'react-native'
 import {
   exists,
   downloadFile,
@@ -236,6 +236,7 @@ describe('ViewFile', () => {
     tree.update()
     tree.find(selectors.copy).simulate('press')
     expect(Clipboard.setString).toHaveBeenCalledWith(originalURL)
+    expect(AccessibilityInfo.announceForAccessibility).toHaveBeenCalled()
   })
 
   it('shows the copied modal when the copy url button is pressed', async () => {
