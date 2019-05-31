@@ -67,7 +67,7 @@ class ArcSubmissionPresenterTests: PersistenceTestCase {
             XCTAssertNil(error)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testSubmitFormRequestError() {
@@ -93,7 +93,7 @@ class ArcSubmissionPresenterTests: PersistenceTestCase {
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testSubmitFormError() {
@@ -119,6 +119,6 @@ class ArcSubmissionPresenterTests: PersistenceTestCase {
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 }

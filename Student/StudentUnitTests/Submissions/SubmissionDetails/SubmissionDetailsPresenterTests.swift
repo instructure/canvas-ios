@@ -211,6 +211,14 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         XCTAssert(view.embedded is AVPlayerViewController)
     }
 
+    func testEmbedArc() {
+        Assignment.make()
+        Submission.make(from: .make(submission_type: .basic_lti_launch))
+        presenter.update()
+
+        XCTAssert(view.embedded is ExternalToolSubmissionContentViewController)
+    }
+
     func testEmbedNothing() {
         Assignment.make()
         presenter.update()
