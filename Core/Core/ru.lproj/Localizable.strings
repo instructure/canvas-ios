@@ -95,13 +95,22 @@
 "Done" = "Готово";
 
 /* No comment provided by engineer. */
+"End Act as User" = "Завершить функцию «Действовать как пользователь»";
+
+/* No comment provided by engineer. */
 "Error" = "Ошибка";
 
 /* No comment provided by engineer. */
 "External Tool" = "Внешний инструмент";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "Не удалось сохранить изображение";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Сбой загрузки";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Сбой загрузки";
 
 /* No comment provided by engineer. */
 "File Upload" = "Отправка файла";
@@ -209,6 +218,9 @@
 "No Due Date" = "Срок выполнения не задан";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "Средству сбора изображений не удалось найти ни одного изображения";
+
+/* No comment provided by engineer. */
 "No Submission" = "Нет отправки";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "Запустить запись";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "Прекратить действовать как...";
+
+/* No comment provided by engineer. */
 "Stop recording" = "Остановить запись";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Возникла ошибка использования функции «Действовать как пользователь». Попробуйте еще раз позже.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "Произошла непредвиденная ошибка. Попробуйте еще раз.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Данное задание необходимо выполнить до %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Сначала вам нужно войти хотя бы в одну учетную запись Canvas из приложения Student.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Вы прекратите действовать как %@ и вернетесь в свою учетную запись.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Вы прекратите действовать как этот пользователь и вернетесь в свою учетную запись.";
 

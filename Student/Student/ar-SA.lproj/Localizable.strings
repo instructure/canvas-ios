@@ -32,6 +32,9 @@
 "Courses" = "المساقات";
 
 /* No comment provided by engineer. */
+"Custom Grade" = "درجة مخصصة";
+
+/* No comment provided by engineer. */
 "Dashboard" = "لوحة المعلومات";
 
 /* No comment provided by engineer. */
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "الملفات (%d)";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
 
 /* No comment provided by engineer. */
 "Grade" = "الدرجة";
@@ -126,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "إعادة إرسال المهمة";
+
+/* No comment provided by engineer. */
+"Retry" = "إعادة المحاولة";
 
 /* No comment provided by engineer. */
 "Rubric" = "تقييم روبرك";
@@ -194,13 +203,13 @@
 "Updated Language Settings" = "إعدادات اللغة المحدثة";
 
 /* No comment provided by engineer. */
+"Uploading" = "جارٍ التحميل";
+
+/* No comment provided by engineer. */
 "View Discussion" = "عرض النقاش";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "عرض الملف %1$@ %2$@";
-
-/* No comment provided by engineer. */
-"View submission attempt %d" = "عرض محاولة الإرسال %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "عنوان موقع ويب";

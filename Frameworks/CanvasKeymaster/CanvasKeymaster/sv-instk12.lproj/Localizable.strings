@@ -29,9 +29,6 @@
 "Dismiss" = "Avfärda";
 
 /* No comment provided by engineer. */
-"Emergency" = "Nödläge";
-
-/* No comment provided by engineer. */
 "enter a subject" = "skriv in ett ämne";
 
 /* Text view to enter the description of the ticket */
@@ -44,16 +41,10 @@
 "Extremely critical emergency" = "Extremt kritiskt nödläge";
 
 /* No comment provided by engineer. */
-"I am stuck and can't get things done" = "Jag sitter fast och kan inte få saker gjorda";
-
-/* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Jag kan inte utföra saker innan jag hör från dig";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Jag behöver hjälp men det är inte akut";
-
-/* No comment provided by engineer. */
-"Non-urgent help needed" = "Ej brådskande hjälp behövs";
 
 /* No comment provided by engineer. */
 "OK" = "OK";

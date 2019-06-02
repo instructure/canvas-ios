@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Kaore he Ture o te Whakamahi mō Pūkete"
   },
-  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Ko te Mahi hei\" kei te takiuru tēnei kaiwhakamahi me te kore kupuhipa. Ka taea e koe te mahi i tētahi mahi me te mea ko koe tēnei kaiwhakamahi, me ngā whakāro o ētahi atu kaiwhakamahi, me te mea i whakamahia e tēnei kaiwhakamahi. Heoi, ka tuhia e ngā kaute tuhinga ko koe te kaihanga i ngā mahi mo tēnei kaiwhakamahi."
-  },
   "act_as_user_d7ef0e48": {
     "message": "Mahi rite kaiwhakamahi"
   },
@@ -493,9 +490,6 @@
   },
   "display_grade_as_c165e9a6": {
     "message": "Whakātu kōeke hē"
-  },
-  "domain_3b54c511": {
-    "message": "rohe"
   },
   "done_54e3d4b6": {
     "message": "Kua mahia"
@@ -1523,9 +1517,6 @@
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "He hapa i te wā e uta ana i tēnei tāpiritanga."
   },
-  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
-    "message": "He hapa ki te Mahi hei Kaiwhakamahi Tēnā koa ngana anō i muri mai."
-  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "He raruraru i te wā e uta ana i tō karere"
   },
@@ -1694,9 +1685,6 @@
   },
   "use_camera_47a0387b": {
     "message": "Whakamahi te Kāmera"
-  },
-  "user_id_bcace870": {
-    "message": "Kaiwhakamahi ID"
   },
   "video_b9f27375": {
     "message": "Ataata"

@@ -29,9 +29,6 @@
 "Dismiss" = "Verwijderen";
 
 /* No comment provided by engineer. */
-"Emergency" = "Noodgeval";
-
-/* No comment provided by engineer. */
 "enter a subject" = "voer een onderwerp in";
 
 /* Text view to enter the description of the ticket */
@@ -44,16 +41,10 @@
 "Extremely critical emergency" = "Extreem noodgeval";
 
 /* No comment provided by engineer. */
-"I am stuck and can't get things done" = "Ik zit vast en kom niet verder";
-
-/* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Ik kan niets doen tot ik een antwoord van je terugkrijg";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Ik heb hulp nodig maar het is niet dringend";
-
-/* No comment provided by engineer. */
-"Non-urgent help needed" = "Niet-urgente hulp nodig";
 
 /* No comment provided by engineer. */
 "OK" = "OK";

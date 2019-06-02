@@ -95,13 +95,22 @@
 "Done" = "Ferdig";
 
 /* No comment provided by engineer. */
+"End Act as User" = "Avslutt opptre som bruker";
+
+/* No comment provided by engineer. */
 "Error" = "Avvik";
 
 /* No comment provided by engineer. */
 "External Tool" = "Eksternt verktøy";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "Kunne ikke lagre bilde";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Opplasting mislyktes";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Opplasting mislyktes";
 
 /* No comment provided by engineer. */
 "File Upload" = "Filopplasting";
@@ -209,6 +218,9 @@
 "No Due Date" = "Ingen forfallsdato";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "Det ble ikke funnet noen bilder i bildevelger";
+
+/* No comment provided by engineer. */
 "No Submission" = "Ingen innlevering";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "Start opptak";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "Slutt å opptre som...";
+
+/* No comment provided by engineer. */
 "Stop recording" = "Stopp opptak";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Det var feil med opptre som bruker. Forsøk igjen senere.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "Et ukjent avvik oppsto. Prøv igjen.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Denne oppgaven har frist %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Du må først logge på med minst én Canvas-konto fra Elev-appen.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Du vil slutte å opptre som %@ og gå tilbake til din egen konto.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Du vil slutte å opptre som denne brukeren og gå tilbake til din egen konto.";
 

@@ -95,13 +95,22 @@
 "Done" = "Fertig";
 
 /* No comment provided by engineer. */
+"End Act as User" = "„Handeln als Benutzer“ beenden";
+
+/* No comment provided by engineer. */
 "Error" = "Fehler";
 
 /* No comment provided by engineer. */
 "External Tool" = "Externes Tool";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "Bild wurde nicht gespeichert";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Upload fehlgeschlagen";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Upload fehlgeschlagen";
 
 /* No comment provided by engineer. */
 "File Upload" = "Datei hochladen";
@@ -209,6 +218,9 @@
 "No Due Date" = "Kein Abgabetermin";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "Kein Bild von Image-Picker gefunden";
+
+/* No comment provided by engineer. */
 "No Submission" = "Keine Abgabe";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "Aufzeichnung starten";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "Aufhören, als Benutzer [...] zu handeln";
+
+/* No comment provided by engineer. */
 "Stop recording" = "Aufzeichnung stoppen";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Fehler beim Handeln als Benutzer Bitte versuchen Sie es später noch einmal.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "Unerwarteter Fehler. Versuchen Sie es erneut.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Diese Aufgabe ist fällig um %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Sie müssen sich zuerst bei mindestens einem Canvas-Konto von der Studenten-App aus anmelden.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Sie hören auf, als %@ zu handeln, und kehren zu Ihrem Konto zurück.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Sie hören auf, als dieser Benutzer zu handeln, und kehren zu Ihrem Konto zurück.";
 

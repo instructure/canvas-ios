@@ -95,13 +95,22 @@
 "Done" = "Gereed";
 
 /* No comment provided by engineer. */
+"End Act as User" = "Stop met optreden als gebruiker";
+
+/* No comment provided by engineer. */
 "Error" = "Fout";
 
 /* No comment provided by engineer. */
 "External Tool" = "Externe tool";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "Kan afbeelding niet Opslaan";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Upload mislukt";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Upload mislukt";
 
 /* No comment provided by engineer. */
 "File Upload" = "Bestand uploaden";
@@ -209,6 +218,9 @@
 "No Due Date" = "Geen inleverdatum";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "Er is geen afbeelding gevonden van afbeeldingkiezer";
+
+/* No comment provided by engineer. */
 "No Submission" = "Geen inzending";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "Opname starten";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "Stop met optreden als...";
+
+/* No comment provided by engineer. */
 "Stop recording" = "Opname stoppen";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Er is een fout met het instellen van Optreden als gebruiker. Probeer het later opnieuw.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "Er is een onverwachte fout opgetreden. Probeer het nog eens.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Deze opdracht moet uiterlijk worden ingeleverd op %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Je moet je eerst vanuit de Student App bij ten minste één Canvas-account aanmelden.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Je stopt met optreden als %@ en keert terug naar je account.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Je stopt met optreden als deze gebruiker en keert terug naar je account.";
 

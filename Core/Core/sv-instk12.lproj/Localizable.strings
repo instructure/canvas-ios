@@ -95,13 +95,22 @@
 "Done" = "Färdig";
 
 /* No comment provided by engineer. */
+"End Act as User" = "Sluta uppträd som användare";
+
+/* No comment provided by engineer. */
 "Error" = "Fel";
 
 /* No comment provided by engineer. */
 "External Tool" = "Externt verktyg";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "Det gick inte att spara bilden";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Det gick inte att ladda upp";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Det gick inte att ladda upp";
 
 /* No comment provided by engineer. */
 "File Upload" = "Filuppladdning";
@@ -209,6 +218,9 @@
 "No Due Date" = "Inget inlämningsdatum";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "Ingen bild hittades i bildväljaren";
+
+/* No comment provided by engineer. */
 "No Submission" = "Ingen inlämning";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "Påbörja inspelning";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "Sluta uppträda som...";
+
+/* No comment provided by engineer. */
 "Stop recording" = "Stoppa inspelning";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Det uppstod ett fel med att uppträda som en användare. Försök igen senare.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "Ett oväntat fel har uppstått. Försök igen.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Den här uppgiften ska lämnas in %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Du måste först logga in på minst ett Canvas-konto från elevappen.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Du kommer sluta att uppträda som %@, och återvända till ditt konto.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Du kommer sluta att uppträda som den här användaren och återvända till ditt konto.";
 

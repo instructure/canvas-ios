@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Kont lan pa gen Kondisyon Itilizasyon yo"
   },
-  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Aji tankou\" se koneksyon an tan ke moun sa a san modpas. W ap ka fè nenpòt aksyon kòmsi w te moun sa a, e pou lòt itilizatè yo, kòmsi se te itilizatè a ki t ap fè yo. Men, jounal odit yo endike ke se te ou menm ki te fè aksyon yo nan non itilizatè sa a."
-  },
   "act_as_user_d7ef0e48": {
     "message": "Aji tankou Itilizatè"
   },
@@ -493,9 +490,6 @@
   },
   "display_grade_as_c165e9a6": {
     "message": "Afiche Nòt tankou..."
-  },
-  "domain_3b54c511": {
-    "message": "Domèn"
   },
   "done_54e3d4b6": {
     "message": "Fini"
@@ -1523,9 +1517,6 @@
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "Te gen erè nan chajman atachman sa a."
   },
-  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
-    "message": "Te gen yon erè nan Aji tankou Itilizatè. Tanpri eseye ankò."
-  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Te gen yon pwoblèm nan chajman mesaj ou a."
   },
@@ -1694,9 +1685,6 @@
   },
   "use_camera_47a0387b": {
     "message": "Itilize Kamera"
-  },
-  "user_id_bcace870": {
-    "message": "ID Itilizatè"
   },
   "video_b9f27375": {
     "message": "Videyo"

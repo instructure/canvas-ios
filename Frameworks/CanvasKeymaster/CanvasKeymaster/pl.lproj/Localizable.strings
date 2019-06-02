@@ -29,9 +29,6 @@
 "Dismiss" = "Odwołaj";
 
 /* No comment provided by engineer. */
-"Emergency" = "Sytuacja awaryjna";
-
-/* No comment provided by engineer. */
 "enter a subject" = "wpisz temat";
 
 /* Text view to enter the description of the ticket */
@@ -44,16 +41,10 @@
 "Extremely critical emergency" = "Niezwykle krytyczna awaria";
 
 /* No comment provided by engineer. */
-"I am stuck and can't get things done" = "Nastąpiła blokada, nic nie można zrobić";
-
-/* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Nie mogę skończyć pracy, dopóki nie otrzymam tej informacji.";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Potrzebuję pomocy ale nie jest to pilne";
-
-/* No comment provided by engineer. */
-"Non-urgent help needed" = "Potrzebna niepilna pomoc";
 
 /* No comment provided by engineer. */
 "OK" = "OK";

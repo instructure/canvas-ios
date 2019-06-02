@@ -56,9 +56,6 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Zulässige Versuche";
 
-/* Default error message displayed when a file fails to upload */
-"An error occured, please try again." = "Ein Fehler ist aufgetreten. Bitte versuchen Sie es noch einmal.";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Ein unerwarteter Fehler ist aufgetreten.";
 

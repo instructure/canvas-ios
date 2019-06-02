@@ -95,13 +95,22 @@
 "Done" = "Done";
 
 /* No comment provided by engineer. */
+"End Act as User" = "End Act as User";
+
+/* No comment provided by engineer. */
 "Error" = "Error";
 
 /* No comment provided by engineer. */
 "External Tool" = "External tool";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "Failed to save image";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Failed upload";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Failed Upload";
 
 /* No comment provided by engineer. */
 "File Upload" = "File upload";
@@ -209,6 +218,9 @@
 "No Due Date" = "No due date";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "No image found from image picker";
+
+/* No comment provided by engineer. */
 "No Submission" = "No submission";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "Start recording";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "Stop acting as...";
+
+/* No comment provided by engineer. */
 "Stop recording" = "Stop recording";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "There was an error with act as user. Please try again later.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "There was an unexpected error. Please try again.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "This assignment is due by %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "You will need to log into at least one Canvas account from the Student app first.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "You will stop acting as %@ and return to your account.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "You will stop acting as this user and return to your account.";
 

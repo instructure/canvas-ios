@@ -76,6 +76,9 @@
 /* Close Button Title */
 "Close" = "Luk";
 
+/* No comment provided by engineer. */
+"Close App" = "Luk app";
+
 /* Course Announcement Description */
 "Course announcements" = "Fagbekendtgørelser";
 
@@ -238,6 +241,9 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "Betingelser for brug";
 
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Appen skal genstarte for at bruge de nye sprogindstillinger. Genstart venligst appen.";
+
 /* Error message */
 "There are no actions for this item" = "Der er ingen handlinger for dette element";
 
@@ -256,11 +262,17 @@
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "Denne elevs fag kan ikke offentliggøres endnu.";
 
+/* No comment provided by engineer. */
+"Trouble logging in" = "Problemer med at logge ind";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "Ukendt";
 
 /* No comment provided by engineer. */
 "Unread" = "Ulæst";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Opdaterede sprogindstillinger";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "Se Canvas-vejledningerne";

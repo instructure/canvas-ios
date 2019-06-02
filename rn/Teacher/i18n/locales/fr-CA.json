@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Le compte n'a pas de conditions d'utilisation"
   },
-  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Agir en tant que\" (Act as) est essentiellement d'ouvrir une session en tant que cet utilisateur sans mot de passe. Vous serez en mesure de prendre toute action comme si vous étiez cet utilisateur, et du point de vue des autres utilisateurs, comme si cet utilisateur aurait effectué ces actions. Toutefois, le journal d'événements a identifié que vous étiez celui qui a effectué les actions au nom de cet étudiant."
-  },
   "act_as_user_d7ef0e48": {
     "message": "Agir en tant qu'utilisateur"
   },
@@ -493,9 +490,6 @@
   },
   "display_grade_as_c165e9a6": {
     "message": "Afficher la note comme..."
-  },
-  "domain_3b54c511": {
-    "message": "Domaine"
   },
   "done_54e3d4b6": {
     "message": "Terminé"
@@ -1523,9 +1517,6 @@
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "Une erreur est survenue lors du chargement de cette pièce jointe."
   },
-  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
-    "message": "Un problème est survenu avec l’action « Agir en tant qu'utilisateur ». Veuillez essayer de nouveau plus tard."
-  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Un problème est survenu lors du chargement de vos messages."
   },
@@ -1694,9 +1685,6 @@
   },
   "use_camera_47a0387b": {
     "message": "Utiliser la caméra"
-  },
-  "user_id_bcace870": {
-    "message": "ID utilisateur"
   },
   "video_b9f27375": {
     "message": "Vidéo"

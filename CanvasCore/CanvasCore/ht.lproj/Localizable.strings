@@ -56,9 +56,6 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tantativ Otorize";
 
-/* Default error message displayed when a file fails to upload */
-"An error occured, please try again." = "Gen yon erè ki fèt, tanpri eseye ankò.";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Yon erè te fèt sanzatann.";
 

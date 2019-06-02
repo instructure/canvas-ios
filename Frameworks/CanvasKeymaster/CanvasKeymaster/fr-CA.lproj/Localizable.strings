@@ -29,9 +29,6 @@
 "Dismiss" = "Rejeter";
 
 /* No comment provided by engineer. */
-"Emergency" = "Urgence";
-
-/* No comment provided by engineer. */
 "enter a subject" = "saisissez un objet";
 
 /* Text view to enter the description of the ticket */
@@ -44,16 +41,10 @@
 "Extremely critical emergency" = "État d'urgence extrêmement critique";
 
 /* No comment provided by engineer. */
-"I am stuck and can't get things done" = "Je suis coincé et je ne peut pas faire avancer les choses";
-
-/* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Je ne peux pas continuer mon travail avant d’avoir reçu une réponse de votre part";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "J'ai besoin d'aide, mais ce n'est pas urgent";
-
-/* No comment provided by engineer. */
-"Non-urgent help needed" = "Aide non urgente requise";
 
 /* No comment provided by engineer. */
 "OK" = "OK";

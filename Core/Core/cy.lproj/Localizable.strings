@@ -95,13 +95,22 @@
 "Done" = "Wedi gorffen";
 
 /* No comment provided by engineer. */
+"End Act as User" = "Gorffen Gweithredu fel Defnyddiwr";
+
+/* No comment provided by engineer. */
 "Error" = "Gwall";
 
 /* No comment provided by engineer. */
 "External Tool" = "Adnodd Allanol";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "Wedi methu cadw delwedd";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Wedi methu llwytho i fyny";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Wedi methu llwytho i fyny";
 
 /* No comment provided by engineer. */
 "File Upload" = "Llwytho Ffeil i Fyny";
@@ -209,6 +218,9 @@
 "No Due Date" = "Dim Dyddiad Erbyn";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "Heb ddod o hyd i ddelwedd o'r dewisydd delwedd";
+
+/* No comment provided by engineer. */
 "No Submission" = "Dim cyflwyniad";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "Dechrau'r recordiad";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "Stopio gweithredu fel...";
+
+/* No comment provided by engineer. */
 "Stop recording" = "Stopio'r recordiad";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Gwall â'r nodwedd Gweithredu fel Defnyddiwr. Rhowch gynnig arall arni rywbryd eto.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "Gwall annisgwyl. Rhowch gynnig arall arni.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Mae’r aseiniad hwn i fod i gael ei gyflwyno erbyn %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "I ddechrau, bydd angen i chi fewngofnodi i o leiaf un cyfrif Canvas o’r ap Myfyrwyr.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Byddwch yn stopio gweithredu fel %@ ac yn dychwelyd i’ch cyfrif eich hun.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Byddwch yn stopio gweithredu fel y defnyddiwr hwn ac yn dychwelyd i’ch cyfrif eich hun.";
 

@@ -32,6 +32,9 @@
 "Courses" = "Kou";
 
 /* No comment provided by engineer. */
+"Custom Grade" = "Klas Pèsonalize";
+
+/* No comment provided by engineer. */
 "Dashboard" = "Tablo";
 
 /* No comment provided by engineer. */
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Fichye (%d)";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
 
 /* No comment provided by engineer. */
 "Grade" = "Klas";
@@ -126,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Resoumèt Sesyon";
+
+/* No comment provided by engineer. */
+"Retry" = "Re eseye";
 
 /* No comment provided by engineer. */
 "Rubric" = "Ribrik";
@@ -194,13 +203,13 @@
 "Updated Language Settings" = "Paramèt Langaj Aktyalize";
 
 /* No comment provided by engineer. */
+"Uploading" = "Chajman";
+
+/* No comment provided by engineer. */
 "View Discussion" = "Afiche Diskisyon";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Afiche fichye %1$@ %2$@";
-
-/* No comment provided by engineer. */
-"View submission attempt %d" = "Afiche tantativ soumisyon %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Adrès Sit Wèb";

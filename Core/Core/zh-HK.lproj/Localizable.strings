@@ -95,13 +95,22 @@
 "Done" = "已完成";
 
 /* No comment provided by engineer. */
+"End Act as User" = "結束作為使用者";
+
+/* No comment provided by engineer. */
 "Error" = "錯誤";
 
 /* No comment provided by engineer. */
 "External Tool" = "外部工具";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "無法儲存影像";
+
+/* No comment provided by engineer. */
 "Failed upload" = "上傳失敗";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "上傳失敗";
 
 /* No comment provided by engineer. */
 "File Upload" = "檔案上傳";
@@ -209,6 +218,9 @@
 "No Due Date" = "無截止日期";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "從影像選擇器中找不到影像";
+
+/* No comment provided by engineer. */
 "No Submission" = "無提交項目";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "開始錄製";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "停止作為...";
+
+/* No comment provided by engineer. */
 "Stop recording" = "停止錄製";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "作為使用者時出現錯誤。請稍後重試。";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "有意外錯誤。請再試一次。";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "作業截止日期為%@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "您需要首先從學生應用程式登入至最少一個 Canvas 帳戶。";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "您將會停止作為 %@ 並返回到您的帳戶。";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "您將會停止作為此使用者並返回到您的帳戶。";
 

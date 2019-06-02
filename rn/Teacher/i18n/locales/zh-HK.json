@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "帳戶未有使用條款"
   },
-  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "”作為”本質上是以此使用者身份登錄，沒有密碼。您將能夠進行任何操作，就好像您就是此使用者一樣，並且，其他使用者也會認為是此使用者執行了操作。然而，審計日誌會記錄事實，即您是代表此使用者執行操作的人。"
-  },
   "act_as_user_d7ef0e48": {
     "message": "作為使用者"
   },
@@ -493,9 +490,6 @@
   },
   "display_grade_as_c165e9a6": {
     "message": "將評分顯示為…"
-  },
-  "domain_3b54c511": {
-    "message": "網域"
   },
   "done_54e3d4b6": {
     "message": "完成"
@@ -1523,9 +1517,6 @@
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "載入此附件時出現錯誤。"
   },
-  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
-    "message": "作為使用者時出現錯誤。請稍後重試。"
-  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "載入訊息時發生問題。"
   },
@@ -1694,9 +1685,6 @@
   },
   "use_camera_47a0387b": {
     "message": "使用攝像頭"
-  },
-  "user_id_bcace870": {
-    "message": "使用者 ID"
   },
   "video_b9f27375": {
     "message": "視頻"
