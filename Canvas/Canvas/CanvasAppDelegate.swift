@@ -42,9 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        environment.logger.log(#function)
         setupCrashlytics()
-        ResetAppIfNecessary()
+        CacheManager.resetAppIfNecessary()
         if hasFirebase {
             FirebaseApp.configure()
         }
@@ -172,24 +171,6 @@ extension AppDelegate: CanvasAnalyticsHandler {
         if hasFirebase {
             Analytics.logEvent(name, parameters: parameters)
         }
-    }
-}
-
-// MARK: Logging in/out
-extension AppDelegate {
-    
-    @objc func addClearCacheGesture(_ view: UIView) {
-        let clearCacheGesture = UITapGestureRecognizer(target: self, action: #selector(clearCache))
-        clearCacheGesture.numberOfTapsRequired = 3
-        clearCacheGesture.numberOfTouchesRequired = 4
-        view.addGestureRecognizer(clearCacheGesture)
-    }
-    
-    @objc func clearCache() {
-        URLCache.shared.removeAllCachedResponses()
-        let alert = UIAlertController(title: NSLocalizedString("Cache cleared", comment: ""), message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .default, handler: nil))
-        window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
 }
 

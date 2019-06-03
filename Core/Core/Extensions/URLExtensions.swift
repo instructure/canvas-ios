@@ -29,6 +29,10 @@ extension URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
 
+    public static var libraryDirectory: URL {
+        return FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
+    }
+
     public func lookupFileSize() -> Int {
         guard self.isFileURL else { return 0 }
         let attributes = try? FileManager.default.attributesOfItem(atPath: path)

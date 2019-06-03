@@ -16,7 +16,6 @@
 		2C5FDC1B2140759700633BB4 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FDC1A2140759600633BB4 /* LocalizationManager.swift */; };
 		2C68DCF32086786E00A1EBFA /* UIPickerView+Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C68DCF22086786E00A1EBFA /* UIPickerView+Quiz.swift */; };
 		2C7CBD2B1F79A42600E5EC02 /* CGRect+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */; };
-		2C8E35702093A0340071ED94 /* AppReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E356F2093A0340071ED94 /* AppReset.swift */; };
 		2C932FCF20B36848003DE5DF /* LocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C932FCD20B36848003DE5DF /* LocalizationManager.m */; };
 		2CAF17801F7AF61100EA2742 /* UIFont+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */; };
 		2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CAF1B171F72AEDB007225DF /* CanvasCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -532,7 +531,6 @@
 		2C5FDC1A2140759600633BB4 /* LocalizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		2C68DCF22086786E00A1EBFA /* UIPickerView+Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Quiz.swift"; sourceTree = "<group>"; };
 		2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Core.swift"; sourceTree = "<group>"; };
-		2C8E356F2093A0340071ED94 /* AppReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReset.swift; sourceTree = "<group>"; };
 		2C932FCD20B36848003DE5DF /* LocalizationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalizationManager.m; sourceTree = "<group>"; };
 		2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Core.swift"; sourceTree = "<group>"; };
 		2CAF1B141F72AEDB007225DF /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1280,7 +1278,6 @@
 				493020261F9022FB006BD777 /* Utilities */,
 				4961F5621F8FB1810093EC86 /* Views */,
 				4961F5211F8FACD50093EC86 /* WhizzyWig */,
-				2C8E356F2093A0340071ED94 /* AppReset.swift */,
 			);
 			path = CanvasCore;
 			sourceTree = "<group>";
@@ -3299,7 +3296,6 @@
 				4961F5A41F8FB2A10093EC86 /* TokenLabelView.swift in Sources */,
 				497CA7781F82D19A00501613 /* HelmSplitViewControllerExtensions.swift in Sources */,
 				49698D7C1F8FA2D000E38B78 /* Status.swift in Sources */,
-				2C8E35702093A0340071ED94 /* AppReset.swift in Sources */,
 				4961F5E31F8FB3F20093EC86 /* Marshal+SoPersistent.swift in Sources */,
 				4961F5D11F8FB3E80093EC86 /* CollectionViewDataSource.swift in Sources */,
 				4961F5D51F8FB3EB0093EC86 /* CollectionType+Edits.swift in Sources */,

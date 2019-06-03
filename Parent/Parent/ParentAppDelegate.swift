@@ -45,7 +45,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupCrashlytics()
-        ResetAppIfNecessary()
+        CacheManager.resetAppIfNecessary()
         if hasFirebase {
             FirebaseApp.configure()
         }
@@ -130,8 +130,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
                 let dashboardHandler = Router.sharedInstance.parentDashboardHandler()
                 guard let controller = dashboardHandler(nil) else { return }
-
-                self.addClearCacheGesture(controller.view)
 
                 controller.view.layoutIfNeeded()
                 UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
@@ -222,24 +220,6 @@ extension ParentAppDelegate {
 
     func topMostViewController() -> UIViewController? {
         return window?.rootViewController?.topMostViewController()
-    }
-}
-
-// MARK: Logging in/out
-extension ParentAppDelegate {
-    
-    @objc func addClearCacheGesture(_ view: UIView) {
-        let clearCacheGesture = UITapGestureRecognizer(target: self, action: #selector(clearCache))
-        clearCacheGesture.numberOfTapsRequired = 3
-        clearCacheGesture.numberOfTouchesRequired = 4
-        view.addGestureRecognizer(clearCacheGesture)
-    }
-    
-    @objc func clearCache() {
-        URLCache.shared.removeAllCachedResponses()
-        let alert = UIAlertController(title: NSLocalizedString("Cache cleared", comment: ""), message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .default, handler: nil))
-        window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
 }
 

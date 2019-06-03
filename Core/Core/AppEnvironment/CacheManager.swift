@@ -17,34 +17,77 @@
 import Foundation
 
 public class CacheManager {
-    public static let shared = CacheManager()
-
-    public private(set) var lastDeletedAt: Date? {
-        get { return UserDefaults.standard.object(forKey: "lastDeletedAt") as? Date }
+    public private(set) static var lastDeletedAt: Int {
+        get { return UserDefaults.standard.integer(forKey: "lastDeletedAt") }
         set { UserDefaults.standard.set(newValue, forKey: "lastDeletedAt") }
     }
 
-    public func clearIfNeeded() {
-        if lastDeletedAt == nil {
-            deleteAll()
+    public static var bundleVersion: Int = {
+        if let version = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String, let v = Int(version) {
+            return v
+        }
+        return 0
+    }()
+
+    public static func resetAppIfNecessary() {
+        guard UserDefaults.standard.bool(forKey: "reset_cache_on_next_launch") else {
+            return clearIfNeeded()
+        }
+
+        for key in UserDefaults.standard.dictionaryRepresentation().keys {
+            if !UserDefaults.standard.objectIsForced(forKey: key) {
+                UserDefaults.standard.removeObject(forKey: key)
+            }
+        }
+
+        clear()
+        Keychain.clearEntries()
+        clearDirectory(.documentsDirectory) // Also clear documents, which we normally keep around
+    }
+
+    public static func clearIfNeeded() {
+        if lastDeletedAt != bundleVersion {
+            clear()
         }
     }
 
-    public func deleteAll() {
-        deleteCaches()
-        deleteDocuments()
-        lastDeletedAt = Clock.now
+    public static func clear() {
+        URLCache.shared.removeAllCachedResponses()
+        clearAppGroup(Bundle.main.appGroupID())
+        clearAppGroup("group.com.instructure.Contexts") // LocalStoreAppGroupName
+        clearCaches()
+        clearLibrary()
+        clearRNAsyncStorage()
+        lastDeletedAt = bundleVersion
     }
 
-    public func deleteCaches() {
-        deleteFilesInDirectory(.cachesDirectory)
+    public static func clearAppGroup(_ id: String?) {
+        guard let id = id, let folder = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: id) else { return }
+        clearDirectory(folder)
     }
 
-    public func deleteDocuments() {
-        deleteFilesInDirectory(.documentsDirectory)
+    public static func clearCaches() {
+        clearDirectory(.cachesDirectory)
     }
 
-    private func deleteFilesInDirectory(_ directory: URL) {
+    public static func clearLibrary() {
+        clearDirectory(.libraryDirectory)
+    }
+
+    public static func clearRNAsyncStorage() {
+        let asyncStorage = URL.documentsDirectory.appendingPathComponent("RCTAsyncLocalStorage_V1")
+        let manifestURL = asyncStorage.appendingPathComponent("manifest.json")
+        let json = (try? Data(contentsOf: manifestURL)).flatMap { try? JSONSerialization.jsonObject(with: $0) } as? [String: Any]
+        clearDirectory(asyncStorage)
+        let preserve = [ "speed-grader-tutorial", "teacher.profile.developermenu", "teacher.developermenu.featureflagkey" ]
+        guard
+            let previous = json,
+            let manifest = try? JSONSerialization.data(withJSONObject: previous.filter({ entry in preserve.contains(entry.key) }))
+        else { return }
+        try? manifest.write(to: manifestURL, options: .atomic)
+    }
+
+    private static func clearDirectory(_ directory: URL) {
         let fs = FileManager.default
         let urls = (try? fs.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)) ?? []
         for url in urls {

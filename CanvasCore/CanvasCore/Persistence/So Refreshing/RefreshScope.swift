@@ -40,7 +40,7 @@ open class RefreshScope: NSObject {
             ❨╯°□°❩╯⌢"Can't load the global refresh cache model"
         }
         
-        guard let libURL = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first.map(URL.init(fileURLWithPath:)) else { ❨╯°□°❩╯⌢"GASP! There were no user library search paths" }
+        guard let libURL = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first.map(URL.init(fileURLWithPath:)) else { ❨╯°□°❩╯⌢"GASP! There were no user library search paths" }
         let storeURL = libURL.appendingPathComponent("GlobalSoRefreshing.sqlite")
         
         do {
