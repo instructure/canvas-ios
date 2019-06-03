@@ -41,7 +41,7 @@ class APITests: XCTestCase {
     }
 
     struct GetAccountsSearchRequest: APIRequestable {
-        typealias Response = [APIAccountResults]
+        typealias Response = [APIAccountResult]
         let path = accountResultsUrl.absoluteString
     }
 

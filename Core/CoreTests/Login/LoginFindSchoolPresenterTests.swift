@@ -22,7 +22,7 @@ class LoginFindSchoolPresenterTests: XCTestCase {
     var helpURL: URL?
     var opened: URL?
     var shown: UIViewController?
-    var results: [APIAccountResults]?
+    var results: [APIAccountResult]?
 
     func testViewIsReady() {
         let presenter = LoginFindSchoolPresenter(loginDelegate: nil, method: .normalLogin, view: self)
@@ -34,7 +34,7 @@ class LoginFindSchoolPresenterTests: XCTestCase {
         let presenter = LoginFindSchoolPresenter(loginDelegate: nil, method: .normalLogin, view: self)
         let mockAPI = MockAPI()
         mockAPI.mock(GetAccountsSearchRequest(searchTerm: "a"), value: [
-            APIAccountResults.make(name: "A", domain: "a.instructure.com"),
+            APIAccountResult.make(name: "A", domain: "a.instructure.com"),
         ])
         presenter.api = mockAPI
         presenter.search(query: "a")
@@ -82,7 +82,7 @@ class LoginFindSchoolPresenterTests: XCTestCase {
 
     func testShowLoginForAccount() {
         let presenter = LoginFindSchoolPresenter(loginDelegate: nil, method: .normalLogin, view: self)
-        let account = APIAccountResults.make(authentication_provider: "ldap")
+        let account = APIAccountResult.make(authentication_provider: "ldap")
         presenter.accounts = [account]
         presenter.showLoginForHost(account.domain)
         XCTAssert(shown is LoginWebViewController)
@@ -103,7 +103,7 @@ extension LoginFindSchoolPresenterTests: LoginFindSchoolViewProtocol, LoginDeleg
     func show(_ vc: UIViewController, sender: Any?) {
         shown = vc
     }
-    func update(results: [APIAccountResults]) {
+    func update(results: [APIAccountResult]) {
         self.results = results
     }
 }

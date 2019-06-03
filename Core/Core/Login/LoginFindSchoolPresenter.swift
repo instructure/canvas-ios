@@ -18,11 +18,11 @@ import UIKit
 
 protocol LoginFindSchoolViewProtocol: class {
     func show(_ vc: UIViewController, sender: Any?)
-    func update(results: [APIAccountResults])
+    func update(results: [APIAccountResult])
 }
 
 class LoginFindSchoolPresenter {
-    var accounts = [APIAccountResults]()
+    var accounts = [APIAccountResult]()
     var api: API = URLSessionAPI()
     let method: AuthenticationMethod
     weak var loginDelegate: LoginDelegate?
@@ -48,8 +48,8 @@ class LoginFindSchoolPresenter {
         searchTask = api.makeRequest(GetAccountsSearchRequest(searchTerm: query)) { [weak self] (results, _, error) in DispatchQueue.main.async {
             guard let self = self, error == nil else { return }
             self.accounts = results ?? []
-            self.view?.update(results: self.accounts.map { (account) -> APIAccountResults in
-                return APIAccountResults(
+            self.view?.update(results: self.accounts.map { (account) -> APIAccountResult in
+                return APIAccountResult(
                     name: account.name.trimmingCharacters(in: .whitespacesAndNewlines),
                     domain: account.domain,
                     authentication_provider: account.authentication_provider

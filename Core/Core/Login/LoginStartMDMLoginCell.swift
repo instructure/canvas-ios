@@ -21,7 +21,7 @@ class LoginStartMDMLoginCell: UITableViewCell {
     @IBOutlet weak var nameLabel: DynamicLabel?
 
     func update(login: MDMLogin) {
-        let identifier = "LoginStartMDMLoginCell.\(login.host).\(login.username)"
+        let identifier = "LoginStartMDMLogin.\(login.host).\(login.username)"
         self.accessibilityIdentifier = identifier
         domainLabel?.text = login.host
         nameLabel?.text = login.username

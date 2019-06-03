@@ -17,30 +17,29 @@
 import Foundation
 @testable import Core
 import TestsFoundation
+import SwiftUITest
 
-class LoginStartPageTests: StudentTest {
-    let page = LoginStartPage.self
-
+class LoginStartTests: StudentTest {
     func testHiddenElements() {
         show(Route.login.url.path)
-        page.assertHidden(.helpButton)
-        page.assertHidden(.whatsNewLabel)
-        page.assertHidden(.whatsNewLink)
+        XCTAssertFalse(LoginStart.helpButton.isVisible)
+        XCTAssertFalse(LoginStart.whatsNewLabel.isVisible)
+        XCTAssertFalse(LoginStart.whatsNewLink.isVisible)
     }
 
     func testFindSchool() {
         show(Route.login.url.path)
-        page.assertEnabled(.findSchoolButton)
-        page.tap(.findSchoolButton)
+        XCTAssertTrue(LoginStart.findSchoolButton.isEnabled)
+        LoginStart.findSchoolButton.tap()
 
-        LoginFindSchoolPage.assertVisible(.searchField)
+        XCTAssert(LoginFindSchool.searchField.waitToExist(Timeout()))
     }
 
     func testCanvasNetwork() {
         show(Route.login.url.path)
-        page.assertEnabled(.canvasNetworkButton)
-        page.tap(.canvasNetworkButton)
+        XCTAssertTrue(LoginStart.canvasNetworkButton.isEnabled)
+        LoginStart.canvasNetworkButton.tap()
 
-        LoginWebPage.assertVisible(.webView)
+        XCTAssert(LoginWeb.webView.waitToExist(Timeout()))
     }
 }
