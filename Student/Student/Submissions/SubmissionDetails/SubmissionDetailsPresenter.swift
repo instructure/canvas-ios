@@ -197,6 +197,8 @@ class SubmissionDetailsPresenter {
             controller.player = player
             controller.view.accessibilityIdentifier = "SubmissionDetails.mediaPlayer"
             return controller
+        case .some(.basic_lti_launch):
+            return ExternalToolSubmissionContentViewController.create(env: self.env, assignment: assignment)
         default:
             return nil
         }
