@@ -56,9 +56,6 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Dovoljeni poskusi";
 
-/* Default error message displayed when a file fails to upload */
-"An error occured, please try again." = "Prišlo je do napake, poskusite znova.";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Prišlo je do nepričakovane napake.";
 

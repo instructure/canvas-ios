@@ -56,9 +56,6 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Разрешенные попытки";
 
-/* Default error message displayed when a file fails to upload */
-"An error occured, please try again." = "Возникла ошибка. Пожалуйста, попробуйте еще раз.";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Произошла непредвиденная ошибка.";
 

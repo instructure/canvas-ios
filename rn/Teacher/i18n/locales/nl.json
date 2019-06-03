@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Account heeft geen gebruiksvoorwaarden"
   },
-  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Optreden als\" is in essentie hetzelfde als aanmelden als deze gebruiker zonder wachtwoord. Je kunt alle acties uitvoeren alsof je die gebruiker bent. Gezien vanuit andere gebruikers lijkt het dan ook alsof die acties door die gebruiker zijn uitgevoerd. De controleogboeken laten echter zien dat jij degene was die namens deze gebruiker die acties verricht hebt."
-  },
   "act_as_user_d7ef0e48": {
     "message": "Optreden als gebruiker"
   },
@@ -493,9 +490,6 @@
   },
   "display_grade_as_c165e9a6": {
     "message": "Geef cijfer weer als..."
-  },
-  "domain_3b54c511": {
-    "message": "Domein"
   },
   "done_54e3d4b6": {
     "message": "Klaar"
@@ -1523,9 +1517,6 @@
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "Er is een fout met het laden van deze bijlage."
   },
-  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
-    "message": "Er is een fout met het instellen van Optreden als gebruiker. Probeer het later opnieuw."
-  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Er is een probleem met het laden van je berichten."
   },
@@ -1694,9 +1685,6 @@
   },
   "use_camera_47a0387b": {
     "message": "Camera gebruiken"
-  },
-  "user_id_bcace870": {
-    "message": "Gebruikers-ID:"
   },
   "video_b9f27375": {
     "message": "Video"

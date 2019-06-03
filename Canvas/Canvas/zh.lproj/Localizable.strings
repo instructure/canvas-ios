@@ -272,8 +272,7 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "清除缓存";
 
-/* Calendar landing page title
-   Calendar page title */
+/* Calendar page title */
 "Calendar" = "日历";
 
 /* No comment provided by engineer. */
@@ -400,7 +399,7 @@
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "课程教学大纲";
 
-/* Courses landing page title */
+/* Courses page title */
 "Courses" = "课程";
 
 /* cancel folder creation */
@@ -775,7 +774,9 @@
 /* notification that a message has been sent succesfully */
 "Message Sent." = "发送信息。";
 
-/* Messages landing page title */
+/* Messages tab title
+   messages title
+   The name of the messages tab */
 "Messages" = "消息、邮件";
 
 /* Warnging for taking quizzes on a mobile device */
@@ -1339,9 +1340,6 @@
 
 /* Title of the Todo screen */
 "To Do" = "待办事项";
-
-/* To-Do List landing page title */
-"To-Do List" = "待办事项清单";
 
 /* No comment provided by engineer. */
 "To:" = "至：";

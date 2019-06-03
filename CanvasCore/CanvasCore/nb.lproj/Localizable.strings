@@ -56,9 +56,6 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tillatte forsøk";
 
-/* Default error message displayed when a file fails to upload */
-"An error occured, please try again." = "En feil har oppstått, vennligst prøv på nytt.";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "En uventet feil har oppstått.";
 

@@ -37,7 +37,7 @@
 	<key>g_out_of_g_points_possible</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Scored %g out of %#@points@ possible</string>
+		<string>Vous avez obtenu la note de %g sur maximum %#@points@ possibles</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>

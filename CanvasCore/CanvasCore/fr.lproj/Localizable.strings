@@ -56,9 +56,6 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tentatives autorisées";
 
-/* Default error message displayed when a file fails to upload */
-"An error occured, please try again." = "Une erreur est survenue, veuillez réessayer.";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Une erreur inattendue est survenue.";
 

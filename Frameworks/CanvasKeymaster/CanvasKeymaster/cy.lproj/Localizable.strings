@@ -29,9 +29,6 @@
 "Dismiss" = "Diystyru";
 
 /* No comment provided by engineer. */
-"Emergency" = "Argyfwng";
-
-/* No comment provided by engineer. */
 "enter a subject" = "rhowch bwnc";
 
 /* Text view to enter the description of the ticket */
@@ -44,16 +41,10 @@
 "Extremely critical emergency" = "Argyfwng difrifol iawn";
 
 /* No comment provided by engineer. */
-"I am stuck and can't get things done" = "Alla i ddim gorffen fy ngwaith";
-
-/* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Alla i ddim gorffen fy ngwaith nes bydda i wedi cael ateb gennych chi";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Mae angen help arna i, ond dydy’r mater ddim yn un brys";
-
-/* No comment provided by engineer. */
-"Non-urgent help needed" = "Angen help, ond does dim brys";
 
 /* No comment provided by engineer. */
 "OK" = "Iawn";

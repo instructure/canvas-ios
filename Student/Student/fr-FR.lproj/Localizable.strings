@@ -32,6 +32,9 @@
 "Courses" = "Cours";
 
 /* No comment provided by engineer. */
+"Custom Grade" = "Note personnalisée";
+
+/* No comment provided by engineer. */
 "Dashboard" = "Tableau de bord";
 
 /* No comment provided by engineer. */
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Fichiers (%d)";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
 
 /* No comment provided by engineer. */
 "Grade" = "Note";
@@ -126,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Soumettre à nouveau le travail";
+
+/* No comment provided by engineer. */
+"Retry" = "Réessayer";
 
 /* No comment provided by engineer. */
 "Rubric" = "Rubrique";
@@ -194,13 +203,13 @@
 "Updated Language Settings" = "Mise à jour des paramètres de langue";
 
 /* No comment provided by engineer. */
+"Uploading" = "Envoi";
+
+/* No comment provided by engineer. */
 "View Discussion" = "Voir la discussion";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Voir le fichier %1$@ %2$@";
-
-/* No comment provided by engineer. */
-"View submission attempt %d" = "Afficher la tentative de soumission %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Adresse du site web";

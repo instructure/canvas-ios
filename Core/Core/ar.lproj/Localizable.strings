@@ -95,13 +95,22 @@
 "Done" = "تم";
 
 /* No comment provided by engineer. */
+"End Act as User" = "إنهاء التصرف كمستخدم";
+
+/* No comment provided by engineer. */
 "Error" = "خطأ";
 
 /* No comment provided by engineer. */
 "External Tool" = "أداة خارجية";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "تعذر حفظ الصورة";
+
+/* No comment provided by engineer. */
 "Failed upload" = "فشل التحميل";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "تعذر التحميل";
 
 /* No comment provided by engineer. */
 "File Upload" = "تحميل ملف";
@@ -209,6 +218,9 @@
 "No Due Date" = "لا يوجد تاريخ استحقاق";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "لم يتم العثور على صورة من منتقي الصور";
+
+/* No comment provided by engineer. */
 "No Submission" = "لا يوجد إرسال";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "بدء تسجيل";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "إيقاف التصرف باعتبارك...";
+
+/* No comment provided by engineer. */
 "Stop recording" = "إيقاف التسجيل";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "حدث خطأ ما في التصرف كمستخدم. الرجاء إعادة المحاولة لاحقًا.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "حدث خطأ غير متوقع. يرجى إعادة المحاولة.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "هذه المهمة مستحقة بتاريخ %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "يجب عليك تسجيل الدخول في حساب Canvas واحد على الأقل من تطبيق الطالب أولاً.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "ستتوقف عن التصرف باعتبارك %@ وستعود إلى حسابك.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "ستتوقف عن التصرف باعتبارك هذا المستخدم وستعود إلى حسابك.";
 

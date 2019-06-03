@@ -272,8 +272,7 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Caché despejado";
 
-/* Calendar landing page title
-   Calendar page title */
+/* Calendar page title */
 "Calendar" = "Calendario";
 
 /* No comment provided by engineer. */
@@ -400,7 +399,7 @@
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "Plan de estudio del curso";
 
-/* Courses landing page title */
+/* Courses page title */
 "Courses" = "Cursos";
 
 /* cancel folder creation */
@@ -775,7 +774,9 @@
 /* notification that a message has been sent succesfully */
 "Message Sent." = "Mensaje enviado.";
 
-/* Messages landing page title */
+/* Messages tab title
+   messages title
+   The name of the messages tab */
 "Messages" = "Mensajes";
 
 /* Warnging for taking quizzes on a mobile device */
@@ -1339,9 +1340,6 @@
 
 /* Title of the Todo screen */
 "To Do" = "Que hacer";
-
-/* To-Do List landing page title */
-"To-Do List" = "Lista de cosas que hacer";
 
 /* No comment provided by engineer. */
 "To:" = "Para:";

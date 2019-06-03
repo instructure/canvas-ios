@@ -76,6 +76,9 @@
 /* Close Button Title */
 "Close" = "關閉";
 
+/* No comment provided by engineer. */
+"Close App" = "關閉應用程式";
+
 /* Course Announcement Description */
 "Course announcements" = "課程宣告";
 
@@ -238,6 +241,9 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "使用條款";
 
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "若要使用新的語言設定，需要重新啟動應用程式。請重新啟動應用程式。";
+
 /* Error message */
 "There are no actions for this item" = "無法對此項目進行操作";
 
@@ -256,11 +262,17 @@
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "此學生的課程可能尚未發佈。";
 
+/* No comment provided by engineer. */
+"Trouble logging in" = "登入發生問題";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "未知";
 
 /* No comment provided by engineer. */
 "Unread" = "未讀";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "已更新語言設定";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "查看 Canvas 指南";

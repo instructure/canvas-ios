@@ -56,9 +56,6 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Ymgeisiau a ganiateir";
 
-/* Default error message displayed when a file fails to upload */
-"An error occured, please try again." = "Aeth rhywbeth o'i le, rhowch gynnig arall arni.";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Gwall annisgwyl.";
 

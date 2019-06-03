@@ -32,6 +32,9 @@
 "Courses" = "Cursussen";
 
 /* No comment provided by engineer. */
+"Custom Grade" = "Aangepast cijfer";
+
+/* No comment provided by engineer. */
 "Dashboard" = "Dashboard";
 
 /* No comment provided by engineer. */
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Bestanden (%d)";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
 
 /* No comment provided by engineer. */
 "Grade" = "Cijfer";
@@ -126,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Opdracht opnieuw inleveren";
+
+/* No comment provided by engineer. */
+"Retry" = "Opnieuw proberen";
 
 /* No comment provided by engineer. */
 "Rubric" = "Rubriek";
@@ -194,13 +203,13 @@
 "Updated Language Settings" = "Bijgewerkte taalinstellingen";
 
 /* No comment provided by engineer. */
+"Uploading" = "Bezig met uploaden";
+
+/* No comment provided by engineer. */
 "View Discussion" = "Discussie bekijken";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Bestand bekijken %1$@ %2$@";
-
-/* No comment provided by engineer. */
-"View submission attempt %d" = "Inleveringspoging bekijken %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Website-adres";

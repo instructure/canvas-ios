@@ -29,9 +29,6 @@
 "Dismiss" = "解散";
 
 /* No comment provided by engineer. */
-"Emergency" = "紧急";
-
-/* No comment provided by engineer. */
 "enter a subject" = "输入主题";
 
 /* Text view to enter the description of the ticket */
@@ -44,16 +41,10 @@
 "Extremely critical emergency" = "十万火急的紧急事件";
 
 /* No comment provided by engineer. */
-"I am stuck and can't get things done" = "我卡住了，无法完成工作";
-
-/* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "我需要您的回信才能完成工作";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "我需要帮助，但不是迫切";
-
-/* No comment provided by engineer. */
-"Non-urgent help needed" = "无需紧急帮助";
 
 /* No comment provided by engineer. */
 "OK" = "确定";

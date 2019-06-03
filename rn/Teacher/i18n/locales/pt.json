@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "A conta não possui termos de uso"
   },
-  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Atuar como\" é essencialmente fazer logon como esse utilizador sem uma palavra passe. Você será capaz de executar qualquer ação como se fosse este utilizador e de pontos de vista de outros utilizadores, como se este utilizador executou-as. No entanto, registos de auditoria registam que você foi o único que realizou as ações em nome desse utilizador."
-  },
   "act_as_user_d7ef0e48": {
     "message": "Atuar como utilizador"
   },
@@ -493,9 +490,6 @@
   },
   "display_grade_as_c165e9a6": {
     "message": "Mostrar classificação como ..."
-  },
-  "domain_3b54c511": {
-    "message": "Domínio"
   },
   "done_54e3d4b6": {
     "message": "Feito"
@@ -1523,9 +1517,6 @@
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "Ocorreu um erro ao carregar este anexo."
   },
-  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
-    "message": "Ocorreu um erro com a Lei como Utilizador. É favor, tentar novamente mais tarde."
-  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Ocorreu um problema ao carregar suas mensagens."
   },
@@ -1694,9 +1685,6 @@
   },
   "use_camera_47a0387b": {
     "message": "Use a câmara"
-  },
-  "user_id_bcace870": {
-    "message": "ID do utilizador"
   },
   "video_b9f27375": {
     "message": "Video"

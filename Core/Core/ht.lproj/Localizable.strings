@@ -95,13 +95,22 @@
 "Done" = "Fini";
 
 /* No comment provided by engineer. */
+"End Act as User" = "Fini Aksyon kòm yon Itilizatè";
+
+/* No comment provided by engineer. */
 "Error" = "Erè";
 
 /* No comment provided by engineer. */
 "External Tool" = "Zouti Ekstèn";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "Echèk anrejistreman imaj";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Chajman echwe";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Echèk Transfè";
 
 /* No comment provided by engineer. */
 "File Upload" = "Transfè Fichye";
@@ -209,6 +218,9 @@
 "No Due Date" = "San Delè";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "No image found from image pickerimaj";
+
+/* No comment provided by engineer. */
 "No Submission" = "Pa gen Soumisyon";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "Kòmanse anrejistreman";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "Sispann aji tankou...";
+
+/* No comment provided by engineer. */
 "Stop recording" = "Kanpe anrejistreman";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Te gen yon erè nan Aji tankou Itilizatè. Tanpri eseye ankò.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "Yon erè fèt sanzatann. Tanpri eseye ankò.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Delè sesyon sa a se %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Ou dwe toudabò konekte sou omwen yon kont Canvas sou app Elèv la.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Ou pral sispann aji tankou %@ epi sou kont ou.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Ou pral sispann aji tankou yon itilizatè epi retounen sou kont ou.";
 

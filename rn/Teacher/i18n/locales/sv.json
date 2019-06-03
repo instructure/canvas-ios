@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Kontot har inga användarvillkor"
   },
-  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Att uppträda som\", loggar huvudsakligen in som den här användaren utan lösenord. Du kommer att kunna vidta åtgärder som om du var den här användaren, och från andra användares synpunkter som om den här användaren utförde dem. I historik-loggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar."
-  },
   "act_as_user_d7ef0e48": {
     "message": "Agera som användare"
   },
@@ -493,9 +490,6 @@
   },
   "display_grade_as_c165e9a6": {
     "message": "Visa betyg som..."
-  },
-  "domain_3b54c511": {
-    "message": "Domän"
   },
   "done_54e3d4b6": {
     "message": "Klart"
@@ -1523,9 +1517,6 @@
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "Ett fel uppstod vid laddning av bilagan."
   },
-  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
-    "message": "Det uppstod ett fel med att uppträda som en användare.Försök igen senare."
-  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Ett problem uppstod vid laddning av dina meddelanden."
   },
@@ -1694,9 +1685,6 @@
   },
   "use_camera_47a0387b": {
     "message": "Använd kamera"
-  },
-  "user_id_bcace870": {
-    "message": "Användar-ID"
   },
   "video_b9f27375": {
     "message": "Video"

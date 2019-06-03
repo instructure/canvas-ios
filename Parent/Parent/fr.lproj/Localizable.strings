@@ -76,6 +76,9 @@
 /* Close Button Title */
 "Close" = "Fermer";
 
+/* No comment provided by engineer. */
+"Close App" = "Fermer l’application";
+
 /* Course Announcement Description */
 "Course announcements" = "Annonces de cours";
 
@@ -238,6 +241,9 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "Conditions d’utilisation";
 
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "L'application doit être redémarrée pour utiliser les nouveaux paramètres de langue. Veuillez relancer l’application.";
+
 /* Error message */
 "There are no actions for this item" = "Il n'y a aucune action pour cet élément";
 
@@ -256,11 +262,17 @@
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "Il se peut que les cours de cet étudiant ne soient pas encore publiés.";
 
+/* No comment provided by engineer. */
+"Trouble logging in" = "Problème de connexion";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "Inconnu";
 
 /* No comment provided by engineer. */
 "Unread" = "Non lu";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Mise à jour des paramètres de langue";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "Afficher les manuels Canvas";

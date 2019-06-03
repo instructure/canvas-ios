@@ -32,6 +32,9 @@
 "Courses" = "Courses";
 
 /* No comment provided by engineer. */
+"Custom Grade" = "Custom Grade";
+
+/* No comment provided by engineer. */
 "Dashboard" = "Dashboard";
 
 /* No comment provided by engineer. */
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Files (%d)";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
 
 /* No comment provided by engineer. */
 "Grade" = "Grade";
@@ -126,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Resubmit Assignment";
+
+/* No comment provided by engineer. */
+"Retry" = "Retry";
 
 /* No comment provided by engineer. */
 "Rubric" = "Rubric";
@@ -194,13 +203,13 @@
 "Updated Language Settings" = "Updated Language Settings";
 
 /* No comment provided by engineer. */
+"Uploading" = "Uploading";
+
+/* No comment provided by engineer. */
 "View Discussion" = "View Discussion";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "View file %1$@ %2$@";
-
-/* No comment provided by engineer. */
-"View submission attempt %d" = "View submission attempt %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Website Address";

@@ -95,13 +95,22 @@
 "Done" = "Udført";
 
 /* No comment provided by engineer. */
+"End Act as User" = "Afslut \\'funger som bruger\\'";
+
+/* No comment provided by engineer. */
 "Error" = "Fejl";
 
 /* No comment provided by engineer. */
 "External Tool" = "Eksternt værktøj";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "Kunne ikke gemme billede";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Upload mislykkedes";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Fejl ved upload";
 
 /* No comment provided by engineer. */
 "File Upload" = "Filoverførsel";
@@ -209,6 +218,9 @@
 "No Due Date" = "Ingen afleveringsdato";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "Intet billede fundet i billedvælgeren";
+
+/* No comment provided by engineer. */
 "No Submission" = "Ingen aflevering";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "Start optagelsen";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "Stop med at fungere som ...";
+
+/* No comment provided by engineer. */
 "Stop recording" = "Stop optagelsen";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Der opstod en fejl ved at fungere som bruger. Prøv igen senere.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "Der opstod en uventet fejl. Prøv igen.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Denne opgave skal afleveres d. %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Du skal først logge ind på mindst en Canvas-konto fra appen for studerende.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Du vil stoppe med at fungere som %@ og vende tilbage til din konto.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Du vil stoppe med at fungere som denne bruger og vende tilbage til din konto.";
 

@@ -32,6 +32,9 @@
 "Courses" = "Ngā Akoranga";
 
 /* No comment provided by engineer. */
+"Custom Grade" = "Kōeke Ritenga";
+
+/* No comment provided by engineer. */
 "Dashboard" = "Papatohu";
 
 /* No comment provided by engineer. */
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Ngā kōnae (%d)";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
 
 /* No comment provided by engineer. */
 "Grade" = "Kōeke";
@@ -126,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Tuku Taumahi";
+
+/* No comment provided by engineer. */
+"Retry" = "Ngana anō";
 
 /* No comment provided by engineer. */
 "Rubric" = "Rubric";
@@ -194,13 +203,13 @@
 "Updated Language Settings" = "Kua whakahoutia ngā Tautuhinga Reo";
 
 /* No comment provided by engineer. */
+"Uploading" = "E tikiake ana";
+
+/* No comment provided by engineer. */
 "View Discussion" = "Tirohia ngā kōrerorero";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Titiro ki te kōnae %1$@ %2$@";
-
-/* No comment provided by engineer. */
-"View submission attempt %d" = "Titiro tāpaetanga ngana %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Paetukutuku wāhitau";
