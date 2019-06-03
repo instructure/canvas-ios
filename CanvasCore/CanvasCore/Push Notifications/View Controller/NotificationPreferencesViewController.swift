@@ -130,6 +130,13 @@ extension NotificationPreferencesViewController {
         let item = datasource[section]
         return item.displayGroup.rawValue
     }
+
+    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let cell = tableView.cellForRow(at: indexPath) as? NotificationPreferencesTableViewCell else { return }
+        cell.notificationSwitch.isOn = !cell.notificationSwitch.isOn
+        cell.changeNotificationPreference(cell)
+    }
 }
 
 extension NotificationPreferencesViewController: ChangeNotificationPreferenceProtocol {
