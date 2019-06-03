@@ -40,7 +40,7 @@ extension NSPersistentContainer {
     }
 
     public static func databaseURL(for appGroup: String?, session: KeychainEntry?) -> URL? {
-        var folder = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+        var folder = URL.cachesDirectory
 
         if let appGroup = appGroup {
             guard let appGroupFolder = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {

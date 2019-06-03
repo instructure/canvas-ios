@@ -260,7 +260,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     fileprivate var eventsDisposable: Disposable?
     
     @objc func updateCalendarEvents() {
-        let startDate = Date() + -365.daysComponents
+        let startDate = Date() + -965.daysComponents
         let endDate = Date() + 365.daysComponents
 
         refresher = try? CalendarEvent.refresher(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
