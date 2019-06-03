@@ -159,7 +159,7 @@ public class ExternalToolManager: NSObject {
             * Basically anywhere the API is giving us information about the LTI tool directly
          */
         if launchURL.path.contains("/external_tools/sessionless_launch") {
-            return launchURL
+            return session.baseURL.appendingPathComponent(launchURL.path)
         }
 
         /*
