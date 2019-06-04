@@ -231,6 +231,7 @@ export default class Reply extends Component<Props, State> {
     if (this.props.isLastReply) {
       containerStyles.push({ paddingBottom: 8 })
     }
+    let ratingCount = this.formattedRatingCount()
     return (
       <View style={containerStyles}>
         { !discussionLockedForUser && userCanReply &&
@@ -260,12 +261,18 @@ export default class Reply extends Component<Props, State> {
                   },
                 ]}
                 testID='discussion.reply.rating-count'
+                accessibilityLabel={i18n(`Number of likes: {count}`, { count: ratingCount })}
               >
-                ({this.formattedRatingCount()})
+                ({ratingCount})
               </Text>
             }
             { canRate &&
-              <TouchableOpacity testID='discussion.reply.rate-btn' onPress={this._actionRate}>
+              <TouchableOpacity
+                testID='discussion.reply.rate-btn'
+                onPress={this._actionRate}
+                accessibilityLabel={i18n('Like')}
+                accessibilityTraits={this.hasRated() ? ['button', 'selected'] : ['button']}
+              >
                 <Image
                   source={this.hasRated() ? Images.discussions.rated : Images.discussions.rate}
                   style={[
