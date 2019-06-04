@@ -49,16 +49,33 @@ class NotificationPreferencesTableViewCell: UITableViewCell {
         self.notificationSwitch.isOn = item.items.first?.frequency == NotificationPreference.Frequency.Immediately
         self.notificationLabel.text = item.name
         self.notificationLabel.font = UIFont.preferredFont(forTextStyle: .body)
+
+        isUserInteractionEnabled = true
+        isAccessibilityElement = true
+        accessibilityHint = NSLocalizedString("Tap to toggle", bundle: .core, comment: "")
+        accessibilityTraits.insert(.button)
+        updateA11y()
     }
     
     override func prepareForReuse() {
         self.notificationLabel.text = ""
         self.notificationSwitch.isOn = false
+        accessibilityTraits = []
+        accessibilityLabel = nil
+    }
+
+    func updateA11y() {
+        if let item = item {
+            let state = notificationSwitch.isOn ? NSLocalizedString("On", bundle: .core, comment: "") : NSLocalizedString("Off", bundle: .core, comment: "")
+            accessibilityLabel = "\(item.name), \(state)"
+        } else {
+            accessibilityLabel = nil
+        }
     }
     
     @IBAction func changeNotificationPreference(_ sender: AnyObject) {
         // Update value wherever necessary
-        protocolHandler?.changeNotificationPreference(indexPath!, value: self.notificationSwitch.isOn, completion: { (value, result) -> () in
+        protocolHandler?.changeNotificationPreference(indexPath!, value: self.notificationSwitch.isOn) { value, result in DispatchQueue.main.async {
             switch result {
             case .success:
                 // Nothing to do in the success case
@@ -67,7 +84,8 @@ class NotificationPreferencesTableViewCell: UITableViewCell {
                 // In the error case switch the value back to what it was
                 self.notificationSwitch.isOn = !value
             }
-        })
-        
+            self.updateA11y()
+            UIAccessibility.post(notification: .layoutChanged, argument: nil)
+        }}
     }
 }
