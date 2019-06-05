@@ -84,8 +84,8 @@ export function wrapComponentInProviders (moduleName: string, generator: (props:
         global.crashReporter.recordError({
           domain,
           userInfo: {
-            errorMessage: error.message.split('\n')[0]
-          }
+            errorMessage: error.message.split('\n')[0],
+          },
         })
         this.setState({ hasError: true })
       }
