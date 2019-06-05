@@ -18,7 +18,11 @@ import UIKit
 import WebKit
 
 class LoginWebViewController: UIViewController, LoginWebViewProtocol {
-    let webView = WKWebView(frame: UIScreen.main.bounds)
+    lazy var webView: WKWebView = {
+        let configuration = WKWebViewConfiguration()
+        configuration.websiteDataStore = .nonPersistent()
+        return WKWebView(frame: UIScreen.main.bounds, configuration: configuration)
+    }()
 
     var presenter: LoginWebPresenter?
 

@@ -71,7 +71,7 @@ class LoginWebPresenterTests: XCTestCase {
         presenter.authenticationProvider = ""
         let code = "1234"
         let expectedToken = "access_token"
-        let url = URL(string: "/canvas/login?code=\(code)")!
+        let url = URL(string: "https://canvas/login?code=\(code)")!
         let responseData: [String: Any] = [
             "access_token": expectedToken,
             "token_type": "Bearer",
@@ -158,7 +158,7 @@ class LoginWebPresenterTests: XCTestCase {
         resultingError = nil
 
         expectation = XCTestExpectation(description: "expectation")
-        let action =  presenter.navigationActionPolicyForURL(url: URL(string: "/canvas/login?code=1234")!)
+        let action =  presenter.navigationActionPolicyForURL(url: URL(string: "https://canvas/login?code=1234")!)
         wait(for: [expectation], timeout: 0.1)
 
         XCTAssertEqual(action, .cancel)
