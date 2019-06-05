@@ -58,6 +58,11 @@ extension AppDelegate {
             guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
             return ActAsUserViewController.create(loginDelegate: loginDelegate, userID: props["userID"] as? String)
         })
+
+        HelmManager.shared.registerNativeViewController(for: Route.wrongApp.url.path, factory: { props in
+            guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
+            return WrongAppViewController.create(delegate: loginDelegate)
+        })
         
         CanvasCore.registerSharedNativeViewControllers()
     }
@@ -67,4 +72,8 @@ extension AppDelegate {
 
 extension ModuleListViewController: HelmModule {
     var moduleName: String { return "/courses/:courseID/modules" }
+}
+
+extension WrongAppViewController: HelmModule {
+    public var moduleName: String { return Route.wrongApp.url.path }
 }

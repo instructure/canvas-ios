@@ -287,8 +287,6 @@ extension AppDelegate {
 }
 
 extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
-    var loginLogo: UIImage { return UIImage(named: "student-logo")! }
-
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {

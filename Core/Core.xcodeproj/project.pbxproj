@@ -187,6 +187,8 @@
 		7D8262F7212B34F800BD268D /* APICourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262F6212B34F800BD268D /* APICourse.swift */; };
 		7D8262F9212B3B2000BD268D /* APISection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262F8212B3B2000BD268D /* APISection.swift */; };
 		7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262FA212B3B3000BD268D /* APIEnrollment.swift */; };
+		7D842A8C22A816BC00484B92 /* WrongAppLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D842A8B22A816BC00484B92 /* WrongAppLinkView.swift */; };
+		7D842A8E22A818C800484B92 /* WrongAppLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D842A8D22A818C800484B92 /* WrongAppLinkView.xib */; };
 		7D85D8E5226A8CFB002DBF63 /* AvatarViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */; };
 		7D85D8E9226E5DFE002DBF63 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85D8E8226E5DFE002DBF63 /* SectionHeaderView.swift */; };
 		7D85D8EF226E6901002DBF63 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D85D8EE226E6901002DBF63 /* SectionHeaderView.xib */; };
@@ -843,6 +845,8 @@
 		7D8262F6212B34F800BD268D /* APICourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICourse.swift; sourceTree = "<group>"; };
 		7D8262F8212B3B2000BD268D /* APISection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISection.swift; sourceTree = "<group>"; };
 		7D8262FA212B3B3000BD268D /* APIEnrollment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollment.swift; sourceTree = "<group>"; };
+		7D842A8B22A816BC00484B92 /* WrongAppLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongAppLinkView.swift; sourceTree = "<group>"; };
+		7D842A8D22A818C800484B92 /* WrongAppLinkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WrongAppLinkView.xib; sourceTree = "<group>"; };
 		7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewTests.swift; sourceTree = "<group>"; };
 		7D85D8E8226E5DFE002DBF63 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		7D85D8EE226E6901002DBF63 /* SectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
@@ -1928,8 +1932,10 @@
 		9FBFE6DD22428966002B3796 /* WrongApp */ = {
 			isa = PBXGroup;
 			children = (
-				9FBFE6DE22428990002B3796 /* WrongAppViewController.swift */,
+				7D842A8B22A816BC00484B92 /* WrongAppLinkView.swift */,
+				7D842A8D22A818C800484B92 /* WrongAppLinkView.xib */,
 				9FBFE6E0224289A6002B3796 /* WrongAppViewController.storyboard */,
+				9FBFE6DE22428990002B3796 /* WrongAppViewController.swift */,
 			);
 			path = WrongApp;
 			sourceTree = "<group>";
@@ -2311,6 +2317,7 @@
 				7DCF1ECC216BFE5D003AF358 /* Localizable.strings in Resources */,
 				3BBCF846224C193B004B519D /* HorizontalMenuViewCell.xib in Resources */,
 				7DD694892195F7A200BA4984 /* DocViewerViewController.storyboard in Resources */,
+				7D842A8E22A818C800484B92 /* WrongAppLinkView.xib in Resources */,
 				B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */,
 				3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */,
 				7D86286B224D493C003A37DC /* AudioPlayerViewController.storyboard in Resources */,
@@ -2472,6 +2479,7 @@
 				7D2E828A2270BBA200735854 /* FilePickerCell.swift in Sources */,
 				7DCF1ECB216BF544003AF358 /* SubmissionViewable.swift in Sources */,
 				7D7110BF213890AD0085C2E5 /* RouteHandler.swift in Sources */,
+				7D842A8C22A816BC00484B92 /* WrongAppLinkView.swift in Sources */,
 				7D80AC05212B461F00C40ECE /* APIUserRequestable.swift in Sources */,
 				7D8262EB212B1A7B00BD268D /* APIRequestable.swift in Sources */,
 				9FBFE6DF22428990002B3796 /* WrongAppViewController.swift in Sources */,

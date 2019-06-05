@@ -17,7 +17,6 @@
 import UIKit
 
 public protocol LoginDelegate: class {
-    var loginLogo: UIImage { get }
     var supportsCanvasNetwork: Bool { get }
     var helpURL: URL? { get }
     var whatsNewURL: URL? { get }

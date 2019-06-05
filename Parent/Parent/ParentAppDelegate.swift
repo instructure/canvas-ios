@@ -144,7 +144,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension ParentAppDelegate: LoginDelegate {
-    var loginLogo: UIImage { return UIImage(named: "parent-logo")! }
     var supportsCanvasNetwork: Bool { return false }
     var whatsNewURL: URL? {
         return URL(string: "https://s3.amazonaws.com/tr-learncanvas/docs/WhatsNewCanvasParent.pdf")
