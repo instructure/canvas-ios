@@ -190,7 +190,7 @@ exports[`AnnouncementEdit renders 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Add title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
