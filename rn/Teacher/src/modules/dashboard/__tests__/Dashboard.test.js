@@ -312,7 +312,7 @@ describe('Dashboard', () => {
     expect(navigator.show).toHaveBeenCalledWith('/groups/1')
   })
 
-  it('only calls navigator.show to navigate to /notATeacher when in teacher app', () => {
+  it('only calls navigator.show to navigate to /wrong-app when in teacher app', () => {
     let currentApp = App.current().appId
 
     App.setCurrentApp('student')

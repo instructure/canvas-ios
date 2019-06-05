@@ -53,7 +53,6 @@ import AnnouncementsList from '../modules/announcements/list/AnnouncementsList'
 import AnnouncementEdit from '../modules/announcements/edit/AnnouncementEdit'
 import EditReply from '../modules/discussions/details/EditReply'
 import AttachmentView from '../common/components/AttachmentView'
-import NoATeacher from '../modules/courses/components/NotATeacher'
 import GroupList from '../modules/groups/GroupList'
 import Attachments from '../modules/attachments/Attachments'
 import ContextCard from '../modules/users/ContextCard'
@@ -78,12 +77,11 @@ import RatingRequest from '../modules/developer-menu/RatingRequest'
 import GradesList from '../modules/grades/GradesList'
 import PageViewEvents from '../modules/developer-menu/PageViewEvents'
 import LanguagePicker from '../modules/developer-menu/LanguagePicker'
-import NotAParent from '../modules/parent/NotAParent'
 import ConferenceList from '../modules/courses/conferences/ConferenceList'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
-import { isTeacher, isStudent, isParent } from '../modules/app'
+import { isTeacher, isStudent } from '../modules/app'
 
 export function wrap (name: any): Function {
   return () => name
@@ -151,7 +149,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/:context/:contextID/announcements/:announcementID', wrap(DiscussionDetails), store, { deepLink: true })
   registerScreen('/:context/:contextID/announcements/:announcementID/edit', wrap(AnnouncementEdit), store)
   registerScreen('/courses/:courseID/section-selector', wrap(SectionSelector), store)
-  registerScreen('/notATeacher', wrap(NoATeacher), store)
+  registerScreen('/wrong-app', null, store)
   registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store, { deepLink: true })
   registerScreen('/attendance')
   registerScreen('/filter', wrap(Filter), store)
@@ -219,10 +217,5 @@ export function registerScreens (store: Store): void {
     registerScreen('/native-route/*route')
     // Calls the old routing method as well, but with the canBecomeMaster option
     registerScreen('/native-route-master/*route', null, null, { canBecomeMaster: true })
-  }
-
-  if (isParent()) {
-    registerScreen('/parent/manage-children', null, null, { canBecomeMaster: true })
-    registerScreen('/parent/notAParent', wrap(NotAParent), store)
   }
 }

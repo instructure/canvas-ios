@@ -21,8 +21,7 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
     @IBOutlet weak var canvasNetworkButton: DynamicButton?
     @IBOutlet weak var findSchoolButton: DynamicButton?
     @IBOutlet weak var helpButton: DynamicButton?
-    @IBOutlet weak var logomarkYCenter: NSLayoutConstraint?
-    @IBOutlet weak var logomarkView: UIImageView?
+    @IBOutlet weak var logoYCenter: NSLayoutConstraint?
     @IBOutlet weak var logoView: UIImageView?
     @IBOutlet weak var previousLoginsBottom: NSLayoutConstraint?
     @IBOutlet weak var previousLoginsTableView: UITableView?
@@ -30,6 +29,7 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
     @IBOutlet weak var whatsNewContainer: UIView?
     @IBOutlet weak var whatsNewLabel: DynamicLabel?
     @IBOutlet weak var whatsNewLink: DynamicButton?
+    @IBOutlet weak var wordmarkLabel: UILabel?
 
     var shouldAnimateFromLaunchScreen = false
     weak var loginDelegate: LoginDelegate?
@@ -53,12 +53,17 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
         helpButton?.accessibilityLabel = NSLocalizedString("Help", bundle: .core, comment: "")
         helpButton?.isHidden = !Bundle.main.isParentApp
         authenticationMethodLabel?.isHidden = true
-        logomarkView?.image = loginDelegate?.loginLogo
-        logoView?.image = loginDelegate?.loginLogo
+        logoView?.tintColor = .currentLogoColor()
         previousLoginsView?.isHidden = true
         whatsNewLabel?.text = NSLocalizedString("We've made a few changes.", bundle: .core, comment: "")
         whatsNewLink?.setTitle(NSLocalizedString("See what's new.", bundle: .core, comment: ""), for: .normal)
         whatsNewContainer?.isHidden = loginDelegate?.whatsNewURL == nil
+        wordmarkLabel?.attributedText = NSAttributedString.init(string: (
+            Bundle.main.isParentApp ? "PARENT"
+            : Bundle.main.isTeacherApp ? "TEACHER"
+            : "STUDENT"
+        ), attributes: [.kern: 2])
+        wordmarkLabel?.textColor = .currentLogoColor()
 
         presenter?.viewIsReady()
     }
@@ -71,8 +76,8 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
         for view in view.subviews {
             view.alpha = 0
         }
-        logomarkView?.alpha = 1
-        logomarkYCenter?.constant = 0
+        logoView?.alpha = 1
+        logoYCenter?.constant = 0
         previousLoginsBottom?.constant = -(previousLoginsView?.frame.height ?? 175)
         view.layoutIfNeeded()
     }
@@ -83,7 +88,7 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
         shouldAnimateFromLaunchScreen = false
         view.layoutIfNeeded()
         UIView.animate(withDuration: 0.75, delay: 0.25, animations: {
-            self.logomarkYCenter?.constant = -150
+            self.logoYCenter?.constant = -170
             self.view.layoutIfNeeded()
         }, completion: fadeIn)
     }

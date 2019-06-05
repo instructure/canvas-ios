@@ -429,7 +429,7 @@ let router = Core.Router(routes: [
     },
     Core.RouteHandler(.wrongApp, name: "wrongApp") { _, _ in
         guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
-        return WrongAppViewController.create(app: .parent, delegate: loginDelegate)
+        return WrongAppViewController.create(delegate: loginDelegate)
     },
     Core.RouteHandler(.developerMenu, name: "dev_menu") { _, _ in
         return DeveloperMenuViewController.create()

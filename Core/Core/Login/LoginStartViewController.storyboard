@@ -34,7 +34,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canvas Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pX-Al-xWp" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="47" width="301" height="20.5"/>
+                                <rect key="frame" x="16" y="47.5" width="301" height="19.5"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.authenticationMethodLabel"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -44,23 +44,24 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YBX-Gr-kI6">
-                                <rect key="frame" x="155.5" y="151.5" width="64" height="64"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructureLine" translatesAutoresizingMaskIntoConstraints="NO" id="YBX-Gr-kI6">
+                                <rect key="frame" x="155.5" y="131.5" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="TGN-lb-CPg"/>
                                     <constraint firstAttribute="width" constant="64" id="wxc-X2-xtt"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O6a-6e-1wK">
-                                <rect key="frame" x="109.5" y="152" width="156" height="123"/>
-                                <accessibility key="accessibilityConfiguration" identifier="LoginStart.logoView"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="123" id="Lhl-qe-uav"/>
-                                    <constraint firstAttribute="width" constant="156" id="yrv-Tx-dnH"/>
-                                </constraints>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STUDENT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qr-uo-RMu">
+                                <rect key="frame" x="159.5" y="267.5" width="56" height="16.5"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="NO"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3D-iK-gpK" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="82" y="315" width="211" height="50"/>
+                                <rect key="frame" x="76.5" y="316" width="222" height="52"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.findSchoolButton"/>
                                 <inset key="contentEdgeInsets" minX="54" minY="16" maxX="54" maxY="16"/>
                                 <state key="normal" title="Find my school"/>
@@ -77,10 +78,10 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g3X-Rb-xXO">
-                                <rect key="frame" x="18" y="381" width="339" height="66"/>
+                                <rect key="frame" x="44" y="384" width="287" height="58"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EW-4z-2Mo" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="339" height="33"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="287" height="29"/>
                                         <accessibility key="accessibilityConfiguration" identifier="LoginStart.canvasNetworkButton"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Canvas Network"/>
@@ -93,10 +94,10 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3Ua-og-syp">
-                                        <rect key="frame" x="0.0" y="33" width="339" height="33"/>
+                                        <rect key="frame" x="0.0" y="29" width="287" height="29"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We've made a few changes." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRY-FA-Dia" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="213" height="33"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="180" height="29"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.whatsNewLabel"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.45098039220000002" green="0.50588235290000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -107,7 +108,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="va0-Ci-EPu" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="216" y="0.0" width="123" height="33"/>
+                                                <rect key="frame" x="183" y="0.0" width="104" height="29"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.whatsNewLink"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="See what's new."/>
@@ -173,7 +174,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMF-iS-x7M" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="58" y="13" width="155" height="20.5"/>
+                                                            <rect key="frame" x="58" y="13" width="136.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -183,7 +184,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mobiledev.instructure.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubm-Qb-95q" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="58" y="34.5" width="203" height="20.5"/>
+                                                            <rect key="frame" x="58" y="31" width="158.5" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -193,7 +194,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqe-IM-OtI" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="328" y="8" width="44" height="44"/>
+                                                            <rect key="frame" x="273" y="8" width="44" height="44"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="44" id="TK2-0r-ecB"/>
                                                                 <constraint firstAttribute="width" constant="44" id="vfO-Cy-FUb"/>
@@ -248,7 +249,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwZ-Od-DuW" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="58" y="13" width="155" height="20.5"/>
+                                                            <rect key="frame" x="58" y="13" width="136.5" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -258,7 +259,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mobiledev.instructure.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9O-5a-W5N" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="58" y="34.5" width="203" height="20.5"/>
+                                                            <rect key="frame" x="58" y="31" width="158.5" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -307,6 +308,12 @@
                                     <constraint firstItem="k72-wA-dRu" firstAttribute="leading" secondItem="xBc-5O-QU6" secondAttribute="leading" constant="16" id="sVC-lQ-Mcn"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wordmark" translatesAutoresizingMaskIntoConstraints="NO" id="shp-bR-v4y" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="105.5" y="219.5" width="164" height="40"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="tiara"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -317,15 +324,17 @@
                             <constraint firstItem="NxW-YV-uVK" firstAttribute="bottom" secondItem="xBc-5O-QU6" secondAttribute="bottom" id="AcQ-O0-5EB"/>
                             <constraint firstItem="xBc-5O-QU6" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="Duc-2p-Av2"/>
                             <constraint firstItem="K3D-iK-gpK" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="FpS-ol-ufb"/>
-                            <constraint firstItem="O6a-6e-1wK" firstAttribute="centerY" secondItem="soV-nE-xVI" secondAttribute="centerY" constant="-120" id="G6v-MX-I0q"/>
-                            <constraint firstItem="O6a-6e-1wK" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="HYb-Dk-f8g"/>
                             <constraint firstItem="xBc-5O-QU6" firstAttribute="trailing" secondItem="NxW-YV-uVK" secondAttribute="trailing" priority="750" id="MgA-PG-fka"/>
+                            <constraint firstItem="shp-bR-v4y" firstAttribute="top" secondItem="YBX-Gr-kI6" secondAttribute="bottom" constant="24" id="MsO-mB-XoA"/>
+                            <constraint firstItem="1qr-uo-RMu" firstAttribute="top" secondItem="shp-bR-v4y" secondAttribute="bottom" constant="8" id="ciQ-rd-BGA"/>
+                            <constraint firstItem="1qr-uo-RMu" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="d9A-OW-6So"/>
                             <constraint firstItem="Al6-ev-ond" firstAttribute="top" secondItem="soV-nE-xVI" secondAttribute="topMargin" constant="20" id="ghQ-Pe-ZZE"/>
-                            <constraint firstItem="YBX-Gr-kI6" firstAttribute="centerY" secondItem="soV-nE-xVI" secondAttribute="centerY" constant="-150" id="kGm-Ij-BhX"/>
-                            <constraint firstItem="K3D-iK-gpK" firstAttribute="top" secondItem="O6a-6e-1wK" secondAttribute="bottom" constant="40" id="pPw-PU-R3n"/>
+                            <constraint firstItem="YBX-Gr-kI6" firstAttribute="centerY" secondItem="soV-nE-xVI" secondAttribute="centerY" constant="-170" id="kGm-Ij-BhX"/>
+                            <constraint firstItem="K3D-iK-gpK" firstAttribute="top" secondItem="1qr-uo-RMu" secondAttribute="bottom" constant="32" id="p8y-4Q-PXj"/>
                             <constraint firstItem="xBc-5O-QU6" firstAttribute="leading" secondItem="NxW-YV-uVK" secondAttribute="leading" priority="750" id="plr-4r-4Qu"/>
                             <constraint firstItem="YBX-Gr-kI6" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="twd-Q8-Fto"/>
                             <constraint firstItem="Al6-ev-ond" firstAttribute="centerY" secondItem="1pX-Al-xWp" secondAttribute="centerY" id="uuY-uw-dPv"/>
+                            <constraint firstItem="shp-bR-v4y" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="wOX-Fv-fg4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Al6-ev-ond" secondAttribute="trailing" id="wzp-Ir-pXL"/>
                             <constraint firstItem="1pX-Al-xWp" firstAttribute="leading" secondItem="soV-nE-xVI" secondAttribute="leadingMargin" id="yp1-pL-o4n"/>
                         </constraints>
@@ -341,15 +350,15 @@
                         <outlet property="canvasNetworkButton" destination="9EW-4z-2Mo" id="88M-G9-xRu"/>
                         <outlet property="findSchoolButton" destination="K3D-iK-gpK" id="egj-nA-DEx"/>
                         <outlet property="helpButton" destination="Al6-ev-ond" id="E14-Lq-o5v"/>
-                        <outlet property="logoView" destination="O6a-6e-1wK" id="ePi-My-AoJ"/>
-                        <outlet property="logomarkView" destination="YBX-Gr-kI6" id="m6S-eL-hiz"/>
-                        <outlet property="logomarkYCenter" destination="kGm-Ij-BhX" id="qIS-JD-GJe"/>
+                        <outlet property="logoView" destination="YBX-Gr-kI6" id="pbw-zU-yIW"/>
+                        <outlet property="logoYCenter" destination="kGm-Ij-BhX" id="5mx-pY-xRL"/>
                         <outlet property="previousLoginsBottom" destination="AcQ-O0-5EB" id="iOz-pS-g22"/>
                         <outlet property="previousLoginsTableView" destination="Vec-s2-2D4" id="Tzn-l0-HJd"/>
                         <outlet property="previousLoginsView" destination="xBc-5O-QU6" id="cVv-7J-Z3Q"/>
                         <outlet property="whatsNewContainer" destination="3Ua-og-syp" id="X4Y-L1-IsS"/>
                         <outlet property="whatsNewLabel" destination="qRY-FA-Dia" id="P1N-zF-7St"/>
                         <outlet property="whatsNewLink" destination="va0-Ci-EPu" id="tKP-Ct-BDQ"/>
+                        <outlet property="wordmarkLabel" destination="1qr-uo-RMu" id="1PZ-ER-KtI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C8c-YU-Jjf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -362,4 +371,8 @@
             <point key="canvasLocation" x="64.799999999999997" y="51.724137931034484"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="instructureLine" width="24" height="24"/>
+        <image name="wordmark" width="164" height="40"/>
+    </resources>
 </document>

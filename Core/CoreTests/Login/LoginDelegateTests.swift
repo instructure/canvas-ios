@@ -22,7 +22,6 @@ class LoginDelegateTests: XCTestCase {
         var login: KeychainEntry?
         var logout: KeychainEntry?
 
-        let loginLogo = UIImage.icon(.instructure, .solid)
         func openExternalURL(_ url: URL) {}
         func userDidLogin(keychainEntry: KeychainEntry) { login = keychainEntry }
         func userDidLogout(keychainEntry: KeychainEntry) { logout = keychainEntry }

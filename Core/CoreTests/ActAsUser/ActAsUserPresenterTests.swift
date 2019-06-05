@@ -19,8 +19,6 @@ import XCTest
 import TestsFoundation
 
 class ActAsUserPresenterTests: CoreTestCase, LoginDelegate {
-    let loginLogo = UIImage.icon(.instructure)
-
     var opened: URL?
     func openExternalURL(_ url: URL) {
         opened = url

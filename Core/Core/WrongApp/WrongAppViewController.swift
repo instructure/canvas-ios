@@ -16,98 +16,48 @@
 
 import UIKit
 
-public enum AppName: String {
-    case student, teacher, parent
-
-    var title: String {
-        switch self {
-        case .parent:
-            return NSLocalizedString("Not a parent?", bundle: .core, comment: "")
-        case .student:
-            return NSLocalizedString("Not a student?", bundle: .core, comment: "")
-        case .teacher:
-            return NSLocalizedString("Not a teacher?", bundle: .core, comment: "")
-        }
-    }
-
-    var description: String {
-        switch self {
-        case .parent:
-            // swiftlint:disable:next line_length
-            return NSLocalizedString("You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below.", bundle: .core, comment: "")
-        default:
-            return NSLocalizedString("One of our other apps might be a better fit. Tap one to visit the App Store.", bundle: .core, comment: "")
-        }
-    }
-
-    var image: UIImage? {
-        switch self {
-        case .parent:
-            return UIImage(named: "Canvas-Parent", in: .core, compatibleWith: nil)
-        case .student:
-            return UIImage(named: "Canvas-Student", in: .core, compatibleWith: nil)
-        case .teacher:
-            return UIImage(named: "Canvas-Teacher", in: .core, compatibleWith: nil)
-        }
-    }
-
-    var url: URL? {
-        switch self {
-        case .parent:
-            return URL(string: "https://itunes.apple.com/us/app/canvas-parent/id1097996698?ls=1&mt=8")
-        case .student:
-            return URL(string: "https://itunes.apple.com/us/app/canvas-by-instructure/id480883488?ls=1&mt=8")
-        case .teacher:
-            return URL(string: "https://itunes.apple.com/us/app/canvas-teacher/id1257834464?ls=1&mt=8")
-        }
-    }
-
-    func appsToShow() -> [AppName] {
-        switch self {
-        case .parent:
-            return [.student, .teacher]
-        case .student:
-            return [.teacher, .parent]
-        case .teacher:
-            return [.student, .parent]
-        }
-    }
-}
-
 public class WrongAppViewController: UIViewController {
-    var app: AppName?
     weak var delegate: LoginDelegate?
 
-    @IBOutlet var messageTitle: UILabel!
-    @IBOutlet var messageDescription: UILabel!
-    @IBOutlet var firstAppButton: UIButton!
-    @IBOutlet var secondAppButton: UIButton!
-    @IBOutlet var loginButton: UIButton!
-    @IBOutlet var canvasGuidesButton: UIButton!
+    @IBOutlet var messageTitle: UILabel?
+    @IBOutlet var messageDescription: UILabel?
+    @IBOutlet var parentButton: WrongAppLinkView?
+    @IBOutlet var studentButton: WrongAppLinkView?
+    @IBOutlet var teacherButton: WrongAppLinkView?
+    @IBOutlet var loginButton: UIButton?
+    @IBOutlet var canvasGuidesButton: UIButton?
 
-    public static func create(app: AppName, delegate: LoginDelegate?) -> WrongAppViewController {
+    public static func create(delegate: LoginDelegate?) -> WrongAppViewController {
         let controller = loadFromStoryboard()
-        controller.app = app
         controller.delegate = delegate
         return controller
     }
 
     public override func viewDidLoad() {
         navigationController?.setNavigationBarHidden(true, animated: false)
-        messageTitle.text = app?.title
-        messageDescription.text = app?.description
+        messageTitle?.text = NSLocalizedString("Whoops!", bundle: .core, comment: "")
+        messageDescription?.text = String.localizedStringWithFormat(
+            NSLocalizedString("It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store.", bundle: .core, comment: ""), (
+            Bundle.main.isParentApp ? NSLocalizedString("a parent", bundle: .core, comment: "Embedded in 'enrolled in any courses as %@'") :
+            Bundle.main.isTeacherApp ? NSLocalizedString("a teacher", bundle: .core, comment: "Embedded in 'enrolled in any courses as %@'") :
+            NSLocalizedString("a student", bundle: .core, comment: "Embedded in 'enrolled in any courses as %@'")
+        ))
 
-        loginButton.titleLabel?.text = NSLocalizedString("Log In Again", bundle: .core, comment: "")
-        canvasGuidesButton.titleLabel?.text = NSLocalizedString("Canvas Guides", bundle: .core, comment: "")
-        canvasGuidesButton.isHidden = app != .parent
+        loginButton?.setTitle(NSLocalizedString("Log In Again", bundle: .core, comment: "").localizedUppercase, for: .normal)
+        canvasGuidesButton?.setTitle(NSLocalizedString("Canvas Guides", bundle: .core, comment: "").localizedUppercase, for: .normal)
+        canvasGuidesButton?.isHidden = !Bundle.main.isParentApp
 
-        let appsToShow = app?.appsToShow()
-        if let firstApp = appsToShow?.first {
-            firstAppButton.setImage(firstApp.image, for: .normal)
-        }
-        if let secondApp = appsToShow?.last {
-            secondAppButton.setImage(secondApp.image, for: .normal)
-        }
+        parentButton?.isHidden = Bundle.main.isParentApp
+        parentButton?.accessibilityLabel = NSLocalizedString("Canvas Parent", bundle: .core, comment: "")
+        parentButton?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(parentPressed)))
+
+        studentButton?.isHidden = Bundle.main.isStudentApp
+        studentButton?.accessibilityLabel = NSLocalizedString("Canvas Student", bundle: .core, comment: "")
+        studentButton?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(studentPressed)))
+
+        teacherButton?.isHidden = Bundle.main.isTeacherApp
+        teacherButton?.accessibilityLabel = NSLocalizedString("Canvas Teacher", bundle: .core, comment: "")
+        teacherButton?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(teacherPressed)))
     }
 
     @IBAction func loginAgainButtonPressed(_ sender: UIButton) {
@@ -122,17 +72,18 @@ public class WrongAppViewController: UIViewController {
         delegate?.openExternalURL(url)
     }
 
-    @IBAction func firstButtonPressed(_ sender: UIButton) {
-        guard let url = app?.appsToShow().first?.url else {
-            return
-        }
+    @IBAction func parentPressed() {
+        guard let url = URL(string: "https://itunes.apple.com/us/app/canvas-parent/id1097996698?ls=1&mt=8") else { return }
         delegate?.openExternalURL(url)
     }
 
-    @IBAction func secondButtonPressed(_ sender: UIButton) {
-        guard let url = app?.appsToShow().last?.url else {
-            return
-        }
+    @IBAction func studentPressed() {
+        guard let url = URL(string: "https://itunes.apple.com/us/app/canvas-student/id480883488?ls=1&mt=8") else { return }
+        delegate?.openExternalURL(url)
+    }
+
+    @IBAction func teacherPressed() {
+        guard let url = URL(string: "https://itunes.apple.com/us/app/canvas-teacher/id1257834464?ls=1&mt=8") else { return }
         delegate?.openExternalURL(url)
     }
 }

@@ -202,8 +202,6 @@ class LoginWebPresenterTests: XCTestCase {
 }
 
 extension LoginWebPresenterTests: LoginWebViewProtocol, LoginDelegate {
-    var loginLogo: UIImage { return .icon(.instructure, .solid) }
-
     func openExternalURL(_ url: URL) {}
 
     func userDidLogin(keychainEntry: KeychainEntry) {

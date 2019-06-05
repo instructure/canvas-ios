@@ -91,8 +91,6 @@ class LoginFindSchoolPresenterTests: XCTestCase {
 }
 
 extension LoginFindSchoolPresenterTests: LoginFindSchoolViewProtocol, LoginDelegate {
-    var loginLogo: UIImage { return .icon(.instructure, .solid) }
-
     func openExternalURL(_ url: URL) {
         opened = url
     }
