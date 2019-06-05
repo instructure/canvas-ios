@@ -25,7 +25,7 @@ extension Group {
         showOnDashboard: Bool = false,
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Group {
-        let model = try! Group.save(api, in: context)
+        let model = Group.save(api, in: context)
         model.showOnDashboard = showOnDashboard
         try! context.save()
         return model

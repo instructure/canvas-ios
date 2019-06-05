@@ -20,7 +20,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Al6-ev-ond" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="325" y="40" width="34" height="34"/>
-                                <accessibility key="accessibilityConfiguration" identifier="LoginStartPage.helpButton"/>
+                                <accessibility key="accessibilityConfiguration" identifier="LoginStart.helpButton"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="2Zm-3d-YwQ"/>
                                     <constraint firstAttribute="width" constant="34" id="JY9-gR-cXJ"/>
@@ -35,7 +35,7 @@
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canvas Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pX-Al-xWp" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="16" y="47" width="301" height="20.5"/>
-                                <accessibility key="accessibilityConfiguration" identifier="LoginStartPage.authenticationMethodLabel"/>
+                                <accessibility key="accessibilityConfiguration" identifier="LoginStart.authenticationMethodLabel"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O6a-6e-1wK">
                                 <rect key="frame" x="109.5" y="152" width="156" height="123"/>
-                                <accessibility key="accessibilityConfiguration" identifier="LoginStartPage.logoView"/>
+                                <accessibility key="accessibilityConfiguration" identifier="LoginStart.logoView"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="123" id="Lhl-qe-uav"/>
                                     <constraint firstAttribute="width" constant="156" id="yrv-Tx-dnH"/>
@@ -61,7 +61,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3D-iK-gpK" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="82" y="315" width="211" height="50"/>
-                                <accessibility key="accessibilityConfiguration" identifier="LoginStartPage.findSchoolButton"/>
+                                <accessibility key="accessibilityConfiguration" identifier="LoginStart.findSchoolButton"/>
                                 <inset key="contentEdgeInsets" minX="54" minY="16" maxX="54" maxY="16"/>
                                 <state key="normal" title="Find my school"/>
                                 <userDefinedRuntimeAttributes>
@@ -81,7 +81,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EW-4z-2Mo" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="339" height="33"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="LoginStartPage.canvasNetworkButton"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="LoginStart.canvasNetworkButton"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Canvas Network"/>
                                         <userDefinedRuntimeAttributes>
@@ -97,7 +97,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We've made a few changes." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRY-FA-Dia" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="213" height="33"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="LoginStartPage.whatsNewLabel"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="LoginStart.whatsNewLabel"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.45098039220000002" green="0.50588235290000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -108,7 +108,7 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="va0-Ci-EPu" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                                 <rect key="frame" x="216" y="0.0" width="123" height="33"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="LoginStartPage.whatsNewLink"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="LoginStart.whatsNewLink"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="See what's new."/>
                                                 <userDefinedRuntimeAttributes>
@@ -163,7 +163,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z0D-SH-YJp" customClass="AvatarView" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="12.5" width="34" height="34"/>
+                                                            <rect key="frame" x="16" y="13" width="34" height="34"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="34" id="Tih-hZ-eqV"/>
                                                                 <constraint firstAttribute="height" constant="34" id="bl4-jS-YCg"/>
@@ -237,7 +237,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z6q-mg-18R" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="12.5" width="34" height="34"/>
+                                                            <rect key="frame" x="16" y="13" width="34" height="34"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="34" id="EqX-X7-JTl"/>
                                                                 <constraint firstAttribute="width" constant="34" id="XNQ-61-4GA"/>

@@ -32,6 +32,9 @@
 "Courses" = "Курсы";
 
 /* No comment provided by engineer. */
+"Custom Grade" = "Настроить оценку";
+
+/* No comment provided by engineer. */
 "Dashboard" = "Информационная панель";
 
 /* No comment provided by engineer. */
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Файлы (%d)";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
 
 /* No comment provided by engineer. */
 "Grade" = "Оценка";
@@ -126,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Повторная отправка задания";
+
+/* No comment provided by engineer. */
+"Retry" = "Повторить";
 
 /* No comment provided by engineer. */
 "Rubric" = "Рубрика";
@@ -194,13 +203,13 @@
 "Updated Language Settings" = "Обновленные языковые настройки";
 
 /* No comment provided by engineer. */
+"Uploading" = "Загрузка";
+
+/* No comment provided by engineer. */
 "View Discussion" = "Посмотреть Обсуждение";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Просмотреть файл %1$@ %2$@";
-
-/* No comment provided by engineer. */
-"View submission attempt %d" = "Просмотреть попытку отправку %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Адрес веб-сайта";

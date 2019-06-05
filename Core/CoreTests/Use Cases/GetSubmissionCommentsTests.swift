@@ -26,7 +26,7 @@ class GetSubmissionCommentsTests: CoreTestCase {
         )
 
         let getSubmission = GetSubmissionComments(context: context, assignmentID: "2", userID: "3", submissionID: apiSubmission.id.value)
-        try! getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
+        getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
 
         let submissions: [Submission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 1)
@@ -51,7 +51,7 @@ class GetSubmissionCommentsTests: CoreTestCase {
             ]
         )
         let getSubmission = GetSubmissionComments(context: context, assignmentID: "2", userID: "3", submissionID: apiSubmission.id.value)
-        try! getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
+        getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
 
         let comments: [SubmissionComment] = databaseClient.fetch()
         XCTAssertEqual(comments.count, 4)

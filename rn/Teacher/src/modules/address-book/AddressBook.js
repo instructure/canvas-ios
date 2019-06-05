@@ -154,6 +154,7 @@ export class AddressBook extends Component<AddressBookProps, State> {
       border={border}
       renderImage={() => avatar}
       testID={item.id}
+      accessibilityLabel={item.name}
       disclosureIndicator={isBranch(item.id)}
       onPress={() => this._onSelectItem(item)} />
   }

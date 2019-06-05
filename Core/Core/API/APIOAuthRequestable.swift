@@ -59,18 +59,22 @@ struct PostLoginOAuthRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/file.oauth_endpoints.html#get-login-session-token
-struct GetWebSessionRequest: APIRequestable {
-    struct Response: Codable {
-        let session_url: URL
+public struct GetWebSessionRequest: APIRequestable {
+    public struct Response: Codable {
+        public let session_url: URL
     }
 
-    let to: URL?
+    public let to: URL?
 
-    let path = "/login/session_token"
-    var query: [APIQueryItem] {
+    public let path = "/login/session_token"
+    public var query: [APIQueryItem] {
         if let returnTo = to?.appendingQueryItems(URLQueryItem(name: "display", value: "borderless")) {
             return [ .value("return_to", returnTo.absoluteString) ]
         }
         return []
+    }
+
+    public init(to: URL?) {
+        self.to = to
     }
 }

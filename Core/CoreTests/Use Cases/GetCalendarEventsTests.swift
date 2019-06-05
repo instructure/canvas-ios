@@ -33,9 +33,9 @@ class GetCalendarEventsTests: CoreTestCase {
 
     func testItCreatesCalendarEvents() {
         let event = APICalendarEvent.make(id: "1", context_code: "course_1")
-        try! useCase.write(response: [event], urlResponse: nil, to: databaseClient)
+        useCase.write(response: [event], urlResponse: nil, to: databaseClient)
 
-        let events: [CalendarEventItem] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
+        let events: [CalendarEventItem] = databaseClient.fetch()
         XCTAssertEqual(events.count, 1)
         XCTAssertEqual(events.first?.id, "1")
         XCTAssertEqual(events.first?.title, "calendar event #1")
@@ -51,7 +51,7 @@ class GetCalendarEventsTests: CoreTestCase {
         let a = CalendarEventItem.make(from: .make(id: "1", title: "a"))
         CalendarEventItem.make(from: .make(id: "3", title: "c", context_code: "course_2")) // should not show up b/c of context
 
-        let events: [CalendarEventItem] = databaseClient.fetch(predicate: useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+        let events: [CalendarEventItem] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
 
         XCTAssertEqual(events.count, 2)
         XCTAssertEqual(events.first, a)

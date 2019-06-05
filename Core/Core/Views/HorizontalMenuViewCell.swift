@@ -41,7 +41,6 @@ class HorizontalMenuViewCell: UICollectionViewCell {
 
     override var isSelected: Bool {
         didSet {
-            textLabel.accessibilityTraits = isSelected ? [.selected] : []
             UIView.animate(withDuration: 0.2) { [weak self] in
                 let selected = self?.isSelected ?? false
                 let selectionColor = self?.selectionColor?.ensureContrast(against: UIColor.named(.backgroundLightest))

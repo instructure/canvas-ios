@@ -95,13 +95,22 @@
 "Done" = "Terminé";
 
 /* No comment provided by engineer. */
+"End Act as User" = "Terminer Agir en tant qu'utilisateur";
+
+/* No comment provided by engineer. */
 "Error" = "Erreur";
 
 /* No comment provided by engineer. */
 "External Tool" = "Outil externe";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "Échec lors de l’enregistrement de l’image";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Échec du téléchargement";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Échec de l’envoi";
 
 /* No comment provided by engineer. */
 "File Upload" = "Envoi de fichier";
@@ -209,6 +218,9 @@
 "No Due Date" = "Pas de date limite de rendu";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "Aucune image trouvée dans le sélecteur d’image";
+
+/* No comment provided by engineer. */
 "No Submission" = "Aucune soumission";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "Démarrer l’enregistrement";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "Cesser d'agir en tant que...";
+
+/* No comment provided by engineer. */
 "Stop recording" = "Arrêter l'enregistrement";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Une erreur s'est produite avec Agir en tant qu'utilisateur. Veuillez réessayer plus tard.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "Une erreur inattendue est survenue. Veuillez réessayer.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Ce devoir doit être rendu le %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Vous devrez d’abord vous connecter à au moins un compte Canvas depuis l'app Étudiant.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Vous cesserez d'agir en tant que %@ et retournerez sur votre compte.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Vous cesserez d'agir en tant que cet utilisateur et retournerez sur votre compte.";
 

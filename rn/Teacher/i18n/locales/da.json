@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Kontoen har ingen Betingelser for brug"
   },
-  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Funger som\" betyder i bund og grund, at du logger ind som denne bruger uden adgangskode. Du kan foretage dig alt, som om du var denne bruger, og for andre brugere er det lige som om, det var denne bruger, der gjorde det. Dog registrerer audit-logs, at det faktisk var dig, der udførte handlingerne på vegne af denne bruger."
-  },
   "act_as_user_d7ef0e48": {
     "message": "Funger som bruger"
   },
@@ -493,9 +490,6 @@
   },
   "display_grade_as_c165e9a6": {
     "message": "Vis karakter som ..."
-  },
-  "domain_3b54c511": {
-    "message": "Domæne"
   },
   "done_54e3d4b6": {
     "message": "Udført"
@@ -1523,9 +1517,6 @@
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "Der opstod en fejl under indlæsning af denne vedhæftede fil."
   },
-  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
-    "message": "Der opstod en fejl ved at fungere som bruger. Prøv igen senere."
-  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Der opstod et problem ved indlæsning af dine meddelelser."
   },
@@ -1694,9 +1685,6 @@
   },
   "use_camera_47a0387b": {
     "message": "Brug kamera"
-  },
-  "user_id_bcace870": {
-    "message": "Bruger-id"
   },
   "video_b9f27375": {
     "message": "Video"

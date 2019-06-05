@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
 
 public class GetBrandVariables: APIUseCase {
@@ -22,7 +23,7 @@ public class GetBrandVariables: APIUseCase {
 
     public init() {}
 
-    public func write(response: APIBrandVariables?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+    public func write(response: APIBrandVariables?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         Brand.shared = Brand(response: response)
     }

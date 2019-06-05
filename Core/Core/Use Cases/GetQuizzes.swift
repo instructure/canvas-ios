@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
 
 public struct GetQuizzes: CollectionUseCase {
@@ -45,7 +46,7 @@ public struct GetQuizzes: CollectionUseCase {
         )
     }
 
-    public func write(response: [APIQuiz]?, urlResponse: URLResponse?, to client: PersistenceClient) {
+    public func write(response: [APIQuiz]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         for item in response {
             let model = Quiz.save(item, in: client)

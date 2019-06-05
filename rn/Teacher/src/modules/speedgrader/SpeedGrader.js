@@ -52,6 +52,7 @@ import shuffle from 'knuth-shuffle-seeded'
 import { Title } from '../../common/text'
 import CommentInput from './comments/CommentInput'
 import { isAssignmentAnonymous } from '../../common/anonymous-grading'
+import A11yGroup from '../../common/components/A11yGroup'
 
 const { NativeAccessibility } = NativeModules
 
@@ -202,7 +203,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
       ? this.state.currentStudentID === item.submission.userID
       : index === 0
 
-    return <View style={[styles.page, this.state.size]}>
+    return <A11yGroup style={[styles.page, this.state.size]}>
       <SubmissionGrader
         isCurrentStudent={isCurrentStudent}
         drawerState={SpeedGrader.drawerState}
@@ -224,7 +225,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
           this.scrollView.setNativeProps({ scrollEnabled: value })
         }}
       />
-    </View>
+    </A11yGroup>
   }
 
   dismiss = () => {

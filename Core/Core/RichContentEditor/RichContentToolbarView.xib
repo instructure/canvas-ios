@@ -76,7 +76,7 @@
                                                 <constraint firstAttribute="height" constant="44" id="BJX-9x-KpX"/>
                                                 <constraint firstAttribute="width" constant="44" id="NVn-un-JZf"/>
                                             </constraints>
-                                            <color key="tintColor" red="0.1764705882352941" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>

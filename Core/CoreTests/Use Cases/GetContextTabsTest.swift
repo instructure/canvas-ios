@@ -35,7 +35,7 @@ class GetContextTabsTest: CoreTestCase {
 
         let useCase = GetContextTabs(context: context)
 
-        let tabs: [Tab] = databaseClient.fetch(predicate: useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+        let tabs: [Tab] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
 
         XCTAssertEqual(tabs.first?.label, "1")
         XCTAssertEqual(tabs.last?.label, "3")
@@ -44,9 +44,9 @@ class GetContextTabsTest: CoreTestCase {
     func testItCreatesTabs() {
         let groupTab = APITab.make(html_url: URL(string: "https://twilson.instructure.com/groups/16")!)
         let getContextTabs = GetContextTabs(context: context)
-        try! getContextTabs.write(response: [groupTab], urlResponse: nil, to: databaseClient)
+        getContextTabs.write(response: [groupTab], urlResponse: nil, to: databaseClient)
 
-        let tabs: [Tab] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
+        let tabs: [Tab] = databaseClient.fetch()
         XCTAssertEqual(tabs.count, 1)
         XCTAssertEqual(tabs.first?.label, "Home")
         XCTAssertEqual(tabs.first?.htmlURL.absoluteString, "https://twilson.instructure.com/groups/16")
@@ -60,10 +60,10 @@ class GetContextTabsTest: CoreTestCase {
         let groupTab2 = APITab.make(id: "assignments", html_url: URL(string: "https://twilson.instructure.com/groups/2")!)
 
         let getContextTabs1 = GetContextTabs(context: context1)
-        try! getContextTabs1.write(response: [groupTab1], urlResponse: nil, to: databaseClient)
+        getContextTabs1.write(response: [groupTab1], urlResponse: nil, to: databaseClient)
 
         let getContextTabs2 = GetContextTabs(context: context2)
-        try! getContextTabs2.write(response: [groupTab2], urlResponse: nil, to: databaseClient)
+        getContextTabs2.write(response: [groupTab2], urlResponse: nil, to: databaseClient)
 
         let tabs: [Tab] = databaseClient.fetch()
         let home = tabs.filter { $0.id == "home" }.first

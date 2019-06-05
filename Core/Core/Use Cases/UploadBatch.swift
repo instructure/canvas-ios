@@ -61,15 +61,13 @@ public class UploadBatch {
         callback(state)
     }
 
+    public func removeAllSubscribers() {
+        subscribers = []
+    }
+
     private func notify() {
         for callback in subscribers {
             callback(state)
-        }
-
-        switch state {
-        case .completed?, .failed?:
-            subscribers = []
-        default: break
         }
     }
 

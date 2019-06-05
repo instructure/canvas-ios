@@ -272,8 +272,7 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Predpomnilnik je počiščen.";
 
-/* Calendar landing page title
-   Calendar page title */
+/* Calendar page title */
 "Calendar" = "Koledar";
 
 /* No comment provided by engineer. */
@@ -400,7 +399,7 @@
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "Učni načrt predmeta";
 
-/* Courses landing page title */
+/* Courses page title */
 "Courses" = "Predmeti";
 
 /* cancel folder creation */
@@ -775,7 +774,9 @@
 /* notification that a message has been sent succesfully */
 "Message Sent." = "Sporočilo je poslano.";
 
-/* Messages landing page title */
+/* Messages tab title
+   messages title
+   The name of the messages tab */
 "Messages" = "Sporočila";
 
 /* Warnging for taking quizzes on a mobile device */
@@ -1339,9 +1340,6 @@
 
 /* Title of the Todo screen */
 "To Do" = "Seznam opravil";
-
-/* To-Do List landing page title */
-"To-Do List" = "Seznam opravil";
 
 /* No comment provided by engineer. */
 "To:" = "Naslovnik:";

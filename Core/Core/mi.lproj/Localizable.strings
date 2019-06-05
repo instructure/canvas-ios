@@ -95,13 +95,22 @@
 "Done" = "Kua mahia";
 
 /* No comment provided by engineer. */
+"End Act as User" = "Whakamutu mahi hei Kaiwhakamahi";
+
+/* No comment provided by engineer. */
 "Error" = "Hapa";
 
 /* No comment provided by engineer. */
 "External Tool" = "Taputapu waho";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "I rahua te tiaki i te āhua";
+
+/* No comment provided by engineer. */
 "Failed upload" = "I rahua ki te tukuake";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "I rahua te tikiake";
 
 /* No comment provided by engineer. */
 "File Upload" = "Kōnae Tukuake";
@@ -209,6 +218,9 @@
 "No Due Date" = "Kaore he ra tika";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "Kaore i kitea he āhua mai i te  āhua kaiwhiwhi";
+
+/* No comment provided by engineer. */
 "No Submission" = "Kāore he Tukunga";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "Tīmata tāhopu";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "Kāti te mahi hei ....";
+
+/* No comment provided by engineer. */
 "Stop recording" = "Mutu tāhopu";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "He hapa ki te Mahi hei Kaiwhakamahi Tēnā koa ngana anō i muri mai.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "He hapa ohorere i puta Tēnā tarai anō.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Ko tenei whakatuanga e tika ana %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Me uru atu koe ki tētahi o ngā pūkete Canvas i te tuatahi o te taupānga a te ākonga.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Ka mutu tō mahi hei %@ ka hoki ki tāu pūkete.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Ka mutu tō mahi hei kaiwhakamahi nei, ka hoki ki tāu pūkete.";
 

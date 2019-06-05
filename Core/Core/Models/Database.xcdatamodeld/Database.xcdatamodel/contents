@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
+        <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="courseID" attributeType="String" syncable="YES"/>
+        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dueAtOrder" attributeType="String" defaultValueString="z" syncable="YES"/>
+        <attribute name="gradedIndividually" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="gradingTypeRaw" attributeType="String" syncable="YES"/>
+        <attribute name="htmlURL" attributeType="URI" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="quizID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="submissionTypesRaw" attributeType="Transformable" syncable="YES"/>
+        <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="useRubricForGrading" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="assignment" inverseEntity="DiscussionTopic" syncable="YES"/>
+        <relationship name="rubric" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric" syncable="YES"/>
+        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission" syncable="YES"/>
+    </entity>
+    <entity name="CalendarEventItem" representedClassName="Core.CalendarEventItem" syncable="YES">
+        <attribute name="contextRaw" attributeType="String" syncable="YES"/>
+        <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="htmlUrl" attributeType="URI" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="startAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Color" representedClassName="Core.Color" syncable="YES">
+        <attribute name="canvasContextID" attributeType="String" syncable="YES"/>
+        <attribute name="color" attributeType="Transformable" customClassName="UIKit.UIColor" syncable="YES"/>
+    </entity>
+    <entity name="Course" representedClassName="Core.Course" syncable="YES">
+        <attribute name="arcEnabledRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="arcID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="courseCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="defaultViewRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="imageDownloadURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="syllabusBody" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment" syncable="YES"/>
+    </entity>
+    <entity name="DiscussionEntry" representedClassName="Core.DiscussionEntry" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="discussionEntries" inverseEntity="Submission" syncable="YES"/>
+    </entity>
+    <entity name="DiscussionTopic" representedClassName="Core.DiscussionTopic" syncable="YES">
+        <attribute name="assignmentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="authorAvatarURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="authorID" optional="YES" attributeType="String" defaultValueString=" " syncable="YES"/>
+        <attribute name="authorName" optional="YES" attributeType="String" defaultValueString=" " syncable="YES"/>
+        <attribute name="discussionSubEntryCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="htmlUrl" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="lastReplyAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="published" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="discussionTopic" inverseEntity="Assignment" syncable="YES"/>
+        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="discussionTopic" inverseEntity="File" syncable="YES"/>
+    </entity>
+    <entity name="Enrollment" representedClassName="Core.Enrollment" syncable="YES">
+        <attribute name="canvasContextID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="computedCurrentGrade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="computedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="computedFinalGrade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="computedFinalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentGradingPeriodID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentPeriodComputedCurrentGrade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentPeriodComputedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentPeriodComputedFinalGrade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentPeriodComputedFinalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="multipleGradingPeriodsEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="roleID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="roleRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stateRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalsForAllGradingPeriodsOption" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="typeRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="enrollments" inverseEntity="Course" syncable="YES"/>
+    </entity>
+    <entity name="ExternalTool" representedClassName="Core.ExternalTool" syncable="YES">
+        <attribute name="arc" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="File" representedClassName="Core.File" syncable="YES">
+        <attribute name="assignmentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="batchID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bytesSent" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="contentType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="folderID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hidden" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hiddenForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localFileURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="locked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lockExplanation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lockInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mediaEntryID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mimeClass" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modifiedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="previewURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="size" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="taskIDRaw" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="thumbnailURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="uploadError" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="attachments" inverseEntity="DiscussionTopic" syncable="YES"/>
+        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission" syncable="YES"/>
+        <relationship name="submissionComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubmissionComment" inverseName="attachments" inverseEntity="SubmissionComment" syncable="YES"/>
+    </entity>
+    <entity name="Group" representedClassName="Core.Group" syncable="YES">
+        <attribute name="avatarURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="concluded" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="showOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="LogEvent" representedClassName="Core.LogEvent" syncable="YES">
+        <attribute name="message" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="typeRaw" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="MediaComment" representedClassName="Core.MediaComment" syncable="YES">
+        <attribute name="contentType" attributeType="String" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mediaID" attributeType="String" syncable="YES"/>
+        <attribute name="mediaTypeRaw" attributeType="String" syncable="YES"/>
+        <attribute name="url" attributeType="URI" syncable="YES"/>
+        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="mediaComment" inverseEntity="Submission" syncable="YES"/>
+    </entity>
+    <entity name="Module" representedClassName="Core.Module" syncable="YES">
+        <attribute name="courseID" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="published" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="itemsRaw" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ModuleItem" inverseName="module" inverseEntity="ModuleItem" syncable="YES"/>
+    </entity>
+    <entity name="ModuleItem" representedClassName="Core.ModuleItem" syncable="YES">
+        <attribute name="courseID" attributeType="String" syncable="YES"/>
+        <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="htmlURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="indent" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="moduleID" attributeType="String" syncable="YES"/>
+        <attribute name="position" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="published" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="typeRaw" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
+        <relationship name="module" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="itemsRaw" inverseEntity="Module" syncable="YES"/>
+    </entity>
+    <entity name="Permissions" representedClassName="Core.Permissions" syncable="YES">
+        <attribute name="becomeUser" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="changeCourseState" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="commentOnOthersSubmissions" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="context" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createCollaborations" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="createConferences" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="createForum" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="generateObserverPairingCode" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="importOutcomes" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="importSis" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="ltiAddEdit" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageAccountMemberships" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageAccountSettings" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageAdminUsers" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageAlerts" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageAssignments" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageCalendar" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageCatalog" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageContent" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageCourses" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageDeveloperKeys" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageFeatureFlags" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageFiles" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageGlobalOutcomes" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageGrades" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageGroups" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageInteractionAlerts" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageJobs" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageMasterCourses" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageOutcomes" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageRoleOverrides" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageRubrics" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageSections" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageSis" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageSiteSettings" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageStorageQuotas" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageStudents" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageUserLogins" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageUserNotes" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageUserObservers" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manageWiki" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="moderateForum" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="postToForum" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="readAnnouncements" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="readCourseContent" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="readCourseList" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="readEmailAddresses" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="readForum" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="readMessages" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="readQuestionBanks" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="readReports" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="readRoster" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="readSis" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="resetAnyMfa" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="selectFinalGrade" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="sendMessages" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="sendMessagesAll" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="siteAdmin" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="undeleteCourses" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="viewAllGrades" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="viewAuditTrail" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="viewCourseChanges" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="viewErrorReports" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="viewGradeChanges" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="viewGroupPages" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="viewJobs" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="viewNotifications" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="viewStatistics" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="viewUserLogins" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="Quiz" representedClassName="Core.Quiz" syncable="YES">
+        <attribute name="allowedAttempts" optional="YES" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="courseID" attributeType="String" syncable="YES"/>
+        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="htmlURL" attributeType="URI" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="questionCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="quizTypeRaw" attributeType="String" syncable="YES"/>
+        <attribute name="timeLimitRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Rubric" representedClassName="Core.Rubric" syncable="YES">
+        <attribute name="assignmentID" attributeType="String" syncable="YES"/>
+        <attribute name="criterionUseRange" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="desc" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="longDesc" attributeType="String" syncable="YES"/>
+        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="rubric" inverseEntity="Assignment" syncable="YES"/>
+        <relationship name="ratings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RubricRating" inverseName="rubric" inverseEntity="RubricRating" syncable="YES"/>
+    </entity>
+    <entity name="RubricAssessment" representedClassName="Core.RubricAssessment" syncable="YES">
+        <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" defaultValueString="0" syncable="YES"/>
+        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="ratingID" attributeType="String" syncable="YES"/>
+        <attribute name="submissionID" attributeType="String" defaultValueString="0" syncable="YES"/>
+        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="rubricAssesmentRaw" inverseEntity="Submission" syncable="YES"/>
+    </entity>
+    <entity name="RubricRating" representedClassName="Core.RubricRating" syncable="YES">
+        <attribute name="assignmentID" attributeType="String" syncable="YES"/>
+        <attribute name="desc" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="longDesc" attributeType="String" syncable="YES"/>
+        <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rubric" inverseName="ratings" inverseEntity="Rubric" syncable="YES"/>
+    </entity>
+    <entity name="Submission" representedClassName="Core.Submission" syncable="YES">
+        <attribute name="assignmentID" attributeType="String" syncable="YES"/>
+        <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="excusedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="grade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gradedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="late" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latePolicyStatusRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="missing" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="pointsDeductedRaw" optional="YES" attributeType="Double" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="previewUrl" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="scoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="submittedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="typeRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="workflowStateRaw" attributeType="String" syncable="YES"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="submission" inverseEntity="Assignment" syncable="YES"/>
+        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="submission" inverseEntity="File" syncable="YES"/>
+        <relationship name="discussionEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionEntry" inverseName="submission" inverseEntity="DiscussionEntry" syncable="YES"/>
+        <relationship name="mediaComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MediaComment" inverseName="submission" inverseEntity="MediaComment" syncable="YES"/>
+        <relationship name="rubricAssesmentRaw" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RubricAssessment" inverseName="submission" inverseEntity="RubricAssessment" syncable="YES"/>
+    </entity>
+    <entity name="SubmissionComment" representedClassName="Core.SubmissionComment" syncable="YES">
+        <attribute name="authorAvatarURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="authorID" attributeType="String" syncable="YES"/>
+        <attribute name="authorName" attributeType="String" syncable="YES"/>
+        <attribute name="comment" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="editedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="mediaID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mediaName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mediaTypeRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mediaURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="submissionID" attributeType="String" syncable="YES"/>
+        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="submissionComment" inverseEntity="File" syncable="YES"/>
+    </entity>
+    <entity name="Tab" representedClassName="Core.Tab" syncable="YES">
+        <attribute name="contextRaw" attributeType="String" syncable="YES"/>
+        <attribute name="hiddenRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="htmlURL" attributeType="URI" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="label" attributeType="String" syncable="YES"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="typeRaw" attributeType="String" syncable="YES"/>
+        <attribute name="visibilityRaw" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="TTL" representedClassName="Core.TTL" syncable="YES">
+        <attribute name="key" attributeType="String" syncable="YES"/>
+        <attribute name="lastRefresh" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="UserSettings" representedClassName="Core.UserSettings" syncable="YES">
+        <attribute name="collapseGlobalNav" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hideDashcardColorOverlays" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manualMarkAsRead" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="375"/>
+        <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
+        <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="195"/>
+        <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
+        <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="255"/>
+        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="315"/>
+        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="540"/>
+        <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
+        <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
+        <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="135"/>
+        <element name="Module" positionX="-369" positionY="-18" width="128" height="135"/>
+        <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="225"/>
+        <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
+        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="240"/>
+        <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>
+        <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="135"/>
+        <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
+        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="375"/>
+        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="240"/>
+        <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
+        <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
+        <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
+    </elements>
+</model>

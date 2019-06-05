@@ -67,14 +67,7 @@ extension TechDebt.Router {
 
         addContextRoute([.group], subPath: "tabs") { contextID, _ in
             guard let currentSession = currentSession else { return nil }
-            guard FeatureFlags.featureFlagEnabled(.newGroupNavigation) else {
-                return try TabsTableViewController(session: currentSession, contextID: contextID, route: route)
-            }
-            
-            return HelmViewController(
-                moduleName: "/groups/:groupID",
-                props: ["groupID": contextID.id]
-            )
+            return try TabsTableViewController(session: currentSession, contextID: contextID, route: route)
         }
         
         addContextRoute([.course], subPath: "assignments") { contextID, _ in
@@ -127,6 +120,13 @@ extension TechDebt.Router {
         }
 
         addContextRoute([.course], subPath: "assignments/:assignmentID/submissions/:userID/online_text_entry") { contextID, params in
+            if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView), let url = params["url"] as? URL {
+                return StudentReborn.router.match(.parse(url))
+            }
+            return nil
+        }
+
+        addContextRoute([.course], subPath: "assignments/:assignmentID/submissions/:userID/urlsubmission") { _, params in
             if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView), let url = params["url"] as? URL {
                 return StudentReborn.router.match(.parse(url))
             }

@@ -24,7 +24,7 @@ extension MediaComment {
         from api: APIMediaComment = .make(),
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> MediaComment {
-        let model = try! MediaComment.save(api, in: context)
+        let model = MediaComment.save(api, in: context)
         try! context.save()
         return model
     }

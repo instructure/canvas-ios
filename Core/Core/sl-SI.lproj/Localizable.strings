@@ -95,13 +95,22 @@
 "Done" = "Dokončano";
 
 /* No comment provided by engineer. */
+"End Act as User" = "Opustite vlogo uporabnika";
+
+/* No comment provided by engineer. */
 "Error" = "Napaka";
 
 /* No comment provided by engineer. */
 "External Tool" = "Zunanje orodje";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "Shranjevanje slike ni uspelo.";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Nalaganje ni uspelo";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Nalaganje ni uspelo";
 
 /* No comment provided by engineer. */
 "File Upload" = "Nalaganje datotek";
@@ -209,6 +218,9 @@
 "No Due Date" = "Ni roka.";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "Izbirnik slik ni našel nobene slike";
+
+/* No comment provided by engineer. */
 "No Submission" = "Ni oddaj.";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "Zaženi snemanje";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "Prenehajte nastopati v vlogi ...";
+
+/* No comment provided by engineer. */
 "Stop recording" = "Zaustavi snemanje";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Prišlo je do napake pri prevzemanju vloge uporabnika. Poskusite znova pozneje.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "Prišlo je do nepričakovane napake. Poskusite znova pozneje.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Ta naloga ima rok do %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Najprej se morate v aplikaciji Student prijaviti v vsaj en račun Canvas.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Prenehali boste nastopati v vlogi %@ in vrnili se boste v svoj račun.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Prenehali boste nastopati v vlogi tega uporabnika in se boste vrnili v svoj račun.";
 

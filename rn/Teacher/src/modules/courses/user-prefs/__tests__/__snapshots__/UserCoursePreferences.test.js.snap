@@ -319,7 +319,8 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel="Choose #F26090"
+                accessibilityLabel="Choose Brick (#BD3C14)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -327,7 +328,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F26090"
+                testID="colorButton.#BD3C14"
                 underlayColor="#fff"
               >
                 <View
@@ -341,14 +342,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F26090",
+                        "backgroundColor": "#BD3C14",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #EA1661"
+                accessibilityLabel="Choose Red (#FF2717)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -356,7 +358,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#EA1661"
+                testID="colorButton.#FF2717"
                 underlayColor="#fff"
               >
                 <View
@@ -370,14 +372,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#EA1661",
+                        "backgroundColor": "#FF2717",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #903A99"
+                accessibilityLabel="Choose Magenta (#E71F63)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -385,7 +388,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#903A99"
+                testID="colorButton.#E71F63"
                 underlayColor="#fff"
               >
                 <View
@@ -399,14 +402,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#903A99",
+                        "backgroundColor": "#E71F63",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #65469F"
+                accessibilityLabel="Choose Purple (#8F3E97)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -414,7 +418,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#65469F"
+                testID="colorButton.#8F3E97"
                 underlayColor="#fff"
               >
                 <View
@@ -428,14 +432,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#65469F",
+                        "backgroundColor": "#8F3E97",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #4452A6"
+                accessibilityLabel="Choose Deep Purple (#65499D)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -443,7 +448,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#4452A6"
+                testID="colorButton.#65499D"
                 underlayColor="#fff"
               >
                 <View
@@ -457,14 +462,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#4452A6",
+                        "backgroundColor": "#65499D",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #1482C8"
+                accessibilityLabel="Choose Indigo (#4554A4)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -472,7 +478,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#1482C8"
+                testID="colorButton.#4554A4"
                 underlayColor="#fff"
               >
                 <View
@@ -486,14 +492,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#1482C8",
+                        "backgroundColor": "#4554A4",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #2CA3DE"
+                accessibilityLabel="Choose Blue (#1770AB)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -501,7 +508,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#2CA3DE"
+                testID="colorButton.#1770AB"
                 underlayColor="#fff"
               >
                 <View
@@ -515,14 +522,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#2CA3DE",
+                        "backgroundColor": "#1770AB",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #00BCD5"
+                accessibilityLabel="Choose Light Blue (#0B9BE3)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -530,7 +538,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#00BCD5"
+                testID="colorButton.#0B9BE3"
                 underlayColor="#fff"
               >
                 <View
@@ -544,14 +552,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#00BCD5",
+                        "backgroundColor": "#0B9BE3",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #009788"
+                accessibilityLabel="Choose Cyan (#06A3B7)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -559,7 +568,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#009788"
+                testID="colorButton.#06A3B7"
                 underlayColor="#fff"
               >
                 <View
@@ -573,14 +582,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#009788",
+                        "backgroundColor": "#06A3B7",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #3FA142"
+                accessibilityLabel="Choose Teal (#009688)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -588,7 +598,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#3FA142"
+                testID="colorButton.#009688"
                 underlayColor="#fff"
               >
                 <View
@@ -602,14 +612,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#3FA142",
+                        "backgroundColor": "#009688",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #89C540"
+                accessibilityLabel="Choose Green (#009606)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -617,7 +628,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#89C540"
+                testID="colorButton.#009606"
                 underlayColor="#fff"
               >
                 <View
@@ -631,14 +642,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#89C540",
+                        "backgroundColor": "#009606",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FFC100"
+                accessibilityLabel="Choose Olive (#8D9900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -646,7 +658,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FFC100"
+                testID="colorButton.#8D9900"
                 underlayColor="#fff"
               >
                 <View
@@ -660,14 +672,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FFC100",
+                        "backgroundColor": "#8D9900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FA9800"
+                accessibilityLabel="Choose Pumpkin (#D97900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -675,7 +688,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FA9800"
+                testID="colorButton.#D97900"
                 underlayColor="#fff"
               >
                 <View
@@ -689,14 +702,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FA9800",
+                        "backgroundColor": "#D97900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2581B"
+                accessibilityLabel="Choose Orange (#FD5D10)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -704,7 +718,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2581B"
+                testID="colorButton.#FD5D10"
                 underlayColor="#fff"
               >
                 <View
@@ -718,14 +732,15 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2581B",
+                        "backgroundColor": "#FD5D10",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2422E"
+                accessibilityLabel="Choose Pink (#F06291)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -733,7 +748,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2422E"
+                testID="colorButton.#F06291"
                 underlayColor="#fff"
               >
                 <View
@@ -747,7 +762,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2422E",
+                        "backgroundColor": "#F06291",
                       },
                     ]
                   }
@@ -1089,7 +1104,8 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel="Choose #F26090"
+                accessibilityLabel="Choose Brick (#BD3C14)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1097,7 +1113,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F26090"
+                testID="colorButton.#BD3C14"
                 underlayColor="#fff"
               >
                 <View
@@ -1111,14 +1127,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F26090",
+                        "backgroundColor": "#BD3C14",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #EA1661"
+                accessibilityLabel="Choose Red (#FF2717)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1126,7 +1143,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#EA1661"
+                testID="colorButton.#FF2717"
                 underlayColor="#fff"
               >
                 <View
@@ -1140,14 +1157,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#EA1661",
+                        "backgroundColor": "#FF2717",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #903A99"
+                accessibilityLabel="Choose Magenta (#E71F63)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1155,7 +1173,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#903A99"
+                testID="colorButton.#E71F63"
                 underlayColor="#fff"
               >
                 <View
@@ -1169,14 +1187,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#903A99",
+                        "backgroundColor": "#E71F63",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #65469F"
+                accessibilityLabel="Choose Purple (#8F3E97)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1184,7 +1203,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#65469F"
+                testID="colorButton.#8F3E97"
                 underlayColor="#fff"
               >
                 <View
@@ -1198,14 +1217,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#65469F",
+                        "backgroundColor": "#8F3E97",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #4452A6"
+                accessibilityLabel="Choose Deep Purple (#65499D)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1213,7 +1233,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#4452A6"
+                testID="colorButton.#65499D"
                 underlayColor="#fff"
               >
                 <View
@@ -1227,14 +1247,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#4452A6",
+                        "backgroundColor": "#65499D",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #1482C8"
+                accessibilityLabel="Choose Indigo (#4554A4)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1242,7 +1263,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#1482C8"
+                testID="colorButton.#4554A4"
                 underlayColor="#fff"
               >
                 <View
@@ -1256,14 +1277,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#1482C8",
+                        "backgroundColor": "#4554A4",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #2CA3DE"
+                accessibilityLabel="Choose Blue (#1770AB)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1271,7 +1293,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#2CA3DE"
+                testID="colorButton.#1770AB"
                 underlayColor="#fff"
               >
                 <View
@@ -1285,14 +1307,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#2CA3DE",
+                        "backgroundColor": "#1770AB",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #00BCD5"
+                accessibilityLabel="Choose Light Blue (#0B9BE3)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1300,7 +1323,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#00BCD5"
+                testID="colorButton.#0B9BE3"
                 underlayColor="#fff"
               >
                 <View
@@ -1314,14 +1337,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#00BCD5",
+                        "backgroundColor": "#0B9BE3",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #009788"
+                accessibilityLabel="Choose Cyan (#06A3B7)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1329,7 +1353,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#009788"
+                testID="colorButton.#06A3B7"
                 underlayColor="#fff"
               >
                 <View
@@ -1343,14 +1367,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#009788",
+                        "backgroundColor": "#06A3B7",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #3FA142"
+                accessibilityLabel="Choose Teal (#009688)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1358,7 +1383,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#3FA142"
+                testID="colorButton.#009688"
                 underlayColor="#fff"
               >
                 <View
@@ -1372,14 +1397,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#3FA142",
+                        "backgroundColor": "#009688",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #89C540"
+                accessibilityLabel="Choose Green (#009606)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1387,7 +1413,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#89C540"
+                testID="colorButton.#009606"
                 underlayColor="#fff"
               >
                 <View
@@ -1401,14 +1427,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#89C540",
+                        "backgroundColor": "#009606",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FFC100"
+                accessibilityLabel="Choose Olive (#8D9900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1416,7 +1443,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FFC100"
+                testID="colorButton.#8D9900"
                 underlayColor="#fff"
               >
                 <View
@@ -1430,14 +1457,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FFC100",
+                        "backgroundColor": "#8D9900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FA9800"
+                accessibilityLabel="Choose Pumpkin (#D97900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1445,7 +1473,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FA9800"
+                testID="colorButton.#D97900"
                 underlayColor="#fff"
               >
                 <View
@@ -1459,14 +1487,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FA9800",
+                        "backgroundColor": "#D97900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2581B"
+                accessibilityLabel="Choose Orange (#FD5D10)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1474,7 +1503,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2581B"
+                testID="colorButton.#FD5D10"
                 underlayColor="#fff"
               >
                 <View
@@ -1488,14 +1517,15 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2581B",
+                        "backgroundColor": "#FD5D10",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2422E"
+                accessibilityLabel="Choose Pink (#F06291)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1503,7 +1533,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2422E"
+                testID="colorButton.#F06291"
                 underlayColor="#fff"
               >
                 <View
@@ -1517,7 +1547,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2422E",
+                        "backgroundColor": "#F06291",
                       },
                     ]
                   }
@@ -1525,6 +1555,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1888,7 +1919,8 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel="Choose #F26090"
+                accessibilityLabel="Choose Brick (#BD3C14)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1896,7 +1928,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F26090"
+                testID="colorButton.#BD3C14"
                 underlayColor="#fff"
               >
                 <View
@@ -1910,14 +1942,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F26090",
+                        "backgroundColor": "#BD3C14",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #EA1661"
+                accessibilityLabel="Choose Red (#FF2717)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1925,7 +1958,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#EA1661"
+                testID="colorButton.#FF2717"
                 underlayColor="#fff"
               >
                 <View
@@ -1939,14 +1972,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#EA1661",
+                        "backgroundColor": "#FF2717",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #903A99"
+                accessibilityLabel="Choose Magenta (#E71F63)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1954,7 +1988,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#903A99"
+                testID="colorButton.#E71F63"
                 underlayColor="#fff"
               >
                 <View
@@ -1968,14 +2002,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#903A99",
+                        "backgroundColor": "#E71F63",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #65469F"
+                accessibilityLabel="Choose Purple (#8F3E97)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -1983,7 +2018,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#65469F"
+                testID="colorButton.#8F3E97"
                 underlayColor="#fff"
               >
                 <View
@@ -1997,14 +2032,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#65469F",
+                        "backgroundColor": "#8F3E97",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #4452A6"
+                accessibilityLabel="Choose Deep Purple (#65499D)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2012,7 +2048,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#4452A6"
+                testID="colorButton.#65499D"
                 underlayColor="#fff"
               >
                 <View
@@ -2026,14 +2062,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#4452A6",
+                        "backgroundColor": "#65499D",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #1482C8"
+                accessibilityLabel="Choose Indigo (#4554A4)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2041,7 +2078,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#1482C8"
+                testID="colorButton.#4554A4"
                 underlayColor="#fff"
               >
                 <View
@@ -2055,14 +2092,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#1482C8",
+                        "backgroundColor": "#4554A4",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #2CA3DE"
+                accessibilityLabel="Choose Blue (#1770AB)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2070,7 +2108,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#2CA3DE"
+                testID="colorButton.#1770AB"
                 underlayColor="#fff"
               >
                 <View
@@ -2084,14 +2122,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#2CA3DE",
+                        "backgroundColor": "#1770AB",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #00BCD5"
+                accessibilityLabel="Choose Light Blue (#0B9BE3)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2099,7 +2138,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#00BCD5"
+                testID="colorButton.#0B9BE3"
                 underlayColor="#fff"
               >
                 <View
@@ -2113,14 +2152,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#00BCD5",
+                        "backgroundColor": "#0B9BE3",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #009788"
+                accessibilityLabel="Choose Cyan (#06A3B7)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2128,7 +2168,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#009788"
+                testID="colorButton.#06A3B7"
                 underlayColor="#fff"
               >
                 <View
@@ -2142,14 +2182,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#009788",
+                        "backgroundColor": "#06A3B7",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #3FA142"
+                accessibilityLabel="Choose Teal (#009688)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2157,7 +2198,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#3FA142"
+                testID="colorButton.#009688"
                 underlayColor="#fff"
               >
                 <View
@@ -2171,14 +2212,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#3FA142",
+                        "backgroundColor": "#009688",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #89C540"
+                accessibilityLabel="Choose Green (#009606)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2186,7 +2228,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#89C540"
+                testID="colorButton.#009606"
                 underlayColor="#fff"
               >
                 <View
@@ -2200,14 +2242,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#89C540",
+                        "backgroundColor": "#009606",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FFC100"
+                accessibilityLabel="Choose Olive (#8D9900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2215,7 +2258,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FFC100"
+                testID="colorButton.#8D9900"
                 underlayColor="#fff"
               >
                 <View
@@ -2229,14 +2272,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FFC100",
+                        "backgroundColor": "#8D9900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FA9800"
+                accessibilityLabel="Choose Pumpkin (#D97900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2244,7 +2288,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FA9800"
+                testID="colorButton.#D97900"
                 underlayColor="#fff"
               >
                 <View
@@ -2258,14 +2302,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FA9800",
+                        "backgroundColor": "#D97900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2581B"
+                accessibilityLabel="Choose Orange (#FD5D10)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2273,7 +2318,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2581B"
+                testID="colorButton.#FD5D10"
                 underlayColor="#fff"
               >
                 <View
@@ -2287,14 +2332,15 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2581B",
+                        "backgroundColor": "#FD5D10",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2422E"
+                accessibilityLabel="Choose Pink (#F06291)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2302,7 +2348,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2422E"
+                testID="colorButton.#F06291"
                 underlayColor="#fff"
               >
                 <View
@@ -2316,7 +2362,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2422E",
+                        "backgroundColor": "#F06291",
                       },
                     ]
                   }
@@ -2324,6 +2370,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2353,6 +2400,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2382,6 +2430,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2411,6 +2460,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2440,6 +2490,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2469,6 +2520,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2498,6 +2550,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2861,7 +2914,8 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel="Choose #F26090"
+                accessibilityLabel="Choose Brick (#BD3C14)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2869,7 +2923,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F26090"
+                testID="colorButton.#BD3C14"
                 underlayColor="#fff"
               >
                 <View
@@ -2883,14 +2937,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F26090",
+                        "backgroundColor": "#BD3C14",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #EA1661"
+                accessibilityLabel="Choose Red (#FF2717)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2898,7 +2953,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#EA1661"
+                testID="colorButton.#FF2717"
                 underlayColor="#fff"
               >
                 <View
@@ -2912,14 +2967,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#EA1661",
+                        "backgroundColor": "#FF2717",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #903A99"
+                accessibilityLabel="Choose Magenta (#E71F63)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2927,7 +2983,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#903A99"
+                testID="colorButton.#E71F63"
                 underlayColor="#fff"
               >
                 <View
@@ -2941,14 +2997,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#903A99",
+                        "backgroundColor": "#E71F63",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #65469F"
+                accessibilityLabel="Choose Purple (#8F3E97)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2956,7 +3013,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#65469F"
+                testID="colorButton.#8F3E97"
                 underlayColor="#fff"
               >
                 <View
@@ -2970,14 +3027,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#65469F",
+                        "backgroundColor": "#8F3E97",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #4452A6"
+                accessibilityLabel="Choose Deep Purple (#65499D)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -2985,7 +3043,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#4452A6"
+                testID="colorButton.#65499D"
                 underlayColor="#fff"
               >
                 <View
@@ -2999,14 +3057,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#4452A6",
+                        "backgroundColor": "#65499D",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #1482C8"
+                accessibilityLabel="Choose Indigo (#4554A4)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3014,7 +3073,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#1482C8"
+                testID="colorButton.#4554A4"
                 underlayColor="#fff"
               >
                 <View
@@ -3028,14 +3087,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#1482C8",
+                        "backgroundColor": "#4554A4",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #2CA3DE"
+                accessibilityLabel="Choose Blue (#1770AB)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3043,7 +3103,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#2CA3DE"
+                testID="colorButton.#1770AB"
                 underlayColor="#fff"
               >
                 <View
@@ -3057,14 +3117,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#2CA3DE",
+                        "backgroundColor": "#1770AB",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #00BCD5"
+                accessibilityLabel="Choose Light Blue (#0B9BE3)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3072,7 +3133,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#00BCD5"
+                testID="colorButton.#0B9BE3"
                 underlayColor="#fff"
               >
                 <View
@@ -3086,14 +3147,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#00BCD5",
+                        "backgroundColor": "#0B9BE3",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #009788"
+                accessibilityLabel="Choose Cyan (#06A3B7)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3101,7 +3163,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#009788"
+                testID="colorButton.#06A3B7"
                 underlayColor="#fff"
               >
                 <View
@@ -3115,14 +3177,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#009788",
+                        "backgroundColor": "#06A3B7",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #3FA142"
+                accessibilityLabel="Choose Teal (#009688)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3130,7 +3193,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#3FA142"
+                testID="colorButton.#009688"
                 underlayColor="#fff"
               >
                 <View
@@ -3144,14 +3207,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#3FA142",
+                        "backgroundColor": "#009688",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #89C540"
+                accessibilityLabel="Choose Green (#009606)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3159,7 +3223,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#89C540"
+                testID="colorButton.#009606"
                 underlayColor="#fff"
               >
                 <View
@@ -3173,14 +3237,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#89C540",
+                        "backgroundColor": "#009606",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FFC100"
+                accessibilityLabel="Choose Olive (#8D9900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3188,7 +3253,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FFC100"
+                testID="colorButton.#8D9900"
                 underlayColor="#fff"
               >
                 <View
@@ -3202,14 +3267,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FFC100",
+                        "backgroundColor": "#8D9900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FA9800"
+                accessibilityLabel="Choose Pumpkin (#D97900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3217,7 +3283,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FA9800"
+                testID="colorButton.#D97900"
                 underlayColor="#fff"
               >
                 <View
@@ -3231,14 +3297,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FA9800",
+                        "backgroundColor": "#D97900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2581B"
+                accessibilityLabel="Choose Orange (#FD5D10)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3246,7 +3313,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2581B"
+                testID="colorButton.#FD5D10"
                 underlayColor="#fff"
               >
                 <View
@@ -3260,14 +3327,15 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2581B",
+                        "backgroundColor": "#FD5D10",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2422E"
+                accessibilityLabel="Choose Pink (#F06291)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3275,7 +3343,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2422E"
+                testID="colorButton.#F06291"
                 underlayColor="#fff"
               >
                 <View
@@ -3289,7 +3357,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2422E",
+                        "backgroundColor": "#F06291",
                       },
                     ]
                   }
@@ -3297,6 +3365,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3326,6 +3395,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3355,6 +3425,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3384,6 +3455,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3413,6 +3485,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3442,6 +3515,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3471,6 +3545,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3834,7 +3909,8 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel="Choose #F26090"
+                accessibilityLabel="Choose Brick (#BD3C14)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3842,7 +3918,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F26090"
+                testID="colorButton.#BD3C14"
                 underlayColor="#fff"
               >
                 <View
@@ -3856,14 +3932,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F26090",
+                        "backgroundColor": "#BD3C14",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #EA1661"
+                accessibilityLabel="Choose Red (#FF2717)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3871,7 +3948,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#EA1661"
+                testID="colorButton.#FF2717"
                 underlayColor="#fff"
               >
                 <View
@@ -3885,14 +3962,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#EA1661",
+                        "backgroundColor": "#FF2717",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #903A99"
+                accessibilityLabel="Choose Magenta (#E71F63)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3900,7 +3978,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#903A99"
+                testID="colorButton.#E71F63"
                 underlayColor="#fff"
               >
                 <View
@@ -3914,14 +3992,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#903A99",
+                        "backgroundColor": "#E71F63",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #65469F"
+                accessibilityLabel="Choose Purple (#8F3E97)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3929,7 +4008,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#65469F"
+                testID="colorButton.#8F3E97"
                 underlayColor="#fff"
               >
                 <View
@@ -3943,14 +4022,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#65469F",
+                        "backgroundColor": "#8F3E97",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #4452A6"
+                accessibilityLabel="Choose Deep Purple (#65499D)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3958,7 +4038,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#4452A6"
+                testID="colorButton.#65499D"
                 underlayColor="#fff"
               >
                 <View
@@ -3972,14 +4052,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#4452A6",
+                        "backgroundColor": "#65499D",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #1482C8"
+                accessibilityLabel="Choose Indigo (#4554A4)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -3987,7 +4068,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#1482C8"
+                testID="colorButton.#4554A4"
                 underlayColor="#fff"
               >
                 <View
@@ -4001,14 +4082,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#1482C8",
+                        "backgroundColor": "#4554A4",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #2CA3DE"
+                accessibilityLabel="Choose Blue (#1770AB)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4016,7 +4098,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#2CA3DE"
+                testID="colorButton.#1770AB"
                 underlayColor="#fff"
               >
                 <View
@@ -4030,14 +4112,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#2CA3DE",
+                        "backgroundColor": "#1770AB",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #00BCD5"
+                accessibilityLabel="Choose Light Blue (#0B9BE3)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4045,7 +4128,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#00BCD5"
+                testID="colorButton.#0B9BE3"
                 underlayColor="#fff"
               >
                 <View
@@ -4059,14 +4142,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#00BCD5",
+                        "backgroundColor": "#0B9BE3",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #009788"
+                accessibilityLabel="Choose Cyan (#06A3B7)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4074,7 +4158,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#009788"
+                testID="colorButton.#06A3B7"
                 underlayColor="#fff"
               >
                 <View
@@ -4088,14 +4172,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#009788",
+                        "backgroundColor": "#06A3B7",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #3FA142"
+                accessibilityLabel="Choose Teal (#009688)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4103,7 +4188,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#3FA142"
+                testID="colorButton.#009688"
                 underlayColor="#fff"
               >
                 <View
@@ -4117,14 +4202,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#3FA142",
+                        "backgroundColor": "#009688",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #89C540"
+                accessibilityLabel="Choose Green (#009606)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4132,7 +4218,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#89C540"
+                testID="colorButton.#009606"
                 underlayColor="#fff"
               >
                 <View
@@ -4146,14 +4232,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#89C540",
+                        "backgroundColor": "#009606",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FFC100"
+                accessibilityLabel="Choose Olive (#8D9900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4161,7 +4248,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FFC100"
+                testID="colorButton.#8D9900"
                 underlayColor="#fff"
               >
                 <View
@@ -4175,14 +4262,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FFC100",
+                        "backgroundColor": "#8D9900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FA9800"
+                accessibilityLabel="Choose Pumpkin (#D97900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4190,7 +4278,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FA9800"
+                testID="colorButton.#D97900"
                 underlayColor="#fff"
               >
                 <View
@@ -4204,14 +4292,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FA9800",
+                        "backgroundColor": "#D97900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2581B"
+                accessibilityLabel="Choose Orange (#FD5D10)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4219,7 +4308,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2581B"
+                testID="colorButton.#FD5D10"
                 underlayColor="#fff"
               >
                 <View
@@ -4233,14 +4322,15 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2581B",
+                        "backgroundColor": "#FD5D10",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2422E"
+                accessibilityLabel="Choose Pink (#F06291)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4248,7 +4338,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2422E"
+                testID="colorButton.#F06291"
                 underlayColor="#fff"
               >
                 <View
@@ -4262,7 +4352,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2422E",
+                        "backgroundColor": "#F06291",
                       },
                     ]
                   }
@@ -4270,6 +4360,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4299,6 +4390,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4328,6 +4420,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4357,6 +4450,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4386,6 +4480,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4415,6 +4510,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4444,6 +4540,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4807,7 +4904,8 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel="Choose #F26090"
+                accessibilityLabel="Choose Brick (#BD3C14)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4815,7 +4913,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F26090"
+                testID="colorButton.#BD3C14"
                 underlayColor="#fff"
               >
                 <View
@@ -4829,14 +4927,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F26090",
+                        "backgroundColor": "#BD3C14",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #EA1661"
+                accessibilityLabel="Choose Red (#FF2717)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4844,7 +4943,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#EA1661"
+                testID="colorButton.#FF2717"
                 underlayColor="#fff"
               >
                 <View
@@ -4858,14 +4957,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#EA1661",
+                        "backgroundColor": "#FF2717",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #903A99"
+                accessibilityLabel="Choose Magenta (#E71F63)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4873,7 +4973,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#903A99"
+                testID="colorButton.#E71F63"
                 underlayColor="#fff"
               >
                 <View
@@ -4887,14 +4987,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#903A99",
+                        "backgroundColor": "#E71F63",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #65469F"
+                accessibilityLabel="Choose Purple (#8F3E97)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4902,7 +5003,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#65469F"
+                testID="colorButton.#8F3E97"
                 underlayColor="#fff"
               >
                 <View
@@ -4916,14 +5017,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#65469F",
+                        "backgroundColor": "#8F3E97",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #4452A6"
+                accessibilityLabel="Choose Deep Purple (#65499D)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4931,7 +5033,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#4452A6"
+                testID="colorButton.#65499D"
                 underlayColor="#fff"
               >
                 <View
@@ -4945,14 +5047,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#4452A6",
+                        "backgroundColor": "#65499D",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #1482C8"
+                accessibilityLabel="Choose Indigo (#4554A4)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4960,7 +5063,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#1482C8"
+                testID="colorButton.#4554A4"
                 underlayColor="#fff"
               >
                 <View
@@ -4974,14 +5077,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#1482C8",
+                        "backgroundColor": "#4554A4",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #2CA3DE"
+                accessibilityLabel="Choose Blue (#1770AB)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -4989,7 +5093,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#2CA3DE"
+                testID="colorButton.#1770AB"
                 underlayColor="#fff"
               >
                 <View
@@ -5003,14 +5107,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#2CA3DE",
+                        "backgroundColor": "#1770AB",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #00BCD5"
+                accessibilityLabel="Choose Light Blue (#0B9BE3)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5018,7 +5123,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#00BCD5"
+                testID="colorButton.#0B9BE3"
                 underlayColor="#fff"
               >
                 <View
@@ -5032,14 +5137,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#00BCD5",
+                        "backgroundColor": "#0B9BE3",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #009788"
+                accessibilityLabel="Choose Cyan (#06A3B7)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5047,7 +5153,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#009788"
+                testID="colorButton.#06A3B7"
                 underlayColor="#fff"
               >
                 <View
@@ -5061,14 +5167,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#009788",
+                        "backgroundColor": "#06A3B7",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #3FA142"
+                accessibilityLabel="Choose Teal (#009688)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5076,7 +5183,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#3FA142"
+                testID="colorButton.#009688"
                 underlayColor="#fff"
               >
                 <View
@@ -5090,14 +5197,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#3FA142",
+                        "backgroundColor": "#009688",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #89C540"
+                accessibilityLabel="Choose Green (#009606)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5105,7 +5213,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#89C540"
+                testID="colorButton.#009606"
                 underlayColor="#fff"
               >
                 <View
@@ -5119,14 +5227,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#89C540",
+                        "backgroundColor": "#009606",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FFC100"
+                accessibilityLabel="Choose Olive (#8D9900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5134,7 +5243,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FFC100"
+                testID="colorButton.#8D9900"
                 underlayColor="#fff"
               >
                 <View
@@ -5148,14 +5257,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FFC100",
+                        "backgroundColor": "#8D9900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FA9800"
+                accessibilityLabel="Choose Pumpkin (#D97900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5163,7 +5273,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FA9800"
+                testID="colorButton.#D97900"
                 underlayColor="#fff"
               >
                 <View
@@ -5177,14 +5287,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FA9800",
+                        "backgroundColor": "#D97900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2581B"
+                accessibilityLabel="Choose Orange (#FD5D10)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5192,7 +5303,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2581B"
+                testID="colorButton.#FD5D10"
                 underlayColor="#fff"
               >
                 <View
@@ -5206,14 +5317,15 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2581B",
+                        "backgroundColor": "#FD5D10",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2422E"
+                accessibilityLabel="Choose Pink (#F06291)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5221,7 +5333,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2422E"
+                testID="colorButton.#F06291"
                 underlayColor="#fff"
               >
                 <View
@@ -5235,7 +5347,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2422E",
+                        "backgroundColor": "#F06291",
                       },
                     ]
                   }
@@ -5243,6 +5355,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5272,6 +5385,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5301,6 +5415,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5330,6 +5445,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5359,6 +5475,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5388,6 +5505,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5417,6 +5535,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5796,7 +5915,8 @@ exports[`UserCoursePreferences renders 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel="Choose #F26090"
+                accessibilityLabel="Choose Brick (#BD3C14)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5804,7 +5924,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F26090"
+                testID="colorButton.#BD3C14"
                 underlayColor="#fff"
               >
                 <View
@@ -5818,14 +5938,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F26090",
+                        "backgroundColor": "#BD3C14",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #EA1661"
+                accessibilityLabel="Choose Red (#FF2717)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5833,7 +5954,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#EA1661"
+                testID="colorButton.#FF2717"
                 underlayColor="#fff"
               >
                 <View
@@ -5847,14 +5968,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#EA1661",
+                        "backgroundColor": "#FF2717",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #903A99"
+                accessibilityLabel="Choose Magenta (#E71F63)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5862,7 +5984,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#903A99"
+                testID="colorButton.#E71F63"
                 underlayColor="#fff"
               >
                 <View
@@ -5876,14 +5998,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#903A99",
+                        "backgroundColor": "#E71F63",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #65469F"
+                accessibilityLabel="Choose Purple (#8F3E97)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5891,7 +6014,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#65469F"
+                testID="colorButton.#8F3E97"
                 underlayColor="#fff"
               >
                 <View
@@ -5905,14 +6028,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#65469F",
+                        "backgroundColor": "#8F3E97",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #4452A6"
+                accessibilityLabel="Choose Deep Purple (#65499D)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5920,7 +6044,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#4452A6"
+                testID="colorButton.#65499D"
                 underlayColor="#fff"
               >
                 <View
@@ -5934,14 +6058,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#4452A6",
+                        "backgroundColor": "#65499D",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #1482C8"
+                accessibilityLabel="Choose Indigo (#4554A4)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5949,7 +6074,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#1482C8"
+                testID="colorButton.#4554A4"
                 underlayColor="#fff"
               >
                 <View
@@ -5963,14 +6088,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#1482C8",
+                        "backgroundColor": "#4554A4",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #2CA3DE"
+                accessibilityLabel="Choose Blue (#1770AB)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -5978,7 +6104,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#2CA3DE"
+                testID="colorButton.#1770AB"
                 underlayColor="#fff"
               >
                 <View
@@ -5992,14 +6118,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#2CA3DE",
+                        "backgroundColor": "#1770AB",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #00BCD5"
+                accessibilityLabel="Choose Light Blue (#0B9BE3)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6007,7 +6134,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#00BCD5"
+                testID="colorButton.#0B9BE3"
                 underlayColor="#fff"
               >
                 <View
@@ -6021,14 +6148,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#00BCD5",
+                        "backgroundColor": "#0B9BE3",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #009788"
+                accessibilityLabel="Choose Cyan (#06A3B7)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6036,7 +6164,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#009788"
+                testID="colorButton.#06A3B7"
                 underlayColor="#fff"
               >
                 <View
@@ -6050,14 +6178,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#009788",
+                        "backgroundColor": "#06A3B7",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #3FA142"
+                accessibilityLabel="Choose Teal (#009688)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6065,7 +6194,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#3FA142"
+                testID="colorButton.#009688"
                 underlayColor="#fff"
               >
                 <View
@@ -6079,14 +6208,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#3FA142",
+                        "backgroundColor": "#009688",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #89C540"
+                accessibilityLabel="Choose Green (#009606)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6094,7 +6224,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#89C540"
+                testID="colorButton.#009606"
                 underlayColor="#fff"
               >
                 <View
@@ -6108,14 +6238,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#89C540",
+                        "backgroundColor": "#009606",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FFC100"
+                accessibilityLabel="Choose Olive (#8D9900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6123,7 +6254,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FFC100"
+                testID="colorButton.#8D9900"
                 underlayColor="#fff"
               >
                 <View
@@ -6137,14 +6268,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FFC100",
+                        "backgroundColor": "#8D9900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FA9800"
+                accessibilityLabel="Choose Pumpkin (#D97900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6152,7 +6284,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FA9800"
+                testID="colorButton.#D97900"
                 underlayColor="#fff"
               >
                 <View
@@ -6166,14 +6298,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FA9800",
+                        "backgroundColor": "#D97900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2581B"
+                accessibilityLabel="Choose Orange (#FD5D10)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6181,7 +6314,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2581B"
+                testID="colorButton.#FD5D10"
                 underlayColor="#fff"
               >
                 <View
@@ -6195,14 +6328,15 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2581B",
+                        "backgroundColor": "#FD5D10",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2422E"
+                accessibilityLabel="Choose Pink (#F06291)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6210,7 +6344,7 @@ exports[`UserCoursePreferences renders 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2422E"
+                testID="colorButton.#F06291"
                 underlayColor="#fff"
               >
                 <View
@@ -6224,7 +6358,7 @@ exports[`UserCoursePreferences renders 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2422E",
+                        "backgroundColor": "#F06291",
                       },
                     ]
                   }
@@ -6232,6 +6366,7 @@ exports[`UserCoursePreferences renders 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6261,6 +6396,7 @@ exports[`UserCoursePreferences renders 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6290,6 +6426,7 @@ exports[`UserCoursePreferences renders 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6319,6 +6456,7 @@ exports[`UserCoursePreferences renders 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6348,6 +6486,7 @@ exports[`UserCoursePreferences renders 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6377,6 +6516,7 @@ exports[`UserCoursePreferences renders 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6406,6 +6546,7 @@ exports[`UserCoursePreferences renders 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6769,7 +6910,8 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel="Choose #F26090"
+                accessibilityLabel="Choose Brick (#BD3C14)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6777,7 +6919,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F26090"
+                testID="colorButton.#BD3C14"
                 underlayColor="#fff"
               >
                 <View
@@ -6791,14 +6933,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F26090",
+                        "backgroundColor": "#BD3C14",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #EA1661"
+                accessibilityLabel="Choose Red (#FF2717)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6806,7 +6949,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#EA1661"
+                testID="colorButton.#FF2717"
                 underlayColor="#fff"
               >
                 <View
@@ -6820,14 +6963,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#EA1661",
+                        "backgroundColor": "#FF2717",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #903A99"
+                accessibilityLabel="Choose Magenta (#E71F63)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6835,7 +6979,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#903A99"
+                testID="colorButton.#E71F63"
                 underlayColor="#fff"
               >
                 <View
@@ -6849,14 +6993,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#903A99",
+                        "backgroundColor": "#E71F63",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #65469F"
+                accessibilityLabel="Choose Purple (#8F3E97)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6864,7 +7009,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#65469F"
+                testID="colorButton.#8F3E97"
                 underlayColor="#fff"
               >
                 <View
@@ -6878,14 +7023,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#65469F",
+                        "backgroundColor": "#8F3E97",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #4452A6"
+                accessibilityLabel="Choose Deep Purple (#65499D)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6893,7 +7039,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#4452A6"
+                testID="colorButton.#65499D"
                 underlayColor="#fff"
               >
                 <View
@@ -6907,14 +7053,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#4452A6",
+                        "backgroundColor": "#65499D",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #1482C8"
+                accessibilityLabel="Choose Indigo (#4554A4)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6922,7 +7069,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#1482C8"
+                testID="colorButton.#4554A4"
                 underlayColor="#fff"
               >
                 <View
@@ -6936,14 +7083,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#1482C8",
+                        "backgroundColor": "#4554A4",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #2CA3DE"
+                accessibilityLabel="Choose Blue (#1770AB)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6951,7 +7099,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#2CA3DE"
+                testID="colorButton.#1770AB"
                 underlayColor="#fff"
               >
                 <View
@@ -6965,14 +7113,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#2CA3DE",
+                        "backgroundColor": "#1770AB",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #00BCD5"
+                accessibilityLabel="Choose Light Blue (#0B9BE3)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -6980,7 +7129,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#00BCD5"
+                testID="colorButton.#0B9BE3"
                 underlayColor="#fff"
               >
                 <View
@@ -6994,14 +7143,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#00BCD5",
+                        "backgroundColor": "#0B9BE3",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #009788"
+                accessibilityLabel="Choose Cyan (#06A3B7)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7009,7 +7159,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#009788"
+                testID="colorButton.#06A3B7"
                 underlayColor="#fff"
               >
                 <View
@@ -7023,14 +7173,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#009788",
+                        "backgroundColor": "#06A3B7",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #3FA142"
+                accessibilityLabel="Choose Teal (#009688)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7038,7 +7189,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#3FA142"
+                testID="colorButton.#009688"
                 underlayColor="#fff"
               >
                 <View
@@ -7052,14 +7203,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#3FA142",
+                        "backgroundColor": "#009688",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #89C540"
+                accessibilityLabel="Choose Green (#009606)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7067,7 +7219,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#89C540"
+                testID="colorButton.#009606"
                 underlayColor="#fff"
               >
                 <View
@@ -7081,14 +7233,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#89C540",
+                        "backgroundColor": "#009606",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FFC100"
+                accessibilityLabel="Choose Olive (#8D9900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7096,7 +7249,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FFC100"
+                testID="colorButton.#8D9900"
                 underlayColor="#fff"
               >
                 <View
@@ -7110,14 +7263,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FFC100",
+                        "backgroundColor": "#8D9900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FA9800"
+                accessibilityLabel="Choose Pumpkin (#D97900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7125,7 +7279,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FA9800"
+                testID="colorButton.#D97900"
                 underlayColor="#fff"
               >
                 <View
@@ -7139,14 +7293,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FA9800",
+                        "backgroundColor": "#D97900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2581B"
+                accessibilityLabel="Choose Orange (#FD5D10)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7154,7 +7309,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2581B"
+                testID="colorButton.#FD5D10"
                 underlayColor="#fff"
               >
                 <View
@@ -7168,14 +7323,15 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2581B",
+                        "backgroundColor": "#FD5D10",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2422E"
+                accessibilityLabel="Choose Pink (#F06291)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7183,7 +7339,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2422E"
+                testID="colorButton.#F06291"
                 underlayColor="#fff"
               >
                 <View
@@ -7197,7 +7353,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2422E",
+                        "backgroundColor": "#F06291",
                       },
                     ]
                   }
@@ -7205,6 +7361,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7234,6 +7391,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7263,6 +7421,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7292,6 +7451,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7321,6 +7481,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7350,6 +7511,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7379,6 +7541,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7742,7 +7905,8 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel="Choose #F26090"
+                accessibilityLabel="Choose Brick (#BD3C14)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7750,7 +7914,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F26090"
+                testID="colorButton.#BD3C14"
                 underlayColor="#fff"
               >
                 <View
@@ -7764,14 +7928,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F26090",
+                        "backgroundColor": "#BD3C14",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #EA1661"
+                accessibilityLabel="Choose Red (#FF2717)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7779,7 +7944,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#EA1661"
+                testID="colorButton.#FF2717"
                 underlayColor="#fff"
               >
                 <View
@@ -7793,14 +7958,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#EA1661",
+                        "backgroundColor": "#FF2717",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #903A99"
+                accessibilityLabel="Choose Magenta (#E71F63)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7808,7 +7974,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#903A99"
+                testID="colorButton.#E71F63"
                 underlayColor="#fff"
               >
                 <View
@@ -7822,14 +7988,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#903A99",
+                        "backgroundColor": "#E71F63",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #65469F"
+                accessibilityLabel="Choose Purple (#8F3E97)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7837,7 +8004,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#65469F"
+                testID="colorButton.#8F3E97"
                 underlayColor="#fff"
               >
                 <View
@@ -7851,14 +8018,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#65469F",
+                        "backgroundColor": "#8F3E97",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #4452A6"
+                accessibilityLabel="Choose Deep Purple (#65499D)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7866,7 +8034,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#4452A6"
+                testID="colorButton.#65499D"
                 underlayColor="#fff"
               >
                 <View
@@ -7880,14 +8048,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#4452A6",
+                        "backgroundColor": "#65499D",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #1482C8"
+                accessibilityLabel="Choose Indigo (#4554A4)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7895,7 +8064,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#1482C8"
+                testID="colorButton.#4554A4"
                 underlayColor="#fff"
               >
                 <View
@@ -7909,14 +8078,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#1482C8",
+                        "backgroundColor": "#4554A4",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #2CA3DE"
+                accessibilityLabel="Choose Blue (#1770AB)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7924,7 +8094,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#2CA3DE"
+                testID="colorButton.#1770AB"
                 underlayColor="#fff"
               >
                 <View
@@ -7938,14 +8108,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#2CA3DE",
+                        "backgroundColor": "#1770AB",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #00BCD5"
+                accessibilityLabel="Choose Light Blue (#0B9BE3)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7953,7 +8124,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#00BCD5"
+                testID="colorButton.#0B9BE3"
                 underlayColor="#fff"
               >
                 <View
@@ -7967,14 +8138,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#00BCD5",
+                        "backgroundColor": "#0B9BE3",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #009788"
+                accessibilityLabel="Choose Cyan (#06A3B7)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -7982,7 +8154,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#009788"
+                testID="colorButton.#06A3B7"
                 underlayColor="#fff"
               >
                 <View
@@ -7996,14 +8168,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#009788",
+                        "backgroundColor": "#06A3B7",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #3FA142"
+                accessibilityLabel="Choose Teal (#009688)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8011,7 +8184,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#3FA142"
+                testID="colorButton.#009688"
                 underlayColor="#fff"
               >
                 <View
@@ -8025,14 +8198,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#3FA142",
+                        "backgroundColor": "#009688",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #89C540"
+                accessibilityLabel="Choose Green (#009606)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8040,7 +8214,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#89C540"
+                testID="colorButton.#009606"
                 underlayColor="#fff"
               >
                 <View
@@ -8054,14 +8228,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#89C540",
+                        "backgroundColor": "#009606",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FFC100"
+                accessibilityLabel="Choose Olive (#8D9900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8069,7 +8244,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FFC100"
+                testID="colorButton.#8D9900"
                 underlayColor="#fff"
               >
                 <View
@@ -8083,14 +8258,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FFC100",
+                        "backgroundColor": "#8D9900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FA9800"
+                accessibilityLabel="Choose Pumpkin (#D97900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8098,7 +8274,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FA9800"
+                testID="colorButton.#D97900"
                 underlayColor="#fff"
               >
                 <View
@@ -8112,14 +8288,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FA9800",
+                        "backgroundColor": "#D97900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2581B"
+                accessibilityLabel="Choose Orange (#FD5D10)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8127,7 +8304,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2581B"
+                testID="colorButton.#FD5D10"
                 underlayColor="#fff"
               >
                 <View
@@ -8141,14 +8318,15 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2581B",
+                        "backgroundColor": "#FD5D10",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2422E"
+                accessibilityLabel="Choose Pink (#F06291)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8156,7 +8334,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2422E"
+                testID="colorButton.#F06291"
                 underlayColor="#fff"
               >
                 <View
@@ -8170,7 +8348,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2422E",
+                        "backgroundColor": "#F06291",
                       },
                     ]
                   }
@@ -8178,6 +8356,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8207,6 +8386,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8236,6 +8416,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8265,6 +8446,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8294,6 +8476,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8323,6 +8506,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8352,6 +8536,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8718,7 +8903,8 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel="Choose #F26090"
+                accessibilityLabel="Choose Brick (#BD3C14)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8726,7 +8912,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F26090"
+                testID="colorButton.#BD3C14"
                 underlayColor="#fff"
               >
                 <View
@@ -8740,14 +8926,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F26090",
+                        "backgroundColor": "#BD3C14",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #EA1661"
+                accessibilityLabel="Choose Red (#FF2717)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8755,7 +8942,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#EA1661"
+                testID="colorButton.#FF2717"
                 underlayColor="#fff"
               >
                 <View
@@ -8769,14 +8956,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#EA1661",
+                        "backgroundColor": "#FF2717",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #903A99"
+                accessibilityLabel="Choose Magenta (#E71F63)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8784,7 +8972,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#903A99"
+                testID="colorButton.#E71F63"
                 underlayColor="#fff"
               >
                 <View
@@ -8798,14 +8986,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#903A99",
+                        "backgroundColor": "#E71F63",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #65469F"
+                accessibilityLabel="Choose Purple (#8F3E97)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8813,7 +9002,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#65469F"
+                testID="colorButton.#8F3E97"
                 underlayColor="#fff"
               >
                 <View
@@ -8827,14 +9016,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#65469F",
+                        "backgroundColor": "#8F3E97",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #4452A6"
+                accessibilityLabel="Choose Deep Purple (#65499D)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8842,7 +9032,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#4452A6"
+                testID="colorButton.#65499D"
                 underlayColor="#fff"
               >
                 <View
@@ -8856,14 +9046,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#4452A6",
+                        "backgroundColor": "#65499D",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #1482C8"
+                accessibilityLabel="Choose Indigo (#4554A4)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8871,7 +9062,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#1482C8"
+                testID="colorButton.#4554A4"
                 underlayColor="#fff"
               >
                 <View
@@ -8885,14 +9076,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#1482C8",
+                        "backgroundColor": "#4554A4",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #2CA3DE"
+                accessibilityLabel="Choose Blue (#1770AB)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8900,7 +9092,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#2CA3DE"
+                testID="colorButton.#1770AB"
                 underlayColor="#fff"
               >
                 <View
@@ -8914,14 +9106,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#2CA3DE",
+                        "backgroundColor": "#1770AB",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #00BCD5"
+                accessibilityLabel="Choose Light Blue (#0B9BE3)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8929,7 +9122,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#00BCD5"
+                testID="colorButton.#0B9BE3"
                 underlayColor="#fff"
               >
                 <View
@@ -8943,14 +9136,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#00BCD5",
+                        "backgroundColor": "#0B9BE3",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #009788"
+                accessibilityLabel="Choose Cyan (#06A3B7)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8958,7 +9152,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#009788"
+                testID="colorButton.#06A3B7"
                 underlayColor="#fff"
               >
                 <View
@@ -8972,14 +9166,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#009788",
+                        "backgroundColor": "#06A3B7",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #3FA142"
+                accessibilityLabel="Choose Teal (#009688)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -8987,7 +9182,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#3FA142"
+                testID="colorButton.#009688"
                 underlayColor="#fff"
               >
                 <View
@@ -9001,14 +9196,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#3FA142",
+                        "backgroundColor": "#009688",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #89C540"
+                accessibilityLabel="Choose Green (#009606)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -9016,7 +9212,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#89C540"
+                testID="colorButton.#009606"
                 underlayColor="#fff"
               >
                 <View
@@ -9030,14 +9226,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#89C540",
+                        "backgroundColor": "#009606",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FFC100"
+                accessibilityLabel="Choose Olive (#8D9900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -9045,7 +9242,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FFC100"
+                testID="colorButton.#8D9900"
                 underlayColor="#fff"
               >
                 <View
@@ -9059,14 +9256,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FFC100",
+                        "backgroundColor": "#8D9900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #FA9800"
+                accessibilityLabel="Choose Pumpkin (#D97900)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -9074,7 +9272,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#FA9800"
+                testID="colorButton.#D97900"
                 underlayColor="#fff"
               >
                 <View
@@ -9088,14 +9286,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#FA9800",
+                        "backgroundColor": "#D97900",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2581B"
+                accessibilityLabel="Choose Orange (#FD5D10)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -9103,7 +9302,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2581B"
+                testID="colorButton.#FD5D10"
                 underlayColor="#fff"
               >
                 <View
@@ -9117,14 +9316,15 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2581B",
+                        "backgroundColor": "#FD5D10",
                       },
                     ]
                   }
                 />
               </TouchableHighlight>
               <TouchableHighlight
-                accessibilityLabel="Choose #F2422E"
+                accessibilityLabel="Choose Pink (#F06291)"
+                accessible={true}
                 onPress={[Function]}
                 style={
                   Object {
@@ -9132,7 +9332,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                     "margin": 8,
                   }
                 }
-                testID="colorButton.#F2422E"
+                testID="colorButton.#F06291"
                 underlayColor="#fff"
               >
                 <View
@@ -9146,7 +9346,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                         "width": 48,
                       },
                       Object {
-                        "backgroundColor": "#F2422E",
+                        "backgroundColor": "#F06291",
                       },
                     ]
                   }
@@ -9154,6 +9354,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -9183,6 +9384,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -9212,6 +9414,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -9241,6 +9444,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -9270,6 +9474,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -9299,6 +9504,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {
@@ -9328,6 +9534,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
               </TouchableHighlight>
               <TouchableHighlight
                 accessibilityLabel="Choose #FFFFFF00"
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Object {

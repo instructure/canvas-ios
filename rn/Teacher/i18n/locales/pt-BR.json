@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "A conta não tem Termos de Uso"
   },
-  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Agir como\" é essencialmente fazer logon como este usuário sem uma senha. Você poderá realizar qualquer ação como se você fosse esse usuário, e será como se esse usuário estivesse agindo para os outros usuários. Contudo, logs de auditoria registram o fato de que você era a pessoa que realizou as ações em nome desse usuário."
-  },
   "act_as_user_d7ef0e48": {
     "message": "Agir como Usuário"
   },
@@ -493,9 +490,6 @@
   },
   "display_grade_as_c165e9a6": {
     "message": "Exibir nota como..."
-  },
-  "domain_3b54c511": {
-    "message": "Domínio"
   },
   "done_54e3d4b6": {
     "message": "Feito"
@@ -1523,9 +1517,6 @@
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "Houve um erro ao carregar este anexo."
   },
-  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
-    "message": "Houve um erro com Agir como usuário. Por favor, tente novamente mais tarde."
-  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Houve um problema ao carregar suas mensagens."
   },
@@ -1694,9 +1685,6 @@
   },
   "use_camera_47a0387b": {
     "message": "Usar câmera"
-  },
-  "user_id_bcace870": {
-    "message": "ID de Usuário"
   },
   "video_b9f27375": {
     "message": "Vídeo"

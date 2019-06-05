@@ -29,7 +29,6 @@ extension AppDelegate: RCTBridgeDelegate {
             NotificationKitController.setupForPushNotifications(delegate: self)
 
             let controller = rootViewController(session)
-            self.addClearCacheGesture(controller.view)
             controller.view.layoutIfNeeded()
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 window.rootViewController = controller

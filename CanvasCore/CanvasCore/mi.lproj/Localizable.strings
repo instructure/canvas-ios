@@ -56,9 +56,6 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Ngā ngana e whakāetia ana";
 
-/* Default error message displayed when a file fails to upload */
-"An error occured, please try again." = "He hapa i puta, tēnā ngana anō";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "He hapa ohorere i puta";
 

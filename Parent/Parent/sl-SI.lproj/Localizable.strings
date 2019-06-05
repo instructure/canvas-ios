@@ -76,6 +76,9 @@
 /* Close Button Title */
 "Close" = "Zapri";
 
+/* No comment provided by engineer. */
+"Close App" = "Zapri aplikacijo";
+
 /* Course Announcement Description */
 "Course announcements" = "Obvestila o predmetu";
 
@@ -238,6 +241,9 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "Pogoji uporabe";
 
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikacija se mora znova zagnati, da lahko uporabi nove jezikovne nastavitve. Ponovno zaženite aplikacijo.";
+
 /* Error message */
 "There are no actions for this item" = "Pri tem elementu ni dejanj.";
 
@@ -256,11 +262,17 @@
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "Predmeti tega študenta morda še niso objavljeni.";
 
+/* No comment provided by engineer. */
+"Trouble logging in" = "Težave pri prijavi";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "Neznano";
 
 /* No comment provided by engineer. */
 "Unread" = "Neprebrano";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Posodobljene nastavitve jezika";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "Ogled vodnikov po sistemu Canvas";

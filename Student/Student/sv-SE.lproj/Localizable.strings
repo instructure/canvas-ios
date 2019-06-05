@@ -32,6 +32,9 @@
 "Courses" = "Kurser";
 
 /* No comment provided by engineer. */
+"Custom Grade" = "Anpassat betyg";
+
+/* No comment provided by engineer. */
 "Dashboard" = "Översikt";
 
 /* No comment provided by engineer. */
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Filer (%d)";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
 
 /* No comment provided by engineer. */
 "Grade" = "Omdöme";
@@ -126,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Lämna in uppgift igen";
+
+/* No comment provided by engineer. */
+"Retry" = "Försök igen";
 
 /* No comment provided by engineer. */
 "Rubric" = "Matris";
@@ -194,13 +203,13 @@
 "Updated Language Settings" = "Uppdaterade språkinställningar";
 
 /* No comment provided by engineer. */
+"Uploading" = "Laddar upp";
+
+/* No comment provided by engineer. */
 "View Discussion" = "Visa diskussion";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Visa fil %1$@ %2$@";
-
-/* No comment provided by engineer. */
-"View submission attempt %d" = "Visa inlämningsförsök %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Webbplatsadress";

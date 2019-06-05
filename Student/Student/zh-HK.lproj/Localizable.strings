@@ -32,6 +32,9 @@
 "Courses" = "課程";
 
 /* No comment provided by engineer. */
+"Custom Grade" = "自定義評分";
+
+/* No comment provided by engineer. */
 "Dashboard" = "控制面板";
 
 /* No comment provided by engineer. */
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "檔案（%d）";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
 
 /* No comment provided by engineer. */
 "Grade" = "評分";
@@ -126,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "重新提交作業";
+
+/* No comment provided by engineer. */
+"Retry" = "重試";
 
 /* No comment provided by engineer. */
 "Rubric" = "評分標準";
@@ -194,13 +203,13 @@
 "Updated Language Settings" = "已更新語言設定";
 
 /* No comment provided by engineer. */
+"Uploading" = "正在上傳";
+
+/* No comment provided by engineer. */
 "View Discussion" = "檢視討論";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "檢視檔案%1$@%2$@";
-
-/* No comment provided by engineer. */
-"View submission attempt %d" = "檢視提交項目的嘗試%d";
 
 /* No comment provided by engineer. */
 "Website Address" = "網站位址";

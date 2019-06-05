@@ -272,8 +272,7 @@
 /* No comment provided by engineer. */
 "Cache cleared" = "Cache geleert";
 
-/* Calendar landing page title
-   Calendar page title */
+/* Calendar page title */
 "Calendar" = "Kalender";
 
 /* No comment provided by engineer. */
@@ -400,7 +399,7 @@
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "Kursprogramm";
 
-/* Courses landing page title */
+/* Courses page title */
 "Courses" = "Kurse";
 
 /* cancel folder creation */
@@ -767,7 +766,7 @@
 "Media type selector. %@" = "Medientyp-Selector. %@";
 
 /* No comment provided by engineer. */
-"Message everyone separately, or add everyone to a group conversation?" = "Jeden einzeln benachrichtigen oder jeden einem Gruppengespräch hinzufügen?\n";
+"Message everyone separately, or add everyone to a group conversation?" = "Jeden einzeln benachrichtigen oder jeden einem Gruppengespräch hinzufügen?";
 
 /* Add message button */
 "Message Instructor" = "Dem Unterrichtenden eine Nachricht senden";
@@ -775,7 +774,9 @@
 /* notification that a message has been sent succesfully */
 "Message Sent." = "Nachricht gesendet.";
 
-/* Messages landing page title */
+/* Messages tab title
+   messages title
+   The name of the messages tab */
 "Messages" = "Nachrichten";
 
 /* Warnging for taking quizzes on a mobile device */
@@ -1339,9 +1340,6 @@
 
 /* Title of the Todo screen */
 "To Do" = "To Do";
-
-/* To-Do List landing page title */
-"To-Do List" = "To-Do Liste";
 
 /* No comment provided by engineer. */
 "To:" = "An:";

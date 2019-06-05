@@ -25,9 +25,6 @@ open class CoreWebView: WKWebView {
 
     @IBInspectable public var autoresizesHeight: Bool = false
     public var navigation = Navigation.withinWebView
-    private lazy var messagePasser: MessagePasser = {
-        return MessagePasser(webView: self)
-    }()
 
     public static let processPool = WKProcessPool()
 
@@ -46,9 +43,15 @@ open class CoreWebView: WKWebView {
         customUserAgent = UserAgent.safari.description
         navigationDelegate = self
 
-        let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-        configuration.userContentController.addUserScript(script)
-        configuration.userContentController.add(messagePasser, name: "resize")
+        addScript(js)
+        handle("resize") { [weak self] message in
+            guard let self = self else { return }
+            if self.autoresizesHeight, let body = message.body as? [String: CGFloat], let height = body["height"],
+                let constraint = self.constraints.first(where: { $0.firstItem === self && $0.firstAttribute == .height }) {
+                constraint.constant = height
+                self.setNeedsLayout()
+            }
+        }
     }
 
     public var contentInputAccessoryView: UIView? {
@@ -173,34 +176,6 @@ open class CoreWebView: WKWebView {
             document.addEventListener('load', checkSize, true)
             checkSize()
         """
-    }
-
-    /// This works around a memory leak caused by the WKUserContentController keeping a strong reference to
-    /// message handlers. This has a weak reference back to the CoreWebView, breaking the cycle.
-    private class MessagePasser: NSObject, WKScriptMessageHandler {
-        weak var webView: CoreWebView?
-
-        init(webView: CoreWebView) {
-            self.webView = webView
-            super.init()
-        }
-
-        func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-            webView?.handleScriptMessage(message)
-        }
-    }
-
-    func handleScriptMessage(_ message: WKScriptMessage) {
-        switch message.name {
-        case "resize":
-            if autoresizesHeight, let body = message.body as? [String: CGFloat], let height = body["height"],
-                let constraint = constraints.first(where: { $0.firstItem === self && $0.firstAttribute == .height }) {
-                constraint.constant = height
-                setNeedsLayout()
-            }
-        default:
-            break
-        }
     }
 }
 

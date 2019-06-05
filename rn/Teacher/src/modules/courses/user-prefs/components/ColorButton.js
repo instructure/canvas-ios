@@ -27,6 +27,8 @@ import Images from '../../../../images/'
 
 type Props = {
   color: string,
+  colorName?: ?string,
+  hidden?: boolean,
   onPress: (color: string) => void,
   selected: boolean,
 }
@@ -39,8 +41,15 @@ export default class ColorButton extends Component<Props> {
   render () {
     return (
       <TouchableHighlight
+        accessible={this.props.hidden !== true}
         style={styles.button}
-        accessibilityLabel={i18n('Choose {color}', { color: this.props.color })}
+        accessibilityLabel={this.props.colorName
+          ? i18n('Choose {colorName} ({hexCode})', {
+            colorName: this.props.colorName,
+            hexCode: this.props.color,
+          })
+          : i18n('Choose {color}', { color: this.props.color })
+        }
         onPress={this.onPress}
         underlayColor='#fff'
         testID={`colorButton.${this.props.color}`}

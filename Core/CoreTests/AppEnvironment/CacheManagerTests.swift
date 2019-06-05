@@ -18,54 +18,85 @@ import XCTest
 @testable import Core
 
 class CacheManagerTests: CoreTestCase {
-    let manager = CacheManager()
+    let rnManifestURL = URL.documentsDirectory
+        .appendingPathComponent("RCTAsyncLocalStorage_V1")
+        .appendingPathComponent("manifest.json")
+
+    var backupEntries: Set<KeychainEntry>!
+    var backupManifest: Data?
+
+    override func setUp() {
+        super.setUp()
+        backupEntries = Keychain.entries
+        backupManifest = try? Data(contentsOf: rnManifestURL)
+    }
+
+    override func tearDown() {
+        super.tearDown()
+        Keychain.clearEntries()
+        for entry in backupEntries {
+            Keychain.addEntry(entry)
+        }
+        try? backupManifest?.write(to: rnManifestURL, options: .atomic)
+    }
 
     func write(_ string: String, in dir: URL) -> URL {
         let url = dir.appendingPathComponent("string.txt")
+        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         try! string.data(using: .utf8)!.write(to: url)
         return url
     }
 
-    func testDeleteCaches() {
-        let url = write("hello", in: .cachesDirectory)
-        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path))
-        manager.deleteCaches()
-        XCTAssertFalse(FileManager.default.fileExists(atPath: url.path))
+    func testBundleVersion() {
+        XCTAssertNotEqual(CacheManager.bundleVersion, 0)
     }
 
-    func testDeleteDocuments() {
-        let url = write("hello", in: .documentsDirectory)
-        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path))
-        manager.deleteDocuments()
-        XCTAssertFalse(FileManager.default.fileExists(atPath: url.path))
+    func testResetAppNotNecessary() {
+        UserDefaults.standard.setValue(false, forKey: "reset_cache_on_next_launch")
+        CacheManager.resetAppIfNecessary()
+        XCTAssertEqual(UserDefaults.standard.dictionaryRepresentation()["reset_cache_on_next_launch"] as? Bool, false)
     }
 
-    func testDeleteAll() {
-        let now = Date()
-        Clock.mockNow(now)
+    func testResetAppNecessary() {
+        UserDefaults.standard.setValue(true, forKey: "reset_cache_on_next_launch")
+        let doc = write("doc", in: .documentsDirectory)
+        Keychain.addEntry(KeychainEntry.make())
+        CacheManager.resetAppIfNecessary()
+        XCTAssertNil(UserDefaults.standard.dictionaryRepresentation()["reset_cache_on_next_launch"])
+        XCTAssertFalse(FileManager.default.fileExists(atPath: doc.path))
+        XCTAssert(Keychain.entries.isEmpty)
+    }
+
+    func testClearNoNeeded() {
+        UserDefaults.standard.set(CacheManager.bundleVersion, forKey: "lastDeletedAt")
         let cache = write("cache", in: .cachesDirectory)
-        let document = write("doc", in: .documentsDirectory)
+        CacheManager.clearIfNeeded()
         XCTAssertTrue(FileManager.default.fileExists(atPath: cache.path))
-        XCTAssertTrue(FileManager.default.fileExists(atPath: document.path))
-        manager.deleteAll()
-        XCTAssertFalse(FileManager.default.fileExists(atPath: cache.path))
-        XCTAssertFalse(FileManager.default.fileExists(atPath: document.path))
-        XCTAssertEqual(manager.lastDeletedAt, now)
+        try? FileManager.default.removeItem(at: cache)
     }
 
-    func testClearIfNeeded() {
-        let now = Date()
-        Clock.mockNow(now)
-        UserDefaults.standard.set(now, forKey: "lastDeletedAt")
+    func testClearNeeded() {
+        UserDefaults.standard.set(-1, forKey: "lastDeletedAt")
         let cache = write("cache", in: .cachesDirectory)
-        let document = write("doc", in: .documentsDirectory)
-        manager.clearIfNeeded()
-        XCTAssertTrue(FileManager.default.fileExists(atPath: cache.path))
-        XCTAssertTrue(FileManager.default.fileExists(atPath: document.path))
-        UserDefaults.standard.removeObject(forKey: "lastDeletedAt")
-        manager.clearIfNeeded()
+        let doc = write("doc", in: .documentsDirectory)
+        CacheManager.clearIfNeeded()
         XCTAssertFalse(FileManager.default.fileExists(atPath: cache.path))
-        XCTAssertFalse(FileManager.default.fileExists(atPath: document.path))
-        XCTAssertEqual(manager.lastDeletedAt, now)
+        XCTAssertTrue(FileManager.default.fileExists(atPath: doc.path))
+        XCTAssertEqual(UserDefaults.standard.integer(forKey: "lastDeletedAt"), CacheManager.bundleVersion)
+        try? FileManager.default.removeItem(at: doc)
+    }
+
+    func testClearRNAsyncStorage() {
+        let asyncStorage = URL.documentsDirectory.appendingPathComponent("RCTAsyncLocalStorage_V1")
+        try? FileManager.default.createDirectory(at: asyncStorage, withIntermediateDirectories: true)
+        try! """
+            { "speed-grader-tutorial": "preserved", "something-else": "removed" }
+        """.data(using: .utf8)?.write(to: rnManifestURL)
+        let extra = write("extra", in: asyncStorage)
+        CacheManager.clearRNAsyncStorage()
+        let json = (try? Data(contentsOf: rnManifestURL)).flatMap { try? JSONSerialization.jsonObject(with: $0) } as? [String: Any]
+        XCTAssertFalse(FileManager.default.fileExists(atPath: extra.path))
+        XCTAssertEqual(json?["speed-grader-tutorial"] as? String, "preserved")
+        XCTAssertNil(json?["something-else"])
     }
 }

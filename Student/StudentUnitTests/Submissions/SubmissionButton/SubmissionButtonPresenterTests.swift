@@ -76,6 +76,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         presenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: "1")
         presenter.assignment = Assignment.make(from: .make(submission: .make()))
         presenter.fileUpload.uploader = fileUploader
+        presenter.arcID = .none
     }
 
     func testButtonText() {
@@ -95,6 +96,11 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         a.submissionTypes = [ .external_tool ]
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil), "Launch External Tool")
 
+        presenter.arcID = .pending
+        a.submissionTypes = [.online_upload]
+        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil))
+
+        presenter.arcID = .none
         a.submissionTypes = [ .online_quiz ]
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: Quiz.make()), "Take Quiz")
 
@@ -121,9 +127,18 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         XCTAssert(router.calls.isEmpty)
     }
 
+    func testSubmitAssignmentChooseArc() {
+        let a = Assignment.make(from: .make(submission_types: [ .online_upload ]))
+        presenter.arcID = .some("1")
+        presenter.submitAssignment(a, button: button)
+        let alert = view.presented as? UIAlertController
+        XCTAssertNotNil(alert)
+        XCTAssertEqual(alert?.actions.count, 3)
+    }
+
     func testSubmitTypeMissingSubmission() {
         let a = Assignment.make(from: .make(submission: nil))
-        presenter.submitType(.online_text_entry, for: a)
+        presenter.submitType(.online_text_entry, for: a, button: UIView())
         XCTAssertNil(view.presented)
         XCTAssert(router.calls.isEmpty)
     }
@@ -133,15 +148,15 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
             discussion_topic: .make(html_url: URL(string: "/discussion"))
         ))
         var asyncDone = expectation(description: "async task complete")
-        presenter.submitType(.external_tool, for: a)
+        presenter.submitType(.external_tool, for: a, button: UIView())
         DispatchQueue.main.async { asyncDone.fulfill() }
         wait(for: [asyncDone], timeout: 1)
         XCTAssert(router.viewControllerCalls.isEmpty)
 
         let request = GetSessionlessLaunchURLRequest(context: ContextModel(.course, id: "1"), id: nil, url: nil, assignmentID: "1", moduleItemID: nil, launchType: .assessment)
-        api.mock(request, value: APIGetSessionlessLaunchResponse(id: "", name: "", url: URL(string: "https://instructure.com")!))
+        api.mock(request, value: APIGetSessionlessLaunchResponse(url: URL(string: "https://instructure.com")!))
         asyncDone = expectation(description: "async task complete")
-        presenter.submitType(.external_tool, for: a)
+        presenter.submitType(.external_tool, for: a, button: UIView())
         DispatchQueue.main.async { asyncDone.fulfill() }
         wait(for: [asyncDone], timeout: 1)
         XCTAssert(router.viewControllerCalls.first?.0 is SFSafariViewController)
@@ -150,47 +165,56 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     func testSubmitTypeDiscussion() {
         let url = URL(string: "/discussion")!
         let a = Assignment.make(from: .make(discussion_topic: .make()))
-        presenter.submitType(.discussion_topic, for: a)
+        presenter.submitType(.discussion_topic, for: a, button: UIView())
         XCTAssert(router.calls.isEmpty)
 
         a.discussionTopic?.htmlUrl = url
-        presenter.submitType(.discussion_topic, for: a)
+        presenter.submitType(.discussion_topic, for: a, button: UIView())
         XCTAssert(router.lastRoutedTo(URL(string: "/discussion")!))
     }
 
     func testSubmitTypeMedia() {
         let a = Assignment.make()
-        presenter.submitType(.media_recording, for: a)
+        presenter.submitType(.media_recording, for: a, button: UIView())
         XCTAssert(view.presented is UIAlertController)
     }
 
     func testSubmitTypeText() {
         let a = Assignment.make()
-        presenter.submitType(.online_text_entry, for: a)
+        presenter.submitType(.online_text_entry, for: a, button: UIView())
         XCTAssert(router.lastRoutedTo(Route.assignmentTextSubmission(courseID: "1", assignmentID: "1", userID: "1")))
     }
 
     func testSubmitTypeQuiz() {
         let a = Assignment.make()
-        presenter.submitType(.online_quiz, for: a)
+        presenter.submitType(.online_quiz, for: a, button: UIView())
         XCTAssert(router.calls.isEmpty) // Not done yet
     }
 
     func testSubmitTypeUpload() {
         let a = Assignment.make()
-        presenter.submitType(.online_upload, for: a)
+        presenter.submitType(.online_upload, for: a, button: UIView())
         XCTAssert(view.presented is UINavigationController)
     }
 
     func testSubmitTypeURL() {
         let a = Assignment.make()
-        presenter.submitType(.online_url, for: a)
+        presenter.submitType(.online_url, for: a, button: UIView())
         XCTAssert(router.lastRoutedTo(Route.assignmentUrlSubmission(courseID: "1", assignmentID: "1", userID: "1")))
+    }
+
+    func testSubmitArc() {
+        let a = Assignment.make()
+        presenter.arcID = .some("4")
+        presenter.submitArc(assignment: a)
+        let nav = view.presented as? UINavigationController
+        XCTAssertNotNil(nav)
+        XCTAssertNotNil(nav?.topViewController as? ArcSubmissionViewController)
     }
 
     func testSubmitTypeBad() {
         let a = Assignment.make()
-        presenter.submitType(.on_paper, for: a)
+        presenter.submitType(.on_paper, for: a, button: UIView())
         XCTAssertNil(view.presented)
         XCTAssert(router.calls.isEmpty)
     }
@@ -244,7 +268,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     }
 
     func testPickMediaRecordingType() {
-        presenter.pickMediaRecordingType()
+        presenter.pickMediaRecordingType(button: UIView())
         XCTAssert(view.presented is UIAlertController)
     }
 

@@ -14,7 +14,7 @@
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot;は &quot;%2$@&quot;の一部としてロックされています";
 
 /* Message for unsupported tab coming soon */
-"%@ is coming soon!" = "%@は近日公開！\n ";
+"%@ is coming soon!" = "%@は近日公開！ ";
 
 /* local notification countdown alert */
 "%@ is due in %@" = "%1$@ の期限は %2$@ です";

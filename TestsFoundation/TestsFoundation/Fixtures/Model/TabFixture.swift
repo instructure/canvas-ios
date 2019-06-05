@@ -26,7 +26,7 @@ extension Tab {
         in db: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Tab {
         let model: Tab = db.insert()
-        try! model.save(api, in: db, context: context)
+        model.save(api, in: db, context: context)
         try! db.save()
         return model
     }

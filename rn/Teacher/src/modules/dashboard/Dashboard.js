@@ -434,6 +434,7 @@ export class Dashboard extends React.Component<Props, State> {
         rightBarButtons: [{
           title: i18n('Edit'),
           testID: 'dashboard.edit-btn',
+          accessibilityLabel: i18n('Edit Dashboard'),
           action: this.showFavoritesList,
           disabled: !this.props.totalCourseCount || Boolean(this.props.pending),
         }],

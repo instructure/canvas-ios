@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
 
 public class GetQuiz: APIUseCase {
@@ -39,7 +40,7 @@ public class GetQuiz: APIUseCase {
         return .where(#keyPath(Quiz.id), equals: quizID)
     }
 
-    public func write(response: APIQuiz?, urlResponse: URLResponse?, to client: PersistenceClient) {
+    public func write(response: APIQuiz?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         let model = Quiz.save(response, in: client)
         model.courseID = courseID

@@ -23,9 +23,9 @@ class GetGroupTest: CoreTestCase {
         let response = APIGroup.make()
 
         let getGroup = GetGroup(groupID: "1", env: environment)
-        try! getGroup.write(response: response, urlResponse: nil, to: databaseClient)
+        getGroup.write(response: response, urlResponse: nil, to: databaseClient)
 
-        let groups: [Group] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
+        let groups: [Group] = databaseClient.fetch()
         XCTAssertEqual(groups.count, 1)
         XCTAssertEqual(groups.first?.id, response.id)
         XCTAssertEqual(groups.first?.name, response.name)
@@ -36,7 +36,7 @@ class GetGroupTest: CoreTestCase {
         let response = APIGroup.make(id: "1", name: "New Name")
 
         let getGroup = GetGroup(groupID: "1", env: environment)
-        try! getGroup.write(response: response, urlResponse: nil, to: databaseClient)
+        getGroup.write(response: response, urlResponse: nil, to: databaseClient)
         databaseClient.refresh()
         XCTAssertEqual(group.name, "New Name")
     }
@@ -50,7 +50,7 @@ class GetGroupTest: CoreTestCase {
         let group = Group.make(from: .make(id: "1", name: "Old Name"))
         let getGroup = GetGroup(groupID: "1", env: environment)
 
-        let groups: [Group] = databaseClient.fetch(predicate: getGroup.scope.predicate, sortDescriptors: getGroup.scope.order)
+        let groups: [Group] = databaseClient.fetch(getGroup.scope.predicate, sortDescriptors: getGroup.scope.order)
 
         XCTAssertEqual(groups.count, 1)
         XCTAssertEqual(groups.first, group)

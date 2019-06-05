@@ -32,6 +32,7 @@ describe('AccessIcon', () => {
       showAccessIcon: true,
       disableAppSpecificChecks: true,
     }
+    app.setCurrentApp('teacher')
   })
 
   it('shows published when not locked or hidden', () => {

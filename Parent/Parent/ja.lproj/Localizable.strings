@@ -76,6 +76,9 @@
 /* Close Button Title */
 "Close" = "閉じる";
 
+/* No comment provided by engineer. */
+"Close App" = "アプリを閉じる";
+
 /* Course Announcement Description */
 "Course announcements" = "コースのアナウンスメント";
 
@@ -238,6 +241,9 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "利用規約";
 
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "新しい言語設定を使用するには、アプリの再起動が必要です。アプリを再起動してください。";
+
 /* Error message */
 "There are no actions for this item" = "このアイテムへのアクションはありません";
 
@@ -256,11 +262,17 @@
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "この受講生のコースはまだ公開されていないかもしれません。";
 
+/* No comment provided by engineer. */
+"Trouble logging in" = "ログインできません";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "未知の";
 
 /* No comment provided by engineer. */
 "Unread" = "未読";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "更新された言語設定";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "Canvas ガイドを見る";

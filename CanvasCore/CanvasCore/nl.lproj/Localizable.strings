@@ -56,9 +56,6 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Toegestaan aantal pogingen";
 
-/* Default error message displayed when a file fails to upload */
-"An error occured, please try again." = "Er is een fout opgetreden. Probeer het nogmaals.";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Er is een onverwachte fout opgetreden.";
 

@@ -133,8 +133,8 @@ extension Session {
     }
 
     public func resumeTask(_ task: URLSessionTask) -> SignalProducer<(Data, URLResponse), NSError> {
-        return SignalProducer { observer, disposable in
-            self.completionHandlerByTask[task] = { [weak self] task, error in
+        return SignalProducer { [weak self] observer, disposable in
+            self?.completionHandlerByTask[task] = { task, error in
                 if let data = self?.responseDataByTask[task], let response = task.response {
                     observer.send(value: (data, response))
                     observer.sendCompleted()

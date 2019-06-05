@@ -68,6 +68,7 @@ export default class AccessIcon extends React.Component<Props> {
       iconStyle = styles.unpublishedIcon
       accessibilityLabel = i18n('Not Published')
     }
+    if (!isTeacher()) { accessibilityLabel = '' }
     let isIcon = typeof this.props.image === 'number'
     return (
       <View style={styles.container} accessibilityLabel={accessibilityLabel}>

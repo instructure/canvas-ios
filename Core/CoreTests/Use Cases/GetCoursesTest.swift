@@ -25,9 +25,9 @@ class GetCoursesTest: CoreTestCase {
     func testItCreatesCourses() {
         let course = APICourse.make(id: "1", name: "Course 1")
         let getCourses = GetCourses()
-        try! getCourses.write(response: [course], urlResponse: nil, to: databaseClient)
+        getCourses.write(response: [course], urlResponse: nil, to: databaseClient)
 
-        let courses: [Course] = databaseClient.fetch(predicate: nil, sortDescriptors: nil)
+        let courses: [Course] = databaseClient.fetch()
         XCTAssertEqual(courses.count, 1)
         XCTAssertEqual(courses.first?.id, "1")
         XCTAssertEqual(courses.first?.name, "Course 1")
@@ -48,7 +48,7 @@ class GetCoursesTest: CoreTestCase {
         Course.make(from: .make(id: "2", name: "b", is_favorite: true))
         let d = Course.make(from: .make(id: "4", name: "d", is_favorite: false))
         let useCase = GetCourses(showFavorites: true)
-        let courses: [Course] = databaseClient.fetch(predicate: useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+        let courses: [Course] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
 
         XCTAssertFalse(d.isFavorite)
         XCTAssertEqual(courses.count, 3)
@@ -62,7 +62,7 @@ class GetCoursesTest: CoreTestCase {
         Course.make(from: .make(id: "2", name: "2", is_favorite: true))
 
         let useCase = GetCourses()
-        let courses: [Course] = databaseClient.fetch(predicate: useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+        let courses: [Course] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
 
         XCTAssertEqual(courses.count, 3)
         XCTAssertEqual(courses.first, a)

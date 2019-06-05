@@ -124,6 +124,7 @@ exports[`renders separated correctly 1`] = `
     a
   </Text>
   <Text
+    accessibilityLabel=""
     accessible={false}
     allowFontScaling={true}
     ellipsizeMode="tail"
@@ -183,6 +184,7 @@ exports[`renders separated correctly 1`] = `
     b
   </Text>
   <Text
+    accessibilityLabel=""
     accessible={false}
     allowFontScaling={true}
     ellipsizeMode="tail"

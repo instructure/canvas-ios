@@ -29,6 +29,7 @@ public class UploadFileComment {
     let submissionID: String
     let userID: String
     var task: URLSessionTask?
+    lazy var context = env.database.newBackgroundContext()
 
     private static var placeholderSuffix = 1
 
@@ -63,8 +64,8 @@ public class UploadFileComment {
         guard let session = env.currentSession else {
             return self.callback(nil, NSError.internalError()) // There should always be a current user.
         }
-        env.database.performBackgroundTask { client in
-            let placeholder: SubmissionComment = client.insert()
+        context.performAndWait {
+            let placeholder: SubmissionComment = self.context.insert()
             placeholder.authorAvatarURL = session.userAvatarURL
             placeholder.authorID = session.userID
             placeholder.authorName = session.userName
@@ -73,21 +74,27 @@ public class UploadFileComment {
             placeholder.id = "placeholder-\(UploadFileComment.placeholderSuffix)"
             placeholder.submissionID = self.submissionID
             do {
-                try client.save()
+                try self.context.save()
                 self.placeholderID = placeholder.id
                 UploadFileComment.placeholderSuffix += 1
-                let context = FileUploadContext.submissionComment(courseID: self.courseID, assignmentID: self.assignmentID)
-                self.uploadBatch.upload(to: context) { state in
-                    switch state {
-                    case .staged?, .uploading?, nil: break
-                    case let .completed(fileIDs: fileIDs)?:
-                        self.putComment(fileIDs: Array(fileIDs))
-                    case .failed(let error)?:
-                        self.callback(nil, error)
-                    }
-                }
             } catch {
                 self.callback(nil, error)
+            }
+        }
+        context.performAndWait {
+            let context = FileUploadContext.submissionComment(courseID: self.courseID, assignmentID: self.assignmentID)
+            self.uploadBatch.upload(to: context) { state in
+                // strongly retain self so that the caller does not have to retain this use case
+                // but to avoid a retain cycle we must call `uploadBatch.removeAllSubscribers()`
+                switch state {
+                case .staged?, .uploading?, nil: break
+                case let .completed(fileIDs: fileIDs)?:
+                    self.putComment(fileIDs: Array(fileIDs))
+                    self.uploadBatch.removeAllSubscribers()
+                case .failed(let error)?:
+                    self.callback(nil, error)
+                    self.uploadBatch.removeAllSubscribers()
+                }
             }
         }
     }
@@ -99,12 +106,12 @@ public class UploadFileComment {
             guard error == nil, let comment = data?.submission_comments?.last else {
                 return self.callback(nil, error)
             }
-            self.env.database.performBackgroundTask { client in
-                let comment = SubmissionComment.save(comment, forSubmission: self.submissionID, replacing: self.placeholderID, in: client)
+            self.context.performAndWait {
+                let comment = SubmissionComment.save(comment, forSubmission: self.submissionID, replacing: self.placeholderID, in: self.context)
                 var e: Error?
                 defer { self.callback(comment, e) }
                 do {
-                    try client.save()
+                    try self.context.save()
                 } catch {
                     e = error
                 }

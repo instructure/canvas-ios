@@ -17,7 +17,7 @@
 // @flow
 
 import React, { type Element, type ComponentType, Component } from 'react'
-import { SectionList } from 'react-native'
+import { SectionList, View, Text, StyleSheet, SafeAreaView } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
 import App from '../../app'
@@ -143,19 +143,24 @@ export class FavoritesList extends Component<Props> {
       <Screen
         navBarTitleColor={colors.darkText}
         navBarButtonColor={colors.link}
-        title={i18n('Edit Courses')}
+        title={i18n('Edit Dashboard')}
         customPageViewPath={'/courses'}
       >
-        <SectionList
-          refreshing={this.props.refreshing}
-          onRefresh={this.props.refresh}
-          stickySectionHeadersEnabled={false}
-          renderSectionHeader={this.renderHeader}
-          sections={sections}
-          renderItem={() => {}}
-        // this prop is only necessary because renderItem is not listed as an optional prop
-        // https://github.com/facebook/react-native/pull/17262
-        />
+        <SafeAreaView style={styles.container}>
+          <View style={styles.header}>
+            <Text style={styles.hearderText}>{i18n('Select which courses you would like to see on the Dashboard.')}</Text>
+          </View>
+          <SectionList
+            refreshing={this.props.refreshing}
+            onRefresh={this.props.refresh}
+            stickySectionHeadersEnabled={false}
+            renderSectionHeader={this.renderHeader}
+            sections={sections}
+            renderItem={() => {}}
+            // this prop is only necessary because renderItem is not listed as an optional prop
+            // https://github.com/facebook/react-native/pull/17262
+          />
+        </SafeAreaView>
       </Screen>
     )
   }
@@ -184,3 +189,17 @@ let Connected = connect(
   }
 )(FavoritesList)
 export default (Connected: FavoritesList)
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    backgroundColor: 'white',
+  },
+  header: {
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  hearderText: {
+    fontWeight: '500',
+  },
+})

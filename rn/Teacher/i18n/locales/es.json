@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "La cuenta no tiene Términos de uso"
   },
-  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Actuar como\" es esencialmente iniciar sesión como este usuario sin una contraseña. Podrá realizar cualquier acción como si fuese este usuario y desde el punto de vista de otros usuarios, como si este usuario las realizara. Sin embargo, los registros de auditoría indican que usted es quien realizó las acciones en representación de este usuario."
-  },
   "act_as_user_d7ef0e48": {
     "message": "Actuar en nombre de Usuario"
   },
@@ -493,9 +490,6 @@
   },
   "display_grade_as_c165e9a6": {
     "message": "Mostrar calificación como..."
-  },
-  "domain_3b54c511": {
-    "message": "Dominio"
   },
   "done_54e3d4b6": {
     "message": "Hecho"
@@ -1523,9 +1517,6 @@
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "Se produjo un error al cargar este archivo adjunto."
   },
-  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
-    "message": "Ocurrió un error al actuar como usuario. Por favor, inténtelo de nuevo más tarde."
-  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Hubo un problema al cargar sus mensajes."
   },
@@ -1694,9 +1685,6 @@
   },
   "use_camera_47a0387b": {
     "message": "Usar cámara"
-  },
-  "user_id_bcace870": {
-    "message": "ID de usuario"
   },
   "video_b9f27375": {
     "message": "Video"

@@ -32,7 +32,7 @@ class LoginStartKeychainEntryCell: UITableViewCell {
     func update(entry: KeychainEntry, delegate: LoginStartKeychainEntryDelegate) {
         self.entry = entry
         self.delegate = delegate
-        let identifier = "LoginStartKeychainEntryCell.\(entry.baseURL.host ?? "").\(entry.userID)"
+        let identifier = "LoginStartKeychainEntry.\(entry.baseURL.host ?? "").\(entry.userID)"
         self.accessibilityIdentifier = identifier
         avatarView?.name = entry.userName
         avatarView?.url = entry.userAvatarURL

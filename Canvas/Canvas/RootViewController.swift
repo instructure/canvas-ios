@@ -63,7 +63,8 @@ func rootViewController(_ session: Session) -> UIViewController {
 
 func MessagesTab() -> UIViewController {
     let vc = inboxTab()
-    vc.tabBarItem.image = .icon(.email)
+    vc.tabBarItem.image = .icon(.email, .line)
+    vc.tabBarItem.selectedImage = .icon(.email, .solid)
     return vc
 }
 
@@ -77,7 +78,8 @@ func EnrollmentsTab(session: Session) throws -> UIViewController {
     dashboardNav.applyDefaultBranding()
     dashboardSplit.viewControllers = [dashboardNav, emptyNav]
     dashboardSplit.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
-    dashboardSplit.tabBarItem.image = .icon(.course)
+    dashboardSplit.tabBarItem.image = .icon(.dashboard, .line)
+    dashboardSplit.tabBarItem.selectedImage = .icon(.dashboardCustomSolid)
     dashboardSplit.navigationItem.titleView = Brand.current.navBarTitleView()
     return dashboardSplit
 }

@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
 
 public class GetAssignment: APIUseCase {
@@ -41,13 +42,13 @@ public class GetAssignment: APIUseCase {
         return .where(#keyPath(Assignment.id), equals: assignmentID)
     }
 
-    public func write(response: APIAssignment?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+    public func write(response: APIAssignment?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else {
             return
         }
 
         let model: Assignment = client.fetch(scope.predicate).first ?? client.insert()
         let updateSubmission = include.contains(.submission)
-        try model.update(fromApiModel: response, in: client, updateSubmission: updateSubmission)
+        model.update(fromApiModel: response, in: client, updateSubmission: updateSubmission)
     }
 }

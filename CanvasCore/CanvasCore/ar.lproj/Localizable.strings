@@ -56,9 +56,6 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "المحاولات المسموح بها";
 
-/* Default error message displayed when a file fails to upload */
-"An error occured, please try again." = "حدث خطأ، يُرجى إعادة المحاولة.";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "حدث خطأ غير متوقع.";
 

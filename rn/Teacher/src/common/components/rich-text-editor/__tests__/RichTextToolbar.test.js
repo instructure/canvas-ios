@@ -16,7 +16,6 @@
 
 /* @flow */
 
-import { I18nManager } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
@@ -25,7 +24,6 @@ import explore from '../../../../../test/helpers/explore'
 
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('../ColorPicker', () => 'ColorPicker')
   .mock('LayoutAnimation', () => ({
     configureNext: jest.fn(),
     easeInEaseOut: jest.fn(),
@@ -51,20 +49,6 @@ describe('RichTextToolbar', () => {
     ).toMatchSnapshot()
   })
 
-  it('renders icons in RTL', () => {
-    I18nManager.isRTL = true
-    expect(
-      renderer.create(
-        <RichTextToolbar
-          {...defaultProps}
-          redo={jest.fn()}
-          undo={jest.fn()}
-        />
-      ).toJSON()
-    ).toMatchSnapshot()
-    I18nManager.isRTL = false
-  })
-
   it('handles undo', () => {
     const undo = jest.fn()
     const component = renderer.create(
@@ -88,9 +72,8 @@ describe('RichTextToolbar', () => {
     const component = renderer.create(
       <RichTextToolbar {...defaultProps} setTextColor={setTextColor} />
     )
-    pressItem(component, 'textColor')
-    const colorPicker: any = explore(component.toJSON()).query(({ type }) => type === 'ColorPicker')[0]
-    colorPicker.props.pickedColor('#fff')
+    pressItem(component, 'setTextColor')
+    component.getInstance()._pickColor('#fff')
     expect(setTextColor).toHaveBeenCalled()
   })
 
@@ -103,7 +86,7 @@ describe('RichTextToolbar', () => {
         active={['textColor:white', 'bold']}
       />
     )
-    pressItem(component, 'textColor')
+    pressItem(component, 'setTextColor')
     expect(component.toJSON()).toMatchSnapshot()
   })
 })

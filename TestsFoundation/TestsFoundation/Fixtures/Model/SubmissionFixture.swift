@@ -24,7 +24,7 @@ extension Submission {
         from api: APISubmission = .make(),
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Submission {
-        let model = try! Submission.save(api, in: context)
+        let model = Submission.save(api, in: context)
         try! context.save()
         return model
     }

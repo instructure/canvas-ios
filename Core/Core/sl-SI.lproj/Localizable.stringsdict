@@ -45,7 +45,7 @@
 	<key>g_out_of_g_points_possible</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Scored %g out of %#@points@ possible</string>
+		<string>Rezultat %g od možnih %#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -75,9 +75,9 @@
 			<key>few</key>
 			<string>%d points</string>
 			<key>one</key>
-			<string>%d point</string>
+			<string>%d točka</string>
 			<key>other</key>
-			<string>%d points</string>
+			<string>%d točk</string>
 			<key>two</key>
 			<string>%d points</string>
 		</dict>
@@ -85,7 +85,7 @@
 	<key>g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@točke@</string>
+		<string>%#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -145,7 +145,7 @@
 	<key>plural_points</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@točke@</string>
+		<string>%#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>

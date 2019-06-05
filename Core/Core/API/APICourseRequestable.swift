@@ -21,6 +21,12 @@ public struct GetCoursesRequest: APIRequestable {
     public typealias Response = [APICourse]
 
     let includeUnpublished: Bool
+    var perPage: Int
+
+    init(includeUnpublished: Bool, perPage: Int = 10) {
+        self.includeUnpublished = includeUnpublished
+        self.perPage = perPage
+    }
 
     public let path = "courses"
     public var query: [APIQueryItem] {
@@ -39,6 +45,7 @@ public struct GetCoursesRequest: APIRequestable {
                 "total_scores",
             ]),
             .array("state", state),
+            .value("per_page", String(perPage)),
         ]
     }
 }

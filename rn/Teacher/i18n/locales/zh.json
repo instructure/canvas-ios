@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "账户没有使用条款"
   },
-  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Act as\"实际上已经登录，因为该用户没有密码。您将能够使用该用户的身份执行任何操作，从其他用户的立场来看，这些操作仿佛是该用户执行的。但是，审计日志记录您是代表该用户执行操作的人。"
-  },
   "act_as_user_d7ef0e48": {
     "message": "临时代理用户"
   },
@@ -493,9 +490,6 @@
   },
   "display_grade_as_c165e9a6": {
     "message": "将评分显示为..."
-  },
-  "domain_3b54c511": {
-    "message": "域"
   },
   "done_54e3d4b6": {
     "message": "完成"
@@ -1523,9 +1517,6 @@
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "加载此附件时出错。"
   },
-  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
-    "message": "临时代理用户出错。请稍后再试。"
-  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "加载您的消息时出现问题。"
   },
@@ -1694,9 +1685,6 @@
   },
   "use_camera_47a0387b": {
     "message": "使用相机"
-  },
-  "user_id_bcace870": {
-    "message": "用户 ID"
   },
   "video_b9f27375": {
     "message": "视频"

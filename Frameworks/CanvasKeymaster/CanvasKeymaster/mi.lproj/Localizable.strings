@@ -29,9 +29,6 @@
 "Dismiss" = "Pana";
 
 /* No comment provided by engineer. */
-"Emergency" = "Mate Whawhati tata";
-
-/* No comment provided by engineer. */
 "enter a subject" = "Whakauru he kaupapa";
 
 /* Text view to enter the description of the ticket */
@@ -44,16 +41,10 @@
 "Extremely critical emergency" = "whawhati tata tino nui";
 
 /* No comment provided by engineer. */
-"I am stuck and can't get things done" = "Kei te raru ahau a kaore e taea ki te whakaoti mahi";
-
-/* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Ka taea e kore kia mea mahi ahau, kia hoki rongo ahau i a koutou";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "E hiahia āwhina ahau ēngari kaore kōhukihuki";
-
-/* No comment provided by engineer. */
-"Non-urgent help needed" = "He āwhina kaore i te akiaki e hiahiatia ana";
 
 /* No comment provided by engineer. */
 "OK" = "Ae";

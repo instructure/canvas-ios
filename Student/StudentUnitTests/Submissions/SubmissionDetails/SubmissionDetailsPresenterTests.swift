@@ -211,6 +211,14 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         XCTAssert(view.embedded is AVPlayerViewController)
     }
 
+    func testEmbedArc() {
+        Assignment.make()
+        Submission.make(from: .make(submission_type: .basic_lti_launch))
+        presenter.update()
+
+        XCTAssert(view.embedded is ExternalToolSubmissionContentViewController)
+    }
+
     func testEmbedNothing() {
         Assignment.make()
         presenter.update()
@@ -232,5 +240,22 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         presenter.submit(button: UIView())
 
         XCTAssertNotNil(view.presented)
+    }
+
+    func testArcIDNone() {
+        XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .pending)
+        Assignment.make()
+        Course.make()
+        presenter.viewIsReady()
+        XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .none)
+    }
+
+    func testArcIDSome() {
+        XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .pending)
+        Assignment.make()
+        Course.make()
+        ExternalTool.make(from: .make(id: "4", domain: "arc.instructure.com"), forCourse: "1")
+        presenter.viewIsReady()
+        XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .some("4"))
     }
 }

@@ -53,7 +53,7 @@
 	<key>g_out_of_g_points_possible</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Scored %g out of %#@points@ possible</string>
+		<string>تم تسجيل %g من إجمالي %#@points@ محتملة</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -89,9 +89,9 @@
 			<key>many</key>
 			<string>%d points</string>
 			<key>one</key>
-			<string>%d point</string>
+			<string>%d نقطة</string>
 			<key>other</key>
-			<string>%d points</string>
+			<string>%d من النقاط</string>
 			<key>two</key>
 			<string>%d points</string>
 			<key>zero</key>

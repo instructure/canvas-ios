@@ -176,6 +176,7 @@ export default class AttachmentView extends Component<Props, State> {
         drawUnderNavBar
         rightBarButtons={[{
           testID: 'attachment-view.share-btn',
+          accessibilityLabel: i18n('Share'),
           image: Images.share,
           action: this.share,
         }]}

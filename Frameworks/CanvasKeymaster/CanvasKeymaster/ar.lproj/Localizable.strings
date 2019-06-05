@@ -29,9 +29,6 @@
 "Dismiss" = "رفض";
 
 /* No comment provided by engineer. */
-"Emergency" = "الطوارئ";
-
-/* No comment provided by engineer. */
 "enter a subject" = "أدخل موضوعًا";
 
 /* Text view to enter the description of the ticket */
@@ -44,16 +41,10 @@
 "Extremely critical emergency" = "حالة طارئة حرجة للغاية";
 
 /* No comment provided by engineer. */
-"I am stuck and can't get things done" = "أنا عالق وليس بمقدوري أن أنجز المطلوب";
-
-/* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "لن أستطيع إنجاز أعمالي حتى تردون عليّ";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "أحتاج للمساعدة لكن الأمر ليس مستعجلاً";
-
-/* No comment provided by engineer. */
-"Non-urgent help needed" = "مطلوب مساعدة غير عاجلة";
 
 /* No comment provided by engineer. */
 "OK" = "موافق";

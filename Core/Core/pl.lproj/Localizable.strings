@@ -95,13 +95,22 @@
 "Done" = "Gotowe";
 
 /* No comment provided by engineer. */
+"End Act as User" = "Zakończ podszywanie się jako użytkownik";
+
+/* No comment provided by engineer. */
 "Error" = "Błąd";
 
 /* No comment provided by engineer. */
 "External Tool" = "Narzędzie zewnętrzne";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "Nie udało się zapisać obrazu";
+
+/* No comment provided by engineer. */
 "Failed upload" = "Nie udało się przesłać";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Nie udało się przesłać";
 
 /* No comment provided by engineer. */
 "File Upload" = "Prześlij plik";
@@ -209,6 +218,9 @@
 "No Due Date" = "Brak terminu";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "Nie odnaleziono obrazu z narzędzia wyboru obrazów";
+
+/* No comment provided by engineer. */
 "No Submission" = "Brak przesłanych zadań";
 
 /* No comment provided by engineer. */
@@ -314,6 +326,9 @@
 "Start recording" = "Rozpocznij nagrywanie";
 
 /* No comment provided by engineer. */
+"Stop acting as..." = "Zatrzymaj podszywanie się jako...";
+
+/* No comment provided by engineer. */
 "Stop recording" = "Zatrzymaj nagrywanie";
 
 /* No comment provided by engineer. */
@@ -354,6 +369,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Wystąpił błąd podczas podszywania. Spróbuj ponownie później.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "Pojawił się nieoczekiwany błąd, spróbuj ponownie.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Termin przesłania tego zadania upłynie %@";
@@ -414,4 +432,10 @@
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Należy najpierw zalogować się do konta Canvas w aplikacji Student.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Zatrzymasz podszywanie się jako %@ i powrócisz do swojego konta.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Zatrzymasz podszywanie się jako ten użytkownik i powrócisz do swojego konta.";
 

@@ -225,14 +225,12 @@ exports[`DiscussionsList renders discussions 1`] = `
           </Text>
         </View>
         <item>
-          <View
-            accessible={false}
-          >
+          <View>
             <View
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel="discussion 1"
+                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -518,6 +516,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                               2 Replies
                             </Text>
                             <Text
+                              accessibilityLabel=""
                               accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
@@ -644,14 +643,12 @@ exports[`DiscussionsList renders discussions 1`] = `
           </View>
         </item>
         <item>
-          <View
-            accessible={false}
-          >
+          <View>
             <View
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel="discussion 2"
+                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -937,6 +934,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                               2 Replies
                             </Text>
                             <Text
+                              accessibilityLabel=""
                               accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
@@ -1150,14 +1148,12 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
           </Text>
         </View>
         <item>
-          <View
-            accessible={false}
-          >
+          <View>
             <View
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel="discussion 1"
+                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -1410,6 +1406,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               2 Replies
                             </Text>
                             <Text
+                              accessibilityLabel=""
                               accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
@@ -1536,14 +1533,12 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
           </View>
         </item>
         <item>
-          <View
-            accessible={false}
-          >
+          <View>
             <View
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel="discussion 2"
+                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -1796,6 +1791,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               2 Replies
                             </Text>
                             <Text
+                              accessibilityLabel=""
                               accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
@@ -2009,14 +2005,12 @@ exports[`DiscussionsList renders in correct order 1`] = `
           </Text>
         </View>
         <item>
-          <View
-            accessible={false}
-          >
+          <View>
             <View
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel="First"
+                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -2302,6 +2296,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               2 Replies
                             </Text>
                             <Text
+                              accessibilityLabel=""
                               accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
@@ -2428,14 +2423,12 @@ exports[`DiscussionsList renders in correct order 1`] = `
           </View>
         </item>
         <item>
-          <View
-            accessible={false}
-          >
+          <View>
             <View
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel="Second"
+                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -2721,6 +2714,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               2 Replies
                             </Text>
                             <Text
+                              accessibilityLabel=""
                               accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
@@ -2934,14 +2928,12 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
           </Text>
         </View>
         <item>
-          <View
-            accessible={false}
-          >
+          <View>
             <View
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel="discussion 1"
+                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -3227,6 +3219,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               2 Replies
                             </Text>
                             <Text
+                              accessibilityLabel=""
                               accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
@@ -3353,14 +3346,12 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
           </View>
         </item>
         <item>
-          <View
-            accessible={false}
-          >
+          <View>
             <View
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel="discussion 3"
+                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -3646,6 +3637,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               2 Replies
                             </Text>
                             <Text
+                              accessibilityLabel=""
                               accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"
@@ -3825,14 +3817,12 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
           </Text>
         </View>
         <item>
-          <View
-            accessible={false}
-          >
+          <View>
             <View
               accessible={false}
             >
               <TouchableHighlight
-                accessibilityLabel="discussion 2"
+                accessibilityLabel={undefined}
                 accessibilityTraits={
                   Array [
                     "button",
@@ -4118,6 +4108,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               2 Replies
                             </Text>
                             <Text
+                              accessibilityLabel=""
                               accessible={false}
                               allowFontScaling={true}
                               ellipsizeMode="tail"

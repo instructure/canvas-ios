@@ -24,7 +24,7 @@ extension Rubric {
         from api: APIRubric = .make(),
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Rubric {
-        let model = try! Rubric.save(api, in: context)
+        let model = Rubric.save(api, in: context)
         try! context.save()
         return model
     }
@@ -36,7 +36,7 @@ extension RubricRating {
         from api: APIRubricRating = .make(),
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> RubricRating {
-        let model = try! RubricRating.save(api, in: context)
+        let model = RubricRating.save(api, in: context)
         try! context.save()
         return model
     }
@@ -50,7 +50,7 @@ extension RubricAssessment {
         submissionID: String = "1",
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> RubricAssessment {
-        let model = try! RubricAssessment.save(api, in: context, id: id, submissionID: submissionID)
+        let model = RubricAssessment.save(api, in: context, id: id, submissionID: submissionID)
         try! context.save()
         return model
     }

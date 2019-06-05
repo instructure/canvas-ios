@@ -13,8 +13,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import UIKit
 
@@ -37,15 +35,15 @@ enum LandingPageOptions: String {
     var description: String {
         switch self {
         case .courses:
-            return NSLocalizedString("Courses", comment: "Courses landing page title")
+            return NSLocalizedString("Dashboard", comment: "")
         case .calendar:
-            return NSLocalizedString("Calendar", comment: "Calendar landing page title")
+            return NSLocalizedString("Calendar", comment: "")
         case .todo:
-            return NSLocalizedString("To-Do List", comment: "To-Do List landing page title")
+            return NSLocalizedString("To Do", comment: "")
         case .notifications:
-            return NSLocalizedString("Notifications", comment: "Notifications tab title")
+            return NSLocalizedString("Notifications", comment: "")
         case .messages:
-            return NSLocalizedString("Messages", comment: "Messages landing page title")
+            return NSLocalizedString("Inbox", comment: "")
         }
     }
 }
@@ -54,11 +52,11 @@ open class LandingPageViewController: UITableViewController {
     fileprivate var currentUsersID: String
     fileprivate var currentLandingPageSettingsDictionary: [String : String]
     fileprivate var currentUserLandingPageSettings: LandingPageOptions
-    
+
     // ---------------------------------------------
     // MARK: - Inits
     // ---------------------------------------------
-    
+
     @objc init (currentUserID: String) {
         currentUsersID = currentUserID
         currentLandingPageSettingsDictionary = [:]
@@ -81,39 +79,38 @@ open class LandingPageViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    
     // ---------------------------------------------
     // MARK: - Life Cycle
     // ---------------------------------------------
-    
+
     open override func viewDidLoad() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
 
     }
-    
+
     // ---------------------------------------------
     // MARK: - Delegate Methods
     // ---------------------------------------------
-    
+
     open override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return landingPageOptions.count
     }
-    
+
     fileprivate static let cellReuseIdentifier = "LandingPageSettingsCell"
     open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.textLabel?.text = landingPageOptions[indexPath.row].description
         if currentUserLandingPageSettings == landingPageOptions[indexPath.row] {
-            cell.accessoryType  = UITableViewCell.AccessoryType.checkmark
+            cell.accessoryType = UITableViewCell.AccessoryType.checkmark
             cell.setSelected(true, animated: false)
         }
         return cell
     }
-    
+
     open override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return NSLocalizedString("Choose Landing Page", comment: "Button to select a landing page")
@@ -121,16 +118,15 @@ open class LandingPageViewController: UITableViewController {
             return nil
         }
     }
-    
+
     open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentUserLandingPageSettings = landingPageOptions[indexPath.row]
         currentLandingPageSettingsDictionary[currentUsersID] = landingPageOptions[indexPath.row].description
         UserDefaults.standard.set(currentLandingPageSettingsDictionary, forKey: "landingPageSettings")
         tableView.reloadData()
     }
-    
+
     open override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
     }
-    
 }

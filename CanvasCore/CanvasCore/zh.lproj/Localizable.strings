@@ -56,9 +56,6 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "允许的尝试次数";
 
-/* Default error message displayed when a file fails to upload */
-"An error occured, please try again." = "发生错误，请重试。";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "发生意外错误。";
 

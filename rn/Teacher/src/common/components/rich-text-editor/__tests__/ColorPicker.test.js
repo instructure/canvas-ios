@@ -45,14 +45,14 @@ describe('ColorPicker', () => {
       <ColorPicker {...defaultProps} pickedColor={pickedColor} />
     ).toJSON()
 
-    const white: any = explore(tree).selectByID('color-picker-option-white')
+    const white: any = explore(tree).selectByID('color-picker-option-#FFFFFF')
     white.props.onPress()
 
-    expect(pickedColor).toHaveBeenCalledWith('white')
+    expect(pickedColor).toHaveBeenCalledWith('#FFFFFF')
 
-    const black: any = explore(tree).selectByID('color-picker-option-black')
+    const black: any = explore(tree).selectByID('color-picker-option-#2D3B45')
     black.props.onPress()
 
-    expect(pickedColor).toHaveBeenCalledWith('black')
+    expect(pickedColor).toHaveBeenCalledWith('#2D3B45')
   })
 })

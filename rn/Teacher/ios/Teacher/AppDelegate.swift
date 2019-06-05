@@ -43,8 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
         setupCrashlytics()
-        ResetAppIfNecessary()
-        CacheManager.shared.clearIfNeeded()
+        CacheManager.resetAppIfNecessary()
         if hasFirebase {
             FirebaseApp.configure()
         }
@@ -57,11 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         if let session = Keychain.mostRecentSession {
             window?.rootViewController = LoadingViewController.create()
+            window?.makeKeyAndVisible()
             userDidLogin(keychainEntry: session)
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
+            window?.makeKeyAndVisible()
         }
-        window?.makeKeyAndVisible()
         return true
     }
 

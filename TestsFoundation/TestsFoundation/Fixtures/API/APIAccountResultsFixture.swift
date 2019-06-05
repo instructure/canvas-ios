@@ -17,13 +17,13 @@
 import Foundation
 @testable import Core
 
-extension APIAccountResults {
+extension APIAccountResult {
     public static func make(
         name: String = "Crazy Go Nuts University",
         domain: String = "cgnuonline-eniversity.edu",
         authentication_provider: String? = nil
-    ) -> APIAccountResults {
-        return APIAccountResults(
+    ) -> APIAccountResult {
+        return APIAccountResult(
             name: name,
             domain: domain,
             authentication_provider: authentication_provider

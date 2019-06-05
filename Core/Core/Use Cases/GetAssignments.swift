@@ -14,10 +14,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
 
 public class GetAssignments: CollectionUseCase {
-
     public enum Sort: String {
         case position, dueAt
     }
@@ -54,7 +54,7 @@ public class GetAssignments: CollectionUseCase {
         }
     }
 
-    public func write(response: [APIAssignment]?, urlResponse: URLResponse?, to client: PersistenceClient) throws {
+    public func write(response: [APIAssignment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else {
             return
         }
@@ -62,7 +62,7 @@ public class GetAssignments: CollectionUseCase {
         for item in response {
             let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.htmlURL), item.html_url as CVarArg)
             let model: Assignment = client.fetch(predicate).first ?? client.insert()
-            try model.update(fromApiModel: item, in: client, updateSubmission: false)
+            model.update(fromApiModel: item, in: client, updateSubmission: false)
         }
     }
 }

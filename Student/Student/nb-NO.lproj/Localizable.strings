@@ -32,6 +32,9 @@
 "Courses" = "Emner";
 
 /* No comment provided by engineer. */
+"Custom Grade" = "Tilpasset vurdering";
+
+/* No comment provided by engineer. */
 "Dashboard" = "Instrumentbord";
 
 /* No comment provided by engineer. */
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Filer (%d)";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
 
 /* No comment provided by engineer. */
 "Grade" = "Karakter";
@@ -126,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Send oppgaven inn på nytt";
+
+/* No comment provided by engineer. */
+"Retry" = "Forsøk igjen";
 
 /* No comment provided by engineer. */
 "Rubric" = "Rubrikk";
@@ -194,13 +203,13 @@
 "Updated Language Settings" = "Oppdatert språkinnstillinger";
 
 /* No comment provided by engineer. */
+"Uploading" = "Laster opp";
+
+/* No comment provided by engineer. */
 "View Discussion" = "Vis diskusjon";
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Vis fil %1$@ %2$@";
-
-/* No comment provided by engineer. */
-"View submission attempt %d" = "Vis innleveringsforsøk %d";
 
 /* No comment provided by engineer. */
 "Website Address" = "Adresse til nettside";

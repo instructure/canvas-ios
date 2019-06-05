@@ -115,7 +115,7 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/rce/link.png",
+              "uri": "linkLine",
             }
           }
           style={

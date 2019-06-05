@@ -114,9 +114,10 @@ export default class Avatar extends PureComponent<Props, any> {
           .substring(0, 2)
           .toUpperCase()
         : ''
+
       comp = (
-        <View style={[styles.altImage, { height, width, borderRadius }]} accessible={false}>
-          <Text style={[styles.altImageText, { fontSize }]}>{altText}</Text>
+        <View style={[styles.altImage, { height, width, borderRadius }]}>
+          <Text style={[styles.altImageText, { fontSize }]} accessible={false}>{altText}</Text>
         </View>
       )
     }
@@ -126,7 +127,7 @@ export default class Avatar extends PureComponent<Props, any> {
       <TouchableHighlight
         underlayColor='transparent'
         onPress={this.props.onPress}
-        accessibilityLabel={i18n('Profile')}
+        accessibilityLabel={i18n('{name} Profile', { name: this.props.userName || '' })}
         accessibilityTraits='button'
       >
         {comp}

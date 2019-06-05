@@ -18,7 +18,7 @@
 
 import Foundation
 import TechDebt
-import CanvasCore
+import Core
 
 public func CalendarTabViewController(session: Session, route: @escaping (UIViewController, URL)->()) throws -> UIViewController {
     let calendarVC: UIViewController
@@ -37,7 +37,8 @@ public func CalendarTabViewController(session: Session, route: @escaping (UIView
     }
     
     calendarVC.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
-    calendarVC.tabBarItem.image = .icon(.calendar)
+    calendarVC.tabBarItem.image = .icon(.calendarMonth, .line)
+    calendarVC.tabBarItem.selectedImage = .icon(.calendarMonth, .solid)
 
     return calendarVC
 }
