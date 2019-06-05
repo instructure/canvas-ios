@@ -190,6 +190,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
             <FormLabel>{sectionDescription}</FormLabel>
             <TouchableHighlight
               testID='edit-description'
+              accessibilityTraits={['button']}
               onPress={this._editDescription}
             >
               <View style={[style.row, style.topRow, style.twoColumnRow]}>

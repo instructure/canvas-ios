@@ -68,7 +68,11 @@ exports[`render correctly 1`] = `
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
             accessible={true}
             collapsable={undefined}
             hasTVPreferredFocus={undefined}
@@ -124,7 +128,11 @@ exports[`render correctly 1`] = `
       <View
         accessibilityComponentType={undefined}
         accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         accessible={true}
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
@@ -245,7 +253,11 @@ exports[`render correctly 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -427,7 +439,11 @@ exports[`render correctly 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -609,7 +625,11 @@ exports[`render correctly 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -786,7 +806,11 @@ exports[`render correctly 1`] = `
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
       accessible={true}
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
@@ -961,7 +985,11 @@ exports[`render correctly with overide 1`] = `
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
             accessible={true}
             collapsable={undefined}
             hasTVPreferredFocus={undefined}
@@ -1017,7 +1045,11 @@ exports[`render correctly with overide 1`] = `
       <View
         accessibilityComponentType={undefined}
         accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         accessible={true}
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
@@ -1138,7 +1170,11 @@ exports[`render correctly with overide 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -1320,7 +1356,11 @@ exports[`render correctly with overide 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -1502,7 +1542,11 @@ exports[`render correctly with overide 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -1679,7 +1723,11 @@ exports[`render correctly with overide 1`] = `
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
       accessible={true}
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}

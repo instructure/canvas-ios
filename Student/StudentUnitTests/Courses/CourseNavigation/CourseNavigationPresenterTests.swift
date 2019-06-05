@@ -37,15 +37,17 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
     }
 
     func testLoadTabs() {
-        //  given
         Course.make()
         let expected = tab()
-
-        //  when
+        let expectation = XCTestExpectation(description: "loaded tab")
+        expectation.assertForOverFulfill = false
+        onUpdate = {
+            if self.presenter.tabs.first?.id == expected.id {
+                expectation.fulfill()
+            }
+        }
         presenter.viewIsReady()
-        wait(for: [expectUpdate], timeout: 1)
-        //  then
-        XCTAssertEqual(presenter.tabs.first?.id, expected.id)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testTabsAreOrderedByPosition() {
@@ -53,12 +55,17 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
         Tab.make(from: .make(id: "c", position: 3), context: ContextModel(.course, id: "1"))
         Tab.make(from: .make(id: "a", position: 1), context: ContextModel(.course, id: "1"))
 
+        let expectation = XCTestExpectation(description: "orders by position")
+        expectation.assertForOverFulfill = false
+        onUpdate = {
+            if self.presenter.tabs.count == 3,
+                self.presenter.tabs.first?.id == "a",
+                self.presenter.tabs.last?.id == "c" {
+                expectation.fulfill()
+            }
+        }
         presenter.viewIsReady()
-        wait(for: [expectUpdate], timeout: 1)
-
-        XCTAssertEqual(presenter.tabs.count, 3)
-        XCTAssertEqual(presenter.tabs.first?.id, "a")
-        XCTAssertEqual(presenter.tabs.last?.id, "c")
+        wait(for: [expectation], timeout: 1)
     }
 
     func testUseCaseFetchesData() {

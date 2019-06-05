@@ -18,17 +18,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Mh-TY-EQc">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Mh-TY-EQc">
                                 <rect key="frame" x="0.0" y="20" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAh-JB-PVm" customClass="DynamicButton" customModule="Core">
+                                <rect key="frame" x="16" y="454" width="73" height="30"/>
+                                <state key="normal" title="View More"/>
+                                <connections>
+                                    <action selector="openApp:" destination="3tg-Or-QnS" eventType="primaryActionTriggered" id="UIa-f9-YQy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Qbg-Ss-BfW" firstAttribute="trailing" secondItem="5Mh-TY-EQc" secondAttribute="trailing" id="00y-dj-aEv"/>
                             <constraint firstItem="5Mh-TY-EQc" firstAttribute="leading" secondItem="Qbg-Ss-BfW" secondAttribute="leading" id="NeM-0J-p1b"/>
                             <constraint firstItem="5Mh-TY-EQc" firstAttribute="top" secondItem="Qbg-Ss-BfW" secondAttribute="top" id="Pdg-xp-fhT"/>
+                            <constraint firstItem="Qbg-Ss-BfW" firstAttribute="bottom" secondItem="iAh-JB-PVm" secondAttribute="bottom" constant="16" id="Y0f-zs-5b3"/>
+                            <constraint firstItem="iAh-JB-PVm" firstAttribute="leading" secondItem="Qbg-Ss-BfW" secondAttribute="leading" constant="16" id="brW-BG-XU7"/>
                             <constraint firstItem="Qbg-Ss-BfW" firstAttribute="bottom" secondItem="5Mh-TY-EQc" secondAttribute="bottom" id="oY0-hx-TkO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qbg-Ss-BfW"/>
@@ -36,6 +45,7 @@
                     <size key="freeformSize" width="320" height="500"/>
                     <connections>
                         <outlet property="tableView" destination="5Mh-TY-EQc" id="2hX-gd-XeV"/>
+                        <outlet property="viewMoreButton" destination="iAh-JB-PVm" id="oA4-6B-LeQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fLA-OA-07B" userLabel="First Responder" sceneMemberID="firstResponder"/>

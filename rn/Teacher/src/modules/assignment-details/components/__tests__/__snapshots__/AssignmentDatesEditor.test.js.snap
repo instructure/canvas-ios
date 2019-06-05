@@ -68,7 +68,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
             accessible={true}
             collapsable={undefined}
             hasTVPreferredFocus={undefined}
@@ -124,7 +128,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       <View
         accessibilityComponentType={undefined}
         accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         accessible={true}
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
@@ -245,7 +253,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -427,7 +439,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -609,7 +625,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -834,7 +854,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
             accessible={true}
             collapsable={undefined}
             hasTVPreferredFocus={undefined}
@@ -890,7 +914,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       <View
         accessibilityComponentType={undefined}
         accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         accessible={true}
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
@@ -1011,7 +1039,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -1193,7 +1225,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -1375,7 +1411,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -1600,7 +1640,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
             accessible={true}
             collapsable={undefined}
             hasTVPreferredFocus={undefined}
@@ -1656,7 +1700,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       <View
         accessibilityComponentType={undefined}
         accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         accessible={true}
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
@@ -1777,7 +1825,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -1959,7 +2011,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -2141,7 +2197,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -2318,7 +2378,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
       accessible={true}
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
@@ -2483,7 +2547,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
       <View
         accessibilityComponentType={undefined}
         accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         accessible={true}
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
@@ -2604,7 +2672,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -2786,7 +2858,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -2968,7 +3044,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -3193,7 +3273,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
             accessible={true}
             collapsable={undefined}
             hasTVPreferredFocus={undefined}
@@ -3249,7 +3333,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
       <View
         accessibilityComponentType={undefined}
         accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         accessible={true}
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
@@ -3370,7 +3458,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -3552,7 +3644,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -3734,7 +3830,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -3911,7 +4011,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
       accessible={true}
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
@@ -4076,7 +4180,11 @@ exports[`snapshots! render with single due date 1`] = `
       <View
         accessibilityComponentType={undefined}
         accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         accessible={true}
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
@@ -4197,7 +4305,11 @@ exports[`snapshots! render with single due date 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -4379,7 +4491,11 @@ exports[`snapshots! render with single due date 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -4561,7 +4677,11 @@ exports[`snapshots! render with single due date 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
           accessible={true}
           hasTVPreferredFocus={undefined}
           hitSlop={undefined}
@@ -4738,7 +4858,11 @@ exports[`snapshots! render with single due date 1`] = `
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
       accessible={true}
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}

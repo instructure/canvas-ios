@@ -18,15 +18,19 @@ import Foundation
 
 public class GetCourses: CollectionUseCase {
     public typealias Model = Course
+
     var showFavorites: Bool
-    public init(showFavorites: Bool = false) {
+    var perPage: Int
+
+    public init(showFavorites: Bool = false, perPage: Int = 10) {
         self.showFavorites = showFavorites
+        self.perPage = perPage
     }
 
     public let cacheKey: String? = "get-courses"
 
     public var request: GetCoursesRequest {
-        return GetCoursesRequest(includeUnpublished: true)
+        return GetCoursesRequest(includeUnpublished: true, perPage: self.perPage)
     }
 
     public var scope: Scope {

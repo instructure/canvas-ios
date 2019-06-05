@@ -23,7 +23,7 @@ class GradesTodayWidgetPresenter {
     weak var view: GradesTodayWidgetViewController?
 
     lazy var courses: Store<GetCourses> = {
-        let useCase = GetCourses(showFavorites: true)
+        let useCase = GetCourses(showFavorites: true, perPage: 99)
         return env.subscribe(useCase, { [weak self] in
             self?.view?.reload()
         })
@@ -49,9 +49,9 @@ class GradesTodayWidgetPresenter {
     }
 
     func viewIsReady() {
-        courses.refresh(force: false)
+        courses.refresh(force: true)
         colors.refresh(force: false)
-        submissions.refresh(force: false)
+        submissions.refresh(force: true)
     }
 
 }
