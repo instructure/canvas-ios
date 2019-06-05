@@ -27,7 +27,7 @@
                                 <rect key="frame" x="16" y="454" width="73" height="30"/>
                                 <state key="normal" title="View More"/>
                                 <connections>
-                                    <action selector="openApp:" destination="3tg-Or-QnS" eventType="touchUpInside" id="iYG-BH-nRq"/>
+                                    <action selector="openApp:" destination="3tg-Or-QnS" eventType="primaryActionTriggered" id="UIa-f9-YQy"/>
                                 </connections>
                             </button>
                         </subviews>

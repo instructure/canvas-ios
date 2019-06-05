@@ -30,8 +30,9 @@ class APICourseRequestableTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "total_scores"),
             URLQueryItem(name: "state[]", value: "available"),
             URLQueryItem(name: "state[]", value: "completed"),
+            URLQueryItem(name: "per_page", value: "10"),
         ])
-        XCTAssertEqual(GetCoursesRequest(includeUnpublished: true).queryItems, [
+        XCTAssertEqual(GetCoursesRequest(includeUnpublished: true, perPage: 20).queryItems, [
             URLQueryItem(name: "include[]", value: "course_image"),
             URLQueryItem(name: "include[]", value: "current_grading_period_scores"),
             URLQueryItem(name: "include[]", value: "favorites"),
@@ -42,6 +43,7 @@ class APICourseRequestableTests: XCTestCase {
             URLQueryItem(name: "state[]", value: "available"),
             URLQueryItem(name: "state[]", value: "completed"),
             URLQueryItem(name: "state[]", value: "unpublished"),
+            URLQueryItem(name: "per_page", value: "20"),
         ])
     }
 

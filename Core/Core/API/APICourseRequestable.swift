@@ -21,7 +21,12 @@ public struct GetCoursesRequest: APIRequestable {
     public typealias Response = [APICourse]
 
     let includeUnpublished: Bool
-    var perPage = 10
+    var perPage: Int
+
+    init(includeUnpublished: Bool, perPage: Int = 10) {
+        self.includeUnpublished = includeUnpublished
+        self.perPage = perPage
+    }
 
     public let path = "courses"
     public var query: [APIQueryItem] {
