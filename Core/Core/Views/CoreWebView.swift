@@ -162,6 +162,7 @@ open class CoreWebView: WKWebView {
 
             // Send content height whenever it changes
             let lastHeight = 0
+            let lastWidth = window.innerWidth
             const checkSize = () => {
                 let height = document.documentElement.scrollHeight
                 if (lastHeight !== height) {
@@ -171,9 +172,17 @@ open class CoreWebView: WKWebView {
             }
             const observer = new MutationObserver(checkSize)
             observer.observe(document.documentElement, { attributes: true, childList: true, subtree: true })
-            window.addEventListener('resize', checkSize)
-            window.addEventListener('load', checkSize)
-            document.addEventListener('load', checkSize, true)
+            window.addEventListener('resize', () => {
+                let width = window.innerWidth
+                if (lastWidth !== width) {
+                    lastWidth = width
+                    checkSize()
+                }
+            })
+            window.addEventListener('load', () => {
+                checkSize()
+                document.addEventListener('load', checkSize, true)
+            })
             checkSize()
         """
     }
