@@ -206,7 +206,6 @@ describe('Profile Tests', () => {
     ).getInstance()
 
     await instance.handleActions(1)
-    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
     expect(defaultProps.navigator.show).toHaveBeenCalledWith(
       '/terms-of-use',
       { modal: true }
