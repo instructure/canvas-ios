@@ -283,6 +283,11 @@ exports[`error occurs when done pressed 1`] = `
         Description
       </Text>
       <TouchableHighlight
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         onPress={[Function]}
         testID="edit-description"
       >
@@ -1156,6 +1161,11 @@ exports[`modal saving is shown on assignment update 1`] = `
         Description
       </Text>
       <TouchableHighlight
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         onPress={[Function]}
         testID="edit-description"
       >
@@ -2029,6 +2039,11 @@ exports[`renders 1`] = `
         Description
       </Text>
       <TouchableHighlight
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         onPress={[Function]}
         testID="edit-description"
       >
@@ -2902,6 +2917,11 @@ exports[`saving invalid dates displays banner 1`] = `
         Description
       </Text>
       <TouchableHighlight
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         onPress={[Function]}
         testID="edit-description"
       >
@@ -3817,6 +3837,11 @@ exports[`saving invalid name displays banner 1`] = `
         Description
       </Text>
       <TouchableHighlight
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         onPress={[Function]}
         testID="edit-description"
       >
@@ -4693,6 +4718,11 @@ exports[`saving invalid points possible displays banner 1`] = `
         Description
       </Text>
       <TouchableHighlight
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         onPress={[Function]}
         testID="edit-description"
       >
@@ -5604,6 +5634,11 @@ exports[`saving negative points possible displays banner 1`] = `
         Description
       </Text>
       <TouchableHighlight
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         onPress={[Function]}
         testID="edit-description"
       >

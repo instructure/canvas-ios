@@ -51,7 +51,7 @@ export default class RowWithDateInput extends PureComponent<DateRowProps, any> {
     date = date ? i18n("{ date, date, 'MMM d' } { date, time, short }", { date }) : i18n('--')
     return (
       <View style={[ styles.row, styles.detailsRowContainer ]} >
-        <TouchableHighlight style={{ flex: 1 }} onPress={this.props.onPress} testID={this.props.testID}>
+        <TouchableHighlight style={{ flex: 1 }} accessibilityTraits={['button']} onPress={this.props.onPress} testID={this.props.testID}>
           <View style={[styles.rowContainer, { paddingRight: paddingRightWhenEmpty }]}>
             <View style={styles.titlesContainer}>
               <Text style={styles.titleText}>{this.props.title}</Text>

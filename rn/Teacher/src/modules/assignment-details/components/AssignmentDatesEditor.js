@@ -466,7 +466,7 @@ export default class AssignmentDatesEditor extends Component<Props, any> {
     if (date.base) return <View />
 
     return <View style={styles.removeButtonContainer}>
-      <TouchableOpacity onPress={() => this.removeDate(date)}>
+      <TouchableOpacity onPress={() => this.removeDate(date)} accessibilityTraits={['button']}>
         <View>
           <Text style={styles.removeButton}>{i18n('Remove')}</Text>
         </View>
@@ -529,7 +529,11 @@ export default class AssignmentDatesEditor extends Component<Props, any> {
         <EditSectionHeader title={title} style={styles.headerText}>
           {removeButton}
         </EditSectionHeader>
-        <TouchableHighlight style={styles.row} onPress={canEditAssignees ? () => this.selectAssignees(date) : undefined}>
+        <TouchableHighlight
+          style={styles.row}
+          onPress={canEditAssignees ? () => this.selectAssignees(date) : undefined}
+          accessibilityTraits={['button']}
+        >
           <View style={styles.rowContainer}>
             <Text style={styles.titleText}>{i18n('Assignees')}</Text>
             <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
@@ -554,12 +558,18 @@ export default class AssignmentDatesEditor extends Component<Props, any> {
   }
 
   renderButton = () => {
-    return (<TouchableHighlight style={styles.button} onPress={this.addAdditionalDueDate}>
-      <View style={styles.buttonInnerContainer}>
-        <Image source={Images.add} style={[styles.buttonImage, { tintColor: colors.primaryButtonColor }]} />
-        <Text style={[styles.buttonText, { color: colors.primaryButtonColor }]}>{i18n('Add Due Date')}</Text>
-      </View>
-    </TouchableHighlight>)
+    return (
+      <TouchableHighlight
+        style={styles.button}
+        onPress={this.addAdditionalDueDate}
+        accessibilityTraits={['button']}
+      >
+        <View style={styles.buttonInnerContainer}>
+          <Image source={Images.add} style={[styles.buttonImage, { tintColor: colors.primaryButtonColor }]} />
+          <Text style={[styles.buttonText, { color: colors.primaryButtonColor }]}>{i18n('Add Due Date')}</Text>
+        </View>
+      </TouchableHighlight>
+    )
   }
 
   render () {
