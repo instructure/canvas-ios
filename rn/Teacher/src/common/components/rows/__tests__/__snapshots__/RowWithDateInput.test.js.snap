@@ -23,7 +23,11 @@ exports[`Render row with date 1`] = `
   <View
     accessibilityComponentType={undefined}
     accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
     accessible={true}
     hasTVPreferredFocus={undefined}
     hitSlop={undefined}
@@ -160,7 +164,11 @@ exports[`Render row with date and the clear button 1`] = `
   <View
     accessibilityComponentType={undefined}
     accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
     accessible={true}
     hasTVPreferredFocus={undefined}
     hitSlop={undefined}

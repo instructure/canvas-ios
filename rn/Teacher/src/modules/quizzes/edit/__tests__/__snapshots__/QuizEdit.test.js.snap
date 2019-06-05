@@ -5986,6 +5986,11 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -6116,6 +6121,11 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -8326,6 +8336,11 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -8456,6 +8471,11 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -19182,6 +19202,11 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -19351,6 +19376,11 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -43168,6 +43198,11 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -43298,6 +43333,11 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -45554,6 +45594,11 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -45684,6 +45729,11 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -56357,6 +56407,11 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -56533,6 +56588,11 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -58743,6 +58803,11 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -58912,6 +58977,11 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -75798,6 +75868,11 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -75928,6 +76003,11 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -78184,6 +78264,11 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
@@ -78360,6 +78445,11 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits={
+                    Array [
+                      "button",
+                    ]
+                  }
                   onPress={[Function]}
                   style={
                     Object {
