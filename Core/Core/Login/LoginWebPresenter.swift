@@ -109,9 +109,10 @@ class LoginWebPresenter {
             return .cancel
         }
 
-        // I dunno why, but we have to wait for the code to be the first param cuz it can keep changing as we follow redirects
-        //  "/canvas/login?code="
-        if let code = codeFromQueryItems(queryItems), let mobileVerify = mobileVerifyModel, let baseURL = mobileVerify.base_url {
+        if // wait for "https://canvas/login?code="
+            url.absoluteString.hasPrefix("https://canvas/login"),
+            let code = queryItems?.first(where: { $0.name == "code" })?.value, !code.isEmpty,
+            let mobileVerify = mobileVerifyModel, let baseURL = mobileVerify.base_url {
             task?.cancel()
             task = URLSessionAPI(urlSession: session).makeRequest(PostLoginOAuthRequest(client: mobileVerify, code: code)) { [weak self] (response, _, error) in
                 if let model = response {
@@ -150,11 +151,6 @@ class LoginWebPresenter {
             self.mdmLogin = nil
             submitLogin(login)
         }
-    }
-
-    private func codeFromQueryItems(_ queryItems: [URLQueryItem]?) -> String? {
-        guard queryItems?.first?.name == "code", let value = queryItems?.first?.value, !value.isEmpty else { return nil }
-        return value
     }
 
     private func submitLogin(_ login: MDMLogin) {
