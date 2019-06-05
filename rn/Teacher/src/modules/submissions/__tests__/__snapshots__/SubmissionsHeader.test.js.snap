@@ -74,7 +74,7 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
     </Text>
   </View>
   <TouchableOpacity
-    accessibilityLabel="Filter Submissions"
+    accessibilityLabel="Filter Submissions. (0) selected."
     accessibilityTraits="button"
     hitSlop={
       Object {
@@ -202,7 +202,7 @@ exports[`SubmissionHeader anonymous grading 1`] = `
     </Text>
   </View>
   <TouchableOpacity
-    accessibilityLabel="Filter Submissions"
+    accessibilityLabel="Filter Submissions. (0) selected."
     accessibilityTraits="button"
     hitSlop={
       Object {
@@ -330,7 +330,7 @@ exports[`SubmissionHeader muted grading 1`] = `
     </Text>
   </View>
   <TouchableOpacity
-    accessibilityLabel="Filter Submissions"
+    accessibilityLabel="Filter Submissions. (0) selected."
     accessibilityTraits="button"
     hitSlop={
       Object {

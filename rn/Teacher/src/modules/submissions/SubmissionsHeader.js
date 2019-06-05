@@ -67,13 +67,14 @@ export default class SubmissionsHeader extends Component<SubmissionsHeaderProps,
 
   renderFilterButton = () => {
     let title = i18n('Filter')
-    let accessibilityLabel = i18n('Filter Submissions')
     let onPress = this.navigateToFilter
 
     let selected = this.props.filterOptions.filter(option => option.selected)
     if (selected.length > 0) {
       title = i18n('Filter ({numSelected, number})', { numSelected: selected.length })
     }
+
+    let accessibilityLabel = i18n('Filter Submissions. ({numSelected, number}) selected.', { numSelected: selected.length })
 
     return (<LinkButton
       testID='submission-list.filter'
