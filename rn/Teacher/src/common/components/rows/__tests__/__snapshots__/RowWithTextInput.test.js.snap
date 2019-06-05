@@ -2,6 +2,7 @@
 
 exports[`RowWithTextInput renders 1`] = `
 <Row
+  accessibilityLabel="Input, text field"
   title=""
 >
   <TextInput
@@ -21,7 +22,7 @@ exports[`RowWithTextInput renders 1`] = `
 
 exports[`RowWithTextInput renders with a title 1`] = `
 <Row
-  accessibilityLabel="Title, "
+  accessibilityLabel="Title, text field"
   accessories={
     <View
       style={

@@ -23,6 +23,7 @@ import {
   View,
 } from 'react-native'
 import Row, { type RowProps } from './Row'
+import i18n from 'format-message'
 
 type Props = RowProps & {
   defaultValue?: ?string,
@@ -52,10 +53,16 @@ export default class RowWithTextInput extends Component<Props, any> {
   }
 
   _renderWithoutTitle () {
-    return <Row {...this.props} children={this._renderTextInput()} accessibilityLabel={this.props.value} />
+    const label = i18n('{value}, text field', {
+      value: this.props.value || this.props.placeholder || i18n('Input'),
+    })
+    return <Row {...this.props} children={this._renderTextInput()} accessibilityLabel={label} />
   }
 
   _renderWithTitle () {
+    const label = [this.props.title, this.props.value != null ? this.props.value : this.props.defaultValue]
+      .filter((s) => s != null && s.length > 0)
+      .join(', ')
     const accessory = (
       <View
         style={{
@@ -69,7 +76,7 @@ export default class RowWithTextInput extends Component<Props, any> {
       <Row
         {...this.props}
         accessories={accessory}
-        accessibilityLabel={`${this.props.title}, ${this.props.value || ''}`}
+        accessibilityLabel={i18n('{label}, text field', { label })}
         onPress={this.handlePress}
       />
     )

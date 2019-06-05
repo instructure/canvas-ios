@@ -57,7 +57,7 @@ exports[`QuizEdit changes assignment group 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -1280,7 +1280,7 @@ exports[`QuizEdit changes assignment group 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -2153,7 +2153,7 @@ exports[`QuizEdit changes quiz type 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -3382,7 +3382,7 @@ exports[`QuizEdit changes quiz type 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -4255,7 +4255,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -5460,7 +5460,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -6605,7 +6605,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -7810,7 +7810,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -8998,7 +8998,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -10203,7 +10203,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -11076,7 +11076,7 @@ exports[`QuizEdit renders 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -12281,7 +12281,7 @@ exports[`QuizEdit renders 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -13194,7 +13194,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -14399,7 +14399,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -15315,7 +15315,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -16555,7 +16555,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -17471,7 +17471,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -18676,7 +18676,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -19977,7 +19977,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -21182,7 +21182,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -21948,7 +21948,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
         </View>
       </TouchableHighlight>
       <TouchableHighlight
-        accessibilityLabel="Access Code, "
+        accessibilityLabel="Access Code, text field"
         accessibilityTraits={
           Array [
             "button",
@@ -22220,7 +22220,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -23437,7 +23437,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -24353,7 +24353,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -25558,7 +25558,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -26431,7 +26431,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -27660,7 +27660,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -28533,7 +28533,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -29738,7 +29738,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -30723,7 +30723,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -31928,7 +31928,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -32913,7 +32913,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -34118,7 +34118,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -35103,7 +35103,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -36308,7 +36308,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -37181,7 +37181,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -38386,7 +38386,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -39152,7 +39152,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
         </View>
       </TouchableHighlight>
       <TouchableHighlight
-        accessibilityLabel="Access Code, "
+        accessibilityLabel="Access Code, text field"
         accessibilityTraits={
           Array [
             "button",
@@ -39389,7 +39389,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -40594,7 +40594,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -41467,7 +41467,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -42672,7 +42672,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -43863,7 +43863,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -45068,7 +45068,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -46252,7 +46252,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -47457,7 +47457,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -48330,7 +48330,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -49535,7 +49535,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -50520,7 +50520,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -51725,7 +51725,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -52598,7 +52598,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -53803,7 +53803,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -54676,7 +54676,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -55881,7 +55881,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -57072,7 +57072,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -58277,7 +58277,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -59461,7 +59461,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -60666,7 +60666,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -61539,7 +61539,7 @@ exports[`QuizEdit toggles publish 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -62744,7 +62744,7 @@ exports[`QuizEdit toggles publish 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -63617,7 +63617,7 @@ exports[`QuizEdit toggles publish 2`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -64822,7 +64822,7 @@ exports[`QuizEdit toggles publish 2`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -65695,7 +65695,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -66900,7 +66900,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -67773,7 +67773,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -68978,7 +68978,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -69851,7 +69851,7 @@ exports[`QuizEdit toggles time limit 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -70762,7 +70762,7 @@ exports[`QuizEdit toggles time limit 1`] = `
         </View>
       </TouchableHighlight>
       <TouchableHighlight
-        accessibilityLabel="Length in minutes, "
+        accessibilityLabel="Length in minutes, text field"
         accessibilityTraits={
           Array [
             "button",
@@ -71186,7 +71186,7 @@ exports[`QuizEdit toggles time limit 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -72059,7 +72059,7 @@ exports[`QuizEdit toggles time limit 2`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -73264,7 +73264,7 @@ exports[`QuizEdit toggles time limit 2`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -74137,7 +74137,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -75342,7 +75342,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",
@@ -76533,7 +76533,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
         Title
       </Text>
       <TouchableHighlight
-        accessibilityLabel={undefined}
+        accessibilityLabel="Title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
         style={
@@ -77738,7 +77738,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
           </View>
         </TouchableHighlight>
         <TouchableHighlight
-          accessibilityLabel="Allowed Attempts, "
+          accessibilityLabel="Allowed Attempts, text field"
           accessibilityTraits={
             Array [
               "button",

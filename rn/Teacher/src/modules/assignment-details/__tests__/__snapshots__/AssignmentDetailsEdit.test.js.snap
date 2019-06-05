@@ -426,7 +426,7 @@ exports[`error occurs when done pressed 1`] = `
         Details
       </Text>
       <TouchableHighlight
-        accessibilityLabel="Points, "
+        accessibilityLabel="Points, 20, text field"
         accessibilityTraits={
           Array [
             "button",
@@ -1304,7 +1304,7 @@ exports[`modal saving is shown on assignment update 1`] = `
         Details
       </Text>
       <TouchableHighlight
-        accessibilityLabel="Points, "
+        accessibilityLabel="Points, 20, text field"
         accessibilityTraits={
           Array [
             "button",
@@ -2182,7 +2182,7 @@ exports[`renders 1`] = `
         Details
       </Text>
       <TouchableHighlight
-        accessibilityLabel="Points, "
+        accessibilityLabel="Points, 20, text field"
         accessibilityTraits={
           Array [
             "button",
@@ -3060,7 +3060,7 @@ exports[`saving invalid dates displays banner 1`] = `
         Details
       </Text>
       <TouchableHighlight
-        accessibilityLabel="Points, "
+        accessibilityLabel="Points, 20, text field"
         accessibilityTraits={
           Array [
             "button",
@@ -3980,7 +3980,7 @@ exports[`saving invalid name displays banner 1`] = `
         Details
       </Text>
       <TouchableHighlight
-        accessibilityLabel="Points, "
+        accessibilityLabel="Points, 20, text field"
         accessibilityTraits={
           Array [
             "button",
@@ -4861,7 +4861,7 @@ exports[`saving invalid points possible displays banner 1`] = `
         Details
       </Text>
       <TouchableHighlight
-        accessibilityLabel="Points, "
+        accessibilityLabel="Points, D, text field"
         accessibilityTraits={
           Array [
             "button",
@@ -5777,7 +5777,7 @@ exports[`saving negative points possible displays banner 1`] = `
         Details
       </Text>
       <TouchableHighlight
-        accessibilityLabel="Points, "
+        accessibilityLabel="Points, -1, text field"
         accessibilityTraits={
           Array [
             "button",
