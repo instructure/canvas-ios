@@ -16,15 +16,23 @@
 
 import WebKit
 
+public protocol CoreWebViewLinkDelegate: class {
+    func handleLink(_ url: URL) -> Bool
+    var routeLinksFrom: UIViewController { get }
+}
+
+extension CoreWebViewLinkDelegate where Self: UIViewController {
+    public func handleLink(_ url: URL) -> Bool {
+        AppEnvironment.shared.router.route(to: url, from: self, options: nil)
+        return true
+    }
+    public var routeLinksFrom: UIViewController { return self }
+}
+
 @IBDesignable
 open class CoreWebView: WKWebView {
-    public enum Navigation {
-        case withinWebView
-        case deepLink((URL) -> Bool?)
-    }
-
     @IBInspectable public var autoresizesHeight: Bool = false
-    public var navigation = Navigation.withinWebView
+    public weak var linkDelegate: CoreWebViewLinkDelegate?
 
     public static let processPool = WKProcessPool()
 
@@ -118,6 +126,7 @@ open class CoreWebView: WKWebView {
                 margin: 20 auto 20 auto;
                 padding: 12px 8px 12px 8px;
                 background-color: \(buttonBack.hexString);
+                border-radius: 4px;
                 color: \(buttonFore.hexString);
                 text-decoration: none;
                 text-align: center;
@@ -153,7 +162,7 @@ open class CoreWebView: WKWebView {
                     a.href = iframe.src
                     iframe.parentNode.replaceChild(a, iframe)
                 }
-                if (/\\/courses\\/\\d+\\/external_tools\\/retrieve/.test(iframe.src)) {
+                if (/\\/(courses|accounts)\\/[^\\/]+\\/external_tools\\/retrieve/.test(iframe.src)) {
                     replace(iframe)
                 } else {
                     iframe.addEventListener('error', event => replace(event.target))
@@ -198,9 +207,16 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.allow) // let web view scroll to link too, if necessary
         }
 
-        // Forward decision to external handler
+        // Handle "Launch External Tool" button
+        if action.navigationType == .linkActivated, let tools = LTITools(link: action.request.url),
+            let from = linkDelegate?.routeLinksFrom {
+            tools.presentToolInSFSafariViewController(from: from, animated: true)
+            return decisionHandler(.cancel)
+        }
+
+        // Forward decision to delegate
         if action.navigationType == .linkActivated, let url = action.request.url,
-            case .deepLink(let handle) = navigation, handle(url) == true {
+            linkDelegate?.handleLink(url) == true {
             return decisionHandler(.cancel)
         }
 

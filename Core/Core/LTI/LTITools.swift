@@ -27,8 +27,8 @@ public class LTITools {
     let moduleItemID: String?
 
     public init(
-        env: AppEnvironment,
-        context: Context,
+        env: AppEnvironment = .shared,
+        context: Context = ContextModel(.account, id: "self"),
         id: String? = nil,
         url: URL? = nil,
         launchType: GetSessionlessLaunchURLRequest.LaunchType? = nil,
@@ -44,7 +44,18 @@ public class LTITools {
         self.moduleItemID = moduleItemID
     }
 
-    public func presentToolInSFSafariViewController(from: UIViewController, animated: Bool, completionHandler: ((Bool) -> Void)?) {
+    public convenience init?(env: AppEnvironment = .shared, link: URL?) {
+        guard
+            let retrieve = link, retrieve.host == env.api.baseURL.host,
+            retrieve.path.hasSuffix("/external_tools/retrieve"),
+            let query = URLComponents.parse(retrieve).queryItems,
+            let value = query.first(where: { $0.name == "url" })?.value,
+            let url = URL(string: value)
+        else { return nil }
+        self.init(env: env, url: url)
+    }
+
+    public func presentToolInSFSafariViewController(from: UIViewController, animated: Bool, completionHandler: ((Bool) -> Void)? = nil) {
         getSessionlessLaunchURL { (url) in
             guard let url = url else {
                 completionHandler?(false)

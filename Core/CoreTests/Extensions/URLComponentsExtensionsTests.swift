@@ -23,6 +23,12 @@ class URLComponentsExtensionsTests: XCTestCase {
         XCTAssertEqual(URLComponents.parse(url), URLComponents(string: string)!)
     }
 
+    func testParseURLWithEncoding() {
+        let string = "scheme://us%2Fer:pass%2Fword@ho%2Fst/pa%3Fth/1/2/3?query=%2F&b#fra%2Fgment"
+        let url = URL(string: string)!
+        XCTAssertEqual(URLComponents.parse(url), URLComponents(string: string)!)
+    }
+
     func testParseString() {
         let string = "scheme://user:password@host/path/1/2/3?query=a&b#fragment"
         XCTAssertEqual(URLComponents.parse(string), URLComponents(string: string)!)

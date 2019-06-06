@@ -19,6 +19,17 @@ import WebKit
 @testable import Core
 
 class CoreWebViewTests: CoreTestCase {
+    class LinkDelegate: CoreWebViewLinkDelegate {
+        let handle: (URL) -> Bool
+        init(_ handle: @escaping (URL) -> Bool = { _ in return false }) {
+            self.handle = handle
+        }
+        func handleLink(_ url: URL) -> Bool {
+            return handle(url)
+        }
+        let routeLinksFrom = UIViewController()
+    }
+
     func testSetup() {
         let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
         XCTAssertEqual(view.customUserAgent, UserAgent.safari.description)
@@ -113,10 +124,11 @@ class CoreWebViewTests: CoreTestCase {
 
     func testDecidePolicyForFragment() {
         let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
-        view.navigation = .deepLink { _ in
+        let linkDelegate = LinkDelegate { _ in
             XCTFail("Should not get to navigation")
             return true
         }
+        view.linkDelegate = linkDelegate
         view.loadHTMLString("", baseURL: URL(string: "example.com"))
         view.webView(view, decidePolicyFor: MockNavigationAction(url: "example.com#hash", type: .linkActivated)) { policy in
             XCTAssertEqual(policy, .allow)
@@ -132,14 +144,16 @@ class CoreWebViewTests: CoreTestCase {
 
     func testDecidePolicyForExternal() {
         let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
-        view.navigation = .deepLink { _ in return false }
+        var linkDelegate = LinkDelegate { _ in return false }
+        view.linkDelegate = linkDelegate
         view.webView(view, decidePolicyFor: MockNavigationAction(url: "example.com", type: .linkActivated)) { policy in
             XCTAssertEqual(policy, .allow)
         }
-        view.navigation = .deepLink { url in
+        linkDelegate = LinkDelegate { url in
             XCTAssertEqual(url, URL(string: "example.com"))
             return true
         }
+        view.linkDelegate = linkDelegate
         view.webView(view, decidePolicyFor: MockNavigationAction(url: "example.com", type: .linkActivated)) { policy in
             XCTAssertEqual(policy, .cancel)
         }

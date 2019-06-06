@@ -216,7 +216,7 @@ public class CanvasWebView: WKWebView {
             if let scheme = url.scheme, ["https", "http"].contains(scheme) {
                 return
             }
-            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { success in
+            UIApplication.shared.open(url), completionHandler: { success in
                 if success {
                     self.requestClose?()
                 } else {
@@ -340,9 +340,4 @@ extension CanvasWebView: WKUIDelegate {
     public func webViewDidClose(_ webView: WKWebView) {
         requestClose?()
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

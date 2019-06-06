@@ -83,11 +83,7 @@ class SyllabusViewController: UIViewController {
 
     func configureSyllabus() {
         syllabus = CoreWebView(frame: CGRect.zero)
-        syllabus?.navigation = .deepLink { [weak self] url in
-            guard let self = self else { return false }
-            self.presenter.show(url, from: self)
-            return true
-        }
+        syllabus?.linkDelegate = self
         syllabus?.accessibilityLabel = "SyllabusPage.syllabusWebView"
         guard let syllabus = syllabus else { return }
         scrollView.addSubview(syllabus)
@@ -202,5 +198,12 @@ extension SyllabusViewController: HorizontalMenuDelegate {
         case .assignments:
             showAssignments()
         }
+    }
+}
+
+extension SyllabusViewController: CoreWebViewLinkDelegate {
+    public func handleLink(_ url: URL) -> Bool {
+        presenter.show(url, from: self)
+        return true
     }
 }

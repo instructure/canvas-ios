@@ -16,16 +16,12 @@
 
 import UIKit
 
-public class CoreWebViewController: UIViewController {
+public class CoreWebViewController: UIViewController, CoreWebViewLinkDelegate {
     public let webView = CoreWebView()
 
-    public init(env: AppEnvironment) {
+    public init() {
         super.init(nibName: nil, bundle: nil)
-        webView.navigation = .deepLink { [weak self] (url: URL) -> Bool? in
-            guard let self = self else { return false }
-            env.router.route(to: url, from: self, options: nil)
-            return true
-        }
+        webView.linkDelegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {

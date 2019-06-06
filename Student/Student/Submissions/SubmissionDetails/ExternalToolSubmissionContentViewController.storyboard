@@ -29,6 +29,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="buttonPrimaryBackground"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="buttonPrimaryText"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="openExternalTool:" destination="id8-JN-hXV" eventType="touchUpInside" id="kjD-LP-na9"/>
