@@ -105,9 +105,7 @@ public class ActAsUserViewController: UITableViewController {
             return
         }
         presenter?.didSubmit(domain: domain, userID: userID) { [weak self] err in
-            if err == nil {
-                self?.dismiss(animated: true, completion: nil)
-            } else {
+            if err != nil {
                 self?.showMasqueradingError()
             }
         }
