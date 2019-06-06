@@ -266,18 +266,6 @@
   "cancel_caeb1e68": {
     "message": "Cancel"
   },
-  "canvas_guides_d65431": {
-    "message": "Canvas Guides"
-  },
-  "canvas_parent_app_f9236a3a": {
-    "message": "Canvas Parent App"
-  },
-  "canvas_student_app_329567f": {
-    "message": "Canvas Student App"
-  },
-  "canvas_teacher_app_9dc7d7ed": {
-    "message": "Canvas Teacher App"
-  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Change { discussionTitle } to different grouping"
   },
@@ -773,9 +761,6 @@
   "i_hold_the_copyright_71ee91b1": {
     "message": "I hold the copyright"
   },
-  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
-    "message": "If you''re a student or teacher, try one of our other apps below."
-  },
   "in_progress_9d1ce8b9": {
     "message": "In Progress"
   },
@@ -784,6 +769,9 @@
   },
   "indigo_2035fc55": {
     "message": "Indigo"
+  },
+  "input_1d1d9b8e": {
+    "message": "Input"
   },
   "insert_image_42d30344": {
     "message": "Insert Image"
@@ -814,6 +802,9 @@
   },
   "item_count_plural_one_item_other_items_88319c63": {
     "message": "{ item_count, plural,\n    one {# item}\n  other {# items}\n}"
+  },
+  "label_text_field_6677ab6f": {
+    "message": "{ label }, text field"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "Last activity on { lastActivity, date, 'MMMM d' } at { lastActivity, time, short }"
@@ -851,11 +842,11 @@
   "light_blue_5374f600": {
     "message": "Light Blue"
   },
+  "like_e8ad74ae": {
+    "message": "Like"
+  },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Lock Questions After Answering"
-  },
-  "log_in_again_ec2b1f46": {
-    "message": "Log In Again"
   },
   "log_out_379ba28a": {
     "message": "Log Out"
@@ -977,9 +968,6 @@
   "no_e16d9132": {
     "message": "No"
   },
-  "no_enrollments_6369cd31": {
-    "message": "No Enrollments"
-  },
   "no_grade_3b4d7f3e": {
     "message": "No Grade"
   },
@@ -1019,9 +1007,6 @@
   "none_9b6c9bec": {
     "message": "none"
   },
-  "not_a_teacher_b0d0fc55": {
-    "message": "Not a teacher?"
-  },
   "not_graded_e027c866": {
     "message": "Not Graded"
   },
@@ -1033,6 +1018,9 @@
   },
   "nothing_more_to_do_b017e8bb": {
     "message": "Nothing more to do."
+  },
+  "number_of_likes_count_b5355a14": {
+    "message": "Number of likes: { count }"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minute}\n  other {# Minutes}\n}"
@@ -1054,9 +1042,6 @@
   },
   "on_paper_46d0ba36": {
     "message": "On Paper"
-  },
-  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
-    "message": "One of our other apps might be a better fit. Tap one to visit the App Store."
   },
   "one_question_at_a_time_3161ceeb": {
     "message": "One Question at a Time"
@@ -1679,9 +1664,6 @@
   "total_grade_568e719f": {
     "message": "Total Grade:"
   },
-  "try_logging_in_again_7a66111a": {
-    "message": "Try logging in again"
-  },
   "un_starred_8fef021f": {
     "message": "Un-starred"
   },
@@ -1767,6 +1749,9 @@
   "use_camera_47a0387b": {
     "message": "Use Camera"
   },
+  "value_text_field_d9515a76": {
+    "message": "{ value }, text field"
+  },
   "video_b9f27375": {
     "message": "Video"
   },
@@ -1820,9 +1805,6 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "You must enter an access code"
-  },
-  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
-    "message": "You need at least one active observer enrollment to use Canvas Parent."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "Your submission comment failed to send."
