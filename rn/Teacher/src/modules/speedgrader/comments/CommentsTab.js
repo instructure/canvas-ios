@@ -185,17 +185,15 @@ export class CommentsTab extends Component<CommentsTabProps, any> {
     // $FlowFixMe
     const rows = this.props.commentRows
     let hasPending = this.props.commentRows.some(c => c.pending)
-    let containerStyles = {}
-    if (rows.length === 0) containerStyles = { flex: 1, justifyContent: 'center' }
+    let inverted = rows.length > 0
     return (
       <View style={{ flex: 1 }}>
         <FlatList
           showsVerticalScrollIndicator={false}
-          inverted={true}
+          inverted={inverted}
           data={rows}
           renderItem={this.renderComment}
           ListEmptyComponent={<ListEmptyComponent title={i18n('There are no comments to display.')} />}
-          contentContainerStyle={containerStyles}
         />
         { this.state.shouldShowStatus &&
           <CommentStatus
