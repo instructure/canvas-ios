@@ -202,7 +202,6 @@ export class Profile extends Component<Object, State> {
         Linking.openURL('https://community.canvaslms.com/community/answers/guides/mobile-guide/content?filterID=contentstatus%5Bpublished%5D~category%5Btable-of-contents%5D')
         break
       case 'terms':
-        await this.props.navigator.dismiss()
         this.props.navigator.show('/terms-of-use', { modal: true })
         break
       default:
