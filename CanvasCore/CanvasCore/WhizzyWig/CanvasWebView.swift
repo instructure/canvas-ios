@@ -216,13 +216,13 @@ public class CanvasWebView: WKWebView {
             if let scheme = url.scheme, ["https", "http"].contains(scheme) {
                 return
             }
-            UIApplication.shared.open(url), completionHandler: { success in
+            UIApplication.shared.open(url) { success in
                 if success {
                     self.requestClose?()
                 } else {
                     self.onError?(error)
                 }
-            })
+            }
         } else {
             self.onError?(error)
         }
