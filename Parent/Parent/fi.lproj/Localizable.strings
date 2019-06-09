@@ -1,0 +1,249 @@
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d / %3$d";
+
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ määräpäivä on %2$@";
+
+/* No comment provided by engineer. */
+"%@ to %@" = "%1$@ - %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ alkaa %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100 %";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "Ilmeni palvelinvirhe.  Yritä uudelleen.";
+
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Toimi käyttäjänä";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Järjestelmävalvoja";
+
+/* Alert Section Header */
+"Alert me when:" = "Hälytä minua, kun:";
+
+/* Alerts Tab */
+"Alerts" = "Hälytykset";
+
+/* No comment provided by engineer. */
+"An Error Occurred" = "Tapahtui virhe.";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "Ilmeni odottamaton virhe.  Yritä uudelleen.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Ilmoitus";
+
+/* No comment provided by engineer. */
+"Assignment" = "Tehtävä";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Tehtävän arvosana yllä";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Tehtävän arvosana alla";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Tehtävä puuttuu";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Tehtävän muistutus";
+
+/* Cancel button title */
+"Cancel" = "Peruuta";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Ei voi käyttää arvoa 100 suurempaa prosenttilukua";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Ei voi käyttää arvoa 0 pienempää prosenttilukua";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Hallitse hälytykset";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Valitse opiskelija";
+
+/* Close Button Title */
+"Close" = "Sulje";
+
+/* Course Announcement Description */
+"Course announcements" = "Kurssin ilmoitukset";
+
+/* Course Grade High On Description */
+"Course grade above" = "Kurssin arvosana yläpuolella";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Kurssin arvosana alapuolella";
+
+/* Courses Tab */
+"Courses" = "Kurssit";
+
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "Kurssin opiskelija %@, napauta vaihtaaksesi opiskelijaa";
+
+/* No comment provided by engineer. */
+"Discussion" = "Keskustelu";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Ohita";
+
+/* No comment provided by engineer. */
+"Error" = "Virhe";
+
+/* No comment provided by engineer. */
+"Event" = "Tapahtuma";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Tapahtuman muistutus";
+
+/* No comment provided by engineer. */
+"Excused" = "Annettu anteeksi";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "Korkea tehtävän arvosana ei voi olla pienempi kuin alhainen tehtävän arvosana";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "Korkea kurssin arvosana ei voi olla pienempi kuin alhainen kurssin arvosana";
+
+/* No comment provided by engineer. */
+"In-Class" = "Luokassa";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Laitoksen ilmoitukset";
+
+/* Title for an alert view */
+"Invalid Input" = "Virheellinen syöte";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "Viime viikko";
+
+/* No comment provided by engineer. */
+"Late" = "Myöhään";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Myöhään %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Myöhään %1$@ (%2$@/%3$@)";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Alhainen tehtävän arvosana ei voi olla suurempi kuin korkea tehtävän arvosana";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Alhainen kurssin arvosana ei voi olla suurempi kuin korkea kurssin arvosana";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Hallitse lapsia";
+
+/* No comment provided by engineer. */
+"Missing" = "Puuttuu";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Puuttuu (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Verkkovirhe";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "Ensi viikolla";
+
+/* Empty Courses Text */
+"No Courses" = "Ei kursseja";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "Ei arvosanaa";
+
+/* Error message */
+"No installed apps support opening this file" = "Ei tämän tiedoston avaamista tukevia sovelluksia asennettu";
+
+/* Empty Students Text */
+"No Students" = "Ei opiskelijoita";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Ei valtuutettu";
+
+/* Not Found Error Title */
+"Not Found" = "Ei löydy";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Ei mitään tällä viikolla";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Avaa Safarissa";
+
+/* Open file in another application */
+"Open in..." = "Avaa kohteessa...";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Käyttöoikeus tarvitaan";
+
+/* No comment provided by engineer. */
+"Quiz" = "Tietovisa";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Resurssia ei löytynyt  Yritä uudelleen.";
+
+/* Server Error Title */
+"Server Error" = "Palvelinvirhe";
+
+/* No comment provided by engineer. */
+"Settings" = "Asetukset";
+
+/* No comment provided by engineer. */
+"Submitted" = "Lähetetty";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Lähetetty: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Lähetetty: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Opinto-ohjelma";
+
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Aloita Canvas-sovelluksen tarkastelu toisena henkilönä.";
+
+/* Error message */
+"There are no actions for this item" = "Tälle kohteelle ei ole toimintoja";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "Tietokantatiedoston AlertKit latauksessa tapahtui virhe.";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "Tietokantatiedoston latauksessa tapahtui virhe.";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Sisältösi latauksessa ilmeni virhe. Jos se on äänen tai videon lataus, sitä saatetaan yhä käsitellä.";
+
+/* No comment provided by engineer. */
+"This announcement has expired." = "Tämä ilmoitus on vanhentunut.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "Tämän opiskelijan kursseja ei ehkä vielä julkaista.";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Tuntematon";
+
+/* No comment provided by engineer. */
+"Unread" = "Lukematon";
+
+/* Calendar Tab */
+"Week" = "Viikko";
+
+/* Header title of admin view */
+"Welcome!" = "Tervetuloa!";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "Sinulla ei ole valtuuksia näiden tietojen käyttöön.  Tarkista käyttöoikeutesi ja yritä uudelleen.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Sinun täytyy sallia ilmoitukset asetuksissa määrittääksesi muistutukset.";
+

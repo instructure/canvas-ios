@@ -5,16 +5,28 @@
 "All Courses" = "所有課程";
 
 /* No comment provided by engineer. */
+"Allowed Attempts:" = "允許的嘗試：";
+
+/* No comment provided by engineer. */
+"Arc" = "Arc";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "作業詳情";
 
 /* No comment provided by engineer. */
 "Assignments" = "作業列表";
 
 /* No comment provided by engineer. */
+"Attachments" = "附件";
+
+/* No comment provided by engineer. */
 "Cancel" = "取消";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "取消提交項目";
+
+/* No comment provided by engineer. */
+"Choose File" = "選擇檔案";
 
 /* No comment provided by engineer. */
 "Close App" = "關閉應用程式";
@@ -86,6 +98,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "有問題？使用此區域向您的導師傳送與此作業有關的訊息。";
 
 /* No comment provided by engineer. */
+"Instructions" = "教學";
+
+/* No comment provided by engineer. */
 "Invalid url" = "無效的 URL";
 
 /* No comment provided by engineer. */
@@ -122,6 +137,9 @@
 "Practice Quizzes" = "練習測驗";
 
 /* No comment provided by engineer. */
+"Questions:" = "問題：";
+
+/* No comment provided by engineer. */
 "Quizzes" = "測驗";
 
 /* No comment provided by engineer. */
@@ -146,7 +164,13 @@
 "See All Courses" = "檢視所有課程";
 
 /* No comment provided by engineer. */
+"Send" = "發送";
+
+/* No comment provided by engineer. */
 "Send comment" = "發送評論";
+
+/* No comment provided by engineer. */
+"Settings" = "設定";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "載入測驗時發生錯誤。";
@@ -159,6 +183,9 @@
 
 /* No comment provided by engineer. */
 "Submission Failed" = "提交項目失敗";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "正在提交項目中...";
 
 /* No comment provided by engineer. */
 "Submission Types" = "提交類型";
@@ -182,6 +209,9 @@
 "Syllabus" = "課程大綱";
 
 /* No comment provided by engineer. */
+"Take Quiz" = "參加測驗";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "點選檢視詳情";
 
 /* No comment provided by engineer. */
@@ -198,6 +228,12 @@
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "沒有可顯示的測驗。";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "該作業沒有評分標準";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "時間限制：";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "已更新語言設定";

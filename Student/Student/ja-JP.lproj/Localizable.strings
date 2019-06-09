@@ -5,16 +5,28 @@
 "All Courses" = "すべてのコース";
 
 /* No comment provided by engineer. */
+"Allowed Attempts:" = "許可回数:";
+
+/* No comment provided by engineer. */
+"Arc" = "Arc";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "課題の詳細";
 
 /* No comment provided by engineer. */
 "Assignments" = "課題";
 
 /* No comment provided by engineer. */
+"Attachments" = "添付ファイル";
+
+/* No comment provided by engineer. */
 "Cancel" = "キャンセル";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "提出をキャンセル";
+
+/* No comment provided by engineer. */
+"Choose File" = "ファイルを選択する";
 
 /* No comment provided by engineer. */
 "Close App" = "アプリを閉じる";
@@ -86,6 +98,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "質問がありますか？この課題について講師にメッセージを送るには、このエリアを使用します。";
 
 /* No comment provided by engineer. */
+"Instructions" = "指示";
+
+/* No comment provided by engineer. */
 "Invalid url" = "無効なURL";
 
 /* No comment provided by engineer. */
@@ -122,6 +137,9 @@
 "Practice Quizzes" = "練習クイズ";
 
 /* No comment provided by engineer. */
+"Questions:" = "質問:";
+
+/* No comment provided by engineer. */
 "Quizzes" = "クイズ";
 
 /* No comment provided by engineer. */
@@ -146,7 +164,13 @@
 "See All Courses" = "すべての コースを表示";
 
 /* No comment provided by engineer. */
+"Send" = "送信";
+
+/* No comment provided by engineer. */
 "Send comment" = "コメントを送信する";
+
+/* No comment provided by engineer. */
+"Settings" = "設定";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "クイズをロード中に問題が発生しました。.";
@@ -159,6 +183,9 @@
 
 /* No comment provided by engineer. */
 "Submission Failed" = "提出に失敗しました";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "提出しています...";
 
 /* No comment provided by engineer. */
 "Submission Types" = "提出タイプ";
@@ -182,6 +209,9 @@
 "Syllabus" = "シラバス";
 
 /* No comment provided by engineer. */
+"Take Quiz" = "クイズを受ける";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "タップして詳細を表示する";
 
 /* No comment provided by engineer. */
@@ -198,6 +228,12 @@
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "表示するクイズはありません。";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "この課題に説明はありません";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "制限時間：";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "更新された言語設定";

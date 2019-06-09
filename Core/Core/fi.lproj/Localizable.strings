@@ -1,0 +1,219 @@
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Haluatko varmasti poistaa tämän kommentin?";
+
+/* No comment provided by engineer. */
+"Assignment" = "Tehtävä";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "Todennus epäonnistui. Mitä todennäköisimmin käyttäjä kielsi käyttöoikeuspyynnön.";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Etkö löydä kouluasi? Yritä kirjoittaa koko koulun URL";
+
+/* No comment provided by engineer. */
+"Cancel" = "Peruuta";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Canvas-sisäänkirjautuminen";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas-verkosto";
+
+/* No comment provided by engineer. */
+"Closed" = "Suljettu";
+
+/* No comment provided by engineer. */
+"Comments" = "Kommentit";
+
+/* No comment provided by engineer. */
+"Complete" = "Valmis";
+
+/* No comment provided by engineer. */
+"Course" = "Kurssi";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "Poista";
+
+/* No comment provided by engineer. */
+"Delete comment" = "Poista kommentti";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Poista kommentti";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "Keskustelua koskeva kommentti";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Ohita";
+
+/* No comment provided by engineer. */
+"External Tool" = "Ulkoinen työkalu";
+
+/* No comment provided by engineer. */
+"File Upload" = "Tiedoston lataus";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "Lopullinen arvosana: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "Etsi kouluni";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Etsi koulusi tai alueesi";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Unohda %@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Help" = "Ohje";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "Miten löydän kouluni";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Keskeneräinen";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Käynnistä ulkoinen työkalu";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@, ja %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@, %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@, %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ ja %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@tai %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@, %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@, %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ tai %2$@";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "Manuaalinen OAuth-sisäänkirjautuminen";
+
+/* No comment provided by engineer. */
+"Media Recording" = "Median nauhoitus";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Ei määräpäivää";
+
+/* No comment provided by engineer. */
+"No Submission" = "Ei lähetystä";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Ei arvosteltu";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Ei lähetetty";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"On Paper" = "Paperilla";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Quiz" = "Tietovisa";
+
+/* No comment provided by engineer. */
+"Remove" = "Poista";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Poistettu %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Kohteen poistaja %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "Vastaa huomautukseen tai edellisiin kommentteihin";
+
+/* No comment provided by engineer. */
+"See what's new." = "Katso, mitä uutta on tulossa.";
+
+/* No comment provided by engineer. */
+"Select Account" = "Valitse tili";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Valitse tehtävä";
+
+/* No comment provided by engineer. */
+"Select Course" = "Valitse kurssi";
+
+/* No comment provided by engineer. */
+"Send comment" = "Lähetä kommentti";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "Sivuston pääkäyttäjän kirjautuminen";
+
+/* No comment provided by engineer. */
+"Style" = "Tyyli";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Lähetä tehtävä";
+
+/* No comment provided by engineer. */
+"Submitted" = "Lähetetty";
+
+/* Submitted date */
+"Submitted %@" = "Lähetetty %@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "Avaa ohje napauttamalla tässä.";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Tekstin syöttäminen";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "Tämän tehtävän määräpäivä %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "Tämän tehtävän määräpäivä oli %@";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "olemme tehneet muutamia muutoksia.";
+
+/* No comment provided by engineer. */
+"Website URL" = "Verkkosivuston URL";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "Mikä on koulusi nimi?";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "Sinun on kirjauduttava sisään vähintään yhdelle Canvas-tilille ensin yhdestä Opiskelijan sovelluksesta";
+

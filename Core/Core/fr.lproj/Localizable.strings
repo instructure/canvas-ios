@@ -224,13 +224,7 @@
 "No Submission" = "Aucune soumission";
 
 /* No comment provided by engineer. */
-"Not a parent?" = "Vous n'êtes pas un parent ?";
-
-/* No comment provided by engineer. */
-"Not a student?" = "Vous n'êtes pas élève ?";
-
-/* No comment provided by engineer. */
-"Not a teacher?" = "Pas enseignant ?";
+"None" = "Aucun";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Non noté";
@@ -243,9 +237,6 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "Sur papier";
-
-/* No comment provided by engineer. */
-"One of our other apps might be a better fit. Tap one to visit the App Store." = "Une autre de nos applications conviendrait sans doute davantage. Appuyez sur l'une d'entre elles pour visiter l'App store.";
 
 /* No comment provided by engineer. */
 "orange" = "orange";
@@ -294,6 +285,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Réessayer";
+
+/* No comment provided by engineer. */
+"See attached files." = "Voir les fichiers joints.";
 
 /* No comment provided by engineer. */
 "See what's new." = "Voir les nouveautés";
@@ -392,6 +386,9 @@
 "Undo" = "Annuler";
 
 /* No comment provided by engineer. */
+"Unlimited" = "Illimité";
+
+/* No comment provided by engineer. */
 "Unordered List" = "Liste dans le désordre";
 
 /* No comment provided by engineer. */
@@ -426,9 +423,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Vous devez activer les permissions du microphone dans les paramètres.";
-
-/* No comment provided by engineer. */
-"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Vous avez besoin d'au moins une inscription d’observateur active pour utiliser Canvas Parent. Si vous êtes élève ou enseignant, essayez l'une de nos autres applications ci-dessous.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Vous devrez d’abord vous connecter à au moins un compte Canvas depuis l'app Étudiant.";

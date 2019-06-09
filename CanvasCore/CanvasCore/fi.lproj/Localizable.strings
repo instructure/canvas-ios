@@ -1,0 +1,836 @@
+/* Error message component with the report id */
+" Error report ID: (reportID)" = " Virheraportin tunnus: (reportID)";
+
+/* Failure reason from the JSON payload from canvas */
+" Failure reason: (reason)." = " Epäonnistumisen syy: (syy).";
+
+/* Shows the number of flagged questions */
+"%@ Flagged" = "%@ Merkitty";
+
+/* Accessiblity hint for question drawer button */
+"%@ Questions Answered" = "%@ Vastaukset kysymyksiin";
+
+/* Question number in a quiz */
+"%@." = "%@.";
+
+/* Confirmations alerting user of unanswered questions */
+"%d questions not answered" = "%d kysymyksiä, joihin ei ole vastattu";
+
+/* web content failed to load */
+"⚠️ Error Loading Content" = "⚠️ Virhe sisällön latauksessa";
+
+/* Accessiblity hint for question drawer button */
+"0 Questions Answered" = "0 vastausta kysymyksiin";
+
+/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
+"5 minutes remaining" = "5 minuuttia jäljellä";
+
+/* Notification to alert the user that there is only 30 seconds left in the time quiz */
+"30 seconds remaining" = "30 sekuntia jäljellä";
+
+/* Mark student absent
+   Student is present in class */
+"Absent" = "Poissa";
+
+/* URL submission option */
+"Add Website Address" = "Lisää verkkosivuston osoite";
+
+/* Shows the number questions */
+"All %@ Questions" = "Kaikki %@ kysymystä";
+
+/* option to view results for all grading periods */
+"All Grading Periods" = "Kaikki arvosanojen antojaksot";
+
+/* No comment provided by engineer. */
+"All notifications are currently disabled." = "Kaikki ilmoitukset on parhaillaan pois käytöstä.";
+
+/* No comment provided by engineer. */
+"All notifications are currently enabled." = "Kaikki ilmoitukset on parhaillaan käytössä.";
+
+/* all pages segmented control title */
+"All Pages" = "Kaikki sivut";
+
+/* No comment provided by engineer. */
+"Allow Notifications in Settings" = "Kaikki ilmoitukset asetuksissa";
+
+/* label for number of attempts that are allowed */
+"Allowed Attempts" = "Sallitut yritykset";
+
+/* No comment provided by engineer. */
+"An unexpected error has occurred." = "Ilmeni odottamaton virhe.";
+
+/* an unknown error's message */
+"An unknown error has occurred." = "Ilmeni tuntematon virhe.";
+
+/* No comment provided by engineer. */
+"Answers will not be submitted while offline." = "Vastauksia ei lähetetä, kun verkon ulkopuolella.";
+
+/* Question to confirm user wants to navigate away from a quiz. */
+"Are you sure you want to leave this quiz?" = "Haluatko varmasti lähteä tästä kyselystä?";
+
+/* Confirmation before submitting a quiz */
+"Are you sure you want to submit your answers?" = "Haluatko varmasti lähettää vastauksesi?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Haluatko varmasti poistaa tämän kommentin?";
+
+/* label to be read for visually impaired users with assignment types */
+"assignment" = "tehtävä";
+
+/* No comment provided by engineer. */
+"Attendance" = "Osallistuminen";
+
+/* Error title for attendance app */
+"Attendance Error" = "Osallistumisen virhe";
+
+/* label for quiz availability date */
+"Available Until" = "Saatavissa asti";
+
+/* stop record button a11y hint */
+"Begin recording" = "Aloita nauhoitus";
+
+/* Blue course color button */
+"Blue" = "Sininen";
+
+/* Title for screen to build a panda avatar */
+"Build Your Panda!" = "Rakenna Pandasi!";
+
+/* Alert title when unable to parse JSON for communication channels */
+"Can't Display Communication Channels" = "Ei voida näyttää viestintäkanavia";
+
+/* Alert title when unable to parse JSON for notification preferences */
+"Can't Display Notification Preferences" = "Ei voida näyttää ilmoitusasetuksia";
+
+/* Cancel Audio recording.
+   Cancel button title
+   Cancel submission option
+   Cancel upload */
+"Cancel" = "Peruuta";
+
+/* No comment provided by engineer. */
+"Change Section" = "Vaihda osa";
+
+/* Description for Chat communication channel */
+"Chat" = "Chat";
+
+/* Choose a file */
+"Choose a File" = "Valitse tiedosto";
+
+/* Pick a photo from library */
+"Choose a Photo" = "Valitse valokuva";
+
+/* Pick a photo or video */
+"Choose a Photo or Video" = "Valitse valokuva tai video";
+
+/* No comment provided by engineer. */
+"Choose a Section" = "Valitse osa";
+
+/* Pick a video from library */
+"Choose a Video" = "Valitse video";
+
+/* No comment provided by engineer. */
+"Choose Date" = "Valitse päiväys";
+
+/* No comment provided by engineer. */
+"Close App" = "Sulje sovellus";
+
+/* No comment provided by engineer. */
+"Collapse" = "Kutista";
+
+/* No comment provided by engineer. */
+"Comments" = "Kommentit";
+
+/* File upload completed */
+"Complete" = "Valmis";
+
+/* Title of a screen that shows all of our open source components */
+"Components" = "Komponentit";
+
+/* Button for electing to be late on a quiz */
+"Continue Quiz" = "Jatka tietovisaa";
+
+/* Notification display name for conversations group */
+"Conversations" = "Keskustelut";
+
+/* Alert title when unable to load notification preferences */
+"Could not load notification preferences" = "Ilmoitusasetuksien lataus ei onnistunut";
+
+/* Failure reason for why it couldn't associate a tab with a context */
+"Could not parse context id from URL" = "Ei voitu jäsentää kontekstin tunnusta URL:stä";
+
+/* Error title for being unable to update a push notification preference */
+"Could not update" = "Ei voitu päivittää";
+
+/* Notification display name for course activities group */
+"Course Activities" = "Kurssiaktiviteetit";
+
+/* Header label for a screen that customizes a course */
+"Customize" = "Mukauttaa";
+
+/* Cyan course color button */
+"Cyan" = "Syaani";
+
+/* name for upload data */
+"Data" = "Tiedot";
+
+/* Error title for a persistence related data failure */
+"Data Error" = "Tietovirhe";
+
+/* No comment provided by engineer. */
+"Date picker" = "Päivämäärän valitsin";
+
+/* DeepOrange course color button */
+"DeepOrange" = "DeepOrange";
+
+/* DeepPurple course color button */
+"DeepPurple" = "DeepPurple";
+
+/* Delete button
+   Delete button for file upload */
+"Delete" = "Poista";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Poista kommentti";
+
+/* message for delete dialog of audio recorder */
+"Delete recording?" = "Poistetaanko nauhoitus?";
+
+/* label to be read for visually impaired users with discusstion topic assignment types */
+"discussion topic" = "keskustelun aihe";
+
+/* Notification display name for discussions group */
+"Discussions" = "Keskustelut";
+
+/* Error title to alert user their device is out of storage space */
+"Disk Error" = "Levyvirhe";
+
+/* Dismiss an error alert
+   Dismiss an error dialog
+   Dismiss button for error alert
+   Dismiss button for error messages */
+"Dismiss" = "Ohita";
+
+/* Done button
+   Done recording button */
+"Done" = "Valmis";
+
+/* due date label for quiz due date */
+"Due Date" = "Määräpäivä";
+
+/* Description for email communication channel */
+"Email" = "Sähköposti";
+
+/* Data encoding error title */
+"Encoding Error" = "Koodausvirhe";
+
+/* Default text for essay cell */
+"Enter answer..." = "Syötä vastaus...";
+
+/* Text submission option */
+"Enter Text" = "Kirjoita teksti";
+
+/* Placeholder for URL */
+"Enter URL..." = "Kirjoita URL-osoite...";
+
+/* Prompt for text upload */
+"Enter your submission..." = "Syötä lähetyksesi...";
+
+/* No comment provided by engineer. */
+"Error" = "Virhe";
+
+/* error message for when the cache management database fails to load */
+"Error loading cache management database." = "Virhe välimuistin hallintatietokannan latauksessa.";
+
+/* Title for quiz loading error */
+"Error Loading Quiz" = "Virhe tietovisaa ladattaessa";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a)" = "Virhe paikatessa Roll Call -vastausta. Odotettu (e), vastaanotettu (a)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Expected (e), received (a) for key (k)" = "Virhe paikatessa Roll Call -vastausta. Odotettu (e), vastaanotettu (a) avaimelle (k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Key not found: (k)" = "Virhe paikatessa Roll Call -vastausta. Avainta ei löytynyt: (k)";
+
+/* No comment provided by engineer. */
+"Error parsing the Roll Call response. Unexpected null value: (k)" = "Virhe paikatessa Roll Call -vastausta. Odottamaton null-arvo: (k)";
+
+/* No comment provided by engineer. */
+"Error retrieving tool launch URL" = "Virhe noudettaessa työnkalun käynnistys-URL:ää";
+
+/* Error title for parsing assignment data from server */
+"Error Updating Assignment" = "Virhe tehtävän päivityksissä";
+
+/* rollcall status error */
+"Error: No data returned from the rollcall api." = "Virhe: Rollcall apista ei palautettu tietoja.";
+
+/* Exit button to leave the quiz */
+"Exit" = "Poistu";
+
+/* No comment provided by engineer. */
+"Expand" = "Laajenna";
+
+/* Error message when the server returns a invalid response */
+"Expected a response in the 200-299 range. Got %@" = "Odotettu vastaus 200-299 välillä. Sai %@";
+
+/* label to be read for visually impaired users with external tool assignment types */
+"external tool" = "ulkoinen työkalu";
+
+/* File upload failed */
+"Failed" = "Epäonnistui";
+
+/* No comment provided by engineer. */
+"Failed to find image at path" = "Kuvaa ei löytynyt polulla";
+
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NS:n lataus epäonnistuiManagedObjectModel";
+
+/* Error when submitting an assignment */
+"Failed to Submit" = "Lähetys epäonnistui";
+
+/* No comment provided by engineer. */
+"Failed to write image" = "Ei voi kirjoittaa kuvaa";
+
+/* favorite courses or groups */
+"Favorites" = "Suosikit";
+
+/* title for file upload errors */
+"File Upload Error" = "Tiedoston latausvirhe";
+
+/* File uploads screen title */
+"File Uploads" = "Tiedoston lataukset";
+
+/* State of the flagged question */
+"Flagged" = "Merkitty";
+
+/* front page segmented control title */
+"Front Page" = "Etusivu";
+
+/* navigate */
+"Go" = "Siirry";
+
+/* Title for grading periods picker */
+"Grading Periods" = "Arvosanojen antojaksot";
+
+/* Green course color button */
+"Green" = "Vihreä";
+
+/* Notification display name for groups group */
+"Groups" = "Ryhmät";
+
+/* Non favorite hidden courses or groups */
+"Hidden" = "Piilotettu";
+
+/* Hides the question list */
+"Hide Question List" = "Piilota kysymysluettelo";
+
+/* Inbox tab title */
+"Inbox" = "Tulevien laatikko";
+
+/* Indigo course color button */
+"Indigo" = "Indigo";
+
+/* No comment provided by engineer. */
+"Internet Connection Offline" = "Internet-yhteys pois verkosta";
+
+/* No comment provided by engineer. */
+"Invalid date received from API." = "API:sta vastaanotettiin virheelliset tiedot.";
+
+/* Mark student late
+   Student is present in class */
+"Late" = "Myöhään";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Käynnistä ulkoinen työkalu";
+
+/* Leave the quiz */
+"Leave" = "Lähtö";
+
+/* LightBlue course color button */
+"LightBlue" = "LightBlue";
+
+/* LightGreen course color button */
+"LightGreen" = "LightGreen";
+
+/* LightPink course color button */
+"LightPink" = "LightPink";
+
+/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
+"Lock Date Reached\nSubmitting" = "Lukituspäivämäärä saavutettu\nLähetetään";
+
+/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
+"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Vaaditaan Lockdown-selain tulostesi tarkasteluun. Avaa kysely Lockdown-selaimessa jatkaaksesi.";
+
+/* Title for when another tool called Lockdown Browser is required to take a quiz */
+"Lockdown Browser Required" = "Vaaditaan Lockdown-selain";
+
+/* No comment provided by engineer. */
+"Mark All as Present" = "Merkitse kaikki läsnä olevina";
+
+/* No comment provided by engineer. */
+"Mark Remaining as Present" = "Merkitse jäljellä olevat läsnä olevina";
+
+/* Error alert title for network error
+   Title for network errors */
+"Network Error" = "Verkkovirhe";
+
+/* Next button for advancing a quiz */
+"Next" = "Seuraava";
+
+/* Alert title when unable to load communication channels */
+"No Communication Channels Found" = "Ei löydy kommunikointikanavia";
+
+/* A quiz that has no due date */
+"No Due Date" = "Ei määräpäivää";
+
+/* Title for alert when a module item doesn't have mastery paths configured */
+"No Mastery Paths" = "Ei hallintapolkuja";
+
+/* Error when push channel cannot be found in notificaitons */
+"No push channel found" = "Push-kanavaa ei löydy";
+
+/* No comment provided by engineer. */
+"No sections available. Please make sure you are enrolled as a teacher or TA in at least on section of this course." = "Ei osia saatavissa. Varmista, että olet ilmoittautunut opettajana tai apuopettajana vähintään yhdessä tämän kurssin osassa.";
+
+/* when a quiz has no time limit */
+"No time limit" = "Ei aikarajaa";
+
+/* Section header for assignments without an assignment group */
+"None" = "Ei mitään";
+
+/* can't record because request for mic access was denied title */
+"Not Permitted" = "Ei sallittu";
+
+/* Title for alert showing when a quiz isn't takeable */
+"Not Takeable" = "Ei otettavissa";
+
+/* Error title for push notification registration error */
+"Notification Error" = "Ilmoitusvirhe";
+
+/* Title for the notification preferences page */
+"Notification Preferences" = "Ilmoitusasetukset";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open in Safari" = "Avaa Safarissa";
+
+/* No comment provided by engineer. */
+"Open in…" = "Avaa kohteessa...";
+
+/* Accessibility hint for the profile button */
+"Opens profile" = "Avaa profiilin";
+
+/* Orange course color button */
+"Orange" = "Oranssi";
+
+/* Overdue assignmnets (not turned in) */
+"Overdue" = "Myöhässä";
+
+/* Assignments that have been turned in and are past */
+"Past" = "Edelliset";
+
+/* Pause recording/playback */
+"Pause" = "Keskeytä";
+
+/* record button a11y hint */
+"Pause playback" = "Toiston keskeyttäminen";
+
+/* name for a photo just taken */
+"Photo" = "Valokuva";
+
+/* Photos backdrops */
+"Photos" = "Valokuvat";
+
+/* Pink course color button */
+"Pink" = "Vaaleanpunainen";
+
+/* Playback button */
+"Play" = "Toista";
+
+/* play button a11y hint */
+"Play back recording" = "Toista nauhoitus";
+
+/* Title for playback error messages */
+"Playback Error" = "Toiston virhe";
+
+/* No comment provided by engineer. */
+"Please check your network connection and try again." = "Tarkasta verkkoyhteys ja yritä uudelleen.";
+
+/* label for number of points in a quiz */
+"Points" = "Pisteitä";
+
+/* Mark student present
+   Student is present in class */
+"Present" = "Nykyinen";
+
+/* Accessibility label for the profile button */
+"Profile" = "Profiili";
+
+/* Purple course color button */
+"Purple" = "Purppura";
+
+/* Description for Push Notification channel */
+"Push Notifications" = "Push-ilmoitukset";
+
+/* accessibility label for a quiz question */
+"Question" = "Kysymys";
+
+/* state for a question that has been flagged */
+"Question (number) Flagged" = "Kysymys (numero) merkitty";
+
+/* state for unflagged question */
+"Question (number) Unflagged" = "Kysymyksen (numero) merkintä poistettu";
+
+/* Shows question position */
+"Question %@" = "Kysymys %@";
+
+/* label for the number of questions */
+"Questions" = "Kysymykset";
+
+/* label to be read for visually impaired users with quiz assignment types */
+"quiz" = "tietovisa";
+
+/* Title for alert that shows when a quiz hits the due date */
+"Quiz Due" = "Tietovisan määräpäivä";
+
+/* Title for quiz error */
+"Quiz Error" = "Tietovisan virhe";
+
+/* Label for indication that the quiz submission was successful */
+"Quiz Submitted" = "Tietovisa lähetetty";
+
+/* Label for indication that the quiz submission failed */
+"QuizSubmission Failure" = "QuizSubmission Vika";
+
+/* tile for error reading cache */
+"Read Error" = "Lukuvirhe";
+
+/* button to read more of the description */
+"Read More" = "Lue lisää";
+
+/* Record button a11y label */
+"Record" = "Nauhoita";
+
+/* Choose record audio submission */
+"Record Audio" = "Nauhoita ääni";
+
+/* permission denied button a11y label */
+"Record Permission Help" = "Nauhoituksen käyttöoikeuden ohje";
+
+/* title for a recording error */
+"Recording Error" = "Nauhoituksen virhe";
+
+/* red course color button */
+"Red" = "Punainen";
+
+/* No comment provided by engineer. */
+"Remove" = "Poista";
+
+/* Remove the formatting of the essay question text */
+"Remove Formatting" = "Poista muotoilu";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Poistettu %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Kohteen poistaja %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Vastaus";
+
+/* Button to report an error */
+"Report" = "Raportti";
+
+/* Record button a11y label */
+"Request Audio Recording Permission" = "Pyydä äänen nauhoitusluvat";
+
+/* stop record button a11y hint */
+"Request Permission to record audio" = "Pyydä käyttöoikeuksia nauhoittaa ääni";
+
+/* button for resuming a quiz */
+"Resume Quiz" = "Jatka tietovisaa";
+
+/* button for retaking quiz */
+"Retake Quiz" = "Suorita tietovisa uudelleen";
+
+/* Notification display name for scheduling group */
+"Scheduling" = "Aikatauluttaminen";
+
+/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
+"Select all that apply" = "Valitse kaikki sopivat vaihtoehdot";
+
+/* Indicates that a matching quiz question needs to have an answer selected */
+"Select Answer" = "Valitse vastaus";
+
+/* No comment provided by engineer. */
+"Select to change the roll call date" = "Valitse vaihtaaksesi roll call -päivämäärä";
+
+/* when a button is selected */
+"Selected" = "Valittu";
+
+/* Shapes backdrops */
+"Shapes" = "Muotoilee";
+
+/* Hides the question list */
+"Show Question List" = "Näytä kysymysluettelo";
+
+/* Text for a button that toggles to show a timer for a timed quiz */
+"Show Timer" = "Näytä ajastin";
+
+/* Description for SMS communication channel */
+"SMS" = "Tekstiviesti";
+
+/* Error message displayed when the file is unrecognized. */
+"Something went wrong. Check the file format and try again." = "Jotakin meni pieleen. Tarkista tiedoston muoto ja yritä uudelleen.";
+
+/* Text only quiz question label */
+"Spacer" = "Tyhjä väli";
+
+/* Stay on the quiz view */
+"Stay" = "Tuki";
+
+/* stop recording button a11y label */
+"Stop" = "Lopeta";
+
+/* File upload was stopped */
+"Stopped" = "Pysäytetty";
+
+/* No comment provided by engineer. */
+"Style" = "Tyyli";
+
+/* Submit assignment button
+   Submit button title
+   Turn in this url button */
+"Submit" = "Lähetä";
+
+/* Title for button to submit assignment */
+"Submit Assignment" = "Lähetä tehtävä";
+
+/* No comment provided by engineer. */
+"Submitted!" = "Lähetetty!";
+
+/* No comment provided by engineer. */
+"Submitting" = "Lähetetään";
+
+/* Label for indication of submitting quiz */
+"Submitting Quiz" = "Tietovisaa lähetetään";
+
+/* Take a photo submission choice */
+"Take a Photo" = "Ota valokuva";
+
+/* Take a video submission choice */
+"Take a Video" = "Ota video";
+
+/* Take a photo or video submission choice */
+"Take Photo or Video" = "Ota valokuva tai video";
+
+/* Button for taking the quiz */
+"Take Quiz" = "Suorita tietovisa";
+
+/* Teal course color button */
+"Teal" = "Sinivihreä";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Sovellus täytyy käynnistää uudelleen, jotta uusia kieliasetuksia voidaan käyttää. Käynnistä sovellus uudelleen.";
+
+/* Error message for a file missing */
+"The file does not exist." = "Tiedostoa ei ole olemassa.";
+
+/* This shouldn't ever happen. */
+"The Pages are gone!? Why are the pages always gone?" = "Sivut ovat hävinneet!? Miksi sivut ovat aina hävinneet?";
+
+/* Description for alert that shows when the quiz hits the due date */
+"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Tietovisan määräaika on 1 minuutin päästä. Haluatko lähettää nyt ja olla ajoissa ja jatka osallistumista kyselyyn ja ole mahdollisesti myöhässä?";
+
+/* Error message for interrupted requests marking a to do as done */
+"The request to mark a to do as done was interrupted" = "Pyyntö merkitä tehtävä valmiiksi keskeytettiin";
+
+/* bad url message */
+"The text you entered is not a valid URL" = "Teksti, jonka syötit, ei ole voimassa oleva URL";
+
+/* Data encoding error message */
+"There was a problem encoding UTF8 Data" = "UTF8-tietojen koodauksessa ilmeni ongelma";
+
+/* No comment provided by engineer. */
+"There was a problem fetching the list of course sections." = "Kurssin osien noudossa ilmeni ongelma.";
+
+/* JSON Parsing error description */
+"There was a problem interpreting a response from the server." = "Ilmeni ongelma tulkittaessa vastausta palvelimelta:";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the (kitModelName) database file." = "Tietokantatiedoston (kitModelName) latauksessa tapahtui virhe.";
+
+/* AssignmentKit database load failure message */
+"There was a problem loading the AssignmentKit database file." = "Tietokantatiedoston AssignmentKit latauksessa tapahtui virhe.";
+
+/* CalendarKit Database Load Failure Message */
+"There was a problem loading the CalendarKit database file." = "Tietokantatiedoston CalendarKit latauksessa tapahtui virhe.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "Tietokantatiedoston DiscussionKit latauksessa tapahtui virhe.";
+
+/* EnrollmentKit Database Load Failure Message */
+"There was a problem loading the EnrollmentKit database file." = "Tietokantatiedoston EnrollmentKit latauksessa tapahtui virhe.";
+
+/* FileKit Database Load Failure Message */
+"There was a problem loading the FileKit database file." = "Tietokantatiedoston FileKit latauksessa tapahtui virhe.";
+
+/* Page list fails */
+"There was a problem loading the Pages database file." = "Sivujen tietokantatiedoston  latauksessa tapahtui virhe.";
+
+/* PeepKit Database Load Failure Message */
+"There was a problem loading the PeepKit database file." = "Tietokantatiedoston PeepKit latauksessa tapahtui virhe.";
+
+/* SoEdventurous database load failure message */
+"There was a problem loading the SoEdventurous database file." = "Tietokantatiedoston SoEdventurous latauksessa tapahtui virhe.";
+
+/* File upload error message */
+"There was a problem preparing the file for upload" = "Tiedoston valmistelussa lataukseen tapahtui virhe.";
+
+/* Persistence error message */
+"There was a problem reading cached data" = "Välimuistitietojen lukemisessa esiintyi ongelma";
+
+/* Error description for Push Notifications registration error. */
+"There was a problem registering your device for push notifications." = "Laitteesi rekisteröinnissä push-ilmoituksia varten esiintyi ongelma.";
+
+/* Message when fails to submit an assignment */
+"There was a problem submitting your assignment. Please try again later." = "Tehtäväsi lähetys ei onnistunut. Yritä myöhemmin uudelleen.";
+
+/* Error description for failing to compute the URL to a quiz */
+"There was a problem updating the Quiz URL" = "Tietovisan URL:n päivittämisessä ilmeni ongelma.";
+
+/* generic error message */
+"There was a problem with the Canvas request." = "Ongelma käsiteltäessä Canvas-pyyntöä.";
+
+/* Error message when parsing contextID for a course or group tab */
+"There was an error associating a tab with a course or group." = "Ilmeni virhe liitettäessä välilehteä kurssin tai ryhmän kanssa.";
+
+/* An error message shown when the Users cache file fails to load */
+"There was an error loading the Users cache." = "Käyttäjien välimuistin latauksessa ilmeni virhe.";
+
+/* Error message for a network fail */
+"There was an error while communicating with the server." = "Ilmeni virhe kommunikoitaessa palvelimen kanssa.";
+
+/* No comment provided by engineer. */
+"There was no data!" = "Tietoja ei ole!";
+
+/* Warning to users editing an essay question that was edited on the web. */
+"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "Tätä avointa kysymystä on muokattu verkossa ja se saattaa sisältää muotoilua, linkkejä ja kuvia. Jotta tätä vastausta voidaan muokata mobiililaitteellasi, meidän täytyy tyhjentää muotoilu (mukaan lukien linkit ja kuvat). Muutoin voit jatkaa kysymyksen muokkausta verkkoselaimen kautta.";
+
+/* Body for alert when a module item doesn't have mastery paths configured */
+"This module item does not have mastery paths configured." = "Tällä moduulin kohteella ei ole hallintapolkuja määritettynä.";
+
+/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
+"This page is currently locked and not viewable." = "Tämä sivu on parhaillaan lukittu eikä se ole tarkasteltavissa.";
+
+/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
+"This quiz has an IP address filter set." = "Tällä tietovisalla on IP-osoitteen suodatusjoukko.";
+
+/* Message when telling the user they can't take the quiz for some weird reason */
+"This quiz is currently unavailable." = "Tämä tietovisa ei ole tällä hetkellä käytössä.";
+
+/* Message when telling the user they can't take the quiz because the quiz is locked */
+"This quiz is locked." = "Tämä tietovisa on lukittu.";
+
+/* No comment provided by engineer. */
+"This quiz is not available offline." = "Tämä tietovisa ei ole saatavissa verkon ulkopuolella.";
+
+/* label for the time limit */
+"Time Limit" = "Aikaraja";
+
+/* Toggle flag accessiblity action */
+"Toggle Flag" = "Vaihda merkintää";
+
+/* Total grade label */
+"Total Grade" = "Kokonaisarvosana";
+
+/* Description for Twitter communication channel */
+"Twitter" = "Twitter";
+
+/* Alert message when unable to parse JSON for communication channels */
+"Unable to display any Communication Channels returned from the server at this time." = "Ei voida näyttää palvelimelta palautettuja viestintäkanavia tällä kertaa.";
+
+/* Alert message when unable to parse JSON for notification preferences */
+"Unable to display any notification preferences returned from the server at this time." = "Ei voida näyttää palvelimelta palautettuja ilmoitusasetuksia tällä kertaa.";
+
+/* Alert message when unable to load communication channels */
+"Unable to load any Communication Channels at this time." = "Kommunikointikanavia ei voitu ladata tällä kertaa.";
+
+/* Alert message when unable to load notification preferences */
+"Unable to load any notification preferences at this time.  Error: %@" = "Ilmoitusasetuksia ei voitu ladata tällä kertaa.  Virhe: %@";
+
+/* Error message when parsing communication preferences */
+"Unable to parse JSON for communication channels" = "JSON:n jäsentäminen kommunikointikanaville ei onnistunut";
+
+/* Error message when parsing notification preferences */
+"Unable to parse JSON for notification preferences" = "JSON:n paikkaaminen ilmoitusasetuksille ei onnistunut";
+
+/* Assignments with no dates */
+"Undated" = "Päivitetty";
+
+/* Unexpected response type */
+"Unexpected response type" = "Odottamaton vastaustyyppi";
+
+/* Ungraded quiz */
+"Ungraded" = "Arvostelematon";
+
+/* An unknown error title */
+"Unknown Error" = "Tuntematon virhe";
+
+/* When a quiz has no limit on the number of attempts */
+"Unlimited" = "Rajoittamaton";
+
+/* Remove attendance status */
+"Unmark" = "Poista merkintä";
+
+/* Upcoming assignments */
+"Upcoming" = "Tulossa";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Päivitetyt kieliasetukset";
+
+/* File upload submission option */
+"Upload File" = "Lataa tiedosto";
+
+/* Message displayed while a file is being uploaded */
+"Uploading file..." = "Ladataan tiedostoa...";
+
+/* File upload in progress */
+"uploading..." = "ladataan...";
+
+/* permission denied button a11y hint */
+"User has denied record permission" = "Käyttäjä on kieltänyt nauhoituksen käyttöoikeudet";
+
+/* Error message if we can't pull the avatar image */
+"User has no valid avatar image url" = "Käyttäjällä ei ole voimassa olevaa avatar-kuvan url-linkkiä";
+
+/* button for viewing quiz results */
+"View Results" = "Näytä tulokset";
+
+/* a warning message */
+"Warning" = "Varoitus";
+
+/* Error message for being unable to update a push notification preference */
+"We were not able to update this value with the server" = "Emme pystyneet päivittämään tätä arvoa palvelimen kanssa";
+
+/* Yellow course color button */
+"Yellow" = "Keltainen";
+
+/* Description for Yo communication channel */
+"Yo" = "Yo";
+
+/* Shows time limit on a quiz */
+"You have %d minutes." = "Sinulla on %d minuuttia.";
+
+/* Message when telling the user they can't take the quiz because they used up all their attempts */
+"You have used all your attempts available on this quiz." = "Olet käyttänyt kaikki tälle kyselylle saatavissa olevat yritykset.";
+
+/* permission was rejected */
+"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Sinun täytyy antaa (appName) Mikrofonille pääsy asetuksissa, jotta ääntä voidaan nauhoittaa.";
+
+/* Error description for file out of space */
+"Your device is out of storage space. Please free up space and try again." = "Laitteesi tallennustila on lopussa. Vapauta tilaa ja yritä uudelleen.";
+

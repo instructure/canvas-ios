@@ -1040,6 +1040,9 @@
 		49CE97941F900CFF00121A43 /* ProfileBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBarButtonItem.swift; sourceTree = "<group>"; };
 		49CE97951F900D0000121A43 /* PandaImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PandaImages.xcassets; sourceTree = "<group>"; };
 		49F0F92F1F9E50E300DD1512 /* AttendanceStatusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceStatusController.swift; sourceTree = "<group>"; };
+		5B5262B522ACEDAA00E14EB0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B5262B622ACEDAA00E14EB0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
+		5B5262B722ACEDAA00E14EB0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		5B85C9F420DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		5B85C9F520DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B85C9F620DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
@@ -2899,6 +2902,7 @@
 				cy,
 				"en-CY",
 				"sl-SI",
+				fi,
 			);
 			mainGroup = 2CAF1B0A1F72AEDB007225DF;
 			productRefGroup = 2CAF1B151F72AEDB007225DF /* Products */;
@@ -3472,6 +3476,7 @@
 				7DC4D6AD2146E2D6007B1C06 /* da-instk12 */,
 				5BDF109621BCFCB700664A58 /* en-CY */,
 				5BBA9AD221E1E7CB003CDED2 /* sl-SI */,
+				5B5262B722ACEDAA00E14EB0 /* fi */,
 			);
 			name = SubmissionConfirmationViewController.xib;
 			sourceTree = "<group>";
@@ -3538,6 +3543,7 @@
 				7DC4D6A52146E24E007B1C06 /* sv-instk12 */,
 				5BDF109521BCFCB700664A58 /* en-CY */,
 				5BBA9AD121E1E7CB003CDED2 /* sl-SI */,
+				5B5262B622ACEDAA00E14EB0 /* fi */,
 			);
 			name = TimedQuizViewController.xib;
 			sourceTree = "<group>";
@@ -3604,6 +3610,7 @@
 				7D349C7821430D2A004C1074 /* sv-instk12 */,
 				5BDF109421BCFCB700664A58 /* en-CY */,
 				5BBA9AD021E1E7CB003CDED2 /* sl-SI */,
+				5B5262B522ACEDAA00E14EB0 /* fi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

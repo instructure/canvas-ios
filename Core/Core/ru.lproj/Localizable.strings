@@ -224,13 +224,7 @@
 "No Submission" = "Нет отправки";
 
 /* No comment provided by engineer. */
-"Not a parent?" = "Не являетесь родителем?";
-
-/* No comment provided by engineer. */
-"Not a student?" = "Не учащийся?";
-
-/* No comment provided by engineer. */
-"Not a teacher?" = "Не преподаватель?";
+"None" = "Нет";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Оценка не выставлена";
@@ -243,9 +237,6 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "На бумаге";
-
-/* No comment provided by engineer. */
-"One of our other apps might be a better fit. Tap one to visit the App Store." = "Одно из наших других приложений может подойти лучше. Прикоснитесь один раз для входа в App Store.";
 
 /* No comment provided by engineer. */
 "orange" = "оранжевого цвета";
@@ -294,6 +285,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Повторить";
+
+/* No comment provided by engineer. */
+"See attached files." = "См. прикрепленные файлы.";
 
 /* No comment provided by engineer. */
 "See what's new." = "Посмотрите, что нового.";
@@ -392,6 +386,9 @@
 "Undo" = "Отменить";
 
 /* No comment provided by engineer. */
+"Unlimited" = "Неограниченно";
+
+/* No comment provided by engineer. */
 "Unordered List" = "Неупорядоченный список";
 
 /* No comment provided by engineer. */
@@ -426,9 +423,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Вы должны активировать разрешения для микрофона в настройках.";
-
-/* No comment provided by engineer. */
-"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Вам необходимо как минимум одно активное зачисление оценщика для использования Canvas Parent. Если вы студент или преподаватель, попробуйте одно из наших приложений ниже.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Сначала вам нужно войти хотя бы в одну учетную запись Canvas из приложения Student.";

@@ -224,13 +224,7 @@
 "No Submission" = "Nenhuma submissão";
 
 /* No comment provided by engineer. */
-"Not a parent?" = "Não é um pai?";
-
-/* No comment provided by engineer. */
-"Not a student?" = "Não é um aluno?";
-
-/* No comment provided by engineer. */
-"Not a teacher?" = "Não é professor?";
+"None" = "Nenhum";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Sem classificação";
@@ -243,9 +237,6 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "No papel";
-
-/* No comment provided by engineer. */
-"One of our other apps might be a better fit. Tap one to visit the App Store." = "Uma das nossas outras aplicações pode ser um ajuste melhor. Toque em um para visitar a App Store.";
 
 /* No comment provided by engineer. */
 "orange" = "laranja";
@@ -294,6 +285,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Tentar novamente";
+
+/* No comment provided by engineer. */
+"See attached files." = "Ver arquivos anexos.";
 
 /* No comment provided by engineer. */
 "See what's new." = "Veja o que há de novo.";
@@ -392,6 +386,9 @@
 "Undo" = "Desfazer";
 
 /* No comment provided by engineer. */
+"Unlimited" = "Ilimitado";
+
+/* No comment provided by engineer. */
 "Unordered List" = "Lista desordenada";
 
 /* No comment provided by engineer. */
@@ -426,9 +423,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Você deve habilitar as permissões de Microfone nas Definições.";
-
-/* No comment provided by engineer. */
-"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Você precisa de pelo menos um registo de observador ativo para usar o Canvas Parent. Se você é aluno ou professor, experimente um dos nossos outros apps abaixo.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Você precisará fazer o login em pelo menos uma conta Canvas da aplicação Aluno primeiro.";

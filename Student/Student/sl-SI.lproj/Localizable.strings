@@ -5,16 +5,28 @@
 "All Courses" = "Vsi predmeti";
 
 /* No comment provided by engineer. */
+"Allowed Attempts:" = "Dovoljeni poskusi:";
+
+/* No comment provided by engineer. */
+"Arc" = "Arc";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Podrobnosti o nalogi";
 
 /* No comment provided by engineer. */
 "Assignments" = "Naloge:";
 
 /* No comment provided by engineer. */
+"Attachments" = "Priloge";
+
+/* No comment provided by engineer. */
 "Cancel" = "Prekliči";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "Prekliči oddajo";
+
+/* No comment provided by engineer. */
+"Choose File" = "Izberi datoteko";
 
 /* No comment provided by engineer. */
 "Close App" = "Zapri aplikacijo";
@@ -86,6 +98,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "Imate vprašanja? Uporabite to polje, da izvajalcu pošljete komentar o tej nalogi.";
 
 /* No comment provided by engineer. */
+"Instructions" = "Navodila";
+
+/* No comment provided by engineer. */
 "Invalid url" = "Neveljaven naslov URL";
 
 /* No comment provided by engineer. */
@@ -122,6 +137,9 @@
 "Practice Quizzes" = "Kvizi za vajo";
 
 /* No comment provided by engineer. */
+"Questions:" = "Vprašanja:";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Kvizi";
 
 /* No comment provided by engineer. */
@@ -146,7 +164,13 @@
 "See All Courses" = "Ogled vseh predmetov";
 
 /* No comment provided by engineer. */
+"Send" = "Pošlji";
+
+/* No comment provided by engineer. */
 "Send comment" = "Pošlji komentar";
+
+/* No comment provided by engineer. */
+"Settings" = "Nastavitve";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Pri nalaganju kvizov je prišlo je do težav.";
@@ -159,6 +183,9 @@
 
 /* No comment provided by engineer. */
 "Submission Failed" = "Oddaja ni uspela.";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "Oddaja je v teku ...";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Vrste oddaj";
@@ -182,6 +209,9 @@
 "Syllabus" = "Učni načrt";
 
 /* No comment provided by engineer. */
+"Take Quiz" = "Opravi kviz";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Tapnite za ogled podrobnosti";
 
 /* No comment provided by engineer. */
@@ -198,6 +228,12 @@
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Ni nobenih kvizov za prikaz.";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "Za to nalogo ni ocenjevalnega vodnika";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "Časovna omejitev:";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Posodobljene nastavitve jezika";

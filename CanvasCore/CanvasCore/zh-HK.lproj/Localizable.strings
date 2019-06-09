@@ -56,6 +56,9 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "允許的嘗試";
 
+/* Default error message displayed when a file fails to upload */
+"An error occurred, please try again." = "出現錯誤。請重試。";
+
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "出現意外錯誤。";
 
@@ -327,6 +330,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "隱藏問題清單";
+
+/* No comment provided by engineer. */
+"Image %d" = "圖像%d";
 
 /* Inbox tab title */
 "Inbox" = "收件匣";

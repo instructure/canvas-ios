@@ -1,8 +1,14 @@
 /* No comment provided by engineer. */
+"Course Grades" = "Notes du cours";
+
+/* No comment provided by engineer. */
 "Failed to load grades" = "Échec lors du chargement des notes";
 
 /* No comment provided by engineer. */
 "Log in with Canvas" = "Connectez-vous avec Canvas";
+
+/* No comment provided by engineer. */
+"Recently Graded Assignments" = "Tâches récemment notées";
 
 /* No comment provided by engineer. */
 "Unlock your device to view your grades." = "Déverouiller votre dispositif pour voir vos notes.";

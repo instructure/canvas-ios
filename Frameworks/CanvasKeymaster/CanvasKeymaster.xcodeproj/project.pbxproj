@@ -42,6 +42,8 @@
 		5B63522A40D7F33C56E0E141 /* Pods-defaults-CanvasKeymaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKeymaster.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKeymaster/Pods-defaults-CanvasKeymaster.release.xcconfig"; sourceTree = "<group>"; };
 		5B90117121E1E8D400DC8656 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5B90117321E1E8D400DC8656 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
+		5B98DF8322ACEE4F003CC943 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B98DF8422ACEE4F003CC943 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		5E505F331B55ABF6007BD968 /* ImpactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImpactTableViewController.h; sourceTree = "<group>"; };
 		5E505F341B55ABF6007BD968 /* ImpactTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImpactTableViewController.m; sourceTree = "<group>"; };
 		5EEEB1731B56C9A7001438C3 /* SupportTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTicket.h; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				cy,
 				"en-CY",
 				"sl-SI",
+				fi,
 			);
 			mainGroup = 49E9585F190967B000A1BFB7;
 			productRefGroup = 49E95869190967B000A1BFB7 /* Products */;
@@ -422,6 +425,7 @@
 				7D349C5221430A6C004C1074 /* sv-instk12 */,
 				5B5C967021BCFD8A00F8B80D /* en-CY */,
 				5B90117121E1E8D400DC8656 /* sl-SI */,
+				5B98DF8322ACEE4F003CC943 /* fi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -489,6 +493,7 @@
 				7D349C5321430A6C004C1074 /* sv-instk12 */,
 				5B5C967221BCFD8A00F8B80D /* en-CY */,
 				5B90117321E1E8D400DC8656 /* sl-SI */,
+				5B98DF8422ACEE4F003CC943 /* fi */,
 			);
 			name = SupportTicket.storyboard;
 			sourceTree = "<group>";

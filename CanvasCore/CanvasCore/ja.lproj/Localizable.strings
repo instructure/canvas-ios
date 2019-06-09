@@ -56,6 +56,9 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "試行許可数";
 
+/* Default error message displayed when a file fails to upload */
+"An error occurred, please try again." = "エラーが発生しました。再度お試しください。";
+
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "予期しないエラーが発生しました。";
 
@@ -327,6 +330,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "質問リストを隠す";
+
+/* No comment provided by engineer. */
+"Image %d" = "画像%d";
 
 /* Inbox tab title */
 "Inbox" = "受信トレイ";

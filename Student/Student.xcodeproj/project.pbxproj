@@ -634,6 +634,10 @@
 		5BF4E15C2185A0B5009270A8 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "ja-JP"; path = "ja-JP.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		5BF4E15D2185A0B5009270A8 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5BF4E15E2185A0B5009270A8 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5BFB2D7E22ACED20002B2CBD /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5BFB2D7F22ACED20002B2CBD /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5BFB2D8022ACED20002B2CBD /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fi; path = fi.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5BFB2D8122ACED20002B2CBD /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78761D7F218B8B060042E5D2 /* Student.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Student.entitlements; sourceTree = "<group>"; };
 		78761D84218B8C2A0042E5D2 /* StudentShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudentShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		78761D86218B8C2A0042E5D2 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -1794,6 +1798,7 @@
 				"en-CY",
 				mi,
 				"sl-SI",
+				fi,
 			);
 			mainGroup = 2C5C6980211DFFAC00D9AD15;
 			productRefGroup = 2C5C698A211DFFAD00D9AD15 /* Products */;
@@ -2329,6 +2334,7 @@
 				5BBF78F421BCFC3E007F9134 /* en-CY */,
 				5B8248DE21F45BCB0012FFAB /* mi */,
 				5B76BD4221FD966A0017D900 /* sl-SI */,
+				5BFB2D7E22ACED20002B2CBD /* fi */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2388,6 +2394,7 @@
 				5BBF78F321BCFC3E007F9134 /* en-CY */,
 				5B8248DF21F45BCB0012FFAB /* mi */,
 				5B76BD4121FD966A0017D900 /* sl-SI */,
+				5BFB2D7F22ACED20002B2CBD /* fi */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2428,6 +2435,7 @@
 				5BBF78F621BCFC3E007F9134 /* en-CY */,
 				5B618B7E21E1E70900EFFB03 /* sl-SI */,
 				5B8248E121F45BCB0012FFAB /* mi */,
+				5BFB2D8122ACED20002B2CBD /* fi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2460,6 +2468,7 @@
 				5BBF78F521BCFC3E007F9134 /* en-CY */,
 				5B618B7D21E1E70900EFFB03 /* sl-SI */,
 				5B8248E021F45BCB0012FFAB /* mi */,
+				5BFB2D8022ACED20002B2CBD /* fi */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";

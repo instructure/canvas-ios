@@ -224,13 +224,7 @@
 "No Submission" = "无提交项";
 
 /* No comment provided by engineer. */
-"Not a parent?" = "不是家长？";
-
-/* No comment provided by engineer. */
-"Not a student?" = "不是学生？";
-
-/* No comment provided by engineer. */
-"Not a teacher?" = "不是教师？";
+"None" = "无";
 
 /* No comment provided by engineer. */
 "Not Graded" = "未评分";
@@ -243,9 +237,6 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "纸上";
-
-/* No comment provided by engineer. */
-"One of our other apps might be a better fit. Tap one to visit the App Store." = "我们的其他应用可能更合适。单击可访问应用商店。";
 
 /* No comment provided by engineer. */
 "orange" = "桔黄色";
@@ -294,6 +285,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "重试";
+
+/* No comment provided by engineer. */
+"See attached files." = "查看附件文件。";
 
 /* No comment provided by engineer. */
 "See what's new." = "查看新增内容。";
@@ -392,6 +386,9 @@
 "Undo" = "后退";
 
 /* No comment provided by engineer. */
+"Unlimited" = "无限制";
+
+/* No comment provided by engineer. */
 "Unordered List" = "无序的列表";
 
 /* No comment provided by engineer. */
@@ -426,9 +423,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "您必须在“设置”中启用麦克风权限。";
-
-/* No comment provided by engineer. */
-"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "您需要有至少一个活跃的观察者注册学员才能使用 Canvas Parent。如果您是学生或教师，请尝试使用我们下面的这些应用。";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "您需要先从学生应用登录至少一个 Canvas 帐户。";

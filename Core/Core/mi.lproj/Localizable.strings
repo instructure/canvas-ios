@@ -224,13 +224,7 @@
 "No Submission" = "Kāore he Tukunga";
 
 /* No comment provided by engineer. */
-"Not a parent?" = "Kaore i te matua?";
-
-/* No comment provided by engineer. */
-"Not a student?" = "Kaore i te ākonga?";
-
-/* No comment provided by engineer. */
-"Not a teacher?" = "Kaore i te kaiako?";
+"None" = "Kaore";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Kāore i kōeketia";
@@ -243,9 +237,6 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "I runga i te Pepa";
-
-/* No comment provided by engineer. */
-"One of our other apps might be a better fit. Tap one to visit the App Store." = "Ko tētahi atu o a mātou taupānga pea he pai ake te uru. Pātō kotahi ki te haere ki te Taupānga Toa";
 
 /* No comment provided by engineer. */
 "orange" = "ārani";
@@ -294,6 +285,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Ngana anō";
+
+/* No comment provided by engineer. */
+"See attached files." = "Tirohia te kōnae piri.";
 
 /* No comment provided by engineer. */
 "See what's new." = "Tirohia ngā mea hou";
@@ -392,6 +386,9 @@
 "Undo" = "Wete";
 
 /* No comment provided by engineer. */
+"Unlimited" = "Kaore he mutunga";
+
+/* No comment provided by engineer. */
 "Unordered List" = "Rārangi kaore e whakahautia";
 
 /* No comment provided by engineer. */
@@ -426,9 +423,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Me whakahohetia e koe Orooro whakaaetanga i roto i Tautuhinga";
-
-/* No comment provided by engineer. */
-"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "E hiahia ana koe kia iti rawa te whakaurunga o ngā kaititiro kaitohu ki te whakamahi i te Canvas Parent. Mehemea he ākonga koe, kaiako rānei, ngana tētahi ō āmātou taupanga i raro";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Me uru atu koe ki tētahi o ngā pūkete Canvas i te tuatahi o te taupānga a te ākonga.";

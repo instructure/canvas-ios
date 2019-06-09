@@ -224,13 +224,7 @@
 "No Submission" = "提出なし";
 
 /* No comment provided by engineer. */
-"Not a parent?" = "親ではありませんか？";
-
-/* No comment provided by engineer. */
-"Not a student?" = "受講生ではありませんか？";
-
-/* No comment provided by engineer. */
-"Not a teacher?" = "講師ではありませんか？";
+"None" = "なし";
 
 /* No comment provided by engineer. */
 "Not Graded" = "採点されていません";
@@ -243,9 +237,6 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "書類上";
-
-/* No comment provided by engineer. */
-"One of our other apps might be a better fit. Tap one to visit the App Store." = "私たちの他のアプリのうちの1つのほうが、もと合うかもしれません。1つタップしてApp Storeにアクセスする。";
 
 /* No comment provided by engineer. */
 "orange" = "オレンジ";
@@ -294,6 +285,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "再試行";
+
+/* No comment provided by engineer. */
+"See attached files." = "添付ファイルをご参照ください。";
 
 /* No comment provided by engineer. */
 "See what's new." = "最新情報を見る。";
@@ -392,6 +386,9 @@
 "Undo" = "アンドゥーする";
 
 /* No comment provided by engineer. */
+"Unlimited" = "無制限";
+
+/* No comment provided by engineer. */
 "Unordered List" = "順不同リスト";
 
 /* No comment provided by engineer. */
@@ -426,9 +423,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "「設定」でマイクの許可を有効にしなければなりません。";
-
-/* No comment provided by engineer. */
-"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Canvas Parent を使用するには、少なくとも1人のアクティブなオブザーバー登録が必要です。あなたが受講生か講師であれば、次の他のアプリを試してみてください。";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "最初に受講生のアプリから少なくとも1つのCanvasアカウントにログインする必要があります。";

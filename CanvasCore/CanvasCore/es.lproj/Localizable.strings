@@ -56,6 +56,9 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Intentos permitidos";
 
+/* Default error message displayed when a file fails to upload */
+"An error occurred, please try again." = "Ocurrió un error. Por favor, vuelva a intentarlo.";
+
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Se produjo un error inesperado.";
 
@@ -327,6 +330,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "Esconder la lista de preguntas";
+
+/* No comment provided by engineer. */
+"Image %d" = "Imagen %d";
 
 /* Inbox tab title */
 "Inbox" = "Bandeja de entrada";

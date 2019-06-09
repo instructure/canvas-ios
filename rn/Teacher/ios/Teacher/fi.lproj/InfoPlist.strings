@@ -1,0 +1,12 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Liitä valokuvat ja videot lähetyksen kommentteihin.";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Liitä ääninauhoitukset lähetyksen kommentteihin.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Liitä valokuvat ja videot lähetyksen kommentteihin.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Päivitä sisältöä kursseihin.";
+

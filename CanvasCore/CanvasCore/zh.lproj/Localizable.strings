@@ -56,6 +56,9 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "允许的尝试次数";
 
+/* Default error message displayed when a file fails to upload */
+"An error occurred, please try again." = "发生错误。请再试一次。";
+
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "发生意外错误。";
 
@@ -327,6 +330,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "隐藏问题列表";
+
+/* No comment provided by engineer. */
+"Image %d" = "图片%d";
 
 /* Inbox tab title */
 "Inbox" = "收件箱";
