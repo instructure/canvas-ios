@@ -196,14 +196,19 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
     ]
   }
 
-  renderGrade = (latePolicy: boolean = false) => {
+  getGradeParts (latePolicy: boolean) {
     let gradeToUse = latePolicy ? this.props.enteredGrade : this.props.grade
     let scoreToUse = latePolicy ? this.props.enteredScore : this.props.score
 
     let score = this.props.useRubricForGrading && !this.state.useCustomGrade ? this.props.rubricScore : scoreToUse
-    let points = i18n(`{ score, number }/{ pointsPossible, number }`, { score, pointsPossible: this.props.pointsPossible })
-
     let grade = this.props.gradingType !== 'points' && formatGradeText(gradeToUse, this.props.gradingType)
+
+    return { grade, score, pointsPossible: this.props.pointsPossible }
+  }
+
+  renderGrade = (latePolicy: boolean = false) => {
+    let { grade, score, pointsPossible } = this.getGradeParts(latePolicy)
+    let points = i18n(`{ score, number }/{ pointsPossible, number }`, { score, pointsPossible })
     let result = grade ? `${points} (${grade})` : points
     return <Heading1 style={this.getButtonStyles(latePolicy)}>{result}</Heading1>
   }
@@ -258,6 +263,30 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
     )
   }
 
+  getGradeCellAccessibilityLabel () {
+    if (this.props.gradingType === NOT_GRADED) {
+      return i18n('Not Graded')
+    } else if (this.props.pending) {
+      return i18n('Loading')
+    } else if (this.props.excused) {
+      return i18n('Excused')
+    } else if (this.props.grade) {
+      let { grade, score, pointsPossible } = this.getGradeParts(this.applyLatePolicy())
+      return i18n(`{score, number} out of {pointsPossible, number} {
+        points, plural,
+             =1 {point}
+          other {points}
+      } possible. {grade}`, {
+        score,
+        pointsPossible,
+        points: pointsPossible,
+        grade: grade || '',
+      })
+    } else {
+      return i18n('Customize Grade')
+    }
+  }
+
   renderGradeCell () {
     let disabled = (this.props.pending || this.props.gradingType === 'not_graded')
     let gradeButtonAction = !disabled ? (this.props.gradingType === PASS_FAIL ? this.togglePicker : this.openPrompt) : null
@@ -267,6 +296,7 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
       headingStyles = { color: colors.lightText }
       cellStyles = styles.gradeCellTop
     }
+    console.log(this.getGradeCellAccessibilityLabel())
     return (
       <View style={styles.gradeCellContainer}>
         <View style={cellStyles}>
@@ -276,7 +306,7 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
             style={styles.gradeButton}
             onPress={gradeButtonAction}
             accessibilityTraits='button'
-            accessibilityLabel={i18n('Customize Grade')}
+            accessibilityLabel={this.getGradeCellAccessibilityLabel()}
             activeOpacity={disabled ? 1 : 0.2}
           >
             {this.renderField()}
