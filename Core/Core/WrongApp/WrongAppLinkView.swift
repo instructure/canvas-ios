@@ -18,7 +18,8 @@ import Foundation
 import UIKit
 
 @IBDesignable
-class WrongAppLinkView: UIView {
+class WrongAppLinkView: UIButton {
+    @IBOutlet weak var contentView: UIView?
     @IBOutlet weak var logoView: UIImageView?
     @IBOutlet weak var nameLabel: UILabel?
 
@@ -43,6 +44,7 @@ class WrongAppLinkView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        contentView?.isUserInteractionEnabled = false
         logoView?.tintColor = color
         nameLabel?.textColor = color
         nameLabel?.attributedText = NSAttributedString(string: appName.uppercased(), attributes: [.kern: 1.5])
