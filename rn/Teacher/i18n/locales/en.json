@@ -653,8 +653,8 @@
   "filter_people_b34b567b": {
     "message": "Filter People"
   },
-  "filter_submissions_81bc50de": {
-    "message": "Filter Submissions"
+  "filter_submissions_numselected_number_selected_177867b3": {
+    "message": "Filter Submissions. ({ numSelected, number }) selected."
   },
   "final_grade_4d7f6545": {
     "message": "Final Grade"
