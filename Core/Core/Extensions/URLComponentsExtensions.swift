@@ -24,12 +24,12 @@ public extension URLComponents {
         var components = URLComponents()
         components.scheme = url.scheme
         components.user = url.user
-        components.password = url.password
+        components.percentEncodedPassword = url.password
         components.host = url.host
         components.port = url.port
         components.path = url.path
-        components.query = url.query
-        components.fragment = url.fragment
+        components.percentEncodedQuery = url.query
+        components.percentEncodedFragment = url.fragment
         components.cleanupApiVersionInPath()
         return components
     }

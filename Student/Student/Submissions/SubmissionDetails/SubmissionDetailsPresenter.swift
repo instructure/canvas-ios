@@ -157,13 +157,13 @@ class SubmissionDetailsPresenter {
         case .some(.online_quiz):
             if let quizID = assignment.quizID,
                 let url = URL(string: "/courses/\(assignment.courseID)/quizzes/\(quizID)/history?version=\(selectedAttempt)&headless=1", relativeTo: env.api.baseURL) {
-                let controller = CoreWebViewController(env: env)
+                let controller = CoreWebViewController()
                 controller.webView.accessibilityIdentifier = "SubmissionDetails.onlineQuizWebView"
                 controller.webView.load(URLRequest(url: url))
                 return controller
             }
         case .some(.online_text_entry):
-            let controller = CoreWebViewController(env: env)
+            let controller = CoreWebViewController()
             controller.webView.accessibilityIdentifier = "SubmissionDetails.onlineTextEntryWebView"
             controller.webView.loadHTMLString(submission.body ?? "")
             return controller
@@ -182,7 +182,7 @@ class SubmissionDetailsPresenter {
         case .some(.discussion_topic):
             guard let previewUrl = submission.previewUrl else { break }
 
-            let controller = CoreWebViewController(env: env)
+            let controller = CoreWebViewController()
             controller.webView.accessibilityIdentifier = "SubmissionDetails.discussionWebView"
             controller.webView.load(URLRequest(url: previewUrl))
             return controller

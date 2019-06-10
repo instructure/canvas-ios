@@ -19,6 +19,7 @@ import SafariServices
 import Result
 import Marshal
 import ReactiveSwift
+import Core
 
 private let error = NSError(subdomain: "CanvasCore",
                             description: NSLocalizedString("Error retrieving tool launch URL", comment: ""))
@@ -158,8 +159,8 @@ public class ExternalToolManager: NSObject {
             * LTI module items
             * Basically anywhere the API is giving us information about the LTI tool directly
          */
-        if launchURL.path.contains("/external_tools/sessionless_launch") {
-            return session.baseURL.appendingPathComponent(launchURL.path)
+        if launchURL.path.hasSuffix("/external_tools/sessionless_launch") {
+            return launchURL
         }
 
         /*
@@ -167,7 +168,7 @@ public class ExternalToolManager: NSObject {
          `https://account.instructure.com/courses/:courseID/external_tools/retrieve?url=https://account.instructure.com/link/to/lti/tool`
          We must pass the `url` query parameter to the sessionless_launch endpoint to get the sessionless launch url.
          */
-        if launchURL.path.contains("/external_tools/retrieve") {
+        if launchURL.path.hasSuffix("/external_tools/retrieve") {
             let components = URLComponents(url: launchURL, resolvingAgainstBaseURL: false)
             if let queryItems = components?.queryItems,
                 let urlQueryItem = queryItems.findFirst({ $0.name == "url" }),

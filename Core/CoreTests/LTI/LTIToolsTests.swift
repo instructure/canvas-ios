@@ -28,6 +28,13 @@ class LTIToolsTests: CoreTestCase {
     }
     let mockView = MockView()
 
+    func testInitLink() {
+        XCTAssertNil(LTITools(link: nil))
+        XCTAssertNil(LTITools(link: URL(string: "/")))
+        XCTAssertNil(LTITools(link: URL(string: "https://else.where/external_tools/retrieve?url=/")))
+        XCTAssertEqual(LTITools(link: URL(string: "/external_tools/retrieve?url=/", relativeTo: api.baseURL))?.url, URL(string: "/"))
+    }
+
     func testGetSessionlessLaunchURL() {
         let tools = LTITools(
             env: environment,

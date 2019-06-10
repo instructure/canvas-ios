@@ -103,10 +103,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submissionButton?.setTitle(NSLocalizedString("Submission & Rubric", bundle: .student, comment: ""), for: .normal)
 
         // Routing from description
-        descriptionView?.navigation = .deepLink { [weak self] (url: URL) -> Bool? in
-            guard let self = self else { return nil }
-            return self.presenter?.route(to: url, from: self)
-        }
+        descriptionView?.linkDelegate = self
 
         // Debug background upload
         #if DEBUG
@@ -253,6 +250,13 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             scrollviewInsetConstraint.constant = 0
             submitAssignmentButton.alpha = 0
         }
+    }
+}
+
+extension AssignmentDetailsViewController: CoreWebViewLinkDelegate {
+    public func handleLink(_ url: URL) -> Bool {
+        guard let presenter = presenter else { return false }
+        return presenter.route(to: url, from: self)
     }
 }
 

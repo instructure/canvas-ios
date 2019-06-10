@@ -216,13 +216,13 @@ public class CanvasWebView: WKWebView {
             if let scheme = url.scheme, ["https", "http"].contains(scheme) {
                 return
             }
-            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { success in
+            UIApplication.shared.open(url) { success in
                 if success {
                     self.requestClose?()
                 } else {
                     self.onError?(error)
                 }
-            })
+            }
         } else {
             self.onError?(error)
         }
@@ -261,10 +261,9 @@ extension CanvasWebView: WKNavigationDelegate {
             customUserAgent = UserAgent.safari.description
         }
 
-        if let url = request.url, url.path.contains("/external_tools/retrieve"), action.navigationType == .linkActivated {
-            if let presentingViewController = presentingViewController, let session = CanvasKeymaster.the().currentClient?.authSession {
-                ExternalToolManager.shared.launch(url, in: session, from: presentingViewController)
-            }
+        if action.navigationType == .linkActivated, let url = request.url, LTITools(link: url) != nil,
+            let from = presentingViewController, let session = CanvasKeymaster.the().currentClient?.authSession {
+            ExternalToolManager.shared.launch(url, in: session, from: from)
             return decisionHandler(.cancel)
         }
 
@@ -340,9 +339,4 @@ extension CanvasWebView: WKUIDelegate {
     public func webViewDidClose(_ webView: WKWebView) {
         requestClose?()
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
