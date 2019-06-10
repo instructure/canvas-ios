@@ -5,16 +5,28 @@
 "All Courses" = "Pob Cwrs";
 
 /* No comment provided by engineer. */
+"Allowed Attempts:" = "Ymgeisiau a Ganiateir:";
+
+/* No comment provided by engineer. */
+"Arc" = "Arc";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Manylion Aseiniad";
 
 /* No comment provided by engineer. */
 "Assignments" = "Aseiniadau";
 
 /* No comment provided by engineer. */
+"Attachments" = "Atodiadau";
+
+/* No comment provided by engineer. */
 "Cancel" = "Canslo";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "Canslo Cyflwyniad";
+
+/* No comment provided by engineer. */
+"Choose File" = "Dewis Ffeil";
 
 /* No comment provided by engineer. */
 "Close App" = "Cau’r Ap";
@@ -86,6 +98,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "Oes gennych chi gwestiwn? Defnyddiwch y man hwn i anfon sylw at eich addysgwr am yr aseiniad hwn.";
 
 /* No comment provided by engineer. */
+"Instructions" = "Cyfarwyddiadau";
+
+/* No comment provided by engineer. */
 "Invalid url" = "URL annilys";
 
 /* No comment provided by engineer. */
@@ -122,6 +137,9 @@
 "Practice Quizzes" = "Cwisiau Ymarfer";
 
 /* No comment provided by engineer. */
+"Questions:" = "'Cwestiynau:";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Cwisiau";
 
 /* No comment provided by engineer. */
@@ -146,7 +164,13 @@
 "See All Courses" = "Gweld Pob Cwrs";
 
 /* No comment provided by engineer. */
+"Send" = "Anfon";
+
+/* No comment provided by engineer. */
 "Send comment" = "Anfon sylw";
+
+/* No comment provided by engineer. */
+"Settings" = "Gosodiadau";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Aeth rhywbeth o’i le wrth lwytho’r cwisiau.";
@@ -159,6 +183,9 @@
 
 /* No comment provided by engineer. */
 "Submission Failed" = "Cyflwyniad wedi methu";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "Cyflwyniad ar y Gweill...";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Mathau o Gyflwyniadau";
@@ -182,6 +209,9 @@
 "Syllabus" = "Maes Llafur";
 
 /* No comment provided by engineer. */
+"Take Quiz" = "Gwnewch y Cwis";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Tapiwch i weld manylion";
 
 /* No comment provided by engineer. */
@@ -198,6 +228,12 @@
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Does dim cwisiau i’w dangos.";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "Does dim cyfarwyddyd sgorio ar gyfer yr aseiniad hwn";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "Terfyn Amser:";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Gosodiadau Iaith wedi’u Diweddaru";

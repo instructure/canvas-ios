@@ -465,6 +465,7 @@
 		5B3DFCF020DF8291004D771E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B3DFCF320DF8292004D771E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B4495F321E1E9230067E0ED /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5B4D043B22ACEEA200968336 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BDFF07D21BCFE4F00FB1900 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		73FDCB1E035EF6A93E758F42 /* Pods_defaults_CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D349C5521430AF1004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1084,6 +1085,7 @@
 				"en-CY",
 				"sl-SI",
 				Base,
+				fi,
 			);
 			mainGroup = 499D187D1C8643E6005A86D2;
 			productRefGroup = 499D18881C8643E6005A86D2 /* Products */;
@@ -1312,6 +1314,7 @@
 				7D349C6121430BB7004C1074 /* sv-instk12 */,
 				5BDFF07D21BCFE4F00FB1900 /* en-CY */,
 				5B4495F321E1E9230067E0ED /* sl-SI */,
+				5B4D043B22ACEEA200968336 /* fi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

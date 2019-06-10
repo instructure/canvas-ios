@@ -32,7 +32,10 @@ class LocalizationManagerTests: XCTestCase {
     }
 
     func testGetLocales() {
-        XCTAssertEqual(LocalizationManager.getLocales().count, 28)
+        let locales = LocalizationManager.getLocales()
+        XCTAssert(locales.contains(where: { locale -> Bool in
+            locale.id == "en" && locale.name == Locale.current.localizedString(forIdentifier: "en")
+        }))
     }
 
     func testSetCurrentLocale() {

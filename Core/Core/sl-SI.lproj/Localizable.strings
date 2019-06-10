@@ -224,13 +224,7 @@
 "No Submission" = "Ni oddaj.";
 
 /* No comment provided by engineer. */
-"Not a parent?" = "Niste starš?";
-
-/* No comment provided by engineer. */
-"Not a student?" = "Niste študent?";
-
-/* No comment provided by engineer. */
-"Not a teacher?" = "Niste izvajalec?";
+"None" = "Brez";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ni ocenjeno.";
@@ -243,9 +237,6 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "Na papirju";
-
-/* No comment provided by engineer. */
-"One of our other apps might be a better fit. Tap one to visit the App Store." = "Morda bi bolj ustrezala kakšna druga aplikacija. Tapnite eno od njih, da obiščete trgovino App Store.";
 
 /* No comment provided by engineer. */
 "orange" = "oranžna";
@@ -294,6 +285,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Ponovno poskusi";
+
+/* No comment provided by engineer. */
+"See attached files." = "Glejte dodane datoteke.";
 
 /* No comment provided by engineer. */
 "See what's new." = "Oglejte si, kaj je novega.";
@@ -392,6 +386,9 @@
 "Undo" = "Razveljavi";
 
 /* No comment provided by engineer. */
+"Unlimited" = "Neomejeno";
+
+/* No comment provided by engineer. */
 "Unordered List" = "Nerazvrščeni seznam";
 
 /* No comment provided by engineer. */
@@ -426,9 +423,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Za snemanje zvoka morate v možnosti »Nastavitve« omogočiti dovoljenja mikrofona.";
-
-/* No comment provided by engineer. */
-"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Za uporabo aplikacije Canvas Parent potrebujete vpis vsaj enega aktivnega skritega bralca. Če ste študent ali izvajalec, poskusite eno od naših drugih spodnjih aplikacij.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Najprej se morate v aplikaciji Student prijaviti v vsaj en račun Canvas.";

@@ -1,0 +1,129 @@
+/* All Courses screen title */
+"All Courses" = "Kaikki kurssit";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Tehtävän tiedot";
+
+/* No comment provided by engineer. */
+"Assignments" = "Tehtävät";
+
+/* No comment provided by engineer. */
+"Cancel" = "Peruuta";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Peruuta lähetys";
+
+/* No comment provided by engineer. */
+"Close App" = "Sulje sovellus";
+
+/* No comment provided by engineer. */
+"Comments" = "Huomautuksia";
+
+/* No comment provided by engineer. */
+"Courses" = "Kurssit";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Koontinäyttö";
+
+/* No comment provided by engineer. */
+"Description" = "Kuvaus";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Valikko suljettu";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Valikko kokonaan auki";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Valikko osittain auki";
+
+/* No comment provided by engineer. */
+"Due" = "Määräpäivä";
+
+/* No comment provided by engineer. */
+"Edit" = "Muokkaa";
+
+/* No comment provided by engineer. */
+"Edit Course" = "Muokkaa kursseja";
+
+/* No comment provided by engineer. */
+"File Types" = "Tiedostotyypit";
+
+/* No comment provided by engineer. */
+"Files" = "Tiedostot";
+
+/* No comment provided by engineer. */
+"Grade" = "Arvosana";
+
+/* No comment provided by engineer. */
+"Groups" = "Ryhmät";
+
+/* No comment provided by engineer. */
+"Invalid url" = "Virheellinen URL";
+
+/* No comment provided by engineer. */
+"No Submission" = "Ei lähetystä";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "Ei lähetyspäivää";
+
+/* Button to open external tool */
+"Open External Tool" = "Avaa ulkoinen työkalu";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "Menneet rekisteröitymiset";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Tietovisat";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Lähetä tehtävä uudelleen";
+
+/* No comment provided by engineer. */
+"Retry" = "Yritä uudelleen";
+
+/* No comment provided by engineer. */
+"Rubric" = "Rubriikki";
+
+/* No comment provided by engineer. */
+"See All" = "Katso kaikki";
+
+/* No comment provided by engineer. */
+"See All Courses" = "Katso kaikki kurssit";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "Jotakin meni pieleen ladatessa tietovisoja.";
+
+/* No comment provided by engineer. */
+"Submission" = "Lähetys";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Lähetys ja rubriikki";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Lähetystyypit";
+
+/* No comment provided by engineer. */
+"Submit" = "Lähetä";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Lähetä tehtävä";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "Lähetetty onnistuneesti!";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Sovellus täytyy käynnistää uudelleen, jotta uusia kieliasetuksia voidaan käyttää. Käynnistä sovellus uudelleen.";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "Näytettäviä tietovisoja ei ole.";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Päivitetyt kieliasetukset";
+
+/* No comment provided by engineer. */
+"Website Address" = "Verkkosivun osoite";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "Lähetyksesi osoittaa nyt arvostelua";
+

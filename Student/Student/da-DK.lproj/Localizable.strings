@@ -5,16 +5,28 @@
 "All Courses" = "Alle fag";
 
 /* No comment provided by engineer. */
+"Allowed Attempts:" = "Tilladte forsøg:";
+
+/* No comment provided by engineer. */
+"Arc" = "Arc";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Opgaveoplysninger";
 
 /* No comment provided by engineer. */
 "Assignments" = "Opgaver";
 
 /* No comment provided by engineer. */
+"Attachments" = "Vedhæftede filer";
+
+/* No comment provided by engineer. */
 "Cancel" = "Annullér";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "Annuller aflevering";
+
+/* No comment provided by engineer. */
+"Choose File" = "Vælg fil";
 
 /* No comment provided by engineer. */
 "Close App" = "Luk app";
@@ -86,6 +98,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "Har du nogen spørgsmål? Brug dette område til at sende en besked til din instruktør om denne opgave.";
 
 /* No comment provided by engineer. */
+"Instructions" = "Instruktioner";
+
+/* No comment provided by engineer. */
 "Invalid url" = "Ugyldig URL";
 
 /* No comment provided by engineer. */
@@ -122,6 +137,9 @@
 "Practice Quizzes" = "Øvelsestest";
 
 /* No comment provided by engineer. */
+"Questions:" = "Spørgsmål:";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Test";
 
 /* No comment provided by engineer. */
@@ -146,7 +164,13 @@
 "See All Courses" = "Se alle fag";
 
 /* No comment provided by engineer. */
+"Send" = "Send";
+
+/* No comment provided by engineer. */
 "Send comment" = "Send kommentar";
+
+/* No comment provided by engineer. */
+"Settings" = "Indstillinger";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Noget gik galt under indlæsning af testene.";
@@ -159,6 +183,9 @@
 
 /* No comment provided by engineer. */
 "Submission Failed" = "Aflevering mislykkedes";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "Indsendelse i gang ...";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Afleveringsformer";
@@ -182,6 +209,9 @@
 "Syllabus" = "Læseplan";
 
 /* No comment provided by engineer. */
+"Take Quiz" = "Tag Quiz";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Tryk for at se detaljer";
 
 /* No comment provided by engineer. */
@@ -198,6 +228,12 @@
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Der er ikke nogen test at vise.";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "Der er ingen rubrik til denne opgave";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "Frist:";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Opdaterede sprogindstillinger";

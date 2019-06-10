@@ -5,16 +5,28 @@
 "All Courses" = "All modules";
 
 /* No comment provided by engineer. */
+"Allowed Attempts:" = "Allowed Attempts:";
+
+/* No comment provided by engineer. */
+"Arc" = "Arc";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Assignment details";
 
 /* No comment provided by engineer. */
 "Assignments" = "Assignments";
 
 /* No comment provided by engineer. */
+"Attachments" = "Attachments";
+
+/* No comment provided by engineer. */
 "Cancel" = "Cancel";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "Cancel Submission";
+
+/* No comment provided by engineer. */
+"Choose File" = "Choose File";
 
 /* No comment provided by engineer. */
 "Close App" = "Close app";
@@ -86,6 +98,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "Have questions? Use this area to message your instructor about this assignment.";
 
 /* No comment provided by engineer. */
+"Instructions" = "Instructions";
+
+/* No comment provided by engineer. */
 "Invalid url" = "Invalid URL";
 
 /* No comment provided by engineer. */
@@ -122,6 +137,9 @@
 "Practice Quizzes" = "Practice quizzes";
 
 /* No comment provided by engineer. */
+"Questions:" = "Questions:";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Quizzes";
 
 /* No comment provided by engineer. */
@@ -146,7 +164,13 @@
 "See All Courses" = "See All Modules";
 
 /* No comment provided by engineer. */
+"Send" = "Send";
+
+/* No comment provided by engineer. */
 "Send comment" = "Send comment";
+
+/* No comment provided by engineer. */
+"Settings" = "Settings";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Something went wrong while loading the quizzes.";
@@ -159,6 +183,9 @@
 
 /* No comment provided by engineer. */
 "Submission Failed" = "Submission failed";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "Submission In Progress...";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Submission types";
@@ -182,6 +209,9 @@
 "Syllabus" = "Syllabus";
 
 /* No comment provided by engineer. */
+"Take Quiz" = "Take quiz";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Tap to view details";
 
 /* No comment provided by engineer. */
@@ -198,6 +228,12 @@
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "There are no quizzes to display.";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "There is no rubric for this assignment";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "Time Limit:";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Updated language settings";

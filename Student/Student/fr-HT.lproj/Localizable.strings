@@ -5,16 +5,28 @@
 "All Courses" = "Tout Kou";
 
 /* No comment provided by engineer. */
+"Allowed Attempts:" = "Tantativ Otorize:";
+
+/* No comment provided by engineer. */
+"Arc" = "Arc";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Detay Sesyon";
 
 /* No comment provided by engineer. */
 "Assignments" = "Sesyon";
 
 /* No comment provided by engineer. */
+"Attachments" = "Atachman";
+
+/* No comment provided by engineer. */
 "Cancel" = "Anile";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "Anile Enskripsyon";
+
+/* No comment provided by engineer. */
+"Choose File" = "Chwazi Fichye";
 
 /* No comment provided by engineer. */
 "Close App" = "Fèmen App";
@@ -86,6 +98,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "Gen kesyon? Itilize espas sa a pou ekri pwofesè w la sou devwa sa a.";
 
 /* No comment provided by engineer. */
+"Instructions" = "Enstriksyon";
+
+/* No comment provided by engineer. */
 "Invalid url" = "url envalid";
 
 /* No comment provided by engineer. */
@@ -122,6 +137,9 @@
 "Practice Quizzes" = "Quiz Pratik";
 
 /* No comment provided by engineer. */
+"Questions:" = "Kesyon:";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Quiz";
 
 /* No comment provided by engineer. */
@@ -146,7 +164,13 @@
 "See All Courses" = "Afiche Tout Kou";
 
 /* No comment provided by engineer. */
+"Send" = "Voye";
+
+/* No comment provided by engineer. */
 "Send comment" = "Voye kòmantè";
+
+/* No comment provided by engineer. */
+"Settings" = "Paramèt";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Gen yon bagay ki pase mal pandan chajman quiz yo.";
@@ -159,6 +183,9 @@
 
 /* No comment provided by engineer. */
 "Submission Failed" = "Soumisyon Echwe";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "Soumisyon an Pwoesis...";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Tip Soumisyon";
@@ -182,6 +209,9 @@
 "Syllabus" = "Pwogram";
 
 /* No comment provided by engineer. */
+"Take Quiz" = "Pran Quiz";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Tape pou afiche detay";
 
 /* No comment provided by engineer. */
@@ -198,6 +228,12 @@
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Pa gen quiz pou afiche.";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "Pa gen ribrik pou devwa sa a";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "Limit Tan:";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Paramèt Langaj Aktyalize";

@@ -224,15 +224,6 @@
 "No Submission" = "Ingen inlämning";
 
 /* No comment provided by engineer. */
-"Not a parent?" = "Inte en förälder?";
-
-/* No comment provided by engineer. */
-"Not a student?" = "Inte elev?";
-
-/* No comment provided by engineer. */
-"Not a teacher?" = "Inte en lärare?";
-
-/* No comment provided by engineer. */
 "Not Graded" = "Ej bedömd";
 
 /* No comment provided by engineer. */
@@ -243,9 +234,6 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "På papper";
-
-/* No comment provided by engineer. */
-"One of our other apps might be a better fit. Tap one to visit the App Store." = "En av våra andra appar kan vara bättre lämpade. Tryck på ett för att besöka App Store.";
 
 /* No comment provided by engineer. */
 "orange" = "orange";
@@ -426,9 +414,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Du måste aktivera mikrofonbehörigheter i Inställningar.";
-
-/* No comment provided by engineer. */
-"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Du behöver minst en aktiv observerar-registrering för att använda Canvas Parent. Om du är elev eller lärare, prova en av våra appar nedan.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Du måste först logga in på minst ett Canvas-konto från elevappen.";

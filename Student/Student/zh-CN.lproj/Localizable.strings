@@ -5,16 +5,28 @@
 "All Courses" = "所有课程";
 
 /* No comment provided by engineer. */
+"Allowed Attempts:" = "允许的尝试次数：";
+
+/* No comment provided by engineer. */
+"Arc" = "Arc";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "作业详情";
 
 /* No comment provided by engineer. */
 "Assignments" = "作业";
 
 /* No comment provided by engineer. */
+"Attachments" = "附件";
+
+/* No comment provided by engineer. */
 "Cancel" = "取消";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "取消提交";
+
+/* No comment provided by engineer. */
+"Choose File" = "选择文件";
 
 /* No comment provided by engineer. */
 "Close App" = "关闭应用程序";
@@ -86,6 +98,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "有问题？使用此区域向讲师发送关于此作业的消息。";
 
 /* No comment provided by engineer. */
+"Instructions" = "说明";
+
+/* No comment provided by engineer. */
 "Invalid url" = "无效的 URL";
 
 /* No comment provided by engineer. */
@@ -122,6 +137,9 @@
 "Practice Quizzes" = "练习测验";
 
 /* No comment provided by engineer. */
+"Questions:" = "问题：";
+
+/* No comment provided by engineer. */
 "Quizzes" = "测验";
 
 /* No comment provided by engineer. */
@@ -146,7 +164,13 @@
 "See All Courses" = "查看所有课程";
 
 /* No comment provided by engineer. */
+"Send" = "发送";
+
+/* No comment provided by engineer. */
 "Send comment" = "发送评论";
+
+/* No comment provided by engineer. */
+"Settings" = "设置";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "加载测验时出了些问题。";
@@ -159,6 +183,9 @@
 
 /* No comment provided by engineer. */
 "Submission Failed" = "提交文件失败";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "正在提交...";
 
 /* No comment provided by engineer. */
 "Submission Types" = "提交项类型";
@@ -182,6 +209,9 @@
 "Syllabus" = "教学大纲";
 
 /* No comment provided by engineer. */
+"Take Quiz" = "参加测验";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "轻按以查看详细信息";
 
 /* No comment provided by engineer. */
@@ -198,6 +228,12 @@
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "没有要显示的测验。";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "此作业没有评估表格";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "时间限制：";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "已更新语言设置";

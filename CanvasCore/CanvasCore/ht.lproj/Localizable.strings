@@ -56,6 +56,9 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tantativ Otorize";
 
+/* Default error message displayed when a file fails to upload */
+"An error occurred, please try again." = "Gen yon erè ki fèt. tanpri eseye ankò.";
+
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Yon erè te fèt sanzatann.";
 
@@ -327,6 +330,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "Kache Lis Kesyon";
+
+/* No comment provided by engineer. */
+"Image %d" = "Imaj %d";
 
 /* Inbox tab title */
 "Inbox" = "Bwat resepsyon";

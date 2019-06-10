@@ -164,6 +164,8 @@
 		497CA7321F82ACF400501613 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5641857260D9B45E5BEF297B /* Pods-defaults-TeacherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TeacherTests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-TeacherTests/Pods-defaults-TeacherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B0508CB203179F6004DFC9A /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "Teacher/en-AU.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5B0510DF22ACECCF00382590 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = Teacher/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B0510E022ACECCF00382590 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B0E3D2B203179FD00F45C25 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "Teacher/en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5B18C4D320317A0400CD8239 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Teacher/es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B21BBDF20317A0A009313A2 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Teacher/fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 				cy,
 				"en-CY",
 				"sl-SI",
+				fi,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -923,6 +926,7 @@
 				7D349D1621430FA8004C1074 /* sv-instk12 */,
 				5BF25FF221BCFBF400A07D16 /* en-CY */,
 				5B41101221E1E6A200714599 /* sl-SI */,
+				5B0510E022ACECCF00382590 /* fi */,
 			);
 			name = InfoPlist.strings;
 			path = Teacher;
@@ -992,6 +996,7 @@
 				7D349D1821430FAA004C1074 /* sv-instk12 */,
 				5BF25FF121BCFBF400A07D16 /* en-CY */,
 				5B41101121E1E6A200714599 /* sl-SI */,
+				5B0510DF22ACECCF00382590 /* fi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

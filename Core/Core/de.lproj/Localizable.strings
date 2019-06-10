@@ -224,13 +224,7 @@
 "No Submission" = "Keine Abgabe";
 
 /* No comment provided by engineer. */
-"Not a parent?" = "Kein Elternteil?";
-
-/* No comment provided by engineer. */
-"Not a student?" = "Kein Student?";
-
-/* No comment provided by engineer. */
-"Not a teacher?" = "Kein Lehrer?";
+"None" = "Keine";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Unbenotet";
@@ -243,9 +237,6 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "Als Papierdokument";
-
-/* No comment provided by engineer. */
-"One of our other apps might be a better fit. Tap one to visit the App Store." = "Eine unserer anderen Apps passt möglicherweise besser. Tippen Sie auf eine, um den App-Store zu besuchen.";
 
 /* No comment provided by engineer. */
 "orange" = "orange";
@@ -294,6 +285,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Erneut versuchen";
+
+/* No comment provided by engineer. */
+"See attached files." = "Siehe Dateianhang";
 
 /* No comment provided by engineer. */
 "See what's new." = "Was ist neu?";
@@ -392,6 +386,9 @@
 "Undo" = "Rückgängig machen";
 
 /* No comment provided by engineer. */
+"Unlimited" = "Unbegrenzt";
+
+/* No comment provided by engineer. */
 "Unordered List" = "Unsortierte Liste";
 
 /* No comment provided by engineer. */
@@ -426,9 +423,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Sie müssen in den Einstellungen die Zugriffsberechtigungen auf das Mikrofon aktivieren.";
-
-/* No comment provided by engineer. */
-"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Sie benötigen mindestens ein Anmeldung als aktiver Beobachter um Canvas Parent zu nutzen. Falls Sie ein Student oder Lehrer sind, probieren Sie eine unserer anderen Apps unten.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Sie müssen sich zuerst bei mindestens einem Canvas-Konto von der Studenten-App aus anmelden.";

@@ -5,16 +5,28 @@
 "All Courses" = "Все курсы";
 
 /* No comment provided by engineer. */
+"Allowed Attempts:" = "Разрешенные попытки:";
+
+/* No comment provided by engineer. */
+"Arc" = "Arc";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Сведения о задании";
 
 /* No comment provided by engineer. */
 "Assignments" = "Задания";
 
 /* No comment provided by engineer. */
+"Attachments" = "Вложения";
+
+/* No comment provided by engineer. */
 "Cancel" = "Отменить";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "Отменить отправку";
+
+/* No comment provided by engineer. */
+"Choose File" = "Выберите файл";
 
 /* No comment provided by engineer. */
 "Close App" = "Закрыть приложение";
@@ -86,6 +98,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "Есть вопросы? Используйте эту область, чтобы сообщить своему преподавателю об этом задании.";
 
 /* No comment provided by engineer. */
+"Instructions" = "Инструкции";
+
+/* No comment provided by engineer. */
 "Invalid url" = "Неверный URL";
 
 /* No comment provided by engineer. */
@@ -122,6 +137,9 @@
 "Practice Quizzes" = "Практические тесты";
 
 /* No comment provided by engineer. */
+"Questions:" = "Вопросы:";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Тесты";
 
 /* No comment provided by engineer. */
@@ -146,7 +164,13 @@
 "See All Courses" = "Показать все курсы";
 
 /* No comment provided by engineer. */
+"Send" = "Отправить";
+
+/* No comment provided by engineer. */
 "Send comment" = "Отправить комментарий";
+
+/* No comment provided by engineer. */
+"Settings" = "Настройки";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "При загрузке тестов что-то пошло не так.";
@@ -159,6 +183,9 @@
 
 /* No comment provided by engineer. */
 "Submission Failed" = "Ошибка отправки";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "Выполняется отправка...";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Типы сдаваемых работ";
@@ -182,6 +209,9 @@
 "Syllabus" = "Содержание курса";
 
 /* No comment provided by engineer. */
+"Take Quiz" = "Пройти тест";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Нажмите для просмотра подробностей";
 
 /* No comment provided by engineer. */
@@ -198,6 +228,12 @@
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Нет доступных для отображения тестов.";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "Нет раздела для этого задания";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "Ограничение по времени:";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Обновленные языковые настройки";

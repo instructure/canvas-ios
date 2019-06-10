@@ -56,6 +56,9 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Ngā ngana e whakāetia ana";
 
+/* Default error message displayed when a file fails to upload */
+"An error occurred, please try again." = "He hapa i puta, tēnā koa ngana anō";
+
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "He hapa ohorere i puta";
 
@@ -327,6 +330,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "Huna Rārangi Pātai";
+
+/* No comment provided by engineer. */
+"Image %d" = "Āhua %d";
 
 /* Inbox tab title */
 "Inbox" = "Pouakauru";

@@ -5,16 +5,28 @@
 "All Courses" = "Alla kurser";
 
 /* No comment provided by engineer. */
+"Allowed Attempts:" = "Tillåtna försök:";
+
+/* No comment provided by engineer. */
+"Arc" = "Cirkelbåge";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Uppgiftsdetaljer";
 
 /* No comment provided by engineer. */
 "Assignments" = "Uppgifter";
 
 /* No comment provided by engineer. */
+"Attachments" = "Bilagor";
+
+/* No comment provided by engineer. */
 "Cancel" = "Avbryt";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "Avbryt inlämningen";
+
+/* No comment provided by engineer. */
+"Choose File" = "Välj fil";
 
 /* No comment provided by engineer. */
 "Close App" = "Stäng appen";
@@ -86,6 +98,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "Har du frågor? Använd det här området för att meddela din instruktör om den här uppgiften.";
 
 /* No comment provided by engineer. */
+"Instructions" = "Instruktioner";
+
+/* No comment provided by engineer. */
 "Invalid url" = "Ogiltig URL";
 
 /* No comment provided by engineer. */
@@ -122,6 +137,9 @@
 "Practice Quizzes" = "Test Quizzes";
 
 /* No comment provided by engineer. */
+"Questions:" = "Frågor:";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Frågor/frågesporter";
 
 /* No comment provided by engineer. */
@@ -146,7 +164,13 @@
 "See All Courses" = "Se alla kurser";
 
 /* No comment provided by engineer. */
+"Send" = "Skicka";
+
+/* No comment provided by engineer. */
 "Send comment" = "Skicka kommentar";
+
+/* No comment provided by engineer. */
+"Settings" = "Inställningar";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Något gick fel vid inläsning av quizzen.";
@@ -159,6 +183,9 @@
 
 /* No comment provided by engineer. */
 "Submission Failed" = "Inlämningen misslyckades";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "Inlämning pågår...";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Inlämningstyp";
@@ -182,6 +209,9 @@
 "Syllabus" = "Kursöversikt";
 
 /* No comment provided by engineer. */
+"Take Quiz" = "Gör quiz";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Tryck för att visa detaljerad information";
 
 /* No comment provided by engineer. */
@@ -198,6 +228,12 @@
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Det finns inga quizzes att visa.";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "Det finns ingen matris för den här uppgiften";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "Tidsbegränsning:";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Uppdaterade språkinställningar";

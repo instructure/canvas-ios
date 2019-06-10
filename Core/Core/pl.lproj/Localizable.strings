@@ -224,13 +224,7 @@
 "No Submission" = "Brak przesłanych zadań";
 
 /* No comment provided by engineer. */
-"Not a parent?" = "Nie jesteś rodzicem?";
-
-/* No comment provided by engineer. */
-"Not a student?" = "Nie jesteś uczniem?";
-
-/* No comment provided by engineer. */
-"Not a teacher?" = "Nie jesteś nauczycielem?";
+"None" = "Brak";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Nie oceniono";
@@ -243,9 +237,6 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "Na papierze";
-
-/* No comment provided by engineer. */
-"One of our other apps might be a better fit. Tap one to visit the App Store." = "Jedna z innych naszych aplikacji może być bardziej przydatna. Stuknij jedną, aby odwiedzić Sklep z aplikacjami.";
 
 /* No comment provided by engineer. */
 "orange" = "pomarańczowy";
@@ -294,6 +285,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Ponów próbę";
+
+/* No comment provided by engineer. */
+"See attached files." = "Pokaż dołączone pliki.";
 
 /* No comment provided by engineer. */
 "See what's new." = "Zobacz nowości.";
@@ -392,6 +386,9 @@
 "Undo" = "Cofnij";
 
 /* No comment provided by engineer. */
+"Unlimited" = "Nieograniczony";
+
+/* No comment provided by engineer. */
 "Unordered List" = "Lista nieuporządkowana";
 
 /* No comment provided by engineer. */
@@ -426,9 +423,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Musisz włączyć uprawnienia dla mikrofonu w Ustawieniach.";
-
-/* No comment provided by engineer. */
-"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "Potrzebujesz co najmniej jednego aktywnego obserwatora, aby użyć Canvas Parent. Jeśli jesteś uczniem lub nauczycielem, wypróbuj jedną z naszych poniższych aplikacji.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Należy najpierw zalogować się do konta Canvas w aplikacji Student.";

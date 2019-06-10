@@ -5,16 +5,28 @@
 "All Courses" = "Ngā akoranga katoa";
 
 /* No comment provided by engineer. */
+"Allowed Attempts:" = "Ngā ngane whakāetia ana";
+
+/* No comment provided by engineer. */
+"Arc" = "Arc";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Taipitopito Whakataunga";
 
 /* No comment provided by engineer. */
 "Assignments" = "Ngā whakataunga";
 
 /* No comment provided by engineer. */
+"Attachments" = "Āpitihanga";
+
+/* No comment provided by engineer. */
 "Cancel" = "Whakakore";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "Whakakore Tāpaetanga";
+
+/* No comment provided by engineer. */
+"Choose File" = "Kōwhiri kōnae";
 
 /* No comment provided by engineer. */
 "Close App" = "Kati Taupānga";
@@ -86,6 +98,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "He pātai? Whakamahia tēnei wāhanga hei tuku karere ki tō kaitohutohu mo tēnei whakataunga";
 
 /* No comment provided by engineer. */
+"Instructions" = "Ngā Tohutohu";
+
+/* No comment provided by engineer. */
 "Invalid url" = "Koremana url";
 
 /* No comment provided by engineer. */
@@ -122,6 +137,9 @@
 "Practice Quizzes" = "mahi quizzes";
 
 /* No comment provided by engineer. */
+"Questions:" = "Ngā pātai";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Ngā Quizzes";
 
 /* No comment provided by engineer. */
@@ -146,7 +164,13 @@
 "See All Courses" = "Titiro ki ngā akoranga katoa";
 
 /* No comment provided by engineer. */
+"Send" = "Tukua";
+
+/* No comment provided by engineer. */
 "Send comment" = "Tuku kōrero";
+
+/* No comment provided by engineer. */
+"Settings" = "Ngā Tautuhinga";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "He hapa i te wā e uta ana ngā quizzes.";
@@ -159,6 +183,9 @@
 
 /* No comment provided by engineer. */
 "Submission Failed" = "I rahua te tuku o te tāpaetanga";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "Tāpaetanga kei te mahia";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Nga momo tāpaetanga";
@@ -182,6 +209,9 @@
 "Syllabus" = "Marautanga";
 
 /* No comment provided by engineer. */
+"Take Quiz" = "Tangohia Quiz";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Pātō ki te tiro i ngā taipitopito";
 
 /* No comment provided by engineer. */
@@ -198,6 +228,12 @@
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Kaore ngā quizzes hei whakāu.";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "Kaore he rubric mo tēnei whakataunga";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "Wā whāiti";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Kua whakahoutia ngā Tautuhinga Reo";

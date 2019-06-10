@@ -224,13 +224,7 @@
 "No Submission" = "No Submission";
 
 /* No comment provided by engineer. */
-"Not a parent?" = "Not a parent?";
-
-/* No comment provided by engineer. */
-"Not a student?" = "Not a student?";
-
-/* No comment provided by engineer. */
-"Not a teacher?" = "Not a teacher?";
+"None" = "None";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Not Graded";
@@ -243,9 +237,6 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "On Paper";
-
-/* No comment provided by engineer. */
-"One of our other apps might be a better fit. Tap one to visit the App Store." = "One of our other apps might be a better fit. Tap one to visit the App Store.";
 
 /* No comment provided by engineer. */
 "orange" = "orange";
@@ -294,6 +285,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Retry";
+
+/* No comment provided by engineer. */
+"See attached files." = "See attached files.";
 
 /* No comment provided by engineer. */
 "See what's new." = "See what's new.";
@@ -392,6 +386,9 @@
 "Undo" = "Undo";
 
 /* No comment provided by engineer. */
+"Unlimited" = "Unlimited";
+
+/* No comment provided by engineer. */
 "Unordered List" = "Unordered List";
 
 /* No comment provided by engineer. */
@@ -426,9 +423,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "You must enable Microphone permissions in Settings.";
-
-/* No comment provided by engineer. */
-"You need at least one active observer enrollment to use Canvas Parent. If you're a student or teacher, try one of our other apps below." = "You need at least one active observer enrolment to use Canvas Parent. If you're a student or teacher, try one of our other apps below.";
 
 /* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "You will need to log into at least one Canvas account from the Student app first.";

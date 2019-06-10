@@ -5,16 +5,28 @@
 "All Courses" = "Wszystkie kursy";
 
 /* No comment provided by engineer. */
+"Allowed Attempts:" = "Dozwolone próby:";
+
+/* No comment provided by engineer. */
+"Arc" = "Arc";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Szczegóły zadania";
 
 /* No comment provided by engineer. */
 "Assignments" = "Zadania";
 
 /* No comment provided by engineer. */
+"Attachments" = "Załączniki";
+
+/* No comment provided by engineer. */
 "Cancel" = "Anuluj";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "Anuluj przesyłkę";
+
+/* No comment provided by engineer. */
+"Choose File" = "Wybierz plik";
 
 /* No comment provided by engineer. */
 "Close App" = "Zamknij aplikację";
@@ -86,6 +98,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "Masz pytania? Wyślij komentarz na temat tego zadania do instruktora, korzystając z tego obszaru.";
 
 /* No comment provided by engineer. */
+"Instructions" = "Instrukcje";
+
+/* No comment provided by engineer. */
 "Invalid url" = "Nieprawidłowy adres URL";
 
 /* No comment provided by engineer. */
@@ -122,6 +137,9 @@
 "Practice Quizzes" = "Testy próbne";
 
 /* No comment provided by engineer. */
+"Questions:" = "Pytania:";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Testy";
 
 /* No comment provided by engineer. */
@@ -146,7 +164,13 @@
 "See All Courses" = "Zobacz wszystkie kursy";
 
 /* No comment provided by engineer. */
+"Send" = "Wyślij";
+
+/* No comment provided by engineer. */
 "Send comment" = "Wyślij komentarz";
+
+/* No comment provided by engineer. */
+"Settings" = "Ustawienia";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Wystąpił błąd podczas wczytywania testów.";
@@ -159,6 +183,9 @@
 
 /* No comment provided by engineer. */
 "Submission Failed" = "Przesyłanie zadania nie powiodło się";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "Przesyłanie w trakcie...";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Typy przesłanych materiałów";
@@ -182,6 +209,9 @@
 "Syllabus" = "Program";
 
 /* No comment provided by engineer. */
+"Take Quiz" = "Zrób test";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Stuknij, aby wyświetlić szczegóły";
 
 /* No comment provided by engineer. */
@@ -198,6 +228,12 @@
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Brak testów do wyświetlenia.";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "Nie ma rubryki dla tego zadania";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "Limit czasu:";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Zaktualizuj ustawienia językowe";

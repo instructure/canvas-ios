@@ -570,6 +570,23 @@
 		49ED5A4C1DBFD02E009E2896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B022DDB21FD9504006FEA47 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5B022DDC21FD9504006FEA47 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5B7BD3C222ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B7BD3C322ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B7BD3C422ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
+		5B7BD3C522ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
+		5B7BD3C622ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/AlertCell.strings; sourceTree = "<group>"; };
+		5B7BD3C722ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
+		5B7BD3C822ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
+		5B7BD3C922ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
+		5B7BD3CA22ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/AdminViewController.strings; sourceTree = "<group>"; };
+		5B7BD3CB22ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/CalendarEventCell.strings; sourceTree = "<group>"; };
+		5B7BD3CC22ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/SettingsObserveeCell.strings; sourceTree = "<group>"; };
+		5B7BD3CD22ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
+		5B7BD3CE22ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DetailsReminderCell.strings; sourceTree = "<group>"; };
+		5B7BD3CF22ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
+		5B7BD3D022ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/UserCell.strings; sourceTree = "<group>"; };
+		5B7BD3D122ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/CourseCell.strings; sourceTree = "<group>"; };
+		5B7BD3D222ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/StudentSettingsHeaderView.strings; sourceTree = "<group>"; };
 		5B8461D720DF7C3100EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B8461D820DF7C3100EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/CalendarEventCell.strings; sourceTree = "<group>"; };
 		5B8461D920DF7C3100EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/CourseCell.strings; sourceTree = "<group>"; };
@@ -1349,6 +1366,7 @@
 				cy,
 				"en-CY",
 				"sl-SI",
+				fi,
 			);
 			mainGroup = 5E64417E1C3EE2E0003D7397;
 			productRefGroup = 5E6441881C3EE2E0003D7397 /* Products */;
@@ -1660,6 +1678,7 @@
 				7D349CD921430E67004C1074 /* sv-instk12 */,
 				5BE924A521BCF8750007609A /* en-CY */,
 				5B022DDC21FD9504006FEA47 /* sl-SI */,
+				5B7BD3C322ACE9C400FA371B /* fi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1695,6 +1714,7 @@
 				7D349CC721430E5D004C1074 /* sv-instk12 */,
 				5BE924B321BCF8750007609A /* en-CY */,
 				5BE5A0CE21E1E5930065E778 /* sl-SI */,
+				5B7BD3D122ACE9C400FA371B /* fi */,
 			);
 			name = CourseCell.xib;
 			sourceTree = "<group>";
@@ -1730,6 +1750,7 @@
 				7D349CCA21430E5F004C1074 /* sv-instk12 */,
 				5BE924A621BCF8750007609A /* en-CY */,
 				5BE5A0D621E1E5930065E778 /* sl-SI */,
+				5B7BD3C422ACE9C400FA371B /* fi */,
 			);
 			name = EmptyCalendarEventCell.xib;
 			sourceTree = "<group>";
@@ -1765,6 +1786,7 @@
 				7D349CC821430E5E004C1074 /* sv-instk12 */,
 				5BE924A821BCF8750007609A /* en-CY */,
 				5BE5A0CF21E1E5930065E778 /* sl-SI */,
+				5B7BD3CB22ACE9C400FA371B /* fi */,
 			);
 			name = CalendarEventCell.xib;
 			sourceTree = "<group>";
@@ -1800,6 +1822,7 @@
 				7D349CCB21430E60004C1074 /* sv-instk12 */,
 				5BE924A721BCF8750007609A /* en-CY */,
 				5BE5A0D721E1E5930065E778 /* sl-SI */,
+				5B7BD3C622ACE9C400FA371B /* fi */,
 			);
 			name = AlertCell.xib;
 			sourceTree = "<group>";
@@ -1835,6 +1858,7 @@
 				7D349CCD21430E61004C1074 /* sv-instk12 */,
 				5BE924AA21BCF8750007609A /* en-CY */,
 				5BE5A0D521E1E5930065E778 /* sl-SI */,
+				5B7BD3C822ACE9C400FA371B /* fi */,
 			);
 			name = DetailsInfoCell.xib;
 			sourceTree = "<group>";
@@ -1870,6 +1894,7 @@
 				7D349CCE21430E61004C1074 /* sv-instk12 */,
 				5BE924B021BCF8750007609A /* en-CY */,
 				5BE5A0D221E1E5930065E778 /* sl-SI */,
+				5B7BD3CE22ACE9C400FA371B /* fi */,
 			);
 			name = DetailsReminderCell.xib;
 			sourceTree = "<group>";
@@ -1905,6 +1930,7 @@
 				7D349CCF21430E62004C1074 /* sv-instk12 */,
 				5BE924AF21BCF8750007609A /* en-CY */,
 				5BE5A0DB21E1E5930065E778 /* sl-SI */,
+				5B7BD3CD22ACE9C400FA371B /* fi */,
 			);
 			name = DetailsDateCell.xib;
 			sourceTree = "<group>";
@@ -1940,6 +1966,7 @@
 				7D349CD021430E62004C1074 /* sv-instk12 */,
 				5BE924A921BCF8750007609A /* en-CY */,
 				5BE5A0D421E1E5930065E778 /* sl-SI */,
+				5B7BD3C722ACE9C400FA371B /* fi */,
 			);
 			name = DetailsLocationCell.xib;
 			sourceTree = "<group>";
@@ -1975,6 +2002,7 @@
 				7D349CD221430E63004C1074 /* sv-instk12 */,
 				5BE924AE21BCF8750007609A /* en-CY */,
 				5BE5A0D021E1E5930065E778 /* sl-SI */,
+				5B7BD3CC22ACE9C400FA371B /* fi */,
 			);
 			name = SettingsObserveeCell.xib;
 			sourceTree = "<group>";
@@ -2010,6 +2038,7 @@
 				7D349CD421430E65004C1074 /* sv-instk12 */,
 				5BE924B221BCF8750007609A /* en-CY */,
 				5BE5A0D121E1E5930065E778 /* sl-SI */,
+				5B7BD3D022ACE9C400FA371B /* fi */,
 			);
 			name = UserCell.xib;
 			sourceTree = "<group>";
@@ -2045,6 +2074,7 @@
 				7D349CD521430E65004C1074 /* sv-instk12 */,
 				5BE924B421BCF8750007609A /* en-CY */,
 				5BE5A0DC21E1E5930065E778 /* sl-SI */,
+				5B7BD3D222ACE9C400FA371B /* fi */,
 			);
 			name = StudentSettingsHeaderView.xib;
 			sourceTree = "<group>";
@@ -2125,6 +2155,7 @@
 				7D349CCC21430E60004C1074 /* sv-instk12 */,
 				5BE924B121BCF8750007609A /* en-CY */,
 				5BE5A0DA21E1E5930065E778 /* sl-SI */,
+				5B7BD3CF22ACE9C400FA371B /* fi */,
 			);
 			name = DashboardViewController.storyboard;
 			sourceTree = "<group>";
@@ -2160,6 +2191,7 @@
 				7D349CC921430E5E004C1074 /* sv-instk12 */,
 				5BE924AD21BCF8750007609A /* en-CY */,
 				5BE5A0D821E1E5930065E778 /* sl-SI */,
+				5B7BD3C522ACE9C400FA371B /* fi */,
 			);
 			name = CalendarEventWeekPageViewController.storyboard;
 			sourceTree = "<group>";
@@ -2195,6 +2227,7 @@
 				7D349CD121430E63004C1074 /* sv-instk12 */,
 				5BE924AB21BCF8750007609A /* en-CY */,
 				5BE5A0D321E1E5930065E778 /* sl-SI */,
+				5B7BD3C922ACE9C400FA371B /* fi */,
 			);
 			name = DetailsAttachmentCell.xib;
 			sourceTree = "<group>";
@@ -2230,6 +2263,7 @@
 				7D349CC521430E5C004C1074 /* sv-instk12 */,
 				5BE924A421BCF8750007609A /* en-CY */,
 				5B022DDB21FD9504006FEA47 /* sl-SI */,
+				5B7BD3C222ACE9C400FA371B /* fi */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2298,6 +2332,7 @@
 				7D349CC621430E5D004C1074 /* sv-instk12 */,
 				5BE924AC21BCF8750007609A /* en-CY */,
 				5BE5A0D921E1E5930065E778 /* sl-SI */,
+				5B7BD3CA22ACE9C400FA371B /* fi */,
 			);
 			name = AdminViewController.storyboard;
 			sourceTree = "<group>";

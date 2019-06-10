@@ -56,6 +56,9 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Ymgeisiau a ganiateir";
 
+/* Default error message displayed when a file fails to upload */
+"An error occurred, please try again." = "Gwall, rhowch gynnig arall arni.";
+
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Gwall annisgwyl.";
 
@@ -327,6 +330,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "Cuddio'r Rhestr Cwestiynau";
+
+/* No comment provided by engineer. */
+"Image %d" = "Delwedd %d";
 
 /* Inbox tab title */
 "Inbox" = "Blwch Derbyn";

@@ -5,16 +5,28 @@
 "All Courses" = "Alle Kurse";
 
 /* No comment provided by engineer. */
+"Allowed Attempts:" = "Erlaubte Versuche:";
+
+/* No comment provided by engineer. */
+"Arc" = "Arc";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Aufgabendetails";
 
 /* No comment provided by engineer. */
 "Assignments" = "Aufgaben";
 
 /* No comment provided by engineer. */
+"Attachments" = "Anhänge";
+
+/* No comment provided by engineer. */
 "Cancel" = "Abbrechen";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "Abgabe abbrechen";
+
+/* No comment provided by engineer. */
+"Choose File" = "Datei auswählen";
 
 /* No comment provided by engineer. */
 "Close App" = "App schließen";
@@ -86,6 +98,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "Haben Sie Fragen? Verwenden Sie diesen Bereich, um Ihren Kursleiter über diese Aufgabe zu benachrichtigen.";
 
 /* No comment provided by engineer. */
+"Instructions" = "Anweisungen";
+
+/* No comment provided by engineer. */
 "Invalid url" = "Ungültiger URL";
 
 /* No comment provided by engineer. */
@@ -122,6 +137,9 @@
 "Practice Quizzes" = "Übungsquizze";
 
 /* No comment provided by engineer. */
+"Questions:" = "Fragen:";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Quizze";
 
 /* No comment provided by engineer. */
@@ -146,7 +164,13 @@
 "See All Courses" = "Alle Kurse anzeigen";
 
 /* No comment provided by engineer. */
+"Send" = "Senden";
+
+/* No comment provided by engineer. */
 "Send comment" = "Kommentar senden";
+
+/* No comment provided by engineer. */
+"Settings" = "Einstellungen";
 
 /* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Beim Laden der Quizaufgaben ist etwas schiefgegangen.";
@@ -159,6 +183,9 @@
 
 /* No comment provided by engineer. */
 "Submission Failed" = "Abgabe fehlgeschlagen";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "Abgabe läuft ...";
 
 /* No comment provided by engineer. */
 "Submission Types" = "Abgabearten";
@@ -182,6 +209,9 @@
 "Syllabus" = "Kursplan";
 
 /* No comment provided by engineer. */
+"Take Quiz" = "An Quiz teilnehmen";
+
+/* No comment provided by engineer. */
 "Tap to view details" = "Zum Anzeigen der Details antippen";
 
 /* No comment provided by engineer. */
@@ -198,6 +228,12 @@
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Es sind keine Quizaufgaben anzuzeigen.";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "Für diese Aufgabe gibt es kein Bewertungsschema";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "Zeitbeschränkung:";
 
 /* No comment provided by engineer. */
 "Updated Language Settings" = "Aktualisierte Spracheinstellungen";

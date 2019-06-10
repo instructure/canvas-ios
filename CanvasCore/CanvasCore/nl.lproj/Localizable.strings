@@ -56,6 +56,9 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Toegestaan aantal pogingen";
 
+/* Default error message displayed when a file fails to upload */
+"An error occurred, please try again." = "Er heeft zich een fout voorgedaan, probeer het nogmaals.";
+
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Er is een onverwachte fout opgetreden.";
 
@@ -327,6 +330,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "Vragenlijst verbergen";
+
+/* No comment provided by engineer. */
+"Image %d" = "Afbeelding %d";
 
 /* Inbox tab title */
 "Inbox" = "Inbox";

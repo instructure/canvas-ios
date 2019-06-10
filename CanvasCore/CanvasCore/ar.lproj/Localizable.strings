@@ -56,6 +56,9 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "المحاولات المسموح بها";
 
+/* Default error message displayed when a file fails to upload */
+"An error occurred, please try again." = "حدث خطأ. يرجى إعادة المحاولة.";
+
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "حدث خطأ غير متوقع.";
 
@@ -327,6 +330,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "إخفاء قائمة الأسئلة";
+
+/* No comment provided by engineer. */
+"Image %d" = "صورة %d";
 
 /* Inbox tab title */
 "Inbox" = "صندوق الوارد";
