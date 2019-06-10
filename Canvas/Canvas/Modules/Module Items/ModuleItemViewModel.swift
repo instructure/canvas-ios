@@ -67,6 +67,8 @@ class ModuleItemViewModel: NSObject {
                     if let moduleItemID = moduleItemID, let moduleID = moduleID {
                         return try! MasteryPathSelectOptionViewController(session: self.session, moduleID: moduleID, itemIDWithMasteryPaths: moduleItemID)
                     }
+                case .page(let pageURL):
+                    return Router.shared().controller(forHandling: pageURL)
                 default: break
                 }
             }

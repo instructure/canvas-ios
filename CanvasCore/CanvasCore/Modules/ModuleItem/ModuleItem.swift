@@ -51,7 +51,7 @@ open class ModuleItem: NSManagedObject, LockableModel {
 
     public enum Content {
         case file(id: String)
-        case page(url: String)
+        case page(url: URL)
         case discussion(id: String)
         case assignment(id: String)
         case quiz(id: String)
@@ -98,7 +98,7 @@ open class ModuleItem: NSManagedObject, LockableModel {
                 guard let contentID = contentID else { return nil }
                 return .file(id: contentID)
             case .page:
-                guard let pageURL = pageURL else { return nil }
+                guard let pageURLRaw = pageURL, let pageURL = URL(string: pageURLRaw) else { return nil }
                 return .page(url: pageURL)
             case .discussion:
                 guard let contentID = contentID else { return nil }
@@ -134,7 +134,7 @@ open class ModuleItem: NSManagedObject, LockableModel {
                 case .file(let fileID):
                     contentID = fileID
                 case .page(let pageURL):
-                    self.pageURL = pageURL
+                    self.pageURL = pageURL.absoluteString
                 case .discussion(let discussionID):
                     contentID = discussionID
                 case .assignment(let assignmentID):
@@ -214,7 +214,7 @@ extension ModuleItem: SynchronizedModel {
         indent      = (try json <| "indent") ?? 0
         contentType = try json <| "type"
         contentID   = try json.stringID("content_id")
-        pageURL     = try json <| "page_url"
+        pageURL     = try json <| "url"
         externalURL = try json <| "external_url"
         url         = try json <| "url"
         htmlURL     = try json <| "html_url"

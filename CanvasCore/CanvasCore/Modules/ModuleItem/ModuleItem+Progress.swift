@@ -151,7 +151,7 @@ extension ModuleItem {
         case .file(let fileID):
             return fileID
         case .page(let pageURL):
-            return pageURL
+            return pageURL.absoluteString
         case .discussion(let discussionID):
             return discussionID
         case .assignment(let assignmentID):

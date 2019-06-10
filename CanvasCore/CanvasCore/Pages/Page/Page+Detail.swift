@@ -31,9 +31,9 @@ extension Page {
         return cacheKey(context, [contextID.canvasContextID, url])
     }
 
-    public static func invalidateDetailCache(session: Session, contextID: ContextID, url: String) throws {
+    public static func invalidateDetailCache(session: Session, contextID: ContextID, url: URL) throws {
         let context = try session.pagesManagedObjectContext()
-        let key = detailCacheKey(context: context, contextID: contextID, url: url)
+        let key = detailCacheKey(context: context, contextID: contextID, url: url.absoluteString)
         session.refreshScope.invalidateCache(key)
     }
 
