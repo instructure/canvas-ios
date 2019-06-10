@@ -49,6 +49,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="appName" value="student"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="studentPressed" destination="SeY-Yw-TuA" eventType="primaryActionTriggered" id="NGC-vM-jNp"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOe-pF-nPD" customClass="WrongAppLinkView" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="74" width="30" height="34"/>
@@ -56,6 +59,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="appName" value="teacher"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="teacherPressed" destination="SeY-Yw-TuA" eventType="primaryActionTriggered" id="Qth-mH-fO1"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sLT-wI-hOl" customClass="WrongAppLinkView" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="148" width="30" height="34"/>
@@ -63,6 +69,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="appName" value="parent"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="parentPressed" destination="SeY-Yw-TuA" eventType="primaryActionTriggered" id="GTq-c3-Q8W"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

@@ -49,15 +49,12 @@ public class WrongAppViewController: UIViewController {
 
         parentButton?.isHidden = Bundle.main.isParentApp
         parentButton?.accessibilityLabel = NSLocalizedString("Canvas Parent", bundle: .core, comment: "")
-        parentButton?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(parentPressed)))
 
         studentButton?.isHidden = Bundle.main.isStudentApp
         studentButton?.accessibilityLabel = NSLocalizedString("Canvas Student", bundle: .core, comment: "")
-        studentButton?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(studentPressed)))
 
         teacherButton?.isHidden = Bundle.main.isTeacherApp
         teacherButton?.accessibilityLabel = NSLocalizedString("Canvas Teacher", bundle: .core, comment: "")
-        teacherButton?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(teacherPressed)))
     }
 
     @IBAction func loginAgainButtonPressed(_ sender: UIButton) {

@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WrongAppLinkView" customModule="Core" customModuleProvider="target">
             <connections>
+                <outlet property="contentView" destination="Wbu-PY-FHY" id="5VP-ae-vD8"/>
                 <outlet property="logoView" destination="ukk-Yv-xwf" id="mPY-Pf-SjT"/>
                 <outlet property="nameLabel" destination="ULZ-Tr-dLA" id="qhk-V9-03o"/>
             </connections>
@@ -24,6 +25,9 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructureLine" translatesAutoresizingMaskIntoConstraints="NO" id="ukk-Yv-xwf">
                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                     <color key="tintColor" red="0.83921568629999999" green="0.25098039220000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                    </accessibility>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="RDp-yS-q1s"/>
                         <constraint firstAttribute="width" constant="48" id="pN1-Y3-4Fg"/>
@@ -31,6 +35,9 @@
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wordmark" translatesAutoresizingMaskIntoConstraints="NO" id="Igk-hO-zPc" customClass="IconView" customModule="Core" customModuleProvider="target">
                     <rect key="frame" x="60" y="4" width="123" height="30"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                    </accessibility>
                     <constraints>
                         <constraint firstAttribute="width" constant="123" id="2Lq-E0-lwP"/>
                         <constraint firstAttribute="height" constant="30" id="b2t-7S-Ztc"/>
@@ -42,6 +49,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STUDENT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULZ-Tr-dLA">
                     <rect key="frame" x="60" y="36" width="42" height="12.5"/>
                     <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" notEnabled="YES"/>
                         <bool key="isElement" value="NO"/>
                     </accessibility>
                     <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="9"/>
