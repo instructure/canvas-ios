@@ -25,5 +25,4 @@ class CanvasUITests: XCTestCase {
     func testExample() {
         XCTAssertTrue(true)
     }
-
 }
