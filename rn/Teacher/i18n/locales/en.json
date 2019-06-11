@@ -845,6 +845,9 @@
   "like_e8ad74ae": {
     "message": "Like"
   },
+  "loading_bde52856": {
+    "message": "Loading"
+  },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Lock Questions After Answering"
   },
@@ -1297,6 +1300,9 @@
   },
   "schedule_student_availability_332154a": {
     "message": "Schedule student availability"
+  },
+  "score_number_out_of_pointspossible_number_points_p_d3e3e4df": {
+    "message": "{ score, number } out of { pointsPossible, number } { points, plural,\n     =1 {point}\n  other {points}\n} possible. { grade }"
   },
   "score_number_pointspossible_number_fd8705b8": {
     "message": "{ score, number }/{ pointsPossible, number }"
