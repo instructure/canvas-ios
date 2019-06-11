@@ -81,7 +81,7 @@ open class CoreWebView: WKWebView {
 
         return """
             <!doctype html>
-            <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+            <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
             <style>\(css)</style>
             \(jquery)
             \(content)
