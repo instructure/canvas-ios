@@ -6,8 +6,6 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>Student</string>
-    <key>CFBundleSpokenName</key>
-    <string>Canvas Student</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -33,9 +31,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>6.4</string>
+	<string>6.5.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleSpokenName</key>
+	<string>Canvas Student</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -68,7 +68,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>7921</string>
 	<key>Fabric</key>
 	<dict>
 		<key>Kits</key>
