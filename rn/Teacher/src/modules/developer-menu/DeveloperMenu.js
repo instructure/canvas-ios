@@ -46,10 +46,8 @@ type DeveloperMenuProps = {
 }
 
 var routes
-export async function recordRoute (url: string, options: any, props: any) {
-  const ignore = ['/dev-menu']
-  if (ignore.includes(url)) { return }
 
+async function getRoutes () {
   if (!routes) {
     let json = await AsyncStorage.getItem(routeHistoryKey)
     if (json) {
@@ -59,11 +57,26 @@ export async function recordRoute (url: string, options: any, props: any) {
     }
   }
 
+  return routes
+}
+
+export async function recordRoute (url: string, options: any, props: any) {
+  const ignore = ['/dev-menu']
+  if (ignore.includes(url)) { return }
+
+  await getRoutes()
+
   const timestamp = (new Date()).toISOString()
   routes.unshift({ url, options, props, timestamp })
   routes = routes.slice(0, 50)
   await AsyncStorage.setItem(routeHistoryKey, JSON.stringify(routes))
 }
+
+export async function getLastRoute () {
+  let routes = await getRoutes()
+  return routes[0]
+}
+
 export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
   constructor (props: DeveloperMenuProps) {
     super(props)

@@ -239,6 +239,24 @@ export default class Slider extends Component<Props, State> {
     this.moveTo(value, saveScore)
   }
 
+  sliderAccessibilityLabel () {
+    if (this.props.excused) {
+      return i18n('Excused')
+    } else if (this.props.score !== null) {
+      return i18n(`{ score, number } out of { pointsPossible, number } {
+        points, plural,
+             =1 {point}
+          other {points}
+      } possible`, {
+        score: this.props.score,
+        pointsPossible: this.props.pointsPossible,
+        points: this.props.pointsPossible,
+      })
+    } else {
+      return i18n('No Grade')
+    }
+  }
+
   render () {
     let slideInterpolation = this.slide.interpolate({
       inputRange: [0, 0, this.width, this.width],
@@ -265,6 +283,8 @@ export default class Slider extends Component<Props, State> {
         <TouchableHighlight
           underlayColor='transparent'
           onPress={() => this.moveTo(0)}
+          accessibilityTraits={['button']}
+          accessibilityLabel={i18n('Lowest possible score, 0')}
           testID='slider.zero'
         >
           <View><Text style={styles.zeroPoints}>{i18n.number(0)}</Text></View>
@@ -279,7 +299,7 @@ export default class Slider extends Component<Props, State> {
           />
           <AnimatedAdjustable
             accessible
-            accessibilityLabel={this.calculateScore().toString()}
+            accessibilityLabel={this.sliderAccessibilityLabel()}
             style={[slideStyle, styles.thumb]}
             {...this.panResponder.panHandlers}
             onAccessibilityIncrement={this.increment}
@@ -291,6 +311,8 @@ export default class Slider extends Component<Props, State> {
         <TouchableHighlight
           underlayColor='transparent'
           onPress={() => this.moveTo(this.width)}
+          accessibilityTraits={['button']}
+          accessibilityLabel={i18n('Highest possible score, { pointsPossible, number }', { pointsPossible: this.props.pointsPossible })}
           testID='slider.pointsPossible'
         >
           <View><Text style={styles.pointsPossible}>{i18n.number(this.props.pointsPossible)}</Text></View>
