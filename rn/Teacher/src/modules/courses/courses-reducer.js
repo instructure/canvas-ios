@@ -354,7 +354,10 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
         ...state,
         [contextID]: {
           ...state[contextID],
-          permissions: result.data,
+          permissions: {
+            ...state[contextID].permissions,
+            ...result.data,
+          },
         },
       }
     },
