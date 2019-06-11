@@ -42,6 +42,14 @@ class RouteTests: XCTestCase {
         XCTAssertEqual(Route.quizzes(forCourse: "9").url.path, "/courses/9/quizzes")
     }
 
+    func testQuiz() {
+        XCTAssertEqual(Route.quiz(forCourse: "3", quizID: "6").url.path, "/courses/3/quizzes/6")
+    }
+
+    func testTakeQuiz() {
+        XCTAssertEqual(Route.takeQuiz(forCourse: "3", quizID: "6").url.path, "/courses/3/quizzes/6/take")
+    }
+
     func testModules() {
         XCTAssertEqual(Route.modules(forCourse: "9").url.path, "/courses/9/modules")
     }

@@ -40,3 +40,21 @@ public struct GetQuizRequest: APIRequestable {
         return "\(context.pathComponent)/quizzes/\(quizID)"
     }
 }
+
+// https://canvas.instructure.com/doc/api/quiz_submissions.html#method.quizzes/quiz_submissions_api.submission
+public struct GetQuizSubmissionRequest: APIRequestable {
+    public struct Response: Codable {
+        let quiz_submissions: [APIQuizSubmission]
+        let quizzes: [APIQuiz] // include[]=quiz
+    }
+
+    let courseID: String
+    let quizID: String
+
+    public var path: String {
+        let context = ContextModel(.course, id: courseID)
+        return "\(context.pathComponent)/quizzes/\(quizID)/submission"
+    }
+
+    public let query: [APIQueryItem] = [ .array("include", [ "quiz" ]) ]
+}

@@ -31,3 +31,15 @@ extension Quiz {
         return model
     }
 }
+
+extension QuizSubmission {
+    @discardableResult
+    public static func make(
+        from api: APIQuizSubmission = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> QuizSubmission {
+        let model = QuizSubmission.save(api, in: context)
+        try! context.save()
+        return model
+    }
+}

@@ -32,17 +32,18 @@ public class GetQuiz: APIUseCase {
         return "get-courses-\(courseID)-quizzes-\(quizID)"
     }
 
-    public var request: GetQuizRequest {
-        return GetQuizRequest(courseID: courseID, quizID: quizID)
+    public var request: GetQuizSubmissionRequest {
+        return GetQuizSubmissionRequest(courseID: courseID, quizID: quizID)
     }
 
     public var scope: Scope {
         return .where(#keyPath(Quiz.id), equals: quizID)
     }
 
-    public func write(response: APIQuiz?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response else { return }
-        let model = Quiz.save(response, in: client)
-        model.courseID = courseID
+    public func write(response: GetQuizSubmissionRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let quizItem = response?.quizzes.first, let submissionItem = response?.quiz_submissions.first else { return }
+        let quiz = Quiz.save(quizItem, in: client)
+        quiz.submission = QuizSubmission.save(submissionItem, in: client)
+        quiz.courseID = courseID
     }
 }

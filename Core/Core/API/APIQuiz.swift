@@ -58,3 +58,27 @@ public struct APIQuiz: Codable, Equatable {
     // let question_types: [QuestionType]?
     // let anonymous_submissions: Bool?
 }
+
+// https://canvas.instructure.com/doc/api/quiz_submissions.html#QuizSubmission
+public struct APIQuizSubmission: Codable {
+    let id: ID
+    let quiz_id: ID
+    let user_id: ID
+    let submission_id: ID
+    let started_at: Date?
+    let finished_at: Date?
+    let end_at: Date?
+    let attempt: Int
+    let attempts_left: Int
+    // let extra_attempts: Int?
+    // let extra_time: Double?
+    // let manually_unlocked: Bool
+    // let time_spent: TimeInterval?
+    // let score: Double?
+    // let score_before_regrade: Double?
+    // let kept_score: Double?
+    // let fudge_points: Int?
+    // let has_seen_results: Bool
+    let workflow_state: QuizSubmissionWorkflowState
+    // let overdue_and_needs_submission: Bool
+}

@@ -52,11 +52,6 @@ class SubmissionButtonPresenter: NSObject {
             return NSLocalizedString("Launch External Tool", bundle: .student, comment: "")
         }
 
-        if quiz != nil {
-            // TODO: takeability
-            return NSLocalizedString("Take Quiz", bundle: .student, comment: "")
-        }
-
         if arcID == .pending {
             return nil
         }
@@ -68,6 +63,16 @@ class SubmissionButtonPresenter: NSObject {
             fileUpload.state == nil
         )
         guard canSubmit else { return nil }
+
+        if quiz?.submission?.canResume == true {
+            return NSLocalizedString("Resume Quiz", bundle: .student, comment: "")
+        }
+        if quiz?.submission?.attemptsLeft == 0 { return nil }
+        if quiz != nil {
+            return assignment.submission?.workflowState == .unsubmitted
+                ? NSLocalizedString("Take Quiz", bundle: .student, comment: "")
+                : NSLocalizedString("Retake Quiz", bundle: .student, comment: "")
+        }
 
         return assignment.submission?.workflowState == .unsubmitted
             ? NSLocalizedString("Submit Assignment", bundle: .student, comment: "")
@@ -110,7 +115,8 @@ class SubmissionButtonPresenter: NSObject {
             let route = Route.assignmentTextSubmission(courseID: courseID, assignmentID: assignment.id, userID: userID)
             env.router.route(to: route, from: view, options: [.modal, .embedInNav])
         case .online_quiz:
-            break // TODO
+            guard let quizID = assignment.quizID else { return }
+            env.router.route(to: .quiz(forCourse: courseID, quizID: quizID), from: view)
         case .online_upload:
             pickFiles(for: assignment)
         case .online_url:

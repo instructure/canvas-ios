@@ -29,6 +29,7 @@ public class Quiz: NSManagedObject {
     @NSManaged var pointsPossibleRaw: NSNumber?
     @NSManaged public var questionCount: Int
     @NSManaged var quizTypeRaw: String
+    @NSManaged public var submission: QuizSubmission?
     @NSManaged var timeLimitRaw: NSNumber? // minutes
     @NSManaged public var title: String
 
