@@ -46,3 +46,31 @@ extension APIQuiz {
         )
     }
 }
+
+extension APIQuizSubmission {
+    public static func make(
+        id: ID = "1",
+        quiz_id: ID = "1",
+        user_id: ID = "1",
+        submission_id: ID = "1",
+        started_at: Date? = nil,
+        finished_at: Date? = nil,
+        end_at: Date? = nil,
+        attempt: Int = 1,
+        attempts_left: Int = -1,
+        workflow_state: QuizSubmissionWorkflowState = .untaken
+    ) -> APIQuizSubmission {
+        return APIQuizSubmission(
+            id: id,
+            quiz_id: quiz_id,
+            user_id: user_id,
+            submission_id: submission_id,
+            started_at: started_at,
+            finished_at: finished_at,
+            end_at: end_at,
+            attempt: attempt,
+            attempts_left: attempts_left,
+            workflow_state: workflow_state
+        )
+    }
+}

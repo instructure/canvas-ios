@@ -102,7 +102,15 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
 
         presenter.arcID = .none
         a.submissionTypes = [ .online_quiz ]
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: Quiz.make()), "Take Quiz")
+        let quiz = Quiz.make()
+        quiz.submission = QuizSubmission.make(from: .make(started_at: Date()))
+        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz), "Resume Quiz")
+        quiz.submission = QuizSubmission.make(from: .make(attempts_left: 0))
+        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: quiz))
+        quiz.submission = nil
+        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz), "Retake Quiz")
+        a.submission?.workflowState = .unsubmitted
+        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz), "Take Quiz")
 
         a.submissionTypes = [ .online_upload ]
         a.lockedForUser = true
@@ -188,7 +196,10 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     func testSubmitTypeQuiz() {
         let a = Assignment.make()
         presenter.submitType(.online_quiz, for: a, button: UIView())
-        XCTAssert(router.calls.isEmpty) // Not done yet
+        XCTAssert(router.calls.isEmpty)
+        a.quizID = "1"
+        presenter.submitType(.online_quiz, for: a, button: UIView())
+        XCTAssert(router.lastRoutedTo(Route.quiz(forCourse: "1", quizID: "1")))
     }
 
     func testSubmitTypeUpload() {

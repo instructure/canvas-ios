@@ -182,7 +182,7 @@ extension NonNativeQuizTakingViewController: UIWebViewDelegate {
         } else if navigationType == .linkClicked {
             // TODO: maybe open a native in app browser?
             if let URL = request.url {
-                UIApplication.shared.open(URL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+                UIApplication.shared.open(URL)
             }
             return false
         }
@@ -203,9 +203,4 @@ extension NonNativeQuizTakingViewController: UIWebViewDelegate {
         
         return false
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
