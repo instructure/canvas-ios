@@ -487,6 +487,37 @@ describe('updateContextPermissions', () => {
     })
   })
 
+  it('should not remove permissions that are not in the response', () => {
+    let action = {
+      type: PermissionsActions().updateContextPermissions.toString(),
+      payload: {
+        contextName: 'courses',
+        contextID: '1',
+        result: {
+          data: { post_to_forum: false },
+        },
+      },
+    }
+
+    let state = {
+      '1': {
+        permissions: {
+          create_discussion_topic: true,
+        },
+      },
+    }
+
+    let newState = coursesReducer(state, action)
+    expect(newState).toMatchObject({
+      '1': {
+        permissions: {
+          post_to_forum: false,
+          create_discussion_topic: true,
+        },
+      },
+    })
+  })
+
   it('should not set the permissions if the context is not a course', () => {
     let action = {
       type: PermissionsActions().updateContextPermissions.toString(),
