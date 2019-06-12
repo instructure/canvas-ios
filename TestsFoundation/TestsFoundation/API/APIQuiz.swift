@@ -31,30 +31,6 @@ public struct APIQuizQuestion: Codable {
     // public let answers: [APIQuizAnswer]?
 }
 
-// https://canvas.instructure.com/doc/api/quiz_submissions.html#QuizSubmission
-public struct APIQuizSubmission: Codable {
-    let id: String
-    let quiz_id: String
-    let user_id: String
-    let submission_id: String
-    let started_at: Date
-    let finished_at: Date?
-    let end_at: Date?
-    let attempt: UInt
-    // let extra_attempts: UInt?
-    // let extra_time: Int? // minutes
-    // let manually_unlocked: Bool?
-    // let time_spent: TimeInterval
-    // let score: Double?
-    // let score_before_regrade: Double?
-    // let kept_score: Double?
-    // let fudge_points: Double?
-    // let has_seen_results: Bool
-    // workflow_state: QuizSubmissionWorkflowState // untaken, pending_review, complete, settings_only, preview
-    // let overdue_and_needs_submission: Bool?
-    let validation_token: String
-}
-
 // https://canvas.instructure.com/doc/api/quiz_submission_questions.html#QuizSubmissionQuestion
 public struct APIQuizSubmissionQuestion: Codable {
     public let id: String
