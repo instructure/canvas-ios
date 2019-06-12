@@ -45,6 +45,12 @@ enum CanvasLogin {
     }
 }
 
+enum RyanaLogin {
+    static var ldapButton: Element {
+        return XCUIApplication().webViews.staticTexts["LDAP"].toElement(testCase)
+    }
+}
+
 enum Dashboard {
     static var courses: Element {
         return app.find(label: "Courses")
@@ -68,12 +74,40 @@ enum Dashboard {
 }
 
 class LoginTests: CanvasUITests {
-    func testLoginToDashboard() {
+
+    func testCanvasLoginToDashboard() {
        loginUser(username: "student1", password: "password")
 
         // Dashboard
         XCTAssert(Dashboard.courses.exists)
         XCTAssert(Dashboard.courseCard(id: "247").exists)
+        XCTAssert(Dashboard.dashboardTab.exists)
+    }
+
+    func testLDAPLoginToDashboard() {
+        // Find my school
+        XCTAssert(LoginStart.findMySchool.exists)
+        LoginStart.findMySchool.tap()
+        LoginFindSchool.searchField.typeText("ryana\r")
+
+        // Ryana Web View
+        RyanaLogin.ldapButton.waitToExist(Timeout(value: 10))
+        RyanaLogin.ldapButton.tap()
+
+        // Email
+        CanvasLogin.emailTextField.waitToExist(Timeout(value: 10))
+        CanvasLogin.emailTextField.tap()
+        CanvasLogin.emailTextField.typeText("ldapmobiletest")
+
+        // Password
+        CanvasLogin.passwordTextField.waitToExist(Timeout(value: 10))
+        CanvasLogin.passwordTextField.tap()
+        CanvasLogin.passwordTextField.typeText("mobiletesting123")
+
+        // Submit
+        CanvasLogin.logInButton.tap()
+
+        XCTAssert(Dashboard.courses.exists)
         XCTAssert(Dashboard.dashboardTab.exists)
     }
 
