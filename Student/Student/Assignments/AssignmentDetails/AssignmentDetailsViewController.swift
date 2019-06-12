@@ -52,7 +52,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var quizTimeLimitValueLabel: UILabel?
     @IBOutlet weak var quizView: UIView?
 
-    @IBOutlet weak var submissionButtonSection: AssignmentDetailsSectionContainerView!
+    @IBOutlet weak var gradeSection: UIStackView?
+    @IBOutlet weak var submissionButtonSection: UIStackView?
     @IBOutlet weak var fileTypesSection: AssignmentDetailsSectionContainerView?
     @IBOutlet weak var submissionTypesSection: AssignmentDetailsSectionContainerView?
     @IBOutlet weak var dueSection: AssignmentDetailsSectionContainerView?
@@ -133,8 +134,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     }
 
     func hideGradeCell() {
-        gradeCell?.isHidden = true
-        gradeCellDivider?.isHidden = true
+        gradeSection?.isHidden = true
     }
 
     func updateGradeCell(_ assignment: Assignment) {
@@ -151,7 +151,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
 
         if let fileSubmissionState = presenter?.fileUpload.state {
-            gradeCell?.isHidden = false
+            gradeSection?.isHidden = false
             gradeCellDivider?.isHidden = false
             gradedView?.isHidden = true
             submittedView?.isHidden = false
@@ -185,8 +185,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             return
         }
 
-        gradeCell?.isHidden = false
-        gradeCellDivider?.isHidden = false
+        gradeSection?.isHidden = false
 
         guard submission.grade != nil else {
             gradeCircleBottomConstraint?.isActive = false

@@ -26,10 +26,10 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="1047"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QTp-Qq-8ZA">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1093"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="949"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VdI-qu-MC8">
-                                                <rect key="frame" x="16" y="16" width="343" height="1077"/>
+                                                <rect key="frame" x="16" y="16" width="343" height="933"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7yL-fW-mIX">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
@@ -121,156 +121,168 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="headerText" value="File Types"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laV-99-9IB" userLabel="Grade Cell">
-                                                        <rect key="frame" x="0.0" y="490" width="343" height="179.5"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uqK-cv-6c4">
+                                                        <rect key="frame" x="116" y="366" width="110" height="200"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POu-Bn-aGg" userLabel="Grade Label" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="45.5" height="82.5"/>
-                                                                <accessibility key="accessibilityConfiguration">
-                                                                    <accessibilityTraits key="traits" staticText="YES" header="YES"/>
-                                                                </accessibility>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1l-zH-QmF" userLabel="GradedView" customClass="GradeCircleView" customModule="Core">
-                                                                <rect key="frame" x="0.0" y="98.5" width="343" height="73"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </view>
-                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1G-mN-QCX" userLabel="SubmittedView">
-                                                                <rect key="frame" x="0.0" y="82.5" width="343" height="97"/>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laV-99-9IB" userLabel="Grade Cell">
+                                                                <rect key="frame" x="-117" y="10" width="343" height="179.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Successfully submitted!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x12-ry-KqJ" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                        <rect key="frame" x="61" y="24" width="221" height="24"/>
-                                                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.submittedText"/>
-                                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POu-Bn-aGg" userLabel="Grade Label" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="45.5" height="82.5"/>
+                                                                        <accessibility key="accessibilityConfiguration">
+                                                                            <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                                                        </accessibility>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                         <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textSuccess"/>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold20"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
-                                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4TE-cB-TlA" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
-                                                                        <rect key="frame" x="-8" y="56" width="343" height="30"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="linkColor"/>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                        <connections>
-                                                                            <action selector="viewFileSubmission" destination="dvz-Jp-ehK" eventType="primaryActionTriggered" id="F1Q-an-sZu"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Your submission is now waiting to be graded" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePD-c3-2H7" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                        <rect key="frame" x="28" y="56" width="287" height="17"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                    </label>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1l-zH-QmF" userLabel="GradedView" customClass="GradeCircleView" customModule="Core">
+                                                                        <rect key="frame" x="0.0" y="98.5" width="343" height="73"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </view>
+                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1G-mN-QCX" userLabel="SubmittedView">
+                                                                        <rect key="frame" x="0.0" y="82.5" width="343" height="97"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Successfully submitted!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x12-ry-KqJ" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                                                <rect key="frame" x="61" y="24" width="221" height="24"/>
+                                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.submittedText"/>
+                                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textSuccess"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold20"/>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </label>
+                                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4TE-cB-TlA" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                                                                <rect key="frame" x="-8" y="56" width="343" height="30"/>
+                                                                                <state key="normal" title="Button"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="linkColor"/>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                                <connections>
+                                                                                    <action selector="viewFileSubmission" destination="dvz-Jp-ehK" eventType="primaryActionTriggered" id="F1Q-an-sZu"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Your submission is now waiting to be graded" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePD-c3-2H7" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                                                <rect key="frame" x="28" y="56" width="287" height="17"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="4TE-cB-TlA" firstAttribute="leadingMargin" secondItem="A1G-mN-QCX" secondAttribute="leading" id="6oC-8k-h5Z"/>
+                                                                            <constraint firstAttribute="trailingMargin" secondItem="4TE-cB-TlA" secondAttribute="trailing" id="BE6-bh-MVm"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="ePD-c3-2H7" secondAttribute="bottom" constant="24" id="Gvg-vX-znb"/>
+                                                                            <constraint firstItem="x12-ry-KqJ" firstAttribute="top" secondItem="A1G-mN-QCX" secondAttribute="top" constant="24" id="Ihw-vp-JXz"/>
+                                                                            <constraint firstItem="ePD-c3-2H7" firstAttribute="top" secondItem="x12-ry-KqJ" secondAttribute="bottom" constant="8" id="LnB-Mz-H77"/>
+                                                                            <constraint firstItem="ePD-c3-2H7" firstAttribute="centerX" secondItem="A1G-mN-QCX" secondAttribute="centerX" id="Xjn-JH-Okv"/>
+                                                                            <constraint firstItem="4TE-cB-TlA" firstAttribute="top" secondItem="x12-ry-KqJ" secondAttribute="bottom" constant="8" id="dcn-Rv-ybM"/>
+                                                                            <constraint firstItem="x12-ry-KqJ" firstAttribute="centerX" secondItem="A1G-mN-QCX" secondAttribute="centerX" id="jv1-cF-dqu"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.gradeCell"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="4TE-cB-TlA" firstAttribute="leadingMargin" secondItem="A1G-mN-QCX" secondAttribute="leading" id="6oC-8k-h5Z"/>
-                                                                    <constraint firstAttribute="trailingMargin" secondItem="4TE-cB-TlA" secondAttribute="trailing" id="BE6-bh-MVm"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="ePD-c3-2H7" secondAttribute="bottom" constant="24" id="Gvg-vX-znb"/>
-                                                                    <constraint firstItem="x12-ry-KqJ" firstAttribute="top" secondItem="A1G-mN-QCX" secondAttribute="top" constant="24" id="Ihw-vp-JXz"/>
-                                                                    <constraint firstItem="ePD-c3-2H7" firstAttribute="top" secondItem="x12-ry-KqJ" secondAttribute="bottom" constant="8" id="LnB-Mz-H77"/>
-                                                                    <constraint firstItem="ePD-c3-2H7" firstAttribute="centerX" secondItem="A1G-mN-QCX" secondAttribute="centerX" id="Xjn-JH-Okv"/>
-                                                                    <constraint firstItem="4TE-cB-TlA" firstAttribute="top" secondItem="x12-ry-KqJ" secondAttribute="bottom" constant="8" id="dcn-Rv-ybM"/>
-                                                                    <constraint firstItem="x12-ry-KqJ" firstAttribute="centerX" secondItem="A1G-mN-QCX" secondAttribute="centerX" id="jv1-cF-dqu"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="E1l-zH-QmF" secondAttribute="trailing" id="D2U-7n-uJQ"/>
+                                                                    <constraint firstItem="POu-Bn-aGg" firstAttribute="leading" secondItem="laV-99-9IB" secondAttribute="leading" id="H1N-ai-vls"/>
+                                                                    <constraint firstItem="E1l-zH-QmF" firstAttribute="top" secondItem="POu-Bn-aGg" secondAttribute="bottom" constant="16" id="JHQ-fa-Nsb"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="A1G-mN-QCX" secondAttribute="trailing" id="Ts7-4M-LdP"/>
+                                                                    <constraint firstItem="POu-Bn-aGg" firstAttribute="top" secondItem="laV-99-9IB" secondAttribute="top" id="VCM-XA-WdP"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="A1G-mN-QCX" secondAttribute="bottom" id="dT7-rj-Wor"/>
+                                                                    <constraint firstItem="A1G-mN-QCX" firstAttribute="top" secondItem="POu-Bn-aGg" secondAttribute="bottom" id="dgK-Pu-Y4A"/>
+                                                                    <constraint firstItem="E1l-zH-QmF" firstAttribute="leading" secondItem="laV-99-9IB" secondAttribute="leading" id="sEf-Af-UAO"/>
+                                                                    <constraint firstItem="A1G-mN-QCX" firstAttribute="leading" secondItem="laV-99-9IB" secondAttribute="leading" id="tNS-1W-T3r"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="E1l-zH-QmF" secondAttribute="bottom" constant="8" id="tiG-Tb-lh7"/>
                                                                 </constraints>
                                                             </view>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.gradeCell"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="E1l-zH-QmF" secondAttribute="trailing" id="D2U-7n-uJQ"/>
-                                                            <constraint firstItem="POu-Bn-aGg" firstAttribute="leading" secondItem="laV-99-9IB" secondAttribute="leading" id="H1N-ai-vls"/>
-                                                            <constraint firstItem="E1l-zH-QmF" firstAttribute="top" secondItem="POu-Bn-aGg" secondAttribute="bottom" constant="16" id="JHQ-fa-Nsb"/>
-                                                            <constraint firstAttribute="trailing" secondItem="A1G-mN-QCX" secondAttribute="trailing" id="Ts7-4M-LdP"/>
-                                                            <constraint firstItem="POu-Bn-aGg" firstAttribute="top" secondItem="laV-99-9IB" secondAttribute="top" id="VCM-XA-WdP"/>
-                                                            <constraint firstAttribute="bottom" secondItem="A1G-mN-QCX" secondAttribute="bottom" id="dT7-rj-Wor"/>
-                                                            <constraint firstItem="A1G-mN-QCX" firstAttribute="top" secondItem="POu-Bn-aGg" secondAttribute="bottom" id="dgK-Pu-Y4A"/>
-                                                            <constraint firstItem="E1l-zH-QmF" firstAttribute="leading" secondItem="laV-99-9IB" secondAttribute="leading" id="sEf-Af-UAO"/>
-                                                            <constraint firstItem="A1G-mN-QCX" firstAttribute="leading" secondItem="laV-99-9IB" secondAttribute="leading" id="tNS-1W-T3r"/>
-                                                            <constraint firstAttribute="bottom" secondItem="E1l-zH-QmF" secondAttribute="bottom" constant="8" id="tiG-Tb-lh7"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8d-eS-gk6" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="677.5" width="343" height="16"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="16" id="oA9-Vj-s0g"/>
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbK-UI-D9Y" customClass="AssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="701.5" width="343" height="128"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQo-YB-o43" userLabel="Submission Button View">
-                                                        <rect key="frame" x="0.0" y="837.5" width="343" height="50"/>
-                                                        <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bN3-2w-CuG" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.viewSubmissionButton"/>
-                                                                <state key="normal" title="Submission &amp; Rubric"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="linkColor"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="didTapSubmission:" destination="dvz-Jp-ehK" eventType="primaryActionTriggered" id="AVj-Wu-HKt"/>
-                                                                </connections>
-                                                            </button>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a6Y-iV-imX" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                                <rect key="frame" x="327" y="17" width="16" height="16"/>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8d-eS-gk6" customClass="DividerView" customModule="Student" customModuleProvider="target">
+                                                                <rect key="frame" x="-117" y="92" width="343" height="16"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="16" id="Bdn-Sr-8iE"/>
-                                                                    <constraint firstAttribute="width" constant="16" id="Llz-gp-sz3"/>
+                                                                    <constraint firstAttribute="height" constant="16" id="oA9-Vj-s0g"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="arrowOpenRightSolid"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="linkColor"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
                                                                 </userDefinedRuntimeAttributes>
-                                                            </imageView>
+                                                            </view>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" button="YES"/>
-                                                        </accessibility>
-                                                        <gestureRecognizers/>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RfK-cc-MnV">
+                                                        <rect key="frame" x="0.0" y="701.5" width="343" height="66"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQo-YB-o43" userLabel="Submission Button View">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bN3-2w-CuG" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.viewSubmissionButton"/>
+                                                                        <state key="normal" title="Submission &amp; Rubric"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="linkColor"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="didTapSubmission:" destination="dvz-Jp-ehK" eventType="primaryActionTriggered" id="AVj-Wu-HKt"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a6Y-iV-imX" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                                                        <rect key="frame" x="327" y="17" width="16" height="16"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="16" id="Bdn-Sr-8iE"/>
+                                                                            <constraint firstAttribute="width" constant="16" id="Llz-gp-sz3"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="arrowOpenRightSolid"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="linkColor"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </imageView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration">
+                                                                    <accessibilityTraits key="traits" button="YES"/>
+                                                                </accessibility>
+                                                                <gestureRecognizers/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="bN3-2w-CuG" secondAttribute="trailing" id="0zW-Dg-eMR"/>
+                                                                    <constraint firstItem="bN3-2w-CuG" firstAttribute="leading" secondItem="WQo-YB-o43" secondAttribute="leading" id="3tR-b9-BEl"/>
+                                                                    <constraint firstItem="bN3-2w-CuG" firstAttribute="top" secondItem="WQo-YB-o43" secondAttribute="top" id="AZm-5J-b2b"/>
+                                                                    <constraint firstItem="a6Y-iV-imX" firstAttribute="centerY" secondItem="WQo-YB-o43" secondAttribute="centerY" id="Ioh-DU-PBS"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="bN3-2w-CuG" secondAttribute="bottom" id="cDK-Di-HFJ"/>
+                                                                    <constraint firstItem="bN3-2w-CuG" firstAttribute="leading" secondItem="WQo-YB-o43" secondAttribute="leading" id="cZM-E8-dcT"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="a6Y-iV-imX" secondAttribute="trailing" id="jvM-iQ-fme"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="bN3-2w-CuG" secondAttribute="trailing" id="m08-TJ-7pV"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eJ-rx-JZy" userLabel="Submission Button Divider" customClass="DividerView" customModule="Student" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="50" width="343" height="16"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="16" id="LiD-ip-3DB"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="bN3-2w-CuG" secondAttribute="trailing" id="0zW-Dg-eMR"/>
-                                                            <constraint firstItem="bN3-2w-CuG" firstAttribute="leading" secondItem="WQo-YB-o43" secondAttribute="leading" id="3tR-b9-BEl"/>
-                                                            <constraint firstItem="bN3-2w-CuG" firstAttribute="top" secondItem="WQo-YB-o43" secondAttribute="top" id="AZm-5J-b2b"/>
-                                                            <constraint firstItem="a6Y-iV-imX" firstAttribute="centerY" secondItem="WQo-YB-o43" secondAttribute="centerY" id="Ioh-DU-PBS"/>
-                                                            <constraint firstAttribute="bottom" secondItem="bN3-2w-CuG" secondAttribute="bottom" id="cDK-Di-HFJ"/>
-                                                            <constraint firstAttribute="trailing" secondItem="a6Y-iV-imX" secondAttribute="trailing" id="jvM-iQ-fme"/>
+                                                            <constraint firstItem="WQo-YB-o43" firstAttribute="leading" secondItem="RfK-cc-MnV" secondAttribute="leading" id="Wsk-FB-wnQ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="WQo-YB-o43" secondAttribute="trailing" id="Xxe-Wf-rPO"/>
                                                         </constraints>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eJ-rx-JZy" userLabel="Submission Button Divider" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="895.5" width="343" height="16"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="16" id="LiD-ip-3DB"/>
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
+                                                    </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RBf-wD-x1b">
-                                                        <rect key="frame" x="0.0" y="919.5" width="343" height="130"/>
+                                                        <rect key="frame" x="0.0" y="775.5" width="343" height="130"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuJ-9M-78d" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="31.5"/>
@@ -380,7 +392,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUD-Zm-lzB" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="1057.5" width="85.5" height="19.5"/>
+                                                        <rect key="frame" x="0.0" y="913.5" width="85.5" height="19.5"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                                         </accessibility>
@@ -395,25 +407,19 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="s8P-wF-IX6" secondAttribute="trailing" id="3PE-nF-aRT"/>
+                                                    <constraint firstItem="uqK-cv-6c4" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="7PL-0Q-VFV"/>
                                                     <constraint firstItem="s8P-wF-IX6" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="7c4-v7-lcA"/>
-                                                    <constraint firstItem="6eJ-rx-JZy" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="8rK-em-0kz"/>
                                                     <constraint firstItem="RBf-wD-x1b" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="9BI-aJ-Eh5"/>
-                                                    <constraint firstAttribute="trailing" secondItem="laV-99-9IB" secondAttribute="trailing" id="A60-jQ-gOB"/>
+                                                    <constraint firstAttribute="trailing" secondItem="RfK-cc-MnV" secondAttribute="trailing" id="AxD-iP-Lsr"/>
                                                     <constraint firstItem="hil-LN-kZQ" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="C8a-Tj-Ru8"/>
-                                                    <constraint firstAttribute="trailing" secondItem="6eJ-rx-JZy" secondAttribute="trailing" id="ITe-i7-1JS"/>
                                                     <constraint firstAttribute="trailing" secondItem="J8m-ca-4uo" secondAttribute="trailing" id="J9d-px-ZUg"/>
-                                                    <constraint firstAttribute="trailing" secondItem="WQo-YB-o43" secondAttribute="trailing" id="Lkm-JT-ZIl"/>
-                                                    <constraint firstItem="f8d-eS-gk6" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="O8P-Sh-pTv"/>
                                                     <constraint firstItem="J8m-ca-4uo" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="T4L-Va-jne"/>
-                                                    <constraint firstAttribute="trailing" secondItem="BbK-UI-D9Y" secondAttribute="trailing" id="Tc1-mT-pLJ"/>
                                                     <constraint firstItem="Plt-HB-bKp" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="Yg9-kw-ZI6"/>
-                                                    <constraint firstAttribute="trailing" secondItem="f8d-eS-gk6" secondAttribute="trailing" id="dJa-6P-hqT"/>
                                                     <constraint firstAttribute="trailing" secondItem="Plt-HB-bKp" secondAttribute="trailing" id="f3Z-wB-HlI"/>
                                                     <constraint firstItem="NUD-Zm-lzB" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="hcj-r5-aua"/>
-                                                    <constraint firstItem="laV-99-9IB" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="l7L-sG-qSw"/>
+                                                    <constraint firstAttribute="trailing" secondItem="uqK-cv-6c4" secondAttribute="trailing" id="j9q-8X-wdh"/>
                                                     <constraint firstAttribute="trailing" secondItem="hil-LN-kZQ" secondAttribute="trailing" id="nfg-r7-UVb"/>
-                                                    <constraint firstItem="WQo-YB-o43" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="ouP-u2-h0d"/>
-                                                    <constraint firstItem="BbK-UI-D9Y" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="rgX-3i-TP4"/>
+                                                    <constraint firstItem="RfK-cc-MnV" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="ok6-JE-MGb"/>
                                                     <constraint firstAttribute="trailing" secondItem="RBf-wD-x1b" secondAttribute="trailing" id="rzx-DU-0Rc"/>
                                                 </constraints>
                                             </stackView>
@@ -427,7 +433,7 @@
                                         </constraints>
                                     </view>
                                     <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3R-vd-zmQ" customClass="CoreWebView" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1093" width="375" height="20"/>
+                                        <rect key="frame" x="0.0" y="949" width="375" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="KpP-H1-iAI"/>
                                         </constraints>
@@ -440,7 +446,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </wkWebView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gpb-je-B3z" userLabel="PaddingView">
-                                        <rect key="frame" x="0.0" y="1113" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="969" width="375" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="0LL-Ka-xXn"/>
@@ -504,6 +510,7 @@
                         <outlet property="gradeCellDivider" destination="f8d-eS-gk6" id="pXB-E1-8S2"/>
                         <outlet property="gradeCircleBottomConstraint" destination="tiG-Tb-lh7" id="A3c-Ch-qZq"/>
                         <outlet property="gradeHeadingLabel" destination="POu-Bn-aGg" id="NF2-DK-7UI"/>
+                        <outlet property="gradeSection" destination="uqK-cv-6c4" id="5hS-6j-EwI"/>
                         <outlet property="gradedView" destination="E1l-zH-QmF" id="JRc-bg-TcS"/>
                         <outlet property="loadingView" destination="Ga9-T1-JgT" id="Tnv-1m-bKK"/>
                         <outlet property="nameLabel" destination="kpV-J8-jIO" id="gzO-0P-vHc"/>
@@ -523,7 +530,7 @@
                         <outlet property="submissionButton" destination="bN3-2w-CuG" id="uhR-2z-p6S"/>
                         <outlet property="submissionButtonDivider" destination="6eJ-rx-JZy" id="1xH-cn-z1F"/>
                         <outlet property="submissionButtonIcon" destination="a6Y-iV-imX" id="rLe-Ov-s1R"/>
-                        <outlet property="submissionButtonSection" destination="BbK-UI-D9Y" id="zN2-CS-z4a"/>
+                        <outlet property="submissionButtonSection" destination="RfK-cc-MnV" id="rfK-Zt-baM"/>
                         <outlet property="submissionButtonView" destination="WQo-YB-o43" id="7q1-HW-aWT"/>
                         <outlet property="submissionTypesSection" destination="Plt-HB-bKp" id="u7h-p0-QTm"/>
                         <outlet property="submitAssignmentButton" destination="Oo1-Sb-iO9" id="Ufa-HQ-uVu"/>
