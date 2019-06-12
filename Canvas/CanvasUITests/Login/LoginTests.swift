@@ -25,6 +25,10 @@ enum LoginStart {
     static var findMySchool: Element {
         return app.find(label: "Find my school")
     }
+
+    static func previousUser(studentNumber: String) -> Element {
+        return app.find(label: "Student \(studentNumber)")
+    }
 }
 
 enum CanvasLogin {
@@ -53,11 +57,45 @@ enum Dashboard {
     static var dashboardTab: Element {
         return app.find(label: "Dashboard")
     }
+
+    static var dashboardList: Element {
+        return app.find(id: "favorited-course-list.profile-btn")
+    }
+
+    static var changeUser: Element {
+        return app.find(label: "Change User")
+    }
 }
 
 class LoginTests: CanvasUITests {
     func testLoginToDashboard() {
+       loginUser(username: "student1", password: "password")
 
+        // Dashboard
+        XCTAssert(Dashboard.courses.exists)
+        XCTAssert(Dashboard.courseCard(id: "247").exists)
+        XCTAssert(Dashboard.dashboardTab.exists)
+    }
+
+    func testMultipleUsers() {
+        loginUser(username: "student1", password: "password")
+
+        // Change User
+        Dashboard.dashboardList.tap()
+        Dashboard.changeUser.tap()
+
+        loginUser(username: "student2", password: "password")
+
+        // Change User
+        Dashboard.dashboardList.tap()
+        Dashboard.changeUser.tap()
+
+        // Previous Users
+        XCTAssert(LoginStart.previousUser(studentNumber: "One").exists)
+        XCTAssert(LoginStart.previousUser(studentNumber: "Two").exists)
+    }
+
+    func loginUser(username: String, password: String) {
         // Find my school
         XCTAssert(LoginStart.findMySchool.exists)
         LoginStart.findMySchool.tap()
@@ -66,19 +104,14 @@ class LoginTests: CanvasUITests {
         // Email
         CanvasLogin.emailTextField.waitToExist(Timeout(value: 10))
         CanvasLogin.emailTextField.tap()
-        CanvasLogin.emailTextField.typeText("student1")
+        CanvasLogin.emailTextField.typeText(username)
 
         // Password
         CanvasLogin.passwordTextField.waitToExist(Timeout(value: 10))
         CanvasLogin.passwordTextField.tap()
-        CanvasLogin.passwordTextField.typeText("password")
+        CanvasLogin.passwordTextField.typeText(password)
 
         // Submit
         CanvasLogin.logInButton.tap()
-
-        // Dashboard
-        XCTAssert(Dashboard.courses.exists)
-        XCTAssert(Dashboard.courseCard(id: "247").exists)
-        XCTAssert(Dashboard.dashboardTab.exists)
     }
 }
