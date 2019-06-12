@@ -17,10 +17,6 @@
 import XCTest
 import SwiftUITest
 
-enum LoginFindSchool: String, CaseIterable, ElementWrapper {
-  case searchField
-}
-
 enum LoginStart {
     static var findMySchool: Element {
         return app.find(label: "Find my school")
@@ -28,6 +24,14 @@ enum LoginStart {
 
     static func previousUser(studentNumber: String) -> Element {
         return app.find(label: "Student \(studentNumber)")
+    }
+}
+
+enum LoginFindSchool: String, CaseIterable, ElementWrapper {
+    case searchField
+
+    static func resultItem(for name: String) -> Element {
+        return app.find(label: name)
     }
 }
 
@@ -74,6 +78,13 @@ enum Dashboard {
 }
 
 class LoginTests: CanvasUITests {
+
+    func testFindSchool() {
+        // Find my school
+        LoginStart.findMySchool.tap()
+        LoginFindSchool.searchField.typeText("mtech")
+        XCTAssert(LoginFindSchool.resultItem(for: "MTECH").exists)
+    }
 
     func testCanvasLoginToDashboard() {
        loginUser(username: "student1", password: "password")
