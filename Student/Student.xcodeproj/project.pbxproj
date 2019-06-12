@@ -87,6 +87,10 @@
 		3BBCF83A224C142C004B519D /* SyllabusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF838224C142C004B519D /* SyllabusPresenter.swift */; };
 		3BBCF848224C19A2004B519D /* SyllabusViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCF847224C19A2004B519D /* SyllabusViewController.storyboard */; };
 		3BBCF849224C19A2004B519D /* SyllabusViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCF847224C19A2004B519D /* SyllabusViewController.storyboard */; };
+		3BC49C5022B0500D00937125 /* AssignmentDetailsSectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC49C4F22B0500D00937125 /* AssignmentDetailsSectionContainerView.swift */; };
+		3BC49C5622B0507600937125 /* AssignmentDetailsSectionContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC49C5522B0507600937125 /* AssignmentDetailsSectionContainerView.xib */; };
+		3BC49C5722B0507600937125 /* AssignmentDetailsSectionContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BC49C5522B0507600937125 /* AssignmentDetailsSectionContainerView.xib */; };
+		3BC49C5822B0507C00937125 /* AssignmentDetailsSectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC49C4F22B0500D00937125 /* AssignmentDetailsSectionContainerView.swift */; };
 		3BE1307221ADFFDD001D4582 /* UrlSubmissionContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6325DD21ADF49200237CE6 /* UrlSubmissionContentViewController.swift */; };
 		3BE1307421AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BE1307321AE0074001D4582 /* UrlSubmissionContentViewController.storyboard */; };
 		3BE1307521AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BE1307321AE0074001D4582 /* UrlSubmissionContentViewController.storyboard */; };
@@ -471,6 +475,8 @@
 		3BBCF832224BFF29004B519D /* SyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewController.swift; sourceTree = "<group>"; };
 		3BBCF838224C142C004B519D /* SyllabusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusPresenter.swift; sourceTree = "<group>"; };
 		3BBCF847224C19A2004B519D /* SyllabusViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SyllabusViewController.storyboard; sourceTree = "<group>"; };
+		3BC49C4F22B0500D00937125 /* AssignmentDetailsSectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsSectionContainerView.swift; sourceTree = "<group>"; };
+		3BC49C5522B0507600937125 /* AssignmentDetailsSectionContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignmentDetailsSectionContainerView.xib; sourceTree = "<group>"; };
 		3BE1307321AE0074001D4582 /* UrlSubmissionContentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UrlSubmissionContentViewController.storyboard; sourceTree = "<group>"; };
 		3BE2ADC621B6F6E1008D91AB /* URLSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSubmission.swift; sourceTree = "<group>"; };
 		3BE2ADC821B6F72D008D91AB /* URLSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSubmissionTests.swift; sourceTree = "<group>"; };
@@ -945,6 +951,8 @@
 				3B1B0047219BD9F50045E8A1 /* AssignmentDetailsPresenter.swift */,
 				3B1B0046219BD9F50045E8A1 /* AssignmentDetailsViewController.storyboard */,
 				3B1B004B219BD9F50045E8A1 /* AssignmentDetailsViewController.swift */,
+				3BC49C4F22B0500D00937125 /* AssignmentDetailsSectionContainerView.swift */,
+				3BC49C5522B0507600937125 /* AssignmentDetailsSectionContainerView.xib */,
 			);
 			path = AssignmentDetails;
 			sourceTree = "<group>";
@@ -1875,6 +1883,7 @@
 				3B1B0077219BD9F60045E8A1 /* CourseListViewController.storyboard in Resources */,
 				7D1758E8215AA07E00F88613 /* Localizable.stringsdict in Resources */,
 				788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */,
+				3BC49C5622B0507600937125 /* AssignmentDetailsSectionContainerView.xib in Resources */,
 				3B1B006A219BD9F60045E8A1 /* AssignmentDetailsViewController.storyboard in Resources */,
 				3B19D27D22666180003A0565 /* RubricCollectionViewCell.xib in Resources */,
 				3B1B007B219BD9F60045E8A1 /* QuizListViewController.storyboard in Resources */,
@@ -1924,6 +1933,7 @@
 				3BBCF849224C19A2004B519D /* SyllabusViewController.storyboard in Resources */,
 				7D09E5AA2192156A006150FA /* Assets.xcassets in Resources */,
 				9FA7C360219C92A6001F3BC7 /* Drawer.xib in Resources */,
+				3BC49C5722B0507600937125 /* AssignmentDetailsSectionContainerView.xib in Resources */,
 				7DD9E642223C4E4400B45A7E /* SubmissionCommentFileView.xib in Resources */,
 				B150C62B22977A750096D58C /* ArcSubmissionViewController.storyboard in Resources */,
 				7D067CEA21505B3500B78AF2 /* DashboardViewController.storyboard in Resources */,
@@ -2040,6 +2050,7 @@
 				7D2FADD1225BD3D100BCE19E /* TextSubmissionPresenter.swift in Sources */,
 				3B5425FE21B094CC0009D069 /* UrlSubmissionViewController.swift in Sources */,
 				7D87369D228F17C500D25BF7 /* SubmissionButtonPresenter.swift in Sources */,
+				3BC49C5022B0500D00937125 /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				7DA5C496223863C2003CDB4C /* SubmissionCommentsViewController.swift in Sources */,
 				7DEE316A223C08A20042FE2A /* SubmissionCommentVideoCell.swift in Sources */,
 				7D0BF3232165315B00859FA1 /* CoreWebView.swift in Sources */,
@@ -2166,6 +2177,7 @@
 				9FCF1538227B3F50009D35F6 /* RubricLongDescriptionViewController.swift in Sources */,
 				9F2C9F7D219B0F4D001F0F32 /* Drawer.swift in Sources */,
 				7D2FADCC225BCC8A00BCE19E /* TextSubmissionViewController.swift in Sources */,
+				3BC49C5822B0507C00937125 /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				9FB25D4B21653AB40087003C /* (null) in Sources */,
 				9F74200D21932DEF00108A0F /* SubmissionDetailsPresenter.swift in Sources */,
 				3B635B47225D07D6001F353D /* SyllabusActionableItemsPresenter.swift in Sources */,

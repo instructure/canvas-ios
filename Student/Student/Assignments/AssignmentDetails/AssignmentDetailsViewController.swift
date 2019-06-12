@@ -22,8 +22,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var pointsLabel: UILabel?
     @IBOutlet weak var statusIconView: UIImageView?
     @IBOutlet weak var statusLabel: UILabel?
-    @IBOutlet weak var dueHeadingLabel: UILabel?
-    @IBOutlet weak var dueLabel: UILabel?
     @IBOutlet weak var submissionTypesHeadingLabel: UILabel?
     @IBOutlet weak var submissionTypesLabel: UILabel?
     @IBOutlet weak var fileTypesDivider: DividerView?
@@ -59,6 +57,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var quizTimeLimitValueLabel: UILabel?
     @IBOutlet weak var quizView: UIView?
 
+    @IBOutlet weak var dueSection: AssignmentDetailsSectionContainerView?
+
     let scrollViewInsetPadding: CGFloat = 24.0
 
     var refreshControl: UIRefreshControl?
@@ -89,7 +89,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         self.refreshControl = refreshControl
 
         // Localization
-        dueHeadingLabel?.text = NSLocalizedString("Due", bundle: .student, comment: "")
+        dueSection?.header.text = NSLocalizedString("Due", bundle: .student, comment: "")
         submissionTypesHeadingLabel?.text = NSLocalizedString("Submission Types", bundle: .student, comment: "")
         fileTypesHeadingLabel?.text = NSLocalizedString("File Types", bundle: .student, comment: "")
         gradeHeadingLabel?.text = NSLocalizedString("Grade", bundle: .student, comment: "")
@@ -209,7 +209,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
         statusLabel?.textColor = assignment.submissionStatusColor
         statusLabel?.text = assignment.submissionStatusText
-        dueLabel?.text = assignment.dueText
+        dueSection?.subHeader.text = assignment.dueText
         submissionTypesLabel?.text = assignment.submissionTypeText
         fileTypesLabel?.text = assignment.fileTypeText
         fileTypesHeadingLabel?.isHidden = !assignment.hasFileTypes
