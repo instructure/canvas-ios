@@ -31,10 +31,33 @@ enum CanvasLogin {
     static var emailTextField: Element {
         return XCUIApplication().webViews.textFields["Email"].toElement(testCase)
     }
+
+    static var passwordTextField: Element {
+        return XCUIApplication().webViews.secureTextFields["Password"].toElement(testCase)
+    }
+
+    static var logInButton: Element {
+        return XCUIApplication().webViews.buttons["Log In"].toElement(testCase)
+    }
+}
+
+enum Dashboard {
+    static var courses: Element {
+        return app.find(label: "Courses")
+    }
+
+    static func courseCard(id: String) -> Element {
+        return app.find(id: "course-\(id)")
+    }
+
+    static var dashboardTab: Element {
+        return app.find(label: "Dashboard")
+    }
 }
 
 class LoginTests: CanvasUITests {
     func testLoginToDashboard() {
+
         // Find my school
         XCTAssert(LoginStart.findMySchool.exists)
         LoginStart.findMySchool.tap()
@@ -46,20 +69,16 @@ class LoginTests: CanvasUITests {
         CanvasLogin.emailTextField.typeText("student1")
 
         // Password
-        let password = application.webViews.secureTextFields["Password"]
-        XCTAssert(password.waitForExistence(timeout: 10))
-        XCTAssert(password.isHittable)
-        password.tap()
-        password.typeText("password")
+        CanvasLogin.passwordTextField.waitToExist(Timeout(value: 10))
+        CanvasLogin.passwordTextField.tap()
+        CanvasLogin.passwordTextField.typeText("password")
 
         // Submit
-        let submit = application.webViews.buttons["Log In"]
-        submit.tap()
+        CanvasLogin.logInButton.tap()
 
         // Dashboard
-        // XCTAssert(driver.find(label: "Courses").exists)
-        // XCTAssert(driver.find(id: "course-247").exists)
-        // XCTAssert(driver.find(label: "Login ").exists)
-        // XCTAssert(driver.find(label: "Dashboard").exists)
+        XCTAssert(Dashboard.courses.exists)
+        XCTAssert(Dashboard.courseCard(id: "247").exists)
+        XCTAssert(Dashboard.dashboardTab.exists)
     }
 }
