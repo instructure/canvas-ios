@@ -22,11 +22,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var pointsLabel: UILabel?
     @IBOutlet weak var statusIconView: UIImageView?
     @IBOutlet weak var statusLabel: UILabel?
-    @IBOutlet weak var submissionTypesHeadingLabel: UILabel?
-    @IBOutlet weak var submissionTypesLabel: UILabel?
-    @IBOutlet weak var fileTypesDivider: DividerView?
-    @IBOutlet weak var fileTypesHeadingLabel: UILabel?
-    @IBOutlet weak var fileTypesLabel: UILabel?
     @IBOutlet weak var gradeHeadingLabel: UILabel?
     @IBOutlet weak var descriptionHeadingLabel: UILabel?
     @IBOutlet weak var descriptionView: CoreWebView?
@@ -57,6 +52,9 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var quizTimeLimitValueLabel: UILabel?
     @IBOutlet weak var quizView: UIView?
 
+    @IBOutlet weak var submissionButtonSection: AssignmentDetailsSectionContainerView!
+    @IBOutlet weak var fileTypesSection: AssignmentDetailsSectionContainerView?
+    @IBOutlet weak var submissionTypesSection: AssignmentDetailsSectionContainerView?
     @IBOutlet weak var dueSection: AssignmentDetailsSectionContainerView?
 
     let scrollViewInsetPadding: CGFloat = 24.0
@@ -90,8 +88,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
         // Localization
         dueSection?.header.text = NSLocalizedString("Due", bundle: .student, comment: "")
-        submissionTypesHeadingLabel?.text = NSLocalizedString("Submission Types", bundle: .student, comment: "")
-        fileTypesHeadingLabel?.text = NSLocalizedString("File Types", bundle: .student, comment: "")
+        submissionTypesSection?.header.text = NSLocalizedString("Submission Types", bundle: .student, comment: "")
+        fileTypesSection?.header.text = NSLocalizedString("File Types", bundle: .student, comment: "")
         gradeHeadingLabel?.text = NSLocalizedString("Grade", bundle: .student, comment: "")
         descriptionHeadingLabel?.text = NSLocalizedString("Description", bundle: .student, comment: "")
         quizAttemptsLabel?.text = NSLocalizedString("Allowed Attempts:", bundle: .student, comment: "")
@@ -210,11 +208,9 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         statusLabel?.textColor = assignment.submissionStatusColor
         statusLabel?.text = assignment.submissionStatusText
         dueSection?.subHeader.text = assignment.dueText
-        submissionTypesLabel?.text = assignment.submissionTypeText
-        fileTypesLabel?.text = assignment.fileTypeText
-        fileTypesHeadingLabel?.isHidden = !assignment.hasFileTypes
-        fileTypesLabel?.isHidden = !assignment.hasFileTypes
-        fileTypesDivider?.isHidden = !assignment.hasFileTypes
+        submissionTypesSection?.subHeader.text = assignment.submissionTypeText
+        fileTypesSection?.subHeader.text = assignment.fileTypeText
+        fileTypesSection?.isHidden = !assignment.hasFileTypes
         descriptionHeadingLabel?.text = quiz == nil
             ? NSLocalizedString("Description", bundle: .student, comment: "")
             : NSLocalizedString("Instructions", bundle: .student, comment: "")
