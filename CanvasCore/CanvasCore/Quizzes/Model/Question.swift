@@ -13,11 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import UIKit
-
 
 struct Question {
     init(id: String, position: Int, name: String, text: String, kind: Kind, answers: [Answer], matches: [Match]? = nil) {
@@ -38,7 +35,7 @@ struct Question {
     let answers: [Answer]
     let matches: [Match]?
 
-    enum Kind: String {
+    enum Kind: String, Equatable {
         case TrueFalse = "true_false_question" // supported
         case MultipleChoice = "multiple_choice_question" // supported
         case ShortAnswer = "short_answer_question" // supported, the web ui calls this "Fill in the blank"
@@ -63,29 +60,6 @@ struct Question {
         }
     }
 }
-
-func ==(lhs: Question.Kind, rhs: Question.Kind) -> Bool {
-    switch (lhs, rhs) {
-    case
-    (.TrueFalse, .TrueFalse),
-    (.MultipleChoice, .MultipleChoice),
-    (.ShortAnswer, .ShortAnswer),
-    (.FillInMultipleBlanks, .FillInMultipleBlanks),
-    (.MultipleAnswers, .MultipleAnswers),
-    (.MultipleDropdowns, .MultipleDropdowns),
-    (.Matching, .Matching),
-    (.Numerical, .Numerical),
-    (.Calculated, .Calculated),
-    (.Essay, .Essay),
-    (.FileUpload, .FileUpload),
-    (.TextOnly, .TextOnly):
-        return true
-        
-    default:
-        return false
-    }
-}
-
 
 // MARK: JSON
 

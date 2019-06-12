@@ -211,6 +211,7 @@
 		7DA20E932168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */; };
 		7DA5C48822385435003CDB4C /* SubmissionComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA5C48722385435003CDB4C /* SubmissionComment.swift */; };
 		7DA5C48C22385F95003CDB4C /* GetSubmissionComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */; };
+		7DAC286B22B1701B00C0B692 /* QuizHideResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC286A22B1701B00C0B692 /* QuizHideResults.swift */; };
 		7DAFB46321A361C400311275 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB46221A361C400311275 /* LocalizationManager.swift */; };
 		7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */; };
 		7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */; };
@@ -875,6 +876,7 @@
 		7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageInstIconsExtensionsTests.swift; sourceTree = "<group>"; };
 		7DA5C48722385435003CDB4C /* SubmissionComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionComment.swift; sourceTree = "<group>"; };
 		7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionComments.swift; sourceTree = "<group>"; };
+		7DAC286A22B1701B00C0B692 /* QuizHideResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizHideResults.swift; sourceTree = "<group>"; };
 		7DAFB46221A361C400311275 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManagerTests.swift; sourceTree = "<group>"; };
 		7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegateTests.swift; sourceTree = "<group>"; };
@@ -1430,6 +1432,7 @@
 				B1F13289224BAD43002C0555 /* ModuleItemType.swift */,
 				9FBE536C223C32E7001EC40C /* Permissions.swift */,
 				7DF4001C217509D6007E5F81 /* Quiz.swift */,
+				7DAC286A22B1701B00C0B692 /* QuizHideResults.swift */,
 				7D47769B21AF3A0200B441CE /* QuizQuestionType.swift */,
 				7DCE0C8922AF040200BA549F /* QuizSubmission.swift */,
 				7DCE0C8722AEFE0C00BA549F /* QuizSubmissionWorkflowState.swift */,
@@ -2550,6 +2553,7 @@
 				B1A890B8224ED64B00CEE000 /* UIScrollViewExtensions.swift in Sources */,
 				7D364F2421AE04B20028E3EA /* CoreWebViewController.swift in Sources */,
 				7DF4FFCE21711EB3007E5F81 /* Group.swift in Sources */,
+				7DAC286B22B1701B00C0B692 /* QuizHideResults.swift in Sources */,
 				7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */,
 				3BE2C760218CB50B004B8E5E /* ColoredNavViewProtocol.swift in Sources */,
 				7DD694872195F76C00BA4984 /* DocViewerViewController.swift in Sources */,

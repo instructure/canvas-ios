@@ -197,6 +197,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/:context/:contextID/files/:fileID', null, store, { deepLink: true })
     registerScreen('/:context/:contextID/files/:fileID/download', null, store, { deepLink: true })
 
+    registerScreen('/courses/:courseID/quizzes/:quizID/take', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/pages/:url', null, store, { deepLink: true })

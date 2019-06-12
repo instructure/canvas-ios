@@ -28,8 +28,8 @@ class QuizSubmissionTests: CoreTestCase {
 
     func testCanResume() {
         XCTAssertTrue(QuizSubmission.make(from: .make(started_at: Date())).canResume)
-        XCTAssertTrue(QuizSubmission.make(from: .make(started_at: Date(), end_at: Date().addDays(1))).canResume)
-        XCTAssertFalse(QuizSubmission.make(from: .make(started_at: Date(), finished_at: Date().addDays(-1))).canResume)
+        XCTAssertTrue(QuizSubmission.make(from: .make(end_at: Date().addDays(1), started_at: Date())).canResume)
+        XCTAssertFalse(QuizSubmission.make(from: .make(finished_at: Date().addDays(-1), started_at: Date())).canResume)
         XCTAssertFalse(QuizSubmission.make().canResume)
     }
 }

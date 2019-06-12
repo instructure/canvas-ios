@@ -199,7 +199,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         XCTAssert(router.calls.isEmpty)
         a.quizID = "1"
         presenter.submitType(.online_quiz, for: a, button: UIView())
-        XCTAssert(router.lastRoutedTo(Route.quiz(forCourse: "1", quizID: "1")))
+        XCTAssert(router.lastRoutedTo(Route.takeQuiz(forCourse: "1", quizID: "1")))
     }
 
     func testSubmitTypeUpload() {
