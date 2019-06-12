@@ -13,14 +13,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import Foundation
 
-enum Takeability {
-    
-    enum NotTakeableReason {
+enum Takeability: Equatable {
+    enum NotTakeableReason: Equatable {
         case locked
         case ipFiltered
         case attemptLimitReached
@@ -28,17 +25,17 @@ enum Takeability {
         case other(String)
         case offline
     }
-    
+
     case notTakeable(reason: NotTakeableReason)
     case take
     case resume
     case retake
     case viewResults(URL)
-    
+
     var takeable: Bool {
         return self == .take || self == .resume || self == .retake
     }
-    
+
     var label: String {
         switch self {
         case .notTakeable:
@@ -51,39 +48,6 @@ enum Takeability {
             return NSLocalizedString("Retake Quiz", tableName: "Localizable", bundle: .core, value: "", comment: "button for retaking quiz")
         case .viewResults:
             return NSLocalizedString("View Results", tableName: "Localizable", bundle: .core, value: "", comment: "button for viewing quiz results")
-
         }
-    }
-}
-
-func ==(lhs: Takeability, rhs: Takeability) -> Bool {
-    switch (lhs, rhs) {
-    case
-    (.notTakeable(let lhsReason), .notTakeable(let rhsReason)):
-        return lhsReason == rhsReason
-    case
-    (.take, .take),
-    (.resume, .resume),
-    (.retake, .retake),
-    (.viewResults, .viewResults):
-        return true
-        
-    default:
-        return false
-    }
-}
-
-func ==(lhs: Takeability.NotTakeableReason, rhs: Takeability.NotTakeableReason) -> Bool {
-    switch (lhs, rhs) {
-    case
-    (.locked, .locked),
-    (.ipFiltered, .ipFiltered),
-    (.attemptLimitReached, .attemptLimitReached),
-    (.undecided, .undecided),
-    (.other, .other):
-        return true
-        
-    default:
-        return false
     }
 }

@@ -21,6 +21,7 @@ public final class QuizSubmission: NSManagedObject {
     @NSManaged public var attempt: Int
     @NSManaged public var attemptsLeft: Int
     @NSManaged public var endAt: Date?
+    @NSManaged public var extraTime: Double
     @NSManaged public var finishedAt: Date?
     @NSManaged public var id: String
     @NSManaged public var quiz: Quiz?
@@ -28,6 +29,7 @@ public final class QuizSubmission: NSManagedObject {
     @NSManaged public var startedAt: Date?
     @NSManaged public var submissionID: String
     @NSManaged public var userID: String
+    @NSManaged public var validationToken: String?
     @NSManaged var workflowStateRaw: String
 
     public var workflowState: QuizSubmissionWorkflowState {
@@ -42,12 +44,14 @@ public final class QuizSubmission: NSManagedObject {
         model.attempt = item.attempt
         model.attemptsLeft = item.attempts_left
         model.endAt = item.end_at
+        model.extraTime = item.extra_time ?? 0
         model.finishedAt = item.finished_at
         model.id = item.id.value
         model.quizID = item.quiz_id.value
         model.startedAt = item.started_at
         model.submissionID = item.submission_id.value
         model.userID = item.user_id.value
+        model.validationToken = item.validation_token
         model.workflowState = item.workflow_state
         return model
     }

@@ -19,6 +19,7 @@
 import UIKit
 import Cartography
 import Result
+import Core
 
 open class QuizIntroViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
     
@@ -342,6 +343,61 @@ extension QuizIntroViewController: UIPageViewControllerDelegate {
                     }
                 }
             }
+        }
+    }
+}
+
+extension QuizIntroViewController {
+    // This should only be routed to from assignment details that already checked takability & stored the quiz in CoreData
+    public static func takeController(contextID: ContextID, quizID: String) -> UIViewController {
+        let legacySession = CanvasKeymaster.the().currentClient!.authSession
+        let service = CanvasQuizService(session: legacySession, context: contextID, quizID: quizID)
+        let controller = QuizController(service: service, quiz: nil)
+        guard let model: Core.Quiz = AppEnvironment.shared.database.viewContext.first(where: #keyPath(Core.Quiz.id), equals: quizID) else {
+            return QuizIntroViewController(quizController: controller)
+        }
+        let quiz = Quiz(
+            id: model.id,
+            title: model.title,
+            description: model.description,
+            due: Quiz.Due(date: model.dueAt),
+            timeLimit: Quiz.TimeLimit(minutes: Int(model.timeLimit ?? 0)),
+            scoring: model.pointsPossible.flatMap({ Quiz.Scoring.pointsPossible(Int($0)) }) ?? Quiz.Scoring.ungraded,
+            questionCount: model.questionCount,
+            questionTypes: model.questionTypes.compactMap { Question.Kind(rawValue: $0.rawValue) },
+            attemptLimit: Quiz.AttemptLimit(allowed: model.allowedAttempts),
+            oneQuestionAtATime: model.oneQuestionAtATime,
+            cantGoBack: model.cantGoBack,
+            hideResults: Quiz.HideResults.fromJSON(model.hideResults?.rawValue)!,
+            lockAt: model.lockAt,
+            lockedForUser: model.lockedForUser,
+            lockExplanation: model.lockExplanation,
+            ipFilter: model.ipFilter,
+            mobileURL: model.mobileURL,
+            shuffleAnswers: model.shuffleAnswers,
+            hasAccessCode: model.hasAccessCode,
+            requiresLockdownBrowser: model.requireLockdownBrowser,
+            requiresLockdownBrowserForResults: model.requireLockdownBrowserForResults
+        )
+        if model.takeInWebOnly {
+            return NonNativeQuizTakingViewController(session: legacySession, contextID: contextID, quiz: quiz, baseURL: legacySession.baseURL)
+        } else {
+            var unfinishedSubmission: QuizSubmission?
+            if let submission = model.submission, submission.canResume {
+                unfinishedSubmission = QuizSubmission(
+                    id: submission.id,
+                    dateStarted: submission.startedAt,
+                    dateFinished: submission.finishedAt,
+                    endAt: submission.endAt,
+                    attempt: submission.attempt,
+                    attemptsLeft: submission.attemptsLeft,
+                    validationToken: submission.validationToken ?? "",
+                    workflowState: QuizSubmission.WorkflowState(rawValue: submission.workflowState.rawValue) ?? .Untaken,
+                    extraTime: Int(submission.extraTime)
+                )
+            }
+            let submissionController = SubmissionController(service: service, submission: unfinishedSubmission, quiz: quiz)
+            return QuizPresentingViewController(quizController: controller, submissionController: submissionController)
         }
     }
 }

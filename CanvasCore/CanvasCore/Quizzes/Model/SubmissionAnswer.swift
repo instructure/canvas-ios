@@ -13,12 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import Foundation
-
-
 
 enum SubmissionAnswer: Equatable {
     case na
@@ -28,7 +24,6 @@ enum SubmissionAnswer: Equatable {
     case ids([String])
     case text(String)
     case idsHash([String: String])
-    
     
     var answerText: String? {
         switch self {
@@ -103,33 +98,6 @@ enum SubmissionAnswer: Equatable {
     }
 }
 
-func ==(lhs: SubmissionAnswer, rhs: SubmissionAnswer) -> Bool {
-    switch (lhs, rhs) {
-        
-    case (.na, .na), (.unanswered, .unanswered):
-        return true
-        
-    case let (.id(leftID), .id(rightID)):
-        return leftID == rightID
-        
-    case let (.ids(leftIDs), .ids(rightIDs)):
-        return leftIDs == rightIDs
-        
-    case let (.text(leftText), .text(rightText)):
-        return leftText == rightText
-        
-    case let (.Matches(leftMatches), .Matches(rightMatches)):
-        return leftMatches == rightMatches
-
-    case let(.idsHash(leftHash), .idsHash(rightHash)):
-        return leftHash == rightHash
-        
-    default:
-        return false
-    }
-}
-
-
 // MARK: JSON
 
 // TODO: JSONEncodable type?
@@ -162,4 +130,3 @@ extension SubmissionAnswer {
         }
     }
 }
-

@@ -63,13 +63,21 @@ class QuizTests: CoreTestCase {
         XCTAssertEqual(Quiz.make(from: .make(time_limit: 10)).timeLimitText, "10min")
     }
 
+    func testTakeInWebOnly() {
+        XCTAssertFalse(Quiz.make(from: .make(question_types: [.text_only_question])).takeInWebOnly)
+        XCTAssertTrue(Quiz.make(from: .make(has_access_code: true, question_types: [.text_only_question])).takeInWebOnly)
+        XCTAssertTrue(Quiz.make(from: .make(ip_filter: "a", question_types: [.text_only_question])).takeInWebOnly)
+        XCTAssertTrue(Quiz.make(from: .make(one_question_at_a_time: true, question_types: [.text_only_question])).takeInWebOnly)
+        XCTAssertTrue(Quiz.make(from: .make(question_types: [.text_only_question], require_lockdown_browser: true)).takeInWebOnly)
+    }
+
     func testSave() {
         var quiz = Quiz.save(APIQuiz.make(), in: databaseClient)
         XCTAssertEqual(quiz.order, Date.distantFuture.isoString())
         let date = Date()
-        quiz = Quiz.save(APIQuiz.make(quiz_type: .assignment, due_at: date), in: databaseClient)
+        quiz = Quiz.save(APIQuiz.make(due_at: date, quiz_type: .assignment), in: databaseClient)
         XCTAssertEqual(quiz.order, date.isoString())
-        quiz = Quiz.save(APIQuiz.make(quiz_type: .survey, lock_at: date), in: databaseClient)
+        quiz = Quiz.save(APIQuiz.make(lock_at: date, quiz_type: .survey), in: databaseClient)
         XCTAssertEqual(quiz.order, date.isoString())
     }
 }

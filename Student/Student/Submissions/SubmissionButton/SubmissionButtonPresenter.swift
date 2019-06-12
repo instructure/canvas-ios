@@ -116,7 +116,7 @@ class SubmissionButtonPresenter: NSObject {
             env.router.route(to: route, from: view, options: [.modal, .embedInNav])
         case .online_quiz:
             guard let quizID = assignment.quizID else { return }
-            env.router.route(to: .quiz(forCourse: courseID, quizID: quizID), from: view)
+            env.router.route(to: .takeQuiz(forCourse: courseID, quizID: quizID), from: view, options: [.modal, .embedInNav])
         case .online_upload:
             pickFiles(for: assignment)
         case .online_url:

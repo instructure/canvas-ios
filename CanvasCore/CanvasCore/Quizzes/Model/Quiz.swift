@@ -13,11 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import UIKit
-
 
 /// The Canvas™ assessment tool of choice.
 struct Quiz {
@@ -219,7 +216,6 @@ struct Quiz {
     }
 }
 
-
 extension Quiz.Due: JSONDecodable {
     static func fromJSON(_ json: Any?) -> Quiz.Due? {
         return Quiz.Due(date: Foundation.Date.fromJSON(json))
@@ -298,4 +294,3 @@ extension Quiz: JSONDecodable {
         return nil
     }
 }
-

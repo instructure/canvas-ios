@@ -321,6 +321,11 @@ extension TechDebt.Router {
             return StudentReborn.router.match(.parse(url))
         }
 
+        addContextRoute([.course], subPath: "quizzes/:quizID/take") { contextID, params in
+            guard let quizID = try? params.stringID("quizID") else { return nil }
+            return QuizIntroViewController.takeController(contextID: contextID, quizID: quizID)
+        }
+
         addContextRoute([.course], subPath: "external_tools/:toolID") { contextID, params in
             guard let url = params["url"] as? URL,
                     let session = currentSession,

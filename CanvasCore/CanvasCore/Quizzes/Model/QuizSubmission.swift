@@ -13,12 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import Foundation
-
-
 import Marshal
 
 struct QuizSubmission {
@@ -52,22 +48,6 @@ struct QuizSubmission {
         case Preview = "preview"
     }
 }
-
-func ==(lhs: QuizSubmission.WorkflowState, rhs: QuizSubmission.WorkflowState) -> Bool {
-    switch (lhs, rhs) {
-    case
-        (.Untaken, .Untaken),
-        (.PendingReview, .PendingReview),
-        (.Complete, .Complete),
-        (.SettingsOnly, .SettingsOnly),
-        (.Preview, .Preview):
-        return true
-        
-    default:
-        return false
-    }
-}
-
 
 extension QuizSubmission.WorkflowState: JSONDecodable {
     static func fromJSON(_ json: Any?) -> QuizSubmission.WorkflowState? {
