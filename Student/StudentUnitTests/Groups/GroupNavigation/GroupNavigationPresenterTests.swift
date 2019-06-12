@@ -65,14 +65,14 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
         let expectation = XCTestExpectation(description: "on update")
         expectation.assertForOverFulfill = false
         onUpdate = {
-            if self.presenter.tabs.count == 3 {
+            if self.presenter.tabs.count == 3,
+                self.presenter.tabs.first?.id == "a",
+                self.presenter.tabs.last?.id == "c" {
                 expectation.fulfill()
             }
         }
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(presenter.tabs.first?.id, "a")
-        XCTAssertEqual(presenter.tabs.last?.id, "c", "\(String(describing: presenter.tabs.last?.id)) was the last" )
     }
 
     func testUseCaseFetchesData() {
