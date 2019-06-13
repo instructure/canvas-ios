@@ -17,13 +17,21 @@
 import XCTest
 import TestsFoundation
 
-enum LoginFindSchool: String, CaseIterable, ElementWrapper {
-  case searchField
-}
-
 enum LoginStart {
     static var findMySchool: Element {
         return app.find(label: "Find my school")
+    }
+
+    static func previousUser(studentNumber: String) -> Element {
+        return app.find(label: "Student \(studentNumber)")
+    }
+}
+
+enum LoginFindSchool: String, ElementWrapper {
+    case searchField
+
+    static func resultItem(for name: String) -> Element {
+        return app.find(label: name)
     }
 }
 
@@ -41,6 +49,12 @@ enum CanvasLogin {
     }
 }
 
+enum RyanaLogin {
+    static var ldapButton: Element {
+        return XCUIElementWrapper(app.webViews.staticTexts["LDAP"])
+    }
+}
+
 enum Dashboard {
     static var courses: Element {
         return app.find(label: "Courses")
@@ -53,28 +67,88 @@ enum Dashboard {
     static var dashboardTab: Element {
         return app.find(label: "Dashboard")
     }
+
+    static var dashboardList: Element {
+        return app.find(id: "favorited-course-list.profile-btn")
+    }
+
+    static var changeUser: Element {
+        return app.find(label: "Change User")
+    }
 }
 
 class LoginTests: CanvasUITests {
-    func testLoginToDashboard() {
 
+    func testFindSchool() {
+        // Find my school
+        LoginStart.findMySchool.tap()
+        LoginFindSchool.searchField.typeText("mtech")
+        XCTAssert(LoginFindSchool.resultItem(for: "MTECH").exists)
+    }
+
+    func testCanvasLoginToDashboard() {
+       loginUser(username: "student1", password: "password")
+
+        // Dashboard
+        XCTAssert(Dashboard.courses.exists)
+        XCTAssert(Dashboard.courseCard(id: "247").exists)
+        XCTAssert(Dashboard.dashboardTab.exists)
+    }
+
+    func testLDAPLoginToDashboard() {
+        // Find my school
+        XCTAssert(LoginStart.findMySchool.exists)
+        LoginStart.findMySchool.tap()
+        LoginFindSchool.searchField.typeText("ryana\r")
+
+        // Ryana Web View
+        RyanaLogin.ldapButton.waitToExist()
+        RyanaLogin.ldapButton.tap()
+
+        // Email
+        CanvasLogin.emailTextField.typeText("ldapmobiletest")
+
+        // Password
+        CanvasLogin.passwordTextField.typeText("mobiletesting123")
+
+        // Submit
+        CanvasLogin.logInButton.tap()
+
+        XCTAssert(Dashboard.courses.exists)
+        XCTAssert(Dashboard.dashboardTab.exists)
+    }
+
+    func testMultipleUsers() {
+        loginUser(username: "student1", password: "password")
+
+        // Change User
+        Dashboard.dashboardList.tap()
+        Dashboard.changeUser.tap()
+
+        loginUser(username: "student2", password: "password")
+
+        // Change User
+        Dashboard.dashboardList.tap()
+        Dashboard.changeUser.tap()
+
+        // Previous Users
+        XCTAssert(LoginStart.previousUser(studentNumber: "One").exists)
+        XCTAssert(LoginStart.previousUser(studentNumber: "Two").exists)
+    }
+
+    func loginUser(username: String, password: String) {
         // Find my school
         XCTAssert(LoginStart.findMySchool.exists)
         LoginStart.findMySchool.tap()
         LoginFindSchool.searchField.typeText("iosauto\r")
 
         // Email
-        CanvasLogin.emailTextField.typeText("student1")
+        CanvasLogin.emailTextField.typeText(username)
 
         // Password
-        CanvasLogin.passwordTextField.typeText("password")
+        CanvasLogin.passwordTextField.typeText(password)
 
         // Submit
         CanvasLogin.logInButton.tap()
-
-        // Dashboard
-        XCTAssert(Dashboard.courses.exists)
-        XCTAssert(Dashboard.courseCard(id: "247").exists)
-        XCTAssert(Dashboard.dashboardTab.exists)
     }
 }

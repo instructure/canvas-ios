@@ -54,7 +54,7 @@ class AssignmentDetailsTests: StudentUITestCase {
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        AssignmentDetails.allowedExtensions.waitToExist(5)
+        AssignmentDetails.allowedExtensions.waitToExist()
         XCTAssertEqual(NavBar.title.label, "Assignment Details")
         XCTAssertEqual(NavBar.subtitle.label, course.name!)
         XCTAssertEqual(navBarColorHex(), "#123456")
@@ -86,7 +86,7 @@ class AssignmentDetailsTests: StudentUITestCase {
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        AssignmentDetails.submissionTypes.waitToExist(5)
+        AssignmentDetails.submissionTypes.waitToExist()
         XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
         XCTAssertEqual(AssignmentDetails.points.label, "15.1 pts")
         XCTAssertEqual(AssignmentDetails.status.label, "Not Submitted")

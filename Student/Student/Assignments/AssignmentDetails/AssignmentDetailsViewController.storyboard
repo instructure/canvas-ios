@@ -26,10 +26,10 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="1047"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QTp-Qq-8ZA">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="843"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1093"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VdI-qu-MC8">
-                                                <rect key="frame" x="16" y="16" width="343" height="827"/>
+                                                <rect key="frame" x="16" y="16" width="343" height="1077"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7yL-fW-mIX">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
@@ -106,81 +106,23 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s8P-wF-IX6" customClass="AssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="82" width="343" height="128"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Plt-HB-bKp" customClass="AssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="218" width="343" height="128"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="headerText" value="Due"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="subHeaderText" value="Mar 3 at 11:59pm"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="headerText" value="Submission Types"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submission Types" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgp-Vv-fCs" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="218" width="135" height="19.5"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" staticText="YES" header="YES"/>
-                                                        </accessibility>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hil-LN-kZQ" customClass="AssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="354" width="343" height="128"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="File Upload" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRo-9l-tFe" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="245.5" width="81.5" height="19.5"/>
-                                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.submissionTypes"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZo-vG-hJJ" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="273" width="343" height="16"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="16" id="oQy-TP-tyI"/>
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="File Types" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0Y-Ls-hOZ" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="297" width="75" height="19.5"/>
-                                                        <accessibility key="accessibilityConfiguration">
-                                                            <accessibilityTraits key="traits" staticText="YES" header="YES"/>
-                                                        </accessibility>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pdf" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSt-l5-NyC" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="324.5" width="24.5" height="19.5"/>
-                                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.allowedExtensions"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exy-Uo-OLb" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="352" width="343" height="16"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="16" id="4gI-u4-c0W"/>
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="headerText" value="File Types"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laV-99-9IB" userLabel="Grade Cell">
-                                                        <rect key="frame" x="0.0" y="376" width="343" height="179.5"/>
+                                                        <rect key="frame" x="0.0" y="490" width="343" height="179.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POu-Bn-aGg" userLabel="Grade Label" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="45.5" height="82.5"/>
@@ -263,7 +205,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8d-eS-gk6" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="563.5" width="343" height="16"/>
+                                                        <rect key="frame" x="0.0" y="677.5" width="343" height="16"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="16" id="oA9-Vj-s0g"/>
@@ -272,8 +214,12 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbK-UI-D9Y" customClass="AssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="701.5" width="343" height="128"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQo-YB-o43" userLabel="Submission Button View">
-                                                        <rect key="frame" x="0.0" y="587.5" width="343" height="50"/>
+                                                        <rect key="frame" x="0.0" y="837.5" width="343" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bN3-2w-CuG" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
@@ -314,7 +260,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eJ-rx-JZy" userLabel="Submission Button Divider" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="645.5" width="343" height="16"/>
+                                                        <rect key="frame" x="0.0" y="895.5" width="343" height="16"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="16" id="LiD-ip-3DB"/>
@@ -324,7 +270,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RBf-wD-x1b">
-                                                        <rect key="frame" x="0.0" y="669.5" width="343" height="130"/>
+                                                        <rect key="frame" x="0.0" y="919.5" width="343" height="130"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuJ-9M-78d" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="31.5"/>
@@ -434,7 +380,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUD-Zm-lzB" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="807.5" width="85.5" height="19.5"/>
+                                                        <rect key="frame" x="0.0" y="1057.5" width="85.5" height="19.5"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                                         </accessibility>
@@ -453,19 +399,21 @@
                                                     <constraint firstItem="6eJ-rx-JZy" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="8rK-em-0kz"/>
                                                     <constraint firstItem="RBf-wD-x1b" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="9BI-aJ-Eh5"/>
                                                     <constraint firstAttribute="trailing" secondItem="laV-99-9IB" secondAttribute="trailing" id="A60-jQ-gOB"/>
-                                                    <constraint firstItem="exy-Uo-OLb" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="CDZ-MY-54q"/>
+                                                    <constraint firstItem="hil-LN-kZQ" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="C8a-Tj-Ru8"/>
                                                     <constraint firstAttribute="trailing" secondItem="6eJ-rx-JZy" secondAttribute="trailing" id="ITe-i7-1JS"/>
                                                     <constraint firstAttribute="trailing" secondItem="J8m-ca-4uo" secondAttribute="trailing" id="J9d-px-ZUg"/>
                                                     <constraint firstAttribute="trailing" secondItem="WQo-YB-o43" secondAttribute="trailing" id="Lkm-JT-ZIl"/>
                                                     <constraint firstItem="f8d-eS-gk6" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="O8P-Sh-pTv"/>
-                                                    <constraint firstAttribute="trailing" secondItem="mZo-vG-hJJ" secondAttribute="trailing" id="QaF-5Y-dCJ"/>
                                                     <constraint firstItem="J8m-ca-4uo" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="T4L-Va-jne"/>
+                                                    <constraint firstAttribute="trailing" secondItem="BbK-UI-D9Y" secondAttribute="trailing" id="Tc1-mT-pLJ"/>
+                                                    <constraint firstItem="Plt-HB-bKp" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="Yg9-kw-ZI6"/>
                                                     <constraint firstAttribute="trailing" secondItem="f8d-eS-gk6" secondAttribute="trailing" id="dJa-6P-hqT"/>
-                                                    <constraint firstAttribute="trailing" secondItem="exy-Uo-OLb" secondAttribute="trailing" id="fJK-0J-AJj"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Plt-HB-bKp" secondAttribute="trailing" id="f3Z-wB-HlI"/>
                                                     <constraint firstItem="NUD-Zm-lzB" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="hcj-r5-aua"/>
                                                     <constraint firstItem="laV-99-9IB" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="l7L-sG-qSw"/>
-                                                    <constraint firstItem="mZo-vG-hJJ" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="n7X-IP-gZd"/>
+                                                    <constraint firstAttribute="trailing" secondItem="hil-LN-kZQ" secondAttribute="trailing" id="nfg-r7-UVb"/>
                                                     <constraint firstItem="WQo-YB-o43" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="ouP-u2-h0d"/>
+                                                    <constraint firstItem="BbK-UI-D9Y" firstAttribute="leading" secondItem="VdI-qu-MC8" secondAttribute="leading" id="rgX-3i-TP4"/>
                                                     <constraint firstAttribute="trailing" secondItem="RBf-wD-x1b" secondAttribute="trailing" id="rzx-DU-0Rc"/>
                                                 </constraints>
                                             </stackView>
@@ -479,7 +427,7 @@
                                         </constraints>
                                     </view>
                                     <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3R-vd-zmQ" customClass="CoreWebView" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="843" width="375" height="20"/>
+                                        <rect key="frame" x="0.0" y="1093" width="375" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="KpP-H1-iAI"/>
                                         </constraints>
@@ -492,7 +440,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </wkWebView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gpb-je-B3z" userLabel="PaddingView">
-                                        <rect key="frame" x="0.0" y="863" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="1113" width="375" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="0LL-Ka-xXn"/>
@@ -551,9 +499,7 @@
                         <outlet property="descriptionView" destination="q3R-vd-zmQ" id="jPg-GW-koM"/>
                         <outlet property="dueSection" destination="s8P-wF-IX6" id="ekv-ls-NRq"/>
                         <outlet property="fileSubmissionButton" destination="4TE-cB-TlA" id="JoP-wp-GYy"/>
-                        <outlet property="fileTypesDivider" destination="exy-Uo-OLb" id="ocv-3v-86S"/>
-                        <outlet property="fileTypesHeadingLabel" destination="f0Y-Ls-hOZ" id="0yT-6D-pSq"/>
-                        <outlet property="fileTypesLabel" destination="dSt-l5-NyC" id="RYa-Dr-Zxz"/>
+                        <outlet property="fileTypesSection" destination="hil-LN-kZQ" id="Bc5-DD-28a"/>
                         <outlet property="gradeCell" destination="laV-99-9IB" id="qnI-um-fOg"/>
                         <outlet property="gradeCellDivider" destination="f8d-eS-gk6" id="pXB-E1-8S2"/>
                         <outlet property="gradeCircleBottomConstraint" destination="tiG-Tb-lh7" id="A3c-Ch-qZq"/>
@@ -577,9 +523,9 @@
                         <outlet property="submissionButton" destination="bN3-2w-CuG" id="uhR-2z-p6S"/>
                         <outlet property="submissionButtonDivider" destination="6eJ-rx-JZy" id="1xH-cn-z1F"/>
                         <outlet property="submissionButtonIcon" destination="a6Y-iV-imX" id="rLe-Ov-s1R"/>
+                        <outlet property="submissionButtonSection" destination="BbK-UI-D9Y" id="zN2-CS-z4a"/>
                         <outlet property="submissionButtonView" destination="WQo-YB-o43" id="7q1-HW-aWT"/>
-                        <outlet property="submissionTypesHeadingLabel" destination="Zgp-Vv-fCs" id="Sby-mX-ifm"/>
-                        <outlet property="submissionTypesLabel" destination="eRo-9l-tFe" id="alu-Bc-3pG"/>
+                        <outlet property="submissionTypesSection" destination="Plt-HB-bKp" id="u7h-p0-QTm"/>
                         <outlet property="submitAssignmentButton" destination="Oo1-Sb-iO9" id="Ufa-HQ-uVu"/>
                         <outlet property="submittedDetailsLabel" destination="ePD-c3-2H7" id="7Wc-Ri-A3A"/>
                         <outlet property="submittedLabel" destination="x12-ry-KqJ" id="VGU-Wa-O6O"/>

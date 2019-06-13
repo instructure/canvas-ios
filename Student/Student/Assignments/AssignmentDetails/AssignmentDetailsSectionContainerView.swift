@@ -35,6 +35,18 @@ class AssignmentDetailsSectionContainerView: UIView {
         }
     }
 
+    @IBInspectable var hideHeader: Bool = false {
+        didSet {
+            header?.isHidden = !hideHeader
+        }
+    }
+
+    @IBInspectable var hideSubHeader: Bool = false {
+        didSet {
+            subHeader?.isHidden = !hideSubHeader
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
