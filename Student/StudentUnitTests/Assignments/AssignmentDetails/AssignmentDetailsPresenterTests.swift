@@ -327,19 +327,19 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertFalse( presenter.descriptionIsHidden() )
     }
 
-    func testsubmitAssignmentButtonIsHiddenBeforeAvailability() {
+    func testSubmitAssignmentButtonIsHiddenBeforeAvailability() {
         setupIsHiddenTest(lockStatus: .before)
         wait(for: [expectation], timeout: 1)
         XCTAssertTrue( presenter.submitAssignmentButtonIsHidden() )
     }
 
-    func testsubmitAssignmentButtonNotHiddenAfterAvailability() {
+    func testSubmitAssignmentButtonNotHiddenAfterAvailability() {
         setupIsHiddenTest(lockStatus: .after)
         wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
     }
 
-    func testsubmitAssignmentButtonNotHidden() {
+    func testSubmitAssignmentButtonNotHidden() {
         setupIsHiddenTest(lockStatus: .unlocked)
         wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
