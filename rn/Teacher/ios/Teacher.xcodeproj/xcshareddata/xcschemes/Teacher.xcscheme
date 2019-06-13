@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A41F4E0669EA2506BDA59E39D34F000"
+               BlueprintIdentifier = "4CAE790B904C6277683CC787CA4DCA59"
                BuildableName = "Pods_defaults_CanvasKeymaster.framework"
                BlueprintName = "Pods-defaults-CanvasKeymaster"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "17CAC5F6334BF35CAD96A4349E1DCBD6"
+               BlueprintIdentifier = "B886C6606AF746242B64685ADD80ABA2"
                BuildableName = "Pods_defaults_CanvasKit.framework"
                BlueprintName = "Pods-defaults-CanvasKit"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
@@ -138,12 +138,6 @@
             ReferencedContainer = "container:Teacher.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-Reload"
-            isEnabled = "NO">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "OS_ACTIVITY_MODE"

@@ -41,7 +41,7 @@ extension AppDelegate: RCTBridgeDelegate {
                 self.changeUser()
                 return	
             }
-            self.setup(session: session, wasReload: ProcessInfo.processInfo.arguments.contains("-Reload"))
+            self.setup(session: session, wasReload: true)
         }
 
         // Files
