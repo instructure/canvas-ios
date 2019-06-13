@@ -226,7 +226,23 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submissionButtonView?.isHidden = !assignment.isSubmittable
         submissionButtonDivider?.isHidden = !assignment.isSubmittable
 
-        showLocked(assignment: assignment)
+        guard let presenter = presenter else { return }
+
+        lockedIconContainerView.isHidden = presenter.lockedIconContainerViewIsHidden()
+        dueSection?.isHidden = presenter.dueSectionIsHidden()
+        lockedSection?.isHidden = presenter.lockedSectionIsHidden()
+        fileTypesSection?.isHidden = presenter.fileTypesSectionIsHidden()
+        submissionTypesSection?.isHidden = presenter.submissionTypesSectionIsHidden()
+        gradeSection?.isHidden = presenter.gradesSectionIsHidden()
+        submissionButtonSection?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
+        showDescription(!presenter.descriptionIsHidden())
+        submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
+
+        lockedSection?.subHeader.text = assignment.lockExplanation
+        let iconFrame = lockedIconContainerView.superview?.convert(lockedIconContainerView.frame, to: lockedIconContainerView.superview) ?? CGRect.zero
+        let buttonFrame = submitAssignmentButton.frame
+        lockedIconHeight.constant = floor( buttonFrame.origin.y - iconFrame.origin.y)
+
         updateQuizSettings(quiz)
 
         scrollView?.isHidden = false
@@ -258,34 +274,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     }
 
     // MARK: - Show / Hide Sections
-
-    func showLocked(assignment: Assignment) {
-        let lockStatus = assignment.lockStatus
-
-        switch lockStatus {
-        case .unlocked:
-            lockedSection?.isHidden = true
-        case .before:
-            lockedIconContainerView.isHidden = false
-            dueSection?.isHidden = true
-            lockedSection?.isHidden = false
-            fileTypesSection?.isHidden = true
-            submissionTypesSection?.isHidden = true
-            gradeSection?.isHidden = true
-            submissionButtonSection?.isHidden = true
-            showDescription(false)
-            submitAssignmentButton.isHidden = true
-        case .after:
-            lockedSection?.isHidden = false
-            submitAssignmentButton.isHidden = true
-        }
-
-        lockedSection?.subHeader.text = assignment.lockExplanation
-
-        let iconFrame = lockedIconContainerView.superview?.convert(lockedIconContainerView.frame, to: lockedIconContainerView.superview) ?? CGRect.zero
-        let buttonFrame = submitAssignmentButton.frame
-        lockedIconHeight.constant = floor( buttonFrame.origin.y - iconFrame.origin.y)
-    }
 
     func showDescription(_ show: Bool = true) {
         descriptionView?.isHidden = !show

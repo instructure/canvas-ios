@@ -150,4 +150,46 @@ class AssignmentDetailsPresenter {
         guard let assignment = assignment else { return }
         submissionButtonPresenter.pickFiles(for: assignment)
     }
+
+    // MARK: - viewIsHidden methods
+
+    func dueSectionIsHidden() -> Bool {
+        return assignment?.lockStatus == .before
+    }
+
+    func lockedSectionIsHidden() -> Bool {
+        return assignment?.lockExplanation == nil && !(assignment?.lockedForUser ?? false)
+    }
+
+    func lockedIconContainerViewIsHidden() -> Bool {
+        return assignment?.lockStatus != .before
+    }
+
+    func fileTypesSectionIsHidden() -> Bool {
+        return assignment?.lockStatus == .before || !(assignment?.hasFileTypes ?? false)
+    }
+
+    func submissionTypesSectionIsHidden() -> Bool {
+        return assignment?.lockStatus == .before
+    }
+
+    func gradesSectionIsHidden() -> Bool {
+        if let submission = assignment?.submission {
+            return submission.workflowState == .unsubmitted
+        } else {
+            return true
+        }
+    }
+
+    func viewSubmissionButtonSectionIsHidden() -> Bool {
+        return assignment?.lockStatus == .before
+    }
+
+    func descriptionIsHidden() -> Bool {
+        return assignment?.lockStatus == .before
+    }
+
+    func submitAssignmentButtonIsHidden() -> Bool {
+        return assignment?.lockStatus != .unlocked
+    }
 }

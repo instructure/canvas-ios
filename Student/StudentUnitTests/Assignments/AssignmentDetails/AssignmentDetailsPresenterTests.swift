@@ -190,6 +190,174 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         wait(for: [expectation], timeout: 0.5)
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .some("4"))
     }
+
+    func testDueSectionIsHiddenBeforeAvailability() {
+        setupIsHiddenTest(lockStatus: .before)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue( presenter.dueSectionIsHidden() )
+    }
+
+    func testDueSectionNotHiddenAfterAvailability() {
+        setupIsHiddenTest(lockStatus: .after)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.dueSectionIsHidden() )
+    }
+
+    func testDueSectionNotHidden() {
+        setupIsHiddenTest(lockStatus: .unlocked)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.dueSectionIsHidden() )
+    }
+
+    func testLockedSectionIsHiddenBeforeAvailability() {
+        setupIsHiddenTest(lockStatus: .before)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.lockedSectionIsHidden() )
+        XCTAssertFalse( presenter.lockedIconContainerViewIsHidden() )
+    }
+
+    func testLockedSectionNotHiddenAfterAvailability() {
+        setupIsHiddenTest(lockStatus: .after)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.lockedSectionIsHidden() )
+        XCTAssertTrue( presenter.lockedIconContainerViewIsHidden() )
+    }
+
+    func testLockedSectionNotHidden() {
+        setupIsHiddenTest(lockStatus: .unlocked)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue( presenter.lockedSectionIsHidden() )
+        XCTAssertTrue( presenter.lockedIconContainerViewIsHidden() )
+    }
+
+    func testFileTypesIsHiddenBeforeAvailability() {
+        setupIsHiddenTest(lockStatus: .before)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue(presenter.assignments.first?.hasFileTypes ?? false)
+        XCTAssertTrue( presenter.fileTypesSectionIsHidden() )
+    }
+
+    func testFileTypesSectionNotHiddenAfterAvailability() {
+        setupIsHiddenTest(lockStatus: .after)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue(presenter.assignments.first?.hasFileTypes ?? false)
+        XCTAssertFalse( presenter.fileTypesSectionIsHidden() )
+    }
+
+    func testFileTypesSectionNotHidden() {
+        setupIsHiddenTest(lockStatus: .unlocked)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue(presenter.assignments.first?.hasFileTypes ?? false)
+        XCTAssertFalse( presenter.fileTypesSectionIsHidden() )
+    }
+
+    func testSubmissionTypesIsHiddenBeforeAvailability() {
+        setupIsHiddenTest(lockStatus: .before)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue( presenter.submissionTypesSectionIsHidden() )
+    }
+
+    func testSubmissionTypesSectionNotHiddenAfterAvailability() {
+        setupIsHiddenTest(lockStatus: .after)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.submissionTypesSectionIsHidden() )
+    }
+
+    func testSubmissionTypesSectionNotHidden() {
+        setupIsHiddenTest(lockStatus: .unlocked)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.submissionTypesSectionIsHidden() )
+    }
+
+    func testGradesSectionIsHiddenBeforeAvailability() {
+        setupIsHiddenTest(lockStatus: .before)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue( presenter.gradesSectionIsHidden() )
+    }
+
+    func testGradesSectionNotHiddenAfterAvailability() {
+        Course.make()
+        Assignment.make(from: .make(submission: APISubmission.make(workflow_state: .graded), unlock_at: Date().addYears(-1), locked_for_user: true, lock_explanation: "this is locked"))
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.gradesSectionIsHidden() )
+    }
+
+    func testGradesSectionNotHidden() {
+        Course.make()
+        Assignment.make(from: .make(submission: APISubmission.make(workflow_state: .graded)))
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.gradesSectionIsHidden() )
+    }
+
+    func testViewSubmissionButtonSectionIsHiddenBeforeAvailability() {
+        setupIsHiddenTest(lockStatus: .before)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue( presenter.viewSubmissionButtonSectionIsHidden() )
+    }
+
+    func testViewSubmissionButtonSectionNotHiddenAfterAvailability() {
+        setupIsHiddenTest(lockStatus: .after)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.viewSubmissionButtonSectionIsHidden() )
+    }
+
+    func testViewSubmissionButtonSectionNotHidden() {
+        setupIsHiddenTest(lockStatus: .unlocked)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.viewSubmissionButtonSectionIsHidden() )
+    }
+
+    func testDescriptionSectionIsHiddenBeforeAvailability() {
+        setupIsHiddenTest(lockStatus: .before)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue( presenter.descriptionIsHidden() )
+    }
+
+    func testDescriptionSectionNotHiddenAfterAvailability() {
+        setupIsHiddenTest(lockStatus: .after)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.descriptionIsHidden() )
+    }
+
+    func testDescriptionSectionNotHidden() {
+        setupIsHiddenTest(lockStatus: .unlocked)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.descriptionIsHidden() )
+    }
+
+    func testsubmitAssignmentButtonIsHiddenBeforeAvailability() {
+        setupIsHiddenTest(lockStatus: .before)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue( presenter.submitAssignmentButtonIsHidden() )
+    }
+
+    func testsubmitAssignmentButtonNotHiddenAfterAvailability() {
+        setupIsHiddenTest(lockStatus: .after)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
+    }
+
+    func testsubmitAssignmentButtonNotHidden() {
+        setupIsHiddenTest(lockStatus: .unlocked)
+        wait(for: [expectation], timeout: 1)
+        XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
+    }
+
+    func setupIsHiddenTest(lockStatus: LockStatus) {
+        Course.make()
+        switch lockStatus {
+        case .unlocked:
+            Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: ["png"]))
+        case .before:
+            Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: ["png"], unlock_at: Date().addYears(1), locked_for_user: true, lock_explanation: "this is locked"))
+        case .after:
+            Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: ["png"], unlock_at: Date().addYears(-1), locked_for_user: true, lock_explanation: "this is locked"))
+        }
+        presenter.viewIsReady()
+    }
+
 }
 
 extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
