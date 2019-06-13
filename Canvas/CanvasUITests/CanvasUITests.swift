@@ -23,20 +23,65 @@ private var getTestCase: (() -> XCTestCase)!
 var app: Driver { return getApp() }
 var testCase: XCTestCase { return getTestCase() }
 
+enum User: String {
+    case student1
+
+    var username: String {
+        return rawValue
+    }
+
+    var password: String {
+        return "password"
+    }
+
+    var host: String {
+        return "iosauto.instructure.com"
+    }
+
+    var profile: String {
+        return """
+            <dict>
+                <key>enableLogin</key><true/>
+                <key>users</key>
+                <array>
+                    <dict>
+                        <key>host</key><string>\(host)</string>
+                        <key>username</key><string>\(username)</string>
+                        <key>password</key><string>\(password)</string>
+                    </dict>
+                </array>
+            </dict>
+        """
+        .replacingOccurrences(of: "[\\n,\\s]", with: "", options: .regularExpression, range: nil)
+    }
+}
+
 class CanvasUITests: XCTestCase {
+    var user: User? { return nil }
     var application: XCUIApplication!
 
     override func setUp() {
         super.setUp()
-        application = XCUIApplication()
-        application.launchArguments.append("--ui-test")
-        application.launch()
-
         getApp = {
             return DriverFactory.getXCUITestDriver(XCUIApplication(), testCase: self)
         }
         getTestCase = {
             return self
+        }
+
+        application = XCUIApplication()
+        application.launchArguments.append("--ui-test")
+        if let user = user {
+            application.launchArguments.append(contentsOf: [
+                "-com.apple.configuration.managed",
+                user.profile
+            ])
+        }
+        application.launch()
+        if let user = user {
+            let user = LoginStart.previousUser(name: user.username)
+            user.waitToExist(Timeout())
+            user.tap()
         }
     }
 }

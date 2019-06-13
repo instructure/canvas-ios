@@ -107,6 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
 
     func setupUITests() {
         Keychain.clearEntries()
+        UIView.setAnimationsEnabled(false)
     }
     
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {

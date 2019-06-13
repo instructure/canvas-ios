@@ -27,7 +27,11 @@ enum LoginStart {
     }
 
     static func previousUser(studentNumber: String) -> Element {
-        return app.find(label: "Student \(studentNumber)")
+        return previousUser(name: "Student \(studentNumber)")
+    }
+
+    static func previousUser(name: String) -> Element {
+        return app.find(label: name)
     }
 }
 
