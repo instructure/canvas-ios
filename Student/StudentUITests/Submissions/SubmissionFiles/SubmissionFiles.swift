@@ -15,7 +15,7 @@
 //
 
 import Foundation
-import SwiftUITest
+import TestsFoundation
 
 struct SubmissionFiles {
     static func cell(fileID: String) -> Element {

@@ -17,9 +17,9 @@
 import Foundation
 @testable import Core
 import TestsFoundation
+import XCTest
 
-class SyllabusTests: StudentTest {
-    let page = SyllabusPage.self
+class SyllabusTests: StudentUITestCase {
     let html = "hello world"
     lazy var course: APICourse = {
         let course = APICourse.make(course_code: "abc", syllabus_body: html)
@@ -42,25 +42,20 @@ class SyllabusTests: StudentTest {
 
         show("/courses/\(course.id)/assignments/syllabus")
 
-        page.waitToExist(.menu, timeout: 5)
-        NavBar.assertText(.title, equals: "Course Syllabus")
-        NavBar.assertText(.subtitle, equals: course.course_code!)
+        Syllabus.menu.waitToExist()
+        XCTAssertEqual(NavBar.title.label, "Course Syllabus")
+        XCTAssertEqual(NavBar.subtitle.label, course.course_code)
 
-        page.waitToExist(.syllabusWebView, timeout: 5)
-        let description = xcuiApp?.webViews.staticTexts.firstMatch.label
-        XCTAssertEqual(description, "hello world")
+        XCTAssertTrue(app.find(label: "hello world").exists)
 
-        xcuiApp?.swipeLeft()
-        page.waitToExist(.assignmentList, timeout: 5)
+        app.swipeLeft()
 
-        let cells = xcuiApp?.cells.containing(NSPredicate(format: "label CONTAINS %@", assignmentName))
+        let cells = app.cells.containing(NSPredicate(format: "label CONTAINS %@", assignmentName))
 
-        if let assignmentCell = cells?.firstMatch {
-            assignmentCell.tap()
-            AssignmentDetailsPage.self.waitToExist(AssignmentDetailsPage.name, timeout: 5)
-        } else {
-            XCTFail("could not find assignment cell")
-        }
+        let assignmentCell = cells.firstMatch
+        assignmentCell.tap()
+        AssignmentDetails.name.waitToExist(5)
+
         XCTAssertEqual(navBarColorHex(), "#123456")
     }
 }

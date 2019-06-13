@@ -15,7 +15,7 @@
 //
 
 import Foundation
-import SwiftUITest
+import TestsFoundation
 
 enum LoginFindSchool: String, ElementWrapper {
     case searchField

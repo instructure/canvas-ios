@@ -13,3 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
+@objc
+public protocol TestHost {
+    func reset()
+    func logIn(domain: String, token: String)
+    func show(_ route: String)
+    func mockData(_ data: Data)
+    func mockDownload(_ data: Data)
+}

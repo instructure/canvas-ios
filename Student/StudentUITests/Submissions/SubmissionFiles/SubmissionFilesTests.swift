@@ -19,7 +19,7 @@ import XCTest
 @testable import Core
 import TestsFoundation
 
-class SubmissionFilesTests: StudentTest {
+class SubmissionFilesTests: StudentUITestCase {
     lazy var course: APICourse = {
         let course = APICourse.make()
         mockData(GetCourseRequest(courseID: course.id), value: course)

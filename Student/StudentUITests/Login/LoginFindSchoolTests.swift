@@ -17,28 +17,27 @@
 import Foundation
 @testable import Core
 import TestsFoundation
-import SwiftUITest
 
-class LoginFindSchoolTests: StudentTest {
+class LoginFindSchoolTests: StudentUITestCase {
     func testEnterDomain() {
         show(Route.login.url.path)
         LoginStart.findSchoolButton.tap()
-        XCTAssert(LoginFindSchool.searchField.waitToExist(Timeout()))
+        LoginFindSchool.searchField.waitToExist()
 
         LoginFindSchool.searchField.typeText("test\n")
-        XCTAssert(LoginWeb.webView.waitToExist(Timeout()))
+        LoginWeb.webView.waitToExist()
     }
 
     func testEmptyStates() {
         show(Route.login.url.path)
         LoginStart.findSchoolButton.tap()
-        XCTAssert(LoginFindSchool.searchField.waitToExist(Timeout()))
+        LoginFindSchool.searchField.waitToExist()
 
-        XCTAssert(LoginFindAccountResult.emptyCell.waitToExist(Timeout()))
+        LoginFindAccountResult.emptyCell.waitToExist()
         XCTAssertEqual(LoginFindAccountResult.emptyCell.label, "How do I find my school?")
 
         LoginFindSchool.searchField.typeText("zxzx")
-        XCTAssert(LoginFindAccountResult.emptyCell.waitToExist(Timeout()))
+        LoginFindAccountResult.emptyCell.waitToExist()
 
         XCTAssertEqual(LoginFindAccountResult.emptyCell.label, "Can’t find your school? Try typing the full school URL. Tap here for help.")
     }
@@ -50,14 +49,14 @@ class LoginFindSchoolTests: StudentTest {
 
         show(Route.login.url.path)
         LoginStart.findSchoolButton.tap()
-        XCTAssert(LoginFindSchool.searchField.waitToExist(Timeout()))
+        LoginFindSchool.searchField.waitToExist()
 
         LoginFindSchool.searchField.typeText("cgnu")
         let item = LoginFindAccountResult.item(host: "http://cgnuonline-eniversity.edu")
-        XCTAssert(item.waitToExist(Timeout()))
+        item.waitToExist()
 
         XCTAssertEqual(item.label, "Crazy Go Nuts University")
         item.tap()
-        XCTAssert(LoginWeb.webView.waitToExist(Timeout()))
+        LoginWeb.webView.waitToExist()
     }
 }

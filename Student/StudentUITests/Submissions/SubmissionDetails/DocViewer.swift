@@ -15,7 +15,7 @@
 //
 
 import Foundation
-import SwiftUITest
+import TestsFoundation
 
 enum DocViewer: String, ElementWrapper, CaseIterable {
     case searchButton

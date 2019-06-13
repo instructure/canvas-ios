@@ -585,6 +585,14 @@
 		7D067CF421505BA000B78AF2 /* StudentReborn.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D067CF221505BA000B78AF2 /* StudentReborn.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
 		7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7D86500022B2A432006B0127 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D864FFF22B2A432006B0127 /* TestsFoundation.framework */; };
+		7D86500122B2A4A2006B0127 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7D86500222B2A4AB006B0127 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7D86500322B2A4AE006B0127 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7D86500422B2A4B2006B0127 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D864FFF22B2A432006B0127 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7D86500522B2A4EF006B0127 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
+		7D86500622B2A4F6006B0127 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
+		7D86500722B2A4F9006B0127 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; };
 		7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */; };
 		7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
 		7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -602,8 +610,6 @@
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
 		B16300D622B015AE000B85AD /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16300D522B015AE000B85AD /* LoginTests.swift */; };
-		B16300DC22B01C0A000B85AD /* SwiftUITest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16300DB22B01C0A000B85AD /* SwiftUITest.framework */; };
-		B171578E22B1538A00CD52B3 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = B171578D22B1538A00CD52B3 /* Element.swift */; };
 		B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B177E6FF1E2EC8BA00D7477D /* Settings.storyboard */; };
 		B177E7091E2ECAB900D7477D /* CBIGradeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E70B1E2ECAB900D7477D /* CBIGradeDetailView.xib */; };
 		B1CB84F01D076025004D2265 /* CKRichTextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EC1D076025004D2265 /* CKRichTextInputView.xib */; };
@@ -613,7 +619,6 @@
 		B5A790BB1D8C743400ACA9FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
-		EE0C618D22B03AD400333A46 /* SwiftUITest.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B16300DB22B01C0A000B85AD /* SwiftUITest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9B946F0221492040083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
 		F9B946F1221492040083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; };
 /* End PBXBuildFile section */
@@ -684,7 +689,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				EE0C618D22B03AD400333A46 /* SwiftUITest.framework in Embed Frameworks */,
+				7D86500122B2A4A2006B0127 /* Core.framework in Embed Frameworks */,
+				7D86500222B2A4AB006B0127 /* PSPDFKit.framework in Embed Frameworks */,
+				7D86500322B2A4AE006B0127 /* PSPDFKitUI.framework in Embed Frameworks */,
+				7D86500422B2A4B2006B0127 /* TestsFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1411,6 +1419,7 @@
 		7D7A55F11FE1CCE600F02381 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7D7A55F21FE1CCE600F02381 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		7D7A55F31FE1CCE600F02381 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7D864FFF22B2A432006B0127 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D8F1D391FE1CCF000C27B42 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		7D8F1D3A1FE1CCF000C27B42 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7D8F1D3B1FE1CCF100C27B42 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1457,7 +1466,6 @@
 		B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemDetailViewController.swift; sourceTree = "<group>"; };
 		B15738061D95AA7600ADBB85 /* ModuleItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemViewModel.swift; sourceTree = "<group>"; };
 		B16300D522B015AE000B85AD /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
-		B16300DB22B01C0A000B85AD /* SwiftUITest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUITest.framework; path = ../Carthage/Build/iOS/SwiftUITest.framework; sourceTree = "<group>"; };
 		B16B5A2E1E24534B00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5A2F1E24534C00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5A301E24534C00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -1544,7 +1552,6 @@
 		B16B5A8E1E24548F00DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B16B5A8F1E24548F00DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5A911E24549100DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B171578D22B1538A00CD52B3 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		B177E6FE1E2EC8BA00D7477D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		B177E7061E2EC9DC00D7477D /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E7071E2EC9FF00D7477D /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Settings.strings; sourceTree = "<group>"; };
@@ -1707,7 +1714,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B16300DC22B01C0A000B85AD /* SwiftUITest.framework in Frameworks */,
+				7D86500522B2A4EF006B0127 /* Core.framework in Frameworks */,
+				7D86500622B2A4F6006B0127 /* PSPDFKit.framework in Frameworks */,
+				7D86500722B2A4F9006B0127 /* PSPDFKitUI.framework in Frameworks */,
+				7D86500022B2A432006B0127 /* TestsFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2791,8 +2801,8 @@
 				F9B946EF221492040083E660 /* PSPDFKitUI.framework */,
 				2C67B0CF1E01F07800DDD191 /* QuartzCore.framework */,
 				7D067CF221505BA000B78AF2 /* StudentReborn.framework */,
-				B16300DB22B01C0A000B85AD /* SwiftUITest.framework */,
 				2C67B0D11E01F07C00DDD191 /* SystemConfiguration.framework */,
+				7D864FFF22B2A432006B0127 /* TestsFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2879,7 +2889,6 @@
 				B16300D422B0155E000B85AD /* Login */,
 				9F5D743722A99E91002FCCCE /* CanvasUITests.swift */,
 				9F5D743922A99E91002FCCCE /* Info.plist */,
-				B171578D22B1538A00CD52B3 /* Element.swift */,
 			);
 			path = CanvasUITests;
 			sourceTree = "<group>";
@@ -3995,7 +4004,6 @@
 			files = (
 				9F5D743822A99E91002FCCCE /* CanvasUITests.swift in Sources */,
 				B16300D622B015AE000B85AD /* LoginTests.swift in Sources */,
-				B171578E22B1538A00CD52B3 /* Element.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
