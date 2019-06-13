@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-present Instructure, Inc.
+// Copyright (C) 2018-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,11 +15,19 @@
 //
 
 import Foundation
+import TestsFoundation
 
-enum SyllabusPage: String, UITestElement, CaseIterable {
-    case menu
-    case syllabusMenuItem
-    case assignmentsMenuItem
-    case syllabusWebView
-    case assignmentList
+enum FilePicker: String, ElementWrapper {
+    case emptyView
+    case cameraButton
+    case libraryButton
+    case filesButton
+    case submitButton
+    case cancelButton
+}
+
+enum FilePickerListItem {
+    static func item(_ id: String) -> Element {
+        return app.find(id: "FilePickerListItem\(id)")
+    }
 }

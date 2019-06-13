@@ -18,10 +18,7 @@ import Foundation
 @testable import Core
 import TestsFoundation
 
-class AssignmentDetailsPageTest: StudentTest {
-    let page = AssignmentDetailsPage.self
-    let filePicker = FilePickerPage.self
-
+class AssignmentDetailsTests: StudentUITestCase {
     lazy var course: APICourse = {
         let course = APICourse.make()
         mockData(GetCourseRequest(courseID: course.id), value: course)
@@ -31,6 +28,16 @@ class AssignmentDetailsPageTest: StudentTest {
     func mockAssignment(_ assignment: APIAssignment) -> APIAssignment {
         mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
         return assignment
+    }
+
+    override func setUp() {
+        super.setUp()
+        sleep(1) // only this file seems to need some extra cooldown time.
+    }
+
+    override func show(_ route: String) {
+        super.show(route)
+        sleep(1)
     }
 
     func testUnsubmittedUpload() {
@@ -47,22 +54,22 @@ class AssignmentDetailsPageTest: StudentTest {
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.waitToExist(.allowedExtensions, timeout: 5)
-        NavBar.assertText(.title, equals: "Assignment Details")
-        NavBar.assertText(.subtitle, equals: course.name!)
+        AssignmentDetails.allowedExtensions.waitToExist(5)
+        XCTAssertEqual(NavBar.title.label, "Assignment Details")
+        XCTAssertEqual(NavBar.subtitle.label, course.name!)
         XCTAssertEqual(navBarColorHex(), "#123456")
 
-        page.assertText(.name, equals: assignment.name)
-        page.assertText(.points, equals: "12.3 pts")
-        page.assertText(.status, equals: "Not Submitted")
-        page.assertText(.due, equals: "Jan 1, 2035 at 8:00 AM")
-        page.assertText(.submissionTypes, equals: "File Upload")
-        page.assertText(.allowedExtensions, equals: "doc, docx, or pdf")
-        page.assertHidden(.submittedText)
-        page.assertHidden(.gradeCell)
-        page.assertText(.submitAssignmentButton, equals: "Submit Assignment")
+        XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
+        XCTAssertEqual(AssignmentDetails.points.label, "12.3 pts")
+        XCTAssertEqual(AssignmentDetails.status.label, "Not Submitted")
+        XCTAssertEqual(AssignmentDetails.due.label, "Jan 1, 2035 at 8:00 AM")
+        XCTAssertEqual(AssignmentDetails.submissionTypes.label, "File Upload")
+        XCTAssertEqual(AssignmentDetails.allowedExtensions.label, "doc, docx, or pdf")
+        XCTAssertFalse(AssignmentDetails.submittedText.isVisible)
+        XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
 
-        let description = xcuiApp?.webViews.staticTexts.firstMatch.label
+        let description = app.webViews.staticTexts.firstMatch.label
         XCTAssertEqual(description, assignment.description)
     }
 
@@ -79,20 +86,20 @@ class AssignmentDetailsPageTest: StudentTest {
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.waitToExist(.submissionTypes, timeout: 5)
-        page.assertText(.name, equals: assignment.name)
-        page.assertText(.points, equals: "15.1 pts")
-        page.assertText(.status, equals: "Not Submitted")
-        page.assertText(.due, equals: "Jan 1, 2035 at 8:00 AM")
-        page.assertText(.submissionTypes, equals: "Discussion Comment")
-        page.assertHidden(.allowedExtensions)
-        page.assertHidden(.submittedText)
-        page.assertHidden(.gradeCell)
-        page.assertText(.submitAssignmentButton, equals: "View Discussion")
+        AssignmentDetails.submissionTypes.waitToExist(5)
+        XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
+        XCTAssertEqual(AssignmentDetails.points.label, "15.1 pts")
+        XCTAssertEqual(AssignmentDetails.status.label, "Not Submitted")
+        XCTAssertEqual(AssignmentDetails.due.label, "Jan 1, 2035 at 8:00 AM")
+        XCTAssertEqual(AssignmentDetails.submissionTypes.label, "Discussion Comment")
+        XCTAssertFalse(AssignmentDetails.allowedExtensions.isVisible)
+        XCTAssertFalse(AssignmentDetails.submittedText.isVisible)
+        XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "View Discussion")
 
-        let authorAvatar = xcuiApp?.webViews.staticTexts.element(boundBy: 0).label
-        let authorName = xcuiApp?.webViews.staticTexts.element(boundBy: 1).label
-        let message = xcuiApp?.webViews.staticTexts.element(boundBy: 2).label
+        let authorAvatar = app.webViews.staticTexts.element(boundBy: 0).label
+        let authorName = app.webViews.staticTexts.element(boundBy: 1).label
+        let message = app.webViews.staticTexts.element(boundBy: 2).label
         XCTAssertEqual(authorAvatar, "B")
         XCTAssertEqual(authorName, assignment.discussion_topic?.author.display_name)
         XCTAssertEqual(message, assignment.discussion_topic?.message)
@@ -108,10 +115,10 @@ class AssignmentDetailsPageTest: StudentTest {
             submission_types: [ .discussion_topic ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.assertText(.name, equals: assignment.name)
-        page.assertVisible(.submittedText)
-        page.assertVisible(.gradeCell)
-        page.assertText(.submitAssignmentButton, equals: "View Discussion")
+        XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
+        XCTAssertTrue(AssignmentDetails.submittedText.isVisible)
+        XCTAssertTrue(AssignmentDetails.gradeCell.isVisible)
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "View Discussion")
     }
 
     func testResubmitAssignmentButton() {
@@ -120,7 +127,7 @@ class AssignmentDetailsPageTest: StudentTest {
             submission_types: [ .online_upload ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.assertText(.submitAssignmentButton, equals: "Resubmit Assignment")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Resubmit Assignment")
     }
 
     func testSubmitAssignmentButton() {
@@ -128,7 +135,7 @@ class AssignmentDetailsPageTest: StudentTest {
             submission_types: [ .online_upload ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.assertText(.submitAssignmentButton, equals: "Submit Assignment")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
     }
 
     func testNoSubmitAssignmentButtonShows() {
@@ -136,7 +143,7 @@ class AssignmentDetailsPageTest: StudentTest {
             submission_types: [ .none ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.assertHidden(.submitAssignmentButton)
+        XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
     func testNoSubmitAssignmentButtonShowsWhenLockAtLessThanNow() {
@@ -144,7 +151,7 @@ class AssignmentDetailsPageTest: StudentTest {
             lock_at: Date().addDays(-1)
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.assertHidden(.submitAssignmentButton)
+        XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
     func testNoSubmitAssignmentButtonShowsWhenUnLockAtGreaterThanNow() {
@@ -152,7 +159,7 @@ class AssignmentDetailsPageTest: StudentTest {
             unlock_at: Date().addDays(1)
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.assertHidden(.submitAssignmentButton)
+        XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
     func testNoSubmitAssignmentButtonShowsUserNotStudentEnrollment() {
@@ -161,7 +168,7 @@ class AssignmentDetailsPageTest: StudentTest {
             submission_types: [ .online_upload ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.assertHidden(.submitAssignmentButton)
+        XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
     func testTappingSubmitButtonShowsFileUploadOption() {
@@ -169,9 +176,9 @@ class AssignmentDetailsPageTest: StudentTest {
             submission_types: [ .online_upload, .online_url ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.waitToExist(.submitAssignmentButton, timeout: 5)
-        page.tap(.submitAssignmentButton)
-        page.assertAlertActionExists("File Upload")
+        AssignmentDetails.submitAssignmentButton.waitToExist(5)
+        AssignmentDetails.submitAssignmentButton.tap()
+        XCTAssertTrue(app.find(label: "File Upload").isVisible)
     }
 
     func testCancelSubmitAction() {
@@ -179,9 +186,9 @@ class AssignmentDetailsPageTest: StudentTest {
             submission_types: [ .online_upload, .online_url ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.tap(.submitAssignmentButton)
-        page.tapAlertAction("Cancel")
-        page.assertAlertHidden()
+        AssignmentDetails.submitAssignmentButton.tap()
+        app.find(label: "Cancel").tap()
+        XCTAssertEqual(app.alerts.count, 0)
     }
 
     func testGradeCellShowsSubmittedTextWhenNotGraded() {
@@ -189,8 +196,8 @@ class AssignmentDetailsPageTest: StudentTest {
             submission: APISubmission.make()
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.assertVisible(.submittedText)
-        page.assertText(.submittedText, equals: "Successfully submitted!")
+        XCTAssertTrue(AssignmentDetails.submittedText.isVisible)
+        XCTAssertEqual(AssignmentDetails.submittedText.label, "Successfully submitted!")
     }
 
     func testGradeCellShowsDialWhenGraded() {
@@ -202,7 +209,7 @@ class AssignmentDetailsPageTest: StudentTest {
             )
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.select(.gradeCircle).assertText(equals: "Scored 90 out of 100 points possible")
+        XCTAssertEqual(AssignmentDetails.gradeCircle.label, "Scored 90 out of 100 points possible")
     }
 
     func testDisplayGradeAs() {
@@ -215,8 +222,8 @@ class AssignmentDetailsPageTest: StudentTest {
             grading_type: .percent
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.select(.gradeCircle).assertText(equals: "Scored 8 out of 10 points possible")
-        page.select(.gradeDisplayGrade).assertText(equals: "80%")
+        XCTAssertEqual(AssignmentDetails.gradeCircle.label, "Scored 8 out of 10 points possible")
+        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label, "80%")
     }
 
     func testGradeCellShowsLatePenalty() {
@@ -232,7 +239,7 @@ class AssignmentDetailsPageTest: StudentTest {
             )
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.select(.gradeLatePenalty).assertText(equals: "Late penalty (-5 pts)")
+        XCTAssertEqual(AssignmentDetails.gradeLatePenalty.label, "Late penalty (-5 pts)")
     }
 
     func testViewSubmissionButtonWorksWithNoSubmission() {
@@ -240,8 +247,8 @@ class AssignmentDetailsPageTest: StudentTest {
             points_possible: 10
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.waitToExist(.viewSubmissionButton, timeout: 5)
-        page.tap(.viewSubmissionButton)
+        AssignmentDetails.viewSubmissionButton.waitToExist(5)
+        AssignmentDetails.viewSubmissionButton.tap()
         XCTAssertTrue(SubmissionDetails.emptySubmitButton.exists)
     }
 
@@ -251,7 +258,7 @@ class AssignmentDetailsPageTest: StudentTest {
             submission: APISubmission.make()
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.tap(.viewSubmissionButton)
+        AssignmentDetails.viewSubmissionButton.tap()
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
     }
 
@@ -260,8 +267,9 @@ class AssignmentDetailsPageTest: StudentTest {
             submission_types: [ .online_url ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        page.assertText(.submitAssignmentButton, equals: "Submit Assignment")
-        page.tap(.submitAssignmentButton)
-        page.assertHidden(.submitAssignmentButton)
+        AssignmentDetails.submitAssignmentButton.waitToExist()
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+        AssignmentDetails.submitAssignmentButton.tap()
+        AssignmentDetails.submitAssignmentButton.waitToVanish()
     }
 }

@@ -28,18 +28,6 @@ protocol TestHost {
     func show(_ route: String)
     func mockData(_ data: Data)
     func mockDownload(_ data: Data)
-    func grey_getLabel(_ elementData: ElementData) -> GREYActionBlock
-    func grey_getId(_ elementData: ElementData) -> GREYActionBlock
-    func grey_getClassName(_ elementData: ElementData) -> GREYActionBlock
-    func grey_getText(_ elementData: ElementData) -> GREYActionBlock
-}
-
-@objc
-protocol ElementData {
-    var label: String { get set }
-    var id: String { get set }
-    var className: String { get set }
-    var text: String { get set }
 }
 
 extension GREYHostApplicationDistantObject: TestHost {
@@ -74,8 +62,9 @@ extension GREYHostApplicationDistantObject: TestHost {
 
     private func resetDatabase() {
         do {
-            let store = appDelegate.environment.database
-            try store.clearAllRecords()
+            CacheManager.clear()
+            try AppEnvironment.shared.globalDatabase.clearAllRecords()
+            try AppEnvironment.shared.database.clearAllRecords()
         } catch {
             fatalError("failed to reset database")
         }
@@ -119,39 +108,5 @@ extension GREYHostApplicationDistantObject: TestHost {
 
     func mockDownload(_ data: Data) {
         MockURLSession.mockDownload(data)
-    }
-
-    func grey_getLabel(_ elementData: ElementData) -> GREYActionBlock {
-        return GREYActionBlock.action(withName: "grey_getLabel") { element, _ -> Bool in
-            let elementObject = element as? NSObject
-            elementData.label = elementObject?.accessibilityLabel ?? ""
-            return true
-        }
-    }
-
-    func grey_getId(_ elementData: ElementData) -> GREYActionBlock {
-        return GREYActionBlock.action(withName: "grey_getId") { element, _ -> Bool in
-            let elementObject = element as? UIAccessibilityIdentification
-            elementData.id = elementObject?.accessibilityIdentifier ?? ""
-            return true
-        }
-    }
-
-    func grey_getClassName(_ elementData: ElementData) -> GREYActionBlock {
-        return GREYActionBlock.action(withName: "grey_getClassName") { element, _ -> Bool in
-            elementData.className = String(describing: element.self)
-            return true
-        }
-    }
-
-    func grey_getText(_ elementData: ElementData) -> GREYActionBlock {
-        return GREYActionBlock.action(
-            withName: "grey_getText") { element, _ -> Bool in
-            let elementObject = element as? NSObject
-            let text = elementObject?.perform(#selector(getter: UILabel.text),
-                                              with: nil)?.takeRetainedValue() as? String
-            elementData.text = text ?? ""
-            return true
-        }
     }
 }

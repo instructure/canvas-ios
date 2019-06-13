@@ -15,7 +15,7 @@
 //
 
 import XCTest
-import SwiftUITest
+import TestsFoundation
 
 enum LoginFindSchool: String, CaseIterable, ElementWrapper {
   case searchField
@@ -29,15 +29,15 @@ enum LoginStart {
 
 enum CanvasLogin {
     static var emailTextField: Element {
-        return XCUIApplication().webViews.textFields["Email"].toElement(testCase)
+        return XCUIElementWrapper(app.webViews.textFields["Email"])
     }
 
     static var passwordTextField: Element {
-        return XCUIApplication().webViews.secureTextFields["Password"].toElement(testCase)
+        return XCUIElementWrapper(app.webViews.secureTextFields["Password"])
     }
 
     static var logInButton: Element {
-        return XCUIApplication().webViews.buttons["Log In"].toElement(testCase)
+        return XCUIElementWrapper(app.webViews.buttons["Log In"])
     }
 }
 
@@ -64,13 +64,9 @@ class LoginTests: CanvasUITests {
         LoginFindSchool.searchField.typeText("iosauto\r")
 
         // Email
-        CanvasLogin.emailTextField.waitToExist(Timeout(value: 10))
-        CanvasLogin.emailTextField.tap()
         CanvasLogin.emailTextField.typeText("student1")
 
         // Password
-        CanvasLogin.passwordTextField.waitToExist(Timeout(value: 10))
-        CanvasLogin.passwordTextField.tap()
         CanvasLogin.passwordTextField.typeText("password")
 
         // Submit

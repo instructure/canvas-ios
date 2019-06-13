@@ -14,10 +14,11 @@
 // limitations under the License.
 //
 
-import SwiftUITest
+import Foundation
+import TestsFoundation
 
-extension ElementWrapper {
-    var element: Element {
-        return app.find(id: id)
-    }
+enum Syllabus: String, ElementWrapper {
+    case menu
+    case syllabusMenuItem
+    case assignmentsMenuItem
 }

@@ -28,7 +28,7 @@ class FilePickerProgressView: UIView {
      */
     public var progress: Float = 0 {
         didSet {
-            progressView?.setProgress(progress, animated: !ProcessInfo.isUITest) // workaround EarlGrey crash
+            progressView?.setProgress(progress, animated: true)
         }
     }
 

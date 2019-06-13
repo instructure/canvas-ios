@@ -15,7 +15,7 @@
 //
 
 import Foundation
-import SwiftUITest
+import TestsFoundation
 
 enum SubmissionComments: String, CaseIterable, ElementWrapper {
     case addCommentButton

@@ -15,13 +15,14 @@
 //
 
 import Foundation
-import SwiftUITest
+import TestsFoundation
 
-enum PSPDFDoc: String, ElementWrapper, CaseIterable {
-    case view = "PDF View"
-    case page = "PDF Page View"
+enum PSPDFDoc {
+    static var view: Element {
+        return app.find(id: "PDF View")
+    }
 
-    var id: String {
-        return rawValue
+    static var page: Element {
+        return app.find(id: "PDF Page View")
     }
 }

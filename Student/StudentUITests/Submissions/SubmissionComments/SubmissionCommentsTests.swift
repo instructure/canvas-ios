@@ -19,7 +19,7 @@ import XCTest
 @testable import Core
 import TestsFoundation
 
-class SubmissionCommentsTests: StudentTest {
+class SubmissionCommentsTests: StudentUITestCase {
     lazy var course: APICourse = {
         let course = APICourse.make()
         mockData(GetCourseRequest(courseID: course.id), value: course)
@@ -195,18 +195,18 @@ class SubmissionCommentsTests: StudentTest {
 
         SubmissionComments.addMediaButton.tap()
 
-        allowAccessToMicrophone(waitFor: AudioRecorder.recordButton.id) {
-            Alert.button(label: "Record Audio").tap()
+        allowAccessToMicrophone(waitFor: "AudioRecorder.recordButton") {
+            app.find(label: "Record Audio").tap()
         }
         AudioRecorder.recordButton.tap()
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
         AudioRecorder.clearButton.tap()
         AudioRecorder.cancelButton.tap()
-        XCTAssertFalse(AudioRecorder.cancelButton.isVisible)
+        AudioRecorder.cancelButton.waitToVanish()
 
         SubmissionComments.addMediaButton.tap()
-        Alert.button(label: "Record Audio").tap()
+        app.find(label: "Record Audio").tap()
         AudioRecorder.recordButton.tap()
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)

@@ -30,6 +30,9 @@
 		7D47769A21AF396500B441CE /* APIQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47769921AF396500B441CE /* APIQuiz.swift */; };
 		7D5C87232239A9EE00D99651 /* SubmissionCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C87222239A9EE00D99651 /* SubmissionCommentFixture.swift */; };
 		7D63F794215D8FC100151E49 /* APIBrandVariablesFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F793215D8FC100151E49 /* APIBrandVariablesFixture.swift */; };
+		7DAC287A22B199D100C0B692 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC287522B199D100C0B692 /* Element.swift */; };
+		7DAC288022B1A3F900C0B692 /* XCUIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */; };
+		7DAC288622B1AE1700C0B692 /* ElementWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC288522B1AE1700C0B692 /* ElementWrapper.swift */; };
 		7DB0A1C921C07F39009ABB40 /* APIUserFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1C821C07F39009ABB40 /* APIUserFixture.swift */; };
 		7DB0A1CE21C16D5A009ABB40 /* KeychainEntryFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1CD21C16D5A009ABB40 /* KeychainEntryFixture.swift */; };
 		7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1D321C1C90D009ABB40 /* APIAccountResultsFixture.swift */; };
@@ -94,6 +97,10 @@
 		7D47769921AF396500B441CE /* APIQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuiz.swift; sourceTree = "<group>"; };
 		7D5C87222239A9EE00D99651 /* SubmissionCommentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentFixture.swift; sourceTree = "<group>"; };
 		7D63F793215D8FC100151E49 /* APIBrandVariablesFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBrandVariablesFixture.swift; sourceTree = "<group>"; };
+		7DAC287522B199D100C0B692 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		7DAC287D22B19D5C00C0B692 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIApplicationExtensions.swift; sourceTree = "<group>"; };
+		7DAC288522B1AE1700C0B692 /* ElementWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementWrapper.swift; sourceTree = "<group>"; };
 		7DB0A1C821C07F39009ABB40 /* APIUserFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserFixture.swift; sourceTree = "<group>"; };
 		7DB0A1CD21C16D5A009ABB40 /* KeychainEntryFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainEntryFixture.swift; sourceTree = "<group>"; };
 		7DB0A1D321C1C90D009ABB40 /* APIAccountResultsFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountResultsFixture.swift; sourceTree = "<group>"; };
@@ -165,6 +172,7 @@
 		3B032CFD215037AA00B570F7 /* TestsFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				7DAC287222B199D100C0B692 /* Element */,
 				B1E789B621B1B0620087FE4A /* Logger */,
 				7D47769621AF354400B441CE /* API */,
 				3B84C390218BB0F1005946BA /* Extensions */,
@@ -193,6 +201,7 @@
 		3B032D1E2150380200B570F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7DAC287D22B19D5C00C0B692 /* XCTest.framework */,
 				F92C1A2922838400007E0942 /* AppFramework.framework */,
 				3B0CEB6721503B5A00D07CFA /* Core.framework */,
 			);
@@ -268,6 +277,7 @@
 			children = (
 				3B84C391218BB102005946BA /* DateExtensions.swift */,
 				B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */,
+				7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -283,6 +293,15 @@
 				B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		7DAC287222B199D100C0B692 /* Element */ = {
+			isa = PBXGroup;
+			children = (
+				7DAC287522B199D100C0B692 /* Element.swift */,
+				7DAC288522B1AE1700C0B692 /* ElementWrapper.swift */,
+			);
+			path = Element;
 			sourceTree = "<group>";
 		};
 		7DB0A1CC21C16D2F009ABB40 /* Keychain */ = {
@@ -427,7 +446,9 @@
 				9F1CEA5B22400A1D000BB98F /* APIPermissions.swift in Sources */,
 				B16F0371215BD5F10011E952 /* TestRouter.swift in Sources */,
 				B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */,
+				7DAC288622B1AE1700C0B692 /* ElementWrapper.swift in Sources */,
 				B150C6362298D67E0096D58C /* ExternalToolFixture.swift in Sources */,
+				7DAC288022B1A3F900C0B692 /* XCUIApplicationExtensions.swift in Sources */,
 				7DC4A557222EF9A800FA03DC /* APIDiscussionEntryFixture.swift in Sources */,
 				B1A32BDE2159A1D70071B41E /* APIAssignmentFixture.swift in Sources */,
 				7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */,
@@ -440,6 +461,7 @@
 				7DB0A1CE21C16D5A009ABB40 /* KeychainEntryFixture.swift in Sources */,
 				B19792F521767B830000369C /* ColorFixture.swift in Sources */,
 				B15CA282221DFF240014FB02 /* APIModuleFixture.swift in Sources */,
+				7DAC287A22B199D100C0B692 /* Element.swift in Sources */,
 				B1B42C1822404AB20087399A /* FileUploadTargetFixture.swift in Sources */,
 				B15CA280221DFED00014FB02 /* ModuleFixture.swift in Sources */,
 				7D47769A21AF396500B441CE /* APIQuiz.swift in Sources */,
@@ -604,6 +626,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/iOS",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks/**",
 				);
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -640,6 +663,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/iOS",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks/**",
 				);
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
