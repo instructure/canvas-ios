@@ -102,9 +102,12 @@ class LoginTests: CanvasUITests {
         LoginFindSchool.searchField.typeText("ryana\r")
 
         // Ryana Web View
+        RyanaLogin.ldapButton.waitToExist()
         RyanaLogin.ldapButton.tap()
 
         // Email
+        CanvasLogin.emailTextField.waitToExist()
+        CanvasLogin.emailTextField.tap()
         CanvasLogin.emailTextField.typeText("ldapmobiletest")
 
         // Password
@@ -122,12 +125,14 @@ class LoginTests: CanvasUITests {
 
         // Change User
         Dashboard.dashboardList.tap()
+        Dashboard.changeUser.waitToExist()
         Dashboard.changeUser.tap()
 
         loginUser(username: "student2", password: "password")
 
         // Change User
         Dashboard.dashboardList.tap()
+        Dashboard.changeUser.waitToExist()
         Dashboard.changeUser.tap()
 
         // Previous Users
@@ -140,7 +145,7 @@ class LoginTests: CanvasUITests {
         loginUser(username: "student1", password: "password")
 
         // Dashboard
-        XCTAssert(Dashboard.courses.exists)
+        Dashboard.courses.waitToExist()
         XCTAssert(Dashboard.courseCard(id: "247").exists)
         XCTAssert(Dashboard.dashboardTab.exists)
 
@@ -148,7 +153,7 @@ class LoginTests: CanvasUITests {
         XCUIApplication().launch()
 
         // Dashboard
-        XCTAssert(Dashboard.courses.exists)
+        Dashboard.courses.waitToExist()
         XCTAssert(Dashboard.courseCard(id: "247").exists)
         XCTAssert(Dashboard.dashboardTab.exists)
     }
@@ -159,6 +164,8 @@ class LoginTests: CanvasUITests {
         LoginFindSchool.searchField.typeText("iosauto\r")
 
         // Email
+        CanvasLogin.emailTextField.waitToExist()
+        CanvasLogin.emailTextField.tap()
         CanvasLogin.emailTextField.typeText(username)
 
         // Password
