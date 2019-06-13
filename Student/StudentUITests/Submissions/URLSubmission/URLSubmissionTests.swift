@@ -16,10 +16,9 @@
 
 import Foundation
 @testable import Core
-import SwiftUITest
 import TestsFoundation
 
-class URLSubmissionTests: StudentTest {
+class URLSubmissionTests: StudentUITestCase {
     func testSumbitUrl() {
         let course = APICourse.make()
         mockData(GetCourseRequest(courseID: course.id), value: course)
@@ -47,7 +46,7 @@ class URLSubmissionTests: StudentTest {
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        XCTAssertTrue(SubmissionDetails.urlButton.waitToExist(Timeout(value: 5)))
+        SubmissionDetails.urlButton.waitToExist(5)
         XCTAssertEqual(SubmissionDetails.urlButton.label, "http://www.amazon.com")
     }
 }

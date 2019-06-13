@@ -15,28 +15,12 @@
 //
 
 import XCTest
-import SwiftUITest
-
-// Always recompute app to avoid stale testCase references
-private var getApp: (() -> Driver)!
-private var getTestCase: (() -> XCTestCase)!
-var app: Driver { return getApp() }
-var testCase: XCTestCase { return getTestCase() }
+import TestsFoundation
 
 class CanvasUITests: XCTestCase {
-    var application: XCUIApplication!
-
     override func setUp() {
         super.setUp()
-        application = XCUIApplication()
-        application.launchArguments.append("--ui-test")
-        application.launch()
-
-        getApp = {
-            return DriverFactory.getXCUITestDriver(XCUIApplication(), testCase: self)
-        }
-        getTestCase = {
-            return self
-        }
+        app.launchArguments.append("--ui-test")
+        app.launch()
     }
 }

@@ -15,21 +15,19 @@
 //
 
 import Foundation
-import SwiftUITest
+import TestsFoundation
 
 enum CommentList: String, ElementWrapper, CaseIterable {
     case replyButton
     case replyTextView
 }
 
-struct CommentListItem: RawRepresentable, ElementWrapper {
-    let rawValue: String
-
-    static func item(_ id: String) -> CommentListItem {
-        return CommentListItem(rawValue: id)
+enum CommentListItem {
+    static func item(_ id: String) -> Element {
+        return app.find(id: "CommentListItem.\(id)")
     }
 
-    static func deleteButton(_ id: String) -> CommentListItem {
-        return CommentListItem(rawValue: "\(id).deleteButton")
+    static func deleteButton(_ id: String) -> Element {
+        return app.find(id: "CommentListItem.\(id).deleteButton")
     }
 }

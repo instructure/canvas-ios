@@ -15,7 +15,7 @@
 //
 
 import Core
-import SwiftUITest
+import TestsFoundation
 
 enum LoginStart: String, ElementWrapper {
     case authenticationMethodLabel

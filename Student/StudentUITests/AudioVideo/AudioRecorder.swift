@@ -15,25 +15,10 @@
 //
 
 import Foundation
-import SwiftUITest
+import TestsFoundation
 
-struct Alert {
-    let greyInteraction: GREYInteraction
-
-    static func button(label: String) -> Alert {
-        return Alert(greyInteraction: EarlGrey.selectElement(with: grey_allOf([
-            grey_accessibilityLabel(label),
-            grey_kindOfClass(NSClassFromString("_UIAlertControllerActionView")!),
-        ])).atIndex(0))
-    }
-
-    func tap() {
-        self.greyInteraction.perform(grey_tap())
-    }
-
-    func exists() -> Bool {
-        var err: NSError?
-        greyInteraction.assert(grey_notNil(), error: &err)
-        return err == nil
-    }
+enum AudioRecorder: String, ElementWrapper {
+    case cancelButton, clearButton, recordButton, sendButton, stopButton, timeLabel
+    // embedded AudioPlayer
+    case currentTimeLabel, loadingView, playPauseButton, remainingTimeLabel, timeSlider
 }

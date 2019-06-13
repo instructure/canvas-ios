@@ -15,7 +15,7 @@
 //
 
 import Foundation
-import SwiftUITest
+import TestsFoundation
 
 enum URLSubmission: String, ElementWrapper, CaseIterable {
     case url

@@ -15,20 +15,8 @@
 //
 
 import Foundation
+import TestsFoundation
 
-enum AssignmentDetailsPage: String, UITestElement, CaseIterable {
-    case allowedExtensions
-    case due
-    case gradeCell
-    case gradeCircle
-    case gradeDisplayGrade
-    case gradeLatePenalty
-    case name
-    case points
-    case status
-    case submissionTypes
-    case submittedText
-    case submitAssignmentButton
-    case viewSubmissionButton
-    case fileSubmissionButton
+enum NavBar: String, ElementWrapper {
+    case title, subtitle
 }
