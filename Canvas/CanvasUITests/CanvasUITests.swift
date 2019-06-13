@@ -59,16 +59,14 @@ class CanvasUITests: XCTestCase {
         continueAfterFailure = false
         app.launchArguments.append("--ui-test")
         if let user = user {
-            application.launchArguments.append(contentsOf: [
+            app.launchArguments.append(contentsOf: [
                 "-com.apple.configuration.managed",
                 user.profile
             ])
         }
-        application.launch()
+        app.launch()
         if let user = user {
-            let user = LoginStart.previousUser(name: user.username)
-            user.waitToExist(Timeout())
-            user.tap()
+            LoginStart.previousUser(name: user.username).tap()
         }
     }
 }

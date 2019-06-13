@@ -14,8 +14,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import SwiftUITest
 import XCTest
+import TestsFoundation
 
 enum CourseDetails {
     static var grades: Element {
@@ -43,16 +43,9 @@ class AssignmentsTests: CanvasUITests {
     override var user: User? { return .student1 }
 
     func testViewAssignment() {
-        let card = Dashboard.courseCard(id: "263")
-        card.waitToExist(Timeout())
-        card.tap()
-        CourseDetails.grades.waitToExist(Timeout())
+        Dashboard.courseCard(id: "263").tap()
         CourseDetails.grades.tap()
-
-        let row = GradesList.assignment(id: "1831")
-        row.waitToExist(Timeout())
-        row.tap()
-
-        AssignmentDetails.description("This is assignment one.").waitToExist(Timeout())
+        GradesList.assignment(id: "1831").tap()
+        AssignmentDetails.description("This is assignment one.").waitToExist()
     }
 }
