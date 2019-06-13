@@ -36,7 +36,7 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assignment Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpV-J8-jIO" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="204.5" height="24"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.name">
+                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.name">
                                                                     <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                                                 </accessibility>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -49,7 +49,7 @@
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ei9-yY-MdM" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="55.5" height="19.5"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.points"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.points"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -67,7 +67,7 @@
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Submitted" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="co0-jJ-6sI" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                                                 <rect key="frame" x="91.5" y="28" width="113" height="19.5"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.status"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.status"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -156,7 +156,7 @@
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Successfully submitted!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x12-ry-KqJ" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                                                                 <rect key="frame" x="61" y="24" width="221" height="24"/>
-                                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.submittedText"/>
+                                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.submittedText"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -200,7 +200,7 @@
                                                                     </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.gradeCell"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.gradeCell"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="E1l-zH-QmF" secondAttribute="trailing" id="D2U-7n-uJQ"/>
                                                                     <constraint firstItem="POu-Bn-aGg" firstAttribute="leading" secondItem="laV-99-9IB" secondAttribute="leading" id="H1N-ai-vls"/>
@@ -234,7 +234,7 @@
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bN3-2w-CuG" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
-                                                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.viewSubmissionButton"/>
+                                                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.viewSubmissionButton"/>
                                                                         <state key="normal" title="Submission &amp; Rubric"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="linkColor"/>
@@ -497,7 +497,7 @@
                             </scrollView>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oo1-Sb-iO9" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="1016" width="375" height="51"/>
-                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetailsPage.submitAssignmentButton"/>
+                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.submitAssignmentButton"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="PCA-RH-zpk"/>
                                 </constraints>
