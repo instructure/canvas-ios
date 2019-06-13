@@ -140,6 +140,23 @@ class LoginTests: CanvasUITests {
         XCTAssert(LoginStart.previousUser(studentNumber: "Two").exists)
     }
 
+    func testSessionMaintainedAfterTermination() {
+        loginUser(username: "student1", password: "password")
+
+        // Dashboard
+        XCTAssert(Dashboard.courses.exists)
+        XCTAssert(Dashboard.courseCard(id: "247").exists)
+        XCTAssert(Dashboard.dashboardTab.exists)
+
+        XCUIApplication().terminate()
+        XCUIApplication().launch()
+
+        // Dashboard
+        XCTAssert(Dashboard.courses.exists)
+        XCTAssert(Dashboard.courseCard(id: "247").exists)
+        XCTAssert(Dashboard.dashboardTab.exists)
+    }
+
     func loginUser(username: String, password: String) {
         // Find my school
         XCTAssert(LoginStart.findMySchool.exists)
