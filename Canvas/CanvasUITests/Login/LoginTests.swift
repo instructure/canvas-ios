@@ -83,7 +83,7 @@ class LoginTests: CanvasUITests {
         // Find my school
         LoginStart.findMySchool.tap()
         LoginFindSchool.searchField.typeText("mtech")
-        XCTAssert(LoginFindSchool.resultItem(for: "MTECH").exists)
+        LoginFindSchool.resultItem(for: "MTECH").waitToExist()
     }
 
     func testCanvasLoginToDashboard() {
