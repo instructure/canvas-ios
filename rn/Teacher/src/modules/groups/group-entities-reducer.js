@@ -56,6 +56,7 @@ const groupsEntityReducer = handleAsync({
       .reduce((incoming, group) => ({
         ...incoming,
         [group.id]: {
+          ...state[group.id],
           // groups from ../api/v1/group_categories/:group_category_id
           // only have name and ID. don't overwrite data from user's
           // enrolled groups by simply replacing state[group.id] = group
@@ -170,7 +171,10 @@ const groupsData: Reducer<GroupsState, any> = handleActions({
         ...state,
         [contextID]: {
           ...state[contextID],
-          permissions: result.data,
+          permissions: {
+            ...state[contextID].permissions,
+            ...result.data,
+          },
         },
       }
     },
