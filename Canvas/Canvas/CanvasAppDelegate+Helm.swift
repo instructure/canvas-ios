@@ -37,7 +37,11 @@ extension AppDelegate: RCTBridgeDelegate {
 
         HelmManager.shared.onReactReload = {
             guard self.window?.rootViewController is CanvasTabBarController else { return }
-            self.changeUser()
+            guard let session = Keychain.mostRecentSession else {
+                self.changeUser()
+                return	
+            }
+            self.setup(session: session, wasReload: true)
         }
 
         // Files

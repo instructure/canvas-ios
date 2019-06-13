@@ -18,7 +18,7 @@ import Foundation
 import Core
 
 extension NativeLoginManager {
-    public static func login(as entry: KeychainEntry, brand: Core.Brand = .shared) {
+    public static func login(as entry: KeychainEntry, brand: Core.Brand = .shared, wasReload: Bool = false) {
         var body: [String: Any] = [
             "appId": Bundle.main.isTeacherApp ? "teacher" : "student",
             "authToken": entry.accessToken,
@@ -49,6 +49,7 @@ extension NativeLoginManager {
                 "name": entry.userName,
                 "primary_email": entry.userEmail,
             ],
+            "wasReload": wasReload
         ]
         if let actAsUserID = entry.actAsUserID {
             body["actAsUserID"] = actAsUserID
