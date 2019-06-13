@@ -278,8 +278,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         case .after:
             lockedSection?.isHidden = false
             submitAssignmentButton.isHidden = true
-        case .gradedDiscussion:
-            break
         }
 
         lockedSection?.subHeader.text = assignment.lockExplanation
