@@ -195,7 +195,7 @@ class SubmissionCommentsTests: StudentUITestCase {
 
         SubmissionComments.addMediaButton.tap()
 
-        allowAccessToMicrophone(waitFor: "AudioRecorder.recordButton") {
+        allowAccessToMicrophone {
             app.find(label: "Record Audio").tap()
         }
         AudioRecorder.recordButton.tap()
