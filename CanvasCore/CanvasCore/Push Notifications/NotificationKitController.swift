@@ -253,6 +253,7 @@ open class NotificationKitController {
 
     // MARK: Pre-authorization for Push Notifications
     public static func registerForPushNotifications() {
+        if CommandLine.arguments.contains("--ui-test")  { return }
         if NSClassFromString("EarlGreyImpl") != nil { return }
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { granted, _ in
             if granted {
