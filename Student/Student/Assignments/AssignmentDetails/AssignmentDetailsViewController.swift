@@ -63,6 +63,10 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var lockedIconImageView: UIImageView!
     @IBOutlet weak var lockedIconHeight: NSLayoutConstraint!
 
+    //  Note to developer adding new views:
+    //  If any new views are added, make sure they are properly hidden/shown
+    //  when assignment is locked in the various lockStatus states
+
     let scrollViewInsetPadding: CGFloat = 24.0
 
     var refreshControl: UIRefreshControl?

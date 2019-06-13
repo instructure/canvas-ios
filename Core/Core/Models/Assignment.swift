@@ -201,7 +201,6 @@ extension Assignment {
         } else {
             return .unlocked
         }
-        //  FIXME: - handle quizes, and gradded discussions
     }
 }
 
@@ -223,5 +222,5 @@ extension Assignment: DueViewable, GradeViewable, SubmissionViewable {
 }
 
 public enum LockStatus: String {
-    case unlocked, before, after, gradedDiscussion
+    case unlocked, before, after
 }
