@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
 
-    func setup(session: KeychainEntry) {
+    func setup(session: KeychainEntry, wasReload: Bool = false) {
         environment.userDidLogin(session: session)
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             CanvasKeymaster.the().setup(with: legacyClient)
             GetBrandVariables().fetch(environment: self.environment) { response, _, _ in
                 Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
-                NativeLoginManager.login(as: session)
+                NativeLoginManager.login(as: session, wasReload: wasReload)
             }
         }, error: { _ in DispatchQueue.main.async {
             self.userDidLogout(keychainEntry: session)
@@ -104,7 +104,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         HelmManager.shared.onReactReload = {
             guard self.window?.rootViewController is RootTabBarController else { return }
-            self.changeUser()
+            guard let session = Keychain.mostRecentSession else {
+                self.changeUser()
+                return
+            }
+            self.setup(session: session, wasReload: ProcessInfo.processInfo.arguments.contains("-Reload"))
         }
     }
 

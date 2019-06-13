@@ -55,7 +55,6 @@ import { extractGradeInfo } from '@utils/course-grades'
 import { extractDateFromString } from '@utils/dateUtils'
 import { featureFlagEnabled } from '@common/feature-flags'
 import { logEvent } from '@common/CanvasAnalytics'
-import { getLastRoute } from '@modules/developer-menu/DeveloperMenu'
 
 type ColorfulCourse = { color: string } & Course
 type Props = {
@@ -114,8 +113,6 @@ type SectionListSection = {
 const padding = 8
 const MIN_CARD_SIZE = 150
 
-const { __DEV__ } = global
-
 export class Dashboard extends React.Component<Props, State> {
   noCourses: ?View
 
@@ -158,11 +155,6 @@ export class Dashboard extends React.Component<Props, State> {
     } else if (action === 'reject' && this.props.rejectEnrollment) {
       this.props.rejectEnrollment(courseId, enrollmentId)
     }
-  }
-
-  goToLastScreen = async () => {
-    let lastRoute = await getLastRoute()
-    this.props.navigator.show(lastRoute.url, lastRoute.options, lastRoute.props)
   }
 
   renderHeader = ({ section }: { section: SectionListSection }) => {
@@ -435,13 +427,6 @@ export class Dashboard extends React.Component<Props, State> {
   }
 
   screenProps = () => {
-    let devOnlyButtons = __DEV__
-      ? [{
-        title: 'Last Screen',
-        action: this.goToLastScreen,
-      }]
-      : []
-
     return !this.props.isFullDashboard
       ? { title: i18n('All Courses') }
       : {
@@ -452,8 +437,7 @@ export class Dashboard extends React.Component<Props, State> {
           accessibilityLabel: i18n('Edit Dashboard'),
           action: this.showFavoritesList,
           disabled: !this.props.totalCourseCount || Boolean(this.props.pending),
-        },
-        ...devOnlyButtons],
+        }],
         leftBarButtons: [
           {
             image: Images.hamburger,

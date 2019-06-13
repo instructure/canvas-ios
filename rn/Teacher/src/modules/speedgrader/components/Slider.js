@@ -243,13 +243,12 @@ export default class Slider extends Component<Props, State> {
     if (this.props.excused) {
       return i18n('Excused')
     } else if (this.props.score !== null) {
-      return i18n(`{ score, number } out of { pointsPossible, number } {
+      return i18n(`{ score, number } out of {
         points, plural,
-             =1 {point}
-          other {points}
+            one {# point}
+          other {# points}
       } possible`, {
         score: this.props.score,
-        pointsPossible: this.props.pointsPossible,
         points: this.props.pointsPossible,
       })
     } else {
@@ -258,6 +257,7 @@ export default class Slider extends Component<Props, State> {
   }
 
   render () {
+    console.log(this.sliderAccessibilityLabel())
     let slideInterpolation = this.slide.interpolate({
       inputRange: [0, 0, this.width, this.width],
       outputRange: [0, 0, this.width, this.width],

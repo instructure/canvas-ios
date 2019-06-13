@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         return true
     }
 
-    func setup(session: KeychainEntry) {
+    func setup(session: KeychainEntry, wasReload: Bool = false) {
         environment.userDidLogin(session: session)
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
@@ -95,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             CKCanvasAPI.updateCurrentAPI()
             GetBrandVariables().fetch(environment: self.environment) { response, _, _ in
                 Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
-                NativeLoginManager.login(as: session)
+                NativeLoginManager.login(as: session, wasReload: wasReload)
             }
         }, error: { _ in DispatchQueue.main.async {
             self.userDidLogout(keychainEntry: session)

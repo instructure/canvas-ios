@@ -31,10 +31,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
         "testID": "dashboard.edit-btn",
         "title": "Edit",
       },
-      Object {
-        "action": [Function],
-        "title": "Last Screen",
-      },
     ]
   }
   statusBarStyle="light"
@@ -1594,10 +1590,6 @@ exports[`Dashboard render 1`] = `
         "testID": "dashboard.edit-btn",
         "title": "Edit",
       },
-      Object {
-        "action": [Function],
-        "title": "Last Screen",
-      },
     ]
   }
   statusBarStyle="light"
@@ -2314,10 +2306,6 @@ exports[`Dashboard render while pending 1`] = `
         "disabled": true,
         "testID": "dashboard.edit-btn",
         "title": "Edit",
-      },
-      Object {
-        "action": [Function],
-        "title": "Last Screen",
       },
     ]
   }
@@ -3036,10 +3024,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
         "testID": "dashboard.edit-btn",
         "title": "Edit",
       },
-      Object {
-        "action": [Function],
-        "title": "Last Screen",
-      },
     ]
   }
   statusBarStyle="light"
@@ -3313,10 +3297,6 @@ exports[`Dashboard render without favorite courses 1`] = `
         "testID": "dashboard.edit-btn",
         "title": "Edit",
       },
-      Object {
-        "action": [Function],
-        "title": "Last Screen",
-      },
     ]
   }
   statusBarStyle="light"
@@ -3589,10 +3569,6 @@ exports[`Dashboard renders course invites 1`] = `
         "disabled": false,
         "testID": "dashboard.edit-btn",
         "title": "Edit",
-      },
-      Object {
-        "action": [Function],
-        "title": "Last Screen",
       },
     ]
   }
