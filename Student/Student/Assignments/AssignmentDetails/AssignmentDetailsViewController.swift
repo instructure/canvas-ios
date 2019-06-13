@@ -226,7 +226,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submissionButtonView?.isHidden = !assignment.isSubmittable
         submissionButtonDivider?.isHidden = !assignment.isSubmittable
 
-        showLocked(assignment: assignment, quiz: quiz)
+        showLocked(assignment: assignment)
         updateQuizSettings(quiz)
 
         scrollView?.isHidden = false
@@ -259,9 +259,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     // MARK: - Show / Hide Sections
 
-    func showLocked(assignment: Assignment, quiz: Quiz?) {
+    func showLocked(assignment: Assignment) {
         let lockStatus = assignment.lockStatus
-        //  FIXME: - remove quiz as parameter
 
         switch lockStatus {
         case .unlocked:
@@ -286,7 +285,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         lockedSection?.subHeader.text = assignment.lockExplanation
 
         let iconFrame = lockedIconContainerView.superview?.convert(lockedIconContainerView.frame, to: lockedIconContainerView.superview) ?? CGRect.zero
-        let buttonFrame = submitAssignmentButton.frame //submitAssignmentButton.convert(submitAssignmentButton.frame, to:
+        let buttonFrame = submitAssignmentButton.frame
         lockedIconHeight.constant = floor( buttonFrame.origin.y - iconFrame.origin.y)
     }
 

@@ -297,7 +297,4 @@ class AssignmentTests: CoreTestCase {
         let assignment = Assignment.make(from: .make(lock_at: Date().addYears(-1), locked_for_user: true))
         XCTAssertEqual(assignment.lockStatus, .after)
     }
-
-    func testLockStatusGradedDiscussion() { XCTFail() }
-    func testLockStatusQuiz() { XCTFail() }
 }
