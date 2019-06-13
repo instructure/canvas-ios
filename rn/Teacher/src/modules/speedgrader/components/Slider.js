@@ -257,7 +257,6 @@ export default class Slider extends Component<Props, State> {
   }
 
   render () {
-    console.log(this.sliderAccessibilityLabel())
     let slideInterpolation = this.slide.interpolate({
       inputRange: [0, 0, this.width, this.width],
       outputRange: [0, 0, this.width, this.width],
