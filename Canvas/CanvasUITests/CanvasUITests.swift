@@ -20,6 +20,8 @@ import TestsFoundation
 class CanvasUITests: XCTestCase {
     override func setUp() {
         super.setUp()
+        let app = XCUIApplication()
+        continueAfterFailure = false
         app.launchArguments.append("--ui-test")
         app.launch()
     }
