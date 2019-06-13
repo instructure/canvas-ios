@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2019-present Instructure, Inc.
+// Copyright (C) 2018-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,10 +15,21 @@
 //
 
 import Foundation
-import SwiftUITest
+import TestsFoundation
 
-enum AudioRecorder: String, ElementWrapper {
-    case cancelButton, clearButton, recordButton, sendButton, stopButton, timeLabel
-    // embedded AudioPlayer
-    case currentTimeLabel, loadingView, playPauseButton, remainingTimeLabel, timeSlider
+enum AssignmentDetails: String, ElementWrapper {
+    case allowedExtensions
+    case due
+    case gradeCell
+    case gradeCircle
+    case gradeDisplayGrade
+    case gradeLatePenalty
+    case name
+    case points
+    case status
+    case submissionTypes
+    case submittedText
+    case submitAssignmentButton
+    case viewSubmissionButton
+    case fileSubmissionButton
 }

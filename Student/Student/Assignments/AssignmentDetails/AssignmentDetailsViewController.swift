@@ -86,6 +86,11 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         scrollView?.addSubview(refreshControl)
         self.refreshControl = refreshControl
 
+        // Accessibility
+        dueSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.due"
+        fileTypesSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.allowedExtensions"
+        submissionTypesSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.submissionTypes"
+
         // Localization
         dueSection?.header.text = NSLocalizedString("Due", bundle: .student, comment: "")
         submissionTypesSection?.header.text = NSLocalizedString("Submission Types", bundle: .student, comment: "")

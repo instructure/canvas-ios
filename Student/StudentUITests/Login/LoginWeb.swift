@@ -15,7 +15,7 @@
 //
 
 import Foundation
-import SwiftUITest
+import TestsFoundation
 
 enum LoginWeb: String, ElementWrapper {
     case webView

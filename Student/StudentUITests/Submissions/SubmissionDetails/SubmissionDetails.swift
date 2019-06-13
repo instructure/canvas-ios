@@ -15,14 +15,13 @@
 //
 
 import Foundation
-import SwiftUITest
+import TestsFoundation
 
 enum SubmissionDetails: String, CaseIterable, ElementWrapper {
     case attemptPicker
     case attemptPickerToggle
     case discussionWebView
     case drawerGripper
-    case drawerSegmentedControl
     case emptyAssignmentDueBy
     case emptySubmitButton
     case emptyView
@@ -34,15 +33,12 @@ enum SubmissionDetails: String, CaseIterable, ElementWrapper {
     case urlSubmissionBlurb
 
     static var drawerCommentsButton: Element {
-        let parentID = SubmissionDetails.drawerSegmentedControl.id
-        return app.find(parentID: parentID, type: "UISegment", index: 0)
+        return app.find(label: "Comments", type: .button)
     }
     static var drawerFilesButton: Element {
-        let parentID = SubmissionDetails.drawerSegmentedControl.id
-        return app.find(parentID: parentID, type: "UISegment", index: 1)
+        return app.find(labelContaining: "Files", type: .button)
     }
     static var drawerRubricButton: Element {
-        let parentID = SubmissionDetails.drawerSegmentedControl.id
-        return app.find(parentID: parentID, type: "UISegment", index: 2)
+        return app.find(label: "Rubric", type: .button)
     }
 }

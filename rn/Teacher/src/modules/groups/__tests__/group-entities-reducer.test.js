@@ -55,6 +55,33 @@ test('captures entities', () => {
   })
 })
 
+test('doesnt overwrite other data for the group', () => {
+  let group = template.group({ id: '1' })
+  let action = {
+    type: refreshGroupsForCourse.toString(),
+    payload: {
+      result: { data: [group] },
+    },
+  }
+
+  let state = {
+    '1': {
+      permissions: {
+        post_to_forum: true,
+      },
+    },
+  }
+
+  expect(groups(state, action)).toEqual({
+    '1': {
+      group,
+      permissions: {
+        post_to_forum: true,
+      },
+    },
+  })
+})
+
 test('captures entities with discussion', () => {
   let group = template.group({ id: '1' })
 
@@ -344,6 +371,35 @@ test('updates the group permissions when the context is a group', () => {
   expect(newState).toMatchObject({
     '1': {
       permissions: { post_to_forum: false },
+    },
+  })
+})
+
+test('doesnt overwrite existing permissions when they are not present in the payload', () => {
+  let action = {
+    type: updateContextPermissions.toString(),
+    payload: {
+      contextID: '1',
+      contextName: 'groups',
+      result: {
+        data: { post_to_forum: false },
+      },
+    },
+  }
+
+  let state = {
+    '1': {
+      permissions: {
+        create_discussion: true,
+      },
+    },
+  }
+  expect(groups(state, action)).toMatchObject({
+    '1': {
+      permissions: {
+        post_to_forum: false,
+        create_discussion: true,
+      },
     },
   })
 })

@@ -15,11 +15,7 @@
 //
 
 import XCTest
-import SwiftUITest
-
-enum LoginFindSchool: String, CaseIterable, ElementWrapper {
-  case searchField
-}
+import TestsFoundation
 
 enum LoginStart {
     static var findMySchool: Element {
@@ -35,17 +31,31 @@ enum LoginStart {
     }
 }
 
+enum LoginFindSchool: String, ElementWrapper {
+    case searchField
+
+    static func resultItem(for name: String) -> Element {
+        return app.find(label: name)
+    }
+}
+
 enum CanvasLogin {
     static var emailTextField: Element {
-        return XCUIApplication().webViews.textFields["Email"].toElement(testCase)
+        return XCUIElementWrapper(app.webViews.textFields["Email"])
     }
 
     static var passwordTextField: Element {
-        return XCUIApplication().webViews.secureTextFields["Password"].toElement(testCase)
+        return XCUIElementWrapper(app.webViews.secureTextFields["Password"])
     }
 
     static var logInButton: Element {
-        return XCUIApplication().webViews.buttons["Log In"].toElement(testCase)
+        return XCUIElementWrapper(app.webViews.buttons["Log In"])
+    }
+}
+
+enum RyanaLogin {
+    static var ldapButton: Element {
+        return XCUIElementWrapper(app.webViews.staticTexts["LDAP"])
     }
 }
 
@@ -72,12 +82,45 @@ enum Dashboard {
 }
 
 class LoginTests: CanvasUITests {
-    func testLoginToDashboard() {
+
+    func testFindSchool() {
+        // Find my school
+        LoginStart.findMySchool.tap()
+        LoginFindSchool.searchField.typeText("mtech")
+        XCTAssert(LoginFindSchool.resultItem(for: "MTECH").exists)
+    }
+
+    func testCanvasLoginToDashboard() {
        loginUser(username: "student1", password: "password")
 
         // Dashboard
-        XCTAssert(Dashboard.courses.exists)
+        Dashboard.courses.waitToExist()
         XCTAssert(Dashboard.courseCard(id: "247").exists)
+        XCTAssert(Dashboard.dashboardTab.exists)
+    }
+
+    func testLDAPLoginToDashboard() {
+        // Find my school
+        XCTAssert(LoginStart.findMySchool.exists)
+        LoginStart.findMySchool.tap()
+        LoginFindSchool.searchField.typeText("ryana\r")
+
+        // Ryana Web View
+        RyanaLogin.ldapButton.waitToExist()
+        RyanaLogin.ldapButton.tap()
+
+        // Email
+        CanvasLogin.emailTextField.waitToExist()
+        CanvasLogin.emailTextField.tap()
+        CanvasLogin.emailTextField.typeText("ldapmobiletest")
+
+        // Password
+        CanvasLogin.passwordTextField.typeText("mobiletesting123")
+
+        // Submit
+        CanvasLogin.logInButton.tap()
+
+        Dashboard.courses.waitToExist()
         XCTAssert(Dashboard.dashboardTab.exists)
     }
 
@@ -86,33 +129,50 @@ class LoginTests: CanvasUITests {
 
         // Change User
         Dashboard.dashboardList.tap()
+        Dashboard.changeUser.waitToExist()
         Dashboard.changeUser.tap()
 
         loginUser(username: "student2", password: "password")
 
         // Change User
         Dashboard.dashboardList.tap()
+        Dashboard.changeUser.waitToExist()
         Dashboard.changeUser.tap()
 
         // Previous Users
+        LoginStart.findMySchool.waitToExist()
         XCTAssert(LoginStart.previousUser(studentNumber: "One").exists)
         XCTAssert(LoginStart.previousUser(studentNumber: "Two").exists)
     }
 
+    func testSessionMaintainedAfterTermination() {
+        loginUser(username: "student1", password: "password")
+
+        // Dashboard
+        Dashboard.courses.waitToExist()
+        XCTAssert(Dashboard.courseCard(id: "247").exists)
+        XCTAssert(Dashboard.dashboardTab.exists)
+
+        XCUIApplication().terminate()
+        XCUIApplication().launch()
+
+        // Dashboard
+        Dashboard.courses.waitToExist()
+        XCTAssert(Dashboard.courseCard(id: "247").exists)
+        XCTAssert(Dashboard.dashboardTab.exists)
+    }
+
     func loginUser(username: String, password: String) {
         // Find my school
-        XCTAssert(LoginStart.findMySchool.exists)
         LoginStart.findMySchool.tap()
         LoginFindSchool.searchField.typeText("iosauto\r")
 
         // Email
-        CanvasLogin.emailTextField.waitToExist(Timeout(value: 10))
+        CanvasLogin.emailTextField.waitToExist()
         CanvasLogin.emailTextField.tap()
         CanvasLogin.emailTextField.typeText(username)
 
         // Password
-        CanvasLogin.passwordTextField.waitToExist(Timeout(value: 10))
-        CanvasLogin.passwordTextField.tap()
         CanvasLogin.passwordTextField.typeText(password)
 
         // Submit

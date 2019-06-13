@@ -14,6 +14,12 @@ exports[`Slider renders 1`] = `
   }
 >
   <TouchableHighlight
+    accessibilityLabel="Lowest possible score, 0"
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
     activeOpacity={0.85}
     onPress={[Function]}
     testID="slider.zero"
@@ -60,7 +66,7 @@ exports[`Slider renders 1`] = `
       testID="slider.line"
     />
     <AnimatedComponent
-      accessibilityLabel="0"
+      accessibilityLabel="10 out of 100 points possible"
       accessible={true}
       hitSlop={
         Object {
@@ -116,6 +122,12 @@ exports[`Slider renders 1`] = `
     />
   </View>
   <TouchableHighlight
+    accessibilityLabel="Highest possible score, 100"
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
     activeOpacity={0.85}
     onPress={[Function]}
     testID="slider.pointsPossible"

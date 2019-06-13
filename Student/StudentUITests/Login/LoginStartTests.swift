@@ -17,9 +17,8 @@
 import Foundation
 @testable import Core
 import TestsFoundation
-import SwiftUITest
 
-class LoginStartTests: StudentTest {
+class LoginStartTests: StudentUITestCase {
     func testHiddenElements() {
         show(Route.login.url.path)
         XCTAssertFalse(LoginStart.helpButton.isVisible)
@@ -32,7 +31,7 @@ class LoginStartTests: StudentTest {
         XCTAssertTrue(LoginStart.findSchoolButton.isEnabled)
         LoginStart.findSchoolButton.tap()
 
-        XCTAssert(LoginFindSchool.searchField.waitToExist(Timeout()))
+        LoginFindSchool.searchField.waitToExist()
     }
 
     func testCanvasNetwork() {
@@ -40,6 +39,6 @@ class LoginStartTests: StudentTest {
         XCTAssertTrue(LoginStart.canvasNetworkButton.isEnabled)
         LoginStart.canvasNetworkButton.tap()
 
-        XCTAssert(LoginWeb.webView.waitToExist(Timeout()))
+        LoginWeb.webView.waitToExist()
     }
 }
