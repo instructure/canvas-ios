@@ -84,7 +84,7 @@ class StudentUITestCase: XCTestCase {
             // Cause the alert handler to be invoked if the alert is currently shown.
             XCUIApplication().swipeUp()
         }
-        _ = app.buttons[id].waitForExistence(timeout: 1)
+        _ = app.buttons[id].waitForExistence(timeout: 5)
         removeUIInterruptionMonitor(alertHandler)
     }
 
