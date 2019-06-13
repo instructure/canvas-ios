@@ -52,11 +52,16 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var quizTimeLimitValueLabel: UILabel?
     @IBOutlet weak var quizView: UIView?
 
+    @IBOutlet weak var lockedSection: AssignmentDetailsSectionContainerView?
     @IBOutlet weak var gradeSection: UIStackView?
     @IBOutlet weak var submissionButtonSection: UIStackView?
     @IBOutlet weak var fileTypesSection: AssignmentDetailsSectionContainerView?
     @IBOutlet weak var submissionTypesSection: AssignmentDetailsSectionContainerView?
     @IBOutlet weak var dueSection: AssignmentDetailsSectionContainerView?
+
+    @IBOutlet weak var lockedIconContainerView: UIView!
+    @IBOutlet weak var lockedIconImageView: UIImageView!
+    @IBOutlet weak var lockedIconHeight: NSLayoutConstraint!
 
     let scrollViewInsetPadding: CGFloat = 24.0
 
@@ -101,6 +106,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedDetailsLabel?.text = NSLocalizedString("Your submission is now waiting to be graded", bundle: .student, comment: "")
         submissionButton?.setTitle(NSLocalizedString("Submission & Rubric", bundle: .student, comment: ""), for: .normal)
 
+        lockedIconImageView.image = UIImage(named: "PandaLocked", in: .core, compatibleWith: nil)
+
         // Routing from description
         descriptionView?.linkDelegate = self
 
@@ -131,10 +138,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?) {
         titleSubtitleView.subtitle = subtitle
         navigationController?.navigationBar.useContextColor(backgroundColor)
-    }
-
-    func hideGradeCell() {
-        gradeSection?.isHidden = true
     }
 
     func updateGradeCell(_ assignment: Assignment) {
@@ -218,11 +221,14 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
         submissionButtonView?.isHidden = !assignment.isSubmittable
         submissionButtonDivider?.isHidden = !assignment.isSubmittable
+
+        showLocked(assignment: assignment, quiz: quiz)
         updateQuizSettings(quiz)
 
         scrollView?.isHidden = false
         loadingView?.stopAnimating()
         refreshControl?.endRefreshing()
+
     }
 
     func updateQuizSettings(_ quiz: Quiz?) {
@@ -245,6 +251,48 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             scrollviewInsetConstraint.constant = 0
             submitAssignmentButton.alpha = 0
         }
+    }
+
+    // MARK: - Show / Hide Sections
+
+    func showLocked(assignment: Assignment, quiz: Quiz?) {
+        let lockStatus = assignment.lockStatus
+        //  FIXME: - remove quiz as parameter
+
+        switch lockStatus {
+        case .unlocked:
+            lockedSection?.isHidden = true
+        case .before:
+            lockedIconContainerView.isHidden = false
+            dueSection?.isHidden = true
+            lockedSection?.isHidden = false
+            fileTypesSection?.isHidden = true
+            submissionTypesSection?.isHidden = true
+            gradeSection?.isHidden = true
+            submissionButtonSection?.isHidden = true
+            showDescription(false)
+            submitAssignmentButton.isHidden = true
+        case .after:
+            lockedSection?.isHidden = false
+            submitAssignmentButton.isHidden = true
+        case .gradedDiscussion:
+            break
+        }
+
+        lockedSection?.subHeader.text = assignment.lockExplanation
+
+        let iconFrame = lockedIconContainerView.superview?.convert(lockedIconContainerView.frame, to: lockedIconContainerView.superview) ?? CGRect.zero
+        let buttonFrame = submitAssignmentButton.frame //submitAssignmentButton.convert(submitAssignmentButton.frame, to:
+        lockedIconHeight.constant = floor( buttonFrame.origin.y - iconFrame.origin.y)
+    }
+
+    func showDescription(_ show: Bool = true) {
+        descriptionView?.isHidden = !show
+        descriptionHeadingLabel?.isHidden = !show
+    }
+
+    func hideGradeCell() {
+        gradeSection?.isHidden = true
     }
 }
 

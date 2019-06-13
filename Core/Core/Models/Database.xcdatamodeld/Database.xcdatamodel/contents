@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="19A471t" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
         <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="courseID" attributeType="String" syncable="YES"/>
@@ -12,6 +12,7 @@
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lockExplanation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -381,7 +382,7 @@
         <attribute name="manualMarkAsRead" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="375"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="390"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="195"/>

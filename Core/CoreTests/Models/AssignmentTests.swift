@@ -282,4 +282,22 @@ class AssignmentTests: CoreTestCase {
 
         XCTAssertTrue(assignment.useRubricForGrading)
     }
+
+    func testLockStatusUnlocked() {
+        let assignment = Assignment.make()
+        XCTAssertEqual(assignment.lockStatus, .unlocked)
+    }
+
+    func testLockStatusBefore() {
+        let assignment = Assignment.make(from: .make(unlock_at: Date().addYears(1), locked_for_user: true))
+        XCTAssertEqual(assignment.lockStatus, .before)
+    }
+
+    func testLockStatusAfter() {
+        let assignment = Assignment.make(from: .make(lock_at: Date().addYears(-1), locked_for_user: true))
+        XCTAssertEqual(assignment.lockStatus, .after)
+    }
+
+    func testLockStatusGradedDiscussion() { XCTFail() }
+    func testLockStatusQuiz() { XCTFail() }
 }

@@ -44,7 +44,6 @@
 		3B67BCB821B5E72000055324 /* CreateSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */; };
 		3B69254021A12E020023ED75 /* Int64Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69253F21A12E020023ED75 /* Int64Extensions.swift */; };
 		3B6D23E72267B9000040D3FE /* APIRubricAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D23E62267B9000040D3FE /* APIRubricAssessment.swift */; };
-		3B84C38D218B9A84005946BA /* AssignmentDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84C38C218B9A84005946BA /* AssignmentDates.swift */; };
 		3B84C38F218B9B51005946BA /* AssignmentDatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */; };
 		3BBCF843224C193B004B519D /* HorizontalMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCF83F224C193B004B519D /* HorizontalMenuView.xib */; };
 		3BBCF844224C193B004B519D /* HorizontalMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF840224C193B004B519D /* HorizontalMenuView.swift */; };
@@ -562,7 +561,6 @@
 		3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmissionTests.swift; sourceTree = "<group>"; };
 		3B69253F21A12E020023ED75 /* Int64Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64Extensions.swift; sourceTree = "<group>"; };
 		3B6D23E62267B9000040D3FE /* APIRubricAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRubricAssessment.swift; sourceTree = "<group>"; };
-		3B84C38C218B9A84005946BA /* AssignmentDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDates.swift; sourceTree = "<group>"; };
 		3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDatesTests.swift; sourceTree = "<group>"; };
 		3BBCF83F224C193B004B519D /* HorizontalMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalMenuView.xib; sourceTree = "<group>"; };
 		3BBCF840224C193B004B519D /* HorizontalMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalMenuView.swift; sourceTree = "<group>"; };
@@ -1372,14 +1370,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3B84C38B218B9A66005946BA /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				3B84C38C218B9A84005946BA /* AssignmentDates.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		3BE2C76D219335FA004B8E5E /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1400,7 +1390,6 @@
 		7D062AF02124968200677F66 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3B84C38B218B9A66005946BA /* Extensions */,
 				7DCF1EC3216BE0C3003AF358 /* Viewable */,
 				7DF4FFDA21713636007E5F81 /* Assignment.swift */,
 				3B635B32225CDC95001F353D /* CalendarEvent.swift */,
@@ -2567,7 +2556,6 @@
 				7DD6CC6B21BD6DB1004C4BB6 /* LoadingViewController.swift in Sources */,
 				B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */,
 				9FBE5367223C1EE9001EC40C /* APIPermissionsRequestable.swift in Sources */,
-				3B84C38D218B9A84005946BA /* AssignmentDates.swift in Sources */,
 				7D4D5EB2213F2A200080AC14 /* UIImageViewExtensions.swift in Sources */,
 				7D1219242243340200D3BF5C /* KeyboardTransitioning.swift in Sources */,
 				7836B0D22199021500FA25AE /* ShareExtensionViewController.swift in Sources */,
