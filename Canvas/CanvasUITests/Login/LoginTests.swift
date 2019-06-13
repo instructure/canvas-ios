@@ -90,7 +90,7 @@ class LoginTests: CanvasUITests {
        loginUser(username: "student1", password: "password")
 
         // Dashboard
-        XCTAssert(Dashboard.courses.exists)
+        Dashboard.courses.waitToExist()
         XCTAssert(Dashboard.courseCard(id: "247").exists)
         XCTAssert(Dashboard.dashboardTab.exists)
     }
@@ -102,7 +102,6 @@ class LoginTests: CanvasUITests {
         LoginFindSchool.searchField.typeText("ryana\r")
 
         // Ryana Web View
-        RyanaLogin.ldapButton.waitToExist()
         RyanaLogin.ldapButton.tap()
 
         // Email
@@ -114,7 +113,7 @@ class LoginTests: CanvasUITests {
         // Submit
         CanvasLogin.logInButton.tap()
 
-        XCTAssert(Dashboard.courses.exists)
+        Dashboard.courses.waitToExist()
         XCTAssert(Dashboard.dashboardTab.exists)
     }
 
@@ -132,13 +131,13 @@ class LoginTests: CanvasUITests {
         Dashboard.changeUser.tap()
 
         // Previous Users
+        LoginStart.findMySchool.waitToExist()
         XCTAssert(LoginStart.previousUser(studentNumber: "One").exists)
         XCTAssert(LoginStart.previousUser(studentNumber: "Two").exists)
     }
 
     func loginUser(username: String, password: String) {
         // Find my school
-        XCTAssert(LoginStart.findMySchool.exists)
         LoginStart.findMySchool.tap()
         LoginFindSchool.searchField.typeText("iosauto\r")
 

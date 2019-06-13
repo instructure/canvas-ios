@@ -175,7 +175,7 @@ public struct XCUIElementWrapper: Element {
     @discardableResult
     public func waitToExist(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element {
         if !element.exists {
-            XCTAssertTrue(element.waitForExistence(timeout: timeout), "Element not found", file: file, line: line)
+            XCTAssertTrue(element.waitForExistence(timeout: timeout), "Element \(id) not found", file: file, line: line)
         }
         return self
     }
@@ -186,7 +186,7 @@ public struct XCUIElementWrapper: Element {
         while element.exists, Date() < deadline {
             sleep(1)
         }
-        XCTAssertFalse(element.exists, "Element still exists", file: file, line: line)
+        XCTAssertFalse(element.exists, "Element \(id) still exists", file: file, line: line)
         return self
     }
 }
