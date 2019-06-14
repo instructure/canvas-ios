@@ -156,10 +156,15 @@ class AssignmentDetailsTests: StudentUITestCase {
 
     func testNoSubmitAssignmentButtonShowsWhenUnLockAtGreaterThanNow() {
         let assignment = mockAssignment(APIAssignment.make(
-            unlock_at: Date().addDays(1)
+            unlock_at: Date().addDays(1),
+            locked_for_user: true,
+            lock_explanation: "this is locked"
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
+        AssignmentDetails.lockIcon.waitToExist(5)
+        XCTAssertTrue(AssignmentDetails.lockIcon.isVisible)
+        XCTAssertTrue(AssignmentDetails.lockSection.isVisible)
     }
 
     func testNoSubmitAssignmentButtonShowsUserNotStudentEnrollment() {

@@ -26,10 +26,10 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="1047"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QTp-Qq-8ZA">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="957.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1109.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VdI-qu-MC8">
-                                                <rect key="frame" x="16" y="16" width="343" height="941.5"/>
+                                                <rect key="frame" x="16" y="16" width="343" height="1093.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7yL-fW-mIX">
                                                         <rect key="frame" x="0.0" y="0.0" width="204.5" height="66.5"/>
@@ -110,6 +110,7 @@
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VnZ-61-rmi" customClass="AssignmentDetailsSectionContainerView" customModule="Student" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="230.5" width="343" height="0.0"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.lockSection"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="headerText" value="Locked"/>
                                                         </userDefinedRuntimeAttributes>
@@ -398,8 +399,8 @@
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vY4-Ty-iuC" secondAttribute="trailing" id="mFQ-za-wzg"/>
                                                         </constraints>
                                                     </view>
-                                                    <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TO1-FI-dAE">
-                                                        <rect key="frame" x="0.0" y="918" width="343" height="144"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TO1-FI-dAE">
+                                                        <rect key="frame" x="0.0" y="922" width="343" height="144"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Core.PandaLocked" translatesAutoresizingMaskIntoConstraints="NO" id="Yw2-71-XHM" userLabel="LockedIconView">
                                                                 <rect key="frame" x="81" y="0.0" width="181" height="144"/>
@@ -410,6 +411,7 @@
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.lockIcon"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="144" id="7DX-Qo-ME5"/>
                                                             <constraint firstItem="Yw2-71-XHM" firstAttribute="centerX" secondItem="TO1-FI-dAE" secondAttribute="centerX" id="VHg-oA-y59"/>
@@ -418,7 +420,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUD-Zm-lzB" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="922" width="85.5" height="19.5"/>
+                                                        <rect key="frame" x="0.0" y="1074" width="85.5" height="19.5"/>
                                                         <accessibility key="accessibilityConfiguration">
                                                             <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                                         </accessibility>
@@ -463,7 +465,7 @@
                                         </constraints>
                                     </view>
                                     <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3R-vd-zmQ" customClass="CoreWebView" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="957.5" width="375" height="20"/>
+                                        <rect key="frame" x="0.0" y="1109.5" width="375" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="KpP-H1-iAI"/>
                                         </constraints>
@@ -476,7 +478,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </wkWebView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gpb-je-B3z" userLabel="PaddingView">
-                                        <rect key="frame" x="0.0" y="977.5" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="1129.5" width="375" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="0LL-Ka-xXn"/>

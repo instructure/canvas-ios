@@ -246,7 +246,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
         lockedSection?.subHeader.text = assignment.lockExplanation
 
-        centerLockedIconContainerView()
         updateQuizSettings(quiz)
 
         scrollView?.isHidden = false
@@ -273,18 +272,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         } else {
             scrollviewInsetConstraint.constant = 0
             submitAssignmentButton.alpha = 0
-        }
-    }
-
-    func centerLockedIconContainerView() {
-        let minIconHeight: CGFloat = 144.0
-        let iconFrame = lockedIconContainerView.superview?.convert(lockedIconContainerView.frame, to: lockedIconContainerView.superview) ?? CGRect.zero
-        let buttonFrame = submitAssignmentButton.frame
-
-        let height = floor( buttonFrame.origin.y - iconFrame.origin.y )
-        if height > minIconHeight {
-            self.lockedIconHeight.constant = floor( buttonFrame.origin.y - iconFrame.origin.y )
-            lockedIconContainerView.alpha = 1.0
         }
     }
 
