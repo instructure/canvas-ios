@@ -398,7 +398,7 @@
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vY4-Ty-iuC" secondAttribute="trailing" id="mFQ-za-wzg"/>
                                                         </constraints>
                                                     </view>
-                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TO1-FI-dAE">
+                                                    <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TO1-FI-dAE">
                                                         <rect key="frame" x="0.0" y="918" width="343" height="144"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Core.PandaLocked" translatesAutoresizingMaskIntoConstraints="NO" id="Yw2-71-XHM" userLabel="LockedIconView">
@@ -411,9 +411,10 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="144" id="7DX-Qo-ME5"/>
                                                             <constraint firstItem="Yw2-71-XHM" firstAttribute="centerX" secondItem="TO1-FI-dAE" secondAttribute="centerX" id="VHg-oA-y59"/>
                                                             <constraint firstItem="Yw2-71-XHM" firstAttribute="centerY" secondItem="TO1-FI-dAE" secondAttribute="centerY" id="gvF-zb-J9P"/>
-                                                            <constraint firstAttribute="height" constant="144" id="inZ-8R-6xv"/>
+                                                            <constraint firstAttribute="height" priority="750" constant="144" id="inZ-8R-6xv"/>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUD-Zm-lzB" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">

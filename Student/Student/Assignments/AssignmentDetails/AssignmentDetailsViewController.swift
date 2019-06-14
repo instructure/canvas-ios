@@ -245,16 +245,13 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
 
         lockedSection?.subHeader.text = assignment.lockExplanation
-        let iconFrame = lockedIconContainerView.superview?.convert(lockedIconContainerView.frame, to: lockedIconContainerView.superview) ?? CGRect.zero
-        let buttonFrame = submitAssignmentButton.frame
-        lockedIconHeight.constant = floor( buttonFrame.origin.y - iconFrame.origin.y)
 
+        centerLockedIconContainerView()
         updateQuizSettings(quiz)
 
         scrollView?.isHidden = false
         loadingView?.stopAnimating()
         refreshControl?.endRefreshing()
-
     }
 
     func updateQuizSettings(_ quiz: Quiz?) {
@@ -276,6 +273,18 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         } else {
             scrollviewInsetConstraint.constant = 0
             submitAssignmentButton.alpha = 0
+        }
+    }
+
+    func centerLockedIconContainerView() {
+        let minIconHeight: CGFloat = 144.0
+        let iconFrame = lockedIconContainerView.superview?.convert(lockedIconContainerView.frame, to: lockedIconContainerView.superview) ?? CGRect.zero
+        let buttonFrame = submitAssignmentButton.frame
+
+        let height = floor( buttonFrame.origin.y - iconFrame.origin.y )
+        if height > minIconHeight {
+            self.lockedIconHeight.constant = floor( buttonFrame.origin.y - iconFrame.origin.y )
+            lockedIconContainerView.alpha = 1.0
         }
     }
 
