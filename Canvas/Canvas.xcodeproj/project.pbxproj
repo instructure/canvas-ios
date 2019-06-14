@@ -608,6 +608,7 @@
 		9F5D743822A99E91002FCCCE /* CanvasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5D743722A99E91002FCCCE /* CanvasUITests.swift */; };
 		9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
+		B105FDDE22B29D6600B0D4B3 /* AssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105FDDD22B29D6600B0D4B3 /* AssignmentsTests.swift */; };
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
 		B16300D622B015AE000B85AD /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16300D522B015AE000B85AD /* LoginTests.swift */; };
 		B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B177E6FF1E2EC8BA00D7477D /* Settings.storyboard */; };
@@ -1463,6 +1464,7 @@
 		A13903D63AE70A2926A48F10 /* Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A65BB020C68267C1318E51E7 /* Pods-defaults-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Canvas.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Canvas/Pods-defaults-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
 		ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+ViewModel.swift"; sourceTree = "<group>"; };
+		B105FDDD22B29D6600B0D4B3 /* AssignmentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsTests.swift; sourceTree = "<group>"; };
 		B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemDetailViewController.swift; sourceTree = "<group>"; };
 		B15738061D95AA7600ADBB85 /* ModuleItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemViewModel.swift; sourceTree = "<group>"; };
 		B16300D522B015AE000B85AD /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
@@ -2886,11 +2888,20 @@
 		9F5D743622A99E91002FCCCE /* CanvasUITests */ = {
 			isa = PBXGroup;
 			children = (
+				B105FDDC22B29D4300B0D4B3 /* Assignments */,
 				B16300D422B0155E000B85AD /* Login */,
 				9F5D743722A99E91002FCCCE /* CanvasUITests.swift */,
 				9F5D743922A99E91002FCCCE /* Info.plist */,
 			);
 			path = CanvasUITests;
+			sourceTree = "<group>";
+		};
+		B105FDDC22B29D4300B0D4B3 /* Assignments */ = {
+			isa = PBXGroup;
+			children = (
+				B105FDDD22B29D6600B0D4B3 /* AssignmentsTests.swift */,
+			);
+			path = Assignments;
 			sourceTree = "<group>";
 		};
 		B16300D422B0155E000B85AD /* Login */ = {
@@ -4002,6 +4013,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B105FDDE22B29D6600B0D4B3 /* AssignmentsTests.swift in Sources */,
 				9F5D743822A99E91002FCCCE /* CanvasUITests.swift in Sources */,
 				B16300D622B015AE000B85AD /* LoginTests.swift in Sources */,
 			);

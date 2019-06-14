@@ -6,22 +6,8 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>Student</string>
-    <key>CFBundleSpokenName</key>
-    <string>Canvas Student</string>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeIconFiles</key>
-			<array/>
-			<key>CFBundleTypeName</key>
-			<string>File</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.data</string>
-				<string>public.content</string>
-			</array>
-		</dict>
-	</array>
+	<key>CFBundleSpokenName</key>
+	<string>Canvas Student</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>

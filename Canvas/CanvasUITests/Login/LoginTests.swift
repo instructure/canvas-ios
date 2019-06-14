@@ -23,7 +23,11 @@ enum LoginStart {
     }
 
     static func previousUser(studentNumber: String) -> Element {
-        return app.find(label: "Student \(studentNumber)")
+        return previousUser(name: "Student \(studentNumber)")
+    }
+
+    static func previousUser(name: String) -> Element {
+        return app.find(label: name)
     }
 }
 
@@ -83,7 +87,7 @@ class LoginTests: CanvasUITests {
         // Find my school
         LoginStart.findMySchool.tap()
         LoginFindSchool.searchField.typeText("mtech")
-        XCTAssert(LoginFindSchool.resultItem(for: "MTECH").exists)
+        LoginFindSchool.resultItem(for: "MTECH").waitToExist()
     }
 
     func testCanvasLoginToDashboard() {

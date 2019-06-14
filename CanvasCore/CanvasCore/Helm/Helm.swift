@@ -23,7 +23,6 @@ public typealias ModuleName = String
 
 let HelmCanBecomeMaster = "canBecomeMaster"
 let HelmPrefersModalPresentation = "prefersModalPresentation"
-let DrawerTransition = DrawerTransitioningDelegate()
 typealias HelmPreActionHandler = (HelmViewController) -> Void
 
 public struct HelmViewControllerFactory {
@@ -315,7 +314,7 @@ open class HelmManager: NSObject {
                 case "overCurrentContext": viewController.modalPresentationStyle = .overCurrentContext
                 case "drawer":
                     viewController.modalPresentationStyle = .custom
-                    viewController.transitioningDelegate = DrawerTransition
+                    viewController.transitioningDelegate = DrawerTransitioningDelegate.shared
                 default: viewController.modalPresentationStyle = .fullScreen
                 }
             }

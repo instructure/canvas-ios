@@ -17,12 +17,58 @@
 import XCTest
 import TestsFoundation
 
+enum User: String {
+    case student1
+
+    var username: String {
+        return rawValue
+    }
+
+    var password: String {
+        return "password"
+    }
+
+    var host: String {
+        return "iosauto.instructure.com"
+    }
+
+    var profile: String {
+        return """
+            <dict>
+                <key>enableLogin</key><true/>
+                <key>users</key>
+                <array>
+                    <dict>
+                        <key>host</key><string>\(host)</string>
+                        <key>username</key><string>\(username)</string>
+                        <key>password</key><string>\(password)</string>
+                    </dict>
+                </array>
+            </dict>
+        """
+        .replacingOccurrences(of: "[\\n,\\s]", with: "", options: .regularExpression, range: nil)
+    }
+}
+
 class CanvasUITests: XCTestCase {
+    var user: User? { return nil }
+
     override func setUp() {
         super.setUp()
         let app = XCUIApplication()
         continueAfterFailure = false
         app.launchArguments.append("--ui-test")
+        if let user = user {
+            app.launchArguments.append(contentsOf: [
+                "-com.apple.configuration.managed",
+                user.profile
+            ])
+        }
         app.launch()
+        // Wait for RN to finish loading
+        app.find(labelContaining: "Loading").waitToVanish(120)
+        if let user = user {
+            LoginStart.previousUser(name: user.username).tap()
+        }
     }
 }
