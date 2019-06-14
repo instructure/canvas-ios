@@ -103,6 +103,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         presenter.arcID = .none
         a.submissionTypes = [ .online_quiz ]
         let quiz = Quiz.make()
+        a.quizID = quiz.id
         quiz.submission = QuizSubmission.make(from: .make(started_at: Date()))
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz), "Resume Quiz")
         quiz.submission = QuizSubmission.make(from: .make(attempts_left: 0))
