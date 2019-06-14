@@ -755,6 +755,9 @@
   "highest_28ad71e6": {
     "message": "Highest"
   },
+  "highest_possible_score_pointspossible_number_c03ce29a": {
+    "message": "Highest possible score, { pointsPossible, number }"
+  },
   "i_have_permission_to_use_file_d19a1a29": {
     "message": "I have permission to use file"
   },
@@ -856,6 +859,9 @@
   },
   "long_description_7d89285c": {
     "message": "Long Description"
+  },
+  "lowest_possible_score_0_c2338db6": {
+    "message": "Lowest possible score, 0"
   },
   "magenta_4a65993c": {
     "message": "Magenta"
@@ -1300,6 +1306,9 @@
   },
   "schedule_student_availability_332154a": {
     "message": "Schedule student availability"
+  },
+  "score_number_out_of_points_plural_one_point_other__9993235e": {
+    "message": "{ score, number } out of { points, plural,\n    one {# point}\n  other {# points}\n} possible"
   },
   "score_number_out_of_pointspossible_number_points_p_d3e3e4df": {
     "message": "{ score, number } out of { pointsPossible, number } { points, plural,\n     =1 {point}\n  other {points}\n} possible. { grade }"
