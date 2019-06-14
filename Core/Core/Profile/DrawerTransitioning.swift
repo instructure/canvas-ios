@@ -149,6 +149,8 @@ public class DrawerPresentationController: UIPresentationController {
 }
 
 public class DrawerTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
+    public static let shared = DrawerTransitioningDelegate()
+
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return DrawerOpenTransitioning()
     }

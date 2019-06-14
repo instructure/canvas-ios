@@ -16,8 +16,6 @@
 
 import UIKit
 
-private let drawerTransitioningDelegate = DrawerTransitioningDelegate()
-
 public protocol ProfilePresenterProtocol: class {
     var view: ProfileViewControllerProtocol? { get set }
     var cells: [ProfileViewCell] { get }
@@ -56,7 +54,7 @@ public class ProfileViewController: UIViewController, ProfileViewControllerProto
     public static func create(presenter: ProfilePresenterProtocol) -> ProfileViewController {
         let controller = self.loadFromXib()
         controller.modalPresentationStyle = .custom
-        controller.transitioningDelegate = drawerTransitioningDelegate
+        controller.transitioningDelegate = DrawerTransitioningDelegate.shared
         controller.presenter = presenter
         presenter.view = controller
         return controller
