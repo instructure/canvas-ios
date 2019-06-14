@@ -65,6 +65,8 @@ class CanvasUITests: XCTestCase {
             ])
         }
         app.launch()
+        // Wait for RN to finish loading
+        app.find(labelContaining: "Loading").waitToVanish(120)
         if let user = user {
             LoginStart.previousUser(name: user.username).tap()
         }
