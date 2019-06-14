@@ -85,6 +85,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         scrollView?.addSubview(refreshControl)
         self.refreshControl = refreshControl
+        showSubmitAssignmentButton(title: nil)
 
         // Accessibility
         dueSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.due"
@@ -243,9 +244,9 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     }
 
     func showSubmitAssignmentButton(title: String?) {
-        if let title = title {
+        submitAssignmentButton.setTitle(title, for: .normal)
+        if title != nil {
             scrollviewInsetConstraint.constant = submitAssignmentButton.bounds.size.height + scrollViewInsetPadding
-            submitAssignmentButton.setTitle(title, for: .normal)
             submitAssignmentButton.alpha = 1.0
         } else {
             scrollviewInsetConstraint.constant = 0
