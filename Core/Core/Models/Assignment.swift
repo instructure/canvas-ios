@@ -35,6 +35,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var lockAt: Date?
     @NSManaged public var unlockAt: Date?
     @NSManaged public var lockedForUser: Bool
+    @NSManaged public var lockExplanation: String?
     @NSManaged public var url: URL?
     @NSManaged public var dueAtOrder: String
     @NSManaged public var discussionTopic: DiscussionTopic?
@@ -76,6 +77,7 @@ extension Assignment {
         unlockAt = item.unlock_at
         lockAt = item.lock_at
         lockedForUser = item.locked_for_user ?? false
+        lockExplanation = item.lock_explanation
         url = item.url
         useRubricForGrading = item.use_rubric_for_grading ?? false
 
@@ -177,6 +179,29 @@ extension Assignment {
             return submission.grade
         }
     }
+
+    public func isOpenForSubmissions(referenceDate: Date = Clock.now) -> Bool {
+        var open = !lockedForUser
+
+        if let lockAt = lockAt {
+            open = open && lockAt > referenceDate
+        }
+
+        if let unlockAt = unlockAt {
+            open = open && referenceDate >= unlockAt
+        }
+        return open
+    }
+
+    public var lockStatus: LockStatus {
+        if let unlockAt = unlockAt, Clock.now < unlockAt, lockedForUser {
+            return .before
+        } else if let lockAt = lockAt, Clock.now >= lockAt, lockedForUser {
+            return .after
+        } else {
+            return .unlocked
+        }
+    }
 }
 
 extension Assignment: DueViewable, GradeViewable, SubmissionViewable {
@@ -194,4 +219,8 @@ extension Assignment: DueViewable, GradeViewable, SubmissionViewable {
         }
         return details ?? fallback
     }
+}
+
+public enum LockStatus: String {
+    case unlocked, before, after
 }

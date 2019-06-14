@@ -52,10 +52,20 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var quizTimeLimitValueLabel: UILabel?
     @IBOutlet weak var quizView: UIView?
 
-    @IBOutlet weak var submissionButtonSection: AssignmentDetailsSectionContainerView!
+    @IBOutlet weak var lockedSection: AssignmentDetailsSectionContainerView?
+    @IBOutlet weak var gradeSection: UIStackView?
+    @IBOutlet weak var submissionButtonSection: UIStackView?
     @IBOutlet weak var fileTypesSection: AssignmentDetailsSectionContainerView?
     @IBOutlet weak var submissionTypesSection: AssignmentDetailsSectionContainerView?
     @IBOutlet weak var dueSection: AssignmentDetailsSectionContainerView?
+
+    @IBOutlet weak var lockedIconContainerView: UIView!
+    @IBOutlet weak var lockedIconImageView: UIImageView!
+    @IBOutlet weak var lockedIconHeight: NSLayoutConstraint!
+
+    //  Note to developer adding new views:
+    //  If any new views are added, make sure they are properly hidden/shown
+    //  when assignment is locked in the various lockStatus states
 
     let scrollViewInsetPadding: CGFloat = 24.0
 
@@ -106,6 +116,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedDetailsLabel?.text = NSLocalizedString("Your submission is now waiting to be graded", bundle: .student, comment: "")
         submissionButton?.setTitle(NSLocalizedString("Submission & Rubric", bundle: .student, comment: ""), for: .normal)
 
+        lockedIconImageView.image = UIImage(named: "PandaLocked", in: .core, compatibleWith: nil)
+
         // Routing from description
         descriptionView?.linkDelegate = self
 
@@ -138,11 +150,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         navigationController?.navigationBar.useContextColor(backgroundColor)
     }
 
-    func hideGradeCell() {
-        gradeCell?.isHidden = true
-        gradeCellDivider?.isHidden = true
-    }
-
     func updateGradeCell(_ assignment: Assignment) {
         self.gradedView?.update(assignment)
 
@@ -157,7 +164,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
 
         if let fileSubmissionState = presenter?.fileUpload.state {
-            gradeCell?.isHidden = false
+            gradeSection?.isHidden = false
             gradeCellDivider?.isHidden = false
             gradedView?.isHidden = true
             submittedView?.isHidden = false
@@ -191,8 +198,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             return
         }
 
-        gradeCell?.isHidden = false
-        gradeCellDivider?.isHidden = false
+        gradeSection?.isHidden = false
 
         guard submission.grade != nil else {
             gradeCircleBottomConstraint?.isActive = false
@@ -225,11 +231,30 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
         submissionButtonView?.isHidden = !assignment.isSubmittable
         submissionButtonDivider?.isHidden = !assignment.isSubmittable
+
+        guard let presenter = presenter else { return }
+
+        lockedIconContainerView.isHidden = presenter.lockedIconContainerViewIsHidden()
+        dueSection?.isHidden = presenter.dueSectionIsHidden()
+        lockedSection?.isHidden = presenter.lockedSectionIsHidden()
+        fileTypesSection?.isHidden = presenter.fileTypesSectionIsHidden()
+        submissionTypesSection?.isHidden = presenter.submissionTypesSectionIsHidden()
+        gradeSection?.isHidden = presenter.gradesSectionIsHidden()
+        submissionButtonSection?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
+        showDescription(!presenter.descriptionIsHidden())
+        submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
+
+        lockedSection?.subHeader.text = assignment.lockExplanation
+        let iconFrame = lockedIconContainerView.superview?.convert(lockedIconContainerView.frame, to: lockedIconContainerView.superview) ?? CGRect.zero
+        let buttonFrame = submitAssignmentButton.frame
+        lockedIconHeight.constant = floor( buttonFrame.origin.y - iconFrame.origin.y)
+
         updateQuizSettings(quiz)
 
         scrollView?.isHidden = false
         loadingView?.stopAnimating()
         refreshControl?.endRefreshing()
+
     }
 
     func updateQuizSettings(_ quiz: Quiz?) {
@@ -252,6 +277,17 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             scrollviewInsetConstraint.constant = 0
             submitAssignmentButton.alpha = 0
         }
+    }
+
+    // MARK: - Show / Hide Sections
+
+    func showDescription(_ show: Bool = true) {
+        descriptionView?.isHidden = !show
+        descriptionHeadingLabel?.isHidden = !show
+    }
+
+    func hideGradeCell() {
+        gradeSection?.isHidden = true
     }
 }
 
