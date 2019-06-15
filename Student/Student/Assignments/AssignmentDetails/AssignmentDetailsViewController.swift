@@ -245,12 +245,35 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
 
         lockedSection?.subHeader.text = assignment.lockExplanation
+        centerLockedIconContainerView()
 
         updateQuizSettings(quiz)
 
         scrollView?.isHidden = false
         loadingView?.stopAnimating()
         refreshControl?.endRefreshing()
+    }
+
+    func centerLockedIconContainerView() {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(centerLockedIconContainerDelayedStart), object: nil)
+        self.perform(#selector(centerLockedIconContainerDelayedStart), with: nil, afterDelay: 0.2)
+    }
+
+    @objc func centerLockedIconContainerDelayedStart() {
+        let minIconHeight: CGFloat = 144.0
+        let svContent = scrollView?.contentSize ?? CGSize.zero
+        if svContent != CGSize.zero {
+            let svFrame = scrollView?.frame ?? CGRect.zero
+            let originInSV = lockedIconContainerView.superview?.convert(lockedIconContainerView.frame, to: scrollView) ?? CGRect.zero
+            let height = (svFrame.size.height - originInSV.origin.y) - (submitAssignmentButton.bounds.size.height + scrollViewInsetPadding)
+            if height > minIconHeight {
+                self.lockedIconHeight.constant = height
+                UIView.animate(withDuration: 0.08) {
+                    self.lockedIconContainerView?.layoutIfNeeded()
+                    self.lockedIconContainerView.alpha = 1.0
+                }
+            }
+        }
     }
 
     func updateQuizSettings(_ quiz: Quiz?) {
