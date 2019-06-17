@@ -61,10 +61,10 @@ class UITestHelpers {
             show(params[0])
         case .mockData:
             guard let data = helper.params else { return }
-            MockURLSession.mockData(data)
+            MockDistantURLSession.mockData(data)
         case .mockDownload:
             guard let data = helper.params else { return }
-            MockURLSession.mockDownload(data)
+            MockDistantURLSession.mockDownload(data)
         }
     }
 
@@ -75,7 +75,7 @@ class UITestHelpers {
         appDelegate.window!.layer.speed = 100
         resetNavigationStack()
         resetDatabase()
-        MockURLSession.reset()
+        MockDistantURLSession.reset()
     }
 
     private func resetNavigationStack() {

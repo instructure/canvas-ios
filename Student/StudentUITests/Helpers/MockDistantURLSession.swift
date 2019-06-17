@@ -20,7 +20,7 @@ import Foundation
 @testable import Core
 
 @objc
-class MockURLSession: URLSession {
+class MockDistantURLSession: URLSession {
     // MARK: data
     struct MockData {
         let data: Data?
@@ -55,7 +55,7 @@ class MockURLSession: URLSession {
     }
     @objc dynamic override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         let task = MockDataTask()
-        task.mock = MockURLSession.dataMocks[request.url!]
+        task.mock = MockDistantURLSession.dataMocks[request.url!]
         if task.mock == nil {
             print("⚠️ mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
         }
@@ -64,7 +64,7 @@ class MockURLSession: URLSession {
     }
     @objc dynamic override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         let task = MockDataTask()
-        task.mock = MockURLSession.dataMocks[url]
+        task.mock = MockDistantURLSession.dataMocks[url]
         if task.mock == nil {
             print("⚠️ mock not found for url: \(url.absoluteString)")
         }
@@ -107,7 +107,7 @@ class MockURLSession: URLSession {
     @objc dynamic override func downloadTask(with request: URLRequest, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask {
         let task = MockDownloadTask()
         task.handler = {
-            let mock = MockURLSession.downloadMocks[request.url!]
+            let mock = MockDistantURLSession.downloadMocks[request.url!]
             completionHandler(mock?.url, mock?.response, mock?.error)
         }
         return task
@@ -127,7 +127,7 @@ class MockURLSession: URLSession {
     static var uploadMocks: [URL: MockUploadTask] = [:]
     @objc dynamic override func uploadTask(with request: URLRequest, fromFile fileURL: URL) -> URLSessionUploadTask {
         let task = MockUploadTask(request: request, fileURL: fileURL)
-        MockURLSession.uploadMocks[request.url!] = task
+        MockDistantURLSession.uploadMocks[request.url!] = task
         return task
     }
 
@@ -141,10 +141,10 @@ class MockURLSession: URLSession {
     }
 
     static let isSetup: Bool = {
-        URLSessionAPI.defaultURLSession = MockURLSession()
-        URLSessionAPI.cachingURLSession = MockURLSession()
-        URLSessionAPI.delegateURLSession = { _, _ in MockURLSession() }
-        NoFollowRedirect.session = MockURLSession()
+        URLSessionAPI.defaultURLSession = MockDistantURLSession()
+        URLSessionAPI.cachingURLSession = MockDistantURLSession()
+        URLSessionAPI.delegateURLSession = { _, _ in MockDistantURLSession() }
+        NoFollowRedirect.session = MockDistantURLSession()
         AppEnvironment.shared.api = URLSessionAPI()
         return true
     }()
