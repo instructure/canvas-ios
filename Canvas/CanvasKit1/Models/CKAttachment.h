@@ -31,31 +31,31 @@ typedef enum {
     CKAttachmentMediaTypeImage
 } CKAttachmentMediaType;
 
-extern NSString *CKAttachmentMediaTypeUnknownString;
-extern NSString *CKAttachmentMediaTypeVideoString;
-extern NSString *CKAttachmentMediaTypeAudioString;
+extern NSString * _Nonnull CKAttachmentMediaTypeUnknownString;
+extern NSString * _Nonnull CKAttachmentMediaTypeVideoString;
+extern NSString * _Nonnull CKAttachmentMediaTypeAudioString;
 
 @class CKAssignment, CKSubmissionAttempt, CKMediaServer, CKContentLock;
 
 @interface CKAttachment : CKModelObject <NSCopying>
 
 @property (nonatomic, assign) uint64_t ident;
-@property (nonatomic, strong) NSString *internalIdent;
-@property (nonatomic, strong) NSString *displayName;
-@property (nonatomic, strong) NSString *filename;
+@property (nonatomic, strong, nonnull) NSString *internalIdent;
+@property (nonatomic, strong, nonnull) NSString *displayName;
+@property (nonatomic, strong, nonnull) NSString *filename;
 @property (nonatomic, assign) uint64_t fileSize;
-@property (nonatomic, strong) NSString *contentType;
+@property (nonatomic, strong, nonnull) NSString *contentType;
 @property (assign, getter = isLocked) BOOL locked;
 @property (assign, getter = isLockedForUser) BOOL lockedForUser;
-@property (nonatomic, strong) NSURL *directDownloadURL;
-@property (nonatomic, strong) NSString *mediaId;
+@property (nonatomic, strong, nonnull) NSURL *directDownloadURL;
+@property (nonatomic, strong, nullable) NSString *mediaId;
 @property (nonatomic, assign) CKAttachmentType type;
 @property (nonatomic, assign) CKAttachmentMediaType mediaType;
 @property (nullable, nonatomic, strong) NSString *avatarToken;
 
-@property (readonly) CKContentLock *contentLock;
+@property (readonly, nullable) CKContentLock *contentLock;
 
-- (id)initWithInfo:(NSDictionary *)info;
+- (nullable id)initWithInfo:(nullable NSDictionary *)info;
 
 - (int)cacheVersion;
 
@@ -63,12 +63,12 @@ extern NSString *CKAttachmentMediaTypeAudioString;
 - (BOOL)isImage;
 - (BOOL)isStreamingItem;
 
-- (NSURL *)cacheURL;
-- (NSURL *)thumbnailCacheURL;
-- (NSString *)relativePathToResourcesDir;
+- (nonnull NSURL *)cacheURL;
+- (nonnull NSURL *)thumbnailCacheURL;
+- (nonnull NSString *)relativePathToResourcesDir;
 
-- (NSString *)mediaTypeString;
+- (nullable NSString *)mediaTypeString;
 
-- (NSDictionary *)dictionaryValue;
+- (nonnull NSDictionary *)dictionaryValue;
 
 @end

@@ -376,7 +376,7 @@ UIColor *CKPostButtonDisabledColor() {
                 [self.webView stringByEvaluatingJavaScriptFromString:js];
             }
             
-            [loadingImages removeObjectForKey:activityImageTag];
+            [self->loadingImages removeObjectForKey:activityImageTag];
         };
         
         imageView.imageURL = srcUrl;

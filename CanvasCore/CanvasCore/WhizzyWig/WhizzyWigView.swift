@@ -70,7 +70,8 @@ open class WhizzyWigView: WKWebView, WKNavigationDelegate {
         navigationDelegate = self
         scrollView.isScrollEnabled = false
     }
-    
+
+    @discardableResult
     open override func loadHTMLString(_ string: String, baseURL: URL?) -> WKNavigation? {
         return super.loadHTMLString(renderHTML(string, width: frame.width, fontColor: contentFontColor, backgroundColor: contentBackgroundColor, padding: contentInsets), baseURL: baseURL)
     }
