@@ -190,8 +190,8 @@ extension AppDelegate {
         
         DispatchQueue.main.async {
             let alertDetails = error.alertDetails(reportAction: {
-                let support = SupportTicketViewController.present(from: presentingViewController, supportTicketType: SupportTicketTypeProblem, defaultSubject: nil)
-                support?.reportedError = error
+                let support = SupportTicketViewController.present(from: presentFrom, supportTicketType: SupportTicketTypeProblem, defaultSubject: nil)
+                support.reportedError = error
             })
             
             if let deets = alertDetails {

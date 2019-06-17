@@ -25,9 +25,9 @@
 @interface FileViewController : UIViewController <PageViewEventLoggerLegacySupportProtocol>
 
 // needed to load file on own
-@property CKCanvasAPI *canvasAPI;
-@property CKContextInfo *contextInfo;
-@property (nonatomic) CKAttachment *file;
+@property (nonnull) CKCanvasAPI *canvasAPI;
+@property (nullable) CKContextInfo *contextInfo;
+@property (nonatomic, nullable) CKAttachment *file;
 @property uint64_t fileIdent;
 
 // These can be passed via routing param or query param
@@ -36,13 +36,13 @@
 @property (nullable, nonatomic, strong) NSNumber* assignmentID;
 
 @property (nonatomic) float downloadProgress;
-@property (nonatomic, copy) NSURL *url;
-@property CKUploadProgressToolbar *progressToolbar;
+@property (nonatomic, copy, nullable) NSURL *url;
+@property (nonnull) CKUploadProgressToolbar *progressToolbar;
 @property (nonatomic) BOOL showsCancelMessage;
 
 @property (nonatomic, assign) BOOL showsInteractionButton;
-@property (nonatomic) PageViewEventLoggerLegacySupport* pageViewEventLog;
-@property (nonatomic, copy) NSString* pageViewEventName;
+@property (nonatomic, nonnull) PageViewEventLoggerLegacySupport* pageViewEventLog;
+@property (nonatomic, copy, nonnull) NSString* pageViewEventName;
 
-- (void)showDownloadError:(NSError *)error;
+- (void)showDownloadError:(nonnull NSError *)error;
 @end

@@ -41,9 +41,9 @@ UIColor *CKPostButtonDisabledColor() {
 }
 
 @interface CKRichTextInputView () <UIWebViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CKAttachmentManagerDelegate> {
-    NSMutableDictionary *loadingImages;
 }
 
+@property (strong, nonatomic, nonnull) NSMutableDictionary *loadingImages;
 @property (strong, nonatomic) IBOutlet UIImageView *webViewContainer;
 @property (strong, nonatomic) IBOutlet UIButton *addAttachmentButton;
 @property (strong, nonatomic) IBOutlet UIButton *sendButton;
@@ -156,7 +156,7 @@ UIColor *CKPostButtonDisabledColor() {
     showPostButton = YES;
     
     self.imageCache = [[NSCache alloc] init];
-    loadingImages = [NSMutableDictionary new];
+    _loadingImages = [NSMutableDictionary new];
     
     self.placeholderLabel.text = _placeholderText;
 }
@@ -346,7 +346,7 @@ UIColor *CKPostButtonDisabledColor() {
         NSString *activityGif = [[NSBundle bundleForClass:[self class]] pathForResource:@"glossy-spinner" ofType:@"gif"];
         NSString *activityImageTag = [NSString stringWithFormat:@"<img id=\"activity-indicator%d\" src=\"%@\">", activityIndicatorCount, activityGif];
         activityIndicatorCount++;
-        self->loadingImages[activityImageTag] = imageTag;
+        self.loadingImages[activityImageTag] = imageTag;
         
         returnValue = [returnValue stringByReplacingOccurrencesOfString:imageTag withString:activityImageTag];
         
@@ -376,7 +376,7 @@ UIColor *CKPostButtonDisabledColor() {
                 [self.webView stringByEvaluatingJavaScriptFromString:js];
             }
             
-            [loadingImages removeObjectForKey:activityImageTag];
+            [self.loadingImages removeObjectForKey:activityImageTag];
         };
         
         imageView.imageURL = srcUrl;
@@ -495,7 +495,7 @@ UIColor *CKPostButtonDisabledColor() {
     
     if (![self isEmpty] || attachments.count > 0) {
         
-        [loadingImages enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [self.loadingImages enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             commentText = [commentText stringByReplacingOccurrencesOfString:key withString:obj];
         }];
         
