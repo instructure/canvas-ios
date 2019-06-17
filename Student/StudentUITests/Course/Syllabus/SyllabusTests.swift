@@ -46,7 +46,7 @@ class SyllabusTests: StudentUITestCase {
         XCTAssertEqual(NavBar.title.label, "Course Syllabus")
         XCTAssertEqual(NavBar.subtitle.label, course.course_code)
 
-        XCTAssertTrue(app.find(label: "hello world").exists)
+        app.find(label: "hello world").waitToExist()
 
         app.swipeLeft()
 

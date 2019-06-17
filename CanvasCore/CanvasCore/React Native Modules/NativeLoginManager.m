@@ -51,7 +51,7 @@ RCT_EXPORT_MODULE();
 
 - (NSDictionary *)constantsToExport
 {
-    return @{ @"isTesting": @(NSClassFromString(@"EarlGreyImpl") != nil) };
+    return @{ @"isTesting": @([NSProcessInfo processInfo].environment[@"IS_UI_TEST"] != nil) };
 }
 
 RCT_EXPORT_METHOD(changeUser)

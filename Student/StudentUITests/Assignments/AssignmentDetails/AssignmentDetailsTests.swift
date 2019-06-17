@@ -17,6 +17,7 @@
 import Foundation
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class AssignmentDetailsTests: StudentUITestCase {
     lazy var course: APICourse = {
@@ -44,7 +45,7 @@ class AssignmentDetailsTests: StudentUITestCase {
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
             course.canvasContextID: "#123456",
         ]))
-        host.logIn(domain: "canvas.instructure.com", token: "")
+        logIn(domain: "canvas.instructure.com", token: "")
         let assignment = mockAssignment(APIAssignment.make(
             description: "A description",
             points_possible: 12.3,
