@@ -21,6 +21,10 @@ enum CourseDetails {
     static var grades: Element {
         return app.find(id: "courses-details.grades-cell")
     }
+
+    static var announcements: Element {
+        return app.find(label: "Announcements")
+    }
 }
 
 enum GradesList {

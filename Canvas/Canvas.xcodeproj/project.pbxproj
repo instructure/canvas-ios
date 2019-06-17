@@ -2888,6 +2888,7 @@
 		9F5D743622A99E91002FCCCE /* CanvasUITests */ = {
 			isa = PBXGroup;
 			children = (
+				EEB0A47C22B2DF03006931AA /* Announcement */,
 				B105FDDC22B29D4300B0D4B3 /* Assignments */,
 				B16300D422B0155E000B85AD /* Login */,
 				9F5D743722A99E91002FCCCE /* CanvasUITests.swift */,

@@ -79,6 +79,10 @@ enum Dashboard {
     static var changeUser: Element {
         return app.find(label: "Change User")
     }
+
+    static var logOut: Element {
+        return app.find(label: "Log Out")
+    }
 }
 
 class LoginTests: CanvasUITests {
