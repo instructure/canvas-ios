@@ -156,7 +156,7 @@ UIColor *CKPostButtonDisabledColor() {
     showPostButton = YES;
     
     self.imageCache = [[NSCache alloc] init];
-    loadingImages = [NSMutableDictionary new];
+    _loadingImages = [NSMutableDictionary new];
     
     self.placeholderLabel.text = _placeholderText;
 }
@@ -495,7 +495,7 @@ UIColor *CKPostButtonDisabledColor() {
     
     if (![self isEmpty] || attachments.count > 0) {
         
-        [loadingImages enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [self.loadingImages enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             commentText = [commentText stringByReplacingOccurrencesOfString:key withString:obj];
         }];
         
