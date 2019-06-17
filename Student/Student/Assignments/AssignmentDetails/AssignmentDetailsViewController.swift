@@ -266,12 +266,10 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             let svFrame = scrollView?.frame ?? CGRect.zero
             let originInSV = lockedIconContainerView.superview?.convert(lockedIconContainerView.frame, to: scrollView) ?? CGRect.zero
             let height = (svFrame.size.height - originInSV.origin.y) - (submitAssignmentButton.bounds.size.height + scrollViewInsetPadding)
-            if height > minIconHeight {
-                self.lockedIconHeight.constant = height
-                UIView.animate(withDuration: 0.08) {
-                    self.lockedIconContainerView?.layoutIfNeeded()
-                    self.lockedIconContainerView.alpha = 1.0
-                }
+            self.lockedIconHeight.constant = max( height, minIconHeight )
+            UIView.animate(withDuration: 0.08) {
+                self.lockedIconContainerView?.layoutIfNeeded()
+                self.lockedIconContainerView.alpha = 1.0
             }
         }
     }
