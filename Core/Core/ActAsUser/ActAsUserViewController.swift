@@ -104,8 +104,7 @@ public class ActAsUserViewController: UITableViewController {
         guard let domain = domainTextField.text, let userID = userIDTextField.text else {
             return
         }
-        domainTextField.resignFirstResponder()
-        userIDTextField.resignFirstResponder()
+        view.endEditing(true)
         presenter?.didSubmit(domain: domain, userID: userID) { [weak self] err in
             if err != nil {
                 self?.showMasqueradingError()
