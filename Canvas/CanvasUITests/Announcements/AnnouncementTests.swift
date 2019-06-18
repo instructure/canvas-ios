@@ -41,7 +41,7 @@ class AnnouncementTest: CanvasUITests {
         CourseDetails.announcements.tap()
 
         // Announcements
-        Announcements.announcement("Announcement Three").waitToExist()
+        Announcements.announcement("Announcement Three").waitToExist(30)
         XCTAssert(Announcements.announcement("Announcement Three").exists)
         XCTAssert(Announcements.announcement("Announcement Two").exists)
         XCTAssert(Announcements.announcement("Announcement One").exists)
@@ -56,10 +56,10 @@ class AnnouncementTest: CanvasUITests {
         CourseDetails.announcements.tap()
 
         // Announcements
-        Announcements.announcement("Announcement Three").waitToExist()
+        Announcements.announcement("Announcement Three").waitToExist(30)
         Announcements.announcement("Announcement Three").tapAt(.zero)
 
-        AnnouncementDetail.text.waitToExist()
+        AnnouncementDetail.text.waitToExist(30)
         XCTAssert(AnnouncementDetail.text.exists)
     }
 }

@@ -81,11 +81,11 @@ class LoginTests: CanvasUITests {
         LoginFindSchool.searchField.typeText("ryana\r")
 
         // Ryana Web View
-        RyanaLogin.ldapButton.waitToExist()
+        RyanaLogin.ldapButton.waitToExist(30)
         RyanaLogin.ldapButton.tap()
 
         // Email
-        CanvasLogin.emailTextField.waitToExist()
+        CanvasLogin.emailTextField.waitToExist(30)
         CanvasLogin.emailTextField.tap()
         CanvasLogin.emailTextField.typeText("ldapmobiletest")
 
@@ -95,7 +95,7 @@ class LoginTests: CanvasUITests {
         // Submit
         CanvasLogin.logInButton.tap()
 
-        Dashboard.coursesLabel.waitToExist()
+        Dashboard.coursesLabel.waitToExist(30)
         XCTAssert(Dashboard.dashboardTab.exists)
     }
 
