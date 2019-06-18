@@ -145,7 +145,7 @@ class LoginTests: CanvasUITests {
         LoginFindSchool.searchField.typeText("iosauto\r")
 
         // Email
-        CanvasLogin.emailTextField.waitToExist()
+        CanvasLogin.emailTextField.waitToExist(30)
         CanvasLogin.emailTextField.tap()
         CanvasLogin.emailTextField.typeText(username)
 
