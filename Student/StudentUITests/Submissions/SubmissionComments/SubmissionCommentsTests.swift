@@ -190,7 +190,7 @@ class SubmissionCommentsTests: StudentUITestCase {
             ), ]
         ))
 
-        host.logIn(domain: "canvas.instructure.com", token: "t")
+        logIn(domain: "canvas.instructure.com", token: "t")
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.drawerGripper.tap()
 

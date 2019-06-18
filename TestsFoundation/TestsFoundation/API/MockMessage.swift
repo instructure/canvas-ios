@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#if DEBUG
+
 import Foundation
 
 struct MockDataMessage: Codable {
@@ -84,3 +86,5 @@ public struct MockResponse: Codable {
         try root.encode(http.url, forKey: .url)
     }
 }
+
+#endif

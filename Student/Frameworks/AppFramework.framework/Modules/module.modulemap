@@ -1,4 +1,0 @@
-module AppFramework {
-    header "EarlGreyApp/EarlGreyApp.h"
-    export *
-}

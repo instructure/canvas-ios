@@ -21,11 +21,15 @@ public class ActAsUserWindow: UIWindow {
     weak var loginDelegate: LoginDelegate?
 
     lazy var overlay = ActAsUserOverlay(frame: bounds, loginDelegate: loginDelegate)
+    public var uiTestHelper: UIButton?
 
     override public func layoutSubviews() {
         super.layoutSubviews()
         overlay.frame = self.bounds
         self.bringSubviewToFront(overlay)
+        if let button = uiTestHelper {
+            self.bringSubviewToFront(button)
+        }
         self.overlay.setNeedsLayout()
     }
 

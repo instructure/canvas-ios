@@ -93,7 +93,7 @@ open class PageViewEventController: NSObject {
     //  MARK: - Helpers
     
     fileprivate func appCanLogEvents() -> Bool {
-        let isNotTest = NSClassFromString("EarlGreyImpl") == nil
+        let isNotTest = !ProcessInfo.isUITest
         let isStudent = Bundle.main.isStudentApp
         return isNotTest && isStudent
     }

@@ -19,27 +19,32 @@ import XCTest
 @testable import Core
 @testable import TestsFoundation
 
-var host: TestHost {
-    return unsafeBitCast(
-        GREYHostApplicationDistantObject.sharedInstance,
-        to: TestHost.self)
-}
-
 class StudentUITestCase: XCTestCase {
+    let helpers = UITestHelpers()
+
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
+        let app = XCUIApplication()
         if app.state != .runningForeground {
             var env = app.launchEnvironment
             env["IS_UI_TEST"] = "TRUE"
             app.launchEnvironment = env
             app.launch()
         }
-        host.reset()
+        reset()
+    }
+
+    func reset() {
+        helpers.send(.reset)
+    }
+
+    func logIn(domain: String, token: String) {
+        helpers.send(.login, params: [ domain, token ])
     }
 
     func show(_ route: String) {
-        host.show(route)
+        helpers.send(.show, params: [ route ])
     }
 
     func navBarColorHex() -> String? {
@@ -92,7 +97,7 @@ class StudentUITestCase: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        XCTAssertNoThrow(try host.mockData(MockDistantURLSession.mockData(
+        XCTAssertNoThrow(try helpers.send(.mockData, MockDistantURLSession.mockData(
             requestable,
             value: value,
             response: response,
@@ -110,7 +115,7 @@ class StudentUITestCase: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        XCTAssertNoThrow(try host.mockData(MockDistantURLSession.mockEncodedData(
+        XCTAssertNoThrow(try helpers.send(.mockData, MockDistantURLSession.mockEncodedData(
             requestable,
             data: data,
             response: response,
@@ -128,7 +133,7 @@ class StudentUITestCase: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        XCTAssertNoThrow(try host.mockData(MockDistantURLSession.mockData(
+        XCTAssertNoThrow(try helpers.send(.mockData, MockDistantURLSession.mockData(
             request,
             data: data,
             response: response,
@@ -145,11 +150,38 @@ class StudentUITestCase: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        XCTAssertNoThrow(try host.mockDownload(MockDistantURLSession.mockDownload(
+        XCTAssertNoThrow(try helpers.send(.mockDownload, MockDistantURLSession.mockDownload(
             url,
             data: data,
             response: response,
             error: error
         )), file: file, line: line)
     }
+}
+
+class UITestHelpers {
+    let encoder = JSONEncoder()
+    let pasteboardType = "com.instructure.ui-test-helper"
+
+    init () {}
+
+    func send<T: Encodable>(_ type: UITestHelperType, params: T) {
+        send(type, try! encoder.encode(params))
+    }
+
+    func send(_ type: UITestHelperType, _ params: Data? = nil) {
+        let data = try! encoder.encode(UITestHelper(type: type, params: params))
+        UIPasteboard.general.items.removeAll()
+        UIPasteboard.general.setData(data, forPasteboardType: pasteboardType)
+        app.find(id: "ui-test-helper").tap()
+    }
+}
+
+// Needs to match codable serialization from app test target
+enum UITestHelperType: String, Codable {
+    case reset, login, show, mockData, mockDownload
+}
+struct UITestHelper: Codable {
+    let type: UITestHelperType
+    let params: Data?
 }
