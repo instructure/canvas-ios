@@ -68,7 +68,7 @@ class LoginTests: CanvasUITests {
        loginUser(username: "student1", password: "password")
 
         // Dashboard
-        Dashboard.coursesLabel.waitToExist(30)
+        Dashboard.coursesLabel.waitToExist()
         XCTAssert(Dashboard.coursesLabel.exists)
         XCTAssert(Dashboard.courseCard(id: "247").exists)
         XCTAssert(Dashboard.dashboardTab.exists)
@@ -81,12 +81,12 @@ class LoginTests: CanvasUITests {
         LoginFindSchool.searchField.typeText("ryana\r")
 
         // Ryana Web View
-        RyanaLogin.ldapButton.waitToExist(30)
-        RyanaLogin.ldapButton.tap()
+        RyanaLogin.ldapButton.waitToExist()
+        RyanaLogin.ldapButton.tapAt(.zero)
 
         // Email
-        CanvasLogin.emailTextField.waitToExist(30)
-        CanvasLogin.emailTextField.tap()
+        CanvasLogin.emailTextField.waitToExist()
+        CanvasLogin.emailTextField.tapAt(.zero)
         CanvasLogin.emailTextField.typeText("ldapmobiletest")
 
         // Password
@@ -95,7 +95,7 @@ class LoginTests: CanvasUITests {
         // Submit
         CanvasLogin.logInButton.tap()
 
-        Dashboard.coursesLabel.waitToExist(30)
+        Dashboard.coursesLabel.waitToExist()
         XCTAssert(Dashboard.dashboardTab.exists)
     }
 
@@ -103,7 +103,7 @@ class LoginTests: CanvasUITests {
         loginUser(username: "student1", password: "password")
 
         // Change User
-        Dashboard.dashboardList.waitToExist(30)
+        Dashboard.dashboardList.waitToExist()
         Dashboard.dashboardList.tap()
         Dashboard.changeUser.waitToExist()
         Dashboard.changeUser.tap()
@@ -111,7 +111,7 @@ class LoginTests: CanvasUITests {
         loginUser(username: "student2", password: "password")
 
         // Change User
-        Dashboard.dashboardList.waitToExist(30)
+        Dashboard.dashboardList.waitToExist()
         Dashboard.dashboardList.tap()
         Dashboard.changeUser.waitToExist()
         Dashboard.changeUser.tap()
@@ -126,7 +126,7 @@ class LoginTests: CanvasUITests {
         loginUser(username: "student1", password: "password")
 
         // Dashboard
-        Dashboard.coursesLabel.waitToExist(30)
+        Dashboard.coursesLabel.waitToExist()
         XCTAssert(Dashboard.courseCard(id: "247").exists)
         XCTAssert(Dashboard.dashboardTab.exists)
 
@@ -145,7 +145,7 @@ class LoginTests: CanvasUITests {
         LoginFindSchool.searchField.typeText("iosauto\r")
 
         // Email
-        CanvasLogin.emailTextField.waitToExist(30)
+        CanvasLogin.emailTextField.waitToExist()
         CanvasLogin.emailTextField.tap()
         CanvasLogin.emailTextField.typeText(username)
 

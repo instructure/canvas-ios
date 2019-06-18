@@ -81,21 +81,21 @@ class DashboardTests: CanvasUITests {
     override var user: User? { return .student1 }
 
     func testNavigationDrawerDisplaysUsername() {
-        Dashboard.dashboardList.waitToExist(30)
+        Dashboard.dashboardList.waitToExist()
         Dashboard.dashboardList.tap()
         Dashboard.username("Student One").waitToExist()
         XCTAssert(Dashboard.username("Student One").exists)
     }
 
     func testNavigationDrawerChangesUser() {
-        Dashboard.dashboardList.waitToExist(30)
+        Dashboard.dashboardList.waitToExist()
         Dashboard.dashboardList.tap()
         Dashboard.changeUser.tap()
         XCTAssert(LoginStart.previousUser(name: "Student One").exists)
     }
 
     func testNavigationDrawerLogsOut() {
-        Dashboard.dashboardList.waitToExist(30)
+        Dashboard.dashboardList.waitToExist()
         Dashboard.dashboardList.tap()
         Dashboard.logOut.tap()
         XCTAssert(LoginStart.findMySchool.exists)

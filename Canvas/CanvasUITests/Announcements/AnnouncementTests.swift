@@ -34,14 +34,14 @@ class AnnouncementTest: CanvasUITests {
 
     func testAnnouncementsMatchWebOrder() {
         // Dashboard
-        Dashboard.courseCard(id: "262").waitToExist(30)
+        Dashboard.courseCard(id: "262").waitToExist()
         Dashboard.courseCard(id: "262").tap()
 
         // Course
         CourseDetails.announcements.tap()
 
         // Announcements
-        Announcements.announcement("Announcement Three").waitToExist(30)
+        Announcements.announcement("Announcement Three").waitToExist()
         XCTAssert(Announcements.announcement("Announcement Three").exists)
         XCTAssert(Announcements.announcement("Announcement Two").exists)
         XCTAssert(Announcements.announcement("Announcement One").exists)
@@ -49,17 +49,17 @@ class AnnouncementTest: CanvasUITests {
 
     func testViewAnnouncement() {
         // Dashboard
-        Dashboard.courseCard(id: "262").waitToExist(30)
+        Dashboard.courseCard(id: "262").waitToExist()
         Dashboard.courseCard(id: "262").tap()
 
         // Course
         CourseDetails.announcements.tap()
 
         // Announcements
-        Announcements.announcement("Announcement Three").waitToExist(30)
+        Announcements.announcement("Announcement Three").waitToExist()
         Announcements.announcement("Announcement Three").tapAt(.zero)
 
-        AnnouncementDetail.text.waitToExist(30)
+        AnnouncementDetail.text.waitToExist()
         XCTAssert(AnnouncementDetail.text.exists)
     }
 }
