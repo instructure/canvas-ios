@@ -21,6 +21,7 @@ import CanvasKit1
 import TechDebt
 import CanvasKeymaster
 import UserNotifications
+import Kingfisher
 
 class SettingsViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
     @IBOutlet weak var tableView: UITableView!
@@ -115,7 +116,19 @@ extension SettingsViewController {
     fileprivate func data() -> [SettingsRow] {
         let profile = TextSettingsRow(title: NSLocalizedString("Profile", comment: "")) { () -> () in
             if let session = CanvasKeymaster.the().currentClient?.authSession {
-                self.navigationController?.pushViewController(profileController(session), animated: true)
+                let profile = ProfileViewController()
+                profile.canvasAPI = CKCanvasAPI.current()
+                profile.user = profile.canvasAPI.user
+                profile.profileImageSelected = { newProfileImage in
+                    if let key = session.user.avatarURL?.absoluteString {
+                        if let image = newProfileImage {
+                            KingfisherManager.shared.cache.store(image, forKey: key)
+                        } else {
+                            KingfisherManager.shared.cache.removeImage(forKey: key)
+                        }
+                    }
+                }
+                self.navigationController?.pushViewController(profile, animated: true)
             }
         }
 

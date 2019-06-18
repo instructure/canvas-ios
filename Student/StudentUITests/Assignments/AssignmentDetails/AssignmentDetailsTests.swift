@@ -17,6 +17,7 @@
 import Foundation
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class AssignmentDetailsTests: StudentUITestCase {
     lazy var course: APICourse = {
@@ -44,7 +45,7 @@ class AssignmentDetailsTests: StudentUITestCase {
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
             course.canvasContextID: "#123456",
         ]))
-        host.logIn(domain: "canvas.instructure.com", token: "")
+        logIn(domain: "canvas.instructure.com", token: "")
         let assignment = mockAssignment(APIAssignment.make(
             description: "A description",
             points_possible: 12.3,
@@ -146,19 +147,49 @@ class AssignmentDetailsTests: StudentUITestCase {
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
+    func testNoLockSection() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .online_upload ]
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+        XCTAssertFalse(AssignmentDetails.lockIcon.isVisible)
+        XCTAssertFalse(AssignmentDetails.lockSection.isVisible)
+    }
+
     func testNoSubmitAssignmentButtonShowsWhenLockAtLessThanNow() {
         let assignment = mockAssignment(APIAssignment.make(
-            lock_at: Date().addDays(-1)
+            submission_types: [ .online_upload ],
+            allowed_extensions: ["png"],
+            lock_at: Date().addDays(-1),
+            locked_for_user: true,
+            lock_explanation: "this is locked"
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
+        XCTAssertFalse(AssignmentDetails.lockIcon.isVisible)
+        XCTAssertTrue(AssignmentDetails.lockSection.isVisible)
+        XCTAssertTrue(AssignmentDetails.due.isVisible)
+        XCTAssertTrue(AssignmentDetails.submissionTypes.isVisible)
+        XCTAssertTrue(AssignmentDetails.viewSubmissionButton.isVisible)
     }
 
     func testNoSubmitAssignmentButtonShowsWhenUnLockAtGreaterThanNow() {
         let assignment = mockAssignment(APIAssignment.make(
-            unlock_at: Date().addDays(1)
+            submission_types: [ .online_upload ],
+            allowed_extensions: ["png"],
+            unlock_at: Date().addDays(1),
+            locked_for_user: true,
+            lock_explanation: "this is locked"
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.lockIcon.waitToExist(5)
+        XCTAssertTrue(AssignmentDetails.lockIcon.isVisible)
+        XCTAssertTrue(AssignmentDetails.lockSection.isVisible)
+        XCTAssertFalse(AssignmentDetails.due.isVisible)
+        XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
+        XCTAssertFalse(AssignmentDetails.submissionTypes.isVisible)
+        XCTAssertFalse(AssignmentDetails.viewSubmissionButton.isVisible)
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 

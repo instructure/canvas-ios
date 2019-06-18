@@ -30,6 +30,9 @@ struct DebugRoute {
 let routes = [
     DebugRoute("/login"),
     DebugRoute("/courses"),
+    DebugRoute("/courses/167/assignments/1958"),
+    DebugRoute("/courses/165/assignments/2214"),
+    DebugRoute("/courses/165/assignments/2220"),
     DebugRoute("/courses/177/assignments/1933"),
     DebugRoute("/courses/167/quizzes"),
     DebugRoute("/courses/162/assignments/1916/fileupload"),

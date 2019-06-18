@@ -150,8 +150,9 @@ extension ParentAppDelegate: LoginDelegate {
     }
 
     func openSupportTicket() {
+        guard let presentFrom = topMostViewController() else { return }
         let subject = String.localizedStringWithFormat("[Parent Login Issue] %@", NSLocalizedString("Trouble logging in", comment: ""))
-        SupportTicketViewController.present(from: topMostViewController(), supportTicketType: SupportTicketTypeProblem, defaultSubject: subject)
+        SupportTicketViewController.present(from: presentFrom, supportTicketType: SupportTicketTypeProblem, defaultSubject: subject)
     }
 
     func changeUser() {

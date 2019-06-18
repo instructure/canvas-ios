@@ -12,7 +12,9 @@
     "OperationQueueExtensions.swift",
     "Pods\\/",
     "Student\/Courses\/CourseList\/",
-    "Student\/Dashboard\/"
+    "Student\/Dashboard\/",
+    "StudentUITests\/",
+    "TestsFoundation\/"
   ],
   "fileMinCoverage": 0.5,
   "totalMinCoverage": 0.9

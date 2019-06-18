@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, CKIAuthenticationMethod) {
 @class CKIBrand;
 @class RACSignal;
 
-extern NSString *const CKIClientAccessTokenExpiredNotification;
+extern NSString * _Nonnull const CKIClientAccessTokenExpiredNotification;
 
 @protocol CKIContext;
 
@@ -39,12 +39,12 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  */
 @interface CKIClient : AFHTTPSessionManager <NSCopying>
 
-@property (nonatomic, strong) CKIMediaServer *mediaServer;
+@property (nonatomic, strong, nonnull) CKIMediaServer *mediaServer;
 
 /**
  The access token for making oauth requests (if logged in)
 */
-@property (nonatomic, readonly) NSString *accessToken;
+@property (nonatomic, readonly, nonnull) NSString *accessToken;
 
 /**
  THe current effective locale (if logged in)
@@ -54,29 +54,29 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
 /**
  The user that is currently logged in via this client.
  */
-@property (nonatomic, readonly) CKIUser *currentUser;
+@property (nonatomic, readonly, nonnull) CKIUser *currentUser;
 
 
 /**
  Branding info for current user organization.
  */
-@property (nonatomic) CKIBrand *branding;
+@property (nonatomic, nonnull) CKIBrand *branding;
 
 
 /**
  The ID of the user that the current user should masquerade as
  */
-@property (nonatomic) NSString *actAsUserID;
+@property (nonatomic, nullable) NSString *actAsUserID;
 
 /**
  The ID of the masquerading user
  */
-@property (nonatomic) NSString * _Nullable originalIDOfMasqueradingUser;
+@property (nonatomic, nullable) NSString *originalIDOfMasqueradingUser;
 
 /**
  When acting as a user, the original base url to revert to once masquerading has finished
  */
-@property (nonatomic) NSURL *originalBaseURL;
+@property (nonatomic, nullable) NSURL *originalBaseURL;
 
 /**
  By default, instances of CKIClient will send notifications logout users if api calls return unauthorized errors
@@ -93,7 +93,7 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  @param clientID the special client ID that uniquely identifies this application
  @param clientSecret the client secret for the application
  */
-+ (instancetype)clientWithBaseURL:(NSURL *)baseURL clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret authenticationProvider:(NSString *)authenticationProvider;
++ (nullable instancetype)clientWithBaseURL:(nonnull NSURL *)baseURL clientID:(nonnull NSString *)clientID clientSecret:(nonnull NSString *)clientSecret authenticationProvider:(nullable NSString *)authenticationProvider;
 
 /**
  Instantiates a canvas client with the given information.
@@ -102,7 +102,7 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  @param clientID the special client ID that uniquely identifies this application
  @param clientSecret the client secret for the application
  */
-- (instancetype)initWithBaseURL:(NSURL *)baseURL clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret authenticationProvider:(NSString *)authenticationProvider;
+- (nullable instancetype)initWithBaseURL:(nonnull NSURL *)baseURL clientID:(nonnull NSString *)clientID clientSecret:(nonnull NSString *)clientSecret authenticationProvider:(nullable NSString *)authenticationProvider;
 
 
 /**
@@ -111,7 +111,7 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  @param url the base URL to be used by the client
  @param token the auth token acquired from Canvas web for the user
  */
-- (instancetype)initWithBaseURL:(NSURL *)url token:(NSString *)token;
+- (nullable instancetype)initWithBaseURL:(nonnull NSURL *)url token:(nonnull NSString *)token;
 
 /**
  Checks to see if the user is logged in.
@@ -127,7 +127,7 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  @param modelClass the class of the model that is being deleted
  @param context the context for the deleted object
  */
-- (RACSignal *)deleteObjectAtPath:(NSString *)path modelClass:(Class)modelClass parameters:(NSDictionary *)parameters context:(id<CKIContext>)context;
+- (nonnull RACSignal *)deleteObjectAtPath:(nonnull NSString *)path modelClass:(nonnull Class)modelClass parameters:(nullable NSDictionary *)parameters context:(nullable id<CKIContext>)context;
 
 /**
  Fetch a paginated response from the given JSON API endpoint.
@@ -137,8 +137,8 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  @param modelClass the class of the model to generate
  @param context the context for the created object(s)
  */
-- (RACSignal *)fetchResponseAtPath:(NSString *)path parameters:(NSDictionary *)parameters modelClass:(Class)modelClass context:(id<CKIContext>)context;
-- (RACSignal *)fetchResponseAtPath:(NSString *)path parameters:(NSDictionary *)parameters modelClass:(Class)modelClass context:(id<CKIContext>)context exhaust:(BOOL)exhaust;
+- (nonnull RACSignal *)fetchResponseAtPath:(nonnull NSString *)path parameters:(nullable NSDictionary *)parameters modelClass:(nonnull Class)modelClass context:(nullable id<CKIContext>)context;
+- (nonnull RACSignal *)fetchResponseAtPath:(nonnull NSString *)path parameters:(nullable NSDictionary *)parameters modelClass:(nonnull Class)modelClass context:(nullable id<CKIContext>)context exhaust:(BOOL)exhaust;
 /**
  Fetch a paginated response from the given JSON API endpoint.
  
@@ -147,7 +147,7 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  @param transformer an NSValueTransformer that transforms dictionaries into CKIModels
  @param context the context for the created object(s)
  */
-- (RACSignal *)fetchResponseAtPath:(NSString *)path parameters:(NSDictionary *)parameters transformer:(NSValueTransformer *)transformer context:(id<CKIContext>)context;
+- (nonnull RACSignal *)fetchResponseAtPath:(nonnull NSString *)path parameters:(nullable NSDictionary *)parameters transformer:(nonnull NSValueTransformer *)transformer context:(nullable id<CKIContext>)context;
 
 
 /**
@@ -158,17 +158,17 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  @param modelClass the class of the resulting object
  @param context the context for the created object
  */
-- (RACSignal *)createModelAtPath:(NSString *)path parameters:(NSDictionary *)parameters modelClass:(Class)modelClass context:(id<CKIContext>)context;
+- (nonnull RACSignal *)createModelAtPath:(nonnull NSString *)path parameters:(nullable NSDictionary *)parameters modelClass:(nonnull Class)modelClass context:(nullable id<CKIContext>)context;
 
 
 /**
  Does a PUT do the model's `path` with the given parameters
  */
-- (RACSignal *)updateModel:(CKIModel *)model parameters:(NSDictionary *)parameters;
+- (nonnull RACSignal *)updateModel:(nonnull CKIModel *)model parameters:(nullable NSDictionary *)parameters;
 
 /**
  Creates a model from json
  */
-- (CKIModel *)parseModel:(NSValueTransformer *)transformer fromJSON:(NSDictionary *)jsonDictionary context:(id)context;
+- (nonnull CKIModel *)parseModel:(nonnull NSValueTransformer *)transformer fromJSON:(nonnull NSDictionary *)jsonDictionary context:(nullable id)context;
 
 @end
