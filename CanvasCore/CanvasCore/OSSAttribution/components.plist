@@ -34,12 +34,6 @@
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>EarlGrey</string>
-		<key>url</key>
-		<string>https://github.com/google/EarlGrey</string>
-	</dict>
-	<dict>
-		<key>name</key>
 		<string>Eureka</string>
 		<key>url</key>
 		<string>https://github.com/xmartlabs/Eureka</string>

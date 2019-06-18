@@ -35,7 +35,7 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(requestPermissions)
 {
-    if (NSClassFromString(@"EarlGreyImpl") != nil) {
+    if ([NSProcessInfo processInfo].environment[@"IS_UI_TEST"] != nil) {
         return;
     }
 

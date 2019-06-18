@@ -35,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         DocViewerViewController.setup(.studentPSPDFKitLicense)
         setupNotifications()
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        #if DEBUG
+            UITestHelpers.setup()
+        #endif
 
         if let session = Keychain.mostRecentSession {
             window?.rootViewController = LoadingViewController.create()

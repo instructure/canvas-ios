@@ -17,6 +17,7 @@
 import Foundation
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class SubmissionDetailsTests: StudentUITestCase {
     lazy var course: APICourse = {
