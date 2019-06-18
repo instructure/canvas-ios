@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,26 +19,30 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tcF-gt-a6D" userLabel="Content container">
-                        <rect key="frame" x="20" y="9" width="560" height="104"/>
+                        <rect key="frame" x="20" y="9" width="560" height="104.5"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="io1-N6-P11" customClass="WhizzyWigView" customModule="CanvasCore" customModuleProvider="target">
-                                <rect key="frame" x="20" y="15" width="520" height="74"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OzE-bu-zSb" customClass="WhizzyWigView" customModule="CanvasCore" customModuleProvider="target">
+                                <rect key="frame" x="20" y="15" width="520" height="74.5"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="999" constant="75" id="Rsw-DO-lSa"/>
+                                    <constraint firstAttribute="height" priority="750" constant="75" id="eFI-yw-dTC"/>
                                 </constraints>
-                            </view>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="io1-N6-P11" secondAttribute="trailing" constant="20" id="CA8-eE-XFY"/>
-                            <constraint firstItem="io1-N6-P11" firstAttribute="top" secondItem="tcF-gt-a6D" secondAttribute="top" constant="15" id="Gln-r1-72A"/>
-                            <constraint firstItem="io1-N6-P11" firstAttribute="leading" secondItem="tcF-gt-a6D" secondAttribute="leading" constant="20" id="hrJ-tq-qiv"/>
-                            <constraint firstAttribute="bottom" secondItem="io1-N6-P11" secondAttribute="bottom" constant="15" id="xGa-57-w91"/>
+                            <constraint firstItem="OzE-bu-zSb" firstAttribute="top" secondItem="tcF-gt-a6D" secondAttribute="top" constant="15" id="Dt0-Xc-tqe"/>
+                            <constraint firstAttribute="bottom" secondItem="OzE-bu-zSb" secondAttribute="bottom" constant="15" id="jwV-ek-ig6"/>
+                            <constraint firstItem="OzE-bu-zSb" firstAttribute="leading" secondItem="tcF-gt-a6D" secondAttribute="leading" constant="20" id="l4X-9G-bTb"/>
+                            <constraint firstAttribute="trailing" secondItem="OzE-bu-zSb" secondAttribute="trailing" constant="20" id="yUg-74-iBj"/>
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selected" translatesAutoresizingMaskIntoConstraints="NO" id="B4a-lA-cok">
-                        <rect key="frame" x="9" y="51" width="23" height="20"/>
+                        <rect key="frame" x="9" y="51.5" width="23" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="INb-LZ-cgr"/>
                             <constraint firstAttribute="width" constant="23" id="Xte-82-VSR"/>
@@ -56,8 +60,8 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="selectionStatusImageView" destination="B4a-lA-cok" id="u32-6b-5yN"/>
-                <outlet property="whizzyWigView" destination="io1-N6-P11" id="e8h-ZT-1ko"/>
-                <outlet property="whizzyWigViewHeightConstraint" destination="Rsw-DO-lSa" id="Fea-2t-cIL"/>
+                <outlet property="whizzyWigView" destination="OzE-bu-zSb" id="rA2-hH-MX5"/>
+                <outlet property="whizzyWigViewHeightConstraint" destination="eFI-yw-dTC" id="0HS-je-xjt"/>
             </connections>
             <point key="canvasLocation" x="709" y="363.5"/>
         </tableViewCell>
