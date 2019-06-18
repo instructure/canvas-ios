@@ -13,13 +13,13 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
+
+import Core
 
 public var unitTesting: Bool {
     return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
 }
 
 public var uiTesting: Bool {
-    return NSClassFromString("EarlGreyImpl") != nil
+    return ProcessInfo.isUITest
 }

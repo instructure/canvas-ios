@@ -17,6 +17,7 @@
 import Foundation
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class LoginFindSchoolTests: StudentUITestCase {
     func testEnterDomain() {
