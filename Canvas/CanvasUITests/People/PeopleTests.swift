@@ -25,7 +25,7 @@ enum CoursePeople {
 
 enum PersonContextCard {
     static func emailLabel(_ email: String) -> Element {
-        return app.find(label: email)
+        return XCUIElementWrapper(app.staticTexts[email])
     }
 }
 
@@ -34,17 +34,20 @@ class PeopleTests: CanvasUITests {
 
     func testCourseUsersAndUserContextCardDisplay() {
         // Dashboard
+        Dashboard.courseCard(id: "262").waitToExist(30)
         Dashboard.courseCard(id: "262").tap()
 
         // Course Details
         CourseDetails.people.tap()
 
         // Course People
+        CoursePeople.person(name: "Student One").waitToExist(30)
         XCTAssert(CoursePeople.person(name: "Student One").exists)
         XCTAssert(CoursePeople.person(name: "Student Two").exists)
         CoursePeople.person(name: "Student One").tap()
 
         // Person Context Card
+        PersonContextCard.emailLabel("ios+student1@instructure.com").waitToExist(30)
         XCTAssert(PersonContextCard.emailLabel("ios+student1@instructure.com").exists)
     }
 }

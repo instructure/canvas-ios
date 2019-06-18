@@ -126,7 +126,7 @@ class LoginTests: CanvasUITests {
         loginUser(username: "student1", password: "password")
 
         // Dashboard
-        Dashboard.coursesLabel.waitToExist()
+        Dashboard.coursesLabel.waitToExist(30)
         XCTAssert(Dashboard.courseCard(id: "247").exists)
         XCTAssert(Dashboard.dashboardTab.exists)
 
