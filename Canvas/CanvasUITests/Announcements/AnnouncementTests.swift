@@ -34,6 +34,7 @@ class AnnouncementTest: CanvasUITests {
 
     func testAnnouncementsMatchWebOrder() {
         // Dashboard
+        Dashboard.courseCard(id: "262").waitToExist(30)
         Dashboard.courseCard(id: "262").tap()
 
         // Course
@@ -41,13 +42,14 @@ class AnnouncementTest: CanvasUITests {
 
         // Announcements
         Announcements.announcement("Announcement Three").waitToExist()
-        XCTAssert(Announcements.announcement("Announcement Three").label.contains("Announcement Three"))
-        XCTAssert(Announcements.announcement("Announcement Two").label.contains("Announcement Two"))
-        XCTAssert(Announcements.announcement("Announcement One").label.contains("Announcement One"))
+        XCTAssert(Announcements.announcement("Announcement Three").exists)
+        XCTAssert(Announcements.announcement("Announcement Two").exists)
+        XCTAssert(Announcements.announcement("Announcement One").exists)
     }
 
     func testViewAnnouncement() {
         // Dashboard
+        Dashboard.courseCard(id: "262").waitToExist(30)
         Dashboard.courseCard(id: "262").tap()
 
         // Course

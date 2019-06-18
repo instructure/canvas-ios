@@ -620,6 +620,9 @@
 		B5A790BB1D8C743400ACA9FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
+		EE7BB77922B822DE001C1EE7 /* DashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB77822B822DE001C1EE7 /* DashboardTests.swift */; };
+		EE7BB77B22B84720001C1EE7 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB77A22B84720001C1EE7 /* PeopleTests.swift */; };
+		EEEA99D822B7F2FC006AD5BF /* AnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA99D722B7F2FC006AD5BF /* AnnouncementTests.swift */; };
 		F9B946F0221492040083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
 		F9B946F1221492040083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; };
 /* End PBXBuildFile section */
@@ -1645,6 +1648,9 @@
 		C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasKit1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8523687029A98FE14374D90 /* Pods-defaults-CanvasKit1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit1.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasKit1/Pods-defaults-CanvasKit1.release.xcconfig"; sourceTree = "<group>"; };
 		E95379D1460BDF2C6A9F2EEE /* Pods-defaults-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
+		EE7BB77822B822DE001C1EE7 /* DashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTests.swift; sourceTree = "<group>"; };
+		EE7BB77A22B84720001C1EE7 /* PeopleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
+		EEEA99D722B7F2FC006AD5BF /* AnnouncementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementTests.swift; sourceTree = "<group>"; };
 		F7E3E8394F9CF33081E5BAFC /* Pods-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		F9B946EE221492040083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
@@ -2888,8 +2894,10 @@
 		9F5D743622A99E91002FCCCE /* CanvasUITests */ = {
 			isa = PBXGroup;
 			children = (
-				EEB0A47C22B2DF03006931AA /* Announcement */,
+				EE7BB77722B82233001C1EE7 /* Dashboard */,
+				EEEA99D622B7F2FC006AD5BF /* Announcements */,
 				B105FDDC22B29D4300B0D4B3 /* Assignments */,
+				EE7BB77C22B8473F001C1EE7 /* People */,
 				B16300D422B0155E000B85AD /* Login */,
 				9F5D743722A99E91002FCCCE /* CanvasUITests.swift */,
 				9F5D743922A99E91002FCCCE /* Info.plist */,
@@ -2933,6 +2941,30 @@
 				B15738061D95AA7600ADBB85 /* ModuleItemViewModel.swift */,
 			);
 			path = "Module Items";
+			sourceTree = "<group>";
+		};
+		EE7BB77722B82233001C1EE7 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				EE7BB77822B822DE001C1EE7 /* DashboardTests.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		EE7BB77C22B8473F001C1EE7 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				EE7BB77A22B84720001C1EE7 /* PeopleTests.swift */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		EEEA99D622B7F2FC006AD5BF /* Announcements */ = {
+			isa = PBXGroup;
+			children = (
+				EEEA99D722B7F2FC006AD5BF /* AnnouncementTests.swift */,
+			);
+			path = Announcements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -4014,8 +4046,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEEA99D822B7F2FC006AD5BF /* AnnouncementTests.swift in Sources */,
 				B105FDDE22B29D6600B0D4B3 /* AssignmentsTests.swift in Sources */,
 				9F5D743822A99E91002FCCCE /* CanvasUITests.swift in Sources */,
+				EE7BB77922B822DE001C1EE7 /* DashboardTests.swift in Sources */,
+				EE7BB77B22B84720001C1EE7 /* PeopleTests.swift in Sources */,
 				B16300D622B015AE000B85AD /* LoginTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

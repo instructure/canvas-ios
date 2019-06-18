@@ -22,10 +22,6 @@ enum LoginStart {
         return app.find(label: "Find my school")
     }
 
-    static func previousUser(studentNumber: String) -> Element {
-        return previousUser(name: "Student \(studentNumber)")
-    }
-
     static func previousUser(name: String) -> Element {
         return app.find(label: name)
     }
@@ -59,32 +55,6 @@ enum RyanaLogin {
     }
 }
 
-enum Dashboard {
-    static var courses: Element {
-        return app.find(label: "Courses")
-    }
-
-    static func courseCard(id: String) -> Element {
-        return app.find(id: "course-\(id)")
-    }
-
-    static var dashboardTab: Element {
-        return app.find(label: "Dashboard")
-    }
-
-    static var dashboardList: Element {
-        return app.find(id: "favorited-course-list.profile-btn")
-    }
-
-    static var changeUser: Element {
-        return app.find(label: "Change User")
-    }
-
-    static var logOut: Element {
-        return app.find(label: "Log Out")
-    }
-}
-
 class LoginTests: CanvasUITests {
 
     func testFindSchool() {
@@ -98,7 +68,8 @@ class LoginTests: CanvasUITests {
        loginUser(username: "student1", password: "password")
 
         // Dashboard
-        Dashboard.courses.waitToExist()
+        Dashboard.coursesLabel.waitToExist(30)
+        XCTAssert(Dashboard.coursesLabel.exists)
         XCTAssert(Dashboard.courseCard(id: "247").exists)
         XCTAssert(Dashboard.dashboardTab.exists)
     }
@@ -124,7 +95,7 @@ class LoginTests: CanvasUITests {
         // Submit
         CanvasLogin.logInButton.tap()
 
-        Dashboard.courses.waitToExist()
+        Dashboard.coursesLabel.waitToExist()
         XCTAssert(Dashboard.dashboardTab.exists)
     }
 
@@ -132,6 +103,7 @@ class LoginTests: CanvasUITests {
         loginUser(username: "student1", password: "password")
 
         // Change User
+        Dashboard.dashboardList.waitToExist(30)
         Dashboard.dashboardList.tap()
         Dashboard.changeUser.waitToExist()
         Dashboard.changeUser.tap()
@@ -139,21 +111,22 @@ class LoginTests: CanvasUITests {
         loginUser(username: "student2", password: "password")
 
         // Change User
+        Dashboard.dashboardList.waitToExist(30)
         Dashboard.dashboardList.tap()
         Dashboard.changeUser.waitToExist()
         Dashboard.changeUser.tap()
 
         // Previous Users
         LoginStart.findMySchool.waitToExist()
-        XCTAssert(LoginStart.previousUser(studentNumber: "One").exists)
-        XCTAssert(LoginStart.previousUser(studentNumber: "Two").exists)
+        XCTAssert(LoginStart.previousUser(name: "Student One").exists)
+        XCTAssert(LoginStart.previousUser(name: "Student Two").exists)
     }
 
     func testSessionMaintainedAfterTermination() {
         loginUser(username: "student1", password: "password")
 
         // Dashboard
-        Dashboard.courses.waitToExist()
+        Dashboard.coursesLabel.waitToExist()
         XCTAssert(Dashboard.courseCard(id: "247").exists)
         XCTAssert(Dashboard.dashboardTab.exists)
 
@@ -161,7 +134,7 @@ class LoginTests: CanvasUITests {
         XCUIApplication().launch()
 
         // Dashboard
-        Dashboard.courses.waitToExist()
+        Dashboard.coursesLabel.waitToExist()
         XCTAssert(Dashboard.courseCard(id: "247").exists)
         XCTAssert(Dashboard.dashboardTab.exists)
     }
