@@ -882,7 +882,6 @@ export function refreshData (props: Props): void {
 }
 
 let Refreshed = refresh(
-  //  TODO - add deep link ability to refreshDiscussion without entry from discussion list
   refreshData,
   shouldRefresh,
   props => Boolean(props.pending)

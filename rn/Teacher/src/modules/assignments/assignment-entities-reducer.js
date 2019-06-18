@@ -29,6 +29,7 @@ import pendingComments from '../speedgrader/comments/pending-comments-reducer'
 import { default as QuizDetailsActions } from '../quizzes/details/actions'
 import { default as DiscussionDetailsActions } from '../discussions/details/actions'
 import { default as SubmissionActions } from '../submissions/list/actions'
+import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
 export let defaultState: AssignmentGroupsState = {}
 
@@ -113,7 +114,7 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
         ...state,
         [assignmentID]: {
           ...state[assignmentID],
-          submissionSummary: { data: { graded: 0, ungraded: 0, not_submitted: 0 }, pending: 0, error: error },
+          submissionSummary: { data: { graded: 0, ungraded: 0, not_submitted: 0 }, pending: 0, error: parseErrorMessage(error) },
         },
       }
     },
@@ -216,7 +217,7 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
         ...state,
         [assignmentID]: {
           ...state[assignmentID],
-          submissionSummary: { data: { graded: 0, ungraded: 0, not_submitted: 0 }, pending: 0, error: error },
+          submissionSummary: { data: { graded: 0, ungraded: 0, not_submitted: 0 }, pending: 0, error: parseErrorMessage(error) },
         },
       }
     },
