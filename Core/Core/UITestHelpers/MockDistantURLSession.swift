@@ -17,7 +17,6 @@
 #if DEBUG
 
 import Foundation
-@testable import Core
 
 @objc
 class MockDistantURLSession: URLSession {
@@ -43,6 +42,9 @@ class MockDistantURLSession: URLSession {
     }
     static var dataMocks: [URL: MockData] = [:]
     @objc static func mockData(_ data: Data) {
+        guard isSetup else {
+            fatalError("Mock URLSession failed to setup correctly")
+        }
         guard let message = try? JSONDecoder().decode(MockDataMessage.self, from: data) else {
             fatalError("Could not decode mocking request")
         }
@@ -90,6 +92,9 @@ class MockDistantURLSession: URLSession {
     }
     static var downloadMocks: [URL: MockDownload] = [:]
     @objc static func mockDownload(_ data: Data) {
+        guard isSetup else {
+            fatalError("Mock URLSession failed to setup correctly")
+        }
         guard let message = try? JSONDecoder().decode(MockDownloadMessage.self, from: data) else {
             fatalError("Could not decode mocking request")
         }
@@ -132,9 +137,6 @@ class MockDistantURLSession: URLSession {
     }
 
     @objc static func reset() {
-        guard isSetup else {
-            fatalError("Mock URLSession failed to setup correctly")
-        }
         dataMocks = [:]
         downloadMocks = [:]
         uploadMocks = [:]

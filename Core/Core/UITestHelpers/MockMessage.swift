@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct MockDataMessage: Codable {
+public struct MockDataMessage: Codable {
     let data: Data?
     let error: String?
     let request: URLRequest
@@ -26,7 +26,7 @@ struct MockDataMessage: Codable {
     let noCallback: Bool
 }
 
-struct MockDownloadMessage: Codable {
+public struct MockDownloadMessage: Codable {
     let data: Data?
     let error: String?
     let response: MockResponse?

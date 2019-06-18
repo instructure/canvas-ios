@@ -14,6 +14,7 @@
 // limitations under the License.
 //
 
+import Core
 import XCTest
 import TestsFoundation
 
@@ -50,25 +51,30 @@ enum User: String {
     }
 }
 
-class CanvasUITests: XCTestCase {
+class CanvasUITests: UITestCase {
     var user: User? { return nil }
 
     override func setUp() {
         super.setUp()
-        let app = XCUIApplication()
         continueAfterFailure = false
-        app.launchArguments.append("--ui-test")
-        if let user = user {
-            app.launchArguments.append(contentsOf: [
-                "-com.apple.configuration.managed",
-                user.profile
-            ])
+        if app.state != .runningForeground {
+            launch()
         }
-        app.launch()
-        // Wait for RN to finish loading
-        app.find(labelContaining: "Loading").waitToVanish(120)
+        reset()
         if let user = user {
             LoginStart.previousUser(name: user.username).tap()
         }
+    }
+
+    func launch() {
+        let app = XCUIApplication()
+        app.launchArguments.append(contentsOf: [
+            "-com.apple.configuration.managed",
+            User.student1.profile
+        ])
+        app.launchEnvironment["IS_UI_TEST"] = "TRUE"
+        app.launch()
+        // Wait for RN to finish loading
+        app.find(labelContaining: "Loading").waitToVanish(120)
     }
 }

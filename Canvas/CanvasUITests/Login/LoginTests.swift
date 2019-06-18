@@ -150,15 +150,14 @@ class LoginTests: CanvasUITests {
 
         // Dashboard
         Dashboard.courses.waitToExist()
-        XCTAssert(Dashboard.courseCard(id: "247").exists)
+        Dashboard.courseCard(id: "247").waitToExist()
         XCTAssert(Dashboard.dashboardTab.exists)
 
-        XCUIApplication().terminate()
-        XCUIApplication().launch()
+        launch()
 
         // Dashboard
         Dashboard.courses.waitToExist()
-        XCTAssert(Dashboard.courseCard(id: "247").exists)
+        Dashboard.courseCard(id: "247").waitToExist()
         XCTAssert(Dashboard.dashboardTab.exists)
     }
 
