@@ -71,6 +71,10 @@ enum CourseDetails {
     static var people: Element {
         return app.find(id: "courses-details.people-cell")
     }
+
+    static var files: Element {
+        return app.find(id: "courses-details.files-cell")
+    }
 }
 
 class DashboardTests: CanvasUITests {
@@ -95,6 +99,7 @@ class DashboardTests: CanvasUITests {
         Dashboard.dashboardList.tap()
         Dashboard.logOut.tap()
         XCTAssert(LoginStart.findMySchool.exists)
+        XCTAssertFalse(LoginStart.previousUser(name: "Student One").exists)
     }
 
 }
