@@ -101,9 +101,11 @@ public class ActAsUserViewController: UITableViewController {
     }
 
     @IBAction func actAsUserPressed(_ sender: UIButton) {
-        guard let domain = self.domainTextField.text, let userID = self.userIDTextField.text else {
+        guard let domain = domainTextField.text, let userID = userIDTextField.text else {
             return
         }
+        domainTextField.resignFirstResponder()
+        userIDTextField.resignFirstResponder()
         presenter?.didSubmit(domain: domain, userID: userID) { [weak self] err in
             if err != nil {
                 self?.showMasqueradingError()
