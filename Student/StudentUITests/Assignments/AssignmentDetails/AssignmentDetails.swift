@@ -32,4 +32,6 @@ enum AssignmentDetails: String, ElementWrapper {
     case submitAssignmentButton
     case viewSubmissionButton
     case fileSubmissionButton
+    case lockIcon
+    case lockSection
 }
