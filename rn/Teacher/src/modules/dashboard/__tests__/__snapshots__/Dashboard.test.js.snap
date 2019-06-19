@@ -3746,7 +3746,7 @@ exports[`Dashboard renders course invites 1`] = `
                         ],
                       ]
                     }
-                    testID="course-invite.1.reject-button"
+                    testID="CourseInvitation.1.rejectButton"
                   >
                     <Text
                       accessible={true}
@@ -3811,7 +3811,7 @@ exports[`Dashboard renders course invites 1`] = `
                         },
                       ]
                     }
-                    testID="course-invite.1.accept-button"
+                    testID="CourseInvitation.1.acceptButton"
                   >
                     <Text
                       accessible={true}
@@ -4019,7 +4019,7 @@ exports[`Dashboard renders course invites 1`] = `
                         ],
                       ]
                     }
-                    testID="course-invite.2.reject-button"
+                    testID="CourseInvitation.2.rejectButton"
                   >
                     <Text
                       accessible={true}
@@ -4084,7 +4084,7 @@ exports[`Dashboard renders course invites 1`] = `
                         },
                       ]
                     }
-                    testID="course-invite.2.accept-button"
+                    testID="CourseInvitation.2.acceptButton"
                   >
                     <Text
                       accessible={true}

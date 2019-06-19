@@ -20,6 +20,7 @@ import XCTest
 public protocol Element {
     var elementType: XCUIElement.ElementType { get }
     var exists: Bool { get }
+    var frame: CGRect { get }
     var id: String { get }
     var isEnabled: Bool { get }
     var isVisible: Bool { get }
@@ -105,6 +106,10 @@ public struct XCUIElementWrapper: Element {
     }
     public var exists: Bool {
         return element.exists
+    }
+    public var frame: CGRect {
+        guard exists else { return .zero }
+        return element.frame
     }
     public var id: String {
         guard exists else { return "" }

@@ -416,7 +416,7 @@ describe('Dashboard', () => {
       <Dashboard {...props} />
     ).toJSON()
 
-    const courseInvite = explore(tree).selectByID('course-invite.1.accept-button') || {}
+    const courseInvite = explore(tree).selectByID('CourseInvitation.1.acceptButton') || {}
     courseInvite.props.onPress()
     expect(props.acceptEnrollment).toHaveBeenCalledWith('4', '1')
     App.setCurrentApp(currentApp)
@@ -438,7 +438,7 @@ describe('Dashboard', () => {
       <Dashboard {...props} />
     ).toJSON()
 
-    const courseInvite = explore(tree).selectByID('course-invite.1.reject-button') || {}
+    const courseInvite = explore(tree).selectByID('CourseInvitation.1.rejectButton') || {}
     courseInvite.props.onPress()
     expect(props.rejectEnrollment).toHaveBeenCalledWith('4', '1')
     App.setCurrentApp(currentApp)

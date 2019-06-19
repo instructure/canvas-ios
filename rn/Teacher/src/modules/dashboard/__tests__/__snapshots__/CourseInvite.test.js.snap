@@ -47,7 +47,7 @@ exports[`CourseInvite can hide 1`] = `
           "flex": 1,
         }
       }
-      testID="course-invite.acted"
+      testID="CourseInvitation.1.acted"
     >
       <Text
         style={
@@ -77,7 +77,7 @@ exports[`CourseInvite can hide 1`] = `
         "top": 0,
       }
     }
-    testID="course-invite.1.dismiss-button"
+    testID="CourseInvitation.1.dismissButton"
     underlayColor="transparent"
   >
     <Image
@@ -144,7 +144,7 @@ exports[`CourseInvite renders action taken -- accept 1`] = `
           "flex": 1,
         }
       }
-      testID="course-invite.acted"
+      testID="CourseInvitation.1.acted"
     >
       <Text
         style={
@@ -174,7 +174,7 @@ exports[`CourseInvite renders action taken -- accept 1`] = `
         "top": 0,
       }
     }
-    testID="course-invite.1.dismiss-button"
+    testID="CourseInvitation.1.dismissButton"
     underlayColor="transparent"
   >
     <Image
@@ -241,7 +241,7 @@ exports[`CourseInvite renders action taken -- reject 1`] = `
           "flex": 1,
         }
       }
-      testID="course-invite.acted"
+      testID="CourseInvitation.1.acted"
     >
       <Text
         style={
@@ -271,7 +271,7 @@ exports[`CourseInvite renders action taken -- reject 1`] = `
         "top": 0,
       }
     }
-    testID="course-invite.1.dismiss-button"
+    testID="CourseInvitation.1.dismissButton"
     underlayColor="transparent"
   >
     <Image
@@ -338,7 +338,7 @@ exports[`CourseInvite renders displayState acted -- accept 1`] = `
           "flex": 1,
         }
       }
-      testID="course-invite.acted"
+      testID="CourseInvitation.1.acted"
     >
       <Text
         style={
@@ -368,7 +368,7 @@ exports[`CourseInvite renders displayState acted -- accept 1`] = `
         "top": 0,
       }
     }
-    testID="course-invite.1.dismiss-button"
+    testID="CourseInvitation.1.dismissButton"
     underlayColor="transparent"
   >
     <Image
@@ -435,7 +435,7 @@ exports[`CourseInvite renders displayState acted -- reject 1`] = `
           "flex": 1,
         }
       }
-      testID="course-invite.acted"
+      testID="CourseInvitation.1.acted"
     >
       <Text
         style={
@@ -465,7 +465,7 @@ exports[`CourseInvite renders displayState acted -- reject 1`] = `
         "top": 0,
       }
     }
-    testID="course-invite.1.dismiss-button"
+    testID="CourseInvitation.1.dismissButton"
     underlayColor="transparent"
   >
     <Image
@@ -601,7 +601,7 @@ exports[`CourseInvite renders hidden 1`] = `
               },
             ]
           }
-          testID="course-invite.1.reject-button"
+          testID="CourseInvitation.1.rejectButton"
         >
           Decline
         </Button>
@@ -624,7 +624,7 @@ exports[`CourseInvite renders hidden 1`] = `
               "fontWeight": "600",
             }
           }
-          testID="course-invite.1.accept-button"
+          testID="CourseInvitation.1.acceptButton"
         >
           Accept
         </Button>
@@ -750,7 +750,7 @@ exports[`CourseInvite renders invite 1`] = `
               },
             ]
           }
-          testID="course-invite.1.reject-button"
+          testID="CourseInvitation.1.rejectButton"
         >
           Decline
         </Button>
@@ -773,7 +773,7 @@ exports[`CourseInvite renders invite 1`] = `
               "fontWeight": "600",
             }
           }
-          testID="course-invite.1.accept-button"
+          testID="CourseInvitation.1.acceptButton"
         >
           Accept
         </Button>
@@ -897,7 +897,7 @@ exports[`CourseInvite renders invite with course section 1`] = `
               },
             ]
           }
-          testID="course-invite.1.reject-button"
+          testID="CourseInvitation.1.rejectButton"
         >
           Decline
         </Button>
@@ -920,7 +920,7 @@ exports[`CourseInvite renders invite with course section 1`] = `
               "fontWeight": "600",
             }
           }
-          testID="course-invite.1.accept-button"
+          testID="CourseInvitation.1.acceptButton"
         >
           Accept
         </Button>

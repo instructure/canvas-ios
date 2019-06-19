@@ -107,7 +107,7 @@ describe('CourseInvite', () => {
     const tree = shallow(
       <CourseInvite {...props} />
     )
-    tree.find('[testID="course-invite.1.accept-button"]').simulate('Press')
+    tree.find('[testID="CourseInvitation.1.acceptButton"]').simulate('Press')
     expect(props.handleInvite).toHaveBeenCalledWith('2', '1', 'accept')
   })
 
@@ -119,7 +119,7 @@ describe('CourseInvite', () => {
     const tree = shallow(
       <CourseInvite {...props} />
     )
-    tree.find('[testID="course-invite.1.reject-button"]').simulate('Press')
+    tree.find('[testID="CourseInvitation.1.rejectButton"]').simulate('Press')
     expect(props.handleInvite).toHaveBeenCalledWith('2', '1', 'reject')
   })
 
@@ -132,7 +132,7 @@ describe('CourseInvite', () => {
     const tree = shallow(
       <CourseInvite {...props} />
     )
-    tree.find('[testID="course-invite.1.dismiss-button"]').simulate('Press')
+    tree.find('[testID="CourseInvitation.1.dismissButton"]').simulate('Press')
     expect(tree).toMatchSnapshot()
   })
 })

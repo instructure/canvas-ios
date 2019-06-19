@@ -61,7 +61,7 @@ export default class CourseInvite extends React.Component<Props> {
   }
 
   setAccessibilityFocus = () => {
-    NativeAccessibility.focusElement('course-invite.acted')
+    NativeAccessibility.focusElement(`CourseInvitation.${this.props.invite.id}.acted`)
   }
 
   handleInvite = (action: string) => {
@@ -100,7 +100,7 @@ export default class CourseInvite extends React.Component<Props> {
             <Image source={images.dashboard.invite} style={styles.icon} />
           </View>
           { invite.displayState === 'acted' ? (
-            <View style={styles.inviteDetails} testID='course-invite.acted'>
+            <View style={styles.inviteDetails} testID={`CourseInvitation.${invite.id}.acted`}>
               <Text style={styles.title}>{acceptedOrRejected}</Text>
             </View>
           ) : (
@@ -112,7 +112,7 @@ export default class CourseInvite extends React.Component<Props> {
                   onPress={() => this.handleInvite('reject')}
                   style={[styles.buttonText, styles.declineButtonText]}
                   containerStyle={[styles.button, styles.declineButton]}
-                  testID={`course-invite.${invite.id}.reject-button`}
+                  testID={`CourseInvitation.${invite.id}.rejectButton`}
                   accessibilityTraits='button'
                 >
                   {i18n('Decline')}
@@ -121,7 +121,7 @@ export default class CourseInvite extends React.Component<Props> {
                   onPress={() => this.handleInvite('accept')}
                   style={styles.buttonText}
                   containerStyle={styles.button}
-                  testID={`course-invite.${invite.id}.accept-button`}
+                  testID={`CourseInvitation.${invite.id}.acceptButton`}
                   accessibilityTraits='button'
                 >
                   {i18n('Accept')}
@@ -137,7 +137,7 @@ export default class CourseInvite extends React.Component<Props> {
             onPress={this.dismiss}
             underlayColor='transparent'
             style={styles.action}
-            testID={`course-invite.${invite.id}.dismiss-button`}
+            testID={`CourseInvitation.${invite.id}.dismissButton`}
           >
             <Image source={images.x} style={styles.dismissIcon} />
           </TouchableHighlight>
