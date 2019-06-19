@@ -118,7 +118,7 @@ exports[`their chat bubbles render correctly 1`] = `
           "tintColor": "#f5f5f5",
           "transform": Array [
             Object {
-              "rotateY": "180deg",
+              "scaleX": -1,
             },
           ],
         },

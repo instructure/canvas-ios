@@ -46,7 +46,7 @@ export default class ChatBubble extends Component<BubbleProps, any> {
       tintColor = colors.backgroundLight
       fromStyle = styles.theirText
       messageContainer = styles.theirMessageContainer
-      transform = [{ rotateY: '180deg' }]
+      transform = [{ scaleX: -1 }]
     }
 
     return (

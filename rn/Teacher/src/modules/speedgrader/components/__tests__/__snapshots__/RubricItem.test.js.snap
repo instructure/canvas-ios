@@ -1160,7 +1160,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
               "tintColor": "#f5f5f5",
               "transform": Array [
                 Object {
-                  "rotateY": "180deg",
+                  "scaleX": -1,
                 },
               ],
             },
