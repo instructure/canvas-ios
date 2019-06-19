@@ -17,12 +17,6 @@
 import XCTest
 import TestsFoundation
 
-enum CourseDetails {
-    static var grades: Element {
-        return app.find(id: "courses-details.grades-cell")
-    }
-}
-
 enum GradesList {
     static var title: Element {
         return app.find(label: "Grades")
@@ -37,15 +31,30 @@ enum AssignmentDetails {
     static func description(_ description: String) -> Element {
         return app.find(label: description)
     }
+
+    static func link(_ description: String) -> Element {
+        return XCUIElementWrapper(app.webViews.staticTexts[description])
+    }
 }
 
 class AssignmentsTests: CanvasUITests {
     override var user: User? { return .student1 }
 
     func testViewAssignment() {
+        Dashboard.courseCard(id: "263").waitToExist(30)
         Dashboard.courseCard(id: "263").tap()
         CourseDetails.grades.tap()
         GradesList.assignment(id: "1831").tap()
         AssignmentDetails.description("This is assignment one.").waitToExist()
+    }
+
+    func testPreviewAssignmentAttachment() {
+        Dashboard.courseCard(id: "263").waitToExist(30)
+        Dashboard.courseCard(id: "263").tap()
+        CourseDetails.grades.tap()
+        GradesList.assignment(id: "1831").tap()
+        AssignmentDetails.link("run.jpg").waitToExist()
+        AssignmentDetails.link("run.jpg").tapAt(.zero)
+        app.find(type: .image).waitToExist()
     }
 }
