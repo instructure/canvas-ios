@@ -145,7 +145,7 @@ exports[`My message rows render correctly 1`] = `
               "width": null,
             },
             Object {
-              "tintColor": "rgb(0, 142, 226)",
+              "tintColor": "#008EE2",
               "transform": Array [],
             },
           ]

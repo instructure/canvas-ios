@@ -1913,7 +1913,7 @@ exports[`renders UI correctly 1`] = `
                     "width": 80,
                   },
                   Object {
-                    "backgroundColor": "rgb(0, 142, 226)",
+                    "backgroundColor": "#008EE2",
                   },
                 ]
               }
@@ -1957,7 +1957,7 @@ exports[`renders UI correctly 1`] = `
                 ]
               }
             >
-              rgb(0, 142, 226)
+              #008EE2
             </Text>
           </View>
           <View
