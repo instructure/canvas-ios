@@ -38,6 +38,10 @@ enum Dashboard {
         return app.find(label: "Calendar")
     }
 
+    static var inboxTab: Element {
+        return app.find(id: "tab-bar.inbox-btn")
+    }
+
     static var dashboardList: Element {
         return app.find(id: "favorited-course-list.profile-btn")
     }
