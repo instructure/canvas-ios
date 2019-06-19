@@ -118,8 +118,9 @@ class InboxTests: CanvasUITests {
         XCTAssertFalse(MessageRecipientsSelection.student(studentID: "651").exists)
     }
 
-    func testCanSortAndFilterMessages() {
+    func testCanFilterMessagesAndShowsUnread() {
         //Dashboard
+        XCTAssert(Dashboard.inboxTab.value == "2 items")
         Dashboard.inboxTab.tap()
 
         // Inbox
@@ -128,10 +129,5 @@ class InboxTests: CanvasUITests {
         Inbox.filterOption("Assignment").tap()
         Inbox.message(id: "47").waitToVanish()
         XCTAssert(Inbox.message(id: "48").isVisible)
-    }
-
-    func testUnreadMessagesShowIndicatorAndCount() {
-        // Dashboard
-        XCTAssert(Dashboard.inboxTab.value == "2 items")
     }
 }

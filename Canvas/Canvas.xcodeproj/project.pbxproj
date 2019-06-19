@@ -626,7 +626,7 @@
 		B5A790BB1D8C743400ACA9FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
-		EE2BFBD022BAE4510046BA8B /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB78822BA9E54001C1EE7 /* InboxTests.swift */; };
+		EE2BFBD222BAEB380046BA8B /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BFBD122BAEB380046BA8B /* InboxTests.swift */; };
 		EE7BB77922B822DE001C1EE7 /* DashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB77822B822DE001C1EE7 /* DashboardTests.swift */; };
 		EE7BB77B22B84720001C1EE7 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB77A22B84720001C1EE7 /* PeopleTests.swift */; };
 		EE7BB78322BA93A7001C1EE7 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB78222BA93A7001C1EE7 /* CalendarTests.swift */; };
@@ -1672,12 +1672,11 @@
 		C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasKit1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8523687029A98FE14374D90 /* Pods-defaults-CanvasKit1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit1.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasKit1/Pods-defaults-CanvasKit1.release.xcconfig"; sourceTree = "<group>"; };
 		E95379D1460BDF2C6A9F2EEE /* Pods-defaults-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
-		EE2BFBCD22BAE1030046BA8B /* InboxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
+		EE2BFBD122BAEB380046BA8B /* InboxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
 		EE7BB77822B822DE001C1EE7 /* DashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTests.swift; sourceTree = "<group>"; };
 		EE7BB77A22B84720001C1EE7 /* PeopleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		EE7BB78222BA93A7001C1EE7 /* CalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
 		EE7BB78522BA9449001C1EE7 /* CourseFileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseFileTests.swift; sourceTree = "<group>"; };
-		EE7BB78822BA9E54001C1EE7 /* InboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
 		EEEA99D722B7F2FC006AD5BF /* AnnouncementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementTests.swift; sourceTree = "<group>"; };
 		F7E3E8394F9CF33081E5BAFC /* Pods-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1837,7 +1836,6 @@
 				5B0FCCDFB07A88D993D5871D /* Frameworks */,
 				3BFCA4310566C5CB96383521 /* Pods */,
 				2C67B0D51E01F11A00DDD191 /* Canvas-Bridging-Header.h */,
-				EE2BFBCF22BAE3A70046BA8B /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3012,14 +3010,6 @@
 			path = "Module Items";
 			sourceTree = "<group>";
 		};
-		EE2BFBCF22BAE3A70046BA8B /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				EE2BFBCD22BAE1030046BA8B /* InboxTests.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		EE7BB77722B82233001C1EE7 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -3056,7 +3046,7 @@
 		EE7BB78722BA9E35001C1EE7 /* Inbox */ = {
 			isa = PBXGroup;
 			children = (
-				EE7BB78822BA9E54001C1EE7 /* InboxTests.swift */,
+				EE2BFBD122BAEB380046BA8B /* InboxTests.swift */,
 			);
 			path = Inbox;
 			sourceTree = "<group>";
@@ -4181,7 +4171,6 @@
 			files = (
 				EE7BB78622BA9449001C1EE7 /* CourseFileTests.swift in Sources */,
 				7D903BFE22BABC04009D9E9E /* Dashboard.swift in Sources */,
-				EE2BFBD022BAE4510046BA8B /* InboxTests.swift in Sources */,
 				7D903C0622BAC72B009D9E9E /* ProfileTests.swift in Sources */,
 				7D903C0422BABE23009D9E9E /* Profile.swift in Sources */,
 				EEEA99D822B7F2FC006AD5BF /* AnnouncementTests.swift in Sources */,
@@ -4192,6 +4181,7 @@
 				B16300D622B015AE000B85AD /* LoginTests.swift in Sources */,
 				7D903C0122BABC64009D9E9E /* CourseNavigation.swift in Sources */,
 				EE7BB78322BA93A7001C1EE7 /* CalendarTests.swift in Sources */,
+				EE2BFBD222BAEB380046BA8B /* InboxTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
