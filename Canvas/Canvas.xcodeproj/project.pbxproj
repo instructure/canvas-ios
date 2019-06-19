@@ -623,7 +623,6 @@
 		EE7BB77B22B84720001C1EE7 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB77A22B84720001C1EE7 /* PeopleTests.swift */; };
 		EE7BB78322BA93A7001C1EE7 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB78222BA93A7001C1EE7 /* CalendarTests.swift */; };
 		EE7BB78622BA9449001C1EE7 /* CourseFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB78522BA9449001C1EE7 /* CourseFileTests.swift */; };
-		EE7BB78922BA9E54001C1EE7 /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB78822BA9E54001C1EE7 /* InboxTests.swift */; };
 		EEEA99D822B7F2FC006AD5BF /* AnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA99D722B7F2FC006AD5BF /* AnnouncementTests.swift */; };
 		F9B946F0221492040083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
 		F9B946F1221492040083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; };
@@ -4079,7 +4078,6 @@
 				EEEA99D822B7F2FC006AD5BF /* AnnouncementTests.swift in Sources */,
 				B105FDDE22B29D6600B0D4B3 /* AssignmentsTests.swift in Sources */,
 				9F5D743822A99E91002FCCCE /* CanvasUITests.swift in Sources */,
-				EE7BB78922BA9E54001C1EE7 /* InboxTests.swift in Sources */,
 				EE7BB77922B822DE001C1EE7 /* DashboardTests.swift in Sources */,
 				EE7BB77B22B84720001C1EE7 /* PeopleTests.swift in Sources */,
 				B16300D622B015AE000B85AD /* LoginTests.swift in Sources */,
