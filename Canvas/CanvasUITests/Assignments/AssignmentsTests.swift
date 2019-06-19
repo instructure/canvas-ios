@@ -41,18 +41,32 @@ class AssignmentsTests: CanvasUITests {
     override var user: User? { return .student1 }
 
     func testViewAssignment() {
-        Dashboard.courseCard(id: "263").waitToExist(30)
+        // Dashboard
+        Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
+
+        // Course Details
         CourseDetails.grades.tap()
+
+        // Grades List
         GradesList.assignment(id: "1831").tap()
+
+        // Assignment Details
         AssignmentDetails.description("This is assignment one.").waitToExist()
     }
 
     func testPreviewAssignmentAttachment() {
-        Dashboard.courseCard(id: "263").waitToExist(30)
+        // Dashboard
+        Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
+
+        // Course Details
         CourseDetails.grades.tap()
+
+        // Grades List
         GradesList.assignment(id: "1831").tap()
+
+        // Assignment Details
         AssignmentDetails.link("run.jpg").waitToExist()
         AssignmentDetails.link("run.jpg").tapAt(.zero)
         app.find(type: .image).waitToExist()
