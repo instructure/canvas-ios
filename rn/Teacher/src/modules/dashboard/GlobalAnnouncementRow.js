@@ -99,7 +99,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
   }
 
   render () {
-    const { style, notification: { subject, message, icon } } = this.props
+    const { style, notification: { id, subject, message, icon } } = this.props
     const { collapsed } = this.state
     const color = this.getColorFromIcon(icon)
     return (
@@ -122,7 +122,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
               hitSlop={{ top: 8, right: 16, bottom: 16, left: 56 }}
               onPress={this.toggle}
               underlayColor='transparent'
-              testID='global-announcement-row.toggle'
+              testID={`GlobalAnnouncement.${id}.toggle`}
             >
               <View>
                 <Text style={styles.title}>{subject}</Text>
@@ -144,7 +144,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
                 accessibilityLabel={i18n('Dismiss {name}', { name: subject })}
                 style={styles.dismiss}
                 onPress={this.dismiss}
-                testID='global-announcement-row.dismiss'
+                testID={`GlobalAnnouncement.${id}.dismiss`}
               >
                 {i18n('Dismiss')}
               </LinkButton>

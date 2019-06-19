@@ -47,6 +47,9 @@ public extension ElementWrapper {
     var exists: Bool {
         return element.exists
     }
+    var frame: CGRect {
+        return element.frame
+    }
     var id: String {
         return element.id
     }

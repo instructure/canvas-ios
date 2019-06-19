@@ -80,6 +80,26 @@ enum CourseDetails {
 class DashboardTests: CanvasUITests {
     override var user: User? { return .student1 }
 
+    func testAnnouncementBelowInvite() {
+        CourseInvitation.acceptButton(id: "998").waitToExist()
+        GlobalAnnouncement.toggle(id: "2").waitToExist()
+        XCTAssertLessThan(CourseInvitation.acceptButton(id: "998").frame.maxY, GlobalAnnouncement.toggle(id: "2").frame.minY)
+    }
+
+    func testAnnouncementToggle() {
+        let label = "This is a global announcement for students."
+        GlobalAnnouncement.toggle(id: "2").waitToExist()
+        XCTAssertFalse(GlobalAnnouncement.dismiss(id: "2").isVisible)
+        XCTAssertFalse(app.find(label: label).isVisible)
+
+        GlobalAnnouncement.toggle(id: "2").tap()
+        GlobalAnnouncement.dismiss(id: "2").waitToExist()
+        app.find(label: label).waitToExist()
+
+        GlobalAnnouncement.toggle(id: "2").tap()
+        GlobalAnnouncement.dismiss(id: "2").waitToVanish()
+    }
+
     func testNavigationDrawerDisplaysUsername() {
         Dashboard.dashboardList.waitToExist()
         Dashboard.dashboardList.tap()

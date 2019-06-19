@@ -97,8 +97,8 @@ describe('GlobalAnnouncementRow', () => {
         onDismiss={onDismiss}
       />
     )
-    tree.find('[testID="global-announcement-row.toggle"]').simulate('Press')
-    tree.find('[testID="global-announcement-row.dismiss"]').simulate('Press')
+    tree.find('[testID="GlobalAnnouncement.34.toggle"]').simulate('Press')
+    tree.find('[testID="GlobalAnnouncement.34.dismiss"]').simulate('Press')
     expect(onDismiss).toHaveBeenCalledWith('34')
   })
 })
