@@ -18,7 +18,7 @@ import XCTest
 import TestsFoundation
 
 enum Announcements {
-    static func announcement(index: String) -> Element {
+    static func announcement(index: Int) -> Element {
         return app.find(id: "announcements.list.announcement.row-\(index)")
     }
 }
@@ -41,10 +41,10 @@ class AnnouncementTest: CanvasUITests {
         CourseDetails.announcements.tap()
 
         // Announcements
-        Announcements.announcement(index: "0").waitToExist()
-        XCTAssert(Announcements.announcement(index: "0").label.contains("Announcement Three"))
-        XCTAssert(Announcements.announcement(index: "1").label.contains("Announcement Two"))
-        XCTAssert(Announcements.announcement(index: "2").label.contains("Announcement One"))
+        Announcements.announcement(index: 0).waitToExist()
+        XCTAssert(Announcements.announcement(index: 0).label.contains("Announcement Three"))
+        XCTAssert(Announcements.announcement(index: 1).label.contains("Announcement Two"))
+        XCTAssert(Announcements.announcement(index: 2).label.contains("Announcement One"))
     }
 
     func testViewAnnouncement() {
@@ -56,8 +56,8 @@ class AnnouncementTest: CanvasUITests {
         CourseDetails.announcements.tap()
 
         // Announcements
-        Announcements.announcement(index: "0").waitToExist()
-        Announcements.announcement(index: "0").tapAt(.zero)
+        Announcements.announcement(index: 0).waitToExist()
+        Announcements.announcement(index: 0).tapAt(.zero)
 
         AnnouncementDetail.text.waitToExist()
         XCTAssert(AnnouncementDetail.text.exists)

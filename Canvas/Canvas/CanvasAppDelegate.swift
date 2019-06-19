@@ -42,10 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        if CommandLine.arguments.contains("--ui-test") {
-            setupUITests()
-        }
         setupCrashlytics()
+        #if DEBUG
+            UITestHelpers.setup(self)
+        #endif
         CacheManager.resetAppIfNecessary()
         if hasFirebase {
             FirebaseApp.configure()
@@ -103,11 +103,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         }, error: { _ in DispatchQueue.main.async {
             self.userDidLogout(keychainEntry: session)
         } })
-    }
-
-    func setupUITests() {
-        Keychain.clearEntries()
-        UIView.setAnimationsEnabled(false)
     }
     
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {

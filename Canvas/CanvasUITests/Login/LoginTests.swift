@@ -129,8 +129,7 @@ class LoginTests: CanvasUITests {
         Dashboard.courseCard(id: "247").waitToExist()
         Dashboard.dashboardTab.waitToExist()
 
-        XCUIApplication().terminate()
-        XCUIApplication().launch()
+        launch()
 
         // Dashboard
         Dashboard.coursesLabel.waitToExist()
