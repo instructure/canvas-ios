@@ -623,6 +623,7 @@
 		EE7BB77B22B84720001C1EE7 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB77A22B84720001C1EE7 /* PeopleTests.swift */; };
 		EE7BB78322BA93A7001C1EE7 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB78222BA93A7001C1EE7 /* CalendarTests.swift */; };
 		EE7BB78622BA9449001C1EE7 /* CourseFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB78522BA9449001C1EE7 /* CourseFileTests.swift */; };
+		EE7BB78922BA9E54001C1EE7 /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB78822BA9E54001C1EE7 /* InboxTests.swift */; };
 		EEEA99D822B7F2FC006AD5BF /* AnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA99D722B7F2FC006AD5BF /* AnnouncementTests.swift */; };
 		F9B946F0221492040083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
 		F9B946F1221492040083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; };
@@ -1652,6 +1653,7 @@
 		EE7BB77A22B84720001C1EE7 /* PeopleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		EE7BB78222BA93A7001C1EE7 /* CalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
 		EE7BB78522BA9449001C1EE7 /* CourseFileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseFileTests.swift; sourceTree = "<group>"; };
+		EE7BB78822BA9E54001C1EE7 /* InboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
 		EEEA99D722B7F2FC006AD5BF /* AnnouncementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementTests.swift; sourceTree = "<group>"; };
 		F7E3E8394F9CF33081E5BAFC /* Pods-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -2900,6 +2902,7 @@
 				EEEA99D622B7F2FC006AD5BF /* Announcements */,
 				B105FDDC22B29D4300B0D4B3 /* Assignments */,
 				EE7BB78422BA9407001C1EE7 /* Course Files */,
+				EE7BB78722BA9E35001C1EE7 /* Inbox */,
 				EE7BB77C22B8473F001C1EE7 /* People */,
 				B16300D422B0155E000B85AD /* Login */,
 				9F5D743722A99E91002FCCCE /* CanvasUITests.swift */,
@@ -2976,6 +2979,14 @@
 				EE7BB78522BA9449001C1EE7 /* CourseFileTests.swift */,
 			);
 			path = "Course Files";
+			sourceTree = "<group>";
+		};
+		EE7BB78722BA9E35001C1EE7 /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				EE7BB78822BA9E54001C1EE7 /* InboxTests.swift */,
+			);
+			path = Inbox;
 			sourceTree = "<group>";
 		};
 		EEEA99D622B7F2FC006AD5BF /* Announcements */ = {
@@ -4068,6 +4079,7 @@
 				EEEA99D822B7F2FC006AD5BF /* AnnouncementTests.swift in Sources */,
 				B105FDDE22B29D6600B0D4B3 /* AssignmentsTests.swift in Sources */,
 				9F5D743822A99E91002FCCCE /* CanvasUITests.swift in Sources */,
+				EE7BB78922BA9E54001C1EE7 /* InboxTests.swift in Sources */,
 				EE7BB77922B822DE001C1EE7 /* DashboardTests.swift in Sources */,
 				EE7BB77B22B84720001C1EE7 /* PeopleTests.swift in Sources */,
 				B16300D622B015AE000B85AD /* LoginTests.swift in Sources */,
