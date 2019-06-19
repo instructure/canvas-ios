@@ -297,7 +297,7 @@ test('refreshSubmissionSummary', () => {
   })
 })
 
-test('refreshSubmissionSummary with error', async () => {
+test('refreshSubmissionSummary with error object', async () => {
   const assignment = template.assignment({ id: '1' })
   const emptySummary = template.submissionSummary({ graded: 0, ungraded: 0, not_submitted: 0 })
   const initialState = {
@@ -329,7 +329,44 @@ test('refreshSubmissionSummary with error', async () => {
   expect(state).toEqual({
     '1': {
       ...initialState['1'],
-      submissionSummary: { data: emptySummary, pending: 0, error: error },
+      submissionSummary: { data: emptySummary, pending: 0, error: 'summary error' },
+    },
+  })
+})
+
+test('refreshSubmissionSummary with error type', async () => {
+  const assignment = template.assignment({ id: '1' })
+  const emptySummary = template.submissionSummary({ graded: 0, ungraded: 0, not_submitted: 0 })
+  const initialState = {
+    '1': {
+      data: assignment,
+      pending: 0,
+
+      submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: {}, pending: 0, error: null },
+      gradeableStudents: { refs: [], pending: 0 },
+      pendingComments: {},
+      error: null,
+    },
+  }
+
+  const error = new TypeError('ouch')
+  const action = {
+    type: refreshSubmissionSummary.toString(),
+    error: true,
+    payload: {
+      courseID: '1',
+      assignmentID: '1',
+      error,
+    },
+  }
+
+  const state = assignments(initialState, action)
+
+  expect(state).toEqual({
+    '1': {
+      ...initialState['1'],
+      submissionSummary: { data: emptySummary, pending: 0, error: 'ouch' },
     },
   })
 })
