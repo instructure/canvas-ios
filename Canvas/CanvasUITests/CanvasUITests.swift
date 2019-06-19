@@ -69,7 +69,7 @@ class CanvasUITests: XCTestCase {
         app.find(labelContaining: "Loading").waitToVanish(120)
         if let user = user {
             LoginStart.previousUser(name: user.username).tap()
-            Dashboard.dashboardTab.waitToExist(30)
+            Dashboard.dashboardTab.waitToExist()
         }
     }
 }
