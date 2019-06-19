@@ -30,6 +30,7 @@ struct RubricViewModel: Hashable, Equatable {
     let ratings: [Double]
     let descriptions: [String]
     let comment: String?
+    let rubricRatings: [RubricRating]
 }
 
 class RubricPresenter {
@@ -111,7 +112,8 @@ class RubricPresenter {
                 selectedIndex: selectedIndex,
                 ratings: allRatings,
                 descriptions: allDescriptions,
-                comment: comments
+                comment: comments,
+                rubricRatings: sorted
             )
             models.append(m)
         }

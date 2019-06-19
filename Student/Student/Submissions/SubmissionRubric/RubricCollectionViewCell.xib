@@ -21,21 +21,12 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2YU-YO-Iil" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                        <rect key="frame" x="16" y="16" width="419" height="20.5"/>
+                        <rect key="frame" x="16" y="16" width="419" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="cardTitle"/>
-                        </userDefinedRuntimeAttributes>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tj0-rd-1N4" userLabel="ratingTitle" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                        <rect key="frame" x="16" y="38.5" width="419" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" name="textDark"/>
-                        <nil key="highlightedColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                         </userDefinedRuntimeAttributes>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kTA-sB-Edy" userLabel="Border">
@@ -45,15 +36,15 @@
                             <constraint firstAttribute="height" constant="1" id="Gkp-nu-QZi"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIh-3R-hA7" customClass="RubricCircleView" customModule="Student" customModuleProvider="target">
-                        <rect key="frame" x="16" y="71" width="419" height="50"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIh-3R-hA7" customClass="RubricCircleViewWithDescription" customModule="Student" customModuleProvider="target">
+                        <rect key="frame" x="16" y="65.5" width="419" height="50"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="tOc-eo-ocB"/>
                         </constraints>
                     </view>
                     <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r4g-Ae-Pek" customClass="ChatBubbleView" customModule="Core">
-                        <rect key="frame" x="16" y="133" width="419" height="44"/>
+                        <rect key="frame" x="16" y="127.5" width="419" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="6D6-VV-jfx"/>
                             <constraint firstAttribute="width" constant="419" id="zyK-Dr-OMO"/>
@@ -63,11 +54,11 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c10-zD-TM2" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
-                        <rect key="frame" x="16" y="189" width="419" height="16"/>
+                        <rect key="frame" x="16" y="37.5" width="419" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="YYQ-AI-GPD"/>
                         </constraints>
-                        <state key="normal" title="View Long Description"/>
+                        <state key="normal" title="Description"/>
                         <connections>
                             <action selector="actionShowLongDescription:" destination="p4f-Ib-2wk" eventType="touchUpInside" id="MzX-PH-Hai"/>
                         </connections>
@@ -75,24 +66,20 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="c10-zD-TM2" firstAttribute="top" secondItem="ZIh-3R-hA7" secondAttribute="bottom" priority="50" constant="12" id="2tQ-Ou-R85"/>
+                <constraint firstItem="c10-zD-TM2" firstAttribute="top" secondItem="2YU-YO-Iil" secondAttribute="bottom" constant="2" id="2Bz-pP-M0F"/>
                 <constraint firstItem="kTA-sB-Edy" firstAttribute="leading" secondItem="p4f-Ib-2wk" secondAttribute="leading" constant="16" id="3vO-Wf-x3f"/>
-                <constraint firstItem="ZIh-3R-hA7" firstAttribute="top" secondItem="Tj0-rd-1N4" secondAttribute="bottom" constant="12" id="64J-SE-AR6"/>
-                <constraint firstItem="c10-zD-TM2" firstAttribute="top" secondItem="r4g-Ae-Pek" secondAttribute="bottom" priority="500" constant="12" id="6gD-nH-TQ2"/>
                 <constraint firstItem="2YU-YO-Iil" firstAttribute="leading" secondItem="p4f-Ib-2wk" secondAttribute="leading" constant="16" id="8lN-ij-M8H"/>
+                <constraint firstItem="ZIh-3R-hA7" firstAttribute="top" secondItem="2YU-YO-Iil" secondAttribute="bottom" constant="30" id="9Ti-g9-0ZQ"/>
                 <constraint firstAttribute="trailing" secondItem="ZIh-3R-hA7" secondAttribute="trailing" constant="16" id="A0D-sY-Xlj"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="r4g-Ae-Pek" secondAttribute="trailing" constant="16" id="APB-7i-3ao"/>
                 <constraint firstAttribute="trailing" secondItem="kTA-sB-Edy" secondAttribute="trailing" constant="16" id="DvU-9t-sVr"/>
                 <constraint firstItem="2YU-YO-Iil" firstAttribute="top" secondItem="p4f-Ib-2wk" secondAttribute="top" constant="16" id="Lq2-0X-8SA"/>
-                <constraint firstAttribute="trailing" secondItem="Tj0-rd-1N4" secondAttribute="trailing" constant="16" id="VY1-4I-AtV"/>
-                <constraint firstItem="Tj0-rd-1N4" firstAttribute="leading" secondItem="p4f-Ib-2wk" secondAttribute="leading" constant="16" id="ZH2-fb-oFl"/>
                 <constraint firstItem="r4g-Ae-Pek" firstAttribute="top" secondItem="ZIh-3R-hA7" secondAttribute="bottom" constant="12" id="eSN-vF-Ta8"/>
                 <constraint firstAttribute="bottom" secondItem="kTA-sB-Edy" secondAttribute="bottom" id="fXi-dT-iyA"/>
                 <constraint firstAttribute="trailing" secondItem="2YU-YO-Iil" secondAttribute="trailing" constant="16" id="kPw-UK-0Gc"/>
                 <constraint firstItem="c10-zD-TM2" firstAttribute="leading" secondItem="p4f-Ib-2wk" secondAttribute="leading" constant="16" id="p21-p4-yn4"/>
                 <constraint firstItem="ZIh-3R-hA7" firstAttribute="leading" secondItem="p4f-Ib-2wk" secondAttribute="leading" constant="16" id="qF4-dN-mfe"/>
                 <constraint firstAttribute="trailing" secondItem="c10-zD-TM2" secondAttribute="trailing" constant="16" id="x2x-tH-D06"/>
-                <constraint firstItem="Tj0-rd-1N4" firstAttribute="top" secondItem="2YU-YO-Iil" secondAttribute="bottom" constant="2" id="yIM-B0-zEB"/>
                 <constraint firstItem="r4g-Ae-Pek" firstAttribute="leading" secondItem="p4f-Ib-2wk" secondAttribute="leading" constant="16" id="yhE-M6-5ic"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="D4J-uA-zdm"/>
@@ -105,19 +92,14 @@
                 <outlet property="commentViewHeightConstraint" destination="6D6-VV-jfx" id="Syu-Ar-PdF"/>
                 <outlet property="commentViewWidthConstraint" destination="zyK-Dr-OMO" id="Y4k-AS-b8k"/>
                 <outlet property="rubricTitle" destination="2YU-YO-Iil" id="zJn-gR-mfp"/>
-                <outlet property="selectedRatingTitle" destination="Tj0-rd-1N4" id="MRt-BR-aie"/>
+                <outlet property="rubricTitleToCircleViewVerticalConstraint" destination="9Ti-g9-0ZQ" id="8kH-8f-0on"/>
                 <outlet property="viewLongDescriptionButton" destination="c10-zD-TM2" id="9ff-eP-I1f"/>
-                <outlet property="viewLongDescriptionToCircleViewVerticalConstraint" destination="2tQ-Ou-R85" id="xOI-Kv-N52"/>
-                <outlet property="viewLongDescriptionToCommentViewVerticalConstraint" destination="6gD-nH-TQ2" id="Sd9-rJ-KsS"/>
             </connections>
             <point key="canvasLocation" x="274.39999999999998" y="70.164917541229386"/>
         </collectionViewCell>
     </objects>
     <resources>
         <namedColor name="borderDark">
-            <color red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="textDark">
             <color red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

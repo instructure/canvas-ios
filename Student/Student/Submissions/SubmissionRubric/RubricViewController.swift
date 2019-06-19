@@ -121,6 +121,7 @@ extension RubricViewController: RubricViewProtocol {
 protocol RubricCellDelegate: class {
     func longDescriptionTapped(cell: RubricCollectionViewCell)
 }
+
 extension RubricViewController: RubricCellDelegate {
     func longDescriptionTapped(cell: RubricCollectionViewCell) {
         guard let indexPath = self.collectionView.indexPath(for: cell) else {
@@ -136,9 +137,8 @@ class RubricCollectionViewCell: UICollectionViewCell {
 
     weak var delegate: RubricCellDelegate?
 
-    @IBOutlet weak var circleView: RubricCircleView!
+    @IBOutlet weak var circleView: RubricCircleViewWithDescription!
     @IBOutlet weak var rubricTitle: DynamicLabel!
-    @IBOutlet weak var selectedRatingTitle: DynamicLabel!
     @IBOutlet weak var borderHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentView: ChatBubbleView!
     @IBOutlet weak var commentViewHeightConstraint: NSLayoutConstraint!
@@ -147,8 +147,7 @@ class RubricCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var circleViewHeightConstraint: NSLayoutConstraint!
     private static var margin: CGFloat = 16
     @IBOutlet weak var viewLongDescriptionButton: UIButton!
-    @IBOutlet weak var viewLongDescriptionToCircleViewVerticalConstraint: NSLayoutConstraint!
-    @IBOutlet weak var viewLongDescriptionToCommentViewVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var rubricTitleToCircleViewVerticalConstraint: NSLayoutConstraint!
 
     override func awakeFromNib() {
         borderHeightConstraint.constant = 1.0 / UIScreen.main.scale
@@ -160,9 +159,9 @@ class RubricCollectionViewCell: UICollectionViewCell {
     func update(_ rubric: RubricViewModel) {
         rubricTitle.text = rubric.title
         rubricTitle.accessibilityTraits = .header
-        selectedRatingTitle.text = rubric.selectedDesc
         circleView.rubric = rubric
-        circleViewHeightConstraint.constant = RubricCircleView.computedHeight(rubric: rubric, maxWidth: bounds.size.width - (RubricCollectionViewCell.margin * 2))
+        circleViewHeightConstraint.constant = RubricCircleViewWithDescription.computedHeight(rubric: rubric, maxWidth: bounds.size.width - (RubricCollectionViewCell.margin * 2))
+        updateLongDescription(desc: rubric.longDescription)
         updateComment(comment: rubric.comment)
         viewLongDescriptionButton.isHidden = rubric.longDescription.count == 0
     }
@@ -172,23 +171,21 @@ class RubricCollectionViewCell: UICollectionViewCell {
         let size = type(of: self).commentViewSize(comment: comment, containerFrame: bounds)
         commentViewHeightConstraint.constant = size.height
         commentViewWidthConstraint.constant = size.width
+    }
 
-        if size.height == 0 {
-            viewLongDescriptionToCircleViewVerticalConstraint.priority = UILayoutPriority.defaultHigh
-            viewLongDescriptionToCommentViewVerticalConstraint.priority = UILayoutPriority.defaultLow
-        } else {
-            viewLongDescriptionToCircleViewVerticalConstraint.priority = UILayoutPriority.defaultLow
-            viewLongDescriptionToCommentViewVerticalConstraint.priority = UILayoutPriority.defaultHigh
-        }
+    func updateLongDescription(desc: String?) {
+        let noRubricLongDescriptionConstant: CGFloat = 10.0
+        let longDescriptionExistsConstant: CGFloat = 30.0
+        rubricTitleToCircleViewVerticalConstraint.constant = desc?.isEmpty ?? true ? noRubricLongDescriptionConstant : longDescriptionExistsConstant
     }
 
     static func computedHeight(rubric: RubricViewModel, containerFrame: CGRect) -> CGFloat {
         let otherViewHeights: CGFloat = 95
 
-        let circles = RubricCircleView.computedHeight(rubric: rubric, maxWidth: containerFrame.size.width - (margin * 2.0))
+        let circles = RubricCircleViewWithDescription.computedHeight(rubric: rubric, maxWidth: containerFrame.size.width - (margin * 2.0))
         var comment = commentViewSize(comment: rubric.comment, containerFrame: containerFrame).height
         if comment > 0 { comment += 12.0 /* add extra vertical spacing for additional item */ }
-        let longDescription: CGFloat = rubric.longDescription.count == 0 ? 0 : 16
+        let longDescription: CGFloat = rubric.longDescription.count == 0 ? -17 : 0
         return otherViewHeights + circles + comment + longDescription
     }
 
@@ -210,9 +207,7 @@ class RubricCollectionViewCell: UICollectionViewCell {
     }
 
     @IBAction func actionShowLongDescription(_ sender: Any) {
-        guard let delegate = self.delegate else {
-            return
-        }
+        guard let delegate = self.delegate else { return }
         delegate.longDescriptionTapped(cell: self)
     }
 }
