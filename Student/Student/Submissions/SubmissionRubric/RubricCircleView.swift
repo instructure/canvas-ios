@@ -17,11 +17,16 @@
 import UIKit
 import Core
 
+protocol RubricCircleViewButtonDelegate: class {
+    func didClickRubric(atIndex: Int, rubric: RubricViewModel)
+}
+
 class RubricCircleView: UIView {
     private static let w: CGFloat = 49
     private static let space: CGFloat = 10
     private var buttons: [UIButton] = []
     var rubric: RubricViewModel?
+    weak var buttonClickDelegate: RubricCircleViewButtonDelegate?
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -83,7 +88,6 @@ class RubricCircleView: UIView {
             addSubview(button)
             buttons.append(button)
 
-            button.isUserInteractionEnabled = false
             // Pretend to be a label in VO
             button.accessibilityTraits = button.isSelected ? [.selected, .staticText] : .staticText
 
@@ -105,7 +109,8 @@ class RubricCircleView: UIView {
 
     @objc func actionButtonClicked(sender: DynamicButton) {
         let index = sender.tag
-        print("button \(index) clicked")
+        guard let rubric = rubric else { return }
+        buttonClickDelegate?.didClickRubric(atIndex: index, rubric: rubric)
     }
 
     static func computedHeight(rubric: RubricViewModel, maxWidth: CGFloat) -> CGFloat {
