@@ -21,6 +21,137 @@ protocol RubricCircleViewButtonDelegate: class {
     func didClickRubric(atIndex: Int, rubric: RubricViewModel)
 }
 
+class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
+    var circleView: RubricCircleView?
+    var descriptionViewContainer: UIView?
+    var header: DynamicLabel?
+    var subHeader: DynamicLabel?
+    var headerContainer: UIView?
+    var selectedRatingIndex: Int = 0
+    var rubric: RubricViewModel? {
+        didSet {
+            circleView?.rubric = rubric
+            selectedRatingIndex = rubric?.selectedIndex ?? 0
+        }
+    }
+    var circleViewHeightConstraint: NSLayoutConstraint?
+    var subHeaderHeightConstraint: NSLayoutConstraint?
+    var headerContainerHeightConstraint: NSLayoutConstraint?
+    static let subHeaderFont = UIFont.scaledNamedFont(.medium12)
+    static let margin: CGFloat = 8.0
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setup()
+
+        if let rubric = rubric {
+            circleViewHeightConstraint?.constant = RubricCircleView.computedHeight(rubric: rubric, maxWidth: bounds.size.width)
+        }
+    }
+
+    func setup() {
+        if circleView == nil {
+            circleView = RubricCircleView(frame: CGRect.zero)
+            circleView?.rubric = rubric
+            circleView?.buttonClickDelegate = self
+            addSubview(circleView!)
+            circleView?.pinToLeftAndRightOfSuperview()
+            circleView?.addConstraintsWithVFL("V:|[view]", views: nil, metrics: nil)
+            circleViewHeightConstraint = circleView?.addConstraintsWithVFL("V:[view(50)]", views: nil, metrics: nil)?.first
+        }
+
+        if headerContainer == nil {
+            let margin = RubricCircleViewWithDescription.margin
+            let marginMetrics = ["margin": margin]
+
+            headerContainer = UIView(frame: CGRect.zero)
+            addSubview(headerContainer!)
+            headerContainer?.pinToLeftAndRightOfSuperview()
+            guard let circleView = circleView else { return }
+            headerContainer?.addConstraintsWithVFL("V:[circles]-(10)-[view]", views: ["circles": circleView], metrics: nil)
+            headerContainerHeightConstraint = headerContainer?.addConstraintsWithVFL("V:[view(70)]")?.first
+            headerContainer?.layer.cornerRadius = 8
+            headerContainer?.layer.masksToBounds = true
+
+            guard let container = headerContainer else { return }
+
+            header = DynamicLabel(frame: CGRect.zero)
+            header?.font = UIFont.scaledNamedFont(.semibold14)
+            container.addSubview(header!)
+            header?.addConstraintsWithVFL("H:|-(margin)-[view]-(margin)-|", metrics: marginMetrics)
+            header?.addConstraintsWithVFL("V:|-(margin)-[view(21)]", metrics: marginMetrics)
+
+            subHeader = DynamicLabel(frame: CGRect.zero)
+            subHeader?.numberOfLines = 0
+            subHeader?.font = RubricCircleViewWithDescription.subHeaderFont
+            container.addSubview(subHeader!)
+            subHeader?.addConstraintsWithVFL("H:|-(margin)-[view]-(margin)-|", metrics: marginMetrics)
+            subHeader?.addConstraintsWithVFL("V:[header]-(margin)-[view]", views: ["header": header!], metrics: ["margin": margin / 2])
+            subHeaderHeightConstraint = subHeader?.addConstraintsWithVFL("V:[view(21)]")?.first
+
+            container.backgroundColor = UIColor.blue.withAlphaComponent(0.1)
+
+            if let rubric = rubric {
+                didClickRubric(atIndex: rubric.selectedIndex, rubric: rubric)
+            }
+        }
+    }
+
+    static func computedHeight(rubric: RubricViewModel, maxWidth: CGFloat) -> CGFloat {
+        let circles = RubricCircleView.computedHeight(rubric: rubric, maxWidth: maxWidth)
+        let space: CGFloat = 10
+        let h: CGFloat = 70
+        let r = h + (space * 2) + circles
+//        print("\(#function) height: \(r)")
+        return r
+    }
+
+    static func subHeaderSize(text: String?, containerFrame: CGRect) -> CGSize {
+        if let text = text, !text.isEmpty {
+            let margin: CGFloat = 8
+            let maxLabelHeight: CGFloat = 100.0
+            let horizontalMargins: CGFloat = (margin * 2.0) // + (margin * 2.0)
+            let verticalMargins: CGFloat = (margin * 2)
+            let maxWidth: CGFloat = containerFrame.size.width - horizontalMargins
+            let constraintRect = CGSize(width: maxWidth, height: maxLabelHeight)
+            let size = text.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: subHeaderFont], context: nil)
+            let h = ceil(size.height) + verticalMargins
+            let computedSize = CGSize(width: size.width, height: h)
+            return computedSize
+        }
+        return CGSize.zero
+    }
+
+    static func computedTextContainerHeight(selectedRatingIndex: Int, rubric: RubricViewModel, containerFrame: CGRect) -> CGFloat {
+        let rating = rubric.rubricRatings[selectedRatingIndex]
+        let header = rating.desc
+        let subHeader = rating.longDesc
+
+        let headerHeight: CGFloat = header.isEmpty ? 0 : 21
+        let subHeaderHeight = ceil(RubricCircleViewWithDescription.subHeaderSize(text: subHeader, containerFrame: containerFrame).height)
+        var h = headerHeight + subHeaderHeight
+        if h > 0 { h +=  (margin / 2) + (margin * 2) /* add margins if there is any text, otherwise don't add margins */ }
+        return h
+    }
+
+    func updateHeights() {
+        guard let rubric = rubric else { return }
+        let subHeader = rubric.rubricRatings[selectedRatingIndex].longDesc
+        let subHeaderHeight = ceil(RubricCircleViewWithDescription.subHeaderSize(text: subHeader, containerFrame: frame).height)
+        subHeaderHeightConstraint?.constant = subHeaderHeight
+        headerContainerHeightConstraint?.constant = ceil(RubricCircleViewWithDescription.computedTextContainerHeight(selectedRatingIndex: selectedRatingIndex, rubric: rubric, containerFrame: frame))
+    }
+
+    func didClickRubric(atIndex: Int, rubric: RubricViewModel) {
+        selectedRatingIndex = atIndex
+        let selectedRating = rubric.rubricRatings[atIndex]
+        header?.text = selectedRating.desc
+        subHeader?.text = selectedRating.longDesc
+
+        updateHeights()
+    }
+}
+
 class RubricCircleView: UIView {
     private static let w: CGFloat = 49
     private static let space: CGFloat = 10
