@@ -84,21 +84,20 @@ class DashboardTests: CanvasUITests {
         Dashboard.dashboardList.waitToExist()
         Dashboard.dashboardList.tap()
         Dashboard.username("Student One").waitToExist()
-        XCTAssert(Dashboard.username("Student One").exists)
     }
 
     func testNavigationDrawerChangesUser() {
         Dashboard.dashboardList.waitToExist()
         Dashboard.dashboardList.tap()
         Dashboard.changeUser.tap()
-        XCTAssert(LoginStart.previousUser(name: "Student One").exists)
+        LoginStart.previousUser(name: "Student One").waitToExist()
     }
 
     func testNavigationDrawerLogsOut() {
         Dashboard.dashboardList.waitToExist()
         Dashboard.dashboardList.tap()
         Dashboard.logOut.tap()
-        XCTAssert(LoginStart.findMySchool.exists)
+        LoginStart.findMySchool.waitToExist()
         XCTAssertFalse(LoginStart.previousUser(name: "Student One").exists)
     }
 

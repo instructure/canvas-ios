@@ -137,9 +137,6 @@
 		7D101955215EBB540058FDD1 /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D101953215EBB540058FDD1 /* DynamicLabel.swift */; };
 		7D10A49221B5E3CC0040C311 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10A49121B5E3CC0040C311 /* RootViewController.swift */; };
 		7D10A49321B5E3CF0040C311 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10A49121B5E3CC0040C311 /* RootViewController.swift */; };
-		7D13C51822B8453F00345253 /* UITestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13C50922B8200000345253 /* UITestHelpers.swift */; };
-		7D13C51B22B845AF00345253 /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBFD31A224557A8000A18DC /* MockMessage.swift */; };
-		7D13C51C22B845B100345253 /* MockDistantURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFD649C2244287400A37291 /* MockDistantURLSession.swift */; };
 		7D1758E4215AA06C00F88613 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758E7215AA06C00F88613 /* Localizable.strings */; };
 		7D1758E5215AA06C00F88613 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758E7215AA06C00F88613 /* Localizable.strings */; };
 		7D1758E8215AA07E00F88613 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758EB215AA07E00F88613 /* Localizable.stringsdict */; };
@@ -570,7 +567,6 @@
 		7D101950215EBB4B0058FDD1 /* DynamicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicButton.swift; sourceTree = "<group>"; };
 		7D101953215EBB540058FDD1 /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
 		7D10A49121B5E3CC0040C311 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		7D13C50922B8200000345253 /* UITestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestHelpers.swift; sourceTree = "<group>"; };
 		7D1758E6215AA06C00F88613 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7D1758EA215AA07E00F88613 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		7D20F61521C3142E00B77E5E /* CourseListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPresenter.swift; sourceTree = "<group>"; };
@@ -610,7 +606,6 @@
 		7DB0A1BF21BF2671009ABB40 /* LoginStartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartTests.swift; sourceTree = "<group>"; };
 		7DB0A1C121BF288C009ABB40 /* LoginWeb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWeb.swift; sourceTree = "<group>"; };
 		7DB0A1C321BF2A20009ABB40 /* LoginFindSchoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolTests.swift; sourceTree = "<group>"; };
-		7DBFD31A224557A8000A18DC /* MockMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockMessage.swift; path = ../../../TestsFoundation/TestsFoundation/API/MockMessage.swift; sourceTree = "<group>"; };
 		7DC1C9D5223AB8690083F707 /* SubmissionCommentAudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentAudioCell.swift; sourceTree = "<group>"; };
 		7DD6947E2194B94500BA4984 /* SubmissionDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsTests.swift; sourceTree = "<group>"; };
 		7DD9E621223C1B9500B45A7E /* SubmissionCommentHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentHeaderCell.swift; sourceTree = "<group>"; };
@@ -618,7 +613,6 @@
 		7DD9E63D223C4E3600B45A7E /* SubmissionCommentFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentFileView.swift; sourceTree = "<group>"; };
 		7DD9E640223C4E4400B45A7E /* SubmissionCommentFileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubmissionCommentFileView.xib; sourceTree = "<group>"; };
 		7DEE3169223C08A20042FE2A /* SubmissionCommentVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentVideoCell.swift; sourceTree = "<group>"; };
-		7DFD649C2244287400A37291 /* MockDistantURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDistantURLSession.swift; sourceTree = "<group>"; };
 		9F55262122947027009144F9 /* CourseCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseCardCell.xib; sourceTree = "<group>"; };
 		9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenter.swift; sourceTree = "<group>"; };
 		9F9F4EB021B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExternalToolSubmissionContentViewController.storyboard; sourceTree = "<group>"; };
@@ -1106,16 +1100,6 @@
 			path = IBDesignables;
 			sourceTree = "<group>";
 		};
-		7D13C51A22B8456400345253 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				7DBFD31A224557A8000A18DC /* MockMessage.swift */,
-				7DFD649C2244287400A37291 /* MockDistantURLSession.swift */,
-				7D13C50922B8200000345253 /* UITestHelpers.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		7D20F61C21C3211700B77E5E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1429,7 +1413,6 @@
 				5B5E29852185A058001C9C79 /* InfoPlist.strings */,
 				7D781C9D217FADD40046A83E /* NavBar.swift */,
 				B1FFB80A215FADC2000684AA /* StudentUITestCase.swift */,
-				7D13C51A22B8456400345253 /* Helpers */,
 			);
 			path = StudentUITests;
 			sourceTree = "<group>";
@@ -1788,7 +1771,6 @@
 				3B1B007D219BD9F60045E8A1 /* QuizListViewController.swift in Sources */,
 				3B1B0067219BD9F60045E8A1 /* AssignmentListViewController.swift in Sources */,
 				7D10A49221B5E3CC0040C311 /* RootViewController.swift in Sources */,
-				7D13C51B22B845AF00345253 /* MockMessage.swift in Sources */,
 				B107189821963BC000ED1DC7 /* EmptyView.swift in Sources */,
 				3B1B0080219BD9F60045E8A1 /* QuizListCell.swift in Sources */,
 				7DA057542193A3A800A3CFBB /* IconView.swift in Sources */,
@@ -1806,7 +1788,6 @@
 				3BBCF839224C142C004B519D /* SyllabusPresenter.swift in Sources */,
 				3B1B0068219BD9F60045E8A1 /* AssignmentListPresenter.swift in Sources */,
 				7DA5C49A22386501003CDB4C /* SubmissionCommentsPresenter.swift in Sources */,
-				7D13C51C22B845B100345253 /* MockDistantURLSession.swift in Sources */,
 				7D7110C321389AD90085C2E5 /* Routes.swift in Sources */,
 				3B635B23225C0DA0001F353D /* SyllabusActionableItemsPresenter.swift in Sources */,
 				7D101951215EBB4B0058FDD1 /* DynamicButton.swift in Sources */,
@@ -1827,7 +1808,6 @@
 				7D2FADD1225BD3D100BCE19E /* TextSubmissionPresenter.swift in Sources */,
 				3B5425FE21B094CC0009D069 /* UrlSubmissionViewController.swift in Sources */,
 				7D87369D228F17C500D25BF7 /* SubmissionButtonPresenter.swift in Sources */,
-				7D13C51822B8453F00345253 /* UITestHelpers.swift in Sources */,
 				3BC49C5022B0500D00937125 /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				7DA5C496223863C2003CDB4C /* SubmissionCommentsViewController.swift in Sources */,
 				7DEE316A223C08A20042FE2A /* SubmissionCommentVideoCell.swift in Sources */,
@@ -2341,10 +2321,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/iOS/**",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = Student/Info.plist;
@@ -2371,7 +2347,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Carthage/Build/iOS/**",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = Student/Info.plist;

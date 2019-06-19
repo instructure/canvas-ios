@@ -13,8 +13,7 @@
     "Pods\\/",
     "Student\/Courses\/CourseList\/",
     "Student\/Dashboard\/",
-    "StudentUITests\/",
-    "TestsFoundation\/"
+    "UITestHelpers\/"
   ],
   "fileMinCoverage": 0.5,
   "totalMinCoverage": 0.9

@@ -32,12 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         environment.logger.log(#function)
+        #if DEBUG
+            UITestHelpers.setup(self)
+        #endif
         DocViewerViewController.setup(.studentPSPDFKitLicense)
         setupNotifications()
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-        #if DEBUG
-            UITestHelpers.setup()
-        #endif
 
         if let session = Keychain.mostRecentSession {
             window?.rootViewController = LoadingViewController.create()

@@ -43,7 +43,7 @@ public extension RouterProtocol {
                 if options?.contains(.addDoneButton) == true {
                     view.addDoneButton()
                 }
-                let nav = UINavigationController(rootViewController: view)
+                let nav = view as? UINavigationController ?? UINavigationController(rootViewController: view)
                 from.present(nav, animated: true, completion: nil)
             } else {
                 from.present(view, animated: true, completion: nil)

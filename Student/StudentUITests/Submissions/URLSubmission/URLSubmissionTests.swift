@@ -34,11 +34,16 @@ class URLSubmissionTests: StudentUITestCase {
         XCTAssertFalse(URLSubmission.loadingView.isVisible)
         URLSubmission.url.tap()
         URLSubmission.url.typeText("www.amazon.com")
-        app.find(label: "Done").tap()
         URLSubmission.submit.tap()
         XCTAssertTrue(URLSubmission.loadingView.exists)
         XCTAssertTrue(URLSubmission.loadingView.isVisible)
+    }
 
+    func testShowSubmission() {
+        let course = APICourse.make()
+        mockData(GetCourseRequest(courseID: course.id), value: course)
+        let assignment = APIAssignment.make(submission_types: [ .online_url ])
+        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             assignment_id: assignment.id,
             user_id: "1",
@@ -47,7 +52,7 @@ class URLSubmissionTests: StudentUITestCase {
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetails.urlButton.waitToExist(5)
+        SubmissionDetails.urlButton.waitToExist()
         XCTAssertEqual(SubmissionDetails.urlButton.label, "http://www.amazon.com")
     }
 }
