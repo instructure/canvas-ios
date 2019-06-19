@@ -112,7 +112,6 @@ exports[`My message rows render correctly 1`] = `
     <View
       style={
         Object {
-          "flex": 1,
           "maxWidth": 300,
         }
       }
@@ -129,21 +128,27 @@ exports[`My message rows render correctly 1`] = `
         resizeMode="stretch"
         source={
           Object {
-            "testUri": "../../../src/images/speedgrader/bubble-me.png",
+            "uri": "chatBubble",
           }
         }
         style={
-          Object {
-            "bottom": 0,
-            "height": null,
-            "left": 0,
-            "margin": 0,
-            "padding": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": -4,
-            "width": null,
-          }
+          Array [
+            Object {
+              "bottom": 0,
+              "height": null,
+              "left": 0,
+              "margin": 0,
+              "padding": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": -4,
+              "width": null,
+            },
+            Object {
+              "tintColor": "#008EE2",
+              "transform": Array [],
+            },
+          ]
         }
       />
       <Text
@@ -294,7 +299,6 @@ exports[`Their message rows render correctly 1`] = `
     <View
       style={
         Object {
-          "flex": 1,
           "maxWidth": 300,
         }
       }
@@ -311,21 +315,31 @@ exports[`Their message rows render correctly 1`] = `
         resizeMode="stretch"
         source={
           Object {
-            "testUri": "../../../src/images/speedgrader/bubble-them.png",
+            "uri": "chatBubble",
           }
         }
         style={
-          Object {
-            "bottom": 0,
-            "height": null,
-            "left": 0,
-            "margin": 0,
-            "padding": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": -4,
-            "width": null,
-          }
+          Array [
+            Object {
+              "bottom": 0,
+              "height": null,
+              "left": 0,
+              "margin": 0,
+              "padding": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": -4,
+              "width": null,
+            },
+            Object {
+              "tintColor": "#f5f5f5",
+              "transform": Array [
+                Object {
+                  "scaleX": -1,
+                },
+              ],
+            },
+          ]
         }
       />
       <Text
