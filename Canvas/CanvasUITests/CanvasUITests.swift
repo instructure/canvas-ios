@@ -63,6 +63,7 @@ class CanvasUITests: UITestCase {
         reset()
         if let user = user {
             LoginStart.previousUser(name: user.username).tap()
+            Dashboard.dashboardTab.waitToExist(30)
         }
     }
 

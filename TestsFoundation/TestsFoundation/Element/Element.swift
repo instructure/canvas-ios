@@ -83,7 +83,7 @@ public extension Element {
     }
 
     @discardableResult
-    func waitToExist(_ timeout: TimeInterval = 10, file: StaticString = #file, line: UInt = #line) -> Element {
+    func waitToExist(_ timeout: TimeInterval = 30, file: StaticString = #file, line: UInt = #line) -> Element {
         return waitToExist(timeout, file: file, line: line)
     }
 
