@@ -29,6 +29,7 @@ import Images from '../../../images'
 import colors from '../../../common/colors'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import DrawerState from '../utils/drawer-state'
+import { getBottomSpace } from 'react-native-iphone-x-helper'
 
 export type Comment
   = { type: 'text', message: string }
@@ -161,7 +162,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
             }
           </View>
         </View>
-        <KeyboardSpacer onToggle={this.keyboardChanged} />
+        <KeyboardSpacer topSpacing={-getBottomSpace()} onToggle={this.keyboardChanged} />
       </View>
     )
   }
