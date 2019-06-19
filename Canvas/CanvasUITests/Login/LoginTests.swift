@@ -102,18 +102,18 @@ class LoginTests: CanvasUITests {
         loginUser(username: "student1", password: "password")
 
         // Change User
-        Dashboard.dashboardList.waitToExist()
-        Dashboard.dashboardList.tap()
-        Dashboard.changeUser.waitToExist()
-        Dashboard.changeUser.tap()
+        Dashboard.profileButton.waitToExist()
+        Dashboard.profileButton.tap()
+        Profile.changeUserButton.waitToExist()
+        Profile.changeUserButton.tap()
 
         loginUser(username: "student2", password: "password")
 
         // Change User
-        Dashboard.dashboardList.waitToExist()
-        Dashboard.dashboardList.tap()
-        Dashboard.changeUser.waitToExist()
-        Dashboard.changeUser.tap()
+        Dashboard.profileButton.waitToExist()
+        Dashboard.profileButton.tap()
+        Profile.changeUserButton.waitToExist()
+        Profile.changeUserButton.tap()
 
         // Previous Users
         LoginStart.findMySchool.waitToExist()

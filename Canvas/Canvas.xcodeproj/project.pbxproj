@@ -592,8 +592,10 @@
 		7D86500522B2A4EF006B0127 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
 		7D86500622B2A4F6006B0127 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
 		7D86500722B2A4F9006B0127 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; };
-		7D903BFA22BAA1A9009D9E9E /* GlobalAnnouncement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903BF922BAA1A9009D9E9E /* GlobalAnnouncement.swift */; };
-		7D903BFC22BAA4F4009D9E9E /* CourseInvitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903BFB22BAA4F4009D9E9E /* CourseInvitation.swift */; };
+		7D903BFE22BABC04009D9E9E /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903BFD22BABC04009D9E9E /* Dashboard.swift */; };
+		7D903C0122BABC64009D9E9E /* CourseNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0022BABC64009D9E9E /* CourseNavigation.swift */; };
+		7D903C0422BABE23009D9E9E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0322BABE23009D9E9E /* Profile.swift */; };
+		7D903C0622BAC72B009D9E9E /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0522BAC72B009D9E9E /* ProfileTests.swift */; };
 		7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */; };
 		7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
 		7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1429,8 +1431,10 @@
 		7D8F1D391FE1CCF000C27B42 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		7D8F1D3A1FE1CCF000C27B42 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7D8F1D3B1FE1CCF100C27B42 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		7D903BF922BAA1A9009D9E9E /* GlobalAnnouncement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalAnnouncement.swift; sourceTree = "<group>"; };
-		7D903BFB22BAA4F4009D9E9E /* CourseInvitation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInvitation.swift; sourceTree = "<group>"; };
+		7D903BFD22BABC04009D9E9E /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		7D903C0022BABC64009D9E9E /* CourseNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseNavigation.swift; sourceTree = "<group>"; };
+		7D903C0322BABE23009D9E9E /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		7D903C0522BAC72B009D9E9E /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		7DABA7451FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DABA7461FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		7DABA7471FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -2897,17 +2901,36 @@
 			path = "Mastery Paths";
 			sourceTree = "<group>";
 		};
+		7D903BFF22BABC3D009D9E9E /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				7D903C0022BABC64009D9E9E /* CourseNavigation.swift */,
+			);
+			path = Courses;
+			sourceTree = "<group>";
+		};
+		7D903C0222BABDE2009D9E9E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				7D903C0322BABE23009D9E9E /* Profile.swift */,
+				7D903C0522BAC72B009D9E9E /* ProfileTests.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		9F5D743622A99E91002FCCCE /* CanvasUITests */ = {
 			isa = PBXGroup;
 			children = (
-				EE7BB78122BA9379001C1EE7 /* Calendar */,
-				EE7BB77722B82233001C1EE7 /* Dashboard */,
 				EEEA99D622B7F2FC006AD5BF /* Announcements */,
 				B105FDDC22B29D4300B0D4B3 /* Assignments */,
+				EE7BB78122BA9379001C1EE7 /* Calendar */,
 				EE7BB78422BA9407001C1EE7 /* Course Files */,
+				7D903BFF22BABC3D009D9E9E /* Courses */,
+				EE7BB77722B82233001C1EE7 /* Dashboard */,
 				EE7BB78722BA9E35001C1EE7 /* Inbox */,
-				EE7BB77C22B8473F001C1EE7 /* People */,
 				B16300D422B0155E000B85AD /* Login */,
+				EE7BB77C22B8473F001C1EE7 /* People */,
+				7D903C0222BABDE2009D9E9E /* Profile */,
 				9F5D743722A99E91002FCCCE /* CanvasUITests.swift */,
 				9F5D743922A99E91002FCCCE /* Info.plist */,
 			);
@@ -2955,9 +2978,8 @@
 		EE7BB77722B82233001C1EE7 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				7D903BFB22BAA4F4009D9E9E /* CourseInvitation.swift */,
+				7D903BFD22BABC04009D9E9E /* Dashboard.swift */,
 				EE7BB77822B822DE001C1EE7 /* DashboardTests.swift */,
-				7D903BF922BAA1A9009D9E9E /* GlobalAnnouncement.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -4080,15 +4102,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D903BFA22BAA1A9009D9E9E /* GlobalAnnouncement.swift in Sources */,
 				EE7BB78622BA9449001C1EE7 /* CourseFileTests.swift in Sources */,
+				7D903BFE22BABC04009D9E9E /* Dashboard.swift in Sources */,
+				7D903C0622BAC72B009D9E9E /* ProfileTests.swift in Sources */,
+				7D903C0422BABE23009D9E9E /* Profile.swift in Sources */,
 				EEEA99D822B7F2FC006AD5BF /* AnnouncementTests.swift in Sources */,
 				B105FDDE22B29D6600B0D4B3 /* AssignmentsTests.swift in Sources */,
 				9F5D743822A99E91002FCCCE /* CanvasUITests.swift in Sources */,
 				EE7BB77922B822DE001C1EE7 /* DashboardTests.swift in Sources */,
 				EE7BB77B22B84720001C1EE7 /* PeopleTests.swift in Sources */,
 				B16300D622B015AE000B85AD /* LoginTests.swift in Sources */,
-				7D903BFC22BAA4F4009D9E9E /* CourseInvitation.swift in Sources */,
+				7D903C0122BABC64009D9E9E /* CourseNavigation.swift in Sources */,
 				EE7BB78322BA93A7001C1EE7 /* CalendarTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -91,6 +91,7 @@ exports[`Profile Tests renders correctly 1`] = `
             },
           ]
         }
+        testID="Profile.userNameLabel"
       >
         Key and Peele
       </Text>
@@ -113,6 +114,7 @@ exports[`Profile Tests renders correctly 1`] = `
             },
           ]
         }
+        testID="Profile.userEmailLabel"
       >
         keyandpeele@instructure.com
       </Text>
@@ -135,7 +137,7 @@ exports[`Profile Tests renders correctly 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.filesButton"
             >
               <View
                 style={
@@ -234,7 +236,7 @@ exports[`Profile Tests renders correctly 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.actAsUserButton"
             >
               <View
                 style={
@@ -323,6 +325,7 @@ exports[`Profile Tests renders correctly 1`] = `
               accessibilityLabel="Color Overlay, On"
               accessibilityTraits={
                 Array [
+                  "selected",
                   "button",
                 ]
               }
@@ -333,7 +336,7 @@ exports[`Profile Tests renders correctly 1`] = `
                   undefined,
                 ]
               }
-              testID="profile.color-overlay-toggle"
+              testID="Profile.colorOverlayToggle"
             >
               <View
                 style={
@@ -478,7 +481,7 @@ exports[`Profile Tests renders correctly 1`] = `
                   undefined,
                 ]
               }
-              testID="profile.settings-btn"
+              testID="Profile.settingsButton"
             >
               <View
                 style={
@@ -577,7 +580,7 @@ exports[`Profile Tests renders correctly 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.developerMenuButton"
             >
               <View
                 style={
@@ -676,7 +679,7 @@ exports[`Profile Tests renders correctly 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.changeUserButton"
             >
               <View
                 style={
@@ -775,7 +778,7 @@ exports[`Profile Tests renders correctly 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.logOutButton"
             >
               <View
                 style={
@@ -904,243 +907,13 @@ exports[`Profile Tests renders correctly 1`] = `
             },
           ]
         }
-        testID="profile-btn-secret-tap"
+        testID="Profile.versionLabel"
       >
         v. 1.0
       </Text>
     </View>
   </RCTSafeAreaView>
 </View>
-`;
-
-exports[`Profile Tests renders correctly for parents 1`] = `
-<Screen
-  disableGlobalSafeArea={true}
-  navBarButtonColor="#008EE2"
-  navBarHidden={true}
-  navBarStyle="light"
-  showDismissButton={true}
-  statusBarStyle="default"
->
-  <View
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-    testID="module.profile"
-  >
-    <SavingBanner />
-    <SafeAreaView
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-            "padding": 16,
-          }
-        }
-      >
-        <Avatar
-          avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
-          height={56}
-          testID="profile.avatar"
-          userName="Key and Peele"
-          width={56}
-        />
-      </View>
-      <View
-        style={
-          Object {
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-          }
-        }
-      >
-        <Heavy
-          allowFontScaling={false}
-          style={
-            Object {
-              "fontSize": 24,
-            }
-          }
-        >
-          Key and Peele
-        </Heavy>
-        <Paragraph
-          allowFontScaling={false}
-          style={
-            Object {
-              "fontSize": 16,
-            }
-          }
-        >
-          keyandpeele@instructure.com
-        </Paragraph>
-      </View>
-      <ScrollViewMock>
-        <View>
-          <View
-            key="Manage Children"
-          >
-            <Row
-              onPress={[Function]}
-              title="Manage Children"
-              titleStyles={
-                Object {
-                  "fontSize": 20,
-                  "fontWeight": "300",
-                }
-              }
-            />
-            <RowSeparator
-              style={
-                Object {
-                  "marginLeft": 16,
-                }
-              }
-            />
-          </View>
-          <View
-            key="Help"
-          >
-            <Row
-              onPress={[Function]}
-              title="Help"
-              titleStyles={
-                Object {
-                  "fontSize": 20,
-                  "fontWeight": "300",
-                }
-              }
-            />
-            <RowSeparator
-              style={
-                Object {
-                  "marginLeft": 16,
-                }
-              }
-            />
-          </View>
-          <View
-            key="Act as User"
-          >
-            <Row
-              onPress={[Function]}
-              title="Act as User"
-              titleStyles={
-                Object {
-                  "fontSize": 20,
-                  "fontWeight": "300",
-                }
-              }
-            />
-            <RowSeparator
-              style={
-                Object {
-                  "marginLeft": 16,
-                }
-              }
-            />
-          </View>
-          <View
-            key="Developer Menu"
-          >
-            <Row
-              onPress={[Function]}
-              title="Developer Menu"
-              titleStyles={
-                Object {
-                  "fontSize": 20,
-                  "fontWeight": "300",
-                }
-              }
-            />
-            <RowSeparator
-              style={
-                Object {
-                  "marginLeft": 16,
-                }
-              }
-            />
-          </View>
-          <View
-            key="Change User"
-          >
-            <Row
-              onPress={[Function]}
-              title="Change User"
-              titleStyles={
-                Object {
-                  "fontSize": 20,
-                  "fontWeight": "300",
-                }
-              }
-            />
-            <RowSeparator
-              style={
-                Object {
-                  "marginLeft": 16,
-                }
-              }
-            />
-          </View>
-          <View
-            key="Log Out"
-          >
-            <Row
-              onPress={[Function]}
-              title="Log Out"
-              titleStyles={
-                Object {
-                  "fontSize": 20,
-                  "fontWeight": "300",
-                }
-              }
-            />
-            <RowSeparator
-              style={
-                Object {
-                  "marginLeft": 16,
-                }
-              }
-            />
-          </View>
-        </View>
-      </ScrollViewMock>
-      <View
-        style={
-          Object {
-            "bottom": 0,
-            "padding": 16,
-          }
-        }
-      >
-        <TouchableWithoutFeedback
-          onPress={[Function]}
-          testID="profile-btn-secret-tap"
-        >
-          <Text
-            style={
-              Object {
-                "color": "#73818C",
-                "fontSize": 12,
-              }
-            }
-          >
-            v. 1.0
-          </Text>
-        </TouchableWithoutFeedback>
-      </View>
-    </SafeAreaView>
-  </View>
-</Screen>
 `;
 
 exports[`Profile Tests renders correctly for students 1`] = `
@@ -1180,7 +953,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
         <Avatar
           avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
           height={56}
-          testID="profile.avatar"
+          testID="Profile.avatar"
           userName="Key and Peele"
           width={56}
         />
@@ -1200,6 +973,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
               "fontSize": 24,
             }
           }
+          testID="Profile.userNameLabel"
         >
           Key and Peele
         </Heavy>
@@ -1210,6 +984,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
               "fontSize": 16,
             }
           }
+          testID="Profile.userEmailLabel"
         >
           keyandpeele@instructure.com
         </Paragraph>
@@ -1217,10 +992,11 @@ exports[`Profile Tests renders correctly for students 1`] = `
       <ScrollViewMock>
         <View>
           <View
-            key="Files"
+            key="Profile.filesButton"
           >
             <Row
               onPress={[Function]}
+              testID="Profile.filesButton"
               title="Files"
               titleStyles={
                 Object {
@@ -1238,10 +1014,11 @@ exports[`Profile Tests renders correctly for students 1`] = `
             />
           </View>
           <View
-            key="Act as User"
+            key="Profile.actAsUserButton"
           >
             <Row
               onPress={[Function]}
+              testID="Profile.actAsUserButton"
               title="Act as User"
               titleStyles={
                 Object {
@@ -1263,6 +1040,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
           >
             <RowWithSwitch
               onValueChange={[Function]}
+              testID="Profile.showGradesToggle"
               title="Show Grades"
               titleStyles={
                 Object {
@@ -1284,7 +1062,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
           >
             <RowWithSwitch
               onValueChange={[Function]}
-              testID="profile.color-overlay-toggle"
+              testID="Profile.colorOverlayToggle"
               title="Color Overlay"
               titleStyles={
                 Object {
@@ -1303,11 +1081,11 @@ exports[`Profile Tests renders correctly for students 1`] = `
             />
           </View>
           <View
-            key="profile.settings-btn"
+            key="Profile.settingsButton"
           >
             <Row
               onPress={[Function]}
-              testID="profile.settings-btn"
+              testID="Profile.settingsButton"
               title="Settings"
               titleStyles={
                 Object {
@@ -1325,10 +1103,11 @@ exports[`Profile Tests renders correctly for students 1`] = `
             />
           </View>
           <View
-            key="Developer Menu"
+            key="Profile.developerMenuButton"
           >
             <Row
               onPress={[Function]}
+              testID="Profile.developerMenuButton"
               title="Developer Menu"
               titleStyles={
                 Object {
@@ -1346,10 +1125,11 @@ exports[`Profile Tests renders correctly for students 1`] = `
             />
           </View>
           <View
-            key="Change User"
+            key="Profile.changeUserButton"
           >
             <Row
               onPress={[Function]}
+              testID="Profile.changeUserButton"
               title="Change User"
               titleStyles={
                 Object {
@@ -1367,10 +1147,11 @@ exports[`Profile Tests renders correctly for students 1`] = `
             />
           </View>
           <View
-            key="Log Out"
+            key="Profile.logOutButton"
           >
             <Row
               onPress={[Function]}
+              testID="Profile.logOutButton"
               title="Log Out"
               titleStyles={
                 Object {
@@ -1399,7 +1180,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
       >
         <TouchableWithoutFeedback
           onPress={[Function]}
-          testID="profile-btn-secret-tap"
+          testID="Profile.versionLabel"
         >
           <Text
             style={
@@ -1509,6 +1290,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
             },
           ]
         }
+        testID="Profile.userNameLabel"
       >
         Key and Peele
       </Text>
@@ -1531,6 +1313,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
             },
           ]
         }
+        testID="Profile.userEmailLabel"
       >
         keyandpeele@instructure.com
       </Text>
@@ -1553,7 +1336,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.filesButton"
             >
               <View
                 style={
@@ -1652,7 +1435,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID="row-lti-gauge.instructure.com-360860"
+              testID="Profile.lti.gauge.instructure.com.360860"
             >
               <View
                 style={
@@ -1751,7 +1534,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.actAsUserButton"
             >
               <View
                 style={
@@ -1850,7 +1633,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.showGradesToggle"
             >
               <View
                 style={
@@ -1985,6 +1768,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
               accessibilityLabel="Color Overlay, On"
               accessibilityTraits={
                 Array [
+                  "selected",
                   "button",
                 ]
               }
@@ -1995,7 +1779,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID="profile.color-overlay-toggle"
+              testID="Profile.colorOverlayToggle"
             >
               <View
                 style={
@@ -2140,7 +1924,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID="profile.settings-btn"
+              testID="Profile.settingsButton"
             >
               <View
                 style={
@@ -2239,7 +2023,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.developerMenuButton"
             >
               <View
                 style={
@@ -2338,7 +2122,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.changeUserButton"
             >
               <View
                 style={
@@ -2437,7 +2221,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.logOutButton"
             >
               <View
                 style={
@@ -2566,7 +2350,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
             },
           ]
         }
-        testID="profile-btn-secret-tap"
+        testID="Profile.versionLabel"
       >
         v. 1.0
       </Text>
@@ -2666,6 +2450,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
             },
           ]
         }
+        testID="Profile.userNameLabel"
       >
         Key and Peele
       </Text>
@@ -2688,6 +2473,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
             },
           ]
         }
+        testID="Profile.userEmailLabel"
       >
         keyandpeele@instructure.com
       </Text>
@@ -2710,7 +2496,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.filesButton"
             >
               <View
                 style={
@@ -2809,7 +2595,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.actAsUserButton"
             >
               <View
                 style={
@@ -2908,7 +2694,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.showGradesToggle"
             >
               <View
                 style={
@@ -3043,6 +2829,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
               accessibilityLabel="Color Overlay, On"
               accessibilityTraits={
                 Array [
+                  "selected",
                   "button",
                 ]
               }
@@ -3053,7 +2840,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID="profile.color-overlay-toggle"
+              testID="Profile.colorOverlayToggle"
             >
               <View
                 style={
@@ -3198,7 +2985,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID="profile.settings-btn"
+              testID="Profile.settingsButton"
             >
               <View
                 style={
@@ -3297,7 +3084,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.developerMenuButton"
             >
               <View
                 style={
@@ -3396,7 +3183,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.changeUserButton"
             >
               <View
                 style={
@@ -3495,7 +3282,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.logOutButton"
             >
               <View
                 style={
@@ -3624,7 +3411,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
             },
           ]
         }
-        testID="profile-btn-secret-tap"
+        testID="Profile.versionLabel"
       >
         v. 1.0
       </Text>
@@ -3724,6 +3511,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
             },
           ]
         }
+        testID="Profile.userNameLabel"
       >
         Key and Peele
       </Text>
@@ -3746,6 +3534,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
             },
           ]
         }
+        testID="Profile.userEmailLabel"
       >
         keyandpeele@instructure.com
       </Text>
@@ -3768,7 +3557,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.filesButton"
             >
               <View
                 style={
@@ -3867,7 +3656,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.actAsUserButton"
             >
               <View
                 style={
@@ -3956,6 +3745,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
               accessibilityLabel="Color Overlay, On"
               accessibilityTraits={
                 Array [
+                  "selected",
                   "button",
                 ]
               }
@@ -3966,7 +3756,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   undefined,
                 ]
               }
-              testID="profile.color-overlay-toggle"
+              testID="Profile.colorOverlayToggle"
             >
               <View
                 style={
@@ -4111,7 +3901,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   undefined,
                 ]
               }
-              testID="profile.settings-btn"
+              testID="Profile.settingsButton"
             >
               <View
                 style={
@@ -4210,7 +4000,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.developerMenuButton"
             >
               <View
                 style={
@@ -4309,7 +4099,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.changeUserButton"
             >
               <View
                 style={
@@ -4408,7 +4198,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.logOutButton"
             >
               <View
                 style={
@@ -4537,7 +4327,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
             },
           ]
         }
-        testID="profile-btn-secret-tap"
+        testID="Profile.versionLabel"
       >
         v. 1.0
       </Text>
@@ -4637,6 +4427,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
             },
           ]
         }
+        testID="Profile.userNameLabel"
       >
         Key and Peele
       </Text>
@@ -4659,6 +4450,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
             },
           ]
         }
+        testID="Profile.userEmailLabel"
       >
         keyandpeele@instructure.com
       </Text>
@@ -4681,7 +4473,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.filesButton"
             >
               <View
                 style={
@@ -4770,6 +4562,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
               accessibilityLabel="Color Overlay, On"
               accessibilityTraits={
                 Array [
+                  "selected",
                   "button",
                 ]
               }
@@ -4780,7 +4573,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                   undefined,
                 ]
               }
-              testID="profile.color-overlay-toggle"
+              testID="Profile.colorOverlayToggle"
             >
               <View
                 style={
@@ -4925,7 +4718,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                   undefined,
                 ]
               }
-              testID="profile.settings-btn"
+              testID="Profile.settingsButton"
             >
               <View
                 style={
@@ -5024,7 +4817,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.developerMenuButton"
             >
               <View
                 style={
@@ -5123,7 +4916,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.changeUserButton"
             >
               <View
                 style={
@@ -5222,7 +5015,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                   undefined,
                 ]
               }
-              testID={undefined}
+              testID="Profile.logOutButton"
             >
               <View
                 style={
@@ -5351,7 +5144,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
             },
           ]
         }
-        testID="profile-btn-secret-tap"
+        testID="Profile.versionLabel"
       >
         v. 1.0
       </Text>

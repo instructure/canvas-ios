@@ -41,6 +41,9 @@ export default class RowWithSwitch extends Component<RowWithSwitchProps, any> {
     if (this.props.disabled) {
       traits.push('disabled')
     }
+    if (this.props.value) {
+      traits.push('selected')
+    }
 
     const accessories = <Switch {...this.props}
       testID={this.props.identifier}

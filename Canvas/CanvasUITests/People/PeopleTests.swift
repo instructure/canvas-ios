@@ -38,7 +38,7 @@ class PeopleTests: CanvasUITests {
         Dashboard.courseCard(id: "262").tap()
 
         // Course Details
-        CourseDetails.people.tap()
+        CourseNavigation.people.tap()
 
         // Course People
         CoursePeople.person(name: "Student One").waitToExist()

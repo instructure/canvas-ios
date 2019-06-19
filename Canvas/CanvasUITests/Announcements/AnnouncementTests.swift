@@ -38,7 +38,7 @@ class AnnouncementTest: CanvasUITests {
         Dashboard.courseCard(id: "262").tap()
 
         // Course
-        CourseDetails.announcements.tap()
+        CourseNavigation.announcements.tap()
 
         // Announcements
         Announcements.announcement(index: 0).waitToExist()
@@ -53,7 +53,7 @@ class AnnouncementTest: CanvasUITests {
         Dashboard.courseCard(id: "262").tap()
 
         // Course
-        CourseDetails.announcements.tap()
+        CourseNavigation.announcements.tap()
 
         // Announcements
         Announcements.announcement(index: 0).waitToExist()
