@@ -188,8 +188,8 @@ open class HelmManager: NSObject {
                 masterModules.insert(destinationModule)
             }
             
-            // We are in a split view so we have to write overly confusing logic to determine whether a view controller
-            // should be pushed on the current nav controller or be set as the root and only view controller.
+            // Determine whether a view controller should be pushed on the current nav controller
+            // or be set as the root and only view controller.
             // We also have to figure out if an expand/collapse button is to be shown so that a detail view can occupy
             // the entire screen.
             if let nav = navigationControllerForSplitViewControllerPush(splitViewController: splitViewController, sourceModule: sourceModule, destinationModule: destinationModule, props: propsFRD, options: options) {
