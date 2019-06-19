@@ -25,7 +25,6 @@ import {
 import {
   Text,
 } from '../../../common/text'
-import images from '../../../images'
 import colors from '../../../common/colors'
 
 type BubbleProps = {
