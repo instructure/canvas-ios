@@ -24,6 +24,10 @@ struct SubmissionAction: Equatable {
     let options: Router.RouteOptions
 }
 
+enum OnlineUploadState {
+    case staged, uploading, failed, completed
+}
+
 protocol AssignmentDetailsViewProtocol: SubmissionButtonViewProtocol {
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?)
     func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?)
@@ -65,7 +69,22 @@ class AssignmentDetailsPresenter {
         return assignments.first
     }
 
-    lazy var fileUpload = UploadBatch(environment: env, batchID: "assignment-\(assignmentID)", callback: nil)
+    lazy var onlineUpload = UploadManager.shared.subscribe(batchID: "assignment-\(assignmentID)") { [weak self] in
+        self?.update()
+    }
+    var onlineUploadState: OnlineUploadState? {
+        if onlineUpload.isEmpty {
+            return nil
+        } else if onlineUpload.first(where: { $0.uploadError != nil }) != nil {
+            return .failed
+        } else if onlineUpload.allSatisfy({ $0.isUploaded }) {
+            return .completed
+        } else if onlineUpload.first(where: { $0.isUploading }) != nil {
+            return .uploading
+        } else {
+            return .staged
+        }
+    }
 
     init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.env = env
@@ -89,7 +108,7 @@ class AssignmentDetailsPresenter {
         if let submission = assignment.submission {
             userID = submission.userID
         }
-        let title = submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first)
+        let title = submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: onlineUploadState)
         view?.showSubmitAssignmentButton(title: title)
         view?.updateNavBar(subtitle: course.name, backgroundColor: course.color)
         view?.update(assignment: assignment, quiz: quizzes?.first, baseURL: baseURL)
@@ -106,12 +125,10 @@ class AssignmentDetailsPresenter {
 
     func viewIsReady() {
         colors.refresh()
-        courses.refresh()
-        assignments.refresh()
+        courses.refresh(force: true)
+        assignments.refresh(force: true)
         arc.refresh()
-        fileUpload.subscribe { [weak self] _ in
-            self?.update()
-        }
+        onlineUpload.refresh()
     }
 
     func refresh() {

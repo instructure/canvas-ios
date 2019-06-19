@@ -1,0 +1,120 @@
+//
+// Copyright (C) 2019-present Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+
+import Core
+import CoreData
+
+protocol SubmitAssignmentView: class {
+    func update()
+}
+
+let group = "group.com.instructure.icanvas"
+
+class SubmitAssignmentPresenter {
+    let env: AppEnvironment
+    weak var view: SubmitAssignmentView?
+
+    private(set) var course: Course? {
+        didSet {
+            assignment = nil
+            if let course = course {
+                assignments = env.subscribe(GetAssignments(courseID: course.id)) { [weak self] in
+                    self?.assignment = self?.assignment ?? self?.assignments?.first
+                }
+                assignments?.refresh()
+            }
+            view?.update()
+        }
+    }
+    private(set) var assignment: Assignment? {
+        didSet { view?.update() }
+    }
+
+    var assignments: Store<GetAssignments>?
+    lazy var courses: Store<GetCourses>? = env.subscribe(GetCourses(showFavorites: false, perPage: 10)) { [weak self] in
+        self?.course = self?.course ?? self?.courses?.first
+    }
+
+    var isContentValid: Bool {
+        return course != nil && assignment != nil
+    }
+
+    init?() {
+        Keychain.config = KeychainConfig(accessGroup: group)
+        guard let session = Keychain.mostRecentSession else { return nil }
+        env = AppEnvironment()
+        env.userDidLogin(session: session)
+    }
+
+    func viewIsReady() {
+        courses?.refresh()
+    }
+
+    func select(course: Course) {
+        self.course = course
+    }
+
+    func select(assignment: Assignment) {
+        self.assignment = assignment
+    }
+
+    func submit(items: [NSExtensionItem], callback: @escaping (Error?) -> Void) {
+        guard let assignment = assignment else { return }
+        let uploadContext = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id)
+        let batchID = "assignment-\(assignment.id)"
+        let attachments = items.map { $0.attachments ?? [] }.reduce([], +)
+        let manager = UploadManager.shared
+        manager.cancel(environment: env, batchID: batchID)
+        load(attachments: attachments) { urls, error in
+            guard let urls = urls, error == nil else {
+                callback(error)
+                return
+            }
+            for url in urls {
+                manager.add(environment: self.env, url: url, batchID: batchID)
+            }
+            manager.upload(environment: self.env, batch: batchID, to: uploadContext)
+            callback(nil)
+        }
+    }
+
+    func load(attachments: [NSItemProvider], into urls: [URL] = [], callback: @escaping ([URL]?, Error?) -> Void) {
+        var attachments = attachments
+        var urls = urls
+        guard let attachment = attachments.popLast() else {
+            callback(urls, nil)
+            return
+        }
+        attachment.loadFileRepresentation(forTypeIdentifier: UTI.any.rawValue) { url, error in
+            guard let url = url, error == nil else {
+                callback(nil, error)
+                return
+            }
+            let newURL = URL.appGroup(group)?.appendingPathComponent("share-submit").appendingPathComponent(url.lastPathComponent) ?? url
+            do {
+                try url.move(to: newURL)
+                if let image = UIImage(contentsOfFile: newURL.path) {
+                    let normalized = UIImage.fixOrientation(image)
+                    try normalized.write(to: newURL.deletingLastPathComponent(), nameIt: newURL.lastPathComponent)
+                }
+                urls.append(newURL)
+                self.load(attachments: attachments, into: urls, callback: callback)
+            } catch {
+                callback(nil, error)
+            }
+        }
+    }
+}

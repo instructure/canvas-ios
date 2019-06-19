@@ -18,6 +18,8 @@ import Foundation
 import CoreData
 
 extension NSPersistentContainer {
+    public static let shared = create(appGroup: "group.com.instructure.icanvas")
+
     public static func create(appGroup: String? = Bundle.main.appGroupID(), session: KeychainEntry? = nil) -> NSPersistentContainer {
         let model = NSManagedObjectModel(contentsOf: Bundle.core.url(forResource: "Database", withExtension: "momd")!)!
         let container = NSPersistentContainer(name: "Database", managedObjectModel: model)

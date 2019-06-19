@@ -14,31 +14,39 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
 
-protocol FilePickerViewProtocol: class {
+protocol CoursesView: class {
     func update()
-    func showError(_ error: Error)
 }
 
-class FilePickerPresenter {
+class CoursesPresenter {
     let env: AppEnvironment
-    let batchID: String
-    lazy var files = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
+    let selectedCourseID: String?
+    let callback: (Course) -> Void
+    weak var view: CoursesView?
+
+    lazy var courses: Store<GetCourses> = env.subscribe(GetCourses(showFavorites: false)) { [weak self] in
         self?.view?.update()
     }
-    weak var view: FilePickerViewProtocol?
 
-    init(environment: AppEnvironment = .shared, batchID: String = UUID.string) {
+    init(environment: AppEnvironment, selectedCourseID: String?, callback: @escaping (Course) -> Void) {
         self.env = environment
-        self.batchID = batchID
+        self.selectedCourseID = selectedCourseID
+        self.callback = callback
     }
 
     func viewIsReady() {
-        files.refresh()
+        courses.refresh(force: true)
     }
 
-    func add(url: URL) {
-        UploadManager.shared.add(url: url, batchID: batchID)
+    func selectCourse(at indexPath: IndexPath) {
+        if let course = courses[indexPath] {
+            callback(course)
+        }
+    }
+
+    func getNextPage() {
+        courses.getNextPage()
     }
 }

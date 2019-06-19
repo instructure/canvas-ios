@@ -22,26 +22,42 @@ import UIKit
 public struct RouteHandler {
     public typealias ViewFactory = (URLComponents, [String: String]) -> UIViewController?
 
-    public enum Segment: Equatable {
-        case literal(String)
-        case param(String)
-        case splat(String)
-    }
-
     public let name: String
-    public let template: String
+    public let template: URLTemplate
     public let factory: ViewFactory
-    public let segments: [Segment]
 
     public init(_ route: Route, name: String, factory: @escaping ViewFactory) {
         self.init(route.url.path, name: name, factory: factory)
     }
 
     public init(_ template: String, name: String, factory: @escaping ViewFactory) {
-        self.template = template
+        self.template = URLTemplate(string: template)
         self.name = name
         self.factory = factory
-        self.segments = template.split(separator: "/").map { part in
+    }
+
+    public func match(_ url: URLComponents) -> UIViewController? {
+        guard let params = template.match(url) else { return nil }
+
+        // URLComponents does all the encoding we care about except we often have + meaning space in query
+        var cleaned = url
+        cleaned.query = url.query?.replacingOccurrences(of: "+", with: " ")
+
+        return factory(cleaned, params)
+    }
+}
+
+public struct URLTemplate {
+    public enum Segment: Equatable {
+        case literal(String)
+        case param(String)
+        case splat(String)
+    }
+
+    public let segments: [Segment]
+
+    public init(string: String) {
+        segments = string.split(separator: "/").map { part in
             if part.hasPrefix("*") {
                 return .splat(String(part.dropFirst()))
             } else if part.hasPrefix(":") {
@@ -51,7 +67,7 @@ public struct RouteHandler {
         }
     }
 
-    public func match(_ url: URLComponents) -> UIViewController? {
+    public func match(_ url: URLComponents) -> [String: String]? {
         var parts = url.path.split(separator: "/")
         var params: [String: String] = [:]
         for segment in segments {
@@ -68,11 +84,6 @@ public struct RouteHandler {
             }
         }
         guard parts.isEmpty else { return nil } // too long
-
-        // URLComponents does all the encoding we care about except we often have + meaning space in query
-        var cleaned = url
-        cleaned.query = url.query?.replacingOccurrences(of: "+", with: " ")
-
-        return factory(cleaned, params)
+        return params
     }
 }

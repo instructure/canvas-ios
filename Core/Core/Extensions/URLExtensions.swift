@@ -33,6 +33,10 @@ extension URL {
         return FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
     }
 
+    public static func appGroup(_ identifier: String) -> URL? {
+        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
+    }
+
     public func lookupFileSize() -> Int {
         guard self.isFileURL else { return 0 }
         let attributes = try? FileManager.default.attributesOfItem(atPath: path)
@@ -43,6 +47,10 @@ extension URL {
         var components = URLComponents.parse(self)
         components.queryItems = (components.queryItems ?? []) + items
         return components.url ?? self
+    }
+
+    public var queryMap: [String: String] {
+        return URLComponents(url: self, resolvingAgainstBaseURL: false)?.queryMap ?? [:]
     }
 
     public func move(to destination: URL, override: Bool = true) throws {

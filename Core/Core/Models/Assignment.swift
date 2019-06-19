@@ -41,6 +41,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var discussionTopic: DiscussionTopic?
     @NSManaged public var rubric: Set<Rubric>?
     @NSManaged public var useRubricForGrading: Bool
+    @NSManaged public var lastUpdatedAt: Date?
 
     public var gradingType: GradingType {
         get { return GradingType(rawValue: gradingTypeRaw) ?? .points }
@@ -80,6 +81,7 @@ extension Assignment {
         lockExplanation = item.lock_explanation
         url = item.url
         useRubricForGrading = item.use_rubric_for_grading ?? false
+        lastUpdatedAt = Date()
 
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)

@@ -163,14 +163,14 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
 
-        if let fileSubmissionState = presenter?.fileUpload.state {
+        if let onlineUploadState = presenter?.onlineUploadState {
             gradeSection?.isHidden = false
             gradeCellDivider?.isHidden = false
             gradedView?.isHidden = true
             submittedView?.isHidden = false
             fileSubmissionButton?.isHidden = false
             submittedDetailsLabel?.isHidden = true
-            switch fileSubmissionState {
+            switch onlineUploadState {
             case .failed:
                 submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
                 submittedLabel?.textColor = UIColor.named(.textDanger).ensureContrast(against: .white)

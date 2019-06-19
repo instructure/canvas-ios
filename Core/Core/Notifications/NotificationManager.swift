@@ -41,7 +41,7 @@ public class NotificationManager {
         self.logger = logger
     }
 
-    public func notify(title: String, body: String, route: Route?) {
+    public func notify(identifier: String, title: String, body: String, route: Route?) {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
@@ -50,7 +50,7 @@ public class NotificationManager {
         }
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest(
-            identifier: "com.instructure.core.NotificationManager.notify",
+            identifier: identifier,
             content: content,
             trigger: trigger
         )

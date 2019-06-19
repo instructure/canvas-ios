@@ -45,7 +45,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
     public var utis: [UTI] = [.any]
     public var batchID: String!
     public var files: Store<LocalUseCase<File>>? {
-        return presenter?.batch.files
+        return presenter?.files
     }
     private var presenter: FilePickerPresenter?
 

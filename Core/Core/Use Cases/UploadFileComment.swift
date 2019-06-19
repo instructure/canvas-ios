@@ -24,12 +24,15 @@ public class UploadFileComment {
     let courseID: String
     let isGroup: Bool
     let batchID: String
-    lazy var uploadBatch = UploadBatch(environment: env, batchID: batchID, callback: nil)
+    var files: UploadManager.Store?
     var placeholderID: String?
     let submissionID: String
     let userID: String
     var task: URLSessionTask?
     lazy var context = env.database.newBackgroundContext()
+    var uploadContext: FileUploadContext {
+        return .submissionComment(courseID: courseID, assignmentID: assignmentID)
+    }
 
     private static var placeholderSuffix = 1
 
@@ -51,12 +54,27 @@ public class UploadFileComment {
 
     public func cancel() {
         task?.cancel()
-        uploadBatch.cancel()
+        UploadManager.shared.cancel(batchID: batchID)
     }
 
     public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (SubmissionComment?, Error?) -> Void) {
         self.callback = callback
         self.env = environment
+        files = UploadManager.shared.subscribe(batchID: batchID) {
+            guard let files = self.files, !files.isEmpty else { return }
+            if files.allSatisfy({ $0.isUploaded }) == true {
+                let fileIDs = files.compactMap { $0.id }
+                self.putComment(fileIDs: fileIDs)
+                self.files = nil
+                return
+            }
+
+            if let error = files.compactMap({ $0.uploadError }).first {
+                callback(nil, NSError.instructureError(error))
+                self.files = nil
+                return
+            }
+        }
         savePlaceholder()
     }
 
@@ -81,22 +99,7 @@ public class UploadFileComment {
                 self.callback(nil, error)
             }
         }
-        context.performAndWait {
-            let context = FileUploadContext.submissionComment(courseID: self.courseID, assignmentID: self.assignmentID)
-            self.uploadBatch.upload(to: context) { state in
-                // strongly retain self so that the caller does not have to retain this use case
-                // but to avoid a retain cycle we must call `uploadBatch.removeAllSubscribers()`
-                switch state {
-                case .staged?, .uploading?, nil: break
-                case let .completed(fileIDs: fileIDs)?:
-                    self.putComment(fileIDs: Array(fileIDs))
-                    self.uploadBatch.removeAllSubscribers()
-                case .failed(let error)?:
-                    self.callback(nil, error)
-                    self.uploadBatch.removeAllSubscribers()
-                }
-            }
-        }
+        UploadManager.shared.upload(batch: batchID, to: uploadContext)
     }
 
     func putComment(fileIDs: [String]) {

@@ -142,7 +142,7 @@ public class ImageLoader {
         } else if type == "image/gif" || url.pathExtension == "gif" {
             gifFrom(data: data)
         } else {
-            handle(UIImage(data: data))
+            handle(UIImage(data: data)?.normalize())
         }
     }
 

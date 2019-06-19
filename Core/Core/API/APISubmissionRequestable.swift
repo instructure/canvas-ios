@@ -45,6 +45,24 @@ public struct CreateSubmissionRequest: APIRequestable {
             let file_ids: [String]? // Requires submission_type of online_upload
             let media_comment_id: String? // Requires submission_type of media_recording
             let media_comment_type: MediaCommentType? // Requires submission_type of media_recording
+
+            init(
+                text_comment: String? = nil,
+                submission_type: SubmissionType,
+                body: String? = nil,
+                url: URL? = nil,
+                file_ids: [String]? = nil,
+                media_comment_id: String? = nil,
+                media_comment_type: MediaCommentType? = nil
+            ) {
+                self.text_comment = text_comment
+                self.submission_type = submission_type
+                self.body = body
+                self.url = url
+                self.file_ids = file_ids
+                self.media_comment_id = media_comment_id
+                self.media_comment_type = media_comment_type
+            }
         }
 
         let submission: Submission

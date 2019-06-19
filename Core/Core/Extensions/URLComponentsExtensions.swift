@@ -46,6 +46,17 @@ public extension URLComponents {
         return url
     }
 
+    var queryMap: [String: String] {
+        let items = queryItems ?? []
+        return items.reduce([:]) { result, item in
+            var result = result
+            if let value = item.value {
+                result[item.name] = value
+            }
+            return result
+        }
+    }
+
     mutating func cleanupApiVersionInPath() {
         if let range = path.range(of: "^[/]*api/[vV]\\d+", options: .regularExpression, range: nil, locale: nil) {
             self.path = path.replacingCharacters(in: range, with: "")
