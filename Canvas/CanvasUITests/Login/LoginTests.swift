@@ -69,8 +69,7 @@ class LoginTests: CanvasUITests {
 
         // Dashboard
         Dashboard.coursesLabel.waitToExist()
-        XCTAssert(Dashboard.coursesLabel.exists)
-        XCTAssert(Dashboard.courseCard(id: "247").exists)
+        Dashboard.courseCard(id: "247").waitToExist()
         XCTAssert(Dashboard.dashboardTab.exists)
     }
 
@@ -86,7 +85,7 @@ class LoginTests: CanvasUITests {
 
         // Email
         CanvasLogin.emailTextField.waitToExist()
-        CanvasLogin.emailTextField.tapAt(.zero)
+        CanvasLogin.emailTextField.tap()
         CanvasLogin.emailTextField.typeText("ldapmobiletest")
 
         // Password
@@ -96,7 +95,7 @@ class LoginTests: CanvasUITests {
         CanvasLogin.logInButton.tap()
 
         Dashboard.coursesLabel.waitToExist()
-        XCTAssert(Dashboard.dashboardTab.exists)
+        Dashboard.dashboardTab.waitToExist()
     }
 
     func testMultipleUsers() {
@@ -128,14 +127,14 @@ class LoginTests: CanvasUITests {
         // Dashboard
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
-        XCTAssert(Dashboard.dashboardTab.exists)
+        Dashboard.dashboardTab.waitToExist()
 
         launch()
 
         // Dashboard
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
-        XCTAssert(Dashboard.dashboardTab.exists)
+        Dashboard.dashboardTab.waitToExist()
     }
 
     func loginUser(username: String, password: String) {
