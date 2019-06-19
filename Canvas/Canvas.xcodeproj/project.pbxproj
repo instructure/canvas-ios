@@ -614,6 +614,9 @@
 		B16300D622B015AE000B85AD /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16300D522B015AE000B85AD /* LoginTests.swift */; };
 		B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B177E6FF1E2EC8BA00D7477D /* Settings.storyboard */; };
 		B177E7091E2ECAB900D7477D /* CBIGradeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E70B1E2ECAB900D7477D /* CBIGradeDetailView.xib */; };
+		B1BB7A8522BAC820006CA068 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A8422BAC820006CA068 /* ShareViewController.swift */; };
+		B1BB7A8822BAC820006CA068 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BB7A8622BAC820006CA068 /* MainInterface.storyboard */; };
+		B1BB7A8C22BAC820006CA068 /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1CB84F01D076025004D2265 /* CKRichTextInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EC1D076025004D2265 /* CKRichTextInputView.xib */; };
 		B1CB84F11D076025004D2265 /* ExpandingComment.css in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84ED1D076025004D2265 /* ExpandingComment.css */; };
 		B1CB84F21D076025004D2265 /* ExpandingComment.html in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EE1D076025004D2265 /* ExpandingComment.html */; };
@@ -659,6 +662,13 @@
 			remoteGlobalIDString = 492704721CF4AF7100C631C6;
 			remoteInfo = Canvas;
 		};
+		B1BB7A8A22BAC820006CA068 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4927046B1CF4AF7100C631C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1BB7A8122BAC820006CA068;
+			remoteInfo = ShareSubmission;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -668,6 +678,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				B1BB7A8C22BAC820006CA068 /* SubmitAssignment.appex in Embed App Extensions */,
 				3B6DCCB11FB502CE005EE8D2 /* GradesWidget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -1603,6 +1614,10 @@
 		B177E7641E2ECD1B00D7477D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Settings.strings; sourceTree = "<group>"; };
 		B177E7651E2ECD2E00D7477D /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/CBIGradeDetailView.strings; sourceTree = "<group>"; };
 		B177E7681E2ECD3200D7477D /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Settings.strings; sourceTree = "<group>"; };
+		B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SubmitAssignment.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1BB7A8422BAC820006CA068 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		B1BB7A8722BAC820006CA068 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		B1BB7A8922BAC820006CA068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1CB84EC1D076025004D2265 /* CKRichTextInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKRichTextInputView.xib; sourceTree = "<group>"; };
 		B1CB84ED1D076025004D2265 /* ExpandingComment.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ExpandingComment.css; sourceTree = "<group>"; };
 		B1CB84EE1D076025004D2265 /* ExpandingComment.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExpandingComment.html; sourceTree = "<group>"; };
@@ -1736,6 +1751,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B1BB7A7F22BAC820006CA068 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1804,6 +1826,7 @@
 				49AA29181CF4D1880055862D /* CanvasKit1 */,
 				3B6DCCA81FB502CE005EE8D2 /* GradesWidget */,
 				9F5D743622A99E91002FCCCE /* CanvasUITests */,
+				B1BB7A8322BAC820006CA068 /* ShareSubmission */,
 				492704741CF4AF7100C631C6 /* Products */,
 				5B0FCCDFB07A88D993D5871D /* Frameworks */,
 				3BFCA4310566C5CB96383521 /* Pods */,
@@ -1819,6 +1842,7 @@
 				49AA29171CF4D1880055862D /* CanvasKit1.framework */,
 				3B6DCCA51FB502CD005EE8D2 /* GradesWidget.appex */,
 				9F5D743522A99E91002FCCCE /* CanvasUITests.xctest */,
+				B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2930,6 +2954,16 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		B1BB7A8322BAC820006CA068 /* ShareSubmission */ = {
+			isa = PBXGroup;
+			children = (
+				B1BB7A8422BAC820006CA068 /* ShareViewController.swift */,
+				B1BB7A8622BAC820006CA068 /* MainInterface.storyboard */,
+				B1BB7A8922BAC820006CA068 /* Info.plist */,
+			);
+			path = ShareSubmission;
+			sourceTree = "<group>";
+		};
 		B1E3D6DF1D8305B100B4AC11 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -3247,6 +3281,7 @@
 				492704B11CF4B6D700C631C6 /* PBXTargetDependency */,
 				49AA291D1CF4D1880055862D /* PBXTargetDependency */,
 				3B6DCCB01FB502CE005EE8D2 /* PBXTargetDependency */,
+				B1BB7A8B22BAC820006CA068 /* PBXTargetDependency */,
 			);
 			name = Canvas;
 			productName = Canvas;
@@ -3309,6 +3344,23 @@
 			productName = CanvasUITests;
 			productReference = 9F5D743522A99E91002FCCCE /* CanvasUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		B1BB7A8122BAC820006CA068 /* SubmitAssignment */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1BB7A8F22BAC820006CA068 /* Build configuration list for PBXNativeTarget "SubmitAssignment" */;
+			buildPhases = (
+				B1BB7A7E22BAC820006CA068 /* Sources */,
+				B1BB7A7F22BAC820006CA068 /* Frameworks */,
+				B1BB7A8022BAC820006CA068 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SubmitAssignment;
+			productName = ShareSubmission;
+			productReference = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -3375,6 +3427,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 492704721CF4AF7100C631C6;
 					};
+					B1BB7A8122BAC820006CA068 = {
+						CreatedOnToolsVersion = 10.2.1;
+						DevelopmentTeam = B6333T4PXQ;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 4927046E1CF4AF7100C631C6 /* Build configuration list for PBXProject "Canvas" */;
@@ -3424,6 +3481,7 @@
 				49AA29161CF4D1880055862D /* CanvasKit1 */,
 				3B6DCCA41FB502CD005EE8D2 /* GradesWidget */,
 				9F5D743422A99E91002FCCCE /* CanvasUITests */,
+				B1BB7A8122BAC820006CA068 /* SubmitAssignment */,
 			);
 		};
 /* End PBXProject section */
@@ -3608,6 +3666,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1BB7A8022BAC820006CA068 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1BB7A8822BAC820006CA068 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4093,6 +4159,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B1BB7A7E22BAC820006CA068 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1BB7A8522BAC820006CA068 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -4115,6 +4189,11 @@
 			isa = PBXTargetDependency;
 			target = 492704721CF4AF7100C631C6 /* Canvas */;
 			targetProxy = 9F5D743A22A99E91002FCCCE /* PBXContainerItemProxy */;
+		};
+		B1BB7A8B22BAC820006CA068 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1BB7A8122BAC820006CA068 /* SubmitAssignment */;
+			targetProxy = B1BB7A8A22BAC820006CA068 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -4456,6 +4535,14 @@
 				5BCDD3C422ACE6DA00219BFE /* fi */,
 			);
 			name = CBIGradeDetailView.xib;
+			sourceTree = "<group>";
+		};
+		B1BB7A8622BAC820006CA068 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1BB7A8722BAC820006CA068 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 		B5A790A61D8C743400ACA9FE /* Localizable.strings */ = {
@@ -4934,6 +5021,58 @@
 			};
 			name = Release;
 		};
+		B1BB7A8D22BAC820006CA068 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ShareSubmission/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.ShareSubmission;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B1BB7A8E22BAC820006CA068 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ShareSubmission/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.ShareSubmission;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -4987,6 +5126,15 @@
 			buildConfigurations = (
 				9F5D743C22A99E91002FCCCE /* Debug */,
 				9F5D743D22A99E91002FCCCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1BB7A8F22BAC820006CA068 /* Build configuration list for PBXNativeTarget "SubmitAssignment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1BB7A8D22BAC820006CA068 /* Debug */,
+				B1BB7A8E22BAC820006CA068 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
