@@ -17,12 +17,26 @@
 import XCTest
 import TestsFoundation
 
-enum GlobalAnnouncement {
-    static func toggle(id: String) -> Element {
-        return app.find(id: "GlobalAnnouncement.\(id).toggle")
+enum Profile: String, ElementWrapper {
+    case
+        actAsUserButton,
+        changeUserButton,
+        colorOverlayToggle,
+        developerMenuButton,
+        filesButton,
+        helpButton,
+        logOutButton,
+        settingsButton,
+        showGradesToggle,
+        userEmailLabel,
+        userNameLabel,
+        versionLabel
+
+    static func ltiButton(domain: String, id: String) -> Element {
+        return app.find(id: "Profile.lti.\(domain).\(id)")
     }
 
-    static func dismiss(id: String) -> Element {
-        return app.find(id: "GlobalAnnouncement.\(id).dismiss")
+    static func close() {
+        Dashboard.profileButton.tapAt(.zero)
     }
 }

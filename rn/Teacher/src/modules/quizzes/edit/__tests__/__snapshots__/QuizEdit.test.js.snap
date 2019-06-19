@@ -477,6 +477,7 @@ exports[`QuizEdit changes assignment group 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -1010,6 +1011,7 @@ exports[`QuizEdit changes assignment group 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -1435,6 +1437,7 @@ exports[`QuizEdit changes assignment group 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -2597,6 +2600,7 @@ exports[`QuizEdit changes quiz type 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -3112,6 +3116,7 @@ exports[`QuizEdit changes quiz type 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -3537,6 +3542,7 @@ exports[`QuizEdit changes quiz type 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -4675,6 +4681,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -5190,6 +5197,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -5615,6 +5623,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -5843,6 +5852,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
           accessibilityLabel="Let Students See the Correct Answer, On"
           accessibilityTraits={
             Array [
+              "selected",
               "button",
             ]
           }
@@ -7025,6 +7035,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -7540,6 +7551,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -7965,6 +7977,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -8193,6 +8206,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
           accessibilityLabel="Let Students See the Correct Answer, On"
           accessibilityTraits={
             Array [
+              "selected",
               "button",
             ]
           }
@@ -9418,6 +9432,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -9933,6 +9948,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -10358,6 +10374,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -11496,6 +11513,7 @@ exports[`QuizEdit renders 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -12011,6 +12029,7 @@ exports[`QuizEdit renders 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -12436,6 +12455,7 @@ exports[`QuizEdit renders 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -13614,6 +13634,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -14129,6 +14150,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -14554,6 +14576,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -15770,6 +15793,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -16285,6 +16309,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -16710,6 +16735,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -17891,6 +17917,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -18406,6 +18433,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -18831,6 +18859,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -19059,6 +19088,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
           accessibilityLabel="Let Students See the Correct Answer, On"
           accessibilityTraits={
             Array [
+              "selected",
               "button",
             ]
           }
@@ -20397,6 +20427,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -20912,6 +20943,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -21337,6 +21369,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -21836,6 +21869,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
         accessibilityLabel="Require an Access Code, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -22640,6 +22674,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -23167,6 +23202,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -23592,6 +23628,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -24773,6 +24810,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -25288,6 +25326,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -25713,6 +25752,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -26875,6 +26915,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -27390,6 +27431,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -27815,6 +27857,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -28953,6 +28996,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -29468,6 +29512,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -29893,6 +29938,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -30256,6 +30302,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
         accessibilityLabel="Show One Question at a Time, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -30371,6 +30418,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
         accessibilityLabel="Lock Questions After Answering, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -31143,6 +31191,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -31658,6 +31707,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -32083,6 +32133,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -32446,6 +32497,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
         accessibilityLabel="Show One Question at a Time, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -33333,6 +33385,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -33848,6 +33901,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -34273,6 +34327,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -34636,6 +34691,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
         accessibilityLabel="Show One Question at a Time, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -35523,6 +35579,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -36038,6 +36095,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -36463,6 +36521,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -37601,6 +37660,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -38116,6 +38176,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -38541,6 +38602,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -39040,6 +39102,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
         accessibilityLabel="Require an Access Code, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -39809,6 +39872,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -40324,6 +40388,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -40749,6 +40814,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -41887,6 +41953,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -42402,6 +42469,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -42827,6 +42895,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -43055,6 +43124,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
           accessibilityLabel="Let Students See the Correct Answer, On"
           accessibilityTraits={
             Array [
+              "selected",
               "button",
             ]
           }
@@ -44283,6 +44353,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -44798,6 +44869,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -45223,6 +45295,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -45451,6 +45524,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
           accessibilityLabel="Let Students See the Correct Answer, On"
           accessibilityTraits={
             Array [
+              "selected",
               "button",
             ]
           }
@@ -46672,6 +46746,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -47187,6 +47262,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -47612,6 +47688,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -48750,6 +48827,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -49265,6 +49343,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -49690,6 +49769,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -50053,6 +50133,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
         accessibilityLabel="Show One Question at a Time, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -50940,6 +51021,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -51455,6 +51537,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -51880,6 +51963,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -51996,6 +52080,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
           accessibilityLabel="Only Once After Each Attempt, On"
           accessibilityTraits={
             Array [
+              "selected",
               "button",
             ]
           }
@@ -53018,6 +53103,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -53533,6 +53619,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -53958,6 +54045,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -55096,6 +55184,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -55611,6 +55700,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -56036,6 +56126,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -56264,6 +56355,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
           accessibilityLabel="Let Students See the Correct Answer, On"
           accessibilityTraits={
             Array [
+              "selected",
               "button",
             ]
           }
@@ -57492,6 +57584,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -58007,6 +58100,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -58432,6 +58526,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -58660,6 +58755,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
           accessibilityLabel="Let Students See the Correct Answer, On"
           accessibilityTraits={
             Array [
+              "selected",
               "button",
             ]
           }
@@ -59881,6 +59977,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -60396,6 +60493,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -60821,6 +60919,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -61959,6 +62058,7 @@ exports[`QuizEdit toggles publish 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -62474,6 +62574,7 @@ exports[`QuizEdit toggles publish 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -62899,6 +63000,7 @@ exports[`QuizEdit toggles publish 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -64552,6 +64654,7 @@ exports[`QuizEdit toggles publish 2`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -64977,6 +65080,7 @@ exports[`QuizEdit toggles publish 2`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -66115,6 +66219,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -66385,6 +66490,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
         accessibilityLabel="Shuffle Answers, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -66630,6 +66736,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -67055,6 +67162,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -68193,6 +68301,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -68708,6 +68817,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -69133,6 +69243,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -70271,6 +70382,7 @@ exports[`QuizEdit toggles time limit 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -70653,6 +70765,7 @@ exports[`QuizEdit toggles time limit 1`] = `
         accessibilityLabel="Time Limit, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -70916,6 +71029,7 @@ exports[`QuizEdit toggles time limit 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -71341,6 +71455,7 @@ exports[`QuizEdit toggles time limit 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -72479,6 +72594,7 @@ exports[`QuizEdit toggles time limit 2`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -72994,6 +73110,7 @@ exports[`QuizEdit toggles time limit 2`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -73419,6 +73536,7 @@ exports[`QuizEdit toggles time limit 2`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -74557,6 +74675,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -75072,6 +75191,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -75497,6 +75617,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -75725,6 +75846,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
           accessibilityLabel="Let Students See the Correct Answer, On"
           accessibilityTraits={
             Array [
+              "selected",
               "button",
             ]
           }
@@ -76953,6 +77075,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
         accessibilityLabel="Publish, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -77468,6 +77591,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
         accessibilityLabel="Allow Multiple Attempts, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -77893,6 +78017,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
         accessibilityLabel="Let Students See Their Quiz Responses, On"
         accessibilityTraits={
           Array [
+            "selected",
             "button",
           ]
         }
@@ -78121,6 +78246,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
           accessibilityLabel="Let Students See the Correct Answer, On"
           accessibilityTraits={
             Array [
+              "selected",
               "button",
             ]
           }

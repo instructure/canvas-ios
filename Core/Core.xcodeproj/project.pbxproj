@@ -1907,9 +1907,9 @@
 		9FAA58FE223A987600FEC3F8 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				9FAA58FB223A987600FEC3F8 /* ProfileViewController.xib */,
 				9FAA58FC223A987600FEC3F8 /* DrawerTransitioning.swift */,
 				9FAA58FD223A987600FEC3F8 /* ProfileViewController.swift */,
+				9FAA58FB223A987600FEC3F8 /* ProfileViewController.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";

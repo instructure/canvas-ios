@@ -17,66 +17,6 @@
 import XCTest
 import TestsFoundation
 
-enum Dashboard {
-    static var coursesLabel: Element {
-        return app.find(labelContaining: "Courses")
-    }
-
-    static func courseCard(id: String) -> Element {
-        return app.find(id: "course-\(id)")
-    }
-
-    static func courseGrade(percent: String) -> Element {
-        return app.find(labelContaining: "\(percent)%")
-    }
-
-    static var dashboardTab: Element {
-        return app.find(label: "Dashboard")
-    }
-
-    static var calendarTab: Element {
-        return app.find(label: "Calendar")
-    }
-
-    static var dashboardList: Element {
-        return app.find(id: "favorited-course-list.profile-btn")
-    }
-
-    static func username(_ username: String) -> Element {
-        return XCUIElementWrapper(app.staticTexts[username])
-    }
-
-    static var showGrades: Element {
-        return app.find(label: "Show Grades")
-    }
-
-    static var changeUser: Element {
-        return app.find(label: "Change User")
-    }
-
-    static var logOut: Element {
-        return app.find(label: "Log Out")
-    }
-}
-
-enum CourseDetails {
-    static var grades: Element {
-        return app.find(id: "courses-details.grades-cell")
-    }
-
-    static var announcements: Element {
-        return app.find(id: "courses-details.announcements-cell")
-    }
-
-    static var people: Element {
-        return app.find(id: "courses-details.people-cell")
-    }
-
-    static var files: Element {
-        return app.find(id: "courses-details.files-cell")
-    }
-}
-
 class DashboardTests: CanvasUITests {
     override var user: User? { return .student1 }
 
@@ -100,25 +40,20 @@ class DashboardTests: CanvasUITests {
         GlobalAnnouncement.dismiss(id: "2").waitToVanish()
     }
 
-    func testNavigationDrawerDisplaysUsername() {
-        Dashboard.dashboardList.waitToExist()
-        Dashboard.dashboardList.tap()
-        Dashboard.username("Student One").waitToExist()
-    }
+    func testCourseCardGrades() {
+        Dashboard.profileButton.tap()
+        Profile.showGradesToggle.waitToExist()
+        if !Profile.showGradesToggle.isSelected {
+            Profile.showGradesToggle.tap()
+        }
+        Profile.close()
+        Dashboard.courseCard(id: "263").waitToExist()
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label, "Assignments 70%")
 
-    func testNavigationDrawerChangesUser() {
-        Dashboard.dashboardList.waitToExist()
-        Dashboard.dashboardList.tap()
-        Dashboard.changeUser.tap()
-        LoginStart.previousUser(name: "Student One").waitToExist()
+        Dashboard.profileButton.tap()
+        Profile.showGradesToggle.tap()
+        Profile.close()
+        Dashboard.courseCard(id: "263").waitToExist()
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label.trimmingCharacters(in: .whitespacesAndNewlines), "Assignments")
     }
-
-    func testNavigationDrawerLogsOut() {
-        Dashboard.dashboardList.waitToExist()
-        Dashboard.dashboardList.tap()
-        Dashboard.logOut.tap()
-        LoginStart.findMySchool.waitToExist()
-        XCTAssertFalse(LoginStart.previousUser(name: "Student One").exists)
-    }
-
 }

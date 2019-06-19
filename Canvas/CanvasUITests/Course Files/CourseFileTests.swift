@@ -32,7 +32,7 @@ class CourseFileTests: CanvasUITests {
         Dashboard.courseCard(id: "263").tap()
 
         // Course Details
-        CourseDetails.files.tap()
+        CourseNavigation.files.tap()
 
         // Course Files
         FilesList.file(id: "10528").waitToExist()

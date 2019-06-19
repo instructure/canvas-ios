@@ -46,7 +46,7 @@ class AssignmentsTests: CanvasUITests {
         Dashboard.courseCard(id: "263").tap()
 
         // Course Details
-        CourseDetails.grades.tap()
+        CourseNavigation.grades.tap()
 
         // Grades List
         GradesList.assignment(id: "1831").tap()
@@ -61,7 +61,7 @@ class AssignmentsTests: CanvasUITests {
         Dashboard.courseCard(id: "263").tap()
 
         // Course Details
-        CourseDetails.grades.tap()
+        CourseNavigation.grades.tap()
 
         // Grades List
         GradesList.assignment(id: "1831").tap()

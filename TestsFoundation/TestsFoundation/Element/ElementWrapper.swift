@@ -56,6 +56,9 @@ public extension ElementWrapper {
     var isEnabled: Bool {
         return element.isEnabled
     }
+    var isSelected: Bool {
+        return element.isSelected
+    }
     var isVisible: Bool {
         return element.isVisible
     }

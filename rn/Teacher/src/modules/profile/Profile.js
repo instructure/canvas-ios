@@ -39,13 +39,12 @@ import device from 'react-native-device-info'
 import Row from '@common/components/rows/Row'
 import RowWithSwitch from '@common/components/rows/RowWithSwitch'
 import RowSeparator from '@common/components/rows/RowSeparator'
-import { isStudent, isParent } from '@modules/app'
+import { isStudent } from '@modules/app'
 import canvas, { getSession, httpCache } from '@canvas-api'
 import { connect } from 'react-redux'
 import Actions from '@modules/userInfo/actions'
 import StatusBar from '@common/components/StatusBar'
 import * as LTITools from '@common/LTITools'
-import SFSafariViewController from 'react-native-sfsafariviewcontroller'
 import { logEvent } from '@common/CanvasAnalytics'
 
 const developerMenuStorageKey = 'teacher.profile.developermenu'
@@ -247,41 +246,6 @@ export class Profile extends Component<Object, State> {
     })
   }
 
-  showParentHelpMenu = () => {
-    let options = [
-      i18n('View Canvas Guides'),
-      i18n('Report a Problem'),
-      i18n('Request a Feature'),
-      i18n('Terms of Use'),
-      i18n('Cancel'),
-    ]
-    ActionSheetIOS.showActionSheetWithOptions({
-      title: i18n('Help'),
-      options,
-      cancelButtonIndex: 4,
-    }, async (pressedIndex: number) => {
-      if (pressedIndex === (options.length - 1)) return
-      // the profile itself is presented modally
-      // must dismiss before showing another modal
-      await this.props.navigator.dismiss()
-
-      switch (pressedIndex) {
-        case 0:
-          SFSafariViewController.open('https://community.canvaslms.com/docs/DOC-9919')
-          break
-        case 1:
-          this.props.navigator.show('/support/problem', { modal: true })
-          break
-        case 2:
-          this.props.navigator.show('/support/feature', { modal: true })
-          break
-        case 3:
-          this.props.navigator.show('/terms-of-use', { modal: true })
-          break
-      }
-    })
-  }
-
   renderList = () => {
     let titleStyles = { fontSize: 20, fontWeight: '300' }
     let session = getSession()
@@ -303,32 +267,21 @@ export class Profile extends Component<Object, State> {
         if (!tool.placements || !tool.placements.global_navigation) return null
         const { title, url } = tool.placements.global_navigation
         const onPress = () => { this.launchExternalTool(url) }
-        return buildRow(title, onPress, null, { testID: `row-lti-${tool.domain}-${tool.definition_id}` })
+        return buildRow(title, onPress, null, { testID: `Profile.lti.${tool.domain}.${tool.definition_id}` })
       }).filter(Boolean)
     }
 
-    if (isParent()) {
-      return (<View>
-        { buildRow(i18n('Manage Children'), this.manageObserverStudents)}
-        { buildRow(i18n('Help'), this.showParentHelpMenu) }
-        { (this.props.canActAsUser || actingAsUser) && buildRow(actAsUserTitle, this.toggleActAsUser) }
-        { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu) }
-        { !actingAsUser && buildRow(i18n('Change User'), this.switchUser) }
-        { !actingAsUser && buildRow(i18n('Log Out'), this.logout) }
-      </View>)
-    }
-
     return (<View>
-      { buildRow(i18n('Files'), this.userFiles) }
+      { buildRow(i18n('Files'), this.userFiles, null, { testID: 'Profile.filesButton' }) }
       { tools }
-      { (this.props.canActAsUser || actingAsUser) && buildRow(actAsUserTitle, this.toggleActAsUser) }
-      { isStudent() && buildRow(i18n('Show Grades'), null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards }) }
-      { buildRow(i18n('Color Overlay'), null, { onValueChange: this.toggleColorOverlay, value: !this.props.userSettings.hide_dashcard_color_overlays, testID: 'profile.color-overlay-toggle' }) }
-      { this.props.helpLinks && buildRow(this.props.helpLinks.help_link_name, this.showHelpMenu, null, { testID: 'profile.help-menu-btn' }) }
-      { !isParent() && buildRow(i18n('Settings'), this.settings, null, { testID: 'profile.settings-btn' }) }
-      { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu) }
-      { !actingAsUser && buildRow(i18n('Change User'), this.switchUser) }
-      { !actingAsUser && buildRow(i18n('Log Out'), this.logout) }
+      { (this.props.canActAsUser || actingAsUser) && buildRow(actAsUserTitle, this.toggleActAsUser, null, { testID: 'Profile.actAsUserButton' }) }
+      { isStudent() && buildRow(i18n('Show Grades'), null, { onValueChange: this.toggleShowGrades, value: this.props.showsGradesOnCourseCards, testID: 'Profile.showGradesToggle' }) }
+      { buildRow(i18n('Color Overlay'), null, { onValueChange: this.toggleColorOverlay, value: !this.props.userSettings.hide_dashcard_color_overlays, testID: 'Profile.colorOverlayToggle' }) }
+      { this.props.helpLinks && buildRow(this.props.helpLinks.help_link_name, this.showHelpMenu, null, { testID: 'Profile.helpButton' }) }
+      { buildRow(i18n('Settings'), this.settings, null, { testID: 'Profile.settingsButton' }) }
+      { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu, null, { testID: 'Profile.developerMenuButton' }) }
+      { !actingAsUser && buildRow(i18n('Change User'), this.switchUser, null, { testID: 'Profile.changeUserButton' }) }
+      { !actingAsUser && buildRow(i18n('Log Out'), this.logout, null, { testID: 'Profile.logOutButton' }) }
     </View>)
   }
 
@@ -340,7 +293,7 @@ export class Profile extends Component<Object, State> {
           userName={user.name}
           height={56}
           width={56}
-          testID='profile.avatar'
+          testID='Profile.avatar'
         />
       </View>
     )
@@ -361,14 +314,14 @@ export class Profile extends Component<Object, State> {
           <SafeAreaView style={{ flex: 1 }}>
             { this.renderHeader(user) }
             <View style={styles.infoHeader}>
-              { !!name && <Heavy style={styles.name} allowFontScaling={false}>{name}</Heavy> }
-              { !!user.primary_email && <Paragraph style={styles.email} allowFontScaling={false}>{user.primary_email}</Paragraph> }
+              { !!name && <Heavy style={styles.name} allowFontScaling={false} testID='Profile.userNameLabel'>{name}</Heavy> }
+              { !!user.primary_email && <Paragraph style={styles.email} allowFontScaling={false} testID='Profile.userEmailLabel'>{user.primary_email}</Paragraph> }
             </View>
             <ScrollView>
               { this.renderList() }
             </ScrollView>
             <View style={styles.versionContainer}>
-              <TouchableWithoutFeedback onPress={this.secretTap} testID='profile-btn-secret-tap'>
+              <TouchableWithoutFeedback onPress={this.secretTap} testID='Profile.versionLabel'>
                 { /* I removed localization for this because i highly doubt a translator will know what v. is */ }
                 <Text style={styles.versionText}>{`v. ${device.getVersion()}`}</Text>
               </TouchableWithoutFeedback>

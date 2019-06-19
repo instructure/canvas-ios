@@ -23,6 +23,7 @@ public protocol Element {
     var frame: CGRect { get }
     var id: String { get }
     var isEnabled: Bool { get }
+    var isSelected: Bool { get }
     var isVisible: Bool { get }
     var label: String { get }
     var value: String { get }
@@ -95,7 +96,7 @@ public extension Element {
 }
 
 public struct XCUIElementWrapper: Element {
-    let element: XCUIElement
+    private(set) var element: XCUIElement
 
     public init(_ element: XCUIElement) {
         self.element = element
@@ -118,6 +119,10 @@ public struct XCUIElementWrapper: Element {
     public var isEnabled: Bool {
         guard exists else { return false }
         return element.isEnabled
+    }
+    public var isSelected: Bool {
+        guard exists else { return false }
+        return element.isSelected
     }
     public var isVisible: Bool {
         guard exists else { return false }

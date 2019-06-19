@@ -17,16 +17,20 @@
 import XCTest
 import TestsFoundation
 
-enum CourseInvitation {
-    static func acted(id: String) -> Element {
-        return app.find(id: "CourseInvitation.\(id).acted")
+enum CourseNavigation {
+    static var grades: Element {
+        return app.find(id: "courses-details.grades-cell")
     }
 
-    static func acceptButton(id: String) -> Element {
-        return app.find(id: "CourseInvitation.\(id).acceptButton")
+    static var announcements: Element {
+        return app.find(id: "courses-details.announcements-cell")
     }
 
-    static func rejectButton(id: String) -> Element {
-        return app.find(id: "CourseInvitation.\(id).rejectButton")
+    static var people: Element {
+        return app.find(id: "courses-details.people-cell")
+    }
+
+    static var files: Element {
+        return app.find(id: "courses-details.files-cell")
     }
 }
