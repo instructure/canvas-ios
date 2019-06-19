@@ -49,6 +49,8 @@ const colors = {
   primaryBrandColor: '#374A59',
   destructiveButtonColor: '#EE0612',
   statusBarStyle: 'light', // set to contrast with navBarColor
+  electric: 'rgb(0, 142, 226)',
+  backgroundLight: '#f5f5f5',
 }
 
 export default colors
