@@ -17,93 +17,43 @@
 import XCTest
 import TestsFoundation
 
-enum Dashboard {
-    static var coursesLabel: Element {
-        return app.find(labelContaining: "Courses")
-    }
-
-    static func courseCard(id: String) -> Element {
-        return app.find(id: "course-\(id)")
-    }
-
-    static func courseGrade(percent: String) -> Element {
-        return app.find(labelContaining: "\(percent)%")
-    }
-
-    static var dashboardTab: Element {
-        return app.find(label: "Dashboard")
-    }
-
-    static var calendarTab: Element {
-        return app.find(label: "Calendar")
-    }
-
-    static var inboxTab: Element {
-        return app.find(id: "tab-bar.inbox-btn")
-    }
-
-    static var dashboardList: Element {
-        return app.find(id: "favorited-course-list.profile-btn")
-    }
-
-    static func username(_ username: String) -> Element {
-        return XCUIElementWrapper(app.staticTexts[username])
-    }
-
-    static var showGrades: Element {
-        return app.find(label: "Show Grades")
-    }
-
-    static var changeUser: Element {
-        return app.find(label: "Change User")
-    }
-
-    static var logOut: Element {
-        return app.find(label: "Log Out")
-    }
-}
-
-enum CourseDetails {
-    static var grades: Element {
-        return app.find(id: "courses-details.grades-cell")
-    }
-
-    static var announcements: Element {
-        return app.find(id: "courses-details.announcements-cell")
-    }
-
-    static var people: Element {
-        return app.find(id: "courses-details.people-cell")
-    }
-
-    static var files: Element {
-        return app.find(id: "courses-details.files-cell")
-    }
-}
-
 class DashboardTests: CanvasUITests {
     override var user: User? { return .student1 }
 
-    func testNavigationDrawerDisplaysUsername() {
-        Dashboard.dashboardList.waitToExist()
-        Dashboard.dashboardList.tap()
-        Dashboard.username("Student One").waitToExist()
-        XCTAssert(Dashboard.username("Student One").exists)
+    func testAnnouncementBelowInvite() {
+        CourseInvitation.acceptButton(id: "998").waitToExist()
+        GlobalAnnouncement.toggle(id: "2").waitToExist()
+        XCTAssertLessThan(CourseInvitation.acceptButton(id: "998").frame.maxY, GlobalAnnouncement.toggle(id: "2").frame.minY)
     }
 
-    func testNavigationDrawerChangesUser() {
-        Dashboard.dashboardList.waitToExist()
-        Dashboard.dashboardList.tap()
-        Dashboard.changeUser.tap()
-        XCTAssert(LoginStart.previousUser(name: "Student One").exists)
+    func testAnnouncementToggle() {
+        let label = "This is a global announcement for students."
+        GlobalAnnouncement.toggle(id: "2").waitToExist()
+        XCTAssertFalse(GlobalAnnouncement.dismiss(id: "2").isVisible)
+        XCTAssertFalse(app.find(label: label).isVisible)
+
+        GlobalAnnouncement.toggle(id: "2").tap()
+        GlobalAnnouncement.dismiss(id: "2").waitToExist()
+        app.find(label: label).waitToExist()
+
+        GlobalAnnouncement.toggle(id: "2").tap()
+        GlobalAnnouncement.dismiss(id: "2").waitToVanish()
     }
 
-    func testNavigationDrawerLogsOut() {
-        Dashboard.dashboardList.waitToExist()
-        Dashboard.dashboardList.tap()
-        Dashboard.logOut.tap()
-        XCTAssert(LoginStart.findMySchool.exists)
-        XCTAssertFalse(LoginStart.previousUser(name: "Student One").exists)
-    }
+    func testCourseCardGrades() {
+        Dashboard.profileButton.tap()
+        Profile.showGradesToggle.waitToExist()
+        if !Profile.showGradesToggle.isSelected {
+            Profile.showGradesToggle.tap()
+        }
+        Profile.close()
+        Dashboard.courseCard(id: "263").waitToExist()
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label, "Assignments 70%")
 
+        Dashboard.profileButton.tap()
+        Profile.showGradesToggle.tap()
+        Profile.close()
+        Dashboard.courseCard(id: "263").waitToExist()
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label.trimmingCharacters(in: .whitespacesAndNewlines), "Assignments")
+    }
 }

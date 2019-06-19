@@ -25,7 +25,6 @@ import {
 import {
   Text,
 } from '../../../common/text'
-import images from '../../../images'
 import colors from '../../../common/colors'
 
 type BubbleProps = {
@@ -35,24 +34,26 @@ type BubbleProps = {
 
 export default class ChatBubble extends Component<BubbleProps, any> {
   render () {
-    let image
+    let tintColor
     let fromStyle
     let messageContainer
+    let transform = []
     if (this.props.from === 'me') {
-      image = images.speedGrader.chatBubbleMe
+      tintColor = colors.electric
       fromStyle = styles.myText
       messageContainer = styles.myMessageContainer
     } else {
-      image = images.speedGrader.chatBubbleThem
+      tintColor = colors.backgroundLight
       fromStyle = styles.theirText
       messageContainer = styles.theirMessageContainer
+      transform = [{ scaleX: -1 }]
     }
 
     return (
       <View style={messageContainer}>
         <Image
-          source={image}
-          style={styles.bubble}
+          source={{ uri: 'chatBubble' }}
+          style={[styles.bubble, { tintColor, transform }]}
           capInsets={{ left: 18, right: 18, top: 24, bottom: 16 }}
           resizeMode='stretch'
         />
@@ -72,11 +73,9 @@ const styles = StyleSheet.create({
     color: colors.darkText,
   },
   myMessageContainer: {
-    flex: 1,
     maxWidth: 300,
   },
   theirMessageContainer: {
-    flex: 1,
     maxWidth: 300,
   },
   message: {

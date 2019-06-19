@@ -35,13 +35,15 @@ class ModuleItemViewModel: NSObject {
     let moduleID: Property<String?>
     let moduleItemID: Property<String?>
     lazy var embeddedViewController: SignalProducer<UIViewController?, NoError> = {
-        let content = self.moduleItem.producer.map { $0?.content }.skipRepeats(==)
-        let masteryPathsItemModuleItemID = self.moduleItem.producer.map { $0 as? MasteryPathsItem }.map { $0?.moduleItemID }.skipRepeats(==)
-        let url = self.url.producer.skipRepeats(==)
-        let moduleID = self.moduleID.producer.skipRepeats(==)
-        let courseID = self.moduleItem.producer.map { $0?.courseID }.skipRepeats(==)
-        let htmlURL = self.moduleItem.producer.map { $0?.htmlURL }.skipRepeats(==)
-        return SignalProducer.combineLatest(url, content, masteryPathsItemModuleItemID, moduleID, courseID, htmlURL).map { url, content, moduleItemID, moduleID, courseID, htmlURL in
+        let item = self.moduleItem.producer.skipRepeats { $0?.content == $1?.content }
+        return item.map { moduleItem in
+            let content = moduleItem?.content
+            let masteryPathsItemModuleItemID = (moduleItem as? MasteryPathsItem)?.moduleItemID
+            let moduleID = moduleItem?.moduleID
+            let courseID = moduleItem?.courseID
+            let htmlURL = moduleItem?.htmlURL
+            let url = moduleItem?.url.flatMap(URL.init(string:))
+            let moduleItemID = moduleItem?.id
             if let content = content {
                 switch content {
                 case .externalURL(url: let url):

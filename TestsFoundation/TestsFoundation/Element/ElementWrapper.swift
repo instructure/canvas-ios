@@ -47,11 +47,17 @@ public extension ElementWrapper {
     var exists: Bool {
         return element.exists
     }
+    var frame: CGRect {
+        return element.frame
+    }
     var id: String {
         return element.id
     }
     var isEnabled: Bool {
         return element.isEnabled
+    }
+    var isSelected: Bool {
+        return element.isSelected
     }
     var isVisible: Bool {
         return element.isVisible

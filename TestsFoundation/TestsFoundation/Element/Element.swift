@@ -20,8 +20,10 @@ import XCTest
 public protocol Element {
     var elementType: XCUIElement.ElementType { get }
     var exists: Bool { get }
+    var frame: CGRect { get }
     var id: String { get }
     var isEnabled: Bool { get }
+    var isSelected: Bool { get }
     var isVisible: Bool { get }
     var label: String { get }
     var value: String { get }
@@ -94,7 +96,7 @@ public extension Element {
 }
 
 public struct XCUIElementWrapper: Element {
-    let element: XCUIElement
+    private(set) var element: XCUIElement
 
     public init(_ element: XCUIElement) {
         self.element = element
@@ -106,6 +108,10 @@ public struct XCUIElementWrapper: Element {
     public var exists: Bool {
         return element.exists
     }
+    public var frame: CGRect {
+        guard exists else { return .zero }
+        return element.frame
+    }
     public var id: String {
         guard exists else { return "" }
         return element.identifier
@@ -113,6 +119,10 @@ public struct XCUIElementWrapper: Element {
     public var isEnabled: Bool {
         guard exists else { return false }
         return element.isEnabled
+    }
+    public var isSelected: Bool {
+        guard exists else { return false }
+        return element.isSelected
     }
     public var isVisible: Bool {
         guard exists else { return false }

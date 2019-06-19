@@ -108,26 +108,7 @@ describe('Profile Tests', () => {
     )
 
     expect(tree).toMatchSnapshot()
-    expect(tree.find('[testID="profile.settings-btn"]').length).toEqual(1)
-  })
-
-  it('renders correctly for parents', () => {
-    app.setCurrentApp('parent')
-    const tree = shallow(
-      <Profile { ...defaultProps } />
-    )
-
-    expect(tree).toMatchSnapshot()
-    expect(tree.find('[testID="profile.navigation-settings-btn"]').length).toEqual(0)
-  })
-
-  it('navigate to manage children screen', async () => {
-    app.setCurrentApp('parent')
-    const instance = renderer.create(
-      <Profile { ...defaultProps } />
-    ).getInstance()
-    await instance.manageObserverStudents()
-    expect(defaultProps.navigator.show).toHaveBeenCalledWith('/parent/manage-children', { modal: false })
+    expect(tree.find('[testID="Profile.settingsButton"]').length).toEqual(1)
   })
 
   it('renders correctly without act as user', () => {
@@ -160,7 +141,7 @@ describe('Profile Tests', () => {
     defaultProps.navigator.dismiss = spy
     const row: any = explore(renderer.create(
       <Profile {...defaultProps} />
-    ).toJSON()).selectByID('row-lti-gauge.instructure.com-360860')
+    ).toJSON()).selectByID('Profile.lti.gauge.instructure.com.360860')
     row.props.onPress()
     expect(spy).toHaveBeenCalled()
   })
@@ -298,7 +279,7 @@ describe('Profile Tests', () => {
     }
     const view = shallow(<Profile {...props} />)
     await view.update()
-    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    const helpBtn = view.find('[testID="Profile.helpButton"]')
     helpBtn.simulate('Press')
     await selectedActionSheet(0)
     expect(props.navigator.showWebView).toHaveBeenCalledWith('https://google.com')
@@ -322,7 +303,7 @@ describe('Profile Tests', () => {
       }),
     }
     const view = shallow(<Profile {...props} />)
-    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    const helpBtn = view.find('[testID="Profile.helpButton"]')
     helpBtn.simulate('Press')
     await selectedActionSheet(0)
     expect(props.navigator.show).toHaveBeenCalledWith('/conversations/compose', { modal: true }, {
@@ -349,7 +330,7 @@ describe('Profile Tests', () => {
       }),
     }
     const view = shallow(<Profile {...props} />)
-    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    const helpBtn = view.find('[testID="Profile.helpButton"]')
     helpBtn.simulate('Press')
     await selectedActionSheet(0)
     expect(props.navigator.show).toHaveBeenCalledWith('/support/problem', { modal: true })
@@ -375,7 +356,7 @@ describe('Profile Tests', () => {
       }),
     }
     const view = shallow(<Profile {...props} />)
-    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    const helpBtn = view.find('[testID="Profile.helpButton"]')
     helpBtn.simulate('Press')
     await selectedActionSheet(1) // cancel index is 1
     expect(props.navigator.dismiss).not.toHaveBeenCalled()
@@ -402,7 +383,7 @@ describe('Profile Tests', () => {
       helpLinks,
     }
     const view = shallow(<Profile {...props} />)
-    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    const helpBtn = view.find('[testID="Profile.helpButton"]')
     helpBtn.simulate('Press')
     expect(actionSheet.options.length).toEqual(2)
     expect(actionSheet.options[0]).toEqual('Student')
@@ -428,7 +409,7 @@ describe('Profile Tests', () => {
       helpLinks,
     }
     const view = shallow(<Profile {...props} />)
-    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    const helpBtn = view.find('[testID="Profile.helpButton"]')
     helpBtn.simulate('Press')
     expect(actionSheet.options.length).toEqual(2)
     expect(actionSheet.options[0]).toEqual('Teacher')
@@ -450,7 +431,7 @@ describe('Profile Tests', () => {
       helpLinks,
     }
     const view = shallow(<Profile {...props} />)
-    const helpBtn = view.find('[testID="profile.help-menu-btn"]')
+    const helpBtn = view.find('[testID="Profile.helpButton"]')
     helpBtn.simulate('Press')
     expect(actionSheet.options.length).toEqual(2)
   })
@@ -462,7 +443,7 @@ describe('Profile Tests', () => {
 
   it('updates the user settings', () => {
     let tree = shallow(<Profile {...defaultProps} />)
-    let row = tree.find('[testID="profile.color-overlay-toggle"]')
+    let row = tree.find('[testID="Profile.colorOverlayToggle"]')
     row.simulate('valueChange', true)
     expect(defaultProps.updateUserSettings).toHaveBeenCalledWith('self', false)
   })

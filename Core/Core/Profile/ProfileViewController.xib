@@ -34,6 +34,7 @@
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUq-Hk-5gZ" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                     <rect key="frame" x="16" y="100" width="343" height="30"/>
+                    <accessibility key="accessibilityConfiguration" identifier="Profile.userNameLabel"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="wIi-gU-28o"/>
                     </constraints>
@@ -47,6 +48,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JohnDoe@instructure.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFf-Vr-4Xv" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                     <rect key="frame" x="16" y="132" width="343" height="18"/>
+                    <accessibility key="accessibilityConfiguration" identifier="Profile.userEmailLabel"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                     <color key="textColor" name="textDark"/>
                     <nil key="highlightedColor"/>

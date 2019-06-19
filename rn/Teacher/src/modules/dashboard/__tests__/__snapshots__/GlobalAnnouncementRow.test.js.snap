@@ -67,7 +67,7 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
           }
         }
         onPress={[Function]}
-        testID="global-announcement-row.toggle"
+        testID="GlobalAnnouncement.1.toggle"
         underlayColor="transparent"
       >
         <View>
@@ -189,7 +189,7 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
           }
         }
         onPress={[Function]}
-        testID="global-announcement-row.toggle"
+        testID="GlobalAnnouncement.1.toggle"
         underlayColor="transparent"
       >
         <View>
@@ -311,7 +311,7 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
           }
         }
         onPress={[Function]}
-        testID="global-announcement-row.toggle"
+        testID="GlobalAnnouncement.1.toggle"
         underlayColor="transparent"
       >
         <View>
@@ -433,7 +433,7 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
           }
         }
         onPress={[Function]}
-        testID="global-announcement-row.toggle"
+        testID="GlobalAnnouncement.1.toggle"
         underlayColor="transparent"
       >
         <View>
@@ -555,7 +555,7 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
           }
         }
         onPress={[Function]}
-        testID="global-announcement-row.toggle"
+        testID="GlobalAnnouncement.1.toggle"
         underlayColor="transparent"
       >
         <View>
@@ -677,7 +677,7 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
           }
         }
         onPress={[Function]}
-        testID="global-announcement-row.toggle"
+        testID="GlobalAnnouncement.1.toggle"
         underlayColor="transparent"
       >
         <View>

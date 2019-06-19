@@ -34,20 +34,19 @@ class PeopleTests: CanvasUITests {
 
     func testCourseUsersAndUserContextCardDisplay() {
         // Dashboard
-        Dashboard.courseCard(id: "262").waitToExist(30)
+        Dashboard.courseCard(id: "262").waitToExist()
         Dashboard.courseCard(id: "262").tap()
 
         // Course Details
-        CourseDetails.people.tap()
+        CourseNavigation.people.tap()
 
         // Course People
-        CoursePeople.person(name: "Student One").waitToExist(30)
+        CoursePeople.person(name: "Student One").waitToExist()
         XCTAssert(CoursePeople.person(name: "Student One").exists)
         XCTAssert(CoursePeople.person(name: "Student Two").exists)
         CoursePeople.person(name: "Student One").tap()
 
         // Person Context Card
-        PersonContextCard.emailLabel("ios+student1@instructure.com").waitToExist(30)
-        XCTAssert(PersonContextCard.emailLabel("ios+student1@instructure.com").exists)
+        PersonContextCard.emailLabel("ios+student1@instructure.com").waitToExist()
     }
 }
