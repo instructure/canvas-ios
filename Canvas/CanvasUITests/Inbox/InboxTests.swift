@@ -124,6 +124,7 @@ class InboxTests: CanvasUITests {
         Dashboard.inboxTab.tap()
 
         // Inbox
+        Inbox.message(id: "47").waitToExist()
         Inbox.filterButton.tap()
         Inbox.filterOption("Assignment").waitToExist()
         Inbox.filterOption("Assignment").tap()
