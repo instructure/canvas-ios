@@ -30,8 +30,6 @@ enum PersonContextCard {
 }
 
 class PeopleTests: CanvasUITests {
-    override var user: User? { return .student1 }
-
     func testCourseUsersAndUserContextCardDisplay() {
         // Dashboard
         Dashboard.courseCard(id: "262").waitToExist()

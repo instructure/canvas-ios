@@ -18,8 +18,6 @@ import XCTest
 import TestsFoundation
 
 class DashboardTests: CanvasUITests {
-    override var user: User? { return .student1 }
-
     func testAnnouncementBelowInvite() {
         CourseInvitation.acceptButton(id: "998").waitToExist()
         GlobalAnnouncement.toggle(id: "2").waitToExist()

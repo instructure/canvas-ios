@@ -30,8 +30,6 @@ enum AnnouncementDetail {
 }
 
 class AnnouncementTest: CanvasUITests {
-    override var user: User? { return .student1 }
-
     func testAnnouncementsMatchWebOrder() {
         // Dashboard
         Dashboard.courseCard(id: "262").waitToExist()

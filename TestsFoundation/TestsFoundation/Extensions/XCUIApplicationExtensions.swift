@@ -17,10 +17,12 @@
 import Foundation
 import XCTest
 
+// warning: These functions will actually use `app` for finding elements,
+// so will only function properly on the test target app.
 public extension XCUIApplication {
     func find(label: String, type: XCUIElement.ElementType = .any) -> Element {
        return XCUIElementWrapper(
-            descendants(matching: type)
+            app.descendants(matching: type)
             .matching(NSPredicate(format: "%K == %@", #keyPath(XCUIElement.label), label))
             .firstMatch
         )
@@ -28,7 +30,7 @@ public extension XCUIApplication {
 
     func find(labelContaining needle: String, type: XCUIElement.ElementType = .any) -> Element {
        return XCUIElementWrapper(
-            descendants(matching: type)
+            app.descendants(matching: type)
             .matching(NSPredicate(format: "%K CONTAINS %@", #keyPath(XCUIElement.label), needle))
             .firstMatch
         )
@@ -36,7 +38,7 @@ public extension XCUIApplication {
 
     func find(id: String, type: XCUIElement.ElementType = .any) -> Element {
         return XCUIElementWrapper(
-            descendants(matching: type)
+            app.descendants(matching: type)
             .matching(NSPredicate(format: "%K == %@", #keyPath(XCUIElement.identifier), id))
             .firstMatch
         )
@@ -44,7 +46,7 @@ public extension XCUIApplication {
 
     func find(type: XCUIElement.ElementType, index: Int = 0) -> Element {
         return XCUIElementWrapper(
-            descendants(matching: type).element(boundBy: index)
+            app.descendants(matching: type).element(boundBy: index)
         )
     }
 }

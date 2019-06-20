@@ -190,10 +190,7 @@
 		7DAFB459219F5FC100311275 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DF2578215F36F3006EDA4F /* Core.framework */; };
 		7DAFB45B219F61B400311275 /* PSPDFDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB45A219F61B400311275 /* PSPDFDoc.swift */; };
 		7DAFB45F219F8B1300311275 /* CommentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB45E219F8B1300311275 /* CommentList.swift */; };
-		7DB0A1BC21BF2326009ABB40 /* LoginStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1BB21BF2326009ABB40 /* LoginStart.swift */; };
-		7DB0A1BE21BF2337009ABB40 /* LoginFindSchool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1BD21BF2337009ABB40 /* LoginFindSchool.swift */; };
 		7DB0A1C021BF2671009ABB40 /* LoginStartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1BF21BF2671009ABB40 /* LoginStartTests.swift */; };
-		7DB0A1C221BF288C009ABB40 /* LoginWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1C121BF288C009ABB40 /* LoginWeb.swift */; };
 		7DB0A1C421BF2A20009ABB40 /* LoginFindSchoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1C321BF2A20009ABB40 /* LoginFindSchoolTests.swift */; };
 		7DBF922422693C6C00710D0F /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AE17A7218771CE002995E6 /* TestsFoundation.framework */; };
 		7DBF922C2269730200710D0F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DF2578215F36F3006EDA4F /* Core.framework */; };
@@ -601,10 +598,7 @@
 		7DAFB457219F48D000311275 /* empty.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = empty.pdf; sourceTree = "<group>"; };
 		7DAFB45A219F61B400311275 /* PSPDFDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSPDFDoc.swift; sourceTree = "<group>"; };
 		7DAFB45E219F8B1300311275 /* CommentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentList.swift; sourceTree = "<group>"; };
-		7DB0A1BB21BF2326009ABB40 /* LoginStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStart.swift; sourceTree = "<group>"; };
-		7DB0A1BD21BF2337009ABB40 /* LoginFindSchool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchool.swift; sourceTree = "<group>"; };
 		7DB0A1BF21BF2671009ABB40 /* LoginStartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartTests.swift; sourceTree = "<group>"; };
-		7DB0A1C121BF288C009ABB40 /* LoginWeb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWeb.swift; sourceTree = "<group>"; };
 		7DB0A1C321BF2A20009ABB40 /* LoginFindSchoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolTests.swift; sourceTree = "<group>"; };
 		7DC1C9D5223AB8690083F707 /* SubmissionCommentAudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentAudioCell.swift; sourceTree = "<group>"; };
 		7DD6947E2194B94500BA4984 /* SubmissionDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsTests.swift; sourceTree = "<group>"; };
@@ -1238,11 +1232,8 @@
 		7D7F60DE22A077DA004AB5EA /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				7DB0A1BD21BF2337009ABB40 /* LoginFindSchool.swift */,
 				7DB0A1C321BF2A20009ABB40 /* LoginFindSchoolTests.swift */,
-				7DB0A1BB21BF2326009ABB40 /* LoginStart.swift */,
 				7DB0A1BF21BF2671009ABB40 /* LoginStartTests.swift */,
-				7DB0A1C121BF288C009ABB40 /* LoginWeb.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1955,7 +1946,6 @@
 				7DB0A1C021BF2671009ABB40 /* LoginStartTests.swift in Sources */,
 				7DAFB45B219F61B400311275 /* PSPDFDoc.swift in Sources */,
 				7D6F93622236CB6000528598 /* SubmissionDetails.swift in Sources */,
-				7DB0A1BE21BF2337009ABB40 /* LoginFindSchool.swift in Sources */,
 				3BE2ADC921B6F72D008D91AB /* URLSubmissionTests.swift in Sources */,
 				7DAFB45F219F8B1300311275 /* CommentList.swift in Sources */,
 				7D781C9E217FADD40046A83E /* NavBar.swift in Sources */,
@@ -1965,11 +1955,9 @@
 				7D6F93652236CF2600528598 /* SubmissionFilesTests.swift in Sources */,
 				7DB0A1C421BF2A20009ABB40 /* LoginFindSchoolTests.swift in Sources */,
 				7D5C87182239975D00D99651 /* SubmissionComments.swift in Sources */,
-				7DB0A1C221BF288C009ABB40 /* LoginWeb.swift in Sources */,
 				B1E1FA5D215F11160008C76D /* AssignmentDetailsTests.swift in Sources */,
 				7D34F476225D50D5001B97E6 /* TextSubmission.swift in Sources */,
 				7D6F93672236D1B200528598 /* SubmissionFiles.swift in Sources */,
-				7DB0A1BC21BF2326009ABB40 /* LoginStart.swift in Sources */,
 				7DAFB455219F44AD00311275 /* DocViewer.swift in Sources */,
 				3B363A0122526F9700FC5A7E /* Syllabus.swift in Sources */,
 				B1FFB80B215FADC2000684AA /* StudentUITestCase.swift in Sources */,

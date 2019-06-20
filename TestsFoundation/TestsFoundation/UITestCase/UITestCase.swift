@@ -19,6 +19,7 @@ import XCTest
 @testable import Core
 
 open class UITestCase: XCTestCase {
+    let decoder = JSONDecoder()
     let encoder = JSONEncoder()
     let pasteboardType = "com.instructure.ui-test-helper"
 
@@ -43,7 +44,47 @@ open class UITestCase: XCTestCase {
     }
 
     open func logIn(domain: String, token: String) {
-        send(.login, [ domain, token ])
+        let baseURL = URL(string: "https://\(domain)")!
+        send(.login, KeychainEntry(
+            accessToken: token,
+            baseURL: baseURL,
+            expiresAt: nil,
+            locale: "en",
+            refreshToken: nil,
+            userID: "",
+            userName: ""
+        ))
+    }
+
+    open func logInEntry(_ entry: KeychainEntry) {
+        send(.login, entry)
+    }
+
+    open func logInUser(_ user: UITestUser) {
+        if let entry = user.keychainEntry {
+            return logInEntry(entry)
+        }
+
+        // Assumes we are on the login start screen
+        LoginStart.findSchoolButton.tap()
+        LoginFindSchool.searchField.typeText("\(user.host)\r")
+
+        LoginWeb.emailField.typeText(user.username)
+        LoginWeb.passwordField.typeText(user.password)
+        LoginWeb.logInButton.tap()
+
+        app.find(id: "favorited-course-list.profile-btn").waitToExist()
+        user.keychainEntry = currentSession()
+    }
+
+    open func currentSession() -> KeychainEntry? {
+        send(.currentSession)
+        guard
+            let data = UIPasteboard.general.data(forPasteboardType: pasteboardType),
+            let helper = try? decoder.decode(UITestHelpers.Helper.self, from: data),
+            helper.type == .currentSession, let entryData = helper.data
+        else { return nil }
+        return try? decoder.decode(KeychainEntry.self, from: entryData)
     }
 
     open func show(_ route: String) {

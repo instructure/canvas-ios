@@ -29,8 +29,6 @@ enum Calendar {
 }
 
 class CalendarTests: CanvasUITests {
-    override var user: User? { return .student1 }
-
     func testCalendarTodayButton() {
 
         let formatter = DateFormatter()
