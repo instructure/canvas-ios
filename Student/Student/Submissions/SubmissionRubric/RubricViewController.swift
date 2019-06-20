@@ -90,7 +90,7 @@ extension RubricViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: RubricCollectionViewCell = collectionView.dequeue(for: indexPath)
         let r = models[indexPath.item]
-        cell.update(r)
+        cell.update(rubric: r, courseColor: presenter.courses.first?.color ?? UIColor.blue)
         cell.delegate = self
         return cell
     }
@@ -156,10 +156,11 @@ class RubricCollectionViewCell: UICollectionViewCell {
         commentView.textLabel.font = type(of: self).chatBubbleTextLabelFont
     }
 
-    func update(_ rubric: RubricViewModel) {
+    func update(rubric: RubricViewModel, courseColor: UIColor) {
         rubricTitle.text = rubric.title
         rubricTitle.accessibilityTraits = .header
         circleView.rubric = rubric
+        circleView.courseColor = courseColor
         circleViewHeightConstraint.constant = RubricCircleViewWithDescription.computedHeight(rubric: rubric, maxWidth: bounds.size.width - (RubricCollectionViewCell.margin * 2))
         updateLongDescription(desc: rubric.longDescription)
         updateComment(comment: rubric.comment)
