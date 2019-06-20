@@ -359,6 +359,7 @@ exports[`Compose renders after picking a course 1`] = `
               "justifyContent": "center",
             }
           }
+          testID="compose.add-recipient"
         >
           <Image
             source={
@@ -625,6 +626,7 @@ exports[`Compose renders reply 1`] = `
               "justifyContent": "center",
             }
           }
+          testID="compose.add-recipient"
         >
           <Image
             source={
