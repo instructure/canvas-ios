@@ -627,6 +627,7 @@
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
 		EE2BFBD222BAEB380046BA8B /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BFBD122BAEB380046BA8B /* InboxTests.swift */; };
+		EE2BFBD422BC13430046BA8B /* Inbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BFBD322BC13430046BA8B /* Inbox.swift */; };
 		EE7BB77922B822DE001C1EE7 /* DashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB77822B822DE001C1EE7 /* DashboardTests.swift */; };
 		EE7BB77B22B84720001C1EE7 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB77A22B84720001C1EE7 /* PeopleTests.swift */; };
 		EE7BB78322BA93A7001C1EE7 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB78222BA93A7001C1EE7 /* CalendarTests.swift */; };
@@ -1673,6 +1674,7 @@
 		D8523687029A98FE14374D90 /* Pods-defaults-CanvasKit1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit1.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasKit1/Pods-defaults-CanvasKit1.release.xcconfig"; sourceTree = "<group>"; };
 		E95379D1460BDF2C6A9F2EEE /* Pods-defaults-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
 		EE2BFBD122BAEB380046BA8B /* InboxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
+		EE2BFBD322BC13430046BA8B /* Inbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inbox.swift; sourceTree = "<group>"; };
 		EE7BB77822B822DE001C1EE7 /* DashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTests.swift; sourceTree = "<group>"; };
 		EE7BB77A22B84720001C1EE7 /* PeopleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		EE7BB78222BA93A7001C1EE7 /* CalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
@@ -3046,6 +3048,7 @@
 		EE7BB78722BA9E35001C1EE7 /* Inbox */ = {
 			isa = PBXGroup;
 			children = (
+				EE2BFBD322BC13430046BA8B /* Inbox.swift */,
 				EE2BFBD122BAEB380046BA8B /* InboxTests.swift */,
 			);
 			path = Inbox;
@@ -4179,6 +4182,7 @@
 				EE7BB77922B822DE001C1EE7 /* DashboardTests.swift in Sources */,
 				EE7BB77B22B84720001C1EE7 /* PeopleTests.swift in Sources */,
 				B16300D622B015AE000B85AD /* LoginTests.swift in Sources */,
+				EE2BFBD422BC13430046BA8B /* Inbox.swift in Sources */,
 				7D903C0122BABC64009D9E9E /* CourseNavigation.swift in Sources */,
 				EE7BB78322BA93A7001C1EE7 /* CalendarTests.swift in Sources */,
 				EE2BFBD222BAEB380046BA8B /* InboxTests.swift in Sources */,
