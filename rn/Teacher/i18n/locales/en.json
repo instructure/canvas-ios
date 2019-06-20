@@ -866,9 +866,6 @@
   "magenta_4a65993c": {
     "message": "Magenta"
   },
-  "manage_children_a28d764e": {
-    "message": "Manage Children"
-  },
   "mark_all_as_read_8f3bdf57": {
     "message": "Mark All as Read"
   },
@@ -1270,9 +1267,6 @@
   },
   "report_a_problem_4d48624a": {
     "message": "Report a Problem"
-  },
-  "request_a_feature_3c8e2079": {
-    "message": "Request a Feature"
   },
   "request_could_not_be_completed_157615ef": {
     "message": "Request could not be completed."
@@ -1775,9 +1769,6 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "View all submissions"
-  },
-  "view_canvas_guides_a1c62a97": {
-    "message": "View Canvas Guides"
   },
   "view_long_description_2b592c0e": {
     "message": "View Long Description"
