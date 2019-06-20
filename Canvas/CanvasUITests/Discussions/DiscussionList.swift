@@ -17,24 +17,8 @@
 import XCTest
 import TestsFoundation
 
-enum CourseNavigation {
-    static var announcements: Element {
-        return app.find(id: "courses-details.announcements-cell")
-    }
-
-    static var discussions: Element {
-        return app.find(id: "courses-details.discussions-cell")
-    }
-
-    static var files: Element {
-        return app.find(id: "courses-details.files-cell")
-    }
-
-    static var grades: Element {
-        return app.find(id: "courses-details.grades-cell")
-    }
-
-    static var people: Element {
-        return app.find(id: "courses-details.people-cell")
+enum DiscussionList {
+    static func cell(index: Int) -> Element {
+        return app.find(id: "discussion-row-\(index)")
     }
 }
