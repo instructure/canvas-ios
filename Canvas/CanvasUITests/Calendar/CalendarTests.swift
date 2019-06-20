@@ -24,7 +24,6 @@ enum Calendar {
 
     static func text(containing text: String) -> Element {
         return app.find(labelContaining: text)
-        //return XCUIElementWrapper(app.staticTexts[text].firstMatch)
     }
 }
 
