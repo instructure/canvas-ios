@@ -47,6 +47,14 @@ class RubricPresenter {
         self?.update()
     }
 
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.update()
+    }
+
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
+
     let env: AppEnvironment
     weak var view: RubricViewProtocol?
     let courseID: String
@@ -68,7 +76,7 @@ class RubricPresenter {
     }
 
     func update() {
-        if rubrics.count > 0, let rubrics = rubrics.all, let assessments = submissions.first?.rubricAssessments {
+        if rubrics.count > 0, let rubrics = rubrics.all, let assessments = submissions.first?.rubricAssessments, courses.first?.color != nil {
             let models = transformRubricsToViewModels(rubrics, assessments: assessments)
             view?.update(models)
         } else {

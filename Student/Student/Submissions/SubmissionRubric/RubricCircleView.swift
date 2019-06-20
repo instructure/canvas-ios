@@ -22,11 +22,15 @@ protocol RubricCircleViewButtonDelegate: class {
 }
 
 class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
-    var circleView: RubricCircleView?
-    var descriptionViewContainer: UIView?
-    var header: DynamicLabel?
-    var subHeader: DynamicLabel?
-    var headerContainer: UIView?
+    private var circleView: RubricCircleView?
+    private var header: DynamicLabel?
+    private var subHeader: DynamicLabel?
+    private var headerContainer: UIView?
+    private var circleViewHeightConstraint: NSLayoutConstraint?
+    private var subHeaderHeightConstraint: NSLayoutConstraint?
+    private var headerContainerHeightConstraint: NSLayoutConstraint?
+    private static let subHeaderFont = UIFont.scaledNamedFont(.medium12)
+    private static let margin: CGFloat = 8.0
     var selectedRatingIndex: Int = 0
     var rubric: RubricViewModel? {
         didSet {
@@ -34,11 +38,7 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
             selectedRatingIndex = rubric?.selectedIndex ?? 0
         }
     }
-    var circleViewHeightConstraint: NSLayoutConstraint?
-    var subHeaderHeightConstraint: NSLayoutConstraint?
-    var headerContainerHeightConstraint: NSLayoutConstraint?
-    static let subHeaderFont = UIFont.scaledNamedFont(.medium12)
-    static let margin: CGFloat = 8.0
+    var courseColor: UIColor = UIColor.red
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -53,6 +53,7 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
         if circleView == nil {
             circleView = RubricCircleView(frame: CGRect.zero)
             circleView?.rubric = rubric
+            circleView?.courseColor = courseColor
             circleView?.buttonClickDelegate = self
             addSubview(circleView!)
             circleView?.pinToLeftAndRightOfSuperview()
@@ -89,7 +90,7 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
             subHeader?.addConstraintsWithVFL("V:[header]-(margin)-[view]", views: ["header": header!], metrics: ["margin": margin / 2])
             subHeaderHeightConstraint = subHeader?.addConstraintsWithVFL("V:[view(21)]")?.first
 
-            container.backgroundColor = UIColor.blue.withAlphaComponent(0.1)
+            container.backgroundColor = courseColor.withAlphaComponent(0.07)
 
             if let rubric = rubric {
                 didClickRubric(atIndex: rubric.selectedIndex, rubric: rubric)
@@ -158,6 +159,7 @@ class RubricCircleView: UIView {
     private var buttons: [UIButton] = []
     var rubric: RubricViewModel?
     weak var buttonClickDelegate: RubricCircleViewButtonDelegate?
+    var courseColor: UIColor = UIColor.red
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -208,7 +210,7 @@ class RubricCircleView: UIView {
             if selected {
                 font = UIFont.scaledNamedFont(.semibold20)
                 color = UIColor.white
-                bgColor = Brand.shared.primary
+                bgColor = courseColor
                 button.isSelected = true
             } else {
                 font = UIFont.scaledNamedFont(.regular20Monodigit)
