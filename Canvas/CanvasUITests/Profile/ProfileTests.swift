@@ -18,8 +18,6 @@ import XCTest
 import TestsFoundation
 
 class ProfileTests: CanvasUITests {
-    override var user: User? { return .student1 }
-
     func testProfileDisplaysUsername() {
         Dashboard.profileButton.waitToExist()
         Dashboard.profileButton.tap()
@@ -31,14 +29,16 @@ class ProfileTests: CanvasUITests {
         Dashboard.profileButton.waitToExist()
         Dashboard.profileButton.tap()
         Profile.changeUserButton.tap()
-        LoginStart.previousUser(name: "Student One").waitToExist()
+        let entry = user!.keychainEntry!
+        LoginStartKeychainEntry.cell(host: entry.baseURL.host!, userID: entry.userID).waitToExist()
     }
 
     func testProfileLogsOut() {
         Dashboard.profileButton.waitToExist()
         Dashboard.profileButton.tap()
         Profile.logOutButton.tap()
-        LoginStart.findMySchool.waitToExist()
-        XCTAssertFalse(LoginStart.previousUser(name: "Student One").exists)
+        LoginStart.findSchoolButton.waitToExist()
+        let entry = user!.keychainEntry!
+        XCTAssertFalse(LoginStartKeychainEntry.cell(host: entry.baseURL.host!, userID: entry.userID).exists)
     }
 }

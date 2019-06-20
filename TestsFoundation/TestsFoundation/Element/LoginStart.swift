@@ -14,10 +14,9 @@
 // limitations under the License.
 //
 
-import Core
-import TestsFoundation
+import Foundation
 
-enum LoginStart: String, ElementWrapper {
+public enum LoginStart: String, ElementWrapper {
     case authenticationMethodLabel
     case canvasNetworkButton
     case findSchoolButton
@@ -27,18 +26,18 @@ enum LoginStart: String, ElementWrapper {
     case whatsNewLink
 }
 
-enum LoginStartKeychainEntry {
-    static func cell(host: String, userID: String) -> Element {
+public enum LoginStartKeychainEntry {
+    public static func cell(host: String, userID: String) -> Element {
         return app.find(id: "LoginStartKeychainEntry.\(host).\(userID)")
     }
 
-    static func removeButton(host: String, userID: String) -> Element {
+    public static func removeButton(host: String, userID: String) -> Element {
         return app.find(id: "LoginStartKeychainEntry.\(host).\(userID).removeButton")
     }
 }
 
-enum LoginStartMDMLogin {
-    static func cell(host: String, username: String) -> Element {
+public enum LoginStartMDMLogin {
+    public static func cell(host: String, username: String) -> Element {
         return app.find(id: "LoginStartMDMLogin.\(host).\(username)")
     }
 }

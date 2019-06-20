@@ -96,10 +96,13 @@ public extension Element {
 }
 
 public struct XCUIElementWrapper: Element {
-    private(set) var element: XCUIElement
+    var element: XCUIElement {
+        return finder()
+    }
+    private let finder: () -> XCUIElement
 
-    public init(_ element: XCUIElement) {
-        self.element = element
+    public init(_ finder: @autoclosure @escaping () -> XCUIElement) {
+        self.finder = finder
     }
 
     public var elementType: XCUIElement.ElementType {

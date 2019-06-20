@@ -24,8 +24,6 @@ enum FilesList {
 }
 
 class CourseFileTests: CanvasUITests {
-    override var user: User? { return .student1 }
-
     func testPreviewCourseFile() {
         // Dashboard
         Dashboard.courseCard(id: "263").waitToExist()

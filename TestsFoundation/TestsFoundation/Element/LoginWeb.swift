@@ -15,8 +15,20 @@
 //
 
 import Foundation
-import TestsFoundation
 
-enum LoginWeb: String, ElementWrapper {
+public enum LoginWeb: String, ElementWrapper {
     case webView
+
+    public static var emailField: Element {
+        return app.find(type: .textField)
+        // return XCUIElementWrapper(app.webViews.textFields["Email"])
+    }
+
+    public static var passwordField: Element {
+        return app.find(type: .secureTextField)
+    }
+
+    public static var logInButton: Element {
+        return app.find(label: "Log In")
+    }
 }

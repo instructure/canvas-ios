@@ -20,8 +20,8 @@ import Foundation
 import UIKit
 
 public class UITestHelpers {
-    public enum HelperType: String, Codable {
-        case reset, login, show, mockData, mockDownload, tearDown
+    public enum HelperType: String, Codable, Equatable {
+        case reset, login, show, mockData, mockDownload, tearDown, currentSession
     }
     public struct Helper: Codable {
         let type: HelperType
@@ -37,6 +37,7 @@ public class UITestHelpers {
 
     weak var appDelegate: UIApplicationDelegate?
     let decoder = JSONDecoder()
+    let encoder = JSONEncoder()
     let keychainBackup = Keychain.entries
     let pasteboardType = "com.instructure.ui-test-helper"
     let window: ActAsUserWindow?
@@ -68,8 +69,14 @@ public class UITestHelpers {
         case .reset:
             reset()
         case .login:
-            guard let data = helper.data, let params = try? decoder.decode([String].self, from: data) else { return }
-            logIn(domain: params[0], token: params[1])
+            guard let data = helper.data, let entry = try? decoder.decode(KeychainEntry.self, from: data) else { return }
+            logIn(entry)
+        case .currentSession:
+            guard
+                let entry = AppEnvironment.shared.currentSession,
+                let data = try? encoder.encode(Helper(type: .currentSession, data: encoder.encode(entry)))
+            else { return }
+            UIPasteboard.general.setData(data, forPasteboardType: pasteboardType)
         case .show:
             guard let data = helper.data, let params = try? decoder.decode([String].self, from: data) else { return }
             show(params[0])
@@ -86,6 +93,7 @@ public class UITestHelpers {
 
     func reset() {
         Keychain.clearEntries()
+        UserDefaults.standard.removeObject(forKey: MDMManager.MDMUserDefaultsKey)
         (appDelegate as? LoginDelegate)?.changeUser()
         resetDatabase()
         MockDistantURLSession.reset()
@@ -110,18 +118,9 @@ public class UITestHelpers {
         try? AppEnvironment.shared.database.clearAllRecords()
     }
 
-    func logIn(domain: String, token: String) {
+    func logIn(_ entry: KeychainEntry) {
         guard let loginDelegate = appDelegate as? LoginDelegate else { return }
-        let baseURL = URL(string: "https://\(domain)")!
-        loginDelegate.userDidLogin(keychainEntry: KeychainEntry(
-            accessToken: token,
-            baseURL: baseURL,
-            expiresAt: nil,
-            locale: "en",
-            refreshToken: nil,
-            userID: "",
-            userName: ""
-        ))
+        loginDelegate.userDidLogin(keychainEntry: entry)
     }
 
     func show(_ route: String) {

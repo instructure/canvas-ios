@@ -38,8 +38,6 @@ enum AssignmentDetails {
 }
 
 class AssignmentsTests: CanvasUITests {
-    override var user: User? { return .student1 }
-
     func testViewAssignment() {
         // Dashboard
         Dashboard.courseCard(id: "263").waitToExist()

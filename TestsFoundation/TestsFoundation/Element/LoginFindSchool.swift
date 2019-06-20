@@ -15,16 +15,17 @@
 //
 
 import Foundation
-import TestsFoundation
 
-enum LoginFindSchool: String, ElementWrapper {
+public enum LoginFindSchool: String, ElementWrapper {
     case searchField
 }
 
-enum LoginFindAccountResult {
-    static var emptyCell = app.find(id: "LoginFindAccountResult.emptyCell")
+public enum LoginFindAccountResult {
+    public static var emptyCell: Element {
+        return app.find(id: "LoginFindAccountResult.emptyCell")
+    }
 
-    static func item(host: String) -> Element {
+    public static func item(host: String) -> Element {
         return app.find(id: "LoginFindAccountResult.\(host)")
     }
 }
