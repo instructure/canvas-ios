@@ -73,6 +73,8 @@ class RubricPresenter {
         assignments.refresh(force: true)
         submissions.refresh(force: true)
         rubrics.refresh(force: true)
+        courses.refresh()
+        colors.refresh()
     }
 
     func update() {
