@@ -18,12 +18,14 @@ import UIKit
 import Core
 
 protocol RubricCircleViewButtonDelegate: class {
-    func didClickRubric(atIndex: Int, rubric: RubricViewModel)
+    func didClickRubric(atIndex: Int)
 }
 
 protocol RubricCircleViewWithDescriptionDelegate: class {
     func selectedRatingIndexDidChange(_ selectedRatingIndex: Int)
 }
+
+let rubricCircleViewAlphaColor: CGFloat = 0.07
 
 class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
     private var circleView: RubricCircleView?
@@ -104,10 +106,10 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
             subHeader?.addConstraintsWithVFL("V:[header]-(margin)-[view]", views: ["header": header!], metrics: ["margin": 1])
             subHeaderHeightConstraint = subHeader?.addConstraintsWithVFL("V:[view(21)]")?.first
 
-            container.backgroundColor = courseColor.withAlphaComponent(0.07)
+            container.backgroundColor = courseColor.withAlphaComponent(rubricCircleViewAlphaColor)
 
             if let rubric = rubric {
-                didClickRubric(atIndex: rubric.selectedIndex, rubric: rubric)
+                didClickRubric(atIndex: rubric.selectedIndex)
             }
         }
     }
@@ -159,7 +161,7 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
                                                                                                                      maxWidth: frame.size.width))
     }
 
-    func didClickRubric(atIndex: Int, rubric: RubricViewModel) {
+    func didClickRubric(atIndex: Int) {
         selectedRatingIndex = atIndex
 
         updateHeights()
@@ -174,10 +176,14 @@ class RubricCircleView: UIView {
     var rubric: RubricViewModel?
     weak var buttonClickDelegate: RubricCircleViewButtonDelegate?
     var courseColor: UIColor = UIColor.red
+    private var currentlySelectedButton: DynamicButton?
+    private var selectedButtonTransform = CGAffineTransform(scaleX: 1.135, y: 1.135)
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        setupButtons()
+        if buttons.count == 0 {
+            setupButtons()
+        }
     }
 
     private static var formatter: NumberFormatter = {
@@ -226,6 +232,7 @@ class RubricCircleView: UIView {
                 color = UIColor.white
                 bgColor = courseColor
                 button.isSelected = true
+                currentlySelectedButton = button
             } else {
                 font = UIFont.scaledNamedFont(.regular20Monodigit)
                 color = UIColor.named(.borderDark)
@@ -244,6 +251,7 @@ class RubricCircleView: UIView {
             button.layer.borderColor = color.cgColor
             button.layer.borderWidth = 1.0 / UIScreen.main.scale
             button.accessibilityLabel = a11yLabel
+            if selected { button.transform = selectedButtonTransform }
 
             center.x += w + space
             if i == howManyCanFitInWidth - 1 {
@@ -251,13 +259,44 @@ class RubricCircleView: UIView {
                 center.x = 0
             }
         }
-
     }
 
     @objc func actionButtonClicked(sender: DynamicButton) {
-        let index = sender.tag
-        guard let rubric = rubric else { return }
-        buttonClickDelegate?.didClickRubric(atIndex: index, rubric: rubric)
+        animateButtonClick(sender: sender) {
+            self.buttonClickDelegate?.didClickRubric(atIndex: sender.tag)
+        }
+    }
+
+    func animateButtonClick(sender: DynamicButton, completionHandler: @escaping () -> Void) {
+        let delay = 0.0
+        adjustButtonAppearance(showAsSelected: false, button: currentlySelectedButton)
+
+        sender.transform = CGAffineTransform(scaleX: 0.877, y: 0.877)
+
+        UIView.animate(withDuration: 0.2, delay: delay, options: [], animations: {
+            self.adjustButtonAppearance(showAsSelected: true, button: sender)
+        }, completion: nil)
+
+        UIView.animate(withDuration: 0.2, delay: delay, usingSpringWithDamping: 0.25, initialSpringVelocity: 6.0, options: [.allowUserInteraction, .curveEaseInOut], animations: {
+            sender.transform = self.selectedButtonTransform
+        }, completion: { _ in
+            self.currentlySelectedButton = sender
+            completionHandler()
+        })
+    }
+
+    func adjustButtonAppearance(showAsSelected: Bool, button: DynamicButton?) {
+        guard let button = button else { return }
+        let selected = button.tag == (rubric?.selectedIndex ?? 0)
+
+        if !showAsSelected { button.transform = CGAffineTransform.identity }
+
+        let bgColor = selected ? courseColor : showAsSelected ? courseColor.withAlphaComponent(rubricCircleViewAlphaColor) : UIColor.white
+        let color = selected ?  UIColor.white : showAsSelected ? courseColor : UIColor.named(.borderDark)
+
+        button.backgroundColor = bgColor
+        button.setTitleColor(color, for: .normal)
+        button.layer.borderColor = color.cgColor
     }
 
     static func computedHeight(rubric: RubricViewModel, maxWidth: CGFloat) -> CGFloat {
