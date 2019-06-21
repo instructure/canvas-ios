@@ -18,7 +18,7 @@ import UIKit
 import Core
 
 protocol RubricCircleViewButtonDelegate: class {
-    func didClickRubric(atIndex: Int)
+    func didClickRating(atIndex: Int)
 }
 
 protocol RubricCircleViewWithDescriptionDelegate: class {
@@ -108,10 +108,35 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
             container.backgroundColor = courseColor.withAlphaComponent(rubricCircleViewAlphaColor)
 
             if let rubric = rubric {
-                didClickRubric(atIndex: rubric.selectedIndex)
+                didClickRating(atIndex: rubric.selectedIndex)
             }
         }
     }
+
+    func updateHeights() {
+        guard let rubric = rubric else { return }
+        if !rubricIsCustomGrade() && selectedRatingIndex >= rubric.rubricRatings.count { return }
+        let subHeader = rubricIsCustomGrade() ? "" : ratingBlurb(selectedRatingIndex).subHeader
+        let subHeaderHeight = ceil(RubricCircleViewWithDescription.subHeaderSize(text: subHeader, maxWidth: frame.size.width).height)
+        subHeaderHeightConstraint?.constant = subHeaderHeight
+        headerContainerHeightConstraint?.constant = ceil(RubricCircleViewWithDescription.computedTextContainerHeight(selectedRatingIndex: selectedRatingIndex,
+                                                                                                                    rubric: rubric,
+                                                                                                                     maxWidth: frame.size.width))
+    }
+
+    func didClickRating(atIndex: Int) {
+        var newIndex = atIndex
+        if selectedRatingIndex == atIndex {
+            newIndex = rubric?.selectedIndex ?? 0
+        }
+
+        selectedRatingIndex = newIndex
+
+        updateHeights()
+        delegate?.selectedRatingIndexDidChange(newIndex)
+    }
+
+    // MARK: - Static measurment helpers
 
     static func computedHeight(rubric: RubricViewModel, selectedRatingIndex: Int, maxWidth: CGFloat) -> CGFloat {
         let circles = RubricCircleView.computedHeight(rubric: rubric, maxWidth: maxWidth)
@@ -153,24 +178,6 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
         return h
     }
 
-    func updateHeights() {
-        guard let rubric = rubric else { return }
-        if !rubricIsCustomGrade() && selectedRatingIndex >= rubric.rubricRatings.count { return }
-        let subHeader = rubricIsCustomGrade() ? "" : ratingBlurb(selectedRatingIndex).subHeader
-        let subHeaderHeight = ceil(RubricCircleViewWithDescription.subHeaderSize(text: subHeader, maxWidth: frame.size.width).height)
-        subHeaderHeightConstraint?.constant = subHeaderHeight
-        headerContainerHeightConstraint?.constant = ceil(RubricCircleViewWithDescription.computedTextContainerHeight(selectedRatingIndex: selectedRatingIndex,
-                                                                                                                    rubric: rubric,
-                                                                                                                     maxWidth: frame.size.width))
-    }
-
-    func didClickRubric(atIndex: Int) {
-        selectedRatingIndex = atIndex
-
-        updateHeights()
-        delegate?.selectedRatingIndexDidChange(atIndex)
-    }
-
     // MARK: - Helpers
 
     func rubricIsCustomGrade() -> Bool {
@@ -194,7 +201,7 @@ class RubricCircleView: UIView {
     var rubric: RubricViewModel?
     weak var buttonClickDelegate: RubricCircleViewButtonDelegate?
     var courseColor: UIColor = UIColor.red
-    private var currentlySelectedButton: DynamicButton?
+    private var currentlySelectedButton: UIButton?
     private var selectedButtonTransform = CGAffineTransform(scaleX: 1.135, y: 1.135)
 
     override func layoutSubviews() {
@@ -281,29 +288,32 @@ class RubricCircleView: UIView {
 
     @objc func actionButtonClicked(sender: DynamicButton) {
         animateButtonClick(sender: sender) {
-            self.buttonClickDelegate?.didClickRubric(atIndex: sender.tag)
+            self.buttonClickDelegate?.didClickRating(atIndex: sender.tag)
         }
     }
 
     func animateButtonClick(sender: DynamicButton, completionHandler: @escaping () -> Void) {
         let delay = 0.0
+
         adjustButtonAppearance(showAsSelected: false, button: currentlySelectedButton)
 
-        sender.transform = CGAffineTransform(scaleX: 0.877, y: 0.877)
+        let sameButtonClicked: Bool = sender == currentlySelectedButton
+        let buttonToAnimate = sameButtonClicked ? buttons[rubric?.selectedIndex ?? 0] : sender
+        buttonToAnimate.transform = CGAffineTransform(scaleX: 0.877, y: 0.877)
 
         UIView.animate(withDuration: 0.2, delay: delay, options: [], animations: {
-            self.adjustButtonAppearance(showAsSelected: true, button: sender)
+            self.adjustButtonAppearance(showAsSelected: true, button: buttonToAnimate)
         }, completion: nil)
 
         UIView.animate(withDuration: 0.2, delay: delay, usingSpringWithDamping: 0.25, initialSpringVelocity: 6.0, options: [.allowUserInteraction, .curveEaseInOut], animations: {
-            sender.transform = self.selectedButtonTransform
+            buttonToAnimate.transform = self.selectedButtonTransform
         }, completion: { _ in
-            self.currentlySelectedButton = sender
+            self.currentlySelectedButton = buttonToAnimate
             completionHandler()
         })
     }
 
-    func adjustButtonAppearance(showAsSelected: Bool, button: DynamicButton?) {
+    func adjustButtonAppearance(showAsSelected: Bool, button: UIButton?) {
         guard let button = button else { return }
         let selected = button.tag == (rubric?.selectedIndex ?? 0)
 
