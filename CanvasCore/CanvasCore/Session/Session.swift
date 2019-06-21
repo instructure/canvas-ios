@@ -180,10 +180,17 @@ extension Session {
 
 extension Session: URLSessionTaskDelegate {
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+        let progressUpdateByTask = self.progressUpdateByTask
         progressUpdateByTask[task]?(totalBytesSent, totalBytesExpectedToSend)
     }
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        // Make copies to avoid EXC_BAD_ACCESS
+        var progressUpdateByTask = self.progressUpdateByTask
+        var completionHandlerByTask = self.completionHandlerByTask
+        var responseDataByTask = self.responseDataByTask
+        var completionHandlerByBackgroundIdentifier = self.completionHandlerByBackgroundIdentifier
+
         progressUpdateByTask[task] = nil
         completionHandlerByTask[task]?(task, error as NSError?)
         completionHandlerByTask[task] = nil
@@ -193,13 +200,20 @@ extension Session: URLSessionTaskDelegate {
             completionHandlerByBackgroundIdentifier[identifier]?(error as NSError?)
             completionHandlerByBackgroundIdentifier[identifier] = nil
         }
+
+        self.progressUpdateByTask = progressUpdateByTask
+        self.completionHandlerByTask = completionHandlerByTask
+        self.responseDataByTask = responseDataByTask
+        self.completionHandlerByBackgroundIdentifier = completionHandlerByBackgroundIdentifier
     }
 }
 
 extension Session: URLSessionDataDelegate {
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        var responseDataByTask = self.responseDataByTask
         var responseData = responseDataByTask[dataTask] ?? Data()
         responseData.append(data)
         responseDataByTask[dataTask] = responseData
+        self.responseDataByTask = responseDataByTask
     }
 }
