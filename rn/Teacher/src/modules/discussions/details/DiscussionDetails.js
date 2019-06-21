@@ -306,7 +306,11 @@ export class DiscussionDetails extends Component<Props, any> {
               }
               { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
                 // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
-                <TouchableOpacity testID={`discussion.${discussion.id}.attachment`} onPress={this.showAttachment}>
+                <TouchableOpacity
+                  testID='DiscussionDetails.attachmentButton'
+                  accessibilityTraits={['button']}
+                  onPress={this.showAttachment}
+                >
                   <View style={style.attachment}>
                     <Image source={Images.paperclip} style={style.attachmentIcon} />
                     <Text style={style.attachmentText}>

@@ -69,7 +69,6 @@ open class UITestCase: XCTestCase {
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("\(user.host)\r")
 
-        LoginWeb.webView.waitToExist()
         LoginWeb.emailField.typeText(user.username)
         LoginWeb.passwordField.typeText(user.password)
         LoginWeb.logInButton.tap()
