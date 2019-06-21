@@ -21,7 +21,6 @@ public enum LoginWeb: String, ElementWrapper {
 
     public static var emailField: Element {
         return app.find(type: .textField)
-        // return XCUIElementWrapper(app.webViews.textFields["Email"])
     }
 
     public static var passwordField: Element {

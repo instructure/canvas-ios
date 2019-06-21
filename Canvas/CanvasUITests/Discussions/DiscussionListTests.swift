@@ -23,7 +23,7 @@ class DiscussionListTests: CanvasUITests {
         CourseNavigation.discussions.tap()
 
         DiscussionList.cell(index: 0).waitToExist()
-        XCTAssert(DiscussionList.cell(index: 0).label.contains("Due Dec 31"))
+        XCTAssert(DiscussionList.cell(index: 0).label.contains("Due Dec"))
         XCTAssertFalse(DiscussionList.cell(index: 1).label.contains("Due"))
     }
 
@@ -33,13 +33,13 @@ class DiscussionListTests: CanvasUITests {
 
         DiscussionList.cell(index: 0).waitToExist()
         XCTAssert(DiscussionList.cell(index: 0).label.contains("Graded Discussion"))
-        XCTAssert(DiscussionList.cell(index: 0).label.contains("Due Dec 31"))
+        XCTAssert(DiscussionList.cell(index: 0).label.contains("Due Dec"))
         XCTAssert(DiscussionList.cell(index: 0).label.contains("10 pts"))
         XCTAssert(DiscussionList.cell(index: 0).label.contains("0 Replies"))
         XCTAssert(DiscussionList.cell(index: 0).label.contains("0 Unread"))
 
         XCTAssert(DiscussionList.cell(index: 1).label.contains("Simple Discussion"))
-        XCTAssert(DiscussionList.cell(index: 1).label.contains("Last post Jun 20"))
+        XCTAssert(DiscussionList.cell(index: 1).label.contains("Last post Jun"))
         XCTAssert(DiscussionList.cell(index: 1).label.contains("0 Replies"))
         XCTAssert(DiscussionList.cell(index: 1).label.contains("0 Unread"))
     }
