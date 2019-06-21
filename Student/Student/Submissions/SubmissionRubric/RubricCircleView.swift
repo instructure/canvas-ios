@@ -39,11 +39,9 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
     private static let margin: CGFloat = 8.0
     var selectedRatingIndex: Int = 0 {
         didSet {
-            if selectedRatingIndex >= rubric?.rubricRatings.count ?? 0 { return }
-            guard let rating = rubric?.rubricRatings[selectedRatingIndex]
-                else { return }
-            header?.text = rating.desc
-            subHeader?.text = rating.longDesc
+            let blurb = ratingBlurb(selectedRatingIndex)
+            header?.text = blurb.header
+            subHeader?.text = blurb.subHeader
             updateHeights()
         }
     }
@@ -79,7 +77,8 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
 
         if headerContainer == nil {
             let margin = RubricCircleViewWithDescription.margin
-            let marginMetrics = ["margin": margin]
+            let verticalMarginMetrics = ["margin": margin / 2]
+            let horizontalMarginMetrics = ["margin": margin]
 
             headerContainer = UIView(frame: CGRect.zero)
             addSubview(headerContainer!)
@@ -95,14 +94,14 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
             header = DynamicLabel(frame: CGRect.zero)
             header?.font = UIFont.scaledNamedFont(.semibold14)
             container.addSubview(header!)
-            header?.addConstraintsWithVFL("H:|-(margin)-[view]-(margin)-|", metrics: marginMetrics)
-            header?.addConstraintsWithVFL("V:|-(margin)-[view(21)]", metrics: marginMetrics)
+            header?.addConstraintsWithVFL("H:|-(margin)-[view]-(margin)-|", metrics: horizontalMarginMetrics)
+            header?.addConstraintsWithVFL("V:|-(margin)-[view(21)]", metrics: verticalMarginMetrics)
 
             subHeader = DynamicLabel(frame: CGRect.zero)
             subHeader?.numberOfLines = 0
             subHeader?.font = RubricCircleViewWithDescription.subHeaderFont
             container.addSubview(subHeader!)
-            subHeader?.addConstraintsWithVFL("H:|-(margin)-[view]-(margin)-|", metrics: marginMetrics)
+            subHeader?.addConstraintsWithVFL("H:|-(margin)-[view]-(margin)-|", metrics: horizontalMarginMetrics)
             subHeader?.addConstraintsWithVFL("V:[header]-(margin)-[view]", views: ["header": header!], metrics: ["margin": 1])
             subHeaderHeightConstraint = subHeader?.addConstraintsWithVFL("V:[view(21)]")?.first
 
@@ -146,14 +145,18 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
         let headerHeight: CGFloat = header.isEmpty ? 0 : 21
         let subHeaderHeight = ceil(RubricCircleViewWithDescription.subHeaderSize(text: subHeader, maxWidth: maxWidth).height)
         var h = headerHeight + subHeaderHeight
-        if h > 0 { h +=  (margin / 2) + (margin * 2) /* add margins if there is any text, otherwise don't add margins */ }
+
+        if h > 0 {
+            if subHeaderHeight > 0 { h += (margin / 2) }
+            h += (margin)
+        }
         return h
     }
 
     func updateHeights() {
         guard let rubric = rubric else { return }
-        if selectedRatingIndex >= rubric.rubricRatings.count { return }
-        let subHeader = rubric.rubricRatings[selectedRatingIndex].longDesc
+        if !rubricIsCustomGrade() && selectedRatingIndex >= rubric.rubricRatings.count { return }
+        let subHeader = rubricIsCustomGrade() ? "" : ratingBlurb(selectedRatingIndex).subHeader
         let subHeaderHeight = ceil(RubricCircleViewWithDescription.subHeaderSize(text: subHeader, maxWidth: frame.size.width).height)
         subHeaderHeightConstraint?.constant = subHeaderHeight
         headerContainerHeightConstraint?.constant = ceil(RubricCircleViewWithDescription.computedTextContainerHeight(selectedRatingIndex: selectedRatingIndex,
@@ -166,6 +169,21 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
 
         updateHeights()
         delegate?.selectedRatingIndexDidChange(atIndex)
+    }
+
+    // MARK: - Helpers
+
+    func rubricIsCustomGrade() -> Bool {
+        guard let rubric = rubric else { return false }
+        return rubric.rubricRatings.count < rubric.ratings.count
+    }
+
+    func ratingBlurb(_ atIndex: Int) -> (header: String, subHeader: String) {
+        guard let rubric = rubric else { return ("", "") }
+        if atIndex >= rubric.rubricRatings.count { return ("", "") }
+        let header = rubric.rubricRatings[atIndex].desc
+        let subHeader = rubric.rubricRatings[atIndex].longDesc
+        return (header, subHeader)
     }
 }
 

@@ -31,23 +31,31 @@ class RubricViewController: UIViewController {
     var models: [RubricViewModel] = []
     var presenter: RubricPresenter!
     var selectedRatingCache = [Int]()
+    var collectionViewDidSetupCells = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         emptyViewLabel.text = NSLocalizedString("There is no rubric for this assignment", comment: "")
 
-        setupCollectionView()
+        setupCollectionViewHeader()
         presenter.viewIsReady()
     }
 
-    func setupCollectionView() {
-        let id = String(describing: RubricCollectionViewCell.self)
-        let nib = UINib(nibName: id, bundle: Bundle(for: type(of: self)))
-        collectionView.register(nib, forCellWithReuseIdentifier: id)
-
+    func setupCollectionViewHeader() {
         let headerID = String(describing: GradeCircleReusableView.self)
         collectionView.register(GradeCircleReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
+    }
+
+    func setupCollectionViewCells() {
+        collectionViewDidSetupCells = true
+        let count = models.count
+        for i in 0..<count {
+            let id = String(describing: RubricCollectionViewCell.self)
+            let nib = UINib(nibName: id, bundle: Bundle(for: type(of: self)))
+            let cellID = "\(id)_\(i)"
+            collectionView.register(nib, forCellWithReuseIdentifier: cellID)
+        }
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -87,7 +95,9 @@ extension RubricViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: RubricCollectionViewCell = collectionView.dequeue(for: indexPath)
+        let cellType = String(describing: RubricCollectionViewCell.self)
+        let cellID = "\(cellType)_\(indexPath.item)"
+        guard let cell = collectionView.dequeue(withReuseIdentifier: cellID, for: indexPath) as? RubricCollectionViewCell else { fatalError("expecting cell of type \(cellType)") }
         let r = models[indexPath.item]
         cell.update(rubric: r, selectedRatingIndex: selectedRatingCache[indexPath.item], courseColor: presenter.courses.first?.color ?? UIColor.blue)
         cell.delegate = self
@@ -104,6 +114,7 @@ extension RubricViewController: UICollectionViewDataSource, UICollectionViewDele
 extension RubricViewController: RubricViewProtocol {
     func update(_ rubric: [RubricViewModel]) {
         models = rubric
+        if !collectionViewDidSetupCells { setupCollectionViewCells() }
         selectedRatingCache = models.map { $0.selectedIndex }
         collectionView.reloadData()
     }
@@ -132,10 +143,11 @@ extension RubricViewController: RubricCellDelegate {
         guard let ip = collectionView.indexPath(for: cell) else { return }
         selectedRatingCache[ip.item] = ratingIndex
 
-        UIView.transition(with: collectionView,
-                          duration: 0.3,
-                          options: .transitionCrossDissolve,
-                          animations: { self.collectionView.reloadData() })
+//        UIView.transition(with: collectionView,
+//                          duration: 0.1,
+//                          options: .transitionCrossDissolve,
+//                          animations: { self.collectionView.reloadData() })
+        self.collectionView.reloadData()
     }
 }
 
@@ -170,7 +182,6 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewWithDescri
             circleView.rubric = rubric
         }
         circleView.selectedRatingIndex = selectedRatingIndex
-        print("\(#function) selectedRatingIndex: \(selectedRatingIndex)")
         circleView.courseColor = courseColor
         circleViewHeightConstraint.constant = RubricCircleViewWithDescription.computedHeight(rubric: rubric,
                                                                                              selectedRatingIndex: selectedRatingIndex,
