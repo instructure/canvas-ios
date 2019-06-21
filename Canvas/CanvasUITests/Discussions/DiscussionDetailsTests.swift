@@ -21,6 +21,8 @@ class DiscussionDetailsTests: CanvasUITests {
     func testPreviewAttachment() {
         Dashboard.courseCard(id: "263").tap()
         CourseNavigation.discussions.tap()
+
+        DiscussionList.cell(index: 0).waitToExist()
         DiscussionList.cell(index: 0).tap()
 
         DiscussionDetails.attachmentButton.tap()
