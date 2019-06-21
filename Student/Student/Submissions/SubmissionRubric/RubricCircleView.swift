@@ -267,7 +267,7 @@ class RubricCircleView: UIView {
             button.titleLabel?.font = font
             button.setTitleColor(color, for: .normal)
             button.layer.borderColor = color.cgColor
-            button.layer.borderWidth = 1.0 / UIScreen.main.scale
+            button.layer.borderWidth = 1.0
             button.accessibilityLabel = a11yLabel
             if selected { button.transform = selectedButtonTransform }
 
