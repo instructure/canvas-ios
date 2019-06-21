@@ -85,6 +85,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
             return
         }
         self.updateNavBar(subtitle: assignment.name, color: course.color)
+        self.drawer?.tabs?.tintColor = course.color
     }
 
     func embed(_ controller: UIViewController?) {
