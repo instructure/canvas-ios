@@ -464,8 +464,8 @@
 		499D1BB91C864835005A86D2 /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
 		5B3DFCF020DF8291004D771E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B3DFCF320DF8292004D771E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5B4495F321E1E9230067E0ED /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5B4D043B22ACEEA200968336 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5BA4F5BA22BD7154002A9464 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BDFF07D21BCFE4F00FB1900 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		73FDCB1E035EF6A93E758F42 /* Pods_defaults_CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D349C5521430AF1004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -476,6 +476,7 @@
 		7D349C5E21430B3C004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C6121430BB7004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C6221430BB8004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D7959F222BD810C00B79BF4 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		89D0BBE2474CFAFFCAB82936 /* Pods-CanvasKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKit/Pods-CanvasKit.release.xcconfig"; sourceTree = "<group>"; };
 		9F018E4D1FBB771200C183B3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F018E4E1FBB771200C183B3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1083,9 +1084,10 @@
 				es,
 				cy,
 				"en-CY",
-				"sl-SI",
 				Base,
 				fi,
+				sl,
+				"en-AU-unimelb",
 			);
 			mainGroup = 499D187D1C8643E6005A86D2;
 			productRefGroup = 499D18881C8643E6005A86D2 /* Products */;
@@ -1313,8 +1315,9 @@
 				7D349C5D21430B3C004C1074 /* nb-instk12 */,
 				7D349C6121430BB7004C1074 /* sv-instk12 */,
 				5BDFF07D21BCFE4F00FB1900 /* en-CY */,
-				5B4495F321E1E9230067E0ED /* sl-SI */,
 				5B4D043B22ACEEA200968336 /* fi */,
+				5BA4F5BA22BD7154002A9464 /* sl */,
+				7D7959F222BD810C00B79BF4 /* en-AU-unimelb */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -34,14 +34,14 @@
 		49E54673190AACDA001AD3BC /* FXKeychain+CKMKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FXKeychain+CKMKeychain.h"; sourceTree = "<group>"; };
 		49E54674190AACDA001AD3BC /* FXKeychain+CKMKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FXKeychain+CKMKeychain.m"; sourceTree = "<group>"; };
 		49E958921909768F00A1BFB7 /* CanvasKeymaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasKeymaster.m; sourceTree = "<group>"; };
+		5B1E67D822BD711B0005AA68 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B1E67D922BD711B0005AA68 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		5B58B4B820DF818A008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B58B4B920DF818A008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B58B4BB20DF818A008B8856 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		5B5C967021BCFD8A00F8B80D /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5B5C967221BCFD8A00F8B80D /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
 		5B63522A40D7F33C56E0E141 /* Pods-defaults-CanvasKeymaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKeymaster.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKeymaster/Pods-defaults-CanvasKeymaster.release.xcconfig"; sourceTree = "<group>"; };
-		5B90117121E1E8D400DC8656 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		5B90117321E1E8D400DC8656 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
 		5B98DF8322ACEE4F003CC943 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B98DF8422ACEE4F003CC943 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		5E505F331B55ABF6007BD968 /* ImpactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImpactTableViewController.h; sourceTree = "<group>"; };
@@ -52,6 +52,8 @@
 		5EEEB1761B56C9A7001438C3 /* SupportTicketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicketManager.m; sourceTree = "<group>"; };
 		5EEEB1771B56C9A7001438C3 /* SupportTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTicketViewController.h; sourceTree = "<group>"; };
 		5EEEB1781B56C9A7001438C3 /* SupportTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicketViewController.m; sourceTree = "<group>"; };
+		7D153EBB22BD806A00039174 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D153EBC22BD806A00039174 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
 		7D349C3F214309CC004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C40214309CD004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C41214309CD004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/SupportTicket.strings"; sourceTree = "<group>"; };
@@ -331,8 +333,9 @@
 				zh,
 				cy,
 				"en-CY",
-				"sl-SI",
 				fi,
+				sl,
+				"en-AU-unimelb",
 			);
 			mainGroup = 49E9585F190967B000A1BFB7;
 			productRefGroup = 49E95869190967B000A1BFB7 /* Products */;
@@ -424,8 +427,9 @@
 				7D349C4C21430A47004C1074 /* nb-instk12 */,
 				7D349C5221430A6C004C1074 /* sv-instk12 */,
 				5B5C967021BCFD8A00F8B80D /* en-CY */,
-				5B90117121E1E8D400DC8656 /* sl-SI */,
 				5B98DF8322ACEE4F003CC943 /* fi */,
+				5B1E67D822BD711B0005AA68 /* sl */,
+				7D153EBB22BD806A00039174 /* en-AU-unimelb */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -492,8 +496,9 @@
 				7D349C4D21430A47004C1074 /* nb-instk12 */,
 				7D349C5321430A6C004C1074 /* sv-instk12 */,
 				5B5C967221BCFD8A00F8B80D /* en-CY */,
-				5B90117321E1E8D400DC8656 /* sl-SI */,
 				5B98DF8422ACEE4F003CC943 /* fi */,
+				5B1E67D922BD711B0005AA68 /* sl */,
+				7D153EBC22BD806A00039174 /* en-AU-unimelb */,
 			);
 			name = SupportTicket.storyboard;
 			sourceTree = "<group>";
