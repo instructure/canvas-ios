@@ -17,26 +17,6 @@
 import XCTest
 import TestsFoundation
 
-enum GradesList {
-    static var title: Element {
-        return app.find(label: "Grades")
-    }
-
-    static func assignment(id: String) -> Element {
-        return app.find(id: "grades-list.grades-list-row.cell-\(id)")
-    }
-}
-
-enum AssignmentDetails {
-    static func description(_ description: String) -> Element {
-        return app.find(label: description)
-    }
-
-    static func link(_ description: String) -> Element {
-        return XCUIElementWrapper(app.webViews.staticTexts[description])
-    }
-}
-
 class AssignmentsTests: CanvasUITests {
     func testViewAssignment() {
         // Dashboard

@@ -314,7 +314,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
                   })}
                 </View>
                 { this.props.canAddRecipients &&
-                  <TouchableOpacity onPress={this._openAddressBook} style={{ height: 54, justifyContent: 'center' }} accessibilityTraits={['button']} accessibilityLabel={i18n('Add recipient')}>
+                  <TouchableOpacity testID='compose.add-recipient' onPress={this._openAddressBook} style={{ height: 54, justifyContent: 'center' }} accessibilityTraits={['button']} accessibilityLabel={i18n('Add recipient')}>
                     <Image source={Images.add} style={{ tintColor: colors.primaryButton }} />
                   </TouchableOpacity>
                 }
