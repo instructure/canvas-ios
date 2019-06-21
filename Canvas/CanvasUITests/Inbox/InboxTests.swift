@@ -18,8 +18,6 @@ import XCTest
 import TestsFoundation
 
 class InboxTests: CanvasUITests {
-    override var user: User? { return .student1 }
-
     func testCannotMessageEntireClassWhenDisabled() {
         //Dashboard
         Dashboard.inboxTab.tap()
