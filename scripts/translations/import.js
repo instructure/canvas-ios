@@ -59,6 +59,7 @@ function run(cmd, args, opts) {
 function normalizeLocale(locale) {
   return locale.replace(/_/g, '-')
     .replace(/-x-/, '-inst')
+    .replace(/-inst(\w{5,})/, '-$1')
     .replace(/-k12/, '-instk12')
     .replace(/-ukhe/, '-instukhe')
 }

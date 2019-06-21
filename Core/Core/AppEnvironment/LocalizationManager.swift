@@ -36,8 +36,17 @@ public class LocalizationManager {
     }
 
     public static func setCurrentLocale(_ locale: String?) {
-        // da-x-k12 -> da-instk12
-        let newLocale = locale?.replacingOccurrences(of: "-x-", with: "-inst") ?? ""
+        var newLocale = locale ?? ""
+        // da-x-k12 -> da-instk12, en-AU-x-unimelb -> en-AU-unimelb
+        let parts = newLocale.components(separatedBy: "-x-")
+        if var custom = parts.count == 2 ? parts[1] : nil {
+            if custom.count < 5 {
+                custom = "inst\(custom)"
+            } else if custom.count > 8 {
+                custom = String(custom.dropLast(custom.count - 8))
+            }
+            newLocale = "\(parts[0])-\(custom)"
+        }
         guard Bundle.main.localizations.contains(newLocale) else { return }
 
         UserDefaults.standard.set(newLocale, forKey: instUserLocale)
