@@ -1,0 +1,288 @@
+/* <String> <Int> of <Int> */
+"%@ %d of %d" = "%1$@ %2$d of %3$d";
+
+/* No comment provided by engineer. */
+"%@ is due at %@" = "%1$@ is due at %2$@";
+
+/* No comment provided by engineer. */
+"%@ to %@" = "%1$@ to %2$@";
+
+/* No comment provided by engineer. */
+"%@ will begin at %@" = "%1$@ will begin at %2$@";
+
+/* Percentage field placeholder */
+"1-100%" = "1-100%";
+
+/* Server Error Message */
+"A server error has occurred.  Please try again." = "A server error has occurred.  Please try again.";
+
+/* Label for button that allows admin to Act as User */
+"Act as User" = "Act as User";
+
+/* Label displayed when logged in as an admin */
+"Admin" = "Admin";
+
+/* Alert Section Header */
+"Alert me when:" = "Alert me when:";
+
+/* Alerts Tab */
+"Alerts" = "Alerts";
+
+/* No comment provided by engineer. */
+"An Error Occurred" = "An Error Occurred";
+
+/* Generic Network Error Message */
+"An unexpected error occurred.  Please try again." = "An unexpected error occurred.  Please try again.";
+
+/* No comment provided by engineer. */
+"Announcement" = "Announcement";
+
+/* No comment provided by engineer. */
+"Assignment" = "Assignment";
+
+/* Assignment Grade High On Description */
+"Assignment grade above" = "Assignment grade above";
+
+/* Assignment Grade Low On Description */
+"Assignment grade below" = "Assignment grade below";
+
+/* Assignment Missing Description */
+"Assignment missing" = "Assignment missing";
+
+/* No comment provided by engineer. */
+"Assignment reminder" = "Assignment reminder";
+
+/* Cancel button title */
+"Cancel" = "Cancel";
+
+/* Percent value is over 100 */
+"Cannot use percent that is higher than 100" = "Cannot use percent that is higher than 100";
+
+/* Percent value is under 0 */
+"Cannot use percent that is less than 0" = "Cannot use percent that is less than 0";
+
+/* Empty Alerts Text */
+"Caught up on Alerts" = "Caught up on Alerts";
+
+/* No comment provided by engineer. */
+"Change User" = "Change User";
+
+/* No comment provided by engineer. */
+"Choose a student" = "Choose a student";
+
+/* Close Button Title */
+"Close" = "Close";
+
+/* No comment provided by engineer. */
+"Close App" = "Close App";
+
+/* Course Announcement Description */
+"Course announcements" = "Subject announcements";
+
+/* Course Grade High On Description */
+"Course grade above" = "Subject grade above";
+
+/* Course Grade Low On Description */
+"Course grade below" = "Subject grade below";
+
+/* Courses Tab */
+"Courses" = "Subjects";
+
+/* No comment provided by engineer. */
+"Current student: %@, tap to switch students" = "Current student: %@, tap to switch students";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "Developer Menu";
+
+/* No comment provided by engineer. */
+"Discussion" = "Discussion";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Dismiss";
+
+/* No comment provided by engineer. */
+"Error" = "Error";
+
+/* No comment provided by engineer. */
+"Event" = "Event";
+
+/* No comment provided by engineer. */
+"Event reminder" = "Event reminder";
+
+/* No comment provided by engineer. */
+"Excused" = "Excused";
+
+/* No comment provided by engineer. */
+"Help" = "Help";
+
+/* High Assignment Grade too Low */
+"High assignment grade cannot be lower than low assignment grade" = "High assignment grade cannot be lower than low assignment grade";
+
+/* High Course Grade too Low */
+"High course grade cannot be lower than low course grade" = "High subject grade cannot be lower than low subject grade";
+
+/* No comment provided by engineer. */
+"In-Class" = "In-Class";
+
+/* Institution Announcement Description */
+"Institution announcements" = "Institution announcements";
+
+/* Title for an alert view */
+"Invalid Input" = "Invalid Input";
+
+/* Last Week Button Accessibility Label */
+"Last Week" = "Last Week";
+
+/* No comment provided by engineer. */
+"Late" = "Late";
+
+/* No comment provided by engineer. */
+"Late: %@" = "Late: %@";
+
+/* No comment provided by engineer. */
+"Late: %@ (%@/%@)" = "Late: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "Log Out";
+
+/* Low Assignment Grade too High */
+"Low assignment grade cannot be higher than high assignment grade" = "Low assignment grade cannot be higher than high assignment grade";
+
+/* Low Course Grade too High */
+"Low course grade cannot be higher than high course grade" = "Low subject grade cannot be higher than high subject grade";
+
+/* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
+"Manage Children" = "Manage Children";
+
+/* No comment provided by engineer. */
+"Missing" = "Missing";
+
+/* No comment provided by engineer. */
+"Missing: (-/%@)" = "Missing: (-/%@)";
+
+/* Generic Network Error Title */
+"Network Error" = "Network Error";
+
+/* Next Week Button Accessibility Label */
+"Next Week" = "Next Week";
+
+/* Empty Courses Text */
+"No Courses" = "No Subjects";
+
+/* Title for label when no grade has been assigned to the course */
+"No Grade" = "No Grade";
+
+/* Error message */
+"No installed apps support opening this file" = "No installed apps support opening this file.";
+
+/* Empty Students Text */
+"No Students" = "No Students";
+
+/* Not Authorized Error Title */
+"Not Authorized" = "Not Authorised";
+
+/* Not Found Error Title */
+"Not Found" = "Not Found";
+
+/* Empty Calendar Events Text */
+"Nothing this week" = "Nothing this week";
+
+/* OK Button Title */
+"OK" = "OK";
+
+/* Open a url in the application Safari */
+"Open in Safari" = "Open in Safari";
+
+/* Open file in another application */
+"Open in..." = "Open in...";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Permission Needed";
+
+/* No comment provided by engineer. */
+"Quiz" = "Quiz";
+
+/* No comment provided by engineer. */
+"Report a Problem" = "Report a Problem";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Request a Feature";
+
+/* Not Found Error Message */
+"Resource not found.  Please try again." = "Resource not found.  Please try again.";
+
+/* Server Error Title */
+"Server Error" = "Server Error";
+
+/* No comment provided by engineer. */
+"Settings" = "Settings";
+
+/* No comment provided by engineer. */
+"Stop Act as User" = "Stop Act as User";
+
+/* No comment provided by engineer. */
+"Submitted" = "Submitted";
+
+/* No comment provided by engineer. */
+"Submitted: %@" = "Submitted: %@";
+
+/* No comment provided by engineer. */
+"Submitted: %@ (%@/%@)" = "Submitted: %1$@ (%2$@/%3$@)";
+
+/* Syllabus Button Title */
+"Syllabus" = "Subject Overview";
+
+/* Directions in the admin view */
+"Tap to start viewing Canvas as another person." = "Tap to start viewing Canvas as another person.";
+
+/* No comment provided by engineer. */
+"Terms of Use" = "Terms of Use";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "The app needs to restart to use the new language settings. Please relaunch the app.";
+
+/* Error message */
+"There are no actions for this item" = "There are no actions for this item.";
+
+/* AlertKit Database Load Failure Message */
+"There was a problem loading the AlertKit database file." = "There was a problem loading the AlertKit database file.";
+
+/* Airwolf database error message */
+"There was a problem loading the database." = "There was a problem loading the database.";
+
+/* No comment provided by engineer. */
+"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "There was an error loading your content. If it is an audio or video upload, it may still be processing.";
+
+/* No comment provided by engineer. */
+"This announcement has expired." = "This announcement has expired.";
+
+/* No comment provided by engineer. */
+"This student's courses may not be published yet." = "This student's subjects may not be published yet.";
+
+/* No comment provided by engineer. */
+"Trouble logging in" = "Trouble logging in";
+
+/* Unknown T`hreshold Description */
+"Unknown" = "Unknown";
+
+/* No comment provided by engineer. */
+"Unread" = "Unread";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Updated Language Settings";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "View Canvas Guides";
+
+/* Calendar Tab */
+"Week" = "Week";
+
+/* Header title of admin view */
+"Welcome!" = "Welcome!";
+
+/* Not Authorized Error Message */
+"You are unauthorized to access this information.  Check your user permissions and try again." = "You are unauthorised to access this information.  Please check your user permissions and try again.";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "You must allow notifications in Settings to set reminders.";
+

@@ -568,8 +568,23 @@
 		49A36ECC1FA90BD0005F5905 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DB0AE51E4E27030036D96E /* Student+AccessRemoved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+AccessRemoved.swift"; sourceTree = "<group>"; };
 		49ED5A4C1DBFD02E009E2896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5B022DDB21FD9504006FEA47 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		5B022DDC21FD9504006FEA47 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5B1D4EFF22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B1D4F0022BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B1D4F0122BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
+		5B1D4F0222BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/AlertCell.strings; sourceTree = "<group>"; };
+		5B1D4F0322BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/CalendarEventCell.strings; sourceTree = "<group>"; };
+		5B1D4F0422BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
+		5B1D4F0522BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
+		5B1D4F0622BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
+		5B1D4F0722BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/CalendarEventWeekPageViewController.strings; sourceTree = "<group>"; };
+		5B1D4F0822BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/AdminViewController.strings; sourceTree = "<group>"; };
+		5B1D4F0922BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/SettingsObserveeCell.strings; sourceTree = "<group>"; };
+		5B1D4F0A22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
+		5B1D4F0B22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DetailsReminderCell.strings; sourceTree = "<group>"; };
+		5B1D4F0C22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DashboardViewController.strings; sourceTree = "<group>"; };
+		5B1D4F0D22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/UserCell.strings; sourceTree = "<group>"; };
+		5B1D4F0E22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/CourseCell.strings; sourceTree = "<group>"; };
+		5B1D4F0F22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/StudentSettingsHeaderView.strings; sourceTree = "<group>"; };
 		5B7BD3C222ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B7BD3C322ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B7BD3C422ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/EmptyCalendarEventCell.strings; sourceTree = "<group>"; };
@@ -606,21 +621,6 @@
 		5B8461EB20DF7C3500EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		5B8461EC20DF7C3500EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/SettingsViewController.strings; sourceTree = "<group>"; };
 		5B8461ED20DF7C3600EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/StudentSettingsHeaderView.strings; sourceTree = "<group>"; };
-		5BE5A0CE21E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/CourseCell.strings"; sourceTree = "<group>"; };
-		5BE5A0CF21E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/CalendarEventCell.strings"; sourceTree = "<group>"; };
-		5BE5A0D021E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/SettingsObserveeCell.strings"; sourceTree = "<group>"; };
-		5BE5A0D121E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/UserCell.strings"; sourceTree = "<group>"; };
-		5BE5A0D221E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
-		5BE5A0D321E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
-		5BE5A0D421E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
-		5BE5A0D521E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
-		5BE5A0D621E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
-		5BE5A0D721E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/AlertCell.strings"; sourceTree = "<group>"; };
-		5BE5A0D821E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/CalendarEventWeekPageViewController.strings"; sourceTree = "<group>"; };
-		5BE5A0D921E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
-		5BE5A0DA21E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
-		5BE5A0DB21E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
-		5BE5A0DC21E1E5930065E778 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
 		5BE924A421BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5BE924A521BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5BE924A621BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
@@ -804,6 +804,23 @@
 		7D349CD721430E66004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349CD921430E67004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349CDA21430E68004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/ArmchairLocalizable.strings"; sourceTree = "<group>"; };
+		7DE74EFD22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7DE74EFE22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7DE74EFF22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/EmptyCalendarEventCell.strings"; sourceTree = "<group>"; };
+		7DE74F0022BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/AlertCell.strings"; sourceTree = "<group>"; };
+		7DE74F0122BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/CalendarEventCell.strings"; sourceTree = "<group>"; };
+		7DE74F0222BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
+		7DE74F0322BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
+		7DE74F0422BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/AdminViewController.strings"; sourceTree = "<group>"; };
+		7DE74F0522BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/CalendarEventWeekPageViewController.strings"; sourceTree = "<group>"; };
+		7DE74F0622BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
+		7DE74F0722BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
+		7DE74F0822BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
+		7DE74F0922BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
+		7DE74F0A22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DashboardViewController.strings"; sourceTree = "<group>"; };
+		7DE74F0B22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/UserCell.strings"; sourceTree = "<group>"; };
+		7DE74F0C22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/CourseCell.strings"; sourceTree = "<group>"; };
+		7DE74F0D22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/SettingsObserveeCell.strings"; sourceTree = "<group>"; };
 		90AFEB4A273EE752196BC769 /* Pods-Parent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parent.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Parent/Pods-Parent.debug.xcconfig"; sourceTree = "<group>"; };
 		90C9F9DE9C41E49B6739CC26 /* Pods_defaults_common_tests_ParentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_ParentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98A80F881229764105018888 /* Pods-defaults-Parent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Parent.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Parent/Pods-defaults-Parent.release.xcconfig"; sourceTree = "<group>"; };
@@ -1365,8 +1382,9 @@
 				"sv-instk12",
 				cy,
 				"en-CY",
-				"sl-SI",
 				fi,
+				sl,
+				"en-AU-unimelb",
 			);
 			mainGroup = 5E64417E1C3EE2E0003D7397;
 			productRefGroup = 5E6441881C3EE2E0003D7397 /* Products */;
@@ -1677,8 +1695,9 @@
 				7D349CC121430E29004C1074 /* nb-instk12 */,
 				7D349CD921430E67004C1074 /* sv-instk12 */,
 				5BE924A521BCF8750007609A /* en-CY */,
-				5B022DDC21FD9504006FEA47 /* sl-SI */,
 				5B7BD3C322ACE9C400FA371B /* fi */,
+				5B1D4F0022BD6E560082F8F0 /* sl */,
+				7DE74EFE22BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1713,8 +1732,9 @@
 				7D349CAF21430E22004C1074 /* nb-instk12 */,
 				7D349CC721430E5D004C1074 /* sv-instk12 */,
 				5BE924B321BCF8750007609A /* en-CY */,
-				5BE5A0CE21E1E5930065E778 /* sl-SI */,
 				5B7BD3D122ACE9C400FA371B /* fi */,
+				5B1D4F0E22BD6E560082F8F0 /* sl */,
+				7DE74F0C22BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = CourseCell.xib;
 			sourceTree = "<group>";
@@ -1749,8 +1769,9 @@
 				7D349CB221430E23004C1074 /* nb-instk12 */,
 				7D349CCA21430E5F004C1074 /* sv-instk12 */,
 				5BE924A621BCF8750007609A /* en-CY */,
-				5BE5A0D621E1E5930065E778 /* sl-SI */,
 				5B7BD3C422ACE9C400FA371B /* fi */,
+				5B1D4F0122BD6E560082F8F0 /* sl */,
+				7DE74EFF22BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = EmptyCalendarEventCell.xib;
 			sourceTree = "<group>";
@@ -1785,8 +1806,9 @@
 				7D349CB021430E22004C1074 /* nb-instk12 */,
 				7D349CC821430E5E004C1074 /* sv-instk12 */,
 				5BE924A821BCF8750007609A /* en-CY */,
-				5BE5A0CF21E1E5930065E778 /* sl-SI */,
 				5B7BD3CB22ACE9C400FA371B /* fi */,
+				5B1D4F0322BD6E560082F8F0 /* sl */,
+				7DE74F0122BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = CalendarEventCell.xib;
 			sourceTree = "<group>";
@@ -1821,8 +1843,9 @@
 				7D349CB321430E24004C1074 /* nb-instk12 */,
 				7D349CCB21430E60004C1074 /* sv-instk12 */,
 				5BE924A721BCF8750007609A /* en-CY */,
-				5BE5A0D721E1E5930065E778 /* sl-SI */,
 				5B7BD3C622ACE9C400FA371B /* fi */,
+				5B1D4F0222BD6E560082F8F0 /* sl */,
+				7DE74F0022BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = AlertCell.xib;
 			sourceTree = "<group>";
@@ -1857,8 +1880,9 @@
 				7D349CB521430E25004C1074 /* nb-instk12 */,
 				7D349CCD21430E61004C1074 /* sv-instk12 */,
 				5BE924AA21BCF8750007609A /* en-CY */,
-				5BE5A0D521E1E5930065E778 /* sl-SI */,
 				5B7BD3C822ACE9C400FA371B /* fi */,
+				5B1D4F0522BD6E560082F8F0 /* sl */,
+				7DE74F0322BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = DetailsInfoCell.xib;
 			sourceTree = "<group>";
@@ -1893,8 +1917,9 @@
 				7D349CB621430E25004C1074 /* nb-instk12 */,
 				7D349CCE21430E61004C1074 /* sv-instk12 */,
 				5BE924B021BCF8750007609A /* en-CY */,
-				5BE5A0D221E1E5930065E778 /* sl-SI */,
 				5B7BD3CE22ACE9C400FA371B /* fi */,
+				5B1D4F0B22BD6E560082F8F0 /* sl */,
+				7DE74F0922BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = DetailsReminderCell.xib;
 			sourceTree = "<group>";
@@ -1929,8 +1954,9 @@
 				7D349CB721430E26004C1074 /* nb-instk12 */,
 				7D349CCF21430E62004C1074 /* sv-instk12 */,
 				5BE924AF21BCF8750007609A /* en-CY */,
-				5BE5A0DB21E1E5930065E778 /* sl-SI */,
 				5B7BD3CD22ACE9C400FA371B /* fi */,
+				5B1D4F0A22BD6E560082F8F0 /* sl */,
+				7DE74F0822BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = DetailsDateCell.xib;
 			sourceTree = "<group>";
@@ -1965,8 +1991,9 @@
 				7D349CB821430E26004C1074 /* nb-instk12 */,
 				7D349CD021430E62004C1074 /* sv-instk12 */,
 				5BE924A921BCF8750007609A /* en-CY */,
-				5BE5A0D421E1E5930065E778 /* sl-SI */,
 				5B7BD3C722ACE9C400FA371B /* fi */,
+				5B1D4F0422BD6E560082F8F0 /* sl */,
+				7DE74F0622BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = DetailsLocationCell.xib;
 			sourceTree = "<group>";
@@ -2001,8 +2028,9 @@
 				7D349CBA21430E27004C1074 /* nb-instk12 */,
 				7D349CD221430E63004C1074 /* sv-instk12 */,
 				5BE924AE21BCF8750007609A /* en-CY */,
-				5BE5A0D021E1E5930065E778 /* sl-SI */,
 				5B7BD3CC22ACE9C400FA371B /* fi */,
+				5B1D4F0922BD6E560082F8F0 /* sl */,
+				7DE74F0D22BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = SettingsObserveeCell.xib;
 			sourceTree = "<group>";
@@ -2037,8 +2065,9 @@
 				7D349CBC21430E28004C1074 /* nb-instk12 */,
 				7D349CD421430E65004C1074 /* sv-instk12 */,
 				5BE924B221BCF8750007609A /* en-CY */,
-				5BE5A0D121E1E5930065E778 /* sl-SI */,
 				5B7BD3D022ACE9C400FA371B /* fi */,
+				5B1D4F0D22BD6E560082F8F0 /* sl */,
+				7DE74F0B22BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = UserCell.xib;
 			sourceTree = "<group>";
@@ -2073,8 +2102,9 @@
 				7D349CBD21430E28004C1074 /* nb-instk12 */,
 				7D349CD521430E65004C1074 /* sv-instk12 */,
 				5BE924B421BCF8750007609A /* en-CY */,
-				5BE5A0DC21E1E5930065E778 /* sl-SI */,
 				5B7BD3D222ACE9C400FA371B /* fi */,
+				5B1D4F0F22BD6E560082F8F0 /* sl */,
+				7DE74F0722BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = StudentSettingsHeaderView.xib;
 			sourceTree = "<group>";
@@ -2154,8 +2184,9 @@
 				7D349CB421430E25004C1074 /* nb-instk12 */,
 				7D349CCC21430E60004C1074 /* sv-instk12 */,
 				5BE924B121BCF8750007609A /* en-CY */,
-				5BE5A0DA21E1E5930065E778 /* sl-SI */,
 				5B7BD3CF22ACE9C400FA371B /* fi */,
+				5B1D4F0C22BD6E560082F8F0 /* sl */,
+				7DE74F0A22BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = DashboardViewController.storyboard;
 			sourceTree = "<group>";
@@ -2190,8 +2221,9 @@
 				7D349CB121430E23004C1074 /* nb-instk12 */,
 				7D349CC921430E5E004C1074 /* sv-instk12 */,
 				5BE924AD21BCF8750007609A /* en-CY */,
-				5BE5A0D821E1E5930065E778 /* sl-SI */,
 				5B7BD3C522ACE9C400FA371B /* fi */,
+				5B1D4F0722BD6E560082F8F0 /* sl */,
+				7DE74F0522BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = CalendarEventWeekPageViewController.storyboard;
 			sourceTree = "<group>";
@@ -2226,8 +2258,9 @@
 				7D349CB921430E27004C1074 /* nb-instk12 */,
 				7D349CD121430E63004C1074 /* sv-instk12 */,
 				5BE924AB21BCF8750007609A /* en-CY */,
-				5BE5A0D321E1E5930065E778 /* sl-SI */,
 				5B7BD3C922ACE9C400FA371B /* fi */,
+				5B1D4F0622BD6E560082F8F0 /* sl */,
+				7DE74F0222BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = DetailsAttachmentCell.xib;
 			sourceTree = "<group>";
@@ -2262,8 +2295,9 @@
 				7D349CAD21430E20004C1074 /* nb-instk12 */,
 				7D349CC521430E5C004C1074 /* sv-instk12 */,
 				5BE924A421BCF8750007609A /* en-CY */,
-				5B022DDB21FD9504006FEA47 /* sl-SI */,
 				5B7BD3C222ACE9C400FA371B /* fi */,
+				5B1D4EFF22BD6E560082F8F0 /* sl */,
+				7DE74EFD22BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2331,8 +2365,9 @@
 				7D349CAE21430E21004C1074 /* nb-instk12 */,
 				7D349CC621430E5D004C1074 /* sv-instk12 */,
 				5BE924AC21BCF8750007609A /* en-CY */,
-				5BE5A0D921E1E5930065E778 /* sl-SI */,
 				5B7BD3CA22ACE9C400FA371B /* fi */,
+				5B1D4F0822BD6E560082F8F0 /* sl */,
+				7DE74F0422BD7942003C8B44 /* en-AU-unimelb */,
 			);
 			name = AdminViewController.storyboard;
 			sourceTree = "<group>";

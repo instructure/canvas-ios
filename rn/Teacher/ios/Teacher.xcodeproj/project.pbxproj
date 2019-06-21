@@ -172,13 +172,13 @@
 		5B2A942820317A1100651B14 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "Teacher/fr-CA.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5B33012F20317A18003153A3 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = Teacher/ht.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B3C377020317A1F001CA776 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = Teacher/ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5B41101121E1E6A200714599 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "Teacher/sl-SI.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		5B41101221E1E6A200714599 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5B45978920317A2600E50AAA /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = Teacher/mi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B4EFF9920317A2D00D9E8FB /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Teacher/nb.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B57734920317A340042420C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Teacher/nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B6024B420317A3B00FE4B8C /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Teacher/pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B694BC120317A42001FC534 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = Teacher/pt.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5B6D96C122BD6F5100E15B3D /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Teacher/sl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B6D96C222BD6F5100E15B3D /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B72B10F20317A4900617919 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "Teacher/pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5B7B21AF20317A5100335CCC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Teacher/ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B84172020317A5800A90B68 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = Teacher/sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -209,6 +209,8 @@
 		7D349D1721430FA9004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "Teacher/sv-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7D349D1821430FAA004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "Teacher/sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D3DA83821876142000D828F /* Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D5D1DFC22BD7DE100371C2F /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "Teacher/en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D5D1DFD22BD7DE100371C2F /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		B15CA23F221DBA940014FB02 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routes.swift; path = Teacher/Routes.swift; sourceTree = "<group>"; };
@@ -536,8 +538,9 @@
 				zh,
 				cy,
 				"en-CY",
-				"sl-SI",
 				fi,
+				sl,
+				"en-AU-unimelb",
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -925,8 +928,9 @@
 				7D349D1321430F92004C1074 /* nb-instk12 */,
 				7D349D1621430FA8004C1074 /* sv-instk12 */,
 				5BF25FF221BCFBF400A07D16 /* en-CY */,
-				5B41101221E1E6A200714599 /* sl-SI */,
 				5B0510E022ACECCF00382590 /* fi */,
+				5B6D96C222BD6F5100E15B3D /* sl */,
+				7D5D1DFD22BD7DE100371C2F /* en-AU-unimelb */,
 			);
 			name = InfoPlist.strings;
 			path = Teacher;
@@ -995,8 +999,9 @@
 				7D349D1521430F93004C1074 /* nb-instk12 */,
 				7D349D1821430FAA004C1074 /* sv-instk12 */,
 				5BF25FF121BCFBF400A07D16 /* en-CY */,
-				5B41101121E1E6A200714599 /* sl-SI */,
 				5B0510DF22ACECCF00382590 /* fi */,
+				5B6D96C122BD6F5100E15B3D /* sl */,
+				7D5D1DFC22BD7DE100371C2F /* en-AU-unimelb */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

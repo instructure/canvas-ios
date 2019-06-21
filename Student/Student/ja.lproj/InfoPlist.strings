@@ -1,0 +1,9 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "$(PRODUCT_NAME)カメラの使用";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "$(PRODUCT_NAME)マイクの使用";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "$(PRODUCT_NAME)写真の使用";
+
