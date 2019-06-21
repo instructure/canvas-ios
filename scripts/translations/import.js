@@ -91,7 +91,7 @@ async function importTranslations() {
         ))
         content = JSON.stringify(JSON.parse(content), null, '  ')
       } else {
-        content = content.replace(/target-language="\w+"/g, `target-language="${locale}"`)
+        content = content.replace(/target-language="[^"]*"/g, `target-language="${locale}"`)
       }
 
       mkdirp.sync(path.dirname(filename))
@@ -99,7 +99,7 @@ async function importTranslations() {
     }
   }
 
-  if (program.noImport) return
+  if (program.import === false) return
   for (const project of projects) {
     if (program.project && project.name !== program.project) continue
     const folder = `scripts/translations/imports/${project.name}`

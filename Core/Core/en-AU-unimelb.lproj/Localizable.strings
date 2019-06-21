@@ -1,0 +1,435 @@
+/* Unknown time duration */
+"--:--" = "--:--";
+
+/* No comment provided by engineer. */
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user.";
+
+/* No comment provided by engineer. */
+"%@ GPA" = "%@ GPA";
+
+/* No comment provided by engineer. */
+"Act as User" = "Act as User";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this comment?" = "Are you sure you would like to delete this comment?";
+
+/* No comment provided by engineer. */
+"Assignment" = "Assignment";
+
+/* No comment provided by engineer. */
+"Attempt %d" = "Attempt %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Audio";
+
+/* No comment provided by engineer. */
+"Authentication failed. Most likely the user denied the request for access." = "Authentication failed. Most likely the user denied the request for access.";
+
+/* No comment provided by engineer. */
+"black" = "black";
+
+/* No comment provided by engineer. */
+"blue" = "blue";
+
+/* No comment provided by engineer. */
+"Bold" = "Bold";
+
+/* No comment provided by engineer. */
+"Camera" = "Camera";
+
+/* No comment provided by engineer. */
+"Can’t find your school? Try typing the full school URL." = "Can’t find your school? Try typing the full school URL.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel";
+
+/* No comment provided by engineer. */
+"Canvas Guides" = "Canvas Guides";
+
+/* No comment provided by engineer. */
+"Canvas Login" = "Canvas Login";
+
+/* No comment provided by engineer. */
+"Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Clear recording" = "Clear recording";
+
+/* No comment provided by engineer. */
+"Closed" = "Closed";
+
+/* No comment provided by engineer. */
+"Comments" = "Comments";
+
+/* No comment provided by engineer. */
+"Complete" = "Complete";
+
+/* No comment provided by engineer. */
+"Course" = "Subject";
+
+/* No comment provided by engineer. */
+"Current position" = "Current position";
+
+/* No comment provided by engineer. */
+"d_questions" = "d_questions";
+
+/* No comment provided by engineer. */
+"Delete" = "Delete";
+
+/* No comment provided by engineer. */
+"Delete comment" = "Delete comment";
+
+/* No comment provided by engineer. */
+"Delete Comment" = "Delete Comment";
+
+/* No comment provided by engineer. */
+"Discussion Comment" = "Discussion Comment";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Dismiss";
+
+/* No comment provided by engineer. */
+"Domain" = "Domain";
+
+/* No comment provided by engineer. */
+"Done" = "Done";
+
+/* No comment provided by engineer. */
+"End Act as User" = "End Act as User";
+
+/* No comment provided by engineer. */
+"Error" = "Error";
+
+/* No comment provided by engineer. */
+"External Tool" = "External Tool";
+
+/* No comment provided by engineer. */
+"Failed to save image" = "Failed to save image";
+
+/* No comment provided by engineer. */
+"Failed upload" = "Failed upload";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Failed Upload";
+
+/* No comment provided by engineer. */
+"File Upload" = "File Upload";
+
+/* No comment provided by engineer. */
+"Files" = "Files";
+
+/* No comment provided by engineer. */
+"Final Grade: %@" = "Final Grade: %@";
+
+/* No comment provided by engineer. */
+"final_grade_g_pts" = "final_grade_g_pts";
+
+/* No comment provided by engineer. */
+"Find my school" = "Find my school";
+
+/* No comment provided by engineer. */
+"Find your school or district" = "Find your school or district";
+
+/* No comment provided by engineer. */
+"Forget %@" = "Forget %@";
+
+/* No comment provided by engineer. */
+"g_out_of_g_points_possible" = "g_out_of_g_points_possible";
+
+/* No comment provided by engineer. */
+"g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"green" = "green";
+
+/* No comment provided by engineer. */
+"grey" = "grey";
+
+/* No comment provided by engineer. */
+"Help" = "Help";
+
+/* No comment provided by engineer. */
+"How do I find my school?" = "How do I find my school?";
+
+/* No comment provided by engineer. */
+"Image" = "Image";
+
+/* No comment provided by engineer. */
+"Incomplete" = "Incomplete";
+
+/* No comment provided by engineer. */
+"Italic" = "Italic";
+
+/* No comment provided by engineer. */
+"late_penalty_g_pts" = "late_penalty_g_pts";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Launch External Tool";
+
+/* No comment provided by engineer. */
+"Library" = "Library";
+
+/* No comment provided by engineer. */
+"Link" = "Link";
+
+/* No comment provided by engineer. */
+"Link to Website URL" = "Link to Website URL";
+
+/* end of and list pattern */
+"list_and_end" = "%1$@, and %2$@";
+
+/* middle of and list pattern */
+"list_and_middle" = "%1$@, %2$@";
+
+/* start of and list pattern */
+"list_and_start" = "%1$@, %2$@";
+
+/* and list pattern for 2 items */
+"list_and_two" = "%1$@ and %2$@";
+
+/* end of or list pattern */
+"list_or_end" = "%1$@, or %2$@";
+
+/* middle of or list pattern */
+"list_or_middle" = "%1$@, %2$@";
+
+/* start of or list pattern */
+"list_or_start" = "%1$@, %2$@";
+
+/* or list pattern for 2 items */
+"list_or_two" = "%1$@ or %2$@";
+
+/* No comment provided by engineer. */
+"Log In Again" = "Log In Again";
+
+/* No comment provided by engineer. */
+"Manual OAuth Login" = "Manual OAuth Login";
+
+/* No comment provided by engineer. */
+"Media Recording" = "Media Recording";
+
+/* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"No Content" = "No Content";
+
+/* No comment provided by engineer. */
+"No Due Date" = "No Due Date";
+
+/* No comment provided by engineer. */
+"No image found from image picker" = "No image found from image picker";
+
+/* No comment provided by engineer. */
+"No Submission" = "No Submission";
+
+/* No comment provided by engineer. */
+"None" = "None";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Not Graded";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Not Submitted";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"On Paper" = "On Paper";
+
+/* No comment provided by engineer. */
+"orange" = "orange";
+
+/* No comment provided by engineer. */
+"Ordered List" = "Ordered List";
+
+/* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"Pause" = "Pause";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Permission Needed";
+
+/* No comment provided by engineer. */
+"Play" = "Play";
+
+/* No comment provided by engineer. */
+"plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"purple" = "purple";
+
+/* No comment provided by engineer. */
+"Quiz" = "Quiz";
+
+/* No comment provided by engineer. */
+"red" = "red";
+
+/* No comment provided by engineer. */
+"Redo" = "Redo";
+
+/* No comment provided by engineer. */
+"Remove" = "Remove";
+
+/* No comment provided by engineer. */
+"Removed %1$@" = "Removed %1$@";
+
+/* No comment provided by engineer. */
+"Removed %1$@ by %2$@" = "Removed %1$@ by %2$@";
+
+/* No comment provided by engineer. */
+"Reply to the annotation or previous comments" = "Reply to the annotation or previous comments";
+
+/* No comment provided by engineer. */
+"Retry" = "Retry";
+
+/* No comment provided by engineer. */
+"See attached files." = "See attached files.";
+
+/* No comment provided by engineer. */
+"See what's new." = "See what's new.";
+
+/* No comment provided by engineer. */
+"Select Account" = "Select Account";
+
+/* No comment provided by engineer. */
+"Select Assignment" = "Select Assignment";
+
+/* No comment provided by engineer. */
+"Select Course" = "Select Subject";
+
+/* No comment provided by engineer. */
+"Send" = "Send";
+
+/* No comment provided by engineer. */
+"Send comment" = "Send comment";
+
+/* No comment provided by engineer. */
+"Set text color" = "Set text colour";
+
+/* No comment provided by engineer. */
+"Settings" = "Settings";
+
+/* No comment provided by engineer. */
+"Site Admin Login" = "Site Admin Login";
+
+/* No comment provided by engineer. */
+"Start recording" = "Start recording";
+
+/* No comment provided by engineer. */
+"Stop acting as..." = "Stop acting as...";
+
+/* No comment provided by engineer. */
+"Stop recording" = "Stop recording";
+
+/* No comment provided by engineer. */
+"Style" = "Style";
+
+/* No comment provided by engineer. */
+"Submission failed." = "Submission failed.";
+
+/* No comment provided by engineer. */
+"Submit" = "Submit";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Submit Assignment";
+
+/* No comment provided by engineer. */
+"Submitted" = "Submitted";
+
+/* Submitted date */
+"Submitted %@" = "Submitted %@";
+
+/* No comment provided by engineer. */
+"Tap here for help." = "Tap here for help.";
+
+/* No comment provided by engineer. */
+"Terms of Use" = "Terms of Use";
+
+/* No comment provided by engineer. */
+"Text" = "Text";
+
+/* No comment provided by engineer. */
+"Text Color" = "Text Colour";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Text Entry";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "There was a problem retrieving the Terms of Use.";
+
+/* No comment provided by engineer. */
+"There was an error with Act as User. Please try again later." = "There was an error with Act as User. Please try again later.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "There was an unexpected error. Please try again.";
+
+/* No comment provided by engineer. */
+"This assignment is due by %@" = "This assignment is due by %@";
+
+/* No comment provided by engineer. */
+"This assignment was due by %@" = "This assignment was due by %@";
+
+/* No comment provided by engineer. */
+"This is a media comment" = "This is a media comment";
+
+/* No comment provided by engineer. */
+"Time elapsed" = "Time elapsed";
+
+/* No comment provided by engineer. */
+"Total time" = "Total time";
+
+/* No comment provided by engineer. */
+"Undo" = "Undo";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Unlimited";
+
+/* No comment provided by engineer. */
+"Unordered List" = "Unordered List";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "Uploading %1$@ of %2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Uploading...";
+
+/* No comment provided by engineer. */
+"URL" = "URL";
+
+/* No comment provided by engineer. */
+"User ID" = "User ID";
+
+/* No comment provided by engineer. */
+"Video" = "Video";
+
+/* No comment provided by engineer. */
+"We've made a few changes." = "We've made a few changes.";
+
+/* No comment provided by engineer. */
+"Website URL" = "Website URL";
+
+/* No comment provided by engineer. */
+"What’s your school’s name?" = "What’s your school’s name?";
+
+/* No comment provided by engineer. */
+"white" = "white";
+
+/* No comment provided by engineer. */
+"yellow" = "yellow";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "You must enable Microphone permissions in Settings.";
+
+/* No comment provided by engineer. */
+"You will need to log into at least one Canvas account from the Student app first." = "You will need to log into at least one Canvas account from the Student app first.";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "You will stop acting as %@ and return to your account.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "You will stop acting as this user and return to your account.";
+

@@ -43,6 +43,10 @@ class LocalizationManagerTests: XCTestCase {
         XCTAssertEqual(LocalizationManager.currentLocale, "pt-BR")
         XCTAssertEqual(UserDefaults.standard.object(forKey: "AppleLanguages") as? [String], [ "pt-BR" ])
 
+        LocalizationManager.setCurrentLocale("en-AU-x-unimelb")
+        XCTAssertEqual(LocalizationManager.currentLocale, "en-AU-unimelb")
+        XCTAssertEqual(UserDefaults.standard.object(forKey: "AppleLanguages") as? [String], [ "en-AU-unimelb" ])
+
         LocalizationManager.setCurrentLocale("da-x-k12")
         XCTAssertEqual(LocalizationManager.currentLocale, "da-instk12")
         XCTAssertEqual(UserDefaults.standard.object(forKey: "AppleLanguages") as? [String], [ "da-instk12" ])
