@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018-present Instructure, Inc.
+// Copyright (C) 2019-present Instructure, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,20 +14,11 @@
 // limitations under the License.
 //
 
-import Foundation
+import XCTest
+import TestsFoundation
 
-public enum LoginWeb: String, ElementWrapper {
-    case webView
-
-    public static var emailField: Element {
-        return app.find(type: .textField)
-    }
-
-    public static var passwordField: Element {
-        return app.find(type: .secureTextField)
-    }
-
-    public static var logInButton: Element {
-        return app.find(label: "Log In")
+enum DiscussionList {
+    static func cell(index: Int) -> Element {
+        return app.find(id: "discussion-row-\(index)")
     }
 }
