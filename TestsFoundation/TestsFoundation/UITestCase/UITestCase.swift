@@ -69,11 +69,12 @@ open class UITestCase: XCTestCase {
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("\(user.host)\r")
 
+        LoginWeb.emailField.waitToExist(60)
         LoginWeb.emailField.typeText(user.username)
         LoginWeb.passwordField.typeText(user.password)
         LoginWeb.logInButton.tap()
 
-        app.find(id: "favorited-course-list.profile-btn").waitToExist()
+        app.find(label: "Courses").waitToExist()
         user.keychainEntry = currentSession()
     }
 
