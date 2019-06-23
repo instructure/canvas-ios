@@ -41,13 +41,13 @@
 "Assignment" = "作業";
 
 /* Assignment Grade High On Description */
-"Assignment grade above" = "上方任務評分";
+"Assignment grade above" = "上方作業評分";
 
 /* Assignment Grade Low On Description */
-"Assignment grade below" = "下方任務評分";
+"Assignment grade below" = "下方作業評分";
 
 /* Assignment Missing Description */
-"Assignment missing" = "缺少任務";
+"Assignment missing" = "缺少作業";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "作業提醒";
@@ -116,7 +116,7 @@
 "Help" = "支援";
 
 /* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "高的任務評分不可低於低的任務評分";
+"High assignment grade cannot be lower than low assignment grade" = "高的作業評分不可低於低的作業評分";
 
 /* High Course Grade too Low */
 "High course grade cannot be lower than low course grade" = "高的課程評分不可低於低的課程評分";
@@ -146,7 +146,7 @@
 "Log Out" = "登出";
 
 /* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "低的任務評分不可高於高的任務評分";
+"Low assignment grade cannot be higher than high assignment grade" = "低的作業評分不可高於高的作業評分";
 
 /* Low Course Grade too High */
 "Low course grade cannot be higher than high course grade" = "低的課程評分不可高於高的課程評分";

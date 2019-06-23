@@ -165,13 +165,13 @@
     "message": "作業詳情"
   },
   "assignment_group_1a781505": {
-    "message": "任務群組"
+    "message": "作業群組"
   },
   "assignments_1e02582c": {
-    "message": "任務"
+    "message": "作業"
   },
   "assignments_list_fe3e54be": {
-    "message": "任務列表"
+    "message": "作業列表"
   },
   "attachment_deffe5a9": {
     "message": "附件"
@@ -519,7 +519,7 @@
     "message": "截止日期{ dateString }"
   },
   "edit_assignment_ebf22a72": {
-    "message": "編輯任務"
+    "message": "編輯作業"
   },
   "edit_attachment_count_ae907c46": {
     "message": "編輯附件 ({ count })"
