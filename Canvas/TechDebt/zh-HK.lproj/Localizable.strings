@@ -5,7 +5,7 @@
 " until %@" = " 直至 %@";
 
 /* %@ will be replaced by the filename */
-"'%@' is now ready to submit to assignments" = "'%@' 現在準備好提交任務件";
+"'%@' is now ready to submit to assignments" = "'%@' 現在準備好提交作業件";
 
 /* explanation for locked module item */
 "\"%@\" is locked as part of \"%@\"" = "\"%1$@\" 已被鎖定為 \"%2$@\" 的組成部分";
@@ -251,10 +251,10 @@
 "Ask me later" = "稍後再問我";
 
 /* Label for an assignment */
-"Assignment" = "任務";
+"Assignment" = "作業";
 
 /* Title for Assignments view controller */
-"Assignments" = "任務";
+"Assignments" = "作業";
 
 /* An item for attaching to a discussion */
 "Attachment" = "附件";
@@ -575,7 +575,7 @@
 "File extension not allowed: %@" = "檔案擴展名不受許可：%@";
 
 /* Comes before a list of file extensions allowed for an assinment submission */
-"File extension(s) permitted for this assignment:" = "文檔擴展名可用於該任務：";
+"File extension(s) permitted for this assignment:" = "文檔擴展名可用於該作業：";
 
 /* No comment provided by engineer. */
 "File received" = "收到的資料夾";
@@ -1015,7 +1015,7 @@
 "Rating for %1$@, Score: %2$g" = "對 %1$@ 的評級，分數：%2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
-"Re-submit Assignment" = "重新提交任務";
+"Re-submit Assignment" = "重新提交作業";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "收信人";
@@ -1117,7 +1117,7 @@
 "Something went wrong. Please try again." = "似乎出問題了。請重試。";
 
 /* 404 Error for missing assignment */
-"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "抱歉，我們無法找到該任務。任務可能已被刪除。";
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "抱歉，我們無法找到該作業。作業可能已被刪除。";
 
 /* Hint about the play button */
 "Starts playing your recording" = "開始播放您錄製的內容";
@@ -1274,10 +1274,10 @@
 "This app is not authorized for use." = "該 app 程式未獲得使用權限。";
 
 /* Invalid LTI tool error message */
-"This assignment doesn't appear to be a valid external tool or is misconfigured." = "該任務似乎並不是有效的外部工具或存在配置錯誤。";
+"This assignment doesn't appear to be a valid external tool or is misconfigured." = "該作業似乎並不是有效的外部工具或存在配置錯誤。";
 
 /* message displayed in the details section if there is no comment. */
-"This assignment has no details." = "此任務沒有詳情。";
+"This assignment has no details." = "此作業沒有詳情。";
 
 /* Error message for refresh failing with an unauthorized code */
 "This can happen if your course hasn't started yet or you don't have permission to access this page." = "如果您的課程尚未開始，或者您無權限訪問此內容頁，就可能會發生這種情況。";
@@ -1383,10 +1383,10 @@
 "Upload file" = "上載資料夾";
 
 /* Error message */
-"Upload to assignment \"%@\" failed" = "上載至任務 \"%@\" 失敗";
+"Upload to assignment \"%@\" failed" = "上載至作業 \"%@\" 失敗";
 
 /* Error message */
-"Upload to assignment &quot;%@&quot; failed" = "上載至任務 &quot;%@&quot; 失敗";
+"Upload to assignment &quot;%@&quot; failed" = "上載至作業 &quot;%@&quot; 失敗";
 
 /* Error message */
 "Upload to folder &quot;%@&quot; failed" = "上載至文件夾 &quot;%@&quot; 失敗";
