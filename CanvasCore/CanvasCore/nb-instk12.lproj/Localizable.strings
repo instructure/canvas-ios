@@ -56,6 +56,9 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tillatte forsøk";
 
+/* Default error message displayed when a file fails to upload */
+"An error occurred, please try again." = "Det oppsto en feil, forsøk igjen.";
+
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "En uventet feil har oppstått.";
 
@@ -327,6 +330,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "Skjul spørsmålliste";
+
+/* No comment provided by engineer. */
+"Image %d" = "Bilde %d";
 
 /* Inbox tab title */
 "Inbox" = "Innboks";

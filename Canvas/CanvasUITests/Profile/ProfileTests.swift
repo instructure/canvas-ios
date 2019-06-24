@@ -37,14 +37,11 @@ class ProfileTests: CanvasUITests {
     }
 
     func testProfileDisplaysUsername() {
-        Dashboard.profileButton.waitToExist()
         Profile.open()
-        Profile.userNameLabel.waitToExist()
         XCTAssertEqual(Profile.userNameLabel.label, "Student One")
     }
 
     func testProfileChangesUser() {
-        Dashboard.profileButton.waitToExist()
         Profile.open()
         Profile.changeUserButton.tap()
         let entry = user!.keychainEntry!
@@ -52,7 +49,6 @@ class ProfileTests: CanvasUITests {
     }
 
     func testProfileLogsOut() {
-        Dashboard.profileButton.waitToExist()
         Profile.open()
         Profile.logOutButton.tap()
         LoginStart.findSchoolButton.waitToExist()

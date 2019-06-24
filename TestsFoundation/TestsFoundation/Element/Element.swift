@@ -95,6 +95,19 @@ public extension Element {
     }
 }
 
+public extension Element {
+    @discardableResult
+    func tapUntil(file: StaticString = #file, line: UInt = #line, test: () -> Bool) -> Element {
+        var taps = 0
+        repeat {
+            tap(file: file, line: line)
+            taps += 1
+            sleep(1)
+        } while taps < 5 && test() == false && exists
+        return self
+    }
+}
+
 public struct XCUIElementWrapper: Element {
     var element: XCUIElement {
         return finder()

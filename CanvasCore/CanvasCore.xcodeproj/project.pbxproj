@@ -1040,6 +1040,9 @@
 		49CE97941F900CFF00121A43 /* ProfileBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBarButtonItem.swift; sourceTree = "<group>"; };
 		49CE97951F900D0000121A43 /* PandaImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PandaImages.xcassets; sourceTree = "<group>"; };
 		49F0F92F1F9E50E300DD1512 /* AttendanceStatusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceStatusController.swift; sourceTree = "<group>"; };
+		5B1FFAA722BD70940019BAC8 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B1FFAA822BD70940019BAC8 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
+		5B1FFAA922BD70940019BAC8 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		5B5262B522ACEDAA00E14EB0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B5262B622ACEDAA00E14EB0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		5B5262B722ACEDAA00E14EB0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
@@ -1047,9 +1050,6 @@
 		5B85C9F520DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B85C9F620DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		5B85C9F720DF8096007AFAFC /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5BBA9AD021E1E7CB003CDED2 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		5BBA9AD121E1E7CB003CDED2 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
-		5BBA9AD221E1E7CB003CDED2 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/SubmissionConfirmationViewController.strings"; sourceTree = "<group>"; };
 		5BDF109421BCFCB700664A58 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5BDF109521BCFCB700664A58 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		5BDF109621BCFCB700664A58 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/SubmissionConfirmationViewController.strings"; sourceTree = "<group>"; };
@@ -1070,6 +1070,9 @@
 		7D349C7821430D2A004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C7B21430D2C004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeLoginManager.swift; sourceTree = "<group>"; };
+		7D9DF28B22BD7F4D003110B9 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7D9DF28C22BD7F4D003110B9 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
+		7D9DF28D22BD7F4D003110B9 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/SubmissionConfirmationViewController.strings"; sourceTree = "<group>"; };
 		7DC4D69F2146E23D007B1C06 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		7DC4D6A12146E249007B1C06 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		7DC4D6A32146E24C007B1C06 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
@@ -2901,8 +2904,9 @@
 				"sv-instk12",
 				cy,
 				"en-CY",
-				"sl-SI",
 				fi,
+				sl,
+				"en-AU-unimelb",
 			);
 			mainGroup = 2CAF1B0A1F72AEDB007225DF;
 			productRefGroup = 2CAF1B151F72AEDB007225DF /* Products */;
@@ -3475,8 +3479,9 @@
 				7DC4D6AB2146E2D3007B1C06 /* en-GB-instukhe */,
 				7DC4D6AD2146E2D6007B1C06 /* da-instk12 */,
 				5BDF109621BCFCB700664A58 /* en-CY */,
-				5BBA9AD221E1E7CB003CDED2 /* sl-SI */,
 				5B5262B722ACEDAA00E14EB0 /* fi */,
+				5B1FFAA922BD70940019BAC8 /* sl */,
+				7D9DF28D22BD7F4D003110B9 /* en-AU-unimelb */,
 			);
 			name = SubmissionConfirmationViewController.xib;
 			sourceTree = "<group>";
@@ -3542,8 +3547,9 @@
 				7DC4D6A32146E24C007B1C06 /* nb-instk12 */,
 				7DC4D6A52146E24E007B1C06 /* sv-instk12 */,
 				5BDF109521BCFCB700664A58 /* en-CY */,
-				5BBA9AD121E1E7CB003CDED2 /* sl-SI */,
 				5B5262B622ACEDAA00E14EB0 /* fi */,
+				5B1FFAA822BD70940019BAC8 /* sl */,
+				7D9DF28C22BD7F4D003110B9 /* en-AU-unimelb */,
 			);
 			name = TimedQuizViewController.xib;
 			sourceTree = "<group>";
@@ -3609,8 +3615,9 @@
 				7D349C7221430CF7004C1074 /* nb-instk12 */,
 				7D349C7821430D2A004C1074 /* sv-instk12 */,
 				5BDF109421BCFCB700664A58 /* en-CY */,
-				5BBA9AD021E1E7CB003CDED2 /* sl-SI */,
 				5B5262B522ACEDAA00E14EB0 /* fi */,
+				5B1FFAA722BD70940019BAC8 /* sl */,
+				7D9DF28B22BD7F4D003110B9 /* en-AU-unimelb */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

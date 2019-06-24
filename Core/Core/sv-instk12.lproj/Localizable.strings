@@ -224,6 +224,9 @@
 "No Submission" = "Ingen inlämning";
 
 /* No comment provided by engineer. */
+"None" = "Ingen";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Ej bedömd";
 
 /* No comment provided by engineer. */
@@ -282,6 +285,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Försök igen";
+
+/* No comment provided by engineer. */
+"See attached files." = "Se bifogade filer.";
 
 /* No comment provided by engineer. */
 "See what's new." = "Se vad som är nytt";
@@ -378,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Ångra";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Obegränsat";
 
 /* No comment provided by engineer. */
 "Unordered List" = "Ej ordnad lista";

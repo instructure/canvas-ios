@@ -1,0 +1,255 @@
+/* No comment provided by engineer. */
+"Add a comment or reply to previous comments" = "Add a comment or reply to previous comments";
+
+/* All Courses screen title */
+"All Courses" = "All Subjects";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "Allowed Attempts:";
+
+/* No comment provided by engineer. */
+"Arc" = "Arc";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Assignment Details";
+
+/* No comment provided by engineer. */
+"Assignments" = "Assignments";
+
+/* No comment provided by engineer. */
+"Attachments" = "Attachments";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel";
+
+/* No comment provided by engineer. */
+"Cancel Submission" = "Cancel Submission";
+
+/* No comment provided by engineer. */
+"Choose File" = "Choose File";
+
+/* No comment provided by engineer. */
+"Close App" = "Close App";
+
+/* No comment provided by engineer. */
+"Comments" = "Comments";
+
+/* No comment provided by engineer. */
+"Could not save the comment" = "Could not save the comment";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Subject Overview";
+
+/* No comment provided by engineer. */
+"Courses" = "Subject";
+
+/* No comment provided by engineer. */
+"Custom Grade" = "Custom Grade";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Dashboard";
+
+/* No comment provided by engineer. */
+"Description" = "Description";
+
+/* No comment provided by engineer. */
+"Drawer closed" = "Drawer closed";
+
+/* No comment provided by engineer. */
+"Drawer fully open" = "Drawer fully open";
+
+/* No comment provided by engineer. */
+"Drawer partially opened" = "Drawer partially opened";
+
+/* No comment provided by engineer. */
+"Due" = "Due";
+
+/* No comment provided by engineer. */
+"Edit" = "Edit";
+
+/* No comment provided by engineer. */
+"Edit Course" = "Edit Subject";
+
+/* No comment provided by engineer. */
+"Enter submission" = "Enter submission.";
+
+/* No comment provided by engineer. */
+"File Types" = "File Types";
+
+/* No comment provided by engineer. */
+"Files" = "Files";
+
+/* No comment provided by engineer. */
+"Files (%d)" = "Files (%d)";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
+"Grade" = "Grade";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Graded Surveys";
+
+/* No comment provided by engineer. */
+"Groups" = "Groups";
+
+/* No comment provided by engineer. */
+"Have questions? Use this area to message your instructor about this assignment." = "Have questions? Use this area to message your instructor about this assignment.";
+
+/* No comment provided by engineer. */
+"Instructions" = "Instructions";
+
+/* No comment provided by engineer. */
+"Invalid url" = "Invalid URL";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Launch External Tool";
+
+/* No comment provided by engineer. */
+"No Due Date" = "No Due Date";
+
+/* No comment provided by engineer. */
+"No Submission" = "No Submission";
+
+/* No comment provided by engineer. */
+"No Submission Date" = "No Submission Date";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "On %1$@ %2$@ commented \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "On %1$@ %2$@ left a video comment";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "On %1$@ %2$@ left an audio comment";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "On %1$@ %2$@ submitted the following";
+
+/* Button to open external tool */
+"Open External Tool" = "Open External Tool";
+
+/* Past enrollments section title in All Courses screen */
+"Past Enrollments" = "Past Enrolments";
+
+/* No comment provided by engineer. */
+"Practice Quizzes" = "Practice Quizzes";
+
+/* No comment provided by engineer. */
+"Questions:" = "Questions:";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Quizzes";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Record Audio";
+
+/* No comment provided by engineer. */
+"Record Video" = "Record Video";
+
+/* No comment provided by engineer. */
+"Resubmit Assignment" = "Resubmit Assignment";
+
+/* No comment provided by engineer. */
+"Retry" = "Retry";
+
+/* No comment provided by engineer. */
+"Rubric" = "Rubric";
+
+/* No comment provided by engineer. */
+"See All" = "See All";
+
+/* No comment provided by engineer. */
+"See All Courses" = "See All Subjects";
+
+/* No comment provided by engineer. */
+"Send" = "Send";
+
+/* No comment provided by engineer. */
+"Send comment" = "Send comment";
+
+/* No comment provided by engineer. */
+"Settings" = "Settings";
+
+/* No comment provided by engineer. */
+"Something went wrong while loading the quizzes." = "Something went wrong while loading the quizzes.";
+
+/* No comment provided by engineer. */
+"Submission" = "Submission";
+
+/* No comment provided by engineer. */
+"Submission & Rubric" = "Submission & Rubric";
+
+/* No comment provided by engineer. */
+"Submission Failed" = "Submission Failed";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "Submission In Progress...";
+
+/* No comment provided by engineer. */
+"Submission Types" = "Submission Types";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Submission Uploading...";
+
+/* No comment provided by engineer. */
+"Submit" = "Submit";
+
+/* No comment provided by engineer. */
+"Submit Assignment" = "Submit Assignment";
+
+/* No comment provided by engineer. */
+"Successfully submitted!" = "Successfully submitted!";
+
+/* No comment provided by engineer. */
+"Surveys" = "Surveys";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Subject Overview";
+
+/* No comment provided by engineer. */
+"Take Quiz" = "Take Quiz";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "Tap to view details";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Tap to view progress";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Text Entry";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "The app needs to restart to use the new language settings. Please relaunch the app.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "There are no files to display.";
+
+/* No comment provided by engineer. */
+"There are no quizzes to display." = "There are no quizzes to display.";
+
+/* No comment provided by engineer. */
+"There is no rubric for this assignment" = "There is no rubric for this assignment";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "Time Limit:";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Updated Language Settings";
+
+/* No comment provided by engineer. */
+"Uploading" = "Uploading";
+
+/* No comment provided by engineer. */
+"View Discussion" = "View Discussion";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "View file %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"Website Address" = "Website Address";
+
+/* No comment provided by engineer. */
+"Your submission is now waiting to be graded" = "Your submission is now waiting to be graded";
+
