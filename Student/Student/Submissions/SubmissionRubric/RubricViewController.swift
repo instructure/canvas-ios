@@ -172,6 +172,7 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewWithDescri
         commentView.textLabel.numberOfLines = 0
         commentView.textLabel.font = type(of: self).chatBubbleTextLabelFont
         circleView.delegate = self
+        viewLongDescriptionButton.setTitleColor(Brand.shared.linkColor, for: .normal)
     }
 
     func update(rubric: RubricViewModel, selectedRatingIndex: Int, courseColor: UIColor) {
@@ -199,8 +200,8 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewWithDescri
     }
 
     func updateLongDescription(desc: String?) {
-        let noRubricLongDescriptionConstant: CGFloat = 10.0
-        let longDescriptionExistsConstant: CGFloat = 30.0
+        let noRubricLongDescriptionConstant: CGFloat = 16.0
+        let longDescriptionExistsConstant: CGFloat = 36.0
         rubricTitleToCircleViewVerticalConstraint.constant = desc?.isEmpty ?? true ? noRubricLongDescriptionConstant : longDescriptionExistsConstant
     }
 

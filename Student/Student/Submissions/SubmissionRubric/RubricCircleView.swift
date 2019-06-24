@@ -35,7 +35,7 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
     private var circleViewHeightConstraint: NSLayoutConstraint?
     private var subHeaderHeightConstraint: NSLayoutConstraint?
     private var headerContainerHeightConstraint: NSLayoutConstraint?
-    private static let subHeaderFont = UIFont.scaledNamedFont(.medium14)
+    private static let subHeaderFont = UIFont.scaledNamedFont(.medium12)
     private static let margin: CGFloat = 8.0
     var selectedRatingIndex: Int = 0 {
         didSet {
