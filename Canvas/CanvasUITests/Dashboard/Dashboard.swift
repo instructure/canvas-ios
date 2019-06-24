@@ -36,6 +36,10 @@ enum Dashboard {
         return app.find(labelContaining: "Courses")
     }
 
+    static var seeAllButton: Element {
+        return app.find(id: "dashboard.courses.see-all-btn")
+    }
+
     static func courseCard(id: String) -> Element {
         return app.find(id: "course-\(id)")
     }

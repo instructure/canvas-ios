@@ -165,8 +165,11 @@ public struct XCUIElementWrapper: Element {
 
     @discardableResult
     public func typeText(_ text: String, file: StaticString, line: UInt) -> Element {
-        waitToExist(file: file, line: line)
-        element.tap()
+        var taps = 0
+        while element.value(forKey: "hasKeyboardFocus") as? Bool != true, taps < 5 {
+            taps += 1
+            tap(file: file, line: line)
+        }
         element.typeText(text)
         return self
     }

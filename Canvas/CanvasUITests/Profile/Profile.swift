@@ -36,6 +36,18 @@ enum Profile: String, ElementWrapper {
         return app.find(id: "Profile.lti.\(domain).\(id)")
     }
 
+    static func open() {
+        var taps = 0
+        while Profile.changeUserButton.isVisible != true, taps < 5 {
+            if taps > 0 {
+                print("Additional attempt")
+            }
+            taps += 1
+            Dashboard.profileButton.tap()
+            sleep(1)
+        }
+    }
+
     static func close() {
         Dashboard.profileButton.tapAt(.zero)
     }
