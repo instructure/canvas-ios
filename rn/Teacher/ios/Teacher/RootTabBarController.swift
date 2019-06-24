@@ -65,8 +65,8 @@ class RootTabBarController: UITabBarController {
         let masterNav = HelmNavigationController(rootViewController: enrollmentsVC)
         masterNav.view.backgroundColor = .white
         masterNav.delegate = split
-        masterNav.applyDefaultBranding()
-        emptyNav.applyDefaultBranding()
+        masterNav.navigationBar.useGlobalNavStyle()
+        emptyNav.navigationBar.useGlobalNavStyle()
         split.viewControllers = [masterNav, emptyNav]
         split.view.accessibilityIdentifier = "favorited-course-list.view2"
         split.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: .icon(.courses), selectedImage: nil)
@@ -83,7 +83,7 @@ class RootTabBarController: UITabBarController {
         toDoVC.tabBarItem.reactive.badgeValue <~ TabBarBadgeCounts.todoListCountString
         toDoVC.navigationItem.titleView = Brand.current.navBarTitleView()
         let navigation = HelmNavigationController(rootViewController: toDoVC)
-        navigation.applyDefaultBranding()
+        navigation.navigationBar.useGlobalNavStyle()
         return navigation
     }
 }

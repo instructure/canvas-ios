@@ -100,9 +100,7 @@ extension AppDelegate: RCTBridgeDelegate {
                 // Work around all these controllers not setting the nav color
             DispatchQueue.main.async {
                 guard let color = RCTConvert.uiColor(props["color"]) else { return }
-                controller?.navigationController?.navigationBar.barTintColor = color
-                controller?.navigationController?.navigationBar.tintColor = .white
-                controller?.navigationController?.navigationBar.titleTextAttributes = convertToOptionalNSAttributedStringKeyDictionary([NSAttributedString.Key.foregroundColor.rawValue: UIColor.white])
+                controller?.navigationController?.navigationBar.useContextColor(color)
             }
             
             return controller

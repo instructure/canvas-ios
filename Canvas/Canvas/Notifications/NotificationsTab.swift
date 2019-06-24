@@ -31,8 +31,8 @@ func NotificationsTab(session: Session) throws -> UIViewController {
     split.preferredDisplayMode = .allVisible
     let masterNav = UINavigationController(rootViewController: activityStream)
     let detailNav = UINavigationController()
-    masterNav.applyDefaultBranding()
-    detailNav.applyDefaultBranding()
+    masterNav.navigationBar.useGlobalNavStyle()
+    detailNav.navigationBar.useGlobalNavStyle()
     detailNav.view.backgroundColor = UIColor.white
     split.viewControllers = [masterNav, detailNav]
     

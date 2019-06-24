@@ -33,37 +33,42 @@ class RootViewController: UITabBarController {
 
     lazy var dashboard: UINavigationController = {
         let controller = DashboardViewController.create()
-        controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Dashboard", bundle: .student, comment: ""), image: .icon(.dashboard, .line), selectedImage: nil)
+        controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Dashboard", bundle: .student, comment: ""), image: .icon(.dashboard, .line), selectedImage: .icon(.dashboardCustomSolid))
         controller.tabBarItem.accessibilityIdentifier = "Dashboard.tab"
         return navigation(for: controller)
     }()
 
     lazy var calendar: UINavigationController = {
-        return placeholder(title: "Calendar", icon: .icon(.calendarMonth, .line), color: .green)
+        let controller = UIViewController()
+        controller.view.backgroundColor = .green
+        controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Calendar", bundle: .student, comment: ""), image: .icon(.calendarMonth, .line), selectedImage: .icon(.calendarMonth, .solid))
+        return navigation(for: controller)
     }()
 
     lazy var todo: UINavigationController = {
-        return placeholder(title: "To Do", icon: .icon(.todo), color: .blue)
+        let controller = UIViewController()
+        controller.view.backgroundColor = .blue
+        controller.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", bundle: .student, comment: ""), image: .icon(.todo), selectedImage: .icon(.todoSolid))
+        return navigation(for: controller)
     }()
 
     lazy var notifications: UINavigationController = {
-        return placeholder(title: "Notifications", icon: .icon(.alerts, .line), color: .yellow)
+        let controller = UIViewController()
+        controller.view.backgroundColor = .yellow
+        controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Notifications", bundle: .student, comment: ""), image: .icon(.alerts, .line), selectedImage: .icon(.alerts, .solid))
+        return navigation(for: controller)
     }()
 
     lazy var inbox: UINavigationController = {
-        return placeholder(title: "Inbox", icon: .icon(.email, .line), color: .red)
+        let controller = UIViewController()
+        controller.view.backgroundColor = .red
+        controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Inbox", bundle: .student, comment: ""), image: .icon(.email, .line), selectedImage: .icon(.email, .solid))
+        return navigation(for: controller)
     }()
 
     private func navigation(for controller: UIViewController) -> UINavigationController {
         let nav = UINavigationController(rootViewController: controller)
         nav.navigationBar.useGlobalNavStyle()
         return nav
-    }
-
-    private func placeholder(title: String, icon: UIImage, color: UIColor) -> UINavigationController {
-        let controller = UIViewController()
-        controller.view.backgroundColor = color
-        controller.tabBarItem = UITabBarItem(title: title, image: icon, selectedImage: nil)
-        return navigation(for: controller)
     }
 }
