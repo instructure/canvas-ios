@@ -38,20 +38,16 @@ class DashboardTests: CanvasUITests {
         GlobalAnnouncement.dismiss(id: "2").waitToVanish()
     }
 
-    func testCourseCardGrades() {
-        Profile.open()
-        Profile.showGradesToggle.waitToExist()
-        if !Profile.showGradesToggle.isSelected {
-            Profile.showGradesToggle.tap()
-        }
-        Profile.close()
+    func testSeeAllButtonDisplaysCorrectCourses() {
+        Dashboard.seeAllButton.tap()
+        
+        // expired course and others should be listed
+        Dashboard.courseCard(id: "303").waitToExist()
+        Dashboard.courseCard(id: "247").waitToExist()
+        Dashboard.courseCard(id: "262").waitToExist()
         Dashboard.courseCard(id: "263").waitToExist()
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label, "Assignments 70%")
 
-        Profile.open()
-        Profile.showGradesToggle.tap()
-        Profile.close()
-        Dashboard.courseCard(id: "263").waitToExist()
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label.trimmingCharacters(in: .whitespacesAndNewlines), "Assignments")
+        // Invite Only should not be listed
+        Dashboard.courseCard(id: "338").waitToVanish()
     }
 }

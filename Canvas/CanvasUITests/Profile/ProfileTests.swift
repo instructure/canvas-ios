@@ -18,6 +18,24 @@ import XCTest
 import TestsFoundation
 
 class ProfileTests: CanvasUITests {
+
+    func testCourseCardGrades() {
+        Profile.open()
+        Profile.showGradesToggle.waitToExist()
+        if !Profile.showGradesToggle.isSelected {
+            Profile.showGradesToggle.tap()
+        }
+        Profile.close()
+        Dashboard.courseCard(id: "263").waitToExist()
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label, "Assignments 70%")
+
+        Profile.open()
+        Profile.showGradesToggle.tap()
+        Profile.close()
+        Dashboard.courseCard(id: "263").waitToExist()
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label.trimmingCharacters(in: .whitespacesAndNewlines), "Assignments")
+    }
+
     func testProfileDisplaysUsername() {
         Profile.open()
         XCTAssertEqual(Profile.userNameLabel.label, "Student One")
@@ -36,5 +54,15 @@ class ProfileTests: CanvasUITests {
         LoginStart.findSchoolButton.waitToExist()
         let entry = user!.keychainEntry!
         XCTAssertFalse(LoginStartKeychainEntry.cell(host: entry.baseURL.host!, userID: entry.userID).exists)
+    }
+
+    func testPreviewUserFile() {
+        Profile.open()
+        Profile.filesButton.tap()
+
+        FilesList.file(id: "11585").waitToExist()
+        FilesList.file(id: "11585").tap()
+        sleep(3)
+        app.find(type: .image).waitToExist()
     }
 }

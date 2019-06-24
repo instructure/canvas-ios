@@ -53,13 +53,13 @@ class LoginTests: CanvasUITests {
         logInUser(.readStudent1)
         let entry1 = UITestUser.readStudent1.keychainEntry!
 
-        Dashboard.profileButton.tap()
+        Profile.open()
         Profile.changeUserButton.tap()
 
         logInUser(.readStudent2)
         let entry2 = UITestUser.readStudent2.keychainEntry!
 
-        Dashboard.profileButton.tap()
+        Profile.open()
         Profile.changeUserButton.tap()
 
         LoginStart.findSchoolButton.waitToExist()

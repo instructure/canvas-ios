@@ -17,28 +17,26 @@
 import XCTest
 import TestsFoundation
 
-enum CourseNavigation {
-    static var announcements: Element {
-        return app.find(id: "courses-details.announcements-cell")
+enum ModulesDetail {
+    static func module(index: Int) -> Element {
+        return app.find(id: "module_cell_0_\(index)")
     }
 
-    static var discussions: Element {
-        return app.find(id: "courses-details.discussions-cell")
+    static func moduleItem(index: Int) -> Element {
+        return app.find(id: "module_item_cell_0_\(index)")
+    }
+}
+
+enum ModuleItemNavigation {
+    static var nextButton: Element {
+        return app.find(id: "next_module_item_button")
     }
 
-    static var files: Element {
-        return app.find(id: "courses-details.files-cell")
+    static var previousButton: Element {
+        return app.find(id: "previous_module_item_button")
     }
 
-    static var grades: Element {
-        return app.find(id: "courses-details.grades-cell")
-    }
-
-    static var modules: Element {
-        return app.find(id: "courses-details.modules-cell")
-    }
-
-    static var people: Element {
-        return app.find(id: "courses-details.people-cell")
+    static var backButton: Element {
+        return app.find(labelContaining: "Assignment Module")
     }
 }
