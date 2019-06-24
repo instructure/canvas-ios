@@ -99,7 +99,7 @@ extension RubricViewController: UICollectionViewDataSource, UICollectionViewDele
         let cellID = "\(cellType)_\(indexPath.item)"
         guard let cell = collectionView.dequeue(withReuseIdentifier: cellID, for: indexPath) as? RubricCollectionViewCell else { fatalError("expecting cell of type \(cellType)") }
         let r = models[indexPath.item]
-        cell.update(rubric: r, selectedRatingIndex: selectedRatingCache[indexPath.item], courseColor: presenter.courses.first?.color ?? UIColor.blue)
+        cell.update(rubric: r, selectedRatingIndex: selectedRatingCache[indexPath.item], courseColor: presenter.courses.first?.color ?? Brand.shared.primary)
         cell.delegate = self
         return cell
     }

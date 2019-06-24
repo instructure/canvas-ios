@@ -48,7 +48,6 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
     var rubric: RubricViewModel? {
         didSet {
             circleView?.rubric = rubric
-//            selectedRatingIndex = rubric?.selectedIndex ?? 0
         }
     }
     var courseColor: UIColor = UIColor.red
@@ -136,7 +135,7 @@ class RubricCircleViewWithDescription: UIView, RubricCircleViewButtonDelegate {
         delegate?.selectedRatingIndexDidChange(newIndex)
     }
 
-    // MARK: - Static measurment helpers
+    // MARK: - Static measurement helpers
 
     static func computedHeight(rubric: RubricViewModel, selectedRatingIndex: Int, maxWidth: CGFloat) -> CGFloat {
         let circles = RubricCircleView.computedHeight(rubric: rubric, maxWidth: maxWidth)
@@ -254,14 +253,14 @@ class RubricCircleView: UIView {
 
             if selected {
                 font = UIFont.scaledNamedFont(.semibold20)
-                color = UIColor.white
+                color = UIColor.named(.backgroundLightest)
                 bgColor = courseColor
                 button.isSelected = true
                 currentlySelectedButton = button
             } else {
                 font = UIFont.scaledNamedFont(.regular20Monodigit)
                 color = UIColor.named(.borderDark)
-                bgColor = UIColor.white
+                bgColor = UIColor.named(.backgroundLightest)
             }
 
             addSubview(button)
@@ -319,8 +318,8 @@ class RubricCircleView: UIView {
 
         if !showAsSelected { button.transform = CGAffineTransform.identity }
 
-        let bgColor = selected ? courseColor : showAsSelected ? courseColor.withAlphaComponent(rubricCircleViewAlphaColor) : UIColor.white
-        let color = selected ?  UIColor.white : showAsSelected ? courseColor : UIColor.named(.borderDark)
+        let bgColor = selected ? courseColor : showAsSelected ? courseColor.withAlphaComponent(rubricCircleViewAlphaColor) : UIColor.named(.backgroundLightest)
+        let color = selected ? UIColor.named(.backgroundLightest) : showAsSelected ? courseColor : UIColor.named(.borderDark)
 
         button.backgroundColor = bgColor
         button.setTitleColor(color, for: .normal)
