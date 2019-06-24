@@ -15,8 +15,11 @@
 //
 
 import Foundation
-import TestsFoundation
 
-enum NavBar: String, ElementWrapper {
+public enum NavBar: String, ElementWrapper {
     case title, subtitle
+
+    public static var backButton: Element {
+        return XCUIElementWrapper(app.navigationBars.buttons["Back"].firstMatch)
+    }
 }

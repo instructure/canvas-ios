@@ -17,8 +17,11 @@
 import XCTest
 import TestsFoundation
 
-enum DiscussionList {
-    static func cell(index: Int) -> Element {
-        return app.find(id: "discussion-row-\(index)")
+enum DiscussionListCell: String, ElementWrapper {
+    case graded = "14393"
+    case simple = "14392"
+
+    static func cell(id: String) -> Element {
+        return app.find(id: "DiscussionListCell.\(id)")
     }
 }

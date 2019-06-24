@@ -163,7 +163,6 @@
 		7D6F93652236CF2600528598 /* SubmissionFilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F93642236CF2600528598 /* SubmissionFilesTests.swift */; };
 		7D6F93672236D1B200528598 /* SubmissionFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6F93662236D1B200528598 /* SubmissionFiles.swift */; };
 		7D7110C321389AD90085C2E5 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C221389AD90085C2E5 /* Routes.swift */; };
-		7D781C9E217FADD40046A83E /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D781C9D217FADD40046A83E /* NavBar.swift */; };
 		7D79636B22307F2500CCF943 /* SubmissionFilesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79636A22307F2500CCF943 /* SubmissionFilesCell.swift */; };
 		7D79636D22307FC000CCF943 /* SubmissionFilesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D79636C22307FC000CCF943 /* SubmissionFilesViewController.storyboard */; };
 		7D862861224C21AD003A37DC /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D862860224C21AD003A37DC /* AudioRecorder.swift */; };
@@ -607,7 +606,6 @@
 		7D7286C822BD7E55008E8F63 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D7286C922BD7E55008E8F63 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "da-instk12"; path = "da-instk12.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		7D7286CA22BD7E55008E8F63 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		7D781C9D217FADD40046A83E /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		7D7963682230646B00CCF943 /* SubmissionFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesViewController.swift; sourceTree = "<group>"; };
 		7D79636A22307F2500CCF943 /* SubmissionFilesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesCell.swift; sourceTree = "<group>"; };
 		7D79636C22307FC000CCF943 /* SubmissionFilesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionFilesViewController.storyboard; sourceTree = "<group>"; };
@@ -1459,7 +1457,6 @@
 				7D6F93572236C3A600528598 /* Submissions */,
 				F9E7D0D3215BE19F00CDC1A3 /* Info.plist */,
 				5B5E29852185A058001C9C79 /* InfoPlist.strings */,
-				7D781C9D217FADD40046A83E /* NavBar.swift */,
 				B1FFB80A215FADC2000684AA /* StudentUITestCase.swift */,
 			);
 			path = StudentUITests;
@@ -2024,7 +2021,6 @@
 				7D6F93622236CB6000528598 /* SubmissionDetails.swift in Sources */,
 				3BE2ADC921B6F72D008D91AB /* URLSubmissionTests.swift in Sources */,
 				7DAFB45F219F8B1300311275 /* CommentList.swift in Sources */,
-				7D781C9E217FADD40046A83E /* NavBar.swift in Sources */,
 				7D862861224C21AD003A37DC /* AudioRecorder.swift in Sources */,
 				7D5C871A223997D400D99651 /* SubmissionCommentsTests.swift in Sources */,
 				3B363A05225271EE00FC5A7E /* SyllabusTests.swift in Sources */,

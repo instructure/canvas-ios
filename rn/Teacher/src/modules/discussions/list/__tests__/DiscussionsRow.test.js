@@ -54,7 +54,7 @@ describe('DiscussionsRow', () => {
 
   it('sends onPress', () => {
     const tree = shallow(<DiscussionsRow {...props} />)
-    tree.find('[testID="discussion-row-0"]').simulate('Press')
+    tree.find(`[testID="DiscussionListCell.${props.discussion.id}"]`).simulate('Press')
     expect(props.onPress).toHaveBeenCalledWith(props.discussion)
   })
 

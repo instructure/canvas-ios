@@ -18,29 +18,28 @@ import XCTest
 import TestsFoundation
 
 class DiscussionListTests: CanvasUITests {
-    func testDiscussionListShowsDueDate() {
+    override func setUp() {
+        super.setUp()
         Dashboard.courseCard(id: "263").tap()
         CourseNavigation.discussions.tap()
+        DiscussionListCell.graded.waitToExist()
+    }
 
-        DiscussionList.cell(index: 0).waitToExist()
-        XCTAssert(DiscussionList.cell(index: 0).label.contains("Due Dec"))
-        XCTAssertFalse(DiscussionList.cell(index: 1).label.contains("Due"))
+    func testDiscussionListShowsDueDate() {
+        XCTAssert(DiscussionListCell.graded.label.contains("Due Dec"))
+        XCTAssertFalse(DiscussionListCell.simple.label.contains("Due"))
     }
 
     func testDiscussionListShowsDetails() {
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.discussions.tap()
+        XCTAssert(DiscussionListCell.graded.label.contains("Graded Discussion"))
+        XCTAssert(DiscussionListCell.graded.label.contains("Due Dec"))
+        XCTAssert(DiscussionListCell.graded.label.contains("10 pts"))
+        XCTAssert(DiscussionListCell.graded.label.contains("0 Replies"))
+        XCTAssert(DiscussionListCell.graded.label.contains("0 Unread"))
 
-        DiscussionList.cell(index: 0).waitToExist()
-        XCTAssert(DiscussionList.cell(index: 0).label.contains("Graded Discussion"))
-        XCTAssert(DiscussionList.cell(index: 0).label.contains("Due Dec"))
-        XCTAssert(DiscussionList.cell(index: 0).label.contains("10 pts"))
-        XCTAssert(DiscussionList.cell(index: 0).label.contains("0 Replies"))
-        XCTAssert(DiscussionList.cell(index: 0).label.contains("0 Unread"))
-
-        XCTAssert(DiscussionList.cell(index: 1).label.contains("Simple Discussion"))
-        XCTAssert(DiscussionList.cell(index: 1).label.contains("Last post Jun"))
-        XCTAssert(DiscussionList.cell(index: 1).label.contains("0 Replies"))
-        XCTAssert(DiscussionList.cell(index: 1).label.contains("0 Unread"))
+        XCTAssert(DiscussionListCell.simple.label.contains("Simple Discussion"))
+        XCTAssert(DiscussionListCell.simple.label.contains("Last post Jun"))
+        XCTAssert(DiscussionListCell.simple.label.contains("1 Reply"))
+        XCTAssert(DiscussionListCell.simple.label.contains("0 Unread"))
     }
 }
