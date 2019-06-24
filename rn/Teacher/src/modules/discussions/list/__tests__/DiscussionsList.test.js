@@ -107,7 +107,7 @@ describe('DiscussionsList', () => {
     props.discussions = [discussion]
     const tree = render(props).toJSON()
 
-    const row: any = explore(tree).selectByID('discussion-row-0')
+    const row: any = explore(tree).selectByID('DiscussionListCell.1')
     row.props.onPress()
 
     expect(props.navigator.show).toHaveBeenCalledWith(discussion.html_url)

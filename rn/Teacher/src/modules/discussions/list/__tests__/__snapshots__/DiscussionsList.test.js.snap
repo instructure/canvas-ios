@@ -247,7 +247,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                     },
                   ]
                 }
-                testID="discussion-row-0"
+                testID="DiscussionListCell.1"
               >
                 <View
                   style={
@@ -665,7 +665,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                     },
                   ]
                 }
-                testID="discussion-row-1"
+                testID="DiscussionListCell.2"
               >
                 <View
                   style={
@@ -1170,7 +1170,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                     },
                   ]
                 }
-                testID="discussion-row-0"
+                testID="DiscussionListCell.1"
               >
                 <View
                   style={
@@ -1555,7 +1555,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                     },
                   ]
                 }
-                testID="discussion-row-1"
+                testID="DiscussionListCell.2"
               >
                 <View
                   style={
@@ -2027,7 +2027,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                     },
                   ]
                 }
-                testID="discussion-row-0"
+                testID="DiscussionListCell.1"
               >
                 <View
                   style={
@@ -2445,7 +2445,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                     },
                   ]
                 }
-                testID="discussion-row-1"
+                testID="DiscussionListCell.2"
               >
                 <View
                   style={
@@ -2950,7 +2950,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                     },
                   ]
                 }
-                testID="discussion-row-0"
+                testID="DiscussionListCell.1"
               >
                 <View
                   style={
@@ -3368,7 +3368,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                     },
                   ]
                 }
-                testID="discussion-row-1"
+                testID="DiscussionListCell.3"
               >
                 <View
                   style={
@@ -3839,7 +3839,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                     },
                   ]
                 }
-                testID="discussion-row-0"
+                testID="DiscussionListCell.2"
               >
                 <View
                   style={
