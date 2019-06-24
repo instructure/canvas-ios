@@ -36,7 +36,10 @@ class ModulesTests: CanvasUITests {
         ModuleItemNavigation.previousButton.tap()
         AssignmentDetails.description("Assignment One").waitToExist()
 
-        //navigate back to module list
+        // Navigate back to module list
+        ModuleItemNavigation.backButton.tap()
+        XCTAssertEqual(ModulesDetail.moduleItem(index: 0).label, "Assignment One. Type: Assignment")
+        XCTAssertEqual(ModulesDetail.moduleItem(index: 1).label, "Assignment Two. Type: Assignment")
     }
 
     func testLaunchIntoDiscussionModuleItem() {
@@ -119,10 +122,10 @@ class ModulesTests: CanvasUITests {
         ModulesDetail.module(index: 5).tap()
         ModulesDetail.moduleItem(index: 0).tap()
 
-        // External Tool Launcher
-        app.find(labelContaining: "Launch External Tool").tap()
-        app.find(labelContaining: "Instructure").waitToExist()
-        app.find(labelContaining: "Done").tapAt(.zero)
+        // External Tool
+        ExternalTool.launchButton.tap()
+        ExternalTool.pageText("Instructure").waitToExist()
+        ExternalTool.doneButton.tap()
     }
 
     func testLaunchIntoTextHeaderModuleItem() {
