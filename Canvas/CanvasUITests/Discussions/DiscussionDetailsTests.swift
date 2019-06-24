@@ -18,15 +18,50 @@ import XCTest
 import TestsFoundation
 
 class DiscussionDetailsTests: CanvasUITests {
-    func testPreviewAttachment() {
+    override func setUp() {
+        super.setUp()
         Dashboard.courseCard(id: "263").tap()
         CourseNavigation.discussions.tap()
+        DiscussionListCell.graded.waitToExist()
+    }
 
-        DiscussionList.cell(index: 0).tapUntil {
+    func testPreviewAttachment() {
+        DiscussionListCell.graded.tapUntil {
             DiscussionDetails.attachmentButton.exists
         }
 
         DiscussionDetails.attachmentButton.tap()
         app.find(id: "attachment-view.share-btn").waitToExist()
+    }
+
+    func testLinks() {
+        DiscussionListCell.simple.tapUntil {
+            app.find(label: "Posted to All Sections").exists
+        }
+
+        app.find(label: "Assignment One", type: .link).tap()
+        app.find(label: "This is assignment one.").waitToExist()
+        NavBar.backButton.tap()
+
+        app.find(label: "Page Module", type: .link).tap()
+        app.find(label: "ITEMS").waitToExist()
+        NavBar.backButton.tap()
+
+        app.find(label: "Syllabus", type: .link).tap()
+        app.find(label: "Course Syllabus").waitToExist()
+        NavBar.backButton.tap()
+
+        app.swipeUp()
+
+        app.find(label: "Files", type: .link).tap()
+        FilesList.file(id: "10528").waitToExist()
+        NavBar.backButton.tap()
+
+        app.find(label: "Announcements", type: .link).tap()
+        app.find(label: "Announcements, Assignments").waitToExist()
+        NavBar.backButton.tap()
+
+        app.find(label: "Quiz One", type: .link).tap()
+        app.find(label: "This is the first quiz.").waitToExist()
     }
 }
