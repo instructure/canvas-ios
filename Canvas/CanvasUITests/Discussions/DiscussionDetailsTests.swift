@@ -22,7 +22,9 @@ class DiscussionDetailsTests: CanvasUITests {
         Dashboard.courseCard(id: "263").tap()
         CourseNavigation.discussions.tap()
 
-        DiscussionList.cell(index: 0).tapAt(.zero)
+        DiscussionList.cell(index: 0).tapUntil {
+            DiscussionDetails.attachmentButton.exists
+        }
 
         DiscussionDetails.attachmentButton.tap()
         app.find(id: "attachment-view.share-btn").waitToExist()

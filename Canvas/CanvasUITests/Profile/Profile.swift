@@ -36,7 +36,13 @@ enum Profile: String, ElementWrapper {
         return app.find(id: "Profile.lti.\(domain).\(id)")
     }
 
-    static func close() {
-        Dashboard.profileButton.tapAt(.zero)
+    static func close(file: StaticString = #file, line: UInt = #line) {
+        Dashboard.profileButton.tapAt(.zero, file: file, line: line)
+    }
+
+    static func open(file: StaticString = #file, line: UInt = #line) {
+        Dashboard.profileButton.tapUntil(file: file, line: line) {
+            Profile.userNameLabel.exists
+        }
     }
 }
