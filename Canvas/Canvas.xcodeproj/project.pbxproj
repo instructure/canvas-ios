@@ -2982,12 +2982,12 @@
 		9F5D743622A99E91002FCCCE /* CanvasUITests */ = {
 			isa = PBXGroup;
 			children = (
-				EE86F22722C14C4F00F90CF6 /* External Tool */,
 				EEEA99D622B7F2FC006AD5BF /* Announcements */,
 				B105FDDC22B29D4300B0D4B3 /* Assignments */,
 				EE7BB78122BA9379001C1EE7 /* Calendar */,
 				EE7BB78422BA9407001C1EE7 /* Course Files */,
 				7D903BFF22BABC3D009D9E9E /* Courses */,
+				EE86F22722C14C4F00F90CF6 /* External Tool */,
 				EE7BB77722B82233001C1EE7 /* Dashboard */,
 				7D903C0F22BC2AE0009D9E9E /* Discussions */,
 				EE7BB78722BA9E35001C1EE7 /* Inbox */,
