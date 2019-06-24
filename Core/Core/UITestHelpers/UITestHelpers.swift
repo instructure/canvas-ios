@@ -55,7 +55,7 @@ public class UITestHelpers {
         window?.addSubview(button)
         window?.uiTestHelper = button
         window?.layer.speed = 100
-        // UIView.setAnimationsEnabled(false)
+        UIView.setAnimationsEnabled(false)
     }
 
     @objc func checkPasteboard() {

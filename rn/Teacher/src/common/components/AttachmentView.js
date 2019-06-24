@@ -83,6 +83,8 @@ export default class AttachmentView extends Component<Props, State> {
       } else {
         this.setState({ jobID: null, filePath: null, error: i18n('There was an error loading this attachment.') })
       }
+    }).catch(e => {
+      this.setState({ jobID: null, filePath: null, error: i18n('There was an error loading this attachment.') })
     })
   }
 

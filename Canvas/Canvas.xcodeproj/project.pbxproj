@@ -598,6 +598,8 @@
 		7D903C0622BAC72B009D9E9E /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0522BAC72B009D9E9E /* ProfileTests.swift */; };
 		7D903C1122BC2B1B009D9E9E /* DiscussionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C1022BC2B1B009D9E9E /* DiscussionList.swift */; };
 		7D903C1322BC430B009D9E9E /* DiscussionListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C1222BC430B009D9E9E /* DiscussionListTests.swift */; };
+		7D903C1522BD3618009D9E9E /* DiscussionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C1422BD3618009D9E9E /* DiscussionDetails.swift */; };
+		7D903C1722BD3690009D9E9E /* DiscussionDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C1622BD3690009D9E9E /* DiscussionDetailsTests.swift */; };
 		7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */; };
 		7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
 		7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1460,6 +1462,8 @@
 		7D903C0522BAC72B009D9E9E /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		7D903C1022BC2B1B009D9E9E /* DiscussionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionList.swift; sourceTree = "<group>"; };
 		7D903C1222BC430B009D9E9E /* DiscussionListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionListTests.swift; sourceTree = "<group>"; };
+		7D903C1422BD3618009D9E9E /* DiscussionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetails.swift; sourceTree = "<group>"; };
+		7D903C1622BD3690009D9E9E /* DiscussionDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailsTests.swift; sourceTree = "<group>"; };
 		7DABA7451FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DABA7461FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		7DABA7471FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -2961,6 +2965,8 @@
 		7D903C0F22BC2AE0009D9E9E /* Discussions */ = {
 			isa = PBXGroup;
 			children = (
+				7D903C1422BD3618009D9E9E /* DiscussionDetails.swift */,
+				7D903C1622BD3690009D9E9E /* DiscussionDetailsTests.swift */,
 				7D903C1022BC2B1B009D9E9E /* DiscussionList.swift */,
 				7D903C1222BC430B009D9E9E /* DiscussionListTests.swift */,
 			);
@@ -4200,6 +4206,8 @@
 				EE7BB78622BA9449001C1EE7 /* CourseFileTests.swift in Sources */,
 				7D903BFE22BABC04009D9E9E /* Dashboard.swift in Sources */,
 				7D903C0622BAC72B009D9E9E /* ProfileTests.swift in Sources */,
+				7D903C1522BD3618009D9E9E /* DiscussionDetails.swift in Sources */,
+				7D903C1722BD3690009D9E9E /* DiscussionDetailsTests.swift in Sources */,
 				7D903C0422BABE23009D9E9E /* Profile.swift in Sources */,
 				EEEA99D822B7F2FC006AD5BF /* AnnouncementTests.swift in Sources */,
 				B105FDDE22B29D6600B0D4B3 /* AssignmentsTests.swift in Sources */,

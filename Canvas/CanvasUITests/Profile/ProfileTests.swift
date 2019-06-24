@@ -19,23 +19,19 @@ import TestsFoundation
 
 class ProfileTests: CanvasUITests {
     func testProfileDisplaysUsername() {
-        Dashboard.profileButton.waitToExist()
-        Dashboard.profileButton.tap()
-        Profile.userNameLabel.waitToExist()
+        Profile.open()
         XCTAssertEqual(Profile.userNameLabel.label, "Student One")
     }
 
     func testProfileChangesUser() {
-        Dashboard.profileButton.waitToExist()
-        Dashboard.profileButton.tap()
+        Profile.open()
         Profile.changeUserButton.tap()
         let entry = user!.keychainEntry!
         LoginStartKeychainEntry.cell(host: entry.baseURL.host!, userID: entry.userID).waitToExist()
     }
 
     func testProfileLogsOut() {
-        Dashboard.profileButton.waitToExist()
-        Dashboard.profileButton.tap()
+        Profile.open()
         Profile.logOutButton.tap()
         LoginStart.findSchoolButton.waitToExist()
         let entry = user!.keychainEntry!
