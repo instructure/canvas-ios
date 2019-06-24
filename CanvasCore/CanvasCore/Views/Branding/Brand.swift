@@ -38,11 +38,6 @@ open class Brand: NSObject {
     }
     
     @objc open func apply(_ window: UIWindow) {
-        let tabsAppearance = UITabBar.appearance()
-        tabsAppearance.tintColor = primaryBrandColor
-        tabsAppearance.barTintColor = UIColor.white
-        tabsAppearance.unselectedItemTintColor = UIColor(red: 115/255.0, green: 129/255.0, blue: 140/255.0, alpha: 1)
-
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.tintColor = linkColor
     }

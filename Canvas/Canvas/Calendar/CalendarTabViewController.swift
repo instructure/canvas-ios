@@ -20,17 +20,17 @@ import Foundation
 import TechDebt
 import Core
 
-public func CalendarTabViewController(session: Session, route: @escaping (UIViewController, URL)->()) throws -> UIViewController {
+public func CalendarTabViewController(session: Session, route: @escaping (UIViewController, URL)->()) -> UIViewController {
     let calendarVC: UIViewController
     if UIDevice.current.userInterfaceIdiom == .phone {
         let monthVC = CalendarMonthViewController.new(session)
-        monthVC.routeToURL = { [unowned monthVC] url in
+        monthVC.routeToURL = { url in
             route(monthVC, url)
         }
         calendarVC = monthVC
     } else {
         let splitVC = CalendarSplitMonthViewController.new(session)
-        splitVC.routeToURL = { [unowned splitVC] url in
+        splitVC.routeToURL = { url in
             route(splitVC, url)
         }
         calendarVC = splitVC

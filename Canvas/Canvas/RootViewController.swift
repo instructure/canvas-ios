@@ -29,7 +29,7 @@ func rootViewController(_ session: Session) -> UIViewController {
     
     do {
         // CALENDAR
-        let calendar = try CalendarTabViewController(session: session) { vc, url in
+        let calendar = CalendarTabViewController(session: session) { vc, url in
             Router.shared().route(from: vc, to: url)
         }
         let calendarNav = UINavigationController(rootViewController: calendar)
@@ -40,7 +40,7 @@ func rootViewController(_ session: Session) -> UIViewController {
         }
 
         tabs.viewControllers = [
-            try EnrollmentsTab(session: session),
+            EnrollmentsTab(session: session),
             calendarNav,
             todo,
             try NotificationsTab(session: session),
@@ -54,10 +54,7 @@ func rootViewController(_ session: Session) -> UIViewController {
     
     let selectedTab = UserPreferences.landingPage(session.user.id)
     tabs.selectedIndex = selectedTab.tabIndex
-
-    if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView) {
-        tabs.tabBar.useGlobalNavStyle()
-    }
+    tabs.tabBar.useGlobalNavStyle()
     return tabs
 }
 
@@ -68,14 +65,14 @@ func MessagesTab() -> UIViewController {
     return vc
 }
 
-func EnrollmentsTab(session: Session) throws -> UIViewController {
+func EnrollmentsTab(session: Session) -> UIViewController {
     let dashboardVC = HelmViewController(moduleName: "/", props: [:])
     let dashboardNav = HelmNavigationController(rootViewController: dashboardVC)
     let dashboardSplit = EnrollmentSplitViewController()
     let emptyNav = UINavigationController(rootViewController:EmptyViewController())
-    emptyNav.applyDefaultBranding()
+    emptyNav.navigationBar.useGlobalNavStyle()
     dashboardNav.delegate = dashboardSplit
-    dashboardNav.applyDefaultBranding()
+    dashboardNav.navigationBar.useGlobalNavStyle()
     dashboardSplit.viewControllers = [dashboardNav, emptyNav]
     dashboardSplit.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
     dashboardSplit.tabBarItem.image = .icon(.dashboard, .line)
