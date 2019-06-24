@@ -39,9 +39,6 @@ enum Profile: String, ElementWrapper {
     static func open() {
         var taps = 0
         while Profile.changeUserButton.isVisible != true, taps < 5 {
-            if taps > 0 {
-                print("Additional attempt")
-            }
             taps += 1
             Dashboard.profileButton.tap()
             sleep(1)
