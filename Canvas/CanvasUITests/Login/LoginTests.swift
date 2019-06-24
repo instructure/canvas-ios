@@ -31,7 +31,7 @@ class LoginTests: CanvasUITests {
 
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
-        XCTAssert(Dashboard.dashboardTab.exists)
+        XCTAssert(TabBar.dashboardTab.exists)
     }
 
     func testLDAPLoginToDashboard() {
@@ -46,7 +46,7 @@ class LoginTests: CanvasUITests {
         LoginWeb.logInButton.tap()
 
         Dashboard.coursesLabel.waitToExist()
-        Dashboard.dashboardTab.waitToExist()
+        TabBar.dashboardTab.waitToExist()
     }
 
     func testMultipleUsers() {
@@ -72,13 +72,13 @@ class LoginTests: CanvasUITests {
 
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
-        Dashboard.dashboardTab.waitToExist()
+        TabBar.dashboardTab.waitToExist()
 
         launch()
 
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
-        Dashboard.dashboardTab.waitToExist()
+        TabBar.dashboardTab.waitToExist()
     }
 
     func testMDMLogin() {
@@ -94,6 +94,6 @@ class LoginTests: CanvasUITests {
 
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
-        Dashboard.dashboardTab.waitToExist()
+        TabBar.dashboardTab.waitToExist()
     }
 }

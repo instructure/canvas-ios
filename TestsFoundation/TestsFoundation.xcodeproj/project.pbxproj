@@ -36,6 +36,7 @@
 		7D903C0C22BC132E009D9E9E /* LoginWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0B22BC132E009D9E9E /* LoginWeb.swift */; };
 		7D903C0E22BC133B009D9E9E /* LoginFindSchool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0D22BC133B009D9E9E /* LoginFindSchool.swift */; };
 		7D903C1922C1513D009D9E9E /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C1822C1513C009D9E9E /* NavBar.swift */; };
+		7D903C1E22C17128009D9E9E /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C1D22C17128009D9E9E /* TabBar.swift */; };
 		7DAC287A22B199D100C0B692 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC287522B199D100C0B692 /* Element.swift */; };
 		7DAC288022B1A3F900C0B692 /* XCUIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */; };
 		7DAC288622B1AE1700C0B692 /* ElementWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC288522B1AE1700C0B692 /* ElementWrapper.swift */; };
@@ -106,6 +107,7 @@
 		7D903C0B22BC132E009D9E9E /* LoginWeb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWeb.swift; sourceTree = "<group>"; };
 		7D903C0D22BC133B009D9E9E /* LoginFindSchool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchool.swift; sourceTree = "<group>"; };
 		7D903C1822C1513C009D9E9E /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
+		7D903C1D22C17128009D9E9E /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		7DAC287522B199D100C0B692 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		7DAC287D22B19D5C00C0B692 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIApplicationExtensions.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				7D903C0922BC1329009D9E9E /* LoginStart.swift */,
 				7D903C0B22BC132E009D9E9E /* LoginWeb.swift */,
 				7D903C1822C1513C009D9E9E /* NavBar.swift */,
+				7D903C1D22C17128009D9E9E /* TabBar.swift */,
 			);
 			path = Element;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				3B635B39225CE613001F353D /* APICalendarEventFixture.swift in Sources */,
 				B19792EF21751FBC0000369C /* TestPersistence.swift in Sources */,
 				B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */,
+				7D903C1E22C17128009D9E9E /* TabBar.swift in Sources */,
 				7D5C87232239A9EE00D99651 /* SubmissionCommentFixture.swift in Sources */,
 				7D903C0A22BC1329009D9E9E /* LoginStart.swift in Sources */,
 				9F1CEA5B22400A1D000BB98F /* APIPermissions.swift in Sources */,

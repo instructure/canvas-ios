@@ -19,8 +19,7 @@ import TestsFoundation
 
 class InboxTests: CanvasUITests {
     func testCannotMessageEntireClassWhenDisabled() {
-        //Dashboard
-        Dashboard.inboxTab.tap()
+        TabBar.inboxTab.tap()
 
         // Inbox
         Inbox.newMessageButton.tap()
@@ -42,8 +41,7 @@ class InboxTests: CanvasUITests {
     }
 
     func testCannotMessageIndividialsWhenDisabled() {
-        //Dashboard
-        Dashboard.inboxTab.tap()
+        TabBar.inboxTab.tap()
 
         // Inbox
         Inbox.newMessageButton.tap()
@@ -65,9 +63,8 @@ class InboxTests: CanvasUITests {
     }
 
     func testCanFilterMessagesAndShowsUnread() {
-        //Dashboard
-        XCTAssert(Dashboard.inboxTab.value == "2 items")
-        Dashboard.inboxTab.tap()
+        XCTAssert(TabBar.inboxTab.value == "2 items")
+        TabBar.inboxTab.tap()
 
         // Inbox
         Inbox.message(id: "47").waitToExist()

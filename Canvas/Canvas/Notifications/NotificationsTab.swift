@@ -40,5 +40,6 @@ func NotificationsTab(session: Session) throws -> UIViewController {
     split.tabBarItem.title = title
     split.tabBarItem.image = .icon(.alerts, .line)
     split.tabBarItem.selectedImage = .icon(.alerts, .solid)
+    split.tabBarItem.accessibilityIdentifier = "TabBar.notificationsTab"
     return split
 }

@@ -34,7 +34,7 @@ class RootViewController: UITabBarController {
     lazy var dashboard: UINavigationController = {
         let controller = DashboardViewController.create()
         controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Dashboard", bundle: .student, comment: ""), image: .icon(.dashboard, .line), selectedImage: .icon(.dashboardCustomSolid))
-        controller.tabBarItem.accessibilityIdentifier = "Dashboard.tab"
+        controller.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
         return navigation(for: controller)
     }()
 
@@ -42,6 +42,7 @@ class RootViewController: UITabBarController {
         let controller = UIViewController()
         controller.view.backgroundColor = .green
         controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Calendar", bundle: .student, comment: ""), image: .icon(.calendarMonth, .line), selectedImage: .icon(.calendarMonth, .solid))
+        controller.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
         return navigation(for: controller)
     }()
 
@@ -49,6 +50,7 @@ class RootViewController: UITabBarController {
         let controller = UIViewController()
         controller.view.backgroundColor = .blue
         controller.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", bundle: .student, comment: ""), image: .icon(.todo), selectedImage: .icon(.todoSolid))
+        controller.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
         return navigation(for: controller)
     }()
 
@@ -56,6 +58,7 @@ class RootViewController: UITabBarController {
         let controller = UIViewController()
         controller.view.backgroundColor = .yellow
         controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Notifications", bundle: .student, comment: ""), image: .icon(.alerts, .line), selectedImage: .icon(.alerts, .solid))
+        controller.tabBarItem.accessibilityIdentifier = "TabBar.notificationsTab"
         return navigation(for: controller)
     }()
 
@@ -63,6 +66,7 @@ class RootViewController: UITabBarController {
         let controller = UIViewController()
         controller.view.backgroundColor = .red
         controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Inbox", bundle: .student, comment: ""), image: .icon(.email, .line), selectedImage: .icon(.email, .solid))
+        controller.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
         return navigation(for: controller)
     }()
 
