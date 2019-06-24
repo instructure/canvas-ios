@@ -38,8 +38,17 @@ class RubricViewController: UIViewController {
 
         emptyViewLabel.text = NSLocalizedString("There is no rubric for this assignment", comment: "")
 
+        setupCollectionViewLayout()
         setupCollectionViewHeader()
         presenter.viewIsReady()
+    }
+
+    func setupCollectionViewLayout() {
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.itemSize = UICollectionViewFlowLayout.automaticSize
+            layout.estimatedItemSize = CGSize(width: collectionView.frame.size.width, height: 100)
+            collectionView.collectionViewLayout = layout
+        }
     }
 
     func setupCollectionViewHeader() {
@@ -101,13 +110,8 @@ extension RubricViewController: UICollectionViewDataSource, UICollectionViewDele
         let r = models[indexPath.item]
         cell.update(rubric: r, selectedRatingIndex: selectedRatingCache[indexPath.item], courseColor: presenter.courses.first?.color ?? Brand.shared.primary)
         cell.delegate = self
+
         return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        let height = RubricCollectionViewCell.computedHeight(rubric: models[indexPath.item], selectedRatingIndex: selectedRatingCache[indexPath.item], containerFrame: collectionView.bounds)
-        return CGSize(width: view.bounds.size.width, height: height)
     }
 }
 
@@ -150,12 +154,16 @@ extension RubricViewController: RubricCellDelegate {
     }
 }
 
-class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewWithDescriptionDelegate {
+class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewButtonDelegate {
 
     weak var delegate: RubricCellDelegate?
 
-    @IBOutlet weak var circleView: RubricCircleViewWithDescription!
+    @IBOutlet weak var circleView: RubricCircleView!
     @IBOutlet weak var rubricTitle: DynamicLabel!
+    @IBOutlet weak var ratingContainer: UIStackView!
+    @IBOutlet var ratingContainerBgView: UIView!
+    @IBOutlet weak var ratingTitle: DynamicLabel!
+    @IBOutlet weak var ratingDescription: DynamicLabel!
     @IBOutlet weak var borderHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentView: ChatBubbleView!
     @IBOutlet weak var commentViewHeightConstraint: NSLayoutConstraint!
@@ -165,53 +173,69 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewWithDescri
     private static var margin: CGFloat = 16
     @IBOutlet weak var viewLongDescriptionButton: UIButton!
     @IBOutlet weak var rubricTitleToCircleViewVerticalConstraint: NSLayoutConstraint!
+    lazy var cellWidthConstraint: NSLayoutConstraint = {
+        let width = contentView.widthAnchor.constraint(equalToConstant: bounds.size.width)
+        width.isActive = true
+        return width
+    }()
+    private var rubric: RubricViewModel?
+    private var courseColor: UIColor?
+    private var selectedRatingIndex: Int = 0 {
+        didSet {
+            guard let rubric = rubric else { return }
+            let rating = rubric.ratingBlurb(selectedRatingIndex)
+            ratingTitle?.text = rating.header
+            ratingDescription?.text = rating.subHeader
+            ratingDescription.isHidden = rating.subHeader.isEmpty
+        }
+    }
 
     override func awakeFromNib() {
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         borderHeightConstraint.constant = 1.0 / UIScreen.main.scale
         commentView.side = ChatBubbleView.Side.left
         commentView.textLabel.numberOfLines = 0
         commentView.textLabel.font = type(of: self).chatBubbleTextLabelFont
-        circleView.delegate = self
+        circleView.buttonClickDelegate = self
         viewLongDescriptionButton.setTitleColor(Brand.shared.linkColor, for: .normal)
+        ratingContainerBgView?.layer.cornerRadius = 8
+        ratingContainerBgView?.layer.masksToBounds = true
+        clipsToBounds = false
+        contentView.clipsToBounds = false
+    }
+
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        cellWidthConstraint.constant = bounds.size.width
+        return contentView.systemLayoutSizeFitting(CGSize(width: targetSize.width, height: 1))
     }
 
     func update(rubric: RubricViewModel, selectedRatingIndex: Int, courseColor: UIColor) {
+        self.rubric = rubric
         rubricTitle.text = rubric.title
         rubricTitle.accessibilityTraits = .header
         if circleView.rubric == nil {
             circleView.rubric = rubric
         }
-        circleView.selectedRatingIndex = selectedRatingIndex
+
+        self.selectedRatingIndex = selectedRatingIndex
         circleView.courseColor = courseColor
-        circleViewHeightConstraint.constant = RubricCircleViewWithDescription.computedHeight(rubric: rubric,
-                                                                                             selectedRatingIndex: selectedRatingIndex,
-                                                                                             maxWidth: bounds.size.width - (RubricCollectionViewCell.margin * 2)
-        )
+        ratingContainerBgView.backgroundColor = courseColor.withAlphaComponent(rubricCircleViewAlphaColor)
+
         updateLongDescription(desc: rubric.longDescription)
         updateComment(comment: rubric.comment)
         viewLongDescriptionButton.isHidden = rubric.longDescription.count == 0
+        circleViewHeightConstraint.constant = RubricCircleView.computedHeight(rubric: rubric, maxWidth: bounds.size.width)
     }
 
     func updateComment(comment: String?) {
         commentView.textLabel.text = comment
+        commentView.isHidden = comment?.isEmpty ?? true
         let size = type(of: self).commentViewSize(comment: comment, containerFrame: bounds)
-        commentViewHeightConstraint.constant = size.height
         commentViewWidthConstraint.constant = size.width
     }
 
     func updateLongDescription(desc: String?) {
-        let noRubricLongDescriptionConstant: CGFloat = 16.0
-        let longDescriptionExistsConstant: CGFloat = 36.0
-        rubricTitleToCircleViewVerticalConstraint.constant = desc?.isEmpty ?? true ? noRubricLongDescriptionConstant : longDescriptionExistsConstant
-    }
-
-    static func computedHeight(rubric: RubricViewModel, selectedRatingIndex: Int, containerFrame: CGRect) -> CGFloat {
-        let otherViewHeights: CGFloat = 80
-
-        let circles = RubricCircleViewWithDescription.computedHeight(rubric: rubric, selectedRatingIndex: selectedRatingIndex, maxWidth: containerFrame.size.width - (margin * 2.0))
-        let comment = commentViewSize(comment: rubric.comment, containerFrame: containerFrame).height
-        let longDescription: CGFloat = rubric.longDescription.count == 0 ? -17 : 0
-        return otherViewHeights + circles + comment + longDescription
+        viewLongDescriptionButton.isHidden = desc?.isEmpty ?? true
     }
 
     static func commentViewSize(comment: String?, containerFrame: CGRect) -> CGSize {
@@ -236,7 +260,11 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewWithDescri
         delegate.longDescriptionTapped(cell: self)
     }
 
-    func selectedRatingIndexDidChange(_ selectedRatingIndex: Int) {
-        delegate?.selectedRatingDidChange(ratingIndex: selectedRatingIndex, cell: self)
+    func didClickRating(atIndex: Int) {
+        var newIndex = atIndex
+        if selectedRatingIndex == atIndex {
+            newIndex = rubric?.selectedIndex ?? 0
+        }
+        delegate?.selectedRatingDidChange(ratingIndex: newIndex, cell: self)
     }
 }

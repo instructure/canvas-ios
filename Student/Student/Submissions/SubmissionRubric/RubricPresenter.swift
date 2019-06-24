@@ -31,6 +31,14 @@ struct RubricViewModel: Hashable, Equatable {
     let descriptions: [String]
     let comment: String?
     let rubricRatings: [RubricRating]
+    var isCustomAssessment: Bool = false
+
+    func ratingBlurb(_ atIndex: Int) -> (header: String, subHeader: String) {
+        let isCustom = isCustomAssessment && atIndex >= rubricRatings.count
+        let header = isCustom ? NSLocalizedString("Custom Grade", comment: "") : rubricRatings[atIndex].desc
+        let subHeader = isCustom ? "" : rubricRatings[atIndex].longDesc
+        return (header, subHeader)
+    }
 }
 
 class RubricPresenter {
@@ -97,6 +105,7 @@ class RubricPresenter {
             var selectedIndex = 0
             var comments: String?
             var description = ""
+            var isCustomAssessment = false
 
             if let index = sorted.firstIndex(where: { rr in assessment.ratingID == rr.id }) {
                 selected = sorted[index]
@@ -113,6 +122,7 @@ class RubricPresenter {
                 description = NSLocalizedString("Custom Grade", comment: "")
                 allDescriptions.append(description)
                 comments = assessment.comments
+                isCustomAssessment = true
             }
 
             let m = RubricViewModel(
@@ -123,7 +133,8 @@ class RubricPresenter {
                 ratings: allRatings,
                 descriptions: allDescriptions,
                 comment: comments,
-                rubricRatings: sorted
+                rubricRatings: sorted,
+                isCustomAssessment: isCustomAssessment
             )
             models.append(m)
         }

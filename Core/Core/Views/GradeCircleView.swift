@@ -22,16 +22,18 @@ public class GradeCircleReusableView: UICollectionReusableView {
     static let topPadding: CGFloat = 12
 
     public override init(frame: CGRect) {
-        gradeCircleView = GradeCircleView(frame: CGRect(x: 0, y: GradeCircleReusableView.topPadding, width: frame.width, height: frame.height))
+        gradeCircleView = GradeCircleView(frame: CGRect.zero)
         super.init(frame: frame)
-        guard let gradeCircleView = gradeCircleView else {
-            return
-        }
+        guard let gradeCircleView = gradeCircleView else { return }
         addSubview(gradeCircleView)
+        gradeCircleView.pin(inside: self)
 
-        let border = UIView(frame: CGRect(x: 16, y: frame.height, width: frame.width - 32, height: 1))
+        let border = UIView(frame: CGRect.zero)
         border.backgroundColor = UIColor.named(.borderMedium)
         addSubview(border)
+        let margin: CGFloat = 16
+        border.pin(inside: self, leading: margin, trailing: margin, top: nil, bottom: 0)
+        border.addConstraintsWithVFL("V:[view(1)]")
     }
 
     required init?(coder aDecoder: NSCoder) {
