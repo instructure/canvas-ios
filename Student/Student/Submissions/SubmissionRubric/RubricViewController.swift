@@ -143,11 +143,10 @@ extension RubricViewController: RubricCellDelegate {
         guard let ip = collectionView.indexPath(for: cell) else { return }
         selectedRatingCache[ip.item] = ratingIndex
 
-//        UIView.transition(with: collectionView,
-//                          duration: 0.1,
-//                          options: .transitionCrossDissolve,
-//                          animations: { self.collectionView.reloadData() })
-        self.collectionView.reloadData()
+        UIView.transition(with: collectionView,
+                          duration: 0.2,
+                          options: .transitionCrossDissolve,
+                          animations: { self.collectionView.reloadData() })
     }
 }
 

@@ -295,25 +295,21 @@ class RubricCircleView: UIView {
     func animateButtonClick(sender: DynamicButton, completionHandler: @escaping () -> Void) {
         let delay = 0.0
 
+        let sameButtonClicked: Bool = sender == self.currentlySelectedButton
+        let buttonToAnimate = sameButtonClicked ? self.buttons[self.rubric?.selectedIndex ?? 0] : sender
+        buttonToAnimate.transform = CGAffineTransform(scaleX: 0.877, y: 0.877)
+
+        UIView.animate(withDuration: 0.2) {
+            self.adjustButtonAppearance(showAsSelected: true, button: buttonToAnimate)
+            self.adjustButtonAppearance(showAsSelected: false, button: self.currentlySelectedButton)
+        }
+
         UIView.animate(withDuration: 0.2, delay: delay, usingSpringWithDamping: 0.25, initialSpringVelocity: 6.0, options: [.allowUserInteraction, .curveEaseInOut], animations: {
             self.currentlySelectedButton?.transform = CGAffineTransform.identity
+            buttonToAnimate.transform = self.selectedButtonTransform
         }, completion: { _ in
-            self.adjustButtonAppearance(showAsSelected: false, button: self.currentlySelectedButton)
-
-            let sameButtonClicked: Bool = sender == self.currentlySelectedButton
-            let buttonToAnimate = sameButtonClicked ? self.buttons[self.rubric?.selectedIndex ?? 0] : sender
-            buttonToAnimate.transform = CGAffineTransform(scaleX: 0.877, y: 0.877)
-
-            UIView.animate(withDuration: 0.2, delay: delay, options: [], animations: {
-                self.adjustButtonAppearance(showAsSelected: true, button: buttonToAnimate)
-            }, completion: nil)
-
-            UIView.animate(withDuration: 0.2, delay: delay, usingSpringWithDamping: 0.25, initialSpringVelocity: 6.0, options: [.allowUserInteraction, .curveEaseInOut], animations: {
-                buttonToAnimate.transform = self.selectedButtonTransform
-            }, completion: { _ in
-                self.currentlySelectedButton = buttonToAnimate
-                completionHandler()
-            })
+            self.currentlySelectedButton = buttonToAnimate
+            completionHandler()
         })
     }
 
