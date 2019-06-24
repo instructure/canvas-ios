@@ -39,7 +39,7 @@ class DashboardTests: CanvasUITests {
     }
 
     func testCourseCardGrades() {
-        Dashboard.profileButton.tap()
+        Profile.open()
         Profile.showGradesToggle.waitToExist()
         if !Profile.showGradesToggle.isSelected {
             Profile.showGradesToggle.tap()
@@ -48,7 +48,7 @@ class DashboardTests: CanvasUITests {
         Dashboard.courseCard(id: "263").waitToExist()
         XCTAssertEqual(Dashboard.courseCard(id: "263").label, "Assignments 70%")
 
-        Dashboard.profileButton.tap()
+        Profile.open()
         Profile.showGradesToggle.tap()
         Profile.close()
         Dashboard.courseCard(id: "263").waitToExist()
