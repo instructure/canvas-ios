@@ -40,10 +40,9 @@ class DashboardTests: CanvasUITests {
 
     func testSeeAllButtonDisplaysCorrectCourses() {
         Dashboard.seeAllButton.tap()
-        // expired course should be listed
+        
+        // expired course and others should be listed
         Dashboard.courseCard(id: "303").waitToExist()
-
-        // all other courses should be listed
         Dashboard.courseCard(id: "247").waitToExist()
         Dashboard.courseCard(id: "262").waitToExist()
         Dashboard.courseCard(id: "263").waitToExist()

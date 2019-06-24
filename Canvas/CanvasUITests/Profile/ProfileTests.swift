@@ -64,7 +64,6 @@ class ProfileTests: CanvasUITests {
         Profile.open()
         Profile.filesButton.tap()
 
-        // Files List
         FilesList.file(id: "11585").waitToExist()
         FilesList.file(id: "11585").tap()
         sleep(3)

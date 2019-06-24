@@ -25,18 +25,15 @@ class ModulesTests: CanvasUITests {
 
         CourseNavigation.modules.tap()
 
-        // Modules Detail
         ModulesDetail.module(index: 0).tap()
         ModulesDetail.moduleItem(index: 0).tap()
 
-        // Assignment Details
         AssignmentDetails.description("Assignment One").waitToExist()
         ModuleItemNavigation.nextButton.tap()
         AssignmentDetails.description("Assignment Two").waitToExist()
         ModuleItemNavigation.previousButton.tap()
         AssignmentDetails.description("Assignment One").waitToExist()
 
-        // Navigate back to module list
         ModuleItemNavigation.backButton.tap()
         XCTAssertEqual(ModulesDetail.moduleItem(index: 0).label, "Assignment One. Type: Assignment")
         XCTAssertEqual(ModulesDetail.moduleItem(index: 1).label, "Assignment Two. Type: Assignment")
@@ -48,11 +45,9 @@ class ModulesTests: CanvasUITests {
 
         CourseNavigation.modules.tap()
 
-        // Modules Detail
         ModulesDetail.module(index: 2).tap()
         ModulesDetail.moduleItem(index: 0).tap()
 
-        // Discussion Details
         app.find(labelContaining: "Teacher One").waitToExist()
         app.find(id: "discussion-reply").waitToExist()
     }
@@ -63,11 +58,9 @@ class ModulesTests: CanvasUITests {
 
         CourseNavigation.modules.tap()
 
-        // Modules Detail
         ModulesDetail.module(index: 3).tap()
         ModulesDetail.moduleItem(index: 0).tap()
 
-        // Page Detail
         app.find(labelContaining: "This is a page for testing modules").waitToExist()
     }
 
@@ -77,11 +70,9 @@ class ModulesTests: CanvasUITests {
 
         CourseNavigation.modules.tap()
 
-        // Modules Detail
         ModulesDetail.module(index: 1).tap()
         ModulesDetail.moduleItem(index: 0).tap()
 
-        // Quiz Detail
         app.find(labelContaining: "This is the first quiz").waitToExist()
         app.find(labelContaining: "Take Quiz").waitToExist()
     }
@@ -92,7 +83,6 @@ class ModulesTests: CanvasUITests {
 
         CourseNavigation.modules.tap()
 
-        // Modules Detail
         ModulesDetail.module(index: 7).tap()
         ModulesDetail.moduleItem(index: 0).tap()
 
@@ -105,7 +95,6 @@ class ModulesTests: CanvasUITests {
 
         CourseNavigation.modules.tap()
 
-        // Modules Detail
         ModulesDetail.module(index: 4).tap()
         ModulesDetail.moduleItem(index: 0).tap()
 
@@ -118,11 +107,9 @@ class ModulesTests: CanvasUITests {
 
         CourseNavigation.modules.tap()
 
-        // Modules Detail
         ModulesDetail.module(index: 5).tap()
         ModulesDetail.moduleItem(index: 0).tap()
 
-        // External Tool
         ExternalTool.launchButton.tap()
         ExternalTool.pageText("Instructure").waitToExist()
         ExternalTool.doneButton.tap()
@@ -134,7 +121,6 @@ class ModulesTests: CanvasUITests {
 
         CourseNavigation.modules.tap()
 
-        // Modules Detail
         ModulesDetail.module(index: 6).tap()
         ModulesDetail.moduleItem(index: 0).waitToExist()
     }
