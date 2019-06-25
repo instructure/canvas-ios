@@ -49,6 +49,7 @@ class RubricPresenterTests: PersistenceTestCase {
 
         let expected: [RubricViewModel] = [
             RubricViewModel(
+                id: "1",
                 title: "Effort",
                 longDescription: "Did you even try?",
                 selectedDesc: "Excellent",
@@ -87,6 +88,7 @@ class RubricPresenterTests: PersistenceTestCase {
         Color.make()
         let expected: [RubricViewModel] = [
             RubricViewModel(
+                id: "1",
                 title: "Effort",
                 longDescription: "Did you even try?",
                 selectedDesc: "Custom Grade",
@@ -108,12 +110,12 @@ class RubricPresenterTests: PersistenceTestCase {
 }
 
 extension RubricPresenterTests: RubricViewProtocol {
-    func update(_ rubric: [RubricViewModel]) {
-        models = rubric
+    func showEmptyState(_ show: Bool) {
+        showEmptyStateFlag = show
     }
 
-    func showEmptyState() {
-        showEmptyStateFlag = true
+    func update(_ rubric: [RubricViewModel]) {
+        models = rubric
     }
 
     var navigationController: UINavigationController? {
