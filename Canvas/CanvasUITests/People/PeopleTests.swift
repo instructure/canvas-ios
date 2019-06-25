@@ -35,16 +35,13 @@ class PeopleTests: CanvasUITests {
         Dashboard.courseCard(id: "262").waitToExist()
         Dashboard.courseCard(id: "262").tap()
 
-        // Course Details
         CourseNavigation.people.tap()
 
-        // Course People
         CoursePeople.person(name: "Student One").waitToExist()
         XCTAssert(CoursePeople.person(name: "Student One").exists)
         XCTAssert(CoursePeople.person(name: "Student Two").exists)
         CoursePeople.person(name: "Student One").tap()
 
-        // Person Context Card
         PersonContextCard.emailLabel("ios+student1@instructure.com").waitToExist()
     }
 }

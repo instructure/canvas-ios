@@ -17,35 +17,14 @@
 import XCTest
 import TestsFoundation
 
-enum FilesList {
-    static func file(id: String) -> Element {
-        return app.find(id: "file-list.file-list-row.cell-file-\(id)")
-    }
-}
-
-class CourseFileTests: CanvasUITests {
-    func testPreviewCourseFile() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-
-        CourseNavigation.files.tap()
-
-        FilesList.file(id: "10528").waitToExist()
-        FilesList.file(id: "10528").tap()
-
-        // need be on the next page before checking for image
-        sleep(3)
-        app.find(type: .image).waitToExist()
-    }
-
-    func testLinkToPreviewOpensFile() {
+class PageTests: CanvasUITests {
+    func testFrontPageLoadByDefault() {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.pages.tap()
 
-        PagesList.page(index: 1).tap()
-        XCUIElementWrapper(app.links.firstMatch).tap()
-        app.find(type: .image).waitToExist()
+        PagesList.frontPage.tap()
+        app.find(labelContaining: "This is a page for testing modules").waitToExist()
     }
 }

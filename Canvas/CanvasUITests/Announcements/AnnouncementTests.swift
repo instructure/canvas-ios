@@ -31,14 +31,11 @@ enum AnnouncementDetail {
 
 class AnnouncementTest: CanvasUITests {
     func testAnnouncementsMatchWebOrder() {
-        // Dashboard
         Dashboard.courseCard(id: "262").waitToExist()
         Dashboard.courseCard(id: "262").tap()
 
-        // Course
         CourseNavigation.announcements.tap()
 
-        // Announcements
         Announcements.announcement(index: 0).waitToExist()
         XCTAssert(Announcements.announcement(index: 0).label.contains("Announcement Three"))
         XCTAssert(Announcements.announcement(index: 1).label.contains("Announcement Two"))
@@ -46,14 +43,11 @@ class AnnouncementTest: CanvasUITests {
     }
 
     func testViewAnnouncement() {
-        // Dashboard
         Dashboard.courseCard(id: "262").waitToExist()
         Dashboard.courseCard(id: "262").tap()
 
-        // Course
         CourseNavigation.announcements.tap()
 
-        // Announcements
         Announcements.announcement(index: 0).waitToExist()
         Announcements.announcement(index: 0).tapAt(.zero)
 

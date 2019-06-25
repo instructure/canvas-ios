@@ -17,19 +17,12 @@
 import XCTest
 import TestsFoundation
 
-class AssignmentsTests: CanvasUITests {
+enum PagesList {
+    static var frontPage: Element {
+        return app.find(id: "pages.list.front-page-row")
+    }
 
-    func testViewAssignmentAndPreviewAttachment() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-
-        CourseNavigation.grades.tap()
-
-        GradesList.assignment(id: "1831").tap()
-
-        AssignmentDetails.description("This is assignment one.").waitToExist()
-        AssignmentDetails.link("run.jpg").waitToExist()
-        AssignmentDetails.link("run.jpg").tapAt(.zero)
-        app.find(type: .image).waitToExist()
+    static func page(index: Int) -> Element {
+        return app.find(id: "pages.list.page.row-\(index)")
     }
 }

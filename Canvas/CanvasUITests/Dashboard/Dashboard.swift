@@ -48,6 +48,10 @@ enum Dashboard {
         return app.find(labelContaining: "\(percent)%")
     }
 
+    static func groupCard(id: String) -> Element {
+        return app.find(id: "group-row-\(id)")
+    }
+
     static var profileButton: Element {
         return app.find(id: "favorited-course-list.profile-btn")
     }

@@ -17,19 +17,12 @@
 import XCTest
 import TestsFoundation
 
-class AssignmentsTests: CanvasUITests {
-
-    func testViewAssignmentAndPreviewAttachment() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-
-        CourseNavigation.grades.tap()
-
-        GradesList.assignment(id: "1831").tap()
-
-        AssignmentDetails.description("This is assignment one.").waitToExist()
-        AssignmentDetails.link("run.jpg").waitToExist()
-        AssignmentDetails.link("run.jpg").tapAt(.zero)
-        app.find(type: .image).waitToExist()
+class CourseGroupTests: CanvasUITests {
+    func testGroupCardDisplaysAndShowsDetails() {
+        Dashboard.groupCard(id: "35").waitToExist()
+        app.find(labelContaining: "Group One").waitToExist()
+        app.find(labelContaining: "DEFAULT TERM").waitToExist()
+        Dashboard.groupCard(id: "35").tap()
+        app.find(labelContaining: "Home").waitToExist()
     }
 }
