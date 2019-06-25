@@ -52,7 +52,7 @@ class RubricCircleView: UIView {
         for i in 0..<count {
             let r = ratings[i]
             let description = descriptions[i]
-            let selected = i == (rubric?.selectedIndex ?? 0)
+            let selected = i == rubric?.selectedIndex
 
             let button = DynamicButton(frame: CGRect(x: center.x, y: center.y, width: w, height: w))
             button.tag = i

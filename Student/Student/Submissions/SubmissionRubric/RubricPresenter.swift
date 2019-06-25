@@ -26,7 +26,7 @@ struct RubricViewModel: Hashable, Equatable {
     let title: String
     let longDescription: String
     let selectedDesc: String
-    let selectedIndex: Int
+    let selectedIndex: Int?
     let ratings: [Double]
     let descriptions: [String]
     let comment: String?
@@ -67,7 +67,8 @@ class RubricPresenter {
     }
 
     func update() {
-        if rubrics.count > 0, let rubrics = rubrics.all, let assessments = submissions.first?.rubricAssessments {
+        if rubrics.count > 0, let rubrics = rubrics.all {
+            let assessments = submissions.first?.rubricAssessments
             let models = transformRubricsToViewModels(rubrics, assessments: assessments)
             view?.update(models)
         } else {
@@ -75,33 +76,33 @@ class RubricPresenter {
         }
     }
 
-    func transformRubricsToViewModels(_ rubric: [Rubric], assessments: RubricAssessments) -> [RubricViewModel] {
+    func transformRubricsToViewModels(_ rubric: [Rubric], assessments: RubricAssessments?) -> [RubricViewModel] {
         var models = [RubricViewModel]()
         for r in rubric {
             guard let ratings = r.ratings else { continue }
-            guard let assessment = assessments[r.id] else { continue }
+            let assessment = assessments?[r.id]
 
             let sorted = Array(ratings).sorted { $0.points < $1.points }
             var selected: RubricRating?
-            var selectedIndex = 0
+            var selectedIndex: Int?
             var comments: String?
             var description = ""
 
-            if let index = sorted.firstIndex(where: { rr in assessment.ratingID == rr.id }) {
+            if let index = sorted.firstIndex(where: { rr in assessment?.ratingID == rr.id }) {
                 selected = sorted[index]
                 selectedIndex = index
-                comments = assessment.comments
+                comments = assessment?.comments
                 description = selected?.desc ?? ""
             }
             var allRatings: [Double] = sorted.map { $0.points }
             var allDescriptions: [String] = sorted.map { $0.desc }
-            if selected == nil {
+            if selected == nil, let assess = assessment {
                 //  this is a custom assesment
-                allRatings.append(assessment.points)
+                allRatings.append(assess.points)
                 selectedIndex = allRatings.count - 1
                 description = NSLocalizedString("Custom Grade", comment: "")
                 allDescriptions.append(description)
-                comments = assessment.comments
+                comments = assess.comments
             }
 
             let m = RubricViewModel(
