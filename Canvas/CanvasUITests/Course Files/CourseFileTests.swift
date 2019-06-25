@@ -40,4 +40,15 @@ class CourseFileTests: CanvasUITests {
         sleep(3)
         app.find(type: .image).waitToExist()
     }
+
+    func testLinkToPreviewOpensFile() {
+        Dashboard.courseCard(id: "263").waitToExist()
+        Dashboard.courseCard(id: "263").tap()
+
+        CourseNavigation.pages.tap()
+
+        PagesList.page(index: 1).tap()
+        XCUIElementWrapper(app.links.firstMatch).tap()
+        app.find(type: .image).waitToExist()
+    }
 }

@@ -38,6 +38,10 @@ enum CourseNavigation {
         return app.find(id: "courses-details.modules-cell")
     }
 
+    static var pages: Element {
+        return app.find(id: "courses-details.pages-cell")
+    }
+
     static var people: Element {
         return app.find(id: "courses-details.people-cell")
     }
