@@ -62,11 +62,8 @@ func isDeviceLocked() -> Bool {
     }
 }
 
-class GradesTodayWidgetViewController: UIViewController {
-
-    lazy var presenter: GradesTodayWidgetPresenter = {
-        return GradesTodayWidgetPresenter(view: self)
-    }()
+class GradesWidgetViewController: UIViewController {
+    lazy var presenter = GradesWidgetPresenter(view: self)
 
     var error: Error?
 
@@ -83,8 +80,8 @@ class GradesTodayWidgetViewController: UIViewController {
     // the ROW_HEIGHT would show a little bit of the third row thus we have a COMPACT_ROW_HEIGHT
     var COMPACT_ROW_HEIGHT: CGFloat = 0
 
-    @IBOutlet var tableView: UITableView!
-    @IBOutlet var viewMoreButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var viewMoreButton: UIButton?
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -95,21 +92,10 @@ class GradesTodayWidgetViewController: UIViewController {
         view.backgroundColor = UIColor.clear
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
 
-        tableView.backgroundColor = UIColor.clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.dataSource = self
-        tableView.delegate = self
         tableView.showsVerticalScrollIndicator = false
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.separatorStyle = .none
 
-        let courseNib = UINib(nibName: String(describing: GradeWidgetCell.self), bundle: nil)
-        tableView.register(courseNib, forCellReuseIdentifier: "course-cell")
-
-        let assignmentNib = UINib(nibName: String(describing: GradedAssignmentCell.self), bundle: nil)
-        tableView.register(assignmentNib, forCellReuseIdentifier: "assignment-cell")
-
-        viewMoreButton.setTitle(NSLocalizedString("View more", comment: ""), for: .normal)
+        viewMoreButton?.setTitle(NSLocalizedString("View more", comment: ""), for: .normal)
 
         COMPACT_ROW_HEIGHT = self.ROW_HEIGHT
 
@@ -129,16 +115,13 @@ class GradesTodayWidgetViewController: UIViewController {
     }
 
     func reload() {
-        showError(nil)
-
-        if presenter.courses.error != nil {
-            showError(presenter.courses.error)
-        }
-
-        if presenter.courses.count == 0 && presenter.courses.pending == false {
+        if let error = presenter.favorites.error {
+            showError(error)
+        } else if presenter.favorites.isEmpty && !presenter.favorites.pending {
             showError(GradesWidgetError.noFavoritedCourses)
+        } else {
+            showError(nil)
         }
-        tableView.reloadData()
     }
 
     func showError(_ error: Error?) {
@@ -148,11 +131,11 @@ class GradesTodayWidgetViewController: UIViewController {
     }
 
     @IBAction func openApp(_ sender: UIButton) {
-        extensionContext?.open(URL(string: "canvas-student://")!, completionHandler: nil)
+        extensionContext?.open(URL(string: "canvas-student://")!)
     }
 }
 
-extension GradesTodayWidgetViewController: UITableViewDataSource {
+extension GradesWidgetViewController: UITableViewDataSource {
     func maxNumCourseRows() -> Int {
         let totalHeight = extensionContext?.widgetMaximumSize(for: .expanded).height ?? 0
         let assignmentSectionHeight = self.tableView(self.tableView, heightForHeaderInSection: 0) + (CGFloat(presenter.submissions.count) * self.ROW_HEIGHT)
@@ -213,12 +196,12 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
         let maxRows = maxNumCourseRows()
 
         // We have the same number of courses as the max we can show
-        if maxRows == presenter.courses.count {
-            return presenter.courses.count
+        if maxRows == presenter.favorites.count {
+            return presenter.favorites.count
         }
 
         // we either have more or less than the maxRows count
-        let rowsToShow = min(presenter.courses.count, maxRows - 1)
+        let rowsToShow = min(presenter.favorites.count, maxRows - 1)
         return rowsToShow
     }
 
@@ -239,34 +222,25 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
     }
 
     func courseGradeCell(indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "course-cell", for: indexPath) as? GradeWidgetCell else  {
-            fatalError("Incorrect cell type found; expected: GradeWidgetCell")
-        }
+        let course = presenter.favorites[indexPath.row]
 
-        guard let course = presenter.courses[indexPath.row] else {
-            fatalError("Course failed to load")
-        }
-
-        cell.courseNameLabel?.text = course.name
-        cell.gradeLabel?.text = course.displayGrade
-        cell.dotView.layer.cornerRadius = cell.dotView.bounds.size.height / 2
-        cell.dotView.backgroundColor = course.color
+        let cell = tableView.dequeue(for: indexPath) as GradesWidgetCourseCell
+        cell.courseNameLabel?.text = course?.name
+        cell.gradeLabel?.text = course?.displayGrade
+        cell.dotView?.backgroundColor = course?.color
         return cell
     }
 
     func assignmentGradeCell(indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "assignment-cell", for: indexPath) as? GradedAssignmentCell else {
-            fatalError("Incorrect cel type found; expected: GradedAssignmentCell")
-        }
-        guard let submission = presenter.submissions[indexPath.row], let assignment = submission.assignment, let course = presenter.courses.first(where: { $0.id == assignment.courseID }) else {
-            return cell
-        }
+        let submission = presenter.submissions[indexPath.row]
+        let assignment = submission?.assignment
+        let course = presenter.courses.first(where: { $0.id == assignment?.courseID })
 
-        cell.courseNameLabel?.text = course.name
-        cell.assignmentNameLabel?.text = assignment.name
-        cell.gradeLabel?.text = assignment.gradeText
-        cell.dotView.layer.cornerRadius = cell.dotView.bounds.size.height / 2
-        cell.dotView.backgroundColor = course.color
+        let cell = tableView.dequeue(for: indexPath) as GradesWidgetAssignmentCell
+        cell.courseNameLabel?.text = course?.name
+        cell.assignmentNameLabel?.text = assignment?.name
+        cell.gradeLabel?.text = assignment?.gradeText
+        cell.dotView?.backgroundColor = course?.color
         return cell
     }
 
@@ -274,20 +248,20 @@ extension GradesTodayWidgetViewController: UITableViewDataSource {
         let message = (error as? GradesWidgetError).flatMap { $0.localizedDescription } ?? DEFAULT_ERROR_MESSAGE
 
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel!.text = message
-        cell.textLabel!.textAlignment = .center
-        cell.textLabel!.lineBreakMode = .byWordWrapping
-        cell.textLabel!.numberOfLines = 0
+        cell.textLabel?.text = message
+        cell.textLabel?.textAlignment = .center
+        cell.textLabel?.lineBreakMode = .byWordWrapping
+        cell.textLabel?.numberOfLines = 0
         return cell
     }
 }
 
-extension GradesTodayWidgetViewController: UITableViewDelegate {
+extension GradesWidgetViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
         guard let host = AppEnvironment.shared.currentSession?.baseURL.host else {
-            extensionContext?.open(URL(string: "canvas-courses://")!, completionHandler: nil)
+            extensionContext?.open(URL(string: "canvas-courses://")!)
             return
         }
 
@@ -300,7 +274,7 @@ extension GradesTodayWidgetViewController: UITableViewDelegate {
 
     func openAssignment(indexPath: IndexPath, host: String) {
         guard let submission = presenter.submissions[indexPath.row], let assignment = submission.assignment else {
-            extensionContext?.open(URL(string: "canvas-courses://")!, completionHandler: nil)
+            extensionContext?.open(URL(string: "canvas-courses://\(host)")!)
             return
         }
 
@@ -308,15 +282,15 @@ extension GradesTodayWidgetViewController: UITableViewDelegate {
     }
 
     func openCourse(indexPath: IndexPath, host: String) {
-        guard let course = presenter.courses[indexPath.row] else {
-            extensionContext?.open(URL(string: "canvas-courses://")!, completionHandler: nil)
+        guard let course = presenter.favorites[indexPath.row] else {
+            extensionContext?.open(URL(string: "canvas-courses://\(host)")!)
             return
         }
-        extensionContext?.open(URL(string: "canvas-courses://\(host)/courses/\(course.id)/grades")!, completionHandler: nil)
+        extensionContext?.open(URL(string: "canvas-courses://\(host)/courses/\(course.id)/grades")!)
     }
 }
 
-extension GradesTodayWidgetViewController: NCWidgetProviding {
+extension GradesWidgetViewController: NCWidgetProviding {
     func widgetPerformUpdate(completionHandler: @escaping (NCUpdateResult) -> Void) {
         completionHandler(.newData)
     }
@@ -328,7 +302,7 @@ extension GradesTodayWidgetViewController: NCWidgetProviding {
             if maxSize.height > (2 * COMPACT_ROW_HEIGHT) {
                 COMPACT_ROW_HEIGHT = maxSize.height / 2
             }
-            viewMoreButton.isHidden = true
+            viewMoreButton?.isHidden = true
             preferredContentSize = maxSize
             tableView.reloadData()
             return
@@ -337,26 +311,26 @@ extension GradesTodayWidgetViewController: NCWidgetProviding {
         let numSections = presenter.submissions.count > 0 ? 2 : 1
         let sectionsHeight = self.SECTION_HEADER_HEIGHT * CGFloat(numSections)
         let assignmentGradesHeight = self.ROW_HEIGHT * CGFloat(presenter.submissions.count)
-        let courseGradesHeight = self.ROW_HEIGHT * CGFloat(presenter.courses.count)
+        let courseGradesHeight = self.ROW_HEIGHT * CGFloat(presenter.favorites.count)
         let tableViewHeight = sectionsHeight + assignmentGradesHeight + courseGradesHeight
         let maxHeight = min(maxSize.height, tableViewHeight)
 
-        viewMoreButton.isHidden = maxNumCourseRows() >= presenter.courses.count
+        viewMoreButton?.isHidden = maxNumCourseRows() >= presenter.favorites.count
 
         preferredContentSize = CGSize(width: 0, height: maxHeight)
         tableView.reloadData()
     }
 }
 
-class GradeWidgetCell: UITableViewCell {
-    @IBOutlet weak var gradeLabel: UILabel!
-    @IBOutlet weak var courseNameLabel: UILabel!
-    @IBOutlet weak var dotView: UIView!
+class GradesWidgetCourseCell: UITableViewCell {
+    @IBOutlet weak var courseNameLabel: UILabel?
+    @IBOutlet weak var dotView: UIView?
+    @IBOutlet weak var gradeLabel: UILabel?
 }
 
-class GradedAssignmentCell: UITableViewCell {
-    @IBOutlet weak var dotView: UIView!
-    @IBOutlet weak var courseNameLabel: UILabel!
-    @IBOutlet weak var assignmentNameLabel: UILabel!
-    @IBOutlet weak var gradeLabel: UILabel!
+class GradesWidgetAssignmentCell: UITableViewCell {
+    @IBOutlet weak var assignmentNameLabel: UILabel?
+    @IBOutlet weak var courseNameLabel: UILabel?
+    @IBOutlet weak var dotView: UIView?
+    @IBOutlet weak var gradeLabel: UILabel?
 }
