@@ -19,10 +19,11 @@ import Core
 
 protocol RubricViewProtocol: ErrorViewController {
     func update(_ rubric: [RubricViewModel])
-    func showEmptyState()
+    func showEmptyState(_ show: Bool)
 }
 
 struct RubricViewModel: Hashable, Equatable {
+    var id: String
     let title: String
     let longDescription: String
     let selectedDesc: String
@@ -90,7 +91,7 @@ class RubricPresenter {
             let models = transformRubricsToViewModels(rubrics, assessments: assessments)
             view?.update(models)
         } else {
-            view?.showEmptyState()
+            view?.showEmptyState(true)
         }
     }
 
@@ -126,6 +127,7 @@ class RubricPresenter {
             }
 
             let m = RubricViewModel(
+                id: r.id,
                 title: r.desc,
                 longDescription: r.longDesc,
                 selectedDesc: description,

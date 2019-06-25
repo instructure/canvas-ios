@@ -55,6 +55,7 @@ class RubricCircleView: UIView {
         let w = RubricCircleView.w
         let space: CGFloat = 10
         let ratings: [Double] = rubric?.ratings ?? []
+        let rubricID: String = rubric?.id ?? "0"
         let descriptions: [String] = rubric?.descriptions ?? []
         let howManyCanFitInWidth = Int( floor( frame.size.width / (w + space) ) )
         let count = ratings.count
@@ -68,6 +69,7 @@ class RubricCircleView: UIView {
 
             let button = DynamicButton(frame: CGRect(x: center.x, y: center.y, width: w, height: w))
             button.tag = i
+            button.accessibilityIdentifier = "RubricCell.RatingButton.\(rubricID)-\(r)"
             button.addTarget(self, action: #selector(actionButtonClicked(sender:)), for: .primaryActionTriggered)
             button.layer.cornerRadius = floor( w / 2 )
             button.layer.masksToBounds = true
