@@ -182,11 +182,7 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewButtonDele
     private var courseColor: UIColor?
     private var selectedRatingIndex: Int = 0 {
         didSet {
-            guard let rubric = rubric else { return }
-            let rating = rubric.ratingBlurb(selectedRatingIndex)
-            ratingTitle?.text = rating.header
-            ratingDescription?.text = rating.subHeader
-            ratingDescription.isHidden = rating.subHeader.isEmpty
+            updateRatingText()
         }
     }
 
@@ -236,6 +232,14 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewButtonDele
 
     func updateLongDescription(desc: String?) {
         viewLongDescriptionButton.isHidden = desc?.isEmpty ?? true
+    }
+
+    func updateRatingText() {
+        guard let rubric = rubric else { return }
+        let rating = rubric.ratingBlurb(selectedRatingIndex)
+        ratingTitle?.text = rating.header
+        ratingDescription?.text = rating.subHeader
+        ratingDescription.isHidden = rating.subHeader.isEmpty
     }
 
     static func commentViewSize(comment: String?, containerFrame: CGRect) -> CGSize {

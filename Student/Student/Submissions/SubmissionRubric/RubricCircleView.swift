@@ -124,8 +124,8 @@ class RubricCircleView: UIView {
     func animateButtonClick(sender: DynamicButton, completionHandler: @escaping () -> Void) {
         let delay = 0.0
 
-        let sameButtonClicked: Bool = sender == self.currentlySelectedButton
-        let buttonToAnimate = sameButtonClicked ? self.buttons[self.rubric?.selectedIndex ?? 0] : sender
+        let sameButtonClicked: Bool = sender == currentlySelectedButton
+        let buttonToAnimate = sameButtonClicked ? buttons[rubric?.selectedIndex ?? 0] : sender
         buttonToAnimate.transform = CGAffineTransform(scaleX: 0.877, y: 0.877)
 
         UIView.animate(withDuration: 0.2) {
