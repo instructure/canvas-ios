@@ -56,7 +56,8 @@ class RubricPresenterTests: PersistenceTestCase {
                 ratings: [10.0, 25.0],
                 descriptions: ["Excellent", "Excellent"],
                 comment: "You failed at punctuation!",
-                rubricRatings: Array(rubric.ratings!).sorted { $0.points < $1.points }
+                rubricRatings: Array(rubric.ratings!).sorted { $0.points < $1.points },
+                isCustomAssessment: false
             ),
         ]
 
@@ -93,7 +94,8 @@ class RubricPresenterTests: PersistenceTestCase {
                 ratings: [10.0, 25.0, 1.0],
                 descriptions: ["Excellent", "Excellent", "Custom Grade"],
                 comment: "this is custom",
-                rubricRatings: Array(rubric.ratings!).sorted { $0.points < $1.points }
+                rubricRatings: Array(rubric.ratings!).sorted { $0.points < $1.points },
+                isCustomAssessment: true
             ),
         ]
 
