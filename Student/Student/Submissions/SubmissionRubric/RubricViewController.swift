@@ -44,11 +44,11 @@ class RubricViewController: UIViewController {
     }
 
     func setupCollectionViewLayout() {
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.itemSize = UICollectionViewFlowLayout.automaticSize
-            layout.estimatedItemSize = CGSize(width: collectionView.frame.size.width, height: 100)
-            collectionView.collectionViewLayout = layout
-        }
+//        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+//            layout.itemSize = UICollectionViewFlowLayout.automaticSize
+//            layout.estimatedItemSize = CGSize(width: collectionView.frame.size.width-32, height: 100)
+//            collectionView.collectionViewLayout = layout
+//        }
     }
 
     func setupCollectionViewHeader() {
@@ -113,6 +113,13 @@ extension RubricViewController: UICollectionViewDataSource, UICollectionViewDele
 
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let model = models[indexPath.item]
+        let maxWidth = collectionView.frame.size.width
+        let h = RubricCollectionViewCell.computedHeight(rubric: model, selectedRatingIndex: selectedRatingCache[indexPath.item], maxWidth: maxWidth)
+        return CGSize(width: maxWidth, height: h)
+    }
 }
 
 extension RubricViewController: RubricViewProtocol {
@@ -174,11 +181,11 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewButtonDele
     private static var margin: CGFloat = 16
     @IBOutlet weak var viewLongDescriptionButton: UIButton!
     @IBOutlet weak var rubricTitleToCircleViewVerticalConstraint: NSLayoutConstraint!
-    lazy var cellWidthConstraint: NSLayoutConstraint = {
-        let width = contentView.widthAnchor.constraint(equalToConstant: bounds.size.width)
-        width.isActive = true
-        return width
-    }()
+//    lazy var cellWidthConstraint: NSLayoutConstraint = {
+//        let width = contentView.widthAnchor.constraint(equalToConstant: bounds.size.width)
+//        width.isActive = true
+//        return width
+//    }()
     private var rubric: RubricViewModel?
     private var courseColor: UIColor?
     private var selectedRatingIndex: Int = 0 {
@@ -201,10 +208,22 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewButtonDele
         contentView.clipsToBounds = false
     }
 
-    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
-        cellWidthConstraint.constant = bounds.size.width
-        return contentView.systemLayoutSizeFitting(CGSize(width: targetSize.width, height: 1))
-    }
+//    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+//        cellWidthConstraint.constant = bounds.size.width
+//        return contentView.systemLayoutSizeFitting(CGSize(width: targetSize.width, height: 1))
+//    }
+
+//    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+//        setNeedsLayout()
+//        layoutIfNeeded()
+//        let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
+//        var newFrame = layoutAttributes.frame
+//        // note: don't change the width
+//        newFrame.size.height = ceil(size.height)
+//        layoutAttributes.frame = newFrame
+//        cellWidthConstraint.constant = newFrame.width - 32
+//        return layoutAttributes
+//    }
 
     func update(rubric: RubricViewModel, selectedRatingIndex: Int, courseColor: UIColor) {
         self.rubric = rubric
@@ -234,7 +253,7 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewButtonDele
     func updateComment(comment: String?) {
         commentView.textLabel.text = comment
         commentView.isHidden = comment?.isEmpty ?? true
-        let size = type(of: self).commentViewSize(comment: comment, containerFrame: bounds)
+        let size = type(of: self).commentViewSize(comment: comment, maxWidth: bounds.size.width)
         commentViewWidthConstraint.constant = size.width
     }
 
@@ -250,17 +269,36 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewButtonDele
         ratingDescription.isHidden = rating.subHeader.isEmpty
     }
 
-    static func commentViewSize(comment: String?, containerFrame: CGRect) -> CGSize {
+    static func commentViewSize(comment: String?, maxWidth: CGFloat) -> CGSize {
         if let comment = comment, !comment.isEmpty {
             let maxLabelHeight: CGFloat = 100.0
             let margin: CGFloat = 16.0
             let horizontalMargins: CGFloat = (margin * 2.0) + (margin * 2.0)
             let verticalMargins: CGFloat = 24    //  (top + bottom margins 16, 8)
-            let maxWidth: CGFloat = containerFrame.size.width - horizontalMargins
-            let constraintRect = CGSize(width: maxWidth, height: maxLabelHeight)
+            let adjustedMaxWidth: CGFloat = maxWidth - horizontalMargins
+            let constraintRect = CGSize(width: adjustedMaxWidth, height: maxLabelHeight)
             let size = comment.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: chatBubbleTextLabelFont], context: nil)
             let w = min( size.width + (margin * 2.0) + margin /* 1 margin since we don't extend full width */, maxWidth)
             let h = ceil(size.height) + verticalMargins
+            let computedSize = CGSize(width: w, height: h)
+            return computedSize
+        }
+        return CGSize.zero
+    }
+
+    static func ratingDescriptionSize(comment: String?, maxWidth: CGFloat) -> CGSize {
+        if let comment = comment, !comment.isEmpty {
+            let maxLabelHeight: CGFloat = 100.0
+            let margin: CGFloat = 16 + 8
+            let horizontalMargins: CGFloat = (margin * 2.0)
+            let verticalMargins: CGFloat = 16
+            let adjustedMaxWidth: CGFloat = maxWidth - horizontalMargins
+            let constraintRect = CGSize(width: adjustedMaxWidth, height: maxLabelHeight)
+            let size = comment.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: UIFont.scaledNamedFont(.medium12)], context: nil)
+//            let w = min( size.width + (margin * 2.0) + margin /* 1 margin since we don't extend full width */, maxWidth)
+            let w = floor(size.width)
+            let h = ceil(size.height) + verticalMargins
+
             let computedSize = CGSize(width: w, height: h)
             return computedSize
         }
@@ -278,5 +316,24 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewButtonDele
             newIndex = rubric?.selectedIndex ?? 0
         }
         delegate?.selectedRatingDidChange(ratingIndex: newIndex, cell: self)
+    }
+
+    static func computedHeight(rubric: RubricViewModel, selectedRatingIndex: Int, maxWidth: CGFloat) -> CGFloat {
+        var verticalSpacing: CGFloat = 16
+        let title: CGFloat = 12
+        var descButton: CGFloat = 0
+        verticalSpacing += rubric.longDescription.isEmpty ? 16 : 4
+        if !rubric.longDescription.isEmpty {
+            descButton = 12
+        }
+        let circles: CGFloat = RubricCircleView.computedHeight(rubric: rubric, maxWidth: maxWidth)
+        let ratingText: CGFloat = 12.0 + ratingDescriptionSize(comment: rubric.ratings[selectedRatingIndex].description, maxWidth: maxWidth).height
+        let comment: CGFloat = commentViewSize(comment: rubric.comment, maxWidth: maxWidth).height
+        if comment > 0 { verticalSpacing += 4 }
+        verticalSpacing += 16
+
+        let r = title + descButton + circles + ratingText + comment + verticalSpacing
+        print("r: \(r)")
+        return r
     }
 }
