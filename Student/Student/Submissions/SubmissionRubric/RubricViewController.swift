@@ -117,14 +117,15 @@ extension RubricViewController: UICollectionViewDataSource, UICollectionViewDele
 
 extension RubricViewController: RubricViewProtocol {
     func update(_ rubric: [RubricViewModel]) {
+        showEmptyState(false)
         models = rubric
         if !collectionViewDidSetupCells { setupCollectionViewCells() }
         selectedRatingCache = models.map { $0.selectedIndex }
         collectionView.reloadData()
     }
 
-    func showEmptyState() {
-        emptyView?.isHidden = false
+    func showEmptyState(_ show: Bool) {
+        emptyView?.isHidden = true
     }
 }
 
@@ -209,6 +210,13 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewButtonDele
         self.rubric = rubric
         rubricTitle.text = rubric.title
         rubricTitle.accessibilityTraits = .header
+        rubricTitle.accessibilityIdentifier = "RubricCell.title.\(rubric.id)"
+        commentView.textLabel.accessibilityIdentifier = "RubricCell.comment.\(rubric.id)"
+        commentView.accessibilityIdentifier = "RubricCell.commentContainer.\(rubric.id)"
+        viewLongDescriptionButton.accessibilityIdentifier = "RubricCell.descButton.\(rubric.id)"
+        ratingTitle.accessibilityIdentifier = "RubricCell.ratingTitle.\(rubric.id)"
+        ratingDescription.accessibilityIdentifier = "RubricCell.ratingDesc.\(rubric.id)"
+
         if circleView.rubric == nil {
             circleView.rubric = rubric
         }

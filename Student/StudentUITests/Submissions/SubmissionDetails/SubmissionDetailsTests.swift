@@ -26,8 +26,8 @@ class SubmissionDetailsTests: StudentUITestCase {
         return course
     }()
 
-    func mockAssignment(_ assignment: APIAssignment) -> APIAssignment {
-        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
+    func mockAssignment(_ assignment: APIAssignment, include: [GetAssignmentRequest.GetAssignmentInclude] = []) -> APIAssignment {
+        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: include), value: assignment)
         return assignment
     }
 
@@ -288,5 +288,75 @@ class SubmissionDetailsTests: StudentUITestCase {
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.mediaPlayer.waitToExist(2)
         XCTAssertTrue(SubmissionDetails.mediaPlayer.isVisible)
+    }
+
+    func testRubric() {
+        let ratings: [APIRubricRating] = [
+            APIRubricRating.make(id: "1", points: 10, description: "A", long_description: "this is A", assignmentID: "1", position: 0),
+            APIRubricRating.make(id: "2", points: 20, description: "B", long_description: "this is B", assignmentID: "1", position: 1),
+            APIRubricRating.make(id: "3", points: 30, description: "C", long_description: "this is C", assignmentID: "1", position: 2),
+        ]
+        let rubric = APIRubric.make(ratings: ratings)
+
+        mockRubric(rubric: [rubric])
+        let id: String = rubric.id.value
+
+        XCTAssertFalse(SubmissionDetails.rubricEmptyLabel.isVisible)
+
+        let cell1TitleLabel = SubmissionDetails.rubricCellTitle(id: id)
+        cell1TitleLabel.waitToExist()
+        XCTAssertEqual(cell1TitleLabel.label, rubric.description)
+        XCTAssertTrue(SubmissionDetails.rubricCellDescButton(id: id).isVisible)
+
+        let button1 = SubmissionDetails.rubricCellRatingButton(rubricID: id, points: ratings[0].points!)
+        let button2 = SubmissionDetails.rubricCellRatingButton(rubricID: id, points: ratings[1].points!)
+        let button3 = SubmissionDetails.rubricCellRatingButton(rubricID: id, points: ratings[2].points!)
+        XCTAssertTrue(button1.isVisible)
+        XCTAssertTrue(button2.isVisible)
+        XCTAssertTrue(button3.isVisible)
+
+        button1.tap()
+
+        let ratingTitleLabel = SubmissionDetails.rubricCellRatingTitle(id: id)
+        let ratingDescLabel = SubmissionDetails.rubricCellRatingDesc(id: id)
+        ratingTitleLabel.waitToExist()
+
+        XCTAssertEqual(ratingTitleLabel.label, ratings[0].description)
+        XCTAssertEqual(ratingDescLabel.label, ratings[0].long_description)
+
+        button2.tap()
+
+        XCTAssertEqual(ratingTitleLabel.label, ratings[1].description)
+        XCTAssertEqual(ratingDescLabel.label, ratings[1].long_description)
+
+        button3.tap()
+
+        XCTAssertEqual(ratingTitleLabel.label, ratings[2].description)
+        XCTAssertEqual(ratingDescLabel.label, ratings[2].long_description)
+
+        button3.tap()
+        XCTAssertEqual(ratingTitleLabel.label, ratings[0].description)
+        XCTAssertEqual(ratingDescLabel.label, ratings[0].long_description)
+    }
+
+    func mockRubric(rubric: [APIRubric], rubric_assessment: APIRubricAssessmentMap = ["1": APIRubricAssessment.make()]) {
+        mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
+            course.canvasContextID: "#123456",
+            ]))
+
+        let assignment = mockAssignment(APIAssignment.make(
+            rubric: rubric
+        ), include: [.submission])
+
+        let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            body: "hi",
+            submission_type: .online_text_entry,
+            submitted_at: submittedAt,
+            rubric_assessment: rubric_assessment
+        ))
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetails.drawerRubricButton.tap()
     }
 }
