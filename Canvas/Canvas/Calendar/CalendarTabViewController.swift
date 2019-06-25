@@ -39,6 +39,7 @@ public func CalendarTabViewController(session: Session, route: @escaping (UIView
     calendarVC.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
     calendarVC.tabBarItem.image = .icon(.calendarMonth, .line)
     calendarVC.tabBarItem.selectedImage = .icon(.calendarMonth, .solid)
+    calendarVC.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
 
     return calendarVC
 }

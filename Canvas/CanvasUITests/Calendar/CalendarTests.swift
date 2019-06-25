@@ -37,8 +37,7 @@ class CalendarTests: CanvasUITests {
         let day = formatter.string(from: Date())
 
         // Calendar
-        Dashboard.calendarTab.waitToExist()
-        Dashboard.calendarTab.tap()
+        TabBar.calendarTab.tap()
         app.swipeDown()
         app.swipeDown()
         XCTAssertFalse(Calendar.text(containing: monthYear).exists)
