@@ -18,33 +18,16 @@ import XCTest
 import TestsFoundation
 
 class AssignmentsTests: CanvasUITests {
-    func testViewAssignment() {
-        // Dashboard
+
+    func testViewAssignmentAndPreviewAttachment() {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
-        // Course Details
         CourseNavigation.grades.tap()
 
-        // Grades List
         GradesList.assignment(id: "1831").tap()
 
-        // Assignment Details
         AssignmentDetails.description("This is assignment one.").waitToExist()
-    }
-
-    func testPreviewAssignmentAttachment() {
-        // Dashboard
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-
-        // Course Details
-        CourseNavigation.grades.tap()
-
-        // Grades List
-        GradesList.assignment(id: "1831").tap()
-
-        // Assignment Details
         AssignmentDetails.link("run.jpg").waitToExist()
         AssignmentDetails.link("run.jpg").tapAt(.zero)
         app.find(type: .image).waitToExist()

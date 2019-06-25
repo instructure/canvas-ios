@@ -52,18 +52,6 @@ enum Dashboard {
         return app.find(id: "group-row-\(id)")
     }
 
-    static var dashboardTab: Element {
-        return app.find(label: "Dashboard")
-    }
-
-    static var calendarTab: Element {
-        return app.find(label: "Calendar")
-    }
-
-    static var inboxTab: Element {
-        return app.find(id: "tab-bar.inbox-btn")
-    }
-
     static var profileButton: Element {
         return app.find(id: "favorited-course-list.profile-btn")
     }

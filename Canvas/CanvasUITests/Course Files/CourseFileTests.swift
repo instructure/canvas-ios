@@ -25,14 +25,11 @@ enum FilesList {
 
 class CourseFileTests: CanvasUITests {
     func testPreviewCourseFile() {
-        // Dashboard
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
-        // Course Details
         CourseNavigation.files.tap()
 
-        // Course Files
         FilesList.file(id: "10528").waitToExist()
         FilesList.file(id: "10528").tap()
 

@@ -20,17 +20,11 @@ import TestsFoundation
 class InboxTests: CanvasUITests {
     func testCannotMessageEntireClassWhenDisabled() {
         TabBar.inboxTab.tap()
-
-        // Inbox
         Inbox.newMessageButton.tap()
 
-        // New Message
-        NewMessage.selectCourseButton.tap()
-
         // Course Selection
+        NewMessage.selectCourseButton.tap()
         MessageCourseSelection.course(id: "263").tap()
-
-        // New Message
         NewMessage.addRecipientButton.tap()
 
         // Recipients Selection
@@ -42,17 +36,11 @@ class InboxTests: CanvasUITests {
 
     func testCannotMessageIndividialsWhenDisabled() {
         TabBar.inboxTab.tap()
-
-        // Inbox
         Inbox.newMessageButton.tap()
 
-        // New Message
-        NewMessage.selectCourseButton.tap()
-
         // Course Selection
+        NewMessage.selectCourseButton.tap()
         MessageCourseSelection.course(id: "263").tap()
-
-        // New Message
         NewMessage.addRecipientButton.tap()
 
         // Recipients Selection
@@ -66,7 +54,6 @@ class InboxTests: CanvasUITests {
         XCTAssert(TabBar.inboxTab.value == "2 items")
         TabBar.inboxTab.tap()
 
-        // Inbox
         Inbox.message(id: "47").waitToExist()
         Inbox.filterButton.tap()
         Inbox.filterOption("Assignment").waitToExist()

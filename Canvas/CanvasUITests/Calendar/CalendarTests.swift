@@ -36,7 +36,6 @@ class CalendarTests: CanvasUITests {
         formatter.dateFormat = "d"
         let day = formatter.string(from: Date())
 
-        // Calendar
         TabBar.calendarTab.tap()
         app.swipeDown()
         app.swipeDown()
