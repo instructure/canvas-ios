@@ -21,7 +21,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TL4-ID-oSe">
-                        <rect key="frame" x="0.0" y="0.0" width="605" height="240"/>
+                        <rect key="frame" x="16" y="0.0" width="573" height="240"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8l-cO-0yO">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="8"/>
@@ -40,7 +40,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c10-zD-TM2" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="29.5" width="605" height="16"/>
+                                <rect key="frame" x="0.0" y="29.5" width="573" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="YYQ-AI-GPD"/>
                                 </constraints>
@@ -53,17 +53,17 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIh-3R-hA7" customClass="RubricCircleView" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="53.5" width="605" height="50"/>
+                                <rect key="frame" x="0.0" y="53.5" width="573" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="tOc-eo-ocB"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w6o-7H-Qcu">
-                                <rect key="frame" x="0.0" y="111.5" width="605" height="51.5"/>
+                                <rect key="frame" x="0.0" y="111.5" width="573" height="51.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SwY-o5-qfd">
-                                        <rect key="frame" x="8" y="8" width="589" height="35.5"/>
+                                        <rect key="frame" x="8" y="8" width="557" height="35.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HjH-aA-XMV" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="37" height="17"/>
@@ -75,7 +75,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q12-sP-as9" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="21" width="589" height="14.5"/>
+                                                <rect key="frame" x="0.0" y="21" width="557" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -116,7 +116,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kTA-sB-Edy" userLabel="Border">
-                                <rect key="frame" x="0.0" y="239" width="605" height="1"/>
+                                <rect key="frame" x="0.0" y="239" width="573" height="1"/>
                                 <color key="backgroundColor" name="borderDark"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Gkp-nu-QZi"/>
@@ -126,21 +126,21 @@
                         <constraints>
                             <constraint firstItem="ZIh-3R-hA7" firstAttribute="leading" secondItem="TL4-ID-oSe" secondAttribute="leading" id="Gw9-fh-zqk"/>
                             <constraint firstItem="c10-zD-TM2" firstAttribute="leading" secondItem="TL4-ID-oSe" secondAttribute="leading" id="MT4-Ky-DTR"/>
+                            <constraint firstItem="kTA-sB-Edy" firstAttribute="leading" secondItem="TL4-ID-oSe" secondAttribute="leading" id="SEo-N0-L5I"/>
                             <constraint firstItem="w6o-7H-Qcu" firstAttribute="leading" secondItem="TL4-ID-oSe" secondAttribute="leading" id="bPA-T1-26F"/>
-                            <constraint firstItem="kTA-sB-Edy" firstAttribute="leading" secondItem="TL4-ID-oSe" secondAttribute="leading" id="bvw-aC-Gza"/>
                             <constraint firstAttribute="trailing" secondItem="ZIh-3R-hA7" secondAttribute="trailing" id="qXz-BC-XFs"/>
+                            <constraint firstAttribute="trailing" secondItem="kTA-sB-Edy" secondAttribute="trailing" id="szT-3c-NvS"/>
                             <constraint firstAttribute="trailing" secondItem="w6o-7H-Qcu" secondAttribute="trailing" id="xIK-ip-6jv"/>
                             <constraint firstAttribute="trailing" secondItem="c10-zD-TM2" secondAttribute="trailing" id="yU7-6n-Zdx"/>
-                            <constraint firstAttribute="trailing" secondItem="kTA-sB-Edy" secondAttribute="trailing" id="zul-J2-KdP"/>
                         </constraints>
                     </stackView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="TL4-ID-oSe" firstAttribute="top" secondItem="p4f-Ib-2wk" secondAttribute="top" id="2vd-7t-zvn"/>
-                <constraint firstAttribute="trailing" secondItem="TL4-ID-oSe" secondAttribute="trailing" id="VCx-yL-Jbh"/>
+                <constraint firstAttribute="trailing" secondItem="TL4-ID-oSe" secondAttribute="trailing" constant="16" id="VCx-yL-Jbh"/>
                 <constraint firstAttribute="bottom" secondItem="TL4-ID-oSe" secondAttribute="bottom" id="WGn-zL-QId"/>
-                <constraint firstItem="TL4-ID-oSe" firstAttribute="leading" secondItem="p4f-Ib-2wk" secondAttribute="leading" id="arY-Sk-mYo"/>
+                <constraint firstItem="TL4-ID-oSe" firstAttribute="leading" secondItem="p4f-Ib-2wk" secondAttribute="leading" constant="16" id="arY-Sk-mYo"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="D4J-uA-zdm"/>
             <size key="customSize" width="605" height="254"/>
