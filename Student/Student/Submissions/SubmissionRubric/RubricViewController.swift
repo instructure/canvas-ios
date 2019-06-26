@@ -25,103 +25,164 @@ class RubricViewController: UIViewController {
         return controller
     }
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentStackView: UIStackView!
+    @IBOutlet weak var contentStackViewWidth: NSLayoutConstraint!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var emptyViewLabel: UILabel!
     var models: [RubricViewModel] = []
     var presenter: RubricPresenter!
     var selectedRatingCache = [Int]()
     var collectionViewDidSetupCells = false
+    var rubricCells: [UIView] = []
+    let margin: CGFloat = 16
+    var didLayoutRubrics = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         emptyViewLabel.text = NSLocalizedString("There is no rubric for this assignment", comment: "")
 
-        setupCollectionViewLayout()
-        setupCollectionViewHeader()
         presenter.viewIsReady()
     }
 
-    func setupCollectionViewLayout() {
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.itemSize = UICollectionViewFlowLayout.automaticSize
-            layout.estimatedItemSize = CGSize(width: view.bounds.size.width, height: 100)
-            collectionView.collectionViewLayout = layout
-        }
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        contentStackViewWidth.constant = view.bounds.width - (margin * 2)
     }
 
-    func setupCollectionViewHeader() {
-        let headerID = String(describing: GradeCircleReusableView.self)
-        collectionView.register(GradeCircleReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
-    }
-
-    func setupCollectionViewCells() {
-        collectionViewDidSetupCells = true
-        let count = models.count
-        for i in 0..<count {
-            let id = String(describing: RubricCollectionViewCell.self)
-            let nib = UINib(nibName: id, bundle: Bundle(for: type(of: self)))
-            let cellID = "\(id)_\(i)"
-            collectionView.register(nib, forCellWithReuseIdentifier: cellID)
-        }
-    }
+//    func setupCollectionViewHeader() {
+//        let headerID = String(describing: GradeCircleReusableView.self)
+//        collectionView.register(GradeCircleReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
+//    }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: nil) { _ in
-            self.collectionView.reloadData()
+//            self.collectionView.reloadData()
         }
     }
-}
 
-extension RubricViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func layoutRubrics() {
+        if didLayoutRubrics { return }
+        didLayoutRubrics = true
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if presenter.assignments.first?.useRubricForGrading ?? false {
-            return CGSize(width: collectionView.frame.width, height: 156)
+        for m in models { addModelToStackView(m) }
+    }
+
+    func addModelToStackView(_ model: RubricViewModel) {
+        let spacing: CGFloat = 16
+
+        let title = DynamicLabel(frame: CGRect.zero)
+        title.text = model.title
+        title.font = UIFont.scaledNamedFont(.semibold16)
+        contentStackView.addArrangedSubview(title)
+
+        if !model.longDescription.isEmpty {
+            let descButton = DynamicButton(frame: CGRect.zero)
+            descButton.titleLabel?.font = UIFont.scaledNamedFont(.medium14)
+            descButton.setTitle("Description", for: .normal)
+            descButton.setTitleColor(.red, for: .normal)
+            contentStackView.addArrangedSubview(descButton)
+            contentStackView.setCustomSpacing(spacing, after: descButton)
+
+            descButton.accessibilityIdentifier = "RubricCell.descButton.\(model.id)"
+        }
+
+        contentStackView.setCustomSpacing(model.longDescription.isEmpty ? spacing : spacing / 4, after: title)
+
+        let cirView = RubricCircleView(frame: CGRect.zero)
+        cirView.rubric = model
+        contentStackView.addArrangedSubview(cirView)
+        cirView.pinToLeftAndRightOfSuperview()
+        cirView.buttonClickDelegate = self
+
+        contentStackView.setCustomSpacing(spacing / 2, after: cirView)
+
+        let container = UIView(frame: CGRect.zero)
+        container.layer.cornerRadius = 8
+        let ratingStack = UIStackView(frame: CGRect.zero)
+        ratingStack.axis = .vertical
+        ratingStack.distribution = .fill
+        ratingStack.alignment = .leading
+        ratingStack.spacing = 0
+        container.addSubview(ratingStack)
+        ratingStack.pin(inside: container, leading: spacing / 2, trailing: spacing / 2, top: spacing / 2, bottom: spacing / 2)
+        contentStackView.addArrangedSubview(container)
+        container.pinToLeftAndRightOfSuperview()
+
+        let ratingTitle = DynamicLabel(frame: CGRect.zero)
+        ratingTitle.font = .scaledNamedFont(.semibold14)
+        let ratingDesc = DynamicLabel(frame: CGRect.zero)
+        ratingDesc.numberOfLines = 0
+        ratingDesc.font = .scaledNamedFont(.medium12)
+        ratingDesc.lineBreakMode = .byWordWrapping
+        ratingStack.addArrangedSubview(ratingTitle)
+        ratingStack.addArrangedSubview(ratingDesc)
+        ratingTitle.text = model.rubricRatings[model.selectedIndex].desc
+        ratingDesc.text = model.rubricRatings[model.selectedIndex].longDesc
+        container.backgroundColor = UIColor.red.withAlphaComponent(rubricCircleViewAlphaColor)
+
+        if !(model.comment?.isEmpty ?? true) {
+            let comment = ChatBubbleView(frame: CGRect.zero)
+            comment.side = .left
+            comment.textLabel.text = model.comment
+            comment.textLabel.font = UIFont.scaledNamedFont(.regular14)
+            contentStackView.addArrangedSubview(comment)
+            contentStackView.setCustomSpacing(spacing, after: comment)
+
+            comment.textLabel.accessibilityIdentifier = "RubricCell.comment.\(model.id)"
+            comment.accessibilityIdentifier = "RubricCell.commentContainer.\(model.id)"
+
         } else {
-            return CGSize.zero
+            contentStackView.setCustomSpacing(spacing, after: container)
         }
-    }
 
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            guard let assignment = presenter.assignments.first else {
-                fatalError("Invalid view type")
-            }
-            let gradeView: GradeCircleReusableView = collectionView.dequeue(ofKind: kind, for: indexPath)
-            gradeView.gradeCircleView?.update(assignment)
-            return gradeView
-        default:
-            fatalError("Unexpected element kind")
-        }
-    }
+        let divider = DividerView(frame: CGRect.zero)
+        contentStackView.addArrangedSubview(divider)
+        divider.backgroundColor = UIColor.named(.borderDark)
+        divider.addConstraintsWithVFL("V:[view(1)]")
+        divider.pinToLeftAndRightOfSuperview()
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return models.count
-    }
+        contentStackView.setCustomSpacing(spacing, after: divider)
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellType = String(describing: RubricCollectionViewCell.self)
-        let cellID = "\(cellType)_\(indexPath.item)"
-        guard let cell = collectionView.dequeue(withReuseIdentifier: cellID, for: indexPath) as? RubricCollectionViewCell else { fatalError("expecting cell of type \(cellType)") }
-        let r = models[indexPath.item]
-        cell.update(rubric: r, selectedRatingIndex: selectedRatingCache[indexPath.item], courseColor: presenter.courses.first?.color ?? Brand.shared.primary)
-        cell.delegate = self
+        //  accessibility
+        title.accessibilityTraits = .header
+        title.accessibilityIdentifier = "RubricCell.title.\(model.id)"
 
-        return cell
+        ratingTitle.accessibilityIdentifier = "RubricCell.ratingTitle.\(model.id)"
+        ratingDesc.accessibilityIdentifier = "RubricCell.ratingDesc.\(model.id)"
     }
 }
+
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        if presenter.assignments.first?.useRubricForGrading ?? false {
+//            return CGSize(width: collectionView.frame.width, height: 156)
+//        } else {
+//            return CGSize.zero
+//        }
+//    }
+
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        switch kind {
+//        case UICollectionView.elementKindSectionHeader:
+//            guard let assignment = presenter.assignments.first else {
+//                fatalError("Invalid view type")
+//            }
+//            let gradeView: GradeCircleReusableView = collectionView.dequeue(ofKind: kind, for: indexPath)
+//            gradeView.gradeCircleView?.update(assignment)
+//            return gradeView
+//        default:
+//            fatalError("Unexpected element kind")
+//        }
+//    }
 
 extension RubricViewController: RubricViewProtocol {
     func update(_ rubric: [RubricViewModel]) {
         showEmptyState(false)
         models = rubric
-        if !collectionViewDidSetupCells { setupCollectionViewCells() }
         selectedRatingCache = models.map { $0.selectedIndex }
-        collectionView.reloadData()
+        layoutRubrics()
     }
 
     func showEmptyState(_ show: Bool) {
@@ -129,32 +190,37 @@ extension RubricViewController: RubricViewProtocol {
     }
 }
 
-protocol RubricCellDelegate: class {
-    func longDescriptionTapped(cell: RubricCollectionViewCell)
-    func selectedRatingDidChange(ratingIndex: Int, cell: UICollectionViewCell)
+//protocol RubricCellDelegate: class {
+////    func longDescriptionTapped(cell: RubricCollectionViewCell)
+////    func selectedRatingDidChange(ratingIndex: Int, cell: UICollectionViewCell)
+//}
+
+extension RubricViewController: RubricCircleViewButtonDelegate {
+//    func longDescriptionTapped(cell: RubricCollectionViewCell) {
+//        guard let indexPath = self.collectionView.indexPath(for: cell) else {
+//            return
+//        }
+//        let r = models[indexPath.item]
+//        let vc = UINavigationController(rootViewController: RubricLongDescriptionViewController(longDescription: r.longDescription, title: r.title))
+//        self.present(vc, animated: true, completion: nil)
+//    }
+
+//    func selectedRatingDidChange(ratingIndex: Int, cell: UICollectionViewCell) {
+//        guard let ip = collectionView.indexPath(for: cell) else { return }
+//        selectedRatingCache[ip.item] = ratingIndex
+
+//        UIView.transition(with: collectionView,
+//                          duration: 0.2,
+//                          options: .transitionCrossDissolve,
+//                          animations: { self.collectionView.reloadData() })
+//    }
+
+    func didClickRating(atIndex: Int) {
+        print("\(atIndex)")
+    }
 }
 
-extension RubricViewController: RubricCellDelegate {
-    func longDescriptionTapped(cell: RubricCollectionViewCell) {
-        guard let indexPath = self.collectionView.indexPath(for: cell) else {
-            return
-        }
-        let r = models[indexPath.item]
-        let vc = UINavigationController(rootViewController: RubricLongDescriptionViewController(longDescription: r.longDescription, title: r.title))
-        self.present(vc, animated: true, completion: nil)
-    }
-
-    func selectedRatingDidChange(ratingIndex: Int, cell: UICollectionViewCell) {
-        guard let ip = collectionView.indexPath(for: cell) else { return }
-        selectedRatingCache[ip.item] = ratingIndex
-
-        UIView.transition(with: collectionView,
-                          duration: 0.2,
-                          options: .transitionCrossDissolve,
-                          animations: { self.collectionView.reloadData() })
-    }
-}
-
+/*
 class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewButtonDelegate {
 
     weak var delegate: RubricCellDelegate?
@@ -268,8 +334,8 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewButtonDele
     }
 
     @IBAction func actionShowLongDescription(_ sender: Any) {
-        guard let delegate = self.delegate else { return }
-        delegate.longDescriptionTapped(cell: self)
+//        guard let delegate = self.delegate else { return }
+//        delegate.longDescriptionTapped(cell: self)
     }
 
     func didClickRating(atIndex: Int) {
@@ -277,6 +343,8 @@ class RubricCollectionViewCell: UICollectionViewCell, RubricCircleViewButtonDele
         if selectedRatingIndex == atIndex {
             newIndex = rubric?.selectedIndex ?? 0
         }
-        delegate?.selectedRatingDidChange(ratingIndex: newIndex, cell: self)
+        print("newIndex: \(newIndex)")
+//        delegate?.selectedRatingDidChange(ratingIndex: newIndex, cell: self)
     }
 }
+*/

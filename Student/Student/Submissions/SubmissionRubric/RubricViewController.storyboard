@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,25 +19,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MNC-v2-gd3">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="S7J-Gq-7I4">
-                                    <size key="itemSize" width="300" height="100"/>
-                                    <size key="headerReferenceSize" width="50" height="156"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="GradeCircleResuableView" id="szF-hH-FO1" customClass="GradeCircleReusableView" customModule="Core">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="156"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionReusableView>
-                                <connections>
-                                    <outlet property="dataSource" destination="lkh-x4-Wd8" id="hCw-MX-Ppn"/>
-                                    <outlet property="delegate" destination="lkh-x4-Wd8" id="j0O-aY-YFg"/>
-                                </connections>
-                            </collectionView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAG-0O-4w9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="NBd-1M-MZg">
+                                        <rect key="frame" x="16" y="0.0" width="343" height="128"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lig-ya-TJS">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="128"/>
+                                                <color key="backgroundColor" name="electric"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="wi2-8N-HFm"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="343" id="uIY-lT-MJM"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="NBd-1M-MZg" secondAttribute="bottom" id="4Ms-q6-8y7"/>
+                                    <constraint firstItem="NBd-1M-MZg" firstAttribute="leading" secondItem="bAG-0O-4w9" secondAttribute="leading" constant="16" id="GG0-XE-YIE"/>
+                                    <constraint firstItem="NBd-1M-MZg" firstAttribute="top" secondItem="bAG-0O-4w9" secondAttribute="top" id="TMm-PG-2fK"/>
+                                    <constraint firstAttribute="trailing" secondItem="NBd-1M-MZg" secondAttribute="trailing" constant="16" id="f1l-ac-PsC"/>
+                                </constraints>
+                            </scrollView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ls2-gZ-h3j">
                                 <rect key="frame" x="0.0" y="292" width="375" height="83.5"/>
                                 <subviews>
@@ -76,20 +84,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="YpA-cs-tZJ" firstAttribute="bottom" secondItem="MNC-v2-gd3" secondAttribute="bottom" id="2hh-A1-Rh8"/>
-                            <constraint firstItem="MNC-v2-gd3" firstAttribute="top" secondItem="YpA-cs-tZJ" secondAttribute="top" id="K43-Tw-gZi"/>
+                            <constraint firstItem="bAG-0O-4w9" firstAttribute="width" secondItem="w0K-cg-DHX" secondAttribute="width" id="DQT-IU-VLc"/>
+                            <constraint firstItem="bAG-0O-4w9" firstAttribute="height" secondItem="w0K-cg-DHX" secondAttribute="height" id="TZN-Gi-Owu"/>
+                            <constraint firstItem="bAG-0O-4w9" firstAttribute="centerX" secondItem="w0K-cg-DHX" secondAttribute="centerX" id="Yh4-vk-zZb"/>
+                            <constraint firstItem="bAG-0O-4w9" firstAttribute="centerY" secondItem="w0K-cg-DHX" secondAttribute="centerY" id="Ywa-Lf-3gt"/>
                             <constraint firstItem="ls2-gZ-h3j" firstAttribute="centerY" secondItem="w0K-cg-DHX" secondAttribute="centerY" id="aP2-X5-brc"/>
                             <constraint firstItem="YpA-cs-tZJ" firstAttribute="trailing" secondItem="ls2-gZ-h3j" secondAttribute="trailing" id="oW4-fw-6kg"/>
-                            <constraint firstItem="YpA-cs-tZJ" firstAttribute="trailing" secondItem="MNC-v2-gd3" secondAttribute="trailing" id="oq9-dG-ItQ"/>
-                            <constraint firstItem="MNC-v2-gd3" firstAttribute="leading" secondItem="YpA-cs-tZJ" secondAttribute="leading" id="ozF-kB-RUV"/>
                             <constraint firstItem="ls2-gZ-h3j" firstAttribute="leading" secondItem="YpA-cs-tZJ" secondAttribute="leading" id="tOS-FF-M5l"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YpA-cs-tZJ"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="MNC-v2-gd3" id="d5Y-du-RTT"/>
+                        <outlet property="contentStackView" destination="NBd-1M-MZg" id="1QJ-ON-flZ"/>
+                        <outlet property="contentStackViewWidth" destination="uIY-lT-MJM" id="PBD-rL-gOZ"/>
                         <outlet property="emptyView" destination="ls2-gZ-h3j" id="Vp2-6w-VTB"/>
                         <outlet property="emptyViewLabel" destination="vKN-3v-yJh" id="SfC-U7-zma"/>
+                        <outlet property="scrollView" destination="bAG-0O-4w9" id="Yxa-WC-pOH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="reu-i7-pSx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -97,4 +107,9 @@
             <point key="canvasLocation" x="293" y="-210"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="electric">
+            <color red="0.0" green="0.55686274509803924" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
