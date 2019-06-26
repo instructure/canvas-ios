@@ -23,15 +23,15 @@ import Core
 
 public func ToDoTabViewController(session: Session, route: @escaping (UIViewController, URL)->()) throws -> UIViewController {
         
-    let list = try! ToDoListViewController(session: session, route: route)
+    let list = try ToDoListViewController(session: session, route: route)
 
     let split = SplitViewController()
     split.preferredDisplayMode = .allVisible
     let masterNav = UINavigationController(rootViewController: list)
     let detailNav = UINavigationController()
     detailNav.view.backgroundColor = UIColor.white
-    masterNav.applyDefaultBranding()
-    detailNav.applyDefaultBranding()
+    masterNav.navigationBar.useGlobalNavStyle()
+    detailNav.navigationBar.useGlobalNavStyle()
     split.viewControllers = [masterNav, detailNav]
 
     let title = NSLocalizedString("To Do", comment: "Title of the Todo screen")
@@ -39,5 +39,6 @@ public func ToDoTabViewController(session: Session, route: @escaping (UIViewCont
     split.tabBarItem.title = title
     split.tabBarItem.image = .icon(.todo)
     split.tabBarItem.selectedImage = .icon(.todoSolid)
+    split.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
     return split
 }

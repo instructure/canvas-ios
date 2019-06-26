@@ -18,8 +18,6 @@ import XCTest
 import TestsFoundation
 
 class DashboardTests: CanvasUITests {
-    override var user: User? { return .student1 }
-
     func testAnnouncementBelowInvite() {
         CourseInvitation.acceptButton(id: "998").waitToExist()
         GlobalAnnouncement.toggle(id: "2").waitToExist()
@@ -40,20 +38,30 @@ class DashboardTests: CanvasUITests {
         GlobalAnnouncement.dismiss(id: "2").waitToVanish()
     }
 
-    func testCourseCardGrades() {
-        Dashboard.profileButton.tap()
-        Profile.showGradesToggle.waitToExist()
-        if !Profile.showGradesToggle.isSelected {
-            Profile.showGradesToggle.tap()
-        }
-        Profile.close()
+    func testNavigateToDashboard() {
         Dashboard.courseCard(id: "263").waitToExist()
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label, "Assignments 70%")
+        Dashboard.courseCard(id: "263").tap()
 
-        Dashboard.profileButton.tap()
-        Profile.showGradesToggle.tap()
-        Profile.close()
+        CourseNavigation.modules.tap()
+
+        ModulesDetail.module(index: 1).tap()
+        ModulesDetail.moduleItem(index: 0).tap()
+
+        TabBar.dashboardTab.tap()
+        Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "263").waitToExist()
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label.trimmingCharacters(in: .whitespacesAndNewlines), "Assignments")
+    }
+
+    func testSeeAllButtonDisplaysCorrectCourses() {
+        Dashboard.seeAllButton.tap()
+        
+        // expired course and others should be listed
+        Dashboard.courseCard(id: "303").waitToExist()
+        Dashboard.courseCard(id: "247").waitToExist()
+        Dashboard.courseCard(id: "262").waitToExist()
+        Dashboard.courseCard(id: "263").waitToExist()
+
+        // Invite Only should not be listed
+        Dashboard.courseCard(id: "338").waitToVanish()
     }
 }

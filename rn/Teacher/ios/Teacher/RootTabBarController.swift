@@ -47,9 +47,7 @@ class RootTabBarController: UITabBarController {
     
     @objc func configureTabs() {
         viewControllers = [coursesTab(),  toDoTab(), inboxTab()]
-        if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView) {
-            tabBar.useGlobalNavStyle()
-        }
+        tabBar.useGlobalNavStyle()
     }
     
     @objc func coursesTab() -> UIViewController {
@@ -58,19 +56,17 @@ class RootTabBarController: UITabBarController {
         
         let enrollmentsVC = HelmViewController(moduleName: "/", props: [:])
         enrollmentsVC.view.accessibilityIdentifier = "favorited-course-list.view1"
-        enrollmentsVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: .icon(.courses), selectedImage: nil)
-        enrollmentsVC.tabBarItem.accessibilityIdentifier = "tab-bar.courses-btn"
         enrollmentsVC.navigationItem.titleView = Brand.current.navBarTitleView()
         
         let masterNav = HelmNavigationController(rootViewController: enrollmentsVC)
         masterNav.view.backgroundColor = .white
         masterNav.delegate = split
-        masterNav.applyDefaultBranding()
-        emptyNav.applyDefaultBranding()
+        masterNav.navigationBar.useGlobalNavStyle()
+        emptyNav.navigationBar.useGlobalNavStyle()
         split.viewControllers = [masterNav, emptyNav]
         split.view.accessibilityIdentifier = "favorited-course-list.view2"
-        split.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: .icon(.courses), selectedImage: nil)
-        split.tabBarItem.accessibilityIdentifier = "tab-bar.courses-btn"
+        split.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: .icon(.courses), selectedImage: .icon(.courses, .solid))
+        split.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
         split.preferredDisplayMode = .allVisible
         return split
     }
@@ -78,12 +74,12 @@ class RootTabBarController: UITabBarController {
     @objc func toDoTab() -> UIViewController {
         let toDoVC = HelmViewController(moduleName: "/to-do", props: [:])
         toDoVC.view.accessibilityIdentifier = "to-do-list.view"
-        toDoVC.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", comment: ""), image: .icon(.todo), selectedImage: nil)
-        toDoVC.tabBarItem.accessibilityIdentifier = "tab-bar.to-do-btn"
+        toDoVC.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", comment: ""), image: .icon(.todo), selectedImage: .icon(.todoSolid))
+        toDoVC.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
         toDoVC.tabBarItem.reactive.badgeValue <~ TabBarBadgeCounts.todoListCountString
         toDoVC.navigationItem.titleView = Brand.current.navBarTitleView()
         let navigation = HelmNavigationController(rootViewController: toDoVC)
-        navigation.applyDefaultBranding()
+        navigation.navigationBar.useGlobalNavStyle()
         return navigation
     }
 }

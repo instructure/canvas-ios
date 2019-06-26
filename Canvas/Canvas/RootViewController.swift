@@ -28,23 +28,16 @@ func rootViewController(_ session: Session) -> UIViewController {
     let tabs = CanvasTabBarController()
     
     do {
-        // CALENDAR
-        let calendar = try CalendarTabViewController(session: session) { vc, url in
-            Router.shared().route(from: vc, to: url)
-        }
-        let calendarNav = UINavigationController(rootViewController: calendar)
-
-        // TODO
-        let todo = try ToDoTabViewController(session: session) { vc, url in
-            Router.shared().route(from: vc, to: url)
-        }
-
         tabs.viewControllers = [
-            try EnrollmentsTab(session: session),
-            calendarNav,
-            todo,
+            dashboardTab(session: session),
+            UINavigationController(rootViewController: CalendarTabViewController(session: session) { vc, url in
+                Router.shared().route(from: vc, to: url)
+            }),
+            try ToDoTabViewController(session: session) { vc, url in
+                Router.shared().route(from: vc, to: url)
+            },
             try NotificationsTab(session: session),
-            MessagesTab()
+            inboxTab()
         ]
     } catch let e as NSError {
         delay(0.1) {
@@ -54,32 +47,23 @@ func rootViewController(_ session: Session) -> UIViewController {
     
     let selectedTab = UserPreferences.landingPage(session.user.id)
     tabs.selectedIndex = selectedTab.tabIndex
-
-    if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView) {
-        tabs.tabBar.useGlobalNavStyle()
-    }
+    tabs.tabBar.useGlobalNavStyle()
     return tabs
 }
 
-func MessagesTab() -> UIViewController {
-    let vc = inboxTab()
-    vc.tabBarItem.image = .icon(.email, .line)
-    vc.tabBarItem.selectedImage = .icon(.email, .solid)
-    return vc
-}
-
-func EnrollmentsTab(session: Session) throws -> UIViewController {
+func dashboardTab(session: Session) -> UIViewController {
     let dashboardVC = HelmViewController(moduleName: "/", props: [:])
     let dashboardNav = HelmNavigationController(rootViewController: dashboardVC)
     let dashboardSplit = EnrollmentSplitViewController()
     let emptyNav = UINavigationController(rootViewController:EmptyViewController())
-    emptyNav.applyDefaultBranding()
+    emptyNav.navigationBar.useGlobalNavStyle()
     dashboardNav.delegate = dashboardSplit
-    dashboardNav.applyDefaultBranding()
+    dashboardNav.navigationBar.useGlobalNavStyle()
     dashboardSplit.viewControllers = [dashboardNav, emptyNav]
     dashboardSplit.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
     dashboardSplit.tabBarItem.image = .icon(.dashboard, .line)
     dashboardSplit.tabBarItem.selectedImage = .icon(.dashboardCustomSolid)
+    dashboardSplit.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
     dashboardSplit.navigationItem.titleView = Brand.current.navBarTitleView()
     return dashboardSplit
 }

@@ -95,11 +95,27 @@ public extension Element {
     }
 }
 
-public struct XCUIElementWrapper: Element {
-    private(set) var element: XCUIElement
+public extension Element {
+    @discardableResult
+    func tapUntil(file: StaticString = #file, line: UInt = #line, test: () -> Bool) -> Element {
+        var taps = 0
+        repeat {
+            tap(file: file, line: line)
+            taps += 1
+            sleep(1)
+        } while taps < 5 && test() == false && exists
+        return self
+    }
+}
 
-    public init(_ element: XCUIElement) {
-        self.element = element
+public struct XCUIElementWrapper: Element {
+    var element: XCUIElement {
+        return finder()
+    }
+    private let finder: () -> XCUIElement
+
+    public init(_ finder: @autoclosure @escaping () -> XCUIElement) {
+        self.finder = finder
     }
 
     public var elementType: XCUIElement.ElementType {
@@ -162,8 +178,11 @@ public struct XCUIElementWrapper: Element {
 
     @discardableResult
     public func typeText(_ text: String, file: StaticString, line: UInt) -> Element {
-        waitToExist(file: file, line: line)
-        element.tap()
+        var taps = 0
+        while element.value(forKey: "hasKeyboardFocus") as? Bool != true, taps < 5 {
+            taps += 1
+            tap(file: file, line: line)
+        }
         element.typeText(text)
         return self
     }

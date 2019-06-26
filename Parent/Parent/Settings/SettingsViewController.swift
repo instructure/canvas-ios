@@ -13,16 +13,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import UIKit
-
-
-
-
-
 import CanvasCore
+import Core
 
 typealias SettingsSessionAction = (_ session: Session)->Void
 typealias SettingsObserveeSelectedAction = (_ session: Session, _ observee: Student)->Void
@@ -91,9 +85,7 @@ class SettingsViewController: UIViewController {
     // ---------------------------------------------
     @objc func setupNavigationBar() {
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.barTintColor = ColorCoordinator.colorSchemeForParent().mainColor
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.titleTextAttributes = convertToOptionalNSAttributedStringKeyDictionary([NSAttributedString.Key.foregroundColor.rawValue: UIColor.white])
+        self.navigationController?.navigationBar.useContextColor(ColorCoordinator.colorSchemeForParent().mainColor)
     }
 
     @objc func setupObserveeList() {
@@ -116,10 +108,4 @@ class SettingsViewController: UIViewController {
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
         closeAction?(viewModel.session)
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
-	guard let input = input else { return nil }
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

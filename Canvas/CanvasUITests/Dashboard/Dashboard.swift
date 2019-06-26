@@ -36,6 +36,10 @@ enum Dashboard {
         return app.find(labelContaining: "Courses")
     }
 
+    static var seeAllButton: Element {
+        return app.find(id: "dashboard.courses.see-all-btn")
+    }
+
     static func courseCard(id: String) -> Element {
         return app.find(id: "course-\(id)")
     }
@@ -44,12 +48,8 @@ enum Dashboard {
         return app.find(labelContaining: "\(percent)%")
     }
 
-    static var dashboardTab: Element {
-        return app.find(label: "Dashboard")
-    }
-
-    static var calendarTab: Element {
-        return app.find(label: "Calendar")
+    static func groupCard(id: String) -> Element {
+        return app.find(id: "group-row-\(id)")
     }
 
     static var profileButton: Element {

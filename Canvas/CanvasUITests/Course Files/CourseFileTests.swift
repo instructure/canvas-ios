@@ -24,22 +24,28 @@ enum FilesList {
 }
 
 class CourseFileTests: CanvasUITests {
-    override var user: User? { return .student1 }
-
     func testPreviewCourseFile() {
-        // Dashboard
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
-        // Course Details
         CourseNavigation.files.tap()
 
-        // Course Files
         FilesList.file(id: "10528").waitToExist()
         FilesList.file(id: "10528").tap()
 
         // need be on the next page before checking for image
         sleep(3)
+        app.find(type: .image).waitToExist()
+    }
+
+    func testLinkToPreviewOpensFile() {
+        Dashboard.courseCard(id: "263").waitToExist()
+        Dashboard.courseCard(id: "263").tap()
+
+        CourseNavigation.pages.tap()
+
+        PagesList.page(index: 1).tap()
+        XCUIElementWrapper(app.links.firstMatch).tap()
         app.find(type: .image).waitToExist()
     }
 }

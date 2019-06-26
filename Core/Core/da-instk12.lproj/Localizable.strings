@@ -224,6 +224,9 @@
 "No Submission" = "Ingen aflevering";
 
 /* No comment provided by engineer. */
+"None" = "Ingen";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Ikke bedømt";
 
 /* No comment provided by engineer. */
@@ -282,6 +285,9 @@
 
 /* No comment provided by engineer. */
 "Retry" = "Prøv igen";
+
+/* No comment provided by engineer. */
+"See attached files." = "Se vedhæftede filer.";
 
 /* No comment provided by engineer. */
 "See what's new." = "Se, hvad der er nyt";
@@ -378,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Fortryd";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Ubegrænset";
 
 /* No comment provided by engineer. */
 "Unordered List" = "Ikke ordnet liste";

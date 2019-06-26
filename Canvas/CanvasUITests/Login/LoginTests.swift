@@ -17,140 +17,83 @@
 import XCTest
 import TestsFoundation
 
-enum LoginStart {
-    static var findMySchool: Element {
-        return app.find(label: "Find my school")
-    }
-
-    static func previousUser(name: String) -> Element {
-        return app.find(label: name)
-    }
-}
-
-enum LoginFindSchool: String, ElementWrapper {
-    case searchField
-
-    static func resultItem(for name: String) -> Element {
-        return app.find(label: name)
-    }
-}
-
-enum CanvasLogin {
-    static var emailTextField: Element {
-        return XCUIElementWrapper(app.webViews.textFields["Email"])
-    }
-
-    static var passwordTextField: Element {
-        return XCUIElementWrapper(app.webViews.secureTextFields["Password"])
-    }
-
-    static var logInButton: Element {
-        return XCUIElementWrapper(app.webViews.buttons["Log In"])
-    }
-}
-
-enum RyanaLogin {
-    static var ldapButton: Element {
-        return XCUIElementWrapper(app.webViews.staticTexts["LDAP"])
-    }
-}
-
 class LoginTests: CanvasUITests {
+    override var user: UITestUser? { return nil }
 
     func testFindSchool() {
-        // Find my school
-        LoginStart.findMySchool.tap()
+        LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("mtech")
-        LoginFindSchool.resultItem(for: "MTECH").waitToExist()
+        LoginFindAccountResult.item(host: "mtec.instructure.com").waitToExist()
     }
 
     func testCanvasLoginToDashboard() {
-       loginUser(username: "student1", password: "password")
+        logInUser(.readStudent1)
 
-        // Dashboard
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
-        XCTAssert(Dashboard.dashboardTab.exists)
+        XCTAssert(TabBar.dashboardTab.exists)
     }
 
     func testLDAPLoginToDashboard() {
-        // Find my school
-        XCTAssert(LoginStart.findMySchool.exists)
-        LoginStart.findMySchool.tap()
-        LoginFindSchool.searchField.typeText("ryana\r")
+        let user = UITestUser.ldapUser
+        LoginStart.findSchoolButton.tap()
+        LoginFindSchool.searchField.typeText("\(user.host)\r")
 
-        // Ryana Web View
-        RyanaLogin.ldapButton.waitToExist()
-        RyanaLogin.ldapButton.tapAt(.zero)
+        XCUIElementWrapper(app.webViews.links["LDAP"]).tap()
 
-        // Email
-        CanvasLogin.emailTextField.waitToExist()
-        CanvasLogin.emailTextField.tap()
-        CanvasLogin.emailTextField.typeText("ldapmobiletest")
-
-        // Password
-        CanvasLogin.passwordTextField.typeText("mobiletesting123")
-
-        // Submit
-        CanvasLogin.logInButton.tap()
+        LoginWeb.emailField.typeText(user.username)
+        LoginWeb.passwordField.typeText(user.password)
+        LoginWeb.logInButton.tap()
 
         Dashboard.coursesLabel.waitToExist()
-        Dashboard.dashboardTab.waitToExist()
+        TabBar.dashboardTab.waitToExist()
     }
 
     func testMultipleUsers() {
-        loginUser(username: "student1", password: "password")
+        logInUser(.readStudent1)
+        let entry1 = UITestUser.readStudent1.keychainEntry!
 
-        // Change User
-        Dashboard.profileButton.waitToExist()
-        Dashboard.profileButton.tap()
-        Profile.changeUserButton.waitToExist()
+        Profile.open()
         Profile.changeUserButton.tap()
 
-        loginUser(username: "student2", password: "password")
+        logInUser(.readStudent2)
+        let entry2 = UITestUser.readStudent2.keychainEntry!
 
-        // Change User
-        Dashboard.profileButton.waitToExist()
-        Dashboard.profileButton.tap()
-        Profile.changeUserButton.waitToExist()
+        Profile.open()
         Profile.changeUserButton.tap()
 
-        // Previous Users
-        LoginStart.findMySchool.waitToExist()
-        XCTAssert(LoginStart.previousUser(name: "Student One").exists)
-        XCTAssert(LoginStart.previousUser(name: "Student Two").exists)
+        LoginStart.findSchoolButton.waitToExist()
+        XCTAssert(LoginStartKeychainEntry.cell(host: entry1.baseURL.host!, userID: entry1.userID).exists)
+        XCTAssert(LoginStartKeychainEntry.cell(host: entry2.baseURL.host!, userID: entry2.userID).exists)
     }
 
     func testSessionMaintainedAfterTermination() {
-        loginUser(username: "student1", password: "password")
+        logInUser(.readStudent1)
 
-        // Dashboard
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
-        Dashboard.dashboardTab.waitToExist()
+        TabBar.dashboardTab.waitToExist()
 
         launch()
 
-        // Dashboard
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
-        Dashboard.dashboardTab.waitToExist()
+        TabBar.dashboardTab.waitToExist()
     }
 
-    func loginUser(username: String, password: String) {
-        // Find my school
-        LoginStart.findMySchool.tap()
-        LoginFindSchool.searchField.typeText("iosauto\r")
+    func testMDMLogin() {
+        let user = UITestUser.readStudent1
+        launch { app in
+            app.launchArguments.append(contentsOf: [
+                "-com.apple.configuration.managed",
+                user.profile
+            ])
+        }
 
-        // Email
-        CanvasLogin.emailTextField.waitToExist()
-        CanvasLogin.emailTextField.tap()
-        CanvasLogin.emailTextField.typeText(username)
+        LoginStartMDMLogin.cell(host: user.host, username: user.username).tap()
 
-        // Password
-        CanvasLogin.passwordTextField.typeText(password)
-
-        // Submit
-        CanvasLogin.logInButton.tap()
+        Dashboard.coursesLabel.waitToExist()
+        Dashboard.courseCard(id: "247").waitToExist()
+        TabBar.dashboardTab.waitToExist()
     }
 }

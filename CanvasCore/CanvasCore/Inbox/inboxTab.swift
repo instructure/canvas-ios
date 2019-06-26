@@ -22,18 +22,18 @@ public func inboxTab() -> UIViewController {
     let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
     let inboxNav = HelmNavigationController(rootViewController: inboxVC)
     
-    inboxNav.applyDefaultBranding()
+    inboxNav.navigationBar.useGlobalNavStyle()
     inboxVC.navigationItem.titleView = Brand.current.navBarTitleView()
     
     let inboxSplit = HelmSplitViewController()
     
     let empty = HelmNavigationController()
-    empty.applyDefaultBranding()
+    empty.navigationBar.useGlobalNavStyle()
     
     inboxSplit.viewControllers = [inboxNav, empty]
     let title = NSLocalizedString("Inbox", bundle: .core, comment: "Inbox tab title")
-    inboxSplit.tabBarItem = UITabBarItem(title: title, image: .icon(.email), selectedImage: nil)
-    inboxSplit.tabBarItem.accessibilityIdentifier = "tab-bar.inbox-btn"
+    inboxSplit.tabBarItem = UITabBarItem(title: title, image: .icon(.email, .line), selectedImage: .icon(.email, .solid))
+    inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
     inboxSplit.extendedLayoutIncludesOpaqueBars = true
     
     inboxSplit.tabBarItem.reactive.badgeValue <~ TabBarBadgeCounts.unreadMessageCountString

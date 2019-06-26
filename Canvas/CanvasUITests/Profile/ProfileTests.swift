@@ -18,27 +18,49 @@ import XCTest
 import TestsFoundation
 
 class ProfileTests: CanvasUITests {
-    override var user: User? { return .student1 }
+
+    func testCourseCardGrades() {
+        Profile.open()
+        Profile.showGradesToggle.waitToExist()
+        if !Profile.showGradesToggle.isSelected {
+            Profile.showGradesToggle.tap()
+        }
+        Profile.close()
+        Dashboard.courseCard(id: "263").waitToExist()
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label, "Assignments 70%")
+
+        Profile.open()
+        Profile.showGradesToggle.tap()
+        Profile.close()
+        Dashboard.courseCard(id: "263").waitToExist()
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label.trimmingCharacters(in: .whitespacesAndNewlines), "Assignments")
+    }
 
     func testProfileDisplaysUsername() {
-        Dashboard.profileButton.waitToExist()
-        Dashboard.profileButton.tap()
-        Profile.userNameLabel.waitToExist()
+        Profile.open()
         XCTAssertEqual(Profile.userNameLabel.label, "Student One")
     }
 
     func testProfileChangesUser() {
-        Dashboard.profileButton.waitToExist()
-        Dashboard.profileButton.tap()
+        Profile.open()
         Profile.changeUserButton.tap()
-        LoginStart.previousUser(name: "Student One").waitToExist()
+        let entry = user!.keychainEntry!
+        LoginStartKeychainEntry.cell(host: entry.baseURL.host!, userID: entry.userID).waitToExist()
     }
 
     func testProfileLogsOut() {
-        Dashboard.profileButton.waitToExist()
-        Dashboard.profileButton.tap()
+        Profile.open()
         Profile.logOutButton.tap()
-        LoginStart.findMySchool.waitToExist()
-        XCTAssertFalse(LoginStart.previousUser(name: "Student One").exists)
+        LoginStart.findSchoolButton.waitToExist()
+        let entry = user!.keychainEntry!
+        XCTAssertFalse(LoginStartKeychainEntry.cell(host: entry.baseURL.host!, userID: entry.userID).exists)
+    }
+
+    func testPreviewUserFile() {
+        Profile.open()
+        Profile.filesButton.tap()
+
+        FilesList.file(id: "11585").tap()
+        app.find(label: "File", type: .image).waitToExist()
     }
 }

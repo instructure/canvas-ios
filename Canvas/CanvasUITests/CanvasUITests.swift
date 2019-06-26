@@ -18,41 +18,8 @@ import Core
 import XCTest
 import TestsFoundation
 
-enum User: String {
-    case student1
-
-    var username: String {
-        return rawValue
-    }
-
-    var password: String {
-        return "password"
-    }
-
-    var host: String {
-        return "iosauto.instructure.com"
-    }
-
-    var profile: String {
-        return """
-            <dict>
-                <key>enableLogin</key><true/>
-                <key>users</key>
-                <array>
-                    <dict>
-                        <key>host</key><string>\(host)</string>
-                        <key>username</key><string>\(username)</string>
-                        <key>password</key><string>\(password)</string>
-                    </dict>
-                </array>
-            </dict>
-        """
-        .replacingOccurrences(of: "[\\n,\\s]", with: "", options: .regularExpression, range: nil)
-    }
-}
-
 class CanvasUITests: UITestCase {
-    var user: User? { return nil }
+    var user: UITestUser? { return .readStudent1 }
 
     override func setUp() {
         super.setUp()
@@ -62,18 +29,15 @@ class CanvasUITests: UITestCase {
         }
         reset()
         if let user = user {
-            LoginStart.previousUser(name: user.username).tap()
-            Dashboard.dashboardTab.waitToExist()
+            logInUser(user)
+            Dashboard.coursesLabel.waitToExist()
         }
     }
 
-    func launch() {
+    func launch(_ block: ((XCUIApplication) -> Void)? = nil) {
         let app = XCUIApplication()
-        app.launchArguments.append(contentsOf: [
-            "-com.apple.configuration.managed",
-            User.student1.profile
-        ])
         app.launchEnvironment["IS_UI_TEST"] = "TRUE"
+        block?(app)
         app.launch()
         // Wait for RN to finish loading
         app.find(labelContaining: "Loading").waitToVanish(120)

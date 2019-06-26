@@ -24,13 +24,10 @@ enum Calendar {
 
     static func text(containing text: String) -> Element {
         return app.find(labelContaining: text)
-        //return XCUIElementWrapper(app.staticTexts[text].firstMatch)
     }
 }
 
 class CalendarTests: CanvasUITests {
-    override var user: User? { return .student1 }
-
     func testCalendarTodayButton() {
 
         let formatter = DateFormatter()
@@ -39,9 +36,7 @@ class CalendarTests: CanvasUITests {
         formatter.dateFormat = "d"
         let day = formatter.string(from: Date())
 
-        // Calendar
-        Dashboard.calendarTab.waitToExist()
-        Dashboard.calendarTab.tap()
+        TabBar.calendarTab.tap()
         app.swipeDown()
         app.swipeDown()
         XCTAssertFalse(Calendar.text(containing: monthYear).exists)

@@ -15,19 +15,16 @@
 //
 
 import Foundation
+import Core
 
 let InstUserLocale = "InstUserLocale"
 public class LocalizationManager: NSObject {
-    private static var effectiveLocale: String? {
-        return Bundle.main.preferredLocalizations.first
-    }
-
     @objc public static var currentLocale: String? {
-        return UserDefaults.standard.string(forKey: InstUserLocale) ?? effectiveLocale
+        return Core.LocalizationManager.currentLocale
     }
 
     public static var needsRestart: Bool {
-        return currentLocale != effectiveLocale
+        return Core.LocalizationManager.needsRestart
     }
 
     @objc
@@ -44,14 +41,9 @@ public class LocalizationManager: NSObject {
 
     @objc
     public static func setCurrentLocale(_ locale: String) {
-        // da-x-k12 -> da-instk12
-        let newLocale = locale.replacingOccurrences(of: "-x-", with: "-inst")
-        guard Bundle.main.localizations.contains(newLocale) else { return }
+        Core.LocalizationManager.setCurrentLocale(locale)
 
-        UserDefaults.standard.set(newLocale, forKey: InstUserLocale)
-        UserDefaults.standard.set([newLocale], forKey: "AppleLanguages")
-
-        guard Bundle.main.preferredLocalizations.first != newLocale else { return }
+        guard needsRestart else { return }
         guard let root = HelmManager.shared.topMostViewController() ?? UIApplication.shared.keyWindow?.rootViewController else { return }
         let alert = UIAlertController(title: NSLocalizedString("Updated Language Settings", bundle: .core, comment: ""), message: NSLocalizedString("The app needs to restart to use the new language settings. Please relaunch the app.", bundle: .core, comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Close App", bundle: .core, comment: ""), style: .default) { _ in

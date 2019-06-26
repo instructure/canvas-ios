@@ -23,13 +23,13 @@ import UIKit
 /// show the secrets in plain text. It must be possible to discover the secrets, or the app couldn't
 /// use them, but it should be non-trivial.
 public enum Secret {
-    /// The value passed to `PSPDFKit.setLicenseKey` for the student app.
-    case studentPSPDFKitLicense
+    /// The value passed to `PSPDFKit.setLicenseKey`
+    case studentPSPDFKitLicense, teacherPSPDFKitLicense
 
-    /// The value passed to `PSPDFKit.setLicenseKey` for the teacher app.
-    case teacherPSPDFKitLicense
+    /// Users for UI tests
+    case testReadStudent1, testReadStudent2, testReadTeacher1, testLDAPUser
 
-    /// The value used for testing that Secret is working properly.
+    /// The value used for testing that Secret is working properly
     case testSecret
 
     public var string: String? {

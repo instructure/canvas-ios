@@ -58,7 +58,7 @@ export default class DiscussionsRow extends PureComponent<Props> {
             titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
             border='bottom'
             disclosureIndicator={false}
-            testID={`discussion-row-${this.props.index}`}
+            testID={`DiscussionListCell.${discussion.id}`}
             onPress={this.onPress}
             height='auto'
             selected={selected}

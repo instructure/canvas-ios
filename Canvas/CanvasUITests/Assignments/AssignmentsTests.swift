@@ -17,58 +17,27 @@
 import XCTest
 import TestsFoundation
 
-enum GradesList {
-    static var title: Element {
-        return app.find(label: "Grades")
-    }
-
-    static func assignment(id: String) -> Element {
-        return app.find(id: "grades-list.grades-list-row.cell-\(id)")
-    }
-}
-
-enum AssignmentDetails {
-    static func description(_ description: String) -> Element {
-        return app.find(label: description)
-    }
-
-    static func link(_ description: String) -> Element {
-        return XCUIElementWrapper(app.webViews.staticTexts[description])
-    }
-}
-
 class AssignmentsTests: CanvasUITests {
-    override var user: User? { return .student1 }
-
-    func testViewAssignment() {
-        // Dashboard
+    func testCourseGradeIsCorrect() {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
-        // Course Details
         CourseNavigation.grades.tap()
 
-        // Grades List
-        GradesList.assignment(id: "1831").tap()
-
-        // Assignment Details
-        AssignmentDetails.description("This is assignment one.").waitToExist()
+        app.find(labelContaining: "70%").waitToExist()
     }
 
-    func testPreviewAssignmentAttachment() {
-        // Dashboard
+    func testViewAssignmentAndPreviewAttachment() {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
-        // Course Details
         CourseNavigation.grades.tap()
 
-        // Grades List
         GradesList.assignment(id: "1831").tap()
 
-        // Assignment Details
-        AssignmentDetails.link("run.jpg").waitToExist()
-        AssignmentDetails.link("run.jpg").tapAt(.zero)
-        app.find(type: .image).waitToExist()
+        AssignmentDetails.description("This is assignment one.").waitToExist()
+        app.swipeUp()
+        AssignmentDetails.link("run.jpg").tap()
+        app.find(label: "File", type: .image).waitToExist()
     }
 }

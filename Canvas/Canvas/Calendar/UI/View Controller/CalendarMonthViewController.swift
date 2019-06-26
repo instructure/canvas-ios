@@ -111,7 +111,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     open override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.applyDefaultBranding()
+        self.navigationController?.navigationBar.useGlobalNavStyle()
         initNavigationButtons()
         backTitleDateFormatter.dateFormat = "MMMM"
 

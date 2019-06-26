@@ -18,19 +18,31 @@ import XCTest
 import TestsFoundation
 
 enum CourseNavigation {
-    static var grades: Element {
-        return app.find(id: "courses-details.grades-cell")
-    }
-
     static var announcements: Element {
         return app.find(id: "courses-details.announcements-cell")
     }
 
-    static var people: Element {
-        return app.find(id: "courses-details.people-cell")
+    static var discussions: Element {
+        return app.find(id: "courses-details.discussions-cell")
     }
 
     static var files: Element {
         return app.find(id: "courses-details.files-cell")
+    }
+
+    static var grades: Element {
+        return app.find(id: "courses-details.grades-cell")
+    }
+
+    static var modules: Element {
+        return app.find(id: "courses-details.modules-cell")
+    }
+
+    static var pages: Element {
+        return app.find(id: "courses-details.pages-cell")
+    }
+
+    static var people: Element {
+        return app.find(id: "courses-details.people-cell")
     }
 }
