@@ -18,7 +18,7 @@ import UIKit
 import Core
 
 protocol RubricCircleViewButtonDelegate: class {
-    func didClickRating(atIndex: Int)
+    func didClickRating(atIndex: Int, rubric: RubricViewModel)
 }
 
 let rubricCircleViewAlphaColor: CGFloat = 0.07
@@ -32,6 +32,7 @@ class RubricCircleView: UIView {
     var courseColor: UIColor = UIColor.red
     private var currentlySelectedButton: UIButton?
     private var selectedButtonTransform = CGAffineTransform(scaleX: 1.135, y: 1.135)
+    var heightConstraint: NSLayoutConstraint?
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -57,7 +58,7 @@ class RubricCircleView: UIView {
         let ratings: [Double] = rubric?.ratings ?? []
         let rubricID: String = rubric?.id ?? "0"
         let descriptions: [String] = rubric?.descriptions ?? []
-        let howManyCanFitInWidth = Int( floor( frame.size.width / (w + space) ) )
+        let howManyCanFitInWidth = Int( ceil( frame.size.width / (w + space) ) )
         let count = ratings.count
 
         var center = CGPoint(x: 0, y: 0)
@@ -115,16 +116,25 @@ class RubricCircleView: UIView {
                 center.x = 0
             }
         }
+
+        //  this is not the best form to have a view control it's own sizing,
+        //  better for parent view to do this, but this view does not take advantage
+        //  of autolayout constraints so.......😬 here goes anyway
+        if let rubric = rubric, heightConstraint == nil {
+            let h = RubricCircleView.computedHeight(rubric: rubric, maxWidth: frame.size.width)
+            addConstraintsWithVFL("V:[view(h)]", metrics: ["h": h])
+        }
     }
 
     @objc func actionButtonClicked(sender: DynamicButton) {
-        animateButtonClick(sender: sender) {
-            self.buttonClickDelegate?.didClickRating(atIndex: sender.tag)
+        animateButtonClick(sender: sender) { [weak self] in
+            guard let rubric = self?.rubric else { return }
+            self?.buttonClickDelegate?.didClickRating(atIndex: sender.tag, rubric: rubric)
         }
     }
 
     func animateButtonClick(sender: DynamicButton, completionHandler: @escaping () -> Void) {
-        let delay = 0.0
+        let delay = 0.05
 
         let sameButtonClicked: Bool = sender == currentlySelectedButton
         let buttonToAnimate = sameButtonClicked ? buttons[rubric?.selectedIndex ?? 0] : sender
@@ -158,9 +168,10 @@ class RubricCircleView: UIView {
         button.layer.borderColor = color.cgColor
     }
 
-    static func computedHeight(rubric: RubricViewModel, maxWidth: CGFloat) -> CGFloat {
+    private static func computedHeight(rubric: RubricViewModel, maxWidth: CGFloat) -> CGFloat {
         let count = CGFloat(rubric.ratings.count)
-        let howManyCanFitInWidth = CGFloat( floor( maxWidth / (w + space) ) )
+        let howManyCanFitInWidth = CGFloat( ceil( maxWidth / (w + space) ) )
+        if howManyCanFitInWidth == 0 { return 0 }
         let rows = CGFloat(ceil(count / howManyCanFitInWidth))
         return (rows * w) + ((rows - 1) * space)
     }
