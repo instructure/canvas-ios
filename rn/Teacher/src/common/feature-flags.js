@@ -78,7 +78,8 @@ export function featureFlagEnabled (flagName: FeatureFlagName): boolean {
 }
 
 export async function featureFlagSetup (): Promise<*> {
-  enableAllFeatureFlags = Boolean(await AsyncStorage.getItem(featureFlagKey))
+  enableAllFeatureFlags = Boolean(await AsyncStorage.getItem(featureFlagKey)) ||
+    NativeModules.SettingsManager.settings.IS_UI_TEST
   if (enableAllFeatureFlags) {
     return FeatureFlagsManager.syncFeatureFlags({})
   }
