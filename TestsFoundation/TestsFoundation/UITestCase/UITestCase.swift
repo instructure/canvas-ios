@@ -41,6 +41,7 @@ open class UITestCase: XCTestCase {
 
     open func reset() {
         send(.reset)
+        LoginStart.findSchoolButton.waitToExist()
     }
 
     open func logIn(domain: String, token: String) {

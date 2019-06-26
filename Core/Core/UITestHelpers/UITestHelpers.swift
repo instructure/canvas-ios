@@ -47,6 +47,7 @@ public class UITestHelpers {
         self.window = appDelegate.window as? ActAsUserWindow
 
         CacheManager.clear()
+        UserDefaults.standard.set(true, forKey: "IS_UI_TEST")
 
         let button = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 1, y: 20, width: 1, height: 1))
         button.accessibilityIdentifier = "ui-test-helper"

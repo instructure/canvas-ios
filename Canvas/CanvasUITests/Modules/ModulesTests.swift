@@ -74,7 +74,7 @@ class ModulesTests: CanvasUITests {
         ModulesDetail.moduleItem(index: 0).tap()
 
         app.find(labelContaining: "This is the first quiz").waitToExist()
-        app.find(labelContaining: "Resume Quiz").waitToExist()
+        app.find(label: "Resume Quiz").waitToExist()
     }
 
     func testLaunchIntoFileModuleItem() {
