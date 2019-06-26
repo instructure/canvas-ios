@@ -25,6 +25,7 @@ enum FileUploaderError: Error {
 }
 
 public class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
+    public static let AssignmentSubmittedNotification = NSNotification.Name(rawValue: "com.instructure.core.assignment-submitted")
     public typealias Store = Core.Store<LocalUseCase<File>>
 
     enum Step: String {
@@ -42,7 +43,7 @@ public class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate
             return validSession
         }
         let configuration = URLSessionConfiguration.background(withIdentifier: "com.instructure.core.file-uploads")
-        configuration.sharedContainerIdentifier = "group.com.instructure.icanvas"
+        configuration.sharedContainerIdentifier = Bundle.main.appGroupID()
         let session = URLSessionAPI.delegateURLSession(configuration, self)
         validSession = session
         return session
@@ -139,8 +140,13 @@ public class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate
                     let result = try decoder.decode(APIFile.self, from: data)
                     file.update(fromAPIModel: result)
                 case .submit:
+                    guard case let .submission(courseID: _, assignmentID: assignmentID)? = file.context else { break }
                     let submission = try decoder.decode(APISubmission.self, from: data)
-                    Submission.save(submission, in: context)
+                    NotificationCenter.default.post(
+                        name: UploadManager.AssignmentSubmittedNotification,
+                        object: nil,
+                        userInfo: ["assignmentID": assignmentID, "submission": submission]
+                    )
                 }
                 try context.save()
             } catch {

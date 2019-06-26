@@ -129,6 +129,12 @@ class AssignmentDetailsPresenter {
         assignments.refresh(force: true)
         arc.refresh()
         onlineUpload.refresh()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(uploadSubmitted(notification:)),
+            name: UploadManager.AssignmentSubmittedNotification, object: nil
+        )
     }
 
     func refresh() {
@@ -138,6 +144,18 @@ class AssignmentDetailsPresenter {
 
         submissionButtonPresenter.arcID = .pending
         arc.refresh(force: true)
+    }
+
+    @objc func uploadSubmitted(notification: Notification) {
+        guard
+            let assignmentID = notification.userInfo?["assignmentID"] as? String,
+            let submission = notification.userInfo?["submission"] as? APISubmission,
+            assignmentID == self.assignmentID
+        else { return }
+        env.database.performBackgroundTask { context in
+            Submission.save(submission, in: context)
+            try? context.save()
+        }
     }
 
     func routeToSubmission(view: UIViewController) {

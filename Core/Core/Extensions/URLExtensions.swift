@@ -33,7 +33,7 @@ extension URL {
         return FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
     }
 
-    public static func appGroup(_ identifier: String) -> URL? {
+    public static func sharedContainer(_ identifier: String) -> URL? {
         return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
     }
 

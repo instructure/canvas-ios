@@ -21,10 +21,9 @@ protocol SubmitAssignmentView: class {
     func update()
 }
 
-let group = "group.com.instructure.icanvas"
-
 class SubmitAssignmentPresenter {
     let env: AppEnvironment
+    let sharedContainer: URL
     weak var view: SubmitAssignmentView?
 
     private(set) var course: Course? {
@@ -53,10 +52,14 @@ class SubmitAssignmentPresenter {
     }
 
     init?() {
-        Keychain.config = KeychainConfig(accessGroup: group)
-        guard let session = Keychain.mostRecentSession else { return nil }
+        guard
+            let session = Keychain.mostRecentSession,
+            let appGroup = Bundle.main.appGroupID(),
+            let container = URL.sharedContainer(appGroup)
+        else { return nil }
         env = AppEnvironment()
         env.userDidLogin(session: session)
+        sharedContainer = container
     }
 
     func viewIsReady() {
@@ -103,7 +106,9 @@ class SubmitAssignmentPresenter {
                 callback(nil, error)
                 return
             }
-            let newURL = URL.appGroup(group)?.appendingPathComponent("share-submit").appendingPathComponent(url.lastPathComponent) ?? url
+            let newURL = self.sharedContainer
+                .appendingPathComponent("share-submit")
+                .appendingPathComponent(url.lastPathComponent)
             do {
                 try url.move(to: newURL)
                 if let image = UIImage(contentsOfFile: newURL.path), let data = image.normalize().jpegData(compressionQuality: 0.8) {
