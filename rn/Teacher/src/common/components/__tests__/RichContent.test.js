@@ -52,12 +52,6 @@ describe('RichContent', () => {
     ).toMatchSnapshot()
   })
 
-  it('can handle anchors', () => {
-    expect(
-      shallow(<RichContent html='<a>Drop the anchor</a>' navigator={templates.navigator()} />)
-    ).toMatchSnapshot()
-  })
-
   it('can handle bs', () => {
     expect(
       shallow(<RichContent html='<b>You all are getting bees!</b>' navigator={templates.navigator()} />)
@@ -80,19 +74,6 @@ describe('RichContent', () => {
     expect(
       shallow(<RichContent html='<font color="#333">Some fonty goodness</font>' navigator={templates.navigator()} />)
     ).toMatchSnapshot()
-  })
-
-  it('can convert an href into an onPress', () => {
-    let url = 'https://canvas.instructure.com/courses/4'
-    let navigator = templates.navigator()
-    let tree = shallow(<RichContent html={`<a href="${url}">A link</a>`} navigator={navigator} />)
-    expect(tree).toMatchSnapshot()
-    let anchor = tree.find('[onPress]')
-    anchor.simulate('press')
-    expect(navigator.show).toHaveBeenCalledWith(
-      url,
-      { deepLink: true, modal: true }
-    )
   })
 
   it('can handle data-api-endpoint and data-api-returntype attributes', () => {
