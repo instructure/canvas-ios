@@ -60,9 +60,7 @@ class ProfileTests: CanvasUITests {
         Profile.open()
         Profile.filesButton.tap()
 
-        FilesList.file(id: "11585").waitToExist()
         FilesList.file(id: "11585").tap()
-        sleep(3)
-        app.find(type: .image).waitToExist()
+        app.find(label: "File", type: .image).waitToExist()
     }
 }

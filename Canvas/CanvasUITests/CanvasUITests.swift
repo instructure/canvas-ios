@@ -30,7 +30,7 @@ class CanvasUITests: UITestCase {
         reset()
         if let user = user {
             logInUser(user)
-            Dashboard.profileButton.waitToExist()
+            Dashboard.coursesLabel.waitToExist()
         }
     }
 

@@ -31,7 +31,7 @@ type Props = {
 
 export default class RichContent extends Component<Props, *> {
   static supportedTags = [
-    'p', 'i', 'font', 'span', 'a', 'b', 'br', 'div',
+    'p', 'i', 'font', 'span', 'b', 'br', 'div',
   ]
 
   // Most types transfer to react native styles, but not all of them
@@ -85,9 +85,6 @@ export default class RichContent extends Component<Props, *> {
         case 'color':
           props['style'] = props['style'] || {}
           props['style']['color'] = attribute.value.content
-          break
-        case 'href':
-          props['onPress'] = () => this.navigate(attribute.value.content)
           break
         case 'data-api-endpoint':
         case 'data-api-returntype':
@@ -170,17 +167,6 @@ export default class RichContent extends Component<Props, *> {
             {children.map(this.renderAST)}
           </Text>
         )
-      case 'a':
-        return (
-          <Text
-            {...props}
-            style={[styles.font, props.style, styles.link]}
-            accessibilityTraits='button'
-            key={index}
-          >
-            {children.map(this.renderAST)}
-          </Text>
-        )
       case 'b':
         let { style: bStyle, ...bProps } = props
         return (
@@ -240,8 +226,5 @@ const styles = StyleSheet.create({
   },
   bold: {
     fontWeight: '600',
-  },
-  link: {
-    color: '#368BD8',
   },
 })
