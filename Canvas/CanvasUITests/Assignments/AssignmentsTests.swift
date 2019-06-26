@@ -18,6 +18,15 @@ import XCTest
 import TestsFoundation
 
 class AssignmentsTests: CanvasUITests {
+    func testCourseGradeIsCorrect() {
+        Dashboard.courseCard(id: "263").waitToExist()
+        Dashboard.courseCard(id: "263").tap()
+
+        CourseNavigation.grades.tap()
+
+        app.find(labelContaining: "70%").waitToExist()
+    }
+
     func testViewAssignmentAndPreviewAttachment() {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
