@@ -78,7 +78,10 @@ class SubmitAssignmentPresenter {
         guard let assignment = assignment else { return }
         let uploadContext = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id)
         let batchID = "assignment-\(assignment.id)"
-        let attachments = items.map { $0.attachments ?? [] }.reduce([], +)
+        var attachments: [NSItemProvider] = []
+        for item in items {
+            attachments.append(contentsOf: item.attachments ?? [])
+        }
         let manager = UploadManager.shared
         manager.cancel(environment: env, batchID: batchID)
         load(attachments: attachments) { urls, error in
