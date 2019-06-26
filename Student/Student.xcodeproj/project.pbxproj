@@ -100,16 +100,12 @@
 		5B5E29762185A057001C9C79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B5E29782185A057001C9C79 /* InfoPlist.strings */; };
 		5B5E29832185A058001C9C79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B5E29852185A058001C9C79 /* InfoPlist.strings */; };
 		5B5E29882185A058001C9C79 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B5E298A2185A058001C9C79 /* InfoPlist.strings */; };
-		78761D87218B8C2A0042E5D2 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78761D86218B8C2A0042E5D2 /* ShareViewController.swift */; };
-		78761D8A218B8C2A0042E5D2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78761D88218B8C2A0042E5D2 /* MainInterface.storyboard */; };
-		78761D8E218B8C2A0042E5D2 /* StudentShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 78761D84218B8C2A0042E5D2 /* StudentShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		788152DB212B3470005BA428 /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DA212B3470005BA428 /* DashboardPresenter.swift */; };
 		788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152DC212B34F2005BA428 /* DashboardViewController.swift */; };
 		788152DF212B35F8005BA428 /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 788152DE212B35F8005BA428 /* DashboardViewController.storyboard */; };
 		788152ED212B4FA4005BA428 /* CourseCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152EC212B4FA4005BA428 /* CourseCardCell.swift */; };
 		788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152F4212B7482005BA428 /* DashboardGroupCell.swift */; };
 		788152FC212B83D0005BA428 /* DashboardSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */; };
-		788FD3D7218D040200C185BD /* ShareAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788FD3D6218D040200C185BD /* ShareAssets.xcassets */; };
 		7D005F792239DE5A0040CBD7 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D005F782239DE5A0040CBD7 /* AvatarView.swift */; };
 		7D005F7A2239DE5A0040CBD7 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D005F782239DE5A0040CBD7 /* AvatarView.swift */; };
 		7D005F7F2239DE920040CBD7 /* DynamicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2ADCC21B70537008D91AB /* DynamicTextField.swift */; };
@@ -218,7 +214,6 @@
 		9F74200B21932DCE00108A0F /* SubmissionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79DC2188E9D90054293A /* SubmissionDetailsViewController.swift */; };
 		9F74200C21932DEB00108A0F /* SubmissionDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FCD79DE2188EAC40054293A /* SubmissionDetailsViewController.storyboard */; };
 		9F74200D21932DEF00108A0F /* SubmissionDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5ADB30218B656400D8C973 /* SubmissionDetailsPresenter.swift */; };
-		9F9424A8222F11DD001FDF4A /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DF2578215F36F3006EDA4F /* Core.framework */; };
 		9F9F4EB121B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9F4EB021B58A5D00842570 /* ExternalToolSubmissionContentViewController.storyboard */; };
 		9F9F4EB321B58AA300842570 /* ExternalToolSubmissionContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9F4EB221B58AA300842570 /* ExternalToolSubmissionContentViewController.swift */; };
 		9F9F4EB421B58AA300842570 /* ExternalToolSubmissionContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9F4EB221B58AA300842570 /* ExternalToolSubmissionContentViewController.swift */; };
@@ -272,13 +267,6 @@
 			remoteGlobalIDString = 2C5C6988211DFFAD00D9AD15;
 			remoteInfo = Student;
 		};
-		78761D8C218B8C2A0042E5D2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2C5C6981211DFFAC00D9AD15 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 78761D83218B8C2A0042E5D2;
-			remoteInfo = StudentShare;
-		};
 		F9E7D0D4215BE19F00CDC1A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C5C6981211DFFAC00D9AD15 /* Project object */;
@@ -317,7 +305,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				78761D8E218B8C2A0042E5D2 /* StudentShare.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -539,18 +526,12 @@
 		5BFB2D8022ACED20002B2CBD /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fi; path = fi.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5BFB2D8122ACED20002B2CBD /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78761D7F218B8B060042E5D2 /* Student.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Student.entitlements; sourceTree = "<group>"; };
-		78761D84218B8C2A0042E5D2 /* StudentShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudentShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		78761D86218B8C2A0042E5D2 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		78761D89218B8C2A0042E5D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		78761D8B218B8C2A0042E5D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		78761D93218B8C3C0042E5D2 /* StudentShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudentShare.entitlements; sourceTree = "<group>"; };
 		788152DA212B3470005BA428 /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		788152DC212B34F2005BA428 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		788152DE212B35F8005BA428 /* DashboardViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
 		788152EC212B4FA4005BA428 /* CourseCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCardCell.swift; sourceTree = "<group>"; };
 		788152F4212B7482005BA428 /* DashboardGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGroupCell.swift; sourceTree = "<group>"; };
 		788152FA212B83D0005BA428 /* DashboardSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSectionHeaderView.swift; sourceTree = "<group>"; };
-		788FD3D6218D040200C185BD /* ShareAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ShareAssets.xcassets; sourceTree = "<group>"; };
 		7D005F782239DE5A0040CBD7 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		7D067CDC21505AF100B78AF2 /* StudentReborn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StudentReborn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D067CDE21505AF200B78AF2 /* StudentReborn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentReborn.h; sourceTree = "<group>"; };
@@ -712,14 +693,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		78761D81218B8C2A0042E5D2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F9424A8222F11DD001FDF4A /* Core.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7D067CD821505AF100B78AF2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -751,7 +724,6 @@
 				7D067CDD21505AF200B78AF2 /* StudentReborn */,
 				3B542D3E215AE5E10084DA9D /* StudentUnitTests */,
 				F9E7D0D0215BE19F00CDC1A3 /* StudentUITests */,
-				78761D85218B8C2A0042E5D2 /* StudentShare */,
 				2C964862211E37EC002C3255 /* Frameworks */,
 				2C5C698A211DFFAD00D9AD15 /* Products */,
 			);
@@ -764,7 +736,6 @@
 				7D067CDC21505AF100B78AF2 /* StudentReborn.framework */,
 				3B542D75215AE79E0084DA9D /* StudentUnitTests.xctest */,
 				F9E7D0CF215BE19F00CDC1A3 /* StudentUITests.xctest */,
-				78761D84218B8C2A0042E5D2 /* StudentShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1081,18 +1052,6 @@
 				3BBCF847224C19A2004B519D /* SyllabusViewController.storyboard */,
 			);
 			path = Syllabus;
-			sourceTree = "<group>";
-		};
-		78761D85218B8C2A0042E5D2 /* StudentShare */ = {
-			isa = PBXGroup;
-			children = (
-				78761D93218B8C3C0042E5D2 /* StudentShare.entitlements */,
-				78761D86218B8C2A0042E5D2 /* ShareViewController.swift */,
-				78761D88218B8C2A0042E5D2 /* MainInterface.storyboard */,
-				78761D8B218B8C2A0042E5D2 /* Info.plist */,
-				788FD3D6218D040200C185BD /* ShareAssets.xcassets */,
-			);
-			path = StudentShare;
 			sourceTree = "<group>";
 		};
 		788152D5212B330C005BA428 /* Dashboard */ = {
@@ -1491,7 +1450,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				78761D8D218B8C2A0042E5D2 /* PBXTargetDependency */,
 			);
 			name = Student;
 			productName = Student;
@@ -1516,23 +1474,6 @@
 			productName = StudentTests;
 			productReference = 3B542D75215AE79E0084DA9D /* StudentUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		78761D83218B8C2A0042E5D2 /* StudentShare */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 78761D91218B8C2A0042E5D2 /* Build configuration list for PBXNativeTarget "StudentShare" */;
-			buildPhases = (
-				78761D80218B8C2A0042E5D2 /* Sources */,
-				78761D81218B8C2A0042E5D2 /* Frameworks */,
-				78761D82218B8C2A0042E5D2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = StudentShare;
-			productName = StudentShare;
-			productReference = 78761D84218B8C2A0042E5D2 /* StudentShare.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 		7D067CDB21505AF100B78AF2 /* StudentReborn */ = {
 			isa = PBXNativeTarget;
@@ -1597,19 +1538,6 @@
 					3B542D4F215AE79E0084DA9D = {
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
-					};
-					78761D83218B8C2A0042E5D2 = {
-						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-							com.apple.Keychain = {
-								enabled = 1;
-							};
-						};
 					};
 					7D067CDB21505AF100B78AF2 = {
 						CreatedOnToolsVersion = 9.4;
@@ -1685,7 +1613,6 @@
 				7D067CDB21505AF100B78AF2 /* StudentReborn */,
 				3B542D4F215AE79E0084DA9D /* StudentUnitTests */,
 				F9E7D0CE215BE19F00CDC1A3 /* StudentUITests */,
-				78761D83218B8C2A0042E5D2 /* StudentShare */,
 			);
 		};
 /* End PBXProject section */
@@ -1727,15 +1654,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		78761D82218B8C2A0042E5D2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				788FD3D7218D040200C185BD /* ShareAssets.xcassets in Resources */,
-				78761D8A218B8C2A0042E5D2 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1928,14 +1846,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		78761D80218B8C2A0042E5D2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				78761D87218B8C2A0042E5D2 /* ShareViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7D067CD721505AF100B78AF2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2045,11 +1955,6 @@
 			isa = PBXTargetDependency;
 			target = 2C5C6988211DFFAD00D9AD15 /* Student */;
 			targetProxy = 3B542D51215AE79E0084DA9D /* PBXContainerItemProxy */;
-		};
-		78761D8D218B8C2A0042E5D2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 78761D83218B8C2A0042E5D2 /* StudentShare */;
-			targetProxy = 78761D8C218B8C2A0042E5D2 /* PBXContainerItemProxy */;
 		};
 		F9E7D0D5215BE19F00CDC1A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2193,14 +2098,6 @@
 				7D09BE0622BD7EFB0097CC7B /* zh */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		78761D88218B8C2A0042E5D2 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				78761D89218B8C2A0042E5D2 /* Base */,
-			);
-			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 		7D1758E7215AA06C00F88613 /* Localizable.strings */ = {
@@ -2519,48 +2416,6 @@
 			};
 			name = Release;
 		};
-		78761D8F218B8C2A0042E5D2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = StudentShare/StudentShare.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B6333T4PXQ;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = StudentShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.icanvas.share-extension";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		78761D90218B8C2A0042E5D2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = StudentShare/StudentShare.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B6333T4PXQ;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				INFOPLIST_FILE = StudentShare/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.icanvas.share-extension";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		7D067CE121505AF200B78AF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2710,15 +2565,6 @@
 			buildConfigurations = (
 				3B542D73215AE79E0084DA9D /* Debug */,
 				3B542D74215AE79E0084DA9D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		78761D91218B8C2A0042E5D2 /* Build configuration list for PBXNativeTarget "StudentShare" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				78761D8F218B8C2A0042E5D2 /* Debug */,
-				78761D90218B8C2A0042E5D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
