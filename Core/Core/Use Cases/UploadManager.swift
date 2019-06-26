@@ -144,6 +144,9 @@ public class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate
                 }
                 try context.save()
             } catch {
+                #if DEBUG
+                print(String(data: data, encoding: .utf8) ?? "", error)
+                #endif
                 complete(file: file, error: error)
             }
         }

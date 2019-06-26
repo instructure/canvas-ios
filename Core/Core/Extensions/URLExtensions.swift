@@ -49,10 +49,6 @@ extension URL {
         return components.url ?? self
     }
 
-    public var queryMap: [String: String] {
-        return URLComponents(url: self, resolvingAgainstBaseURL: false)?.queryMap ?? [:]
-    }
-
     public func move(to destination: URL, override: Bool = true) throws {
         let manager = FileManager.default
         if destination.hasDirectoryPath {

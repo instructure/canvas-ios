@@ -106,10 +106,6 @@ class SubmitAssignmentPresenter {
             let newURL = URL.appGroup(group)?.appendingPathComponent("share-submit").appendingPathComponent(url.lastPathComponent) ?? url
             do {
                 try url.move(to: newURL)
-                if let image = UIImage(contentsOfFile: newURL.path) {
-                    let normalized = UIImage.fixOrientation(image)
-                    try normalized.write(to: newURL.deletingLastPathComponent(), nameIt: newURL.lastPathComponent)
-                }
                 urls.append(newURL)
                 self.load(attachments: attachments, into: urls, callback: callback)
             } catch {
