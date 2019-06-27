@@ -151,6 +151,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1l-zH-QmF" userLabel="GradedView" customClass="GradeCircleView" customModule="Core">
                                                                 <rect key="frame" x="0.0" y="19.5" width="343" height="144"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.gradeCell"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="144" id="9w5-U6-mq8"/>
                                                                 </constraints>
