@@ -21,11 +21,14 @@ import Core
 class SubmitAssignmentViewController: SLComposeServiceViewController, SubmitAssignmentView {
     var presenter: SubmitAssignmentPresenter?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func presentationAnimationDidFinish() {
+        super.presentationAnimationDidFinish()
         presenter = SubmitAssignmentPresenter()
         presenter?.view = self
         presenter?.viewIsReady()
+
+        let items = extensionContext?.inputItems as? [NSExtensionItem] ?? []
+        presenter?.load(items: items)
     }
 
     override func isContentValid() -> Bool {
@@ -33,13 +36,8 @@ class SubmitAssignmentViewController: SLComposeServiceViewController, SubmitAssi
     }
 
     override func didSelectPost() {
-        presenter?.submit(items: extensionContext?.inputItems as? [NSExtensionItem] ?? []) { [weak self] error in
-            if let error = error {
-                print("ERROR:", error)
-                return
-            }
-            self?.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
-        }
+        presenter?.submit()
+        extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
     }
 
     override func configurationItems() -> [Any]! {

@@ -41,15 +41,36 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
-      <MacroExpansion>
+      <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B1BB7A8122BAC820006CA068"
             BuildableName = "SubmitAssignment.appex"
             BlueprintName = "SubmitAssignment"
+            ReferencedContainer = "container:Canvas.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B1CA092D22C4237C008AA352"
+               BuildableName = "SubmitAssignmentTests.xctest"
+               BlueprintName = "SubmitAssignmentTests"
+               ReferencedContainer = "container:Canvas.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "492704721CF4AF7100C631C6"
+            BuildableName = "Canvas.app"
+            BlueprintName = "Canvas"
             ReferencedContainer = "container:Canvas.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

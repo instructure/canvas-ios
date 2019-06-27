@@ -38,7 +38,12 @@ class SubmitAssignmentPresenter {
             view?.update()
         }
     }
+
     private(set) var assignment: Assignment? {
+        didSet { view?.update() }
+    }
+
+    private(set) var urls: [URL]? {
         didSet { view?.update() }
     }
 
@@ -48,7 +53,7 @@ class SubmitAssignmentPresenter {
     }
 
     var isContentValid: Bool {
-        return course != nil && assignment != nil
+        return course != nil && assignment != nil && urls != nil
     }
 
     init?() {
@@ -57,13 +62,26 @@ class SubmitAssignmentPresenter {
             let appGroup = Bundle.main.appGroupID(),
             let container = URL.sharedContainer(appGroup)
         else { return nil }
-        env = AppEnvironment()
+        env = AppEnvironment.shared
         env.userDidLogin(session: session)
         sharedContainer = container
     }
 
     func viewIsReady() {
         courses?.refresh()
+    }
+
+    func load(items: [NSExtensionItem]) {
+        var attachments: [NSItemProvider] = []
+        for item in items {
+            attachments.append(contentsOf: item.attachments ?? [])
+        }
+        load(attachments: attachments) { [weak self] urls, error in
+            if let error = error {
+                print("ERROR: \(error)")
+            }
+            self?.urls = urls
+        }
     }
 
     func select(course: Course) {
@@ -74,30 +92,18 @@ class SubmitAssignmentPresenter {
         self.assignment = assignment
     }
 
-    func submit(items: [NSExtensionItem], callback: @escaping (Error?) -> Void) {
-        guard let assignment = assignment else { return }
+    func submit() {
+        guard let assignment = assignment, let urls = urls else { return }
         let uploadContext = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id)
         let batchID = "assignment-\(assignment.id)"
-        var attachments: [NSItemProvider] = []
-        for item in items {
-            attachments.append(contentsOf: item.attachments ?? [])
-        }
         let manager = UploadManager.shared
         manager.cancel(environment: env, batchID: batchID)
-        load(attachments: attachments) { urls, error in
-            guard let urls = urls, error == nil else {
-                callback(error)
-                return
-            }
-            for url in urls {
-                manager.add(environment: self.env, url: url, batchID: batchID)
-            }
-            manager.upload(environment: self.env, batch: batchID, to: uploadContext)
-            callback(nil)
+        for url in urls {
+            manager.upload(environment: env, url: url, batchID: batchID, to: uploadContext)
         }
     }
 
-    func load(attachments: [NSItemProvider], into urls: [URL] = [], callback: @escaping ([URL]?, Error?) -> Void) {
+    private func load(attachments: [NSItemProvider], into urls: [URL] = [], callback: @escaping ([URL]?, Error?) -> Void) {
         var attachments = attachments
         var urls = urls
         guard let attachment = attachments.popLast() else {

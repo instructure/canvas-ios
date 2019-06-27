@@ -24,7 +24,7 @@ enum FileUploaderError: Error {
     case fileNotFound
 }
 
-public class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
+open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
     public static let AssignmentSubmittedNotification = NSNotification.Name(rawValue: "com.instructure.core.assignment-submitted")
     public typealias Store = Core.Store<LocalUseCase<File>>
 
@@ -32,7 +32,7 @@ public class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate
         case target, upload, submit
     }
 
-    public static let shared = UploadManager()
+    public static var shared = UploadManager()
 
     let database = NSPersistentContainer.shared
     var notificationManager: NotificationManager = .shared
@@ -60,7 +60,7 @@ public class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate
     }
 
     @discardableResult
-    public func add(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil) -> NSManagedObjectID {
+    open func add(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil) -> NSManagedObjectID {
         var objectID: NSManagedObjectID!
         context.performAndWait {
             let file: File = context.insert()
@@ -76,7 +76,7 @@ public class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate
         return objectID
     }
 
-    public func upload(environment: AppEnvironment = .shared, batch batchID: String, to uploadContext: FileUploadContext) {
+    open func upload(environment: AppEnvironment = .shared, batch batchID: String, to uploadContext: FileUploadContext) {
         context.performAndWait {
             let user = environment.currentSession.flatMap { NSPredicate(format: "%K == %@", #keyPath(File.userID), $0.userID) } ?? .all
             let batch = NSPredicate(format: "%K == %@", #keyPath(File.batchID), batchID)
@@ -88,7 +88,7 @@ public class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate
         }
     }
 
-    public func upload(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil, to uploadContext: FileUploadContext) {
+    open func upload(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil, to uploadContext: FileUploadContext) {
         let objectID = add(environment: environment, url: url, batchID: batchID)
         context.performAndWait {
             guard let file = context.object(with: objectID) as? File else { return }
@@ -97,7 +97,7 @@ public class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate
     }
 
     /// File must exist in `NSPersistentContainer.shared`
-    public func upload(environment: AppEnvironment = .shared, file: File, to uploadContext: FileUploadContext) {
+    open func upload(environment: AppEnvironment = .shared, file: File, to uploadContext: FileUploadContext) {
         let objectID = file.objectID
         context.performAndWait {
             guard let file = context.object(with: objectID) as? File, let url = file.localFileURL else { return }
@@ -217,12 +217,12 @@ public class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate
         }
     }
 
-    public func delete(environment: AppEnvironment = .shared, batchID: String) {
+    open func delete(environment: AppEnvironment = .shared, batchID: String) {
         guard let session = environment.currentSession else { return }
         delete(userID: session.userID, batchID: batchID)
     }
 
-    public func cancel(environment: AppEnvironment = .shared, batchID: String) {
+    open func cancel(environment: AppEnvironment = .shared, batchID: String) {
         guard let session = environment.currentSession else { return }
         context.performAndWait {
             let files: [File] = context.fetch(predicate(userID: session.userID, batchID: batchID))
