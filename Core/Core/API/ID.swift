@@ -39,6 +39,10 @@ public struct ID: Codable, Equatable, CustomStringConvertible {
         value = ""
     }
 
+    public init(_ string: String) {
+        self.init(stringLiteral: string)
+    }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         if value.isEmpty {

@@ -21,11 +21,12 @@ import UserNotifications
 
 class NotificationManagerTests: CoreTestCase {
     func testNotify() {
-        notificationManager.notify(title: "Title", body: "Body", route: Route.courses)
+        notificationManager.notify(identifier: "one", title: "Title", body: "Body", route: Route.courses)
         let request = notificationCenter.requests.last
         XCTAssertNotNil(request)
         XCTAssertEqual(request?.content.title, "Title")
         XCTAssertEqual(request?.content.body, "Body")
+        XCTAssertEqual(request?.identifier, "one")
         XCTAssert(request?.trigger is UNTimeIntervalNotificationTrigger)
         XCTAssertEqual((request?.trigger as? UNTimeIntervalNotificationTrigger)?.timeInterval, 1)
         XCTAssertEqual((request?.trigger as? UNTimeIntervalNotificationTrigger)?.repeats, false)
@@ -34,7 +35,7 @@ class NotificationManagerTests: CoreTestCase {
 
     func testNotifyLogsError() {
         notificationCenter.error = NSError.instructureError("error")
-        notificationManager.notify(title: "Title", body: "Body", route: nil)
+        notificationManager.notify(identifier: "one", title: "Title", body: "Body", route: nil)
         let log = logger.errors.last
         XCTAssertNotNil(log)
         XCTAssertEqual(log, "error")

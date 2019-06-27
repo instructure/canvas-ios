@@ -20,7 +20,6 @@ import TestsFoundation
 
 class UploadFileCommentTests: CoreTestCase {
     let upload = UploadFileComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, batchID: "5")
-    let uploader = MockFileUploader()
     var comment: SubmissionComment?
     var error: Error?
     var called: XCTestExpectation?
@@ -34,7 +33,6 @@ class UploadFileCommentTests: CoreTestCase {
             self?.error = error
             self?.called?.fulfill()
         }
-        upload.uploadBatch.uploader = uploader
     }
 
     override func tearDown() {

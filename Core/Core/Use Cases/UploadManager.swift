@@ -24,13 +24,23 @@ enum FileUploaderError: Error {
     case fileNotFound
 }
 
+enum UploadStep: String {
+    case target, upload, submit
+}
+
+extension URLSessionTask {
+    var uploadStep: UploadStep? {
+        get {
+            guard let desc = taskDescription else { return nil }
+            return UploadStep(rawValue: desc)
+        }
+        set { taskDescription = newValue?.rawValue }
+    }
+}
+
 open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, URLSessionDataDelegate {
     public static let AssignmentSubmittedNotification = NSNotification.Name(rawValue: "com.instructure.core.assignment-submitted")
     public typealias Store = Core.Store<LocalUseCase<File>>
-
-    enum Step: String {
-        case target, upload, submit
-    }
 
     public static var shared = UploadManager()
 
@@ -60,8 +70,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     @discardableResult
-    open func add(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil) -> NSManagedObjectID {
-        var objectID: NSManagedObjectID!
+    open func add(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil) -> NSManagedObjectID? {
+        var objectID: NSManagedObjectID?
         context.performAndWait {
             let file: File = context.insert()
             file.localFileURL = url
@@ -70,8 +80,12 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             if let session = environment.currentSession {
                 file.user = File.User(id: session.userID, baseURL: session.baseURL, actAsUserID: session.actAsUserID)
             }
-            objectID = file.objectID
-            try? context.save()
+            do {
+                try context.save()
+                objectID = file.objectID
+            } catch {
+                assertionFailure(error.localizedDescription)
+            }
         }
         return objectID
     }
@@ -89,9 +103,9 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     open func upload(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil, to uploadContext: FileUploadContext) {
-        let objectID = add(environment: environment, url: url, batchID: batchID)
         context.performAndWait {
-            guard let file = context.object(with: objectID) as? File else { return }
+            guard let objectID = add(environment: environment, url: url, batchID: batchID) else { return }
+            guard let file = try? context.existingObject(with: objectID) as? File else { return }
             upload(environment: environment, file: file, to: uploadContext)
         }
     }
@@ -100,14 +114,14 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     open func upload(environment: AppEnvironment = .shared, file: File, to uploadContext: FileUploadContext) {
         let objectID = file.objectID
         context.performAndWait {
-            guard let file = context.object(with: objectID) as? File, let url = file.localFileURL else { return }
+            guard let file = try? context.existingObject(with: objectID) as? File, let url = file.localFileURL else { return }
             do {
                 let api = environment.api
                 let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil, size: file.size)
                 let requestable = PostFileUploadTargetRequest(context: uploadContext, body: body)
                 let request = try requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.accessToken, actAsUserID: api.actAsUserID)
                 let task = backgroundSession.dataTask(with: request)
-                task.taskDescription = Step.target.rawValue
+                task.uploadStep = .target
                 file.taskID = task.taskIdentifier
                 file.context = uploadContext
                 file.uploadError = nil
@@ -125,8 +139,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         context.performAndWait {
             guard
-                let description = dataTask.taskDescription,
-                let step = Step(rawValue: description),
+                let step = dataTask.uploadStep,
                 let file = self.file(taskID: dataTask.taskIdentifier)
             else { return }
             let decoder = JSONDecoder()
@@ -172,8 +185,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         Logger.shared.log()
         context.performAndWait {
             guard
-                let description = task.taskDescription,
-                let step = Step(rawValue: description),
+                let step = task.uploadStep,
                 let file = self.file(taskID: task.taskIdentifier)
             else { return }
             switch step {
@@ -194,7 +206,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 let api = URLSessionAPI(accessToken: nil, actAsUserID: file.user?.actAsUserID, baseURL: target.upload_url, urlSession: backgroundSession)
                 do {
                     let task = try api.uploadTask(request)
-                    task.taskDescription = Step.upload.rawValue
+                    task.uploadStep = .upload
                     file.taskID = task.taskIdentifier
                     try context.save()
                     task.resume()
@@ -213,13 +225,12 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         context.performAndWait {
             let files: [File] = context.fetch(predicate(userID: userID, batchID: batchID))
             context.delete(files)
-            try? context.save()
+            do {
+                try context.save()
+            } catch {
+                assertionFailure("failed to delete files")
+            }
         }
-    }
-
-    open func delete(environment: AppEnvironment = .shared, batchID: String) {
-        guard let session = environment.currentSession else { return }
-        delete(userID: session.userID, batchID: batchID)
     }
 
     open func cancel(environment: AppEnvironment = .shared, batchID: String) {
@@ -259,7 +270,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         do {
             let request = try requestable.urlRequest(relativeTo: session.baseURL, accessToken: session.accessToken, actAsUserID: session.actAsUserID)
             let task = backgroundSession.dataTask(with: request)
-            task.taskDescription = Step.submit.rawValue
+            task.uploadStep = .submit
             file.taskID = task.taskIdentifier
             try context.save()
             task.resume()
