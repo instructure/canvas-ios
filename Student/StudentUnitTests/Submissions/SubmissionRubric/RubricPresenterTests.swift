@@ -107,6 +107,30 @@ class RubricPresenterTests: PersistenceTestCase {
         XCTAssertEqual(models.count, expected.count)
         XCTAssertEqual(models.first, expected.first)
     }
+
+    func testRubricViewModelRatingBlurb() {
+        let r = Rubric.make()
+        let rating = RubricRating.make()
+        let model = RubricViewModel(id: r.id,
+                                    title: r.desc,
+                                    longDescription: r.longDesc,
+                                    selectedDesc: "Custom Grade",
+                                    selectedIndex: 1,
+                                    ratings: [1.0, 2.0],
+                                    descriptions: ["Bad"],
+                                    comment: nil,
+                                    rubricRatings: [rating],
+                                    isCustomAssessment: true)
+
+        let a = model.ratingBlurb(0)
+        let b = model.ratingBlurb(1)
+
+        XCTAssertEqual(a.header, "Excellent")
+        XCTAssertEqual(a.subHeader, "Like the best!")
+
+        XCTAssertEqual(b.header, "Custom Grade")
+        XCTAssertEqual(b.subHeader, "")
+    }
 }
 
 extension RubricPresenterTests: RubricViewProtocol {
