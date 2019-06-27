@@ -640,6 +640,10 @@
 		B1CB84F21D076025004D2265 /* ExpandingComment.html in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EE1D076025004D2265 /* ExpandingComment.html */; };
 		B1CB84F31D076026004D2265 /* ExpandingComment.js in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EF1D076025004D2265 /* ExpandingComment.js */; };
 		B1D766A122C5049B0097561E /* SubmitAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D766A022C5049A0097561E /* SubmitAssignmentTests.swift */; };
+		B1D766A422C505770097561E /* CoursesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D766A322C505770097561E /* CoursesPresenterTests.swift */; };
+		B1D766A522C505B90097561E /* CoursesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A9722BAE3B9006CA068 /* CoursesPresenter.swift */; };
+		B1D766A822C509260097561E /* AssignmentsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D766A722C509260097561E /* AssignmentsPresenterTests.swift */; };
+		B1D766A922C509780097561E /* AssignmentsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A61222BD795D00963E56 /* AssignmentsPresenter.swift */; };
 		B5A790BB1D8C743400ACA9FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
@@ -1658,6 +1662,8 @@
 		B1CB84EE1D076025004D2265 /* ExpandingComment.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExpandingComment.html; sourceTree = "<group>"; };
 		B1CB84EF1D076025004D2265 /* ExpandingComment.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ExpandingComment.js; sourceTree = "<group>"; };
 		B1D766A022C5049A0097561E /* SubmitAssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentTests.swift; sourceTree = "<group>"; };
+		B1D766A322C505770097561E /* CoursesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesPresenterTests.swift; sourceTree = "<group>"; };
+		B1D766A722C509260097561E /* AssignmentsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsPresenterTests.swift; sourceTree = "<group>"; };
 		B1E3D6E01D8305D900B4AC11 /* ModulesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModulesTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B1FF7EDE1D8758720069C9BE /* ModuleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
 		B5A790A71D8C743400ACA9FE /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -3100,11 +3106,29 @@
 		B1CA092F22C4237C008AA352 /* SubmitAssignmentTests */ = {
 			isa = PBXGroup;
 			children = (
+				B1D766A622C509100097561E /* Assignments */,
+				B1D766A222C5055E0097561E /* Courses */,
 				B1CA093022C4237C008AA352 /* SubmitAssignmentPresenterTests.swift */,
 				B1CA093222C4237C008AA352 /* Info.plist */,
 				B1D766A022C5049A0097561E /* SubmitAssignmentTests.swift */,
 			);
 			path = SubmitAssignmentTests;
+			sourceTree = "<group>";
+		};
+		B1D766A222C5055E0097561E /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				B1D766A322C505770097561E /* CoursesPresenterTests.swift */,
+			);
+			path = Courses;
+			sourceTree = "<group>";
+		};
+		B1D766A622C509100097561E /* Assignments */ = {
+			isa = PBXGroup;
+			children = (
+				B1D766A722C509260097561E /* AssignmentsPresenterTests.swift */,
+			);
+			path = Assignments;
 			sourceTree = "<group>";
 		};
 		B1E3D6DF1D8305B100B4AC11 /* Modules */ = {
@@ -4412,6 +4436,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1D766A122C5049B0097561E /* SubmitAssignmentTests.swift in Sources */,
+				B1D766A922C509780097561E /* AssignmentsPresenter.swift in Sources */,
+				B1D766A822C509260097561E /* AssignmentsPresenterTests.swift in Sources */,
+				B1D766A522C505B90097561E /* CoursesPresenter.swift in Sources */,
+				B1D766A422C505770097561E /* CoursesPresenterTests.swift in Sources */,
 				B1CA093122C4237C008AA352 /* SubmitAssignmentPresenterTests.swift in Sources */,
 				B1CA093822C424E6008AA352 /* SubmitAssignmentPresenter.swift in Sources */,
 			);

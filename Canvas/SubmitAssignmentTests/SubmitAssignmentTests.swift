@@ -16,6 +16,8 @@
 
 import Core
 import TestsFoundation
+import XCTest
+import CoreData
 
 class SubmitAssignmentTests: XCTestCase {
     let env = AppEnvironment.shared
