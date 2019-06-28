@@ -18,16 +18,13 @@ import Foundation
 import CoreData
 
 extension NSPersistentContainer {
-    public static let shared = create(appGroup: "group.com.instructure.icanvas")
+    public static let shared = create(appGroup: Bundle.main.appGroupID())
 
     public static func create(appGroup: String? = Bundle.main.appGroupID(), session: KeychainEntry? = nil) -> NSPersistentContainer {
         let model = NSManagedObjectModel(contentsOf: Bundle.core.url(forResource: "Database", withExtension: "momd")!)!
         let container = NSPersistentContainer(name: "Database", managedObjectModel: model)
 
-        // If we are using this in the context of an shared AppGroup, make sure the name is correct
-        let isUITest = ProcessInfo.isUITest
-        // VTS: The code block below breaks Firebase Test Lab.
-        if !isUITest, let url = databaseURL(for: appGroup, session: session) {
+        if let url = databaseURL(for: appGroup, session: session) {
             container.persistentStoreDescriptions = [ NSPersistentStoreDescription(url: url) ]
         }
 
