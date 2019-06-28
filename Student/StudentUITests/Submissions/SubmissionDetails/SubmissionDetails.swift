@@ -32,6 +32,9 @@ enum SubmissionDetails: String, CaseIterable, ElementWrapper {
     case urlButton
     case urlSubmissionBlurb
 
+    case rubricEmptyView
+    case rubricEmptyLabel
+
     static var drawerCommentsButton: Element {
         return app.find(label: "Comments", type: .button)
     }
@@ -40,5 +43,33 @@ enum SubmissionDetails: String, CaseIterable, ElementWrapper {
     }
     static var drawerRubricButton: Element {
         return app.find(label: "Rubric", type: .button)
+    }
+
+    static func rubricCellTitle(id: String) -> Element {
+        return app.find(id: "RubricCell.title.\(id)")
+    }
+
+    static func rubricCellCommentLabel(id: String) -> Element {
+        return app.find(id: "RubricCell.comment.\(id)")
+    }
+
+    static func rubricCellCommentContainer(id: String) -> Element {
+        return app.find(id: "RubricCell.commentContainer.\(id)")
+    }
+
+    static func rubricCellDescButton(id: String) -> Element {
+        return app.find(id: "RubricCell.descButton.\(id)")
+    }
+
+    static func rubricCellRatingTitle(id: String) -> Element {
+        return app.find(id: "RubricCell.ratingTitle.\(id)")
+    }
+
+    static func rubricCellRatingDesc(id: String) -> Element {
+        return app.find(id: "RubricCell.ratingDesc.\(id)")
+    }
+
+    static func rubricCellRatingButton(rubricID: String, points: Double) -> Element {
+        return app.find(id: "RubricCell.RatingButton.\(rubricID)-\(points)")
     }
 }

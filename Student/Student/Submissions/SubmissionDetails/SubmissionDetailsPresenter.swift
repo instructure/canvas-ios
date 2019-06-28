@@ -51,6 +51,10 @@ class SubmissionDetailsPresenter {
         self?.update()
     }
 
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.update()
+    }
+
     lazy var arc = env.subscribe(GetArc(courseID: context.id)) { [weak self] in
         self?.updateArc()
     }

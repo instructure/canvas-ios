@@ -35,6 +35,11 @@ public class ChatBubbleView: UIView {
         }
     }
 
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupFromNib()
+    }
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupFromNib()

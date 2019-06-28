@@ -19,10 +19,11 @@ import Core
 
 protocol RubricViewProtocol: ErrorViewController {
     func update(_ rubric: [RubricViewModel])
-    func showEmptyState()
+    func showEmptyState(_ show: Bool)
 }
 
 struct RubricViewModel: Hashable, Equatable {
+    var id: String
     let title: String
     let longDescription: String
     let selectedDesc: String
@@ -30,6 +31,15 @@ struct RubricViewModel: Hashable, Equatable {
     let ratings: [Double]
     let descriptions: [String]
     let comment: String?
+    let rubricRatings: [RubricRating]
+    var isCustomAssessment: Bool = false
+
+    func ratingBlurb(_ atIndex: Int) -> (header: String, subHeader: String) {
+        let isCustom = isCustomAssessment && atIndex >= rubricRatings.count
+        let header = isCustom ? NSLocalizedString("Custom Grade", comment: "") : rubricRatings[atIndex].desc
+        let subHeader = isCustom ? "" : rubricRatings[atIndex].longDesc
+        return (header, subHeader)
+    }
 }
 
 class RubricPresenter {
@@ -43,6 +53,14 @@ class RubricPresenter {
     }
 
     lazy var rubrics: Store<LocalUseCase<Rubric>> = env.subscribe(scope: Rubric.scope(assignmentID: assignmentID)) { [weak self] in
+        self?.update()
+    }
+
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.update()
+    }
+
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
     }
 
@@ -64,14 +82,16 @@ class RubricPresenter {
         assignments.refresh(force: true)
         submissions.refresh(force: true)
         rubrics.refresh(force: true)
+        courses.refresh()
+        colors.refresh()
     }
 
     func update() {
-        if rubrics.count > 0, let rubrics = rubrics.all, let assessments = submissions.first?.rubricAssessments {
+        if rubrics.count > 0, let rubrics = rubrics.all, let assessments = submissions.first?.rubricAssessments, courses.first?.color != nil {
             let models = transformRubricsToViewModels(rubrics, assessments: assessments)
             view?.update(models)
         } else {
-            view?.showEmptyState()
+            view?.showEmptyState(true)
         }
     }
 
@@ -86,6 +106,7 @@ class RubricPresenter {
             var selectedIndex = 0
             var comments: String?
             var description = ""
+            var isCustomAssessment = false
 
             if let index = sorted.firstIndex(where: { rr in assessment.ratingID == rr.id }) {
                 selected = sorted[index]
@@ -102,16 +123,20 @@ class RubricPresenter {
                 description = NSLocalizedString("Custom Grade", comment: "")
                 allDescriptions.append(description)
                 comments = assessment.comments
+                isCustomAssessment = true
             }
 
             let m = RubricViewModel(
+                id: r.id,
                 title: r.desc,
                 longDescription: r.longDesc,
                 selectedDesc: description,
                 selectedIndex: selectedIndex,
                 ratings: allRatings,
                 descriptions: allDescriptions,
-                comment: comments
+                comment: comments,
+                rubricRatings: sorted,
+                isCustomAssessment: isCustomAssessment
             )
             models.append(m)
         }

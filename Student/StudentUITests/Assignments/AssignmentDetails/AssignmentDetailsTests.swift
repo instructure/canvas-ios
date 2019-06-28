@@ -118,7 +118,7 @@ class AssignmentDetailsTests: StudentUITestCase {
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
         XCTAssertTrue(AssignmentDetails.submittedText.isVisible)
-        XCTAssertTrue(AssignmentDetails.gradeCell.isVisible)
+        XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
         XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "View Discussion")
     }
 
