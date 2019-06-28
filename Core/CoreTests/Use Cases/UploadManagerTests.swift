@@ -21,13 +21,17 @@ import XCTest
 import CoreData
 
 class UploadManagerTests: CoreTestCase {
-    let url = URL(fileURLWithPath: "/image.jpg")
     let uploadContext: FileUploadContext = .course("1")
     let backgroundSession = MockURLSession()
     let manager = UploadManager()
     var context: NSManagedObjectContext {
         return NSPersistentContainer.shared.viewContext
     }
+    lazy var url: URL = {
+        let url = URL.temporaryDirectory.appendingPathComponent("upload-manager.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "hey".data(using: .utf8), attributes: nil)
+        return url
+    }()
 
     override func setUp() {
         super.setUp()
@@ -36,12 +40,35 @@ class UploadManagerTests: CoreTestCase {
         URLSessionAPI.delegateURLSession = { _, _ in self.backgroundSession }
     }
 
-    func testAddAndSubscribe() {
+    func testUploadURLDefault() throws {
+        UUID.mock("default")
+        let expected = URL
+            .temporaryDirectory
+            .appendingPathComponent("uploads/default/")
+            .appendingPathComponent(url.lastPathComponent)
+        XCTAssertEqual(try manager.uploadURL(url), expected)
+    }
+
+    func testUploadURLSharedContainer() throws {
+        UUID.mock("shared")
+        let expected = URL
+            .sharedContainer("group.com.instructure.icanvas")?
+            .appendingPathComponent("uploads/shared/")
+            .appendingPathComponent(url.lastPathComponent)
+        let config = URLSessionConfiguration.background(withIdentifier: "doesnt matter")
+        config.sharedContainerIdentifier = "group.com.instructure.icanvas"
+        backgroundSession.config = config
+        XCTAssertEqual(try manager.uploadURL(url), expected)
+    }
+
+    func testAddAndSubscribe() throws {
         let expectation = XCTestExpectation(description: "subscribe event")
         let store = manager.subscribe(batchID: "1") {
             expectation.fulfill()
         }
-        manager.add(url: URL(fileURLWithPath: "/image.png"), batchID: "1")
+        let url = URL.temporaryDirectory.appendingPathComponent("upload-manager-add-test.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "hello".data(using: .utf8), attributes: nil)
+        manager.add(url: url, batchID: "1")
         wait(for: [expectation], timeout: 1)
         XCTAssertEqual(store.count, 1)
     }
@@ -342,6 +369,7 @@ class UploadManagerTests: CoreTestCase {
         try context.save()
         let task = MockURLSession.MockDataTask()
         task.taskIdentifier = 1
+        task.uploadStep = .upload
         manager.urlSession(
             backgroundSession,
             task: task,
@@ -388,7 +416,7 @@ class UploadManagerTests: CoreTestCase {
         )
     }
 
-    private func mockTarget(name: String, size: Int, context: FileUploadContext) {
+    private func mockTarget(name: String, size: Int, context: FileUploadContext, taskID: Int = 0) {
         let body = PostFileUploadTargetRequest.Body(name: name, on_duplicate: .rename, parent_folder_id: nil, size: size)
         let requestable = PostFileUploadTargetRequest(context: context, body: body)
         MockURLSession.mock(
@@ -396,7 +424,7 @@ class UploadManagerTests: CoreTestCase {
             value: FileUploadTarget.make(),
             baseURL: AppEnvironment.shared.api.baseURL,
             accessToken: AppEnvironment.shared.api.accessToken,
-            taskID: 0
+            taskID: taskID
         )
     }
 }

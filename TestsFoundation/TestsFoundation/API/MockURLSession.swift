@@ -143,4 +143,9 @@ public class MockURLSession: URLSession {
     public override func finishTasksAndInvalidate() {
         finishedTasksAndInvalidated = true
     }
+
+    public var config: URLSessionConfiguration = .default
+    public override var configuration: URLSessionConfiguration {
+        return config
+    }
 }

@@ -80,7 +80,9 @@ class SubmitAssignmentPresenter {
             if let error = error {
                 print("ERROR: \(error)")
             }
-            self?.urls = urls
+            DispatchQueue.main.async {
+                self?.urls = urls
+            }
         }
     }
 

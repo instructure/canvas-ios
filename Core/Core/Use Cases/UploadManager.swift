@@ -62,7 +62,26 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public var viewContext: NSManagedObjectContext {
         return database.viewContext
     }
-    private lazy var context = database.newBackgroundContext()
+    private lazy var context: NSManagedObjectContext = {
+        let context = database.newBackgroundContext()
+        context.mergePolicy = NSMergePolicy.overwrite
+        return context
+    }()
+
+    public func uploadURL(_ url: URL) throws -> URL {
+        let dir: URL
+        if let containerID = backgroundSession.configuration.sharedContainerIdentifier, let container = URL.sharedContainer(containerID) {
+            dir = container
+        } else {
+            dir = URL.temporaryDirectory
+        }
+        let newURL = dir
+            .appendingPathComponent("uploads", isDirectory: true)
+            .appendingPathComponent(UUID.string, isDirectory: true)
+            .appendingPathComponent(url.lastPathComponent)
+        try url.move(to: newURL)
+        return newURL
+    }
 
     public func subscribe(environment: AppEnvironment = .shared, batchID: String, eventHandler: @escaping Store.EventHandler) -> Store {
         let user = environment.currentSession.flatMap { NSPredicate(format: "%K == %@", #keyPath(File.userID), $0.userID) } ?? .all
@@ -77,14 +96,14 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     open func add(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil) -> NSManagedObjectID? {
         var objectID: NSManagedObjectID?
         context.performAndWait {
-            let file: File = context.insert()
-            file.localFileURL = url
-            file.batchID = batchID
-            file.size = url.lookupFileSize()
-            if let session = environment.currentSession {
-                file.user = File.User(id: session.userID, baseURL: session.baseURL, actAsUserID: session.actAsUserID)
-            }
             do {
+                let file: File = context.insert()
+                file.localFileURL = try uploadURL(url)
+                file.batchID = batchID
+                file.size = url.lookupFileSize()
+                if let session = environment.currentSession {
+                    file.user = File.User(id: session.userID, baseURL: session.baseURL, actAsUserID: session.actAsUserID)
+                }
                 try context.save()
                 objectID = file.objectID
             } catch {
@@ -114,7 +133,9 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         }
     }
 
-    /// File must exist in `NSPersistentContainer.shared`
+    /// File is assumed to exist in `NSPersistentContainer.shared`
+    /// Use `UploadManager.shared.uploadURL(_:)` as the file's `localFileURL`
+    /// Or (preferably) use `UploadManager.shared.upload(url:)`
     open func upload(environment: AppEnvironment = .shared, file: File, to uploadContext: FileUploadContext) {
         let objectID = file.objectID
         context.performAndWait {
@@ -125,6 +146,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 let requestable = PostFileUploadTargetRequest(context: uploadContext, body: body)
                 let request = try requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.accessToken, actAsUserID: api.actAsUserID)
                 let task = backgroundSession.dataTask(with: request)
+                file.localFileURL = url
                 task.uploadStep = .target
                 file.taskID = task.taskIdentifier
                 file.context = uploadContext
@@ -158,19 +180,22 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                     file.update(fromAPIModel: result)
                 case .submit:
                     guard case let .submission(courseID: _, assignmentID: assignmentID)? = file.context else { break }
-                    let submission = try decoder.decode(APISubmission.self, from: data)
-                    NotificationCenter.default.post(
-                        name: UploadManager.AssignmentSubmittedNotification,
-                        object: nil,
-                        userInfo: ["assignmentID": assignmentID, "submission": submission]
-                    )
+                    // This json response is not very predictable so do our best to parse it.
+                    // Avoids sending a failed push notification when the submission was in fact successful.
+                    if let submission = try? decoder.decode(APISubmission.self, from: data) {
+                        NotificationCenter.default.post(
+                            name: UploadManager.AssignmentSubmittedNotification,
+                            object: nil,
+                            userInfo: ["assignmentID": assignmentID, "submission": submission]
+                        )
+                    }
                 }
                 try context.save()
             } catch {
                 #if DEBUG
                 print(String(data: data, encoding: .utf8) ?? "", error)
                 #endif
-                complete(file: file, error: error)
+                complete(file: file, error: APIError.from(data: data, response: nil, error: error))
             }
         }
     }
@@ -178,9 +203,13 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         Logger.shared.log()
         context.performAndWait {
-            guard let file = self.file(taskID: task.taskIdentifier) else { return }
-            file.bytesSent = Int(totalBytesSent)
-            file.size = Int(totalBytesExpectedToSend)
+            guard let step = task.uploadStep, let file = self.file(taskID: task.taskIdentifier) else { return }
+            switch step {
+            case .upload:
+                file.bytesSent = Int(totalBytesSent)
+                file.size = Int(totalBytesExpectedToSend)
+            default: break
+            }
             try? context.save()
         }
     }

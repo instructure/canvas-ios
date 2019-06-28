@@ -63,8 +63,10 @@ class RichContentEditorPresenterTests: CoreTestCase {
     }
 
     func testImagePickerControllerMediaURL() {
+        let url = URL.temporaryDirectory.appendingPathComponent("audio.mp3")
+        FileManager.default.createFile(atPath: url.path, contents: "this is some audio".data(using: .utf8), attributes: nil)
         presenter.imagePickerController(MockPicker(), didFinishPickingMediaWithInfo: [
-            .mediaURL: URL(string: "/")!,
+            .mediaURL: url,
         ])
         XCTAssertNotNil(viewMedia)
     }

@@ -81,6 +81,7 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
         let context = UploadManager.shared.viewContext
         context.performAndWait {
             do {
+                let url = try UploadManager.shared.uploadURL(url)
                 let file: File = context.insert()
                 file.batchID = self.batchID
                 file.localFileURL = url

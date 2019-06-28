@@ -58,6 +58,7 @@ class CoreTestCase: XCTestCase {
         URLSessionAPI.delegateURLSession = { _, _ in MockURLSession() }
         UploadManager.shared = MockUploadManager()
         MockUploadManager.reset()
+        UUID.reset()
     }
 
     func waitForMainAsync() {

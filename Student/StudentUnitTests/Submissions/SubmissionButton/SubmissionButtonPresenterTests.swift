@@ -266,7 +266,8 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
 
     func testCanSubmitFilePicker() {
         XCTAssertFalse(presenter.canSubmit(filePicker))
-        let url = URL(string: "data:audio/x-aac,")!
+        let url = URL.temporaryDirectory.appendingPathComponent("SubmissionButtonPresenterTests-submit-files.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "test".data(using: .utf8), attributes: nil)
         UploadManager.shared.add(url: url, batchID: presenter.batchID)
         let filePicker = FilePickerViewController.create(environment: env, batchID: presenter.batchID)
         XCTAssertTrue(presenter.canSubmit(filePicker))
