@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        Logger.shared.log()
         setupCrashlytics()
         #if DEBUG
             UITestHelpers.setup(self)
@@ -123,9 +124,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        environment.logger.log(#function)
+        Logger.shared.log()
         CoreWebView.stopCookieKeepAlive()
         CanvasCore.LocalizationManager.closed()
+    }
+
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+        Logger.shared.log()
+        UploadManager.shared.completionHandler = {
+            DispatchQueue.main.async {
+                completionHandler()
+            }
+        }
     }
 }
 

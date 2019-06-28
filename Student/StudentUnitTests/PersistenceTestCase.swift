@@ -33,6 +33,8 @@ class PersistenceTestCase: XCTestCase {
     var router = TestRouter()
     var env = testEnvironment()
     var logger = TestLogger()
+    var uploadManager = MockUploadManager()
+    var currentSession = KeychainEntry.make()
 
     override func setUp() {
         super.setUp()
@@ -45,6 +47,9 @@ class PersistenceTestCase: XCTestCase {
         env.globalDatabase = database
         env.router = router
         env.logger = logger
+        env.currentSession = currentSession
         MockURLSession.reset()
+        UploadManager.shared = uploadManager
+        MockUploadManager.reset()
     }
 }

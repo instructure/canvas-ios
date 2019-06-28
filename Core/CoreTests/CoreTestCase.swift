@@ -31,6 +31,7 @@ class CoreTestCase: XCTestCase {
     var router = TestRouter()
     var logger = TestLogger()
     var environment: AppEnvironment!
+    var currentSession = KeychainEntry.make()
 
     let notificationCenter = MockUserNotificationCenter()
     var notificationManager: NotificationManager!
@@ -52,9 +53,12 @@ class CoreTestCase: XCTestCase {
         environment.database = database
         environment.router = router
         environment.logger = logger
-        environment.currentSession = KeychainEntry.make()
+        environment.currentSession = currentSession
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)
         URLSessionAPI.delegateURLSession = { _, _ in MockURLSession() }
+        UploadManager.shared = MockUploadManager()
+        MockUploadManager.reset()
+        UUID.reset()
     }
 
     func waitForMainAsync() {

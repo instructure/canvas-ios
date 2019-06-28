@@ -23,7 +23,7 @@ public struct GetCoursesRequest: APIRequestable {
     let includeUnpublished: Bool
     var perPage: Int
 
-    init(includeUnpublished: Bool, perPage: Int = 10) {
+    public init(includeUnpublished: Bool, perPage: Int = 10) {
         self.includeUnpublished = includeUnpublished
         self.perPage = perPage
     }

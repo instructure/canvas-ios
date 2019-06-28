@@ -23,25 +23,22 @@ protocol FilePickerViewProtocol: class {
 
 class FilePickerPresenter {
     let env: AppEnvironment
-    let batch: UploadBatch
+    let batchID: String
+    lazy var files = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
+        self?.view?.update()
+    }
     weak var view: FilePickerViewProtocol?
 
     init(environment: AppEnvironment = .shared, batchID: String = UUID.string) {
         self.env = environment
-        self.batch = UploadBatch(environment: environment, batchID: batchID, callback: nil)
+        self.batchID = batchID
     }
 
     func viewIsReady() {
-        batch.subscribe { [weak self] _ in
-            self?.view?.update()
-        }
+        files.refresh()
     }
 
     func add(url: URL) {
-        do {
-            try batch.addFile(url)
-        } catch {
-            view?.showError(error)
-        }
+        UploadManager.shared.add(url: url, batchID: batchID)
     }
 }

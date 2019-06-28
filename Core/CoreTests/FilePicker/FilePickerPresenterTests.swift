@@ -42,7 +42,8 @@ class FilePickerPresenterTests: CoreTestCase, FilePickerViewProtocol {
     }
 
     func testAddURL() {
-        let url = URL(string: "data:audio/x-aac,")!
+        let url = URL.temporaryDirectory.appendingPathComponent("FilePickerPresenterTests-testAddURL.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "hello".data(using: .utf8), attributes: nil)
         presenter.viewIsReady()
         wait(for: [didUpdate], timeout: 0.1)
         didUpdate = self.expectation(description: "did update again")

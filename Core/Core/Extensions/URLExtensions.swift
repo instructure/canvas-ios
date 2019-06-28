@@ -33,6 +33,10 @@ extension URL {
         return FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
     }
 
+    public static func sharedContainer(_ identifier: String) -> URL? {
+        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
+    }
+
     public func lookupFileSize() -> Int {
         guard self.isFileURL else { return 0 }
         let attributes = try? FileManager.default.attributesOfItem(atPath: path)

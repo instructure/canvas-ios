@@ -72,18 +72,18 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
     }
 
     func testAddFileCommentError() throws {
-        let file = File.make(batchID: "1", removeID: true)
+        let file = File.make(batchID: "1", removeID: true, session: currentSession, in: UploadManager.shared.viewContext)
         view.expectError = self.expectation(description: "error")
         view.expectError?.assertForOverFulfill = false
         presenter.viewIsReady()
         presenter.addFileComment(batchID: "1")
         file.uploadError = "doh"
-        try databaseClient.save()
+        try UploadManager.shared.viewContext.save()
         wait(for: [view.expectError!], timeout: 5)
     }
 
     func testAddFileCommentSuccess() throws {
-        let file = File.make(batchID: "1", removeID: true)
+        let file = File.make(batchID: "1", removeID: true, session: currentSession, in: UploadManager.shared.viewContext)
         api.mock(PutSubmissionGradeRequest(
             courseID: "1",
             assignmentID: "1",
@@ -97,7 +97,7 @@ class SubmissionCommentsPresenterTests: PersistenceTestCase {
         view.expectReload?.assertForOverFulfill = false
         presenter.addFileComment(batchID: "1")
         file.id = "1"
-        try databaseClient.save()
+        try UploadManager.shared.viewContext.save()
         wait(for: [view.expectReload!], timeout: 5)
     }
 

@@ -32,7 +32,8 @@ class SubmissionButtonPresenter: NSObject {
     var assignment: Assignment?
     let assignmentID: String
     let env: AppEnvironment
-    let fileUpload: UploadBatch
+    lazy var batchID = "assignment-\(assignmentID)"
+    lazy var files = UploadManager.shared.subscribe(batchID: batchID, eventHandler: {})
     var arcID: ArcID = .pending
     weak var view: SubmissionButtonViewProtocol?
 
@@ -40,10 +41,10 @@ class SubmissionButtonPresenter: NSObject {
         self.env = env
         self.view = view
         self.assignmentID = assignmentID
-        self.fileUpload = UploadBatch(environment: env, batchID: "assignment-\(assignmentID)", callback: nil)
+        super.init()
     }
 
-    func buttonText(course: Course, assignment: Assignment, quiz: Quiz?) -> String? {
+    func buttonText(course: Course, assignment: Assignment, quiz: Quiz?, onlineUpload: OnlineUploadState?) -> String? {
         if assignment.isDiscussion {
             return NSLocalizedString("View Discussion", bundle: .student, comment: "")
         }
@@ -60,7 +61,7 @@ class SubmissionButtonPresenter: NSObject {
             assignment.canMakeSubmissions &&
             assignment.isOpenForSubmissions() &&
             (course.enrollments?.hasRole(.student) ?? false) &&
-            fileUpload.state == nil
+            onlineUpload == nil
         )
         guard canSubmit else { return nil }
 
@@ -134,13 +135,11 @@ class SubmissionButtonPresenter: NSObject {
         let nav = UINavigationController(rootViewController: arc)
         view?.present(nav, animated: true, completion: nil)
     }
-
-    // MARK: - online_upload
-    lazy var filePicker = FilePickerViewController.create(environment: env, batchID: "assignment-\(assignmentID)")
 }
 
 extension SubmissionButtonPresenter: FilePickerControllerDelegate {
     func pickFiles(for assignment: Assignment) {
+        let filePicker = FilePickerViewController.create(environment: env, batchID: batchID)
         self.assignment = assignment
         filePicker.title = NSLocalizedString("Submission", bundle: .student, comment: "")
         filePicker.cancelButtonTitle = NSLocalizedString("Cancel Submission", bundle: .student, comment: "")
@@ -156,31 +155,20 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 
     func submit(_ controller: FilePickerViewController) {
         guard let assignment = assignment else { return }
+        let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
         controller.dismiss(animated: true) {
-            let context = self.env.database.viewContext
-            context.performAndWait {
-                do {
-                    let files: [File] = context.all(where: #keyPath(File.batchID), equals: self.fileUpload.batchID)
-                    for file in files {
-                        file.prepareForSubmission(courseID: assignment.courseID, assignmentID: assignment.id)
-                    }
-                    try context.save()
-                    self.fileUpload.upload(to: .submission(courseID: assignment.courseID, assignmentID: assignment.id))
-                } catch {
-                    self.view?.showError(error)
-                }
-            }
+            UploadManager.shared.upload(batch: self.batchID, to: context)
         }
     }
 
     func cancel(_ controller: FilePickerViewController) {
         controller.dismiss(animated: true) {
-            self.fileUpload.cancel()
+            UploadManager.shared.cancel(batchID: self.batchID)
         }
     }
 
     func retry(_ controller: FilePickerViewController) {
-        // TODO: presenter?.retryOnlineUpload()
+        submit(controller)
     }
 
     func canSubmit(_ controller: FilePickerViewController) -> Bool {

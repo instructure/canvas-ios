@@ -67,16 +67,17 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public private(set) var pending: Bool = false
     public private(set) var error: Error?
 
-    init(env: AppEnvironment, useCase: U, eventHandler: @escaping EventHandler) {
+    public init(env: AppEnvironment, database: NSPersistentContainer? = nil, useCase: U, eventHandler: @escaping EventHandler) {
         self.env = env
         self.useCase = useCase
+        let database = database ?? env.database
         let scope = useCase.scope
         let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
         let frc = NSFetchedResultsController<U.Model>(
             fetchRequest: request,
-            managedObjectContext: env.database.viewContext,
+            managedObjectContext: database.viewContext,
             sectionNameKeyPath: scope.sectionNameKeyPath,
             cacheName: nil
         )

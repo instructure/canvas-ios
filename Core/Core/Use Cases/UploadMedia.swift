@@ -19,6 +19,8 @@ import Foundation
 
 public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     var env = AppEnvironment.shared
+    let database = UploadManager.shared.database
+    lazy var context = database.newBackgroundContext()
     lazy var urlSession = URLSessionAPI.delegateURLSession(.ephemeral, self)
     var mediaAPI: API?
     var task: URLSessionTask?
@@ -36,6 +38,9 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
     public func cancel() {
         task?.cancel()
+        if let file = file {
+            UploadManager.shared.cancel(file: file)
+        }
     }
 
     public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (String?, Error?) -> Void) {
@@ -89,7 +94,7 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         guard isUploading, let id = file?.objectID else { return }
-        env.database.performBackgroundTask { (context: NSManagedObjectContext) in
+        database.performBackgroundTask { (context: NSManagedObjectContext) in
             guard let file = try? context.existingObject(with: id) as? File else { return }
             file.bytesSent = Int(totalBytesSent)
             file.size = Int(totalBytesExpectedToSend)

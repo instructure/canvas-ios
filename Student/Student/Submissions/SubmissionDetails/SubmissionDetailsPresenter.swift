@@ -36,7 +36,7 @@ class SubmissionDetailsPresenter {
     let submissionButtonPresenter: SubmissionButtonPresenter
     var submissionButtonText: String? {
         guard let course = course.first, let assignment = assignment.first else { return nil }
-        return submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first)
+        return submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: nil)
     }
 
     lazy var submissions = env.subscribe(GetSubmission(context: context, assignmentID: assignmentID, userID: userID)) { [weak self] in

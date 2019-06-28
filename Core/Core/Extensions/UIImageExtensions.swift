@@ -61,4 +61,16 @@ extension UIImage {
         try data.write(to: url)
         return url
     }
+
+    public func normalize() -> UIImage {
+        if imageOrientation == .up {
+            return self
+        }
+
+        UIGraphicsBeginImageContext(size)
+        draw(in: CGRect(origin: .zero, size: size))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image ?? self
+    }
 }

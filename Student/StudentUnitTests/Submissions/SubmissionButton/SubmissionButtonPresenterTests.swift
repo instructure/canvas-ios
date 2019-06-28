@@ -68,14 +68,12 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     let imagePicker = MockImagePicker()
     var presenter: SubmissionButtonPresenter!
     let filePicker = MockFilePicker()
-    let fileUploader = MockFileUploader()
     let view = View()
 
     override func setUp() {
         super.setUp()
         presenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: "1")
         presenter.assignment = Assignment.make(from: .make(submission: .make()))
-        presenter.fileUpload.uploader = fileUploader
         presenter.arcID = .none
     }
 
@@ -85,37 +83,37 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
             submission_types: [ .online_upload ]
         ))
         let c = Course.make(from: .make(enrollments: [ .make() ]))
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil), "Submit Assignment")
+        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Submit Assignment")
 
         a.submission?.workflowState = .submitted
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil), "Resubmit Assignment")
+        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Resubmit Assignment")
 
         a.submissionTypes = [ .discussion_topic ]
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil), "View Discussion")
+        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "View Discussion")
 
         a.submissionTypes = [ .external_tool ]
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil), "Launch External Tool")
+        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Launch External Tool")
 
         presenter.arcID = .pending
         a.submissionTypes = [.online_upload]
-        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil))
+        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil))
 
         presenter.arcID = .none
         a.submissionTypes = [ .online_quiz ]
         let quiz = Quiz.make()
         a.quizID = quiz.id
         quiz.submission = QuizSubmission.make(from: .make(started_at: Date()))
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz), "Resume Quiz")
+        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil), "Resume Quiz")
         quiz.submission = QuizSubmission.make(from: .make(attempts_left: 0))
-        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: quiz))
+        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil))
         quiz.submission = nil
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz), "Retake Quiz")
+        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil), "Retake Quiz")
         a.submission?.workflowState = .unsubmitted
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz), "Take Quiz")
+        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil), "Take Quiz")
 
         a.submissionTypes = [ .online_upload ]
         a.lockedForUser = true
-        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil))
+        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil))
     }
 
     func testSubmitAssignment() {
@@ -253,11 +251,8 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     }
 
     func testSubmitFiles() {
-        let url = URL(fileURLWithPath: "/file.txt")
-        try! presenter.fileUpload.addFile(url)
         presenter.submit(filePicker)
         XCTAssert(filePicker.dismissed)
-        XCTAssertEqual(fileUploader.uploads.count, 1)
     }
 
     func testRetryFileUpload() {
@@ -265,17 +260,16 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     }
 
     func testCancelFileUpload() {
-        let url = URL(fileURLWithPath: "/file.txt")
-        try! presenter.fileUpload.addFile(url)
         presenter.cancel(filePicker)
-        XCTAssertEqual(fileUploader.cancels.count, 1)
+        XCTAssertTrue(uploadManager.cancelWasCalled)
     }
 
     func testCanSubmitFilePicker() {
-        let url = URL(fileURLWithPath: "/file.txt")
-        let filePicker = FilePickerViewController.create(environment: env, batchID: presenter.fileUpload.batchID)
         XCTAssertFalse(presenter.canSubmit(filePicker))
-        try! presenter.fileUpload.addFile(url)
+        let url = URL.temporaryDirectory.appendingPathComponent("SubmissionButtonPresenterTests-submit-files.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "test".data(using: .utf8), attributes: nil)
+        UploadManager.shared.add(url: url, batchID: presenter.batchID)
+        let filePicker = FilePickerViewController.create(environment: env, batchID: presenter.batchID)
         XCTAssertTrue(presenter.canSubmit(filePicker))
     }
 

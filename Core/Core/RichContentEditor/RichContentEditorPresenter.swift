@@ -29,10 +29,9 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
     let batchID = UUID.string
     var env: AppEnvironment = .shared
     let uploadContext: FileUploadContext
-    var uploader: FileUploader = UploadFile.shared
     weak var view: RichContentEditorViewProtocol?
 
-    lazy var files: Store<LocalUseCase<File>> = env.subscribe(scope: .where(#keyPath(File.batchID), equals: batchID, orderBy: #keyPath(File.createdAt))) { [weak self] in
+    lazy var files = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.update()
     }
 
@@ -46,7 +45,7 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
         view?.updateUploadProgress(of: files.map { $0 })
         let completes = files.filter { $0.mediaEntryID != nil || $0.url != nil || $0.uploadError != nil }
         guard !completes.isEmpty else { return }
-        let context = env.database.viewContext
+        let context = NSPersistentContainer.shared.viewContext
         context.performAndWait {
             context.delete(completes)
             try? context.save()
@@ -79,13 +78,17 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
     }
 
     func createFile(_ url: URL, isRetry: Bool, then: @escaping (URL, File, Bool) -> Void) {
-        let context = env.database.viewContext
+        let context = UploadManager.shared.viewContext
         context.performAndWait {
             do {
+                let url = try UploadManager.shared.uploadURL(url)
                 let file: File = context.insert()
                 file.batchID = self.batchID
                 file.localFileURL = url
                 file.size = url.lookupFileSize()
+                if let session = env.currentSession {
+                    file.setUser(session: session)
+                }
                 try context.save()
                 then(url, file, isRetry)
             } catch {
@@ -95,10 +98,10 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
     }
 
     func updateFile(_ file: File, error: Error?, mediaID: String? = nil) {
-        let context = env.database.viewContext
+        let context = UploadManager.shared.viewContext
         context.performAndWait { [weak self] in
             do {
-                guard let file = context.object(with: file.objectID) as? File else { return }
+                guard let file = try? context.existingObject(with: file.objectID) as? File else { return }
                 file.uploadError = error?.localizedDescription ?? file.uploadError
                 file.mediaEntryID = mediaID
                 try context.save()
@@ -114,9 +117,7 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
                 let base64 = try Data(contentsOf: url).base64EncodedString()
                 view?.insertImagePlaceholder(url, placeholder: "data:image/png;base64,\(base64)")
             }
-            uploader.upload(file, context: uploadContext) { [weak self] error in
-                self?.updateFile(file, error: error)
-            }
+            UploadManager.shared.upload(file: file, to: uploadContext)
         } catch {
             updateFile(file, error: error)
         }

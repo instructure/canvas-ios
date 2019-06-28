@@ -33,7 +33,7 @@ class PostFileUploadTargetRequestTests: XCTestCase {
             size: 0
         )
         let request = PostFileUploadTargetRequest(
-            context: .submission(courseID: "1", assignmentID: "2"),
+            context: .submission(courseID: "1", assignmentID: "2", comment: nil),
             body: body
         )
         XCTAssertEqual(request.method, .post)
@@ -48,7 +48,7 @@ class PostFileUploadTargetRequestTests: XCTestCase {
             size: 0
         )
         let request = PostFileUploadTargetRequest(
-            context: .submission(courseID: "1", assignmentID: "2"),
+            context: .submission(courseID: "1", assignmentID: "2", comment: nil),
             body: body
         )
         XCTAssertEqual(request.path, "courses/1/assignments/2/submissions/self/files")
