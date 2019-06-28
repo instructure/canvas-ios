@@ -616,6 +616,8 @@
 		9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
 		B105FDDE22B29D6600B0D4B3 /* AssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B105FDDD22B29D6600B0D4B3 /* AssignmentsTests.swift */; };
+		B12A076622C67BE400A45427 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
+		B12A076722C67BE800A45427 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; };
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
 		B157A60F22BD78E800963E56 /* AssignmentsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B157A60E22BD78E800963E56 /* AssignmentsViewController.storyboard */; };
 		B157A61122BD790200963E56 /* AssignmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A61022BD790200963E56 /* AssignmentsViewController.swift */; };
@@ -1806,6 +1808,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1BB7A9122BADAC1006CA068 /* Core.framework in Frameworks */,
+				B12A076622C67BE400A45427 /* PSPDFKit.framework in Frameworks */,
+				B12A076722C67BE800A45427 /* PSPDFKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5291,6 +5295,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = SubmitAssignment/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -5319,6 +5324,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/Build/iOS";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = SubmitAssignment/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
