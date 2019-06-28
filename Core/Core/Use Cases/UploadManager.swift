@@ -44,9 +44,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
     public static var shared = UploadManager()
 
-    let database = NSPersistentContainer.shared
     var notificationManager: NotificationManager = .shared
-    lazy var context = database.newBackgroundContext()
     private var validSession: URLSession?
     var backgroundSession: URLSession {
         if let validSession = validSession {
@@ -59,6 +57,12 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return session
     }
     public var completionHandler: (() -> Void)?
+
+    public let database = NSPersistentContainer.shared
+    public var viewContext: NSManagedObjectContext {
+        return database.viewContext
+    }
+    private lazy var context = database.newBackgroundContext()
 
     public func subscribe(environment: AppEnvironment = .shared, batchID: String, eventHandler: @escaping Store.EventHandler) -> Store {
         let user = environment.currentSession.flatMap { NSPredicate(format: "%K == %@", #keyPath(File.userID), $0.userID) } ?? .all

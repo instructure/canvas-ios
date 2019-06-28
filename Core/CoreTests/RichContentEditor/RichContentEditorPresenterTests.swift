@@ -17,28 +17,30 @@
 import UIKit
 import XCTest
 @testable import Core
+import CoreData
 
 class RichContentEditorPresenterTests: CoreTestCase {
     var viewError: Error?
     var viewImage: (url: URL, placeholder: String)?
     var viewMedia: URL?
     var viewFiles: [File]?
+    let filesContext = NSPersistentContainer.shared.viewContext
 
     lazy var presenter = RichContentEditorPresenter(view: self, uploadTo: .myFiles)
 
-    func testUpdate() {
-        let file = File.make(batchID: presenter.batchID, removeURL: true)
+    func testUpdate() throws {
+        let file = File.make(batchID: presenter.batchID, removeURL: true, session: currentSession, in: filesContext)
         presenter.update()
         XCTAssertEqual(viewFiles, [file])
-        XCTAssertEqual(databaseClient.fetch() as [File], [file])
+        XCTAssertEqual(filesContext.fetch() as [File], [file])
     }
 
     func testUpdateDeletesComplete() {
-        File.make(from: .make(id: "2", media_entry_id: "2"), batchID: presenter.batchID, removeURL: true)
-        File.make(from: .make(id: "3", url: URL(string: "/")!), batchID: presenter.batchID)
-        File.make(batchID: presenter.batchID, removeURL: true, uploadError: "doh")
+        File.make(from: .make(id: "2", media_entry_id: "2"), batchID: presenter.batchID, removeURL: true, session: currentSession, in: filesContext)
+        File.make(from: .make(id: "3", url: URL(string: "/")!), batchID: presenter.batchID, session: currentSession, in: filesContext)
+        File.make(batchID: presenter.batchID, removeURL: true, uploadError: "doh", session: currentSession, in: filesContext)
         presenter.update()
-        XCTAssertEqual((databaseClient.fetch() as [File]).count, 0)
+        XCTAssertEqual((filesContext.fetch() as [File]).count, 0)
     }
 
     func testImagePickerControllerNoData() {

@@ -50,7 +50,7 @@ class UploadManagerTests: CoreTestCase {
         let good = context.insert() as File
         good.displayName = "Good subscribe file"
         good.batchID = "1"
-        good.user = File.User(id: currentSession.userID, baseURL: currentSession.baseURL, actAsUserID: currentSession.actAsUserID)
+        good.setUser(session: currentSession)
         let badBatch = context.insert() as File
         badBatch.batchID = "2"
         badBatch.user = good.user
@@ -181,7 +181,7 @@ class UploadManagerTests: CoreTestCase {
         file.id = "3"
         file.taskID = 1
         file.context = .submission(courseID: "1", assignmentID: "2")
-        file.user = File.User(id: currentSession.userID, baseURL: currentSession.baseURL, actAsUserID: currentSession.actAsUserID)
+        file.setUser(session: currentSession)
         try context.save()
         let task = MockURLSession.MockDataTask()
         task.uploadStep = .upload
@@ -204,13 +204,13 @@ class UploadManagerTests: CoreTestCase {
         one.batchID = "assignment-2"
         one.taskID = 1
         one.context = .submission(courseID: "1", assignmentID: "2")
-        one.user = File.User(id: currentSession.userID, baseURL: currentSession.baseURL, actAsUserID: currentSession.actAsUserID)
+        one.setUser(session: currentSession)
         let two = context.insert() as File
         two.id = "2"
         two.batchID = "assignment-2"
         two.taskID = 2
         two.context = .submission(courseID: "1", assignmentID: "2")
-        two.user = File.User(id: currentSession.userID, baseURL: currentSession.baseURL, actAsUserID: currentSession.actAsUserID)
+        two.setUser(session: currentSession)
         try context.save()
         let task = MockURLSession.MockDataTask()
         task.uploadStep = .upload
@@ -256,21 +256,20 @@ class UploadManagerTests: CoreTestCase {
         one.id = "2"
         one.batchID = "assignment-2"
         one.context = .submission(courseID: "1", assignmentID: "2")
-        one.user = File.User(id: currentSession.userID, baseURL: currentSession.baseURL, actAsUserID: currentSession.actAsUserID)
+        one.setUser(session: currentSession)
         let two = context.insert() as File
         two.id = "2"
         two.batchID = "assignment-2"
         two.context = .submission(courseID: "1", assignmentID: "2")
         two.taskID = 2
-        two.user = File.User(id: currentSession.userID, baseURL: currentSession.baseURL, actAsUserID: currentSession.actAsUserID)
+        two.setUser(session: currentSession)
         try context.save()
         let task = MockURLSession.MockDataTask()
         task.uploadStep = .submit
         task.taskIdentifier = 2
         manager.urlSession(backgroundSession, task: task, didCompleteWithError: nil)
-        context.refreshAllObjects()
-        XCTAssertTrue(one.isFault)
-        XCTAssertTrue(two.isFault)
+        let store = manager.subscribe(batchID: "assignment-2", eventHandler: {})
+        XCTAssertEqual(store.count, 0)
         let notification = notificationCenter.requests.last
         XCTAssertNotNil(notification)
         XCTAssertEqual(notification?.content.title, "Assignment submitted!")
@@ -321,18 +320,17 @@ class UploadManagerTests: CoreTestCase {
         let batchID = "1"
         let one = context.insert() as File
         one.batchID = batchID
-        one.user = File.User(id: currentSession.userID, baseURL: currentSession.baseURL, actAsUserID: currentSession.actAsUserID)
+        one.setUser(session: currentSession)
         let two = context.insert() as File
         two.batchID = batchID
-        two.user = File.User(id: currentSession.userID, baseURL: currentSession.baseURL, actAsUserID: currentSession.actAsUserID)
+        two.setUser(session: currentSession)
         two.taskID = 2
         try context.save()
         mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["1"], taskID: 2)
         let task = MockURLSession.dataMocks.first { $0.value.taskIdentifier == 2 }?.value
         manager.cancel(batchID: batchID)
-        context.refreshAllObjects()
-        XCTAssertTrue(one.isFault)
-        XCTAssertTrue(two.isFault)
+        let store = manager.subscribe(batchID: batchID, eventHandler: {})
+        XCTAssertEqual(store.count, 0)
         XCTAssertEqual(task?.canceled, true)
     }
 

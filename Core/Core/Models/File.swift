@@ -127,6 +127,10 @@ final public class File: NSManagedObject {
         self.assignmentID = nil
         self.batchID = nil
     }
+
+    func setUser(session: KeychainEntry) {
+        self.user = File.User(id: session.userID, baseURL: session.baseURL, actAsUserID: session.actAsUserID)
+    }
 }
 
 extension File: WriteableModel {

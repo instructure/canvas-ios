@@ -19,7 +19,7 @@ import Foundation
 
 public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     var env = AppEnvironment.shared
-    let database = NSPersistentContainer.shared
+    let database = UploadManager.shared.database
     lazy var context = database.newBackgroundContext()
     lazy var urlSession = URLSessionAPI.delegateURLSession(.ephemeral, self)
     var mediaAPI: API?

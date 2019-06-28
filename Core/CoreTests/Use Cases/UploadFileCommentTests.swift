@@ -69,7 +69,8 @@ class UploadFileCommentTests: CoreTestCase {
     }
 
     func testUploadError() throws {
-        let file = File.make(batchID: "5", removeID: true)
+        let context = UploadManager.shared.viewContext
+        let file = File.make(batchID: "5", removeID: true, session: currentSession, in: context)
         api.mock(PutSubmissionGradeRequest(
             courseID: upload.courseID,
             assignmentID: upload.assignmentID,
@@ -86,12 +87,13 @@ class UploadFileCommentTests: CoreTestCase {
             called.fulfill()
         }
         file.uploadError = "doh"
-        try databaseClient.save()
+        try context.save()
         wait(for: [called], timeout: 1)
     }
 
     func testSuccess() throws {
-        let file = File.make(batchID: "5", removeID: true)
+        let context = UploadManager.shared.viewContext
+        let file = File.make(batchID: "5", removeID: true, session: currentSession, in: context)
         api.mock(PutSubmissionGradeRequest(
             courseID: upload.courseID,
             assignmentID: upload.assignmentID,
@@ -101,42 +103,13 @@ class UploadFileCommentTests: CoreTestCase {
             submission_comments: [ APISubmissionComment.make() ]
         ))
         let called = self.expectation(description: "success callback was called")
-        called.assertForOverFulfill = false
         upload.fetch(environment: environment) { comment, error in
             XCTAssertNotNil(comment)
             XCTAssertNil(error)
             called.fulfill()
         }
         file.id = "1"
-        try databaseClient.save()
+        try context.save()
         wait(for: [called], timeout: 1)
-    }
-
-    func testCallbackOnlyGetsCalledOnce() throws {
-        let file = File.make(batchID: "5", removeID: true)
-        api.mock(PutSubmissionGradeRequest(
-            courseID: upload.courseID,
-            assignmentID: upload.assignmentID,
-            userID: upload.userID,
-            body: .init(comment: .init(fileIDs: ["1"], forGroup: upload.isGroup), submission: nil)
-            ), value: APISubmission.make(
-                submission_comments: [ APISubmissionComment.make() ]
-        ))
-        let calledOnce = self.expectation(description: "callback called once")
-        calledOnce.assertForOverFulfill = false
-        calledOnce.expectedFulfillmentCount = 1
-        let calledTwice = self.expectation(description: "callback called more than once")
-        calledTwice.expectedFulfillmentCount = 2
-        calledTwice.isInverted = true
-        upload.fetch(environment: environment) { _, _ in
-            calledOnce.fulfill()
-            calledTwice.fulfill()
-        }
-        file.id = "1"
-        try databaseClient.save()
-        wait(for: [calledOnce], timeout: 1)
-        file.id = "2"
-        try databaseClient.save()
-        wait(for: [calledTwice], timeout: 1)
     }
 }

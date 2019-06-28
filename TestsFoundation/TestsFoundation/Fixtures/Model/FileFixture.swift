@@ -29,6 +29,7 @@ extension File {
         removeURL: Bool = false,
         taskID: Int? = nil,
         uploadError: String? = nil,
+        session: KeychainEntry? = nil,
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> File {
         let model = File.save(api, in: context)
@@ -41,6 +42,9 @@ extension File {
         }
         if removeURL {
             model.url = nil
+        }
+        if let session = session {
+            model.setUser(session: session)
         }
         model.taskID = taskID
         model.uploadError = uploadError
