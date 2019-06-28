@@ -131,6 +131,7 @@ class RubricViewController: UIViewController {
 
         let container = UIView(frame: CGRect.zero)
         container.layer.cornerRadius = 8
+        container.tag = 100 + index
         let ratingStack = UIStackView(frame: CGRect.zero)
         ratingStack.axis = .vertical
         ratingStack.distribution = .fill
@@ -143,18 +144,23 @@ class RubricViewController: UIViewController {
 
         ratingViewRetrievalIndexMap[model.id] = index
         let ratingTitle = DynamicLabel(frame: CGRect.zero)
-        ratingTitle.tag = 100 + index
+        ratingTitle.tag = 200 + index
         ratingTitle.font = .scaledNamedFont(.semibold14)
         let ratingDesc = DynamicLabel(frame: CGRect.zero)
-        ratingDesc.tag = 200 + index
+        ratingDesc.tag = 300 + index
         ratingDesc.numberOfLines = 0
         ratingDesc.font = .scaledNamedFont(.medium12)
         ratingDesc.lineBreakMode = .byWordWrapping
         ratingStack.addArrangedSubview(ratingTitle)
         ratingStack.addArrangedSubview(ratingDesc)
-        let ratingInfo = model.ratingBlurb(model.selectedIndex)
-        ratingTitle.text = ratingInfo.header
-        ratingDesc.text = ratingInfo.subHeader
+        if let index = model.selectedIndex {
+            let ratingInfo = model.ratingBlurb(index)
+            ratingTitle.text = ratingInfo.header
+            ratingDesc.text = ratingInfo.subHeader
+        } else {
+            //  TODO: - hide rating blurb here
+            container.isHidden = true
+        }
         container.backgroundColor = courseColor.withAlphaComponent(rubricCircleViewAlphaColor)
 
         if !(model.comment?.isEmpty ?? true) {
@@ -200,7 +206,9 @@ extension RubricViewController: RubricViewProtocol {
         showEmptyState(false)
         models = rubric
         models.forEach { m in
-            selectedRatingCache[m.id] = m.selectedIndex
+            if let index = m.selectedIndex {
+                selectedRatingCache[m.id] = index
+            }
         }
         layoutRubrics()
     }
@@ -212,31 +220,40 @@ extension RubricViewController: RubricViewProtocol {
 
 extension RubricViewController: RubricCircleViewButtonDelegate {
     func didClickRating(atIndex: Int, rubric: RubricViewModel) {
-        let selectedRatingIndex = selectedRatingCache[rubric.id] ?? 0
         let i = ratingViewRetrievalIndexMap[rubric.id] ?? -1
 
-        var newIndex = atIndex
-        if selectedRatingIndex == atIndex {
+        var newIndex: Int? = atIndex
+        if let selectedRatingIndex = selectedRatingCache[rubric.id], selectedRatingIndex == atIndex {
             newIndex = rubric.selectedIndex
         }
 
-        selectedRatingCache[rubric.id] = newIndex
+        let container = view.viewWithTag(100 + i)
+        let titleLabel = view.viewWithTag(200 + i) as? UILabel
+        let descLabel = view.viewWithTag(300 + i) as? UILabel
+        var titleValue: String?
+        var descValue: String?
 
-        let titleLabel = view.viewWithTag(100 + i) as? UILabel
-        let descLabel = view.viewWithTag(200 + i) as? UILabel
+        var containerIsHidden = false
 
-        let ratingInfo = rubric.ratingBlurb(newIndex)
-        let title = ratingInfo.header
-        let desc = ratingInfo.subHeader
+        if let newIndex = newIndex {
+            selectedRatingCache[rubric.id] = newIndex
 
-        descLabel?.text = desc
-        titleLabel?.text = title
-//        let isHidden = desc.isEmpty
+            let ratingInfo = rubric.ratingBlurb(newIndex)
+            titleValue = ratingInfo.header
+            descValue = ratingInfo.subHeader
+            containerIsHidden = false
+        } else {
+            selectedRatingCache.removeValue(forKey: rubric.id)
+            containerIsHidden = true
+        }
 
-//        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations: {
-//            descLabel?.isHidden = isHidden
-//            descLabel?.superview?.layoutIfNeeded()
-//
-//        }, completion: nil)
+        if containerIsHidden != container?.isHidden ?? true {
+            UIView.animate(withDuration: 0.1675) {
+                container?.isHidden = containerIsHidden
+            }
+        }
+
+        titleLabel?.text = titleValue
+        descLabel?.text = descValue
     }
 }
