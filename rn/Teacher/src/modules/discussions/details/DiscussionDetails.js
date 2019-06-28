@@ -39,6 +39,7 @@ import CanvasWebView from '../../../common/components/CanvasWebView'
 import Avatar from '../../../common/components/Avatar'
 import PublishedIcon from '../../assignment-details/components/PublishedIcon'
 import SubmissionBreakdownGraphSection from '../../assignment-details/components/SubmissionBreakdownGraphSection'
+import GroupTopicChildren from './GroupTopicChildren'
 import Images from '../../../images'
 import icon from '../../../images/inst-icons'
 import {
@@ -202,7 +203,8 @@ export class DiscussionDetails extends Component<Props, any> {
   showingWrongDiscussionForGroups = (props: Props) => {
     const { discussion } = props
     // True if we're not in a group context and this is a group discussion
-    return discussion &&
+    return isStudent() &&
+      discussion &&
       props.context !== 'groups' &&
       discussion.group_category_id &&
       discussion.group_topic_children
@@ -235,6 +237,10 @@ export class DiscussionDetails extends Component<Props, any> {
     const hasValidDate = discussion.delayed_post_at || discussion.posted_at
     const date = new Date(discussion.delayed_post_at || discussion.posted_at)
     const sections = discussion.sections || []
+    const showGroupTopicChildren = isTeacher() &&
+      this.props.context == 'courses' &&
+      discussion.group_topic_children &&
+      discussion.group_topic_children.length
     return (
       <View>
         <AssignmentSection isFirstRow={true} style={style.topContainer}>
@@ -265,14 +271,19 @@ export class DiscussionDetails extends Component<Props, any> {
           </AssignmentSection>
         }
 
-        { isTeacher() && assignmentID &&
+        { isTeacher() && this.props.assignment && !showGroupTopicChildren &&
           <AssignmentSection
             title={i18n('Submissions')}
             testID='discussions.submission-graphs'
             onPress={() => this.viewSubmissions()}
             showDisclosureIndicator
           >
-            <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.contextID} assignmentID={assignmentID} style={style.submission}/>
+            <SubmissionBreakdownGraphSection
+              onPress={this.onSubmissionDialPress}
+              courseID={this.props.assignment.course_id}
+              assignmentID={this.props.assignment.id}
+              style={style.submission}
+            />
           </AssignmentSection>
         }
 
@@ -341,6 +352,17 @@ export class DiscussionDetails extends Component<Props, any> {
             </View>
           }
         </View>
+
+        { showGroupTopicChildren &&
+            <View style={style.section}>
+              <GroupTopicChildren
+                courseID={this.props.contextID}
+                courseColor={this.props.courseColor}
+                topicChildren={discussion.group_topic_children}
+                navigator={this.props.navigator}
+              />
+            </View>
+        }
 
         { showReplies && this.state.rootNodePath.length === 0 &&
           <AssignmentSection style={{ paddingBottom: 0 }}>
@@ -555,12 +577,12 @@ export class DiscussionDetails extends Component<Props, any> {
   }
 
   viewSubmissions = (filterType: ?string) => {
-    const { contextID, assignment } = this.props
+    const { assignment } = this.props
     if (!assignment) return
     if (filterType) {
-      this.props.navigator.show(`/courses/${contextID}/assignments/${assignment.id}/submissions`, { modal: false }, { filterType })
+      this.props.navigator.show(`/courses/${assignment.course_id}/assignments/${assignment.id}/submissions`, { modal: false }, { filterType })
     } else {
-      this.props.navigator.show(`/courses/${contextID}/assignments/${assignment.id}/submissions`)
+      this.props.navigator.show(`/courses/${assignment.course_id}/assignments/${assignment.id}/submissions`)
     }
   }
 

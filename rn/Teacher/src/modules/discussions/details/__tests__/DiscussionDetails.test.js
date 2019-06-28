@@ -58,7 +58,14 @@ describe('DiscussionDetails', () => {
   beforeEach(() => {
     jest.clearAllMocks()
     app.setCurrentApp('teacher')
-    let discussion = template.discussion({ id: '1', replies: [template.discussionReply()], participants: { [template.userDisplay().id]: template.userDisplay() } })
+    let discussion = template.discussion({
+      id: '1',
+      replies: [template.discussionReply()],
+      participants: {
+        [template.userDisplay().id]: template.userDisplay(),
+      },
+      assignment: template.assignment({ course_id: '1' }),
+    })
     props = {
       refresh: jest.fn(),
       refreshing: false,
@@ -220,7 +227,7 @@ describe('DiscussionDetails', () => {
   })
 
   it('routes to the right place when due dates details is requested', () => {
-    props.assignment = template.assignment({ id: '1' })
+    props.assignment = template.assignment({ id: '1', course_id: '1' })
     let navigator = template.navigator({
       show: jest.fn(),
     })
@@ -517,7 +524,7 @@ describe('DiscussionDetails', () => {
   })
 
   it('routes to the right place when submissions is tapped', () => {
-    props.assignment = template.assignment({ id: '1' })
+    props.assignment = template.assignment({ id: '1', course_id: props.contextID })
     let navigator = template.navigator({
       push: jest.fn(),
     })
@@ -529,7 +536,7 @@ describe('DiscussionDetails', () => {
   })
 
   it('routes to the right place when submissions is tapped (via onPress)', () => {
-    props.assignment = template.assignment({ id: '1' })
+    props.assignment = template.assignment({ id: '1', course_id: '22' })
     let navigator = template.navigator({
       push: jest.fn(),
     })
@@ -538,26 +545,26 @@ describe('DiscussionDetails', () => {
     doneButton.props.onPress()
 
     expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/${props.contextID}/assignments/1/submissions`
+      `/courses/22/assignments/1/submissions`
     )
   })
 
   it('routes to the right place when submissions dial is tapped', () => {
-    props.assignment = template.assignment({ id: '1' })
+    props.assignment = template.assignment({ id: '1', course_id: '85' })
     let navigator = template.navigator({
       push: jest.fn(),
     })
     let details = render({ ...props, navigator }).getInstance()
     details.onSubmissionDialPress('graded')
     expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/${props.contextID}/assignments/1/submissions`,
+      `/courses/85/assignments/1/submissions`,
       { modal: false },
       { filterType: 'graded' }
     )
   })
 
   it('routes to the right place when edit is tapped from the due dates screen', () => {
-    props.assignment = template.assignment({ id: '1' })
+    props.assignment = template.assignment({ id: '1', course_id: props.contextID })
     let navigator = template.navigator({
       push: jest.fn(),
     })
@@ -664,6 +671,7 @@ describe('DiscussionDetails', () => {
   })
 
   it('replaces with correct group discussion when received new props', () => {
+    app.setCurrentApp('student')
     props.discussion = null
     props.context = 'courses'
     props.navigator = template.navigator({ replace: jest.fn() })
@@ -686,6 +694,7 @@ describe('DiscussionDetails', () => {
   })
 
   it('replaces with correct group discussion when created', () => {
+    app.setCurrentApp('student')
     const discussion = template.discussion({
       id: '1',
       group_category_id: '3',
@@ -717,6 +726,7 @@ describe('DiscussionDetails', () => {
   })
 
   it('wont replace with group discussion more than once', () => {
+    app.setCurrentApp('student')
     props.discussion = null
     props.context = 'courses'
     props.navigator = template.navigator({ replace: jest.fn() })
@@ -748,6 +758,38 @@ describe('DiscussionDetails', () => {
     testRender({
       ...props,
       permissions: { post_to_forum: false },
+    })
+  })
+
+  describe('GroupTopicChildren', () => {
+    beforeEach(() => {
+      app.setCurrentApp('teacher')
+      props.context = 'courses'
+      props.discussion.group_topic_children = [{ id: '1', group_id: '2' }],
+      props.groups = {}
+    })
+
+    it('renders GroupTopicChildren', () => {
+      const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
+      expect(details.find('GroupTopicChildren')).not.toBeNull()
+    })
+
+    it('does not render GroupTopicChildren in groups context', () => {
+      props.context = 'groups'
+      const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
+      expect(details.find('GroupTopicChildren')).toHaveLength(0)
+    })
+
+    it('does not render GroupTopicChildren if student', () => {
+      app.setCurrentApp('student')
+      const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
+      expect(details.find('GroupTopicChildren')).toHaveLength(0)
+    })
+
+    it('does not render GroupTopicChildren if there are no children', () => {
+      props.discussion.group_topic_children = []
+      const details = shallow(new DiscussionDetails(props).renderDetails(props.discussion))
+      expect(details.find('GroupTopicChildren')).toHaveLength(0)
     })
   })
 
