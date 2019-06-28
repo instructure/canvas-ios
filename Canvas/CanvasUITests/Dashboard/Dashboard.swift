@@ -31,9 +31,11 @@ enum CourseInvitation {
     }
 }
 
-enum Dashboard {
+enum Dashboard: String, ElementWrapper {
+    case addCoursesButton, emptyBodyLabel, emptyTitleLabel
+
     static var coursesLabel: Element {
-        return app.find(labelContaining: "Courses")
+        return app.find(id: "dashboard.courses.heading-lbl")
     }
 
     static var seeAllButton: Element {

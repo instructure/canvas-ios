@@ -14,9 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-/**
- * @flow
- */
+// @flow
 
 import React, { Component } from 'react'
 import {
@@ -35,25 +33,19 @@ type Props = {
 
 export class NoCourses extends Component<Props> {
   render () {
-    let welcome = i18n('Welcome!')
-
-    let bodyText = i18n('Add a few of your favorite courses to make this place your home.')
-
-    let buttonText = i18n('Add Courses')
-
     return (
       <View style={[styles.container, this.props.style]}>
-        <Text style={styles.welcome} testID='no-courses.welcome-lbl'>{welcome}</Text>
-        <Text
-          style={styles.paragraph} testID='no-courses.description-lbl'>{bodyText}</Text>
+        <Text style={styles.welcome} testID='Dashboard.emptyTitleLabel'>{i18n('Welcome!')}</Text>
+        <Text style={styles.paragraph} testID='Dashboard.emptyBodyLabel'>
+          {i18n('Add a few of your favorite courses to make this place your home.')}
+        </Text>
         <Button
-          accessibilityLabel={buttonText}
-          testID='no-courses.add-courses-btn'
+          testID='Dashboard.addCoursesButton'
           onPress={this.props.onAddCoursePressed}
           style={styles.button}
           containerStyle={styles.buttonContainer}
         >
-          {buttonText}
+          {i18n('Add Courses')}
         </Button>
       </View>
     )
