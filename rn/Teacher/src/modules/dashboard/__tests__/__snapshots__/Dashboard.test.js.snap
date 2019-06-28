@@ -3167,7 +3167,7 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
                   },
                 ]
               }
-              testID="no-courses.welcome-lbl"
+              testID="Dashboard.emptyTitleLabel"
             >
               Welcome!
             </Text>
@@ -3197,7 +3197,7 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
                   },
                 ]
               }
-              testID="no-courses.description-lbl"
+              testID="Dashboard.emptyBodyLabel"
             >
               Add a few of your favorite courses to make this place your home.
             </Text>
@@ -3227,7 +3227,7 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
                   },
                 ]
               }
-              testID="no-courses.add-courses-btn"
+              testID="Dashboard.addCoursesButton"
             >
               <Text
                 accessible={true}
@@ -3440,7 +3440,7 @@ exports[`Dashboard render without favorite courses 1`] = `
                   },
                 ]
               }
-              testID="no-courses.welcome-lbl"
+              testID="Dashboard.emptyTitleLabel"
             >
               Welcome!
             </Text>
@@ -3470,7 +3470,7 @@ exports[`Dashboard render without favorite courses 1`] = `
                   },
                 ]
               }
-              testID="no-courses.description-lbl"
+              testID="Dashboard.emptyBodyLabel"
             >
               Add a few of your favorite courses to make this place your home.
             </Text>
@@ -3500,7 +3500,7 @@ exports[`Dashboard render without favorite courses 1`] = `
                   },
                 ]
               }
-              testID="no-courses.add-courses-btn"
+              testID="Dashboard.addCoursesButton"
             >
               <Text
                 accessible={true}

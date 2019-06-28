@@ -51,3 +51,14 @@ class DashboardTests: CanvasUITests {
         Dashboard.courseCard(id: "338").waitToVanish()
     }
 }
+
+class DashboardEmptyTests: CanvasUITests {
+    override var user: UITestUser { return .notEnrolled }
+
+    func testEmptyCanAddCourses() {
+        Dashboard.emptyTitleLabel.waitToExist()
+        XCTAssertEqual(Dashboard.emptyTitleLabel.label, "Welcome!")
+        Dashboard.addCoursesButton.tap()
+        app.find(label: "Edit Dashboard").waitToExist()
+    }
+}
