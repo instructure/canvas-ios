@@ -19,7 +19,7 @@ import CoreData
 
 public class MockUploadManager: UploadManager {
     public static func reset() {
-        try! UploadManager.shared.database.clearAllRecords()
+        try? UploadManager.shared.database.clearAllRecords()
     }
 
     public var uploadWasCalled = false
