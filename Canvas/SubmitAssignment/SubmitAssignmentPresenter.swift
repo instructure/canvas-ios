@@ -94,9 +94,9 @@ class SubmitAssignmentPresenter {
         self.assignment = assignment
     }
 
-    func submit() {
+    func submit(comment: String?) {
         guard let assignment = assignment, let urls = urls else { return }
-        let uploadContext = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id)
+        let uploadContext = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: comment)
         let batchID = "assignment-\(assignment.id)"
         let manager = UploadManager.shared
         manager.cancel(environment: env, batchID: batchID)

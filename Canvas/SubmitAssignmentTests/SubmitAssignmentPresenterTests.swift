@@ -130,7 +130,7 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
         let item = TestExtensionItem(mockAttachments: [attachment])
         presenter.load(items: [item])
         wait(for: [expectation], timeout: 0.5)
-        presenter.submit()
+        presenter.submit(comment: nil)
         XCTAssertTrue(uploadManager.cancelWasCalled)
         XCTAssertTrue(uploadManager.uploadWasCalled)
     }

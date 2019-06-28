@@ -18,7 +18,7 @@ import Foundation
 
 public enum FileUploadContext: Codable {
     enum CodingKeys: String, CodingKey {
-        case type, userID, courseID, assignmentID
+        case type, userID, courseID, assignmentID, comment
     }
 
     enum Key: String, Codable {
@@ -27,7 +27,7 @@ public enum FileUploadContext: Codable {
 
     case course(String)
     case user(String)
-    case submission(courseID: String, assignmentID: String)
+    case submission(courseID: String, assignmentID: String, comment: String?)
     case submissionComment(courseID: String, assignmentID: String)
 
     public static var myFiles: FileUploadContext {
@@ -47,7 +47,8 @@ public enum FileUploadContext: Codable {
         case .submission:
             let courseID = try decoder.decode(String.self, forKey: .courseID)
             let assignmentID = try decoder.decode(String.self, forKey: .assignmentID)
-            self = .submission(courseID: courseID, assignmentID: assignmentID)
+            let comment = try decoder.decodeIfPresent(String.self, forKey: .comment)
+            self = .submission(courseID: courseID, assignmentID: assignmentID, comment: comment)
         case .submissionComment:
             let courseID = try decoder.decode(String.self, forKey: .courseID)
             let assignmentID = try decoder.decode(String.self, forKey: .assignmentID)
@@ -64,11 +65,12 @@ public enum FileUploadContext: Codable {
         case let .user(userID):
             try container.encode(Key.user, forKey: .type)
             try container.encode(userID, forKey: .userID)
-        case let .submission(courseID: courseID, assignmentID: assignmentID):
+        case let .submission(courseID, assignmentID, comment):
             try container.encode(Key.submission, forKey: .type)
             try container.encode(courseID, forKey: .courseID)
             try container.encode(assignmentID, forKey: .assignmentID)
-        case let .submissionComment(courseID: courseID, assignmentID: assignmentID):
+            try container.encodeIfPresent(comment, forKey: .comment)
+        case let .submissionComment(courseID, assignmentID):
             try container.encode(Key.submissionComment, forKey: .type)
             try container.encode(courseID, forKey: .courseID)
             try container.encode(assignmentID, forKey: .assignmentID)

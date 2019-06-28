@@ -203,11 +203,11 @@ class UploadManagerTests: CoreTestCase {
 
     func testSessionTaskDidCompleteSubmissionUpload() throws {
         Keychain.addEntry(currentSession)
-        mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["3"], taskID: 2)
+        mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["3"], comment: "test comment", taskID: 2)
         let file = context.insert() as File
         file.id = "3"
         file.taskID = 1
-        file.context = .submission(courseID: "1", assignmentID: "2")
+        file.context = .submission(courseID: "1", assignmentID: "2", comment: "test comment")
         file.setUser(session: currentSession)
         try context.save()
         let task = MockURLSession.MockDataTask()
@@ -230,13 +230,13 @@ class UploadManagerTests: CoreTestCase {
         one.id = "2"
         one.batchID = "assignment-2"
         one.taskID = 1
-        one.context = .submission(courseID: "1", assignmentID: "2")
+        one.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         one.setUser(session: currentSession)
         let two = context.insert() as File
         two.id = "2"
         two.batchID = "assignment-2"
         two.taskID = 2
-        two.context = .submission(courseID: "1", assignmentID: "2")
+        two.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         two.setUser(session: currentSession)
         try context.save()
         let task = MockURLSession.MockDataTask()
@@ -254,7 +254,7 @@ class UploadManagerTests: CoreTestCase {
     func testSessionDataTaskDidReceiveDataSubmissionSendsNotification() throws {
         let file = context.insert() as File
         file.taskID = 1
-        file.context = .submission(courseID: "1", assignmentID: "2")
+        file.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         try context.save()
         let expectation = XCTestExpectation(description: "notification sent")
         var notification: Notification?
@@ -282,12 +282,12 @@ class UploadManagerTests: CoreTestCase {
         let one = context.insert() as File
         one.id = "2"
         one.batchID = "assignment-2"
-        one.context = .submission(courseID: "1", assignmentID: "2")
+        one.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         one.setUser(session: currentSession)
         let two = context.insert() as File
         two.id = "2"
         two.batchID = "assignment-2"
-        two.context = .submission(courseID: "1", assignmentID: "2")
+        two.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         two.taskID = 2
         two.setUser(session: currentSession)
         try context.save()
@@ -308,7 +308,7 @@ class UploadManagerTests: CoreTestCase {
         let file = context.insert() as File
         file.uploadError = nil
         file.taskID = 1
-        file.context = .submission(courseID: "1", assignmentID: "2")
+        file.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         try context.save()
         let task = MockURLSession.MockDataTask()
         task.uploadStep = .target
@@ -329,7 +329,7 @@ class UploadManagerTests: CoreTestCase {
         let file = context.insert() as File
         file.uploadError = nil
         file.taskID = 1
-        file.context = .submission(courseID: "1", assignmentID: "2")
+        file.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         try context.save()
         let task = MockURLSession.MockDataTask()
         task.uploadStep = .target
@@ -392,9 +392,9 @@ class UploadManagerTests: CoreTestCase {
         wait(for: [expectation], timeout: 1)
     }
 
-    private func mockSubmission(courseID: String, assignmentID: String, fileIDs: [String], taskID: Int) {
+    private func mockSubmission(courseID: String, assignmentID: String, fileIDs: [String], comment: String? = nil, taskID: Int) {
         let submission = CreateSubmissionRequest.Body.Submission(
-            text_comment: nil,
+            text_comment: comment,
             submission_type: .online_upload,
             body: nil,
             url: nil,

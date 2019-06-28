@@ -155,7 +155,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 
     func submit(_ controller: FilePickerViewController) {
         guard let assignment = assignment else { return }
-        let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id)
+        let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
         controller.dismiss(animated: true) {
             UploadManager.shared.upload(batch: self.batchID, to: context)
         }

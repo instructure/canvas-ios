@@ -179,7 +179,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                     let result = try decoder.decode(APIFile.self, from: data)
                     file.update(fromAPIModel: result)
                 case .submit:
-                    guard case let .submission(courseID: _, assignmentID: assignmentID)? = file.context else { break }
+                    guard case let .submission(courseID: _, assignmentID: assignmentID, comment: _)? = file.context else { break }
                     // This json response is not very predictable so do our best to parse it.
                     // Avoids sending a failed push notification when the submission was in fact successful.
                     if let submission = try? decoder.decode(APISubmission.self, from: data) {
@@ -223,8 +223,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             else { return }
             switch step {
             case .upload:
-                if case let .submission(courseID: courseID, assignmentID: assignmentID)? = file.context, error == nil {
-                    submit(file: file, courseID: courseID, assignmentID: assignmentID)
+                if case let .submission(courseID, assignmentID, comment)? = file.context, error == nil {
+                    submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
                     return
                 }
                 complete(file: file, error: error)
@@ -297,7 +297,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return NSCompoundPredicate(andPredicateWithSubpredicates: [user, batch])
     }
 
-    private func submit(file: File, courseID: String, assignmentID: String) {
+    private func submit(file: File, courseID: String, assignmentID: String, comment: String?) {
         Logger.shared.log()
         guard let user = file.user, let session = Keychain.entries.first(where: { user == $0 }) else { return }
         var files = [file]
@@ -306,7 +306,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         }
         guard files.allSatisfy({ $0.isUploaded }) else { return }
         let fileIDs = files.compactMap { $0.id }
-        let submission = CreateSubmissionRequest.Body.Submission(submission_type: .online_upload, file_ids: fileIDs)
+        let submission = CreateSubmissionRequest.Body.Submission(text_comment: comment, submission_type: .online_upload, file_ids: fileIDs)
         let requestable = CreateSubmissionRequest(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, body: .init(submission: submission))
         do {
             let request = try requestable.urlRequest(relativeTo: session.baseURL, accessToken: session.accessToken, actAsUserID: session.actAsUserID)
@@ -342,7 +342,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             file.taskID = nil
             try? context.save()
 
-            if case let .submission(courseID: courseID, assignmentID: assignmentID)? = file.context {
+            if case let .submission(courseID, assignmentID, _)? = file.context {
                 if error == nil {
                     sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
                 } else {

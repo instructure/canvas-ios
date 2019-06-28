@@ -21,6 +21,11 @@ import Core
 class SubmitAssignmentViewController: SLComposeServiceViewController, SubmitAssignmentView {
     var presenter: SubmitAssignmentPresenter?
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        placeholder = NSLocalizedString("Comments...", bundle: .core, comment: "")
+    }
+
     override func presentationAnimationDidFinish() {
         super.presentationAnimationDidFinish()
         presenter = SubmitAssignmentPresenter()
@@ -36,7 +41,7 @@ class SubmitAssignmentViewController: SLComposeServiceViewController, SubmitAssi
     }
 
     override func didSelectPost() {
-        presenter?.submit()
+        presenter?.submit(comment: contentText)
         extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
     }
 
