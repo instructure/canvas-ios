@@ -229,11 +229,19 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         context.performAndWait {
             let files: [File] = context.fetch(predicate(userID: userID, batchID: batchID))
             context.delete(files)
-            do {
-                try context.save()
-            } catch {
-                assertionFailure("failed to delete files")
+            try? context.save()
+        }
+    }
+
+    open func cancel(file: File) {
+        let objectID = file.objectID
+        context.performAndWait {
+            guard let file = try? context.existingObject(with: objectID) as? File, let taskID = file.taskID else { return }
+            backgroundSession.getAllTasks { tasks in
+                tasks.first { $0.taskIdentifier == taskID }?.cancel()
             }
+            context.delete(file)
+            try? context.save()
         }
     }
 

@@ -38,6 +38,9 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
     public func cancel() {
         task?.cancel()
+        if let file = file {
+            UploadManager.shared.cancel(file: file)
+        }
     }
 
     public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (String?, Error?) -> Void) {

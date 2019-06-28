@@ -163,7 +163,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 
     func cancel(_ controller: FilePickerViewController) {
         controller.dismiss(animated: true) {
-            UploadManager.shared.delete(batchID: self.batchID)
+            UploadManager.shared.cancel(batchID: self.batchID)
         }
     }
 

@@ -57,7 +57,7 @@ class CoreTestCase: XCTestCase {
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)
         URLSessionAPI.delegateURLSession = { _, _ in MockURLSession() }
         UploadManager.shared = MockUploadManager()
-        try! NSPersistentContainer.shared.clearAllRecords()
+        MockUploadManager.reset()
     }
 
     func waitForMainAsync() {

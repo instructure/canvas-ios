@@ -78,14 +78,16 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
     }
 
     func createFile(_ url: URL, isRetry: Bool, then: @escaping (URL, File, Bool) -> Void) {
-        let context = NSPersistentContainer.shared.viewContext
+        let context = UploadManager.shared.viewContext
         context.performAndWait {
             do {
                 let file: File = context.insert()
                 file.batchID = self.batchID
                 file.localFileURL = url
                 file.size = url.lookupFileSize()
-                file.user = env.currentSession.flatMap { File.User(id: $0.userID, baseURL: $0.baseURL, actAsUserID: $0.actAsUserID) }
+                if let session = env.currentSession {
+                    file.setUser(session: session)
+                }
                 try context.save()
                 then(url, file, isRetry)
             } catch {
@@ -95,10 +97,10 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
     }
 
     func updateFile(_ file: File, error: Error?, mediaID: String? = nil) {
-        let context = NSPersistentContainer.shared.viewContext
+        let context = UploadManager.shared.viewContext
         context.performAndWait { [weak self] in
             do {
-                guard let file = context.object(with: file.objectID) as? File else { return }
+                guard let file = try? context.existingObject(with: file.objectID) as? File else { return }
                 file.uploadError = error?.localizedDescription ?? file.uploadError
                 file.mediaEntryID = mediaID
                 try context.save()

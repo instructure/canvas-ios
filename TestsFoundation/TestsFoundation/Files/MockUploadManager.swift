@@ -18,16 +18,15 @@ import CoreData
 @testable import Core
 
 public class MockUploadManager: UploadManager {
+    public static func reset() {
+        try! UploadManager.shared.database.clearAllRecords()
+    }
+
     public var uploadWasCalled = false
     public var addWasCalled = false
     public var cancelWasCalled = false
 
    public override init() {}
-
-    open override func add(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil) -> NSManagedObjectID {
-        addWasCalled = true
-        return NSManagedObjectID()
-    }
 
     open override func upload(environment: AppEnvironment = .shared, batch batchID: String, to uploadContext: FileUploadContext) {
         uploadWasCalled = true
