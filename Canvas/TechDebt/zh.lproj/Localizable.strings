@@ -530,7 +530,7 @@
 "Enter submission" = "输入提交";
 
 /* masquerade prompt */
-"Enter User ID and Domain." = "输入用户 ID 和域名。";
+"Enter User ID and Domain." = "输入用户ID 和域名。";
 
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "发布条目";
@@ -1395,7 +1395,7 @@
 "Use" = "使用";
 
 /* No comment provided by engineer. */
-"User ID" = "用户 ID";
+"User ID" = "用户ID";
 
 /* Title for User Info section on the about page */
 "User Info" = "用户资料";
@@ -1410,7 +1410,7 @@
 "View" = "查看";
 
 /* Return to modules from locked module */
-"View Modules" = "查看模块";
+"View Modules" = "查看单元";
 
 /* No comment provided by engineer. */
 "Warning" = "警告";
@@ -1461,7 +1461,7 @@
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "您没有适用于iPad的SpeedGrader。您可以从App Store免费下载。";
 
 /* Masquerade error message */
-"You don't have permission to masquerade as this user or there is no user with that ID" = "您没有冒充为此用户的权限或没有那个用户 ID";
+"You don't have permission to masquerade as this user or there is no user with that ID" = "您没有冒充为此用户的权限或没有那个用户ID";
 
 /* No comment provided by engineer. */
 "You have an unsaved reply. Would you like to discard that reply?" = "您有未保存的回复。是否要丢弃该回复？";

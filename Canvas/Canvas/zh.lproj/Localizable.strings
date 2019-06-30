@@ -525,7 +525,7 @@
 "Enter submission" = "输入提交";
 
 /* masquerade prompt */
-"Enter User ID and Domain." = "输入用户 ID 和域名。";
+"Enter User ID and Domain." = "输入用户ID 和域名。";
 
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "发布条目";
@@ -783,7 +783,7 @@
 "Mobile Quiz Warning" = "手机测验警告";
 
 /* No comment provided by engineer. */
-"Module Item Not Found" = "找不到模块项目";
+"Module Item Not Found" = "找不到单元项目";
 
 /* Modules title */
 "Modules" = "单元";
@@ -1002,7 +1002,7 @@
 "Posts your comment" = "发布您的评论";
 
 /* Table header for prerequisite modules */
-"Prerequisite Modules" = "先决条件模块";
+"Prerequisite Modules" = "先修课程单元";
 
 /* Button title for previous module item. */
 "Previous" = "上一个";
@@ -1333,7 +1333,7 @@
 "This is a media message." = "这是一条媒体信息。";
 
 /* Description for alert when a module item doesn't have mastery paths configured */
-"This module item doesn't have mastery paths set up." = "此模块项目没有设置掌握途径。";
+"This module item doesn't have mastery paths set up." = "此单元项目没有设置掌握途径。";
 
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "此为获取额外学分的好时机。";
@@ -1426,7 +1426,7 @@
 "Use" = "使用";
 
 /* No comment provided by engineer. */
-"User ID" = "用户 ID";
+"User ID" = "用户ID";
 
 /* Title for User Info section on the about page */
 "User Info" = "用户资料";
@@ -1483,7 +1483,7 @@
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "您没有适用于iPad的SpeedGrader。您可以从App Store免费下载。";
 
 /* Masquerade error message */
-"You don't have permission to masquerade as this user or there is no user with that ID" = "您没有冒充为此用户的权限或没有那个用户 ID";
+"You don't have permission to masquerade as this user or there is no user with that ID" = "您没有冒充为此用户的权限或没有那个用户ID";
 
 /* No comment provided by engineer. */
 "You have an unsaved reply. Would you like to discard that reply?" = "您有未保存的回复。是否要丢弃该回复？";

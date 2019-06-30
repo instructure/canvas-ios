@@ -159,7 +159,7 @@
 "Could not load notification preferences" = "不能加载通知首选项";
 
 /* Failure reason for why it couldn't associate a tab with a context */
-"Could not parse context id from URL" = "无法解析来自URL的上下文ID";
+"Could not parse context id from URL" = "无法解析来自URL的当前ID";
 
 /* Error title for being unable to update a push notification preference */
 "Could not update" = "不能更新";
@@ -730,7 +730,7 @@
 "This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "本论文问题已在网页上进行编辑并且可能包含格式、链接或图片。若要在移动设备上编辑此响应，我们需要清除格式（包括链接和图片）。或者您也可以继续通过网页浏览器编辑问题。";
 
 /* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "此模块项目没有配置掌握途径。";
+"This module item does not have mastery paths configured." = "此单元项目没有配置掌握途径。";
 
 /* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
 "This page is currently locked and not viewable." = "此页面目前被锁定且不能查看。";
