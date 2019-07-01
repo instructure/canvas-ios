@@ -66,7 +66,9 @@ class RubricCircleView: UIView {
         for i in 0..<count {
             let r = ratings[i]
             let description = descriptions[i]
-            let selected = i == (rubric?.selectedIndex ?? 0)
+
+            var selected = false
+            if let index = rubric?.selectedIndex, i == index { selected = true }
 
             let button = DynamicButton(frame: CGRect(x: center.x, y: center.y, width: w, height: w))
             button.tag = i
@@ -137,8 +139,14 @@ class RubricCircleView: UIView {
         let delay = 0.05
 
         let sameButtonClicked: Bool = sender == currentlySelectedButton
-        let buttonToAnimate = sameButtonClicked ? buttons[rubric?.selectedIndex ?? 0] : sender
-        buttonToAnimate.transform = CGAffineTransform(scaleX: 0.877, y: 0.877)
+        let buttonToAnimate: UIButton?
+        if let defaultIndex = rubric?.selectedIndex {
+            buttonToAnimate = sameButtonClicked ? buttons[defaultIndex] : sender
+        } else {
+            buttonToAnimate = sameButtonClicked ? nil : sender
+        }
+
+        buttonToAnimate?.transform = CGAffineTransform(scaleX: 0.877, y: 0.877)
 
         UIView.animate(withDuration: 0.2) {
             self.adjustButtonAppearance(showAsSelected: true, button: buttonToAnimate)
@@ -147,16 +155,30 @@ class RubricCircleView: UIView {
 
         UIView.animate(withDuration: 0.2, delay: delay, usingSpringWithDamping: 0.25, initialSpringVelocity: 6.0, options: [.allowUserInteraction, .curveEaseInOut], animations: {
             self.currentlySelectedButton?.transform = CGAffineTransform.identity
-            buttonToAnimate.transform = self.selectedButtonTransform
+            buttonToAnimate?.transform = self.selectedButtonTransform
         }, completion: { _ in
             self.currentlySelectedButton = buttonToAnimate
             completionHandler()
         })
     }
 
+    func updateButtons(rubric: RubricViewModel) {
+        self.rubric = rubric
+        if rubric.isCustomAssessment {}
+        if let defaultIndex = rubric.selectedIndex,
+            defaultIndex < buttons.count,
+            let button = buttons[defaultIndex] as? DynamicButton,
+            currentlySelectedButton == nil {
+            actionButtonClicked(sender: button)
+        }
+    }
+
     func adjustButtonAppearance(showAsSelected: Bool, button: UIButton?) {
         guard let button = button else { return }
-        let selected = button.tag == (rubric?.selectedIndex ?? 0)
+        var selected = false
+        if let assessmentIndex = rubric?.selectedIndex {
+            selected = button.tag == assessmentIndex
+        }
 
         if !showAsSelected { button.transform = CGAffineTransform.identity }
 
