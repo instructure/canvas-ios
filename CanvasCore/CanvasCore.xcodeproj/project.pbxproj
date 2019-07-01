@@ -97,8 +97,7 @@
 		493020441F902364006BD777 /* UIDevice+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020271F902360006BD777 /* UIDevice+Model.swift */; };
 		493020451F902364006BD777 /* AppStoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020281F902360006BD777 /* AppStoreReview.swift */; };
 		493020461F902364006BD777 /* NSError+Categorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020291F902360006BD777 /* NSError+Categorization.swift */; };
-		493020471F902364006BD777 /* NSObject+PureEvil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930202B1F902361006BD777 /* NSObject+PureEvil.swift */; };
-		493020481F902364006BD777 /* ❨╯°□°❩╯⌢.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930202C1F902361006BD777 /* ❨╯°□°❩╯⌢.swift */; };
+		493020471F902364006BD777 /* NSObject+AssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */; };
 		493020491F902364006BD777 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930202D1F902361006BD777 /* Environment.swift */; };
 		4930204A1F902364006BD777 /* Uncollect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020301F902361006BD777 /* Uncollect.swift */; };
 		4930204B1F902364006BD777 /* Concat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020311F902361006BD777 /* Concat.swift */; };
@@ -638,8 +637,7 @@
 		493020271F902360006BD777 /* UIDevice+Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Model.swift"; sourceTree = "<group>"; };
 		493020281F902360006BD777 /* AppStoreReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreReview.swift; sourceTree = "<group>"; };
 		493020291F902360006BD777 /* NSError+Categorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+Categorization.swift"; sourceTree = "<group>"; };
-		4930202B1F902361006BD777 /* NSObject+PureEvil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+PureEvil.swift"; sourceTree = "<group>"; };
-		4930202C1F902361006BD777 /* ❨╯°□°❩╯⌢.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "❨╯°□°❩╯⌢.swift"; sourceTree = "<group>"; };
+		4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+AssociatedObject.swift"; sourceTree = "<group>"; };
 		4930202D1F902361006BD777 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		493020301F902361006BD777 /* Uncollect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uncollect.swift; sourceTree = "<group>"; };
 		493020311F902361006BD777 /* Concat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concat.swift; sourceTree = "<group>"; };
@@ -1547,8 +1545,8 @@
 				493020431F902364006BD777 /* NSData+SoLazy.swift */,
 				493020291F902360006BD777 /* NSError+Categorization.swift */,
 				493020421F902364006BD777 /* NSError+SoLazy.swift */,
+				4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */,
 				4930203C1F902362006BD777 /* NSURLSession+SoLazy.swift */,
-				4930202A1F902361006BD777 /* Pure Evil */,
 				4930203D1F902363006BD777 /* RAC+SoLazy.swift */,
 				4930202E1F902361006BD777 /* ReactiveExtensions */,
 				493020361F902361006BD777 /* String+SoLazy.swift */,
@@ -1560,15 +1558,6 @@
 				9F068D63207C082B0040EFFA /* registerSharedNativeViewControllers.swift */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		4930202A1F902361006BD777 /* Pure Evil */ = {
-			isa = PBXGroup;
-			children = (
-				4930202B1F902361006BD777 /* NSObject+PureEvil.swift */,
-				4930202C1F902361006BD777 /* ❨╯°□°❩╯⌢.swift */,
-			);
-			path = "Pure Evil";
 			sourceTree = "<group>";
 		};
 		4930202E1F902361006BD777 /* ReactiveExtensions */ = {
@@ -3100,7 +3089,7 @@
 				49CE96B91F8FF94B00121A43 /* PagesHomeViewController.swift in Sources */,
 				49CE968A1F8FF41B00121A43 /* QuizSubmissionService.swift in Sources */,
 				2C68DCF32086786E00A1EBFA /* UIPickerView+Quiz.swift in Sources */,
-				493020471F902364006BD777 /* NSObject+PureEvil.swift in Sources */,
+				493020471F902364006BD777 /* NSObject+AssociatedObject.swift in Sources */,
 				497CA7761F82D19600501613 /* PushAnimatedTransitioning.swift in Sources */,
 				7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */,
 				4961F68A1F8FB9620093EC86 /* Upload.swift in Sources */,
@@ -3139,7 +3128,6 @@
 				49301FF31F901854006BD777 /* NotificationPreference.swift in Sources */,
 				4961F5EC1F8FB4070093EC86 /* TableViewController.swift in Sources */,
 				49CE965B1F8FF41B00121A43 /* QuizIntroViewController+Objective-C.swift in Sources */,
-				493020481F902364006BD777 /* ❨╯°□°❩╯⌢.swift in Sources */,
 				4961F5DB1F8FB3EF0093EC86 /* ManagedObjectObserver.swift in Sources */,
 				49CE97981F900D0000121A43 /* User+Collections.swift in Sources */,
 				49CE96EA1F8FFC4400121A43 /* Module.swift in Sources */,

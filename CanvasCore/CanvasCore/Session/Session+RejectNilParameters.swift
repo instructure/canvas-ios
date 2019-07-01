@@ -18,7 +18,7 @@
 
 import Foundation
 
-public extension Session {
+extension Session {
     public static func rejectNilParameters(_ source: [String:Any?]) -> [String:Any] {
         var destination : [String:Any] = [:]
         for (key, nillableValue) in source {

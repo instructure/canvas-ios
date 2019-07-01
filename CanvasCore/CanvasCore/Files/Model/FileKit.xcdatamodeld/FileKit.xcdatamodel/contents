@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16B2555" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="File" representedClassName=".File" parentEntity="FileNode" syncable="YES">
         <attribute name="contentType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="size" optional="YES" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="thumbnailURL" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="upload" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FileUpload" inverseName="file" inverseEntity="FileUpload" syncable="YES"/>
     </entity>
     <entity name="FileNode" representedClassName=".FileNode" syncable="YES">
         <attribute name="canView" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
@@ -29,7 +30,7 @@
         <attribute name="targetParameters" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="targetURL" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="batch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FileUploadBatch" inverseName="fileUploads" inverseEntity="FileUploadBatch" syncable="YES"/>
-        <relationship name="file" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" syncable="YES"/>
+        <relationship name="file" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" inverseName="upload" inverseEntity="File" syncable="YES"/>
     </entity>
     <entity name="FileUploadBatch" syncable="YES">
         <attribute name="apiPath" attributeType="String" syncable="YES"/>
@@ -56,7 +57,7 @@
         <attribute name="total" transient="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <elements>
-        <element name="File" positionX="-101" positionY="-84" width="128" height="120"/>
+        <element name="File" positionX="-101" positionY="-84" width="128" height="135"/>
         <element name="FileNode" positionX="115" positionY="-273" width="128" height="195"/>
         <element name="FileUpload" positionX="-378" positionY="-13" width="128" height="195"/>
         <element name="FileUploadBatch" positionX="-549" positionY="-81" width="128" height="88"/>

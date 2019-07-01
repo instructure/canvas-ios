@@ -260,7 +260,7 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
             pointAnnotation.color = state.drawColor
             pointAnnotation.boundingBox = CGRect(x: 0, y: 0, width: 9.33, height: 13.33)
             pointAnnotation.pageIndex = pageView.pageIndex
-            pageView.center(pointAnnotation, aroundPDFPoint: pageView.convertPoint(toPDFPoint: viewPoint))
+            pageView.center(pointAnnotation, aroundPDFPoint: pageView.convert(viewPoint, to: pageView.pdfCoordinateSpace))
             pdfDocument.add([ pointAnnotation ], options: nil)
 
             let commentsVC = CanvadocsCommentsViewController.new(pointAnnotation, pdfDocument: pdfDocument, metadata: metadata)

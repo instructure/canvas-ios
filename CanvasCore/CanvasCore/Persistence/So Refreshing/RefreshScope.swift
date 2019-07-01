@@ -37,16 +37,16 @@ open class RefreshScope: NSObject {
     
     internal override init() {
         guard let model = NSManagedObjectModel(named: "SoRefreshing", inBundle: Bundle(for: RefreshScope.self)) else {
-            ❨╯°□°❩╯⌢"Can't load the global refresh cache model"
+            fatalError("Can't load the global refresh cache model")
         }
         
-        guard let libURL = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first.map(URL.init(fileURLWithPath:)) else { ❨╯°□°❩╯⌢"GASP! There were no user library search paths" }
+        guard let libURL = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first.map(URL.init(fileURLWithPath:)) else { fatalError("GASP! There were no user library search paths") }
         let storeURL = libURL.appendingPathComponent("GlobalSoRefreshing.sqlite")
         
         do {
             context = try NSManagedObjectContext(storeURL: storeURL, model: model, concurrencyType: .mainQueueConcurrencyType, cacheReset: {})
         } catch let e as NSError {
-            ❨╯°□°❩╯⌢"Couldn't create global refresh scope.\n\(e.reportDescription)"
+            fatalError("Couldn't create global refresh scope.\n\(e.reportDescription)")
         }
     }
     
@@ -63,10 +63,10 @@ open class RefreshScope: NSObject {
             do {
                 result = try doSomeWork(self.context)
             } catch let e as NSError {
-                ❨╯°□°❩╯⌢"You're right, Brandon. Some things should just be fatal\n\(e.reportDescription)"
+                fatalError("You're right, Brandon. Some things should just be fatal\n\(e.reportDescription)")
             }
         }
-        guard let t = result else { ❨╯°□°❩╯⌢"this should never happen." }
+        guard let t = result else { fatalError("this should never happen.") }
         return t
     }
     

@@ -34,11 +34,11 @@ extension Upload {
         let context = try session.assignmentsManagedObjectContext()
 
         guard let entity = NSEntityDescription.entity(forEntityName: entityName(context), in: context) else {
-            ❨╯°□°❩╯⌢"Failed to get Entity Description for Upload."
+            fatalError("Failed to get Entity Description for Upload.")
         }
 
         guard let property = entity.propertiesByName["backgroundSessionID"] else {
-            ❨╯°□°❩╯⌢"Failed to get backgroundSessionID property."
+            fatalError("Failed to get backgroundSessionID property.")
         }
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName(context))
@@ -47,7 +47,7 @@ extension Upload {
         request.returnsDistinctResults = true
 
         guard let ids = try context.fetch(request) as? [String] else {
-            ❨╯°□°❩╯⌢"expected an array of String ids"
+            fatalError("expected an array of String ids")
         }
 
         return ids

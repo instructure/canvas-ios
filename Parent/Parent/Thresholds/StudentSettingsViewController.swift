@@ -152,7 +152,7 @@ open class StudentSettingsViewController : FormViewController {
     }
 
     func validateValueForRow(_ type: AlertThresholdType) {
-        guard let row = form.rowBy(tag: type.rawValue) as? IntRow else { ❨╯°□°❩╯⌢"Could not find CourseGradeLow to compare." }
+        guard let row = form.rowBy(tag: type.rawValue) as? IntRow else { fatalError("Could not find CourseGradeLow to compare.") }
         
         let value = row.value ?? 0
 
@@ -169,10 +169,10 @@ open class StudentSettingsViewController : FormViewController {
 
         switch type {
         case .courseAnnouncement, .assignmentMissing:
-            ❨╯°□°❩╯⌢"IntRow should never be used for this Alert Threshold Type"
+            fatalError("IntRow should never be used for this Alert Threshold Type")
         case .courseGradeHigh:
             guard let comparisonRow = form.rowBy(tag: AlertThresholdType.courseGradeLow.rawValue) as? IntRow else {
-                ❨╯°□°❩╯⌢"Could not find CourseGradeLow to compare."
+                fatalError("Could not find CourseGradeLow to compare.")
             }
 
             if let value = row.value, let comparisonValue = comparisonRow.value, value < comparisonValue {
@@ -182,7 +182,7 @@ open class StudentSettingsViewController : FormViewController {
             }
         case .courseGradeLow:
             guard let comparisonRow = form.rowBy(tag: AlertThresholdType.courseGradeHigh.rawValue) as? IntRow else {
-                ❨╯°□°❩╯⌢"Could not find CourseGradeLow to compare."
+                fatalError("Could not find CourseGradeLow to compare.")
             }
 
             if let value = row.value, let comparisonValue = comparisonRow.value, value > comparisonValue {
@@ -192,7 +192,7 @@ open class StudentSettingsViewController : FormViewController {
             }
         case .assignmentGradeHigh:
             guard let comparisonRow = form.rowBy(tag: AlertThresholdType.assignmentGradeLow.rawValue) as? IntRow else {
-                ❨╯°□°❩╯⌢"Could not find CourseGradeLow to compare."
+                fatalError("Could not find CourseGradeLow to compare.")
             }
 
             if let value = row.value, let comparisonValue = comparisonRow.value, value < comparisonValue {
@@ -202,7 +202,7 @@ open class StudentSettingsViewController : FormViewController {
             }
         case .assignmentGradeLow:
             guard let comparisonRow = form.rowBy(tag: AlertThresholdType.assignmentGradeHigh.rawValue) as? IntRow else {
-                ❨╯°□°❩╯⌢"Could not find CourseGradeLow to compare."
+                fatalError("Could not find CourseGradeLow to compare.")
             }
 
             if let value = row.value, let comparisonValue = comparisonRow.value, value > comparisonValue {
@@ -211,7 +211,7 @@ open class StudentSettingsViewController : FormViewController {
                 notifyUserOfInvalidInput(NSLocalizedString("Low assignment grade cannot be higher than high assignment grade", comment: "Low Assignment Grade too High"))
             }
         default:
-            ❨╯°□°❩╯⌢"IntRow should never be used for this Alert Threshold Type"
+            fatalError("IntRow should never be used for this Alert Threshold Type")
         }
     }
 
@@ -279,7 +279,7 @@ open class StudentSettingsViewController : FormViewController {
         switch type {
         case .courseAnnouncement, .assignmentMissing, .institutionAnnouncement:
             guard let switchRow = row as? SwitchRow else {
-                ❨╯°□°❩╯⌢"Row for these types should always be a switch row"
+                fatalError("Row for these types should always be a switch row")
             }
 
             switchRow.disabled = true
@@ -311,7 +311,7 @@ open class StudentSettingsViewController : FormViewController {
             }
         default:
             guard let intRow = row as? IntRow else {
-                ❨╯°□°❩╯⌢"Row for these types should always be a int row"
+                fatalError("Row for these types should always be a int row")
             }
 
             var thresholdValue: String? = nil
@@ -347,7 +347,7 @@ open class StudentSettingsViewController : FormViewController {
             switch type {
             case .courseAnnouncement, .assignmentMissing, .institutionAnnouncement:
                 guard let boolRow = row as? SwitchRow else {
-                    ❨╯°□°❩╯⌢"Row for these types should always be a switch row"
+                    fatalError("Row for these types should always be a switch row")
                 }
 
                 boolRow.onChange { _ in }
@@ -358,7 +358,7 @@ open class StudentSettingsViewController : FormViewController {
                 }
             default:
                 guard let intRow = row as? IntRow else {
-                    ❨╯°□°❩╯⌢"Row for these types should always be a int row"
+                    fatalError("Row for these types should always be a int row")
                 }
 
                 guard let threshold = thresholdForType(type), let value = threshold.threshold else {

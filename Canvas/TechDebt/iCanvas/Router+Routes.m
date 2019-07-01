@@ -315,12 +315,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     
     [self addRoute:@"/courses/:courseID/quizzes/:quizID" handler:quizControllerConstructor];
     
-    UIViewController *(^fileDownloadConstructor)(NSDictionary *, CBIQuizViewModel *) = ^ UIViewController *(NSDictionary *params, CBIQuizViewModel *vm) {        
-        FileViewController *fileVC = [[FileViewController alloc] init];
-        [fileVC applyRoutingParameters:params];
-        return (UIViewController *)fileVC;
-    };
-    
     [WhizzyWigView setOpenURLHandler:^(NSURL *url) {
         [self openCanvasURL:url withOptions:nil];
     }];

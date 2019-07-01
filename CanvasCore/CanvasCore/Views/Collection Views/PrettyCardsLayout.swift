@@ -32,7 +32,7 @@ private let maxCardWidth: CGFloat = 360.0
 open class PrettyCardsLayout: UICollectionViewFlowLayout {
     open override func prepare() {
         
-        guard let collectionView = collectionView else { ❨╯°□°❩╯⌢"You can't prepare a layout for a nil collectionView" }
+        guard let collectionView = collectionView else { fatalError("You can't prepare a layout for a nil collectionView") }
         let traits = collectionView.traitCollection
         let boundsWidth = collectionView.bounds.width
         

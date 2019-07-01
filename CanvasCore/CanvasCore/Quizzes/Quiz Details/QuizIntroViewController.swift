@@ -82,7 +82,7 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        ❨╯°□°❩╯⌢"init(coder:) has not been implemented"
+        fatalError("init(coder:) has not been implemented")
     }
 
     deinit {

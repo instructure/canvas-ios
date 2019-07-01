@@ -51,7 +51,7 @@ open class Enrollment: NSManagedObject {
         return DynamicProperty(object: self, keyPath: "color")
     }()
     
-    open var contextID: ContextID { ❨╯°□°❩╯⌢"Enrollment is abstract, yo. This gots to be overrid" }
+    open var contextID: ContextID { fatalError("Enrollment is abstract, yo. This gots to be overrid") }
     
     @objc open var hasGrades: Bool { return false }
     
