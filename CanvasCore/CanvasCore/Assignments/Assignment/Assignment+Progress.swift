@@ -69,7 +69,7 @@ extension Assignment {
     }
     
     @objc static func beginObservingProgress(_ session: Session) {
-        guard let context = try? session.assignmentsManagedObjectContext() else { ❨╯°□°❩╯⌢"you couldn't even get the context?!" }
+        guard let context = try? session.assignmentsManagedObjectContext() else { fatalError("you couldn't even get the context?!") }
         let scope = session.refreshScope
         
         let progress = session

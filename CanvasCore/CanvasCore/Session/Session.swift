@@ -98,11 +98,11 @@ open class Session: NSObject {
 
         switch localStoreDirectory {
         case .Default:
-            guard let lib = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { ❨╯°□°❩╯⌢"GASP! There were no user library search paths" }
+            guard let lib = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { fatalError("GASP! There were no user library search paths") }
             fileURL = URL(fileURLWithPath: lib)
         case .AppGroup:
             guard let appGroup = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: LocalStoreAppGroupName) else {
-                ❨╯°□°❩╯⌢"GASP! There is not an app group"
+                fatalError("GASP! There is not an app group")
             }
             fileURL = appGroup
         }
@@ -117,11 +117,11 @@ open class Session: NSObject {
 
         switch localStoreDirectory {
         case .Default:
-            guard let lib = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { ❨╯°□°❩╯⌢"GASP! There were no user library search paths" }
+            guard let lib = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else { fatalError("GASP! There were no user library search paths") }
             fileURL = URL(fileURLWithPath: lib)
         case .AppGroup:
             guard let appGroup = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: LocalStoreAppGroupName) else {
-                ❨╯°□°❩╯⌢"GASP! There is not an app group"
+                fatalError("GASP! There is not an app group")
             }
             fileURL = appGroup
         }

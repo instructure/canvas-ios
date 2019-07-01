@@ -85,7 +85,7 @@ class CalendarEventListViewController: UITableViewController {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        ❨╯°□°❩╯⌢"Can't instantiate CalendarEventListViewController from coder"
+        fatalError("Can't instantiate CalendarEventListViewController from coder")
     }
 
     override func viewDidLoad() {
@@ -205,7 +205,7 @@ class CalendarEventListViewController: UITableViewController {
         let sections = 0..<collection.numberOfSections()
         for section in sections {
             guard let dateString = collection.titleForSection(section), let collectionDate = CalendarEvent.sectionTitleDateFormatter.date(from: dateString) else {
-                ❨╯°□°❩╯⌢"Section Date Formatter is not as expected."
+                fatalError("Section Date Formatter is not as expected.")
             }
 
             if sectionDate.compare(collectionDate) == .orderedSame {

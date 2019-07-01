@@ -42,12 +42,12 @@ enum AnnouncementDetailsCellViewModel: TableViewCellViewModel {
     func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch self {
         case .title(let title):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleCellReuseIdentifier) as? DetailsInfoCell else { ❨╯°□°❩╯⌢"Dude, you have the wrong type for this cell" }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleCellReuseIdentifier) as? DetailsInfoCell else { fatalError("Dude, you have the wrong type for this cell") }
             cell.titleLabel.text = title
             cell.setShowsSubmissionInfo(false)
             return cell
         case .attachment(let filename):
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: AttachmentCellReuseIdentifier) as? DetailsAttachmentCell else { ❨╯°□°❩╯⌢"Dude, you have the wrong type for this cell" }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AttachmentCellReuseIdentifier) as? DetailsAttachmentCell else { fatalError("Dude, you have the wrong type for this cell") }
             cell.filenameLabel.text = filename
             return cell
         case .message(let baseURL, let message):

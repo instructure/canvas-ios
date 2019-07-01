@@ -58,7 +58,7 @@ open class EditFavoriteEnrollmentsViewController<T>: TableViewController where T
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        ❨╯°□°❩╯⌢"No storyboards!"
+        fatalError("No storyboards!")
     }
     
     open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

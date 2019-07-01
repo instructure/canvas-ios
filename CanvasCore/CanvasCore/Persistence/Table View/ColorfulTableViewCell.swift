@@ -57,7 +57,7 @@ public struct ColorfulViewModel: TableViewCellViewModel {
     }
     
     public func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ColorfulTableViewCell") as? ColorfulTableViewCell else { ❨╯°□°❩╯⌢"be sure and call prepareTableView:" }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ColorfulTableViewCell") as? ColorfulTableViewCell else { fatalError("be sure and call prepareTableView:") }
         
         cell.viewModel.value = self
         
@@ -346,14 +346,14 @@ public class ColorfulTableViewCell: UITableViewCell {
     
     // MARK: Misuse
     public required init?(coder aDecoder: NSCoder) {
-        ❨╯°□°❩╯⌢"Sorry, no nib/storyboard support"
+        fatalError("Sorry, no nib/storyboard support")
     }
 
     public override var textLabel: UILabel? {
-        ❨╯°□°❩╯⌢"Don't use this, use titleLabel"
+        fatalError("Don't use this, use titleLabel")
     }
     
     public override var detailTextLabel: UILabel? {
-        ❨╯°□°❩╯⌢"Don't use the detail text label"
+        fatalError("Don't use the detail text label")
     }
 }

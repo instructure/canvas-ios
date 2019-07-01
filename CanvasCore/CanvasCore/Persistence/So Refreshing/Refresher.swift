@@ -101,7 +101,7 @@ open class SignalProducerRefresher<Value>: NSObject, Refresher {
             scrollView.alwaysBounceVertical = true
             scrollView.refreshControl = refreshControl
         } else {
-            ❨╯°□°❩╯⌢"Can't do it. Sorry."
+            fatalError("Can't do it. Sorry.")
         }
         refreshControl.layoutIfNeeded()
     }

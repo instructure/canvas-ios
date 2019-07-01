@@ -176,17 +176,17 @@ public final class CalendarEvent: NSManagedObject {
             return URL(string: "/calendar_events/" + (parentEventID ?? id))
         case .assignment:
             if submissionTypes.contains(.discussionTopic) {
-                guard let discussionTopicID = discussionTopicID, let courseID = courseID else { ❨╯°□°❩╯⌢"Cannot create routingID without discussionTopicID" }
+                guard let discussionTopicID = discussionTopicID, let courseID = courseID else { fatalError("Cannot create routingID without discussionTopicID") }
                 return URL(string: "/courses/" + courseID + "/discussion_topics/" + discussionTopicID)
             } else if submissionTypes.contains(.quiz) {
-                guard let quizID = quizID, let courseID = courseID else { ❨╯°□°❩╯⌢"Cannot create routingID without quizID" }
+                guard let quizID = quizID, let courseID = courseID else { fatalError("Cannot create routingID without quizID") }
                 return URL(string: "/courses/" + courseID + "/quizzes/" + quizID)
             } else {
-                guard let assignmentID = assignmentID, let courseID = courseID else { ❨╯°□°❩╯⌢"Cannot create routingID without assignmentID" }
+                guard let assignmentID = assignmentID, let courseID = courseID else { fatalError("Cannot create routingID without assignmentID") }
                 return URL(string: "/courses/" + courseID + "/assignments/" + assignmentID)
             }
         case .quiz:
-            guard let quizID = quizID, let courseID = courseID else { ❨╯°□°❩╯⌢"Cannot create routingID without quizID" }
+            guard let quizID = quizID, let courseID = courseID else { fatalError("Cannot create routingID without quizID") }
             return URL(string: "/courses/" + courseID + "/quizzes/" + quizID)
         default:
             return nil

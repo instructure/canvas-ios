@@ -39,7 +39,7 @@ public struct StoreID {
         self.localizedErrorDescription = localizedErrorDescription
         
         guard let model = NSManagedObjectModel(named: modelFileName, inBundle: modelFileBundle) else {
-            ❨╯°□°❩╯⌢"Where is the \(modelFileName).xcdatamodeld?"
+            fatalError("Where is the \(modelFileName).xcdatamodeld?")
         }
         self.model = model
     }

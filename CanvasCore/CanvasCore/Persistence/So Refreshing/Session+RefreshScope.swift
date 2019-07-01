@@ -38,7 +38,7 @@ extension Session {
             setAssociatedObject(scope, forKey: &Associated.refreshScope)
             return scope
         } catch let e as NSError {
-            ❨╯°□°❩╯⌢"Can't get the context for the refresh scope! – \(e.reportDescription)"
+            fatalError("Can't get the context for the refresh scope! – \(e.reportDescription)")
         }
     }
 }

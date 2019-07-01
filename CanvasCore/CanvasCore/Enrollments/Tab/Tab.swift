@@ -65,7 +65,7 @@ public final class Tab: NSManagedObject {
     }
 
     @objc public var shortcutIcon: UIImage {
-        guard ShortcutTabIDs.contains(id) else { ❨╯°□°❩╯⌢"Not a valid shortcut!" }
+        guard ShortcutTabIDs.contains(id) else { fatalError("Not a valid shortcut!") }
         // don't add new shortcuts without telling me
         assert(ShortcutTabIDs.count == 4)
         let shortcut: Icon
@@ -74,7 +74,7 @@ public final class Tab: NSManagedObject {
         case "announcements":   shortcut = .announcement
         case "files":           shortcut = .file
         case "assignments":     shortcut = .assignment
-        default: ❨╯°□°❩╯⌢"Not a valid shortcut"
+        default: fatalError("Not a valid shortcut")
         }
         return .icon(shortcut)
     }

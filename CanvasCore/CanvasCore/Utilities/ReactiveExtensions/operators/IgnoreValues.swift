@@ -16,7 +16,7 @@
 
 import ReactiveSwift
 
-public extension SignalProtocol {
+extension SignalProtocol {
 
     /**
      Creates a new signal that emits a void value for every emission of `self`.
@@ -27,13 +27,13 @@ public extension SignalProtocol {
     }
 }
 
-public extension SignalProducerProtocol {
+extension SignalProducerProtocol {
 
     /**
      Creates a new producer that emits a void value for every emission of `self`.
      - returns: A new producer.
      */
-    func ignoreValues() -> SignalProducer<Void, Error> {
+    public func ignoreValues() -> SignalProducer<Void, Error> {
         return producer.lift { $0.ignoreValues() }
     }
 }

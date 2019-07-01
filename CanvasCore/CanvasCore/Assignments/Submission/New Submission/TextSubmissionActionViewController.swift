@@ -95,6 +95,6 @@ class TextCell: WhizzyTextInputCell {
     }
     
     required init(coder aDecoder: NSCoder) {
-        ❨╯°□°❩╯⌢"Registered by class... so don't do this"
+        fatalError("Registered by class... so don't do this")
     }
 }

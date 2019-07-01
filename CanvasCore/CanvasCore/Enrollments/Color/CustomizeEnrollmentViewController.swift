@@ -57,7 +57,7 @@ open class CustomizeEnrollmentViewController: UIViewController {
     }
 
     public required init(coder aDecoder: NSCoder) {
-        ❨╯°□°❩╯⌢"init(coder:) has not been implemented"
+        fatalError("init(coder:) has not been implemented")
     }
 
     open override func viewDidLoad() {

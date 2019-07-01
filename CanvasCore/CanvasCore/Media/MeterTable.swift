@@ -41,7 +41,7 @@ struct MeterTable {
         
         if minDecibels >= 0.0 {
             table = []
-            ❨╯°□°❩╯⌢"decibels are negative yo"
+            fatalError("decibels are negative yo")
         }
         
         let minAmp = DBtoAmp(minDecibels)

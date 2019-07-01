@@ -13,13 +13,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import Foundation
 
 public extension UIImage {
-    @objc public func resizedImage(_ targetSize: CGSize) -> UIImage? {
+    @objc func resizedImage(_ targetSize: CGSize) -> UIImage? {
         let size = self.size
         
         let widthRatio  = targetSize.width  / self.size.width
@@ -64,6 +62,8 @@ public extension UIImage {
             transform = transform.rotated(by: .pi / 2 * -1)
         case .up, .upMirrored:
             break
+        @unknown default:
+            break
         }
 
         switch image.imageOrientation {
@@ -74,6 +74,8 @@ public extension UIImage {
             transform = transform.translatedBy(x: image.size.height, y: 0)
             transform = transform.scaledBy(x: -1, y: 1)
         case .up, .down, .left, .right:
+            break
+        @unknown default:
             break
         }
 
