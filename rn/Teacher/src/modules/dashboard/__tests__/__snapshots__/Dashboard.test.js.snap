@@ -127,7 +127,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="Biology 101 "
+            accessibilityLabel="Biology 101"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -323,7 +323,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+            accessibilityLabel="American Literature Psysicks foobar hello world 401"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -519,7 +519,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="Foobar 102 "
+            accessibilityLabel="Foobar 102"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -730,7 +730,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="Biology 101 "
+            accessibilityLabel="Biology 101"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -926,7 +926,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+            accessibilityLabel="American Literature Psysicks foobar hello world 401"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -1122,7 +1122,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="Foobar 102 "
+            accessibilityLabel="Foobar 102"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -1361,7 +1361,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="Foobar 102 "
+            accessibilityLabel="Foobar 102"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -1686,7 +1686,7 @@ exports[`Dashboard render 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="Biology 101 "
+            accessibilityLabel="Biology 101"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -1882,7 +1882,7 @@ exports[`Dashboard render 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+            accessibilityLabel="American Literature Psysicks foobar hello world 401"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -2078,7 +2078,7 @@ exports[`Dashboard render 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="Foobar 102 "
+            accessibilityLabel="Foobar 102"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -2403,7 +2403,7 @@ exports[`Dashboard render while pending 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="Biology 101 "
+            accessibilityLabel="Biology 101"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -2599,7 +2599,7 @@ exports[`Dashboard render while pending 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+            accessibilityLabel="American Literature Psysicks foobar hello world 401"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -2795,7 +2795,7 @@ exports[`Dashboard render while pending 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="Foobar 102 "
+            accessibilityLabel="Foobar 102"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -4214,7 +4214,7 @@ exports[`Dashboard renders course invites 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="Biology 101 "
+            accessibilityLabel="Biology 101"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -4410,7 +4410,7 @@ exports[`Dashboard renders course invites 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="American Literature Psysicks foobar hello world 401 "
+            accessibilityLabel="American Literature Psysicks foobar hello world 401"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}
@@ -4606,7 +4606,7 @@ exports[`Dashboard renders course invites 1`] = `
       <item>
         <A11yGroup>
           <TouchableHighlight
-            accessibilityLabel="Foobar 102 "
+            accessibilityLabel="Foobar 102"
             accessibilityTraits="button"
             onLayout={[Function]}
             onPress={[Function]}

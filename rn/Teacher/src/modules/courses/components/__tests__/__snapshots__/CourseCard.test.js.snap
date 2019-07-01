@@ -3,7 +3,7 @@
 exports[`renders 1`] = `
 <A11yGroup>
   <TouchableHighlight
-    accessibilityLabel="Learn React Native "
+    accessibilityLabel="Learn React Native"
     accessibilityTraits="button"
     onLayout={[Function]}
     onPress={[Function]}
@@ -676,7 +676,7 @@ exports[`renders with a grade even if the grade does not exist 1`] = `
 exports[`renders with empty image url 1`] = `
 <A11yGroup>
   <TouchableHighlight
-    accessibilityLabel="Learn React Native "
+    accessibilityLabel="Learn React Native"
     accessibilityTraits="button"
     onLayout={[Function]}
     onPress={[Function]}
@@ -857,7 +857,7 @@ exports[`renders with empty image url 1`] = `
 exports[`renders with image url 1`] = `
 <A11yGroup>
   <TouchableHighlight
-    accessibilityLabel="Learn React Native "
+    accessibilityLabel="Learn React Native"
     accessibilityTraits="button"
     onLayout={[Function]}
     onPress={[Function]}
@@ -1050,7 +1050,7 @@ exports[`renders with image url 1`] = `
 exports[`renders without image url 1`] = `
 <A11yGroup>
   <TouchableHighlight
-    accessibilityLabel="Learn React Native "
+    accessibilityLabel="Learn React Native"
     accessibilityTraits="button"
     onLayout={[Function]}
     onPress={[Function]}
@@ -1231,7 +1231,7 @@ exports[`renders without image url 1`] = `
 exports[`renders without the color overlay 1`] = `
 <A11yGroup>
   <TouchableHighlight
-    accessibilityLabel="Learn React Native "
+    accessibilityLabel="Learn React Native"
     accessibilityTraits="button"
     onLayout={[Function]}
     onPress={[Function]}
