@@ -51,6 +51,11 @@ class DashboardTests: CanvasUITests {
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "263").waitToExist()
     }
+    
+    func testCourseCardInfo() {
+        Dashboard.courseCard(id: "263").waitToExist()
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label, "Assignments")
+    }
 
     func testSeeAllButtonDisplaysCorrectCourses() {
         Dashboard.seeAllButton.tap()

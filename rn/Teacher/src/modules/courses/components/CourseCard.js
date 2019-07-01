@@ -120,7 +120,7 @@ export default class CourseCard extends Component<Props, State> {
           testID={'course-' + course.id}
           onPress={this.onPress}
           accessibilityTraits='button'
-          accessibilityLabel={`${course.name} ${gradeDisplay || ''}`}
+          accessibilityLabel={`${course.name} ${gradeDisplay || ''}`.trim()}
           underlayColor='transparent'
         >
           <View style={styles.cardContainer}>
