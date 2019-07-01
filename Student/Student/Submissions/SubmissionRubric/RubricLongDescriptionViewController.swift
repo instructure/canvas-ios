@@ -20,6 +20,7 @@ import Core
 class RubricLongDescriptionViewController: UIViewController {
 
     let longDescription: String
+    weak var delegate: CoreWebViewLinkDelegate?
 
     init(longDescription: String, title: String) {
         self.longDescription = longDescription
@@ -36,15 +37,11 @@ class RubricLongDescriptionViewController: UIViewController {
 
         self.addDoneButton()
 
-        let textView = UITextView()
-        textView.isEditable = false
-        textView.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        textView.font = UIFont.scaledNamedFont(.regular16)
-        textView.alwaysBounceVertical = true
-        textView.text = longDescription
+        let webView = CoreWebView()
+        webView.linkDelegate = delegate
+        webView.loadHTMLString(longDescription)
 
-        self.view.addSubview(textView)
-
-        textView.pin(inside: self.view)
+        self.view.addSubview(webView)
+        webView.pin(inside: self.view)
     }
 }
