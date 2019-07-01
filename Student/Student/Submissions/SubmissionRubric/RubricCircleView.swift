@@ -162,6 +162,17 @@ class RubricCircleView: UIView {
         })
     }
 
+    func updateButtons(rubric: RubricViewModel) {
+        self.rubric = rubric
+        if rubric.isCustomAssessment {}
+        if let defaultIndex = rubric.selectedIndex,
+            defaultIndex < buttons.count,
+            let button = buttons[defaultIndex] as? DynamicButton,
+            currentlySelectedButton == nil {
+            actionButtonClicked(sender: button)
+        }
+    }
+
     func adjustButtonAppearance(showAsSelected: Bool, button: UIButton?) {
         guard let button = button else { return }
         var selected = false

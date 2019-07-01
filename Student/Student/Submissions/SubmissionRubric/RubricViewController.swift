@@ -19,6 +19,11 @@ import Core
 
 class RubricViewController: UIViewController {
 
+    let ratingContainerTag = 100
+    let ratingTitleTag = 200
+    let ratingDescTag = 300
+    let circleViewTag = 400
+
     static func create(env: AppEnvironment = .shared, courseID: String, assignmentID: String, userID: String) -> RubricViewController {
         let controller = loadFromStoryboard()
         controller.presenter = RubricPresenter(env: env, view: controller, courseID: courseID, assignmentID: assignmentID, userID: userID)
@@ -60,12 +65,13 @@ class RubricViewController: UIViewController {
     }
 
     func layoutRubrics() {
-        if didLayoutRubrics { return }
-        didLayoutRubrics = true
-
-        addGradeHeader()
-
-        for (i, m) in models.enumerated() { addModelToStackView(i, m) }
+        if !didLayoutRubrics {
+            didLayoutRubrics = true
+            addGradeHeader()
+            for (i, m) in models.enumerated() { addModelToStackView(i, m) }
+        } else {
+            for (i, m) in models.enumerated() { updateViewsToLatestModel(i, m) }
+        }
     }
 
     func addGradeHeader() {
@@ -91,6 +97,12 @@ class RubricViewController: UIViewController {
             return assignment.useRubricForGrading
         }
         return false
+    }
+
+    func updateViewsToLatestModel(_ index: Int, _ model: RubricViewModel) {
+        if let circles = view.viewWithTag(circleViewTag + index) as? RubricCircleView {
+            circles.updateButtons(rubric: model)
+        }
     }
 
     func addModelToStackView(_ index: Int, _ model: RubricViewModel) {
@@ -121,6 +133,7 @@ class RubricViewController: UIViewController {
         contentStackView.setCustomSpacing(model.longDescription.isEmpty ? spacing : spacing / 4, after: title)
 
         let circles = RubricCircleView(frame: CGRect.zero)
+        circles.tag = circleViewTag + index
         circles.rubric = model
         circles.courseColor = courseColor
         contentStackView.addArrangedSubview(circles)
@@ -131,7 +144,7 @@ class RubricViewController: UIViewController {
 
         let container = UIView(frame: CGRect.zero)
         container.layer.cornerRadius = 8
-        container.tag = 100 + index
+        container.tag = ratingContainerTag + index
         let ratingStack = UIStackView(frame: CGRect.zero)
         ratingStack.axis = .vertical
         ratingStack.distribution = .fill
@@ -144,10 +157,10 @@ class RubricViewController: UIViewController {
 
         ratingViewRetrievalIndexMap[model.id] = index
         let ratingTitle = DynamicLabel(frame: CGRect.zero)
-        ratingTitle.tag = 200 + index
+        ratingTitle.tag = ratingTitleTag + index
         ratingTitle.font = .scaledNamedFont(.semibold14)
         let ratingDesc = DynamicLabel(frame: CGRect.zero)
-        ratingDesc.tag = 300 + index
+        ratingDesc.tag = ratingDescTag + index
         ratingDesc.numberOfLines = 0
         ratingDesc.font = .scaledNamedFont(.medium12)
         ratingDesc.lineBreakMode = .byWordWrapping
