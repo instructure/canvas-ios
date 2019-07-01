@@ -190,8 +190,22 @@ class RubricViewController: UIViewController {
 
     @objc func actionDescButtonTapped(sender: UIButton) {
         let model = models[sender.tag]
-        let vc = UINavigationController(rootViewController: RubricLongDescriptionViewController(longDescription: model.longDescription, title: model.title))
-        self.present(vc, animated: true, completion: nil)
+        let descriptionViewController = RubricLongDescriptionViewController(longDescription: model.longDescription, title: model.title)
+        descriptionViewController.delegate = self
+        let navigationController = UINavigationController(rootViewController: descriptionViewController)
+        self.present(navigationController, animated: true, completion: nil)
+    }
+}
+
+extension RubricViewController: CoreWebViewLinkDelegate {
+    public func handleLink(_ url: URL) -> Bool {
+        self.dismiss(animated: true) { [weak self] in
+            guard let vc = self else {
+                return
+            }
+            vc.presenter.show(url, from: vc)
+        }
+        return true
     }
 }
 
