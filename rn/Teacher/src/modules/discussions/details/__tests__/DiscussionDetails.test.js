@@ -765,7 +765,7 @@ describe('DiscussionDetails', () => {
     beforeEach(() => {
       app.setCurrentApp('teacher')
       props.context = 'courses'
-      props.discussion.group_topic_children = [{ id: '1', group_id: '2' }],
+      props.discussion.group_topic_children = [{ id: '1', group_id: '2' }]
       props.groups = {}
     })
 

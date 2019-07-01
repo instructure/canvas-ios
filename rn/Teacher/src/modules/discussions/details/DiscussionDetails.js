@@ -233,12 +233,11 @@ export class DiscussionDetails extends Component<Props, any> {
     const showReplies = discussion.replies && discussion.replies.length > 0
     const points = this._points(discussion)
     let user = discussion.author
-    const assignmentID = this.props.assignment ? this.props.assignment.id : null
     const hasValidDate = discussion.delayed_post_at || discussion.posted_at
     const date = new Date(discussion.delayed_post_at || discussion.posted_at)
     const sections = discussion.sections || []
     const showGroupTopicChildren = isTeacher() &&
-      this.props.context == 'courses' &&
+      this.props.context === 'courses' &&
       discussion.group_topic_children &&
       discussion.group_topic_children.length
     return (

@@ -26,7 +26,6 @@ import {
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 import api from '../../../canvas-api'
 import i18n from 'format-message'
-import colors from '../../../common/colors'
 
 export default class GroupTopicChildren extends Component {
   static defaultProps = {
@@ -101,6 +100,7 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     borderRadius: 8,
+    paddingBottom: 12,
   },
   header: {
     lineHeight: 23,
