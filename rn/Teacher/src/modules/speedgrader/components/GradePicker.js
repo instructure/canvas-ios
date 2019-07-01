@@ -296,7 +296,6 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
       headingStyles = { color: colors.lightText }
       cellStyles = styles.gradeCellTop
     }
-    console.log(this.getGradeCellAccessibilityLabel())
     return (
       <View style={styles.gradeCellContainer}>
         <View style={cellStyles}>

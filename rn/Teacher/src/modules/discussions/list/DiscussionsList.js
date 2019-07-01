@@ -42,6 +42,7 @@ import ListEmptyComponent from '@common/components/ListEmptyComponent'
 import { isRegularDisplayMode } from '../../../routing/utils'
 import type { TraitCollection } from '../../../routing/Navigator'
 import { logEvent } from '@common/CanvasAnalytics'
+import { isStudent } from '../../app'
 
 const { refreshCourse } = CourseActions
 const { refreshDiscussions } = ListActions
@@ -297,20 +298,22 @@ export function mapStateToProps ({ entities }: AppState, { context, contextID }:
     discussions = refs.map(ref => entities.discussions[ref].data)
 
     //  check for discussions that (have group discussion children) should be re-directed to a group discussion
-    discussions = discussions.map(d => {
-      if (d.group_category_id && d.group_topic_children) {
-        let groupDiscussion = null
-        d.group_topic_children.forEach(groupChildDiscussion => {
-          if (userGroups.includes(groupChildDiscussion.group_id)) {
-            groupDiscussion = groupChildDiscussion
+    if (isStudent()) {
+      discussions = discussions.map(d => {
+        if (d.group_category_id && d.group_topic_children) {
+          let groupDiscussion = null
+          d.group_topic_children.forEach(groupChildDiscussion => {
+            if (userGroups.includes(groupChildDiscussion.group_id)) {
+              groupDiscussion = groupChildDiscussion
+            }
+          })
+          if (groupDiscussion) {
+            return { ...d, html_url: `/groups/${groupDiscussion.group_id}/discussion_topics/${groupDiscussion.id}` }
           }
-        })
-        if (groupDiscussion) {
-          return { ...d, html_url: `/groups/${groupDiscussion.group_id}/discussion_topics/${groupDiscussion.id}` }
         }
-      }
-      return d
-    })
+        return d
+      })
+    }
   }
 
   return {
