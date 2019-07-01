@@ -267,7 +267,7 @@
     "message": "Canvas 教师应用"
   },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
-    "message": "将 { discussionTitle } 更改到不同分组"
+    "message": "将 { discussionTitle } 更改到不同班次"
   },
   "change_user_1b7c4f23": {
     "message": "更改用户"
@@ -393,7 +393,7 @@
     "message": "课程设置"
   },
   "coursename_sections_faeee6fc": {
-    "message": "{ courseName }分组"
+    "message": "{ courseName }班次"
   },
   "courses_43204aae": {
     "message": "课程"
@@ -1278,7 +1278,7 @@
     "message": "{ seconds, plural,\n    other {#秒}\n}"
   },
   "section_sectionname_a455be11": {
-    "message": "分组：{ sectionName }"
+    "message": "班次：{ sectionName }"
   },
   "sections_94731e51": {
     "message": "会话"

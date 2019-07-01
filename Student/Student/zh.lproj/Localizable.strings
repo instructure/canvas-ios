@@ -179,7 +179,7 @@
 "Submission" = "提交";
 
 /* No comment provided by engineer. */
-"Submission & Rubric" = "提交项和评估表格";
+"Submission & Rubric" = "提交项和评价量规";
 
 /* No comment provided by engineer. */
 "Submission Failed" = "提交文件失败";
@@ -230,7 +230,7 @@
 "There are no quizzes to display." = "没有要显示的测验。";
 
 /* No comment provided by engineer. */
-"There is no rubric for this assignment" = "此作业没有评估表格";
+"There is no rubric for this assignment" = "此作业没有评价量规";
 
 /* No comment provided by engineer. */
 "Time Limit:" = "时间限制：";

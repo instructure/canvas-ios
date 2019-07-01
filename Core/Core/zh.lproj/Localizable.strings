@@ -329,9 +329,6 @@
 "Style" = "样式";
 
 /* No comment provided by engineer. */
-"Submission failed." = "提交失败。";
-
-/* No comment provided by engineer. */
 "Submit" = "提交";
 
 /* No comment provided by engineer. */
@@ -401,7 +398,7 @@
 "URL" = "URL";
 
 /* No comment provided by engineer. */
-"User ID" = "用户 ID";
+"User ID" = "用户ID";
 
 /* No comment provided by engineer. */
 "Video" = "视频";
