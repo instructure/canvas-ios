@@ -13,45 +13,55 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import Foundation
 import UIKit
 
-
 enum UserPreferences {
-    
-    enum LandingPage: String {
-        case Courses        = "Courses"
-        case Calendar       = "Calendar"
-        case ToDo           = "To-Do List"
-        case Notifications  = "Notifications"
-        case Messages       = "Messages"
+    enum LandingPage: String, CaseIterable {
+        // Note: this order must be synchronized with the list in RootViewController()
+        case dashboard     = "Courses"
+        case calendar      = "Calendar"
+        case todo          = "To-Do List"
+        case notifications = "Notifications"
+        case inbox         = "Messages"
 
-        /// Note: this must be synchronized with the list in RootViewController()
         var tabIndex: Int {
+            return LandingPage.allCases.firstIndex(of: self) ?? 0
+        }
+        
+        var description: String {
             switch self {
-            case .Courses:          return 0
-            case .Calendar:         return 1
-            case .ToDo:             return 2
-            case .Notifications:    return 3
-            case .Messages:         return 4
+            case .dashboard:
+                return NSLocalizedString("Dashboard", comment: "")
+            case .calendar:
+                return NSLocalizedString("Calendar", comment: "")
+            case .todo:
+                return NSLocalizedString("To Do", comment: "")
+            case .notifications:
+                return NSLocalizedString("Notifications", comment: "")
+            case .inbox:
+                return NSLocalizedString("Inbox", comment: "")
             }
         }
     }
     
-    fileprivate static let LandingPageKey = "landingPageSettings"
+    private static let landingPageKey = "landingPageSettings"
+    private static var landingPageDict: [String: String] {
+        return UserDefaults.standard.object(forKey: landingPageKey) as? [String: String] ?? [:]
+    }
     
     static func landingPage(_ userID: String) -> UserPreferences.LandingPage {
-        guard let landingPagePreferencesByUser: [String: String] = UserDefaults.standard
-            .object(forKey: UserPreferences.LandingPageKey) as? [String: String] else {
-                return .Courses
+        guard let raw = landingPageDict[userID], let page = LandingPage(rawValue: raw) else {
+            return .dashboard
         }
-        
-        return landingPagePreferencesByUser[userID]
-            .flatMap(LandingPage.init)
-            ?? .Courses
+        return page
+    }
+    
+    static func setLandingPage(_ userID: String, page: LandingPage) {
+        var dict = landingPageDict
+        dict[userID] = page.rawValue
+        UserDefaults.standard.set(dict, forKey: landingPageKey)
     }
 }
 

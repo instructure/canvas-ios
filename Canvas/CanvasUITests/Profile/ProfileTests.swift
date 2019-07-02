@@ -18,7 +18,6 @@ import XCTest
 import TestsFoundation
 
 class ProfileTests: CanvasUITests {
-
     func testCourseCardGrades() {
         Profile.open()
         Profile.showGradesToggle.waitToExist()
@@ -62,5 +61,25 @@ class ProfileTests: CanvasUITests {
 
         FilesList.file(id: "11585").tap()
         app.find(label: "File", type: .image).waitToExist()
+    }
+
+    func testProfileLandingPage() {
+        guard let entry = user?.keychainEntry else {
+            return XCTFail("Couldn't get keychain entry")
+        }
+        for cell in LandingPageCell.allCases.reversed() { // dashboard last
+            TabBar.dashboardTab.tap()
+            Profile.open()
+            Profile.settingsButton.tap()
+            ProfileSettings.landingPage.tap()
+            cell.tap()
+            app.find(label: "Settings", type: .button).tap()
+            app.find(label: "Done", type: .button).tap()
+            Profile.open()
+            Profile.changeUserButton.tap()
+            LoginStartKeychainEntry.cell(entry).tap()
+            cell.relatedTab.waitToExist()
+            XCTAssertTrue(cell.relatedTab.isSelected)
+        }
     }
 }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,20 +14,16 @@
         <scene sceneID="GDF-lw-ITG">
             <objects>
                 <viewController storyboardIdentifier="SettingsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wQR-Yn-JuF" customClass="SettingsViewController" customModule="Canvas" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Qu0-b6-fKh"/>
-                        <viewControllerLayoutGuide type="bottom" id="tLf-5w-am7"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gSm-9b-oDf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="7w4-uj-TuF">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7w4-uj-TuF">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TextSettingsRow" id="Ho1-hV-JpB">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ho1-hV-JpB" id="jBP-JJ-EDI">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -34,7 +31,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PushNotificationPreauthorizationCell" id="yy3-Jp-3KN" customClass="PushNotificationPreauthorizationCell" customModule="Canvas" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yy3-Jp-3KN" id="KoB-BD-ryR">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -70,7 +67,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SystemSettingsLinkCell" textLabel="mYw-YB-SVS" style="IBUITableViewCellStyleDefault" id="MVg-cR-g6R" customClass="SystemSettingsLinkCell" customModule="Canvas" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MVg-cR-g6R" id="3Mv-LJ-JwZ">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -95,11 +92,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="7w4-uj-TuF" firstAttribute="leading" secondItem="gSm-9b-oDf" secondAttribute="leading" id="5h7-sN-PDX"/>
-                            <constraint firstAttribute="trailing" secondItem="7w4-uj-TuF" secondAttribute="trailing" id="A2b-aH-y9o"/>
-                            <constraint firstItem="tLf-5w-am7" firstAttribute="top" secondItem="7w4-uj-TuF" secondAttribute="bottom" id="SjS-Ju-0Lp"/>
-                            <constraint firstItem="7w4-uj-TuF" firstAttribute="top" secondItem="Qu0-b6-fKh" secondAttribute="bottom" id="dnD-CN-I5q"/>
+                            <constraint firstItem="7w4-uj-TuF" firstAttribute="leading" secondItem="hL6-hT-snY" secondAttribute="leading" id="5h7-sN-PDX"/>
+                            <constraint firstItem="hL6-hT-snY" firstAttribute="trailing" secondItem="7w4-uj-TuF" secondAttribute="trailing" id="A2b-aH-y9o"/>
+                            <constraint firstItem="hL6-hT-snY" firstAttribute="bottom" secondItem="7w4-uj-TuF" secondAttribute="bottom" id="SjS-Ju-0Lp"/>
+                            <constraint firstItem="7w4-uj-TuF" firstAttribute="top" secondItem="hL6-hT-snY" secondAttribute="top" id="dnD-CN-I5q"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="hL6-hT-snY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="qwG-FB-tzR"/>
                     <connections>
