@@ -15,6 +15,7 @@
 //
 
 import Foundation
+import Core
 
 public enum LoginStart: String, ElementWrapper {
     case authenticationMethodLabel
@@ -29,6 +30,10 @@ public enum LoginStart: String, ElementWrapper {
 public enum LoginStartKeychainEntry {
     public static func cell(host: String, userID: String) -> Element {
         return app.find(id: "LoginStartKeychainEntry.\(host).\(userID)")
+    }
+
+    public static func cell(_ entry: KeychainEntry) -> Element {
+        return cell(host: entry.baseURL.host!, userID: entry.userID)
     }
 
     public static func removeButton(host: String, userID: String) -> Element {

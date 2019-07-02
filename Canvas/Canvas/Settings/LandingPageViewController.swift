@@ -16,62 +16,14 @@
 
 import UIKit
 
-let landingPageOptions: [LandingPageOptions] = [
-    .courses,
-    .calendar,
-    .todo,
-    .notifications,
-    .messages
-]
-
-enum LandingPageOptions: String {
-    // The values are the keys stored in NSUserDefaults.
-    case courses = "Courses"
-    case calendar = "Calendar"
-    case todo = "To-Do List"
-    case notifications = "Notifications"
-    case messages = "Messages"
-
-    var description: String {
-        switch self {
-        case .courses:
-            return NSLocalizedString("Dashboard", comment: "")
-        case .calendar:
-            return NSLocalizedString("Calendar", comment: "")
-        case .todo:
-            return NSLocalizedString("To Do", comment: "")
-        case .notifications:
-            return NSLocalizedString("Notifications", comment: "")
-        case .messages:
-            return NSLocalizedString("Inbox", comment: "")
-        }
-    }
-}
-
 open class LandingPageViewController: UITableViewController {
-    fileprivate var currentUsersID: String
-    fileprivate var currentLandingPageSettingsDictionary: [String : String]
-    fileprivate var currentUserLandingPageSettings: LandingPageOptions
-
-    // ---------------------------------------------
-    // MARK: - Inits
-    // ---------------------------------------------
+    typealias LandingPage = UserPreferences.LandingPage
+    private var userID: String
+    private var selected: LandingPage
 
     @objc init (currentUserID: String) {
-        currentUsersID = currentUserID
-        currentLandingPageSettingsDictionary = [:]
-        currentUserLandingPageSettings = LandingPageOptions.courses
-        if let settingsDictionary = UserDefaults.standard.object(forKey: "landingPageSettings") as? [String : String] {
-            currentLandingPageSettingsDictionary = settingsDictionary
-            for (userID, landingPageSetting) in currentLandingPageSettingsDictionary {
-                if userID == currentUsersID {
-                    currentUserLandingPageSettings = LandingPageOptions(rawValue: landingPageSetting) ?? .courses
-                    break
-                } else {
-                    currentUserLandingPageSettings = LandingPageOptions.courses
-                }
-            }
-        }
+        userID = currentUserID
+        selected = UserPreferences.landingPage(currentUserID)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -79,32 +31,21 @@ open class LandingPageViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // ---------------------------------------------
-    // MARK: - Life Cycle
-    // ---------------------------------------------
-
     open override func viewDidLoad() {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
 
     }
 
-    // ---------------------------------------------
-    // MARK: - Delegate Methods
-    // ---------------------------------------------
-
-    open override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
     open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return landingPageOptions.count
+        return LandingPage.allCases.count
     }
 
-    fileprivate static let cellReuseIdentifier = "LandingPageSettingsCell"
     open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = LandingPage.allCases[indexPath.row]
         let cell = UITableViewCell()
-        cell.textLabel?.text = landingPageOptions[indexPath.row].description
-        if currentUserLandingPageSettings == landingPageOptions[indexPath.row] {
+        cell.accessibilityIdentifier = "LandingPageCell.\(indexPath.row)"
+        cell.textLabel?.text = item.description
+        if selected == item {
             cell.accessoryType = UITableViewCell.AccessoryType.checkmark
             cell.setSelected(true, animated: false)
         }
@@ -112,17 +53,12 @@ open class LandingPageViewController: UITableViewController {
     }
 
     open override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return NSLocalizedString("Choose Landing Page", comment: "Button to select a landing page")
-        } else {
-            return nil
-        }
+        return NSLocalizedString("Choose Landing Page", comment: "Button to select a landing page")
     }
 
     open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentUserLandingPageSettings = landingPageOptions[indexPath.row]
-        currentLandingPageSettingsDictionary[currentUsersID] = landingPageOptions[indexPath.row].description
-        UserDefaults.standard.set(currentLandingPageSettingsDictionary, forKey: "landingPageSettings")
+        selected = LandingPage.allCases[indexPath.row]
+        UserPreferences.setLandingPage(userID, page: selected)
         tableView.reloadData()
     }
 

@@ -46,3 +46,44 @@ enum Profile: String, ElementWrapper {
         }
     }
 }
+
+enum ProfileSettings {
+    static var profile: Element {
+        return app.find(label: "Profile")
+    }
+
+    static var about: Element {
+        return app.find(label: "About")
+    }
+
+    static var landingPage: Element {
+        return app.find(label: "Landing Page")
+    }
+
+    static var notificationPreferences: Element {
+        return app.find(label: "Notification Preferences")
+    }
+}
+
+enum LandingPageCell: String, ElementWrapper, CaseIterable {
+    case dashboard     = "0"
+    case calendar      = "1"
+    case todo          = "2"
+    case notifications = "3"
+    case inbox         = "4"
+
+    var relatedTab: TabBar {
+        switch self {
+        case .dashboard:
+            return TabBar.dashboardTab
+        case .calendar:
+            return TabBar.calendarTab
+        case .todo:
+            return TabBar.todoTab
+        case .notifications:
+            return TabBar.notificationsTab
+        case .inbox:
+            return TabBar.inboxTab
+        }
+    }
+}
