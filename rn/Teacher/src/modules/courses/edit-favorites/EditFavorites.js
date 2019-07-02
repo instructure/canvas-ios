@@ -151,6 +151,7 @@ export class FavoritesList extends Component<Props> {
             <Text style={styles.hearderText}>{i18n('Select which courses you would like to see on the Dashboard.')}</Text>
           </View>
           <SectionList
+            style={styles.list}
             refreshing={this.props.refreshing}
             onRefresh={this.props.refresh}
             stickySectionHeadersEnabled={false}
@@ -192,6 +193,7 @@ export default (Connected: FavoritesList)
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
   },
@@ -201,5 +203,8 @@ const styles = StyleSheet.create({
   },
   hearderText: {
     fontWeight: '500',
+  },
+  list: {
+    flex: 1,
   },
 })
