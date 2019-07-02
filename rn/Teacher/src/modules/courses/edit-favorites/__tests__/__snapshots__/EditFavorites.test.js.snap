@@ -12,6 +12,7 @@ exports[`renders correctly 1`] = `
     style={
       Object {
         "backgroundColor": "white",
+        "flex": 1,
         "flexDirection": "column",
       }
     }
@@ -299,6 +300,7 @@ exports[`renders correctly as student 1`] = `
     style={
       Object {
         "backgroundColor": "white",
+        "flex": 1,
         "flexDirection": "column",
       }
     }
@@ -827,6 +829,7 @@ exports[`updates when courses prop changes 1`] = `
     style={
       Object {
         "backgroundColor": "white",
+        "flex": 1,
         "flexDirection": "column",
       }
     }
@@ -1020,6 +1023,7 @@ exports[`updates when courses prop changes 2`] = `
     style={
       Object {
         "backgroundColor": "white",
+        "flex": 1,
         "flexDirection": "column",
       }
     }
