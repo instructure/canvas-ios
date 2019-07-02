@@ -47,7 +47,7 @@ function run(cmd, args, opts) {
 }
 
 async function exportTranslations() {
-  const keysToSkip = ['CFBundleName', 'CFBundleDisplayName']
+  const keysToSkip = ['CFBundleName']
   const toUpload = []
   const localizeInfoPlistOfTheseProjects = ['canvas', 'parent', 'teacher_native']
   for (const project of projects) {
