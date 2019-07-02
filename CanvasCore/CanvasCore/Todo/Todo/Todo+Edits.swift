@@ -26,7 +26,7 @@ import Marshal
 extension Todo {
     public func markAsDone(_ session: Session, completion: ((Result<Bool, NSError>)->())? = nil) {
         guard let context = managedObjectContext else {
-            ❨╯°□°❩╯⌢"Every object should have a context or we're screwed"
+            fatalError("Every object should have a context or we're screwed")
         }
 
         context.perform {

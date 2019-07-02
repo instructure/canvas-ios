@@ -129,13 +129,13 @@ struct BackdropFile: Hashable, Equatable {
         switch self.type {
         case .shapes:
             if n <= 0 || n > numShapeBackdrops {
-                ❨╯°□°❩╯⌢"This isn't a valid backdrop"
+                fatalError("This isn't a valid backdrop")
             } else {
                 return shapeRoot + intToTwoDigitString(n) + ".jpg"
             }
         case .photos:
             if n <= 0 || n > numPhotoBackdrops {
-                ❨╯°□°❩╯⌢"This isn't a valid backdrop"
+                fatalError("This isn't a valid backdrop")
             } else {
                 return photoRoot + intToTwoDigitString(n) + ".jpg"
             }
@@ -167,7 +167,7 @@ struct BackdropFile: Hashable, Equatable {
     is running short of space. And no reason to backup to iTunes.
     */
     var localPath: String {
-        guard let directory = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, .userDomainMask, true).first else { ❨╯°□°❩╯⌢"We need a caches directory!" }
+        guard let directory = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, .userDomainMask, true).first else { fatalError("We need a caches directory!") }
         return (directory as NSString).appendingPathComponent(name)
     }
     

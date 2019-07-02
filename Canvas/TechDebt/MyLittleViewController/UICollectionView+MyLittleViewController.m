@@ -88,12 +88,10 @@ SYNTHESIZE_NONATOMIC(MLVCCollectionController, observedCollectionController, set
         sectionInsertCount = 0;
     }];
     
-    @weakify(self, collectionController);
+    @weakify(self);
     self.endUpdates = [collectionController.endUpdatesSignal subscribeNext:^(id x) {
         if (performingBatchUpdates) {
-            @strongify(self, collectionController);
-            NSInteger preUpdateCount = self.numberOfSections;
-            NSInteger postupdateCount = collectionController.groups.count;
+            @strongify(self);
             [self performBatchUpdates:^{
                 for (void (^collectionViewUpdateBlock)(UICollectionView *) in changes) {
                     collectionViewUpdateBlock(self);

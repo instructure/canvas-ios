@@ -26,6 +26,9 @@ class CanvasUITests: UITestCase {
         continueAfterFailure = false
         if app.state != .runningForeground {
             launch()
+            if currentSession() != nil {
+                Dashboard.coursesLabel.waitToExist()
+            }
         }
         reset()
         if let user = user {

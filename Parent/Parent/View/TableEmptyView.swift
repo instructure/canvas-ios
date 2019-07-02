@@ -61,7 +61,7 @@ class TableEmptyView: UIView {
 
     @objc static func nibView() -> TableEmptyView {
         guard let view = Bundle(for: TableEmptyView.self).loadNibNamed("TableEmptyView", owner: self, options: nil)!.first as? TableEmptyView else {
-            ❨╯°□°❩╯⌢"View loaded from NIB is not a TableEmptyView"
+            fatalError("View loaded from NIB is not a TableEmptyView")
         }
 
         return view

@@ -33,13 +33,13 @@ extension NSManagedObject {
     }
 
     public static func create<T>(inContext context: NSManagedObjectContext) -> T {
-        guard let entity = NSEntityDescription.insertNewObject(forEntityName: entityName(context), into: context) as? T else { ❨╯°□°❩╯⌢"This only works with managed objects" }
+        guard let entity = NSEntityDescription.insertNewObject(forEntityName: entityName(context), into: context) as? T else { fatalError("This only works with managed objects") }
         return entity
     }
 
     @objc public static func entityName(_ context: NSManagedObjectContext) -> String {
         let className = NSStringFromClass(object_getClass(self)!)
-        guard let entityName = className.components(separatedBy: ".").last else { ❨╯°□°❩╯⌢"ObjC runtime has failed us. Just give up and go home." }
+        guard let entityName = className.components(separatedBy: ".").last else { fatalError("ObjC runtime has failed us. Just give up and go home.") }
         
         let model = context.persistentStoreCoordinatorFRD.managedObjectModel
         if let _ = model.entitiesByName[className] {
@@ -47,7 +47,7 @@ extension NSManagedObject {
         } else if let _ = model.entitiesByName[entityName] {
             return entityName
         } else {
-            ❨╯°□°❩╯⌢"Did you give your entity a class name? Do they match? Check again."
+            fatalError("Did you give your entity a class name? Do they match? Check again.")
         }
     }
 

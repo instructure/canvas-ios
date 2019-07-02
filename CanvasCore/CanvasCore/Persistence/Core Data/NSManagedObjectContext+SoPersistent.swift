@@ -76,7 +76,7 @@ extension NSManagedObjectContext {
             ?? parent?.parent?.persistentStoreCoordinator
             ?? parent?.parent?.parent?.persistentStoreCoordinator
         else {
-            ❨╯°□°❩╯⌢"Seriously? Either you have no psc or you're trolling me."
+            fatalError("Seriously? Either you have no psc or you're trolling me.")
         }
         
         return psc

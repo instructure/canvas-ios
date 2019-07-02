@@ -35,6 +35,7 @@ jest
   .mock('../../../../routing/Screen')
   .mock('../../../app', () => ({
     isTeacher: jest.fn(),
+    isStudent: jest.fn(),
   }))
 
 const template = {
@@ -48,6 +49,7 @@ describe('DiscussionsList', () => {
   beforeEach(() => {
     jest.resetAllMocks()
     app.isTeacher = jest.fn(() => true)
+    app.isStudent = jest.fn(() => false)
     props = {
       pending: false,
       refreshing: false,
@@ -268,6 +270,7 @@ describe('map state to prop', () => {
   })
 
   it('maps state to props course discussions that have group children', () => {
+    app.isStudent = jest.fn(() => true)
     const discussions = [
       template.discussion({ id: '1', group_category_id: '5', group_topic_children: [{ id: '3', group_id: '10' }] }),
       template.discussion({ id: '2', group_category_id: '5', group_topic_children: [{ id: '4', group_id: '11' }] }),
