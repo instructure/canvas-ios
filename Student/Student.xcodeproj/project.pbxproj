@@ -253,8 +253,6 @@
 		F9435B7322161A9100292D38 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946E7221491D00083E660 /* PSPDFKitUI.framework */; };
 		F9A138C1221749CB0008AC72 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946E6221491D00083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9A138C2221749CB0008AC72 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946E7221491D00083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F9A138C3221775170008AC72 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946E6221491D00083E660 /* PSPDFKit.framework */; };
-		F9A138C4221775170008AC72 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946E7221491D00083E660 /* PSPDFKitUI.framework */; };
 		F9B946E8221491D00083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946E6221491D00083E660 /* PSPDFKit.framework */; };
 		F9B946E9221491D00083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946E7221491D00083E660 /* PSPDFKitUI.framework */; };
 /* End PBXBuildFile section */
@@ -698,8 +696,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DBF922C2269730200710D0F /* Core.framework in Frameworks */,
-				F9A138C3221775170008AC72 /* PSPDFKit.framework in Frameworks */,
-				F9A138C4221775170008AC72 /* PSPDFKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
