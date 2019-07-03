@@ -34,12 +34,9 @@ public struct GetAssignmentRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        var query: [APIQueryItem] = []
-
-        if !include.isEmpty {
-            query.append(.array("include", include.map { $0.rawValue }))
-        }
-        return query
+        var include = self.include.map { $0.rawValue }
+        include.append("observed_users")
+        return [ .array("include", include) ]
     }
 }
 

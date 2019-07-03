@@ -21,7 +21,9 @@ class APIAssignmentRequestableTests: XCTestCase {
     func testGetAssignmentRequest() {
         let request = GetAssignmentRequest(courseID: "1", assignmentID: "2", include: [])
         XCTAssertEqual(request.path, "courses/1/assignments/2")
-        XCTAssertEqual(request.queryItems, [])
+        XCTAssertEqual(request.queryItems, [
+            URLQueryItem(name: "include[]", value: "observed_users"),
+        ])
     }
 
     func testGetAssignmentRequestWithSubmission() {
@@ -29,6 +31,7 @@ class APIAssignmentRequestableTests: XCTestCase {
         XCTAssertEqual(request.path, "courses/1/assignments/2")
         XCTAssertEqual(request.queryItems, [
             URLQueryItem(name: "include[]", value: "submission"),
+            URLQueryItem(name: "include[]", value: "observed_users"),
         ])
     }
 

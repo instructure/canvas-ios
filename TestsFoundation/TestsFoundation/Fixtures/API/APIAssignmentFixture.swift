@@ -63,7 +63,7 @@ extension APIAssignment {
             url: url,
             discussion_topic: discussion_topic,
             rubric: rubric,
-            submission: submission,
+            submission: submission.flatMap { APIList($0) },
             use_rubric_for_grading: use_rubric_for_grading
         )
     }
