@@ -13,8 +13,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import UIKit
 import WebKit
@@ -22,24 +20,20 @@ import WebKit
 public typealias URLHandler = (URL)->()
 var WhizzyWigOpenURLHandler: URLHandler?
 
-private func renderHTML(_ html: String, width: CGFloat, fontColor: UIColor, backgroundColor: UIColor, padding: UIEdgeInsets) -> String {
+private func renderHTML(_ html: String, fontColor: UIColor, backgroundColor: UIColor, padding: UIEdgeInsets) -> String {
     let bundle = Bundle(for: WhizzyWigView.classForCoder())
     let templateURL = bundle.url(forResource: "WhizzyWigTemplate", withExtension: "html")
     var template = try! String(contentsOf: templateURL!, encoding: String.Encoding.utf8)
 
-    template = template.replacingOccurrences(of: "{{content-width}}", with: "\(width)")
-    func colorString(_ color: UIColor) -> String {
-        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 1
-        color.getRed(&r, green: &g, blue: &b, alpha: &a)
-        r = r * 255; g = g * 255; b = b * 255
-        return "rgb(\(Int(r)),\(Int(g)),\(Int(b)))"
-    }
-    template = template.replacingOccurrences(of: "{{font-color}}", with: colorString(fontColor))
-    template = template.replacingOccurrences(of: "{{background-color}}", with: colorString(backgroundColor))
-    let paddingString: String = {
-        return "\(Int(padding.top))px \(Int(padding.right))px \(Int(padding.bottom))px \(Int(padding.left))px;"
-    }()
+    template = template.replacingOccurrences(of: "{{fontColorDark}}", with: fontColor.hex)
+    template = template.replacingOccurrences(of: "{{backgroundColor}}", with: backgroundColor.hex)
+    let paddingString = "\(padding.top)px \(padding.right)px \(padding.bottom)px \(padding.left)px;"
     template = template.replacingOccurrences(of: "{{padding}}", with: paddingString)
+    template = template.replacingOccurrences(of: "{{linkColor}}", with: Brand.current.linkColor.hex)
+    template = template.replacingOccurrences(of: "{{buttonPrimaryText}}", with: Brand.current.primaryButtonTextColor.hex)
+    template = template.replacingOccurrences(of: "{{buttonPrimaryBackground}}", with: Brand.current.primaryButtonColor.hex)
+    template = template.replacingOccurrences(of: "{{ltiLaunchText}}", with: NSLocalizedString("Launch External Tool", comment: ""))
+
     return template.replacingOccurrences(of: "{{content}}", with: html)
 }
 
@@ -48,7 +42,7 @@ open class WhizzyWigView: WKWebView, WKNavigationDelegate {
     @objc open var didRecieveMessage: (String)->() = {_ in }
     @objc open private(set) var contentHeight: CGFloat = 43
     @objc open private(set) var contentWidth: CGFloat = 0
-    @objc open var contentFontColor = UIColor.black
+    @objc open var contentFontColor = Brand.current.fontColorDark
     @objc open var contentBackgroundColor = UIColor.white
     @objc open var contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
     @objc open var useAPISafeLinks: Bool = true
@@ -73,7 +67,7 @@ open class WhizzyWigView: WKWebView, WKNavigationDelegate {
 
     @discardableResult
     open override func loadHTMLString(_ string: String, baseURL: URL?) -> WKNavigation? {
-        return super.loadHTMLString(renderHTML(string, width: frame.width, fontColor: contentFontColor, backgroundColor: contentBackgroundColor, padding: contentInsets), baseURL: baseURL)
+        return super.loadHTMLString(renderHTML(string, fontColor: contentFontColor, backgroundColor: contentBackgroundColor, padding: contentInsets), baseURL: baseURL)
     }
 
     open func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
