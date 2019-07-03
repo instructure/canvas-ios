@@ -106,7 +106,7 @@ extension Assignment {
         }
 
         if updateSubmission {
-            if let submissionItem = item.submission {
+            if let submissionItem = item.submission?.values.first {
                 let sub = Submission.save(submissionItem, in: client)
                 submission = sub
             } else if let submission = submission {
