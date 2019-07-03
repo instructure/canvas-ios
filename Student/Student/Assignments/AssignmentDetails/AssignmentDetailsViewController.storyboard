@@ -15,7 +15,7 @@
             <objects>
                 <viewController storyboardIdentifier="AssignmentDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dvz-Jp-ehK" customClass="AssignmentDetailsViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vDv-xP-3aC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1067"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ga9-T1-JgT">
@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2qC-UP-t75">
-                                <rect key="frame" x="0.0" y="20" width="375" height="1047"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QTp-Qq-8ZA">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1093.5"/>
@@ -488,7 +488,7 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oo1-Sb-iO9" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1016" width="375" height="51"/>
+                                <rect key="frame" x="0.0" y="616" width="375" height="51"/>
                                 <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.submitAssignmentButton"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="PCA-RH-zpk"/>
@@ -520,7 +520,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1aY-Ds-3yT"/>
                     </view>
-                    <size key="freeformSize" width="375" height="1067"/>
                     <connections>
                         <outlet property="descriptionHeadingLabel" destination="NUD-Zm-lzB" id="1vo-Dw-a82"/>
                         <outlet property="descriptionView" destination="q3R-vd-zmQ" id="jPg-GW-koM"/>
