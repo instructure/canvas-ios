@@ -23,12 +23,15 @@ NSString * const PushNotificationsStorageKey = @"PushNotificationsStorageKey";
 
 @implementation PushNotifications
 
-+ (void)recordNotification:(UNNotification *)notification
-{
-    NSDictionary *payload = notification.request.content.userInfo;
++ (void)recordUserInfo:(NSDictionary *) userInfo {
     NSArray *existing = [[NSUserDefaults standardUserDefaults] arrayForKey:PushNotificationsStorageKey];
-    NSArray *all = existing ? [existing arrayByAddingObject:payload] : @[payload];
+    NSArray *all = existing ? [existing arrayByAddingObject:userInfo] : @[userInfo];
     [[NSUserDefaults standardUserDefaults] setObject:all forKey:PushNotificationsStorageKey];
+}
+
++ (void)recordNotification:(UNNotification *)notification {
+    NSDictionary *payload = notification.request.content.userInfo;
+    [PushNotifications recordUserInfo: payload];
 }
 
 RCT_EXPORT_MODULE()

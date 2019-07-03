@@ -21,6 +21,7 @@
 
 @interface PushNotifications : NSObject<RCTBridgeModule>
 
++ (void)recordUserInfo:(NSDictionary *)userInfo;
 + (void)recordNotification:(UNNotification *)notification;
 
 @end
