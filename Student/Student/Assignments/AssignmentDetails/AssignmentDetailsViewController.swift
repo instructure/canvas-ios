@@ -89,13 +89,13 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         titleSubtitleView.title = NSLocalizedString("Assignment Details", bundle: .student, comment: "")
 
         // Loading
-        scrollView?.isHidden = true
         loadingView?.color = Brand.shared.primary.ensureContrast(against: .named(.white))
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         scrollView?.addSubview(refreshControl)
         self.refreshControl = refreshControl
         showSubmitAssignmentButton(title: nil)
+        scrollView?.isHidden = true
 
         // Accessibility
         dueSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.due"
