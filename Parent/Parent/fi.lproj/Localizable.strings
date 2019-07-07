@@ -65,10 +65,16 @@
 "Caught up on Alerts" = "Hallitse hälytykset";
 
 /* No comment provided by engineer. */
+"Change User" = "Vaihda käyttäjää";
+
+/* No comment provided by engineer. */
 "Choose a student" = "Valitse opiskelija";
 
 /* Close Button Title */
 "Close" = "Sulje";
+
+/* No comment provided by engineer. */
+"Close App" = "Sulje sovellus";
 
 /* Course Announcement Description */
 "Course announcements" = "Kurssin ilmoitukset";
@@ -84,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Current student: %@, tap to switch students" = "Kurssin opiskelija %@, napauta vaihtaaksesi opiskelijaa";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "Sovelluskehittäjän valikko";
 
 /* No comment provided by engineer. */
 "Discussion" = "Keskustelu";
@@ -102,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Annettu anteeksi";
+
+/* No comment provided by engineer. */
+"Help" = "Ohje";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Korkea tehtävän arvosana ei voi olla pienempi kuin alhainen tehtävän arvosana";
@@ -129,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Myöhään %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Log Out" = "Kirjaudu ulos";
 
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Alhainen tehtävän arvosana ei voi olla suurempi kuin korkea tehtävän arvosana";
@@ -187,6 +202,12 @@
 /* No comment provided by engineer. */
 "Quiz" = "Tietovisa";
 
+/* No comment provided by engineer. */
+"Report a Problem" = "Raportoi ongelma";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Pyydä ominaisuus";
+
 /* Not Found Error Message */
 "Resource not found.  Please try again." = "Resurssia ei löytynyt  Yritä uudelleen.";
 
@@ -195,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Settings" = "Asetukset";
+
+/* No comment provided by engineer. */
+"Stop Act as User" = "Lopeta toimiminen käyttäjänä";
 
 /* No comment provided by engineer. */
 "Submitted" = "Lähetetty";
@@ -210,6 +234,12 @@
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Aloita Canvas-sovelluksen tarkastelu toisena henkilönä.";
+
+/* No comment provided by engineer. */
+"Terms of Use" = "Käyttöehdot";
+
+/* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Sovellus täytyy käynnistää uudelleen, jotta uusia kieliasetuksia voidaan käyttää. Käynnistä sovellus uudelleen.";
 
 /* Error message */
 "There are no actions for this item" = "Tälle kohteelle ei ole toimintoja";
@@ -229,11 +259,20 @@
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "Tämän opiskelijan kursseja ei ehkä vielä julkaista.";
 
+/* No comment provided by engineer. */
+"Trouble logging in" = "Ongelmia sisään kirjautumisessa";
+
 /* Unknown T`hreshold Description */
 "Unknown" = "Tuntematon";
 
 /* No comment provided by engineer. */
 "Unread" = "Lukematon";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Päivitetyt kieliasetukset";
+
+/* No comment provided by engineer. */
+"View Canvas Guides" = "Tarkastele Canvas-oppaita";
 
 /* Calendar Tab */
 "Week" = "Viikko";

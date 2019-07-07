@@ -242,8 +242,20 @@
   "back_to_replies_94f3c127": {
     "message": "Назад к ответам"
   },
+  "black_8d713c75": {
+    "message": "черный"
+  },
+  "blue_7aca5197": {
+    "message": "синий"
+  },
+  "blue_daf8fea9": {
+    "message": "Синий"
+  },
   "bold_34b9d97e": {
     "message": "Жирный"
+  },
+  "brick_f2656265": {
+    "message": "Блок"
   },
   "can_edit_5a1e8dbf": {
     "message": "Можно редактировать"
@@ -254,29 +266,17 @@
   "cancel_caeb1e68": {
     "message": "Отменить"
   },
-  "canvas_guides_d65431": {
-    "message": "Руководства Canvas"
-  },
-  "canvas_parent_app_f9236a3a": {
-    "message": "Основное приложение Canvas"
-  },
-  "canvas_student_app_329567f": {
-    "message": "Приложение Canvas для студентов"
-  },
-  "canvas_teacher_app_9dc7d7ed": {
-    "message": "Приложение Canvas для преподавателей"
-  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Изменить { discussionTitle } на другое группирование"
   },
   "change_user_1b7c4f23": {
     "message": "Сменить пользователя"
   },
-  "choose_1319ef6b": {
-    "message": "Выбрать"
-  },
   "choose_color_11148181": {
     "message": "Выбрать { color }"
+  },
+  "choose_colorname_hexcode_14fe4c18": {
+    "message": "Выбрать { colorName } ({ hexCode })"
   },
   "choose_from_library_1b9caf95": {
     "message": "Выберите из библиотеки"
@@ -337,6 +337,9 @@
   },
   "copied_880dcb1b": {
     "message": "Скопировано!"
+  },
+  "copied_c6518d41": {
+    "message": "Скопировано"
   },
   "copy_link_1ffb11a4": {
     "message": "Копировать ссылку"
@@ -416,6 +419,9 @@
   "customize_grade_value_964695a3": {
     "message": "Персонализировать оценку { value }"
   },
+  "cyan_c1d5f68a": {
+    "message": "Голубой"
+  },
   "date_date_medium_at_date_time_short_2b9ce48b": {
     "message": "{ date, date, medium } в { date, time, short }"
   },
@@ -427,6 +433,9 @@
   },
   "decline_7eeb5ff4": {
     "message": "Снизить"
+  },
+  "deep_purple_bb3e2907": {
+    "message": "Темно-фиолетовый"
   },
   "delay_posting_f45eed7d": {
     "message": "Задержка публикации"
@@ -536,8 +545,8 @@
   "edit_course_settings_9736fd1f": {
     "message": "Редактировать настройки курса"
   },
-  "edit_courses_1f63340f": {
-    "message": "Редактировать курсы"
+  "edit_dashboard_7e5b7043": {
+    "message": "Редактировать информационную панель"
   },
   "edit_description_1206e0a8": {
     "message": "Редактировать описание"
@@ -644,8 +653,8 @@
   "filter_people_b34b567b": {
     "message": "Фильтрация людей"
   },
-  "filter_submissions_81bc50de": {
-    "message": "Фильтр отправок"
+  "filter_submissions_numselected_number_selected_177867b3": {
+    "message": "Фильтр отправок. ({ numSelected, number }) выбрано."
   },
   "final_grade_4d7f6545": {
     "message": "Итоговая оценка"
@@ -701,6 +710,15 @@
   "grades_muted_anonymous_grading_9291ea4b": {
     "message": "Оценки скрыты, анонимное выставление оценок"
   },
+  "green_15af4778": {
+    "message": "Зеленый"
+  },
+  "green_d46e687c": {
+    "message": "цвета окиси меди"
+  },
+  "grey_56f61c1": {
+    "message": "серый"
+  },
   "group_a8f5ed9c": {
     "message": "Группа"
   },
@@ -737,20 +755,26 @@
   "highest_28ad71e6": {
     "message": "Самая высокая"
   },
+  "highest_possible_score_pointspossible_number_c03ce29a": {
+    "message": "Максимальный возможный балл, { pointsPossible, number }"
+  },
   "i_have_permission_to_use_file_d19a1a29": {
     "message": "У меня есть разрешение на использование файла"
   },
   "i_hold_the_copyright_71ee91b1": {
     "message": "Я являюсь правообладателем"
   },
-  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
-    "message": "Если вы студент или преподаватель, попробуйте одно из наших приложений ниже."
-  },
   "in_progress_9d1ce8b9": {
     "message": "Выполняется"
   },
   "incomplete_da3c2ea2": {
     "message": "Не завершено"
+  },
+  "indigo_2035fc55": {
+    "message": "Индиго"
+  },
+  "input_1d1d9b8e": {
+    "message": "Ввод"
   },
   "insert_image_42d30344": {
     "message": "Вставить изображение"
@@ -781,6 +805,9 @@
   },
   "item_count_plural_one_item_other_items_88319c63": {
     "message": "{ item_count, plural,\n    one {# элемент}\n  other {# элементы}\n}"
+  },
+  "label_text_field_6677ab6f": {
+    "message": "{ label }, текстовое поле"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "Последняя работа на { lastActivity, date, 'MMMM d' } в { lastActivity, time, short }"
@@ -815,11 +842,17 @@
   "letter_grade_e83e363c": {
     "message": "Успеваемость"
   },
+  "light_blue_5374f600": {
+    "message": "Светло-синий"
+  },
+  "like_e8ad74ae": {
+    "message": "Мне нравится"
+  },
+  "loading_bde52856": {
+    "message": "Загрузка"
+  },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Заблокировать вопросы после ответа на них"
-  },
-  "log_in_again_ec2b1f46": {
-    "message": "Войдите заново"
   },
   "log_out_379ba28a": {
     "message": "Выйти"
@@ -827,8 +860,11 @@
   "long_description_7d89285c": {
     "message": "Длинное описание"
   },
-  "manage_children_a28d764e": {
-    "message": "Управление детьми"
+  "lowest_possible_score_0_c2338db6": {
+    "message": "Минимальный возможный балл, 0 "
+  },
+  "magenta_4a65993c": {
+    "message": "Пурпурный"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Отметить все как прочитанное"
@@ -887,6 +923,9 @@
   "name_count_plural_one_other_other_others_f47e51c3": {
     "message": "{ name } + { count, plural,\n    one {# другое}\n  other {# другие}\n}"
   },
+  "name_profile_240f0967": {
+    "message": "{ name } Профиль"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } дополнительно"
   },
@@ -935,9 +974,6 @@
   "no_e16d9132": {
     "message": "Нет"
   },
-  "no_enrollments_6369cd31": {
-    "message": "Нет зачислений"
-  },
   "no_grade_3b4d7f3e": {
     "message": "Нет оценки"
   },
@@ -977,9 +1013,6 @@
   "none_9b6c9bec": {
     "message": "нет"
   },
-  "not_a_teacher_b0d0fc55": {
-    "message": "Не преподаватель?"
-  },
   "not_graded_e027c866": {
     "message": "Оценка не выставлена"
   },
@@ -991,6 +1024,9 @@
   },
   "nothing_more_to_do_b017e8bb": {
     "message": "Все задания выполнены."
+  },
+  "number_of_likes_count_b5355a14": {
+    "message": "Количество лайков: { count }"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# минута}\n few {# минут/минуты}\n many {# минут/минуты}\n other {# минут/минуты}\n}"
@@ -1004,14 +1040,14 @@
   "ok_c47544a2": {
     "message": "OK"
   },
+  "olive_6a3e4d6b": {
+    "message": "Оливковый"
+  },
   "on_8f7190e5": {
     "message": "Вкл"
   },
   "on_paper_46d0ba36": {
     "message": "На бумаге"
-  },
-  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
-    "message": "Одно из наших других приложений может подойти лучше. Прикоснитесь один раз для входа в App Store."
   },
   "one_question_at_a_time_3161ceeb": {
     "message": "По одному вопросу за раз"
@@ -1051,6 +1087,12 @@
   },
   "options_3ab0ea65": {
     "message": "Опции"
+  },
+  "orange_81386a62": {
+    "message": "Оранжевый"
+  },
+  "orange_86946f54": {
+    "message": "оранжевого цвета"
   },
   "ordered_list_5fb1ce41": {
     "message": "Упорядоченный список"
@@ -1097,6 +1139,9 @@
   "pin_cdbc9f8f": {
     "message": "Привязать"
   },
+  "pink_68ad45cb": {
+    "message": "Розовый"
+  },
   "pinned_discussions_a55c0cea": {
     "message": "Закрепленные Дискуссии"
   },
@@ -1127,9 +1172,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Предпросмотр этого типа файлов не поддерживается"
   },
-  "profile_6bd2baed": {
-    "message": "Профиль"
-  },
   "profile_menu_a688027e": {
     "message": "Меню профиля"
   },
@@ -1144,6 +1186,15 @@
   },
   "published_4bb5209e": {
     "message": "Опубликовано"
+  },
+  "pumpkin_904428d5": {
+    "message": "Цвет тыквы"
+  },
+  "purple_71d4acca": {
+    "message": "пурпурный"
+  },
+  "purple_7678a9fc": {
+    "message": "Пурпурный"
   },
   "quiz_details_6c4473d3": {
     "message": "Сведения о контрольной работе"
@@ -1178,6 +1229,12 @@
   "recording_failed_2e1861b": {
     "message": "Ошибка при записи"
   },
+  "red_8258edf3": {
+    "message": "Красный"
+  },
+  "red_ba15ab13": {
+    "message": "красный"
+  },
   "redo_363c58b7": {
     "message": "Повторить"
   },
@@ -1211,9 +1268,6 @@
   "report_a_problem_4d48624a": {
     "message": "Сообщить о проблеме"
   },
-  "request_a_feature_3c8e2079": {
-    "message": "Запросить функцию"
-  },
   "request_could_not_be_completed_157615ef": {
     "message": "Не удается обработать запрос."
   },
@@ -1246,6 +1300,12 @@
   },
   "schedule_student_availability_332154a": {
     "message": "График доступности студентов"
+  },
+  "score_number_out_of_points_plural_one_point_other__9993235e": {
+    "message": "{ score, number } из { points, plural,\n    one {# балла}\n  other {# баллов}\n} максимум"
+  },
+  "score_number_out_of_pointspossible_number_points_p_d3e3e4df": {
+    "message": "{ score, number } из { pointsPossible, number } { points, plural,\n     =1 {балла}\n  other {баллов}\n} максимум. { grade }"
   },
   "score_number_pointspossible_number_fd8705b8": {
     "message": "{ score, number }/{ pointsPossible, number }"
@@ -1292,6 +1352,9 @@
   "select_a_course_4710371f": {
     "message": "Выбрать курс"
   },
+  "select_which_courses_you_would_like_to_see_on_the__97d7e732": {
+    "message": "Выберите, какие курсы вы хотели бы видеть на информационной панели."
+  },
   "send_e3bd0ed0": {
     "message": "Отправить"
   },
@@ -1315,6 +1378,9 @@
   },
   "set_home_to_82ab5119": {
     "message": "Установить ''Домой'' на..."
+  },
+  "set_text_color_to_colorname_hexcode_e178505b": {
+    "message": "Установить цвет текста { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "Настройки"
@@ -1430,14 +1496,20 @@
   "teachers_and_students_ba2db3e4": {
     "message": "Учителя и студенты"
   },
+  "teal_f729a294": {
+    "message": "Бирюзовый"
+  },
   "terms_of_use_62ee73ad": {
     "message": "Условия использования"
   },
   "terms_of_use_6542769b": {
     "message": "Условия использования"
   },
-  "text_color_acf75eb6": {
-    "message": "Цвет текста"
+  "text_color_colorhex_62e206a5": {
+    "message": "Цвет текста ({ colorHex })"
+  },
+  "text_color_colorname_colorhex_2dc366ad": {
+    "message": "Цвет текста { colorName } ({ colorHex })"
   },
   "text_submission_935eeb5": {
     "message": "Текстовая отправка"
@@ -1601,9 +1673,6 @@
   "total_grade_568e719f": {
     "message": "Общая оценка:"
   },
-  "try_logging_in_again_7a66111a": {
-    "message": "Попробуйте войти еще раз"
-  },
   "un_starred_8fef021f": {
     "message": "Звездочка убрана"
   },
@@ -1689,6 +1758,9 @@
   "use_camera_47a0387b": {
     "message": "Использование камеры"
   },
+  "value_text_field_d9515a76": {
+    "message": "{ value }, текстовое поле"
+  },
   "video_b9f27375": {
     "message": "Видео"
   },
@@ -1697,9 +1769,6 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "Просмотреть все отправки"
-  },
-  "view_canvas_guides_a1c62a97": {
-    "message": "Просмотр руководств Canvas"
   },
   "view_long_description_2b592c0e": {
     "message": "Просмотреть длинное описание"
@@ -1716,8 +1785,14 @@
   "welcome_73d18b4d": {
     "message": "Добро пожаловать!"
   },
+  "white_463b4bf9": {
+    "message": "белый"
+  },
   "whoops_de2cf9fc": {
     "message": "Ой!"
+  },
+  "yellow_4b5532b3": {
+    "message": "желтый"
   },
   "yes_dde87d5": {
     "message": "Да"
@@ -1736,9 +1811,6 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Вы должны ввести код доступа"
-  },
-  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
-    "message": "Вам необходимо как минимум одно активное зачисление оценщика для использования Canvas Parent."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "Не удалось отправить ваш комментарий к отправке."

@@ -242,8 +242,20 @@
   "back_to_replies_94f3c127": {
     "message": "返回到回复"
   },
+  "black_8d713c75": {
+    "message": "黑色"
+  },
+  "blue_7aca5197": {
+    "message": "蓝色"
+  },
+  "blue_daf8fea9": {
+    "message": "蓝色"
+  },
   "bold_34b9d97e": {
     "message": "粗体"
+  },
+  "brick_f2656265": {
+    "message": "砖块"
   },
   "can_edit_5a1e8dbf": {
     "message": "可以编辑"
@@ -254,29 +266,17 @@
   "cancel_caeb1e68": {
     "message": "取消"
   },
-  "canvas_guides_d65431": {
-    "message": "Canvas 指南"
-  },
-  "canvas_parent_app_f9236a3a": {
-    "message": "Canvas 家长应用"
-  },
-  "canvas_student_app_329567f": {
-    "message": "Canvas 学生应用"
-  },
-  "canvas_teacher_app_9dc7d7ed": {
-    "message": "Canvas 教师应用"
-  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "将 { discussionTitle } 更改到不同班次"
   },
   "change_user_1b7c4f23": {
     "message": "更改用户"
   },
-  "choose_1319ef6b": {
-    "message": "选择"
-  },
   "choose_color_11148181": {
     "message": "选择{ color }"
+  },
+  "choose_colorname_hexcode_14fe4c18": {
+    "message": "选择{ colorName } ({ hexCode })"
   },
   "choose_from_library_1b9caf95": {
     "message": "从资料库中进行选择"
@@ -336,6 +336,9 @@
     "message": "对话选项"
   },
   "copied_880dcb1b": {
+    "message": "已复制"
+  },
+  "copied_c6518d41": {
     "message": "已复制"
   },
   "copy_link_1ffb11a4": {
@@ -416,6 +419,9 @@
   "customize_grade_value_964695a3": {
     "message": "自定义评分{ value }"
   },
+  "cyan_c1d5f68a": {
+    "message": "青色"
+  },
   "date_date_medium_at_date_time_short_2b9ce48b": {
     "message": "{ date, date, medium } 时间{ date, time, short }"
   },
@@ -427,6 +433,9 @@
   },
   "decline_7eeb5ff4": {
     "message": "拒绝"
+  },
+  "deep_purple_bb3e2907": {
+    "message": "深紫色"
   },
   "delay_posting_f45eed7d": {
     "message": "延迟发布"
@@ -536,8 +545,8 @@
   "edit_course_settings_9736fd1f": {
     "message": "编辑课程设置"
   },
-  "edit_courses_1f63340f": {
-    "message": "编辑课程"
+  "edit_dashboard_7e5b7043": {
+    "message": "编辑控制面板"
   },
   "edit_description_1206e0a8": {
     "message": "编辑说明"
@@ -644,8 +653,8 @@
   "filter_people_b34b567b": {
     "message": "筛选人员"
   },
-  "filter_submissions_81bc50de": {
-    "message": "筛选器提交项"
+  "filter_submissions_numselected_number_selected_177867b3": {
+    "message": "筛选提交项。({ numSelected, number })已选择。"
   },
   "final_grade_4d7f6545": {
     "message": "最终评分"
@@ -701,6 +710,15 @@
   "grades_muted_anonymous_grading_9291ea4b": {
     "message": "已屏蔽评分，匿名评分"
   },
+  "green_15af4778": {
+    "message": "绿色"
+  },
+  "green_d46e687c": {
+    "message": "绿色"
+  },
+  "grey_56f61c1": {
+    "message": "灰色"
+  },
   "group_a8f5ed9c": {
     "message": "小组"
   },
@@ -737,20 +755,26 @@
   "highest_28ad71e6": {
     "message": "最高"
   },
+  "highest_possible_score_pointspossible_number_c03ce29a": {
+    "message": "可能得到的最高分，{ pointsPossible, number }"
+  },
   "i_have_permission_to_use_file_d19a1a29": {
     "message": "我拥有使用文件的权限"
   },
   "i_hold_the_copyright_71ee91b1": {
     "message": "我持有版权"
   },
-  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
-    "message": "如果您是学生或老师，请尝试我们在下方列出的其他应用程序。"
-  },
   "in_progress_9d1ce8b9": {
     "message": "进行中"
   },
   "incomplete_da3c2ea2": {
     "message": "未完成"
+  },
+  "indigo_2035fc55": {
+    "message": "靛蓝色"
+  },
+  "input_1d1d9b8e": {
+    "message": "输入"
   },
   "insert_image_42d30344": {
     "message": "插入图片"
@@ -781,6 +805,9 @@
   },
   "item_count_plural_one_item_other_items_88319c63": {
     "message": "{ item_count, plural,\n    one {#项目}\n  other {#项目}\n}"
+  },
+  "label_text_field_6677ab6f": {
+    "message": "{ label }，文本字段"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "上次活动日期 { lastActivity, date, 'MMMM d' }{ lastActivity, time, short }"
@@ -815,11 +842,17 @@
   "letter_grade_e83e363c": {
     "message": "字母评分"
   },
+  "light_blue_5374f600": {
+    "message": "浅蓝色"
+  },
+  "like_e8ad74ae": {
+    "message": "赞"
+  },
+  "loading_bde52856": {
+    "message": "正在加载"
+  },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "回答后锁定问题"
-  },
-  "log_in_again_ec2b1f46": {
-    "message": "再次登录"
   },
   "log_out_379ba28a": {
     "message": "退出"
@@ -827,8 +860,11 @@
   "long_description_7d89285c": {
     "message": "长说明"
   },
-  "manage_children_a28d764e": {
-    "message": "管理儿童"
+  "lowest_possible_score_0_c2338db6": {
+    "message": "可能得到的最低分，0"
+  },
+  "magenta_4a65993c": {
+    "message": "品红色"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "全部标记为已读"
@@ -887,6 +923,9 @@
   "name_count_plural_one_other_other_others_f47e51c3": {
     "message": "{ name } + { count, plural,\n    one {#其他}\n  other {#其他}\n}"
   },
+  "name_profile_240f0967": {
+    "message": "{ name }个人资料"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + 另外{ count }"
   },
@@ -935,9 +974,6 @@
   "no_e16d9132": {
     "message": "不、非"
   },
-  "no_enrollments_6369cd31": {
-    "message": "无注册学员"
-  },
   "no_grade_3b4d7f3e": {
     "message": "没有评分"
   },
@@ -977,9 +1013,6 @@
   "none_9b6c9bec": {
     "message": "无"
   },
-  "not_a_teacher_b0d0fc55": {
-    "message": "不是教师？"
-  },
   "not_graded_e027c866": {
     "message": "未评分"
   },
@@ -991,6 +1024,9 @@
   },
   "nothing_more_to_do_b017e8bb": {
     "message": "没有更多操作。"
+  },
+  "number_of_likes_count_b5355a14": {
+    "message": "赞数：{ count }"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    other {#分钟}\n}"
@@ -1004,14 +1040,14 @@
   "ok_c47544a2": {
     "message": "OK"
   },
+  "olive_6a3e4d6b": {
+    "message": "橄榄"
+  },
   "on_8f7190e5": {
     "message": "开"
   },
   "on_paper_46d0ba36": {
     "message": "纸上"
-  },
-  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
-    "message": "我们的其他应用可能更合适。单击可访问应用商店。"
   },
   "one_question_at_a_time_3161ceeb": {
     "message": "一次一个问题"
@@ -1051,6 +1087,12 @@
   },
   "options_3ab0ea65": {
     "message": "选项"
+  },
+  "orange_81386a62": {
+    "message": "橙色"
+  },
+  "orange_86946f54": {
+    "message": "桔黄色"
   },
   "ordered_list_5fb1ce41": {
     "message": "有序列表"
@@ -1097,6 +1139,9 @@
   "pin_cdbc9f8f": {
     "message": "固定"
   },
+  "pink_68ad45cb": {
+    "message": "粉红色"
+  },
   "pinned_discussions_a55c0cea": {
     "message": "既定讨论"
   },
@@ -1127,9 +1172,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "此文件类型不支持预览"
   },
-  "profile_6bd2baed": {
-    "message": "个人资料"
-  },
   "profile_menu_a688027e": {
     "message": "个人资料菜单"
   },
@@ -1144,6 +1186,15 @@
   },
   "published_4bb5209e": {
     "message": "已发布"
+  },
+  "pumpkin_904428d5": {
+    "message": "南瓜"
+  },
+  "purple_71d4acca": {
+    "message": "紫色"
+  },
+  "purple_7678a9fc": {
+    "message": "紫色"
   },
   "quiz_details_6c4473d3": {
     "message": "测验详情"
@@ -1178,6 +1229,12 @@
   "recording_failed_2e1861b": {
     "message": "录制失败"
   },
+  "red_8258edf3": {
+    "message": "红色"
+  },
+  "red_ba15ab13": {
+    "message": "红色"
+  },
   "redo_363c58b7": {
     "message": "重新操作"
   },
@@ -1211,9 +1268,6 @@
   "report_a_problem_4d48624a": {
     "message": "报告一个问题"
   },
-  "request_a_feature_3c8e2079": {
-    "message": "请求功能"
-  },
   "request_could_not_be_completed_157615ef": {
     "message": "无法完成请求。"
   },
@@ -1246,6 +1300,12 @@
   },
   "schedule_student_availability_332154a": {
     "message": "学生时间表的可用性"
+  },
+  "score_number_out_of_points_plural_one_point_other__9993235e": {
+    "message": "{ score, number }/{ points, plural,\n    one {#分}\n  other {# 可能得分}\n}"
+  },
+  "score_number_out_of_pointspossible_number_points_p_d3e3e4df": {
+    "message": "{ score, number }/{ pointsPossible, number } { points, plural,\n     =1 {分}\n  other { 可能得分}\n}。{ grade }"
   },
   "score_number_pointspossible_number_fd8705b8": {
     "message": "{ score, number }/{ pointsPossible, number }"
@@ -1292,6 +1352,9 @@
   "select_a_course_4710371f": {
     "message": "选择课程"
   },
+  "select_which_courses_you_would_like_to_see_on_the__97d7e732": {
+    "message": "选择您想在控制面板上查看哪些课程。"
+  },
   "send_e3bd0ed0": {
     "message": "发送"
   },
@@ -1315,6 +1378,9 @@
   },
   "set_home_to_82ab5119": {
     "message": "将“首页”设置为..."
+  },
+  "set_text_color_to_colorname_hexcode_e178505b": {
+    "message": "把文本颜色设置为{ colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "设置"
@@ -1430,14 +1496,20 @@
   "teachers_and_students_ba2db3e4": {
     "message": "教师和学生"
   },
+  "teal_f729a294": {
+    "message": "青色"
+  },
   "terms_of_use_62ee73ad": {
     "message": "使用条款"
   },
   "terms_of_use_6542769b": {
     "message": "使用条款"
   },
-  "text_color_acf75eb6": {
-    "message": "文本颜色"
+  "text_color_colorhex_62e206a5": {
+    "message": "文本颜色({ colorHex })"
+  },
+  "text_color_colorname_colorhex_2dc366ad": {
+    "message": "文本颜色{ colorName } ({ colorHex })"
   },
   "text_submission_935eeb5": {
     "message": "文体提交"
@@ -1601,9 +1673,6 @@
   "total_grade_568e719f": {
     "message": "总评分："
   },
-  "try_logging_in_again_7a66111a": {
-    "message": "再次尝试登录"
-  },
   "un_starred_8fef021f": {
     "message": "未标记星号"
   },
@@ -1689,6 +1758,9 @@
   "use_camera_47a0387b": {
     "message": "使用相机"
   },
+  "value_text_field_d9515a76": {
+    "message": "{ value }，文本字段"
+  },
   "video_b9f27375": {
     "message": "视频"
   },
@@ -1697,9 +1769,6 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "查看所有提交项"
-  },
-  "view_canvas_guides_a1c62a97": {
-    "message": "查看 Canvas 指南"
   },
   "view_long_description_2b592c0e": {
     "message": "查看长描述"
@@ -1716,8 +1785,14 @@
   "welcome_73d18b4d": {
     "message": "欢迎！"
   },
+  "white_463b4bf9": {
+    "message": "白色"
+  },
   "whoops_de2cf9fc": {
     "message": "糟糕！"
+  },
+  "yellow_4b5532b3": {
+    "message": "黄色"
   },
   "yes_dde87d5": {
     "message": "是"
@@ -1736,9 +1811,6 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "您必须输入访问代码"
-  },
-  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
-    "message": "您需要有至少一个活跃的观察者注册学员才能使用 Canvas Parent。"
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "您的提交评论发送失败。"

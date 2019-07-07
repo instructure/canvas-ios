@@ -277,6 +277,9 @@
 /* No comment provided by engineer. */
 "Audio input hardware not available" = "Äänitulon laitteisto ei saatavissa";
 
+/* No comment provided by engineer. */
+"Augment Reality" = "Lisätty todellisuus";
+
 /* Title for an error popup */
 "Authentication error" = "Valtuutusvirhe";
 

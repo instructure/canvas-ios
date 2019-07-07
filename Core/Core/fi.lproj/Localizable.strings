@@ -1,5 +1,23 @@
+/* Unknown time duration */
+"--:--" = "--:--";
+
+/* No comment provided by engineer. */
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Toimi nimellä\" tarkoittaa sisäänkirjautumista tänä käyttäjänä ilman salasanaa. Pystyt ryhtymään toimenpiteisiin tänä käyttäjänä ja muille käyttäjille näyttää siltä, että tämä käyttäjä on suorittanut kyseiset toimenpiteet. Tarkistuslokit kuitenkin kirjaavat, että sinä suoritit toimenpiteet tämän käyttäjän toimesta.";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a parent" = "vanhempi";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a student" = "opiskelija";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a teacher" = "opettaja";
+
+/* No comment provided by engineer. */
+"Act as User" = "Toimi käyttäjänä";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Haluatko varmasti poistaa tämän kommentin?";
@@ -8,7 +26,25 @@
 "Assignment" = "Tehtävä";
 
 /* No comment provided by engineer. */
+"Attempt %d" = "Yritys %d";
+
+/* No comment provided by engineer. */
+"Audio" = "Ääni";
+
+/* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Todennus epäonnistui. Mitä todennäköisimmin käyttäjä kielsi käyttöoikeuspyynnön.";
+
+/* No comment provided by engineer. */
+"black" = "musta";
+
+/* No comment provided by engineer. */
+"blue" = "sininen";
+
+/* No comment provided by engineer. */
+"Bold" = "Lihavoitu";
+
+/* No comment provided by engineer. */
+"Camera" = "Kamera";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Etkö löydä kouluasi? Yritä kirjoittaa koko koulun URL";
@@ -17,10 +53,25 @@
 "Cancel" = "Peruuta";
 
 /* No comment provided by engineer. */
+"Canvas Guides" = "Canvas-oppaat";
+
+/* No comment provided by engineer. */
 "Canvas Login" = "Canvas-sisäänkirjautuminen";
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas-verkosto";
+
+/* No comment provided by engineer. */
+"Canvas Parent" = "Canvas Parent";
+
+/* No comment provided by engineer. */
+"Canvas Student" = "Canvas-opiskelija";
+
+/* No comment provided by engineer. */
+"Canvas Teacher" = "Canvas-opettaja";
+
+/* No comment provided by engineer. */
+"Clear recording" = "Tyhjennä nauhoitus";
 
 /* No comment provided by engineer. */
 "Closed" = "Suljettu";
@@ -33,6 +84,9 @@
 
 /* No comment provided by engineer. */
 "Course" = "Kurssi";
+
+/* No comment provided by engineer. */
+"Current position" = "Nykyinen asema";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -53,10 +107,34 @@
 "Dismiss" = "Ohita";
 
 /* No comment provided by engineer. */
+"Domain" = "Verkkotunnus";
+
+/* No comment provided by engineer. */
+"Done" = "Valmis";
+
+/* No comment provided by engineer. */
+"End Act as User" = "Päätä toimi käyttäjänä";
+
+/* No comment provided by engineer. */
+"Error" = "Virhe";
+
+/* No comment provided by engineer. */
 "External Tool" = "Ulkoinen työkalu";
 
 /* No comment provided by engineer. */
+"Failed to save image" = "Kuvan tallennus epäonnistui";
+
+/* No comment provided by engineer. */
+"Failed upload" = "Lataus epäonnistui";
+
+/* No comment provided by engineer. */
+"Failed Upload" = "Lataus epäonnistui";
+
+/* No comment provided by engineer. */
 "File Upload" = "Tiedoston lataus";
+
+/* No comment provided by engineer. */
+"Files" = "Tiedostot";
 
 /* No comment provided by engineer. */
 "Final Grade: %@" = "Lopullinen arvosana: %@";
@@ -80,19 +158,43 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
+"green" = "vihreä";
+
+/* No comment provided by engineer. */
+"grey" = "harmaa";
+
+/* No comment provided by engineer. */
 "Help" = "Ohje";
 
 /* No comment provided by engineer. */
 "How do I find my school?" = "Miten löydän kouluni";
 
 /* No comment provided by engineer. */
+"Image" = "Kuva";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Keskeneräinen";
+
+/* No comment provided by engineer. */
+"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Näyttää siltä, että et ole rekisteröitynyt millekään kurssille nimellä %@. Yksi sovelluksistamme saattaa sopia paremmin. Käy App Storessa napauttamalla.";
+
+/* No comment provided by engineer. */
+"Italic" = "Kursiivi";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Käynnistä ulkoinen työkalu";
+
+/* No comment provided by engineer. */
+"Library" = "Kirjasto";
+
+/* No comment provided by engineer. */
+"Link" = "Linkki";
+
+/* No comment provided by engineer. */
+"Link to Website URL" = "Linkki verkkosivuston URL:ään";
 
 /* end of and list pattern */
 "list_and_end" = "%1$@, ja %2$@";
@@ -119,16 +221,31 @@
 "list_or_two" = "%1$@ tai %2$@";
 
 /* No comment provided by engineer. */
+"Log In Again" = "Kirjaudu uudelleen sisään";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuaalinen OAuth-sisäänkirjautuminen";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Median nauhoitus";
 
 /* No comment provided by engineer. */
+"N/A" = "Ei sovellettavissa";
+
+/* No comment provided by engineer. */
+"No Content" = "Ei sisältöä";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Ei määräpäivää";
 
 /* No comment provided by engineer. */
+"No image found from image picker" = "Kuvaa ei löytynyt kuvan poimintatoiminnosta";
+
+/* No comment provided by engineer. */
 "No Submission" = "Ei lähetystä";
+
+/* No comment provided by engineer. */
+"None" = "Ei mitään";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ei arvosteltu";
@@ -143,13 +260,37 @@
 "On Paper" = "Paperilla";
 
 /* No comment provided by engineer. */
+"orange" = "oranssi";
+
+/* No comment provided by engineer. */
+"Ordered List" = "Tilattujen luettelo";
+
+/* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
+"Pause" = "Keskeytä";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Käyttöoikeus tarvitaan";
+
+/* No comment provided by engineer. */
+"Play" = "Toista";
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"purple" = "purppura";
+
+/* No comment provided by engineer. */
 "Quiz" = "Tietovisa";
+
+/* No comment provided by engineer. */
+"red" = "punainen";
+
+/* No comment provided by engineer. */
+"Redo" = "Suorita uudelleen";
 
 /* No comment provided by engineer. */
 "Remove" = "Poista";
@@ -164,6 +305,12 @@
 "Reply to the annotation or previous comments" = "Vastaa huomautukseen tai edellisiin kommentteihin";
 
 /* No comment provided by engineer. */
+"Retry" = "Yritä uudelleen";
+
+/* No comment provided by engineer. */
+"See attached files." = "Katso liitetyt tiedostot.";
+
+/* No comment provided by engineer. */
 "See what's new." = "Katso, mitä uutta on tulossa.";
 
 /* No comment provided by engineer. */
@@ -176,13 +323,34 @@
 "Select Course" = "Valitse kurssi";
 
 /* No comment provided by engineer. */
+"Send" = "Lähetä";
+
+/* No comment provided by engineer. */
 "Send comment" = "Lähetä kommentti";
+
+/* No comment provided by engineer. */
+"Set text color" = "Määritä tekstiväri";
+
+/* No comment provided by engineer. */
+"Settings" = "Asetukset";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Sivuston pääkäyttäjän kirjautuminen";
 
 /* No comment provided by engineer. */
+"Start recording" = "Aloita nauhoitus";
+
+/* No comment provided by engineer. */
+"Stop acting as..." = "Lopeta toimimasta käyttäjänä...";
+
+/* No comment provided by engineer. */
+"Stop recording" = "Pysäytä nauhoitus";
+
+/* No comment provided by engineer. */
 "Style" = "Tyyli";
+
+/* No comment provided by engineer. */
+"Submit" = "Lähetä";
 
 /* No comment provided by engineer. */
 "Submit Assignment" = "Lähetä tehtävä";
@@ -197,13 +365,64 @@
 "Tap here for help." = "Avaa ohje napauttamalla tässä.";
 
 /* No comment provided by engineer. */
+"Terms of Use" = "Käyttöehdot";
+
+/* No comment provided by engineer. */
+"Text" = "Teksti";
+
+/* No comment provided by engineer. */
+"Text Color" = "Tekstiväri";
+
+/* No comment provided by engineer. */
 "Text Entry" = "Tekstin syöttäminen";
+
+/* No comment provided by engineer. */
+"There was a problem retrieving the Terms of Use." = "Ilmeni ongelma käyttöehtoja noudettaessa.";
+
+/* No comment provided by engineer. */
+"There was an error with Act as User. Please try again later." = "Ilmeni virhe toiminnossa Toimi käyttäjänä. Yritä myöhemmin uudelleen.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error. Please try again." = "Ilmeni odottamaton virhe. Yritä uudelleen.";
 
 /* No comment provided by engineer. */
 "This assignment is due by %@" = "Tämän tehtävän määräpäivä %@";
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Tämän tehtävän määräpäivä oli %@";
+
+/* No comment provided by engineer. */
+"This is a media comment" = "Tämä on mediakommentti";
+
+/* No comment provided by engineer. */
+"Time elapsed" = "Kulunut aika";
+
+/* No comment provided by engineer. */
+"Total time" = "Aika yhteensä";
+
+/* No comment provided by engineer. */
+"Undo" = "Peruuta";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Rajoittamaton";
+
+/* No comment provided by engineer. */
+"Unordered List" = "Tilaamattomien luettelo";
+
+/* No comment provided by engineer. */
+"Uploading %@ of %@" = "Ladataan tiedostoa %1$@/%2$@";
+
+/* No comment provided by engineer. */
+"Uploading..." = "Ladataan...";
+
+/* No comment provided by engineer. */
+"URL" = "URL";
+
+/* No comment provided by engineer. */
+"User ID" = "Käyttäjätunnus";
+
+/* No comment provided by engineer. */
+"Video" = "Video";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "olemme tehneet muutamia muutoksia.";
@@ -215,5 +434,23 @@
 "What’s your school’s name?" = "Mikä on koulusi nimi?";
 
 /* No comment provided by engineer. */
+"white" = "valkoinen";
+
+/* No comment provided by engineer. */
+"Whoops!" = "Hups!";
+
+/* No comment provided by engineer. */
+"yellow" = "keltainen";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Mikrofonin käyttöoikeudet täytyy ottaa käyttöön asetuksissa.";
+
+/* No comment provided by engineer. */
 "You will need to log into at least one Canvas account from the Student app first." = "Sinun on kirjauduttava sisään vähintään yhdelle Canvas-tilille ensin yhdestä Opiskelijan sovelluksesta";
+
+/* No comment provided by engineer. */
+"You will stop acting as %@ and return to your account." = "Lopetat toimimasta käyttäjänä %@ ja palaat tilillesi.";
+
+/* No comment provided by engineer. */
+"You will stop acting as this user and return to your account." = "Lopetat toimimasta tänä käyttäjänä ja palaat tilillesi.";
 

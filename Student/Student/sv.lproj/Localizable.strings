@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "Add a comment or reply to previous comments" = "Lägg till en kommentar eller ett svar i tidigare kommentarer";
 
+/* No comment provided by engineer. */
+"Add media attachment" = "Lägg till media-bilaga";
+
 /* All Courses screen title */
 "All Courses" = "Alla kurser";
 
@@ -18,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Bilagor";
+
+/* No comment provided by engineer. */
+"Calendar" = "Kalender";
 
 /* No comment provided by engineer. */
 "Cancel" = "Avbryt";
@@ -98,6 +104,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "Har du frågor? Använd det här området för att meddela din instruktör om den här uppgiften.";
 
 /* No comment provided by engineer. */
+"Inbox" = "Inkorg";
+
+/* No comment provided by engineer. */
 "Instructions" = "Instruktioner";
 
 /* No comment provided by engineer. */
@@ -114,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Inget inlämningsdatum";
+
+/* No comment provided by engineer. */
+"Notifications" = "Meddelanden";
 
 /* No comment provided by engineer. */
 "On %@ %@ commented \"%@\"" = "På %1$@ %2$@ kommenterade \"%3$@\"";
@@ -150,6 +162,12 @@
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Lämna in uppgift igen";
+
+/* No comment provided by engineer. */
+"Resume Quiz" = "Fortsätt quiz";
+
+/* No comment provided by engineer. */
+"Retake Quiz" = "Gör om Quiz";
 
 /* No comment provided by engineer. */
 "Retry" = "Försök igen";
@@ -236,6 +254,9 @@
 "Time Limit:" = "Tidsbegränsning:";
 
 /* No comment provided by engineer. */
+"To Do" = "Att göra";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "Uppdaterade språkinställningar";
 
 /* No comment provided by engineer. */
@@ -246,6 +267,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Visa fil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d. %@" = "Visa inlämningsförsök %1$d. %2$@";
 
 /* No comment provided by engineer. */
 "Website Address" = "Webbplatsadress";

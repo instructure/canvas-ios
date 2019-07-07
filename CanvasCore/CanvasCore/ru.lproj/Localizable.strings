@@ -420,8 +420,14 @@
 /* Title for the notification preferences page */
 "Notification Preferences" = "Настройки уведомлений";
 
+/* No comment provided by engineer. */
+"Off" = "Выкл";
+
 /* OK Button Title */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"On" = "Вкл";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Открыть в Safari";
@@ -638,6 +644,9 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Сдать тест";
+
+/* No comment provided by engineer. */
+"Tap to toggle" = "Нажмите, чтобы переключить";
 
 /* Teal course color button */
 "Teal" = "Бирюзовый";

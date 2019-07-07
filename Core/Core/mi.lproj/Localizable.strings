@@ -7,6 +7,15 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* Embedded in 'enrolled in any courses as %@' */
+"a parent" = "he matua";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a student" = "he ākonga";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a teacher" = "he kaiako";
+
 /* No comment provided by engineer. */
 "Act as User" = "Mahi rite kaiwhakamahi";
 
@@ -51,6 +60,15 @@
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Whatunga";
+
+/* No comment provided by engineer. */
+"Canvas Parent" = "Canvas Matua";
+
+/* No comment provided by engineer. */
+"Canvas Student" = "Canvas Ākonga";
+
+/* No comment provided by engineer. */
+"Canvas Teacher" = "Canvas Kaiako";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Mukua te tāhopu";
@@ -156,6 +174,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Kaore i te oti";
+
+/* No comment provided by engineer. */
+"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Ko te titiro kaore koe i whakaurutis ki rot o ngā akoranga hei %@. Ko tētahi o a mātau taupānga he pai ake pea.n Pāt tētahi ki te haere ki te Toa Taupānga.";
 
 /* No comment provided by engineer. */
 "Italic" = "Tuhinga";
@@ -414,6 +435,9 @@
 
 /* No comment provided by engineer. */
 "white" = "mā";
+
+/* No comment provided by engineer. */
+"Whoops!" = "Whoops!";
 
 /* No comment provided by engineer. */
 "yellow" = "kōwhai";

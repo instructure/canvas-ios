@@ -420,8 +420,14 @@
 /* Title for the notification preferences page */
 "Notification Preferences" = "通知偏好設定";
 
+/* No comment provided by engineer. */
+"Off" = "關閉";
+
 /* OK Button Title */
 "OK" = "確定";
+
+/* No comment provided by engineer. */
+"On" = "開啟";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "在 Safari 中打開";
@@ -638,6 +644,9 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "參加考試";
+
+/* No comment provided by engineer. */
+"Tap to toggle" = "點選以切換";
 
 /* Teal course color button */
 "Teal" = "深青色";

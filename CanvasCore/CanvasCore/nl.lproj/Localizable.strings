@@ -420,8 +420,14 @@
 /* Title for the notification preferences page */
 "Notification Preferences" = "Meldingsvoorkeuren";
 
+/* No comment provided by engineer. */
+"Off" = "Uit";
+
 /* OK Button Title */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"On" = "Aan";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Openen in Safari";
@@ -638,6 +644,9 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Toets doen";
+
+/* No comment provided by engineer. */
+"Tap to toggle" = "Klik om in of uit te schakelen";
 
 /* Teal course color button */
 "Teal" = "Groenblauw";

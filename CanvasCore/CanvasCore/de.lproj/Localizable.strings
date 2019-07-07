@@ -420,8 +420,14 @@
 /* Title for the notification preferences page */
 "Notification Preferences" = "Benachrichtigungseinstellungen";
 
+/* No comment provided by engineer. */
+"Off" = "Aus";
+
 /* OK Button Title */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"On" = "Ein";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "In Safari öffnen";
@@ -638,6 +644,9 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Sich dem Quiz stellen";
+
+/* No comment provided by engineer. */
+"Tap to toggle" = "Zum Umschalten antippen";
 
 /* Teal course color button */
 "Teal" = "Blaugrün";

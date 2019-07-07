@@ -7,6 +7,15 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Балл GPA";
 
+/* Embedded in 'enrolled in any courses as %@' */
+"a parent" = "родитель";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a student" = "учащийся";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a teacher" = "преподаватель";
+
 /* No comment provided by engineer. */
 "Act as User" = "Действовать как пользователь";
 
@@ -51,6 +60,15 @@
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Canvas Parent" = "Canvas Parent";
+
+/* No comment provided by engineer. */
+"Canvas Student" = "Canvas Student";
+
+/* No comment provided by engineer. */
+"Canvas Teacher" = "Преподаватель Canvas";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Удалить запись";
@@ -156,6 +174,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Не завершено";
+
+/* No comment provided by engineer. */
+"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Похоже, вы не зачислены ни на какие курсы в качестве %@. Вам может подойти одно из наших других приложений. Нажмите, чтобы посетить App Store.";
 
 /* No comment provided by engineer. */
 "Italic" = "Курсив";
@@ -414,6 +435,9 @@
 
 /* No comment provided by engineer. */
 "white" = "белый";
+
+/* No comment provided by engineer. */
+"Whoops!" = "Ой!";
 
 /* No comment provided by engineer. */
 "yellow" = "желтый";

@@ -7,6 +7,15 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
 
+/* Embedded in 'enrolled in any courses as %@' */
+"a parent" = "父母";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a student" = "學生";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a teacher" = "教師";
+
 /* No comment provided by engineer. */
 "Act as User" = "作為使用者";
 
@@ -51,6 +60,15 @@
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Canvas Parent" = "Canvas Parent";
+
+/* No comment provided by engineer. */
+"Canvas Student" = "Canvas Student";
+
+/* No comment provided by engineer. */
+"Canvas Teacher" = "Canvas Teacher";
 
 /* No comment provided by engineer. */
 "Clear recording" = "清除錄製";
@@ -156,6 +174,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "未完成";
+
+/* No comment provided by engineer. */
+"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "您尚未註冊任何課程為 %@。我們的其中一個其他應用程式可能較適合。點選一個以造訪 App Store。";
 
 /* No comment provided by engineer. */
 "Italic" = "斜體";
@@ -414,6 +435,9 @@
 
 /* No comment provided by engineer. */
 "white" = "白色";
+
+/* No comment provided by engineer. */
+"Whoops!" = "糟糕！";
 
 /* No comment provided by engineer. */
 "yellow" = "黃色";

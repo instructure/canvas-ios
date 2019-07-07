@@ -7,6 +7,15 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Promedio general de calificaciones";
 
+/* Embedded in 'enrolled in any courses as %@' */
+"a parent" = "padre";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a student" = "alumno";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a teacher" = "profesor";
+
 /* No comment provided by engineer. */
 "Act as User" = "Actuar en nombre de Usuario";
 
@@ -51,6 +60,15 @@
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Canvas Parent" = "Canvas Parent";
+
+/* No comment provided by engineer. */
+"Canvas Student" = "Alumno de Canvas";
+
+/* No comment provided by engineer. */
+"Canvas Teacher" = "Canvas Teacher";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Borrar grabación";
@@ -156,6 +174,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Incompleto";
+
+/* No comment provided by engineer. */
+"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Parece que no se inscribió en ningún curso como %@. Quizás, una de nuestras otras aplicaciones sea una mejor opción. Pulse para visitar la App Store.";
 
 /* No comment provided by engineer. */
 "Italic" = "Cursiva";
@@ -414,6 +435,9 @@
 
 /* No comment provided by engineer. */
 "white" = "blanco";
+
+/* No comment provided by engineer. */
+"Whoops!" = "¡Ups!";
 
 /* No comment provided by engineer. */
 "yellow" = "amarillo";

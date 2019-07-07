@@ -1,5 +1,17 @@
+/* No comment provided by engineer. */
+"Add a comment or reply to previous comments" = "Lisää kommentti tai vastaa edellisiin kommentteihin";
+
+/* No comment provided by engineer. */
+"Add media attachment" = "Lisää medialiite";
+
 /* All Courses screen title */
 "All Courses" = "Kaikki kurssit";
+
+/* No comment provided by engineer. */
+"Allowed Attempts:" = "Sallittuja yrityksiä:";
+
+/* No comment provided by engineer. */
+"Arc" = "Kaari";
 
 /* No comment provided by engineer. */
 "Assignment Details" = "Tehtävän tiedot";
@@ -8,10 +20,19 @@
 "Assignments" = "Tehtävät";
 
 /* No comment provided by engineer. */
+"Attachments" = "Liitteet";
+
+/* No comment provided by engineer. */
+"Calendar" = "Kalenteri";
+
+/* No comment provided by engineer. */
 "Cancel" = "Peruuta";
 
 /* No comment provided by engineer. */
 "Cancel Submission" = "Peruuta lähetys";
+
+/* No comment provided by engineer. */
+"Choose File" = "Valitse tiedosto";
 
 /* No comment provided by engineer. */
 "Close App" = "Sulje sovellus";
@@ -20,7 +41,16 @@
 "Comments" = "Huomautuksia";
 
 /* No comment provided by engineer. */
+"Could not save the comment" = "Kommentin tallentaminen ei onnistunut";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Kurssin opinto-ohjelma";
+
+/* No comment provided by engineer. */
 "Courses" = "Kurssit";
+
+/* No comment provided by engineer. */
+"Custom Grade" = "Mukautettu arvosana";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Koontinäyttö";
@@ -47,25 +77,67 @@
 "Edit Course" = "Muokkaa kursseja";
 
 /* No comment provided by engineer. */
+"Enter submission" = "Syötä lähetys";
+
+/* No comment provided by engineer. */
 "File Types" = "Tiedostotyypit";
 
 /* No comment provided by engineer. */
 "Files" = "Tiedostot";
 
 /* No comment provided by engineer. */
+"Files (%d)" = "Tiedostot (%d)";
+
+/* No comment provided by engineer. */
+"g_points" = "g_points";
+
+/* No comment provided by engineer. */
 "Grade" = "Arvosana";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Arvostellut kyselyt";
 
 /* No comment provided by engineer. */
 "Groups" = "Ryhmät";
 
 /* No comment provided by engineer. */
+"Have questions? Use this area to message your instructor about this assignment." = "Onko sinulla kysymyksiä? Lähetä ohjaajallesi viesti tästä tehtävästä tällä alueella.";
+
+/* No comment provided by engineer. */
+"Inbox" = "Tulevien laatikko";
+
+/* No comment provided by engineer. */
+"Instructions" = "Rubriikki";
+
+/* No comment provided by engineer. */
 "Invalid url" = "Virheellinen URL";
+
+/* No comment provided by engineer. */
+"Launch External Tool" = "Käynnistä ulkoinen työkalu";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Ei määräpäivää";
 
 /* No comment provided by engineer. */
 "No Submission" = "Ei lähetystä";
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Ei lähetyspäivää";
+
+/* No comment provided by engineer. */
+"Notifications" = "Ilmoitukset";
+
+/* No comment provided by engineer. */
+"On %@ %@ commented \"%@\"" = "%1$@ %2$@ kommentoi \"%3$@\"";
+
+/* No comment provided by engineer. */
+"On %@ %@ left a video comment" = "%1$@ %2$@ jätti videokommentin";
+
+/* No comment provided by engineer. */
+"On %@ %@ left an audio comment" = "%1$@ %2$@ jätti äänikommentin";
+
+/* No comment provided by engineer. */
+"On %@ %@ submitted the following" = "%1$@ %2$@ lähetti seuraavaa";
 
 /* Button to open external tool */
 "Open External Tool" = "Avaa ulkoinen työkalu";
@@ -74,10 +146,28 @@
 "Past Enrollments" = "Menneet rekisteröitymiset";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Harjoittelutietovisat";
+
+/* No comment provided by engineer. */
+"Questions:" = "Kysymyksiä:";
+
+/* No comment provided by engineer. */
 "Quizzes" = "Tietovisat";
 
 /* No comment provided by engineer. */
+"Record Audio" = "Nauhoita ääni";
+
+/* No comment provided by engineer. */
+"Record Video" = "Nauhoita video";
+
+/* No comment provided by engineer. */
 "Resubmit Assignment" = "Lähetä tehtävä uudelleen";
+
+/* No comment provided by engineer. */
+"Resume Quiz" = "Jatka kyselyä";
+
+/* No comment provided by engineer. */
+"Retake Quiz" = "Suorita tietovisa uudelleen";
 
 /* No comment provided by engineer. */
 "Retry" = "Yritä uudelleen";
@@ -92,6 +182,15 @@
 "See All Courses" = "Katso kaikki kurssit";
 
 /* No comment provided by engineer. */
+"Send" = "Lähetä";
+
+/* No comment provided by engineer. */
+"Send comment" = "Lähetä kommentti";
+
+/* No comment provided by engineer. */
+"Settings" = "Asetukset";
+
+/* No comment provided by engineer. */
 "Something went wrong while loading the quizzes." = "Jotakin meni pieleen ladatessa tietovisoja.";
 
 /* No comment provided by engineer. */
@@ -101,7 +200,16 @@
 "Submission & Rubric" = "Lähetys ja rubriikki";
 
 /* No comment provided by engineer. */
+"Submission Failed" = "Lähetys epäonnistui";
+
+/* No comment provided by engineer. */
+"Submission In Progress..." = "Lähetys käynnissä...";
+
+/* No comment provided by engineer. */
 "Submission Types" = "Lähetystyypit";
+
+/* No comment provided by engineer. */
+"Submission Uploading..." = "Lähetystä ladataan...";
 
 /* No comment provided by engineer. */
 "Submit" = "Lähetä";
@@ -113,13 +221,55 @@
 "Successfully submitted!" = "Lähetetty onnistuneesti!";
 
 /* No comment provided by engineer. */
+"Surveys" = "Kyselyt";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Opinto-ohjelma";
+
+/* No comment provided by engineer. */
+"Take Quiz" = "Suorita tietovisa";
+
+/* No comment provided by engineer. */
+"Tap to view details" = "Napauta tarkastellaksesi tietoja";
+
+/* No comment provided by engineer. */
+"Tap to view progress" = "Napauta tarkastellaksesi edistymistä";
+
+/* No comment provided by engineer. */
+"Text Entry" = "Tekstin syöttäminen";
+
+/* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Sovellus täytyy käynnistää uudelleen, jotta uusia kieliasetuksia voidaan käyttää. Käynnistä sovellus uudelleen.";
+
+/* No comment provided by engineer. */
+"There are no files to display." = "Näytettäviä tiedostoja ei ole.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Näytettäviä tietovisoja ei ole.";
 
 /* No comment provided by engineer. */
+"There is no rubric for this assignment" = "Tälle tehtävälle ei ole rubriikkia";
+
+/* No comment provided by engineer. */
+"Time Limit:" = "Aikaraja:";
+
+/* No comment provided by engineer. */
+"To Do" = "Tehtävä";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "Päivitetyt kieliasetukset";
+
+/* No comment provided by engineer. */
+"Uploading" = "Ladataan";
+
+/* No comment provided by engineer. */
+"View Discussion" = "Näytä keskustelu";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Näytä tiedosto %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d. %@" = "Näytä lähetysyritys %1$d. %2$@";
 
 /* No comment provided by engineer. */
 "Website Address" = "Verkkosivun osoite";

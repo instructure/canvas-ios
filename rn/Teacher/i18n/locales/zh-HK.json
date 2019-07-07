@@ -242,8 +242,20 @@
   "back_to_replies_94f3c127": {
     "message": "返回回覆"
   },
+  "black_8d713c75": {
+    "message": "黑色"
+  },
+  "blue_7aca5197": {
+    "message": "藍色"
+  },
+  "blue_daf8fea9": {
+    "message": "藍色"
+  },
   "bold_34b9d97e": {
     "message": "粗體"
+  },
+  "brick_f2656265": {
+    "message": "磚頭"
   },
   "can_edit_5a1e8dbf": {
     "message": "可編輯"
@@ -254,29 +266,17 @@
   "cancel_caeb1e68": {
     "message": "取消"
   },
-  "canvas_guides_d65431": {
-    "message": "Canvas 指南"
-  },
-  "canvas_parent_app_f9236a3a": {
-    "message": "Canvas Parent 應用程式"
-  },
-  "canvas_student_app_329567f": {
-    "message": "Canvas Student 應用程式"
-  },
-  "canvas_teacher_app_9dc7d7ed": {
-    "message": "Canvas 教師應用程式"
-  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "更改 { discussionTitle } 至其他群組"
   },
   "change_user_1b7c4f23": {
     "message": "變更使用者"
   },
-  "choose_1319ef6b": {
-    "message": "選擇"
-  },
   "choose_color_11148181": {
     "message": "選擇{ color }"
+  },
+  "choose_colorname_hexcode_14fe4c18": {
+    "message": "選擇 { colorName } ({ hexCode })"
   },
   "choose_from_library_1b9caf95": {
     "message": "從庫中選擇"
@@ -337,6 +337,9 @@
   },
   "copied_880dcb1b": {
     "message": "已複製！"
+  },
+  "copied_c6518d41": {
+    "message": "已複製"
   },
   "copy_link_1ffb11a4": {
     "message": "複製連結"
@@ -416,6 +419,9 @@
   "customize_grade_value_964695a3": {
     "message": "自訂評分{ value }"
   },
+  "cyan_c1d5f68a": {
+    "message": "青色"
+  },
   "date_date_medium_at_date_time_short_2b9ce48b": {
     "message": "{ date, date, medium } 於{ date, time, short }"
   },
@@ -427,6 +433,9 @@
   },
   "decline_7eeb5ff4": {
     "message": "拒絕"
+  },
+  "deep_purple_bb3e2907": {
+    "message": "深紫色"
   },
   "delay_posting_f45eed7d": {
     "message": "延遲發佈"
@@ -536,8 +545,8 @@
   "edit_course_settings_9736fd1f": {
     "message": "編輯課程設定"
   },
-  "edit_courses_1f63340f": {
-    "message": "編輯課程"
+  "edit_dashboard_7e5b7043": {
+    "message": "編輯控制面板"
   },
   "edit_description_1206e0a8": {
     "message": "編輯說明"
@@ -644,8 +653,8 @@
   "filter_people_b34b567b": {
     "message": "篩選成員"
   },
-  "filter_submissions_81bc50de": {
-    "message": "篩選器所選項目"
+  "filter_submissions_numselected_number_selected_177867b3": {
+    "message": "篩選提交項目。已選擇 ({ numSelected, number })。"
   },
   "final_grade_4d7f6545": {
     "message": "最終評分"
@@ -701,6 +710,15 @@
   "grades_muted_anonymous_grading_9291ea4b": {
     "message": "已隱藏評分，匿名評分"
   },
+  "green_15af4778": {
+    "message": "綠色"
+  },
+  "green_d46e687c": {
+    "message": "綠色"
+  },
+  "grey_56f61c1": {
+    "message": "灰色"
+  },
   "group_a8f5ed9c": {
     "message": "群組"
   },
@@ -737,20 +755,26 @@
   "highest_28ad71e6": {
     "message": "最高"
   },
+  "highest_possible_score_pointspossible_number_c03ce29a": {
+    "message": "最高可能分數，{ pointsPossible, number }"
+  },
   "i_have_permission_to_use_file_d19a1a29": {
     "message": "我擁有該檔案的使用權限。"
   },
   "i_hold_the_copyright_71ee91b1": {
     "message": "我持有該版權"
   },
-  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
-    "message": "如果您是學生或教師，可以試試使用以下其中一個應用程式。"
-  },
   "in_progress_9d1ce8b9": {
     "message": "進行中"
   },
   "incomplete_da3c2ea2": {
     "message": "未完成"
+  },
+  "indigo_2035fc55": {
+    "message": "靛藍色"
+  },
+  "input_1d1d9b8e": {
+    "message": "輸入"
   },
   "insert_image_42d30344": {
     "message": "插入圖片"
@@ -781,6 +805,9 @@
   },
   "item_count_plural_one_item_other_items_88319c63": {
     "message": "{ item_count, plural,\n    one {# 項目}\n  other {# 項目}\n}"
+  },
+  "label_text_field_6677ab6f": {
+    "message": "{ label }，文字欄位"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "上次活躍時間於 { lastActivity, date, 'MMMM d' } { lastActivity, time, short }"
@@ -815,11 +842,17 @@
   "letter_grade_e83e363c": {
     "message": "成績等級"
   },
+  "light_blue_5374f600": {
+    "message": "淺藍色"
+  },
+  "like_e8ad74ae": {
+    "message": "讚好"
+  },
+  "loading_bde52856": {
+    "message": "正在載入"
+  },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "回答後鎖定問題"
-  },
-  "log_in_again_ec2b1f46": {
-    "message": "重新登入"
   },
   "log_out_379ba28a": {
     "message": "登出"
@@ -827,8 +860,11 @@
   "long_description_7d89285c": {
     "message": "完整描述"
   },
-  "manage_children_a28d764e": {
-    "message": "管理兒童"
+  "lowest_possible_score_0_c2338db6": {
+    "message": "最低可能分數，0"
+  },
+  "magenta_4a65993c": {
+    "message": "品紅"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "全部標記為已讀"
@@ -887,6 +923,9 @@
   "name_count_plural_one_other_other_others_f47e51c3": {
     "message": "{ name } + { count, plural,\n    one {# 其他}\n  other {# 其他}\n}"
   },
+  "name_profile_240f0967": {
+    "message": "{ name } 個人檔案"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } 更多"
   },
@@ -935,9 +974,6 @@
   "no_e16d9132": {
     "message": "否"
   },
-  "no_enrollments_6369cd31": {
-    "message": "無登記入學"
-  },
   "no_grade_3b4d7f3e": {
     "message": "無評分"
   },
@@ -977,9 +1013,6 @@
   "none_9b6c9bec": {
     "message": "無"
   },
-  "not_a_teacher_b0d0fc55": {
-    "message": "不是教師？"
-  },
   "not_graded_e027c866": {
     "message": "未評分"
   },
@@ -991,6 +1024,9 @@
   },
   "nothing_more_to_do_b017e8bb": {
     "message": "沒有待辦事項。"
+  },
+  "number_of_likes_count_b5355a14": {
+    "message": "按讚次數：{ count }"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    other {# 分鐘}\n}"
@@ -1004,14 +1040,14 @@
   "ok_c47544a2": {
     "message": "是"
   },
+  "olive_6a3e4d6b": {
+    "message": "橄欖色"
+  },
   "on_8f7190e5": {
     "message": "開啟"
   },
   "on_paper_46d0ba36": {
     "message": "在紙上"
-  },
-  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
-    "message": "我們其他應用程式可能更適合您。按一查看 App Store。"
   },
   "one_question_at_a_time_3161ceeb": {
     "message": "每次一個問題"
@@ -1051,6 +1087,12 @@
   },
   "options_3ab0ea65": {
     "message": "選項"
+  },
+  "orange_81386a62": {
+    "message": "橙色"
+  },
+  "orange_86946f54": {
+    "message": "橙色"
   },
   "ordered_list_5fb1ce41": {
     "message": "有序列表"
@@ -1097,6 +1139,9 @@
   "pin_cdbc9f8f": {
     "message": "釘選"
   },
+  "pink_68ad45cb": {
+    "message": "粉紅色"
+  },
   "pinned_discussions_a55c0cea": {
     "message": "固定的討論"
   },
@@ -1127,9 +1172,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "未支援預覽本文檔類型"
   },
-  "profile_6bd2baed": {
-    "message": "個人檔案"
-  },
   "profile_menu_a688027e": {
     "message": "個人檔案選單"
   },
@@ -1144,6 +1186,15 @@
   },
   "published_4bb5209e": {
     "message": "已發佈"
+  },
+  "pumpkin_904428d5": {
+    "message": "南瓜色"
+  },
+  "purple_71d4acca": {
+    "message": "紫色"
+  },
+  "purple_7678a9fc": {
+    "message": "紫色"
   },
   "quiz_details_6c4473d3": {
     "message": "測驗詳細資料"
@@ -1178,6 +1229,12 @@
   "recording_failed_2e1861b": {
     "message": "錄製失敗"
   },
+  "red_8258edf3": {
+    "message": "紅色"
+  },
+  "red_ba15ab13": {
+    "message": "紅色"
+  },
   "redo_363c58b7": {
     "message": "重做"
   },
@@ -1211,9 +1268,6 @@
   "report_a_problem_4d48624a": {
     "message": "報告問題"
   },
-  "request_a_feature_3c8e2079": {
-    "message": "請求功能"
-  },
   "request_could_not_be_completed_157615ef": {
     "message": "無法完成請求。"
   },
@@ -1246,6 +1300,12 @@
   },
   "schedule_student_availability_332154a": {
     "message": "排程學生可用性"
+  },
+  "score_number_out_of_points_plural_one_point_other__9993235e": {
+    "message": "{ score, number }滿分為 { points, plural,\n    one {# 分 }\n  other {# 分 可能 }\n} 分 "
+  },
+  "score_number_out_of_pointspossible_number_points_p_d3e3e4df": {
+    "message": "{ score, number }滿分為 { pointsPossible, number }{ points, plural,\n     =1 { 分 }\n  other { 分 可能 }\n} 分。{ grade }"
   },
   "score_number_pointspossible_number_fd8705b8": {
     "message": "{ score, number }/{ pointsPossible, number }"
@@ -1292,6 +1352,9 @@
   "select_a_course_4710371f": {
     "message": "選擇課程"
   },
+  "select_which_courses_you_would_like_to_see_on_the__97d7e732": {
+    "message": "選擇要在控制面板上查看哪些課程。"
+  },
   "send_e3bd0ed0": {
     "message": "發送"
   },
@@ -1315,6 +1378,9 @@
   },
   "set_home_to_82ab5119": {
     "message": "將「首頁」設為…"
+  },
+  "set_text_color_to_colorname_hexcode_e178505b": {
+    "message": "將文字顏色設定為 { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "設定"
@@ -1430,14 +1496,20 @@
   "teachers_and_students_ba2db3e4": {
     "message": "教師和學生"
   },
+  "teal_f729a294": {
+    "message": "深青色"
+  },
   "terms_of_use_62ee73ad": {
     "message": "使用條款"
   },
   "terms_of_use_6542769b": {
     "message": "使用條款"
   },
-  "text_color_acf75eb6": {
-    "message": "文字顏色"
+  "text_color_colorhex_62e206a5": {
+    "message": "文字顏色 ({ colorHex })"
+  },
+  "text_color_colorname_colorhex_2dc366ad": {
+    "message": "文字顏色 { colorName } ({ colorHex })"
   },
   "text_submission_935eeb5": {
     "message": "文字提交件"
@@ -1601,9 +1673,6 @@
   "total_grade_568e719f": {
     "message": "總評分："
   },
-  "try_logging_in_again_7a66111a": {
-    "message": "嘗試重新登入"
-  },
   "un_starred_8fef021f": {
     "message": "移除星號"
   },
@@ -1689,6 +1758,9 @@
   "use_camera_47a0387b": {
     "message": "使用攝像頭"
   },
+  "value_text_field_d9515a76": {
+    "message": "{ value }，文字欄位"
+  },
   "video_b9f27375": {
     "message": "視頻"
   },
@@ -1697,9 +1769,6 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "檢視所有提交項目"
-  },
-  "view_canvas_guides_a1c62a97": {
-    "message": "查看 Canvas 指南"
   },
   "view_long_description_2b592c0e": {
     "message": "查看完整描述"
@@ -1716,8 +1785,14 @@
   "welcome_73d18b4d": {
     "message": "歡迎！"
   },
+  "white_463b4bf9": {
+    "message": "白色"
+  },
   "whoops_de2cf9fc": {
     "message": "抱歉！"
+  },
+  "yellow_4b5532b3": {
+    "message": "黃色"
   },
   "yes_dde87d5": {
     "message": "是"
@@ -1736,9 +1811,6 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "您必須輸入訪問碼"
-  },
-  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
-    "message": "您需要至少一個有效的觀察者註冊，方可使用 Canvas Parent。"
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "您提交的評論並未發出。"
