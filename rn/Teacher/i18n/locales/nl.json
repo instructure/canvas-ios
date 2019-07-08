@@ -242,8 +242,20 @@
   "back_to_replies_94f3c127": {
     "message": "Terug naar antwoorden"
   },
+  "black_8d713c75": {
+    "message": "zwart"
+  },
+  "blue_7aca5197": {
+    "message": "blauw"
+  },
+  "blue_daf8fea9": {
+    "message": "Blauw"
+  },
   "bold_34b9d97e": {
     "message": "Vet"
+  },
+  "brick_f2656265": {
+    "message": "Steenrood"
   },
   "can_edit_5a1e8dbf": {
     "message": "Kan bewerken"
@@ -254,29 +266,17 @@
   "cancel_caeb1e68": {
     "message": "Annuleren"
   },
-  "canvas_guides_d65431": {
-    "message": "Canvas-handleidingen"
-  },
-  "canvas_parent_app_f9236a3a": {
-    "message": "Canvas Parent App"
-  },
-  "canvas_student_app_329567f": {
-    "message": "Canvas Student App"
-  },
-  "canvas_teacher_app_9dc7d7ed": {
-    "message": "Canvas Teacher App"
-  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Geef { discussionTitle } een andere groepering"
   },
   "change_user_1b7c4f23": {
     "message": "Gebruiker wijzigen"
   },
-  "choose_1319ef6b": {
-    "message": "Kiezen"
-  },
   "choose_color_11148181": {
     "message": "Kiezen { color }"
+  },
+  "choose_colorname_hexcode_14fe4c18": {
+    "message": "Kies { colorName } ({ hexCode })"
   },
   "choose_from_library_1b9caf95": {
     "message": "Kiezen uit bibliotheek"
@@ -337,6 +337,9 @@
   },
   "copied_880dcb1b": {
     "message": "Gekopieerd!"
+  },
+  "copied_c6518d41": {
+    "message": "Gekopieerd"
   },
   "copy_link_1ffb11a4": {
     "message": "Link kopieren"
@@ -416,6 +419,9 @@
   "customize_grade_value_964695a3": {
     "message": "Beoordeling aanpassen { value }"
   },
+  "cyan_c1d5f68a": {
+    "message": "Cyaan"
+  },
   "date_date_medium_at_date_time_short_2b9ce48b": {
     "message": "{ date, date, medium } om { date, time, short }"
   },
@@ -427,6 +433,9 @@
   },
   "decline_7eeb5ff4": {
     "message": "Weigeren"
+  },
+  "deep_purple_bb3e2907": {
+    "message": "Diep paars"
   },
   "delay_posting_f45eed7d": {
     "message": "Posten uitstellen"
@@ -536,8 +545,8 @@
   "edit_course_settings_9736fd1f": {
     "message": "Cursusinstellingen bewerken"
   },
-  "edit_courses_1f63340f": {
-    "message": "Cursussen bewerken"
+  "edit_dashboard_7e5b7043": {
+    "message": "Dashboard bewerken"
   },
   "edit_description_1206e0a8": {
     "message": "Beschrijving bewerken"
@@ -644,8 +653,8 @@
   "filter_people_b34b567b": {
     "message": "Personen filteren"
   },
-  "filter_submissions_81bc50de": {
-    "message": "Inzendingen filteren"
+  "filter_submissions_numselected_number_selected_177867b3": {
+    "message": "Inleveringen filteren. ({ numSelected, number }) geselecteerd."
   },
   "final_grade_4d7f6545": {
     "message": "Eindcijfer"
@@ -701,6 +710,15 @@
   "grades_muted_anonymous_grading_9291ea4b": {
     "message": "Cijfers verborgen, anonieme beoordeling"
   },
+  "green_15af4778": {
+    "message": "Groen"
+  },
+  "green_d46e687c": {
+    "message": "groen"
+  },
+  "grey_56f61c1": {
+    "message": "grijs"
+  },
   "group_a8f5ed9c": {
     "message": "Groep"
   },
@@ -737,20 +755,26 @@
   "highest_28ad71e6": {
     "message": "Hoogste"
   },
+  "highest_possible_score_pointspossible_number_c03ce29a": {
+    "message": "Hoogst mogelijke score, { pointsPossible, number }"
+  },
   "i_have_permission_to_use_file_d19a1a29": {
     "message": "Ik heb toestemming om het bestand te gebruiken"
   },
   "i_hold_the_copyright_71ee91b1": {
     "message": "Ik heb het auteursrecht"
   },
-  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
-    "message": "Als je een cursist of cursusleider bent, probeer dan een van onze andere apps hieronder."
-  },
   "in_progress_9d1ce8b9": {
     "message": "Wordt uitgevoerd"
   },
   "incomplete_da3c2ea2": {
     "message": "Onvolledig"
+  },
+  "indigo_2035fc55": {
+    "message": "Indigo"
+  },
+  "input_1d1d9b8e": {
+    "message": "Invoer"
   },
   "insert_image_42d30344": {
     "message": "Afbeelding invoegen"
@@ -781,6 +805,9 @@
   },
   "item_count_plural_one_item_other_items_88319c63": {
     "message": "{ item_count, plural,\n    one {# item}\n  other {# items}\n}"
+  },
+  "label_text_field_6677ab6f": {
+    "message": "{ label }, tekstveld"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "Laatste activiteit op { lastActivity, date, 'MMMM d' } om { lastActivity, time, short }"
@@ -815,11 +842,17 @@
   "letter_grade_e83e363c": {
     "message": "Beoordeling in lettervorm"
   },
+  "light_blue_5374f600": {
+    "message": "Lichtblauw"
+  },
+  "like_e8ad74ae": {
+    "message": "Like"
+  },
+  "loading_bde52856": {
+    "message": "Bezig met laden"
+  },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Vergrendel vragen na beantwoording"
-  },
-  "log_in_again_ec2b1f46": {
-    "message": "Opnieuw aanmelden"
   },
   "log_out_379ba28a": {
     "message": "Afmelden"
@@ -827,8 +860,11 @@
   "long_description_7d89285c": {
     "message": "Lange beschrijving"
   },
-  "manage_children_a28d764e": {
-    "message": "Kinderen beheren"
+  "lowest_possible_score_0_c2338db6": {
+    "message": "Laagst mogelijke score, 0"
+  },
+  "magenta_4a65993c": {
+    "message": "Magenta"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Alles als gelezen markeren"
@@ -887,6 +923,9 @@
   "name_count_plural_one_other_other_others_f47e51c3": {
     "message": "{ name } + { count, plural,\n    one {# andere}\n  other {# anderen}\n}"
   },
+  "name_profile_240f0967": {
+    "message": "{ name } profiel"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } meer"
   },
@@ -935,9 +974,6 @@
   "no_e16d9132": {
     "message": "Nee"
   },
-  "no_enrollments_6369cd31": {
-    "message": "Geen inschrijvingen"
-  },
   "no_grade_3b4d7f3e": {
     "message": "Geen cijfer"
   },
@@ -977,9 +1013,6 @@
   "none_9b6c9bec": {
     "message": "geen"
   },
-  "not_a_teacher_b0d0fc55": {
-    "message": "Geen docent?"
-  },
   "not_graded_e027c866": {
     "message": "Niet beoordeeld"
   },
@@ -991,6 +1024,9 @@
   },
   "nothing_more_to_do_b017e8bb": {
     "message": "Niets meer te doen."
+  },
+  "number_of_likes_count_b5355a14": {
+    "message": "Aantal likes: { count }"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# minuut}\n other {# minuten}\n}"
@@ -1004,14 +1040,14 @@
   "ok_c47544a2": {
     "message": "OK"
   },
+  "olive_6a3e4d6b": {
+    "message": "Olijf"
+  },
   "on_8f7190e5": {
     "message": "Aan"
   },
   "on_paper_46d0ba36": {
     "message": "Op papier"
-  },
-  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
-    "message": "Wellicht is een van onze andere apps beter geschikt hiervoor. Tik op een van de apps om de App Store te openen."
   },
   "one_question_at_a_time_3161ceeb": {
     "message": "Eén vraag tegelijk tonen"
@@ -1051,6 +1087,12 @@
   },
   "options_3ab0ea65": {
     "message": "Opties"
+  },
+  "orange_81386a62": {
+    "message": "Oranje"
+  },
+  "orange_86946f54": {
+    "message": "oranje"
   },
   "ordered_list_5fb1ce41": {
     "message": "Geordende lijst"
@@ -1097,6 +1139,9 @@
   "pin_cdbc9f8f": {
     "message": "Vastmaken"
   },
+  "pink_68ad45cb": {
+    "message": "Roze"
+  },
   "pinned_discussions_a55c0cea": {
     "message": "Gepinde discussies"
   },
@@ -1127,9 +1172,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Voorbeelden van dit bestandstype worden niet ondersteund."
   },
-  "profile_6bd2baed": {
-    "message": "Profiel"
-  },
   "profile_menu_a688027e": {
     "message": "Menu Profiel"
   },
@@ -1144,6 +1186,15 @@
   },
   "published_4bb5209e": {
     "message": "Gepubliceerd"
+  },
+  "pumpkin_904428d5": {
+    "message": "Pompoen"
+  },
+  "purple_71d4acca": {
+    "message": "paars"
+  },
+  "purple_7678a9fc": {
+    "message": "Paars"
   },
   "quiz_details_6c4473d3": {
     "message": "Details over toets"
@@ -1178,6 +1229,12 @@
   "recording_failed_2e1861b": {
     "message": "Opname mislukt"
   },
+  "red_8258edf3": {
+    "message": "Rood"
+  },
+  "red_ba15ab13": {
+    "message": "rood"
+  },
   "redo_363c58b7": {
     "message": "Opnieuw"
   },
@@ -1211,9 +1268,6 @@
   "report_a_problem_4d48624a": {
     "message": "Een probleem melden"
   },
-  "request_a_feature_3c8e2079": {
-    "message": "Een functie aanvragen"
-  },
   "request_could_not_be_completed_157615ef": {
     "message": "Aanvraag kan niet worden voltooid."
   },
@@ -1246,6 +1300,12 @@
   },
   "schedule_student_availability_332154a": {
     "message": "Schema met beschikbaarheid van cursist"
+  },
+  "score_number_out_of_points_plural_one_point_other__9993235e": {
+    "message": "{ score, number } van { points, plural,\n    one {# punt}\n  other {# punten}\n} mogelijk"
+  },
+  "score_number_out_of_pointspossible_number_points_p_d3e3e4df": {
+    "message": "{ score, number } van { pointsPossible, number } { points, plural,\n     =1 {punt}\n  other {punten}\n} mogelijk. { grade }"
   },
   "score_number_pointspossible_number_fd8705b8": {
     "message": "{ score, number }/{ pointsPossible, number }"
@@ -1292,6 +1352,9 @@
   "select_a_course_4710371f": {
     "message": "Een cursus selecteren"
   },
+  "select_which_courses_you_would_like_to_see_on_the__97d7e732": {
+    "message": "Selecteer de cursussen die je in het Dashboard wilt weergeven."
+  },
   "send_e3bd0ed0": {
     "message": "Verzenden"
   },
@@ -1315,6 +1378,9 @@
   },
   "set_home_to_82ab5119": {
     "message": "\"Home\" instellen naar..."
+  },
+  "set_text_color_to_colorname_hexcode_e178505b": {
+    "message": "Tekstkleur instellen op { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "Instellingen"
@@ -1430,14 +1496,20 @@
   "teachers_and_students_ba2db3e4": {
     "message": "Docent en cursisten"
   },
+  "teal_f729a294": {
+    "message": "Groenblauw"
+  },
   "terms_of_use_62ee73ad": {
     "message": "Gebruiksvoorwaarden"
   },
   "terms_of_use_6542769b": {
     "message": "Gebruiksvoorwaarden"
   },
-  "text_color_acf75eb6": {
-    "message": "Tekstkleur"
+  "text_color_colorhex_62e206a5": {
+    "message": "Tekstkleur ({ colorHex })"
+  },
+  "text_color_colorname_colorhex_2dc366ad": {
+    "message": "Tekstkleur { colorName } ({ colorHex })"
   },
   "text_submission_935eeb5": {
     "message": "Tekst indieningen"
@@ -1601,9 +1673,6 @@
   "total_grade_568e719f": {
     "message": "Totaalcijfer:"
   },
-  "try_logging_in_again_7a66111a": {
-    "message": "Probeer je opnieuw aan te melden"
-  },
   "un_starred_8fef021f": {
     "message": "Zonder ster"
   },
@@ -1689,6 +1758,9 @@
   "use_camera_47a0387b": {
     "message": "Camera gebruiken"
   },
+  "value_text_field_d9515a76": {
+    "message": "{ value }, tekstveld"
+  },
   "video_b9f27375": {
     "message": "Video"
   },
@@ -1697,9 +1769,6 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "Alle inzendingen bekijken"
-  },
-  "view_canvas_guides_a1c62a97": {
-    "message": "Canvas-handleidingen weergeven"
   },
   "view_long_description_2b592c0e": {
     "message": "Uitgebreide beschrijving bekijken"
@@ -1716,8 +1785,14 @@
   "welcome_73d18b4d": {
     "message": "Welkom!"
   },
+  "white_463b4bf9": {
+    "message": "wit"
+  },
   "whoops_de2cf9fc": {
     "message": "Oeps!"
+  },
+  "yellow_4b5532b3": {
+    "message": "geel"
   },
   "yes_dde87d5": {
     "message": "Ja"
@@ -1736,9 +1811,6 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Je moet een toegangscode invoeren"
-  },
-  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
-    "message": "Je hebt ten minste één actieve waarnemersinschrijving nodig om Canvas Parent te kunnen gebruiken."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "De opmerking bij je inzending is niet verzonden."

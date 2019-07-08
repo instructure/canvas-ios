@@ -420,8 +420,14 @@
 /* Title for the notification preferences page */
 "Notification Preferences" = "Prednostne nastavitve sporočil";
 
+/* No comment provided by engineer. */
+"Off" = "Izklopljeno";
+
 /* OK Button Title */
 "OK" = "V redu";
+
+/* No comment provided by engineer. */
+"On" = "Vklopljeno";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Odpri v brskalniku Safari";
@@ -638,6 +644,9 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Opravi kviz";
+
+/* No comment provided by engineer. */
+"Tap to toggle" = "Tapnite za preklop";
 
 /* Teal course color button */
 "Teal" = "Zelenomodra";

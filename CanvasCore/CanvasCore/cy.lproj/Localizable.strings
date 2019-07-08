@@ -420,8 +420,14 @@
 /* Title for the notification preferences page */
 "Notification Preferences" = "Dewisiadau Hysbysiadau";
 
+/* No comment provided by engineer. */
+"Off" = "Diffodd";
+
 /* OK Button Title */
 "OK" = "Iawn";
+
+/* No comment provided by engineer. */
+"On" = "Ar Waith";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Agor yn y Porwr";
@@ -638,6 +644,9 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Gwnewch y Cwis";
+
+/* No comment provided by engineer. */
+"Tap to toggle" = "Tapiwch i doglo";
 
 /* Teal course color button */
 "Teal" = "Glaswyrdd";

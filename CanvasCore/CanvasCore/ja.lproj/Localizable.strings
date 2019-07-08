@@ -420,8 +420,14 @@
 /* Title for the notification preferences page */
 "Notification Preferences" = "通知設定";
 
+/* No comment provided by engineer. */
+"Off" = "オフ";
+
 /* OK Button Title */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"On" = "オン";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Safariで開く";
@@ -638,6 +644,9 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "クイズを受ける";
+
+/* No comment provided by engineer. */
+"Tap to toggle" = "タップして切り替える";
 
 /* Teal course color button */
 "Teal" = "ティール";

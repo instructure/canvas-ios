@@ -7,6 +7,15 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* Embedded in 'enrolled in any courses as %@' */
+"a parent" = "rhiant";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a student" = "myfyriwr";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a teacher" = "athro";
+
 /* No comment provided by engineer. */
 "Act as User" = "Gweithredu fel Defnyddiwr";
 
@@ -51,6 +60,15 @@
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Canvas Parent" = "Canvas Parent";
+
+/* No comment provided by engineer. */
+"Canvas Student" = "Myfyriwr Canvas";
+
+/* No comment provided by engineer. */
+"Canvas Teacher" = "Canvas Teacher";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Clirio’r recordiad";
@@ -156,6 +174,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Heb Gwblhau";
+
+/* No comment provided by engineer. */
+"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Mae'n ymddangos nad ydych chi wedi ymrestru ar unrhyw gyrsiau fel %@. Efallai y byddai un o'n apiau eraill yn eich siwtio'n well. Tapiwch un i fynd i'r App Store.";
 
 /* No comment provided by engineer. */
 "Italic" = "Italig";
@@ -414,6 +435,9 @@
 
 /* No comment provided by engineer. */
 "white" = "gwyn";
+
+/* No comment provided by engineer. */
+"Whoops!" = "Wps!";
 
 /* No comment provided by engineer. */
 "yellow" = "melyn";

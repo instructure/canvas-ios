@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Tilillä ei ole käyttöehtoja"
   },
-  "act_as_is_essentially_logging_in_as_this_user_with_7870ece0": {
-    "message": "\"Toimi käyttäjänä\" kirjautuu periaatteessa sisään tänä käyttäjänä ilman salasanaa. Voit ryhtyä mihin tahansa toimenpiteeseen ikään kuin olisit tämä käyttäjä, ja muiden käyttäjien näkökulmasta näyttäisi siltä, että sinä olisit suorittanut nämä toimenpiteet. Tarkistuslokeihin kuitenkin kirjataan kuitenkin, että sinä suoritit toimenpiteet tämän käyttäjän puolesta."
-  },
   "act_as_user_d7ef0e48": {
     "message": "Toimi käyttäjänä"
   },
@@ -194,6 +191,9 @@
   "audio_playback_failed_912bcb82": {
     "message": "Äänen toisto epäonnistui"
   },
+  "augment_reality_4d23e2df": {
+    "message": "Lisätty todellisuus"
+  },
   "availability_8942cde6": {
     "message": "Saatavuus:"
   },
@@ -242,8 +242,20 @@
   "back_to_replies_94f3c127": {
     "message": "Takaisin vastauksiin"
   },
+  "black_8d713c75": {
+    "message": "musta"
+  },
+  "blue_7aca5197": {
+    "message": "sininen"
+  },
+  "blue_daf8fea9": {
+    "message": "Sininen"
+  },
   "bold_34b9d97e": {
     "message": "Lihavoitu"
+  },
+  "brick_f2656265": {
+    "message": "Tiili"
   },
   "can_edit_5a1e8dbf": {
     "message": "Voi muokata"
@@ -254,29 +266,17 @@
   "cancel_caeb1e68": {
     "message": "Peruuta"
   },
-  "canvas_guides_d65431": {
-    "message": "Canvas-oppaat"
-  },
-  "canvas_parent_app_f9236a3a": {
-    "message": "Canvas Parent -sovellus"
-  },
-  "canvas_student_app_329567f": {
-    "message": "Canvas-opiskelijasovellus"
-  },
-  "canvas_teacher_app_9dc7d7ed": {
-    "message": "Canvas Teacher -sovellus"
-  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Vaihda { discussionTitle } erilaiseen ryhmitykseen"
   },
   "change_user_1b7c4f23": {
     "message": "Change User (Vaihda käyttäjää)"
   },
-  "choose_1319ef6b": {
-    "message": "Valitse"
-  },
   "choose_color_11148181": {
     "message": "Valitse { color }"
+  },
+  "choose_colorname_hexcode_14fe4c18": {
+    "message": "Valitse { colorName } ({ hexCode })"
   },
   "choose_from_library_1b9caf95": {
     "message": "Valitse kirjastosta"
@@ -308,6 +308,9 @@
   "color_a363e1b0": {
     "message": "Väri"
   },
+  "color_overlay_fb5ecce7": {
+    "message": "Värin päällys"
+  },
   "comment_7ef1428e": {
     "message": "Kommentti"
   },
@@ -334,6 +337,9 @@
   },
   "copied_880dcb1b": {
     "message": "Kopioitu!"
+  },
+  "copied_c6518d41": {
+    "message": "Kopioitu"
   },
   "copy_link_1ffb11a4": {
     "message": "Kopioi linkki"
@@ -413,6 +419,9 @@
   "customize_grade_value_964695a3": {
     "message": "Mukauta arvosanaa { value }"
   },
+  "cyan_c1d5f68a": {
+    "message": "Syaani"
+  },
   "date_date_medium_at_date_time_short_2b9ce48b": {
     "message": "{ date, date, medium } kohteessa { date, time, short }"
   },
@@ -424,6 +433,9 @@
   },
   "decline_7eeb5ff4": {
     "message": "Hylkää"
+  },
+  "deep_purple_bb3e2907": {
+    "message": "Tumman violetti"
   },
   "delay_posting_f45eed7d": {
     "message": "Viivästytä lähetystä"
@@ -491,9 +503,6 @@
   "display_grade_as_c165e9a6": {
     "message": "Näytä arvosana seuraavasti"
   },
-  "domain_3b54c511": {
-    "message": "Verkkotunnus"
-  },
   "done_54e3d4b6": {
     "message": "Valmis"
   },
@@ -536,8 +545,8 @@
   "edit_course_settings_9736fd1f": {
     "message": "Muokkaa kurssin asetuksia"
   },
-  "edit_courses_1f63340f": {
-    "message": "Muokkaa kursseja"
+  "edit_dashboard_7e5b7043": {
+    "message": "Muokkaa koontinäyttöä"
   },
   "edit_description_1206e0a8": {
     "message": "Muokkaa kuvausta"
@@ -644,8 +653,8 @@
   "filter_people_b34b567b": {
     "message": "Suodata ihmisiä"
   },
-  "filter_submissions_81bc50de": {
-    "message": "Suodattimen lähetykset"
+  "filter_submissions_numselected_number_selected_177867b3": {
+    "message": "Suodattimen lähetykset. ({ numSelected, number }) valittu."
   },
   "final_grade_4d7f6545": {
     "message": "Lopullinen arvosana"
@@ -683,9 +692,6 @@
   "grade_grade_990eb477": {
     "message": "Arvosana { grade }"
   },
-  "grade_grade_number_percent_cda06b4d": {
-    "message": "Arvosana { grade, number, percent }"
-  },
   "graded_25cd3fcd": {
     "message": "Arvosteltu"
   },
@@ -703,6 +709,15 @@
   },
   "grades_muted_anonymous_grading_9291ea4b": {
     "message": "Arvosanat mykistetty, nimetön arvosanojen anto"
+  },
+  "green_15af4778": {
+    "message": "Vihreä"
+  },
+  "green_d46e687c": {
+    "message": "vihreä"
+  },
+  "grey_56f61c1": {
+    "message": "harmaa"
   },
   "group_a8f5ed9c": {
     "message": "Ryhmä"
@@ -740,20 +755,26 @@
   "highest_28ad71e6": {
     "message": "Korkein"
   },
+  "highest_possible_score_pointspossible_number_c03ce29a": {
+    "message": "Korkein mahdollinen pistemäärä, { pointsPossible, number }"
+  },
   "i_have_permission_to_use_file_d19a1a29": {
     "message": "Minulla on käyttöoikeudet tähän tiedostoon"
   },
   "i_hold_the_copyright_71ee91b1": {
     "message": "Minulla on tekijäoikeus"
   },
-  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
-    "message": "Jos olet opiskelja tai opettaja, yritä jotakin alla olevista sovelluksistamme."
-  },
   "in_progress_9d1ce8b9": {
     "message": "Käynnissä"
   },
   "incomplete_da3c2ea2": {
     "message": "Keskeneräinen"
+  },
+  "indigo_2035fc55": {
+    "message": "Indigo"
+  },
+  "input_1d1d9b8e": {
+    "message": "Syöttö"
   },
   "insert_image_42d30344": {
     "message": "Lisää kuva"
@@ -784,6 +805,9 @@
   },
   "item_count_plural_one_item_other_items_88319c63": {
     "message": "{ item_count, plural,\n    one {# kohde}\n  other {# kohdetta}\n}"
+  },
+  "label_text_field_6677ab6f": {
+    "message": "{ label }, tekstikenttä"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "Viimeisin aktiviteetti { lastActivity, date, 'MMMM d' } kohdassa { lastActivity, time, short }."
@@ -818,11 +842,17 @@
   "letter_grade_e83e363c": {
     "message": "Kirjainarvosana"
   },
+  "light_blue_5374f600": {
+    "message": "Vaaleansininen"
+  },
+  "like_e8ad74ae": {
+    "message": "Tykkää"
+  },
+  "loading_bde52856": {
+    "message": "Ladataan"
+  },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Lukitse kysymykset vastaamisen jälkeen"
-  },
-  "log_in_again_ec2b1f46": {
-    "message": "Kirjaudu uudelleen sisään"
   },
   "log_out_379ba28a": {
     "message": "Kirjaudu ulos"
@@ -830,8 +860,11 @@
   "long_description_7d89285c": {
     "message": "Pitkä kuvaus"
   },
-  "manage_children_a28d764e": {
-    "message": "Hallitse lapsia"
+  "lowest_possible_score_0_c2338db6": {
+    "message": "Alhaisin mahdollinen pistemäärä, 0 "
+  },
+  "magenta_4a65993c": {
+    "message": "Magenta"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Merkitse kaikki luetuiksi"
@@ -890,6 +923,9 @@
   "name_count_plural_one_other_other_others_f47e51c3": {
     "message": "{ name } + { count, plural,\n    one {# muu}\n  other {#muut}\n}"
   },
+  "name_profile_240f0967": {
+    "message": "{ name } Profiili"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } lisää"
   },
@@ -938,9 +974,6 @@
   "no_e16d9132": {
     "message": "Ei"
   },
-  "no_enrollments_6369cd31": {
-    "message": "Ei rekisteröitymisiä"
-  },
   "no_grade_3b4d7f3e": {
     "message": "Ei arvosanaa"
   },
@@ -980,9 +1013,6 @@
   "none_9b6c9bec": {
     "message": "ei mitään"
   },
-  "not_a_teacher_b0d0fc55": {
-    "message": "Et ole opettaja?"
-  },
   "not_graded_e027c866": {
     "message": "Ei arvosteltu"
   },
@@ -994,6 +1024,9 @@
   },
   "nothing_more_to_do_b017e8bb": {
     "message": "Ei enempää tehtävänä."
+  },
+  "number_of_likes_count_b5355a14": {
+    "message": "Tykkäysten määrä: { count }"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minuuttia}\n  other {# Minuuttia}\n}"
@@ -1007,14 +1040,14 @@
   "ok_c47544a2": {
     "message": "OK"
   },
+  "olive_6a3e4d6b": {
+    "message": "Oliivi"
+  },
   "on_8f7190e5": {
     "message": "Päällä"
   },
   "on_paper_46d0ba36": {
     "message": "Paperilla"
-  },
-  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
-    "message": "Yksi muista sovelluksistamme saattaa olla paremmin sopiva. Käy App Storessa napauttamalla kerran."
   },
   "one_question_at_a_time_3161ceeb": {
     "message": "Yksi kysymys kerrallaan"
@@ -1055,11 +1088,23 @@
   "options_3ab0ea65": {
     "message": "Asetukset"
   },
+  "orange_81386a62": {
+    "message": "Oranssi"
+  },
+  "orange_86946f54": {
+    "message": "oranssi"
+  },
   "ordered_list_5fb1ce41": {
     "message": "Tilattujen luettelo"
   },
   "out_of_points_number_42209979": {
     "message": "/{ points, number }"
+  },
+  "override_3de65b2c": {
+    "message": "Korvaa"
+  },
+  "override_grade_grade_f33671d4": {
+    "message": "Korvaa arvosana { grade }"
   },
   "page_details_847e35e6": {
     "message": "Sivun tiedot"
@@ -1094,6 +1139,9 @@
   "pin_cdbc9f8f": {
     "message": "Nasta"
   },
+  "pink_68ad45cb": {
+    "message": "Vaaleanpunainen"
+  },
   "pinned_discussions_a55c0cea": {
     "message": "Merkityt keskustelut"
   },
@@ -1124,9 +1172,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Tiedostotyypin esikatselua ei tueta"
   },
-  "profile_6bd2baed": {
-    "message": "Profiili"
-  },
   "profile_menu_a688027e": {
     "message": "Esikatseluvalikko"
   },
@@ -1141,6 +1186,15 @@
   },
   "published_4bb5209e": {
     "message": "Julkaistut"
+  },
+  "pumpkin_904428d5": {
+    "message": "Kurpitsa"
+  },
+  "purple_71d4acca": {
+    "message": "purppura"
+  },
+  "purple_7678a9fc": {
+    "message": "Purppura"
   },
   "quiz_details_6c4473d3": {
     "message": "Tietovisan tiedot"
@@ -1175,6 +1229,12 @@
   "recording_failed_2e1861b": {
     "message": "Nauhoitus epäonnistui"
   },
+  "red_8258edf3": {
+    "message": "Punainen"
+  },
+  "red_ba15ab13": {
+    "message": "punainen"
+  },
   "redo_363c58b7": {
     "message": "Suorita uudelleen"
   },
@@ -1208,9 +1268,6 @@
   "report_a_problem_4d48624a": {
     "message": "Raportoi ongelma"
   },
-  "request_a_feature_3c8e2079": {
-    "message": "Pyydä ominaisuus"
-  },
   "request_could_not_be_completed_157615ef": {
     "message": "Pyyntöä ei voitu suorittaa loppuun."
   },
@@ -1243,6 +1300,12 @@
   },
   "schedule_student_availability_332154a": {
     "message": "Aikatauluta opiskelijan saatavissa olo"
+  },
+  "score_number_out_of_points_plural_one_point_other__9993235e": {
+    "message": "{ score, number }/{ points, plural,\n    one {# piste}\n  other {# pistettä}\n} mahdollista"
+  },
+  "score_number_out_of_pointspossible_number_points_p_d3e3e4df": {
+    "message": "{ score, number }/{ pointsPossible, number } { points, plural,\n     =1 {piste}\n  other {pistettä}\n} mahdollista. { grade }"
   },
   "score_number_pointspossible_number_fd8705b8": {
     "message": "{ score, number }/{ pointsPossible, number }"
@@ -1289,6 +1352,9 @@
   "select_a_course_4710371f": {
     "message": "Valitse kurssi"
   },
+  "select_which_courses_you_would_like_to_see_on_the__97d7e732": {
+    "message": "Valitse, mitkä kurssit haluaisit nähdä koontinäytöllä."
+  },
   "send_e3bd0ed0": {
     "message": "Lähetä"
   },
@@ -1312,6 +1378,9 @@
   },
   "set_home_to_82ab5119": {
     "message": "Määritä ”Etusivu” arvoon…"
+  },
+  "set_text_color_to_colorname_hexcode_e178505b": {
+    "message": "Määriä tekstiväriksi { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "Asetukset"
@@ -1427,14 +1496,20 @@
   "teachers_and_students_ba2db3e4": {
     "message": "Opettajat ja opiskelijat"
   },
+  "teal_f729a294": {
+    "message": "Sinivihreä"
+  },
   "terms_of_use_62ee73ad": {
     "message": "Käyttöehdot"
   },
   "terms_of_use_6542769b": {
     "message": "Käyttöehdot"
   },
-  "text_color_acf75eb6": {
-    "message": "Tekstiväri"
+  "text_color_colorhex_62e206a5": {
+    "message": "Tekstiväri ({ colorHex })"
+  },
+  "text_color_colorname_colorhex_2dc366ad": {
+    "message": "Tekstiväri { colorName } ({ colorHex })"
   },
   "text_submission_935eeb5": {
     "message": "Tekstin lähetys"
@@ -1517,9 +1592,6 @@
   "there_was_an_error_loading_this_attachment_408acc12": {
     "message": "Tämän liitteen latauksessa ilmeni virhe."
   },
-  "there_was_an_error_with_act_as_user_please_try_aga_d9f9f8f1": {
-    "message": "Ilmeni virhe toiminnossa Toimi käyttäjänä. Yritä myöhemmin uudelleen."
-  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Ongelma viestejäsi ladatessa."
   },
@@ -1555,6 +1627,9 @@
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "Tällä ryhmällä ei ole lähetystä tähän tehtävään."
+  },
+  "this_is_a_media_comment_2e395230": {
+    "message": "Tämä on mediakommentti"
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
     "message": "Tämä on henkilökohtainen väriasetuksesi. Vain sinä näet tämän värin kurssille."
@@ -1597,9 +1672,6 @@
   },
   "total_grade_568e719f": {
     "message": "Kokonaisarvosana:"
-  },
-  "try_logging_in_again_7a66111a": {
-    "message": "Yritä kirjautua sisään uudelleen"
   },
   "un_starred_8fef021f": {
     "message": "Ei merkitty tähdellä"
@@ -1686,8 +1758,8 @@
   "use_camera_47a0387b": {
     "message": "Käytä kameraa"
   },
-  "user_id_bcace870": {
-    "message": "Käyttäjätunnus"
+  "value_text_field_d9515a76": {
+    "message": "{ value }, tekstikenttä"
   },
   "video_b9f27375": {
     "message": "Video"
@@ -1697,9 +1769,6 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "Näytä kaikki lähetykset"
-  },
-  "view_canvas_guides_a1c62a97": {
-    "message": "Tarkastele Canvas-oppaita"
   },
   "view_long_description_2b592c0e": {
     "message": "Tarkastele pitkää kuvausta"
@@ -1716,8 +1785,14 @@
   "welcome_73d18b4d": {
     "message": "Tervetuloa!"
   },
+  "white_463b4bf9": {
+    "message": "valkoinen"
+  },
   "whoops_de2cf9fc": {
     "message": "Hups!"
+  },
+  "yellow_4b5532b3": {
+    "message": "keltainen"
   },
   "yes_dde87d5": {
     "message": "Kyllä"
@@ -1736,9 +1811,6 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Sinun täytyy syöttää käyttökoodi"
-  },
-  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
-    "message": "Täytyy olla vähintään yksi aktiivinen havaitsijan ilmoittautuminen, jotta Canvas Parent -sovellusta voitaisiin käyttää."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "Lähetyksesi kommentin toimittaminen epäonnistui."

@@ -406,7 +406,7 @@
 "Course Syllabus" = "Subject Overview";
 
 /* Courses page title */
-"Courses" = "Subject";
+"Courses" = "Subjects";
 
 /* Cancel button title */
 "Create Folder" = "Create Folder";
@@ -1190,7 +1190,7 @@
 "Syllabus" = "Subject Overview";
 
 /* Short name for TA enrollment */
-"TA" = "Tutors";
+"TA" = "Tutor";
 
 /* Take a picture to use in a comment. */
 "Take a Photo..." = "Take a Photo...";
@@ -1217,7 +1217,7 @@
 "Teacher" = "Instructor";
 
 /* No comment provided by engineer. */
-"Teachers" = "Instructors";
+"Teachers" = "Instructor";
 
 /* No comment provided by engineer. */
 "Tell us what's wrong" = "Tell us what's wrong.";

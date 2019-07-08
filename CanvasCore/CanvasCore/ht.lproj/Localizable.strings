@@ -420,8 +420,14 @@
 /* Title for the notification preferences page */
 "Notification Preferences" = "Preferans Notifikasyon";
 
+/* No comment provided by engineer. */
+"Off" = "Fèmen";
+
 /* OK Button Title */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"On" = "Ouvri";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Ouvri nan Safari";
@@ -638,6 +644,9 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Pran Quiz";
+
+/* No comment provided by engineer. */
+"Tap to toggle" = "Tape pou chanje";
 
 /* Teal course color button */
 "Teal" = "Ble vèt";

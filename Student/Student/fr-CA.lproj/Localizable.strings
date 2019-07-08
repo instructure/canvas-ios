@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "Add a comment or reply to previous comments" = "Ajouter un commentaire ou une réponse aux commentaires précédents";
 
+/* No comment provided by engineer. */
+"Add media attachment" = "Ajouter un pièce jointe de support média";
+
 /* All Courses screen title */
 "All Courses" = "Tous les cours";
 
@@ -18,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "Attachments" = "Pièces jointes";
+
+/* No comment provided by engineer. */
+"Calendar" = "Calendrier";
 
 /* No comment provided by engineer. */
 "Cancel" = "Annuler";
@@ -98,6 +104,9 @@
 "Have questions? Use this area to message your instructor about this assignment." = "Avez-vous des questions? Utiliser cette zone pour envoyer un message à votre instructeur sur cette tâche.";
 
 /* No comment provided by engineer. */
+"Inbox" = "Boîte de réception";
+
+/* No comment provided by engineer. */
 "Instructions" = "Instructions";
 
 /* No comment provided by engineer. */
@@ -114,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "No Submission Date" = "Aucune date d’envoi";
+
+/* No comment provided by engineer. */
+"Notifications" = "Notifications";
 
 /* No comment provided by engineer. */
 "On %@ %@ commented \"%@\"" = "Le %1$@ %2$@ a commenté « %3$@ »";
@@ -150,6 +162,12 @@
 
 /* No comment provided by engineer. */
 "Resubmit Assignment" = "Envoyer la tâche de nouveau";
+
+/* No comment provided by engineer. */
+"Resume Quiz" = "Continuer le questionnaire";
+
+/* No comment provided by engineer. */
+"Retake Quiz" = "Recommencer le questionnaire";
 
 /* No comment provided by engineer. */
 "Retry" = "Réessayer";
@@ -236,6 +254,9 @@
 "Time Limit:" = "Limite de temps :";
 
 /* No comment provided by engineer. */
+"To Do" = "À faire";
+
+/* No comment provided by engineer. */
 "Updated Language Settings" = "Paramètres de langue mis à jour";
 
 /* No comment provided by engineer. */
@@ -246,6 +267,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Voir le fichier %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %d. %@" = "Voir la tentative de soumission %1$d. %2$@.";
 
 /* No comment provided by engineer. */
 "Website Address" = "Adresse du site Web";

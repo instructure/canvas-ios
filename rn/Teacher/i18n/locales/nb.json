@@ -242,8 +242,20 @@
   "back_to_replies_94f3c127": {
     "message": "Tilbake til svar"
   },
+  "black_8d713c75": {
+    "message": "svart"
+  },
+  "blue_7aca5197": {
+    "message": "blå"
+  },
+  "blue_daf8fea9": {
+    "message": "Blå"
+  },
   "bold_34b9d97e": {
     "message": "Fet"
+  },
+  "brick_f2656265": {
+    "message": "Blokk"
   },
   "can_edit_5a1e8dbf": {
     "message": "Kan redigere"
@@ -254,29 +266,17 @@
   "cancel_caeb1e68": {
     "message": "Avbryt"
   },
-  "canvas_guides_d65431": {
-    "message": "Canvas-guider"
-  },
-  "canvas_parent_app_f9236a3a": {
-    "message": "Canvas foreldreapplikasjon"
-  },
-  "canvas_student_app_329567f": {
-    "message": "Canvas studentapplikasjon"
-  },
-  "canvas_teacher_app_9dc7d7ed": {
-    "message": "Canvas lærer-app"
-  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Endre { discussionTitle } til annen gruppering"
   },
   "change_user_1b7c4f23": {
     "message": "Endre bruker"
   },
-  "choose_1319ef6b": {
-    "message": "Velg"
-  },
   "choose_color_11148181": {
     "message": "Velg { color }"
+  },
+  "choose_colorname_hexcode_14fe4c18": {
+    "message": "Velg { colorName } ({ hexCode })"
   },
   "choose_from_library_1b9caf95": {
     "message": "Velg fra bibliotek"
@@ -337,6 +337,9 @@
   },
   "copied_880dcb1b": {
     "message": "Kopiert!"
+  },
+  "copied_c6518d41": {
+    "message": "Kopiert"
   },
   "copy_link_1ffb11a4": {
     "message": "Kopiert lenke"
@@ -416,6 +419,9 @@
   "customize_grade_value_964695a3": {
     "message": "Tilpass karakter { value }"
   },
+  "cyan_c1d5f68a": {
+    "message": "Cyan"
+  },
   "date_date_medium_at_date_time_short_2b9ce48b": {
     "message": "{ date, date, medium } på { date, time, short }"
   },
@@ -427,6 +433,9 @@
   },
   "decline_7eeb5ff4": {
     "message": "Avslå"
+  },
+  "deep_purple_bb3e2907": {
+    "message": "Mørkelilla"
   },
   "delay_posting_f45eed7d": {
     "message": "Utsett publisering"
@@ -536,8 +545,8 @@
   "edit_course_settings_9736fd1f": {
     "message": "Rediger emne-innstillinger"
   },
-  "edit_courses_1f63340f": {
-    "message": "Rediger kurs"
+  "edit_dashboard_7e5b7043": {
+    "message": "Rediger dashbord"
   },
   "edit_description_1206e0a8": {
     "message": "Rediger beskrivelse"
@@ -644,8 +653,8 @@
   "filter_people_b34b567b": {
     "message": "Filtrer folk"
   },
-  "filter_submissions_81bc50de": {
-    "message": "Filtrer innleveringer"
+  "filter_submissions_numselected_number_selected_177867b3": {
+    "message": "Filtrer innleveringer. ({ numSelected, number }) valgt."
   },
   "final_grade_4d7f6545": {
     "message": "Slutt karakter"
@@ -701,6 +710,15 @@
   "grades_muted_anonymous_grading_9291ea4b": {
     "message": "Karakterer dempet, anonym karaktersetting"
   },
+  "green_15af4778": {
+    "message": "Grønn"
+  },
+  "green_d46e687c": {
+    "message": "grønn"
+  },
+  "grey_56f61c1": {
+    "message": "grå"
+  },
   "group_a8f5ed9c": {
     "message": "Gruppe"
   },
@@ -737,20 +755,26 @@
   "highest_28ad71e6": {
     "message": "Høyest"
   },
+  "highest_possible_score_pointspossible_number_c03ce29a": {
+    "message": "Høyest mulig resultat, { pointsPossible, number }"
+  },
   "i_have_permission_to_use_file_d19a1a29": {
     "message": "Jeg har rettigheter til å bruke filen"
   },
   "i_hold_the_copyright_71ee91b1": {
     "message": "Jeg har opphavsretten"
   },
-  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
-    "message": "Prøv en av de andre appene våre nedenfor, hvis du er student eller lærer."
-  },
   "in_progress_9d1ce8b9": {
     "message": "Pågår"
   },
   "incomplete_da3c2ea2": {
     "message": "Ufullstendig"
+  },
+  "indigo_2035fc55": {
+    "message": "Indigo"
+  },
+  "input_1d1d9b8e": {
+    "message": "Inndata"
   },
   "insert_image_42d30344": {
     "message": "Sett inn bilde"
@@ -781,6 +805,9 @@
   },
   "item_count_plural_one_item_other_items_88319c63": {
     "message": "{ item_count, plural,\n    one {# element}\n  other {# elementer}\n}"
+  },
+  "label_text_field_6677ab6f": {
+    "message": "{ label }, tekstfelt"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "Siste aktivitet { lastActivity, date, 'MMMM d' } på { lastActivity, time, short }"
@@ -815,11 +842,17 @@
   "letter_grade_e83e363c": {
     "message": "Bokstavkarakter"
   },
+  "light_blue_5374f600": {
+    "message": "Lyseblå"
+  },
+  "like_e8ad74ae": {
+    "message": "Liker"
+  },
+  "loading_bde52856": {
+    "message": "Laster"
+  },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Lås spørsmål etter svar er avgitt"
-  },
-  "log_in_again_ec2b1f46": {
-    "message": "Logg inn igjen"
   },
   "log_out_379ba28a": {
     "message": "Logg Ut"
@@ -827,8 +860,11 @@
   "long_description_7d89285c": {
     "message": "Lang beskrivelse"
   },
-  "manage_children_a28d764e": {
-    "message": "Administrere barn"
+  "lowest_possible_score_0_c2338db6": {
+    "message": "Lavest mulig resultat, 0"
+  },
+  "magenta_4a65993c": {
+    "message": "Magenta"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Merk alle som lest"
@@ -887,6 +923,9 @@
   "name_count_plural_one_other_other_others_f47e51c3": {
     "message": "{ name } + { count, plural,\n    one {# annen}\n  other {# andre}\n}"
   },
+  "name_profile_240f0967": {
+    "message": "{ name } Profil"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } mer"
   },
@@ -935,9 +974,6 @@
   "no_e16d9132": {
     "message": "Nei"
   },
-  "no_enrollments_6369cd31": {
-    "message": "Ingen påmeldinger"
-  },
   "no_grade_3b4d7f3e": {
     "message": "Ingen vurdering"
   },
@@ -977,9 +1013,6 @@
   "none_9b6c9bec": {
     "message": "ingen"
   },
-  "not_a_teacher_b0d0fc55": {
-    "message": "Ikke lærer?"
-  },
   "not_graded_e027c866": {
     "message": "Ikke karaktersatt"
   },
@@ -991,6 +1024,9 @@
   },
   "nothing_more_to_do_b017e8bb": {
     "message": "Ingenting mer å gjøre."
+  },
+  "number_of_likes_count_b5355a14": {
+    "message": "Antall liker: { count }"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minutt}\n other {# Minutter}\n}"
@@ -1004,14 +1040,14 @@
   "ok_c47544a2": {
     "message": "OK"
   },
+  "olive_6a3e4d6b": {
+    "message": "Oliven"
+  },
   "on_8f7190e5": {
     "message": "På"
   },
   "on_paper_46d0ba36": {
     "message": "På papir"
-  },
-  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
-    "message": "En av våre andre applikasjoner kan være mer tilpasset. Trykk en for å gå til App Store."
   },
   "one_question_at_a_time_3161ceeb": {
     "message": "Ett spørsmål av gangen"
@@ -1051,6 +1087,12 @@
   },
   "options_3ab0ea65": {
     "message": "Valg"
+  },
+  "orange_81386a62": {
+    "message": "Oransje"
+  },
+  "orange_86946f54": {
+    "message": "oransje"
   },
   "ordered_list_5fb1ce41": {
     "message": "Sortert liste"
@@ -1097,6 +1139,9 @@
   "pin_cdbc9f8f": {
     "message": "Fest"
   },
+  "pink_68ad45cb": {
+    "message": "Rosa"
+  },
   "pinned_discussions_a55c0cea": {
     "message": "Merkede diskusjoner"
   },
@@ -1127,9 +1172,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Forhåndsvisning av denne filtypen støttes ikke"
   },
-  "profile_6bd2baed": {
-    "message": "Profil"
-  },
   "profile_menu_a688027e": {
     "message": "Profil meny"
   },
@@ -1144,6 +1186,15 @@
   },
   "published_4bb5209e": {
     "message": "Publisert"
+  },
+  "pumpkin_904428d5": {
+    "message": "Gresskar"
+  },
+  "purple_71d4acca": {
+    "message": "lilla"
+  },
+  "purple_7678a9fc": {
+    "message": "Lilla"
   },
   "quiz_details_6c4473d3": {
     "message": "Testdetaljer"
@@ -1178,6 +1229,12 @@
   "recording_failed_2e1861b": {
     "message": "Opptak mislyktes"
   },
+  "red_8258edf3": {
+    "message": "Rød"
+  },
+  "red_ba15ab13": {
+    "message": "rød"
+  },
   "redo_363c58b7": {
     "message": "Gjør om"
   },
@@ -1211,9 +1268,6 @@
   "report_a_problem_4d48624a": {
     "message": "Rapporter et problem"
   },
-  "request_a_feature_3c8e2079": {
-    "message": "Be om en funksjon"
-  },
   "request_could_not_be_completed_157615ef": {
     "message": "Kunne ikke fullføre forespørsel."
   },
@@ -1246,6 +1300,12 @@
   },
   "schedule_student_availability_332154a": {
     "message": "Planlegg studenttilgjengelighet"
+  },
+  "score_number_out_of_points_plural_one_point_other__9993235e": {
+    "message": "{ score, number } av { points, plural,\n    one {# poeng}\n  other {# poeng}\n} mulig/mulige"
+  },
+  "score_number_out_of_pointspossible_number_points_p_d3e3e4df": {
+    "message": "{ score, number } av { pointsPossible, number } { points, plural,\n     =1 {poeng}\n  other {poeng}\n} mulig/mulige. { grade }"
   },
   "score_number_pointspossible_number_fd8705b8": {
     "message": "{ score, number }/{ pointsPossible, number }"
@@ -1292,6 +1352,9 @@
   "select_a_course_4710371f": {
     "message": "Velg et emne"
   },
+  "select_which_courses_you_would_like_to_see_on_the__97d7e732": {
+    "message": "Velg hvilke emner du vil se på dashbordet."
+  },
   "send_e3bd0ed0": {
     "message": "Send"
   },
@@ -1315,6 +1378,9 @@
   },
   "set_home_to_82ab5119": {
     "message": "Sett “Hjem” til..."
+  },
+  "set_text_color_to_colorname_hexcode_e178505b": {
+    "message": "Sett tekstfarge til { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "Innstillinger"
@@ -1430,14 +1496,20 @@
   "teachers_and_students_ba2db3e4": {
     "message": "Faglærer, lærer og studenter"
   },
+  "teal_f729a294": {
+    "message": "Blågrønn"
+  },
   "terms_of_use_62ee73ad": {
     "message": "Brukervilkår"
   },
   "terms_of_use_6542769b": {
     "message": "Brukervilkår"
   },
-  "text_color_acf75eb6": {
-    "message": "Tekstfargen"
+  "text_color_colorhex_62e206a5": {
+    "message": "Tekstfarge ({ colorHex })"
+  },
+  "text_color_colorname_colorhex_2dc366ad": {
+    "message": "Tekstfarge { colorName } ({ colorHex })"
   },
   "text_submission_935eeb5": {
     "message": "Tekstinnsending"
@@ -1601,9 +1673,6 @@
   "total_grade_568e719f": {
     "message": "Total karakter:"
   },
-  "try_logging_in_again_7a66111a": {
-    "message": "Prøv å logge på igjen"
-  },
   "un_starred_8fef021f": {
     "message": "Stjernemerket fjernet"
   },
@@ -1689,6 +1758,9 @@
   "use_camera_47a0387b": {
     "message": "Bruk kamera"
   },
+  "value_text_field_d9515a76": {
+    "message": "{ value }, tekstfelt"
+  },
   "video_b9f27375": {
     "message": "Video"
   },
@@ -1697,9 +1769,6 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "Vis alle innleveringer"
-  },
-  "view_canvas_guides_a1c62a97": {
-    "message": "Vis veivisning til Canvas"
   },
   "view_long_description_2b592c0e": {
     "message": "Vis lang beskrivelse"
@@ -1716,8 +1785,14 @@
   "welcome_73d18b4d": {
     "message": "Velkommen!"
   },
+  "white_463b4bf9": {
+    "message": "hvit"
+  },
   "whoops_de2cf9fc": {
     "message": "Oisann!"
+  },
+  "yellow_4b5532b3": {
+    "message": "gul"
   },
   "yes_dde87d5": {
     "message": "Ja"
@@ -1736,9 +1811,6 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Du må skrive inn en tilgangskode"
-  },
-  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
-    "message": "Du trenger minst en aktiv observatør-påmelding for å bruke Canvas Parent."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "Din innleveringskommentar ble ikke sendt."

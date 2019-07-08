@@ -420,8 +420,14 @@
 /* Title for the notification preferences page */
 "Notification Preferences" = "whakamōhiotanga Manakohanga";
 
+/* No comment provided by engineer. */
+"Off" = "atu";
+
 /* OK Button Title */
 "OK" = "Ae";
+
+/* No comment provided by engineer. */
+"On" = "i runga i";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Tuwhera i roto i te Safari";
@@ -638,6 +644,9 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Tangohia Quiz";
+
+/* No comment provided by engineer. */
+"Tap to toggle" = "Pātō anō ki toggle";
 
 /* Teal course color button */
 "Teal" = "Tira";

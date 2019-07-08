@@ -56,6 +56,9 @@
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Sallitut yritykset";
 
+/* Default error message displayed when a file fails to upload */
+"An error occurred, please try again." = "Ilmeni virhe, yritä uudelleen.";
+
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Ilmeni odottamaton virhe.";
 
@@ -307,6 +310,9 @@
 /* front page segmented control title */
 "Front Page" = "Etusivu";
 
+/* No comment provided by engineer. */
+"Get Grades for" = "Hae arvosanat kohteesta";
+
 /* navigate */
 "Go" = "Siirry";
 
@@ -324,6 +330,9 @@
 
 /* Hides the question list */
 "Hide Question List" = "Piilota kysymysluettelo";
+
+/* No comment provided by engineer. */
+"Image %d" = "Kuva %d";
 
 /* Inbox tab title */
 "Inbox" = "Tulevien laatikko";
@@ -411,8 +420,14 @@
 /* Title for the notification preferences page */
 "Notification Preferences" = "Ilmoitusasetukset";
 
+/* No comment provided by engineer. */
+"Off" = "Pois";
+
 /* OK Button Title */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"On" = "Päällä";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Avaa Safarissa";
@@ -629,6 +644,9 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Suorita tietovisa";
+
+/* No comment provided by engineer. */
+"Tap to toggle" = "Vaihtele napauttamalla";
 
 /* Teal course color button */
 "Teal" = "Sinivihreä";
