@@ -45,4 +45,8 @@ enum CourseNavigation {
     static var people: Element {
         return app.find(id: "courses-details.people-cell")
     }
+
+    static var quizzes: Element {
+        return app.find(id: "courses-details.quizzes-cell")
+    }
 }
