@@ -69,6 +69,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
             window?.makeKeyAndVisible()
         }
+
+        handleLaunchOptionsNotifications(launchOptions)
+
         return true
     }
 
@@ -150,10 +153,27 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        StartupManager.shared.enqueueTask { [weak self] in
-            PushNotifications.record(response.notification)
-            let userInfo = response.notification.request.content.userInfo
+        handlePush(userInfo: response.notification.request.content.userInfo)
+    }
 
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+
+    @objc func handlePushNotificationRegistrationError(_ error: NSError) {
+        Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: ["source": "push_notification_registration"])
+    }
+
+    func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
+            let _ = notification["aps"] as? [String: AnyObject] {
+            handlePush(userInfo: notification)
+        }
+    }
+
+    func handlePush(userInfo: [AnyHashable: Any]) {
+        StartupManager.shared.enqueueTask { [weak self] in
+            PushNotifications.recordUserInfo(userInfo)
             // Handle local notifications we know about first
             if let assignmentURL = userInfo[CBILocalNotificationAssignmentURLKey] as? String,
                 let url = URL(string: assignmentURL) {
@@ -168,14 +188,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             // Must be a push notification
             self?.routeToPushNotificationPayloadURL(userInfo)
         }
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .sound])
-    }
-
-    @objc func handlePushNotificationRegistrationError(_ error: NSError) {
-        Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: ["source": "push_notification_registration"])
     }
 }
 
