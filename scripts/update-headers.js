@@ -142,6 +142,6 @@ if (require.main === module) {
   if (print) {
     console.log(skipped.sort().join('\n'))
   }
-  console.log(`\nFiles with incompatible liceneses: ${incompatible.length}`)
+  console.log(`\nFiles with incompatible licences: ${incompatible.length}`)
   console.log(incompatible.sort().join('\n'))
 }

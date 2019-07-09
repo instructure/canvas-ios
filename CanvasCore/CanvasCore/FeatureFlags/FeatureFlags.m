@@ -16,6 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#import <Foundation/Foundation.h>
+#import <React/RCTBridgeModule.h>
+#import <CanvasCore/CanvasCore-Swift.h>
+
 @interface FeatureFlagsManager : NSObject <RCTBridgeModule>
 
 @end
