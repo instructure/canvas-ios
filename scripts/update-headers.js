@@ -1,6 +1,24 @@
 #!/usr/bin/env node
+//
+// This file is part of Canvas.
+// Copyright (C) 2019-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
 /*
-Ensures proper license header comments are added to .h, .m, .swift and .js files.
+Ensures proper license header comments are added to .sh, .h, .m, .swift, and .js files.
 
 Depends on node
  brew install node
@@ -19,7 +37,6 @@ program
 
 const thisYear = new Date().getFullYear()
 const ignoreExps = [
-  /^scripts\//i,
   /\.framework\/Headers\//i,
   /\.framework\/Versions\//i,
   /CanvasKit1\/External Sources\//i,
@@ -27,65 +44,38 @@ const ignoreExps = [
   /jquery/i,
 ]
 
-// Used to make sure there is the work "copyright" somewhere in the Header
-// Doing this to be safe, so we don't replace other comments
-const copyrightExp = /(^|\r\n|\n|\r)[\/*#|\s]*Copyright\s+[^\s\r\n]+/i
-
-// This regex is used to find and/or replace the first block comment in a file
-const bannerExp = /(^|\r\n|\n|\r)(?:\/\/[^\n\r]*(?:\r\n|\n|\r))*\/\/[^\n\r]*($|\r\n|\n|\r)/i
-
-// Used to test whether the Instructure appears in a file
-const instructureExp = /(^|\r\n|\n|\r)*Instructure/i
+//                   optional shebang   space    star block        hash or slash block       space
+const headerExp = /^(#!.*(?:\r?\n|\r))?[\s\r\n]*(\/\*.*?\*\/|(?:(?:#|\/\/).*(?:\r?\n|\r))+)?[\s\r\n]*/
 
 /*
- Returns the correct banner based on the file
- Tests and Frameworks are Apache;
- App code and everything else is GPL.
+ Returns the correct AGPL banner based on the file.
 */
-function appropriateBanner (file, text) {
+function newBanner (file, banner) {
   // Find the existing copyright date
-  const year = (text.match(/\/\/.*copyright.*(\d{4})/i) || [])[1] || thisYear
-  const useApache = (
-    file.startsWith('Frameworks') ||
-    file.includes('Tests') ||
-    file.includes('test')
-  )
+  const year = (banner.match(/\d{4}/) || [])[0] || thisYear
+  const license = `
+This file is part of Canvas.
+Copyright (C) ${year}-present  Instructure, Inc.
 
-  if (useApache) {
-    return `//
-// Copyright (C) ${year}-present Instructure, Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
-`
-  }
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
 
-  return `//
-// Copyright (C) ${year}-present Instructure, Inc.
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, version 3 of the License.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 `
+    const comment = file.endsWith('.sh') ? '#' : '//'
+    return license
+        .split(/\n/)
+        .map(line => line ? `${comment} ${line}` : comment)
+        .join('\n')
+        + '\n\n'
 }
 
 exports.check = check
@@ -96,32 +86,27 @@ function check(files, skipWrite = true) {
 
   for (const file of files) {
     if (
-      !/\.(swift|h|m|js)$/i.test(file) ||
+      !/\.(swift|h|m|js|sh)$/i.test(file) ||
       ignoreExps.some(exp => exp.test(file)) ||
       !existsSync(file)
     ) { continue }
-    let text = readFileSync(file, 'utf8')
-    const hasCopyright = copyrightExp.test(text)
-    const hasBanner = text.match(bannerExp)
-    const hasInstructure = instructureExp.test(text)
-    const banner = appropriateBanner(file, text)
+    const text = readFileSync(file, 'utf8')
+    const [ , shebang = '', banner = '' ] = text.match(headerExp) || []
+    const hasCopyright = /copyright/i.test(banner)
+    const hasInstructure = /instructure/i.test(banner)
 
     if (!hasCopyright) {
-      text = `${banner}\n${text}`
+      const noBang = text.replace(/^(#!.*(?:\r?\n|\r)+)/, '')
+      const updated = `${shebang}${newBanner(file, banner)}${noBang}`
       if (!skipWrite) {
-        writeFileSync(file, text, 'utf8')
+        writeFileSync(file, updated, 'utf8')
       }
       replaced.push(file)
       continue
     }
 
-    if (!hasBanner) {
-      skipped.push(file)
-      continue
-    }
-
     if (!hasInstructure) {
-      if (hasBanner[0].includes('GPL')) {
+      if (banner.includes('GPL')) {
         incompatible.push(file)
       } else {
         skipped.push(file)
@@ -129,7 +114,7 @@ function check(files, skipWrite = true) {
       continue
     }
 
-    const updated = text.replace(bannerExp, banner)
+    const updated = text.replace(headerExp, `$1${newBanner(file, banner)}`)
     if (updated === text) {
       skipped.push(file)
       continue
@@ -139,7 +124,7 @@ function check(files, skipWrite = true) {
     }
     replaced.push(file)
   }
-  
+
   return { replaced, skipped, incompatible }
 }
 
