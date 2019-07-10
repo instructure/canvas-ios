@@ -201,7 +201,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
-        Logger.shared.log()
         context.performAndWait {
             guard let step = task.uploadStep, let file = self.file(taskID: task.taskIdentifier) else { return }
             switch step {
@@ -215,7 +214,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        Logger.shared.log()
         context.performAndWait {
             guard
                 let step = task.uploadStep,
@@ -298,7 +296,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     private func submit(file: File, courseID: String, assignmentID: String, comment: String?) {
-        Logger.shared.log()
         guard let user = file.user, let session = Keychain.entries.first(where: { user == $0 }) else { return }
         var files = [file]
         if let batchID = file.batchID {
@@ -336,7 +333,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     func complete(file: File, error: Error?) {
-        Logger.shared.log(error?.localizedDescription ?? #function)
         context.performAndWait {
             file.uploadError = error?.localizedDescription
             file.taskID = nil
@@ -353,7 +349,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     private func sendFailedNotification(courseID: String, assignmentID: String) {
-        Logger.shared.log()
         let identifier = "failed-submission-\(courseID)-\(assignmentID)"
         let route = Route.course(courseID, assignment: assignmentID)
         let title = NSString.localizedUserNotificationString(forKey: "Assignment submission failed!", arguments: nil)
@@ -362,7 +357,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     private func sendCompletedNotification(courseID: String, assignmentID: String) {
-        Logger.shared.log()
         let identifier = "completed-submission-\(courseID)-\(assignmentID)"
         let route = Route.course(courseID, assignment: assignmentID)
         let title = NSString.localizedUserNotificationString(forKey: "Assignment submitted!", arguments: nil)
