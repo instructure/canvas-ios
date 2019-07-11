@@ -221,6 +221,29 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             else { return }
             switch step {
             case .upload:
+                // On device the upload might fail with a 201
+                // In this case, get the file using the url in the Location header
+                if file.id == nil,
+                    let response = task.response as? HTTPURLResponse,
+                    response.statusCode == 201,
+                    let location = response.allHeaderFields[HttpHeader.location] as? String,
+                    let url = URL(string: location),
+                    let user = file.user,
+                    let session = Keychain.entries.first(where: { user == $0 }) {
+                    do {
+                        var request = URLRequest(url: url)
+                        request.setValue("Bearer \(session.accessToken)", forHTTPHeaderField: HttpHeader.authorization)
+                        request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
+                        let task = backgroundSession.dataTask(with: request)
+                        task.uploadStep = .upload
+                        file.taskID = task.taskIdentifier
+                        try context.save()
+                        task.resume()
+                    } catch {
+                        complete(file: file, error: error)
+                    }
+                    return
+                }
                 if case let .submission(courseID, assignmentID, comment)? = file.context, error == nil {
                     submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
                     return

@@ -38,7 +38,6 @@ public struct URLSessionAPI: API {
     public let actAsUserID: String?
     public let baseURL: URL
     let urlSession: URLSession
-    public let sharedContainerIdentifier: String?
 
     public var identifier: String? {
         return urlSession.configuration.identifier
@@ -58,14 +57,12 @@ public struct URLSessionAPI: API {
         accessToken: String? = nil,
         actAsUserID: String? = nil,
         baseURL: URL? = nil,
-        urlSession: URLSession = URLSessionAPI.defaultURLSession,
-        sharedContainerIdentifier: String? = Bundle.main.appGroupID()
+        urlSession: URLSession = URLSessionAPI.defaultURLSession
     ) {
         self.accessToken = accessToken
         self.actAsUserID = actAsUserID
         self.baseURL = baseURL ?? URL(string: "https://canvas.instructure.com/")!
         self.urlSession = urlSession
-        self.sharedContainerIdentifier = sharedContainerIdentifier
     }
 
     @discardableResult
@@ -104,7 +101,7 @@ public struct URLSessionAPI: API {
     @discardableResult
     public func uploadTask<R: APIRequestable>(_ requestable: R) throws -> URLSessionTask {
         let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: actAsUserID)
-        let directory = sharedContainerIdentifier.flatMap(URL.sharedContainer) ?? URL.temporaryDirectory
+        let directory = urlSession.configuration.sharedContainerIdentifier.flatMap(URL.sharedContainer) ?? URL.temporaryDirectory
         let url = directory.appendingPathComponent(UUID.string)
         try request.httpBody?.write(to: url)
         #if DEBUG
