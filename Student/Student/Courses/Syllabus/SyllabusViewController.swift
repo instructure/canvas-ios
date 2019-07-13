@@ -184,7 +184,7 @@ extension SyllabusViewController: HorizontalMenuDelegate {
         case .syllabus:
             return NSLocalizedString("Syllabus", comment: "")
         case .assignments:
-            return NSLocalizedString("Assignments", comment: "")
+            return NSLocalizedString("Summary", comment: "")
         }
     }
 
