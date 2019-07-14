@@ -7,6 +7,15 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Medelbetyg";
 
+/* Embedded in 'enrolled in any courses as %@' */
+"a parent" = "en förälder";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a student" = "en elev";
+
+/* Embedded in 'enrolled in any courses as %@' */
+"a teacher" = "en lärare";
+
 /* No comment provided by engineer. */
 "Act as User" = "Agera som användare";
 
@@ -51,6 +60,15 @@
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Canvas Network";
+
+/* No comment provided by engineer. */
+"Canvas Parent" = "Canvas Förälder";
+
+/* No comment provided by engineer. */
+"Canvas Student" = "Canvas Elev";
+
+/* No comment provided by engineer. */
+"Canvas Teacher" = "Canvas Lärare";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Rensa inspelning";
@@ -156,6 +174,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Ej fullständig";
+
+/* No comment provided by engineer. */
+"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Du tycks inte vara inskriven i några kurser som %@. En av dina andra appar kan passa bättre. Knacka på en för att gå till App Store.";
 
 /* No comment provided by engineer. */
 "Italic" = "Kursiv";
@@ -414,6 +435,9 @@
 
 /* No comment provided by engineer. */
 "white" = "vit";
+
+/* No comment provided by engineer. */
+"Whoops!" = "Oooj!";
 
 /* No comment provided by engineer. */
 "yellow" = "gul";

@@ -420,8 +420,14 @@
 /* Title for the notification preferences page */
 "Notification Preferences" = "Innstillinger for varslinger";
 
+/* No comment provided by engineer. */
+"Off" = "Av";
+
 /* OK Button Title */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"On" = "På";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Åpne i Safari";
@@ -638,6 +644,9 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Ta test";
+
+/* No comment provided by engineer. */
+"Tap to toggle" = "Trykk for å bytte";
 
 /* Teal course color button */
 "Teal" = "Blågrønn";
