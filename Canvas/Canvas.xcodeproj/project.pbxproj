@@ -662,6 +662,8 @@
 		EE86F22C22C1625E00F90CF6 /* CourseGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE86F22B22C1625E00F90CF6 /* CourseGroupTests.swift */; };
 		EE86F23122C177A400F90CF6 /* PageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE86F23022C177A400F90CF6 /* PageTests.swift */; };
 		EE86F23322C177FC00F90CF6 /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE86F23222C177FC00F90CF6 /* Pages.swift */; };
+		EE86F23622C2B5B100F90CF6 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE86F23522C2B5B100F90CF6 /* Quiz.swift */; };
+		EE86F23822C2B5C000F90CF6 /* QuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE86F23722C2B5C000F90CF6 /* QuizTests.swift */; };
 		EEEA99D822B7F2FC006AD5BF /* AnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA99D722B7F2FC006AD5BF /* AnnouncementTests.swift */; };
 		F9B946F0221492040083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
 		F9B946F1221492040083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; };
@@ -1724,6 +1726,8 @@
 		EE86F22B22C1625E00F90CF6 /* CourseGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseGroupTests.swift; sourceTree = "<group>"; };
 		EE86F23022C177A400F90CF6 /* PageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTests.swift; sourceTree = "<group>"; };
 		EE86F23222C177FC00F90CF6 /* Pages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pages.swift; sourceTree = "<group>"; };
+		EE86F23522C2B5B100F90CF6 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
+		EE86F23722C2B5C000F90CF6 /* QuizTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTests.swift; sourceTree = "<group>"; };
 		EEEA99D722B7F2FC006AD5BF /* AnnouncementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementTests.swift; sourceTree = "<group>"; };
 		F7E3E8394F9CF33081E5BAFC /* Pods-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -3050,6 +3054,7 @@
 				EE7BB77C22B8473F001C1EE7 /* People */,
 				7D903C0222BABDE2009D9E9E /* Profile */,
 				7DEFE56F22C3CE1900376F66 /* Todo */,
+				EE86F23422C2B57800F90CF6 /* Quizzes */,
 				9F5D743722A99E91002FCCCE /* CanvasUITests.swift */,
 				9F5D743922A99E91002FCCCE /* Info.plist */,
 			);
@@ -3231,6 +3236,15 @@
 				EE86F23022C177A400F90CF6 /* PageTests.swift */,
 			);
 			path = Pages;
+			sourceTree = "<group>";
+		};
+		EE86F23422C2B57800F90CF6 /* Quizzes */ = {
+			isa = PBXGroup;
+			children = (
+				EE86F23522C2B5B100F90CF6 /* Quiz.swift */,
+				EE86F23722C2B5C000F90CF6 /* QuizTests.swift */,
+			);
+			path = Quizzes;
 			sourceTree = "<group>";
 		};
 		EEEA99D622B7F2FC006AD5BF /* Announcements */ = {
@@ -4407,9 +4421,11 @@
 				7DEFE57122C3CE4700376F66 /* TodoListTests.swift in Sources */,
 				9F5D743822A99E91002FCCCE /* CanvasUITests.swift in Sources */,
 				7D903C1C22C170CE009D9E9E /* NotificationsListTests.swift in Sources */,
+				EE86F23822C2B5C000F90CF6 /* QuizTests.swift in Sources */,
 				7D903C1322BC430B009D9E9E /* DiscussionListTests.swift in Sources */,
 				7D903C1122BC2B1B009D9E9E /* DiscussionList.swift in Sources */,
 				EE7BB77922B822DE001C1EE7 /* DashboardTests.swift in Sources */,
+				EE86F23622C2B5B100F90CF6 /* Quiz.swift in Sources */,
 				EE7BB77B22B84720001C1EE7 /* PeopleTests.swift in Sources */,
 				EE86F23322C177FC00F90CF6 /* Pages.swift in Sources */,
 				B16300D622B015AE000B85AD /* LoginTests.swift in Sources */,
