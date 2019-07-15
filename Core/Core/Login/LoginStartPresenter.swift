@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Login: Equatable {
     case keychain(KeychainEntry)
@@ -115,7 +116,24 @@ class LoginStartPresenter {
     }
 
     func openFindSchool() {
-        let controller = LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: method)
+        var controller: UIViewController = LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: method)
+        if let host = MDMManager.shared.host {
+            let provider = MDMManager.shared.authenticationProvider
+            if method == .manualOAuthLogin {
+                controller = LoginManualOAuthViewController.create(
+                    authenticationProvider: provider,
+                    host: host,
+                    loginDelegate: loginDelegate
+                )
+            } else {
+                controller = LoginWebViewController.create(
+                    authenticationProvider: provider,
+                    host: host,
+                    loginDelegate: loginDelegate,
+                    method: method
+                )
+            }
+        }
         view?.show(controller, sender: nil)
     }
 

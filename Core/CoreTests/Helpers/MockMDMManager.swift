@@ -60,7 +60,16 @@ extension MDMManager {
         UserDefaults.standard.set(defaults, forKey: MDMManager.MDMUserDefaultsKey)
     }
 
+    static func mockHost() {
+        let defaults: [String: Any] = [
+            "enableLogin": true,
+            "host": "canvas.instructure.com",
+            "authenticationProvider": "canvas",
+        ]
+        UserDefaults.standard.set(defaults, forKey: MDMManager.MDMUserDefaultsKey)
+    }
+
     static func reset() {
-        UserDefaults.standard.set(nil, forKey: MDMManager.MDMUserDefaultsKey)
+        UserDefaults.standard.removeObject(forKey: MDMManager.MDMUserDefaultsKey)
     }
 }

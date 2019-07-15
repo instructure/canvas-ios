@@ -40,6 +40,9 @@ class MDMManagerTests: XCTestCase {
         XCTAssertEqual(MDMManager.shared.logins, [])
         MDMManager.mockBadUsers()
         XCTAssertEqual(MDMManager.shared.logins, [])
+        MDMManager.mockHost()
+        XCTAssertEqual(MDMManager.shared.host, "canvas.instructure.com")
+        XCTAssertEqual(MDMManager.shared.authenticationProvider, "canvas")
     }
 
     func testDeinit() {
