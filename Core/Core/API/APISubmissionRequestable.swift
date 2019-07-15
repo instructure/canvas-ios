@@ -65,7 +65,17 @@ public struct CreateSubmissionRequest: APIRequestable {
             }
         }
 
+        struct Comment: Codable, Equatable {
+            let text_comment: String
+        }
+
+        init(submission: Submission) {
+            self.submission = submission
+            self.comment = submission.text_comment.flatMap(Comment.init(text_comment:))
+        }
+
         let submission: Submission
+        let comment: Comment?
     }
 
     let context: Context

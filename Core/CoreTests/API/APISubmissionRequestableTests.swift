@@ -45,7 +45,7 @@ class APISubmissionRequestableTests: CoreTestCase {
         XCTAssertEqual(request.path, "courses/1/assignments/2/submissions")
         XCTAssertEqual(request.method, .post)
         XCTAssertEqual(request.body, body)
-        XCTAssertEqual(request.body?.submission.text_comment, "a comment")
+        XCTAssertEqual(request.body?.comment?.text_comment, "a comment")
     }
 
     func testPutSubmissionGradeRequest() {
