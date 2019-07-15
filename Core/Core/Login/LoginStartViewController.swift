@@ -26,6 +26,7 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
     @IBOutlet weak var logoYCenter: NSLayoutConstraint?
     @IBOutlet weak var logoView: UIImageView?
     @IBOutlet weak var previousLoginsBottom: NSLayoutConstraint?
+    @IBOutlet weak var previousLoginsLabel: UILabel?
     @IBOutlet weak var previousLoginsTableView: UITableView?
     @IBOutlet weak var previousLoginsView: UIView?
     @IBOutlet weak var whatsNewContainer: UIView?
@@ -57,6 +58,7 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
         authenticationMethodLabel?.isHidden = true
         logoView?.tintColor = .currentLogoColor()
         previousLoginsView?.isHidden = true
+        previousLoginsLabel?.text = NSLocalizedString("Previous Logins", bundle: .core, comment: "")
         whatsNewLabel?.text = NSLocalizedString("We've made a few changes.", bundle: .core, comment: "")
         whatsNewLink?.setTitle(NSLocalizedString("See what's new.", bundle: .core, comment: ""), for: .normal)
         whatsNewContainer?.isHidden = loginDelegate?.whatsNewURL == nil
@@ -66,6 +68,11 @@ class LoginStartViewController: UIViewController, LoginStartViewProtocol {
             : "STUDENT"
         ), attributes: [.kern: 2])
         wordmarkLabel?.textColor = .currentLogoColor()
+
+        if MDMManager.shared.host != nil {
+            canvasNetworkButton?.isHidden = true
+            findSchoolButton?.setTitle(NSLocalizedString("Log In", bundle: .core, comment: ""), for: .normal)
+        }
 
         presenter?.viewIsReady()
     }

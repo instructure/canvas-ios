@@ -23,6 +23,7 @@ class LoginTests: CanvasUITests {
     override var user: UITestUser? { return nil }
 
     func testFindSchool() {
+        XCTAssertEqual(LoginStart.findSchoolButton.label, "Find my school")
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("mtech")
         LoginFindAccountResult.item(host: "mtec.instructure.com").waitToExist()
@@ -97,5 +98,31 @@ class LoginTests: CanvasUITests {
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
         TabBar.dashboardTab.waitToExist()
+    }
+
+    func testMDMHost() {
+        let user = UITestUser.readStudent1
+        launch { app in
+            app.launchArguments.append(contentsOf: [
+                "-com.apple.configuration.managed",
+                """
+                    <dict>
+                        <key>enableLogin</key><true/>
+                        <key>host</key><string>\(user.host)</string>
+                    </dict>
+                """
+                .replacingOccurrences(of: "[\\n\\s]", with: "", options: .regularExpression, range: nil)
+            ])
+        }
+
+        XCTAssertEqual(LoginStart.findSchoolButton.label, "Log In")
+        XCTAssertFalse(LoginStart.canvasNetworkButton.isVisible)
+        LoginStart.findSchoolButton.tap()
+
+        LoginWeb.emailField.typeText(user.username)
+        LoginWeb.passwordField.typeText(user.password)
+        LoginWeb.logInButton.tap()
+
+        Dashboard.coursesLabel.waitToExist()
     }
 }

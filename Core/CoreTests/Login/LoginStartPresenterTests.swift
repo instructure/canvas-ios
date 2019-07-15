@@ -36,7 +36,12 @@ class LoginStartPresenterTests: XCTestCase {
         super.setUp()
         Keychain.config = KeychainConfig(service: "com.instructure.service", accessGroup: nil)
         Keychain.clearEntries()
+        MDMManager.reset()
         AppEnvironment.shared.currentSession = nil
+    }
+
+    override func tearDown() {
+        MDMManager.reset()
     }
 
     func testViewIsReady() {
@@ -88,6 +93,18 @@ class LoginStartPresenterTests: XCTestCase {
         let presenter = LoginStartPresenter(loginDelegate: self, view: self)
         presenter.openFindSchool()
         XCTAssert(shown is LoginFindSchoolViewController)
+    }
+
+    func testOpenFindSchoolMDMHost() {
+        MDMManager.mockHost()
+        let presenter = LoginStartPresenter(loginDelegate: self, view: self)
+        presenter.openFindSchool()
+        XCTAssertEqual((shown as? LoginWebViewController)?.presenter?.authenticationProvider, MDMManager.shared.authenticationProvider)
+        XCTAssertEqual((shown as? LoginWebViewController)?.presenter?.host, MDMManager.shared.host)
+
+        presenter.method = .manualOAuthLogin
+        presenter.openFindSchool()
+        XCTAssert(shown is LoginManualOAuthViewController)
     }
 
     func testOpenHelp() {
