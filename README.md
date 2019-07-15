@@ -168,40 +168,24 @@ We have a script that should ensure the correct license header comments are in p
 yarn update-headers
 ```
 
-#### Our applications are licensed under the GPLv3 License.
+#### Our applications are licensed under the AGPLv3 License.
 
 ```
-Copyright (C) 2016-present  Instructure, Inc.
+This file is part of Canvas.
+Copyright (C) 2019-present  Instructure, Inc.
 
 This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, version 3 of the License.
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Affero General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-```
-
-#### Our frameworks are licensed under the Apache v2 License.
-
-```
-Copyright (C) 2016-present Instructure, Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
 
 ## MDM Configurations
@@ -220,4 +204,4 @@ You can test this locally with command line arguments.
 -com.apple.configuration.managed '<dict><key>enableLogin</key><true/><key>users</key><array><dict><key>host</key><string>canvas.instructure.com</string><key>username</key><string>student</string><key>password</key><string>Canvas2019</string></dict></array></dict>'
 ```
 
-Change the `username`, `password`, and `host` to your test credentials.
+Change the `username`, `password`, and `host` to your test credentials. You can also add `host` and `authenticationProvider` strings to the top level dict to skip the "Find my school" screen during login.
