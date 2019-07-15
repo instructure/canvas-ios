@@ -64,6 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
             window?.makeKeyAndVisible()
         }
+
+        handleLaunchOptionsNotifications(launchOptions)
+
         return true
     }
 
@@ -126,10 +129,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         PushNotifications.record(response.notification)
+        handlePush(userInfo: response.notification.request.content.userInfo, completionHandler: completionHandler)
+    }
+
+    private func handlePush(userInfo: [AnyHashable: Any], completionHandler: @escaping () -> Void) {
         StartupManager.shared.enqueueTask {
-            RCTPushNotificationManager.didReceiveRemoteNotification(response.notification.request.content.userInfo) { _ in
+            RCTPushNotificationManager.didReceiveRemoteNotification(userInfo) { _ in
                 completionHandler()
             }
+        }
+    }
+
+    func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
+            let _ = notification["aps"] as? [String: AnyObject] {
+            handlePush(userInfo: notification, completionHandler: {})
         }
     }
 
