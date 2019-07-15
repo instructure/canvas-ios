@@ -242,8 +242,20 @@
   "back_to_replies_94f3c127": {
     "message": "Återgå till svar"
   },
+  "black_8d713c75": {
+    "message": "svart"
+  },
+  "blue_7aca5197": {
+    "message": "blå"
+  },
+  "blue_daf8fea9": {
+    "message": "Blå"
+  },
   "bold_34b9d97e": {
     "message": "Fet"
+  },
+  "brick_f2656265": {
+    "message": "Byggsten"
   },
   "can_edit_5a1e8dbf": {
     "message": "Kan redigera"
@@ -254,29 +266,17 @@
   "cancel_caeb1e68": {
     "message": "Avbryt"
   },
-  "canvas_guides_d65431": {
-    "message": "Canvas Guides"
-  },
-  "canvas_parent_app_f9236a3a": {
-    "message": "Canvas förälder app"
-  },
-  "canvas_student_app_329567f": {
-    "message": "Canvas elev app"
-  },
-  "canvas_teacher_app_9dc7d7ed": {
-    "message": "Canvas lärar-app"
-  },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Ändra { discussionTitle } till en annan gruppering"
   },
   "change_user_1b7c4f23": {
     "message": "Byt användare"
   },
-  "choose_1319ef6b": {
-    "message": "Välj"
-  },
   "choose_color_11148181": {
     "message": "Välj { color }"
+  },
+  "choose_colorname_hexcode_14fe4c18": {
+    "message": "Välj { colorName } ({ hexCode })"
   },
   "choose_from_library_1b9caf95": {
     "message": "Välj från biblioteket"
@@ -337,6 +337,9 @@
   },
   "copied_880dcb1b": {
     "message": "Kopierad!"
+  },
+  "copied_c6518d41": {
+    "message": "Kopierad"
   },
   "copy_link_1ffb11a4": {
     "message": "Kopiera länk"
@@ -416,6 +419,9 @@
   "customize_grade_value_964695a3": {
     "message": "Anpassa bedömning { value }"
   },
+  "cyan_c1d5f68a": {
+    "message": "Cyan"
+  },
   "date_date_medium_at_date_time_short_2b9ce48b": {
     "message": "{ date, date, medium } kl { date, time, short }"
   },
@@ -427,6 +433,9 @@
   },
   "decline_7eeb5ff4": {
     "message": "Neka"
+  },
+  "deep_purple_bb3e2907": {
+    "message": "Djup lila"
   },
   "delay_posting_f45eed7d": {
     "message": "Fördröj inlägg"
@@ -536,8 +545,8 @@
   "edit_course_settings_9736fd1f": {
     "message": "Redigera kursinställningar"
   },
-  "edit_courses_1f63340f": {
-    "message": "Redigera kurser & grupper"
+  "edit_dashboard_7e5b7043": {
+    "message": "Redigera instrumentpanel"
   },
   "edit_description_1206e0a8": {
     "message": "Redigera beskrivning"
@@ -644,8 +653,8 @@
   "filter_people_b34b567b": {
     "message": "Filtrera människor"
   },
-  "filter_submissions_81bc50de": {
-    "message": "Filtrera inlämningar"
+  "filter_submissions_numselected_number_selected_177867b3": {
+    "message": "Filtrera inlämningar. ({ numSelected, number }) vald."
   },
   "final_grade_4d7f6545": {
     "message": "Slutbedömning"
@@ -701,6 +710,15 @@
   "grades_muted_anonymous_grading_9291ea4b": {
     "message": "Bedömningar tystade, anonym bedömning"
   },
+  "green_15af4778": {
+    "message": "Grön"
+  },
+  "green_d46e687c": {
+    "message": "grön"
+  },
+  "grey_56f61c1": {
+    "message": "grå"
+  },
   "group_a8f5ed9c": {
     "message": "Grupp"
   },
@@ -737,20 +755,26 @@
   "highest_28ad71e6": {
     "message": "Högsta"
   },
+  "highest_possible_score_pointspossible_number_c03ce29a": {
+    "message": "Högsta möjliga resultat, { pointsPossible, number }"
+  },
   "i_have_permission_to_use_file_d19a1a29": {
     "message": "Jag har behörighet att använda filen"
   },
   "i_hold_the_copyright_71ee91b1": {
     "message": "Jag är upprättshavare"
   },
-  "if_you_re_a_student_or_teacher_try_one_of_our_othe_f0ae9b33": {
-    "message": "Om du är en elev eller lärare, testa en av våra andra appar nedan."
-  },
   "in_progress_9d1ce8b9": {
     "message": "Pågår"
   },
   "incomplete_da3c2ea2": {
     "message": "Ej fullständig"
+  },
+  "indigo_2035fc55": {
+    "message": "Indigo"
+  },
+  "input_1d1d9b8e": {
+    "message": "Inmatning"
   },
   "insert_image_42d30344": {
     "message": "För in bild"
@@ -781,6 +805,9 @@
   },
   "item_count_plural_one_item_other_items_88319c63": {
     "message": "{ item_count, plural,\n    one {# post}\n  other {# poster}\n}"
+  },
+  "label_text_field_6677ab6f": {
+    "message": "{ label }, textfält"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "Senaste aktivitet för { lastActivity, date, 'MMMM d' } vid { lastActivity, time, short }"
@@ -815,11 +842,17 @@
   "letter_grade_e83e363c": {
     "message": "Bedömningsbrev"
   },
+  "light_blue_5374f600": {
+    "message": "Ljusblå"
+  },
+  "like_e8ad74ae": {
+    "message": "Gilla"
+  },
+  "loading_bde52856": {
+    "message": "Läser in"
+  },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Lås frågor efter svar har getts"
-  },
-  "log_in_again_ec2b1f46": {
-    "message": "Logga in igen"
   },
   "log_out_379ba28a": {
     "message": "Logga ut"
@@ -827,8 +860,11 @@
   "long_description_7d89285c": {
     "message": "Lång beskrivning"
   },
-  "manage_children_a28d764e": {
-    "message": "Hantera barn"
+  "lowest_possible_score_0_c2338db6": {
+    "message": "Lägsta möjliga resultat, 0"
+  },
+  "magenta_4a65993c": {
+    "message": "Magenta"
   },
   "mark_all_as_read_8f3bdf57": {
     "message": "Markera alla som lästa"
@@ -887,6 +923,9 @@
   "name_count_plural_one_other_other_others_f47e51c3": {
     "message": "{ name } + { count, plural,\n    one {# övriga}\n  other {# övriga}\n}"
   },
+  "name_profile_240f0967": {
+    "message": "{ name } Profil"
+  },
   "names_count_more_643849d3": {
     "message": "{ names } + { count } mer"
   },
@@ -935,9 +974,6 @@
   "no_e16d9132": {
     "message": "Nej"
   },
-  "no_enrollments_6369cd31": {
-    "message": "Inga anmälningar"
-  },
   "no_grade_3b4d7f3e": {
     "message": "Ingen bedömning"
   },
@@ -977,9 +1013,6 @@
   "none_9b6c9bec": {
     "message": "ingen"
   },
-  "not_a_teacher_b0d0fc55": {
-    "message": "Inte en lärare?"
-  },
   "not_graded_e027c866": {
     "message": "Inte bedömd"
   },
@@ -991,6 +1024,9 @@
   },
   "nothing_more_to_do_b017e8bb": {
     "message": "Ingenting mer att göra"
+  },
+  "number_of_likes_count_b5355a14": {
+    "message": "Antal gilla-markeringar { count }"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minut}\n  other {# Minuter}\n}"
@@ -1004,14 +1040,14 @@
   "ok_c47544a2": {
     "message": "OK"
   },
+  "olive_6a3e4d6b": {
+    "message": "Oliv"
+  },
   "on_8f7190e5": {
     "message": "På"
   },
   "on_paper_46d0ba36": {
     "message": "På papper"
-  },
-  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
-    "message": "En av våra andra appar kan vara bättre lämpade. Tryck på ett för att besöka App Store."
   },
   "one_question_at_a_time_3161ceeb": {
     "message": "En fråga i taget"
@@ -1051,6 +1087,12 @@
   },
   "options_3ab0ea65": {
     "message": "Alternativ"
+  },
+  "orange_81386a62": {
+    "message": "Orange"
+  },
+  "orange_86946f54": {
+    "message": "orange"
   },
   "ordered_list_5fb1ce41": {
     "message": "Ordnad lista"
@@ -1097,6 +1139,9 @@
   "pin_cdbc9f8f": {
     "message": "Nåla"
   },
+  "pink_68ad45cb": {
+    "message": "Rosa"
+  },
   "pinned_discussions_a55c0cea": {
     "message": "Fästa diskussioner"
   },
@@ -1127,9 +1172,6 @@
   "previewing_this_file_type_is_not_supported_7df9231": {
     "message": "Förhandsgranskning av denna filtyp stöds inte"
   },
-  "profile_6bd2baed": {
-    "message": "Profil"
-  },
   "profile_menu_a688027e": {
     "message": "Profilmeny"
   },
@@ -1144,6 +1186,15 @@
   },
   "published_4bb5209e": {
     "message": "Publicerad"
+  },
+  "pumpkin_904428d5": {
+    "message": "Pumpa"
+  },
+  "purple_71d4acca": {
+    "message": "lila"
+  },
+  "purple_7678a9fc": {
+    "message": "Lila"
   },
   "quiz_details_6c4473d3": {
     "message": "Quizdetaljer"
@@ -1178,6 +1229,12 @@
   "recording_failed_2e1861b": {
     "message": "Inspelning misslyckades"
   },
+  "red_8258edf3": {
+    "message": "Röd"
+  },
+  "red_ba15ab13": {
+    "message": "röd"
+  },
   "redo_363c58b7": {
     "message": "Göra om"
   },
@@ -1211,9 +1268,6 @@
   "report_a_problem_4d48624a": {
     "message": "Rapportera ett problem"
   },
-  "request_a_feature_3c8e2079": {
-    "message": "Begär en funktion"
-  },
   "request_could_not_be_completed_157615ef": {
     "message": "Begäran kunde inte genomföras."
   },
@@ -1246,6 +1300,12 @@
   },
   "schedule_student_availability_332154a": {
     "message": "Planera elev-tillgänglighet"
+  },
+  "score_number_out_of_points_plural_one_point_other__9993235e": {
+    "message": "{ score, number } av { points, plural,\n    one {# poäng}\n  other {# poäng}\n} möjliga"
+  },
+  "score_number_out_of_pointspossible_number_points_p_d3e3e4df": {
+    "message": "{ score, number } av { pointsPossible, number } { points, plural,\n     =1 {poäng}\n  other {poäng}\n} möjliga. { grade }"
   },
   "score_number_pointspossible_number_fd8705b8": {
     "message": "{ score, number }/{ pointsPossible, number }"
@@ -1292,6 +1352,9 @@
   "select_a_course_4710371f": {
     "message": "Välj en kurs"
   },
+  "select_which_courses_you_would_like_to_see_on_the__97d7e732": {
+    "message": "Välj vilka kurser du skulle vilja se på instrumentpanelen"
+  },
   "send_e3bd0ed0": {
     "message": "Skicka"
   },
@@ -1315,6 +1378,9 @@
   },
   "set_home_to_82ab5119": {
     "message": "Ställ in ”Hem” till..."
+  },
+  "set_text_color_to_colorname_hexcode_e178505b": {
+    "message": "Ställ in textfärg till { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "Inställningar"
@@ -1430,14 +1496,20 @@
   "teachers_and_students_ba2db3e4": {
     "message": "Lärare och elever"
   },
+  "teal_f729a294": {
+    "message": "Teal"
+  },
   "terms_of_use_62ee73ad": {
     "message": "Användarvillkor"
   },
   "terms_of_use_6542769b": {
     "message": "Användarvillkor"
   },
-  "text_color_acf75eb6": {
-    "message": "Textfärg"
+  "text_color_colorhex_62e206a5": {
+    "message": "Textfärg ({ colorHex })"
+  },
+  "text_color_colorname_colorhex_2dc366ad": {
+    "message": "Textfärg { colorName } ({ colorHex })"
   },
   "text_submission_935eeb5": {
     "message": "Textinlämning"
@@ -1601,9 +1673,6 @@
   "total_grade_568e719f": {
     "message": "Total bedömning:"
   },
-  "try_logging_in_again_7a66111a": {
-    "message": "Försök att logga in igen"
-  },
   "un_starred_8fef021f": {
     "message": "Ej stjärnmärkta"
   },
@@ -1689,6 +1758,9 @@
   "use_camera_47a0387b": {
     "message": "Använd kamera"
   },
+  "value_text_field_d9515a76": {
+    "message": "{ value }, textfält"
+  },
   "video_b9f27375": {
     "message": "Video"
   },
@@ -1697,9 +1769,6 @@
   },
   "view_all_submissions_915a8b78": {
     "message": "Visa alla inlämningar"
-  },
-  "view_canvas_guides_a1c62a97": {
-    "message": "Visa Canvas-vägledningar"
   },
   "view_long_description_2b592c0e": {
     "message": "Visa lång beskrivning"
@@ -1716,8 +1785,14 @@
   "welcome_73d18b4d": {
     "message": "Välkommen!"
   },
+  "white_463b4bf9": {
+    "message": "vit"
+  },
   "whoops_de2cf9fc": {
     "message": "Oooj!"
+  },
+  "yellow_4b5532b3": {
+    "message": "gul"
   },
   "yes_dde87d5": {
     "message": "Ja"
@@ -1736,9 +1811,6 @@
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Du måste ange en tillgångskod"
-  },
-  "you_need_at_least_one_active_observer_enrollment_t_9c78bb6e": {
-    "message": "Du behöver minst en aktiv observerar-registrering för att använda Canvas Parent."
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
     "message": "Din inlämningskommentar kunde inte skickas."

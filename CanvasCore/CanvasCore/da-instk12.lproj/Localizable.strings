@@ -420,8 +420,14 @@
 /* Title for the notification preferences page */
 "Notification Preferences" = "Meddelelsespræferencer";
 
+/* No comment provided by engineer. */
+"Off" = "Slået fra";
+
 /* OK Button Title */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"On" = "Slået til";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Åbn i Safari";
@@ -638,6 +644,9 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Tag quiz";
+
+/* No comment provided by engineer. */
+"Tap to toggle" = "Tryk for at skifte";
 
 /* Teal course color button */
 "Teal" = "Grønblå";
