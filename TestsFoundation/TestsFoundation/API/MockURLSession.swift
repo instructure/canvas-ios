@@ -23,27 +23,42 @@ public class MockURLSession: URLSession {
         public let data: Data?
         public let response: URLResponse?
         public let error: Error?
+
+        public init(data: Data?, response: URLResponse?, error: Error?) {
+            self.data = data
+            self.response = response
+            self.error = error
+        }
     }
 
     public class MockDataTask: URLSessionUploadTask {
         public var callback: ((Data?, URLResponse?, Error?) -> Void)?
+
         private var id: Int = 0
         public override var taskIdentifier: Int {
             get { return id }
             set { id = newValue }
         }
+
         private var desc: String?
         public override var taskDescription: String? {
             get { return desc }
             set { desc = newValue }
         }
+
+        public override var response: URLResponse? {
+            return mock?.response
+        }
+
         public var mock: MockData?
         public var resumed = false
         public var canceled = false
+
         public override func resume() {
             callback?(mock?.data, mock?.response, mock?.error)
             resumed = true
         }
+
         public override func cancel() {
             callback = nil
             canceled = true
@@ -94,10 +109,16 @@ public class MockURLSession: URLSession {
         taskID: Int = 0
     ) {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
+        mock(request, data: data, response: response, error: error, taskID: taskID)
+    }
+
+    @discardableResult
+    public static func mock(_ request: URLRequest, data: Data? = nil, response: URLResponse? = nil, error: Error? = nil, taskID: Int = 0) -> MockDataTask {
         let task = MockDataTask()
         task.mock = MockData(data: data, response: response, error: error)
         task.taskIdentifier = taskID
         MockURLSession.dataMocks[request] = task
+        return task
     }
 
     public static func mockDataTask<R: APIRequestable>(

@@ -69,6 +69,11 @@ final public class File: NSManagedObject {
     @NSManaged public var userRaw: Data?
     @NSManaged public var targetRaw: Data?
 
+    // Upload data
+    @NSManaged public var targetData: Data?
+    @NSManaged public var uploadData: Data?
+    @NSManaged public var submitData: Data?
+
     /// Used to group together files being attached to the same content
     @NSManaged public var batchID: String?
 
