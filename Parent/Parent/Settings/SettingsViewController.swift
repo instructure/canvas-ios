@@ -86,6 +86,9 @@ class SettingsViewController: UIViewController {
     @objc func setupNavigationBar() {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.useContextColor(ColorCoordinator.colorSchemeForParent().mainColor)
+
+        let addStudentButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(actionAddStudent))
+        navigationItem.rightBarButtonItem = addStudentButton
     }
 
     @objc func setupObserveeList() {
@@ -107,5 +110,22 @@ class SettingsViewController: UIViewController {
     // ---------------------------------------------
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
         closeAction?(viewModel.session)
+    }
+
+    @objc func actionAddStudent() {
+        let title = NSLocalizedString("Add Student", comment: "")
+        let message = NSLocalizedString("Input the student pairing code provided to you.", comment: "")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addTextField { tf in
+            tf.placeholder = NSLocalizedString("Pairing Code", comment: "")
+        }
+
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { action in }))
+        present(alert, animated: true, completion: nil)
+
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
+            guard let textField =  alert.textFields?.first else { return }
+            print("code: \(textField.text ?? "")")
+        }))
     }
 }
