@@ -43,6 +43,7 @@ class UploadManagerTests: CoreTestCase {
 
         manager.notificationManager = notificationManager
         URLSessionAPI.delegateURLSession = { _, _ in self.backgroundSession }
+        MockURLSession.reset()
     }
 
     func testUploadURLDefault() throws {
