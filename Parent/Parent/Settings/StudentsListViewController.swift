@@ -63,4 +63,8 @@ class StudentsListViewController: FetchedTableViewController<Student> {
         let student = collection[indexPath]
         selectStudentAction?(session, student)
     }
+
+    func refresh() {
+        refresher?.refresh(true)
+    }
 }
