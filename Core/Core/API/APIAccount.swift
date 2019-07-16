@@ -23,4 +23,21 @@ public struct APIAccountResult: Codable, Equatable {
     public let name: String
     public let domain: String
     public let authentication_provider: String?
+
+    public init(name: String, domain: String, authentication_provider: String?) {
+        self.name = name
+        self.domain = domain
+        self.authentication_provider = authentication_provider
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name).trimmingCharacters(in: .whitespacesAndNewlines)
+        domain = try container.decode(String.self, forKey: .domain)
+        var auth = try container.decodeIfPresent(String.self, forKey: .authentication_provider)
+        if auth?.isEmpty == true || auth == "Null" {
+            auth = nil
+        }
+        authentication_provider = auth
+    }
 }
