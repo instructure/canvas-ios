@@ -196,7 +196,7 @@ class LoginWebPresenterTests: XCTestCase {
         let host = "https://localhost"
         let url = URL(string: host)!
         let mobileVerify = APIVerifyClient(authorized: true, base_url: url, client_id: "1", client_secret: "secret")
-        let params = LoginParams(host: host, authenticationProvider: "", method: .normalLogin)
+        let params = LoginParams(host: host, authenticationProvider: nil, method: .normalLogin)
         var req = try! LoginWebRequest(clientID: mobileVerify.client_id!, params: params).urlRequest(relativeTo: url, accessToken: "", actAsUserID: nil)
         req.setValue(UserAgent.safari.description, forHTTPHeaderField: HttpHeader.userAgent)
         return req
