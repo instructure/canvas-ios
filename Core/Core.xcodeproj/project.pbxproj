@@ -383,6 +383,7 @@
 		B15CA279221DE9660014FB02 /* APIModuleRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA278221DE9660014FB02 /* APIModuleRequestable.swift */; };
 		B15CA27E221DFA450014FB02 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA27D221DFA450014FB02 /* Module.swift */; };
 		B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA283221E00870014FB02 /* ModuleTests.swift */; };
+		B164DC1F22DE2AB30037FA86 /* APIAccountResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */; };
 		B16F036E215AE6210011E952 /* GetAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE5215A81350071B41E /* GetAssignment.swift */; };
 		B17855B1226ABDB100B30C80 /* UploadMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17855B0226ABDB100B30C80 /* UploadMedia.swift */; };
 		B17855B3226ABDDD00B30C80 /* UploadMediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */; };
@@ -1053,6 +1054,7 @@
 		B15CA278221DE9660014FB02 /* APIModuleRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModuleRequestable.swift; sourceTree = "<group>"; };
 		B15CA27D221DFA450014FB02 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		B15CA283221E00870014FB02 /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
+		B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountResultTests.swift; sourceTree = "<group>"; };
 		B17855B0226ABDB100B30C80 /* UploadMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMedia.swift; sourceTree = "<group>"; };
 		B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMediaTests.swift; sourceTree = "<group>"; };
 		B17F23B02137981B00771F86 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
@@ -1720,6 +1722,7 @@
 			children = (
 				B1EA5AF4212E66B100DABC5F /* Fixtures */,
 				7D80AC24212C61F100C40ECE /* APIAccountRequestableTests.swift */,
+				B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */,
 				B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift */,
 				B1A32BE12159A3100071B41E /* APIAssignmentRequestableTests.swift */,
 				7D63F787215D44A600151E49 /* APIBrandVariablesRequestableTests.swift */,
@@ -2769,6 +2772,7 @@
 				7D63F788215D44A600151E49 /* APIBrandVariablesRequestableTests.swift in Sources */,
 				DFE1FF20212F5E41003F27AA /* KeychainTests.swift in Sources */,
 				B15CA22D221CA2EE0014FB02 /* UseCaseTests.swift in Sources */,
+				B164DC1F22DE2AB30037FA86 /* APIAccountResultTests.swift in Sources */,
 				B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */,
 				3BD364AB225D3C02006CEBD8 /* DiscussionTopicTests.swift in Sources */,
 				7D80AC17212B689E00C40ECE /* APITabRequestableTests.swift in Sources */,

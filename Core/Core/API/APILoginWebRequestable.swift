@@ -39,9 +39,7 @@ struct LoginWebRequest: APIRequestable {
             items.append(.value("canvas_login", "1"))
         }
 
-        // sometimes for canvas auth the authenticationProvider is an empty string
-        // which causes this if to still pass and then breaks the login
-        if let provider = params.authenticationProvider, !provider.isEmpty {
+        if let provider = params.authenticationProvider {
             items.append(.value("authentication_provider", provider))
         }
 
