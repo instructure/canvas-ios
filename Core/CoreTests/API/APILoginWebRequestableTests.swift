@@ -29,7 +29,7 @@ class APILoginWebRequestableTests: XCTestCase {
         super.setUp()
         url = URL(string: host)!
         mobileVerify = APIVerifyClient(authorized: true, base_url: url, client_id: "1", client_secret: "secret")
-        params = LoginParams(host: host, authenticationProvider: "", method: .normalLogin)
+        params = LoginParams(host: host, authenticationProvider: nil, method: .normalLogin)
     }
 
     func testPath() {
