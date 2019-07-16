@@ -228,6 +228,34 @@ class UploadManagerTests: CoreTestCase {
         Keychain.removeEntry(currentSession)
     }
 
+    func testSessionTaskDidComplete201Error() throws {
+        Keychain.addEntry(currentSession)
+        let file = context.insert() as File
+        file.id = nil
+        file.taskID = 1
+        file.context = .submission(courseID: "1", assignmentID: "2", comment: "test comment")
+        file.setUser(session: currentSession)
+        try context.save()
+
+        let location = "https://canvas.instructure.com/api/v1/files/1"
+        let task = MockURLSession.MockDataTask()
+        let response = HTTPURLResponse(url: URL(string: "https://inst-fs.com")!, statusCode: 201, httpVersion: nil, headerFields: [HttpHeader.location: location])
+        task.mock = MockURLSession.MockData(data: nil, response: response, error: nil)
+        task.uploadStep = .upload
+        task.taskIdentifier = 1
+        var request = URLRequest(url: URL(string: location)!)
+        request.setValue("Bearer \(currentSession.accessToken)", forHTTPHeaderField: HttpHeader.authorization)
+        request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
+        let locationTask = MockURLSession.mock(request, taskID: 2)
+
+        manager.urlSession(backgroundSession, task: task, didCompleteWithError: NSError.instructureError("Sike! File not found even though it's a 201!"))
+        context.refresh(file, mergeChanges: false)
+        XCTAssertEqual(file.taskID, 2)
+        XCTAssertTrue(locationTask.resumed)
+        XCTAssertEqual(locationTask.uploadStep, .upload)
+        Keychain.removeEntry(currentSession)
+    }
+
     func testSessionTaskDidCompleteSubmit() throws {
         let fileManager = FileManager.default
         let oneURL = URL.temporaryDirectory.appendingPathComponent("oneURL.txt")

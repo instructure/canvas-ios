@@ -219,6 +219,29 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     func completeUpload(task: URLSessionTask, error: Error?) {
         context.performAndWait {
             guard let file = self.file(taskID: task.taskIdentifier) else { return }
+            if error != nil,
+                let response = task.response as? HTTPURLResponse,
+                response.statusCode == 201,
+                let location = response.allHeaderFields[HttpHeader.location] as? String,
+                let url = URL(string: location),
+                let user = file.user,
+                let session = Keychain.entries.first(where: { user == $0 }) {
+                do {
+                    // Upload failed with a 201 so fetch the file using the url in the Location header
+                    var request = URLRequest(url: url)
+                    request.setValue("Bearer \(session.accessToken)", forHTTPHeaderField: HttpHeader.authorization)
+                    request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
+                    let task = backgroundSession.dataTask(with: request)
+                    task.uploadStep = .upload
+                    file.taskID = task.taskIdentifier
+                    try context.save()
+                    task.resume()
+                } catch {
+                    complete(file: file, error: error)
+                }
+                return
+            }
+
             guard let data = file.uploadData else {
                 complete(file: file, error: error)
                 return
