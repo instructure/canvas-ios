@@ -20,6 +20,7 @@ import UIKit
 import PSPDFKit
 import ReactiveSwift
 import ReactiveCocoa
+import Core
 
 class SubmitAnnotatedAssignmentViewController: UITableViewController {
 
@@ -179,17 +180,15 @@ class SubmitAnnotatedAssignmentViewController: UITableViewController {
 
         let queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated)
         queue.async {
-            let cacheDirPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
-            let outputPath = (cacheDirPath as NSString).appendingPathComponent("\(self.session.user.id)_\(course.id)_\(assignment.id)_submission.pdf")
-            if FileManager.default.fileExists(atPath: outputPath) {
+            let outputURL = URL.temporaryDirectory.appendingPathComponent("\(self.session.user.id)_\(course.id)_\(assignment.id)_submission.pdf")
+            if FileManager.default.fileExists(atPath: outputURL.path) {
                 do {
-                    try FileManager.default.removeItem(atPath: outputPath)
+                    try FileManager.default.removeItem(atPath: outputURL.path)
                 } catch {
-                    print("Error removing file at path: \(outputPath), error: \(error)")
+                    print("Error removing file at path: \(outputURL), error: \(error)")
                 }
             }
 
-            let outputURL = URL(fileURLWithPath: outputPath)
             let processor = PSPDFProcessor(configuration: configuration, securityOptions: nil)
             do {
                 try processor.write(toFileURL: outputURL)
