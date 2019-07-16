@@ -124,9 +124,6 @@ class SubmitAssignmentPresenter {
                 .appendingPathComponent(url.lastPathComponent)
             do {
                 try url.move(to: newURL)
-                if let image = UIImage(contentsOfFile: newURL.path), let data = image.normalize().jpegData(compressionQuality: 0.8) {
-                    try data.write(to: newURL)
-                }
                 urls.append(newURL)
                 self.load(attachments: attachments, into: urls, callback: callback)
             } catch {

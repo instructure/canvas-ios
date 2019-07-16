@@ -34,12 +34,18 @@ class UploadManagerTests: CoreTestCase {
         FileManager.default.createFile(atPath: url.path, contents: "hey".data(using: .utf8), attributes: nil)
         return url
     }()
+    lazy var encoder: JSONEncoder = {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        return encoder
+    }()
 
     override func setUp() {
         super.setUp()
 
         manager.notificationManager = notificationManager
         URLSessionAPI.delegateURLSession = { _, _ in self.backgroundSession }
+        MockURLSession.reset()
     }
 
     func testUploadURLDefault() throws {
@@ -125,22 +131,6 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertEqual(file.taskID, task?.taskIdentifier)
     }
 
-    func testSessionDataTaskDidReceiveDataTarget() throws {
-        let file = context.insert() as File
-        file.localFileURL = url
-        file.taskID = 0
-        try context.save()
-        let task = MockURLSession.MockDataTask()
-        task.uploadStep = .target
-        task.taskIdentifier = 0
-        let target = FileUploadTarget.make()
-        let data = try JSONEncoder().encode(target)
-        manager.urlSession(backgroundSession, dataTask: task, didReceive: data)
-        context.refresh(file, mergeChanges: false)
-        XCTAssertNotNil(file)
-        XCTAssertEqual(file.target, target)
-    }
-
     func testSessionTaskDidCompleteWithTarget() throws {
         UUID.mock("abcdefg")
         let url = URL(string: "data:text/plain,abcde")!
@@ -155,7 +145,7 @@ class UploadManagerTests: CoreTestCase {
         let file = context.insert() as File
         file.localFileURL = url
         file.taskID = 0
-        file.target = target
+        file.targetData = try encoder.encode(target)
         try context.save()
         let task = MockURLSession.MockDataTask()
         task.uploadStep = .target
@@ -170,27 +160,12 @@ class UploadManagerTests: CoreTestCase {
         UUID.reset()
     }
 
-    func testSessionDataTaskDidReceiveDataUpload() throws {
-        let file = context.insert() as File
-        file.taskID = 1
-        file.id = nil
-        try context.save()
-        let task = MockURLSession.MockDataTask()
-        task.uploadStep = .upload
-        task.taskIdentifier = 1
-        let result = APIFile.make(id: ID("22"))
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        let data = try encoder.encode(result)
-        manager.urlSession(backgroundSession, dataTask: task, didReceive: data)
-        context.refresh(file, mergeChanges: false)
-        XCTAssertEqual(file.id, "22")
-    }
-
     func testSessionTaskDidCompleteWithUpload() throws {
         let file = context.insert() as File
+        file.id = nil
         file.taskID = 1
         file.context = .course("1")
+        file.uploadData = try encoder.encode(APIFile.make(id: "1"))
         try context.save()
         let task = MockURLSession.MockDataTask()
         task.uploadStep = .upload
@@ -201,6 +176,7 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertNil(file.taskID)
         XCTAssertNil(file.uploadError)
         XCTAssertFalse(file.isUploading)
+        XCTAssertEqual(file.id, "1")
     }
 
     func testSessionTaskDidCompleteSubmissionUpload() throws {
@@ -210,6 +186,7 @@ class UploadManagerTests: CoreTestCase {
         file.id = "3"
         file.taskID = 1
         file.context = .submission(courseID: "1", assignmentID: "2", comment: "test comment")
+        file.uploadData = try encoder.encode(APIFile.make(id: "1"))
         file.setUser(session: currentSession)
         try context.save()
         let task = MockURLSession.MockDataTask()
@@ -235,10 +212,10 @@ class UploadManagerTests: CoreTestCase {
         one.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         one.setUser(session: currentSession)
         let two = context.insert() as File
-        two.id = "2"
         two.batchID = "assignment-2"
         two.taskID = 2
         two.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
+        two.uploadData = try encoder.encode(APIFile.make(id: "2"))
         two.setUser(session: currentSession)
         try context.save()
         let task = MockURLSession.MockDataTask()
@@ -253,45 +230,57 @@ class UploadManagerTests: CoreTestCase {
         Keychain.removeEntry(currentSession)
     }
 
-    func testSessionDataTaskDidReceiveDataSubmissionSendsNotification() throws {
+    func testSessionTaskDidComplete201Error() throws {
+        Keychain.addEntry(currentSession)
         let file = context.insert() as File
+        file.id = nil
         file.taskID = 1
-        file.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
+        file.context = .submission(courseID: "1", assignmentID: "2", comment: "test comment")
+        file.setUser(session: currentSession)
         try context.save()
-        let expectation = XCTestExpectation(description: "notification sent")
-        var notification: Notification?
-        let name = UploadManager.AssignmentSubmittedNotification
-        let observer = NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil) { note in
-            notification = note
-            expectation.fulfill()
-        }
+
+        let location = "https://canvas.instructure.com/api/v1/files/1"
         let task = MockURLSession.MockDataTask()
+        let response = HTTPURLResponse(url: URL(string: "https://inst-fs.com")!, statusCode: 201, httpVersion: nil, headerFields: [HttpHeader.location: location])
+        task.mock = MockURLSession.MockData(data: nil, response: response, error: nil)
+        task.uploadStep = .upload
         task.taskIdentifier = 1
-        task.uploadStep = .submit
-        let submission = APISubmission.make()
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        let data = try encoder.encode(submission)
-        manager.urlSession(backgroundSession, dataTask: task, didReceive: data)
-        wait(for: [expectation], timeout: 1)
-        XCTAssertNotNil(notification)
-        XCTAssertEqual(notification?.userInfo?["assignmentID"] as? String, "2")
-        XCTAssertEqual(notification?.userInfo?["submission"] as? APISubmission, submission)
-        NotificationCenter.default.removeObserver(observer)
+        var request = URLRequest(url: URL(string: location)!)
+        request.setValue("Bearer \(currentSession.accessToken)", forHTTPHeaderField: HttpHeader.authorization)
+        request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
+        let locationTask = MockURLSession.mock(request, taskID: 2)
+
+        manager.urlSession(backgroundSession, task: task, didCompleteWithError: NSError.instructureError("Sike! File not found even though it's a 201!"))
+        context.refresh(file, mergeChanges: false)
+        XCTAssertEqual(file.taskID, 2)
+        XCTAssertTrue(locationTask.resumed)
+        XCTAssertEqual(locationTask.uploadStep, .upload)
+        Keychain.removeEntry(currentSession)
     }
 
     func testSessionTaskDidCompleteSubmit() throws {
+        let fileManager = FileManager.default
+        let oneURL = URL.temporaryDirectory.appendingPathComponent("oneURL.txt")
+        try "one".write(to: oneURL, atomically: false, encoding: .utf8)
+        let twoURL = URL.temporaryDirectory.appendingPathComponent("twoURL.txt")
+        try "two".write(to: twoURL, atomically: false, encoding: .utf8)
+        XCTAssertTrue(fileManager.fileExists(atPath: oneURL.path))
+        XCTAssertTrue(fileManager.fileExists(atPath: twoURL.path))
+
         let one = context.insert() as File
         one.id = "2"
         one.batchID = "assignment-2"
         one.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
+        one.localFileURL = oneURL
         one.setUser(session: currentSession)
         let two = context.insert() as File
         two.id = "2"
         two.batchID = "assignment-2"
         two.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         two.taskID = 2
+        two.localFileURL = twoURL
         two.setUser(session: currentSession)
+        two.submitData = try encoder.encode(APISubmission.make())
         try context.save()
         let task = MockURLSession.MockDataTask()
         task.uploadStep = .submit
@@ -304,27 +293,36 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertEqual(notification?.content.title, "Assignment submitted!")
         XCTAssertEqual(notification?.content.body, "Your files were uploaded and the assignment was submitted successfully.")
         XCTAssertEqual(notification?.route, Route.course("1", assignment: "2"))
+        XCTAssertFalse(fileManager.fileExists(atPath: oneURL.path))
+        XCTAssertFalse(fileManager.fileExists(atPath: twoURL.path))
     }
 
-    func testSessionDataTaskDidReceiveInvalidData() throws {
+    func testSessionDataTaskDidReceiveData() throws {
         let file = context.insert() as File
-        file.uploadError = nil
+        file.targetData = nil
+        file.uploadData = nil
+        file.submitData = nil
         file.taskID = 1
         file.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         try context.save()
         let task = MockURLSession.MockDataTask()
         task.uploadStep = .target
         task.taskIdentifier = 1
-        let data = "invalid request".data(using: .utf8)!
+
+        let data = "hello".data(using: .utf8)!
         manager.urlSession(backgroundSession, dataTask: task, didReceive: data)
         context.refresh(file, mergeChanges: false)
-        XCTAssertNotNil(file.uploadError)
-        XCTAssertNil(file.taskID)
-        let notification = notificationCenter.requests.last
-        XCTAssertNotNil(notification)
-        XCTAssertEqual(notification?.content.title, "Assignment submission failed!")
-        XCTAssertEqual(notification?.content.body, "Something went wrong with an assignment submission.")
-        XCTAssertEqual(notification?.route, Route.course("1", assignment: "2"))
+        XCTAssertNotNil(file.targetData)
+
+        task.uploadStep = .upload
+        manager.urlSession(backgroundSession, dataTask: task, didReceive: data)
+        context.refresh(file, mergeChanges: false)
+        XCTAssertNotNil(file.uploadData)
+
+        task.uploadStep = .submit
+        manager.urlSession(backgroundSession, dataTask: task, didReceive: data)
+        context.refresh(file, mergeChanges: false)
+        XCTAssertNotNil(file.submitData)
     }
 
     func testFailedSubmissionNotification() throws {
@@ -334,10 +332,9 @@ class UploadManagerTests: CoreTestCase {
         file.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         try context.save()
         let task = MockURLSession.MockDataTask()
-        task.uploadStep = .target
+        task.uploadStep = .upload
         task.taskIdentifier = 1
-        let data = "invalid request".data(using: .utf8)!
-        manager.urlSession(backgroundSession, dataTask: task, didReceive: data)
+        manager.urlSession(backgroundSession, task: task, didCompleteWithError: NSError.instructureError("invalid request"))
         let notification = notificationCenter.requests.last
         XCTAssertNotNil(notification)
         XCTAssertEqual(notification?.content.title, "Assignment submission failed!")

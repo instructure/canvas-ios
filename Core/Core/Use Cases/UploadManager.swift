@@ -69,6 +69,11 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         context.mergePolicy = NSMergePolicy.overwrite
         return context
     }()
+    private lazy var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return decoder
+    }()
 
     public func uploadURL(_ url: URL) throws -> URL {
         let dir: URL
@@ -170,40 +175,23 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 let step = dataTask.uploadStep,
                 let file = self.file(taskID: dataTask.taskIdentifier)
             else { return }
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
             do {
                 switch step {
                 case .target:
-                    let target = try decoder.decode(FileUploadTarget.self, from: data)
-                    file.target = target
+                    file.targetData = (file.targetData ?? Data()) + data
                 case .upload:
-                    let result = try decoder.decode(APIFile.self, from: data)
-                    file.update(fromAPIModel: result)
+                    file.uploadData = (file.uploadData ?? Data()) + data
                 case .submit:
-                    guard case let .submission(courseID: _, assignmentID: assignmentID, comment: _)? = file.context else { break }
-                    // This json response is not very predictable so do our best to parse it.
-                    // Avoids sending a failed push notification when the submission was in fact successful.
-                    if let submission = try? decoder.decode(APISubmission.self, from: data) {
-                        NotificationCenter.default.post(
-                            name: UploadManager.AssignmentSubmittedNotification,
-                            object: nil,
-                            userInfo: ["assignmentID": assignmentID, "submission": submission]
-                        )
-                    }
+                    file.submitData = (file.submitData ?? Data()) + data
                 }
                 try context.save()
             } catch {
-                #if DEBUG
-                print(String(data: data, encoding: .utf8) ?? "", error)
-                #endif
                 complete(file: file, error: APIError.from(data: data, response: nil, error: error))
             }
         }
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
-        Logger.shared.log()
         context.performAndWait {
             guard let step = task.uploadStep, let file = self.file(taskID: task.taskIdentifier) else { return }
             switch step {
@@ -217,30 +205,35 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        Logger.shared.log()
         context.performAndWait {
-            guard
-                let step = task.uploadStep,
-                let file = self.file(taskID: task.taskIdentifier)
-            else { return }
+            guard let step = task.uploadStep else { return }
             switch step {
-            case .upload:
-                if case let .submission(courseID, assignmentID, comment)? = file.context, error == nil {
-                    submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
-                    return
-                }
-                complete(file: file, error: error)
-            case .submit:
-                complete(file: file, error: error)
-                if error == nil, let userID = file.userID, let batchID = file.batchID {
-                    delete(userID: userID, batchID: batchID)
-                }
             case .target:
-                guard let target = file.target, let url = file.localFileURL else { return }
-                let request = PostFileUploadRequest(fileURL: url, target: target)
-                let api = URLSessionAPI(accessToken: nil, actAsUserID: file.user?.actAsUserID, baseURL: target.upload_url, urlSession: backgroundSession)
+                completeTarget(task: task, error: error)
+            case .upload:
+                completeUpload(task: task, error: error)
+            case .submit:
+                completeSubmit(task: task, error: error)
+            }
+        }
+    }
+
+    func completeUpload(task: URLSessionTask, error: Error?) {
+        context.performAndWait {
+            guard let file = self.file(taskID: task.taskIdentifier) else { return }
+            if error != nil,
+                let response = task.response as? HTTPURLResponse,
+                response.statusCode == 201,
+                let location = response.allHeaderFields[HttpHeader.location] as? String,
+                let url = URL(string: location),
+                let user = file.user,
+                let session = Keychain.entries.first(where: { user == $0 }) {
                 do {
-                    let task = try api.uploadTask(request)
+                    // Upload failed with a 201 so fetch the file using the url in the Location header
+                    var request = URLRequest(url: url)
+                    request.setValue("Bearer \(session.accessToken)", forHTTPHeaderField: HttpHeader.authorization)
+                    request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
+                    let task = backgroundSession.dataTask(with: request)
                     task.uploadStep = .upload
                     file.taskID = task.taskIdentifier
                     try context.save()
@@ -248,6 +241,64 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 } catch {
                     complete(file: file, error: error)
                 }
+                return
+            }
+
+            guard let data = file.uploadData else {
+                complete(file: file, error: error)
+                return
+            }
+            do {
+                let result = try decoder.decode(APIFile.self, from: data)
+                file.update(fromAPIModel: result)
+                try context.save()
+                if case let .submission(courseID, assignmentID, comment)? = file.context, error == nil {
+                    submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
+                    return
+                }
+                complete(file: file, error: error)
+            } catch {
+                complete(file: file, error: APIError.from(data: data, response: nil, error: error))
+            }
+        }
+    }
+
+    func completeTarget(task: URLSessionTask, error: Error?) {
+        context.performAndWait {
+            guard let file = self.file(taskID: task.taskIdentifier) else { return }
+            guard let data = file.targetData, let url = file.localFileURL else { return }
+            do {
+                let target = try decoder.decode(FileUploadTarget.self, from: data)
+                let request = PostFileUploadRequest(fileURL: url, target: target)
+                let api = URLSessionAPI(accessToken: nil, actAsUserID: file.user?.actAsUserID, baseURL: target.upload_url, urlSession: backgroundSession)
+                let task = try api.uploadTask(request)
+                task.uploadStep = .upload
+                file.taskID = task.taskIdentifier
+                file.target = target
+                try context.save()
+                task.resume()
+            } catch {
+                complete(file: file, error: error)
+            }
+        }
+    }
+
+    func completeSubmit(task: URLSessionTask, error: Error?) {
+        context.performAndWait {
+            guard let file = self.file(taskID: task.taskIdentifier) else { return }
+            guard case let .submission(courseID, assignmentID, _)? = file.context else { return }
+            if error == nil, let userID = file.userID, let batchID = file.batchID {
+                sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
+                if let data = file.submitData, let submission = try? decoder.decode(APISubmission.self, from: data) {
+                    NotificationCenter.default.post(
+                        name: UploadManager.AssignmentSubmittedNotification,
+                        object: nil,
+                        userInfo: ["assignmentID": assignmentID, "submission": submission]
+                    )
+                }
+                delete(userID: userID, batchID: batchID)
+            } else {
+                sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
             }
         }
     }
@@ -259,6 +310,10 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     func delete(userID: String, batchID: String) {
         context.performAndWait {
             let files: [File] = context.fetch(predicate(userID: userID, batchID: batchID))
+            for file in files {
+                guard let url = file.localFileURL else { continue }
+                try? FileManager.default.removeItem(at: url)
+            }
             context.delete(files)
             try? context.save()
         }
@@ -300,7 +355,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     private func submit(file: File, courseID: String, assignmentID: String, comment: String?) {
-        Logger.shared.log()
         guard let user = file.user, let session = Keychain.entries.first(where: { user == $0 }) else { return }
         var files = [file]
         if let batchID = file.batchID {
@@ -338,24 +392,20 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     func complete(file: File, error: Error?) {
-        Logger.shared.log(error?.localizedDescription ?? #function)
         context.performAndWait {
             file.uploadError = error?.localizedDescription
             file.taskID = nil
+            if error == nil, let url = file.localFileURL, (try? FileManager.default.removeItem(at: url)) == nil {
+                file.localFileURL = nil
+            }
             try? context.save()
-
             if case let .submission(courseID, assignmentID, _)? = file.context {
-                if error == nil {
-                    sendCompletedNotification(courseID: courseID, assignmentID: assignmentID)
-                } else {
-                    sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
-                }
+                sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
             }
         }
     }
 
     private func sendFailedNotification(courseID: String, assignmentID: String) {
-        Logger.shared.log()
         let identifier = "failed-submission-\(courseID)-\(assignmentID)"
         let route = Route.course(courseID, assignment: assignmentID)
         let title = NSString.localizedUserNotificationString(forKey: "Assignment submission failed!", arguments: nil)
@@ -364,7 +414,6 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     private func sendCompletedNotification(courseID: String, assignmentID: String) {
-        Logger.shared.log()
         let identifier = "completed-submission-\(courseID)-\(assignmentID)"
         let route = Route.course(courseID, assignment: assignmentID)
         let title = NSString.localizedUserNotificationString(forKey: "Assignment submitted!", arguments: nil)

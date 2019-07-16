@@ -103,7 +103,8 @@ public struct URLSessionAPI: API {
     @discardableResult
     public func uploadTask<R: APIRequestable>(_ requestable: R) throws -> URLSessionTask {
         let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: actAsUserID)
-        let url = URL.temporaryDirectory.appendingPathComponent(UUID.string)
+        let directory = urlSession.configuration.sharedContainerIdentifier.flatMap(URL.sharedContainer) ?? URL.temporaryDirectory
+        let url = directory.appendingPathComponent(UUID.string)
         try request.httpBody?.write(to: url)
         #if DEBUG
         print("uploading", url)

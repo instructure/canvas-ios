@@ -45,7 +45,7 @@ extension UIImage {
      - Returns: The URL that the image was written to.
 
      - Note: Directories are created for `url` if they don't already exist.
-        Images are written as pngs, therefore, a `png` extension will be given to the name.
+        Images are written as jpegs, therefore, a `jpg` extension will be given to the name.
         Any file that exists at the destination URL will be overwritten.
      */
     @discardableResult
