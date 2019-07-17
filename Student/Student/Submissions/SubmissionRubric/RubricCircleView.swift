@@ -159,9 +159,19 @@ class RubricCircleView: UIView {
             self.currentlySelectedButton?.transform = CGAffineTransform.identity
             buttonToAnimate?.transform = self.selectedButtonTransform
         }, completion: { _ in
+            self.updateAccesibilityOnSelectedButton(previous: self.currentlySelectedButton, next: buttonToAnimate)
             self.currentlySelectedButton = buttonToAnimate
             completionHandler()
         })
+    }
+
+    func updateAccesibilityOnSelectedButton(previous: UIButton?, next: UIButton?) {
+        var defaultSelectedButton: UIButton?
+        if let defaultSelectedIndex = self.rubric?.selectedIndex {
+            defaultSelectedButton = self.buttons[defaultSelectedIndex]
+        }
+        previous?.accessibilityTraits = previous == defaultSelectedButton ? [.selected, .staticText] : .staticText
+        next?.accessibilityTraits = [.selected, .staticText]
     }
 
     func updateButtons(rubric: RubricViewModel) {
