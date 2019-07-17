@@ -654,6 +654,7 @@
 		EE2BFBD722BD30110046BA8B /* Assignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BFBD522BD27880046BA8B /* Assignments.swift */; };
 		EE2BFBDD22BD4BEC0046BA8B /* Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BFBD922BD3A810046BA8B /* Modules.swift */; };
 		EE2BFBDE22BD4BEF0046BA8B /* ModulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BFBDB22BD3AB40046BA8B /* ModulesTests.swift */; };
+		EE7683F122DF903900FEF2FD /* DeepLinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7683F022DF903900FEF2FD /* DeepLinkTests.swift */; };
 		EE7BB77922B822DE001C1EE7 /* DashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB77822B822DE001C1EE7 /* DashboardTests.swift */; };
 		EE7BB77B22B84720001C1EE7 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB77A22B84720001C1EE7 /* PeopleTests.swift */; };
 		EE7BB78322BA93A7001C1EE7 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7BB78222BA93A7001C1EE7 /* CalendarTests.swift */; };
@@ -1718,6 +1719,7 @@
 		EE2BFBD522BD27880046BA8B /* Assignments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignments.swift; sourceTree = "<group>"; };
 		EE2BFBD922BD3A810046BA8B /* Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
 		EE2BFBDB22BD3AB40046BA8B /* ModulesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesTests.swift; sourceTree = "<group>"; };
+		EE7683F022DF903900FEF2FD /* DeepLinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkTests.swift; sourceTree = "<group>"; };
 		EE7BB77822B822DE001C1EE7 /* DashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTests.swift; sourceTree = "<group>"; };
 		EE7BB77A22B84720001C1EE7 /* PeopleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		EE7BB78222BA93A7001C1EE7 /* CalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
@@ -3043,6 +3045,7 @@
 				EE7BB78422BA9407001C1EE7 /* Course Files */,
 				EE86F22A22C1622400F90CF6 /* Course Groups */,
 				7D903BFF22BABC3D009D9E9E /* Courses */,
+				EE7683EF22DF900400FEF2FD /* Deep Links */,
 				EE86F22722C14C4F00F90CF6 /* External Tool */,
 				EE7BB77722B82233001C1EE7 /* Dashboard */,
 				7D903C0F22BC2AE0009D9E9E /* Discussions */,
@@ -3169,6 +3172,14 @@
 				EE2BFBDB22BD3AB40046BA8B /* ModulesTests.swift */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		EE7683EF22DF900400FEF2FD /* Deep Links */ = {
+			isa = PBXGroup;
+			children = (
+				EE7683F022DF903900FEF2FD /* DeepLinkTests.swift */,
+			);
+			path = "Deep Links";
 			sourceTree = "<group>";
 		};
 		EE7BB77722B82233001C1EE7 /* Dashboard */ = {
@@ -4417,6 +4428,7 @@
 				7D903C0422BABE23009D9E9E /* Profile.swift in Sources */,
 				EE86F22922C14C7400F90CF6 /* ExternalTool.swift in Sources */,
 				EEEA99D822B7F2FC006AD5BF /* AnnouncementTests.swift in Sources */,
+				EE7683F122DF903900FEF2FD /* DeepLinkTests.swift in Sources */,
 				B105FDDE22B29D6600B0D4B3 /* AssignmentsTests.swift in Sources */,
 				7DEFE57122C3CE4700376F66 /* TodoListTests.swift in Sources */,
 				9F5D743822A99E91002FCCCE /* CanvasUITests.swift in Sources */,
