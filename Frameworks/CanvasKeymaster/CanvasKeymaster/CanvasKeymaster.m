@@ -18,7 +18,6 @@
 
 #import "CanvasKeymaster.h"
 #import <objc/runtime.h>
-#import "FXKeychain+CKMKeyChain.h"
 @import ReactiveObjC;
 
 @interface CanvasKeymaster ()
@@ -51,7 +50,6 @@
 
 - (void)setupWithClient:(CKIClient *)client {
     [self setCurrentClient:client];
-    [[FXKeychain sharedKeychain] clearKeychain];
     [self->_subjectForClientLogin sendNext:client];
 }
 
@@ -68,11 +66,6 @@
         [_currentClient invalidateSessionCancelingTasks:YES];
         _currentClient = client;
     }
-}
-
-- (NSInteger)numberOfClients
-{
-    return [[FXKeychain sharedKeychain] clients].count;
 }
 
 @end

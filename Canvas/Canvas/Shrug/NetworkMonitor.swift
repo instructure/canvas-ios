@@ -18,7 +18,6 @@
 
 import Foundation
 import CanvasKit1
-import Reachability
 import CanvasCore
 
 class NetworkMonitor: NSObject {

@@ -51,7 +51,7 @@ public extension PageViewEventViewControllerLoggingProtocol {
         timeOnViewControllerStart = Date()
     }
 
-    func stopTrackingTimeOnViewController(eventName: String, attributes: [String: Any]? = nil) {
+    func stopTrackingTimeOnViewController(eventName: String, attributes: [String: String] = [:]) {
         timeOnViewControllerEnd = Date()
         guard let start = timeOnViewControllerStart, let end = timeOnViewControllerEnd else { return }
         let duration = end.timeIntervalSince(start)

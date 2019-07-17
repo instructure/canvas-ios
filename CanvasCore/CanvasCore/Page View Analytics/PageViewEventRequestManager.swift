@@ -17,101 +17,92 @@
 //
 
 import Foundation
-import Reachability
+import Security
+import Core
 
 struct Pandata {
     static let tokenKeychainKey = "com.instructure.pandataToken"
-    static let expiresAtKey = "expires_at"
+    static let tokenKeychainService = Bundle.main.bundleIdentifier ?? Bundle.studentBundleID
 }
 
 class PageViewEventRequestManager {
-    
-    fileprivate let maxBatchCount = 300
-    
-    func sendEvents(handler: ErrorHandler?) {
-        guard let reachability = Reachability(hostName: "www.google.com"), reachability.isReachable() else { handler?(nil); return }
-        
-        retrievePandataEndpointInfo { [weak self] (endpointInfo) in
-            guard let sself = self, let endpointInfo = endpointInfo else { handler?(nil); return }
-            
-            let totalEvents = Persistency.instance.queueCount
-            var count = totalEvents
-            if(totalEvents > sself.maxBatchCount) {
-                count = sself.maxBatchCount
-            }
-            
-            if(count == 0) { handler?(nil); return }
-            
-            var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
+    private let maxBatchCount = 300
+
+    func sendEvents(handler: @escaping ErrorHandler) {
+        retrievePandataEndpointInfo { [weak self] token in
+            guard let self = self, let token = token else { return handler(nil) }
+
+            let count = min(self.maxBatchCount, Persistency.instance.queueCount)
+            guard count > 0 else { return handler(nil) }
+
+            var backgroundTask = UIBackgroundTaskIdentifier.invalid
             backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "send pageview events") {
                 backgroundTask = UIBackgroundTaskIdentifier.invalid
             }
-            
-            let eventsToSync = Persistency.instance.batchOfEvents(count)
-            
-            if let data = try? JSONEncoder().encode(eventsToSync), let json = String(data: data, encoding: .utf8) {
-                APIBridge.shared().call("sendEvents", args: [json as Any, endpointInfo as Any]) { response, error in
-                    if let success = response as? String, success.lowercased() == "ok" {
-                        Persistency.instance.dequeue(count, handler: {
-                            handler?(nil)
-                            UIApplication.shared.endBackgroundTask(convertToUIBackgroundTaskIdentifier(backgroundTask.rawValue))
-                        })
-                    }
-                    else {
-                        handler?(error)
-                        UIApplication.shared.endBackgroundTask(convertToUIBackgroundTaskIdentifier(backgroundTask.rawValue))
-                    }
-                }
-            }
-            else {
-                UIApplication.shared.endBackgroundTask(convertToUIBackgroundTaskIdentifier(backgroundTask.rawValue))
-            }
-        }
-    }
-    
-    func cleanup() {
-        FXKeychain.default().removeObject(forKey: Pandata.tokenKeychainKey)
-    }
-    
-    fileprivate func storePandataEndpointInfo(_ tokenData: [String: Any]) {
-        FXKeychain.default().setObject(tokenData, forKey: Pandata.tokenKeychainKey)
-    }
-    
-    fileprivate func retrievePandataEndpointInfo(handler: (([String: Any]?) -> Void)?) {
-        if let data = FXKeychain.default().object(forKey: Pandata.tokenKeychainKey) as? [String: Any], let expiration = data[Pandata.expiresAtKey] as? Double {
-            let expDt = Date(timeIntervalSince1970: expiration / 1000)
-            if expDt >= Date() {
-                handler?(data)
-                return
-            }
-        }
-        
-        guard let userID = CanvasKeymaster.the().currentClient?.currentUser.id else { handler?(nil); return }
-        requestPandataEndpointInfo(userID: userID) { [weak self] (data, error) in
-            guard let data = data else { handler?(nil); return }
-            self?.storePandataEndpointInfo(data)
-            handler?(data)
-        }
-    }
-    
-    func requestPandataEndpointInfo(userID: String, handler: @escaping ([String: Any]? , Error? ) -> Void ) {
-        var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
-        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "fetch pandata token") { backgroundTask = UIBackgroundTaskIdentifier.invalid }
-        
-        APIBridge.shared().call("fetchPandataToken", args: [userID]) { response, error in
-            guard let data = response as? [String: Any] else {
-                handler(nil, error)
-                UIApplication.shared.endBackgroundTask(convertToUIBackgroundTaskIdentifier(backgroundTask.rawValue))
-                return
-            }
-            
-            handler(data, nil)
-            UIApplication.shared.endBackgroundTask(convertToUIBackgroundTaskIdentifier(backgroundTask.rawValue))
-        }
-    }
-}
 
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIBackgroundTaskIdentifier(_ input: Int) -> UIBackgroundTaskIdentifier {
-	return UIBackgroundTaskIdentifier(rawValue: input)
+            let events = Persistency.instance.batchOfEvents(count).map { $0.apiEvent(token) }
+
+            AppEnvironment.shared.api.makeRequest(PostPandataEventsRequest(token: token, events: events)) { (response, _, error) in
+                guard response?.lowercased() == "\"ok\"", error == nil else {
+                    handler(error)
+                    UIApplication.shared.endBackgroundTask(backgroundTask)
+                    return
+                }
+                Persistency.instance.dequeue(count, handler: {
+                    handler(nil)
+                    UIApplication.shared.endBackgroundTask(backgroundTask)
+                })
+            }
+        }
+    }
+
+    func cleanup() {
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: Pandata.tokenKeychainService,
+            kSecAttrAccount: Pandata.tokenKeychainKey,
+        ]
+        _ = SecItemDelete(query as CFDictionary)
+    }
+
+    private func storePandataEndpointInfo(_ token: APIPandataEventsToken) {
+        guard let data = try? JSONEncoder().encode(token) else { return }
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: Pandata.tokenKeychainService,
+            kSecAttrAccount: Pandata.tokenKeychainKey,
+            kSecValueData: data,
+            kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked,
+        ]
+        _ = SecItemAdd(query as CFDictionary, nil)
+    }
+
+    private func retrievePandataEndpointInfo(handler: @escaping (APIPandataEventsToken?) -> Void) {
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: Pandata.tokenKeychainService,
+            kSecAttrAccount: Pandata.tokenKeychainKey,
+            kSecReturnData: kCFBooleanTrue as Any,
+            kSecMatchLimit: kSecMatchLimitOne,
+        ]
+        var result: AnyObject?
+        if SecItemCopyMatching(query as CFDictionary, &result) == noErr,
+            let data = result as? Data,
+            let token = try? JSONDecoder().decode(APIPandataEventsToken.self, from: data),
+            Date(timeIntervalSince1970: token.expires_at / 1000) >= Date() {
+            return handler(token)
+        }
+
+        var backgroundTask = UIBackgroundTaskIdentifier.invalid
+        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "fetch pandata token") {
+            backgroundTask = UIBackgroundTaskIdentifier.invalid
+        }
+        AppEnvironment.shared.api.makeRequest(PostPandataEventsTokenRequest()) { [weak self] (token, _, _) in
+            if let token = token {
+                self?.storePandataEndpointInfo(token)
+            }
+            handler(token)
+            UIApplication.shared.endBackgroundTask(backgroundTask)
+        }
+    }
 }
