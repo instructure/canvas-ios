@@ -43,7 +43,7 @@ extension APIAssignment {
         discussion_topic: APIDiscussionTopic? = nil,
         rubric: [APIRubric]? = nil,
         use_rubric_for_grading: Bool? = nil,
-        rubricSettings: APIRubricSettings? = nil
+        rubric_settings: APIRubricSettings? = nil
     ) -> APIAssignment {
         return APIAssignment(
             id: id,
@@ -68,7 +68,7 @@ extension APIAssignment {
             rubric: rubric,
             submission: submission.flatMap { APIList($0) },
             use_rubric_for_grading: use_rubric_for_grading,
-            rubricSettings: rubricSettings
+            rubric_settings: rubric_settings
         )
     }
 }
