@@ -34,12 +34,6 @@
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>FXKeychain</string>
-		<key>url</key>
-		<string>https://github.com/nicklockwood/FXKeychain</string>
-	</dict>
-	<dict>
-		<key>name</key>
 		<string>Kingfisher</string>
 		<key>url</key>
 		<string>https://github.com/onevcat/Kingfisher</string>
