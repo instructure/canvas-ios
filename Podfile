@@ -50,7 +50,6 @@ abstract_target 'defaults' do
   pod 'Cartography', '~> 3.1'
   pod 'ReactiveSwift', '~> 4.0'
   pod 'Kingfisher', '~> 4.10'
-  pod 'Masonry', '~> 1.0'
   pod 'SVProgressHUD', '~> 2.0'
   pod 'TBBModal', '~> 1.0'
   pod 'ReactiveObjC', '~> 3.1'
