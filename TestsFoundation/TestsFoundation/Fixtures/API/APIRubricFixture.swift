@@ -79,3 +79,9 @@ extension APIRubricAssessment {
         )
     }
 }
+
+extension APIRubricSettings {
+    public static func make(hides_points: Bool = false) -> APIRubricSettings {
+        return APIRubricSettings(hide_points: hides_points)
+    }
+}
