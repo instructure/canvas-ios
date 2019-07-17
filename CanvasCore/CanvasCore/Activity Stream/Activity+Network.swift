@@ -24,7 +24,7 @@ import ReactiveSwift
 
 extension Activity {
     static func getActivity(session: Session, context: ContextID) throws -> SignalProducer<[JSONObject], NSError> {
-        let request = try session.GET(context.apiPath/"activity_stream")
+        let request = try session.GET("\(context.apiPath)/activity_stream")
         return session.paginatedJSONSignalProducer(request)
     }
 }

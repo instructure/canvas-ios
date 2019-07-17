@@ -29,7 +29,7 @@ open class FileNodeAPI{
     }
     
     open class func getRootFolder(_ session: Session, contextID: ContextID) throws -> URLRequest {
-        let path = contextID.apiPath/"folders/by_path"
+        let path = "\(contextID.apiPath)/folders/by_path"
         return try session.GET(path)
     }
     
@@ -49,7 +49,7 @@ open class FileNodeAPI{
     }
     
     open class func addFolder(_ session: Session, contextID: ContextID, folderID: String?, name: String) throws -> URLRequest {
-        let path = contextID.apiPath/"folders"
+        let path = "\(contextID.apiPath)/folders"
         let nillableParams: [String: Any?] = [
             "name": name,
             "parent_folder_id": folderID

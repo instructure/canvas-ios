@@ -17,16 +17,19 @@
 //
 
 import Foundation
-
+import Core
 
 extension Assignment {
     public class func arcSubmissionLTILaunchURL(session: Session, context: ContextID, assignmentID: String, arcLTIToolID: String) -> URL? {
         guard context.context == .course || context.context == .group else { return nil }
         
         var url: URL? = session.baseURL
-        url?.appendPathComponent(context.htmlPath/"external_tools"/arcLTIToolID/"resource_selection")
-        url = url?.appending(URLQueryItem(name: "launch_type", value: "homework_submission"))?.appending(URLQueryItem(name: "assignment_id", value: assignmentID))
-        
+        url = url?.appendingPathComponent("\(context.htmlPath)/external_tools/\(arcLTIToolID)/resource_selection")
+        url = url?.appendingQueryItems(
+            URLQueryItem(name: "launch_type", value: "homework_submission"),
+            URLQueryItem(name: "assignment_id", value: assignmentID)
+        )
+
         return url
     }
     

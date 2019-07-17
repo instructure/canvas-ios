@@ -25,7 +25,7 @@ import Marshal
 
 extension Group {
     static func getAllGroups(_ session: Session) throws -> SignalProducer<[JSONObject], NSError> {
-        let request = try session.GET(api/v1/"users/self/groups")
+        let request = try session.GET("api/v1/users/self/groups")
         return session.paginatedJSONSignalProducer(request)
     }
 }

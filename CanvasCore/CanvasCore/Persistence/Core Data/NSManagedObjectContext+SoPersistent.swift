@@ -70,7 +70,7 @@ extension NSManagedObjectContext {
     }
     
     @objc var persistentStoreCoordinatorFRD: NSPersistentStoreCoordinator {
-        guard let psc =
+        guard let psc: NSPersistentStoreCoordinator =
             persistentStoreCoordinator
             ?? parent?.persistentStoreCoordinator
             ?? parent?.parent?.persistentStoreCoordinator

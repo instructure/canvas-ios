@@ -126,7 +126,7 @@ public final class Course: Enrollment {
     }
     
     public override var defaultViewPath: String {
-        return contextID.htmlPath / defaultView.pathComponent
+        return "\(contextID.htmlPath)/\(defaultView.pathComponent)"
     }
 
     public override var contextID: ContextID {

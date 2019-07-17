@@ -49,7 +49,7 @@ private let backdropParseResponse: (JSONObject) -> Result<JSONString, NSError> =
 }
 
 private func customDataBackdropPath() -> String {
-    return api/v1/"users"/"self"/"custom_data"/backdropScope
+    return "api/v1/users/self/custom_data/\(backdropScope)"
 }
 
 /**
