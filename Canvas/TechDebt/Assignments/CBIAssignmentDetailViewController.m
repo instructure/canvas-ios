@@ -34,7 +34,6 @@
 #import "UIImage+TechDebt.h"
 
 @import CanvasKeymaster;
-@import Masonry;
 @import CanvasCore;
 
 static NSUInteger const CBIAssignmentDetailNumMinutesInHour = 60;
@@ -430,6 +429,7 @@ NSInteger const GRADE_TAB_INDEX = 2;
 - (void) display404ErrorMessage {
     CGFloat textPadding = 20;
     UIView *messageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    messageView.translatesAutoresizingMaskIntoConstraints = NO;
     
     NSString *message = NSLocalizedStringFromTableInBundle(@"Sorry, we couldn't find the assignment. This assignment may have been deleted.", nil, [NSBundle bundleForClass:self.class], @"404 Error for missing assignment");
     UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:16];
@@ -446,19 +446,19 @@ NSInteger const GRADE_TAB_INDEX = 2;
     messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
     messageLabel.numberOfLines = 0;
     messageLabel.adjustsFontSizeToFitWidth = YES;
+    messageLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
     [messageView addSubview:messageLabel];
+    [NSLayoutConstraint activateConstraints:@[
+        [messageLabel.centerXAnchor constraintEqualToAnchor:messageView.centerXAnchor],
+        [messageLabel.centerYAnchor constraintEqualToAnchor:messageView.centerYAnchor]
+    ]];
 
-    [messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(messageView.mas_centerX);
-        make.centerY.equalTo(messageView.mas_centerY);
-    }];
-    
     [self.view addSubview:messageView];
-    [messageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view.mas_centerX);
-        make.centerY.equalTo(self.view.mas_centerY);
-    }];
+    [NSLayoutConstraint activateConstraints:@[
+        [messageView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
+        [messageView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor],
+    ]];
 }
 
 @end
