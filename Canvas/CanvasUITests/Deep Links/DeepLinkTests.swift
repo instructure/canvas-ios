@@ -19,34 +19,24 @@
 import XCTest
 import TestsFoundation
 
-enum FilesList {
-    static func file(id: String) -> Element {
-        return app.find(id: "file-list.file-list-row.cell-file-\(id)")
-    }
-}
+class DeepLinkTests: CanvasUITests {
 
-class CourseFileTests: CanvasUITests {
-    func testPreviewCourseFile() {
+    override func setUp() {
+        super.setUp()
+
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
-
-        CourseNavigation.files.tap()
-
-        FilesList.file(id: "10528").waitToExist()
-        FilesList.file(id: "10528").tap()
-
-        // need be on the next page before checking for image
-        sleep(3)
-        app.find(type: .image).waitToExist()
-    }
-
-    func testLinkToPreviewOpensFile() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-
         CourseNavigation.pages.tap()
-        PagesList.page(index: 2).tap()
-        XCUIElementWrapper(app.links.firstMatch).tap()
-        app.find(type: .image).waitToExist()
+        PagesList.page(index: 1).tap()
+    }
+
+    func testDeepLinkToGroupAnnouncements() {
+        app.find(labelContaining: "group-announcements").tap()
+        app.find(labelContaining: "There are no announcements to display.").waitToExist()
+    }
+
+    func testDeepLinkToGroup() {
+        app.find(labelContaining: "group-home").tap()
+        app.find(labelContaining: "Home").waitToExist()
     }
 }
