@@ -242,7 +242,8 @@ open class CalendarDayListViewController: UITableViewController {
     fileprivate var eventsDisposable: Disposable?
 
     @objc func updateCalendarEvents() {
-        guard let day = day else {
+        guard let day = day,
+            let refresherEndDate = calendar.date(byAdding: .day, value: 1, to: day + 1.daysComponents) else {
             eventsCollection = nil
             refresher = nil
             eventsDisposable?.dispose()
@@ -252,7 +253,7 @@ open class CalendarDayListViewController: UITableViewController {
         let startDate = day.startOfDay(calendar)
         let endDate = day + 1.daysComponents
         eventsCollection = try? CalendarEvent.collectionByDueDate(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
-        refresher = try? CalendarEvent.refresher(session, startDate: startDate, endDate: endDate, contextCodes: selectedContextCodes())
+        refresher = try? CalendarEvent.refresher(session, startDate: startDate, endDate: refresherEndDate, contextCodes: selectedContextCodes())
         refresher?.refresh(false)
         eventsDisposable = eventsCollection?.collectionUpdates
             .observe(on: UIScheduler())
