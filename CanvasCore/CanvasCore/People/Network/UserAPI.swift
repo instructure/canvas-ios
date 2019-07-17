@@ -18,7 +18,7 @@
 
 open class UserAPI {
     public static func getUsers(_ session: Session, context: ContextID) throws -> URLRequest {
-        let path = context.apiPath/"users"
+        let path = "\(context.apiPath)/users"
         let parameters = ["include": ["enrollments", "avatar_url"]]
         return try session.GET(path, parameters: parameters)
     }

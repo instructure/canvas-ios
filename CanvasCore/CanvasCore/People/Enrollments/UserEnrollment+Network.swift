@@ -24,7 +24,8 @@ extension UserEnrollment {
     public static func getUsers(enrolledInCourseWithID courseID: String, session: Session) throws -> SignalProducer<[JSONObject], NSError> {
         
         let parameters: [String: Any] = ["include": ["avatar_url"]]
-        let request = try session.GET(ContextID.course(withID: courseID).apiPath/"enrollments", parameters: parameters)
+        let path = "\(ContextID.course(withID: courseID).apiPath)/enrollments"
+        let request = try session.GET(path, parameters: parameters)
         return session.paginatedJSONSignalProducer(request)
     }
 }

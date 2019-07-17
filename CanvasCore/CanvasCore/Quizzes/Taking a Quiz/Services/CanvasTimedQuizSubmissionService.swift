@@ -45,7 +45,7 @@ class CanvasTimedQuizSubmissionService: TimedQuizSubmissionService {
     }
     
     fileprivate func requestToGetTimeRemaining() -> Request<Int> {
-        let path = context.apiPath/"quizzes"/quizID/"submissions"/submission.id/"time"
+        let path = "\(context.apiPath)/quizzes/\(quizID)/submissions/\(submission.id)/time"
         
         return Request(auth: auth, method: .GET, path: path, parameters: nil) { jsonValue in
             let object = jsonValue as? [String: Any]

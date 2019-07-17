@@ -19,6 +19,7 @@
 import UIKit
 import WebKit
 import Cartography
+import Core
 
 class NonNativeQuizTakingViewController: UIViewController {
     
@@ -31,7 +32,7 @@ class NonNativeQuizTakingViewController: UIViewController {
     fileprivate var quizHostName = ""
     fileprivate var loggingIn: Bool = false
     fileprivate var urlForTakingQuiz: URL {
-        return quiz.mobileURL.appending(URLQueryItem(name: "platform", value: "ios")) ?? quiz.mobileURL
+        return quiz.mobileURL.appendingQueryItems(URLQueryItem(name: "platform", value: "ios"))
     }
     fileprivate var requestForTakingQuiz: URLRequest {
         return URLRequest(url: urlForTakingQuiz)

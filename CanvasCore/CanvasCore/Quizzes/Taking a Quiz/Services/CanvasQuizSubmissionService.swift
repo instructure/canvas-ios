@@ -32,7 +32,7 @@ class CanvasQuizSubmissionService: QuizSubmissionService {
     }
     
     fileprivate var submissionPath: String {
-        return api/v1/"quiz_submissions"/submission.id
+        return "api/v1/quiz_submissions/\(submission.id)"
     }
     
     let auth: Session
@@ -65,7 +65,7 @@ class CanvasQuizSubmissionService: QuizSubmissionService {
     }
     
     func submissionQuestionsRequest() -> Request<[SubmissionQuestion]> {
-        let path = api/v1/"quiz_submissions"/submission.id/"questions"
+        let path = "api/v1/quiz_submissions/\(submission.id)/questions"
         
         return Request(auth: auth, method: .GET, path: path, parameters: nil) { jsonValue in
             let object = jsonValue as? [String: Any]
@@ -80,7 +80,7 @@ class CanvasQuizSubmissionService: QuizSubmissionService {
     
     func requestToMarkQuestionFlagged(_ question: SubmissionQuestion, flagged: Bool) -> Request<Bool> {
         let status = flagged ? "flag" : "unflag"
-        let path = api/v1/"quiz_submissions"/submission.id/"questions"/question.question.id/status
+        let path = "api/v1/quiz_submissions/\(submission.id)/questions/\(question.question.id)/\(status)"
         
         let params: [String: Any] = [
             "attempt": submission.attempt,

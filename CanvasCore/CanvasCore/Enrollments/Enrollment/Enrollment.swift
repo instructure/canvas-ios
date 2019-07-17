@@ -71,7 +71,7 @@ open class Enrollment: NSManagedObject {
     }
     
     @objc open var defaultViewPath: String {
-        return contextID.htmlPath / "activity_stream"
+        return "\(contextID.htmlPath)/activity_stream"
     }
 }
 
