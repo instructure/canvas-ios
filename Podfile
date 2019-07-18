@@ -30,12 +30,10 @@ abstract_target 'defaults' do
 
   # node modules
   pod 'RNFS', :path => nm_path + 'react-native-fs'
-  pod 'react-native-blur', :path => nm_path + 'react-native-blur'
   pod 'RNDeviceInfo', :path => nm_path + 'react-native-device-info'
   pod 'react-native-image-picker', :path => nm_path + 'react-native-image-picker'
   pod 'Interactable', :path => nm_path + 'react-native-interactable'
   pod 'BVLinearGradient', :path => nm_path + 'react-native-linear-gradient'
-  pod 'react-native-mail', :path => nm_path + 'react-native-mail'
   pod 'ReactNativeSearchBar', :path => nm_path + 'react-native-search-bar'
   pod 'RCTSFSafariViewController', :path => nm_path + 'react-native-sfsafariviewcontroller'
   pod 'react-native-document-picker', :path => nm_path + 'react-native-document-picker'
@@ -114,7 +112,6 @@ post_install do |installer|
       SVProgressHUD
       RCTSFSafariViewController
       react-native-camera
-      react-native-mail
       React
       react-native-document-picker
       react-native-wkwebview
