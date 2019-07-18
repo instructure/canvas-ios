@@ -51,9 +51,13 @@ class LoginManualOAuthViewController: UIViewController {
             loginDelegate: loginDelegate,
             method: .manualOAuthLogin
         )
+        var components = URLComponents(string: host)
+        if components?.scheme == nil {
+            components?.scheme = "https"
+        }
         controller.presenter?.mobileVerifyModel = APIVerifyClient(
             authorized: true,
-            base_url: URL(string: "https://\(host)"),
+            base_url: components?.url,
             client_id: id,
             client_secret: secret
         )
