@@ -44,6 +44,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var rubric: Set<Rubric>?
     @NSManaged public var useRubricForGrading: Bool
     @NSManaged public var lastUpdatedAt: Date?
+    @NSManaged public var hideRubricPoints: Bool
 
     public var gradingType: GradingType {
         get { return GradingType(rawValue: gradingTypeRaw) ?? .points }
@@ -106,6 +107,8 @@ extension Assignment {
                 self.rubric?.insert(rubricModel)
             }
         }
+
+        hideRubricPoints = item.rubric_settings?.hide_points == true
 
         if updateSubmission {
             if let submissionItem = item.submission?.values.first {

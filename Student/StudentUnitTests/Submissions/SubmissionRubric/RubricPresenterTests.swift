@@ -61,7 +61,8 @@ class RubricPresenterTests: PersistenceTestCase {
                 descriptions: ["Excellent", "Excellent"],
                 comment: "You failed at punctuation!",
                 rubricRatings: Array(rubric.ratings!).sorted { $0.points < $1.points },
-                isCustomAssessment: false
+                isCustomAssessment: false,
+                hideRubricPoints: false
             ),
         ]
 
@@ -101,7 +102,8 @@ class RubricPresenterTests: PersistenceTestCase {
                 descriptions: ["Excellent", "Excellent", "Custom Grade"],
                 comment: "this is custom",
                 rubricRatings: Array(rubric.ratings!).sorted { $0.points < $1.points },
-                isCustomAssessment: true
+                isCustomAssessment: true,
+                hideRubricPoints: false
             ),
         ]
 
@@ -124,7 +126,8 @@ class RubricPresenterTests: PersistenceTestCase {
                                     descriptions: ["Bad"],
                                     comment: nil,
                                     rubricRatings: [rating],
-                                    isCustomAssessment: true)
+                                    isCustomAssessment: true,
+                                    hideRubricPoints: false)
 
         let a = model.ratingBlurb(0)
         let b = model.ratingBlurb(1)

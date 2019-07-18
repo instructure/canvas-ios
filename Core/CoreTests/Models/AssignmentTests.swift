@@ -42,6 +42,7 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(a.submissionTypes, api.submission_types)
         XCTAssertEqual(a.position, api.position)
         XCTAssertFalse(a.useRubricForGrading)
+        XCTAssertFalse(a.hideRubricPoints)
 
         XCTAssertNotNil(a.submission)
     }

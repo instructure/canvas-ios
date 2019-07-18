@@ -42,6 +42,7 @@ public struct APIAssignment: Codable, Equatable {
     let rubric: [APIRubric]?
     let submission: APIList<APISubmission>?
     let use_rubric_for_grading: Bool?
+    let rubric_settings: APIRubricSettings?
 }
 
 public struct APIAssignmentNoSubmission: Codable, Equatable {
@@ -76,6 +77,6 @@ public struct APIAssignmentNoSubmission: Codable, Equatable {
             allowed_extensions: allowed_extensions, position: position,
             unlock_at: unlock_at, lock_at: lock_at, locked_for_user: locked_for_user, lock_explanation: nil,
             url: url, discussion_topic: discussion_topic, rubric: rubric, submission: nil,
-            use_rubric_for_grading: use_rubric_for_grading)
+            use_rubric_for_grading: use_rubric_for_grading, rubric_settings: nil)
     }
 }

@@ -37,3 +37,7 @@ public struct APIRubricRating: Codable, Equatable {
     var assignmentID: String?
     var position: Int?
 }
+
+public struct APIRubricSettings: Codable, Equatable {
+    var hide_points: Bool
+}
