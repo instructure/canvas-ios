@@ -69,7 +69,7 @@ export function handleSyntheticContext (params: {[string]: any}): {[string]: any
 }
 
 export async function fetch (url: string, params: { [string]: any } = {}, callback: TypeAheadSearchResults): Promise<void> {
-  const options:{[string]: any} = {
+  const options: {[string]: any} = {
     params: handleSyntheticContext(params),
   }
 

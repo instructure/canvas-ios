@@ -63,41 +63,25 @@ exports[`GroupList renders properly 1`] = `
   >
     <list>
       <item>
-        <View
-          accessibilityComponentType={undefined}
+        <TouchableHighlight
           accessibilityLabel={undefined}
           accessibilityTraits={Array []}
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+          activeOpacity={0.85}
+          onPress={[Function]}
           style={
             Array [
               Object {
-                "backgroundColor": "transparent",
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
               },
-              Array [
-                Object {
-                  "borderTopColor": "#C7CDD1",
-                  "borderTopWidth": 0.5,
-                },
-                Object {
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                },
-              ],
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
             ]
           }
           testID="1"
-          tvParallaxProperties={undefined}
+          underlayColor="black"
         >
           <View
             style={
@@ -128,32 +112,12 @@ exports[`GroupList renders properly 1`] = `
                 }
               }
             >
-              <View
-                accessibilityComponentType={undefined}
+              <TouchableHighlight
                 accessibilityLabel="Donald Trump Profile"
                 accessibilityTraits="button"
-                accessible={true}
-                hasTVPreferredFocus={undefined}
-                hitSlop={undefined}
-                isTVSelectable={true}
-                nativeID={undefined}
-                onLayout={undefined}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                    },
-                    undefined,
-                  ]
-                }
-                testID={undefined}
-                tvParallaxProperties={undefined}
+                activeOpacity={0.85}
+                onPress={[Function]}
+                underlayColor="transparent"
               >
                 <View
                   accessibilityLabel=""
@@ -189,7 +153,7 @@ exports[`GroupList renders properly 1`] = `
                     }
                   />
                 </View>
-              </View>
+              </TouchableHighlight>
             </View>
             <View
               style={
@@ -234,7 +198,7 @@ exports[`GroupList renders properly 1`] = `
               </Text>
             </View>
           </View>
-        </View>
+        </TouchableHighlight>
       </item>
     </list>
   </View>

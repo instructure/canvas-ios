@@ -321,8 +321,23 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               },
             },
             "updater": Updater {
+              "_callbacks": Array [],
               "_renderer": ReactShallowRenderer {
                 "_context": Object {},
+                "_didScheduleRenderPhaseUpdate": false,
+                "_dispatcher": Object {
+                  "readContext": [Function],
+                  "useCallback": [Function],
+                  "useContext": [Function],
+                  "useDebugValue": [Function],
+                  "useEffect": [Function],
+                  "useImperativeHandle": [Function],
+                  "useLayoutEffect": [Function],
+                  "useMemo": [Function],
+                  "useReducer": [Function],
+                  "useRef": [Function],
+                  "useState": [Function],
+                },
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
@@ -356,20 +371,13 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   submissions={Array []}
                   userID="1"
       />,
+                "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
-                "_newState": Object {
-                  "currentPageIndex": undefined,
-                  "currentStudentID": "1",
-                  "drawerInset": 62,
-                  "hasScrolledToInitialSubmission": false,
-                  "hasSetInitialDrawerPosition": false,
-                  "scrollEnabled": true,
-                  "size": Object {
-                    "height": 1334,
-                    "width": 770,
-                  },
-                },
+                "_isReRender": false,
+                "_newState": null,
+                "_numberOfReRenders": 0,
+                "_renderPhaseUpdates": null,
                 "_rendered": <Screen
                   navBarHidden={true}
                   navBarStyle="light"
@@ -420,6 +428,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
       </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
+                "_workInProgressHook": null,
               },
             },
             Symbol(enzyme.__setState__): [Function],
@@ -482,8 +491,23 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               },
             },
             "updater": Updater {
+              "_callbacks": Array [],
               "_renderer": ReactShallowRenderer {
                 "_context": Object {},
+                "_didScheduleRenderPhaseUpdate": false,
+                "_dispatcher": Object {
+                  "readContext": [Function],
+                  "useCallback": [Function],
+                  "useContext": [Function],
+                  "useDebugValue": [Function],
+                  "useEffect": [Function],
+                  "useImperativeHandle": [Function],
+                  "useLayoutEffect": [Function],
+                  "useMemo": [Function],
+                  "useReducer": [Function],
+                  "useRef": [Function],
+                  "useState": [Function],
+                },
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
@@ -519,20 +543,13 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   submissions={Array []}
                   userID="1"
       />,
+                "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
-                "_newState": Object {
-                  "currentPageIndex": undefined,
-                  "currentStudentID": "1",
-                  "drawerInset": 62,
-                  "hasScrolledToInitialSubmission": false,
-                  "hasSetInitialDrawerPosition": false,
-                  "scrollEnabled": true,
-                  "size": Object {
-                    "height": 1334,
-                    "width": 770,
-                  },
-                },
+                "_isReRender": false,
+                "_newState": null,
+                "_numberOfReRenders": 0,
+                "_renderPhaseUpdates": null,
                 "_rendered": <Screen
                   navBarHidden={true}
                   navBarStyle="light"
@@ -583,6 +600,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
       </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
+                "_workInProgressHook": null,
               },
             },
             Symbol(enzyme.__setState__): [Function],
@@ -645,8 +663,23 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               },
             },
             "updater": Updater {
+              "_callbacks": Array [],
               "_renderer": ReactShallowRenderer {
                 "_context": Object {},
+                "_didScheduleRenderPhaseUpdate": false,
+                "_dispatcher": Object {
+                  "readContext": [Function],
+                  "useCallback": [Function],
+                  "useContext": [Function],
+                  "useDebugValue": [Function],
+                  "useEffect": [Function],
+                  "useImperativeHandle": [Function],
+                  "useLayoutEffect": [Function],
+                  "useMemo": [Function],
+                  "useReducer": [Function],
+                  "useRef": [Function],
+                  "useState": [Function],
+                },
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
@@ -682,20 +715,13 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   submissions={Array []}
                   userID="1"
       />,
+                "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
-                "_newState": Object {
-                  "currentPageIndex": undefined,
-                  "currentStudentID": "1",
-                  "drawerInset": 62,
-                  "hasScrolledToInitialSubmission": false,
-                  "hasSetInitialDrawerPosition": false,
-                  "scrollEnabled": true,
-                  "size": Object {
-                    "height": 1334,
-                    "width": 770,
-                  },
-                },
+                "_isReRender": false,
+                "_newState": null,
+                "_numberOfReRenders": 0,
+                "_renderPhaseUpdates": null,
                 "_rendered": <Screen
                   navBarHidden={true}
                   navBarStyle="light"
@@ -746,6 +772,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
       </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
+                "_workInProgressHook": null,
               },
             },
             Symbol(enzyme.__setState__): [Function],
@@ -834,8 +861,23 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               ],
             },
             "updater": Updater {
+              "_callbacks": Array [],
               "_renderer": ReactShallowRenderer {
                 "_context": Object {},
+                "_didScheduleRenderPhaseUpdate": false,
+                "_dispatcher": Object {
+                  "readContext": [Function],
+                  "useCallback": [Function],
+                  "useContext": [Function],
+                  "useDebugValue": [Function],
+                  "useEffect": [Function],
+                  "useImperativeHandle": [Function],
+                  "useLayoutEffect": [Function],
+                  "useMemo": [Function],
+                  "useReducer": [Function],
+                  "useRef": [Function],
+                  "useState": [Function],
+                },
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
@@ -889,30 +931,13 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   }
                   userID="1"
       />,
+                "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
-                "_newState": Object {
-                  "currentPageIndex": 0,
-                  "currentStudentID": "1",
-                  "drawerInset": 62,
-                  "hasScrolledToInitialSubmission": false,
-                  "hasSetInitialDrawerPosition": false,
-                  "scrollEnabled": true,
-                  "size": Object {
-                    "height": 1334,
-                    "width": 770,
-                  },
-                  "submissions": Array [
-                    Object {
-                      "avatarURL": "http://www.fillmurray.com/100/100",
-                      "grade": "B-",
-                      "name": "Donald Trump",
-                      "sectionID": "1",
-                      "status": "missing",
-                      "userID": "55",
-                    },
-                  ],
-                },
+                "_isReRender": false,
+                "_newState": null,
+                "_numberOfReRenders": 0,
+                "_renderPhaseUpdates": null,
                 "_rendered": <Screen
                   navBarHidden={true}
                   navBarStyle="light"
@@ -979,6 +1004,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
       </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
+                "_workInProgressHook": null,
               },
             },
             Symbol(enzyme.__setState__): [Function],
@@ -1058,8 +1084,23 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               ],
             },
             "updater": Updater {
+              "_callbacks": Array [],
               "_renderer": ReactShallowRenderer {
                 "_context": Object {},
+                "_didScheduleRenderPhaseUpdate": false,
+                "_dispatcher": Object {
+                  "readContext": [Function],
+                  "useCallback": [Function],
+                  "useContext": [Function],
+                  "useDebugValue": [Function],
+                  "useEffect": [Function],
+                  "useImperativeHandle": [Function],
+                  "useLayoutEffect": [Function],
+                  "useMemo": [Function],
+                  "useReducer": [Function],
+                  "useRef": [Function],
+                  "useState": [Function],
+                },
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
@@ -1104,30 +1145,13 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   }
                   userID="1"
       />,
+                "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
-                "_newState": Object {
-                  "currentPageIndex": 0,
-                  "currentStudentID": "1",
-                  "drawerInset": 62,
-                  "hasScrolledToInitialSubmission": false,
-                  "hasSetInitialDrawerPosition": false,
-                  "scrollEnabled": true,
-                  "size": Object {
-                    "height": 1334,
-                    "width": 770,
-                  },
-                  "submissions": Array [
-                    Object {
-                      "avatarURL": "http://www.fillmurray.com/100/100",
-                      "grade": "B-",
-                      "name": "Donald Trump",
-                      "sectionID": "1",
-                      "status": "submitted",
-                      "userID": "55",
-                    },
-                  ],
-                },
+                "_isReRender": false,
+                "_newState": null,
+                "_numberOfReRenders": 0,
+                "_renderPhaseUpdates": null,
                 "_rendered": <Screen
                   navBarHidden={true}
                   navBarStyle="light"
@@ -1194,6 +1218,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
       </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
+                "_workInProgressHook": null,
               },
             },
             Symbol(enzyme.__setState__): [Function],
@@ -1273,8 +1298,23 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               ],
             },
             "updater": Updater {
+              "_callbacks": Array [],
               "_renderer": ReactShallowRenderer {
                 "_context": Object {},
+                "_didScheduleRenderPhaseUpdate": false,
+                "_dispatcher": Object {
+                  "readContext": [Function],
+                  "useCallback": [Function],
+                  "useContext": [Function],
+                  "useDebugValue": [Function],
+                  "useEffect": [Function],
+                  "useImperativeHandle": [Function],
+                  "useLayoutEffect": [Function],
+                  "useMemo": [Function],
+                  "useReducer": [Function],
+                  "useRef": [Function],
+                  "useState": [Function],
+                },
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
@@ -1319,30 +1359,13 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   }
                   userID="1"
       />,
+                "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
-                "_newState": Object {
-                  "currentPageIndex": 0,
-                  "currentStudentID": "1",
-                  "drawerInset": 62,
-                  "hasScrolledToInitialSubmission": false,
-                  "hasSetInitialDrawerPosition": false,
-                  "scrollEnabled": true,
-                  "size": Object {
-                    "height": 1334,
-                    "width": 770,
-                  },
-                  "submissions": Array [
-                    Object {
-                      "avatarURL": "http://www.fillmurray.com/100/100",
-                      "grade": "B-",
-                      "name": "Donald Trump",
-                      "sectionID": "1",
-                      "status": "submitted",
-                      "userID": "55",
-                    },
-                  ],
-                },
+                "_isReRender": false,
+                "_newState": null,
+                "_numberOfReRenders": 0,
+                "_renderPhaseUpdates": null,
                 "_rendered": <Screen
                   navBarHidden={true}
                   navBarStyle="light"
@@ -1409,6 +1432,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
       </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
+                "_workInProgressHook": null,
               },
             },
             Symbol(enzyme.__setState__): [Function],
@@ -1469,8 +1493,23 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               },
             },
             "updater": Updater {
+              "_callbacks": Array [],
               "_renderer": ReactShallowRenderer {
                 "_context": Object {},
+                "_didScheduleRenderPhaseUpdate": false,
+                "_dispatcher": Object {
+                  "readContext": [Function],
+                  "useCallback": [Function],
+                  "useContext": [Function],
+                  "useDebugValue": [Function],
+                  "useEffect": [Function],
+                  "useImperativeHandle": [Function],
+                  "useLayoutEffect": [Function],
+                  "useMemo": [Function],
+                  "useReducer": [Function],
+                  "useRef": [Function],
+                  "useState": [Function],
+                },
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
@@ -1504,20 +1543,13 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   submissions={Array []}
                   userID="1"
       />,
+                "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
-                "_newState": Object {
-                  "currentPageIndex": undefined,
-                  "currentStudentID": "1",
-                  "drawerInset": 62,
-                  "hasScrolledToInitialSubmission": false,
-                  "hasSetInitialDrawerPosition": false,
-                  "scrollEnabled": true,
-                  "size": Object {
-                    "height": 1334,
-                    "width": 770,
-                  },
-                },
+                "_isReRender": false,
+                "_newState": null,
+                "_numberOfReRenders": 0,
+                "_renderPhaseUpdates": null,
                 "_rendered": <Screen
                   navBarHidden={true}
                   navBarStyle="light"
@@ -1568,6 +1600,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
       </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
+                "_workInProgressHook": null,
               },
             },
             Symbol(enzyme.__setState__): [Function],
@@ -1628,8 +1661,23 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               },
             },
             "updater": Updater {
+              "_callbacks": Array [],
               "_renderer": ReactShallowRenderer {
                 "_context": Object {},
+                "_didScheduleRenderPhaseUpdate": false,
+                "_dispatcher": Object {
+                  "readContext": [Function],
+                  "useCallback": [Function],
+                  "useContext": [Function],
+                  "useDebugValue": [Function],
+                  "useEffect": [Function],
+                  "useImperativeHandle": [Function],
+                  "useLayoutEffect": [Function],
+                  "useMemo": [Function],
+                  "useReducer": [Function],
+                  "useRef": [Function],
+                  "useState": [Function],
+                },
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
@@ -1663,20 +1711,13 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   submissions={Array []}
                   userID="1"
       />,
+                "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
-                "_newState": Object {
-                  "currentPageIndex": undefined,
-                  "currentStudentID": "1",
-                  "drawerInset": 62,
-                  "hasScrolledToInitialSubmission": false,
-                  "hasSetInitialDrawerPosition": false,
-                  "scrollEnabled": true,
-                  "size": Object {
-                    "height": 1334,
-                    "width": 770,
-                  },
-                },
+                "_isReRender": false,
+                "_newState": null,
+                "_numberOfReRenders": 0,
+                "_renderPhaseUpdates": null,
                 "_rendered": <Screen
                   navBarHidden={true}
                   navBarStyle="light"
@@ -1727,6 +1768,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
       </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
+                "_workInProgressHook": null,
               },
             },
             Symbol(enzyme.__setState__): [Function],
@@ -1806,8 +1848,23 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               ],
             },
             "updater": Updater {
+              "_callbacks": Array [],
               "_renderer": ReactShallowRenderer {
                 "_context": Object {},
+                "_didScheduleRenderPhaseUpdate": false,
+                "_dispatcher": Object {
+                  "readContext": [Function],
+                  "useCallback": [Function],
+                  "useContext": [Function],
+                  "useDebugValue": [Function],
+                  "useEffect": [Function],
+                  "useImperativeHandle": [Function],
+                  "useLayoutEffect": [Function],
+                  "useMemo": [Function],
+                  "useReducer": [Function],
+                  "useRef": [Function],
+                  "useState": [Function],
+                },
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
@@ -1852,30 +1909,13 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   }
                   userID="1"
       />,
+                "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
-                "_newState": Object {
-                  "currentPageIndex": 0,
-                  "currentStudentID": "1",
-                  "drawerInset": 62,
-                  "hasScrolledToInitialSubmission": false,
-                  "hasSetInitialDrawerPosition": false,
-                  "scrollEnabled": true,
-                  "size": Object {
-                    "height": 1334,
-                    "width": 770,
-                  },
-                  "submissions": Array [
-                    Object {
-                      "avatarURL": "http://www.fillmurray.com/100/100",
-                      "grade": "B-",
-                      "name": "Donald Trump",
-                      "sectionID": "1",
-                      "status": "submitted",
-                      "userID": "55",
-                    },
-                  ],
-                },
+                "_isReRender": false,
+                "_newState": null,
+                "_numberOfReRenders": 0,
+                "_renderPhaseUpdates": null,
                 "_rendered": <Screen
                   navBarHidden={true}
                   navBarStyle="light"
@@ -1942,6 +1982,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
       </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
+                "_workInProgressHook": null,
               },
             },
             Symbol(enzyme.__setState__): [Function],
