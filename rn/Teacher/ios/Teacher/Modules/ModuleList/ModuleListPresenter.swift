@@ -114,14 +114,7 @@ class ModuleListPresenter {
     }
 
     func showItem(_ item: Core.ModuleItem, from viewController: UIViewController) {
-        switch item.type {
-        case .externalTool(_, let url)?, .externalURL(let url)?:
-            let safari = SFSafariViewController(url: url)
-            safari.modalPresentationStyle = .overFullScreen
-            viewController.present(safari, animated: true, completion: nil)
-        default:
-            guard let url = item.url else { return }
-            env.router.route(to: url, from: viewController, options: nil)
-        }
+        guard let url = item.url else { return }
+        env.router.route(to: url, from: viewController, options: nil)
     }
 }

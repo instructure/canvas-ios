@@ -336,22 +336,6 @@ class ModuleListPresenterTests: TeacherTestCase {
         XCTAssertTrue(presenter.isSectionExpanded(0))
     }
 
-    func testShowItemExternalTool() {
-        let url = URL(string: "https://canvas.instructure.com/courses/1/external_tools/1?sessionless_launch=YES")!
-        let item = ModuleItem.make(from: .make(content: .externalTool("1", url)))
-        let vc = MockViewController()
-        presenter.showItem(item, from: vc)
-        XCTAssertNotNil(vc.presented as? SFSafariViewController)
-    }
-
-    func testShowItemExternalURL() {
-        let url = URL(string: "https://google.com")!
-        let item = ModuleItem.make(from: .make(content: .externalURL(url)))
-        let vc = MockViewController()
-        presenter.showItem(item, from: vc)
-        XCTAssertNotNil(vc.presented as? SFSafariViewController)
-    }
-
     func testShowItem() {
         let url = URL(string: "/courses/1/assignments/2")!
         let item = ModuleItem.make(from: .make(url: url))

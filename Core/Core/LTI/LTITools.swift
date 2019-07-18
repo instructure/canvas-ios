@@ -63,7 +63,9 @@ public class LTITools {
                 completionHandler?(false)
                 return
             }
-            from.present(SFSafariViewController(url: url), animated: true, completion: {
+            let safari = SFSafariViewController(url: url)
+            safari.modalPresentationStyle = .overFullScreen
+            from.present(safari, animated: animated, completion: {
                 completionHandler?(true)
             })
         }
