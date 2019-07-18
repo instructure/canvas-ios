@@ -3202,8 +3202,8 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
               Add a few of your favorite courses to make this place your home.
             </Text>
             <TouchableOpacity
-              accessibilityComponentType="button"
-              accessibilityTraits="button"
+              accessibilityLabel={undefined}
+              accessibilityRole="button"
               activeOpacity={0.2}
               delayLongPress={undefined}
               delayPressIn={undefined}
@@ -3214,17 +3214,20 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
               onPressOut={undefined}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "#374A59",
-                    "borderRadius": 8,
-                    "overflow": "hidden",
-                    "padding": 10,
-                  },
-                  Object {
-                    "borderRadius": 4,
-                    "paddingHorizontal": 24,
-                    "paddingVertical": 16,
-                  },
+                  Array [
+                    Object {
+                      "backgroundColor": "#374A59",
+                      "borderRadius": 8,
+                      "overflow": "hidden",
+                      "padding": 10,
+                    },
+                    Object {
+                      "borderRadius": 4,
+                      "paddingHorizontal": 24,
+                      "paddingVertical": 16,
+                    },
+                  ],
+                  null,
                 ]
               }
               testID="Dashboard.addCoursesButton"
@@ -3475,8 +3478,8 @@ exports[`Dashboard render without favorite courses 1`] = `
               Add a few of your favorite courses to make this place your home.
             </Text>
             <TouchableOpacity
-              accessibilityComponentType="button"
-              accessibilityTraits="button"
+              accessibilityLabel={undefined}
+              accessibilityRole="button"
               activeOpacity={0.2}
               delayLongPress={undefined}
               delayPressIn={undefined}
@@ -3487,17 +3490,20 @@ exports[`Dashboard render without favorite courses 1`] = `
               onPressOut={undefined}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "#374A59",
-                    "borderRadius": 8,
-                    "overflow": "hidden",
-                    "padding": 10,
-                  },
-                  Object {
-                    "borderRadius": 4,
-                    "paddingHorizontal": 24,
-                    "paddingVertical": 16,
-                  },
+                  Array [
+                    Object {
+                      "backgroundColor": "#374A59",
+                      "borderRadius": 8,
+                      "overflow": "hidden",
+                      "padding": 10,
+                    },
+                    Object {
+                      "borderRadius": 4,
+                      "paddingHorizontal": 24,
+                      "paddingVertical": 16,
+                    },
+                  ],
+                  null,
                 ]
               }
               testID="Dashboard.addCoursesButton"
@@ -3712,8 +3718,8 @@ exports[`Dashboard renders course invites 1`] = `
                   }
                 >
                   <TouchableOpacity
-                    accessibilityComponentType="button"
-                    accessibilityTraits="button"
+                    accessibilityLabel={undefined}
+                    accessibilityRole="button"
                     activeOpacity={0.2}
                     delayLongPress={undefined}
                     delayPressIn={undefined}
@@ -3724,26 +3730,29 @@ exports[`Dashboard renders course invites 1`] = `
                     onPressOut={undefined}
                     style={
                       Array [
-                        Object {
-                          "backgroundColor": "#374A59",
-                          "borderRadius": 8,
-                          "overflow": "hidden",
-                          "padding": 10,
-                        },
                         Array [
                           Object {
-                            "backgroundColor": "#00AC18",
-                            "borderRadius": 4,
-                            "flex": 1,
-                            "height": 40,
-                            "margin": 4,
+                            "backgroundColor": "#374A59",
+                            "borderRadius": 8,
+                            "overflow": "hidden",
+                            "padding": 10,
                           },
-                          Object {
-                            "backgroundColor": "white",
-                            "borderColor": "#8B969E",
-                            "borderWidth": 0.5,
-                          },
+                          Array [
+                            Object {
+                              "backgroundColor": "#00AC18",
+                              "borderRadius": 4,
+                              "flex": 1,
+                              "height": 40,
+                              "margin": 4,
+                            },
+                            Object {
+                              "backgroundColor": "white",
+                              "borderColor": "#8B969E",
+                              "borderWidth": 0.5,
+                            },
+                          ],
                         ],
+                        null,
                       ]
                     }
                     testID="CourseInvitation.1.rejectButton"
@@ -3784,8 +3793,8 @@ exports[`Dashboard renders course invites 1`] = `
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    accessibilityComponentType="button"
-                    accessibilityTraits="button"
+                    accessibilityLabel={undefined}
+                    accessibilityRole="button"
                     activeOpacity={0.2}
                     delayLongPress={undefined}
                     delayPressIn={undefined}
@@ -3796,19 +3805,22 @@ exports[`Dashboard renders course invites 1`] = `
                     onPressOut={undefined}
                     style={
                       Array [
-                        Object {
-                          "backgroundColor": "#374A59",
-                          "borderRadius": 8,
-                          "overflow": "hidden",
-                          "padding": 10,
-                        },
-                        Object {
-                          "backgroundColor": "#00AC18",
-                          "borderRadius": 4,
-                          "flex": 1,
-                          "height": 40,
-                          "margin": 4,
-                        },
+                        Array [
+                          Object {
+                            "backgroundColor": "#374A59",
+                            "borderRadius": 8,
+                            "overflow": "hidden",
+                            "padding": 10,
+                          },
+                          Object {
+                            "backgroundColor": "#00AC18",
+                            "borderRadius": 4,
+                            "flex": 1,
+                            "height": 40,
+                            "margin": 4,
+                          },
+                        ],
+                        null,
                       ]
                     }
                     testID="CourseInvitation.1.acceptButton"
@@ -3985,8 +3997,8 @@ exports[`Dashboard renders course invites 1`] = `
                   }
                 >
                   <TouchableOpacity
-                    accessibilityComponentType="button"
-                    accessibilityTraits="button"
+                    accessibilityLabel={undefined}
+                    accessibilityRole="button"
                     activeOpacity={0.2}
                     delayLongPress={undefined}
                     delayPressIn={undefined}
@@ -3997,26 +4009,29 @@ exports[`Dashboard renders course invites 1`] = `
                     onPressOut={undefined}
                     style={
                       Array [
-                        Object {
-                          "backgroundColor": "#374A59",
-                          "borderRadius": 8,
-                          "overflow": "hidden",
-                          "padding": 10,
-                        },
                         Array [
                           Object {
-                            "backgroundColor": "#00AC18",
-                            "borderRadius": 4,
-                            "flex": 1,
-                            "height": 40,
-                            "margin": 4,
+                            "backgroundColor": "#374A59",
+                            "borderRadius": 8,
+                            "overflow": "hidden",
+                            "padding": 10,
                           },
-                          Object {
-                            "backgroundColor": "white",
-                            "borderColor": "#8B969E",
-                            "borderWidth": 0.5,
-                          },
+                          Array [
+                            Object {
+                              "backgroundColor": "#00AC18",
+                              "borderRadius": 4,
+                              "flex": 1,
+                              "height": 40,
+                              "margin": 4,
+                            },
+                            Object {
+                              "backgroundColor": "white",
+                              "borderColor": "#8B969E",
+                              "borderWidth": 0.5,
+                            },
+                          ],
                         ],
+                        null,
                       ]
                     }
                     testID="CourseInvitation.2.rejectButton"
@@ -4057,8 +4072,8 @@ exports[`Dashboard renders course invites 1`] = `
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    accessibilityComponentType="button"
-                    accessibilityTraits="button"
+                    accessibilityLabel={undefined}
+                    accessibilityRole="button"
                     activeOpacity={0.2}
                     delayLongPress={undefined}
                     delayPressIn={undefined}
@@ -4069,19 +4084,22 @@ exports[`Dashboard renders course invites 1`] = `
                     onPressOut={undefined}
                     style={
                       Array [
-                        Object {
-                          "backgroundColor": "#374A59",
-                          "borderRadius": 8,
-                          "overflow": "hidden",
-                          "padding": 10,
-                        },
-                        Object {
-                          "backgroundColor": "#00AC18",
-                          "borderRadius": 4,
-                          "flex": 1,
-                          "height": 40,
-                          "margin": 4,
-                        },
+                        Array [
+                          Object {
+                            "backgroundColor": "#374A59",
+                            "borderRadius": 8,
+                            "overflow": "hidden",
+                            "padding": 10,
+                          },
+                          Object {
+                            "backgroundColor": "#00AC18",
+                            "borderRadius": 4,
+                            "flex": 1,
+                            "height": 40,
+                            "margin": 4,
+                          },
+                        ],
+                        null,
                       ]
                     }
                     testID="CourseInvitation.2.acceptButton"

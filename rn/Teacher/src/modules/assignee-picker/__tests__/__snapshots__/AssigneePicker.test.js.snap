@@ -190,9 +190,9 @@ exports[`render correctly 1`] = `
             }
           >
             <View
-              accessibilityComponentType="button"
+              accessibilityComponentType={undefined}
               accessibilityLabel={undefined}
-              accessibilityTraits="button"
+              accessibilityTraits={undefined}
               accessible={true}
               collapsable={undefined}
               hasTVPreferredFocus={undefined}
@@ -393,9 +393,9 @@ exports[`render correctly 1`] = `
             }
           >
             <View
-              accessibilityComponentType="button"
+              accessibilityComponentType={undefined}
               accessibilityLabel={undefined}
-              accessibilityTraits="button"
+              accessibilityTraits={undefined}
               accessible={true}
               collapsable={undefined}
               hasTVPreferredFocus={undefined}
@@ -596,9 +596,9 @@ exports[`render correctly 1`] = `
             }
           >
             <View
-              accessibilityComponentType="button"
+              accessibilityComponentType={undefined}
               accessibilityLabel={undefined}
-              accessibilityTraits="button"
+              accessibilityTraits={undefined}
               accessible={true}
               collapsable={undefined}
               hasTVPreferredFocus={undefined}

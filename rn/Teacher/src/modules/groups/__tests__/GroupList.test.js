@@ -78,7 +78,7 @@ describe('GroupList', () => {
     let view = renderer(
       <GroupList {...defaultProps} />
     )
-    let avatar = view.query('Avatar')
+    let avatar = view.query('[accessibilityTraits="button"]')
     avatar.simulate('press')
     expect(defaultProps.navigator.show).toHaveBeenCalledWith(
       `/courses/1/users/1`,

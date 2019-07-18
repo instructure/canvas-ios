@@ -35,6 +35,7 @@ struct RubricViewModel: Hashable, Equatable {
     let comment: String?
     let rubricRatings: [RubricRating]
     var isCustomAssessment: Bool = false
+    var hideRubricPoints: Bool
 
     func ratingBlurb(_ atIndex: Int) -> (header: String, subHeader: String) {
         let isCustom = isCustomAssessment && atIndex >= rubricRatings.count
@@ -88,17 +89,17 @@ class RubricPresenter {
     }
 
     func update() {
-        if rubrics.count > 0, let rubrics = rubrics.all, assignments.first != nil, courses.first?.color != nil {
+        if rubrics.count > 0, let rubrics = rubrics.all, let assignment = assignments.first, courses.first?.color != nil {
 
             let assessments = submissions.first?.rubricAssessments
-            let models = transformRubricsToViewModels(rubrics, assessments: assessments)
+            let models = transformRubricsToViewModels(rubrics, assessments: assessments, hideRubricPoints: assignment.hideRubricPoints)
             view?.update(models)
         } else {
             view?.showEmptyState(true)
         }
     }
 
-    func transformRubricsToViewModels(_ rubric: [Rubric], assessments: RubricAssessments?) -> [RubricViewModel] {
+    func transformRubricsToViewModels(_ rubric: [Rubric], assessments: RubricAssessments?, hideRubricPoints: Bool) -> [RubricViewModel] {
         var models = [RubricViewModel]()
         for r in rubric {
             guard let ratings = r.ratings else { continue }
@@ -139,7 +140,8 @@ class RubricPresenter {
                 descriptions: allDescriptions,
                 comment: comments,
                 rubricRatings: sorted,
-                isCustomAssessment: isCustomAssessment
+                isCustomAssessment: isCustomAssessment,
+                hideRubricPoints: hideRubricPoints
             )
             models.append(m)
         }
