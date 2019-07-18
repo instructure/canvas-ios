@@ -28,8 +28,7 @@ let rubricCircleViewAlphaColor: CGFloat = 0.07
 class RubricCircleView: UIView {
     private static let w: CGFloat = 49
     fileprivate static let space: CGFloat = 10
-    fileprivate static let nonSelectedFont = UIFont.scaledNamedFont(.regular20Monodigit)
-    fileprivate static let stringPadding = "   "
+    fileprivate static let stringPadding = "      "
     private var buttons: [UIButton] = []
     var rubric: RubricViewModel?
     weak var buttonClickDelegate: RubricCircleViewButtonDelegate?
@@ -37,11 +36,13 @@ class RubricCircleView: UIView {
     private var currentlySelectedButton: UIButton?
     private var selectedButtonTransform = CGAffineTransform(scaleX: 1.135, y: 1.135)
     var heightConstraint: NSLayoutConstraint?
+    var buttonsDidLayout = false
 
     override func layoutSubviews() {
         super.layoutSubviews()
         if buttons.count == 0 {
             setupButtons()
+            buttonsDidLayout = true
         }
     }
 
@@ -52,7 +53,7 @@ class RubricCircleView: UIView {
         return formatter
     }()
 
-    func setupButtons() {
+    private func setupButtons() {
         //  remove old buttons
         buttons.forEach { $0.removeFromSuperview() }
         buttons = []
@@ -86,13 +87,13 @@ class RubricCircleView: UIView {
                 color = UIColor.named(.backgroundLightest)
                 bgColor = courseColor
             } else {
-                font = RubricCircleView.nonSelectedFont
+                font = UIFont.scaledNamedFont(.regular20Monodigit)
                 color = UIColor.named(.borderDark)
                 bgColor = UIColor.named(.backgroundLightest)
             }
 
             let title = (rubric?.hideRubricPoints ?? false) ? (rubric?.rubricRatings[i].desc ?? "-") + RubricCircleView.stringPadding : RubricCircleView.formatter.string(for: r) ?? ""
-            let size = title.size(withAttributes: [NSAttributedString.Key.font: RubricCircleView.nonSelectedFont])
+            let size = title.size(withAttributes: [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20Monodigit)])
             let circleWidth = ceil( max( RubricCircleView.w, size.width ) )
 
             runningWidthTotal += circleWidth + space
@@ -230,7 +231,7 @@ class RubricCircleView: UIView {
         var total: CGFloat = 0.0
         rubric.rubricRatings.forEach { r in
             let str = r.desc + stringPadding
-            let fontAttributes = [NSAttributedString.Key.font: nonSelectedFont]
+            let fontAttributes = [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20Monodigit)]
             let size = str.size(withAttributes: fontAttributes)
             let width = ceil ( max(w, size.width) )
             total += ceil( width ) + space
@@ -240,5 +241,12 @@ class RubricCircleView: UIView {
             }
         }
         return (rows * w) + ((rows - 1) * space)
+    }
+
+    internal override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if buttonsDidLayout {
+            setupButtons()
+        }
     }
 }
