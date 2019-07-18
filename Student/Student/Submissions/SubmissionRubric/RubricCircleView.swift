@@ -180,9 +180,9 @@ class RubricCircleView: UIView {
 
     func updateAccesibilityOnSelectedButton(previous: UIButton?, next: UIButton?) {
         var defaultSelectedButton: UIButton?
-        if var defaultSelectedIndex = self.rubric?.selectedIndex {
-            if rubric?.isCustomAssessment ?? false { defaultSelectedIndex = self.buttons.count - 1 }
-            defaultSelectedButton = self.buttons[defaultSelectedIndex]
+        if var defaultSelectedIndex = rubric?.selectedIndex {
+            if rubric?.isCustomAssessment == true && buttons.count > 0 { defaultSelectedIndex = buttons.count - 1 }
+            defaultSelectedButton = buttons[defaultSelectedIndex]
         }
         previous?.accessibilityTraits = previous == defaultSelectedButton ? [.selected, .staticText] : .staticText
         next?.accessibilityTraits = [.selected, .staticText]
