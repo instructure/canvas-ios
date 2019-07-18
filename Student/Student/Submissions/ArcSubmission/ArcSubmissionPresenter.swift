@@ -56,7 +56,6 @@ class ArcSubmissionPresenter {
             let urlRaw = graph.first?["url"] as? String,
             let url = URL(string: urlRaw)
         else {
-            callback(NSError.internalError())
             return
         }
         submit(url: url, callback: callback)

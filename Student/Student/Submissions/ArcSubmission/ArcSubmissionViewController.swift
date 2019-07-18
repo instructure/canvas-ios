@@ -91,12 +91,17 @@ class ArcSubmissionViewController: UIViewController, ArcSubmissionView {
 
     var js: String {
         return """
+            HTMLFormElement.prototype.originalSubmit = HTMLFormElement.prototype.submit
             HTMLFormElement.prototype.submit = function() {
                 let formData = {}
                 for (const [ name, value ] of new FormData(this)) {
                     formData[name] = value
                 }
-                window.webkit.messageHandlers.submit.postMessage(formData)
+                if (formData.content_items == null) {
+                    this.originalSubmit.call(this, arguments)
+                } else {
+                    window.webkit.messageHandlers.submit.postMessage(formData)
+                }
             }
         """
     }
