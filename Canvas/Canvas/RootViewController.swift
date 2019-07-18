@@ -62,7 +62,7 @@ func dashboardTab(session: Session) -> UIViewController {
     dashboardSplit.viewControllers = [dashboardNav, emptyNav]
     dashboardSplit.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
     dashboardSplit.tabBarItem.image = .icon(.dashboard, .line)
-    dashboardSplit.tabBarItem.selectedImage = .icon(.dashboardCustomSolid)
+    dashboardSplit.tabBarItem.selectedImage = .icon(.dashboard, .solid)
     dashboardSplit.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
     dashboardSplit.navigationItem.titleView = Brand.current.navBarTitleView()
     return dashboardSplit

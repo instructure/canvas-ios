@@ -38,10 +38,10 @@ open class AccessIconView: UIView {
         didSet {
             switch state {
             case .published?:
-                statusIconView.image = .icon(.publish)
+                statusIconView.image = .icon(.publish, .solid)
                 statusIconView.tintColor = UIColor.named(.backgroundSuccess).ensureContrast(against: .white)
             case .unpublished?:
-                statusIconView.image = .icon(.unpublish)
+                statusIconView.image = .icon(.no, .solid)
                 statusIconView.tintColor = UIColor.named(.ash)
             case nil:
                 statusIconView.isHidden = true

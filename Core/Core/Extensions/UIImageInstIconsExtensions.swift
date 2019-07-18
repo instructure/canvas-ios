@@ -31,9 +31,9 @@ extension UIImage {
             bulletList, calendarMonth, check, complete, courses, dashboard, discussion, document,
             email, empty, folder, forward, gradebook, group, hamburger, highlighter, image,
             instructure, italic, link, lock, lti, marker, miniArrowDown, miniArrowUp, module, more,
-            no, numberedList, outcomes, paint, paperclip, pause, pdf, play, prerequisite, question,
-            quiz, refresh, reply, rubric, settings, star, strikethrough, text, textColor, trash,
-            trouble, unlock, user, video, x
+            no, numberedList, outcomes, paint, paperclip, pause, pdf, play, prerequisite, publish,
+            question, quiz, refresh, reply, rubric, settings, star, strikethrough, text, textColor,
+            trash, trouble, unlock, user, video, warning, x
     }
 
     public static func icon(_ name: InstIconName, _ type: InstIconType = .line) -> UIImage {
