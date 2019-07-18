@@ -27,7 +27,7 @@ extension Tab {
             guard let enrollment = session.enrollmentsDataSource[contextID] else { return url }
             return URL(string: enrollment.defaultViewPath)
         } else if isPages {
-            return URL(string: contextID.htmlPath/"pages")
+            return URL(string: "\(contextID.htmlPath)/pages")
         }
         return url
     }

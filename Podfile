@@ -40,7 +40,6 @@ abstract_target 'defaults' do
   pod 'RCTSFSafariViewController', :path => nm_path + 'react-native-sfsafariviewcontroller'
   pod 'react-native-document-picker', :path => nm_path + 'react-native-document-picker'
   pod 'RNAudio', :path => nm_path + 'react-native-audio'
-  pod 'RCTSFSafariViewController', :path => nm_path + 'react-native-sfsafariviewcontroller'
   pod 'RNSound', :path => nm_path + 'react-native-sound'
   pod 'react-native-camera', :path => nm_path + 'react-native-camera'
 
@@ -50,14 +49,11 @@ abstract_target 'defaults' do
   pod 'Cartography', '~> 3.1'
   pod 'ReactiveSwift', '~> 4.0'
   pod 'Kingfisher', '~> 4.10'
-  pod 'Masonry', '~> 1.0'
   pod 'SVProgressHUD', '~> 2.0'
   pod 'TBBModal', '~> 1.0'
   pod 'ReactiveObjC', '~> 3.1'
   pod 'ReactiveObjCBridge', '~> 4.0'
   pod 'AFNetworking', '~> 3.0'
-  pod 'FXKeychain', '~> 1.5'
-  pod 'Reachability', '~> 3.2'
   pod 'Mantle', '~> 1.5.5'
   pod 'SwiftSimplify'
 
@@ -82,7 +78,6 @@ abstract_target 'defaults' do
 
   target 'TechDebt' do
     project 'Canvas/Canvas.xcodeproj'
-    pod 'FXKeychain', '~> 1.5'
   end
 
   target 'Canvas' do

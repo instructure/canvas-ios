@@ -78,6 +78,8 @@
 		7D062AF721249E7700677F66 /* ContextModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF621249E7700677F66 /* ContextModelTests.swift */; };
 		7D062AF92124A0F400677F66 /* ContextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF82124A0F400677F66 /* ContextModel.swift */; };
 		7D062AFB2124A14700677F66 /* ContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AFA2124A14700677F66 /* ContextTests.swift */; };
+		7D0970ED22DF858D00E8A551 /* APIPandata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0970EC22DF858D00E8A551 /* APIPandata.swift */; };
+		7D0970EF22DFB6F200E8A551 /* APIPandataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0970EE22DFB6F200E8A551 /* APIPandataTests.swift */; };
 		7D0BCEFC227BAAB400CFFCC5 /* ActAsUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0BCEFB227BAAB400CFFCC5 /* ActAsUserPresenter.swift */; };
 		7D101947215E87D40058FDD1 /* defaultHeaderImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D101946215E87D40058FDD1 /* defaultHeaderImage.png */; };
 		7D101949215E8E5F0058FDD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D101948215E8E5F0058FDD1 /* Assets.xcassets */; };
@@ -739,6 +741,8 @@
 		7D062AF621249E7700677F66 /* ContextModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextModelTests.swift; sourceTree = "<group>"; };
 		7D062AF82124A0F400677F66 /* ContextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextModel.swift; sourceTree = "<group>"; };
 		7D062AFA2124A14700677F66 /* ContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTests.swift; sourceTree = "<group>"; };
+		7D0970EC22DF858D00E8A551 /* APIPandata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPandata.swift; sourceTree = "<group>"; };
+		7D0970EE22DFB6F200E8A551 /* APIPandataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPandataTests.swift; sourceTree = "<group>"; };
 		7D0BCEFB227BAAB400CFFCC5 /* ActAsUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserPresenter.swift; sourceTree = "<group>"; };
 		7D101946215E87D40058FDD1 /* defaultHeaderImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultHeaderImage.png; sourceTree = "<group>"; };
 		7D101948215E8E5F0058FDD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1743,6 +1747,7 @@
 				B15CA274221DE8E50014FB02 /* APIModuleRequestableTests.swift */,
 				B1F1328B224BB383002C0555 /* APIModuleTests.swift */,
 				7D80AC2C212C801600C40ECE /* APIOAuthRequestableTests.swift */,
+				7D0970EE22DFB6F200E8A551 /* APIPandataTests.swift */,
 				9FBE536A223C2B9F001EC40C /* APIPermissionsRequestableTests.swift */,
 				7DCF203F216D5EF1003AF358 /* APIQuizRequestableTests.swift */,
 				9FE21AA9226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift */,
@@ -1829,6 +1834,7 @@
 				B15CA278221DE9660014FB02 /* APIModuleRequestable.swift */,
 				7D80AC2A212C77C600C40ECE /* APIOAuth.swift */,
 				7D80AC28212C76E600C40ECE /* APIOAuthRequestable.swift */,
+				7D0970EC22DF858D00E8A551 /* APIPandata.swift */,
 				9FBE5364223C1D7F001EC40C /* APIPermissions.swift */,
 				9FBE5366223C1EE9001EC40C /* APIPermissionsRequestable.swift */,
 				7DCF2033216D5458003AF358 /* APIQuiz.swift */,
@@ -2264,11 +2270,13 @@
 					};
 					2C964836211E2F1A002C3255 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = DFE1FF24212F69B3003F27AA;
 					};
 					DFE1FF24212F69B3003F27AA = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -2639,6 +2647,7 @@
 				7DF4FFD22171322E007E5F81 /* TTL.swift in Sources */,
 				7D13C53022B9570500345253 /* MockMessage.swift in Sources */,
 				B183F99D225297F2000A6930 /* PublishedIconView.swift in Sources */,
+				7D0970ED22DF858D00E8A551 /* APIPandata.swift in Sources */,
 				7D24D280219E1B1A002F9638 /* CommentListCell.swift in Sources */,
 				7D8262F1212B28FE00BD268D /* APITabRequestable.swift in Sources */,
 				3BE2C764218CB53F004B8E5E /* Enrollment.swift in Sources */,
@@ -2742,6 +2751,7 @@
 				3B3467C921349EC100F9BC2E /* LoginWebPresenterTests.swift in Sources */,
 				7DF4001B2174FA24007E5F81 /* UITableViewExtensionsTests.swift in Sources */,
 				7DCF1EBE216BC969003AF358 /* SubmissionWorkflowStateTests.swift in Sources */,
+				7D0970EF22DFB6F200E8A551 /* APIPandataTests.swift in Sources */,
 				7D86285B224C05BB003A37DC /* APIMediaCommentRequestableTests.swift in Sources */,
 				3B3467612130556000F9BC2E /* MockURLSession.swift in Sources */,
 				7DDC450D215BF14A003F3209 /* DynamicLabelTests.swift in Sources */,
@@ -3291,7 +3301,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.CoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreTester.app/CoreTester";
 			};
@@ -3310,7 +3320,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.CoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreTester.app/CoreTester";
 			};
@@ -3335,7 +3345,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -3359,7 +3369,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

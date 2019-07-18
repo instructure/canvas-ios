@@ -4,12 +4,6 @@
 <array>
 	<dict>
 		<key>name</key>
-		<string>Masonry</string>
-		<key>url</key>
-		<string>https://github.com/SnapKit/Masonry</string>
-	</dict>
-	<dict>
-		<key>name</key>
 		<string>SVProgressHUD</string>
 		<key>url</key>
 		<string>https://github.com/SVProgressHUD/SVProgressHUD</string>
@@ -37,12 +31,6 @@
 		<string>Eureka</string>
 		<key>url</key>
 		<string>https://github.com/xmartlabs/Eureka</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>FXKeychain</string>
-		<key>url</key>
-		<string>https://github.com/nicklockwood/FXKeychain</string>
 	</dict>
 	<dict>
 		<key>name</key>

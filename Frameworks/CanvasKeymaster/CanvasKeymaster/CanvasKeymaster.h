@@ -46,8 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSString *logFilePath;
 
-@property (nonatomic, readonly) NSInteger numberOfClients;
-
 - (void)setupWithClient:(CKIClient *)client;
 @end
 
@@ -61,5 +59,4 @@ NS_ASSUME_NONNULL_END
 
 #import <CanvasKeymaster/SupportTicketViewController.h>
 #import <CanvasKeymaster/SupportTicketManager.h>
-#import <CanvasKeymaster/FXKeychain+CKMKeyChain.h>
 #import <CanvasKeymaster/SupportTicket.h>

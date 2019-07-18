@@ -56,4 +56,15 @@ class AnnouncementTest: CanvasUITests {
         AnnouncementDetail.text.waitToExist()
         XCTAssert(AnnouncementDetail.text.exists)
     }
+
+    func testPreviewAnouncementAttachment() {
+        Dashboard.courseCard(id: "262").waitToExist()
+        Dashboard.courseCard(id: "262").tap()
+        CourseNavigation.announcements.tap()
+
+        Announcements.announcement(index: 0).waitToExist()
+        Announcements.announcement(index: 0).tapAt(.zero)
+        XCUIElementWrapper(app.buttons["run.jpg"]).tap()
+        app.find(type: .image).waitToExist()
+    }
 }

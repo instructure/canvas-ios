@@ -42,28 +42,28 @@ open class PageViewEventController: NSObject {
     }
     
     //  MARK: - Public
-    @objc func logPageView(_ eventNameOrPath: String, attributes: [String: Any]? = nil, eventDurationInSeconds: TimeInterval = 0) {
+    @objc func logPageView(_ eventNameOrPath: String, attributes: [String: String] = [:], eventDurationInSeconds: TimeInterval = 0) {
         if(!appCanLogEvents()) { return }
         guard let authSession = CanvasKeymaster.the().currentClient?.authSession else {
             return
         }
 
         let userID = authSession.user.id
-        var mutableAttributes = attributes?.convertToPageViewEventDictionary() ?? PageViewEventDictionary()
-        mutableAttributes["session_id"] = try? CodableValue(session.ID)
-        mutableAttributes["app_name"] = try? CodableValue("Canvas Student for iOS")
-        mutableAttributes["user_id"] = try? CodableValue(userID)
-        mutableAttributes["agent"] = try? CodableValue(CanvasCore.defaultHTTPHeaders["User-Agent"] ?? "Unknown")
+        var mutableAttributes = attributes
+        mutableAttributes["session_id"] = session.ID
+        mutableAttributes["app_name"] = "Canvas Student for iOS"
+        mutableAttributes["user_id"] = userID
+        mutableAttributes["agent"] = CanvasCore.defaultHTTPHeaders["User-Agent"] ?? "Unknown"
         if let masqueradeID = CanvasKeymaster.the().currentClient?.actAsUserID, let originalUserID = CanvasKeymaster.the().currentClient?.originalIDOfMasqueradingUser {
-            mutableAttributes["user_id"] = try? CodableValue(masqueradeID)
-            mutableAttributes["real_user_id"] = try? CodableValue(originalUserID)
+            mutableAttributes["user_id"] = masqueradeID
+            mutableAttributes["real_user_id"] = originalUserID
         }
-        if let url = cleanupUrl(url: eventNameOrPath, attributes: mutableAttributes), let codableUrl = try? CodableValue(url) {
-            mutableAttributes["url"] = codableUrl
+        if let url = cleanupUrl(url: eventNameOrPath, attributes: mutableAttributes) {
+            mutableAttributes["url"] = url
             if let parsedUrlPieces = parsePageViewParts(url) {
-                mutableAttributes["domain"] = try? CodableValue(parsedUrlPieces.domain ?? authSession.baseURL.host)
-                mutableAttributes["context_type"] = try? CodableValue(parsedUrlPieces.context)
-                mutableAttributes["context_id"] = try? CodableValue(parsedUrlPieces.contextID)
+                mutableAttributes["domain"] = parsedUrlPieces.domain ?? authSession.baseURL.host
+                mutableAttributes["context_type"] = parsedUrlPieces.context
+                mutableAttributes["context_id"] = parsedUrlPieces.contextID
             }
         }
         

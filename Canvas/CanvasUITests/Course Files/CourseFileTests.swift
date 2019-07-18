@@ -45,8 +45,7 @@ class CourseFileTests: CanvasUITests {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.pages.tap()
-
-        PagesList.page(index: 1).tap()
+        PagesList.page(index: 2).tap()
         XCUIElementWrapper(app.links.firstMatch).tap()
         app.find(type: .image).waitToExist()
     }

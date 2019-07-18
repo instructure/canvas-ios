@@ -78,7 +78,8 @@ class HTMLAnswerCell: UITableViewCell {
     
     @objc var expectedHeight: CGFloat {
         get {
-            return whizzyWigViewHeightConstraint.constant + (15 * 2) + (9 * 2)
+            let padding: CGFloat = 48
+            return whizzyWigViewHeightConstraint.constant + padding
         }
         set {
             whizzyWigViewHeightConstraint.constant = min(max(minHeight, newValue), maxHeight)

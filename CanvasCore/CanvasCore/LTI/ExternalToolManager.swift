@@ -177,9 +177,9 @@ public class ExternalToolManager: NSObject {
                 let urlQuery = urlQueryItem.value {
                 let url: URL
                 if let courseID = extractCourseID(launchURL) {
-                    url = session.baseURL/"api/v1/courses/\(courseID)/external_tools/sessionless_launch"
+                    url = session.baseURL.appendingPathComponent("api/v1/courses/\(courseID)/external_tools/sessionless_launch")
                 } else {
-                    url = session.baseURL/"api/v1/accounts/self/external_tools/sessionless_launch"
+                    url = session.baseURL.appendingPathComponent("api/v1/accounts/self/external_tools/sessionless_launch")
                 }
                 return url.appending(value: urlQuery, forQueryParameter: "url")
             }
@@ -189,7 +189,7 @@ public class ExternalToolManager: NSObject {
          * launchURL is probably (hopefully) the url to the LTI tool
          * So we tack it onto the sessionless_launch endpoint
          */
-        let url = session.baseURL/"api/v1/accounts/self/external_tools/sessionless_launch"
+        let url = session.baseURL.appendingPathComponent("api/v1/accounts/self/external_tools/sessionless_launch")
         return url.appending(value: launchURL.absoluteString, forQueryParameter: "url")
     }
 

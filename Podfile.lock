@@ -42,7 +42,6 @@ PODS:
     - FirebaseCore (~> 5.2)
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/UserDefaults (~> 5.2)
-  - FXKeychain (1.5.3)
   - GoogleAppMeasurement (5.8.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
@@ -74,7 +73,6 @@ PODS:
     - Mantle/extobjc (= 1.5.8)
   - Mantle/extobjc (1.5.8)
   - Marshal (1.2.7)
-  - Masonry (1.1.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -82,7 +80,6 @@ PODS:
   - nanopb/encode (0.3.901)
   - RCTSFSafariViewController (0.2.4):
     - React
-  - Reachability (3.2)
   - React (0.51.0):
     - React/Core (= 0.51.0)
   - react-native-blur (0.8.0):
@@ -169,14 +166,11 @@ DEPENDENCIES:
   - Eureka (~> 4.3)
   - Fabric (~> 1.7.7)
   - Firebase/Core (~> 5.20)
-  - FXKeychain (~> 1.5)
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
   - Kingfisher (~> 4.10)
   - Mantle (~> 1.5.5)
   - Marshal (~> 1.2.7)
-  - Masonry (~> 1.0)
   - RCTSFSafariViewController (from `./rn/Teacher/node_modules/react-native-sfsafariviewcontroller`)
-  - Reachability (~> 3.2)
   - react-native-blur (from `./rn/Teacher/node_modules/react-native-blur`)
   - react-native-camera (from `./rn/Teacher/node_modules/react-native-camera`)
   - react-native-document-picker (from `./rn/Teacher/node_modules/react-native-document-picker`)
@@ -223,15 +217,12 @@ SPEC REPOS:
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseInstanceID
-    - FXKeychain
     - GoogleAppMeasurement
     - GoogleUtilities
     - Kingfisher
     - Mantle
     - Marshal
-    - Masonry
     - nanopb
-    - Reachability
     - ReactiveCocoa
     - ReactiveObjC
     - ReactiveObjCBridge
@@ -284,17 +275,14 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: ece1aa57a4f43c64d53a648b5a5e05151aae947b
   FirebaseCore: f1a9a8be1aee4bf71a2fc0f4096df6788bdfda61
   FirebaseInstanceID: a122b0c258720cf250551bb2bedf48c699f80d90
-  FXKeychain: 2fe54573946ffef634f4e2a2851e6c8f4ea15e76
   GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
   GoogleUtilities: 273e67030e0de313e7304f6dcfa96fc5214f6c23
   Interactable: 0a9f2a42b02ea03114d7e03e714d946a65cd8d0b
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   Mantle: f03b2b606c3f0cabd80214ad8a2fed6b464a7359
   Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
-  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   RCTSFSafariViewController: 954d0fedb55f8b01b8695c78a8697fdc09a931b4
-  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   React: 352f02f1db6e4744f9a758527e13e3fdefbbd6ba
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
   react-native-camera: a4446f056fb28a9aa7acb3e14af595216aac0a8d
@@ -316,6 +304,6 @@ SPEC CHECKSUMS:
   TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
   yoga: b5d96400ca8b2936965a7a6516da7c1177f432a3
 
-PODFILE CHECKSUM: bde6eccd828cecd472ba2bc5258056318b122938
+PODFILE CHECKSUM: cbac7e9bdb7c7a7efac1b6d206e560d75d63e207
 
 COCOAPODS: 1.7.1

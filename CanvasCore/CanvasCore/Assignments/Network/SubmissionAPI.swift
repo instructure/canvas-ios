@@ -19,8 +19,7 @@
 open class SubmissionAPI {
     
     open class func getStudentSubmissions(_ session: Session, courseID: String, assignmentID: String) throws -> URLRequest {
-        let path = ContextID.course(withID: courseID).apiPath/"assignments"/assignmentID/"submissions"
-        
+        let path = "\(ContextID.course(withID: courseID).apiPath)/assignments/\(assignmentID)/submissions"
         return try session.GET(path, parameters: Submission.parameters)
     }
     

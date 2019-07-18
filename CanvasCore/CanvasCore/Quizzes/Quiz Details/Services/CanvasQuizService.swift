@@ -29,7 +29,7 @@ class CanvasQuizService: QuizService {
         self.session = session
         self.context = context
         self.quizID = quizID
-        self.fileUploader = Uploader(session: session, apiPath: context.apiPath/"quizzes/\(quizID)/submissions/self/files")
+        self.fileUploader = Uploader(session: session, apiPath: "\(context.apiPath)/quizzes/\(quizID)/submissions/self/files")
     }
     
     let context: ContextID
@@ -41,7 +41,7 @@ class CanvasQuizService: QuizService {
         return session.user
     }
     var apiPath: String {
-        return context.apiPath/"quizzes/\(quizID)"
+        return "\(context.apiPath)/quizzes/\(quizID)"
     }
     
     var baseURL: URL {
@@ -82,22 +82,22 @@ class CanvasQuizService: QuizService {
     }
     
     func submissionsRequest() -> Request<[QuizSubmission]> {
-        let path = apiPath/"submissions"
+        let path = "\(apiPath)/submissions"
         return Request(auth: session, method: .GET, path: path, parameters: nil, parseResponse: extractSubmissions)
     }
 
     func submissionRequest() -> Request<QuizSubmission> {
-        let path = apiPath/"submission"
+        let path = "\(apiPath)/submission"
         return Request(auth: session, method: .GET, path: path, parameters: nil, parseResponse: extractFirstSubmission)
     }
     
     func postSubmissionRequest() -> Request<QuizSubmission> {
-        let path = apiPath/"submissions"
+        let path = "\(apiPath)/submissions"
         return Request(auth: session, method: .POST, path: path, parameters: nil, parseResponse: extractFirstSubmission)
     }
     
     func completeSubmissionRequest(_ submission: QuizSubmission) -> Request<QuizSubmission> {
-        let path = apiPath/"submissions/\(submission.id)/complete"
+        let path = "\(apiPath)/submissions/\(submission.id)/complete"
         let params: [String: Any] = [
             "attempt": submission.attempt,
             "validation_token": submission.validationToken,

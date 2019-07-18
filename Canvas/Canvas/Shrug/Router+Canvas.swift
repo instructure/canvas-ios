@@ -33,7 +33,7 @@ extension TechDebt.Router {
     @objc func addCanvasRoutes(_ handleError: @escaping (NSError)->()) {
         func addContextRoute(_ contexts: [ContextID.Context], subPath: String, file: String = #file, line: UInt = #line, handler: @escaping (ContextID, [String: Any]) throws -> UIViewController?) {
             for context in contexts {
-                addRoute("/\(context.pathComponent)/:contextID"/subPath) { parameters, _ in
+                addRoute("/\(context.pathComponent)/:contextID/\(subPath)") { parameters, _ in
                     do {
                         let contextID: String = try parameters!.stringID("contextID")
                         return try handler(ContextID(id: contextID, context: context), parameters!)

@@ -56,7 +56,7 @@ extension Course {
     }
 
     public static func getAllCourses(_ session: Session) throws -> SignalProducer<[JSONObject], NSError> {
-        let request = try session.GET(api/v1/"courses", parameters: getCoursesParameters)
+        let request = try session.GET("api/v1/courses", parameters: getCoursesParameters)
         return session.paginatedJSONSignalProducer(request).map { filter(rawCourses: $0) }
     }
 }

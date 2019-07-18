@@ -24,7 +24,7 @@ import Marshal
 
 extension Enrollment {
     public static func put(_ session:Session, color: UIColor, forContextID: ContextID) -> SignalProducer<(), NSError> {
-        let path = "/api/v1/users/self/colors" / forContextID.canvasContextID
+        let path = "/api/v1/users/self/colors/\(forContextID.canvasContextID)"
         let params: [String: Any] = ["hexcode": color.hex]
         return attemptProducer { try session.PUT(path, parameters: params) }
             .flatMap(.merge, session.emptyResponseSignalProducer)

@@ -17,46 +17,42 @@
 //
 
 import Foundation
+import Core
 
-typealias PageViewEventDictionary = [String: CodableValue]
-extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
-    func convertToPageViewEventDictionary() -> PageViewEventDictionary {
-        var obj = PageViewEventDictionary()
-        for (k, v) in self {
-            if let codableValue = try? CodableValue(v), let key = k as? String {
-                obj[key] = codableValue
-            }
-        }
-        return obj
-    }
-}
+typealias PageViewEventDictionary = [String: String]
 
 public struct PageViewEvent: Codable {
     let eventName: String
     let eventDuration: TimeInterval
-    var attributes = PageViewEventDictionary()
-    let timestamp: String
+    var attributes: PageViewEventDictionary
+    let timestamp: Date
     let userID: String
     let guid = UUID().uuidString
 
     
-    init(eventName: String, attributes: PageViewEventDictionary? = nil, userID: String, timestamp: String = PageViewEvent.ISOTimeStamp(), eventDuration: TimeInterval = 0) {
+    init(eventName: String, attributes: PageViewEventDictionary = [:], userID: String, timestamp: Date = Date(), eventDuration: TimeInterval = 0) {
         self.eventName = eventName
         self.eventDuration = eventDuration
         self.timestamp = timestamp
         self.userID = userID
-
-        if let attributes = attributes, attributes.count > 0 {
-            self.attributes = attributes
-        }
+        self.attributes = attributes
     }
-    
-    static let dateFormatter: ISO8601DateFormatter = {
-        var df = ISO8601DateFormatter()
-        return df
-    }()
-    
-    private static func ISOTimeStamp(_ date: Date = Date()) -> String {
-        return dateFormatter.string(from: date)
+
+    func apiEvent(_ token: APIPandataEventsToken) -> APIPandataEvent {
+        return APIPandataEvent.pageView(timestamp: timestamp, properties: APIPandataEventProperties(
+            page_name: eventName,
+            url: attributes["url"],
+            interaction_seconds: eventDuration,
+            domain: attributes["domain"],
+            context_type: attributes["context_type"],
+            context_id: attributes["context_id"],
+            app_name: attributes["app_name"],
+            real_user_id: attributes["real_user_id"],
+            user_id: attributes["user_id"],
+            session_id: attributes["session_id"],
+            agent: attributes["agent"],
+            guid: guid,
+            customPageViewPath: attributes["customPageViewPath"]
+        ), signedProperties: token.props_token)
     }
 }

@@ -232,7 +232,10 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         super.viewWillDisappear(animated)
         isVisible = false
         
-        var attributes = props
+        var attributes: [String: String] = [:]
+        for (key, value) in props {
+            attributes[key] = value as? String
+        }
         if let customPageViewPath = screenConfig[PropKeys.customPageViewPath] as? String {
             attributes[PropKeys.customPageViewPath] = customPageViewPath
         }

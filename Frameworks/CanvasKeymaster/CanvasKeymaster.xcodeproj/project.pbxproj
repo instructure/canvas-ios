@@ -17,8 +17,6 @@
 		B1F37816224A8738000B7CAA /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F37814224A8738000B7CAA /* PSPDFKit.framework */; };
 		B1FC3AF61C98B4E500A8001F /* CanvasKeymaster.h in Headers */ = {isa = PBXBuildFile; fileRef = B1FC3AF51C98B4E500A8001F /* CanvasKeymaster.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B001C98B5AE00A8001F /* CanvasKeymaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E958921909768F00A1BFB7 /* CanvasKeymaster.m */; };
-		B1FC3B241C98B65900A8001F /* FXKeychain+CKMKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E54673190AACDA001AD3BC /* FXKeychain+CKMKeychain.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1FC3B251C98B65900A8001F /* FXKeychain+CKMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E54674190AACDA001AD3BC /* FXKeychain+CKMKeychain.m */; };
 		B1FC3B2A1C98B66800A8001F /* ImpactTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E505F331B55ABF6007BD968 /* ImpactTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B2B1C98B66800A8001F /* ImpactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E505F341B55ABF6007BD968 /* ImpactTableViewController.m */; };
 		B1FC3B2C1C98B66800A8001F /* SupportTicket.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EEEB1731B56C9A7001438C3 /* SupportTicket.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,8 +29,6 @@
 
 /* Begin PBXFileReference section */
 		0BA1F2BA47D5098035222EA1 /* Pods_CanvasKeymaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49E54673190AACDA001AD3BC /* FXKeychain+CKMKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FXKeychain+CKMKeychain.h"; sourceTree = "<group>"; };
-		49E54674190AACDA001AD3BC /* FXKeychain+CKMKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FXKeychain+CKMKeychain.m"; sourceTree = "<group>"; };
 		49E958921909768F00A1BFB7 /* CanvasKeymaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasKeymaster.m; sourceTree = "<group>"; };
 		5B1E67D822BD711B0005AA68 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B1E67D922BD711B0005AA68 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/SupportTicket.strings; sourceTree = "<group>"; };
@@ -156,15 +152,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		49E54672190AACC0001AD3BC /* FXKeychain+CanvasKeymaster */ = {
-			isa = PBXGroup;
-			children = (
-				49E54673190AACDA001AD3BC /* FXKeychain+CKMKeychain.h */,
-				49E54674190AACDA001AD3BC /* FXKeychain+CKMKeychain.m */,
-			);
-			path = "FXKeychain+CanvasKeymaster";
-			sourceTree = "<group>";
-		};
 		49E9585F190967B000A1BFB7 = {
 			isa = PBXGroup;
 			children = (
@@ -238,7 +225,6 @@
 				B10E9F771E2FDB87000F5D01 /* Localizable.strings */,
 				B1051E751C909A41007C529F /* Dependencies */,
 				5E505F321B55ABF6007BD968 /* ZenDesk */,
-				49E54672190AACC0001AD3BC /* FXKeychain+CanvasKeymaster */,
 				B1FC3AF51C98B4E500A8001F /* CanvasKeymaster.h */,
 				49E958921909768F00A1BFB7 /* CanvasKeymaster.m */,
 				B1FC3AF71C98B4E500A8001F /* Info.plist */,
@@ -257,7 +243,6 @@
 				B1FC3B301C98B66800A8001F /* SupportTicketViewController.h in Headers */,
 				B1FC3B2A1C98B66800A8001F /* ImpactTableViewController.h in Headers */,
 				B1FC3B2E1C98B66800A8001F /* SupportTicketManager.h in Headers */,
-				B1FC3B241C98B65900A8001F /* FXKeychain+CKMKeychain.h in Headers */,
 				B1FC3B2C1C98B66800A8001F /* SupportTicket.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,7 +372,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1FC3B2B1C98B66800A8001F /* ImpactTableViewController.m in Sources */,
-				B1FC3B251C98B65900A8001F /* FXKeychain+CKMKeychain.m in Sources */,
 				B1FC3B2D1C98B66800A8001F /* SupportTicket.m in Sources */,
 				B1FC3B2F1C98B66800A8001F /* SupportTicketManager.m in Sources */,
 				B1FC3B311C98B66800A8001F /* SupportTicketViewController.m in Sources */,
