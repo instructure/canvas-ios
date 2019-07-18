@@ -108,9 +108,7 @@ extension Assignment {
             }
         }
 
-        if let apiRubricSettings = item.rubric_settings {
-            hideRubricPoints = apiRubricSettings.hide_points
-        }
+        hideRubricPoints = item.rubric_settings?.hide_points == true
 
         if updateSubmission {
             if let submissionItem = item.submission?.values.first {
