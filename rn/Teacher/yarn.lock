@@ -6114,12 +6114,6 @@ react-native-audio@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/react-native-audio/-/react-native-audio-3.5.1.tgz#4acf1d5731c51cfdf76b0b8c8e60e0af41783f6e"
 
-react-native-blur@^3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/react-native-blur/-/react-native-blur-3.2.2.tgz#5bfb50638d148982c9560436554ed01d77d6d07d"
-  dependencies:
-    prop-types "^15.5.10"
-
 react-native-button@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-native-button/-/react-native-button-2.1.0.tgz#a39e23292922afeea4f7be141dd43e18f1b51876"
@@ -6192,10 +6186,6 @@ react-native-linear-gradient@^2.4.0:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.4.0.tgz#51d8ea12bb72a59bede9edc87b694b16b64cf435"
   dependencies:
     prop-types "^15.5.10"
-
-react-native-mail@instructure/react-native-mail:
-  version "3.0.4"
-  resolved "https://codeload.github.com/instructure/react-native-mail/tar.gz/3b32b0cb86994d18c20edc0eea11522c2d083a2c"
 
 react-native-on-layout@^2.0.2:
   version "2.0.2"
