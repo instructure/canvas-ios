@@ -18,6 +18,7 @@
 
 import Foundation
 import Core
+import SafariServices
 
 protocol ModuleListViewProtocol: ErrorViewController, ColoredNavViewProtocol {
     func reloadModules()
@@ -152,12 +153,19 @@ extension ModuleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = presenter?.modules[indexPath.section]?.items[indexPath.row] else { return }
         switch item.type {
-        case .externalTool?, .externalURL?:
-            tableView.deselectRow(at: indexPath, animated: true)
+        case .externalTool(let id, _)?:
+            LTITools(id: id).presentToolInSFSafariViewController(from: self, animated: true) { [weak tableView] _ in
+                tableView?.deselectRow(at: indexPath, animated: true)
+            }
+        case .externalURL(let url)?:
+            let safari = SFSafariViewController(url: url)
+            safari.modalPresentationStyle = .overFullScreen
+            present(safari, animated: true) {
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
         default:
-            break
+            presenter?.showItem(item, from: self)
         }
-        presenter?.showItem(item, from: self)
     }
 }
 
