@@ -87,8 +87,23 @@ exports[`SubmissionGrader renders 1`] = `
             },
             "updateUnsavedChanges": [Function],
             "updater": Updater {
+              "_callbacks": Array [],
               "_renderer": ReactShallowRenderer {
                 "_context": Object {},
+                "_didScheduleRenderPhaseUpdate": false,
+                "_dispatcher": Object {
+                  "readContext": [Function],
+                  "useCallback": [Function],
+                  "useContext": [Function],
+                  "useDebugValue": [Function],
+                  "useEffect": [Function],
+                  "useImperativeHandle": [Function],
+                  "useLayoutEffect": [Function],
+                  "useMemo": [Function],
+                  "useReducer": [Function],
+                  "useRef": [Function],
+                  "useState": [Function],
+                },
                 "_element": <SubmissionGrader
                   closeModal={[Function]}
                   drawerState={[Circular]}
@@ -96,14 +111,13 @@ exports[`SubmissionGrader renders 1`] = `
                   submissionID="1"
                   submissionProps={Object {}}
       />,
+                "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
-                "_newState": Object {
-                  "height": 200,
-                  "selectedTabIndex": -1,
-                  "unsavedChanges": null,
-                  "width": 200,
-                },
+                "_isReRender": false,
+                "_newState": null,
+                "_numberOfReRenders": 0,
+                "_renderPhaseUpdates": null,
                 "_rendered": <A11yGroup
                   onLayout={[Function]}
                   style={
@@ -163,6 +177,7 @@ exports[`SubmissionGrader renders 1`] = `
       </A11yGroup>,
                 "_rendering": false,
                 "_updater": [Circular],
+                "_workInProgressHook": null,
               },
             },
             Symbol(enzyme.__setState__): [Function],
@@ -222,8 +237,23 @@ exports[`SubmissionGrader renders 1`] = `
             },
             "updateUnsavedChanges": [Function],
             "updater": Updater {
+              "_callbacks": Array [],
               "_renderer": ReactShallowRenderer {
                 "_context": Object {},
+                "_didScheduleRenderPhaseUpdate": false,
+                "_dispatcher": Object {
+                  "readContext": [Function],
+                  "useCallback": [Function],
+                  "useContext": [Function],
+                  "useDebugValue": [Function],
+                  "useEffect": [Function],
+                  "useImperativeHandle": [Function],
+                  "useLayoutEffect": [Function],
+                  "useMemo": [Function],
+                  "useReducer": [Function],
+                  "useRef": [Function],
+                  "useState": [Function],
+                },
                 "_element": <SubmissionGrader
                   closeModal={[Function]}
                   drawerState={[Circular]}
@@ -231,14 +261,13 @@ exports[`SubmissionGrader renders 1`] = `
                   submissionID="1"
                   submissionProps={Object {}}
       />,
+                "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
-                "_newState": Object {
-                  "height": 200,
-                  "selectedTabIndex": -1,
-                  "unsavedChanges": null,
-                  "width": 200,
-                },
+                "_isReRender": false,
+                "_newState": null,
+                "_numberOfReRenders": 0,
+                "_renderPhaseUpdates": null,
                 "_rendered": <A11yGroup
                   onLayout={[Function]}
                   style={
@@ -298,6 +327,7 @@ exports[`SubmissionGrader renders 1`] = `
       </A11yGroup>,
                 "_rendering": false,
                 "_updater": [Circular],
+                "_workInProgressHook": null,
               },
             },
             Symbol(enzyme.__setState__): [Function],
@@ -348,8 +378,23 @@ exports[`SubmissionGrader renders 1`] = `
               },
               "updateUnsavedChanges": [Function],
               "updater": Updater {
+                "_callbacks": Array [],
                 "_renderer": ReactShallowRenderer {
                   "_context": Object {},
+                  "_didScheduleRenderPhaseUpdate": false,
+                  "_dispatcher": Object {
+                    "readContext": [Function],
+                    "useCallback": [Function],
+                    "useContext": [Function],
+                    "useDebugValue": [Function],
+                    "useEffect": [Function],
+                    "useImperativeHandle": [Function],
+                    "useLayoutEffect": [Function],
+                    "useMemo": [Function],
+                    "useReducer": [Function],
+                    "useRef": [Function],
+                    "useState": [Function],
+                  },
                   "_element": <SubmissionGrader
                     closeModal={[Function]}
                     drawerState={[Circular]}
@@ -357,14 +402,13 @@ exports[`SubmissionGrader renders 1`] = `
                     submissionID="1"
                     submissionProps={Object {}}
         />,
+                  "_firstWorkInProgressHook": null,
                   "_forcedUpdate": false,
                   "_instance": [Circular],
-                  "_newState": Object {
-                    "height": 200,
-                    "selectedTabIndex": -1,
-                    "unsavedChanges": null,
-                    "width": 200,
-                  },
+                  "_isReRender": false,
+                  "_newState": null,
+                  "_numberOfReRenders": 0,
+                  "_renderPhaseUpdates": null,
                   "_rendered": <A11yGroup
                     onLayout={[Function]}
                     style={
@@ -424,6 +468,7 @@ exports[`SubmissionGrader renders 1`] = `
         </A11yGroup>,
                   "_rendering": false,
                   "_updater": [Circular],
+                  "_workInProgressHook": null,
                 },
               },
               Symbol(enzyme.__setState__): [Function],
@@ -526,8 +571,23 @@ exports[`SubmissionGrader renders wide 1`] = `
                 },
                 "updateUnsavedChanges": [Function],
                 "updater": Updater {
+                  "_callbacks": Array [],
                   "_renderer": ReactShallowRenderer {
                     "_context": Object {},
+                    "_didScheduleRenderPhaseUpdate": false,
+                    "_dispatcher": Object {
+                      "readContext": [Function],
+                      "useCallback": [Function],
+                      "useContext": [Function],
+                      "useDebugValue": [Function],
+                      "useEffect": [Function],
+                      "useImperativeHandle": [Function],
+                      "useLayoutEffect": [Function],
+                      "useMemo": [Function],
+                      "useReducer": [Function],
+                      "useRef": [Function],
+                      "useState": [Function],
+                    },
                     "_element": <SubmissionGrader
                       closeModal={[Function]}
                       drawerState={[Circular]}
@@ -535,14 +595,13 @@ exports[`SubmissionGrader renders wide 1`] = `
                       submissionID="1"
                       submissionProps={Object {}}
           />,
+                    "_firstWorkInProgressHook": null,
                     "_forcedUpdate": false,
                     "_instance": [Circular],
-                    "_newState": Object {
-                      "height": 200,
-                      "selectedTabIndex": -1,
-                      "unsavedChanges": null,
-                      "width": 200,
-                    },
+                    "_isReRender": false,
+                    "_newState": null,
+                    "_numberOfReRenders": 0,
+                    "_renderPhaseUpdates": null,
                     "_rendered": <A11yGroup
                       onLayout={[Function]}
                       style={
@@ -602,6 +661,7 @@ exports[`SubmissionGrader renders wide 1`] = `
           </A11yGroup>,
                     "_rendering": false,
                     "_updater": [Circular],
+                    "_workInProgressHook": null,
                   },
                 },
                 Symbol(enzyme.__setState__): [Function],
@@ -634,8 +694,23 @@ exports[`SubmissionGrader renders wide 1`] = `
                 },
                 "updateUnsavedChanges": [Function],
                 "updater": Updater {
+                  "_callbacks": Array [],
                   "_renderer": ReactShallowRenderer {
                     "_context": Object {},
+                    "_didScheduleRenderPhaseUpdate": false,
+                    "_dispatcher": Object {
+                      "readContext": [Function],
+                      "useCallback": [Function],
+                      "useContext": [Function],
+                      "useDebugValue": [Function],
+                      "useEffect": [Function],
+                      "useImperativeHandle": [Function],
+                      "useLayoutEffect": [Function],
+                      "useMemo": [Function],
+                      "useReducer": [Function],
+                      "useRef": [Function],
+                      "useState": [Function],
+                    },
                     "_element": <SubmissionGrader
                       closeModal={[Function]}
                       drawerState={[Circular]}
@@ -643,14 +718,13 @@ exports[`SubmissionGrader renders wide 1`] = `
                       submissionID="1"
                       submissionProps={Object {}}
           />,
+                    "_firstWorkInProgressHook": null,
                     "_forcedUpdate": false,
                     "_instance": [Circular],
-                    "_newState": Object {
-                      "height": 200,
-                      "selectedTabIndex": -1,
-                      "unsavedChanges": null,
-                      "width": 1000,
-                    },
+                    "_isReRender": false,
+                    "_newState": null,
+                    "_numberOfReRenders": 0,
+                    "_renderPhaseUpdates": null,
                     "_rendered": <A11yGroup
                       onLayout={[Function]}
                       style={
@@ -763,6 +837,7 @@ exports[`SubmissionGrader renders wide 1`] = `
           </A11yGroup>,
                     "_rendering": false,
                     "_updater": [Circular],
+                    "_workInProgressHook": null,
                   },
                 },
                 Symbol(enzyme.__setState__): [Function],
@@ -856,8 +931,23 @@ exports[`SubmissionGrader renders wide 1`] = `
                 },
                 "updateUnsavedChanges": [Function],
                 "updater": Updater {
+                  "_callbacks": Array [],
                   "_renderer": ReactShallowRenderer {
                     "_context": Object {},
+                    "_didScheduleRenderPhaseUpdate": false,
+                    "_dispatcher": Object {
+                      "readContext": [Function],
+                      "useCallback": [Function],
+                      "useContext": [Function],
+                      "useDebugValue": [Function],
+                      "useEffect": [Function],
+                      "useImperativeHandle": [Function],
+                      "useLayoutEffect": [Function],
+                      "useMemo": [Function],
+                      "useReducer": [Function],
+                      "useRef": [Function],
+                      "useState": [Function],
+                    },
                     "_element": <SubmissionGrader
                       closeModal={[Function]}
                       drawerState={[Circular]}
@@ -865,14 +955,13 @@ exports[`SubmissionGrader renders wide 1`] = `
                       submissionID="1"
                       submissionProps={Object {}}
           />,
+                    "_firstWorkInProgressHook": null,
                     "_forcedUpdate": false,
                     "_instance": [Circular],
-                    "_newState": Object {
-                      "height": 200,
-                      "selectedTabIndex": -1,
-                      "unsavedChanges": null,
-                      "width": 200,
-                    },
+                    "_isReRender": false,
+                    "_newState": null,
+                    "_numberOfReRenders": 0,
+                    "_renderPhaseUpdates": null,
                     "_rendered": <A11yGroup
                       onLayout={[Function]}
                       style={
@@ -932,6 +1021,7 @@ exports[`SubmissionGrader renders wide 1`] = `
           </A11yGroup>,
                     "_rendering": false,
                     "_updater": [Circular],
+                    "_workInProgressHook": null,
                   },
                 },
                 Symbol(enzyme.__setState__): [Function],
@@ -964,8 +1054,23 @@ exports[`SubmissionGrader renders wide 1`] = `
                 },
                 "updateUnsavedChanges": [Function],
                 "updater": Updater {
+                  "_callbacks": Array [],
                   "_renderer": ReactShallowRenderer {
                     "_context": Object {},
+                    "_didScheduleRenderPhaseUpdate": false,
+                    "_dispatcher": Object {
+                      "readContext": [Function],
+                      "useCallback": [Function],
+                      "useContext": [Function],
+                      "useDebugValue": [Function],
+                      "useEffect": [Function],
+                      "useImperativeHandle": [Function],
+                      "useLayoutEffect": [Function],
+                      "useMemo": [Function],
+                      "useReducer": [Function],
+                      "useRef": [Function],
+                      "useState": [Function],
+                    },
                     "_element": <SubmissionGrader
                       closeModal={[Function]}
                       drawerState={[Circular]}
@@ -973,14 +1078,13 @@ exports[`SubmissionGrader renders wide 1`] = `
                       submissionID="1"
                       submissionProps={Object {}}
           />,
+                    "_firstWorkInProgressHook": null,
                     "_forcedUpdate": false,
                     "_instance": [Circular],
-                    "_newState": Object {
-                      "height": 200,
-                      "selectedTabIndex": -1,
-                      "unsavedChanges": null,
-                      "width": 1000,
-                    },
+                    "_isReRender": false,
+                    "_newState": null,
+                    "_numberOfReRenders": 0,
+                    "_renderPhaseUpdates": null,
                     "_rendered": <A11yGroup
                       onLayout={[Function]}
                       style={
@@ -1093,6 +1197,7 @@ exports[`SubmissionGrader renders wide 1`] = `
           </A11yGroup>,
                     "_rendering": false,
                     "_updater": [Circular],
+                    "_workInProgressHook": null,
                   },
                 },
                 Symbol(enzyme.__setState__): [Function],
