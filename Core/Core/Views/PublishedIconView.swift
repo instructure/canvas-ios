@@ -22,10 +22,10 @@ public class PublishedIconView: IconView {
     public var published: Bool? {
         didSet {
             if published == true {
-                image = .icon(.publish)
+                image = .icon(.publish, .solid)
                 tintColor = UIColor.named(.backgroundSuccess)
             } else {
-                image = .icon(.unpublish)
+                image = .icon(.no, .solid)
                 tintColor = UIColor.named(.ash)
             }
         }

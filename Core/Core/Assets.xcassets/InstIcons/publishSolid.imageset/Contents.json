@@ -2,8 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "unpublish.pdf",
-      "language-direction" : "left-to-right"
+      "filename" : "publish.pdf"
     }
   ],
   "info" : {

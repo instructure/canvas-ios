@@ -22,10 +22,8 @@ import Foundation
 extension UIImage {
     public enum IconName: String, CaseIterable {
         case attendance, cameraSolid, collaborations, conferences
-        case dashboardCustomSolid, todo, todoSolid
+        case todo, todoSolid
         case addAudioLine, addCameraLine, addDocumentLine, addImageLine, addVideoCameraLine
-        case publish, unpublish
-        case warning
     }
 
     public static func icon(_ name: IconName) -> UIImage {

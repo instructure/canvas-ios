@@ -35,7 +35,7 @@ class RootViewController: UITabBarController {
 
     lazy var dashboard: UINavigationController = {
         let controller = DashboardViewController.create()
-        controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Dashboard", bundle: .student, comment: ""), image: .icon(.dashboard, .line), selectedImage: .icon(.dashboardCustomSolid))
+        controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Dashboard", bundle: .student, comment: ""), image: .icon(.dashboard, .line), selectedImage: .icon(.dashboard, .solid))
         controller.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
         return navigation(for: controller)
     }()
