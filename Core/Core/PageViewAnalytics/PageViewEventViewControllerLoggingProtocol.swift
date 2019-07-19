@@ -62,22 +62,3 @@ public extension PageViewEventViewControllerLoggingProtocol {
         PageViewEventController.instance.logPageView(eventName, attributes: attributes, eventDurationInSeconds: duration)
     }
 }
-
-@objc public protocol PageViewEventLoggerLegacySupportProtocol: class {
-    var pageViewEventLog: PageViewEventLoggerLegacySupport { get }
-    var pageViewEventName: String { get set }
-}
-
-@objc public class PageViewEventLoggerLegacySupport: NSObject, PageViewEventViewControllerLoggingProtocol {
-    @objc public func start() {
-        startTrackingTimeOnViewController()
-    }
-
-    @objc public func stop(eventName: String) {
-        stopTrackingTimeOnViewController(eventName: eventName)
-    }
-}
-
-@objc public protocol ModuleItemEmbeddedProtocol: class {
-    var moduleItemID: String? { get set }
-}

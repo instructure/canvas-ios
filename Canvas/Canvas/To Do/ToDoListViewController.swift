@@ -19,6 +19,7 @@
 import Foundation
 import ReactiveSwift
 import CanvasCore
+import Core
 
 func colorfulToDoViewModel(session: Session, toDoItem: Todo) -> ColorfulViewModel {
     struct DateFormatters {
@@ -81,7 +82,7 @@ func colorfulToDoViewModel(session: Session, toDoItem: Todo) -> ColorfulViewMode
     return vm
 }
 
-class ToDoListViewController: FetchedTableViewController<Todo>, PageViewEventViewControllerLoggingProtocol {
+class ToDoListViewController: FetchedTableViewController<Todo>, Core.PageViewEventViewControllerLoggingProtocol {
 
     @objc let session: Session
     @objc let route: (UIViewController, URL)->()

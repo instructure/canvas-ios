@@ -237,8 +237,8 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         for (key, value) in props {
             attributes[key] = value as? String
         }
-        if let customPageViewPath = screenConfig[PageViewEventController.constants.customPageViewPath] as? String {
-            attributes[PageViewEventController.constants.customPageViewPath] = customPageViewPath
+        if let customPageViewPath = screenConfig[PageViewEventController.Constants.customPageViewPath] as? String {
+            attributes[PageViewEventController.Constants.customPageViewPath] = customPageViewPath
         }
         stopTrackingTimeOnViewController(eventName: moduleName, attributes: attributes)
     }

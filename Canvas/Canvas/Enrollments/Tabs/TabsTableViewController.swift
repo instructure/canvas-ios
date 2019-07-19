@@ -20,6 +20,8 @@ import UIKit
 import ReactiveSwift
 import CanvasCore
 import TechDebt
+import Core
+import class CanvasCore.Tab
 
 extension Tab {
     @objc func routingURL(_ session: Session) -> URL? {
@@ -43,7 +45,7 @@ extension ColorfulViewModel {
     }
 }
 
-class TabsTableViewController: FetchedTableViewController<Tab>, PageViewEventViewControllerLoggingProtocol {
+class TabsTableViewController: FetchedTableViewController<Tab>, Core.PageViewEventViewControllerLoggingProtocol {
     @objc let route: (UIViewController, URL)->()
     @objc let session: Session
     let contextID: ContextID
