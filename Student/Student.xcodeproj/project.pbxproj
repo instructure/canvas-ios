@@ -1720,13 +1720,13 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"$(PROJECT_DIR)/../scripts/carthage/input.xcfilelist",
+				"$(SRCROOT)/../scripts/carthage/input.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "Carthage Copy Frameworks";
 			outputFileListPaths = (
-				"$(PROJECT_DIR)/../scripts/carthage/output.xcfilelist",
+				"$(SRCROOT)/../scripts/carthage/output.xcfilelist",
 			);
 			outputPaths = (
 			);
