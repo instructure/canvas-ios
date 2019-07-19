@@ -25,7 +25,7 @@ class InboxTests: CanvasUITests {
         Inbox.newMessageButton.tap()
 
         // Course Selection
-        NewMessage.selectCourseButton.tap()
+        NewMessage.selectCourseButton.tapAt(.zero)
         MessageCourseSelection.course(id: "263").tap()
         NewMessage.addRecipientButton.tap()
 
@@ -41,7 +41,7 @@ class InboxTests: CanvasUITests {
         Inbox.newMessageButton.tap()
 
         // Course Selection
-        NewMessage.selectCourseButton.tap()
+        NewMessage.selectCourseButton.tapAt(.zero)
         MessageCourseSelection.course(id: "263").tap()
         NewMessage.addRecipientButton.tap()
 
