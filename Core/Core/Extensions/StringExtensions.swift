@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,7 @@
 import Foundation
 
 extension String {
-    func populatePathWithParams(_ params: PageViewEventDictionary?) -> String? {
+    public func populatePathWithParams(_ params: PageViewEventDictionary?) -> String? {
         guard let url = URL(string: self), params?.count ?? 0 > 0 else {
             return nil
         }
@@ -33,14 +33,14 @@ extension String {
         }
         return NSString.path(withComponents: components) as String
     }
-    
-    func pruneApiVersionFromPath() -> String {
+
+    public func pruneApiVersionFromPath() -> String {
         let regex = "\\/{0,1}api\\/v\\d+"
         guard let range = self.range(of: regex, options: .regularExpression, range: nil, locale: nil) else {
             return self
         }
-        let prefix = String(self[self.startIndex..<range.lowerBound]) 
-        let suffix = String(self[range.upperBound..<self.endIndex]) 
+        let prefix = String(self[self.startIndex..<range.lowerBound])
+        let suffix = String(self[range.upperBound..<self.endIndex])
         return prefix + suffix
     }
 }

@@ -13,6 +13,13 @@
 		2C96485B211E30B3002C3255 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485A211E30B3002C3255 /* RouterTests.swift */; };
 		2C96485E211E3723002C3255 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485D211E3723002C3255 /* AppEnvironment.swift */; };
 		3B0CEB772150408A00D07CFA /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB762150408A00D07CFA /* TestsFoundation.framework */; };
+		3B158C8D22E12DC50039A568 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158C8C22E12DC50039A568 /* StringExtensions.swift */; };
+		3B158CA522E1343D0039A568 /* PageViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158C9F22E1343C0039A568 /* PageViewEvent.swift */; };
+		3B158CA622E1343D0039A568 /* Persistency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CA022E1343C0039A568 /* Persistency.swift */; };
+		3B158CA722E1343D0039A568 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CA122E1343C0039A568 /* PageViewEventViewControllerLoggingProtocol.swift */; };
+		3B158CA822E1343D0039A568 /* PageViewSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CA222E1343D0039A568 /* PageViewSession.swift */; };
+		3B158CA922E1343D0039A568 /* PageViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CA322E1343D0039A568 /* PageViewEventController.swift */; };
+		3B158CAA22E1343D0039A568 /* PageViewEventRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CA422E1343D0039A568 /* PageViewEventRequestManager.swift */; };
 		3B300C852277981100743C59 /* RubricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B300C842277981100743C59 /* RubricTests.swift */; };
 		3B339B6A226FA9AF00D3283D /* ChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */; };
 		3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */; };
@@ -537,6 +544,13 @@
 		2C96485A211E30B3002C3255 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
 		2C96485D211E3723002C3255 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		3B0CEB762150408A00D07CFA /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B158C8C22E12DC50039A568 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		3B158C9F22E1343C0039A568 /* PageViewEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewEvent.swift; sourceTree = "<group>"; };
+		3B158CA022E1343C0039A568 /* Persistency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistency.swift; sourceTree = "<group>"; };
+		3B158CA122E1343C0039A568 /* PageViewEventViewControllerLoggingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewEventViewControllerLoggingProtocol.swift; sourceTree = "<group>"; };
+		3B158CA222E1343D0039A568 /* PageViewSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewSession.swift; sourceTree = "<group>"; };
+		3B158CA322E1343D0039A568 /* PageViewEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewEventController.swift; sourceTree = "<group>"; };
+		3B158CA422E1343D0039A568 /* PageViewEventRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewEventRequestManager.swift; sourceTree = "<group>"; };
 		3B300C842277981100743C59 /* RubricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricTests.swift; sourceTree = "<group>"; };
 		3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleView.swift; sourceTree = "<group>"; };
 		3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatBubbleView.xib; sourceTree = "<group>"; };
@@ -1207,6 +1221,7 @@
 		2C964830211E2F1A002C3255 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				3B13D45922E1060300D23007 /* PageViewAnalytics */,
 				9FBFE6D122412B71002B3796 /* ActAsUser */,
 				7D8262E9212B1A4F00BD268D /* API */,
 				2C96485C211E36FF002C3255 /* AppEnvironment */,
@@ -1309,6 +1324,19 @@
 				B1C783EC2241E39B00DD89A9 /* UUID.swift */,
 			);
 			path = AppEnvironment;
+			sourceTree = "<group>";
+		};
+		3B13D45922E1060300D23007 /* PageViewAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				3B158C9F22E1343C0039A568 /* PageViewEvent.swift */,
+				3B158CA322E1343D0039A568 /* PageViewEventController.swift */,
+				3B158CA422E1343D0039A568 /* PageViewEventRequestManager.swift */,
+				3B158CA122E1343C0039A568 /* PageViewEventViewControllerLoggingProtocol.swift */,
+				3B158CA222E1343D0039A568 /* PageViewSession.swift */,
+				3B158CA022E1343C0039A568 /* Persistency.swift */,
+			);
+			path = PageViewAnalytics;
 			sourceTree = "<group>";
 		};
 		3B346747213051CC00F9BC2E /* Login */ = {
@@ -1717,6 +1745,7 @@
 				3B5369E1219CDD3500D3F62E /* URLExtensions.swift */,
 				7D80AC57212DAE4C00C40ECE /* URLResponseExtensions.swift */,
 				B150C6392298DAB90096D58C /* WKWebViewExtensions.swift */,
+				3B158C8C22E12DC50039A568 /* StringExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2461,6 +2490,7 @@
 				B1B6F071219A1F2800C1575D /* UTI.swift in Sources */,
 				9FE21AAC226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift in Sources */,
 				B1BB68F421B5F0C90079C78B /* FileUploadContext.swift in Sources */,
+				3B158C8D22E12DC50039A568 /* StringExtensions.swift in Sources */,
 				7DD6CC6321BB6BF7004C4BB6 /* LoginStartPresenter.swift in Sources */,
 				9FBE5369223C2522001EC40C /* PermissionName.swift in Sources */,
 				B1911CE921C8460000F42F91 /* NotificationManager.swift in Sources */,
@@ -2480,6 +2510,7 @@
 				9FAA58FF223A98A000FEC3F8 /* ProfileViewController.swift in Sources */,
 				B1A6BC84218A5135000515E3 /* APILatePolicyRequestable.swift in Sources */,
 				B15CA27E221DFA450014FB02 /* Module.swift in Sources */,
+				3B158CA522E1343D0039A568 /* PageViewEvent.swift in Sources */,
 				B15CA271221DE1C80014FB02 /* GetModules.swift in Sources */,
 				7DAFB46321A361C400311275 /* LocalizationManager.swift in Sources */,
 				9F6878B1223952FB00E559CE /* MediaComment.swift in Sources */,
@@ -2498,6 +2529,7 @@
 				7D5A2BC222CD062E0029B6AC /* APIList.swift in Sources */,
 				B11D321721E464AB00F37ABF /* Store.swift in Sources */,
 				7DF4FFCA217116BC007E5F81 /* Course.swift in Sources */,
+				3B158CA822E1343D0039A568 /* PageViewSession.swift in Sources */,
 				DFE1FF1D212F5E1A003F27AA /* Keychain.swift in Sources */,
 				7D80AC2B212C77C600C40ECE /* APIOAuth.swift in Sources */,
 				7D20F61921C3166800B77E5E /* UICollectionViewExtensions.swift in Sources */,
@@ -2572,6 +2604,7 @@
 				7D8262F5212B300F00BD268D /* APIGroupRequestable.swift in Sources */,
 				9FCF1542227B6DB6009D35F6 /* GradeCircleView.swift in Sources */,
 				7D80AC29212C76E600C40ECE /* APIOAuthRequestable.swift in Sources */,
+				3B158CA722E1343D0039A568 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */,
 				B1AC8594228F08CA00D6BD0B /* FilePickerPresenter.swift in Sources */,
 				7D29D31C218B87050036437C /* DocViewerAnnotationProvider.swift in Sources */,
 				7D819FF7228C7C7E00C61EDD /* APIError.swift in Sources */,
@@ -2633,6 +2666,7 @@
 				B195DC512132257500797FE4 /* GetCourse.swift in Sources */,
 				7D29D2FF218A4FEA0036437C /* PSPDFAnnotationExtension.swift in Sources */,
 				7D80AC0E212B4D4100C40ECE /* APIFavorite.swift in Sources */,
+				3B158CA922E1343D0039A568 /* PageViewEventController.swift in Sources */,
 				7DF9BF04215191840099026B /* BundleExtensions.swift in Sources */,
 				7DA057522193A30E00A3CFBB /* IconView.swift in Sources */,
 				3B635B2D225CD377001F353D /* APICalendarRequestable.swift in Sources */,
@@ -2666,6 +2700,7 @@
 				7DD6948B21960EBD00BA4984 /* DocViewerPresenter.swift in Sources */,
 				7DD6CC6721BCC597004C4BB6 /* LoginFindSchoolViewController.swift in Sources */,
 				B1E789AD21B0F0800087FE4A /* LoggableCell.swift in Sources */,
+				3B158CA622E1343D0039A568 /* Persistency.swift in Sources */,
 				789C9BC12138516300B37AC4 /* UIColorExtensions.swift in Sources */,
 				7D92D657224ACC7A0015B368 /* UploadMediaComment.swift in Sources */,
 				7DF4FFD5217133AF007E5F81 /* TabType.swift in Sources */,
@@ -2695,6 +2730,7 @@
 				7DCF1EB8216BC876003AF358 /* LatePolicyStatus.swift in Sources */,
 				7DCF1EA0216BB731003AF358 /* SubmissionType.swift in Sources */,
 				B1F1328E224BBBC7002C0555 /* ModuleItem.swift in Sources */,
+				3B158CAA22E1343D0039A568 /* PageViewEventRequestManager.swift in Sources */,
 				7D54501121BDFB5C0008E75D /* LoginFindSchoolPresenter.swift in Sources */,
 				7D062AF92124A0F400677F66 /* ContextModel.swift in Sources */,
 				3B635B31225CDC2C001F353D /* GetCalendarEvents.swift in Sources */,
@@ -3229,7 +3265,7 @@
 		2C964843211E2F1A002C3255 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -3261,7 +3297,7 @@
 		2C964844211E2F1A002C3255 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;

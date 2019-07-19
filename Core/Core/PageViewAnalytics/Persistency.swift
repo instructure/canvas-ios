@@ -21,6 +21,7 @@ import Foundation
 typealias EmptyHandler = () -> Void
 
 class Persistency {
+    // swiftlint:disable:next identifier_name
     private static var __once: () = {
         let persistencyFileName = "PageViewEvents.dat"
         let fileManager = FileManager.default
@@ -29,39 +30,38 @@ class Persistency {
             if !fileManager.fileExists(atPath: URL.absoluteString) {
                 do {
                     try fileManager.createDirectory(at: URL, withIntermediateDirectories: true, attributes: nil)
-                }
-                catch let error as NSError {
+                } catch let error as NSError {
                     print("Cannot create persistancy directory: \(error.localizedDescription)")
                 }
             }
             Persistency.persistencyStorageFileURL = URL.appendingPathComponent(persistencyFileName)
         }
     }()
-    
+
     static let instance = Persistency()
     fileprivate let dispatchQueue = DispatchQueue(label: "com.instructure.pageEvent.persistanceQueue", attributes: .concurrent)
     fileprivate var queuedEvents = [PageViewEvent]()
     fileprivate static var persistencyStorageFileURL: URL?
     var queueCount: Int {
-        get{ return queuedEvents.count }
+        return queuedEvents.count
     }
-    
+
     init() {
         restoreQueuedEventsFromFile()
     }
-    
+
     func addToQueue(_ event: PageViewEvent) {
         dispatchQueue.async(flags: .barrier) { [weak self] in
             self?.queuedEvents.append(event)
             self?.saveToFile()
         }
     }
-    
+
     func storageFileURL() -> URL? {
         _ = Persistency.__once
         return type(of: self).persistencyStorageFileURL
     }
-    
+
     func saveToFile(_ handler: EmptyHandler? = nil) {
         DispatchQueue.global(qos: .background).async { [weak self] in
             if let weakself = self, let path = self?.storageFileURL()?.path {
@@ -70,8 +70,7 @@ class Persistency {
                         let data = try PropertyListEncoder().encode(weakself.queuedEvents)
                         let saveData = NSKeyedArchiver.archivedData(withRootObject: data)
                         try? saveData.write(to: URL(fileURLWithPath: path), options: [.atomic])
-                    }
-                    catch {
+                    } catch {
                         print("Archive failed")
                     }
                     DispatchQueue.main.sync { handler?() }
@@ -79,7 +78,7 @@ class Persistency {
             }
         }
     }
-    
+
     func restoreQueuedEventsFromFile() {
         dispatchQueue.async(flags: .barrier) { [weak self] in
            guard let URL = self?.storageFileURL(),
@@ -90,19 +89,18 @@ class Persistency {
             }
         }
     }
-    
+
     // MARK: - Queue Ops
-    
+
     func batchOfEvents(_ count: Int) -> [PageViewEvent] {
         return queueCount > 0 ? Array(queuedEvents[0...count-1]) : []
     }
-    
+
     func dequeue(_ count: Int = 1, handler: EmptyHandler? = nil) {
         if queuedEvents.count >= count {
             queuedEvents.removeFirst(count)
             saveToFile(handler)
-        }
-        else { handler?() }
+        } else { handler?() }
     }
 }
 
@@ -111,4 +109,3 @@ extension FileManager {
         return FileManager.default.urls(for: FileManager.SearchPathDirectory.applicationSupportDirectory, in: .userDomainMask).last
     }
 }
-

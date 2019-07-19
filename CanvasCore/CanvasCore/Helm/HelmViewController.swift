@@ -19,6 +19,7 @@
 import UIKit
 import React
 import Kingfisher
+import Core
 
 public typealias Props = [String: Any]
 
@@ -236,8 +237,8 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         for (key, value) in props {
             attributes[key] = value as? String
         }
-        if let customPageViewPath = screenConfig[PropKeys.customPageViewPath] as? String {
-            attributes[PropKeys.customPageViewPath] = customPageViewPath
+        if let customPageViewPath = screenConfig[PageViewEventController.constants.customPageViewPath] as? String {
+            attributes[PageViewEventController.constants.customPageViewPath] = customPageViewPath
         }
         stopTrackingTimeOnViewController(eventName: moduleName, attributes: attributes)
     }

@@ -18,16 +18,20 @@
 
 import Foundation
 
+// swiftlint:disable:next private_over_fileprivate
 fileprivate var tagAssociationStartKey: UInt8 = 0
+// swiftlint:disable:next private_over_fileprivate
 fileprivate var tagAssociationEndKey: UInt8 = 0
 
 public protocol PageViewEventViewControllerLoggingProtocol: class {
     var timeOnViewControllerStart: Date? { get set }
     var timeOnViewControllerEnd: Date? { get set }
+    func startTrackingTimeOnViewController()
+    func stopTrackingTimeOnViewController(eventName: String, attributes: [String: String])
 }
 
 public extension PageViewEventViewControllerLoggingProtocol {
-    
+
     var timeOnViewControllerStart: Date? {
         get {
             return objc_getAssociatedObject(self, &tagAssociationStartKey) as? Date
@@ -36,7 +40,7 @@ public extension PageViewEventViewControllerLoggingProtocol {
             objc_setAssociatedObject(self, &tagAssociationStartKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         }
     }
-    
+
     var timeOnViewControllerEnd: Date? {
         get {
             return objc_getAssociatedObject(self, &tagAssociationEndKey) as? Date
@@ -45,8 +49,8 @@ public extension PageViewEventViewControllerLoggingProtocol {
             objc_setAssociatedObject(self, &tagAssociationEndKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         }
     }
-    
-    //  MARK: - Measure time spent on view controller
+
+    // MARK: - Measure time spent on view controller
     func startTrackingTimeOnViewController() {
         timeOnViewControllerStart = Date()
     }
@@ -60,7 +64,7 @@ public extension PageViewEventViewControllerLoggingProtocol {
 }
 
 @objc public protocol PageViewEventLoggerLegacySupportProtocol: class {
-    var pageViewEventLog:  PageViewEventLoggerLegacySupport { get }
+    var pageViewEventLog: PageViewEventLoggerLegacySupport { get }
     var pageViewEventName: String { get set }
 }
 
@@ -68,7 +72,7 @@ public extension PageViewEventViewControllerLoggingProtocol {
     @objc public func start() {
         startTrackingTimeOnViewController()
     }
-    
+
     @objc public func stop(eventName: String) {
         stopTrackingTimeOnViewController(eventName: eventName)
     }

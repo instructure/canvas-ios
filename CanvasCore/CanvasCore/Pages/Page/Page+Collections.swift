@@ -17,10 +17,8 @@
 //
 
 import UIKit
-
+import Core
 import CoreData
-
-
 import Marshal
 
 extension Page {

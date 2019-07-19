@@ -17,46 +17,47 @@
 //
 
 import Foundation
-import CanvasKeymaster
-import Core
 
 typealias ErrorHandler = (Error?) -> Void
 
 @objc(PageViewEventController)
-open class PageViewEventController: NSObject {
+public class PageViewEventController: NSObject {
+
+    public struct Constants {
+        public static let customPageViewPath = "customPageViewPath"
+    }
+
     @objc public static let instance = PageViewEventController()
     private var requestManager = PageViewEventRequestManager()
     private let session = PageViewSession()
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     private override init() {
         super.init()
         setup()
     }
-    
+
     private func setup() {
         enableAppLifeCycleNotifications(true)
     }
-    
-    //  MARK: - Public
+
+    // MARK: - Public
     @objc func logPageView(_ eventNameOrPath: String, attributes: [String: String] = [:], eventDurationInSeconds: TimeInterval = 0) {
         if(!appCanLogEvents()) { return }
-        guard let authSession = CanvasKeymaster.the().currentClient?.authSession else {
-            return
-        }
+        guard let authSession = Keychain.mostRecentSession else { return }
 
-        let userID = authSession.user.id
+        let userID = authSession.userID
         var mutableAttributes = attributes
         mutableAttributes["session_id"] = session.ID
         mutableAttributes["app_name"] = "Canvas Student for iOS"
         mutableAttributes["user_id"] = userID
-        mutableAttributes["agent"] = CanvasCore.defaultHTTPHeaders["User-Agent"] ?? "Unknown"
-        if let masqueradeID = CanvasKeymaster.the().currentClient?.actAsUserID, let originalUserID = CanvasKeymaster.the().currentClient?.originalIDOfMasqueradingUser {
+        mutableAttributes["agent"] = UserAgent.default.description
+        if let masqueradeID = authSession.actAsUserID {
             mutableAttributes["user_id"] = masqueradeID
-            mutableAttributes["real_user_id"] = originalUserID
+            mutableAttributes["real_user_id"] = userID
         }
         if let url = cleanupUrl(url: eventNameOrPath, attributes: mutableAttributes) {
             mutableAttributes["url"] = url
@@ -66,7 +67,7 @@ open class PageViewEventController: NSObject {
                 mutableAttributes["context_id"] = parsedUrlPieces.contextID
             }
         }
-        
+
         let event = PageViewEvent(eventName: eventNameOrPath, attributes: mutableAttributes, userID: userID, eventDuration: eventDurationInSeconds)
         Persistency.instance.addToQueue(event)
     }
@@ -78,52 +79,53 @@ open class PageViewEventController: NSObject {
         })
     }
 
-    //  MARK: - App Lifecycle
-    
+    // MARK: - App Lifecycle
+
     @objc private func didEnterBackground(_ notification: Notification) {
         sync()
     }
-    
+
     @objc private func willEnterForeground(_ notification: Notification) {
         Persistency.instance.restoreQueuedEventsFromFile()
     }
-    
+
     @objc private func appWillTerminate(_ notification: Notification) {
         sync()
     }
-    
-    //  MARK: - Helpers
-    
+
+    // MARK: - Helpers
+
     fileprivate func appCanLogEvents() -> Bool {
         let isNotTest = !ProcessInfo.isUITest
         let isStudent = Bundle.main.isStudentApp
         return isNotTest && isStudent
     }
-    
+
     fileprivate func enableAppLifeCycleNotifications(_ enable: Bool) {
         if enable {
             NotificationCenter.default.addObserver(self, selector: #selector(PageViewEventController.didEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(PageViewEventController.willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(PageViewEventController.appWillTerminate(_:)), name: UIApplication.willTerminateNotification, object: nil)
         } else {
+            // swiftlint:disable:next notification_center_detachment
             NotificationCenter.default.removeObserver(self)
         }
     }
-    
+
     fileprivate func sync(_ handler: EmptyHandler? = nil) {
         if(!appCanLogEvents()) { handler?(); return }
-        requestManager.sendEvents { error in
+        requestManager.sendEvents { _ in
             handler?()
         }
     }
-    
+
     private func cleanupUrl(url: String, attributes: PageViewEventDictionary?) -> String? {
         var path: String? = clipRnSpecialCaseSuffix(path: url)
         path = populatePlaceholderUrl(urlWithPlaceholders: path, params: attributes)
         path = path?.pruneApiVersionFromPath()
         return path
     }
-    
+
     @objc func clipRnSpecialCaseSuffix(path: String) -> String {
         guard let url = URL(string: path) else { return path }
         if(url.pathComponents.last == "rn") {
@@ -131,13 +133,13 @@ open class PageViewEventController: NSObject {
         }
         return path
     }
-    
+
     private func populatePlaceholderUrl(urlWithPlaceholders: String?, params: PageViewEventDictionary?) -> String? {
-        guard let baseURL = CanvasKeymaster.the().currentClient?.baseURL,
+        guard let baseURL = Keychain.mostRecentSession?.baseURL,
             let urlWithPlaceholders = urlWithPlaceholders
             else { return nil }
         var path = urlWithPlaceholders
-        if let customPageViewPath = params?[PropKeys.customPageViewPath]?.description { path = customPageViewPath }
+        if let customPageViewPath = params?[PageViewEventController.Constants.customPageViewPath]?.description { path = customPageViewPath }
         if let paramterizedUrl = path.populatePathWithParams(params) {
             path = paramterizedUrl
         }
@@ -148,16 +150,16 @@ open class PageViewEventController: NSObject {
         if let isFullyQualifiedUrl = URL(string: urlWithPlaceholders), isFullyQualifiedUrl.scheme == "http" || isFullyQualifiedUrl.scheme == "https" {
             return urlWithPlaceholders
         }
-        
+
         return baseURL.appendingPathComponent(path).absoluteString
     }
-    
+
     private enum Context: String {
-        case courses = "courses"
-        case groups = "groups"
-        case users = "users"
-        case accounts = "accounts"
-        
+        case courses
+        case groups
+        case users
+        case accounts
+
         func properName() -> String {
             switch(self) {
             case .courses:
@@ -171,13 +173,14 @@ open class PageViewEventController: NSObject {
             }
          }
     }
-    
+
+    // swiftlint:disable:next large_tuple
     private func parsePageViewParts(_ url: String) -> (domain: String?, context: String?, contextID: String?)? {
         guard let urlObj = URL(string: url) else { return nil }
         let comps = urlObj.pathComponents
         let host = urlObj.host
-        var context: String? = nil
-        var contextID: String? = nil
+        var context: String?
+        var contextID: String?
         for i in 0..<comps.count {
             if let c = Context(rawValue: comps[i]) {
                 context = c.properName()
@@ -203,13 +206,10 @@ extension PageViewEventController {
         return String(data: encodedData, encoding: .utf8) ?? defaultReturnValue
     }
 
-    //  MARK: - Dev menu
+    // MARK: - Dev menu
     @objc open func clearAllEvents(handler: (() -> Void)?) {
         Persistency.instance.dequeue(Persistency.instance.queueCount) {
             handler?()
         }
     }
 }
-
-
-

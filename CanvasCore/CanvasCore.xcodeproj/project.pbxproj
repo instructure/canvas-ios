@@ -37,22 +37,15 @@
 		2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */; };
 		2CF6DEB62006A039007A5591 /* UIViewController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6DEB52006A039007A5591 /* UIViewController+Core.swift */; };
 		2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */; };
-		3B05B14C20D81C7A00D156E9 /* PageViewSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B05B14B20D81C7A00D156E9 /* PageViewSession.swift */; };
 		3B10AC0B206D8838007EFC2F /* Array+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AC0A206D8838007EFC2F /* Array+Core.swift */; };
-		3B1B0456205090F800CB256A /* String+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0455205090F800CB256A /* String+Core.swift */; };
-		3B210C2A2051DCA50062F6A7 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B210C292051DCA50062F6A7 /* PageViewEventViewControllerLoggingProtocol.swift */; };
+		3B158C9022E12E2F0039A568 /* PageViewEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B158C8F22E12E2F0039A568 /* PageViewEventLogger.m */; };
 		3BA0F9B620069CEB00E64448 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */; };
 		3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA8BE9D1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib */; };
-		3BBEAA4920472704004D334C /* PageViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBEAA4820472704004D334C /* PageViewEvent.swift */; };
-		3BBEAA4B20472984004D334C /* Persistency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBEAA4A20472984004D334C /* Persistency.swift */; };
 		3BC7CEC620113F5B001DFF8C /* CKIClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */; };
 		3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */; };
 		3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */; };
 		3BD43DE91FD20597001A6B34 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */; };
-		3BD715A620B7562500F5A422 /* PageViewEventRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD715A520B7562500F5A422 /* PageViewEventRequestManager.swift */; };
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
-		3BF2B3D020475DBA00B5E5E5 /* PageViewEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2B3CF20475DBA00B5E5E5 /* PageViewEventController.swift */; };
-		3BF2B3D7204F058800B5E5E5 /* PageViewEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2B3D5204F058800B5E5E5 /* PageViewEventLogger.m */; };
 		4902ADBE1FB26E860004837D /* LTIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4902ADBD1FB26E860004837D /* LTIViewController.swift */; };
 		490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */; };
 		49301FBD1F901260006BD777 /* Activity+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FB61F90125E006BD777 /* Activity+Network.swift */; };
@@ -548,10 +541,8 @@
 		2CF6DEB52006A039007A5591 /* UIViewController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Core.swift"; sourceTree = "<group>"; };
 		2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTraits.swift; sourceTree = "<group>"; };
 		356FC2F2919ECEF83CA044BA /* Pods-defaults-CanvasCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCoreTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCoreTests/Pods-defaults-CanvasCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
-		3B05B14B20D81C7A00D156E9 /* PageViewSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewSession.swift; sourceTree = "<group>"; };
 		3B10AC0A206D8838007EFC2F /* Array+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Core.swift"; sourceTree = "<group>"; };
-		3B1B0455205090F800CB256A /* String+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Core.swift"; sourceTree = "<group>"; };
-		3B210C292051DCA50062F6A7 /* PageViewEventViewControllerLoggingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventViewControllerLoggingProtocol.swift; sourceTree = "<group>"; };
+		3B158C8F22E12E2F0039A568 /* PageViewEventLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewEventLogger.m; sourceTree = "<group>"; };
 		3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		3BA8BE9C1FE2ED85003EC4FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SubmissionConfirmationViewController.xib; sourceTree = "<group>"; };
 		3BA8BE9F1FE2ED98003EC4FD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
@@ -574,16 +565,11 @@
 		3BA8BEBF1FE2EDFE003EC4FD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		3BA8BEC11FE2EE03003EC4FD /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
 		3BA8BEC31FE2EE09003EC4FD /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/SubmissionConfirmationViewController.strings; sourceTree = "<group>"; };
-		3BBEAA4820472704004D334C /* PageViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEvent.swift; sourceTree = "<group>"; };
-		3BBEAA4A20472984004D334C /* Persistency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistency.swift; sourceTree = "<group>"; };
 		3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKIClient+Extensions.swift"; sourceTree = "<group>"; };
 		3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiriShortcutManager.swift; sourceTree = "<group>"; };
 		3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiriShortcutManager.m; sourceTree = "<group>"; };
 		3BD43DE81FD20597001A6B34 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
-		3BD715A520B7562500F5A422 /* PageViewEventRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventRequestManager.swift; sourceTree = "<group>"; };
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
-		3BF2B3CF20475DBA00B5E5E5 /* PageViewEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventController.swift; sourceTree = "<group>"; };
-		3BF2B3D5204F058800B5E5E5 /* PageViewEventLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageViewEventLogger.m; sourceTree = "<group>"; };
 		4902ADBD1FB26E860004837D /* LTIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewController.swift; sourceTree = "<group>"; };
 		490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebViewController.swift; sourceTree = "<group>"; };
 		4917183E1F8EE797008B4599 /* Session+DiscussionKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+DiscussionKit.swift"; sourceTree = "<group>"; };
@@ -1292,7 +1278,6 @@
 				2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */,
 				2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */,
 				2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */,
-				3B1B0455205090F800CB256A /* String+Core.swift */,
 				3B10AC0A206D8838007EFC2F /* Array+Core.swift */,
 				2CCBD44620C0943B0082E616 /* URL+Core.swift */,
 				B190BA3E229EE60D003B612A /* NSObject+Reactive.swift */,
@@ -1311,13 +1296,7 @@
 		3BBEAA47204726E4004D334C /* Page View Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				3BBEAA4820472704004D334C /* PageViewEvent.swift */,
-				3BBEAA4A20472984004D334C /* Persistency.swift */,
-				3BF2B3CF20475DBA00B5E5E5 /* PageViewEventController.swift */,
-				3BF2B3D5204F058800B5E5E5 /* PageViewEventLogger.m */,
-				3B210C292051DCA50062F6A7 /* PageViewEventViewControllerLoggingProtocol.swift */,
-				3BD715A520B7562500F5A422 /* PageViewEventRequestManager.swift */,
-				3B05B14B20D81C7A00D156E9 /* PageViewSession.swift */,
+				3B158C8F22E12E2F0039A568 /* PageViewEventLogger.m */,
 			);
 			path = "Page View Analytics";
 			sourceTree = "<group>";
@@ -2993,7 +2972,6 @@
 				49CE979F1F900D0000121A43 /* InfinitePagedImagesView.swift in Sources */,
 				2CB68A351FED6E0600468313 /* StartupManager.swift in Sources */,
 				49CE96EB1F8FFC4500121A43 /* SoEdventurous.xcdatamodeld in Sources */,
-				3BD715A620B7562500F5A422 /* PageViewEventRequestManager.swift in Sources */,
 				49CE96E31F8FFC4400121A43 /* MasteryPathAssignmentSet.swift in Sources */,
 				49CE97371F8FFEA600121A43 /* ArcVideoPickerViewController.swift in Sources */,
 				4961F51A1F8FAC440093EC86 /* Icon.swift in Sources */,
@@ -3092,7 +3070,6 @@
 				490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */,
 				49CE96611F8FF41B00121A43 /* TimedQuizViewController.swift in Sources */,
 				9FB85499208677DB007499DA /* AdjustableManager.m in Sources */,
-				3B210C2A2051DCA50062F6A7 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */,
 				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				496C7D641F8BEF690010DC03 /* TabBarBadgeCounts.swift in Sources */,
 				4961F5EA1F8FB4030093EC86 /* SynchronizedModel.swift in Sources */,
@@ -3138,7 +3115,6 @@
 				4930204C1F902364006BD777 /* Accumulate.swift in Sources */,
 				4961F5A81F8FB2A90093EC86 /* SmallModalNavigationController.swift in Sources */,
 				49CE96E51F8FFC4400121A43 /* MasteryPathAssignment+Details.swift in Sources */,
-				3BF2B3D020475DBA00B5E5E5 /* PageViewEventController.swift in Sources */,
 				4961F6291F8FB7050093EC86 /* Course.swift in Sources */,
 				49CE97411F8FFEA600121A43 /* Scratch.xcdatamodeld in Sources */,
 				49CE96711F8FF41B00121A43 /* LoadingQuestionsView.swift in Sources */,
@@ -3146,7 +3122,6 @@
 				2CD3B49D206AB38E006339D8 /* APIBridge.m in Sources */,
 				494BC6061F953D0D00C77257 /* PreSubmissionPDFDocumentPresenter.swift in Sources */,
 				49CE97321F8FFEA600121A43 /* Assignment+ArcLTI.swift in Sources */,
-				3BF2B3D7204F058800B5E5E5 /* PageViewEventLogger.m in Sources */,
 				49301FD51F9014C6006BD777 /* Session+CalendarEvent.swift in Sources */,
 				4961F6841F8FB9620093EC86 /* Colors.swift in Sources */,
 				4961F53F1F8FAD9A0093EC86 /* UIWebView+PostProcessing.swift in Sources */,
@@ -3170,7 +3145,6 @@
 				493020711F902462006BD777 /* Session.swift in Sources */,
 				494AE09C1F843A09001A8F31 /* HapticFeedback.m in Sources */,
 				493020561F902364006BD777 /* NSURLSession+SoLazy.swift in Sources */,
-				3B05B14C20D81C7A00D156E9 /* PageViewSession.swift in Sources */,
 				49CE96BF1F8FF94B00121A43 /* Page+Network.swift in Sources */,
 				49CE97481F8FFEA600121A43 /* DueDateOverride.swift in Sources */,
 				49301FEF1F901854006BD777 /* NotificationPreferencesTableViewCell.swift in Sources */,
@@ -3193,12 +3167,12 @@
 				9F2E363520507F3500A2B031 /* FeatureFlags.m in Sources */,
 				2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */,
 				2CD7769C200977EC00589D4F /* UIApplicationDelegate+Core.swift in Sources */,
+				3B158C9022E12E2F0039A568 /* PageViewEventLogger.m in Sources */,
 				49CE966B1F8FF41B00121A43 /* QuestionDrawerViewController.swift in Sources */,
 				4930201B1F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift in Sources */,
 				49CE96861F8FF41B00121A43 /* SubmissionController.swift in Sources */,
 				49CE96651F8FF41B00121A43 /* CanvasQuizService.swift in Sources */,
 				4961F6331F8FB70D0093EC86 /* GradingPeriod.swift in Sources */,
-				3BBEAA4920472704004D334C /* PageViewEvent.swift in Sources */,
 				4961F6811F8FB9620093EC86 /* Upload+Details.swift in Sources */,
 				4961F62C1F8FB7070093EC86 /* Enrollment+Network.swift in Sources */,
 				2C195F52201948DB003B0D7D /* HelmScreenConfig.swift in Sources */,
@@ -3386,13 +3360,11 @@
 				49CE973E1F8FFEA600121A43 /* Submission+Collections.swift in Sources */,
 				49CE974D1F8FFEA600121A43 /* Rubric+Details.swift in Sources */,
 				49CE968E1F8FF41B00121A43 /* TimedQuizSubmissionService.swift in Sources */,
-				3B1B0456205090F800CB256A /* String+Core.swift in Sources */,
 				4961F58C1F8FB21F0093EC86 /* Brand.swift in Sources */,
 				494AE0A21F843A09001A8F31 /* ScrollViewDisablerManager.m in Sources */,
 				49CE96991F8FF41B00121A43 /* NSError+QuizKit.swift in Sources */,
 				9FBD22DA2264CC9A007E48E6 /* QLPreviewManager.m in Sources */,
 				49CE967E1F8FF41B00121A43 /* SelectableAnswerCellProtocol.swift in Sources */,
-				3BBEAA4B20472984004D334C /* Persistency.swift in Sources */,
 				4961F61F1F8FB6E40093EC86 /* UIColor+EnrollmentKit.swift in Sources */,
 				4961F63B1F8FB7180093EC86 /* GradeAPI.swift in Sources */,
 				4961F62A1F8FB7050093EC86 /* Course+Network.swift in Sources */,

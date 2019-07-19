@@ -18,7 +18,7 @@
 
 @import Foundation;
 #import <React/RCTBridgeModule.h>
-#import <CanvasCore/CanvasCore-Swift.h>
+#import <Core/Core-Swift.h>
 
 @interface PageViewEventLogger : NSObject<RCTBridgeModule>
 @end
