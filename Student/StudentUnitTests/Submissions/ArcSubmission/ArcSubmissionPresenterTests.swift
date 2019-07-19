@@ -122,6 +122,6 @@ class ArcSubmissionPresenterTests: PersistenceTestCase {
         presenter.submit(form: form) { _ in
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: .2)
+        wait(for: [expectation], timeout: 0.2)
     }
 }
