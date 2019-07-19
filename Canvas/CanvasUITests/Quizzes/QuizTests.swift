@@ -42,4 +42,32 @@ class QuizTests: CanvasUITests {
         Quiz.text(string: "This is question D").waitToExist()
         XCTAssertEqual(XCUIElementWrapper(app.textFields.firstMatch).value, "42.000000")
     }
+
+    func testQuizQuestionsOpenInWebView() {
+        Dashboard.courseCard(id: "263").waitToExist()
+        Dashboard.courseCard(id: "263").tap()
+        CourseNavigation.quizzes.tap()
+
+        app.find(labelContaining: "Web Quiz").tap()
+        Quiz.resumeButton.tapAt(.zero)
+        Quiz.resumeButton.tapAt(.zero)
+
+        Quiz.text(string: "Question 1").waitToExist()
+        Quiz.text(string: "Question 2").waitToExist()
+        let textFields = app.textFields.allElementsBoundByIndex
+        for textField in textFields {
+            if let value = textField.value as? String {
+                XCTAssert(value == "Fox" || value == "Dog" || value == "6.4")
+            } else {
+                XCTAssert(false, "text field did not have a value")
+            }
+        }
+    }
+
+    func testQuizzesShowEmptyState() {
+        Dashboard.courseCard(id: "262").waitToExist()
+        Dashboard.courseCard(id: "262").tap()
+        CourseNavigation.announcements.waitToExist()
+        CourseNavigation.quizzes.waitToVanish()
+    }
 }
