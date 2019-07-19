@@ -26,12 +26,20 @@ struct Pandata {
 
 class PageViewEventRequestManager {
     private let maxBatchCount = 300
+    private let persistence: Persistency
+    private let api: API
+    private let keychain = GeneralPurposeKeychain(serviceName: Pandata.tokenKeychainService)
+
+    init(persistence: Persistency = Persistency.instance, api: API = AppEnvironment.shared.api) {
+        self.persistence = persistence
+        self.api = api
+    }
 
     func sendEvents(handler: @escaping ErrorHandler) {
         retrievePandataEndpointInfo { [weak self] token in
             guard let self = self, let token = token else { return handler(nil) }
 
-            let count = min(self.maxBatchCount, Persistency.instance.queueCount)
+            let count = min(self.maxBatchCount, self.persistence.queueCount)
             guard count > 0 else { return handler(nil) }
 
             var backgroundTask = UIBackgroundTaskIdentifier.invalid
@@ -39,15 +47,15 @@ class PageViewEventRequestManager {
                 backgroundTask = UIBackgroundTaskIdentifier.invalid
             }
 
-            let events = Persistency.instance.batchOfEvents(count).map { $0.apiEvent(token) }
+            let events = self.persistence.batchOfEvents(count)?.map { $0.apiEvent(token) } ?? []
 
-            AppEnvironment.shared.api.makeRequest(PostPandataEventsRequest(token: token, events: events)) { (response, _, error) in
+            self.api.makeRequest(PostPandataEventsRequest(token: token, events: events)) { (response, _, error) in
                 guard response?.lowercased() == "\"ok\"", error == nil else {
                     handler(error)
                     UIApplication.shared.endBackgroundTask(backgroundTask)
                     return
                 }
-                Persistency.instance.dequeue(count, handler: {
+                self.persistence.dequeue(count, handler: {
                     handler(nil)
                     UIApplication.shared.endBackgroundTask(backgroundTask)
                 })
@@ -56,37 +64,16 @@ class PageViewEventRequestManager {
     }
 
     func cleanup() {
-        let query: [CFString: Any] = [
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrService: Pandata.tokenKeychainService,
-            kSecAttrAccount: Pandata.tokenKeychainKey,
-        ]
-        _ = SecItemDelete(query as CFDictionary)
+        keychain.removeItem(for: Pandata.tokenKeychainKey)
     }
 
     private func storePandataEndpointInfo(_ token: APIPandataEventsToken) {
         guard let data = try? JSONEncoder().encode(token) else { return }
-        let query: [CFString: Any] = [
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrService: Pandata.tokenKeychainService,
-            kSecAttrAccount: Pandata.tokenKeychainKey,
-            kSecValueData: data,
-            kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked,
-        ]
-        _ = SecItemAdd(query as CFDictionary, nil)
+        keychain.setItem(data, for: Pandata.tokenKeychainKey)
     }
 
     private func retrievePandataEndpointInfo(handler: @escaping (APIPandataEventsToken?) -> Void) {
-        let query: [CFString: Any] = [
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrService: Pandata.tokenKeychainService,
-            kSecAttrAccount: Pandata.tokenKeychainKey,
-            kSecReturnData: kCFBooleanTrue as Any,
-            kSecMatchLimit: kSecMatchLimitOne,
-        ]
-        var result: AnyObject?
-        if SecItemCopyMatching(query as CFDictionary, &result) == noErr,
-            let data = result as? Data,
+        if let data = keychain.data(for: Pandata.tokenKeychainKey),
             let token = try? JSONDecoder().decode(APIPandataEventsToken.self, from: data),
             Date(timeIntervalSince1970: token.expires_at / 1000) >= Date() {
             return handler(token)
@@ -96,7 +83,7 @@ class PageViewEventRequestManager {
         backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "fetch pandata token") {
             backgroundTask = UIBackgroundTaskIdentifier.invalid
         }
-        AppEnvironment.shared.api.makeRequest(PostPandataEventsTokenRequest()) { [weak self] (token, _, _) in
+        api.makeRequest(PostPandataEventsTokenRequest()) { [weak self] (token, _, _) in
             if let token = token {
                 self?.storePandataEndpointInfo(token)
             }

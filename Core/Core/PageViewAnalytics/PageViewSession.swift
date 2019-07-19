@@ -75,16 +75,6 @@ class PageViewSession {
 }
 
 extension Date {
-    func dateByAddingMinutes(_ minutes: NSInteger) -> Date? {
-        let calendar = Calendar.autoupdatingCurrent
-        let components: NSCalendar.Unit = [.year, .month, .day, .hour, .minute, .second]
-        var dateComponents = (calendar as NSCalendar).components(components, from: self)
-        if let currentMinute = dateComponents.minute {
-            dateComponents.minute = currentMinute + minutes
-        }
-        return calendar.date(from: dateComponents)
-    }
-
     func differenceInMinutes(_ date: Date) -> Int {
         let calendar = Calendar.autoupdatingCurrent
         let deltaComponents = (calendar as NSCalendar).components(.minute, from: date, to: self, options: .matchStrictly)

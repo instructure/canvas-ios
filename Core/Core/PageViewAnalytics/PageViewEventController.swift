@@ -30,6 +30,12 @@ public class PageViewEventController: NSObject {
     @objc public static let instance = PageViewEventController()
     private var requestManager = PageViewEventRequestManager()
     private let session = PageViewSession()
+    var persistency: Persistency = Persistency.instance
+    var appCanLogEvents: () -> Bool = {
+        let isNotTest = !ProcessInfo.isUITest
+        let isStudent = Bundle.main.isStudentApp
+        return isNotTest && isStudent
+    }
 
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -69,7 +75,7 @@ public class PageViewEventController: NSObject {
         }
 
         let event = PageViewEvent(eventName: eventNameOrPath, attributes: mutableAttributes, userID: userID, eventDuration: eventDurationInSeconds)
-        Persistency.instance.addToQueue(event)
+        persistency.addToQueue(event)
     }
 
     @objc public func userDidChange() {
@@ -86,7 +92,7 @@ public class PageViewEventController: NSObject {
     }
 
     @objc private func willEnterForeground(_ notification: Notification) {
-        Persistency.instance.restoreQueuedEventsFromFile()
+        persistency.restoreQueuedEventsFromFile()
     }
 
     @objc private func appWillTerminate(_ notification: Notification) {
@@ -94,12 +100,6 @@ public class PageViewEventController: NSObject {
     }
 
     // MARK: - Helpers
-
-    fileprivate func appCanLogEvents() -> Bool {
-        let isNotTest = !ProcessInfo.isUITest
-        let isStudent = Bundle.main.isStudentApp
-        return isNotTest && isStudent
-    }
 
     fileprivate func enableAppLifeCycleNotifications(_ enable: Bool) {
         if enable {
@@ -197,8 +197,8 @@ public class PageViewEventController: NSObject {
 // MARK: - RN Logger methods
 extension PageViewEventController {
     @objc open func allEvents() -> String {
-        let count = Persistency.instance.queueCount
-        let events = Persistency.instance.batchOfEvents(count)
+        let count = persistency.queueCount
+        let events = persistency.batchOfEvents(count)
         let defaultReturnValue = "[]"
         guard let encodedData = try? JSONEncoder().encode(events) else {
             return defaultReturnValue
@@ -208,7 +208,7 @@ extension PageViewEventController {
 
     // MARK: - Dev menu
     @objc open func clearAllEvents(handler: (() -> Void)?) {
-        Persistency.instance.dequeue(Persistency.instance.queueCount) {
+        persistency.dequeue(persistency.queueCount) {
             handler?()
         }
     }

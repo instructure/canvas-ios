@@ -21,9 +21,9 @@ import Foundation
 typealias EmptyHandler = () -> Void
 
 class Persistency {
+    static var persistencyFileName = "PageViewEvents.dat"
     // swiftlint:disable:next identifier_name
     private static var __once: () = {
-        let persistencyFileName = "PageViewEvents.dat"
         let fileManager = FileManager.default
         let appSupportDirectoryURL = FileManager.appSupportDirectory()
         if let URL = appSupportDirectoryURL {
@@ -39,14 +39,16 @@ class Persistency {
     }()
 
     static let instance = Persistency()
-    fileprivate let dispatchQueue = DispatchQueue(label: "com.instructure.pageEvent.persistanceQueue", attributes: .concurrent)
+    fileprivate let dispatchQueue: DispatchQueue
+    fileprivate static let defaultDispatchQueueLabel = "com.instructure.pageEvent.persistanceQueue"
     fileprivate var queuedEvents = [PageViewEvent]()
     fileprivate static var persistencyStorageFileURL: URL?
     var queueCount: Int {
         return queuedEvents.count
     }
 
-    init() {
+    init(dispatchQueue: DispatchQueue = DispatchQueue(label: defaultDispatchQueueLabel, attributes: .concurrent)) {
+        self.dispatchQueue = dispatchQueue
         restoreQueuedEventsFromFile()
     }
 
@@ -92,7 +94,8 @@ class Persistency {
 
     // MARK: - Queue Ops
 
-    func batchOfEvents(_ count: Int) -> [PageViewEvent] {
+    func batchOfEvents(_ count: Int) -> [PageViewEvent]? {
+        if (count - 1) >= queueCount { return nil }
         return queueCount > 0 ? Array(queuedEvents[0...count-1]) : []
     }
 

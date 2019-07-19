@@ -52,11 +52,11 @@ public extension PageViewEventViewControllerLoggingProtocol {
 
     // MARK: - Measure time spent on view controller
     func startTrackingTimeOnViewController() {
-        timeOnViewControllerStart = Date()
+        timeOnViewControllerStart = Clock.now
     }
 
     func stopTrackingTimeOnViewController(eventName: String, attributes: [String: String] = [:]) {
-        timeOnViewControllerEnd = Date()
+        timeOnViewControllerEnd = Clock.now
         guard let start = timeOnViewControllerStart, let end = timeOnViewControllerEnd else { return }
         let duration = end.timeIntervalSince(start)
         PageViewEventController.instance.logPageView(eventName, attributes: attributes, eventDurationInSeconds: duration)

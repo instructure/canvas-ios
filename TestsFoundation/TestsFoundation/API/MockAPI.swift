@@ -56,7 +56,10 @@ public class MockAPI: API {
         if let (data, response, error) = mocks[request] {
             var value: R.Response?
             if let data = data {
-                value = try! JSONDecoder().decode(R.Response.self, from: data)
+                value = try? requestable.decode(data)
+                if value == nil {
+                    value = try? JSONDecoder().decode(R.Response.self, from: data)
+                }
             }
             callback(value, response, error)
             return nil
