@@ -435,9 +435,6 @@
 /* No comment provided by engineer. */
 "Open in…" = "打开...";
 
-/* Accessibility hint for the profile button */
-"Opens profile" = "打开档案";
-
 /* Orange course color button */
 "Orange" = "橙色";
 
@@ -480,9 +477,6 @@
 /* Mark student present
    Student is present in class */
 "Present" = "出席";
-
-/* Accessibility label for the profile button */
-"Profile" = "个人资料";
 
 /* Purple course color button */
 "Purple" = "紫色";

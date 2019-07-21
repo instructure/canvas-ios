@@ -435,9 +435,6 @@
 /* No comment provided by engineer. */
 "Open in…" = "Huaki i roto ī…";
 
-/* Accessibility hint for the profile button */
-"Opens profile" = "Whakatuwhera ai kōtaha";
-
 /* Orange course color button */
 "Orange" = "Ārani";
 
@@ -480,9 +477,6 @@
 /* Mark student present
    Student is present in class */
 "Present" = "Nāianei";
-
-/* Accessibility label for the profile button */
-"Profile" = "Kōtaha";
 
 /* Purple course color button */
 "Purple" = "Waiporoporo";
