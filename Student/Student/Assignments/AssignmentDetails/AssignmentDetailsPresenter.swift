@@ -36,7 +36,13 @@ protocol AssignmentDetailsViewProtocol: SubmissionButtonViewProtocol {
     func showSubmitAssignmentButton(title: String?)
 }
 
-class AssignmentDetailsPresenter {
+class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
+
+    var pageViewEventName: String {
+        guard let a = assignments.first else { return "\(String(describing: self))"}
+        return a.htmlURL.absoluteString
+    }
+
     lazy var assignments = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission])) { [weak self] in
         self?.update()
     }
@@ -87,14 +93,22 @@ class AssignmentDetailsPresenter {
             return .staged
         }
     }
+    var pageViewLogger: PageViewEventViewControllerLoggingProtocol
 
-    init(env: AppEnvironment = .shared, view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
+    init(env: AppEnvironment = .shared,
+         view: AssignmentDetailsViewProtocol,
+         courseID: String,
+         assignmentID: String,
+         fragment: String? = nil,
+         pageViewLogger: PageViewEventViewControllerLoggingProtocol = PresenterPageViewLogger()
+        ) {
         self.env = env
         self.view = view
         self.courseID = courseID
         self.assignmentID = assignmentID
         self.fragment = fragment
         self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: assignmentID)
+        self.pageViewLogger = pageViewLogger
     }
 
     func update() {
