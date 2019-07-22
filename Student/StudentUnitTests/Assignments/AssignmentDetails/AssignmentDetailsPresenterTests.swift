@@ -364,15 +364,15 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testPageViewLogging() {
-        Course.make()
-        let expected = Assignment.make()
+        let c = Course.make()
+        let a = Assignment.make()
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 1)
 
         presenter.viewDidAppear()
         presenter.viewDidDisappear()
 
-        XCTAssertEqual(pageViewLogger.eventName, expected.htmlURL.absoluteString)
+        XCTAssertEqual(pageViewLogger.eventName, "/courses/\(c.id)/assignments/\(a.id)")
     }
 }
 

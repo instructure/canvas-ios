@@ -39,8 +39,7 @@ protocol AssignmentDetailsViewProtocol: SubmissionButtonViewProtocol {
 class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
 
     var pageViewEventName: String {
-        guard let a = assignments.first else { return "\(String(describing: self))"}
-        return a.htmlURL.absoluteString
+        return "/courses/\(courseID)/assignments/\(assignmentID)"
     }
 
     lazy var assignments = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission])) { [weak self] in
