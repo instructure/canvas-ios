@@ -132,7 +132,7 @@ class QuizSubmissionTimerController: NSObject {
     @objc func syncTimeWithServer() {
         if quiz.timed {
             timedQuizSubmissionService.getTimeRemaining { [weak self] result in
-                if let secondsLeft = try? result.get() {
+                if let secondsLeft = result.value {
                     if let me = self {
                         me.timerTime = secondsLeft
                     }
