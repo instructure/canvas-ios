@@ -17,28 +17,27 @@
 //
 
 import Foundation
-import Core
 
 class PresenterPageViewLogger: PageViewEventViewControllerLoggingProtocol {}
 
-protocol PageViewLoggerPresenterProtocol {
-    var pageViewLogger: PageViewEventViewControllerLoggingProtocol { get }
+public protocol PageViewLoggerPresenterProtocol {
+    var env: AppEnvironment { get }
     var pageViewEventName: String { get }
     var pageViewAttributes: [String: String]? { get }
     func viewDidAppear()
     func viewDidDisappear()
 }
 
-extension PageViewLoggerPresenterProtocol {
+public extension PageViewLoggerPresenterProtocol {
     var pageViewAttributes: [String: String]? {
         return nil
     }
 
     func viewDidAppear() {
-        pageViewLogger.startTrackingTimeOnViewController()
+        env.pageViewLogger.startTrackingTimeOnViewController()
     }
 
     func viewDidDisappear() {
-        pageViewLogger.stopTrackingTimeOnViewController(eventName: pageViewEventName, attributes: pageViewAttributes ?? [:])
+        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: pageViewEventName, attributes: pageViewAttributes ?? [:])
     }
 }

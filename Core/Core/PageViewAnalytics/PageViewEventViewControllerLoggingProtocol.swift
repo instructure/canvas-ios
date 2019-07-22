@@ -18,10 +18,8 @@
 
 import Foundation
 
-// swiftlint:disable:next private_over_fileprivate
-fileprivate var tagAssociationStartKey: UInt8 = 0
-// swiftlint:disable:next private_over_fileprivate
-fileprivate var tagAssociationEndKey: UInt8 = 0
+private var tagAssociationStartKey: UInt8 = 0
+private var tagAssociationEndKey: UInt8 = 0
 
 public protocol PageViewEventViewControllerLoggingProtocol: class {
     var timeOnViewControllerStart: Date? { get set }

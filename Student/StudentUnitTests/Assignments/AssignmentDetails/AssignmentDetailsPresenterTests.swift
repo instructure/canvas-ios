@@ -46,9 +46,10 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
     override func setUp() {
         super.setUp()
-        expectation = XCTestExpectation(description: "expectation")
         pageViewLogger = MockPageViewLogger()
-        presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: "target", pageViewLogger: pageViewLogger)
+        env.pageViewLogger = pageViewLogger
+        expectation = XCTestExpectation(description: "expectation")
+        presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: "target")
         presenter.submissionButtonPresenter = mockButton
     }
 
@@ -373,7 +374,6 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
         XCTAssertEqual(pageViewLogger.eventName, expected.htmlURL.absoluteString)
     }
-
 }
 
 extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
