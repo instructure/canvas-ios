@@ -113,6 +113,17 @@ describe('CanvasWebView', () => {
     expect(SFSafariViewController.open).toHaveBeenCalledWith(authedURL)
   })
 
+  it('handles navigation callback', () => {
+    const navigator = template.navigator({ show: jest.fn() })
+    const onNavigation = jest.fn()
+    const tree = shallow(<CanvasWebView {...props} navigator={navigator} onNavigation={onNavigation} />)
+    const webView = tree.find('WebView')
+    const url = 'https://canvas.instructure.com/courses/1/assignments/1'
+    webView.simulate('Navigation', { nativeEvent: { url } })
+    expect(navigator.show).not.toHaveBeenCalled()
+    expect(onNavigation).toHaveBeenCalledWith(url)
+  })
+
   it('sends errors', () => {
     const onError = jest.fn()
     const tree = shallow(<CanvasWebView {...props} onError={onError} />)

@@ -182,8 +182,8 @@ exports[`SubmissionViewer renders an online_quiz submission 1`] = `
         "bottom": 0,
       }
     }
-    navigator={undefined}
-    openLinksInSafari={true}
+    onNavigation={[Function]}
+    openLinksInSafari={false}
     source={
       Object {
         "uri": "https://google.com",
