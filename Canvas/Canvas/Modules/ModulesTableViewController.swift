@@ -18,6 +18,8 @@
 
 import UIKit
 import CanvasCore
+import Core
+import class CanvasCore.Module
 
 class ModulesTableViewController: FetchedTableViewController<Module>, PageViewEventViewControllerLoggingProtocol {
     @objc let courseID: String

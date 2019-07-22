@@ -24,6 +24,7 @@ import TechDebt
 import CanvasKeymaster
 import UserNotifications
 import Kingfisher
+import Core
 
 class SettingsViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
     @IBOutlet weak var tableView: UITableView!

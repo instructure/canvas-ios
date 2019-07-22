@@ -20,6 +20,7 @@ import WebKit
 import UIKit
 import ReactiveSwift
 import ReactiveCocoa
+import Core
 
 open class CanvasWebViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
     @objc public let webView: CanvasWebView

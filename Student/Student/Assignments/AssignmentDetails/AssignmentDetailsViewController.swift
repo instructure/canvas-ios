@@ -132,6 +132,16 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         presenter?.viewIsReady()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter?.viewDidAppear()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter?.viewDidDisappear()
+    }
+
     @objc
     func refresh(_ refreshControl: UIRefreshControl) {
         presenter?.refresh()

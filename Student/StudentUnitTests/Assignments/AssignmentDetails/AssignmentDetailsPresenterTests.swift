@@ -34,6 +34,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     var expectation = XCTestExpectation(description: "expectation")
     var resultingButtonTitle: String?
     var navigationController: UINavigationController?
+    var pageViewLogger: MockPageViewLogger = MockPageViewLogger()
 
     class MockButton: SubmissionButtonPresenter {
         var submitted = false
@@ -45,6 +46,8 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
     override func setUp() {
         super.setUp()
+        pageViewLogger = MockPageViewLogger()
+        env.pageViewLogger = pageViewLogger
         expectation = XCTestExpectation(description: "expectation")
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: "target")
         presenter.submissionButtonPresenter = mockButton
@@ -360,6 +363,17 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         presenter.viewIsReady()
     }
 
+    func testPageViewLogging() {
+        let c = Course.make()
+        let a = Assignment.make()
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 1)
+
+        presenter.viewDidAppear()
+        presenter.viewDidDisappear()
+
+        XCTAssertEqual(pageViewLogger.eventName, "/courses/\(c.id)/assignments/\(a.id)")
+    }
 }
 
 extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {

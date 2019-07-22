@@ -19,6 +19,8 @@
 import UIKit
 import ReactiveSwift
 import CanvasCore
+import Core
+import class CanvasCore.Course
 
 open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, CalendarViewDataSource, PageViewEventViewControllerLoggingProtocol {
 

@@ -21,6 +21,7 @@ import Foundation
 import Cartography
 import ReactiveSwift
 import MobileCoreServices
+import Core
 
 protocol SubmissionInteractor: class {
     var submission: QuizSubmission { get }

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2017-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,30 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@import Foundation;
-#import <React/RCTBridgeModule.h>
-#import <Core/Core-Swift.h>
+import Foundation
+import Core
 
-@interface PageViewEventLogger : NSObject<RCTBridgeModule>
-@end
-
-@implementation PageViewEventLogger
-
-RCT_EXPORT_MODULE()
-
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(allEvents) {
-    NSString* events = [[PageViewEventController instance] allEvents];
-    return events;
+@objc public protocol PageViewEventLoggerLegacySupportProtocol: class {
+    var pageViewEventLog: PageViewEventLoggerLegacySupport { get }
+    var pageViewEventName: String { get set }
 }
 
-RCT_REMAP_METHOD(clearAllEvents, resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
-    [[PageViewEventController instance] clearAllEventsWithHandler:^{
-        resolve(nil);
-    }];
+@objc public class PageViewEventLoggerLegacySupport: NSObject, PageViewEventViewControllerLoggingProtocol {
+    @objc public func start() {
+        startTrackingTimeOnViewController()
+    }
+
+    @objc public func stop(eventName: String) {
+        stopTrackingTimeOnViewController(eventName: eventName)
+    }
 }
 
-- (dispatch_queue_t)methodQueue {
-    return dispatch_get_main_queue();
+@objc public protocol ModuleItemEmbeddedProtocol: class {
+    var moduleItemID: String? { get set }
 }
-
-@end

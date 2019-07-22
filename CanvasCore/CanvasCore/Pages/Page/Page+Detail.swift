@@ -17,13 +17,10 @@
 //
 
 import UIKit
-
-
+import Core
 import CoreData
 import ReactiveSwift
 import Marshal
-
-
 import WebKit
 
 extension Page {
