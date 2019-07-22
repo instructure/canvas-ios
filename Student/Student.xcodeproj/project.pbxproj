@@ -28,7 +28,8 @@
 		3B0B0F6D219C8D2300F04216 /* QuizListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B005D219BD9F60045E8A1 /* QuizListViewController.storyboard */; };
 		3B0B0F74219C8D3100F04216 /* QuizListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0063219BD9F60045E8A1 /* QuizListCell.swift */; };
 		3B158CBE22E40D9D0039A568 /* MockPageViewLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CBD22E40D9D0039A568 /* MockPageViewLogger.swift */; };
-		3B158CC122E40E160039A568 /* PresenterPageViewLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CC022E40E160039A568 /* PresenterPageViewLogger.swift */; };
+		3B158CC222E61D1D0039A568 /* PresenterPageViewLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CC022E40E160039A568 /* PresenterPageViewLogger.swift */; };
+		3B158CC322E61D240039A568 /* PresenterPageViewLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CC022E40E160039A568 /* PresenterPageViewLogger.swift */; };
 		3B19D26C22664727003A0565 /* RubricViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D26B22664727003A0565 /* RubricViewController.swift */; };
 		3B19D26D22664727003A0565 /* RubricViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D26B22664727003A0565 /* RubricViewController.swift */; };
 		3B19D26F2266475B003A0565 /* RubricPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D26E2266475B003A0565 /* RubricPresenter.swift */; };
@@ -1819,7 +1820,7 @@
 				3BE2ADCD21B70537008D91AB /* DynamicTextField.swift in Sources */,
 				3B6325DE21ADF49200237CE6 /* UrlSubmissionContentViewController.swift in Sources */,
 				7D005F792239DE5A0040CBD7 /* AvatarView.swift in Sources */,
-				3B158CC122E40E160039A568 /* PresenterPageViewLogger.swift in Sources */,
+				3B158CC222E61D1D0039A568 /* PresenterPageViewLogger.swift in Sources */,
 				7D79636B22307F2500CCF943 /* SubmissionFilesCell.swift in Sources */,
 				788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */,
 				3B1B007A219BD9F60045E8A1 /* QuizListPresenter.swift in Sources */,
@@ -1890,6 +1891,7 @@
 				3B4B75B1222DE7F3002CCBEC /* CourseNavigationViewController.swift in Sources */,
 				7DA5C497223863EF003CDB4C /* SubmissionCommentsViewController.swift in Sources */,
 				7D067CE521505B3500B78AF2 /* CourseCardCell.swift in Sources */,
+				3B158CC322E61D240039A568 /* PresenterPageViewLogger.swift in Sources */,
 				7DA057552193A3A800A3CFBB /* IconView.swift in Sources */,
 				B150C62722973CF20096D58C /* ArcSubmissionPresenter.swift in Sources */,
 				3B19D2702266475B003A0565 /* RubricPresenter.swift in Sources */,

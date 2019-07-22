@@ -82,7 +82,7 @@ func colorfulToDoViewModel(session: Session, toDoItem: Todo) -> ColorfulViewMode
     return vm
 }
 
-class ToDoListViewController: FetchedTableViewController<Todo>, Core.PageViewEventViewControllerLoggingProtocol {
+class ToDoListViewController: FetchedTableViewController<Todo>, PageViewEventViewControllerLoggingProtocol {
 
     @objc let session: Session
     @objc let route: (UIViewController, URL)->()

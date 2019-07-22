@@ -45,7 +45,7 @@ extension ColorfulViewModel {
     }
 }
 
-class TabsTableViewController: FetchedTableViewController<Tab>, Core.PageViewEventViewControllerLoggingProtocol {
+class TabsTableViewController: FetchedTableViewController<Tab>, PageViewEventViewControllerLoggingProtocol {
     @objc let route: (UIViewController, URL)->()
     @objc let session: Session
     let contextID: ContextID
