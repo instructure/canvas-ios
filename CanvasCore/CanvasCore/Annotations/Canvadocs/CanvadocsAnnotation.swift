@@ -18,7 +18,7 @@
 
 import UIKit
 import PSPDFKit
-import SwiftSimplify
+import Core
 
 fileprivate var annotationUserNameKey: UInt8 = 0
 fileprivate var annotationDeletedAtKey: UInt8 = 0
@@ -76,16 +76,6 @@ struct CanvadocsInkAnnotationGesturePoint: Codable {
     let y: CGFloat
     let width: CGFloat?
     let opacity: CGFloat?
-}
-
-extension CanvadocsInkAnnotationGesturePoint {
-    var cgPoint: CGPoint { return CGPoint(x: x, y: y) }
-    init(cgPoint: CGPoint) {
-        self.x = cgPoint.x
-        self.y = cgPoint.y
-        self.width = 1
-        self.opacity = 1
-    }
 }
 
 typealias CanvadocsInkAnnotationGesture = [CanvadocsInkAnnotationGesturePoint]
@@ -262,8 +252,13 @@ struct CanvadocsAnnotation: Codable {
             var gesturesContainer = inklist.nestedUnkeyedContainer(forKey: .gestures)
             for gesture in gestures {
                 if gesture.count > 10 {
-                    let points = gesture.map { $0.cgPoint }
-                    let simpleGesture = SwiftSimplify.simplify(points, tolerance: 0.4, highQuality: true).map { CanvadocsInkAnnotationGesturePoint(cgPoint: $0) }
+                    let points = gesture.map { APIDocViewerInkPoint(
+                        x: Double($0.x),
+                        y: Double($0.y),
+                        width: $0.width.flatMap(Double.init),
+                        opacity: $0.opacity.flatMap(Double.init)
+                    ) }
+                    let simpleGesture = simplify(points)
                     try gesturesContainer.encode(simpleGesture)
                 } else {
                     try gesturesContainer.encode(gesture)

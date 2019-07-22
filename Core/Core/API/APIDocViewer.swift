@@ -87,11 +87,18 @@ struct APIDocViewerInklist: Codable, Equatable {
     let gestures: [[APIDocViewerInkPoint]]
 }
 
-struct APIDocViewerInkPoint: Codable, Equatable {
-    let x: Double
-    let y: Double
-    let width: Double?
-    let opacity: Double?
+public struct APIDocViewerInkPoint: Codable, Equatable {
+    public let x: Double
+    public let y: Double
+    public let width: Double?
+    public let opacity: Double?
+
+    public init(x: Double, y: Double, width: Double?, opacity: Double?) {
+        self.x = x
+        self.y = y
+        self.width = width
+        self.opacity = opacity
+    }
 }
 
 public enum APIDocViewerError: Error, Equatable {

@@ -184,7 +184,7 @@ private func interpolate(value: CGFloat, fromMin: CGFloat, fromMax: CGFloat, toM
     return (((toMax - toMin) / (fromMax - fromMin)) * (bounded - fromMin)) + toMin
 }
 
-internal func simplify(_ points: [APIDocViewerInkPoint], within epsilon: Double = 1.0) -> [APIDocViewerInkPoint] {
+public func simplify(_ points: [APIDocViewerInkPoint], within epsilon: Double = 1.0) -> [APIDocViewerInkPoint] {
     guard let first = points.first, let last = points.last, points.count > 2 else { return points }
     var simplified = [ first ]
     check(points[0...], simplified: &simplified, epsilon: epsilon)
