@@ -17,7 +17,7 @@
 //
 
 import Foundation
-import Core
+@testable import Core
 
 class MockPageViewLogger: PageViewEventViewControllerLoggingProtocol {
     var timeOnViewControllerStart: Date?

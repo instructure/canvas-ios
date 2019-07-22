@@ -27,7 +27,6 @@
 		3B0B0F6C219C8D2300F04216 /* QuizListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B005C219BD9F60045E8A1 /* QuizListPresenter.swift */; };
 		3B0B0F6D219C8D2300F04216 /* QuizListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B1B005D219BD9F60045E8A1 /* QuizListViewController.storyboard */; };
 		3B0B0F74219C8D3100F04216 /* QuizListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B0063219BD9F60045E8A1 /* QuizListCell.swift */; };
-		3B158CBE22E40D9D0039A568 /* MockPageViewLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CBD22E40D9D0039A568 /* MockPageViewLogger.swift */; };
 		3B19D26C22664727003A0565 /* RubricViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D26B22664727003A0565 /* RubricViewController.swift */; };
 		3B19D26D22664727003A0565 /* RubricViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D26B22664727003A0565 /* RubricViewController.swift */; };
 		3B19D26F2266475B003A0565 /* RubricPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D26E2266475B003A0565 /* RubricPresenter.swift */; };
@@ -331,7 +330,6 @@
 		2C5C6998211DFFAE00D9AD15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C5C699A211DFFAE00D9AD15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CB3261C21387C99009496AF /* RouterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewController.swift; sourceTree = "<group>"; };
-		3B158CBD22E40D9D0039A568 /* MockPageViewLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPageViewLogger.swift; sourceTree = "<group>"; };
 		3B19D26B22664727003A0565 /* RubricViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricViewController.swift; sourceTree = "<group>"; };
 		3B19D26E2266475B003A0565 /* RubricPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricPresenter.swift; sourceTree = "<group>"; };
 		3B19D27C22666180003A0565 /* RubricCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RubricCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1036,7 +1034,6 @@
 			children = (
 				3B542D0F215AC0210084DA9D /* TestEnvironment.swift */,
 				B10D777121C2EA5B00BCE822 /* BlockExpectation.swift */,
-				3B158CBD22E40D9D0039A568 /* MockPageViewLogger.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1824,7 +1821,6 @@
 			files = (
 				3B542D56215AE79E0084DA9D /* TestEnvironment.swift in Sources */,
 				3B3639FF224EBC2900FC5A7E /* SyllabusPresenterTests.swift in Sources */,
-				3B158CBE22E40D9D0039A568 /* MockPageViewLogger.swift in Sources */,
 				3B635B25225C0E50001F353D /* SyllabusActionableItemsPresenterTests.swift in Sources */,
 				3B300C7F2277853F00743C59 /* RubricPresenterTests.swift in Sources */,
 				B191D5EC226FF26A00D02948 /* UIViewControllerExtensionsTests.swift in Sources */,
