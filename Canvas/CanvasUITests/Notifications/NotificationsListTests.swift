@@ -22,8 +22,6 @@ import TestsFoundation
 class NotificationsListTests: CanvasUITests {
     func testNotificationItemsDisplayed() {
         TabBar.notificationsTab.tap()
-        app.find(labelContaining: "Simple Discussion").waitToExist()
-        app.find(labelContaining: "Assignment Created - Assignment Two").waitToExist()
-        app.find(labelContaining: "Assignment Due Date Changed: Graded Discussion").waitToExist()
+        app.find(labelContaining: "Assignment Created").waitToExist()
     }
 }
