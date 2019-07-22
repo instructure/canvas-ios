@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2016-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,19 +17,16 @@
 //
 
 import Foundation
-import ReactiveSwift
-import Marshal
 
-public func attemptProducer<Value>(_ file: String = #file, line: UInt = #line, f: () throws -> Value) -> SignalProducer<Value, NSError> {
-    do {
-        return SignalProducer(value: try f())
-    } catch let e as MarshalError {
-        return SignalProducer(error: NSError(jsonError: e, parsingObjectOfType: Value.self, file: file, line: line))
-    } catch let e as NSError {
-        return SignalProducer(error: e.addingInfo(file, line: line))
+extension Result {
+    var value: Success? {
+        return try? get()
     }
-}
 
-public func blockProducer<Value>(_ f: @escaping () -> Value) -> SignalProducer<Value, Never> {
-    return SignalProducer<()->Value, Never>(value: f).map { $0() }
+    var error: Failure? {
+        switch self {
+        case .success: return nil
+        case let .failure(error): return error
+        }
+    }
 }

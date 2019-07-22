@@ -18,9 +18,6 @@
 
 import Foundation
 
-
-import Result
-
 typealias TimeRemainingResult = Result<Int, NSError>
 
 protocol TimedQuizSubmissionService {

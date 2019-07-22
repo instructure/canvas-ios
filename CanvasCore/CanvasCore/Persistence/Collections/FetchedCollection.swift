@@ -24,9 +24,7 @@
 
 import Foundation
 import CoreData
-
 import ReactiveSwift
-import Result
 
 open class FetchedCollection<Model>: NSObject, Collection, Sequence, NSFetchedResultsControllerDelegate where Model: NSManagedObject {
     public typealias Object = Model
@@ -34,8 +32,8 @@ open class FetchedCollection<Model>: NSObject, Collection, Sequence, NSFetchedRe
     @objc let fetchedResultsController: NSFetchedResultsController<Model>
     @objc let titleForSectionTitle: (String?)->String?
 
-    public let collectionUpdates: Signal<[CollectionUpdate<Model>], NoError>
-    internal let updatesObserver: Signal<[CollectionUpdate<Model>], NoError>.Observer
+    public let collectionUpdates: Signal<[CollectionUpdate<Model>], Never>
+    internal let updatesObserver: Signal<[CollectionUpdate<Model>], Never>.Observer
     
     @objc open func reload() {
         

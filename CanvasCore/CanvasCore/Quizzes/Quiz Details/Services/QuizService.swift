@@ -18,8 +18,6 @@
 
 import Foundation
 
-import Result
-
 typealias QuizSubmissionsResult = Result<ResponsePage<[QuizSubmission]>, NSError>
 typealias QuizSubmissionResult = Result<ResponsePage<QuizSubmission>, NSError>
 typealias QuizSubmissionFileResult = Result<File, NSError>

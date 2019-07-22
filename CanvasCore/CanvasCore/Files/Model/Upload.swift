@@ -18,10 +18,6 @@
 
 import CoreData
 import ReactiveSwift
-
-
-import Result
-
 import WebKit
 
 open class Upload: NSManagedObject {

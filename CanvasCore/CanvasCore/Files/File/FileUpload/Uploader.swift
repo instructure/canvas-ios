@@ -16,10 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Result
-
 import ReactiveSwift
-
 
 public final class Uploader {
     public let session: Session
@@ -47,7 +44,7 @@ public final class Uploader {
             .map { $0.file! }
             .take(first: 1)
             .observeValues { file in
-                completed(Result(value: file))
+                completed(.success(file))
             }
 
         observer
@@ -56,7 +53,7 @@ public final class Uploader {
             .take(first: 1)
             .observeValues { errorMessage in
                 let error = NSError(subdomain: "FileKit", description: errorMessage)
-                completed(Result(error: error))
+                completed(.failure(error))
             }
 
         disposable.add { [weak self] in

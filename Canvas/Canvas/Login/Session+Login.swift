@@ -18,7 +18,6 @@
 
 import Foundation
 import CanvasKeymaster
-import Result
 import ReactiveSwift
 import ReactiveObjCBridge
 import CanvasCore

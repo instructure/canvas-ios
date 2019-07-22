@@ -17,8 +17,6 @@
 //
 
 import UIKit
-
-import Result
 import CoreData
 import ReactiveSwift
 import CanvasCore

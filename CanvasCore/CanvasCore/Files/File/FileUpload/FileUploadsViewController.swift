@@ -17,11 +17,7 @@
 //
 
 import Foundation
-
 import ReactiveSwift
-import Result
-
-
 
 public protocol FileUploadsViewControllerDelegate: class {
     func fileUploadsViewController(_ viewController: FileUploadsViewController, uploaded files: [File])
@@ -52,7 +48,7 @@ open class FileUploadsViewController: FetchedTableViewController<FileUpload>, UI
     public let documentMenuViewModel: DocumentMenuViewModelType = DocumentMenuViewModel()
     public weak var delegate: FileUploadsViewControllerDelegate?
 
-    public lazy var showDocumentMenu: Signal<[String], NoError> = {
+    public lazy var showDocumentMenu: Signal<[String], Never> = {
         return self.viewModel.outputs.showDocumentMenu
     }()
 

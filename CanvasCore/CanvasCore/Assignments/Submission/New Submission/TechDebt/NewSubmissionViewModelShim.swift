@@ -17,9 +17,6 @@
 //
 
 import ReactiveSwift
-import Result
-
-
 
 @objc public protocol NewSubmissionViewModelShimProtocol: class {
     func newSubmissionViewModel(_ newSubmissionViewModel: NewSubmissionViewModel, wantsToPresentViewController viewController: UIViewController, completion: (() -> Void)?)

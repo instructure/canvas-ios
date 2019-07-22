@@ -58,7 +58,6 @@ public enum ManagedObjectChange {
 }
 
 import ReactiveSwift
-import Result
 
 public final class ManagedObjectObserver<Object: NSManagedObject> {
     
@@ -67,7 +66,7 @@ public final class ManagedObjectObserver<Object: NSManagedObject> {
     fileprivate (set) public var object: Object?
     fileprivate let token: Lifetime.Token
     
-    public let signal: Signal<(ManagedObjectChange, Object?), NoError>
+    public let signal: Signal<(ManagedObjectChange, Object?), Never>
     
     public init(predicate: NSPredicate, inContext context: NSManagedObjectContext) throws {
         self.predicate = predicate
@@ -81,7 +80,7 @@ public final class ManagedObjectObserver<Object: NSManagedObject> {
         object = (try context.fetch(request)).first
     }
     
-    public static func changes(predicate: NSPredicate, context: NSManagedObjectContext) -> Signal<(ManagedObjectChange, Object?), NoError> {
+    public static func changes(predicate: NSPredicate, context: NSManagedObjectContext) -> Signal<(ManagedObjectChange, Object?), Never> {
         return NotificationCenter
             .default
             .reactive
@@ -90,7 +89,7 @@ public final class ManagedObjectObserver<Object: NSManagedObject> {
             .skipNil()
     }
 
-    public static func object(predicate: NSPredicate, context: NSManagedObjectContext) -> Signal<Object, NoError> {
+    public static func object(predicate: NSPredicate, context: NSManagedObjectContext) -> Signal<Object, Never> {
         return changes(predicate: predicate, context: context)
             .map { _, object in object }
             .skipNil()

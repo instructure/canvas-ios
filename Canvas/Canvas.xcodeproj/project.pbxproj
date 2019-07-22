@@ -647,7 +647,6 @@
 		B1D766A822C509260097561E /* AssignmentsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D766A722C509260097561E /* AssignmentsPresenterTests.swift */; };
 		B1D766A922C509780097561E /* AssignmentsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A61222BD795D00963E56 /* AssignmentsPresenter.swift */; };
 		B1F405E422E23C02008FAFE6 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405DE22E23C00008FAFE6 /* ReactiveSwift.framework */; };
-		B1F405E522E23C02008FAFE6 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405DF22E23C01008FAFE6 /* Result.framework */; };
 		B1F405E622E23C02008FAFE6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405E022E23C01008FAFE6 /* ReactiveCocoa.framework */; };
 		B1F405E722E23C02008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405E122E23C01008FAFE6 /* ReactiveObjCBridge.framework */; };
 		B1F405E822E23C02008FAFE6 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405E222E23C01008FAFE6 /* ReactiveObjC.framework */; };
@@ -657,7 +656,6 @@
 		B1F405EC22E23C51008FAFE6 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405E222E23C01008FAFE6 /* ReactiveObjC.framework */; };
 		B1F405ED22E23C56008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405E122E23C01008FAFE6 /* ReactiveObjCBridge.framework */; };
 		B1F405EE22E23C5B008FAFE6 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405DE22E23C00008FAFE6 /* ReactiveSwift.framework */; };
-		B1F405EF22E23C5F008FAFE6 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405DF22E23C01008FAFE6 /* Result.framework */; };
 		B5A790BB1D8C743400ACA9FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
@@ -1683,7 +1681,6 @@
 		B1D766A722C509260097561E /* AssignmentsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsPresenterTests.swift; sourceTree = "<group>"; };
 		B1E3D6E01D8305D900B4AC11 /* ModulesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModulesTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B1F405DE22E23C00008FAFE6 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = ../Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
-		B1F405DF22E23C01008FAFE6 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		B1F405E022E23C01008FAFE6 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = ../Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		B1F405E122E23C01008FAFE6 /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjCBridge.framework; path = ../Carthage/Build/iOS/ReactiveObjCBridge.framework; sourceTree = "<group>"; };
 		B1F405E222E23C01008FAFE6 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = ../Carthage/Build/iOS/ReactiveObjC.framework; sourceTree = "<group>"; };
@@ -1771,7 +1768,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1F405E422E23C02008FAFE6 /* ReactiveSwift.framework in Frameworks */,
-				B1F405E522E23C02008FAFE6 /* Result.framework in Frameworks */,
 				B1F405E622E23C02008FAFE6 /* ReactiveCocoa.framework in Frameworks */,
 				B1F405E722E23C02008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */,
 				B1F405E822E23C02008FAFE6 /* ReactiveObjC.framework in Frameworks */,
@@ -1803,7 +1799,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1F405EC22E23C51008FAFE6 /* ReactiveObjC.framework in Frameworks */,
-				B1F405EF22E23C5F008FAFE6 /* Result.framework in Frameworks */,
 				2C6049611F72BB6900252BC5 /* CanvasCore.framework in Frameworks */,
 				B1F405EB22E23C4F008FAFE6 /* ReactiveMapKit.framework in Frameworks */,
 				49642BC81CF4C4DF00238B3F /* CanvasKeymaster.framework in Frameworks */,
@@ -2916,7 +2911,6 @@
 				B1F405E222E23C01008FAFE6 /* ReactiveObjC.framework */,
 				B1F405E122E23C01008FAFE6 /* ReactiveObjCBridge.framework */,
 				B1F405DE22E23C00008FAFE6 /* ReactiveSwift.framework */,
-				B1F405DF22E23C01008FAFE6 /* Result.framework */,
 				B1BB7A9022BADAC1006CA068 /* Core.framework */,
 				2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */,
 				61F438E21DD4E60B00552D14 /* AVFoundation.framework */,

@@ -17,7 +17,6 @@
 //
 
 import ReactiveSwift
-import Result
 import CanvasCore
 
 class ModuleViewModel {

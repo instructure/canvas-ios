@@ -17,12 +17,8 @@
 //
 
 import ReactiveSwift
-import Result
 import ReactiveCocoa
-
-
 import CoreData
-
 
 enum DismissButtonType {
     case done
@@ -42,11 +38,11 @@ protocol FileUploadsViewModelInputs {
 }
 
 protocol FileUploadsViewModelOutputs {
-    var showDocumentMenu: Signal<[String], NoError> { get }
-    var fileUploads: Signal<FetchedCollection<FileUpload>, NoError> { get }
-    var dismissButtonType: Signal<DismissButtonType, NoError> { get }
-    var files: Signal<[File], NoError> { get }
-    var cancelled: Signal<Void, NoError> { get }
+    var showDocumentMenu: Signal<[String], Never> { get }
+    var fileUploads: Signal<FetchedCollection<FileUpload>, Never> { get }
+    var dismissButtonType: Signal<DismissButtonType, Never> { get }
+    var files: Signal<[File], Never> { get }
+    var cancelled: Signal<Void, Never> { get }
 }
 
 protocol FileUploadsViewModelType {
@@ -74,7 +70,7 @@ final class FileUploadsViewModel: FileUploadsViewModelType, FileUploadsViewModel
         }
 
         let contextDidSave = session
-            .flatMap(.latest) { session -> Signal<Notification, NoError> in
+            .flatMap(.latest) { session -> Signal<Notification, Never> in
                 let context = try! session.filesManagedObjectContext()
                 return NotificationCenter
                     .default
@@ -181,11 +177,11 @@ final class FileUploadsViewModel: FileUploadsViewModelType, FileUploadsViewModel
         self.tappedCancelProperty.value = ()
     }
 
-    let showDocumentMenu: Signal<[String], NoError>
-    let fileUploads: Signal<FetchedCollection<FileUpload>, NoError>
-    let files: Signal<[File], NoError>
-    let dismissButtonType: Signal<DismissButtonType, NoError>
-    let cancelled: Signal<Void, NoError>
+    let showDocumentMenu: Signal<[String], Never>
+    let fileUploads: Signal<FetchedCollection<FileUpload>, Never>
+    let files: Signal<[File], Never>
+    let dismissButtonType: Signal<DismissButtonType, Never>
+    let cancelled: Signal<Void, Never>
 
     private let lifetimeToken: Lifetime.Token
 

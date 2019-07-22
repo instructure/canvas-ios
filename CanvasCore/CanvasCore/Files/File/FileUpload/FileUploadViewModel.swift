@@ -17,8 +17,6 @@
 //
 
 import ReactiveSwift
-import Result
-
 import CoreData
 
 public protocol FileUploadViewModelInputs {
@@ -29,16 +27,16 @@ public protocol FileUploadViewModelInputs {
 }
 
 public protocol FileUploadViewModelOutputs {
-    var statusText: Signal<String, NoError> { get }
-    var errorInfoButtonIsHidden: Signal<Bool, NoError> { get }
-    var showError: Signal<String, NoError> { get }
-    var statusIcon: Signal<Icon, NoError> { get }
-    var graphic: Signal<Graphic, NoError> { get }
-    var imageData: Signal<Data, NoError> { get }
-    var progress: Signal<Double, NoError> { get }
-    var fileName: Signal<String, NoError> { get }
-    var statusTextColor: Signal<UIColor, NoError> { get }
-    var statusIconColor: Signal<UIColor?, NoError> { get }
+    var statusText: Signal<String, Never> { get }
+    var errorInfoButtonIsHidden: Signal<Bool, Never> { get }
+    var showError: Signal<String, Never> { get }
+    var statusIcon: Signal<Icon, Never> { get }
+    var graphic: Signal<Graphic, Never> { get }
+    var imageData: Signal<Data, Never> { get }
+    var progress: Signal<Double, Never> { get }
+    var fileName: Signal<String, Never> { get }
+    var statusTextColor: Signal<UIColor, Never> { get }
+    var statusIconColor: Signal<UIColor?, Never> { get }
 }
 
 protocol FileUploadViewModelType {
@@ -159,16 +157,16 @@ public final class FileUploadViewModel: FileUploadViewModelType, FileUploadViewM
         self.tappedStatusButtonProperty.value = ()
     }
 
-    public let statusText: Signal<String, NoError>
-    public let errorInfoButtonIsHidden: Signal<Bool, NoError>
-    public let showError: Signal<String, NoError>
-    public let statusIcon: Signal<Icon, NoError>
-    public let graphic: Signal<Graphic, NoError>
-    public let imageData: Signal<Data, NoError>
-    public let progress: Signal<Double, NoError>
-    public let fileName: Signal<String, NoError>
-    public let statusTextColor: Signal<UIColor, NoError>
-    public let statusIconColor: Signal<UIColor?, NoError>
+    public let statusText: Signal<String, Never>
+    public let errorInfoButtonIsHidden: Signal<Bool, Never>
+    public let showError: Signal<String, Never>
+    public let statusIcon: Signal<Icon, Never>
+    public let graphic: Signal<Graphic, Never>
+    public let imageData: Signal<Data, Never>
+    public let progress: Signal<Double, Never>
+    public let fileName: Signal<String, Never>
+    public let statusTextColor: Signal<UIColor, Never>
+    public let statusIconColor: Signal<UIColor?, Never>
 
     public var inputs: FileUploadViewModelInputs { return self }
     public var outputs: FileUploadViewModelOutputs { return self }

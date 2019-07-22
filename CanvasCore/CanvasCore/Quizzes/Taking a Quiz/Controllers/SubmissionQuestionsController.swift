@@ -18,10 +18,6 @@
 
 import Foundation
 
-
-
-import Result
-
 typealias SubmissionQuestionsUpdateResult = Result<[SubmissionQuestionsController.Update], NSError>
 
 class SubmissionQuestionsController {
@@ -56,7 +52,7 @@ class SubmissionQuestionsController {
                 let updates: [Update] = (0..<questions.count).map { index in
                     return .added(questionIndex: index)
                 }
-                questionUpdates(Result(value: updates))
+                questionUpdates(.success(updates))
             }
         }
     }
@@ -95,7 +91,7 @@ extension SubmissionQuestionsController {
             
             questions.append(contentsOf: newQuestions)
             questions.sort(by: { $0.question.position < $1.question.position })
-            questionUpdates(Result(value: updates))
+            questionUpdates(.success(updates))
 
             // exhaust pagination
             if questionsPage.hasMorePages {
@@ -106,7 +102,7 @@ extension SubmissionQuestionsController {
                 isLoading = false
             }
         } else if let error = questionsResult.error {
-            questionUpdates(Result(error: error))
+            questionUpdates(.failure(error))
             isLoading = false
         }
     }
@@ -140,7 +136,7 @@ extension SubmissionQuestionsController: SubmissionInteractor {
 
         let updatedQuestion = oldQuestion.selectAnswer(realAnswer)
         questions[questionIndex] = updatedQuestion
-        questionUpdates(Result(value: [.answerChanged(questionIndex: questionIndex)]))
+        questionUpdates(.success([.answerChanged(questionIndex: questionIndex)]))
         
         service.selectAnswer(answer, forQuestion: oldQuestion) { result in
             defer {
@@ -150,8 +146,8 @@ extension SubmissionQuestionsController: SubmissionInteractor {
             if let err = result.error {
                 // back out any changes we made
                 self.questions[questionIndex] = oldQuestion
-                self.questionUpdates(Result(value: [.answerChanged(questionIndex: questionIndex)]))
-                self.questionUpdates(Result(error: err))
+                self.questionUpdates(.success([.answerChanged(questionIndex: questionIndex)]))
+                self.questionUpdates(.failure(err))
                 
                 return
             }
@@ -173,15 +169,15 @@ extension SubmissionQuestionsController: SubmissionInteractor {
         } else {
             flaggedCount -= 1
         }
-        questionUpdates(Result(value: [.flagChanged(questionIndex: questionIndex)]))
+        questionUpdates(.success([.flagChanged(questionIndex: questionIndex)]))
         
         service.markQuestionFlagged(oldQuestion, flagged: flagged) { result in
             if let err = result.error {
                 // back out of any changes we made
                 self.questions[questionIndex] = oldQuestion
                 self.flaggedCount = oldFlaggedCount
-                self.questionUpdates(Result(value: [.flagChanged(questionIndex: questionIndex)]))
-                self.questionUpdates(Result(error: err))
+                self.questionUpdates(.success([.flagChanged(questionIndex: questionIndex)]))
+                self.questionUpdates(.failure(err))
                 
                 return
             }

@@ -17,9 +17,6 @@
 //
 
 import ReactiveSwift
-
-
-import Result
 import CoreData
 
 extension ModuleItem {

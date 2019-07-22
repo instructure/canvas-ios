@@ -18,7 +18,6 @@
 
 import Foundation
 import ReactiveSwift
-import Result
 
 public enum CollectionUpdate<Model>: CustomStringConvertible, Equatable {
     case sectionInserted(Int)
@@ -95,5 +94,5 @@ public protocol Collection: class {
 
     subscript(indexPath: IndexPath) -> Object { get }
     
-    var collectionUpdates: Signal<[CollectionUpdate<Object>], NoError> { get }
+    var collectionUpdates: Signal<[CollectionUpdate<Object>], Never> { get }
 }

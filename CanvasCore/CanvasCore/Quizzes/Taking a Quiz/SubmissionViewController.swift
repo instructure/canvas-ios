@@ -20,7 +20,6 @@ import UIKit
 import Foundation
 import Cartography
 import ReactiveSwift
-import Result
 import MobileCoreServices
 
 protocol SubmissionInteractor: class {

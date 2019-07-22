@@ -48,7 +48,6 @@ public func ==(lhs: GradingPeriodItem, rhs: GradingPeriodItem) -> Bool {
 }
 
 import ReactiveSwift
-import Result
 
 /**
  A collection of GradingPeriodItems where the first row in the first section is 'All'.
@@ -56,8 +55,8 @@ import Result
 open class GradingPeriodCollection: CanvasCore.Collection {
     public let selectedGradingPeriod: Property<GradingPeriodItem>
 
-    public let collectionUpdates: Signal<[CollectionUpdate<GradingPeriodItem>], NoError>
-    let updatesObserver: Signal<[CollectionUpdate<GradingPeriodItem>], NoError>.Observer
+    public let collectionUpdates: Signal<[CollectionUpdate<GradingPeriodItem>], Never>
+    let updatesObserver: Signal<[CollectionUpdate<GradingPeriodItem>], Never>.Observer
 
     fileprivate let gradingPeriods: FetchedCollection<GradingPeriod>
     fileprivate let allSection = 0

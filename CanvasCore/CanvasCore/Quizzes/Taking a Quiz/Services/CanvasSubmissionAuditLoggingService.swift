@@ -18,10 +18,6 @@
 
 import Foundation
 
-
-
-import Result
-
 private let SessionStartedEventType = "ios_session_started"
 
 
@@ -63,5 +59,5 @@ class CanvasSubmissionAuditLoggingService: SubmissionAuditLoggingService {
 }
 
 private func parseResponse(_ json: Any?) -> Result<Bool, NSError> {
-    return Result(value: true) // yay this is a fire-and-forget
+    return .success(true) // yay this is a fire-and-forget
 }

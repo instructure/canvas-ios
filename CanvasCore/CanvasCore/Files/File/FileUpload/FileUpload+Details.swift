@@ -17,10 +17,9 @@
 //
 
 import ReactiveSwift
-import Result
 
 extension FileUpload {
-    public static func observer(session: Session, predicate: NSPredicate) throws -> Signal<FileUpload, NoError> {
+    public static func observer(session: Session, predicate: NSPredicate) throws -> Signal<FileUpload, Never> {
         let context = try session.filesManagedObjectContext()
         return NotificationCenter.default.reactive
             .notifications(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: context)

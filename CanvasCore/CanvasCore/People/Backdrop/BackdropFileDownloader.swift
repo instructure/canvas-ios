@@ -17,9 +17,7 @@
 //
 
 import UIKit
-import Result
 import ReactiveSwift
-
 
 private let backdropSessionIdentifier = "backdropSessionIdentifier"
 
@@ -28,12 +26,12 @@ internal class BackdropFileDownloader: NSObject {
     
     @objc static let sharedDownloader: BackdropFileDownloader = BackdropFileDownloader()
     
-    let statusChangedSignal: Signal<BackdropFile, NoError>
-    let observer: Signal<BackdropFile, NoError>.Observer
+    let statusChangedSignal: Signal<BackdropFile, Never>
+    let observer: Signal<BackdropFile, Never>.Observer
     var disposable: Disposable?
     
     fileprivate override init() {
-        let (s, o) = Signal<BackdropFile, NoError>.pipe()
+        let (s, o) = Signal<BackdropFile, Never>.pipe()
         statusChangedSignal = s.observe(on: UIScheduler())
         observer = o
         super.init()

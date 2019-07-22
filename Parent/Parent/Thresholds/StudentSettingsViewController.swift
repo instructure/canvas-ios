@@ -17,15 +17,8 @@
 //
 
 import Foundation
-
 import Eureka
 import ReactiveSwift
-
-
-
-
-
-import Result
 import CanvasCore
 
 private enum SupportTicketCellTag: String {
