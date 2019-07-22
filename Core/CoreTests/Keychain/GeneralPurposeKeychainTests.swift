@@ -64,6 +64,22 @@ class GeneralPurposeKeychainTests: XCTestCase {
         }
     }
 
+    func testInvalidDictionary() {
+        let key = "failure"
+        keychain.removeItem(for: key)
+
+        struct TestObj {
+            var foo: Double = .pi
+        }
+
+        let obj = TestObj()
+        let didSave = keychain.setItem(obj, for: key)
+        XCTAssertFalse(didSave)
+
+        let result = keychain.item(for: key)
+        XCTAssertNil(result)
+    }
+
     func testRemoveItem() {
         let key = "foo"
         let str = "test"

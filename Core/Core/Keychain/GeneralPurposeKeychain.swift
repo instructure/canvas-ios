@@ -39,8 +39,12 @@ class GeneralPurposeKeychain {
 
     @discardableResult
     func setItem(_ value: Any, for key: String) -> Bool {
-        let data = NSKeyedArchiver.archivedData(withRootObject: value)
-        return setData(data, for: key)
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: value, requiringSecureCoding: false)
+            return setData(data, for: key)
+        } catch {
+            return false
+        }
     }
 
     @discardableResult

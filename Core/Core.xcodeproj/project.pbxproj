@@ -68,7 +68,6 @@
 		3BDB8F3322E62D51003D81C3 /* PresenterPageViewLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3222E62D51003D81C3 /* PresenterPageViewLogger.swift */; };
 		3BDB8F3522E63676003D81C3 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3422E63676003D81C3 /* StringExtensionTests.swift */; };
 		3BDB8F3722E6389F003D81C3 /* PresenterPageViewLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3622E6389F003D81C3 /* PresenterPageViewLoggerTests.swift */; };
-		3BDB8F3922E64D2D003D81C3 /* MockPageViewLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3822E64D2D003D81C3 /* MockPageViewLogger.swift */; };
 		3BE2ADCB21B704F1008D91AB /* DynamicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2ADCA21B704F1008D91AB /* DynamicTextField.swift */; };
 		3BE2C760218CB50B004B8E5E /* ColoredNavViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C75F218CB50B004B8E5E /* ColoredNavViewProtocol.swift */; };
 		3BE2C764218CB53F004B8E5E /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C763218CB53F004B8E5E /* Enrollment.swift */; };
@@ -610,7 +609,6 @@
 		3BDB8F3222E62D51003D81C3 /* PresenterPageViewLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterPageViewLogger.swift; sourceTree = "<group>"; };
 		3BDB8F3422E63676003D81C3 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		3BDB8F3622E6389F003D81C3 /* PresenterPageViewLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterPageViewLoggerTests.swift; sourceTree = "<group>"; };
-		3BDB8F3822E64D2D003D81C3 /* MockPageViewLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPageViewLogger.swift; sourceTree = "<group>"; };
 		3BE2ADCA21B704F1008D91AB /* DynamicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTextField.swift; sourceTree = "<group>"; };
 		3BE2C75F218CB50B004B8E5E /* ColoredNavViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredNavViewProtocol.swift; sourceTree = "<group>"; };
 		3BE2C763218CB53F004B8E5E /* Enrollment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enrollment.swift; sourceTree = "<group>"; };
@@ -1372,7 +1370,6 @@
 				3B158CB922E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift */,
 				3B158CBB22E267FF0039A568 /* PageViewSessionTests.swift */,
 				3BDB8F3622E6389F003D81C3 /* PresenterPageViewLoggerTests.swift */,
-				3BDB8F3822E64D2D003D81C3 /* MockPageViewLogger.swift */,
 			);
 			path = PageViewAnalytics;
 			sourceTree = "<group>";
@@ -2920,7 +2917,6 @@
 				7DCF203E216D5C4C003AF358 /* LockStatusViewable.swift in Sources */,
 				9F10A66B2293191200E3360C /* UserSettingsTests.swift in Sources */,
 				B1A890BA224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift in Sources */,
-				3BDB8F3922E64D2D003D81C3 /* MockPageViewLogger.swift in Sources */,
 				7D1758C4215A995200F88613 /* ListFormatterTests.swift in Sources */,
 				9FAE410321B6C88000FE7F58 /* APIExternalToolRequestableTests.swift in Sources */,
 				B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */,

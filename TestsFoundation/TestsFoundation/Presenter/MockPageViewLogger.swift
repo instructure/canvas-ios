@@ -17,17 +17,19 @@
 //
 
 import Foundation
-@testable import Core
+import Core
 
-class MockPageViewLogger: PageViewEventViewControllerLoggingProtocol {
-    var timeOnViewControllerStart: Date?
-    var timeOnViewControllerEnd: Date?
-    var eventName: String = ""
-    var attributes: [String: String] = [:]
+public class MockPageViewLogger: PageViewEventViewControllerLoggingProtocol {
+    public var timeOnViewControllerStart: Date?
+    public var timeOnViewControllerEnd: Date?
+    public var eventName: String = ""
+    public var attributes: [String: String] = [:]
 
-    func startTrackingTimeOnViewController() {}
+    public init() {}
 
-    func stopTrackingTimeOnViewController(eventName: String, attributes: [String: String]) {
+    public func startTrackingTimeOnViewController() {}
+
+    public func stopTrackingTimeOnViewController(eventName: String, attributes: [String: String]) {
         self.eventName = eventName
         self.attributes = attributes
     }
