@@ -40,7 +40,9 @@ public class MockAPI: API {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: actAsUserID)
         var data: Data?
         if let value = value {
-            data = try! JSONEncoder().encode(value)
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            data = try! encoder.encode(value)
         }
         mocks[request] = (data, response, error)
     }
@@ -57,9 +59,6 @@ public class MockAPI: API {
             var value: R.Response?
             if let data = data {
                 value = try? requestable.decode(data)
-                if value == nil {
-                    value = try? JSONDecoder().decode(R.Response.self, from: data)
-                }
             }
             callback(value, response, error)
             return nil
