@@ -64,4 +64,10 @@ describe('Feature Flags', () => {
     setSession(templates.session({ baseURL: 'https://mobileqa.instructure.com/' }))
     expect(featureFlagEnabled('aNewFlag')).toEqual(false)
   })
+
+  it('returns true when enabled', () => {
+    featureFlags['testEnabled'] = { enabled: true }
+    expect(featureFlagEnabled('testEnabled')).toEqual(true)
+    delete featureFlags['testEnabled']
+  })
 })
