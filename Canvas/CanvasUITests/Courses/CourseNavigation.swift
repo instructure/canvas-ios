@@ -24,6 +24,10 @@ enum CourseNavigation {
         return app.find(id: "courses-details.announcements-cell")
     }
 
+    static var assignments: Element {
+        return app.find(id: "courses-details.assignments-cell")
+    }
+
     static var discussions: Element {
         return app.find(id: "courses-details.discussions-cell")
     }
