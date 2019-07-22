@@ -53,10 +53,11 @@ class GeneralPurposeKeychainTests: XCTestCase {
         let key = "myDictionary"
         let date = Date(fromISOString: "2019-06-25T06:00:00Z")!
         let dict: [String: Any] = ["foo": "bar", "date": date]
-        keychain.setItem(dict, for: key)
+        let data = NSKeyedArchiver.archivedData(withRootObject: dict)
+        keychain.setData(data, for: key)
 
         let newInstance = GeneralPurposeKeychain(serviceName: serviceName, accessGroup: nil)
-        if let result: [String: Any] = newInstance.item(for: key) as? [String: Any] {
+        if let data = newInstance.data(for: key), let result = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String: Any] {
             XCTAssertEqual(result["foo"] as! String, dict["foo"] as! String)
             XCTAssertEqual(result["date"] as! Date, dict["date"] as! Date)
         } else {
@@ -64,35 +65,23 @@ class GeneralPurposeKeychainTests: XCTestCase {
         }
     }
 
-    func testInvalidDictionary() {
-        let key = "failure"
-        keychain.removeItem(for: key)
-
-        struct TestObj {
-            var foo: Double = .pi
-        }
-
-        let obj = TestObj()
-        let didSave = keychain.setItem(obj, for: key)
-        XCTAssertFalse(didSave)
-
-        let result = keychain.item(for: key)
-        XCTAssertNil(result)
-    }
-
     func testRemoveItem() {
         let key = "foo"
         let str = "test"
 
-        keychain.setItem(str, for: key)
+        keychain.setData(str.data(using: .utf8)!, for: key)
 
-        let value = keychain.item(for: key) as? String
-        XCTAssertEqual(str, value)
+        if let data = keychain.data(for: key) {
+            let value = String(data: data, encoding: .utf8)
+            XCTAssertEqual(str, value)
+        } else {
+            XCTFail()
+        }
 
         let result = keychain.removeItem(for: key)
         XCTAssertTrue(result)
 
-        let shouldBeNil = keychain.item(for: key) as? String
+        let shouldBeNil = keychain.data(for: key)
         XCTAssertNil(shouldBeNil)
     }
 
@@ -100,9 +89,13 @@ class GeneralPurposeKeychainTests: XCTestCase {
         let key = "foo"
         let str = "test"
 
-        GeneralPurposeKeychain.shared.setItem(str, for: key)
+        GeneralPurposeKeychain.shared.setData(str.data(using: .utf8)!, for: key)
 
-        let value = GeneralPurposeKeychain.shared.item(for: key) as? String
-        XCTAssertEqual(str, value)
+        if let data = GeneralPurposeKeychain.shared.data(for: key) {
+            let value = String(data: data, encoding: .utf8)
+            XCTAssertEqual(str, value)
+        } else {
+            XCTFail()
+        }
     }
 }

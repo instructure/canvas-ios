@@ -69,7 +69,7 @@ class PageViewEventRequestManager {
 
     private func storePandataEndpointInfo(_ token: APIPandataEventsToken) {
         guard let data = try? JSONEncoder().encode(token) else { return }
-        keychain.setItem(data, for: Pandata.tokenKeychainKey)
+        keychain.setData(data, for: Pandata.tokenKeychainKey)
     }
 
     private func retrievePandataEndpointInfo(handler: @escaping (APIPandataEventsToken?) -> Void) {

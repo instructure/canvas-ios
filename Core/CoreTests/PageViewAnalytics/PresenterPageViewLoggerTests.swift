@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import Core
+import TestsFoundation
 
 class PresenterPageViewLoggerTests: CoreTestCase {
 

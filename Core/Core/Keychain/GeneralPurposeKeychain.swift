@@ -38,16 +38,6 @@ class GeneralPurposeKeychain {
     }
 
     @discardableResult
-    func setItem(_ value: Any, for key: String) -> Bool {
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: value, requiringSecureCoding: false)
-            return setData(data, for: key)
-        } catch {
-            return false
-        }
-    }
-
-    @discardableResult
     func setData(_ data: Data, for key: String) -> Bool {
         var query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
@@ -96,14 +86,6 @@ class GeneralPurposeKeychain {
             return result as? Data
         }
         return nil
-    }
-
-    func item(for key: String) -> Any? {
-        guard let data: Data = data(for: key) else {
-            return nil
-        }
-
-        return NSKeyedUnarchiver.unarchiveObject(with: data) as? NSCoding
     }
 
     @discardableResult

@@ -88,15 +88,18 @@ class PageViewEventRequestManagerTests: CoreTestCase {
 
     func testCleanup() {
         let keychain = GeneralPurposeKeychain(serviceName: Pandata.tokenKeychainService)
-        let added = keychain.setItem("foobar", for: Pandata.tokenKeychainKey)
+        let added = keychain.setData("foobar".data(using: .utf8)!, for: Pandata.tokenKeychainKey)
         XCTAssertTrue(added)
 
-        var value = keychain.item(for: Pandata.tokenKeychainKey)
-        XCTAssertNotNil(value)
+        if let data = keychain.data(for: Pandata.tokenKeychainKey), let value = String(data: data, encoding: .utf8) {
+            XCTAssertNotNil(value)
+        } else {
+            XCTFail()
+        }
 
         requestManager.cleanup()
 
-        value = keychain.item(for: Pandata.tokenKeychainKey)
-        XCTAssertNil(value)
+        let data = keychain.data(for: Pandata.tokenKeychainKey)
+        XCTAssertNil(data)
     }
 }
