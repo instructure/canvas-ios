@@ -133,10 +133,7 @@ extension AppDelegate: LoginDelegate {
     func userDidLogin(keychainEntry: KeychainEntry) {
         Keychain.addEntry(keychainEntry)
         // TODO: Register for push notifications?
-        LocalizationManager.setCurrentLocale(keychainEntry.locale)
-        if LocalizationManager.needsRestart {
-            restartForLocalization()
-        } else {
+        LocalizationManager.localizeForApp(UIApplication.shared, locale: keychainEntry.locale) {
             setup(session: keychainEntry)
         }
     }
@@ -152,18 +149,6 @@ extension AppDelegate: LoginDelegate {
 }
 
 extension AppDelegate {
-    func restartForLocalization() {
-        let alert = UIAlertController(
-            title: NSLocalizedString("Updated Language Settings", bundle: .student, comment: ""),
-            message: NSLocalizedString("The app needs to restart to use the new language settings. Please relaunch the app.", bundle: .student, comment: ""),
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Close App", bundle: .student, comment: ""), style: .default) { _ in
-            UIControl().sendAction(#selector(NSXPCConnection.suspend), to: UIApplication.shared, for: nil)
-        })
-        window?.rootViewController?.present(alert, animated: true)
-    }
-
     func applicationDidEnterBackground(_ application: UIApplication) {
         CoreWebView.stopCookieKeepAlive()
         if LocalizationManager.needsRestart {

@@ -33,11 +33,10 @@ class LocalizationManagerTests: XCTestCase {
         XCTAssertEqual(LocalizationManager.currentLocale, Bundle.main.preferredLocalizations.first)
     }
 
-    func testGetLocales() {
-        let locales = LocalizationManager.getLocales()
-        XCTAssert(locales.contains(where: { locale -> Bool in
-            locale.id == "en" && locale.name == Locale.current.localizedString(forIdentifier: "en")
-        }))
+    func testNeedsRestart() {
+        XCTAssertFalse(LocalizationManager.needsRestart)
+        LocalizationManager.setCurrentLocale("da-x-k12")
+        XCTAssertTrue(LocalizationManager.needsRestart)
     }
 
     func testSetCurrentLocale() {
@@ -62,9 +61,14 @@ class LocalizationManagerTests: XCTestCase {
         XCTAssertEqual(UserDefaults.standard.object(forKey: "AppleLanguages") as? [String], [ "da-instk12" ])
     }
 
-    func testNeedsRestart() {
-        XCTAssertFalse(LocalizationManager.needsRestart)
-        LocalizationManager.setCurrentLocale("da-x-k12")
-        XCTAssertTrue(LocalizationManager.needsRestart)
+    func testLocalizeApp() {
+        var called = false
+        LocalizationManager.localizeForApp(.shared, locale: nil) { called = true }
+        XCTAssertTrue(called)
+        called = false
+        LocalizationManager.localizeForApp(.shared, locale: "zh") { called = true }
+        XCTAssert(UIApplication.shared.delegate?.window??.rootViewController?.presentedViewController is UIAlertController)
+        UIApplication.shared.delegate?.window??.rootViewController?.presentedViewController?.dismiss(animated: false)
+        XCTAssertFalse(called)
     }
 }
