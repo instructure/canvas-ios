@@ -171,10 +171,7 @@ extension ParentAppDelegate: LoginDelegate {
     func userDidLogin(keychainEntry: KeychainEntry) {
         Keychain.addEntry(keychainEntry)
         // TODO: Register for push notifications?
-        Core.LocalizationManager.setCurrentLocale(keychainEntry.locale)
-        if Core.LocalizationManager.needsRestart {
-            restartForLocalization()
-        } else {
+        LocalizationManager.localizeForApp(UIApplication.shared, locale: keychainEntry.locale) {
             setup(session: keychainEntry)
         }
     }
@@ -201,21 +198,9 @@ extension ParentAppDelegate: LoginDelegate {
 }
 
 extension ParentAppDelegate {
-    func restartForLocalization() {
-        let alert = UIAlertController(
-            title: NSLocalizedString("Updated Language Settings", comment: ""),
-            message: NSLocalizedString("The app needs to restart to use the new language settings. Please relaunch the app.", comment: ""),
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Close App", bundle: .parent, comment: ""), style: .default) { _ in
-            UIControl().sendAction(#selector(NSXPCConnection.suspend), to: UIApplication.shared, for: nil)
-        })
-        window?.rootViewController?.present(alert, animated: true)
-    }
-
     func applicationDidEnterBackground(_ application: UIApplication) {
         CoreWebView.stopCookieKeepAlive()
-        if Core.LocalizationManager.needsRestart {
+        if LocalizationManager.needsRestart {
             exit(EXIT_SUCCESS)
         }
     }

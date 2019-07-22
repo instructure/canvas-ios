@@ -131,7 +131,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         Logger.shared.log()
         CoreWebView.stopCookieKeepAlive()
-        CanvasCore.LocalizationManager.closed()
+        if LocalizationManager.needsRestart {
+            exit(EXIT_SUCCESS)
+        }
     }
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
@@ -339,11 +341,9 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 
     func userDidLogin(keychainEntry: KeychainEntry) {
         Keychain.addEntry(keychainEntry)
-        if let locale = keychainEntry.locale {
-            CanvasCore.LocalizationManager.setCurrentLocale(locale)
-            if CanvasCore.LocalizationManager.needsRestart { return }
+        LocalizationManager.localizeForApp(UIApplication.shared, locale: keychainEntry.locale) {
+            setup(session: keychainEntry)
         }
-        setup(session: keychainEntry)
     }
 
     func userDidStopActing(as keychainEntry: KeychainEntry) {

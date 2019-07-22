@@ -29,15 +29,11 @@ public class LocalizationManager {
         return UserDefaults.standard.string(forKey: instUserLocale) ?? effectiveLocale
     }
 
-    public static func getLocales () -> [(id: String, name: String)] {
-        return Bundle.main.localizations.filter { id in id != "Base" }.map { id in
-            return (id: id, name: Locale.current.localizedString(forIdentifier: id) ?? id)
-        }.sorted { a, b in
-            return a.name < b.name
-        }
+    public static var needsRestart: Bool {
+        return currentLocale != effectiveLocale
     }
 
-    public static func setCurrentLocale(_ locale: String?) {
+    static func setCurrentLocale(_ locale: String?) {
         var newLocale = locale ?? ""
         // da-x-k12 -> da-instk12, en-AU-x-unimelb -> en-AU-unimelb
         let parts = newLocale.components(separatedBy: "-x-")
@@ -55,7 +51,17 @@ public class LocalizationManager {
         UserDefaults.standard.set([newLocale], forKey: "AppleLanguages")
     }
 
-    public static var needsRestart: Bool {
-        return currentLocale != effectiveLocale
+    public static func localizeForApp(_ app: UIApplication, locale: String?, then: () -> Void) {
+        setCurrentLocale(locale)
+        guard needsRestart else { return then() }
+        let alert = UIAlertController(
+            title: NSLocalizedString("Updated Language Settings", bundle: .core, comment: ""),
+            message: NSLocalizedString("The app needs to restart to use the new language settings. Please relaunch the app.", bundle: .core, comment: ""),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Close App", bundle: .core, comment: ""), style: .default) { _ in
+            UIControl().sendAction(#selector(NSXPCConnection.suspend), to: app, for: nil)
+        })
+        app.delegate?.window??.rootViewController?.present(alert, animated: true)
     }
 }
