@@ -53,7 +53,6 @@ abstract_target 'defaults' do
   pod 'ReactiveObjCBridge', '~> 4.0'
   pod 'AFNetworking', '~> 3.0'
   pod 'Mantle', '~> 1.5.5'
-  pod 'SwiftSimplify'
 
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'

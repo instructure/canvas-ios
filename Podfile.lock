@@ -150,7 +150,6 @@ PODS:
   - RNSound/Core (0.10.12):
     - React/Core
   - SVProgressHUD (2.2.5)
-  - SwiftSimplify (0.2.0)
   - TBBModal (1.0.2)
   - yoga (0.51.0.React)
 
@@ -196,7 +195,6 @@ DEPENDENCIES:
   - RNFS (from `./rn/Teacher/node_modules/react-native-fs`)
   - RNSound (from `./rn/Teacher/node_modules/react-native-sound`)
   - SVProgressHUD (~> 2.0)
-  - SwiftSimplify
   - TBBModal (~> 1.0)
   - yoga (from `./rn/Teacher/node_modules/react-native/ReactCommon/yoga`)
 
@@ -223,7 +221,6 @@ SPEC REPOS:
     - ReactiveSwift
     - Result
     - SVProgressHUD
-    - SwiftSimplify
     - TBBModal
 
 EXTERNAL SOURCES:
@@ -288,10 +285,9 @@ SPEC CHECKSUMS:
   RNFS: c9bbde46b0d59619f8e7b735991c60e0f73d22c1
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftSimplify: 374ead1c360c6e236539543d6ce5b3abda011080
   TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
   yoga: b5d96400ca8b2936965a7a6516da7c1177f432a3
 
-PODFILE CHECKSUM: 9898378ff36dcb09fd199db6d1cd31b6af2702c0
+PODFILE CHECKSUM: 53eca74f35a31ef5172395686799508ff1e83548
 
 COCOAPODS: 1.7.1
