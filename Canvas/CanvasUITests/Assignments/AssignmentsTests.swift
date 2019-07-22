@@ -42,4 +42,15 @@ class AssignmentsTests: CanvasUITests {
         AssignmentDetails.link("run.jpg").tap()
         app.find(label: "File", type: .image).waitToExist()
     }
+
+    func testLaunchQuizzesNextAssignment() {
+        Dashboard.courseCard(id: "399").tap()
+        CourseNavigation.assignments.tap()
+        AssignmentsList.assignment(id: "3181").tap()
+        AssignmentDetails.submitAssignmentButton.tap()
+        QuizzesNext.text("Read-only Quiz").waitToExist()
+        QuizzesNext.beginButton.waitToExist()
+        QuizzesNext.doneButton.tap()
+        QuizzesNext.doneButton.waitToVanish()
+    }
 }

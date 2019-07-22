@@ -19,6 +19,24 @@
 import XCTest
 import TestsFoundation
 
+enum AssignmentDetails: String, ElementWrapper {
+    case submitAssignmentButton
+
+    static func description(_ description: String) -> Element {
+        return app.find(label: description)
+    }
+
+    static func link(_ description: String) -> Element {
+        return XCUIElementWrapper(app.webViews.staticTexts[description])
+    }
+}
+
+enum AssignmentsList {
+    static func assignment(id: String) -> Element {
+        return app.find(id: "assignment-list.assignment-list-row.cell-\(id)")
+    }
+}
+
 enum GradesList {
     static var title: Element {
         return app.find(label: "Grades")
@@ -29,12 +47,16 @@ enum GradesList {
     }
 }
 
-enum AssignmentDetails {
-    static func description(_ description: String) -> Element {
-        return app.find(label: description)
+enum QuizzesNext {
+    static func text(_ description: String) -> Element {
+        return XCUIElementWrapper(app.webViews.staticTexts[description])
     }
 
-    static func link(_ description: String) -> Element {
-        return XCUIElementWrapper(app.webViews.staticTexts[description])
+    static var beginButton: Element {
+        return XCUIElementWrapper(app.webViews.buttons["Begin"])
+    }
+
+    static var doneButton: Element {
+        return XCUIElementWrapper(app.buttons["Done"].firstMatch)
     }
 }
