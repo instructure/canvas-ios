@@ -435,9 +435,6 @@
 /* No comment provided by engineer. */
 "Open in…" = "Avaa kohteessa...";
 
-/* Accessibility hint for the profile button */
-"Opens profile" = "Avaa profiilin";
-
 /* Orange course color button */
 "Orange" = "Oranssi";
 
@@ -480,9 +477,6 @@
 /* Mark student present
    Student is present in class */
 "Present" = "Nykyinen";
-
-/* Accessibility label for the profile button */
-"Profile" = "Profiili";
 
 /* Purple course color button */
 "Purple" = "Purppura";

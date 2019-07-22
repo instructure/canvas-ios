@@ -435,9 +435,6 @@
 /* No comment provided by engineer. */
 "Open in…" = "Odpri v ...";
 
-/* Accessibility hint for the profile button */
-"Opens profile" = "Odpre profil";
-
 /* Orange course color button */
 "Orange" = "Oranžno";
 
@@ -480,9 +477,6 @@
 /* Mark student present
    Student is present in class */
 "Present" = "Trenutno";
-
-/* Accessibility label for the profile button */
-"Profile" = "Profil";
 
 /* Purple course color button */
 "Purple" = "Škrlatno";
