@@ -18,8 +18,6 @@
 
 import Foundation
 
-import Result
-
 class QuizTakeabilityController {
     
     let quiz: Quiz

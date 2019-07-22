@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import Result
 import CanvasCore
 
 class SettingsViewModel {

@@ -19,7 +19,6 @@
 import Foundation
 import ReactiveSwift
 import Marshal
-import Result
 
 public func attemptProducer<Value>(_ file: String = #file, line: UInt = #line, f: () throws -> Value) -> SignalProducer<Value, NSError> {
     do {
@@ -31,6 +30,6 @@ public func attemptProducer<Value>(_ file: String = #file, line: UInt = #line, f
     }
 }
 
-public func blockProducer<Value>(_ f: @escaping () -> Value) -> SignalProducer<Value, NoError> {
-    return SignalProducer<()->Value, NoError>(value: f).map { $0() }
+public func blockProducer<Value>(_ f: @escaping () -> Value) -> SignalProducer<Value, Never> {
+    return SignalProducer<()->Value, Never>(value: f).map { $0() }
 }

@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import Result
 
 public struct APISessionToken: Codable {
     public let session_url: URL

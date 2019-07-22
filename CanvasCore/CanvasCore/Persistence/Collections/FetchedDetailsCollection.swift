@@ -19,7 +19,6 @@
 import Foundation
 import CoreData
 import ReactiveSwift
-import Result
 
 open class FetchedDetailsCollection<M, DVM>: Collection where M: NSManagedObject, DVM: Equatable {
     public typealias Object = DVM
@@ -28,8 +27,8 @@ open class FetchedDetailsCollection<M, DVM>: Collection where M: NSManagedObject
     let observer: ManagedObjectObserver<M>
     let detailsFactory: (M)->[DVM]
     var details: [DVM] = []
-    public let collectionUpdates: Signal<[CollectionUpdate<DVM>], NoError>
-    fileprivate let updatesObserver: Signal<[CollectionUpdate<DVM>], NoError>.Observer
+    public let collectionUpdates: Signal<[CollectionUpdate<DVM>], Never>
+    fileprivate let updatesObserver: Signal<[CollectionUpdate<DVM>], Never>.Observer
     
     public init(observer: ManagedObjectObserver<M>, detailsFactory: @escaping (M)->[DVM]) {
         self.observer = observer

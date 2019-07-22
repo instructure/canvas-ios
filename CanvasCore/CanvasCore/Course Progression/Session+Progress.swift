@@ -17,10 +17,7 @@
 //
 
 import Foundation
-
 import ReactiveSwift
-import Result
-
 
 extension Session {
     fileprivate enum Associated {

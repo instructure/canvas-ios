@@ -20,8 +20,6 @@ import UIKit
 import ReactiveSwift
 import CoreData
 
-import Result
-
 public protocol TableViewCellViewModel {
     static func tableViewDidLoad(_ tableView: UITableView)
     func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell

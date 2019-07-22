@@ -19,7 +19,6 @@
 import Foundation
 
 import ReactiveSwift
-import Result
 
 import CoreData
 

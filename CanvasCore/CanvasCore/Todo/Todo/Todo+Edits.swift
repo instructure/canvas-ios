@@ -17,9 +17,6 @@
 //
 
 import Foundation
-
-
-import Result
 import ReactiveCocoa
 import Marshal
 

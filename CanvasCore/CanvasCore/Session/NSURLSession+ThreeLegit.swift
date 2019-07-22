@@ -17,10 +17,8 @@
 //
 
 import Foundation
-import Result
 import ReactiveSwift
 import Marshal
-
 
 private let networkErrorTitle = NSLocalizedString("Network Error", tableName: "Localizable", bundle: .core, value: "", comment: "Title for network errors")
 
@@ -152,10 +150,10 @@ extension Session {
     }
 
     fileprivate static func validateResponse(_ data: Data, response: URLResponse) -> Result<(Data, HTTPURLResponse), NSError> {
-        guard let httpResponse = response as? HTTPURLResponse else { return Result(error:.invalidResponseError(response.url)) }
-        guard (200..<300).contains(httpResponse.statusCode) else { return Result(error:.invalidResponse(httpResponse, data: data)) }
+        guard let httpResponse = response as? HTTPURLResponse else { return .failure(.invalidResponseError(response.url)) }
+        guard (200..<300).contains(httpResponse.statusCode) else { return .failure(.invalidResponse(httpResponse, data: data)) }
 
-        return Result(value: (data, httpResponse))
+        return .success((data, httpResponse))
     }
 
     public func emptyResponseSignalProducer(_ request: URLRequest) -> SignalProducer<(), NSError> {

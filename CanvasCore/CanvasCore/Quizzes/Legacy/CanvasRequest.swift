@@ -17,9 +17,6 @@
 //
 
 import UIKit
-import Result
-
-
 
 // MARK: Canvas Auth and basic requests
 
@@ -61,7 +58,7 @@ struct Request<T>: CustomStringConvertible {
         self.parseResponse = parseResponse
     }
     
-    fileprivate var request: Result<URLRequest, NSError> {
+    fileprivate var request: Result<URLRequest, Error> {
         return Result(catching: {
             try URLRequest(method: method, URL: url, parameters: parameters ?? [:], encoding: parameterEncoding)
                 .authorized(with: auth)
@@ -110,21 +107,21 @@ func makeRequest<T>(_ request: Request<T>, completed: @escaping (Result<Response
                     }
                 } catch let e as NSError {
                     DispatchQueue.main.async {
-                        completed(Result(error: e))
+                        completed(.failure(e))
                     }
                 }
             } else {
                 DispatchQueue.main.async {
                     let fallbackError = NSError(domain: "com.instructure", code: 0, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("There was no data!", tableName: "Localizable", bundle: .core, value: "", comment: "")])
-                    let error = (error as NSError?) ?? fallbackError
-                    completed(Result<ResponsePage<T>, NSError>(error: error))
+                    let error = error as NSError? ?? fallbackError
+                    completed(.failure(error))
                 }
             }
         }
         dataTask.resume()
         return dataTask
-    } else if let error = encodingResult.error {
-        completed(Result(error: error))
+    } else if let error = encodingResult.error as NSError? {
+        completed(.failure(error))
     }
     return nil
 }
@@ -147,9 +144,9 @@ private func validate(_ response: HTTPURLResponse?, json: Any?) -> ValidationRes
     let statusCode = response?.statusCode ?? 0
     
     if (200...299).contains(statusCode) {
-        return ValidationResult(value: json)
+        return .success(json)
     } else {
-        return ValidationResult(error: NSError(domain:RequestErrorDomain , code: statusCode, userInfo: infoForJSON(json)))
+        return .failure(NSError(domain:RequestErrorDomain , code: statusCode, userInfo: infoForJSON(json)))
     }
 }
 

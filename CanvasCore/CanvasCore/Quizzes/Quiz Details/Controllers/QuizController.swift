@@ -18,9 +18,6 @@
 
 import Foundation
 
-
-import Result
-
 class QuizController {
     let service: QuizService
     
@@ -30,7 +27,7 @@ class QuizController {
     var quizUpdated: (QuizResult)->() = {_ in } {
         didSet {
             if let quiz = self.quiz {
-                quizUpdated(Result(value: ResponsePage(content: quiz)))
+                quizUpdated(.success(ResponsePage(content: quiz)))
             }
         }
     }

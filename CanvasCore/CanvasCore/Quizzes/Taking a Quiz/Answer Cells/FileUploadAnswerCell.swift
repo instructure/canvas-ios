@@ -17,8 +17,6 @@
 //
 
 import ReactiveSwift
-import Result
-
 
 class FileUploadAnswerCell: UITableViewCell {
     @objc static var ReuseID: String {

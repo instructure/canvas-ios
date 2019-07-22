@@ -17,11 +17,6 @@
 //
 
 import Foundation
-
-
-
-import Result
-
 import CoreData
 
 class CanvasQuizService: QuizService {
@@ -110,8 +105,8 @@ class CanvasQuizService: QuizService {
     func quizRequest() -> Request<Quiz> {
         return Request(auth: session, method: .GET, path: apiPath as String, parameters: nil) { json in
             return Quiz.fromJSON(json).map {
-                return Result(value: $0)
-            } ?? Result(error: NSError.quizErrorWithMessage("Error parsing the quiz response"))
+                return .success($0)
+            } ?? .failure(NSError.quizErrorWithMessage("Error parsing the quiz response"))
         }
     }
 
@@ -119,7 +114,7 @@ class CanvasQuizService: QuizService {
         do {
             try self.fileUploader.upload(uploadable, completed: completed)
         } catch let error as NSError {
-            completed(Result(error: error))
+            completed(.failure(error))
         }
     }
 
@@ -155,15 +150,15 @@ private func extractSubmissions(_ json: Any?) -> Result<[QuizSubmission], NSErro
     let array = jsonObject?["quiz_submissions"] as? [Any]
     
     return array.flatMap { array in
-        return Result(value: decodeArray(array))
-        } ?? Result(error: NSError.quizErrorWithMessage("Error parsing submissions"))
+        return .success(decodeArray(array))
+        } ?? .failure(NSError.quizErrorWithMessage("Error parsing submissions"))
 }
 
 private func extractFirstSubmission(_ json: Any?) -> Result<QuizSubmission, NSError> {
     let arrayResult = extractSubmissions(json)
     return arrayResult.flatMap { arrayOfSubmissions in
         return arrayOfSubmissions.first.map {
-            return Result(value: $0)
-            } ?? Result(error: NSError.quizErrorWithMessage("Error parsing the posted submission"))
+            return .success($0)
+            } ?? .failure(NSError.quizErrorWithMessage("Error parsing the posted submission"))
     }
 }

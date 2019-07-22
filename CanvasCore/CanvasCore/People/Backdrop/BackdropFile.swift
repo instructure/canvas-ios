@@ -17,9 +17,6 @@
 //
 
 import Foundation
-
-import Result
-
 import ReactiveSwift
 
 let numShapeBackdrops = 20
@@ -195,7 +192,7 @@ struct BackdropFile: Hashable, Equatable {
             }
             try writeImage(image)
             return image
-        })
+        }).mapError { $0 as NSError }
     }
     
     // ---------------------------------------------
@@ -244,15 +241,15 @@ struct BackdropFile: Hashable, Equatable {
             if start < end {
                 let url = String(json[start..<end])
                 let file = BackdropFile.fromURL(url)
-                result = Result(value: file)
+                result = .success(file)
                 return result
             }
         } else if json == "" {
-            result = Result(value: nil)
+            result = .success(nil)
             return result
         }
         let error = NSError(domain: "ProfileKit.BackdropFile.fromJSON", code: BackdropError.jsonParse.rawValue, userInfo: [NSLocalizedDescriptionKey: "bad JSON"])
-        result = Result(error: error)
+        result = .failure(error)
         return result
     }
 }

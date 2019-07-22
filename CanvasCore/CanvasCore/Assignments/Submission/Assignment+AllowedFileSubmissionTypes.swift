@@ -17,15 +17,9 @@
 //
 
 import Foundation
-
 import MobileCoreServices
 import ReactiveCocoa
-import Result
-
-
-
 import CoreData
-
 
 extension Assignment {
     @objc public var allowedSubmissionUTIs: [String] {

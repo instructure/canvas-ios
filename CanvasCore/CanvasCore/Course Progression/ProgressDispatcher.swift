@@ -18,7 +18,6 @@
 
 import Foundation
 import ReactiveSwift
-import Result
 
 open class ProgressDispatcher: NSObject {
     fileprivate let dispatcher: Dispatcher<Progress, Progress, NSError>
@@ -28,7 +27,7 @@ open class ProgressDispatcher: NSObject {
         super.init()
     }
 
-    open var onProgress: Signal<Progress, NoError> {
+    open var onProgress: Signal<Progress, Never> {
         return dispatcher.values
     }
 

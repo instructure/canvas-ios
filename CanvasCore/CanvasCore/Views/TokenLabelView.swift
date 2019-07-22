@@ -18,8 +18,6 @@
 
 import UIKit
 
-import Result
-
 extension UIFont {
     // Attribution: http://stackoverflow.com/a/37926738/1518561
     fileprivate static var tokenFont: UIFont {

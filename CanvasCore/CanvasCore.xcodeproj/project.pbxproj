@@ -315,7 +315,6 @@
 		497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */; };
 		497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */; };
 		497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */; };
-		49A667D31F96B1B900A5166E /* UIApplication+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A667D21F96B1B900A5166E /* UIApplication+Reactive.swift */; };
 		49CE96571F8FF41B00121A43 /* Quizzes.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49CE95F01F8FF41900121A43 /* Quizzes.xcassets */; };
 		49CE96581F8FF41B00121A43 /* UIButton+QuizKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE95F21F8FF41900121A43 /* UIButton+QuizKit.swift */; };
 		49CE96591F8FF41B00121A43 /* TimedQuizViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49CE95F41F8FF41900121A43 /* TimedQuizViewController.strings */; };
@@ -509,6 +508,12 @@
 		B1ED11942040CD5F00C3C580 /* CanvasWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1ED11932040CD5F00C3C580 /* CanvasWebViewManager.m */; };
 		B1ED11972044803400C3C580 /* CanvasWebViewContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */; };
 		B1ED11982044803400C3C580 /* CanvasWebViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */; };
+		B1F405F622E23D28008FAFE6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405F022E23D27008FAFE6 /* ReactiveCocoa.framework */; };
+		B1F405F722E23D28008FAFE6 /* ReactiveMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405F122E23D27008FAFE6 /* ReactiveMapKit.framework */; };
+		B1F405F822E23D28008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405F222E23D27008FAFE6 /* ReactiveObjCBridge.framework */; };
+		B1F405F922E23D28008FAFE6 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405F322E23D28008FAFE6 /* ReactiveSwift.framework */; };
+		B1F405FB22E23D28008FAFE6 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405F522E23D28008FAFE6 /* ReactiveObjC.framework */; };
+		B1F4060F22E63203008FAFE6 /* ResultExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F4060E22E63203008FAFE6 /* ResultExtensions.swift */; };
 		B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4E8CB206179CC0056074A /* NativeFileSystem.m */; };
 		B1F4E8CF206189010056074A /* video-preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B1F4E8CE206189010056074A /* video-preview.png */; };
 		B1F4E8D12061950C0056074A /* zss-rich-text-editor.html in Resources */ = {isa = PBXBuildFile; fileRef = B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */; };
@@ -856,7 +861,6 @@
 		497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITraitEnvironmentExtensions.swift; sourceTree = "<group>"; };
 		497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerRotationExtensions.swift; sourceTree = "<group>"; };
 		497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUserInterfaceSizeClassExtensions.swift; sourceTree = "<group>"; };
-		49A667D21F96B1B900A5166E /* UIApplication+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Reactive.swift"; sourceTree = "<group>"; };
 		49CE95F01F8FF41900121A43 /* Quizzes.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Quizzes.xcassets; sourceTree = "<group>"; };
 		49CE95F21F8FF41900121A43 /* UIButton+QuizKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+QuizKit.swift"; sourceTree = "<group>"; };
 		49CE95F51F8FF41900121A43 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
@@ -1158,6 +1162,12 @@
 		B1ED11932040CD5F00C3C580 /* CanvasWebViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasWebViewManager.m; sourceTree = "<group>"; };
 		B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasWebViewContainer.h; sourceTree = "<group>"; };
 		B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasWebViewContainer.m; sourceTree = "<group>"; };
+		B1F405F022E23D27008FAFE6 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = ../Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
+		B1F405F122E23D27008FAFE6 /* ReactiveMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveMapKit.framework; path = ../Carthage/Build/iOS/ReactiveMapKit.framework; sourceTree = "<group>"; };
+		B1F405F222E23D27008FAFE6 /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjCBridge.framework; path = ../Carthage/Build/iOS/ReactiveObjCBridge.framework; sourceTree = "<group>"; };
+		B1F405F322E23D28008FAFE6 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = ../Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
+		B1F405F522E23D28008FAFE6 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = ../Carthage/Build/iOS/ReactiveObjC.framework; sourceTree = "<group>"; };
+		B1F4060E22E63203008FAFE6 /* ResultExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultExtensions.swift; sourceTree = "<group>"; };
 		B1F4E8CB206179CC0056074A /* NativeFileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeFileSystem.m; sourceTree = "<group>"; };
 		B1F4E8CE206189010056074A /* video-preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-preview.png"; sourceTree = "<group>"; };
 		B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "zss-rich-text-editor.html"; path = "../../../rn/Teacher/lib/zss-rich-text-editor.html"; sourceTree = "<group>"; };
@@ -1172,6 +1182,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1F405F622E23D28008FAFE6 /* ReactiveCocoa.framework in Frameworks */,
+				B1F405F722E23D28008FAFE6 /* ReactiveMapKit.framework in Frameworks */,
+				B1F405F822E23D28008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */,
+				B1F405F922E23D28008FAFE6 /* ReactiveSwift.framework in Frameworks */,
+				B1F405FB22E23D28008FAFE6 /* ReactiveObjC.framework in Frameworks */,
 				49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */,
 				49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */,
 				7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */,
@@ -1204,6 +1219,11 @@
 		2C60495C1F72B9CE00252BC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1F405F022E23D27008FAFE6 /* ReactiveCocoa.framework */,
+				B1F405F122E23D27008FAFE6 /* ReactiveMapKit.framework */,
+				B1F405F522E23D28008FAFE6 /* ReactiveObjC.framework */,
+				B1F405F222E23D27008FAFE6 /* ReactiveObjCBridge.framework */,
+				B1F405F322E23D28008FAFE6 /* ReactiveSwift.framework */,
 				49383CDF1F846FCC009C8F8E /* CanvasKeymaster.framework */,
 				49383CDE1F846FCB009C8F8E /* CanvasKit.framework */,
 				7D0215A221BAE703009A8E69 /* Core.framework */,
@@ -1285,7 +1305,6 @@
 				2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */,
 				2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */,
 				2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */,
-				49A667D21F96B1B900A5166E /* UIApplication+Reactive.swift */,
 				2CF6DEB52006A039007A5591 /* UIViewController+Core.swift */,
 				3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */,
 				3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */,
@@ -1296,6 +1315,7 @@
 				3B10AC0A206D8838007EFC2F /* Array+Core.swift */,
 				2CCBD44620C0943B0082E616 /* URL+Core.swift */,
 				B190BA3E229EE60D003B612A /* NSObject+Reactive.swift */,
+				B1F4060E22E63203008FAFE6 /* ResultExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2980,7 +3000,6 @@
 				49CE96A21F8FF4A700121A43 /* Dispatcher.swift in Sources */,
 				4961F66E1F8FB9620093EC86 /* UIImage+FileKit.swift in Sources */,
 				49383CF61F849933009C8F8E /* inboxTab.swift in Sources */,
-				49A667D31F96B1B900A5166E /* UIApplication+Reactive.swift in Sources */,
 				494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */,
 				49301FED1F901854006BD777 /* RemoteService.swift in Sources */,
 				4961F5A11F8FB29B0093EC86 /* SplitViewController.swift in Sources */,
@@ -3344,6 +3363,7 @@
 				4961F5D91F8FB3EF0093EC86 /* ManagedObjectContextScheduler.swift in Sources */,
 				B1C3407820D1AD3B00D0554D /* ModuleItemsProgress.m in Sources */,
 				497CA7731F82D19600501613 /* HelmSplitViewController.swift in Sources */,
+				B1F4060F22E63203008FAFE6 /* ResultExtensions.swift in Sources */,
 				49CE96EC1F8FFC4500121A43 /* Session+SoEdventurous.swift in Sources */,
 				493020521F902364006BD777 /* GCD+SoLazy.swift in Sources */,
 				4961F5DF1F8FB3EF0093EC86 /* ManagedObjectCountObserver.swift in Sources */,

@@ -18,7 +18,6 @@
 
 import ReactiveSwift
 import ReactiveCocoa
-import Result
 import CanvasCore
 import TechDebt
 
@@ -33,10 +32,10 @@ class ModuleItemViewModel: NSObject {
     // Output
     let title: Property<String?>
     let completionRequirement: Property<ModuleItem.CompletionRequirement?>
-    let errorSignal: Signal<NSError, NoError>
+    let errorSignal: Signal<NSError, Never>
     let moduleID: Property<String?>
     let moduleItemID: Property<String?>
-    lazy var embeddedViewController: SignalProducer<UIViewController?, NoError> = {
+    lazy var embeddedViewController: SignalProducer<UIViewController?, Never> = {
         let item = self.moduleItem.producer.skipRepeats { $0?.content == $1?.content }
         return item.map { moduleItem in
             let content = moduleItem?.content
@@ -91,7 +90,7 @@ class ModuleItemViewModel: NSObject {
         }
     }
     fileprivate let module: Property<Module?>
-    fileprivate let errorObserver: Signal<NSError, NoError>.Observer
+    fileprivate let errorObserver: Signal<NSError, Never>.Observer
     fileprivate let disposable = CompositeDisposable()
     fileprivate let siblingsUpdates: Property<[CollectionUpdate<ModuleItem>]>
     fileprivate let url: Property<URL?>
@@ -104,7 +103,7 @@ class ModuleItemViewModel: NSObject {
     fileprivate let locked: Property<Bool>
 
     // Actions
-    lazy var markAsDoneAction: Action<Void, Void, NoError> = {
+    lazy var markAsDoneAction: Action<Void, Void, Never> = {
         return Action(enabledIf: self.canFulfill(.markDone)) { _ in
             blockProducer {
                 self.moduleItem.value?.postProgress(self.session, kind: .markedDone)
@@ -112,7 +111,7 @@ class ModuleItemViewModel: NSObject {
             }
         }
     }()
-    lazy var markAsViewedAction: Action<Void, Void, NoError> = {
+    lazy var markAsViewedAction: Action<Void, Void, Never> = {
         return Action(enabledIf: self.canFulfill(.mustView)) { _ in
             blockProducer {
                 self.moduleItem.value?.postProgress(self.session, kind: .viewed)
@@ -223,7 +222,7 @@ class ModuleItemViewModel: NSObject {
             }
             .flatMap(.latest) { $0.signal }
             .map { $0.1 }
-            .flatMapError { _ in SignalProducer<Module?, NoError>(value: nil) }
+            .flatMapError { _ in SignalProducer<Module?, Never>(value: nil) }
         module = Property(initial: nil, then: moduleSignal)
 
         let updatesSignal = moduleID
@@ -235,7 +234,7 @@ class ModuleItemViewModel: NSObject {
                 }
             }
             .flatMap(.latest) { $0.collectionUpdates }
-            .flatMapError { _ in SignalProducer<[CollectionUpdate<ModuleItem>], NoError>(value: []) }
+            .flatMapError { _ in SignalProducer<[CollectionUpdate<ModuleItem>], Never>(value: []) }
         siblingsUpdates = Property(initial: [], then: updatesSignal)
 
         title = moduleItem.map { item in

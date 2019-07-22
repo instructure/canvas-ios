@@ -17,9 +17,6 @@
 //
 
 import Foundation
-
-
-import Result
 import Marshal
 import ReactiveSwift
 
@@ -39,10 +36,10 @@ open class RemoteService {
             .flatMap(.concat, session.JSONSignalProducer)
             .on(value: { response in
                 let resultString: String = (try? response <| "\(RemoteService.customDataKey).\(RemoteService.key)") ?? "false"
-                completion(Result(value: (resultString as NSString).boolValue))
+                completion(.success((resultString as NSString).boolValue))
             })
             .startWithFailed { error in
-                completion(Result(error: error))
+                completion(.failure(error))
             }
     }
     
@@ -55,8 +52,8 @@ open class RemoteService {
     open func updateNotificationPreferencesSetup(_ completion: @escaping (Result<Bool, NSError>) -> ()) {
         requestForUpdateNotificationPreferencesSetup()
             .flatMap(.concat, session.emptyResponseSignalProducer)
-            .on(completed: { completion(Result(value: true)) })
-            .startWithFailed { err in completion(Result(error: err)) }
+            .on(completed: { completion(.success(true)) })
+            .startWithFailed { err in completion(.failure(err)) }
     }
     
     fileprivate func requestForUpdateNotificationPreferencesSetup() -> SignalProducer<URLRequest, NSError> {
@@ -85,19 +82,19 @@ open class RemoteService {
             session.makeRequest(request) { [weak self] (result: Result<ResponsePlaceholder, NSError>) in
                 switch result {
                 case .success:
-                    completion(Result(value: true))
+                    completion(.success(true))
                 case .failure(let error):
                     let retryCodes: [Int] = [Int(ECONNABORTED), NSURLErrorNetworkConnectionLost]
                     let retryMax = 5
                     if retries < retryMax && retryCodes.contains(error.code) {
                         self?.registerPushNotificationTokenWithPushService(pushToken, retries: retries + 1, completion: completion)
                     } else {
-                        completion(Result(error: error))
+                        completion(.failure(error))
                     }
                 }
             }
         } catch let error as NSError {
-            completion(Result(error: error))
+            completion(.failure(error))
         }
     }
     
@@ -116,8 +113,8 @@ open class RemoteService {
         requestForUserCommunicationChannels()
             .flatMap(.merge, { self.session.paginatedJSONSignalProducer($0) } )
             .map { $0.compactMap(CommunicationChannel.create) }
-            .on(value: { completion(Result(value: $0)) })
-            .startWithFailed { err in completion(Result(error: err)) }
+            .on(value: { completion(.success($0)) })
+            .startWithFailed { err in completion(.failure(err)) }
     }
     
     fileprivate func requestForUserCommunicationChannels() -> SignalProducer<URLRequest, NSError> {
@@ -129,8 +126,8 @@ open class RemoteService {
     func deregisterPushNotificationTokenWithPushService(_ pushToken: String, completion: @escaping (Result<Void, NSError>) -> Void) {
         requestForPushNotificationDeregistration(pushToken)
             .flatMap(.concat, session.emptyResponseSignalProducer)
-            .on(completed: { completion(Result(value: ())) })
-            .startWithFailed { e in completion(Result(error: e)) }
+            .on(completed: { completion(.success(())) })
+            .startWithFailed { e in completion(.failure(e)) }
     }
 
     fileprivate func requestForPushNotificationDeregistration(_ pushToken: String) -> SignalProducer<URLRequest, NSError> {
@@ -145,8 +142,8 @@ open class RemoteService {
         requestForNotificationPreferences(channelID)
             .flatMap(.concat, { self.session.paginatedJSONSignalProducer($0, keypath: "notification_preferences") } )
             .map { $0.compactMap(NotificationPreference.create) }
-            .on(value: { completion(Result(value: $0)) })
-            .startWithFailed { err in completion(Result(error: err)) }
+            .on(value: { completion(.success($0)) })
+            .startWithFailed { err in completion(.failure(err)) }
     }
     
     fileprivate func requestForNotificationPreferences(_ channelID: String) -> SignalProducer<URLRequest, NSError> {
@@ -162,8 +159,8 @@ open class RemoteService {
     open func setNotificationPreferences(_ channelID: String, preferences: [NotificationPreference], completion: @escaping (Result<Bool, NSError>) -> ()) {
         requestForSetNotificationPreferences(channelID, preferences: preferences)
             .flatMap(.merge, session.emptyResponseSignalProducer)
-            .on(completed: { completion(Result(value: true)) })
-            .startWithFailed { err in completion(Result(error: err)) }
+            .on(completed: { completion(.success(true)) })
+            .startWithFailed { err in completion(.failure(err)) }
     }
     
     fileprivate func requestForSetNotificationPreferences(_ channelID: String, preferences: [NotificationPreference]) -> SignalProducer<URLRequest, NSError> {

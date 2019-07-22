@@ -18,9 +18,6 @@
 
 import Foundation
 
-
-import Result
-
 typealias SubmissionAuditLoggingResult = Result<ResponsePage<Bool>, NSError>
 
 

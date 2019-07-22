@@ -18,10 +18,6 @@
 
 import Foundation
 
-import Result
-
-
-
 class CanvasQuizSubmissionService: QuizSubmissionService {
     
     init(auth: Session, submission: QuizSubmission) {
@@ -60,7 +56,7 @@ class CanvasQuizSubmissionService: QuizSubmissionService {
         ]
 
         return Request(auth: auth, method: .POST, path: path, parameters: params) { any in
-            return Result(value: true)
+            return .success(true)
         }
     }
     
@@ -71,10 +67,10 @@ class CanvasQuizSubmissionService: QuizSubmissionService {
             let object = jsonValue as? [String: Any]
             if let array = object?["quiz_submission_questions"] as? [Any] {
                 let decoded: [SubmissionQuestion] = decodeArray(array)
-                return Result(value: decoded)
+                return .success(decoded)
             }
             
-            return Result(error: NSError.quizErrorWithMessage("Error parsing questions at path \(path)"))
+            return .failure(NSError.quizErrorWithMessage("Error parsing questions at path \(path)"))
         }
     }
     
@@ -88,7 +84,7 @@ class CanvasQuizSubmissionService: QuizSubmissionService {
         ]
         
         return Request(auth: auth, method: .PUT, path: path, parameters: params) { jsonValue in
-            return Result(value: true)
+            return .success(true)
         }
     }
 }

@@ -17,11 +17,7 @@
 //
 
 import Foundation
-
 import ReactiveSwift
-import Result
-
-
 
 open class EnrollmentCollectionViewCell: PrettyCardsCell {
     open var enrollment: MutableProperty<Enrollment?> = MutableProperty(nil)

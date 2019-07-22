@@ -18,7 +18,6 @@
 
 import Foundation
 import SafariServices
-import Result
 import Marshal
 import ReactiveSwift
 import Core

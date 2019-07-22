@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import Result
 
 struct CanvadocsFileMetadata {
     let pdfDownloadURL: URL
