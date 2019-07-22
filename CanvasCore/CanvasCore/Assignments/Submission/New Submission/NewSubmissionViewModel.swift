@@ -17,10 +17,6 @@
 //
 
 import ReactiveSwift
-import Result
-
-
-
 import Marshal
 
 public protocol NewSubmissionViewModelInputs {
@@ -42,25 +38,25 @@ public protocol NewSubmissionViewModelInputs {
 
 public protocol NewSubmissionViewModelOutputs {
     /// Emits when to select a submission type from an actionsheet.
-    var showSubmissionTypesSheet: Signal<[SubmissionType], NoError> { get }
+    var showSubmissionTypesSheet: Signal<[SubmissionType], Never> { get }
 
     /// Emits a list of file types when ready to start choosing files.
-    var showDocumentMenu: Signal<[String], NoError> { get }
+    var showDocumentMenu: Signal<[String], Never> { get }
 
     /// Emits a session, course id, and an upload batch when ready to start choosing files.
-    var showFileUploads: Signal<(Session, String, FileUploadBatch), NoError> { get }
+    var showFileUploads: Signal<(Session, String, FileUploadBatch), Never> { get }
 
     /// Emits when there was an error submitting.
-    var showError: Signal<String, NoError> { get }
+    var showError: Signal<String, Never> { get }
 
     /// Emits when ready to enter text entry.
-    var showTextEntry: Signal<Void, NoError> { get }
+    var showTextEntry: Signal<Void, Never> { get }
 
     /// Emits when ready to select url submission.
-    var showURLPicker: Signal<Void, NoError> { get }
+    var showURLPicker: Signal<Void, Never> { get }
 
     /// Emits when a submission is submitted.
-    var submission: Signal<Submission, NoError> { get }
+    var submission: Signal<Submission, Never> { get }
 }
 
 public protocol NewSubmissionViewModelType {
@@ -129,7 +125,7 @@ public class NewSubmissionViewModel: NSObject, NewSubmissionViewModelType, NewSu
         let createSubmissionEvent = sessionAssignment.signal.skipNil()
             .sample(with: newSubmission)
             .map(blend)
-            .flatMap(.latest) { session, assignment, newSubmission -> SignalProducer<Signal<Submission, NSError>.Event, NoError> in
+            .flatMap(.latest) { session, assignment, newSubmission -> SignalProducer<Signal<Submission, NSError>.Event, Never> in
                 return attemptProducer {
                     try Submission.create(newSubmission, session: session, courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
                 }
@@ -169,13 +165,13 @@ public class NewSubmissionViewModel: NSObject, NewSubmissionViewModelType, NewSu
         selectedUploadableProperty.value = uploadable
     }
 
-    public let showSubmissionTypesSheet: Signal<[SubmissionType], NoError>
-    public let showFileUploads: Signal<(Session, String, FileUploadBatch), NoError>
-    public let showError: Signal<String, NoError>
-    public let showTextEntry: Signal<Void, NoError>
-    public let showURLPicker: Signal<Void, NoError>
-    public let showDocumentMenu: Signal<[String], NoError>
-    public let submission: Signal<Submission, NoError>
+    public let showSubmissionTypesSheet: Signal<[SubmissionType], Never>
+    public let showFileUploads: Signal<(Session, String, FileUploadBatch), Never>
+    public let showError: Signal<String, Never>
+    public let showTextEntry: Signal<Void, Never>
+    public let showURLPicker: Signal<Void, Never>
+    public let showDocumentMenu: Signal<[String], Never>
+    public let submission: Signal<Submission, Never>
 
     public var inputs: NewSubmissionViewModelInputs { return self }
     public var outputs: NewSubmissionViewModelOutputs { return self }

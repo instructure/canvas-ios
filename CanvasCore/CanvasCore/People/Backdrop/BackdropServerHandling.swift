@@ -17,8 +17,6 @@
 //
 
 import Foundation
-import Result
-
 import ReactiveSwift
 import Marshal
 
@@ -39,12 +37,12 @@ private let namespaceKey = "ns"
 private let backdropParseResponse: (JSONObject) -> Result<JSONString, NSError> = {json in
     if let json = json as? [String: JSONString] {
         if let uglyString = json[customDataKey] {
-            let result: Result<JSONString, NSError> = Result(value: uglyString)
+            let result: Result<JSONString, NSError> = .success(uglyString)
             return result
         }
     }
     let error = NSError(domain: "ProfileKit.BackdropServerHandling.backdropParseResponse", code: BackdropError.jsonParse.rawValue, userInfo: [NSLocalizedDescriptionKey: "can't parse json"])
-    let result: Result<JSONString, NSError> = Result(error: error)
+    let result: Result<JSONString, NSError> = .failure(error)
     return result
 }
 

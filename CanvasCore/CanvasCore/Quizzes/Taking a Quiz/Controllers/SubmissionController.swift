@@ -18,10 +18,6 @@
 
 import Foundation
 
-
-
-import Result
-
 class SubmissionController {
     
     let quiz: Quiz
@@ -34,7 +30,7 @@ class SubmissionController {
     var submissionDidChange: (QuizSubmissionResult)->() = {_ in } {
         didSet {
             if let submission = self.submission {
-                submissionDidChange(Result(value: ResponsePage(content: submission)))
+                submissionDidChange(.success(ResponsePage(content: submission)))
             }
         }
     }
@@ -110,7 +106,7 @@ class SubmissionController {
             UIAccessibility.requestGuidedAccessSession(enabled: false) { _ in }
             service.completeSubmission(sub, completed: completed)
         } else {
-            completed(Result(error: NSError.quizErrorWithMessage("You don't appear to be taking a quiz.")))
+            completed(.failure(NSError.quizErrorWithMessage("You don't appear to be taking a quiz.")))
         }
     }
     

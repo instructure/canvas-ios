@@ -17,13 +17,8 @@
 //
 
 import Foundation
-
-
 import CoreData
-
 import ReactiveSwift
-import Result
-
 
 open class EnrollmentsDataSource: NSObject {
     public let enrollmentsObserver: ManagedObjectsObserver<Enrollment, ContextID>
@@ -45,15 +40,15 @@ open class EnrollmentsDataSource: NSObject {
         return enrollmentsObserver[contextID]
     }
     
-    open func producer(_ contextID: ContextID) -> SignalProducer<Enrollment?, NoError> {
+    open func producer(_ contextID: ContextID) -> SignalProducer<Enrollment?, Never> {
         return enrollmentsObserver.producer(contextID)
     }
     
-    open func color(for contextID: ContextID) -> SignalProducer<UIColor, NoError> {
-        let prettyGray = SignalProducer<UIColor, NoError>(value: .prettyGray())
+    open func color(for contextID: ContextID) -> SignalProducer<UIColor, Never> {
+        let prettyGray = SignalProducer<UIColor, Never>(value: .prettyGray())
         
         return producer(contextID)
-            .flatMap(.latest) { (enrollment: Enrollment?) -> SignalProducer<UIColor, NoError> in
+            .flatMap(.latest) { (enrollment: Enrollment?) -> SignalProducer<UIColor, Never> in
                 var course = enrollment
                 if let group = enrollment as? Group,
                     group.color.value == nil ||

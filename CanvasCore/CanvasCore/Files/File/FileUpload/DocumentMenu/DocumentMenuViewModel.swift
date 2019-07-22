@@ -17,10 +17,8 @@
 //
 
 import ReactiveSwift
-import Result
 import MobileCoreServices
 import Photos
-
 
 public protocol DocumentMenuViewModelInputs {
     func configureWith(fileTypes: [String])
@@ -34,22 +32,22 @@ public protocol DocumentMenuViewModelInputs {
 
 public protocol DocumentMenuViewModelOutputs {
     /// Emits array of document options and file types when the document menu should be presented.
-    var showDocumentMenu: Signal<([DocumentOption], [String]), NoError> { get }
+    var showDocumentMenu: Signal<([DocumentOption], [String]), Never> { get }
 
     /// Emits source type and media types for image picker controller.
-    var showImagePicker: Signal<(UIImagePickerController.SourceType, [String]), NoError> { get }
+    var showImagePicker: Signal<(UIImagePickerController.SourceType, [String]), Never> { get }
 
     /// Emits complete button title when user is ready to record audio.
-    var showAudioRecorder: Signal<String, NoError> { get }
+    var showAudioRecorder: Signal<String, Never> { get }
 
     /// Emits when the user selects a document picker from the document menu.
-    var showDocumentPicker: Signal<UIDocumentPickerViewController, NoError> { get }
+    var showDocumentPicker: Signal<UIDocumentPickerViewController, Never> { get }
 
     /// Emits the uploadables generated from input files.
-    var uploadable: Signal<Uploadable, NoError> { get }
+    var uploadable: Signal<Uploadable, Never> { get }
 
     /// Emits any errors that occur.
-    var errors: Signal<NSError, NoError> { get }
+    var errors: Signal<NSError, Never> { get }
 }
 
 public protocol DocumentMenuViewModelType {
@@ -168,12 +166,12 @@ public class DocumentMenuViewModel: DocumentMenuViewModelType, DocumentMenuViewM
         showDocumentMenuButtonTappedProperty.value = ()
     }
 
-    public let showDocumentMenu: Signal<([DocumentOption], [String]), NoError>
-    public let showAudioRecorder: Signal<String, NoError>
-    public let showImagePicker: Signal<(UIImagePickerController.SourceType, [String]), NoError>
-    public let showDocumentPicker: Signal<UIDocumentPickerViewController, NoError>
-    public let uploadable: Signal<Uploadable, NoError>
-    public let errors: Signal<NSError, NoError>
+    public let showDocumentMenu: Signal<([DocumentOption], [String]), Never>
+    public let showAudioRecorder: Signal<String, Never>
+    public let showImagePicker: Signal<(UIImagePickerController.SourceType, [String]), Never>
+    public let showDocumentPicker: Signal<UIDocumentPickerViewController, Never>
+    public let uploadable: Signal<Uploadable, Never>
+    public let errors: Signal<NSError, Never>
 
     public var inputs: DocumentMenuViewModelInputs { return self }
     public var outputs: DocumentMenuViewModelOutputs { return self }

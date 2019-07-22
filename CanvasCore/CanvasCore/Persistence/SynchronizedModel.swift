@@ -20,7 +20,6 @@ import Foundation
 import CoreData
 import Marshal
 import ReactiveSwift
-import Result
 
 public protocol SynchronizedModel {
     static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate

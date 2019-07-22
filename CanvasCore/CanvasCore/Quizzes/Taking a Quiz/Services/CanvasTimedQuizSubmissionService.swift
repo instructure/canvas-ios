@@ -18,10 +18,6 @@
 
 import Foundation
 
-import Result
-
-
-
 class CanvasTimedQuizSubmissionService: TimedQuizSubmissionService {
     
     let auth: Session
@@ -50,9 +46,9 @@ class CanvasTimedQuizSubmissionService: TimedQuizSubmissionService {
         return Request(auth: auth, method: .GET, path: path, parameters: nil) { jsonValue in
             let object = jsonValue as? [String: Any]
             if let timeLeft = object?["time_left"] as? Int {
-                return Result(value: timeLeft)
+                return .success(timeLeft)
             }
-            return Result(error: NSError.quizErrorWithMessage("Error parsing timed quiz time at path \(path)"))
+            return .failure(NSError.quizErrorWithMessage("Error parsing timed quiz time at path \(path)"))
         }
     }
 }

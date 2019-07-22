@@ -41,16 +41,11 @@ abstract_target 'defaults' do
   pod 'RNSound', :path => nm_path + 'react-native-sound'
   pod 'react-native-camera', :path => nm_path + 'react-native-camera'
 
-  pod 'ReactiveCocoa', '~> 8.0'
   pod 'Marshal', '~> 1.2.7'
-  pod 'Result', '~> 4.1'
   pod 'Cartography', '~> 3.1'
-  pod 'ReactiveSwift', '~> 4.0'
   pod 'Kingfisher', '~> 4.10'
   pod 'SVProgressHUD', '~> 2.0'
   pod 'TBBModal', '~> 1.0'
-  pod 'ReactiveObjC', '~> 3.1'
-  pod 'ReactiveObjCBridge', '~> 4.0'
   pod 'AFNetworking', '~> 3.0'
   pod 'Mantle', '~> 1.5.5'
 

@@ -17,12 +17,7 @@
 //
 
 import ReactiveSwift
-import Result
-
-
 import Cartography
-
-
 import CoreData
 
 protocol FileUploadTableViewCellDelegate: class {

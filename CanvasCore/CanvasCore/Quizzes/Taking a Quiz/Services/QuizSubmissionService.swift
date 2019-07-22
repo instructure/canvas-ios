@@ -18,9 +18,6 @@
 
 import Foundation
 
-
-import Result
-
 typealias SubmissionQuestionsResult = Result<ResponsePage<[SubmissionQuestion]>, NSError>
 typealias SelectAnswerResult = Result<ResponsePage<Bool>, NSError>
 typealias FlagQuestionResult = Result<ResponsePage<Bool>, NSError>

@@ -17,8 +17,6 @@
 //
 
 import Foundation
-
-import Result
 import ReactiveSwift
 import Marshal
 import WebKit // fixes random "library not loaded" errors.

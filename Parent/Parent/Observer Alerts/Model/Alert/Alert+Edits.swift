@@ -19,7 +19,6 @@
 import Foundation
 import CanvasCore
 import ReactiveSwift
-import Result
 
 extension Alert {
     public func dismiss(_ session: Session, completion: ((Result<Bool, NSError>)->())? = nil) {

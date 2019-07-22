@@ -16,12 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Result
 import UIKit
 import ReactiveSwift
-import Result
-
-
 import Cartography
 
 public struct ColorfulViewModel: TableViewCellViewModel {

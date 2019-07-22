@@ -17,12 +17,8 @@
 //
 
 import UIKit
-
 import CoreData
-
-
 import ReactiveSwift
-import Result
 import Cartography
 
 extension GradingPeriodItem {

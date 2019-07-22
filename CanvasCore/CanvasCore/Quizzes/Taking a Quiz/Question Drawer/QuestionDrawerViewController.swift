@@ -165,14 +165,13 @@ extension QuestionDrawerViewController {
 
 extension QuestionDrawerViewController {
     func handleQuestionsUpdateResult(_ result: SubmissionQuestionsUpdateResult) {
-        if let _ = result.error { // don't report the error - the presenting view already did
+        switch result {
+        case .failure:
+            // don't report the error - the presenting view already did
             return
-        }
-            
-        else if let _ = result.value {
+        case .success:
             // This is a neive but simple solution - in the future this might not work, if both the drawer and the
             // submission view are onscreen at the same time
-
             tableView.reloadData()
         }
     }

@@ -17,7 +17,6 @@
 //
 
 import UIKit
-import Result
 import ReactiveSwift
 import ReactiveCocoa
 import CanvasCore
@@ -243,7 +242,7 @@ extension Router {
                 let syllabusButton = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
                 syllabusButton.accessibilityLabel = NSLocalizedString("Syllabus", comment: "Syllabus Button Title")
                 syllabusButton.accessibilityIdentifier = "syllabus_button"
-                let close = Action<(), (), NoError>() { _ in
+                let close = Action<(), (), Never>() { _ in
                     self.route(calendarWeekPageVC, toURL: self.courseSyllabusRoute(studentID: studentID, courseID: courseID))
                     return .empty
                 }
@@ -269,7 +268,7 @@ extension Router {
             let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             closeButton.accessibilityIdentifier = "close_button"
-            let close = Action<(), (), NoError>() { _ in
+            let close = Action<(), (), Never>() { _ in
                 assignmentDetailsVC.dismiss(animated: true, completion: nil)
                 return .empty
             }
@@ -303,7 +302,7 @@ extension Router {
             let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             closeButton.accessibilityIdentifier = "close_button"
-            let close = Action<(), (), NoError>() {
+            let close = Action<(), (), Never>() {
                 calendarEventDetailsVC.dismiss(animated: true, completion: nil)
                 return .empty
             }
@@ -350,7 +349,7 @@ extension Router {
             let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             closeButton.accessibilityIdentifier = "close_button"
-            let close = Action<(),(), NoError>() { _ in
+            let close = Action<(),(), Never>() { _ in
                 announcementVC.dismiss(animated: true, completion: nil)
                 return .empty
             }
@@ -371,7 +370,7 @@ extension Router {
             let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             closeButton.accessibilityIdentifier = "close_button"
-            let close = Action<(),(), NoError>() { _ in
+            let close = Action<(),(), Never>() { _ in
                 announcementVC.dismiss(animated: true, completion: nil)
                 return .empty
             }

@@ -18,7 +18,6 @@
 
 import UIKit
 import ReactiveSwift
-import Result
 
 public protocol DocumentMenuController: UIDocumentMenuDelegate, UIDocumentPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var documentMenuViewModel: DocumentMenuViewModelType { get }

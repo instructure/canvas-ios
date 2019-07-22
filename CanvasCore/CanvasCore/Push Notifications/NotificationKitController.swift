@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import Result
 
 extension String {
     init(deviceToken: Data) {

@@ -19,7 +19,6 @@
 import Foundation
 import CoreData
 import ReactiveSwift
-import Result
 
 /** Allows you to track and lookup a set of objects from a FetchedCollection
  by some uniqueID
@@ -72,10 +71,10 @@ open class ManagedObjectsObserver<M: NSManagedObject, ID: Hashable> {
         countProperty.value = collection.count
     }
     
-    open func producer(_ id: ID) -> SignalProducer<M?, NoError> {
-        return SignalProducer<ID, NoError>(value: id)
+    open func producer(_ id: ID) -> SignalProducer<M?, Never> {
+        return SignalProducer<ID, Never>(value: id)
             .observe(on: scheduler)
-            .flatMap(.latest) { [weak self] (id: ID) -> SignalProducer<M?, NoError> in
+            .flatMap(.latest) { [weak self] (id: ID) -> SignalProducer<M?, Never> in
                 guard let me = self else { return .empty }
                 if let property = me.propertiesByID[id] {
                     return property.producer
@@ -93,7 +92,7 @@ open class ManagedObjectsObserver<M: NSManagedObject, ID: Hashable> {
     
     fileprivate let countProperty = MutableProperty<Int>(0)
     
-    open var count: SignalProducer<Int, NoError> {
+    open var count: SignalProducer<Int, Never> {
         return countProperty.producer.uniqueValues()
     }
 }

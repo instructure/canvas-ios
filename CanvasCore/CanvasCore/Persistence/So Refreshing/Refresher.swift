@@ -17,10 +17,7 @@
 //
 
 import UIKit
-
-
 import ReactiveSwift
-import Result
 
 public protocol Refresher: class {
     var cacheKey: String { get }
@@ -34,8 +31,8 @@ public protocol Refresher: class {
     func safeCopy() -> Refresher?
 
     var isRefreshing: Bool { get }
-    var refreshingBegan: Signal<(), NoError> { get set }
-    var refreshingCompleted: Signal<NSError?, NoError> { get set }
+    var refreshingBegan: Signal<(), Never> { get set }
+    var refreshingCompleted: Signal<NSError?, Never> { get set }
 
     var refreshControl: UIRefreshControl { get }
 }
@@ -53,10 +50,10 @@ open class SignalProducerRefresher<Value>: NSObject, Refresher {
     @objc let ttl: TimeInterval
 
     @objc fileprivate (set) open var isRefreshing: Bool = false
-    open var refreshingBegan: Signal<(), NoError>
-    var refreshingBeganObserver: Signal<(), NoError>.Observer
-    open var refreshingCompleted: Signal<NSError?, NoError>
-    var refreshingCompletedObserver: Signal<NSError?, NoError>.Observer
+    open var refreshingBegan: Signal<(), Never>
+    var refreshingBeganObserver: Signal<(), Never>.Observer
+    open var refreshingCompleted: Signal<NSError?, Never>
+    var refreshingCompletedObserver: Signal<NSError?, Never>.Observer
 
     @objc open var shouldRefresh: Bool {
         if let scope = scope, scope.shouldRefreshCache(cacheKey, ttl: ttl) {
@@ -76,11 +73,11 @@ open class SignalProducerRefresher<Value>: NSObject, Refresher {
         self.ttl = ttl
         self.signalProducer = refreshSignalProducer
 
-        let (beganSignal, beganObserver) = Signal<(), NoError>.pipe()
+        let (beganSignal, beganObserver) = Signal<(), Never>.pipe()
         self.refreshingBegan = beganSignal.observe(on: UIScheduler())
         self.refreshingBeganObserver = beganObserver
 
-        let (completedSignal, completedObserver) = Signal<NSError?, NoError>.pipe()
+        let (completedSignal, completedObserver) = Signal<NSError?, Never>.pipe()
         self.refreshingCompleted = completedSignal.observe(on: UIScheduler())
         self.refreshingCompletedObserver = completedObserver
 

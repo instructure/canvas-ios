@@ -20,7 +20,6 @@ import Foundation
 import Photos
 import ReactiveSwift
 import MobileCoreServices
-import Result
 
 private let dataErrorMessage = NSLocalizedString("Something went wrong. Check the file format and try again.",
                                          tableName: "Localizable",
@@ -85,7 +84,7 @@ public class Asset: Uploadable {
                     let data = data,
                     let path = info?["PHImageFileSandboxExtensionTokenKey"] as? String
                     else {
-                        handler(Result(error: dataError))
+                        handler(.failure(dataError))
                         return
                 }
 
@@ -95,18 +94,18 @@ public class Asset: Uploadable {
 
                 requestImage(for: asset) { result in
                     guard let image = result.value else {
-                        handler(Result(error: result.error ?? dataError))
+                        handler(.failure(result.error ?? dataError))
                         return
                     }
 
                     let asset = Asset(name: name, data: data, contentType: contentType, image: image)
-                    handler(Result(value: asset))
+                    handler(.success(asset))
                 }
             }
         case .video:
             manager.requestAVAsset(forVideo: asset, options: nil) { avAsset, audioMix, info in
                 guard let videoAsset = avAsset as? AVURLAsset, let data = try? Data(contentsOf: videoAsset.url) else {
-                    handler(Result(error: dataError))
+                    handler(.failure(dataError))
                     return
                 }
 
@@ -115,16 +114,16 @@ public class Asset: Uploadable {
 
                 requestImage(for: asset) { result in
                     guard let image = result.value else {
-                        handler(Result(error: result.error ?? dataError))
+                        handler(.failure(result.error ?? dataError))
                         return
                     }
 
                     let asset = Asset(name: name, data: data, contentType: contentType, image: image)
-                    handler(Result(value: asset))
+                    handler(.success(asset))
                 }
             }
         default:
-            handler(Result(error: dataError))
+            handler(.failure(dataError))
             break
         }
     }
@@ -135,10 +134,10 @@ public class Asset: Uploadable {
         options.isSynchronous = true
         PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: PHImageContentMode.aspectFill, options: options) { image, _ in
             guard let image = image else {
-                handler(Result(error: dataError))
+                handler(.failure(dataError))
                 return
             }
-            handler(Result(value: image))
+            handler(.success(image))
         }
     }
 

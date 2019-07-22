@@ -19,7 +19,6 @@
 import CanvasCore
 import ReactiveSwift
 import ReactiveCocoa
-import Result
 import Cartography
 import TechDebt
 

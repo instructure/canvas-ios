@@ -17,7 +17,6 @@
 //
 
 import UIKit
-import Result
 import ReactiveSwift
 
 private struct AssociationKey {

@@ -20,7 +20,6 @@ import WebKit
 import CanvasKeymaster
 import CanvasKit
 import ReactiveSwift
-import Result
 import Core
 
 public class CanvasWebView: WKWebView {
