@@ -435,9 +435,6 @@
 /* No comment provided by engineer. */
 "Open in…" = "Agor yn...";
 
-/* Accessibility hint for the profile button */
-"Opens profile" = "Yn agor proffil";
-
 /* Orange course color button */
 "Orange" = "Oren";
 
@@ -480,9 +477,6 @@
 /* Mark student present
    Student is present in class */
 "Present" = "Presennol";
-
-/* Accessibility label for the profile button */
-"Profile" = "Proffil";
 
 /* Purple course color button */
 "Purple" = "Porffor";

@@ -114,13 +114,14 @@ class ArcSubmissionPresenterTests: PersistenceTestCase {
         )
         api.mock(request, value: nil, response: nil, error: NSError.instructureError("doh"))
         let form: [String: Any] = [
+            "hello": "i am a submit body that can be ignored",
             "content_items": "{ \"@graph\": [ {\"oops\": \"https://arc.com/media/1\"} ] }",
         ]
-        let expectation = XCTestExpectation(description: "submit form")
-        presenter.submit(form: form) { error in
-            XCTAssertNotNil(error)
+        let expectation = XCTestExpectation(description: "submit form callback should not be called if form body is unrecognized")
+        expectation.isInverted = true
+        presenter.submit(form: form) { _ in
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 0.2)
     }
 }
