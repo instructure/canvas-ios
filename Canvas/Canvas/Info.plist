@@ -6,8 +6,6 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>Student</string>
-	<key>CFBundleSpokenName</key>
-	<string>Canvas Student</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
@@ -22,6 +20,8 @@
 	<string>6.4</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleSpokenName</key>
+	<string>Canvas Student</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -107,7 +107,7 @@
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiresFullScreen</key>
-	<true/>
+	<false/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>

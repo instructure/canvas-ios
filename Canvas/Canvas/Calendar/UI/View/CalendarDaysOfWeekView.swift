@@ -30,12 +30,7 @@ class CalendarDaysOfWeekView : UIView {
     }()
     
     fileprivate lazy var symbols: [String] = {
-        if UIDevice.current.orientation.isPortrait &&
-            UIDevice.current.userInterfaceIdiom == .phone {
-            return self.dateFormatter.veryShortStandaloneWeekdaySymbols
-        }
-        
-        return self.dateFormatter.shortStandaloneWeekdaySymbols
+        return dateFormatter.shortStandaloneWeekdaySymbols
     }()
     
     override init(frame: CGRect) {
@@ -75,15 +70,22 @@ class CalendarDaysOfWeekView : UIView {
         ])
         initLabels()
     }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        for (index, view) in stack.arrangedSubviews.enumerated() {
+            if let label = view as? UILabel {
+                label.text = symbols[index]
+            }
+        }
+    }
     
     @objc func initLabels() {
-        
-        for (index, weekdaySymbol) in symbols.enumerated() {
+        for (index, _) in symbols.enumerated() {
             let weekdayLabel = UILabel()
             weekdayLabel.textAlignment = NSTextAlignment.center
             weekdayLabel.backgroundColor = UIColor.clear
             weekdayLabel.font = UIFont.preferredFont(forTextStyle: .title3).noLargerThan(32.0)
-            weekdayLabel.text = weekdaySymbol
             weekdayLabel.adjustsFontSizeToFitWidth = true
             if index != 0 && index != 6 {
                 weekdayLabel.textColor = UIColor.black
@@ -91,6 +93,7 @@ class CalendarDaysOfWeekView : UIView {
                 weekdayLabel.textColor = UIColor.calendarDayOffTextColor
             }
             stack.addArrangedSubview(weekdayLabel)
+            setNeedsLayout()
         }
     }
     

@@ -133,13 +133,7 @@ class CalendarWeekView : UIView {
     }
     
     @objc func textForIndex(_ index: Int) -> String {
-        
-        if isPhone() {
-            return veryShortStandaloneWeekdaySymbols[index]
-        } else {
-            let weekdaySymbols = isPortrait() ? shortStandaloneWeekdaySymbols : standaloneWeekdaySymbols
-            return weekdaySymbols[index]
-        }
+        return shortStandaloneWeekdaySymbols[index]
     }
     
     @objc func dateForIndex(_ index: Int) -> Date {
