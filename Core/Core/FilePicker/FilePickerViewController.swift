@@ -222,6 +222,7 @@ extension FilePickerViewController: UITabBarDelegate {
             libraryController.delegate = self
             libraryController.sourceType = .photoLibrary
             libraryController.mediaTypes = [kUTTypeMovie as String, kUTTypeImage as String]
+            libraryController.modalPresentationStyle = .overCurrentContext
             present(libraryController, animated: true, completion: nil)
         case .files:
             let documentTypes = utis.map { $0.rawValue }
