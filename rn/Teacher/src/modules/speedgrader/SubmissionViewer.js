@@ -208,6 +208,19 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
           />
           break
         case 'online_quiz':
+          body = <AuthenticatedWebView
+            style={styles.webContainer}
+            source={{ uri: submission.preview_url }}
+            contentInset={{ bottom: this.props.drawerInset }}
+            openLinksInSafari={false}
+            onNavigation={(url) => {
+              this.props.navigator.show(url, {
+                deepLink: true,
+                modal: true,
+              })
+            }}
+          />
+          break
         case 'discussion_topic':
         case 'basic_lti_launch':
         case 'external_tool':

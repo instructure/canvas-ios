@@ -18,6 +18,7 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import { shallow } from 'enzyme'
 import React from 'react'
 import SubmissionViewer from '../SubmissionViewer'
 import renderer from 'react-test-renderer'
@@ -27,6 +28,7 @@ import explore from '../../../../test/helpers/explore'
 const templates = {
   ...require('../../../__templates__/submissions'),
   ...require('../../../__templates__/session'),
+  ...require('../../../__templates__/helm'),
 }
 
 jest
@@ -48,6 +50,10 @@ let defaultSub = {
 }
 
 describe('SubmissionViewer', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('renders an online_text_entry submission', () => {
     let sub = {
       ...defaultSub,
@@ -383,5 +389,33 @@ describe('SubmissionViewer', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('navigates to urls in quizzes', () => {
+    let sub = {
+      ...defaultSub,
+      submission: templates.submissionHistory([{
+        submission_type: 'online_quiz',
+        preview_url: 'https://canvas.instructure.com/courses/1/quizzes/2/preview',
+      }]),
+    }
+    let props = {
+      selectedIndex: null,
+      selectedAttachmentIndex: 0,
+      assignmentSubmissionTypes: ['online_quiz'],
+      submissionProps: sub,
+      isCurrentStudent: true,
+      size: { width: 375, height: 667 },
+      isModeratedGrading: false,
+      drawerInset: 0,
+      navigator: templates.navigator(),
+    }
+    let tree = shallow(<SubmissionViewer {...props} />)
+    let webView = tree.find('AuthenticatedWebView')
+    webView.simulate('Navigation', '/files/1/download')
+    expect(props.navigator.show).toHaveBeenCalledWith('/files/1/download', {
+      deepLink: true,
+      modal: true,
+    })
   })
 })

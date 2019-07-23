@@ -51,6 +51,7 @@ export type Props = {
   navigator: Navigator,
   contentInset?: { top?: number, left?: number, bottom?: number, right?: number },
   onFinishedLoading?: () => void,
+  onNavigation?: (url: string) => void,
   onMessage?: (message: Message) => void,
   onError?: (error: any) => void,
   automaticallyAdjustContentInsets?: boolean,
@@ -82,11 +83,16 @@ export default class CanvasWebView extends Component<Props, State> {
   }
 
   onNavigation = async (event: { nativeEvent: { url: string } }) => {
+    let url = event.nativeEvent.url
+    if (this.props.onNavigation) {
+      this.props.onNavigation(url)
+      return
+    }
     if (this.props.openLinksInSafari) {
-      let result = await canvas.getAuthenticatedSessionURL(event.nativeEvent.url)
+      let result = await canvas.getAuthenticatedSessionURL(url)
       SFSafariViewController.open(result.data.session_url)
     } else {
-      this.props.navigator.show(event.nativeEvent.url, {
+      this.props.navigator.show(url, {
         deepLink: true,
       })
     }
