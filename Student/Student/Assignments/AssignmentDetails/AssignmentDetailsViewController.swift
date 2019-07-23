@@ -175,6 +175,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
 
+        fileSubmissionButton?.isHidden = true
         if let onlineUploadState = presenter?.onlineUploadState {
             gradeSection?.isHidden = false
             gradeCellDivider?.isHidden = false
