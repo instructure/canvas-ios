@@ -214,6 +214,7 @@ class RubricViewController: UIViewController {
         let descriptionViewController = RubricLongDescriptionViewController(longDescription: model.longDescription, title: model.title)
         descriptionViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: descriptionViewController)
+        navigationController.modalPresentationStyle = .formSheet
         self.present(navigationController, animated: true, completion: nil)
     }
 }
