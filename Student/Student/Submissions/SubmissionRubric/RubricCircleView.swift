@@ -105,6 +105,7 @@ class RubricCircleView: UIView {
             }
             let button = DynamicButton(frame: CGRect(x: center.x, y: center.y, width: circleWidth, height: RubricCircleView.w))
             button.tag = i
+            button.isExclusiveTouch = true
             button.accessibilityIdentifier = "RubricCell.RatingButton.\(rubricID)-\(r)"
             button.addTarget(self, action: #selector(actionButtonClicked(sender:)), for: .primaryActionTriggered)
             button.layer.cornerRadius = floor( RubricCircleView.w / 2 )
