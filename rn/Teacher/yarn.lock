@@ -4290,10 +4290,10 @@ https-proxy-agent@^2.2.0, https-proxy-agent@^2.2.1:
     agent-base "^4.3.0"
     debug "^3.1.0"
 
-hyntax@^1.0.4:
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/hyntax/-/hyntax-1.0.13.tgz#47f7001e68c091e716f817950f3fe6ebad27386a"
-  integrity sha512-LUJEGDl4MfFPEgKqI6WV0pqWFNwf1Y56Pd1bSfXY5OXrNhtLyWmbagUZAvB1IgIts6lVcyjvutUmUqozQhoehg==
+hyntax@1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/hyntax/-/hyntax-1.0.7.tgz#c9cbff1e39a3bc18eb13edc2d4cdd576eac88a01"
+  integrity sha512-1EpqTjMgpAgRvuvhP+zOODyuErJKnoeByh0v5TWihUhGaIpfPRNcJInQf8QTECTNlLQOkZ7POSfh2Lo478G1cQ==
 
 hyperlinker@^1.0.0:
   version "1.0.0"
