@@ -55,6 +55,16 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         presenter?.viewIsReady()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter?.viewDidAppear()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        presenter?.viewDidDisappear()
+    }
+
     func reload() {
         guard let presenter = presenter, let assignment = presenter.currentAssignment else {
             return
