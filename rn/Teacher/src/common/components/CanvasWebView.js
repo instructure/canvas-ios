@@ -51,6 +51,7 @@ export type Props = {
   navigator: Navigator,
   contentInset?: { top?: number, left?: number, bottom?: number, right?: number },
   onFinishedLoading?: () => void,
+  onNavigation?: (url: string) => void,
   onMessage?: (message: Message) => void,
   onError?: (error: any) => void,
   automaticallyAdjustContentInsets?: boolean,
