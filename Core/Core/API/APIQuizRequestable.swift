@@ -47,7 +47,6 @@ public struct GetQuizRequest: APIRequestable {
 public struct GetQuizSubmissionRequest: APIRequestable {
     public struct Response: Codable {
         let quiz_submissions: [APIQuizSubmission]
-        let quizzes: [APIQuiz] // include[]=quiz
     }
 
     let courseID: String
@@ -57,6 +56,4 @@ public struct GetQuizSubmissionRequest: APIRequestable {
         let context = ContextModel(.course, id: courseID)
         return "\(context.pathComponent)/quizzes/\(quizID)/submission"
     }
-
-    public let query: [APIQueryItem] = [ .array("include", [ "quiz" ]) ]
 }

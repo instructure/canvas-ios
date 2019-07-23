@@ -20,34 +20,33 @@ import Foundation
 import XCTest
 @testable import Core
 
-class GetQuizTest: CoreTestCase {
+class GetQuizSubmissionTest: CoreTestCase {
     let courseID = "1"
     let quizID = "2"
 
     func testProperties() {
-        let useCase = GetQuiz(courseID: courseID, quizID: quizID)
-        XCTAssertEqual(useCase.cacheKey, "get-courses-1-quizzes-2")
+        let useCase = GetQuizSubmission(courseID: courseID, quizID: quizID)
+        XCTAssertEqual(useCase.cacheKey, "get-courses-1-quizzes-2-submission")
         XCTAssertEqual(useCase.request.courseID, courseID)
         XCTAssertEqual(useCase.request.quizID, quizID)
-        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(Quiz.id), equals: quizID))
+        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(QuizSubmission.quizID), equals: quizID))
     }
 
     func testWriteNothing() {
-        GetQuiz(courseID: courseID, quizID: quizID).write(response: nil, urlResponse: nil, to: databaseClient)
-        let quizzes: [Quiz] = databaseClient.fetch()
-        XCTAssertEqual(quizzes.count, 0)
+        GetQuizSubmission(courseID: courseID, quizID: quizID).write(response: nil, urlResponse: nil, to: databaseClient)
+        let submissions: [QuizSubmission] = databaseClient.fetch()
+        XCTAssertEqual(submissions.count, 0)
     }
 
     func testWrite() {
-        let quiz = APIQuiz.make(id: ID(stringLiteral: quizID))
-        QuizSubmission.make(from: .make(quiz_id: ID(stringLiteral: quizID)))
-        GetQuiz(courseID: courseID, quizID: quizID).write(response: quiz, urlResponse: nil, to: databaseClient)
+        Quiz.make(from: APIQuiz.make(id: ID(stringLiteral: quizID)), courseID: courseID)
+        let submission = APIQuizSubmission.make()
+        GetQuizSubmission(courseID: courseID, quizID: quizID).write(response: .init(quiz_submissions: [submission]), urlResponse: nil, to: databaseClient)
         XCTAssertNoThrow(try databaseClient.save())
-        let quizzes: [Quiz] = databaseClient.fetch()
-        XCTAssertEqual(quizzes.count, 1)
-        XCTAssertEqual(quizzes.first?.title, "What kind of pokemon are you?")
-        XCTAssertEqual(quizzes.first?.quizType, .survey)
-        XCTAssertEqual(quizzes.first?.htmlURL.path, "/courses/1/quizzes/123")
-        XCTAssertNotNil(quizzes.first?.submission)
+        let submissions: [QuizSubmission] = databaseClient.fetch()
+        XCTAssertEqual(submissions.count, 1)
+        XCTAssertEqual(submissions.first?.attempt, 1)
+        XCTAssertEqual(submissions.first?.workflowState, .untaken)
+        XCTAssertNotNil(submissions.first?.quiz)
     }
 }

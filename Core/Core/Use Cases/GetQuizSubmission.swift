@@ -19,8 +19,8 @@
 import CoreData
 import Foundation
 
-public class GetQuiz: APIUseCase {
-    public typealias Model = Quiz
+public class GetQuizSubmission: APIUseCase {
+    public typealias Model = QuizSubmission
 
     public let courseID: String
     public let quizID: String
@@ -31,21 +31,20 @@ public class GetQuiz: APIUseCase {
     }
 
     public var cacheKey: String? {
-        return "get-courses-\(courseID)-quizzes-\(quizID)"
+        return "get-courses-\(courseID)-quizzes-\(quizID)-submission"
     }
 
-    public var request: GetQuizRequest {
-        return GetQuizRequest(courseID: courseID, quizID: quizID)
+    public var request: GetQuizSubmissionRequest {
+        return GetQuizSubmissionRequest(courseID: courseID, quizID: quizID)
     }
 
     public var scope: Scope {
-        return .where(#keyPath(Quiz.id), equals: quizID)
+        return .where(#keyPath(QuizSubmission.quizID), equals: quizID)
     }
 
-    public func write(response: APIQuiz?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let item = response else { return }
-        let quiz = Quiz.save(item, in: client)
-        quiz.courseID = courseID
-        quiz.submission = client.first(where: #keyPath(QuizSubmission.quizID), equals: quizID)
+    public func write(response: GetQuizSubmissionRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let submissionItem = response?.quiz_submissions.first else { return }
+        let quiz: Quiz? = client.first(where: #keyPath(Quiz.id), equals: quizID)
+        quiz?.submission = QuizSubmission.save(submissionItem, in: client)
     }
 }
