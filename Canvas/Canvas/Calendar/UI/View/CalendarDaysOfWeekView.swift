@@ -70,22 +70,14 @@ class CalendarDaysOfWeekView : UIView {
         ])
         initLabels()
     }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        for (index, view) in stack.arrangedSubviews.enumerated() {
-            if let label = view as? UILabel {
-                label.text = symbols[index]
-            }
-        }
-    }
     
     @objc func initLabels() {
-        for (index, _) in symbols.enumerated() {
+        for (index, weekdaySymbol) in symbols.enumerated() {
             let weekdayLabel = UILabel()
             weekdayLabel.textAlignment = NSTextAlignment.center
             weekdayLabel.backgroundColor = UIColor.clear
             weekdayLabel.font = UIFont.preferredFont(forTextStyle: .title3).noLargerThan(32.0)
+            weekdayLabel.text = weekdaySymbol
             weekdayLabel.adjustsFontSizeToFitWidth = true
             if index != 0 && index != 6 {
                 weekdayLabel.textColor = UIColor.black
