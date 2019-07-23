@@ -20,6 +20,7 @@ import UIKit
 import CanvasCore
 import SafariServices
 import ReactiveSwift
+import Core
 
 class ModuleDetailsViewController: CanvasCore.TableViewController, PageViewEventViewControllerLoggingProtocol {
     @objc let session: Session

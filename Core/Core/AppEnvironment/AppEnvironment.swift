@@ -30,6 +30,7 @@ open class AppEnvironment {
     public var logger: LoggerProtocol
     public var router: RouterProtocol
     public var currentSession: KeychainEntry?
+    public var pageViewLogger: PageViewEventViewControllerLoggingProtocol = PresenterPageViewLogger()
 
     public init() {
         self.database = globalDatabase

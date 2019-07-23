@@ -20,6 +20,8 @@ import UIKit
 import ReactiveSwift
 import CanvasCore
 import TechDebt
+import Core
+import class CanvasCore.Tab
 
 extension Tab {
     @objc func routingURL(_ session: Session) -> URL? {

@@ -51,7 +51,7 @@ export type FeatureFlagName = 'favoriteGroups' |
 export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
   favoriteGroups: {},
   simpleDiscussionRenderer: {},
-  newStudentAssignmentView: {},
+  newStudentAssignmentView: { enabled: true },
   conferences: {},
 }
 
@@ -69,6 +69,10 @@ export function featureFlagEnabled (flagName: FeatureFlagName): boolean {
 
   let flag = featureFlags[flagName]
   if (!flag) {
+    return true
+  }
+
+  if (flag.enabled) {
     return true
   }
 

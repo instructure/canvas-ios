@@ -19,6 +19,7 @@
 import Foundation
 import ReactiveSwift
 import CanvasCore
+import Core
 
 func colorfulToDoViewModel(session: Session, toDoItem: Todo) -> ColorfulViewModel {
     struct DateFormatters {

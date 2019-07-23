@@ -38,13 +38,16 @@ open class FeatureFlags: NSObject {
     public class func featureFlagEnabled(_ flagName: FeatureFlagName) -> Bool {
         guard let baseURL = AppEnvironment.shared.currentSession?.baseURL.absoluteString else { return false }
         
-        if let featureFlag = featureFlags[flagName.rawValue] as? [String: [String: Any]] {
-            if let exemptions = featureFlag["exempt"] {
+        if let featureFlag = featureFlags[flagName.rawValue] as? [String: Any] {
+            if let exemptions = featureFlag["exempt"] as? [String: Any] {
                 // if the flag exists return whether or not the domain is listed in
                 // the exemptions
                 if let institutions = exemptions["domains"] as? [String] {
                     return institutions.contains(baseURL)
                 }
+            }
+            if let enabled = featureFlag["enabled"] as? Bool, enabled {
+                return true
             }
         } else {
             // if the flag doesn't exist then it must not be a feature flag

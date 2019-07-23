@@ -17,9 +17,8 @@
 //
 
 import Foundation
-import Core
 
-typealias PageViewEventDictionary = [String: String]
+public typealias PageViewEventDictionary = [String: String]
 
 public struct PageViewEvent: Codable {
     let eventName: String
@@ -27,9 +26,8 @@ public struct PageViewEvent: Codable {
     var attributes: PageViewEventDictionary
     let timestamp: Date
     let userID: String
-    let guid = UUID().uuidString
+    let guid: String = Foundation.UUID().uuidString
 
-    
     init(eventName: String, attributes: PageViewEventDictionary = [:], userID: String, timestamp: Date = Date(), eventDuration: TimeInterval = 0) {
         self.eventName = eventName
         self.eventDuration = eventDuration

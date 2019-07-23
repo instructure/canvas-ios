@@ -169,10 +169,6 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
     this.props.navigator.show('/feature-flags')
   }
 
-  pickLanguage = () => {
-    this.props.navigator.show('/language-picker')
-  }
-
   viewRouteHistory = () => {
     this.props.navigator.show('/route-history')
   }
@@ -261,8 +257,6 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
             <Row title='View Logs' disclosureIndicator onPress={this.viewLogs} />
             <RowSeparator />
             <Row title='View Feature Flags' disclosureIndicator onPress={this.viewFeatureFlags} />
-            <RowSeparator />
-            <Row title='Language Picker' disclosureIndicator onPress={this.pickLanguage} />
             <RowSeparator />
             <Row title='Manage Rating Request' disclosureIndicator onPress={this.manageRatingRequest} />
             <RowSeparator />

@@ -17,11 +17,33 @@
 //
 
 import XCTest
+@testable import Core
 import TestsFoundation
 
-class NotificationsListTests: CanvasUITests {
-    func testNotificationItemsDisplayed() {
-        TabBar.notificationsTab.tap()
-        app.find(labelContaining: "Assignment Created").waitToExist()
+class PresenterPageViewLoggerTests: CoreTestCase {
+
+    class MockPresenter: PageViewLoggerPresenterProtocol {
+        var internalEnv: AppEnvironment!
+        var env: AppEnvironment {
+            return internalEnv
+        }
+        var pageViewEventName: String = "PresenterPageViewLoggerTests"
+    }
+
+    var presenter: MockPresenter!
+    var mockLogger: MockPageViewLogger = MockPageViewLogger()
+
+    override func setUp() {
+        super.setUp()
+        environment.pageViewLogger = mockLogger
+        presenter = MockPresenter()
+        presenter.internalEnv = environment
+    }
+
+    func testPresenterLoggingProtocol() {
+        presenter.viewDidAppear()
+        presenter.viewDidDisappear()
+        XCTAssertEqual(mockLogger.eventName, presenter.pageViewEventName)
+
     }
 }

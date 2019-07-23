@@ -630,7 +630,7 @@
 "Graded discussion. %g points possible." = "Graded discussion. %g points possible.";
 
 /* Title for Grades view controller */
-"Grades" = "Grades";
+"Grades" = "Marks";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "Group conversation";
@@ -642,7 +642,7 @@
 "Help" = "Help";
 
 /* Accessibility label for toggling grades to hidden */
-"Hide Grades" = "Hide Grades";
+"Hide Grades" = "Hide Marks";
 
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "How do you like Canvas?";
@@ -1129,7 +1129,7 @@
 "Show file" = "Show file";
 
 /* Accessibility label for toggling grades to visible */
-"Show Grades" = "Show Grades";
+"Show Grades" = "Show Marks";
 
 /* title for quiz assignment submission button */
 "Show Quiz" = "Show Quiz";

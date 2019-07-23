@@ -17,11 +17,24 @@
 //
 
 import XCTest
-import TestsFoundation
 
-class NotificationsListTests: CanvasUITests {
-    func testNotificationItemsDisplayed() {
-        TabBar.notificationsTab.tap()
-        app.find(labelContaining: "Assignment Created").waitToExist()
+class StringExtensionTests: XCTestCase {
+
+    func testPopulatePathWithNilParams() {
+        let path = "https://localhost/foo"
+        let result = path.populatePathWithParams(nil)
+        XCTAssertNil(result)
+    }
+
+    func testPopulatePathWithParams() {
+        let path = "https://localhost/courses/:courseID/assignments/:assignmentID"
+        let result = path.populatePathWithParams(["courseID": "1", "assignmentID": "1"])
+        XCTAssertEqual(result, "/courses/1/assignments/1")
+    }
+
+    func testPruneApiVersionFromPath() {
+        let path = "/api/v1/courses/1/assignments/1"
+        let result = path.pruneApiVersionFromPath()
+        XCTAssertEqual(result, "/courses/1/assignments/1")
     }
 }

@@ -109,6 +109,7 @@ public struct PostPandataEventsTokenRequest: APIRequestable {
 }
 
 public struct PostPandataEventsRequest: APIRequestable {
+    public typealias Response = String
     public struct Body: Codable {
         let events: [APIPandataEvent]
     }

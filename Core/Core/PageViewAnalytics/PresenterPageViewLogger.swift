@@ -16,12 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+import Foundation
 
-class NotificationsListTests: CanvasUITests {
-    func testNotificationItemsDisplayed() {
-        TabBar.notificationsTab.tap()
-        app.find(labelContaining: "Assignment Created").waitToExist()
+class PresenterPageViewLogger: PageViewEventViewControllerLoggingProtocol {}
+
+public protocol PageViewLoggerPresenterProtocol {
+    var env: AppEnvironment { get }
+    var pageViewEventName: String { get }
+    var pageViewAttributes: [String: String]? { get }
+    func viewDidAppear()
+    func viewDidDisappear()
+}
+
+public extension PageViewLoggerPresenterProtocol {
+    var pageViewAttributes: [String: String]? {
+        return nil
+    }
+
+    func viewDidAppear() {
+        env.pageViewLogger.startTrackingTimeOnViewController()
+    }
+
+    func viewDidDisappear() {
+        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: pageViewEventName, attributes: pageViewAttributes ?? [:])
     }
 }
