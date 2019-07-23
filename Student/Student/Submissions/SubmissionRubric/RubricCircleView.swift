@@ -144,10 +144,14 @@ class RubricCircleView: UIView {
         }
     }
 
+    var isAnimating = false
     @objc func actionButtonClicked(sender: DynamicButton) {
+        if isAnimating { return }
+        isAnimating = true
         animateButtonClick(sender: sender) { [weak self] in
             guard let rubric = self?.rubric else { return }
             self?.buttonClickDelegate?.didClickRating(atIndex: sender.tag, rubric: rubric)
+            self?.isAnimating = false
         }
     }
 
@@ -169,7 +173,7 @@ class RubricCircleView: UIView {
             self.adjustButtonAppearance(showAsSelected: false, button: self.currentlySelectedButton)
         }
 
-        UIView.animate(withDuration: 0.2, delay: delay, usingSpringWithDamping: 0.25, initialSpringVelocity: 6.0, options: [.allowUserInteraction, .curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.2, delay: delay, usingSpringWithDamping: 0.25, initialSpringVelocity: 6.0, options: [.beginFromCurrentState, .curveEaseInOut], animations: {
             self.currentlySelectedButton?.transform = CGAffineTransform.identity
             buttonToAnimate?.transform = self.selectedButtonTransform
         }, completion: { _ in
