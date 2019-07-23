@@ -123,12 +123,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         // Routing from description
         descriptionView?.linkDelegate = self
 
-        // Debug background upload
-        #if DEBUG
-        let exit = UIBarButtonItem(title: "Exit", style: .plain, target: self, action: #selector(debugExit))
-        addNavigationButton(exit, side: .right)
-        #endif
-
         presenter?.viewIsReady()
     }
 
@@ -145,11 +139,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @objc
     func refresh(_ refreshControl: UIRefreshControl) {
         presenter?.refresh()
-    }
-
-    @objc
-    func debugExit() {
-        exit(EXIT_SUCCESS)
     }
 
     @IBAction
