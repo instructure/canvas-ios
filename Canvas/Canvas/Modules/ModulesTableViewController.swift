@@ -23,9 +23,11 @@ import class CanvasCore.Module
 
 class ModulesTableViewController: FetchedTableViewController<Module>, PageViewEventViewControllerLoggingProtocol {
     @objc let courseID: String
+    let session: Session
     @objc let route: (UIViewController, URL) -> Void
 
     @objc init(session: Session, courseID: String, route: @escaping (UIViewController, URL) -> Void) throws {
+        self.session = session
         self.courseID = courseID
         self.route = route
         super.init()
@@ -60,7 +62,8 @@ class ModulesTableViewController: FetchedTableViewController<Module>, PageViewEv
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         CanvasAnalytics.logEvent("module_item_selected")
         let module = collection[indexPath]
-        let url = URL(string: "\(ContextID(id: courseID, context: .course).htmlPath)/modules/\(module.id)")!
-        route(self, url)
+        if let viewController = try? ModuleDetailsViewController(session: session, courseID: courseID, moduleID: module.id, route: route) {
+            show(viewController, sender: self)
+        }
     }
 }

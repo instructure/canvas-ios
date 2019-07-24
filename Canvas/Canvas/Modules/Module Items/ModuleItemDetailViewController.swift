@@ -133,22 +133,16 @@ class ModuleItemDetailViewController: UIViewController {
         view.backgroundColor = .white
         rac_title <~ viewModel.title
         rightBarButtons = navigationItem.rightBarButtonItems
-
-        /// empty message
         emptyLabel.isHidden = true
-
-        /// toolbar
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.items = [previousButton, space, nextButton]
-
-        /// embed item view controller
         SignalProducer.combineLatest(viewModel.moduleItemID.producer, viewModel.markAsDoneAction.isEnabled.producer, viewModel.embeddedViewController)
             .map { _, _, embeddedViewController in embeddedViewController }
             .combinePrevious(nil)
             .observe(on: UIScheduler())
-            .startWithValues(embed)
-
-        /// handle errors
+            .startWithValues { [weak self] old, new in
+                self?.embed(old, new)
+            }
         viewModel.errorSignal.observeValues { [weak self] error in
             ErrorReporter.reportError(error, from: self)
         }
