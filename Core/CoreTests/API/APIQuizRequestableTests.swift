@@ -28,7 +28,7 @@ class APIQuizRequestableTests: XCTestCase {
         XCTAssertEqual(GetQuizRequest(courseID: "71", quizID: "2").path, "courses/71/quizzes/2")
     }
 
-    func testGetQuizSubmissionRequest() {
-        XCTAssertEqual(GetQuizSubmissionRequest(courseID: "45", quizID: "17").path, "courses/45/quizzes/17/submission")
+    func testGetQuizSubmissionsRequest() {
+        XCTAssertEqual(GetQuizSubmissionsRequest(courseID: "45", quizID: "17").path, "courses/45/quizzes/17/submissions")
     }
 }

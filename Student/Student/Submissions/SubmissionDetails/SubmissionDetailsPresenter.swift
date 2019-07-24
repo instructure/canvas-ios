@@ -62,6 +62,7 @@ class SubmissionDetailsPresenter {
     }
 
     var quizzes: Store<GetQuiz>?
+    var quizSubmissions: Store<GetQuizSubmissions>?
 
     var selectedAttempt: Int = 0
     var selectedFileID: String?
@@ -94,6 +95,10 @@ class SubmissionDetailsPresenter {
                 self?.update()
             } }
             quizzes?.refresh()
+            quizSubmissions = assignment.first?.quizID.flatMap { quizID in env.subscribe(GetQuizSubmissions(courseID: context.id, quizID: quizID)) { [weak self] in
+                self?.update()
+            } }
+            quizSubmissions?.refresh()
         }
 
         let assignment = self.assignment.first

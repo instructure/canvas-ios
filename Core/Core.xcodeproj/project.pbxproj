@@ -283,8 +283,8 @@
 		7DCF2040216D5EF1003AF358 /* APIQuizRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF203F216D5EF1003AF358 /* APIQuizRequestableTests.swift */; };
 		7DCF2044216D622B003AF358 /* GetQuizzes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2043216D622B003AF358 /* GetQuizzes.swift */; };
 		7DCF2046216D652C003AF358 /* GetQuizzesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2045216D652C003AF358 /* GetQuizzesTests.swift */; };
-		7DD371BF22E7B20900C2D0F7 /* GetQuizSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD371BE22E7B20900C2D0F7 /* GetQuizSubmission.swift */; };
-		7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD371C022E7B39800C2D0F7 /* GetQuizSubmissionTests.swift */; };
+		7DD371BF22E7B20900C2D0F7 /* GetQuizSubmissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD371BE22E7B20900C2D0F7 /* GetQuizSubmissions.swift */; };
+		7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD371C022E7B39800C2D0F7 /* GetQuizSubmissionsTests.swift */; };
 		7DD6947B21949DC900BA4984 /* IconViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6947A21949DC900BA4984 /* IconViewTests.swift */; };
 		7DD694812194CE8C00BA4984 /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD694802194CE8C00BA4984 /* DateExtensionsTests.swift */; };
 		7DD6948521951FD700BA4984 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6948421951FD700BA4984 /* UIViewExtensions.swift */; };
@@ -974,8 +974,8 @@
 		7DCF203F216D5EF1003AF358 /* APIQuizRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuizRequestableTests.swift; sourceTree = "<group>"; };
 		7DCF2043216D622B003AF358 /* GetQuizzes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuizzes.swift; sourceTree = "<group>"; };
 		7DCF2045216D652C003AF358 /* GetQuizzesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuizzesTests.swift; sourceTree = "<group>"; };
-		7DD371BE22E7B20900C2D0F7 /* GetQuizSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuizSubmission.swift; sourceTree = "<group>"; };
-		7DD371C022E7B39800C2D0F7 /* GetQuizSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuizSubmissionTests.swift; sourceTree = "<group>"; };
+		7DD371BE22E7B20900C2D0F7 /* GetQuizSubmissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuizSubmissions.swift; sourceTree = "<group>"; };
+		7DD371C022E7B39800C2D0F7 /* GetQuizSubmissionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuizSubmissionsTests.swift; sourceTree = "<group>"; };
 		7DD6947A21949DC900BA4984 /* IconViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconViewTests.swift; sourceTree = "<group>"; };
 		7DD694802194CE8C00BA4984 /* DateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionsTests.swift; sourceTree = "<group>"; };
 		7DD6948421951FD700BA4984 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
@@ -2074,7 +2074,7 @@
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
 				B15CA270221DE1C80014FB02 /* GetModules.swift */,
 				7D819FFE228DB48C00C61EDD /* GetQuiz.swift */,
-				7DD371BE22E7B20900C2D0F7 /* GetQuizSubmission.swift */,
+				7DD371BE22E7B20900C2D0F7 /* GetQuizSubmissions.swift */,
 				7DCF2043216D622B003AF358 /* GetQuizzes.swift */,
 				7D5AA3C52294AF9400438667 /* GetSSOLogin.swift */,
 				9FCD79D72188DFD00054293A /* GetSubmission.swift */,
@@ -2176,7 +2176,7 @@
 				9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */,
 				B15CA272221DE1FA0014FB02 /* GetModulesTests.swift */,
 				7D81A000228DC1F000C61EDD /* GetQuizTests.swift */,
-				7DD371C022E7B39800C2D0F7 /* GetQuizSubmissionTests.swift */,
+				7DD371C022E7B39800C2D0F7 /* GetQuizSubmissionsTests.swift */,
 				7DCF2045216D652C003AF358 /* GetQuizzesTests.swift */,
 				7D5AA3C722959D5D00438667 /* GetSSOLoginTests.swift */,
 				7D5C871E2239A45300D99651 /* GetSubmissionCommentsTests.swift */,
@@ -2661,7 +2661,7 @@
 				3BE2C760218CB50B004B8E5E /* ColoredNavViewProtocol.swift in Sources */,
 				7DD694872195F76C00BA4984 /* DocViewerViewController.swift in Sources */,
 				B195DC49213215A300797FE4 /* NSPredicateExtensions.swift in Sources */,
-				7DD371BF22E7B20900C2D0F7 /* GetQuizSubmission.swift in Sources */,
+				7DD371BF22E7B20900C2D0F7 /* GetQuizSubmissions.swift in Sources */,
 				B1E789A421B0EC1A0087FE4A /* LogEvent.swift in Sources */,
 				7DCF1EBA216BC8C6003AF358 /* TabVisibility.swift in Sources */,
 				7DA20E8F21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift in Sources */,
@@ -2958,7 +2958,7 @@
 				3B635B37225CE59D001F353D /* GetCalendarEventsTests.swift in Sources */,
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
 				7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */,
-				7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionTests.swift in Sources */,
+				7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionsTests.swift in Sources */,
 				7D2DC2F42199EC93008FE29A /* SecretTests.swift in Sources */,
 				7DCF1EA8216BC126003AF358 /* CourseWorkflowStateTests.swift in Sources */,
 				B1E789B521B1AD890087FE4A /* LoggerTests.swift in Sources */,

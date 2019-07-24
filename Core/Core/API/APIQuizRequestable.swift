@@ -43,8 +43,8 @@ public struct GetQuizRequest: APIRequestable {
     }
 }
 
-// https://canvas.instructure.com/doc/api/quiz_submissions.html#method.quizzes/quiz_submissions_api.submission
-public struct GetQuizSubmissionRequest: APIRequestable {
+// https://canvas.instructure.com/doc/api/quiz_submissions.html#method.quizzes/quiz_submissions_api.index
+public struct GetQuizSubmissionsRequest: APIRequestable {
     public struct Response: Codable {
         let quiz_submissions: [APIQuizSubmission]
     }
@@ -54,6 +54,6 @@ public struct GetQuizSubmissionRequest: APIRequestable {
 
     public var path: String {
         let context = ContextModel(.course, id: courseID)
-        return "\(context.pathComponent)/quizzes/\(quizID)/submission"
+        return "\(context.pathComponent)/quizzes/\(quizID)/submissions"
     }
 }

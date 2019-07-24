@@ -20,32 +20,36 @@ import Foundation
 import XCTest
 @testable import Core
 
-class GetQuizSubmissionTest: CoreTestCase {
+class GetQuizSubmissionsTest: CoreTestCase {
     let courseID = "1"
     let quizID = "2"
 
     func testProperties() {
-        let useCase = GetQuizSubmission(courseID: courseID, quizID: quizID)
-        XCTAssertEqual(useCase.cacheKey, "get-courses-1-quizzes-2-submission")
+        let useCase = GetQuizSubmissions(courseID: courseID, quizID: quizID)
+        XCTAssertEqual(useCase.cacheKey, "get-courses-1-quizzes-2-submissions")
         XCTAssertEqual(useCase.request.courseID, courseID)
         XCTAssertEqual(useCase.request.quizID, quizID)
-        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(QuizSubmission.quizID), equals: quizID))
+        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.attempt), ascending: false))
     }
 
     func testWriteNothing() {
-        GetQuizSubmission(courseID: courseID, quizID: quizID).write(response: nil, urlResponse: nil, to: databaseClient)
+        GetQuizSubmissions(courseID: courseID, quizID: quizID).write(response: nil, urlResponse: nil, to: databaseClient)
         let submissions: [QuizSubmission] = databaseClient.fetch()
         XCTAssertEqual(submissions.count, 0)
     }
 
     func testWrite() {
-        Quiz.make(from: APIQuiz.make(id: ID(stringLiteral: quizID)), courseID: courseID)
-        let submission = APIQuizSubmission.make()
-        GetQuizSubmission(courseID: courseID, quizID: quizID).write(response: .init(quiz_submissions: [submission]), urlResponse: nil, to: databaseClient)
+        let id = ID(stringLiteral: quizID)
+        Quiz.make(from: APIQuiz.make(id: id), courseID: courseID)
+        let useCase = GetQuizSubmissions(courseID: courseID, quizID: quizID)
+        useCase.write(response: .init(quiz_submissions: [
+            APIQuizSubmission.make(quiz_id: id),
+            APIQuizSubmission.make(attempt: 2, id: "2", quiz_id: id),
+        ]), urlResponse: nil, to: databaseClient)
         XCTAssertNoThrow(try databaseClient.save())
-        let submissions: [QuizSubmission] = databaseClient.fetch()
-        XCTAssertEqual(submissions.count, 1)
-        XCTAssertEqual(submissions.first?.attempt, 1)
+        let submissions: [QuizSubmission] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+        XCTAssertEqual(submissions.count, 2)
+        XCTAssertEqual(submissions.first?.attempt, 2)
         XCTAssertEqual(submissions.first?.workflowState, .untaken)
         XCTAssertNotNil(submissions.first?.quiz)
     }

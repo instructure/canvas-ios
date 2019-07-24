@@ -59,7 +59,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     var quizzes: Store<GetQuiz>?
-    var quizSubmissions: Store<GetQuizSubmission>?
+    var quizSubmissions: Store<GetQuizSubmissions>?
 
     let env: AppEnvironment
     weak var view: AssignmentDetailsViewProtocol?
@@ -113,7 +113,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
                 self?.update()
             } }
             quizzes?.refresh()
-            quizSubmissions = assignment?.quizID.flatMap { quizID in env.subscribe(GetQuizSubmission(courseID: courseID, quizID: quizID)) { [weak self] in
+            quizSubmissions = assignment?.quizID.flatMap { quizID in env.subscribe(GetQuizSubmissions(courseID: courseID, quizID: quizID)) { [weak self] in
                 self?.update()
             } }
             quizSubmissions?.refresh()
