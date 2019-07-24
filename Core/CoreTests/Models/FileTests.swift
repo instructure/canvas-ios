@@ -32,9 +32,10 @@ class FileTests: CoreTestCase {
 
     func testIcon() {
         XCTAssertEqual(File.make(from: .make(mime_class: "audio")).icon, UIImage.icon(.audio))
-        XCTAssertEqual(File.make(from: .make(mime_class: "video")).icon, UIImage.icon(.video))
-        XCTAssertEqual(File.make(from: .make(mime_class: "pdf")).icon, UIImage.icon(.pdf))
         XCTAssertEqual(File.make(from: .make(mime_class: "doc")).icon, UIImage.icon(.document))
+        XCTAssertEqual(File.make(from: .make(mime_class: "image")).icon, UIImage.icon(.image))
+        XCTAssertEqual(File.make(from: .make(mime_class: "pdf")).icon, UIImage.icon(.pdf))
+        XCTAssertEqual(File.make(from: .make(mime_class: "video")).icon, UIImage.icon(.video))
         XCTAssertEqual(File.make(from: .make(mime_class: "bogus")).icon, UIImage.icon(.document))
     }
 

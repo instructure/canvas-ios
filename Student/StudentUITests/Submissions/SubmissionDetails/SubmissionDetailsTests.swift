@@ -28,8 +28,8 @@ class SubmissionDetailsTests: StudentUITestCase {
         return course
     }()
 
-    func mockAssignment(_ assignment: APIAssignment, include: [GetAssignmentRequest.GetAssignmentInclude] = []) -> APIAssignment {
-        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: include), value: assignment)
+    func mockAssignment(_ assignment: APIAssignment) -> APIAssignment {
+        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
         return assignment
     }
 
@@ -116,6 +116,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             submission_type: .online_upload,
             attachments: [ APIFile.make(
+                mime_class: "pdf",
                 preview_url: previewURL
             ), ]
         ))
@@ -153,6 +154,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             submission_type: .online_upload,
             attachments: [ APIFile.make(
+                mime_class: "pdf",
                 preview_url: previewURL
             ), ]
         ))
@@ -299,8 +301,21 @@ class SubmissionDetailsTests: StudentUITestCase {
             APIRubricRating.make(id: "3", points: 30, description: "C", long_description: "this is C", assignmentID: "1", position: 2),
         ]
         let rubric = APIRubric.make(ratings: ratings)
+        let assignment = mockAssignment(APIAssignment.make(id: "2", rubric: [rubric]))
+        let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+            assignment_id: assignment.id,
+            body: "hi",
+            submission_type: .online_text_entry,
+            submitted_at: submittedAt,
+            rubric_assessment: ["1": APIRubricAssessment.make()]
+        ))
+        mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
+            course.canvasContextID: "#123456",
+        ]))
 
-        mockRubric(rubric: [rubric])
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetails.drawerRubricButton.tap()
         let id: String = rubric.id.value
 
         XCTAssertFalse(SubmissionDetails.rubricEmptyLabel.isVisible)
@@ -339,26 +354,5 @@ class SubmissionDetailsTests: StudentUITestCase {
         button3.tap()
         XCTAssertEqual(ratingTitleLabel.label, ratings[0].description)
         XCTAssertEqual(ratingDescLabel.label, ratings[0].long_description)
-    }
-
-    func mockRubric(rubric: [APIRubric], rubric_assessment: APIRubricAssessmentMap = ["1": APIRubricAssessment.make()]) {
-        mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
-            course.canvasContextID: "#123456",
-            ]))
-
-        let assignment = mockAssignment(APIAssignment.make(
-            rubric: rubric
-        ), include: [.submission])
-
-        let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
-            body: "hi",
-            submission_type: .online_text_entry,
-            submitted_at: submittedAt,
-            rubric_assessment: rubric_assessment
-        ))
-
-        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetails.drawerRubricButton.tap()
     }
 }

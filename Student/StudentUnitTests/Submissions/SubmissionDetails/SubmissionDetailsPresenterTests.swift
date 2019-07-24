@@ -185,11 +185,33 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         Assignment.make()
         Submission.make(from: .make(
             submission_type: .online_upload,
-            attachments: [ .make() ]
+            attachments: [ .make(mime_class: "doc") ]
         ))
         presenter.update()
 
         XCTAssert(view.embedded is DocViewerViewController)
+    }
+
+    func testEmbedUploadVideo() {
+        Assignment.make()
+        Submission.make(from: .make(
+            submission_type: .online_upload,
+            attachments: [ .make(mime_class: "video") ]
+        ))
+        presenter.update()
+
+        XCTAssert(view.embedded is AVPlayerViewController)
+    }
+
+    func testEmbedUploadOther() {
+        Assignment.make()
+        Submission.make(from: .make(
+            submission_type: .online_upload,
+            attachments: [ .make(mime_class: "file") ]
+        ))
+        presenter.update()
+
+        XCTAssert(view.embedded is CoreWebViewController)
     }
 
     func testEmbedDiscussion() {
