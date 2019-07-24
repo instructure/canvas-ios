@@ -54,7 +54,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var quizTimeLimitValueLabel: UILabel?
     @IBOutlet weak var quizView: UIView?
 
-    @IBOutlet weak var lockedSection: AssignmentDetailsSectionContainerView?
+    @IBOutlet weak var lockedSection: UIView?
     @IBOutlet weak var gradeSection: UIStackView?
     @IBOutlet weak var submissionButtonSection: UIStackView?
     @IBOutlet weak var fileTypesSection: AssignmentDetailsSectionContainerView?
@@ -64,6 +64,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var lockedIconContainerView: UIView!
     @IBOutlet weak var lockedIconImageView: UIImageView!
     @IBOutlet weak var lockedIconHeight: NSLayoutConstraint!
+    @IBOutlet weak var lockedSubheaderWebView: CoreWebView!
+    @IBOutlet weak var lockedSectionHeader: DynamicLabel!
 
     //  Note to developer adding new views:
     //  If any new views are added, make sure they are properly hidden/shown
@@ -118,6 +120,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedDetailsLabel?.text = NSLocalizedString("Your submission is now waiting to be graded", bundle: .student, comment: "")
         submissionButton?.setTitle(NSLocalizedString("Submission & Rubric", bundle: .student, comment: ""), for: .normal)
 
+        //  locked
         lockedIconImageView.image = UIImage(named: "PandaLocked", in: .core, compatibleWith: nil)
 
         // Routing from description
@@ -246,7 +249,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         showDescription(!presenter.descriptionIsHidden())
         submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
 
-        lockedSection?.subHeader.text = assignment.lockExplanation
+        lockedSubheaderWebView.loadHTMLString(assignment.lockExplanation ?? "")
         centerLockedIconContainerView()
 
         updateQuizSettings(quiz)
