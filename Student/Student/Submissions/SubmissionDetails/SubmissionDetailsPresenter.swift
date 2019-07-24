@@ -40,7 +40,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
         return submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: nil)
     }
     var pageViewEventName: String {
-        return "/\(context.contextType == .course ? "courses": "groups")/\(context.id)/assignments/\(assignmentID)/submissions/\(userID)"
+        return "/\(context.pathComponent)/\(context.id)/assignments/\(assignmentID)/submissions/\(userID)"
     }
 
     lazy var submissions = env.subscribe(GetSubmission(context: context, assignmentID: assignmentID, userID: userID)) { [weak self] in
