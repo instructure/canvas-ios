@@ -17,6 +17,7 @@
                 <outlet property="email" destination="GFf-Vr-4Xv" id="slL-Cb-Cyc"/>
                 <outlet property="name" destination="gUq-Hk-5gZ" id="SS4-fv-tAb"/>
                 <outlet property="tableView" destination="xBB-cA-Y43" id="zXK-yS-viG"/>
+                <outlet property="versionLabel" destination="DaB-c0-Rqp" id="PIT-cr-IAn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
