@@ -177,13 +177,27 @@ class SubmissionDetailsPresenter {
             if let attachment = submission.attachments?.first(where: { $0.id == selectedFileID }),
                 let filename = attachment.filename,
                 let url = attachment.url {
-                return DocViewerViewController.create(
-                    filename: filename,
-                    previewURL: attachment.previewURL,
-                    fallbackURL: url,
-                    navigationItem: view?.navigationItem,
-                    env: env
-                )
+                switch attachment.mimeClass {
+                case "doc", "image", "pdf":
+                    return DocViewerViewController.create(
+                        filename: filename,
+                        previewURL: attachment.previewURL,
+                        fallbackURL: url,
+                        navigationItem: view?.navigationItem,
+                        env: env
+                    )
+                case "audio", "video":
+                    let player = AVPlayer(url: url)
+                    let controller = AVPlayerViewController()
+                    controller.player = player
+                    controller.view.accessibilityIdentifier = "SubmissionDetails.mediaPlayer"
+                    return controller
+                default:
+                    let controller = CoreWebViewController()
+                    controller.webView.accessibilityIdentifier = "SubmissionDetails.webView"
+                    controller.webView.load(URLRequest(url: url))
+                    return controller
+                }
             }
         case .some(.discussion_topic):
             guard let previewUrl = submission.previewUrl else { break }

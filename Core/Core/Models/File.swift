@@ -181,12 +181,14 @@ extension File: WriteableModel {
         switch mimeClass {
         case "audio":
             return UIImage.icon(.audio)
-        case "video":
-            return UIImage.icon(.video)
-        case "pdf":
-            return UIImage.icon(.pdf)
         case "doc":
             return UIImage.icon(.document)
+        case "image":
+            return UIImage.icon(.image)
+        case "pdf":
+            return UIImage.icon(.pdf)
+        case "video":
+            return UIImage.icon(.video)
         default:
             return UIImage.icon(.document)
         }
