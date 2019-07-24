@@ -350,6 +350,14 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
     }
 
+    func testSubmitAssignmentButtonIsHiddenWhenNotSubmittable() {
+        Course.make()
+        Assignment.make(from: .make(submission_types: [ .none ]))
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue(presenter.submitAssignmentButtonIsHidden())
+    }
+
     func setupIsHiddenTest(lockStatus: LockStatus) {
         Course.make()
         switch lockStatus {
