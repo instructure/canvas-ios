@@ -135,7 +135,7 @@ class ModuleItemDetailViewController: UIViewController {
         rightBarButtons = navigationItem.rightBarButtonItems
         emptyLabel.isHidden = true
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolbar.items = [previousButton, space]
+        toolbar.items = [previousButton, space, nextButton]
         SignalProducer.combineLatest(viewModel.moduleItemID.producer, viewModel.markAsDoneAction.isEnabled.producer, viewModel.embeddedViewController)
             .map { _, _, embeddedViewController in embeddedViewController }
             .combinePrevious(nil)
