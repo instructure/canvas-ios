@@ -28,17 +28,19 @@ protocol SubmissionDetailsViewProtocol: ColoredNavViewProtocol, SubmissionButton
     var navigationItem: UINavigationItem { get }
 }
 
-class SubmissionDetailsPresenter {
+class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
     let context: Context
     let assignmentID: String
     let userID: String
     let env: AppEnvironment
     weak var view: SubmissionDetailsViewProtocol?
-
     let submissionButtonPresenter: SubmissionButtonPresenter
     var submissionButtonText: String? {
         guard let course = course.first, let assignment = assignment.first else { return nil }
         return submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: nil)
+    }
+    var pageViewEventName: String {
+        return "/\(context.pathComponent)/assignments/\(assignmentID)/submissions/\(userID)"
     }
 
     lazy var submissions = env.subscribe(GetSubmission(context: context, assignmentID: assignmentID, userID: userID)) { [weak self] in
