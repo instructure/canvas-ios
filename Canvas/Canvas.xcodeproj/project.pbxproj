@@ -556,8 +556,6 @@
 		5EB46E011D21A75C00C859A4 /* CalendarDayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DDD1D21A75C00C859A4 /* CalendarDayListViewController.swift */; };
 		5EB46E021D21A75C00C859A4 /* CalendarDayPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DDE1D21A75C00C859A4 /* CalendarDayPageViewController.swift */; };
 		5EB46E041D21A75C00C859A4 /* CalendarMonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DE01D21A75C00C859A4 /* CalendarMonthViewController.swift */; };
-		5EB46E051D21A75C00C859A4 /* CalendarSplitMonthViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB46DE11D21A75C00C859A4 /* CalendarSplitMonthViewController.storyboard */; };
-		5EB46E061D21A75C00C859A4 /* CalendarSplitMonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DE21D21A75C00C859A4 /* CalendarSplitMonthViewController.swift */; };
 		5EB46E071D21A75C00C859A4 /* CalendarWeekDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DE31D21A75C00C859A4 /* CalendarWeekDayViewController.swift */; };
 		5EB46E081D21A75C00C859A4 /* CalendarWeekPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DE41D21A75C00C859A4 /* CalendarWeekPageViewController.swift */; };
 		61074F051DB7E88100DEEE63 /* MasteryPathSelectOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D7185C1DB7CA070081D56A /* MasteryPathSelectOptionViewController.swift */; };
@@ -1380,8 +1378,6 @@
 		5EB46DDD1D21A75C00C859A4 /* CalendarDayListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayListViewController.swift; sourceTree = "<group>"; };
 		5EB46DDE1D21A75C00C859A4 /* CalendarDayPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayPageViewController.swift; sourceTree = "<group>"; };
 		5EB46DE01D21A75C00C859A4 /* CalendarMonthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMonthViewController.swift; sourceTree = "<group>"; };
-		5EB46DE11D21A75C00C859A4 /* CalendarSplitMonthViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CalendarSplitMonthViewController.storyboard; sourceTree = "<group>"; };
-		5EB46DE21D21A75C00C859A4 /* CalendarSplitMonthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSplitMonthViewController.swift; sourceTree = "<group>"; };
 		5EB46DE31D21A75C00C859A4 /* CalendarWeekDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarWeekDayViewController.swift; sourceTree = "<group>"; };
 		5EB46DE41D21A75C00C859A4 /* CalendarWeekPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarWeekPageViewController.swift; sourceTree = "<group>"; };
 		6137294F1D54E91800C020A0 /* UIImage+CanvasKit1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CanvasKit1.h"; sourceTree = "<group>"; };
@@ -3002,8 +2998,6 @@
 				5EB46DDD1D21A75C00C859A4 /* CalendarDayListViewController.swift */,
 				5EB46DDE1D21A75C00C859A4 /* CalendarDayPageViewController.swift */,
 				5EB46DE01D21A75C00C859A4 /* CalendarMonthViewController.swift */,
-				5EB46DE11D21A75C00C859A4 /* CalendarSplitMonthViewController.storyboard */,
-				5EB46DE21D21A75C00C859A4 /* CalendarSplitMonthViewController.swift */,
 				5EB46DE31D21A75C00C859A4 /* CalendarWeekDayViewController.swift */,
 				5EB46DE41D21A75C00C859A4 /* CalendarWeekPageViewController.swift */,
 				4976C1FF1FBB84B900160EE4 /* CalendarEventDetailViewController.swift */,
@@ -3795,7 +3789,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EB46E051D21A75C00C859A4 /* CalendarSplitMonthViewController.storyboard in Resources */,
 				2C0CAD751DEF6C33008D90FA /* InfoPlist.strings in Resources */,
 				5EB46E001D21A75C00C859A4 /* CalendarDayListViewController.storyboard in Resources */,
 				5EB46DFC1D21A75C00C859A4 /* IconTodayView.xib in Resources */,
@@ -4136,7 +4129,6 @@
 				5EB46DE71D21A75C00C859A4 /* NSError+CalendarKit.swift in Sources */,
 				492706A11CF4B93F00C631C6 /* RootViewController.swift in Sources */,
 				49A04E6E1CF64D130051E1E7 /* TabsTableViewController.swift in Sources */,
-				5EB46E061D21A75C00C859A4 /* CalendarSplitMonthViewController.swift in Sources */,
 				4976C2001FBB84B900160EE4 /* CalendarEventDetailViewController.swift in Sources */,
 				5EB46DED1D21A75C00C859A4 /* UIView+Nib.swift in Sources */,
 				49F9FA4D1CF89F8600654758 /* Router+Canvas.swift in Sources */,

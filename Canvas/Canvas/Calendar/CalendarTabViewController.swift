@@ -21,19 +21,9 @@ import TechDebt
 import Core
 
 public func CalendarTabViewController(session: Session, route: @escaping (UIViewController, URL)->()) -> UIViewController {
-    let calendarVC: UIViewController
-    if UIDevice.current.userInterfaceIdiom == .phone {
-        let monthVC = CalendarMonthViewController.new(session)
-        monthVC.routeToURL = { url in
-            route(monthVC, url)
-        }
-        calendarVC = monthVC
-    } else {
-        let splitVC = CalendarSplitMonthViewController.new(session)
-        splitVC.routeToURL = { url in
-            route(splitVC, url)
-        }
-        calendarVC = splitVC
+    let calendarVC = CalendarMonthViewController.new(session)
+    calendarVC.routeToURL = { url in
+        route(calendarVC, url)
     }
     
     calendarVC.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
