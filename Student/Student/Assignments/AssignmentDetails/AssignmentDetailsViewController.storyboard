@@ -20,7 +20,10 @@
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ga9-T1-JgT">
                                 <rect key="frame" x="177" y="323" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="0T4-ZW-36o"/>
+                                    <constraint firstAttribute="width" constant="20" id="uTp-qe-ycX"/>
+                                </constraints>
                             </activityIndicatorView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2qC-UP-t75">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
@@ -514,9 +517,11 @@
                             <constraint firstItem="2qC-UP-t75" firstAttribute="top" secondItem="1aY-Ds-3yT" secondAttribute="top" id="XxZ-9j-Zcg"/>
                             <constraint firstItem="2qC-UP-t75" firstAttribute="trailing" secondItem="1aY-Ds-3yT" secondAttribute="trailing" id="cX4-tg-p1U"/>
                             <constraint firstItem="QTp-Qq-8ZA" firstAttribute="trailing" secondItem="1aY-Ds-3yT" secondAttribute="trailing" id="cX4-tg-p3U"/>
+                            <constraint firstItem="Ga9-T1-JgT" firstAttribute="centerY" secondItem="vDv-xP-3aC" secondAttribute="centerY" id="iFa-jv-UqQ"/>
                             <constraint firstItem="2qC-UP-t75" firstAttribute="leading" secondItem="1aY-Ds-3yT" secondAttribute="leading" id="iUD-HX-1Ym"/>
                             <constraint firstItem="QTp-Qq-8ZA" firstAttribute="leading" secondItem="1aY-Ds-3yT" secondAttribute="leading" id="iUD-HX-3Ym"/>
                             <constraint firstItem="1aY-Ds-3yT" firstAttribute="trailing" secondItem="Oo1-Sb-iO9" secondAttribute="trailing" id="k95-9S-QPt"/>
+                            <constraint firstItem="Ga9-T1-JgT" firstAttribute="centerX" secondItem="vDv-xP-3aC" secondAttribute="centerX" id="sby-5b-YMh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1aY-Ds-3yT"/>
                     </view>
