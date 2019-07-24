@@ -37,7 +37,8 @@ class ModuleItemViewModel: NSObject {
     let moduleItemID: Property<String?>
     lazy var embeddedViewController: SignalProducer<UIViewController?, Never> = {
         let item = self.moduleItem.producer.skipRepeats { $0?.content == $1?.content }
-        return item.map { moduleItem in
+        return item.map { [weak self] moduleItem in
+            guard let self = self else { return nil }
             let content = moduleItem?.content
             let masteryPathsItemModuleItemID = (moduleItem as? MasteryPathsItem)?.moduleItemID
             let moduleID = moduleItem?.moduleID
@@ -104,38 +105,35 @@ class ModuleItemViewModel: NSObject {
 
     // Actions
     lazy var markAsDoneAction: Action<Void, Void, Never> = {
-        return Action(enabledIf: self.canFulfill(.markDone)) { _ in
+        return Action(enabledIf: self.canFulfill(.markDone)) { [weak self] _ in
             blockProducer {
+                guard let self = self else { return }
                 self.moduleItem.value?.postProgress(self.session, kind: .markedDone)
-                return ()
+                return
             }
         }
     }()
     lazy var markAsViewedAction: Action<Void, Void, Never> = {
-        return Action(enabledIf: self.canFulfill(.mustView)) { _ in
+        return Action(enabledIf: self.canFulfill(.mustView)) { [weak self] _ in
             blockProducer {
+                guard let self = self else { return }
                 self.moduleItem.value?.postProgress(self.session, kind: .viewed)
-                return ()
             }
         }
     }()
     lazy var nextAction: Action<Void, Void, NSError> = {
-        return Action(enabledIf: self.nextModuleItemIsValid) { _ in
+        return Action(enabledIf: self.nextModuleItemIsValid) { [weak self] _ in
             attemptProducer {
-                guard let next = self.nextModuleItem.value else {
-                    fatalError("This action should only be enabled if there is a next item")
-                }
+                guard let self = self, let next = self.nextModuleItem.value else { return }
                 CanvasAnalytics.logEvent("module_item_content_selected_next")
                 self.observer = try ModuleItem.observer(self.session, moduleItemID: next.id)
             }
         }
     }()
     lazy var previousAction: Action<Void, Void, NSError> = {
-        return Action(enabledIf: self.previousModuleItemIsValid) { _ in
+        return Action(enabledIf: self.previousModuleItemIsValid) { [weak self] _ in
             attemptProducer {
-                guard let previous = self.previousModuleItem.value else {
-                    fatalError("This action should only be enabled if there is a previous item")
-                }
+                guard let self = self, let previous = self.previousModuleItem.value else { return }
                 CanvasAnalytics.logEvent("module_item_content_selected_previous")
                 self.observer = try ModuleItem.observer(self.session, moduleItemID: previous.id)
             }
@@ -171,8 +169,8 @@ class ModuleItemViewModel: NSObject {
         vm.color <~ self.moduleItem
             .producer
             .map { $0?.courseID }
-            .flatMap(.latest) {
-                $0.flatMap { self.session.enrollmentsDataSource.color(for: .course(withID: $0)) }
+            .flatMap(.latest) { [weak self] in
+                $0.flatMap { self?.session.enrollmentsDataSource.color(for: .course(withID: $0)) }
                     ?? SignalProducer(value: .prettyGray())
             }
         vm.titleFontStyle <~ self.moduleItem
