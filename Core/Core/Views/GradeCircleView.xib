@@ -32,6 +32,9 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="52w-3L-qip" customClass="IconView" customModule="Core" customModuleProvider="target">
                             <rect key="frame" x="39" y="39" width="50" height="50"/>
+                            <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.circleComplete">
+                                <bool key="isElement" value="NO"/>
+                            </accessibility>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="G6m-Nk-o02"/>
                                 <constraint firstAttribute="width" constant="50" id="QVt-DE-4W6"/>
@@ -99,7 +102,7 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Out of 100 pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnP-jG-o81" userLabel="Out Of" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="29" width="139.5" height="17"/>
-                            <accessibility key="accessibilityConfiguration">
+                            <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.gradeCircleOutOf">
                                 <bool key="isElement" value="NO"/>
                             </accessibility>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

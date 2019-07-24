@@ -157,6 +157,15 @@ class AssignmentDetailsTests: StudentUITestCase {
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
+    func testNoSubmitAssignmentButtonShowsWhenExcused() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission: .make(excused: true),
+            submission_types: [.online_text_entry]
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
+    }
+
     func testNoLockSection() {
         let assignment = mockAssignment(APIAssignment.make(
             submission_types: [ .online_upload ]
@@ -281,6 +290,17 @@ class AssignmentDetailsTests: StudentUITestCase {
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         XCTAssertEqual(AssignmentDetails.gradeLatePenalty.label, "Late penalty (-5 pts)")
+    }
+
+    func testGradeCellShowsExcused() {
+        let assignment = mockAssignment(APIAssignment.make(
+            points_possible: 100,
+            submission: .make(excused: true)
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertTrue(AssignmentDetails.gradeCell.isVisible)
+        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label, "Excused")
+        XCTAssertEqual(AssignmentDetails.gradeCircleOutOf.label, "Out of 100 pts")
     }
 
     func testViewSubmissionButtonWorksWithNoSubmission() {
