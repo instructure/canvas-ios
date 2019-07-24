@@ -66,6 +66,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         emptyLabel?.isHidden = true
         emptyLabel?.text = NSLocalizedString("Have questions? Use this area to message your instructor about this assignment.", bundle: .student, comment: "")
         tableView?.transform = CGAffineTransform(scaleX: 1, y: -1)
+        tableView?.keyboardDismissMode = .onDrag
         addMediaButton?.accessibilityLabel = NSLocalizedString("Add media attachment", bundle: .student, comment: "")
 
         setInsets()
