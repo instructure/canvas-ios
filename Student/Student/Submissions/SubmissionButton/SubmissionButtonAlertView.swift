@@ -30,8 +30,8 @@ enum SubmissionButtonAlertView {
             }
             alert.addAction(action)
         }
-        if arc {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Arc", bundle: .student, comment: ""), style: .default) { [weak presenter] _ in
+        if studio {
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Studio", bundle: .student, comment: ""), style: .default) { [weak presenter] _ in
                 presenter?.submitArc(assignment: assignment)
             })
         }
