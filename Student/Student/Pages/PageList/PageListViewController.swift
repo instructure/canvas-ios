@@ -43,7 +43,7 @@ class PageListViewController: UIViewController, PageListViewProtocol {
     func update(isLoading: Bool) {
         tableView?.reloadData()
 
-        let isEmpty = presenter?.pages.isEmpty == true && presenter?.frontPage.isEmpty == false
+        let isEmpty = presenter?.pages.isEmpty == true && presenter?.frontPage.isEmpty == true
         if isEmpty && !isLoading {
             emptyLabel?.text = NSLocalizedString("There are no pages to display.", bundle: .student, comment: "")
             emptyLabel?.textColor = .named(.textDarkest)

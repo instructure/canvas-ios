@@ -19,11 +19,19 @@
 import CoreData
 import Core
 
-class PageListPresenter {
+class PageListPresenter: PageViewLoggerPresenterProtocol {
+
+    var pageViewEventName: String {
+        if course != nil {
+            return "/courses/\(context.canvasContextID)/pages"
+        } else {
+            return "/groups/\(context.canvasContextID)/pages"
+        }
+    }
+
     let context: Context
     let env: AppEnvironment
     weak var view: PageListViewProtocol?
-
     var course: Store<GetCourse>?
     var group: Store<GetGroup>?
 
@@ -52,7 +60,7 @@ class PageListPresenter {
                 self?.update()
             })
         default:
-            fatalError("unexpected context for page list")
+            break
         }
     }
 
@@ -84,11 +92,11 @@ class PageListPresenter {
         } else if let group = group?.first {
             view?.updateNavBar(subtitle: group.name, color: group.color)
         }
-        // log page view
+        viewDidAppear()
     }
 
     func pageViewEnded() {
-        // log page view
+        viewDidDisappear()
     }
 
     func select(_ page: Page, from view: UIViewController) {
