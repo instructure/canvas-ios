@@ -27,6 +27,28 @@ class GetPagesTest: CoreTestCase {
         let useCase = GetPages(context: courseContext)
         XCTAssertEqual(useCase.cacheKey, "get-course_42-pages")
         XCTAssertEqual(useCase.request.context.canvasContextID, courseContext.canvasContextID)
+
+        let contextID = NSPredicate(format: "%K == %@", #keyPath(Page.contextID), courseContext.canvasContextID)
+        let isFrontPage = NSPredicate(format: "%K == false", #keyPath(Page.isFrontPage))
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [contextID, isFrontPage])
+        let order = NSSortDescriptor(key: #keyPath(Page.title), ascending: true)
+
+        XCTAssertEqual(useCase.scope.predicate, predicate)
+        XCTAssertEqual(useCase.scope.order, [order])
+    }
+
+    func testFrontPageProperties() {
+        let useCase = GetFrontPage(context: courseContext)
+        XCTAssertEqual(useCase.cacheKey, "get-course_42-front_page")
+        XCTAssertEqual(useCase.request.context.canvasContextID, courseContext.canvasContextID)
+
+        let contextID = NSPredicate(format: "%K == %@", #keyPath(Page.contextID), courseContext.canvasContextID)
+        let isFrontPage = NSPredicate(format: "%K == true", #keyPath(Page.isFrontPage))
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [contextID, isFrontPage])
+        let order = NSSortDescriptor(key: #keyPath(Page.title), ascending: true)
+
+        XCTAssertEqual(useCase.scope.predicate, predicate)
+        XCTAssertEqual(useCase.scope.order, [order])
     }
 
     func testWriteNothing() {
@@ -43,4 +65,15 @@ class GetPagesTest: CoreTestCase {
         XCTAssertEqual(pages.count, 1)
         XCTAssertEqual(pages.first?.contextID, courseContext.canvasContextID)
     }
+
+    func testWriteFrontPage() {
+        let useCase = GetFrontPage(context: courseContext)
+        let page = APIPage.make(front_page: true)
+        useCase.write(response: page, urlResponse: nil, to: databaseClient)
+        let pages: [Page] = databaseClient.fetch()
+        XCTAssertEqual(pages.count, 1)
+        XCTAssertEqual(pages.first?.contextID, courseContext.canvasContextID)
+        XCTAssertEqual(pages.first?.isFrontPage, true)
+    }
+
 }

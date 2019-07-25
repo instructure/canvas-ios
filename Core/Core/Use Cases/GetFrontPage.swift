@@ -30,7 +30,7 @@ public struct GetFrontPage: APIUseCase {
     }
 
     public var cacheKey: String? {
-        return "get-\(context.canvasContextID)-pages"
+        return "get-\(context.canvasContextID)-front_page"
     }
 
     public var request: GetFrontPageRequest {
