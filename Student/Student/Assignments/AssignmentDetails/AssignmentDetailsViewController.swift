@@ -231,9 +231,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         descriptionView?.loadHTMLString(assignment.descriptionHTML, baseURL: baseURL)
         updateGradeCell(assignment)
 
-        submissionButtonView?.isHidden = !assignment.isSubmittable
-        submissionButtonDivider?.isHidden = !assignment.isSubmittable
-
         guard let presenter = presenter else { return }
 
         lockedIconContainerView.isHidden = presenter.lockedIconContainerViewIsHidden()
