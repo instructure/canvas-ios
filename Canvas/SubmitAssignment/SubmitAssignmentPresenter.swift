@@ -50,7 +50,7 @@ class SubmitAssignmentPresenter {
     }
 
     var assignments: Store<GetAssignments>?
-    lazy var courses: Store<GetCourses>? = env.subscribe(GetCourses(showFavorites: false, perPage: 10)) { [weak self] in
+    lazy var courses: Store<GetCourses>? = env.subscribe(GetCourses(showFavorites: false, state: [.available], perPage: 10)) { [weak self] in
         self?.course = self?.course ?? self?.courses?.first
     }
 

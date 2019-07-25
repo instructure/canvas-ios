@@ -151,7 +151,7 @@ class CollectionUseCaseTests: CoreTestCase {
         typealias Model = Course
 
         var request: GetCoursesRequest {
-            return GetCoursesRequest(includeUnpublished: false)
+            return GetCoursesRequest()
         }
 
         let scope = Scope.all(orderBy: "name")
@@ -179,7 +179,7 @@ class CollectionUseCaseTests: CoreTestCase {
 class APIUseCaseTests: CoreTestCase {
     class TestAPIUseCase: APIUseCase {
         var request: GetCoursesRequest {
-            return GetCoursesRequest(includeUnpublished: true)
+            return GetCoursesRequest()
         }
         let scope = Scope.all(orderBy: "name")
         let cacheKey: String? = "api-use-case"

@@ -22,20 +22,20 @@ import Foundation
 public struct GetCoursesRequest: APIRequestable {
     public typealias Response = [APICourse]
 
-    let includeUnpublished: Bool
-    var perPage: Int
+    public enum State: String {
+        case available, completed, unpublished, deleted
+    }
 
-    public init(includeUnpublished: Bool, perPage: Int = 10) {
-        self.includeUnpublished = includeUnpublished
+    let state: [State]
+    let perPage: Int
+
+    public init(state: [State]? = nil, perPage: Int = 10) {
+        self.state = state ?? [.available, .completed, .unpublished]
         self.perPage = perPage
     }
 
     public let path = "courses"
     public var query: [APIQueryItem] {
-        var state = [ "available", "completed" ]
-        if includeUnpublished {
-            state.append("unpublished")
-        }
         return [
             .array("include", [
                 "course_image",
@@ -46,7 +46,7 @@ public struct GetCoursesRequest: APIRequestable {
                 "term",
                 "total_scores",
             ]),
-            .array("state", state),
+            .array("state", state.map { $0.rawValue }),
             .value("per_page", String(perPage)),
         ]
     }
