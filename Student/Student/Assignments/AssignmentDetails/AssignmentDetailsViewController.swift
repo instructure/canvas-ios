@@ -228,7 +228,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         descriptionHeadingLabel?.text = quiz == nil
             ? NSLocalizedString("Description", bundle: .student, comment: "")
             : NSLocalizedString("Instructions", bundle: .student, comment: "")
-        descriptionView?.loadHTMLString(assignment.descriptionHTML, baseURL: baseURL)
+        descriptionView?.loadHTMLString(presenter?.assignmentDescription() ?? "", baseURL: baseURL)
         updateGradeCell(assignment)
 
         guard let presenter = presenter else { return }

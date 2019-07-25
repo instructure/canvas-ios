@@ -374,6 +374,16 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
         XCTAssertEqual(pageViewLogger.eventName, "/courses/\(c.id)/assignments/\(a.id)")
     }
+
+    func testAssignmentDescription() {
+        let a = Assignment.make()
+        XCTAssertEqual(presenter.assignmentDescription(), a.descriptionHTML)
+    }
+
+    func testAssignmentDescriptionThatIsEmpty() {
+        Assignment.make(from: .make(description: ""))
+        XCTAssertEqual(presenter.assignmentDescription(), "No Content")
+    }
 }
 
 extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {

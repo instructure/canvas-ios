@@ -248,4 +248,9 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
     func submitAssignmentButtonIsHidden() -> Bool {
         return assignment?.lockStatus != .unlocked
     }
+
+    func assignmentDescription() -> String {
+        if let desc = assignments.first?.descriptionHTML, !desc.isEmpty { return desc }
+        return NSLocalizedString("No Content", comment: "")
+    }
 }
