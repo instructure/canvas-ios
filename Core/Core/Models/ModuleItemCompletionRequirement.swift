@@ -8,7 +8,6 @@
 // License, or (at your option) any later version.
 //
 // This program is distributed in the hope that it will be useful,
-l
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
@@ -17,12 +16,9 @@ l
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+import Foundation
 
-class NotificationsListTests: CanvasUITests {
-    func testNotificationItemsDisplayed() {
-        TabBar.notificationsTab.tap()
-        app.find(labelContaining: "Assignment Created").waitToExist()
-    }
+public enum ModuleItemCompletionRequirement: String {
+    case view
+    case submit
 }

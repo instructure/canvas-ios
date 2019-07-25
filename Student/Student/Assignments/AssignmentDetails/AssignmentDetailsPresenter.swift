@@ -146,6 +146,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
             selector: #selector(uploadSubmitted(notification:)),
             name: UploadManager.AssignmentSubmittedNotification, object: nil
         )
+        NotificationCenter.default.post(moduleItem: .assignment(assignmentID), completedRequirement: .view, courseID: courseID)
     }
 
     func refresh() {

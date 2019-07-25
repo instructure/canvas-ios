@@ -350,6 +350,22 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
     }
 
+    func testPostsViewCompletedRequirement() {
+        let expectation = XCTestExpectation(description: "notification")
+        var notification: Notification?
+        let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) {
+            notification = $0
+            expectation.fulfill()
+        }
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 0.5)
+        XCTAssertNotNil(notification)
+        XCTAssertEqual(notification?.userInfo?["requirement"] as? ModuleItemCompletionRequirement, .view)
+        XCTAssertEqual(notification?.userInfo?["moduleItem"] as? ModuleItemType, .assignment("1"))
+        XCTAssertEqual(notification?.userInfo?["courseID"] as? String, "1")
+        NotificationCenter.default.removeObserver(token)
+    }
+
     func setupIsHiddenTest(lockStatus: LockStatus) {
         Course.make()
         switch lockStatus {

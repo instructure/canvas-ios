@@ -65,6 +65,18 @@ class RouterTests: XCTestCase {
         XCTAssert(mockView.presented?.isKind(of: UINavigationController.self) == false)
     }
 
+    func testRouteFormSheet() {
+        let mockView = MockViewController()
+        let router = Router(routes: [
+            RouteHandler("/formSheet", name: "formSheet") { _, _ in
+                return UIViewController()
+            },
+            ])
+        router.route(to: URLComponents(string: "/formSheet")!, from: mockView, options: [.modal, .formSheet])
+        XCTAssertNotNil(mockView.presented)
+        XCTAssertEqual(mockView.presented?.modalPresentationStyle, .formSheet)
+    }
+
     func testRouteModalEmbeddedInNav() {
         let mockView = MockViewController()
         let router = Router(routes: [

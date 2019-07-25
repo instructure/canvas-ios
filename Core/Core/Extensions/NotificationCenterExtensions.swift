@@ -8,7 +8,6 @@
 // License, or (at your option) any later version.
 //
 // This program is distributed in the hope that it will be useful,
-l
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
@@ -17,12 +16,14 @@ l
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+import Foundation
 
-class NotificationsListTests: CanvasUITests {
-    func testNotificationItemsDisplayed() {
-        TabBar.notificationsTab.tap()
-        app.find(labelContaining: "Assignment Created").waitToExist()
+extension NSNotification.Name {
+    public static var CompletedModuleItemRequirement = NSNotification.Name("com.instructure.core.notification.ModuleItemProgress")
+}
+
+extension NotificationCenter {
+    public func post(moduleItem: ModuleItemType, completedRequirement requirement: ModuleItemCompletionRequirement, courseID: String) {
+        post(name: .CompletedModuleItemRequirement, object: nil, userInfo: ["requirement": requirement, "moduleItem": moduleItem, "courseID": courseID])
     }
 }
