@@ -50,6 +50,7 @@ public class ProfileViewController: UIViewController, ProfileViewControllerProto
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var email: UILabel!
+    @IBOutlet weak var versionLabel: UILabel!
 
     var presenter: ProfilePresenterProtocol?
 
@@ -78,6 +79,10 @@ public class ProfileViewController: UIViewController, ProfileViewControllerProto
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         presenter?.viewIsReady()
+
+        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            versionLabel.text = "v.\(version)"
+        }
     }
 
     public func reload() {

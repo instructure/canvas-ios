@@ -366,6 +366,14 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         NotificationCenter.default.removeObserver(token)
     }
 
+    func testSubmitAssignmentButtonIsHiddenWhenNotSubmittable() {
+        Course.make()
+        Assignment.make(from: .make(submission_types: [ .none ]))
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue(presenter.submitAssignmentButtonIsHidden())
+    }
+
     func setupIsHiddenTest(lockStatus: LockStatus) {
         Course.make()
         switch lockStatus {
@@ -389,6 +397,16 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         presenter.viewDidDisappear()
 
         XCTAssertEqual(pageViewLogger.eventName, "/courses/\(c.id)/assignments/\(a.id)")
+    }
+
+    func testAssignmentDescription() {
+        let a = Assignment.make()
+        XCTAssertEqual(presenter.assignmentDescription(), a.descriptionHTML)
+    }
+
+    func testAssignmentDescriptionThatIsEmpty() {
+        Assignment.make(from: .make(description: ""))
+        XCTAssertEqual(presenter.assignmentDescription(), "No Content")
     }
 }
 

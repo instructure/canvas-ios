@@ -40,8 +40,8 @@ class GetQuizTest: CoreTestCase {
 
     func testWrite() {
         let quiz = APIQuiz.make(id: ID(stringLiteral: quizID))
-        let submission = APIQuizSubmission.make()
-        GetQuiz(courseID: courseID, quizID: quizID).write(response: .init(quiz_submissions: [submission], quizzes: [quiz]), urlResponse: nil, to: databaseClient)
+        QuizSubmission.make(from: .make(quiz_id: ID(stringLiteral: quizID)))
+        GetQuiz(courseID: courseID, quizID: quizID).write(response: quiz, urlResponse: nil, to: databaseClient)
         XCTAssertNoThrow(try databaseClient.save())
         let quizzes: [Quiz] = databaseClient.fetch()
         XCTAssertEqual(quizzes.count, 1)

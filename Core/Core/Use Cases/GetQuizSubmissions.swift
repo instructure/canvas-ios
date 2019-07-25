@@ -19,8 +19,8 @@
 import CoreData
 import Foundation
 
-public class GetQuiz: APIUseCase {
-    public typealias Model = Quiz
+public class GetQuizSubmissions: APIUseCase {
+    public typealias Model = QuizSubmission
 
     public let courseID: String
     public let quizID: String
@@ -31,22 +31,25 @@ public class GetQuiz: APIUseCase {
     }
 
     public var cacheKey: String? {
-        return "get-courses-\(courseID)-quizzes-\(quizID)"
+        return "get-courses-\(courseID)-quizzes-\(quizID)-submissions"
     }
 
-    public var request: GetQuizRequest {
-        return GetQuizRequest(courseID: courseID, quizID: quizID)
+    public var request: GetQuizSubmissionsRequest {
+        return GetQuizSubmissionsRequest(courseID: courseID, quizID: quizID)
     }
 
     public var scope: Scope {
-        return .where(#keyPath(Quiz.id), equals: quizID)
+        return .where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.attempt), ascending: false)
     }
 
-    public func write(response: APIQuiz?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let item = response else { return }
-        let quiz = Quiz.save(item, in: client)
-        quiz.courseID = courseID
-        let scope = Scope.where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.attempt), ascending: false)
-        quiz.submission = client.fetch(scope.predicate, sortDescriptors: scope.order).first
+    public func write(response: GetQuizSubmissionsRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let items = response?.quiz_submissions.sorted(by: { $0.attempt > $1.attempt }) else { return }
+        if let item = items.first {
+            let quiz: Quiz? = client.first(where: #keyPath(Quiz.id), equals: quizID)
+            quiz?.submission = QuizSubmission.save(item, in: client)
+        }
+        for item in items.dropFirst() {
+            QuizSubmission.save(item, in: client)
+        }
     }
 }

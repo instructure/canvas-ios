@@ -351,16 +351,15 @@ extension QuizIntroViewController {
     public static func takeController(contextID: ContextID, quizID: String) -> UIViewController {
         let legacySession = CanvasKeymaster.the().currentClient!.authSession
         let service = CanvasQuizService(session: legacySession, context: contextID, quizID: quizID)
-        let controller = QuizController(service: service, quiz: nil)
         guard let model: Core.Quiz = AppEnvironment.shared.database.viewContext.first(where: #keyPath(Core.Quiz.id), equals: quizID) else {
-            return QuizIntroViewController(quizController: controller)
+            return QuizIntroViewController(quizController: QuizController(service: service, quiz: nil))
         }
         let quiz = Quiz(
             id: model.id,
             title: model.title,
-            description: model.description,
+            description: model.details ?? "",
             due: Quiz.Due(date: model.dueAt),
-            timeLimit: Quiz.TimeLimit(minutes: Int(model.timeLimit ?? 0)),
+            timeLimit: model.timeLimit.flatMap({ Quiz.TimeLimit(minutes: Int($0)) }) ?? Quiz.TimeLimit.noTimeLimit,
             scoring: model.pointsPossible.flatMap({ Quiz.Scoring.pointsPossible(Int($0)) }) ?? Quiz.Scoring.ungraded,
             questionCount: model.questionCount,
             questionTypes: model.questionTypes.compactMap { Question.Kind(rawValue: $0.rawValue) },
@@ -396,7 +395,7 @@ extension QuizIntroViewController {
                 )
             }
             let submissionController = SubmissionController(service: service, submission: unfinishedSubmission, quiz: quiz)
-            return QuizPresentingViewController(quizController: controller, submissionController: submissionController)
+            return QuizPresentingViewController(quizController: QuizController(service: service, quiz: quiz), submissionController: submissionController)
         }
     }
 }

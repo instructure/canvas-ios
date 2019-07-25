@@ -63,9 +63,13 @@ class SubmissionDetailsView: SubmissionDetailsViewProtocol {
 class SubmissionDetailsPresenterTests: PersistenceTestCase {
     var presenter: SubmissionDetailsPresenter!
     var view: SubmissionDetailsView!
+    var pageViewLogger: MockPageViewLogger!
 
     override func setUp() {
         super.setUp()
+        pageViewLogger = MockPageViewLogger()
+        env.pageViewLogger = pageViewLogger
+
         view = SubmissionDetailsView()
         presenter = SubmissionDetailsPresenter(env: env, view: view, context: ContextModel(.course, id: "1"), assignmentID: "1", userID: "1")
     }
@@ -181,11 +185,33 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         Assignment.make()
         Submission.make(from: .make(
             submission_type: .online_upload,
-            attachments: [ .make() ]
+            attachments: [ .make(mime_class: "doc") ]
         ))
         presenter.update()
 
         XCTAssert(view.embedded is DocViewerViewController)
+    }
+
+    func testEmbedUploadVideo() {
+        Assignment.make()
+        Submission.make(from: .make(
+            submission_type: .online_upload,
+            attachments: [ .make(mime_class: "video") ]
+        ))
+        presenter.update()
+
+        XCTAssert(view.embedded is AVPlayerViewController)
+    }
+
+    func testEmbedUploadOther() {
+        Assignment.make()
+        Submission.make(from: .make(
+            submission_type: .online_upload,
+            attachments: [ .make(mime_class: "file") ]
+        ))
+        presenter.update()
+
+        XCTAssert(view.embedded is CoreWebViewController)
     }
 
     func testEmbedDiscussion() {
@@ -259,5 +285,15 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         ExternalTool.make(from: .make(id: "4", domain: "arc.instructure.com"), forCourse: "1")
         presenter.viewIsReady()
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .some("4"))
+    }
+
+    func testPageViewLogging() {
+        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1))
+        presenter.viewIsReady()
+
+        presenter.viewDidAppear()
+        presenter.viewDidDisappear()
+
+        XCTAssertEqual(pageViewLogger.eventName, "/courses/1/assignments/1/submissions/1")
     }
 }

@@ -55,6 +55,16 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         presenter?.viewIsReady()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter?.viewDidAppear()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        presenter?.viewDidDisappear()
+    }
+
     func reload() {
         guard let presenter = presenter, let assignment = presenter.currentAssignment else {
             return
@@ -67,7 +77,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         contentView?.isHidden = !isSubmitted && !assignment.isExternalToolAssignment
         drawer?.fileCount = submission?.attachments?.count ?? 0
         let title = presenter.submissionButtonText
-        emptyView?.isHidden = isSubmitted || title == nil
+        emptyView?.isHidden = isSubmitted || title == nil || assignment.isSubmittable == false
         emptyView?.dueText = assignment.assignmentDueByText
         emptyView?.submitButtonTitle = title
         pickerButton?.isHidden = !isSubmitted

@@ -59,6 +59,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     var quizzes: Store<GetQuiz>?
+    var quizSubmissions: Store<GetQuizSubmissions>?
 
     let env: AppEnvironment
     weak var view: AssignmentDetailsViewProtocol?
@@ -104,6 +105,9 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         self.assignmentID = assignmentID
         self.fragment = fragment
         self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: assignmentID)
+        if let session = env.currentSession {
+            self.userID = session.userID
+        }
     }
 
     func update() {
@@ -112,9 +116,13 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
                 self?.update()
             } }
             quizzes?.refresh()
+            quizSubmissions = assignment?.quizID.flatMap { quizID in env.subscribe(GetQuizSubmissions(courseID: courseID, quizID: quizID)) { [weak self] in
+                self?.update()
+            } }
+            quizSubmissions?.refresh()
         }
         guard let assignment = assignment, let course = courses.first else { return }
-        guard quizzes?.pending != true else { return }
+        guard quizzes?.pending != true, quizSubmissions?.pending != true else { return }
         let baseURL = fragmentHash.flatMap { URL(string: $0, relativeTo: assignment.htmlURL) } ?? assignment.htmlURL
         if let submission = assignment.submission {
             userID = submission.userID
@@ -153,6 +161,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         courses.refresh(force: true)
         assignments.refresh(force: true)
         quizzes?.refresh(force: true)
+        quizSubmissions?.refresh(force: true)
 
         submissionButtonPresenter.arcID = .pending
         arc.refresh(force: true)
@@ -238,6 +247,12 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func submitAssignmentButtonIsHidden() -> Bool {
-        return assignment?.lockStatus != .unlocked
+        return assignment?.lockStatus != .unlocked ||
+            assignment?.isSubmittable == false
+    }
+
+    func assignmentDescription() -> String {
+        if let desc = assignments.first?.descriptionHTML, !desc.isEmpty { return desc }
+        return NSLocalizedString("No Content", comment: "")
     }
 }

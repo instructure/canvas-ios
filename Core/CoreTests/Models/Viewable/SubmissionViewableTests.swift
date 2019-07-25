@@ -100,5 +100,6 @@ class SubmissionViewableTests: XCTestCase {
     func testIsSubmittable() {
         XCTAssertTrue(Model(submissionTypes: [.online_text_entry]).isSubmittable)
         XCTAssertFalse(Model(submissionTypes: [.none]).isSubmittable)
+        XCTAssertFalse(Model(submissionTypes: [.not_graded]).isSubmittable)
     }
 }
