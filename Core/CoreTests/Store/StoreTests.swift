@@ -61,7 +61,7 @@ class StoreTests: CoreTestCase {
         }
 
         func getNext(from urlResponse: URLResponse) -> GetNextRequest<[APICourse]>? {
-            return GetCoursesRequest(includeUnpublished: false).getNext(from: urlResponse)
+            return GetCoursesRequest().getNext(from: urlResponse)
         }
     }
 
