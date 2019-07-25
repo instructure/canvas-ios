@@ -22,7 +22,7 @@ import XCTest
 import TestsFoundation
 
 class GetCoursesTest: CoreTestCase {
-    let request = GetCoursesRequest(includeUnpublished: true)
+    let request = GetCoursesRequest()
 
     func testItCreatesCourses() {
         let course = APICourse.make(id: "1", name: "Course 1")
@@ -41,7 +41,9 @@ class GetCoursesTest: CoreTestCase {
     }
 
     func testRequest() {
-        XCTAssertEqual(GetCourses().request.includeUnpublished, true)
+        XCTAssertEqual(GetCourses(state: [.available]).request.state, [.available])
+        XCTAssertEqual(GetCourses(state: [.available, .completed]).request.state, [.available, .completed])
+        XCTAssertEqual(GetCourses(perPage: 123).request.perPage, 123)
     }
 
     func testScopeShowFavorites() {
