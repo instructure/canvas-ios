@@ -149,6 +149,14 @@ class AssignmentDetailsTests: StudentUITestCase {
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
     }
 
+    func testNoSubmitAssignmentButtonShowsForNotGraded() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .not_graded ]
+        ))
+        show("/courses/\(course.id)/assignments\(assignment.id)")
+        XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
+    }
+
     func testNoLockSection() {
         let assignment = mockAssignment(APIAssignment.make(
             submission_types: [ .online_upload ]
