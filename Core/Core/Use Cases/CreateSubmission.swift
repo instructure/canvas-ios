@@ -63,11 +63,20 @@ public class CreateSubmission: APIUseCase {
         return Scope(predicate: predicate, order: [sort])
     }
 
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APISubmission?, URLResponse?, Error?) -> Void) {
+        environment.api.makeRequest(request) { [weak self] response, urlResponse, error in
+            guard let self = self else { return }
+            if error == nil {
+                NotificationCenter.default.post(moduleItem: .assignment(self.assignmentID), completedRequirement: .submit, courseID: self.context.id)
+            }
+            completionHandler(response, urlResponse, error)
+        }
+    }
+
     public func write(response: APISubmission?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let item = response else {
             return
         }
         Submission.save(item, in: client)
-        Logger.shared.log("created a submission")
     }
 }

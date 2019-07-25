@@ -488,6 +488,9 @@ extension TechDebt.Router: RouterProtocol {
         if options?.contains(.modal) == true {
             opts["modal"] = true
         }
+        if options?.contains(.formSheet) == true {
+            opts["formSheet"] = true
+        }
         route(from: from, to: url, withOptions: opts)
     }
 }

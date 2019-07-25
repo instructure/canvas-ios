@@ -125,27 +125,17 @@ public enum JSONObjectResponse {
 
 extension Session {
     public func rac_dataWithRequest(_ request: URLRequest) -> SignalProducer<(Data, URLResponse), NSError> {
-        return blockProducer { self.URLSession.dataTask(with: request) }
-            .promoteError(NSError.self)
-            .flatMap(.concat, resumeTask)
-    }
-
-    public func resumeTask(_ task: URLSessionTask) -> SignalProducer<(Data, URLResponse), NSError> {
         return SignalProducer { [weak self] observer, disposable in
-            self?.completionHandlerByTask[task] = { task, error in
-                if let data = self?.responseDataByTask[task], let response = task.response {
-                    observer.send(value: (data, response))
-                    observer.sendCompleted()
-                } else {
-                    observer.send(error: error ?? NSError.invalidResponseError(task.response?.url))
+            let task = self?.URLSession.dataTask(with: request) { data, urlResponse, error in
+                guard let data = data, let response = urlResponse, error == nil else {
+                    observer.send(error: error as NSError? ?? NSError.invalidResponseError(urlResponse?.url))
+                    return
                 }
+                observer.send(value: (data, response))
+                observer.sendCompleted()
             }
-
-            disposable.observeEnded {
-                task.cancel()
-            }
-
-            task.resume()
+            disposable.observeEnded { task?.cancel() }
+            task?.resume()
         }
     }
 
@@ -179,11 +169,6 @@ extension Session {
         return JSONAndPaginationSignalProducer(request)
             .map { $0.0 }
             .flatMap(.concat, Session.asJSONObject)
-    }
-
-    public func JSONSignalProducer(_ task: URLSessionTask) -> SignalProducer<JSONObject, NSError> {
-        return resumeTask(task)
-            .flatMap(.concat, responseJSONSignalProducer)
     }
 
     public func responseJSONSignalProducer(_ data: Data, response: URLResponse) -> SignalProducer<JSONObject, NSError> {

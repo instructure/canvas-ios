@@ -100,15 +100,11 @@ open class FileUpload: Upload {
     fileprivate func uploadFile(inSession session: Session, inContext context: NSManagedObjectContext) -> (URLRequest, URL) -> SignalProducer<Void, NSError> {
         return { request, fileURL in
             return attemptProducer {
-                let task = session.URLSession.uploadTask(with: request as URLRequest, fromFile: fileURL)
+                let task = session.URLSession.uploadTask(with: request as URLRequest, fromFile: fileURL) { [weak self] data, urlResponse, error in
+                    self?.taskCompletionHandler(session: session, context: context, data: data, response: urlResponse, error: error)
+                }
                 self.startWithTask(task)
                 try context.save()
-                self.addTaskCompletionHandler(task, inSession: session, inContext: context)
-                session.progressUpdateByTask[task] = { [weak self] bytesSent, totalBytes in
-                    context.perform({
-                        self?.process(sent: bytesSent, of: totalBytes)
-                    })
-                }
                 self.disposable.add { [weak task] in
                     task?.cancel()
                 }
@@ -117,7 +113,7 @@ open class FileUpload: Upload {
         }
     }
 
-    @objc open func session(_ session: Session, didFinishTask task: URLSessionTask, withResponse json: JSONObject, inContext context: NSManagedObjectContext) {
+    @objc open func session(_ session: Session, withResponse json: JSONObject, inContext context: NSManagedObjectContext) {
         guard targetURL != nil && targetParameters != nil else {
             
             // json should be the upload target
@@ -146,30 +142,27 @@ open class FileUpload: Upload {
             .start()
     }
 
-    @objc open func addTaskCompletionHandler(_ task: URLSessionTask, inSession session: Session, inContext context: NSManagedObjectContext) {
-        session.completionHandlerByTask[task] = { [weak self] task, error in
-            if let data = session.responseDataByTask[task], let response = task.response {
-                if let result = session.responseJSONSignalProducer(data, response: response).first() {
-                    if let json = result.value {
-                        self?.session(session, didFinishTask: task, withResponse: json, inContext: context)
-
-                    } else {
-                        context.performChanges {
-                            let error = result.error ?? NSError.invalidResponseError(task.response?.url)
-                            self?.failWithError(error)
-                        }
-                    }
+    @objc open func taskCompletionHandler(session: Session, context: NSManagedObjectContext, data: Data?, response: URLResponse?, error: Error?) {
+        if let data = data, let response = response {
+            if let result = session.responseJSONSignalProducer(data, response: response).first() {
+                if let json = result.value {
+                    self.session(session, withResponse: json, inContext: context)
                 } else {
                     context.performChanges {
-                        let error = NSError.invalidResponseError(task.response?.url)
-                        self?.failWithError(error)
+                        let error = result.error ?? NSError.invalidResponseError(response.url)
+                        self.failWithError(error)
                     }
                 }
             } else {
                 context.performChanges {
-                    let e = error ?? NSError.invalidResponseError(task.response?.url)
-                    self?.failWithError(e)
+                    let error = NSError.invalidResponseError(response.url)
+                    self.failWithError(error)
                 }
+            }
+        } else {
+            context.performChanges {
+                let e = error ?? NSError.invalidResponseError(response?.url)
+                self.failWithError(e as NSError)
             }
         }
     }
@@ -180,10 +173,11 @@ extension FileUpload {
         disposable = CompositeDisposable()
         disposable += attemptProducer {
             let request = try session.requestPostUploadTarget(path: path, fileName: name, size: data.count, contentType: contentType, folderPath: nil, overwrite: false)
-            let task = session.URLSession.dataTask(with: request)
+            let task = session.URLSession.dataTask(with: request) { [weak self] data, response, error in
+                self?.taskCompletionHandler(session: session, context: context, data: data, response: response, error: error)
+            }
             self.startWithTask(task)
             try context.save()
-            self.addTaskCompletionHandler(task, inSession: session, inContext: context)
             self.disposable.add { [weak task] in
                 task?.cancel()
             }

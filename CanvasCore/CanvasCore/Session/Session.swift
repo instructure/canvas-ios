@@ -36,17 +36,6 @@ open class Session: NSObject {
     @objc open var token: String?
     public let localStoreDirectory: LocalStoreDirectory
 
-    public typealias ProgressBlock = (_ bytesSent: Int64, _ totalBytes: Int64)->()
-    open var progressUpdateByTask: [URLSessionTask: ProgressBlock] = [:]
-
-    public typealias TaskCompletionHandler = (URLSessionTask, NSError?)->()
-    open var completionHandlerByTask: [URLSessionTask: TaskCompletionHandler] = [:]
-
-    public typealias BackgroundCompletionHandler = (NSError?)->Void
-    open var completionHandlerByBackgroundIdentifier: [String: BackgroundCompletionHandler] = [:]
-
-    @objc open var responseDataByTask: [URLSessionTask: Data] = [:]
-
     @objc public static var unauthenticated: Session {
         return Session(baseURL: URL(string: "https://canvas.instructure.com/")!, user: SessionUser(id: "", name: ""), token: nil)
     }
@@ -61,18 +50,9 @@ open class Session: NSObject {
         self.baseURL = baseURL
         self.token = token
         self.localStoreDirectory = localStoreDirectory
-
-        
-        URLSession = Foundation.URLSession.shared
-        
-        super.init()
-
-        // set up the authorized session with default headers
         let config = URLSessionConfiguration.default
         config.httpAdditionalHeaders = defaultHTTPHeaders
-        let opQ = OperationQueue()
-        opQ.name = "com.instructure.TooLegit.URLSessionDelegate"
-        self.URLSession = Foundation.URLSession(configuration: config, delegate: self, delegateQueue:opQ)
+        URLSession = Foundation.URLSession(configuration: config)
     }
     
     @objc open var sessionID: String {
@@ -160,45 +140,5 @@ extension Session {
     @objc public func compare(_ session: Session) -> Bool {
         // Same if Token is equal or userID & baseURL are equal
         return (self.token == session.token) || (session.user.id == self.user.id && session.baseURL.absoluteString == self.baseURL.absoluteString)
-    }
-
-    @objc public func copyToBackgroundSessionWithIdentifier(_ identifier: String, sharedContainerIdentifier: String?) -> Session {
-        guard let session = Session.fromJSON(self.dictionaryValue()) else {
-            fatalError("session couldn't parse itself")
-        }
-
-        let config = URLSessionConfiguration.background(withIdentifier: identifier)
-        config.httpAdditionalHeaders = URLSession.configuration.httpAdditionalHeaders
-        config.sharedContainerIdentifier = sharedContainerIdentifier
-        let backgroundSession = Foundation.URLSession(configuration: config, delegate: session, delegateQueue: nil)
-        session.URLSession = backgroundSession
-        return session
-    }
-}
-
-extension Session: URLSessionTaskDelegate {
-    public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
-        let progressUpdateByTask = self.progressUpdateByTask
-        progressUpdateByTask[task]?(totalBytesSent, totalBytesExpectedToSend)
-    }
-    
-    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        progressUpdateByTask[task] = nil
-        completionHandlerByTask[task]?(task, error as NSError?)
-        completionHandlerByTask[task] = nil
-        responseDataByTask[task] = nil
-
-        if let identifier = session.configuration.identifier {
-            completionHandlerByBackgroundIdentifier[identifier]?(error as NSError?)
-            completionHandlerByBackgroundIdentifier[identifier] = nil
-        }
-    }
-}
-
-extension Session: URLSessionDataDelegate {
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        var responseData = responseDataByTask[dataTask] ?? Data()
-        responseData.append(data)
-        responseDataByTask[dataTask] = responseData
     }
 }
