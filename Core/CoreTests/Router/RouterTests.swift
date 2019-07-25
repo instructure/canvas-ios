@@ -71,7 +71,7 @@ class RouterTests: XCTestCase {
             RouteHandler("/formSheet", name: "formSheet") { _, _ in
                 return UIViewController()
             },
-            ])
+        ])
         router.route(to: URLComponents(string: "/formSheet")!, from: mockView, options: [.modal, .formSheet])
         XCTAssertNotNil(mockView.presented)
         XCTAssertEqual(mockView.presented?.modalPresentationStyle, .formSheet)
