@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 
 class TodoListTests: CanvasUITests {
-    func testTodoItemsDisplayed() {
+    func xtestTodoItemsDisplayed() {
         TabBar.todoTab.tap()
         app.find(labelContaining: "Past Due").waitToExist()
         app.find(labelContaining: "Due:").waitToExist()

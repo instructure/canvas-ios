@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 
 class NotificationsListTests: CanvasUITests {
-    func testNotificationItemsDisplayed() {
+    func xtestNotificationItemsDisplayed() {
         TabBar.notificationsTab.tap()
         app.find(labelContaining: "Assignment Created").waitToExist()
     }
