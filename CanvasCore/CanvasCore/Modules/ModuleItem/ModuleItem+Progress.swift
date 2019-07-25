@@ -18,6 +18,7 @@
 
 import ReactiveSwift
 import CoreData
+import Core
 
 extension ModuleItem {
     @objc public static func beginObservingProgress(_ session: Session) {
@@ -29,6 +30,47 @@ extension ModuleItem {
             .observeValues { progress in
                 ModuleItem.apply(session, progress: progress)
             }
+        NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) { [weak session] notification in
+            guard
+                let session = session,
+                let userInfo = notification.userInfo,
+                let requirement = userInfo["requirement"] as? ModuleItemCompletionRequirement,
+                let item = userInfo["moduleItem"] as? ModuleItemType,
+                let courseID = userInfo["courseID"] as? String
+            else {
+                return
+            }
+            let contextID = ContextID(id: courseID, context: .course)
+
+            let kind: Progress.Kind
+            switch requirement {
+            case .view:
+                kind = .viewed
+            case .submit:
+                kind = .submitted
+            }
+
+            let progress: Progress
+            switch item {
+            case let .assignment(id):
+                progress = Progress(kind: kind, contextID: contextID, itemType: .assignment, itemID: id)
+            case let .discussion(id):
+                progress = Progress(kind: kind, contextID: contextID, itemType: .discussion, itemID: id)
+            case let .externalTool(id, _):
+                progress = Progress(kind: kind, contextID: contextID, itemType: .externalTool, itemID: id)
+            case let .externalURL(url):
+                progress = Progress(kind: kind, contextID: contextID, itemType: .url, itemID: url.absoluteString)
+            case let .file(id):
+                progress = Progress(kind: kind, contextID: contextID, itemType: .externalTool, itemID: id)
+            case let .page(url):
+                progress = Progress(kind: kind, contextID: contextID, itemType: .page, itemID: url)
+            case let .quiz(id):
+                progress = Progress(kind: kind, contextID: contextID, itemType: .quiz, itemID: id)
+            case .subHeader:
+                return
+            }
+            apply(session, progress: progress)
+        }
     }
 
     static func apply(_ session: Session, progress: Progress) {

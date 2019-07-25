@@ -124,7 +124,7 @@ class SubmissionButtonPresenter: NSObject {
             pickFiles(for: assignment)
         case .online_url:
             let route = Route.assignmentUrlSubmission(courseID: courseID, assignmentID: assignment.id, userID: userID)
-            env.router.route(to: route, from: view, options: [.modal, .embedInNav])
+            env.router.route(to: route, from: view, options: [.modal, .embedInNav, .formSheet])
         case .none, .not_graded, .on_paper:
             break
         }
@@ -135,6 +135,7 @@ class SubmissionButtonPresenter: NSObject {
         guard case let .some(arcID) = arcID, let userID = assignment.submission?.userID else { return }
         let arc = ArcSubmissionViewController.create(environment: env, courseID: assignment.courseID, assignmentID: assignment.id, userID: userID, arcID: arcID)
         let nav = UINavigationController(rootViewController: arc)
+        nav.modalPresentationStyle = .formSheet
         view?.present(nav, animated: true, completion: nil)
     }
 }
@@ -152,7 +153,9 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         }
         filePicker.utis = allowedUTIs
         filePicker.delegate = self
-        view?.present(UINavigationController(rootViewController: filePicker), animated: true, completion: nil)
+        let nav = UINavigationController(rootViewController: filePicker)
+        nav.modalPresentationStyle = .formSheet
+        view?.present(nav, animated: true, completion: nil)
     }
 
     func submit(_ controller: FilePickerViewController) {

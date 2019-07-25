@@ -51,6 +51,7 @@ enum SubmissionButtonAlertView {
                     let controller = AudioRecorderViewController.create()
                     controller.delegate = presenter
                     controller.view.backgroundColor = UIColor.named(.backgroundLightest)
+                    controller.modalPresentationStyle = .formSheet
                     presenter?.view?.present(controller, animated: true, completion: nil)
                 } else {
                     presenter?.view?.showPermissionError(.microphone)

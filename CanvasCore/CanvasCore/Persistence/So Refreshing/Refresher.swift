@@ -105,14 +105,15 @@ open class SignalProducerRefresher<Value>: NSObject, Refresher {
 
     @objc open func refresh(_ forced: Bool) {
         guard forced || shouldRefresh else { return }
+        DispatchQueue.main.async {
+            self.refreshControl.beginRefreshing()
 
-        refreshControl.beginRefreshing()
+            if let scrollView = self.refreshControl.superview as? UIScrollView, forced || self.shouldRefresh {
+                scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentOffset.y - self.refreshControl.frame.size.height), animated: true)
+            }
 
-        if let scrollView = refreshControl.superview as? UIScrollView, forced || shouldRefresh {
-            scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentOffset.y - refreshControl.frame.size.height), animated: true)
+            self.beginRefresh(self.refreshControl)
         }
-
-        beginRefresh(refreshControl)
     }
 
     @objc open func cancel() {

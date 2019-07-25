@@ -412,6 +412,9 @@
 		B18359A822244E230005A918 /* AccessIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18359A722244E230005A918 /* AccessIconView.swift */; };
 		B18359AA222450DE0005A918 /* AccessIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18359A9222450DE0005A918 /* AccessIconView.xib */; };
 		B183F99D225297F2000A6930 /* PublishedIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B183F99C225297F2000A6930 /* PublishedIconView.swift */; };
+		B1846D0F22E8FBC000BC4C4A /* NotificationCenterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1846D0E22E8FBC000BC4C4A /* NotificationCenterExtensions.swift */; };
+		B1846D1122E8FEBD00BC4C4A /* ModuleItemCompletionRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1846D1022E8FEBD00BC4C4A /* ModuleItemCompletionRequirement.swift */; };
+		B1846D1322EA32F000BC4C4A /* NotificationCenterExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1846D1222EA32F000BC4C4A /* NotificationCenterExtensionsTests.swift */; };
 		B1911CE921C8460000F42F91 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CE821C8460000F42F91 /* NotificationManager.swift */; };
 		B1911CEC21C849BE00F42F91 /* NotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CEB21C849BE00F42F91 /* NotificationManagerTests.swift */; };
 		B1911CF121C851AD00F42F91 /* ProcessInfoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */; };
@@ -1110,6 +1113,9 @@
 		B18359A722244E230005A918 /* AccessIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessIconView.swift; sourceTree = "<group>"; };
 		B18359A9222450DE0005A918 /* AccessIconView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccessIconView.xib; sourceTree = "<group>"; };
 		B183F99C225297F2000A6930 /* PublishedIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishedIconView.swift; sourceTree = "<group>"; };
+		B1846D0E22E8FBC000BC4C4A /* NotificationCenterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterExtensions.swift; sourceTree = "<group>"; };
+		B1846D1022E8FEBD00BC4C4A /* ModuleItemCompletionRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemCompletionRequirement.swift; sourceTree = "<group>"; };
+		B1846D1222EA32F000BC4C4A /* NotificationCenterExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterExtensionsTests.swift; sourceTree = "<group>"; };
 		B1911CE821C8460000F42F91 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		B1911CEB21C849BE00F42F91 /* NotificationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagerTests.swift; sourceTree = "<group>"; };
 		B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessInfoExtensions.swift; sourceTree = "<group>"; };
@@ -1517,6 +1523,7 @@
 				B1A6BC79218A062E000515E3 /* MediaCommentType.swift */,
 				B15CA27D221DFA450014FB02 /* Module.swift */,
 				B1F1328D224BBBC7002C0555 /* ModuleItem.swift */,
+				B1846D1022E8FEBD00BC4C4A /* ModuleItemCompletionRequirement.swift */,
 				B1F13289224BAD43002C0555 /* ModuleItemType.swift */,
 				EEC3EF6622E265CF00799FE2 /* Page.swift */,
 				9FBE536C223C32E7001EC40C /* Permissions.swift */,
@@ -1776,6 +1783,7 @@
 				B1A464BA225669140052F8DF /* DispatchExtensions.swift */,
 				3B69253F21A12E020023ED75 /* Int64Extensions.swift */,
 				B192833721C07A4E008D1B9B /* LoggerExtensions.swift */,
+				B1846D0E22E8FBC000BC4C4A /* NotificationCenterExtensions.swift */,
 				3B346754213052C700F9BC2E /* NSErrorExtensions.swift */,
 				B1C783EE2241EA3700DD89A9 /* NSManagedObjectContextExtensions.swift */,
 				7DF4FFE421714952007E5F81 /* NSNumberExtensions.swift */,
@@ -1853,6 +1861,7 @@
 				7DD694802194CE8C00BA4984 /* DateExtensionsTests.swift */,
 				B1A464BC225669B50052F8DF /* DispatchExtensionsTests.swift */,
 				7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */,
+				B1846D1222EA32F000BC4C4A /* NotificationCenterExtensionsTests.swift */,
 				7DC4A55A222EFE0E00FA03DC /* NSErrorExtensionsTests.swift */,
 				B1C783F22241ECEB00DD89A9 /* NSManagedObjectContextExtensionsTests.swift */,
 				7D20F61A21C31CE900B77E5E /* UICollectionViewExtensionsTests.swift */,
@@ -2560,6 +2569,7 @@
 				9FBE5369223C2522001EC40C /* PermissionName.swift in Sources */,
 				B1911CE921C8460000F42F91 /* NotificationManager.swift in Sources */,
 				9FBE536D223C32E7001EC40C /* Permissions.swift in Sources */,
+				B1846D0F22E8FBC000BC4C4A /* NotificationCenterExtensions.swift in Sources */,
 				7D29D2F7218A29FE0036437C /* DocViewerAnnotationToolbar.swift in Sources */,
 				9FAA5900223A98A300FEC3F8 /* DrawerTransitioning.swift in Sources */,
 				7D80AC0A212B4A8D00C40ECE /* APIGroup.swift in Sources */,
@@ -2611,6 +2621,7 @@
 				3BBCF844224C193B004B519D /* HorizontalMenuView.swift in Sources */,
 				7D1758C1215A8F5600F88613 /* ListFormatter.swift in Sources */,
 				B19792F1217536230000369C /* Database.xcdatamodeld in Sources */,
+				B1846D1122E8FEBD00BC4C4A /* ModuleItemCompletionRequirement.swift in Sources */,
 				7D819FFF228DB48C00C61EDD /* GetQuiz.swift in Sources */,
 				7D29D2F9218A2BC60036437C /* DocViewerConstants.swift in Sources */,
 				7D8262F3212B2E3100BD268D /* APIFavoriteRequestable.swift in Sources */,
@@ -2858,6 +2869,7 @@
 				9FD504EA2180BE2900B395BA /* APIFileRequestableTests.swift in Sources */,
 				3BD364AF225E36FC006CEBD8 /* CalendarEventItemTests.swift in Sources */,
 				7DCF1EAC216BC360003AF358 /* CourseDefaultViewTests.swift in Sources */,
+				B1846D1322EA32F000BC4C4A /* NotificationCenterExtensionsTests.swift in Sources */,
 				78151DCF21AE7E0500692862 /* APIDiscussionRequestableTests.swift in Sources */,
 				3B3467C921349EC100F9BC2E /* LoginWebPresenterTests.swift in Sources */,
 				7DF4001B2174FA24007E5F81 /* UITableViewExtensionsTests.swift in Sources */,
