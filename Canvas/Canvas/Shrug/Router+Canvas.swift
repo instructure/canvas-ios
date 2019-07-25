@@ -154,7 +154,7 @@ extension TechDebt.Router {
         }
 
         // Pages
-        let pagesListViewModelFactory: (Session, Page) -> ColorfulViewModel = { session, page in
+        let pagesListViewModelFactory: (Session, CanvasCore.Page) -> ColorfulViewModel = { session, page in
             Page.colorfulPageViewModel(session: session, page: page)
         }
 
@@ -168,17 +168,14 @@ extension TechDebt.Router {
         addContextRoute([.course, .group], subPath: "front_page", handler: pagesFrontFactory)
         addContextRoute([.course, .group], subPath: "wiki", handler: pagesFrontFactory)
 
-        addContextRoute([.course], subPath: "pages", handler: { contextID, _ in
-            return HelmViewController(
-                moduleName: "/courses/:courseID/pages",
-                props: ["courseID": contextID.id]
-            )
+        addContextRoute([.course], subPath: "pages", handler: { contextID, params in
+            guard let url = params["url"] as? URL else { return nil }
+            return StudentReborn.router.match(.parse(url))
         })
 
-        addContextRoute([.group], subPath: "pages", handler: { contextID, _ in
-            guard let currentSession = currentSession else { return nil }
-            let controller = try Page.TableViewController(session: currentSession, contextID: contextID, viewModelFactory: pagesListViewModelFactory, route: route)
-            return controller
+        addContextRoute([.group], subPath: "pages", handler: { contextID, params in
+            guard let url = params["url"] as? URL else { return nil }
+            return StudentReborn.router.match(.parse(url))
         })
 
         let fileListFactory = { (contextID: ContextID) -> UIViewController in

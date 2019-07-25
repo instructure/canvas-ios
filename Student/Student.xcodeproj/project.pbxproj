@@ -249,6 +249,15 @@
 		B1E1FA5D215F11160008C76D /* AssignmentDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E1FA5C215F11160008C76D /* AssignmentDetailsTests.swift */; };
 		B1E7F2992163172300C5F7EC /* AssignmentDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E7F2982163172300C5F7EC /* AssignmentDetails.swift */; };
 		B1FFB80B215FADC2000684AA /* StudentUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FFB80A215FADC2000684AA /* StudentUITestCase.swift */; };
+		EE424B3E22E900E300D083EE /* PageListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3D22E900E300D083EE /* PageListPresenterTests.swift */; };
+		EEC3EF5722E0EB6500799FE2 /* PageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3EF5622E0EB6500799FE2 /* PageListViewController.swift */; };
+		EEC3EF5922E0EB8900799FE2 /* PageListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC3EF5822E0EB8900799FE2 /* PageListViewController.storyboard */; };
+		EEC3EF5A22E0ECCE00799FE2 /* PageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3EF5622E0EB6500799FE2 /* PageListViewController.swift */; };
+		EEC3EF5B22E0ECEC00799FE2 /* PageListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC3EF5822E0EB8900799FE2 /* PageListViewController.storyboard */; };
+		EEC3EF5D22E0EDDA00799FE2 /* PageListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3EF5C22E0EDDA00799FE2 /* PageListPresenter.swift */; };
+		EEC3EF5E22E0EDDA00799FE2 /* PageListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3EF5C22E0EDDA00799FE2 /* PageListPresenter.swift */; };
+		EEC3EF6022E1041100799FE2 /* PageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3EF5F22E1041100799FE2 /* PageListCell.swift */; };
+		EEC3EF6122E1041100799FE2 /* PageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3EF5F22E1041100799FE2 /* PageListCell.swift */; };
 		F9435B7222161A9100292D38 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946E6221491D00083E660 /* PSPDFKit.framework */; };
 		F9435B7322161A9100292D38 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946E7221491D00083E660 /* PSPDFKitUI.framework */; };
 		F9A138C1221749CB0008AC72 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946E6221491D00083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -666,6 +675,11 @@
 		B1E1FA5C215F11160008C76D /* AssignmentDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsTests.swift; sourceTree = "<group>"; };
 		B1E7F2982163172300C5F7EC /* AssignmentDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetails.swift; sourceTree = "<group>"; };
 		B1FFB80A215FADC2000684AA /* StudentUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITestCase.swift; sourceTree = "<group>"; };
+		EE424B3D22E900E300D083EE /* PageListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListPresenterTests.swift; sourceTree = "<group>"; };
+		EEC3EF5622E0EB6500799FE2 /* PageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListViewController.swift; sourceTree = "<group>"; };
+		EEC3EF5822E0EB8900799FE2 /* PageListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PageListViewController.storyboard; sourceTree = "<group>"; };
+		EEC3EF5C22E0EDDA00799FE2 /* PageListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListPresenter.swift; sourceTree = "<group>"; };
+		EEC3EF5F22E1041100799FE2 /* PageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListCell.swift; sourceTree = "<group>"; };
 		F9B946E6221491D00083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
 		F9B946E7221491D00083E660 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = ../../Carthage/Build/iOS/PSPDFKitUI.framework; sourceTree = "<group>"; };
 		F9E7D0CF215BE19F00CDC1A3 /* StudentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -746,6 +760,7 @@
 				7D979CD2215BE3CC00567627 /* Extensions */,
 				3B1B003B219BD9F50045E8A1 /* Groups */,
 				7D10194C215EBA530058FDD1 /* IBDesignables */,
+				EEC3EF5422E0EB1F00799FE2 /* Pages */,
 				3B1B005A219BD9F60045E8A1 /* Quizzes */,
 				7D2DC30D219CB65E008FE29A /* Submissions */,
 				2C5C698C211DFFAD00D9AD15 /* AppDelegate.swift */,
@@ -944,6 +959,7 @@
 		3B1B0090219BDA560045E8A1 /* Groups */ = {
 			isa = PBXGroup;
 			children = (
+				EE424B3B22E900B900D083EE /* Pages */,
 				3B1B0091219BDA560045E8A1 /* GroupNavigation */,
 			);
 			path = Groups;
@@ -1401,6 +1417,41 @@
 			path = FilePicker;
 			sourceTree = "<group>";
 		};
+		EE424B3B22E900B900D083EE /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				EE424B3C22E900C900D083EE /* PageList */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		EE424B3C22E900C900D083EE /* PageList */ = {
+			isa = PBXGroup;
+			children = (
+				EE424B3D22E900E300D083EE /* PageListPresenterTests.swift */,
+			);
+			path = PageList;
+			sourceTree = "<group>";
+		};
+		EEC3EF5422E0EB1F00799FE2 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				EEC3EF5522E0EB3800799FE2 /* PageList */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		EEC3EF5522E0EB3800799FE2 /* PageList */ = {
+			isa = PBXGroup;
+			children = (
+				EEC3EF5F22E1041100799FE2 /* PageListCell.swift */,
+				EEC3EF5C22E0EDDA00799FE2 /* PageListPresenter.swift */,
+				EEC3EF5822E0EB8900799FE2 /* PageListViewController.storyboard */,
+				EEC3EF5622E0EB6500799FE2 /* PageListViewController.swift */,
+			);
+			path = PageList;
+			sourceTree = "<group>";
+		};
 		F9E7D0D0215BE19F00CDC1A3 /* StudentUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1632,6 +1683,7 @@
 				3BE1307421AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */,
 				7D1758E4215AA06C00F88613 /* Localizable.strings in Resources */,
 				3B19D28022666AD5003A0565 /* RubricViewController.storyboard in Resources */,
+				EEC3EF5922E0EB8900799FE2 /* PageListViewController.storyboard in Resources */,
 				B150C62922973FDA0096D58C /* ArcSubmissionViewController.storyboard in Resources */,
 				3B1B0077219BD9F60045E8A1 /* CourseListViewController.storyboard in Resources */,
 				7D1758E8215AA07E00F88613 /* Localizable.stringsdict in Resources */,
@@ -1669,6 +1721,7 @@
 				3BE1307521AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */,
 				3B54260221B094DF0009D069 /* UrlSubmissionViewController.storyboard in Resources */,
 				9F74200C21932DEB00108A0F /* SubmissionDetailsViewController.storyboard in Resources */,
+				EEC3EF5B22E0ECEC00799FE2 /* PageListViewController.storyboard in Resources */,
 				7D09E5B821935933006150FA /* SubmissionDetailsEmptyView.xib in Resources */,
 				7DA61A5E216561A90085BAE8 /* Localizable.stringsdict in Resources */,
 				3B19D28122666AD5003A0565 /* RubricViewController.storyboard in Resources */,
@@ -1781,6 +1834,7 @@
 				9F5ADB31218B656400D8C973 /* SubmissionDetailsPresenter.swift in Sources */,
 				2C5C698D211DFFAD00D9AD15 /* AppDelegate.swift in Sources */,
 				788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */,
+				EEC3EF6022E1041100799FE2 /* PageListCell.swift in Sources */,
 				9FDDE2E0218CCAB9002B71F0 /* Drawer.swift in Sources */,
 				3B1B0078219BD9F60045E8A1 /* CourseListCourseCell.swift in Sources */,
 				7D2FADD1225BD3D100BCE19E /* TextSubmissionPresenter.swift in Sources */,
@@ -1800,6 +1854,7 @@
 				7D2000432233355F003BE403 /* SubmissionFilesViewController.swift in Sources */,
 				3B1B0066219BD9F60045E8A1 /* GroupNavigationPresenter.swift in Sources */,
 				2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */,
+				EEC3EF5722E0EB6500799FE2 /* PageListViewController.swift in Sources */,
 				7D10194E215EBA7B0058FDD1 /* DividerView.swift in Sources */,
 				7D25E1502292F862007302F9 /* SubmissionButtonAlertView.swift in Sources */,
 				3BE2ADCD21B70537008D91AB /* DynamicTextField.swift in Sources */,
@@ -1808,6 +1863,7 @@
 				7D79636B22307F2500CCF943 /* SubmissionFilesCell.swift in Sources */,
 				788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */,
 				3B1B007A219BD9F60045E8A1 /* QuizListPresenter.swift in Sources */,
+				EEC3EF5D22E0EDDA00799FE2 /* PageListPresenter.swift in Sources */,
 				3B3785BF222DC0B90047DAE4 /* CourseNavigationViewController.swift in Sources */,
 				7D20F61621C3142E00B77E5E /* CourseListPresenter.swift in Sources */,
 				3B1B0064219BD9F60045E8A1 /* GroupNavigationViewController.swift in Sources */,
@@ -1833,6 +1889,7 @@
 				7DA61A60216679170085BAE8 /* RoutesTests.swift in Sources */,
 				3B1B0098219BDA560045E8A1 /* CourseNavigationPresenterTests.swift in Sources */,
 				3B54260721B1E6C10009D069 /* UrlSubmissionPresenterTests.swift in Sources */,
+				EE424B3E22E900E300D083EE /* PageListPresenterTests.swift in Sources */,
 				3B1B0094219BDA560045E8A1 /* AssignmentListPresenterTests.swift in Sources */,
 				3B3436EC215EF2F8009EF87F /* UIImageStudentExtensionTests.swift in Sources */,
 				3B1B009B219BDA560045E8A1 /* GroupNavigationPresenterTests.swift in Sources */,
@@ -1847,6 +1904,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DA5C49D22386C1E003CDB4C /* SubmissionCommentTextCell.swift in Sources */,
+				EEC3EF5E22E0EDDA00799FE2 /* PageListPresenter.swift in Sources */,
 				3B19D28422667028003A0565 /* RubricCircleView.swift in Sources */,
 				7D067CE721505B3500B78AF2 /* DashboardSectionHeaderView.swift in Sources */,
 				7D005F7F2239DE920040CBD7 /* DynamicTextField.swift in Sources */,
@@ -1861,6 +1919,7 @@
 				7D067CE821505B3500B78AF2 /* DashboardPresenter.swift in Sources */,
 				7DD9E638223C4AA100B45A7E /* SubmissionCommentAttemptCell.swift in Sources */,
 				7D10194F215EBA7B0058FDD1 /* DividerView.swift in Sources */,
+				EEC3EF5A22E0ECCE00799FE2 /* PageListViewController.swift in Sources */,
 				B150C62A22977A610096D58C /* ArcSubmissionViewController.swift in Sources */,
 				7D63F781215D37B100151E49 /* CardView.swift in Sources */,
 				3B0B0F65219C8D1100F04216 /* CourseListSectionHeaderView.swift in Sources */,
@@ -1878,6 +1937,7 @@
 				B150C62722973CF20096D58C /* ArcSubmissionPresenter.swift in Sources */,
 				3B19D2702266475B003A0565 /* RubricPresenter.swift in Sources */,
 				7D979CD5215BE3E600567627 /* BundleExtensions.swift in Sources */,
+				EEC3EF6122E1041100799FE2 /* PageListCell.swift in Sources */,
 				9F74200B21932DCE00108A0F /* SubmissionDetailsViewController.swift in Sources */,
 				B1906E5522679A1A00FAD2DE /* UIViewControllerExtensions.swift in Sources */,
 				7D10A49321B5E3CF0040C311 /* RootViewController.swift in Sources */,

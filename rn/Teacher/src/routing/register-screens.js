@@ -65,7 +65,6 @@ import FilesList from '../modules/files/FilesList'
 import EditFile from '../modules/files/EditFile'
 import EditFolder from '../modules/files/EditFolder'
 import ViewFile from '../modules/files/ViewFile'
-import PagesList from '../modules/pages/list/PagesList'
 import PageDetails from '../modules/pages/details/PageDetails'
 import PageEdit from '../modules/pages/edit/PageEdit'
 import UI from '../common/UI'
@@ -156,7 +155,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/filter', wrap(Filter), store)
   registerScreen('/to-do', wrap(ToDoList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/wiki', wrap(PageDetails), store, { deepLink: true })
-  registerScreen('/courses/:courseID/pages', wrap(PagesList), store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/courses/:courseID/pages', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/pages/:url/edit', wrap(PageEdit), store, { deepLink: true })
   registerScreen('/terms-of-use', wrap(TermsOfUse), store)
   registerScreen('/profile/settings')

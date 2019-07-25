@@ -16,27 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+import Foundation
+public struct GetPagesRequest: APIRequestable {
+    public typealias Response = [APIPage]
 
-class DeepLinkTests: CanvasUITests {
+    let context: Context
 
-    override func setUp() {
-        super.setUp()
-
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.pages.tap()
-        PagesList.page(index: 0).tap()
+    public var path: String {
+        return "\(context.pathComponent)/pages"
     }
-
-    func testDeepLinkToGroupAnnouncements() {
-        app.find(labelContaining: "group-announcements").tap()
-        app.find(labelContaining: "There are no announcements to display.").waitToExist()
+    public var query: [APIQueryItem] {
+        return [.value("sort", "title")]
     }
+}
 
-    func testDeepLinkToGroup() {
-        app.find(labelContaining: "group-home").tap()
-        app.find(labelContaining: "Home").waitToExist()
+public struct GetFrontPageRequest: APIRequestable {
+    public typealias Response = APIPage
+
+    let context: Context
+
+    public var path: String {
+        return "\(context.pathComponent)/front_page"
     }
 }

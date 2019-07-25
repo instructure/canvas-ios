@@ -16,27 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+import UIKit
+import Core
 
-class DeepLinkTests: CanvasUITests {
+class PageListCell: UITableViewCell {
+    @IBOutlet weak var iconImageView: IconView!
+    @IBOutlet weak var titleLabel: DynamicLabel!
+    @IBOutlet weak var dateLabel: DynamicLabel!
 
-    override func setUp() {
-        super.setUp()
-
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.pages.tap()
-        PagesList.page(index: 0).tap()
-    }
-
-    func testDeepLinkToGroupAnnouncements() {
-        app.find(labelContaining: "group-announcements").tap()
-        app.find(labelContaining: "There are no announcements to display.").waitToExist()
-    }
-
-    func testDeepLinkToGroup() {
-        app.find(labelContaining: "group-home").tap()
-        app.find(labelContaining: "Home").waitToExist()
+    func update(page: Page, color: UIColor?) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d' at 'h:mm a"
+        dateLabel?.text = formatter.string(from: page.lastUpdated)
+        titleLabel?.text = page.title
+        iconImageView?.tintColor = color
     }
 }

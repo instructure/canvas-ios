@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - BVLinearGradient (2.5.4):
+  - BVLinearGradient (2.4.0):
     - React
   - Cartography (3.1.0)
   - Crashlytics (3.10.2):
@@ -78,13 +78,13 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - RCTSFSafariViewController (0.2.6):
+  - RCTSFSafariViewController (0.2.4):
     - React
   - React (0.51.0):
     - React/Core (= 0.51.0)
   - react-native-camera (0.10.0):
     - React
-  - react-native-document-picker (3.2.0):
+  - react-native-document-picker (2.1.0):
     - React
   - react-native-image-picker (0.14.3):
     - React
@@ -127,18 +127,18 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - ReactNativeSearchBar (3.4.2):
+  - ReactNativeSearchBar (3.4.0):
     - React
-  - RNAudio (3.6.0):
+  - RNAudio (3.5.1):
     - React
   - RNDeviceInfo (0.9.3):
     - React
-  - RNFS (2.13.3):
+  - RNFS (2.8.1):
     - React
-  - RNSound (0.10.12):
+  - RNSound (0.10.4):
     - React/Core
-    - RNSound/Core (= 0.10.12)
-  - RNSound/Core (0.10.12):
+    - RNSound/Core (= 0.10.4)
+  - RNSound/Core (0.10.4):
     - React/Core
   - SVProgressHUD (2.2.5)
   - TBBModal (1.0.2)
@@ -234,7 +234,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  BVLinearGradient: 8cbc5155c978f2e43098818c91d206d07aae6d30
+  BVLinearGradient: 8913bd8fdc47b85abc801ae8bae007bbfb6b4ce5
   Cartography: 1988b7578871a56c036e7af17195cb2190edf18c
   Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
@@ -250,16 +250,16 @@ SPEC CHECKSUMS:
   Mantle: f03b2b606c3f0cabd80214ad8a2fed6b464a7359
   Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  RCTSFSafariViewController: 709bddbde953cd94f373827b02d36224a9ad8293
+  RCTSFSafariViewController: 954d0fedb55f8b01b8695c78a8697fdc09a931b4
   React: 352f02f1db6e4744f9a758527e13e3fdefbbd6ba
   react-native-camera: a4446f056fb28a9aa7acb3e14af595216aac0a8d
-  react-native-document-picker: e3516aff0dcf65ee0785d9bcf190eb10e2261154
+  react-native-document-picker: 1e75650447a24dd5621d0d02884f004c619547f9
   react-native-image-picker: 3693786b3d5958c8f71deed66ec068b323565e0d
-  ReactNativeSearchBar: 1e3e667edb51de2cbc878b977c5b13f3b25fe21e
-  RNAudio: 5a5bc9863f6db8b6c9f34f98a7b472c03c684246
+  ReactNativeSearchBar: cb48a15b28341a1eaa0720a67a52bde4e9b32c1c
+  RNAudio: 7846e34218e3247f3e480b0b20277a3aab24b07b
   RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
-  RNFS: c9bbde46b0d59619f8e7b735991c60e0f73d22c1
-  RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
+  RNFS: 44ef20bb355e894d86a439be668c3c5ac70838a5
+  RNSound: dcbb42c698757ee4fa9a8528317c40d18a5deb1b
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
   yoga: b5d96400ca8b2936965a7a6516da7c1177f432a3
