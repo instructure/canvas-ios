@@ -20,19 +20,20 @@ import XCTest
 @testable import Core
 
 class APIPageRequestableTests: XCTestCase {
-    let context = ContextModel(.course, id: "42")
+    let courseContext = ContextModel(.course, id: "42")
+    let groupContext = ContextModel(.group, id: "42")
 
     func testGetPagesRequest() {
-        XCTAssertEqual(GetPagesRequest(context: context).path, "courses/42/pages")
-        XCTAssertEqual(GetPagesRequest(context: context).path, "groups/42/pages")
-        XCTAssertEqual(GetPagesRequest(context: context).queryItems, [
+        XCTAssertEqual(GetPagesRequest(context: courseContext).path, "courses/42/pages")
+        XCTAssertEqual(GetPagesRequest(context: groupContext).path, "groups/42/pages")
+        XCTAssertEqual(GetPagesRequest(context: courseContext).queryItems, [
             URLQueryItem(name: "sort", value: "title"),
         ])
     }
 
     func testGetFrontPageRequest() {
-        XCTAssertEqual(GetFrontPageRequest(context: ContextModel(.course, id: "42")).path, "courses/42/front_page")
-        XCTAssertEqual(GetFrontPageRequest(context: ContextModel(.group, id: "42")).path, "groups/42/front_page")
+        XCTAssertEqual(GetFrontPageRequest(context: courseContext).path, "courses/42/front_page")
+        XCTAssertEqual(GetFrontPageRequest(context: groupContext).path, "groups/42/front_page")
     }
 
 }
