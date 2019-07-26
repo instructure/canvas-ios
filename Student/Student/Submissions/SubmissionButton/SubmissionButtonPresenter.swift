@@ -77,7 +77,7 @@ class SubmissionButtonPresenter: NSObject {
                 : NSLocalizedString("Retake Quiz", bundle: .student, comment: "")
         }
 
-        return assignment.submission?.workflowState == .unsubmitted
+        return assignment.submission?.workflowState == .unsubmitted || assignment.submission?.submittedAt == nil
             ? NSLocalizedString("Submit Assignment", bundle: .student, comment: "")
             : NSLocalizedString("Resubmit Assignment", bundle: .student, comment: "")
     }

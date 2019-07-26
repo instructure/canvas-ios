@@ -186,4 +186,24 @@ class SubmissionTests: CoreTestCase {
         XCTAssertTrue(fileIDs?.contains("1") == true)
         XCTAssertTrue(fileIDs?.contains("2") == true)
     }
+
+    func testSavesSubmissionHistory() {
+        let item = APISubmission.make(
+            attempt: 1,
+            submission_history: [.make(attempt: 2)]
+        )
+        Submission.save(item, in: databaseClient)
+        let submissions: [Submission] = databaseClient.fetch()
+        XCTAssertEqual(submissions.count, 2)
+    }
+
+    func testDoesNotSaveSubmissionHistoryWithNilAttempt() {
+        let item = APISubmission.make(
+            attempt: 1,
+            submission_history: [.make(attempt: nil)]
+        )
+        Submission.save(item, in: databaseClient)
+        let submissions: [Submission] = databaseClient.fetch()
+        XCTAssertEqual(submissions.count, 1)
+    }
 }

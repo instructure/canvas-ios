@@ -151,7 +151,10 @@ extension Submission: WriteableModel {
         }
 
         if let submissionHistory = item.submission_history {
-            for var submission in submissionHistory {
+            // don't save histories where attempts are null or else it will overwrite
+            // the top level submission. This is the case for submissions with a grade
+            // but are still "unsubmitted"
+            for var submission in submissionHistory where submission.attempt != nil {
                 submission.user = item.user
                 Submission.save(submission, in: client)
             }
