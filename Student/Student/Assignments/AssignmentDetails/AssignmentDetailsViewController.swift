@@ -117,7 +117,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         quizQuestionsLabel?.text = NSLocalizedString("Questions:", bundle: .student, comment: "")
         quizTimeLimitLabel?.text = NSLocalizedString("Time Limit:", bundle: .student, comment: "")
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
-        submittedDetailsLabel?.text = NSLocalizedString("Your submission is now waiting to be graded", bundle: .student, comment: "")
+        submittedDetailsLabel?.text = NSLocalizedString("Your submission is now waiting to be graded.", bundle: .student, comment: "")
         submissionButton?.setTitle(NSLocalizedString("Submission & Rubric", bundle: .student, comment: ""), for: .normal)
 
         //  locked

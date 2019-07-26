@@ -35,6 +35,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     var resultingButtonTitle: String?
     var navigationController: UINavigationController?
     var pageViewLogger: MockPageViewLogger = MockPageViewLogger()
+    var onUpdate: (() -> Void)?
 
     class MockButton: SubmissionButtonPresenter {
         var submitted = false
@@ -416,6 +417,39 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         Assignment.make(from: .make(description: ""))
         XCTAssertEqual(presenter.assignmentDescription(), "No Content")
     }
+
+    func testCreatesSubmissionWhenOnlineUploadFinishes() {
+        Course.make()
+        let assignment = Assignment.make()
+        presenter.viewIsReady()
+        NotificationCenter.default.post(name: UploadManager.AssignmentSubmittedNotification, object: nil, userInfo: [
+            "assignmentID": assignment.id,
+            "submission": APISubmission.make(),
+        ])
+        let submissions: [Submission] = databaseClient.fetch()
+        XCTAssertEqual(submissions.count, 1)
+    }
+
+    func testUpdatesWhenOnlineUploadStateChanges() throws {
+        Course.make()
+        let assignment = Assignment.make()
+        let url = URL.temporaryDirectory.appendingPathComponent("assignment-details.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "test".data(using: .utf8), attributes: nil)
+        let fileID = UploadManager.shared.add(environment: env, url: url, batchID: "assignment-\(assignment.id)")
+        let file = UploadManager.shared.viewContext.object(with: fileID!) as! File
+        presenter.viewIsReady()
+        let expectation = XCTestExpectation(description: "update was called after online upload updated")
+        expectation.expectedFulfillmentCount = 1
+        expectation.assertForOverFulfill = false
+        onUpdate = {
+            expectation.fulfill()
+        }
+        file.uploadError = "it failed"
+        try UploadManager.shared.viewContext.save()
+        file.uploadError = "im telling you, IT FAILED!!"
+        try UploadManager.shared.viewContext.save()
+        wait(for: [expectation], timeout: 0.1)
+    }
 }
 
 extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
@@ -433,6 +467,7 @@ extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
         resultingAssignment = assignment
         resultingBaseURL = baseURL
         resultingQuiz = quiz
+        onUpdate?()
         expectation.fulfill()
     }
 
