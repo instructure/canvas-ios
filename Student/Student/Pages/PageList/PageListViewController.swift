@@ -52,27 +52,15 @@ class PageListViewController: UIViewController, PageListViewProtocol {
             emptyLabel?.isHidden = true
         }
 
-        if !isEmpty
-            && !isLoading
-            && UIApplication.shared.keyWindow?.traitCollection.horizontalSizeClass == .regular,
-            let presenter = presenter {
-
-            if presenter.frontPage.isEmpty == false,
-                let frontPage = presenter.frontPage.first {
-                presenter.select(frontPage, from: self)
-
-            } else if let page = presenter.pages[0] {
-                presenter.select(page, from: self)
+        if !isLoading && !isEmpty {
+            if UIApplication.shared.keyWindow?.traitCollection.horizontalSizeClass == .regular {
+                if let frontPage = presenter?.frontPage.first {
+                    presenter?.select(frontPage, from: self)
+                } else if let page = presenter?.pages.first {
+                    presenter?.select(page, from: self)
+                }
             }
-        }
-
-        if let frontPage = presenter?.frontPage.first {
-            frontPageView.isHidden = false
-            frontPageTitleLabel.text = frontPage.title
-            tableView.layoutIfNeeded()
-        } else {
-            tableView.tableHeaderView?.frame.size.height = 0
-            frontPageView.isHidden = true
+            view.setNeedsLayout()
         }
 
         if !isEmpty || !isLoading {
@@ -86,18 +74,19 @@ class PageListViewController: UIViewController, PageListViewProtocol {
         guard let headerView = tableView.tableHeaderView else { return }
         var height: CGFloat
 
-        if presenter?.frontPage.isEmpty == true {
-            frontPageView.isHidden = true
-            height = 0
-        } else {
+        if let frontPage = presenter?.frontPage.first {
+            frontPageTitleLabel.text = frontPage.title
             frontPageView.isHidden = false
             height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        } else {
+            frontPageView.isHidden = true
+            height = 0
         }
 
         if headerView.frame.size.height != height {
             headerView.frame.size.height = height
             tableView.tableHeaderView = headerView
-            tableView.layoutIfNeeded()
+            view.setNeedsLayout()
         }
     }
 
@@ -125,9 +114,6 @@ class PageListViewController: UIViewController, PageListViewProtocol {
         layer.shadowOffset = .zero
         layer.shadowOpacity = 0.4
         layer.cornerRadius = 2
-
-        //large page titles need this to display correctly
-        tableView.layoutIfNeeded()
 
         presenter?.viewIsReady()
     }

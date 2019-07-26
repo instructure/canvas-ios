@@ -22,11 +22,7 @@ import Core
 class PageListPresenter: PageViewLoggerPresenterProtocol {
 
     var pageViewEventName: String {
-        if course != nil {
-            return "/courses/\(context.canvasContextID)/pages"
-        } else {
-            return "/groups/\(context.canvasContextID)/pages"
-        }
+        return "\(context.pathComponent)/pages"
     }
 
     let context: Context
