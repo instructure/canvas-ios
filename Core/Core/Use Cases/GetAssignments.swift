@@ -21,7 +21,7 @@ import Foundation
 
 public class GetAssignments: CollectionUseCase {
     public enum Sort: String {
-        case position, dueAt
+        case position, dueAt, name
     }
 
     public typealias Model = Assignment
@@ -38,11 +38,17 @@ public class GetAssignments: CollectionUseCase {
     }
 
     public var request: GetAssignmentsRequest {
-        return GetAssignmentsRequest(courseID: courseID)
+        let orderBy: GetAssignmentsRequest.OrderBy
+        switch sort {
+        case .position, .dueAt:
+            orderBy = .position
+        case .name:
+            orderBy = .name
+        }
+        return GetAssignmentsRequest(courseID: courseID, orderBy: orderBy)
     }
 
     public var scope: Scope {
-
         switch sort {
         case .dueAt:
             //  this puts nil dueAt at the bottom of the list
@@ -53,6 +59,8 @@ public class GetAssignments: CollectionUseCase {
             return Scope.init(predicate: predicate, order: [a, b, c])
         case .position:
             return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.position))
+        case .name:
+            return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.name))
         }
     }
 

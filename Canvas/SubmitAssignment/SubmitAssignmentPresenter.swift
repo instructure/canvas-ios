@@ -29,16 +29,7 @@ class SubmitAssignmentPresenter {
     weak var view: SubmitAssignmentView?
 
     private(set) var course: Course? {
-        didSet {
-            assignment = nil
-            if let course = course {
-                assignments = env.subscribe(GetAssignments(courseID: course.id)) { [weak self] in
-                    self?.assignment = self?.assignment ?? self?.assignments?.first
-                }
-                assignments?.refresh()
-            }
-            view?.update()
-        }
+        didSet { view?.update() }
     }
 
     private(set) var assignment: Assignment? {
@@ -51,10 +42,11 @@ class SubmitAssignmentPresenter {
 
     var assignments: Store<GetAssignments>?
     lazy var courses: Store<GetCourses> = env.subscribe(GetCourses(showFavorites: false, state: [.available], perPage: 10)) { [weak self] in
-        self?.course = self?.course ?? self?.courses.first
+        if let course = self?.courses.first {
+            self?.select(course: course)
+        }
     }
 
-    // User defaults course and assignment
     var defaultCourses: Store<GetCourse>?
     var defaultAssignments: Store<GetAssignment>?
 
@@ -74,7 +66,9 @@ class SubmitAssignmentPresenter {
 
         if let courseID = env.userDefaults?.submitAssignmentCourseID {
             defaultCourses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
-                self?.course = self?.defaultCourses?.first
+                if let course = self?.defaultCourses?.first {
+                    self?.selectCourse(course, autoSelectAssignment: false)
+                }
                 if let assignmentID = self?.env.userDefaults?.submitAssignmentID {
                     self?.defaultAssignments = self?.env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID)) { [weak self] in
                         self?.assignment = self?.defaultAssignments?.first
@@ -83,6 +77,18 @@ class SubmitAssignmentPresenter {
                 }
             }
         }
+    }
+
+    func selectCourse(_ course: Course, autoSelectAssignment: Bool) {
+        self.course = course
+        if autoSelectAssignment {
+            assignment = nil
+            assignments = env.subscribe(GetAssignments(courseID: course.id)) { [weak self] in
+                self?.assignment = self?.assignment ?? self?.assignments?.first
+            }
+            assignments?.refresh()
+        }
+        view?.update()
     }
 
     func viewIsReady() {
@@ -109,7 +115,7 @@ class SubmitAssignmentPresenter {
     }
 
     func select(course: Course) {
-        self.course = course
+        self.selectCourse(course, autoSelectAssignment: true)
     }
 
     func select(assignment: Assignment) {

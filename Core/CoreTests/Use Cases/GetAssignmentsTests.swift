@@ -250,6 +250,18 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual([b, a, d, c], assignments)
     }
 
+    func testSortOrderByName() {
+        let a = Assignment.make(from: .make(id: "2", name: "A"))
+        let b = Assignment.make(from: .make(id: "3", name: "B"))
+        let c = Assignment.make(from: .make(id: "4", name: "C"))
+
+        let useCase = GetAssignments(courseID: "1", sort: .name)
+
+        let assignments: [Assignment] = databaseClient.fetch(sortDescriptors: useCase.scope.order)
+        XCTAssertEqual(assignments.count, 3)
+        XCTAssertEqual([a, b, c], assignments)
+    }
+
     func testItCreatesRubrics() {
         let apiAssignment = APIAssignment.make(
             id: "2",

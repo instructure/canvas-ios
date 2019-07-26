@@ -44,7 +44,7 @@ open class AppEnvironment {
         database = NSPersistentContainer.create(session: session)
         api = URLSessionAPI(accessToken: session.accessToken, actAsUserID: session.actAsUserID, baseURL: session.baseURL)
         currentSession = session
-        userDefaults = SessionDefaults(session: session)
+        userDefaults = SessionDefaults(sessionID: session.uniqueID)
         Logger.shared.database = database
     }
 

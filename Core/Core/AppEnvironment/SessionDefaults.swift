@@ -24,11 +24,11 @@ public struct SessionDefaults {
     }
 
     private var sessionDefaults: [String: Any]? {
-        get { return userDefaults.dictionary(forKey: session.uniqueID) }
-        set { userDefaults.set(newValue, forKey: session.uniqueID) }
+        get { return userDefaults.dictionary(forKey: sessionID) }
+        set { userDefaults.set(newValue, forKey: sessionID) }
     }
 
-    public let session: KeychainEntry
+    public let sessionID: String
 
     public var submitAssignmentCourseID: String? {
         get { return self["submitAssignmentCourseID"] as? String }
