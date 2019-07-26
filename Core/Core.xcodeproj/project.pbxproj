@@ -487,6 +487,8 @@
 		B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13293224BC656002C0555 /* ModuleItemTests.swift */; };
 		B1F3780A22498AF1000B7CAA /* MDMManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */; };
 		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
+		B1F6D6B822EB672500CDD44D /* SessionDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */; };
+		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
 		DFE1FF1D212F5E1A003F27AA /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1C212F5E1A003F27AA /* Keychain.swift */; };
 		DFE1FF20212F5E41003F27AA /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* KeychainTests.swift */; };
 		DFE1FF28212F69B3003F27AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF27212F69B3003F27AA /* AppDelegate.swift */; };
@@ -1181,6 +1183,8 @@
 		B1F13293224BC656002C0555 /* ModuleItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemTests.swift; sourceTree = "<group>"; };
 		B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDMManagerTests.swift; sourceTree = "<group>"; };
 		B1F3780B22499037000B7CAA /* MockMDMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMDMManager.swift; sourceTree = "<group>"; };
+		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
+		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
 		DFE1FF1C212F5E1A003F27AA /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		DFE1FF1F212F5E41003F27AA /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		DFE1FF25212F69B3003F27AA /* CoreTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1352,6 +1356,7 @@
 				7DAFB46221A361C400311275 /* LocalizationManager.swift */,
 				B1BEB2CA22458B5E00E893A4 /* MDMManager.swift */,
 				7DD6948E2196891200BA4984 /* Secret.swift */,
+				B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */,
 				B1C783EC2241E39B00DD89A9 /* UUID.swift */,
 			);
 			path = AppEnvironment;
@@ -1942,6 +1947,7 @@
 				7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */,
 				B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */,
 				7D2DC2F32199EC93008FE29A /* SecretTests.swift */,
+				B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */,
 			);
 			path = AppEnvironment;
 			sourceTree = "<group>";
@@ -2753,6 +2759,7 @@
 				7D765024215AEDDE00BB4F38 /* DividerView.swift in Sources */,
 				7851D9B32138264800E76EC3 /* GetCustomColors.swift in Sources */,
 				7DCE0C8822AEFE0C00BA549F /* QuizSubmissionWorkflowState.swift in Sources */,
+				B1F6D6B822EB672500CDD44D /* SessionDefaults.swift in Sources */,
 				B1EF7ABB21E902DD00D653D7 /* UseCase.swift in Sources */,
 				7DD6948B21960EBD00BA4984 /* DocViewerPresenter.swift in Sources */,
 				7DD6CC6721BCC597004C4BB6 /* LoginFindSchoolViewController.swift in Sources */,
@@ -2924,6 +2931,7 @@
 				3B300C852277981100743C59 /* RubricTests.swift in Sources */,
 				9FCF1554227CC927009D35F6 /* GradeCircleViewTests.swift in Sources */,
 				B1A6BC88218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift in Sources */,
+				B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */,
 				7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */,
 				B15CA275221DE8E50014FB02 /* APIModuleRequestableTests.swift in Sources */,
 				7D8B79032162B9E2005E08F1 /* CoreWebViewTests.swift in Sources */,

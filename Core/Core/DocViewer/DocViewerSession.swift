@@ -18,7 +18,7 @@
 
 import Foundation
 
-class DocViewerSession: NSObject, URLSessionTaskDelegate {
+public class DocViewerSession: NSObject, URLSessionTaskDelegate {
     var annotations: [APIDocViewerAnnotation]?
     lazy var api: API = URLSessionAPI(accessToken: nil, baseURL: sessionURL)
     var callback: () -> Void

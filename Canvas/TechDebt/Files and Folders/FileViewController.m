@@ -153,7 +153,7 @@
     if (courseID) {
         self.courseID = [NSNumber numberWithInteger:courseID.integerValue];
     }
-    NSString *assignmentID = params[@"query"][@"courseID"];
+    NSString *assignmentID = params[@"query"][@"assignmentID"];
     if (assignmentID) {
         self.assignmentID = [NSNumber numberWithInteger:assignmentID.integerValue];
     }

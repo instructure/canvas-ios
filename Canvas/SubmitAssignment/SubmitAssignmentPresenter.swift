@@ -50,9 +50,13 @@ class SubmitAssignmentPresenter {
     }
 
     var assignments: Store<GetAssignments>?
-    lazy var courses: Store<GetCourses>? = env.subscribe(GetCourses(showFavorites: false, state: [.available], perPage: 10)) { [weak self] in
-        self?.course = self?.course ?? self?.courses?.first
+    lazy var courses: Store<GetCourses> = env.subscribe(GetCourses(showFavorites: false, state: [.available], perPage: 10)) { [weak self] in
+        self?.course = self?.course ?? self?.courses.first
     }
+
+    // User defaults course and assignment
+    var defaultCourses: Store<GetCourse>?
+    var defaultAssignments: Store<GetAssignment>?
 
     var isContentValid: Bool {
         return course != nil && assignment != nil && urls != nil
@@ -67,10 +71,26 @@ class SubmitAssignmentPresenter {
         env = AppEnvironment.shared
         env.userDidLogin(session: session)
         sharedContainer = container
+
+        if let courseID = env.userDefaults?.submitAssignmentCourseID {
+            defaultCourses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+                self?.course = self?.defaultCourses?.first
+                if let assignmentID = self?.env.userDefaults?.submitAssignmentID {
+                    self?.defaultAssignments = self?.env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID)) { [weak self] in
+                        self?.assignment = self?.defaultAssignments?.first
+                    }
+                    self?.defaultAssignments?.refresh(force: true)
+                }
+            }
+        }
     }
 
     func viewIsReady() {
-        courses?.refresh()
+        if let defaultCourses = defaultCourses {
+            defaultCourses.refresh(force: true)
+        } else {
+            courses.refresh()
+        }
     }
 
     func load(items: [NSExtensionItem]) {

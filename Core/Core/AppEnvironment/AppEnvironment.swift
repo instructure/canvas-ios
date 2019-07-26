@@ -31,6 +31,7 @@ open class AppEnvironment {
     public var router: RouterProtocol
     public var currentSession: KeychainEntry?
     public var pageViewLogger: PageViewEventViewControllerLoggingProtocol = PresenterPageViewLogger()
+    public var userDefaults: SessionDefaults?
 
     public init() {
         self.database = globalDatabase
@@ -43,6 +44,7 @@ open class AppEnvironment {
         database = NSPersistentContainer.create(session: session)
         api = URLSessionAPI(accessToken: session.accessToken, actAsUserID: session.actAsUserID, baseURL: session.baseURL)
         currentSession = session
+        userDefaults = SessionDefaults(session: session)
         Logger.shared.database = database
     }
 
