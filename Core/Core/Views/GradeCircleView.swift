@@ -64,6 +64,7 @@ public class GradeCircleView: UIView {
     }
 
     public func update(_ assignment: Assignment) {
+        circleComplete.isAccessibilityElement = true
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case
         guard let submission = assignment.submission, submission.workflowState != .unsubmitted else {
@@ -71,7 +72,7 @@ public class GradeCircleView: UIView {
             return
         }
 
-        guard submission.grade != nil else {
+        guard submission.grade != nil || submission.excused == true else {
             isHidden = true
             return
         }
@@ -109,6 +110,16 @@ public class GradeCircleView: UIView {
 
             latePenaltyLabel.text = assignment.latePenaltyText
             finalGradeLabel.text = assignment.finalGradeText
+        }
+
+        // Update for excused
+        if submission.excused == true {
+            circlePoints.isHidden = true
+            circleLabel.isHidden = true
+            circleComplete.isHidden = false
+            gradeCircle?.progress = 1
+            displayGrade.isHidden = false
+            displayGrade.text = NSLocalizedString("Excused", bundle: .core, comment: "")
         }
     }
 }

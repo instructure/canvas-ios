@@ -159,4 +159,18 @@ class GradeCircleViewTests: XCTestCase {
         XCTAssertTrue(view.latePenaltyLabel.isHidden)
         XCTAssertTrue(view.finalGradeLabel.isHidden)
     }
+
+    func testItRendersForExcused() {
+        let a = Assignment.make(from: .make(
+            submission: .make(excused: true)
+        ))
+        view.update(a)
+        XCTAssertFalse(view.isHidden)
+        XCTAssertTrue(view.circlePoints.isHidden)
+        XCTAssertTrue(view.circleLabel.isHidden)
+        XCTAssertFalse(view.circleComplete.isHidden)
+        XCTAssertEqual(view.gradeCircle?.progress, 1)
+        XCTAssertFalse(view.displayGrade.isHidden)
+        XCTAssertEqual(view.displayGrade.text, "Excused")
+    }
 }

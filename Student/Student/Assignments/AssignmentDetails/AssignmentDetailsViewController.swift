@@ -168,6 +168,11 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
 
         fileSubmissionButton?.isHidden = true
+
+        if submission.excused == true {
+            return
+        }
+
         if let onlineUploadState = presenter?.onlineUploadState {
             gradeSection?.isHidden = false
             gradeCellDivider?.isHidden = false
