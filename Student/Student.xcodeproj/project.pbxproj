@@ -959,7 +959,6 @@
 		3B1B0090219BDA560045E8A1 /* Groups */ = {
 			isa = PBXGroup;
 			children = (
-				EE424B3B22E900B900D083EE /* Pages */,
 				3B1B0091219BDA560045E8A1 /* GroupNavigation */,
 			);
 			path = Groups;
@@ -1032,6 +1031,7 @@
 				3B1B0081219BDA550045E8A1 /* Assignments */,
 				3B1B0089219BDA550045E8A1 /* Courses */,
 				3B1B0090219BDA560045E8A1 /* Groups */,
+				EE424B3B22E900B900D083EE /* Pages */,
 				3B1B008C219BDA560045E8A1 /* Quizzes */,
 				788152E0212B38C5005BA428 /* Dashboard */,
 				3B3436EA215EF24F009EF87F /* Extensions */,

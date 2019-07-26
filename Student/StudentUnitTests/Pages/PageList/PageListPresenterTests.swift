@@ -26,7 +26,8 @@ class PageListPresenterTests: PersistenceTestCase {
     var resultingError: NSError?
     var resultingSubtitle: String?
     var resultingBackgroundColor: UIColor?
-    var presenter: PageListPresenter!
+    var coursePresenter: PageListPresenter!
+    var groupPresenter: PageListPresenter!
 
     let update = XCTestExpectation(description: "presenter updated")
     var onUpdateNavBar: ((String?, UIColor?) -> Void)?
@@ -38,7 +39,9 @@ class PageListPresenterTests: PersistenceTestCase {
 
     override func setUp() {
         super.setUp()
-        presenter = PageListPresenter(env: env, view: self, context: ContextModel(.course, id: "42"))
+        coursePresenter = PageListPresenter(env: env, view: self, context: ContextModel(.course, id: "42"))
+//        groupPresenter = PageListPresenter(env: env, view: self, context: ContextModel(.group, id: "42"))
+//        groupPresenter.viewIsReady()
     }
 
     func testLoadCourse() {
@@ -53,29 +56,33 @@ class PageListPresenterTests: PersistenceTestCase {
         onUpdateNavBar = {
             if $0 == c.name && $1 == c.color { expectation.fulfill() }
         }
-        presenter.viewIsReady()
+        coursePresenter.viewIsReady()
 
         wait(for: [expectation], timeout: 5)
     }
 
     func testLoadPages() {
         Page.make(from: .make(title: "Answers Page"))
-        presenter.viewIsReady()
-        XCTAssertEqual(presenter.pages.first?.title, "Answers Page")
+        coursePresenter.viewIsReady()
+        XCTAssertEqual(coursePresenter.pages.first?.title, "Answers Page")
     }
 
     func testLoadFrontPage() {
         Page.make(from: .make(front_page: true, title: "Front Page"))
-        presenter.viewIsReady()
-        XCTAssertEqual(presenter.frontPage.first?.title, "Front Page")
-        XCTAssertEqual(presenter.frontPage.first?.isFrontPage, true)
+        coursePresenter.viewIsReady()
+        XCTAssertEqual(coursePresenter.frontPage.first?.title, "Front Page")
+        XCTAssertEqual(coursePresenter.frontPage.first?.isFrontPage, true)
     }
 
     func testSelect() {
         let page = Page.make()
         let router = env.router as? TestRouter
-        XCTAssertNoThrow(presenter.select(page, from: UIViewController()))
+        XCTAssertNoThrow(coursePresenter.select(page, from: UIViewController()))
         XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(page.htmlURL))
+    }
+
+    func testPageViewEventName() {
+        XCTAssertEqual(coursePresenter.pageViewEventName, "courses/42/pages")
     }
 }
 
