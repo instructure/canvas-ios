@@ -78,19 +78,13 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     lazy var onlineUpload = UploadManager.shared.subscribe(batchID: "assignment-\(assignmentID)") { [weak self] in
-        self?.update()
+        self?.updateOnlineUpload()
     }
     var onlineUploadState: OnlineUploadState? {
-        if onlineUpload.isEmpty {
-            return nil
-        } else if onlineUpload.first(where: { $0.uploadError != nil }) != nil {
-            return .failed
-        } else if onlineUpload.allSatisfy({ $0.isUploaded }) {
-            return .completed
-        } else if onlineUpload.first(where: { $0.isUploading }) != nil {
-            return .uploading
-        } else {
-            return .staged
+        didSet {
+            if onlineUploadState != oldValue {
+                update()
+            }
         }
     }
 
@@ -140,6 +134,20 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
             submissionButtonPresenter.arcID = .none
         }
         update()
+    }
+
+    func updateOnlineUpload() {
+        if onlineUpload.isEmpty {
+            onlineUploadState = nil
+        } else if onlineUpload.first(where: { $0.uploadError != nil }) != nil {
+            onlineUploadState = .failed
+        } else if onlineUpload.allSatisfy({ $0.isUploaded }) {
+            onlineUploadState = .completed
+        } else if onlineUpload.first(where: { $0.isUploading }) != nil {
+            onlineUploadState = .uploading
+        } else {
+            onlineUploadState = .staged
+        }
     }
 
     func viewIsReady() {
