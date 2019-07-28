@@ -221,6 +221,9 @@
 "list_or_two" = "%1$@ rānei %2$@";
 
 /* No comment provided by engineer. */
+"Log In" = "takiuru I roto i";
+
+/* No comment provided by engineer. */
 "Log In Again" = "Takiuru Anō";
 
 /* No comment provided by engineer. */
@@ -279,6 +282,9 @@
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points nui ngā kōinga";
+
+/* No comment provided by engineer. */
+"Previous Logins" = "Ngā takiurunga o mua";
 
 /* No comment provided by engineer. */
 "purple" = "waiporoporo";

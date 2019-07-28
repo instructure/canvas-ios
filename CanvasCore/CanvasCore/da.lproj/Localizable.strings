@@ -135,9 +135,6 @@
 "Choose Date" = "Vælg dato";
 
 /* No comment provided by engineer. */
-"Close App" = "Luk app";
-
-/* No comment provided by engineer. */
 "Collapse" = "Skjul";
 
 /* No comment provided by engineer. */
@@ -645,9 +642,6 @@
 /* Teal course color button */
 "Teal" = "Grønblå";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Appen skal genstarte for at bruge de nye sprogindstillinger. Genstart appen.";
-
 /* Error message for a file missing */
 "The file does not exist." = "Denne fil eksisterer ikke.";
 
@@ -800,9 +794,6 @@
 
 /* Upcoming assignments */
 "Upcoming" = "Kommende";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Opdaterede sprogindstillinger";
 
 /* File upload submission option */
 "Upload File" = "Overfør fil";

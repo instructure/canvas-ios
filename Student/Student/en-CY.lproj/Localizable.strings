@@ -11,9 +11,6 @@
 "Allowed Attempts:" = "Allowed Attempts:";
 
 /* No comment provided by engineer. */
-"Arc" = "Arc";
-
-/* No comment provided by engineer. */
 "Assignment Details" = "Assignment details";
 
 /* No comment provided by engineer. */
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Choose File" = "Choose File";
-
-/* No comment provided by engineer. */
-"Close App" = "Close app";
 
 /* No comment provided by engineer. */
 "Comments" = "Comments";
@@ -221,6 +215,9 @@
 "Successfully submitted!" = "Successfully submitted!";
 
 /* No comment provided by engineer. */
+"Summary" = "Summary";
+
+/* No comment provided by engineer. */
 "Surveys" = "Surveys";
 
 /* No comment provided by engineer. */
@@ -239,9 +236,6 @@
 "Text Entry" = "Text entry";
 
 /* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "The app needs to restart to use the new language settings. Please relaunch the app.";
-
-/* No comment provided by engineer. */
 "There are no files to display." = "There are no files to display.";
 
 /* No comment provided by engineer. */
@@ -257,9 +251,6 @@
 "To Do" = "To-do";
 
 /* No comment provided by engineer. */
-"Updated Language Settings" = "Updated language settings";
-
-/* No comment provided by engineer. */
 "Uploading" = "Uploading";
 
 /* No comment provided by engineer. */
@@ -273,7 +264,4 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Website Address";
-
-/* No comment provided by engineer. */
-"Your submission is now waiting to be graded" = "Your submission is now waiting to be graded";
 

@@ -11,9 +11,6 @@
 "Allowed Attempts:" = "Tantativ Otorize:";
 
 /* No comment provided by engineer. */
-"Arc" = "Arc";
-
-/* No comment provided by engineer. */
 "Assignment Details" = "Detay Sesyon";
 
 /* No comment provided by engineer. */
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Choose File" = "Chwazi Fichye";
-
-/* No comment provided by engineer. */
-"Close App" = "Fèmen App";
 
 /* No comment provided by engineer. */
 "Comments" = "Kòmantè";
@@ -221,6 +215,9 @@
 "Successfully submitted!" = "Ale avèk siksè!";
 
 /* No comment provided by engineer. */
+"Summary" = "Rezime";
+
+/* No comment provided by engineer. */
 "Surveys" = "Ankèt";
 
 /* No comment provided by engineer. */
@@ -239,9 +236,6 @@
 "Text Entry" = "Antre Tèks";
 
 /* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "App la bezwen redemare pou li ka itilize nouvo langaj ki pwograme a. Tanpri relanse app la.";
-
-/* No comment provided by engineer. */
 "There are no files to display." = "Pa gen fichye pou afiche.";
 
 /* No comment provided by engineer. */
@@ -257,9 +251,6 @@
 "To Do" = "Pou Fè";
 
 /* No comment provided by engineer. */
-"Updated Language Settings" = "Paramèt Langaj Aktyalize";
-
-/* No comment provided by engineer. */
 "Uploading" = "Chajman";
 
 /* No comment provided by engineer. */
@@ -273,7 +264,4 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Adrès Sit Wèb";
-
-/* No comment provided by engineer. */
-"Your submission is now waiting to be graded" = "Soumisyon ou an ap tann pou yo evalye li";
 

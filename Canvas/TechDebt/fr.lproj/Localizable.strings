@@ -251,10 +251,10 @@
 "Ask me later" = "Me le demander plus tard";
 
 /* Label for an assignment */
-"Assignment" = "Travail assigné";
+"Assignment" = "Travaux";
 
 /* Title for Assignments view controller */
-"Assignments" = "Travaux assignés";
+"Assignments" = "Devoirs";
 
 /* An item for attaching to a discussion */
 "Attachment" = "Pièce jointe";

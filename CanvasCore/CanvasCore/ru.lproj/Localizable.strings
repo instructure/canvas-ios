@@ -135,9 +135,6 @@
 "Choose Date" = "Выбрать дату";
 
 /* No comment provided by engineer. */
-"Close App" = "Закрыть приложение";
-
-/* No comment provided by engineer. */
 "Collapse" = "Свернуть";
 
 /* No comment provided by engineer. */
@@ -645,9 +642,6 @@
 /* Teal course color button */
 "Teal" = "Бирюзовый";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Необходимо перезапустить приложение для использования новых языковых настроек. Перезапустите приложение.";
-
 /* Error message for a file missing */
 "The file does not exist." = "Файл не существует.";
 
@@ -800,9 +794,6 @@
 
 /* Upcoming assignments */
 "Upcoming" = "Предстоящий";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Обновленные языковые настройки";
 
 /* File upload submission option */
 "Upload File" = "Отправить файл";

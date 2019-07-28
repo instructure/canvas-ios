@@ -135,9 +135,6 @@
 "Choose Date" = "Kōwhiri te rā";
 
 /* No comment provided by engineer. */
-"Close App" = "Kati Taupānga";
-
-/* No comment provided by engineer. */
 "Collapse" = "Hinga";
 
 /* No comment provided by engineer. */
@@ -645,9 +642,6 @@
 /* Teal course color button */
 "Teal" = "Tira";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Me tīmata te taupānga anō ki te whakamahi i ngā tautuhinga reo hou. Tēna koa tuku anō i te taupānga";
-
 /* Error message for a file missing */
 "The file does not exist." = "Kāore i te tīariari te kōnae.";
 
@@ -800,9 +794,6 @@
 
 /* Upcoming assignments */
 "Upcoming" = "E haere mai ana";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Kua whakahoutia ngā Tautuhinga Reo";
 
 /* File upload submission option */
 "Upload File" = "Tukuake kōnae";

@@ -1409,6 +1409,9 @@
   "similarity_score_f4b5c343": {
     "message": "Puntaje de similitud"
   },
+  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
+    "message": "Al tratarse de un foro grupal, cada grupo tiene su propia conversación en este foro. Estos son los foros a los que puede acceder."
+  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Se ha producido un error nuestro. No se preocupe, hemos grabado esto y lo resolveremos a la brevedad."
   },

@@ -135,9 +135,6 @@
 "Choose Date" = "Datum wählen";
 
 /* No comment provided by engineer. */
-"Close App" = "App schließen";
-
-/* No comment provided by engineer. */
 "Collapse" = "Ausblenden";
 
 /* No comment provided by engineer. */
@@ -645,9 +642,6 @@
 /* Teal course color button */
 "Teal" = "Blaugrün";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Die Anwendung muss neu gestartet werden, um die neuen Spracheinstellungen zu übernehmen. Bitte starten Sie die App erneut.";
-
 /* Error message for a file missing */
 "The file does not exist." = "Die Datei existiert nicht.";
 
@@ -800,9 +794,6 @@
 
 /* Upcoming assignments */
 "Upcoming" = "Demnächst";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Aktualisierte Spracheinstellungen";
 
 /* File upload submission option */
 "Upload File" = "Datei hochladen";

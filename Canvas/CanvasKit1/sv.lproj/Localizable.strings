@@ -131,7 +131,7 @@
 "Stops recording a media comment" = "Avslutar inspelningen av en mediakommentar";
 
 /* Short name for student enrollment */
-"Student" = "Elev";
+"Student" = "Student";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Växlar medieindata mellan ljud och video. För närvarande inställt på %@";

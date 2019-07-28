@@ -135,9 +135,6 @@
 "Choose Date" = "Chwazi Dat";
 
 /* No comment provided by engineer. */
-"Close App" = "Fèmen App";
-
-/* No comment provided by engineer. */
 "Collapse" = "Redwi";
 
 /* No comment provided by engineer. */
@@ -645,9 +642,6 @@
 /* Teal course color button */
 "Teal" = "Ble vèt";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "App la bezwen redemare pou li ka itilize nouvo langaj ki pwograme a. Tanpri relanse app la.";
-
 /* Error message for a file missing */
 "The file does not exist." = "Fichye a pa egziste";
 
@@ -800,9 +794,6 @@
 
 /* Upcoming assignments */
 "Upcoming" = "Pwochen";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Paramèt Langaj Aktyalize";
 
 /* File upload submission option */
 "Upload File" = "Transfere Fichye";

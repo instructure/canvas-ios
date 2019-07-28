@@ -237,10 +237,10 @@
 
 /* Assignment icon a11y label
    Assignment module item type */
-"Assignment" = "Travail assigné";
+"Assignment" = "Travaux";
 
 /* Title for Assignments view controller */
-"Assignments" = "Travaux assignés";
+"Assignments" = "Devoirs";
 
 /* An item for attaching to a discussion */
 "Attachment" = "Pièce jointe";
