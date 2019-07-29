@@ -32,6 +32,8 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var emptyLabel: DynamicLabel?
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint?
     @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var emptyImageView: UIImageView!
+    @IBOutlet weak var emptyContainer: UIView!
 
     var currentUserID: String?
     var keyboard: KeyboardTransitioning?
@@ -63,8 +65,9 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         addCommentTextView?.font = .scaledNamedFont(.regular14)
         addCommentTextView?.adjustsFontForContentSizeCategory = true
         addCommentTextView?.textColor = .named(.textDarkest)
-        emptyLabel?.isHidden = true
-        emptyLabel?.text = NSLocalizedString("Have questions? Use this area to message your instructor about this assignment.", bundle: .student, comment: "")
+        emptyContainer?.isHidden = true
+        emptyLabel?.text = NSLocalizedString("Have questions about your assignment?\nMessage your instructor.", bundle: .student, comment: "")
+        emptyImageView.image = UIImage(named: "emptyComments", in: .core, compatibleWith: nil)
         tableView?.transform = CGAffineTransform(scaleX: 1, y: -1)
         tableView?.keyboardDismissMode = .onDrag
         addMediaButton?.accessibilityLabel = NSLocalizedString("Add media attachment", bundle: .student, comment: "")
@@ -185,7 +188,7 @@ extension SubmissionCommentsViewController: UIImagePickerControllerDelegate, UIN
 
 extension SubmissionCommentsViewController: SubmissionCommentsViewProtocol {
     func reload() {
-        emptyLabel?.isHidden = presenter?.comments.isEmpty == false
+        emptyContainer?.isHidden = presenter?.comments.isEmpty == false
         guard let changes = presenter?.comments.changes, changes.count == 1 else {
             tableView?.reloadData()
             return
