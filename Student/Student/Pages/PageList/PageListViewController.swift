@@ -113,7 +113,7 @@ class PageListViewController: UIViewController, PageListViewProtocol {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = .zero
         layer.shadowOpacity = 0.35
-        layer.cornerRadius = 2
+        layer.cornerRadius = 4
 
         presenter?.viewIsReady()
     }
