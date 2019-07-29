@@ -39,7 +39,7 @@ class PageViewEventRequestManagerTests: CoreTestCase {
         p.dequeue(p.queueCount, handler: nil)
         Clock.mockNow(date)
 
-        requestManager = PageViewEventRequestManager(persistence: p, api: api)
+        requestManager = PageViewEventRequestManager(persistence: p, env: env)
     }
 
     override func tearDown() {
