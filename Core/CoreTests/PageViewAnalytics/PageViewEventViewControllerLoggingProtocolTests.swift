@@ -46,6 +46,7 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
         p.dequeue(p.queueCount, handler: nil)
 
         PageViewEventController.instance.persistency = p
+        PageViewEventController.instance.configure(backgroundAppHelper: TestAppBackgroundHelper())
     }
 
     override func tearDown() {
@@ -81,3 +82,13 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
 }
 
 extension PageViewEventViewControllerLoggingProtocolTests: PageViewEventViewControllerLoggingProtocol {}
+
+class TestAppBackgroundHelper: AppBackgroundHelperProtocol {
+    func startBackgroundTask(taskName: String) {
+
+    }
+
+    func endBackgroundTask() {
+
+    }
+}
