@@ -12,6 +12,7 @@
 		2C964857211E303E002C3255 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C964856211E303E002C3255 /* Router.swift */; };
 		2C96485B211E30B3002C3255 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485A211E30B3002C3255 /* RouterTests.swift */; };
 		2C96485E211E3723002C3255 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485D211E3723002C3255 /* AppEnvironment.swift */; };
+		3B0897B122EF8EFD00F47142 /* AppBackgroundHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0897B022EF8EFD00F47142 /* AppBackgroundHelperProtocol.swift */; };
 		3B0CEB772150408A00D07CFA /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB762150408A00D07CFA /* TestsFoundation.framework */; };
 		3B158C8D22E12DC50039A568 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158C8C22E12DC50039A568 /* StringExtensions.swift */; };
 		3B158CA522E1343D0039A568 /* PageViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158C9F22E1343C0039A568 /* PageViewEvent.swift */; };
@@ -59,7 +60,6 @@
 		3B69254021A12E020023ED75 /* Int64Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69253F21A12E020023ED75 /* Int64Extensions.swift */; };
 		3B6D23E72267B9000040D3FE /* APIRubricAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D23E62267B9000040D3FE /* APIRubricAssessment.swift */; };
 		3B84C38F218B9B51005946BA /* AssignmentDatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */; };
-		3BB06CD922EF822E00CBC2A9 /* AppBackgroundHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB06CD822EF822E00CBC2A9 /* AppBackgroundHelperProtocol.swift */; };
 		3BBCF843224C193B004B519D /* HorizontalMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCF83F224C193B004B519D /* HorizontalMenuView.xib */; };
 		3BBCF844224C193B004B519D /* HorizontalMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF840224C193B004B519D /* HorizontalMenuView.swift */; };
 		3BBCF845224C193B004B519D /* HorizontalMenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF841224C193B004B519D /* HorizontalMenuViewCell.swift */; };
@@ -561,6 +561,7 @@
 		2C964856211E303E002C3255 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2C96485A211E30B3002C3255 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
 		2C96485D211E3723002C3255 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		3B0897B022EF8EFD00F47142 /* AppBackgroundHelperProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppBackgroundHelperProtocol.swift"; sourceTree = "<group>"; };
 		3B0CEB762150408A00D07CFA /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B158C8C22E12DC50039A568 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		3B158C9F22E1343C0039A568 /* PageViewEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewEvent.swift; sourceTree = "<group>"; };
@@ -608,7 +609,6 @@
 		3B69253F21A12E020023ED75 /* Int64Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64Extensions.swift; sourceTree = "<group>"; };
 		3B6D23E62267B9000040D3FE /* APIRubricAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRubricAssessment.swift; sourceTree = "<group>"; };
 		3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDatesTests.swift; sourceTree = "<group>"; };
-		3BB06CD822EF822E00CBC2A9 /* AppBackgroundHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppBackgroundHelperProtocol.swift; path = "../../../../../../../System/Volumes/Data/Users/grichards/src/canvas-ios/Core/Core/PageViewAnalytics/AppBackgroundHelperProtocol.swift"; sourceTree = "<group>"; };
 		3BBCF83F224C193B004B519D /* HorizontalMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalMenuView.xib; sourceTree = "<group>"; };
 		3BBCF840224C193B004B519D /* HorizontalMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalMenuView.swift; sourceTree = "<group>"; };
 		3BBCF841224C193B004B519D /* HorizontalMenuViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalMenuViewCell.swift; sourceTree = "<group>"; };
@@ -1367,6 +1367,7 @@
 		3B13D45922E1060300D23007 /* PageViewAnalytics */ = {
 			isa = PBXGroup;
 			children = (
+				3B0897B022EF8EFD00F47142 /* AppBackgroundHelperProtocol.swift */,
 				3B158C9F22E1343C0039A568 /* PageViewEvent.swift */,
 				3B158CA322E1343D0039A568 /* PageViewEventController.swift */,
 				3B158CA422E1343D0039A568 /* PageViewEventRequestManager.swift */,
@@ -1374,7 +1375,6 @@
 				3B158CA222E1343D0039A568 /* PageViewSession.swift */,
 				3B158CA022E1343C0039A568 /* Persistency.swift */,
 				3BDB8F3222E62D51003D81C3 /* PresenterPageViewLogger.swift */,
-				3BB06CD822EF822E00CBC2A9 /* AppBackgroundHelperProtocol.swift */,
 			);
 			path = PageViewAnalytics;
 			sourceTree = "<group>";
@@ -2567,7 +2567,6 @@
 				7DEAD08E2272387F0030C28A /* RichContentEditorPresenter.swift in Sources */,
 				7D13C52C22B956AC00345253 /* UITestHelpers.swift in Sources */,
 				78151DCD21AE75F600692862 /* APIDiscussionRequestable.swift in Sources */,
-				3BB06CD922EF822E00CBC2A9 /* AppBackgroundHelperProtocol.swift in Sources */,
 				7DCF1E9E216BB6B6003AF358 /* GradingType.swift in Sources */,
 				B17F23B12137981B00771F86 /* Clock.swift in Sources */,
 				7DCF1EC2216BE0BC003AF358 /* DueViewable.swift in Sources */,
@@ -2726,6 +2725,7 @@
 				7D2E828B2270BBA900735854 /* FilePickerProgressView.swift in Sources */,
 				7DCF2034216D5458003AF358 /* APIQuiz.swift in Sources */,
 				7DCF1EC5216BE2B5003AF358 /* GradeViewable.swift in Sources */,
+				3B0897B122EF8EFD00F47142 /* AppBackgroundHelperProtocol.swift in Sources */,
 				B1B4C1CB219631B700FA9E0E /* EmptyView.swift in Sources */,
 				7D80AC03212B445200C40ECE /* APIUser.swift in Sources */,
 				7D8262F9212B3B2000BD268D /* APISection.swift in Sources */,
