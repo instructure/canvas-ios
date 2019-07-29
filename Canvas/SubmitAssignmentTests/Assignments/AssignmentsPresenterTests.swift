@@ -25,10 +25,11 @@ class AssignmentsPresenterTests: SubmitAssignmentTests, AssignmentsView {
         let presenter = AssignmentsPresenter(environment: env, courseID: "1", selectedAssignmentID: nil, callback: { _ in })
         presenter.view = self
         let expectation = XCTestExpectation(description: "update was called")
-        Assignment.make(from: .make(course_id: "1"))
+        Assignment.make(from: .make(course_id: "1", name: "A", position: 2))
+        Assignment.make(from: .make(course_id: "1", name: "B", position: 1))
         Course.make(from: .make(id: ID(stringLiteral: "1")))
         onUpdate = {
-            if !presenter.assignments.isEmpty {
+            if presenter.assignments.count == 2, presenter.assignments[0]?.name == "A", presenter.assignments[1]?.name == "B" {
                 expectation.fulfill()
             }
         }
