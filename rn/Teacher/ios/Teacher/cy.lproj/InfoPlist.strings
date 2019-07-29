@@ -1,3 +1,6 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Athro";
+
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Atodwch luniau a fideos ar gyfer sylwadau ar gyflwyniad.";
 

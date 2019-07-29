@@ -19,6 +19,9 @@
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Act as User";
 
+/* No comment provided by engineer. */
+"Add Student" = "Add Student";
+
 /* Label displayed when logged in as an admin */
 "Admin" = "Admin";
 
@@ -73,9 +76,6 @@
 /* Close Button Title */
 "Close" = "Close";
 
-/* No comment provided by engineer. */
-"Close App" = "Close App";
-
 /* Course Announcement Description */
 "Course announcements" = "Subject announcements";
 
@@ -123,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "In-Class";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "Input the student pairing code provided to you.";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Institution announcements";
@@ -197,6 +200,9 @@
 "Open in..." = "Open in...";
 
 /* No comment provided by engineer. */
+"Pairing Code" = "Pairing Code";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Permission Needed";
 
 /* No comment provided by engineer. */
@@ -238,9 +244,6 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "Terms of Use";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "The app needs to restart to use the new language settings. Please relaunch the app.";
-
 /* Error message */
 "There are no actions for this item" = "There are no actions for this item.";
 
@@ -267,9 +270,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Unread";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Updated Language Settings";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "View Canvas Guides";

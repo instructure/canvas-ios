@@ -1409,6 +1409,9 @@
   "similarity_score_f4b5c343": {
     "message": "درجة التشابه"
   },
+  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
+    "message": "بما أنها مناقشة لمجموعات، فإن لكل مجموعة محادثة خاصة لهذا الموضوع. فيما يلي النقاشات التي يمكنك الوصول إليها:"
+  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "حدث مشكلة من طرفنا. لا تقلق، لقد سجلنا تلك المشكلة وسنقوم بحلها بعد قليل."
   },

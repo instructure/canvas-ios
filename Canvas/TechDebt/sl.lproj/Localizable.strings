@@ -254,7 +254,7 @@
 "Assignment" = "Naloga";
 
 /* Title for Assignments view controller */
-"Assignments" = "Naloge";
+"Assignments" = "Naloge:";
 
 /* An item for attaching to a discussion */
 "Attachment" = "Priloga";

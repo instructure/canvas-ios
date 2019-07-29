@@ -1409,6 +1409,9 @@
   "similarity_score_f4b5c343": {
     "message": "Ocena stopnia podobieństwa"
   },
+  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
+    "message": "Ponieważ jest to dyskusja grupowa, każda grupa przeprowadza konwersację na ten temat. Tutaj znajdują się te, do których masz dostęp."
+  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Wystąpił błąd po naszej stronie. Nie martw się – zapisaliśmy szczegóły zdarzenia, wkrótce się tym zajmiemy."
   },

@@ -135,9 +135,6 @@
 "Choose Date" = "Izberi datum";
 
 /* No comment provided by engineer. */
-"Close App" = "Zapri aplikacijo";
-
-/* No comment provided by engineer. */
 "Collapse" = "Strni";
 
 /* No comment provided by engineer. */
@@ -645,9 +642,6 @@
 /* Teal course color button */
 "Teal" = "Zelenomodra";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Da bodo uporabljene nove jezikovne nastavitve, je treba aplikacijo znova zagnati. Znova zaženite aplikacijo.";
-
 /* Error message for a file missing */
 "The file does not exist." = "Datoteka ne obstaja.";
 
@@ -800,9 +794,6 @@
 
 /* Upcoming assignments */
 "Upcoming" = "Prihodnje";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Posodobljene nastavitve jezika";
 
 /* File upload submission option */
 "Upload File" = "Naloži datoteko";

@@ -19,6 +19,9 @@
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Nastopajoči v vlogi uporabnika";
 
+/* No comment provided by engineer. */
+"Add Student" = "Dodaj študenta";
+
 /* Label displayed when logged in as an admin */
 "Admin" = "Skrbnik";
 
@@ -73,9 +76,6 @@
 /* Close Button Title */
 "Close" = "Zapri";
 
-/* No comment provided by engineer. */
-"Close App" = "Zapri aplikacijo";
-
 /* Course Announcement Description */
 "Course announcements" = "Obvestila o predmetu";
 
@@ -123,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "V razredu";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "Vnesite kodo za vzpostavljanje povezave študentov, ki ste jo prejeli.";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Obvestila ustanove";
@@ -197,6 +200,9 @@
 "Open in..." = "Odpri v ...";
 
 /* No comment provided by engineer. */
+"Pairing Code" = "Koda za seznanjanje naprave";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Potrebno je dovoljenje.";
 
 /* No comment provided by engineer. */
@@ -238,9 +244,6 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "Pogoji uporabe";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikacija se mora znova zagnati, da lahko uporabi nove jezikovne nastavitve. Ponovno zaženite aplikacijo.";
-
 /* Error message */
 "There are no actions for this item" = "Pri tem elementu ni dejanj.";
 
@@ -267,9 +270,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Neprebrano";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Posodobljene nastavitve jezika";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "Ogled vodnikov po sistemu Canvas";

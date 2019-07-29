@@ -1409,6 +1409,9 @@
   "similarity_score_f4b5c343": {
     "message": "類似スコア"
   },
+  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
+    "message": "これはグループディスカッションのため、各グループはこのトピックについてそれぞれの会話を行います。利用するディスカッションは以下のとおりです。"
+  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "こちらで何か問題が起こりました。心配はご無用です。これを記録しましたので、まもなく解決します。"
   },

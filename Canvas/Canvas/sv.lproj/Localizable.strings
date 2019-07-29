@@ -1182,7 +1182,7 @@
 "Stops recording a media comment" = "Avslutar inspelningen av en mediakommentar";
 
 /* Short name for student enrollment */
-"Student" = "Elev";
+"Student" = "Student";
 
 /* Header item label */
 "Sub Header" = "Underrubrik";

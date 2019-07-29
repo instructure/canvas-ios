@@ -19,6 +19,9 @@
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Gweithredu fel Defnyddiwr";
 
+/* No comment provided by engineer. */
+"Add Student" = "Ychwanegu Myfyriwr";
+
 /* Label displayed when logged in as an admin */
 "Admin" = "Gweinyddwr";
 
@@ -73,9 +76,6 @@
 /* Close Button Title */
 "Close" = "Cau";
 
-/* No comment provided by engineer. */
-"Close App" = "Cau’r Ap";
-
 /* Course Announcement Description */
 "Course announcements" = "Cyhoeddiadau cwrs";
 
@@ -123,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "Yn y dosbarth";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "Rhowch y cod paru myfyriwr a roddwyd i chi.";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Cyhoeddiadau sefydliadau";
@@ -197,6 +200,9 @@
 "Open in..." = "Agor yn...";
 
 /* No comment provided by engineer. */
+"Pairing Code" = "Cod Paru";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Angen Caniatâd";
 
 /* No comment provided by engineer. */
@@ -238,9 +244,6 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "Telerau Defnyddio";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Er mwyn defnyddio’r gosodiadau iaith newydd mae angen ailddechrau’r ap. Ail-lansiwch yr ap.";
-
 /* Error message */
 "There are no actions for this item" = "Does dim gweithrediadau ar gyfer yr eitem hon.";
 
@@ -267,9 +270,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Heb ddarllen";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Gosodiadau Iaith wedi’u Diweddaru";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "Gweld Canvas Guides";
