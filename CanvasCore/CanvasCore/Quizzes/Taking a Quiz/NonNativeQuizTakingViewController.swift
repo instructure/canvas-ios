@@ -79,14 +79,9 @@ class NonNativeQuizTakingViewController: UIViewController {
         if let host = urlForTakingQuiz.host {
             quizHostName = host
         }
-        APIBridge.shared().call("getAuthenticatedSessionURL", args: [urlForTakingQuiz.absoluteString]) { [weak self] response, error in
-            if let data = response as? [String: Any],
-                let sessionURL = data["session_url"] as? String,
-                let url = URL(string: sessionURL) {
-                self?.webView.loadRequest(URLRequest(url: url))
-            } else if let url = self?.urlForTakingQuiz {
-                self?.webView.loadRequest(URLRequest(url: url))
-            }
+        let url = urlForTakingQuiz
+        AppEnvironment.shared.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, _ in
+            DispatchQueue.main.async { self?.webView.loadRequest(URLRequest(url: response?.session_url ?? url)) }
         }
     }
     
