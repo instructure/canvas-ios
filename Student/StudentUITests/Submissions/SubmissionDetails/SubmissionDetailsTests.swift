@@ -117,6 +117,21 @@ class SubmissionDetailsTests: StudentUITestCase {
         XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
     }
 
+    func testGradedButUnsubmitted() {
+        let assignment = mockAssignment(APIAssignment.make())
+        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value:
+            APISubmission.make(
+                grade: "3",
+                workflow_state: .graded,
+                attempt: nil,
+                submission_history: [.make(attempt: nil)]
+            )
+        )
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
+    }
+
     func testPDFSubmission() {
         let url = Bundle(for: SubmissionDetailsTests.self).url(forResource: "empty", withExtension: "pdf")
         let previewURL = URL(string: "https://preview.url")!

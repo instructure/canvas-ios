@@ -73,7 +73,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
 
         let submission = presenter.currentSubmission
 
-        let isSubmitted = submission?.workflowState != .unsubmitted
+        let isSubmitted = submission?.workflowState != .unsubmitted && submission?.submittedAt != nil
         contentView?.isHidden = !isSubmitted && !assignment.isExternalToolAssignment
         drawer?.fileCount = submission?.attachments?.count ?? 0
         let title = presenter.submissionButtonText
