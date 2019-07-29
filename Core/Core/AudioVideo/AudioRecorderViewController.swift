@@ -135,6 +135,7 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
 
     @IBAction func cancel(_ sender: UIButton) {
         clear(sender)
+        recorder?.stop()
         delegate?.cancel(self)
     }
 }
