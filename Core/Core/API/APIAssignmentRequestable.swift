@@ -74,12 +74,28 @@ struct PostAssignmentRequest: APIRequestable {
 
 // https://canvas.instructure.com/doc/api/assignments.html#method.assignments_api.index
 public struct GetAssignmentsRequest: APIRequestable {
+    public enum OrderBy: String {
+        case position, name
+    }
+
     public typealias Response = [APIAssignment]
 
     let courseID: String
+    let orderBy: OrderBy
+
+    public init(courseID: String, orderBy: OrderBy = .position) {
+        self.courseID = courseID
+        self.orderBy = orderBy
+    }
 
     public var path: String {
         let context = ContextModel(.course, id: courseID)
         return "\(context.pathComponent)/assignments?per_page=100"
+    }
+
+    public var query: [APIQueryItem] {
+        return [
+            .value("order_by", orderBy.rawValue),
+        ]
     }
 }

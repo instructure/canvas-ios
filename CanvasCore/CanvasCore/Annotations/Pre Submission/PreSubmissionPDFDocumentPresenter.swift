@@ -19,6 +19,7 @@
 import Foundation
 import PSPDFKit
 import PSPDFKitUI
+import Core
 
 open class PreSubmissionPDFDocumentPresenter: NSObject {
     @objc var pdfDocument: PSPDFDocument
@@ -36,44 +37,40 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
         self.defaultAssignmentID = defaultAssignmentID
         super.init()
         pdfDocument.delegate = self
+        AppEnvironment.shared.userDefaults?.submitAssignmentCourseID = defaultCourseID
+        AppEnvironment.shared.userDefaults?.submitAssignmentID = defaultAssignmentID
     }
 
-    @objc func configuration(forSession session: Session?) -> PSPDFConfiguration {
+    @objc func configuration() -> PSPDFConfiguration {
         return PSPDFConfiguration { (builder) -> Void in
             applySharedAppConfiguration(to: builder)
-            if let session = session {
-                let submitActivity = SubmitAssignmentActivity(session: session,
-                                                              defaultCourseID: self.defaultCourseID,
-                                                              defaultAssignmentID: self.defaultAssignmentID,
-                                                              assignmentSubmitted: self.didSubmitAssignment)
-                let sharing = PSPDFDocumentSharingConfiguration { builder in
-                    builder.annotationOptions = [.embed]
-                    builder.applicationActivities += [UIActivity.ActivityType.PSPDFActivityTypeOpenIn, submitActivity]
-                }
-                builder.sharingConfigurations = [sharing]
-                builder.editableAnnotationTypes = [
-                    .link,
-                    .highlight,
-                    .underline,
-                    .strikeOut,
-                    .squiggly,
-                    .freeText,
-                    .ink,
-                    .square,
-                    .circle,
-                    .line,
-                    .polygon,
-                    .eraser
-                ]
-                builder.propertiesForAnnotations[.ink] = [["color"], ["lineWidth"]]
-                builder.propertiesForAnnotations[.square] = [["color"], ["lineWidth"]]
-                builder.propertiesForAnnotations[.circle] = [["color"], ["lineWidth"]]
-                builder.propertiesForAnnotations[.line] = [["color"], ["lineWidth"]]
-                builder.propertiesForAnnotations[.polygon] = [["color"], ["lineWidth"]]
-
-                // Override the override
-                builder.overrideClass(PSPDFAnnotationToolbar.self, with: PSPDFAnnotationToolbar.self)
+            let sharing = PSPDFDocumentSharingConfiguration { builder in
+                builder.annotationOptions = [.embed]
+                builder.pageSelectionOptions = .all
             }
+            builder.sharingConfigurations = [sharing]
+            builder.editableAnnotationTypes = [
+                .link,
+                .highlight,
+                .underline,
+                .strikeOut,
+                .squiggly,
+                .freeText,
+                .ink,
+                .square,
+                .circle,
+                .line,
+                .polygon,
+                .eraser
+            ]
+            builder.propertiesForAnnotations[.ink] = [["color"], ["lineWidth"]]
+            builder.propertiesForAnnotations[.square] = [["color"], ["lineWidth"]]
+            builder.propertiesForAnnotations[.circle] = [["color"], ["lineWidth"]]
+            builder.propertiesForAnnotations[.line] = [["color"], ["lineWidth"]]
+            builder.propertiesForAnnotations[.polygon] = [["color"], ["lineWidth"]]
+
+            // Override the override
+            builder.overrideClass(PSPDFAnnotationToolbar.self, with: PSPDFAnnotationToolbar.self)
         }
     }
 
@@ -92,7 +89,7 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
     @objc open func getPDFViewController() -> UIViewController {
         stylePSPDFKit()
 
-        let pdfViewController = PSPDFViewController(document: pdfDocument, configuration: configuration(forSession: session))
+        let pdfViewController = PSPDFViewController(document: pdfDocument, configuration: configuration())
         pdfViewController.navigationItem.rightBarButtonItems = [pdfViewController.activityButtonItem, pdfViewController.annotationButtonItem, pdfViewController.searchButtonItem]
         pdfViewController.annotationToolbarController?.toolbar.supportedToolbarPositions = [.positionLeft, .positionInTopBar, .positionsVertical,  .positionRight]
         pdfViewController.annotationToolbarController?.toolbar.toolbarPosition = .positionLeft
