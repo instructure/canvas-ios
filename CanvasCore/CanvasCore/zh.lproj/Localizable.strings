@@ -135,9 +135,6 @@
 "Choose Date" = "选择日期";
 
 /* No comment provided by engineer. */
-"Close App" = "关闭应用程序";
-
-/* No comment provided by engineer. */
 "Collapse" = "折叠";
 
 /* No comment provided by engineer. */
@@ -645,9 +642,6 @@
 /* Teal course color button */
 "Teal" = "青色";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "此应用程序需重启后才能使用新语言设置。请重新启动应用程序。";
-
 /* Error message for a file missing */
 "The file does not exist." = "文件不存在。";
 
@@ -800,9 +794,6 @@
 
 /* Upcoming assignments */
 "Upcoming" = "即将到来";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "已更新语言设置";
 
 /* File upload submission option */
 "Upload File" = "上传文件";

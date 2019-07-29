@@ -1409,6 +1409,9 @@
   "similarity_score_f4b5c343": {
     "message": "Pontuação semelhante"
   },
+  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
+    "message": "Como isso é uma discussão de grupos, cada grupo tem sua própria conversa para esse tópico. Aqui estão as discussões a que você tem acesso."
+  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Algo deu errado do nosso lado. Não se preocupe, isso foi registrado e tomaremos conta disso em breve."
   },

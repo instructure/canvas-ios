@@ -221,6 +221,9 @@
 "list_or_two" = "%1$@または%2$@";
 
 /* No comment provided by engineer. */
+"Log In" = "ログイン";
+
+/* No comment provided by engineer. */
 "Log In Again" = "もう一度ログインしてください。";
 
 /* No comment provided by engineer. */
@@ -279,6 +282,9 @@
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Previous Logins" = "以前のログイン";
 
 /* No comment provided by engineer. */
 "purple" = "パープル";

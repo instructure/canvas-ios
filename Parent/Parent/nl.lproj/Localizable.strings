@@ -19,6 +19,9 @@
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Optreden als gebruiker";
 
+/* No comment provided by engineer. */
+"Add Student" = "Cursist toevoegen";
+
 /* Label displayed when logged in as an admin */
 "Admin" = "Beheer";
 
@@ -73,9 +76,6 @@
 /* Close Button Title */
 "Close" = "Sluiten";
 
-/* No comment provided by engineer. */
-"Close App" = "App sluiten";
-
 /* Course Announcement Description */
 "Course announcements" = "Cursusaankondigingen";
 
@@ -123,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "In-Klas";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "Voer de koppelingscode cursist in die je gekregen hebt.";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Aankondigingen van de instelling";
@@ -197,6 +200,9 @@
 "Open in..." = "Openen in...";
 
 /* No comment provided by engineer. */
+"Pairing Code" = "Koppelingscode";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Toestemming vereist";
 
 /* No comment provided by engineer. */
@@ -238,9 +244,6 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "Gebruiksvoorwaarden";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "De app moet opnieuw worden gestart om de nieuwe taalinstellingen te activeren. Start de app opnieuw.";
-
 /* Error message */
 "There are no actions for this item" = "Er zijn geen handelingen voor dit item";
 
@@ -267,9 +270,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Ongelezen";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Bijgewerkte taalinstellingen";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "Canvas-handleidingen weergeven";

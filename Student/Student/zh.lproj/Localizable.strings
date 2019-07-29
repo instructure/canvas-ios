@@ -11,9 +11,6 @@
 "Allowed Attempts:" = "允许的尝试次数：";
 
 /* No comment provided by engineer. */
-"Arc" = "Arc";
-
-/* No comment provided by engineer. */
 "Assignment Details" = "作业详情";
 
 /* No comment provided by engineer. */
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Choose File" = "选择文件";
-
-/* No comment provided by engineer. */
-"Close App" = "关闭应用程序";
 
 /* No comment provided by engineer. */
 "Comments" = "评论";
@@ -221,6 +215,9 @@
 "Successfully submitted!" = "已成功提交。";
 
 /* No comment provided by engineer. */
+"Summary" = "摘要";
+
+/* No comment provided by engineer. */
 "Surveys" = "调查";
 
 /* No comment provided by engineer. */
@@ -239,9 +236,6 @@
 "Text Entry" = "文本输入";
 
 /* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "此应用程序需重启后才能使用新语言设置。请重新启动应用程序。";
-
-/* No comment provided by engineer. */
 "There are no files to display." = "没有文件可显示。";
 
 /* No comment provided by engineer. */
@@ -257,9 +251,6 @@
 "To Do" = "待办事项";
 
 /* No comment provided by engineer. */
-"Updated Language Settings" = "已更新语言设置";
-
-/* No comment provided by engineer. */
 "Uploading" = "正在上传";
 
 /* No comment provided by engineer. */
@@ -273,7 +264,4 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "网址";
-
-/* No comment provided by engineer. */
-"Your submission is now waiting to be graded" = "您的提交项目前正在等待评分";
 

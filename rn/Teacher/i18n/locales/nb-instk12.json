@@ -1409,6 +1409,9 @@
   "similarity_score_f4b5c343": {
     "message": "Likhetsresultat"
   },
+  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
+    "message": "Siden dette er en gruppe diskusjon, har hver gruppe en egen samtale for dette emne. Her er diskusjonene du har tilgang til."
+  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Noe gikk galt på vår ende. Ikke bekymre deg, vi har loggført dette og vil ta hånd om det innen kort tid."
   },

@@ -1409,6 +1409,9 @@
   "similarity_score_f4b5c343": {
     "message": "Lighedsscore"
   },
+  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
+    "message": "Da dette er en gruppediskussion, har hver gruppe sin egen Diskussion for dette emne. Her er de diskussioner, du har adgang til."
+  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Noget gik galt hos os. Du skal ikke bekymre dig, vi har optaget det og tager os af det snarest."
   },

@@ -1,3 +1,6 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Canvas Förälder";
+
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Bifoga foton och videoklipp till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
 

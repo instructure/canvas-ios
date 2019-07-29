@@ -135,9 +135,6 @@
 "Choose Date" = "Dewiswch Ddyddiad";
 
 /* No comment provided by engineer. */
-"Close App" = "Cau’r Ap";
-
-/* No comment provided by engineer. */
 "Collapse" = "Crebachu";
 
 /* No comment provided by engineer. */
@@ -645,9 +642,6 @@
 /* Teal course color button */
 "Teal" = "Glaswyrdd";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Er mwyn defnyddio’r gosodiadau iaith newydd mae angen ailddechrau’r ap. Ail-lansiwch yr ap.";
-
 /* Error message for a file missing */
 "The file does not exist." = "Dydy’r ffeil ddim yn bodoli.";
 
@@ -800,9 +794,6 @@
 
 /* Upcoming assignments */
 "Upcoming" = "Ar y gweill";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Gosodiadau Iaith wedi’u Diweddaru";
 
 /* File upload submission option */
 "Upload File" = "Llwytho ffeil i fyny";

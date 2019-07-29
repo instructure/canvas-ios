@@ -19,6 +19,9 @@
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Atuar como utilizador";
 
+/* No comment provided by engineer. */
+"Add Student" = "Adicionar aluno";
+
 /* Label displayed when logged in as an admin */
 "Admin" = "Admin";
 
@@ -73,9 +76,6 @@
 /* Close Button Title */
 "Close" = "Fechar";
 
-/* No comment provided by engineer. */
-"Close App" = "Fechar App";
-
 /* Course Announcement Description */
 "Course announcements" = "Anúncios da disciplina";
 
@@ -123,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "Turma interna";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "Insira o código de pareamento de alunos fornecido a você.";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Anúncios da Instituição";
@@ -197,6 +200,9 @@
 "Open in..." = "Abrir com...";
 
 /* No comment provided by engineer. */
+"Pairing Code" = "Código de pareamento";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Permissão necessária";
 
 /* No comment provided by engineer. */
@@ -238,9 +244,6 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "Termos de uso";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "A aplicação precisa reiniciar para usar as novas configurações de idioma. Por favor, reinicie a aplicação.";
-
 /* Error message */
 "There are no actions for this item" = "Não existem ações para este item";
 
@@ -267,9 +270,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Não lida";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Definições de idioma atualizadas";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "Visualizar guias Canvas";

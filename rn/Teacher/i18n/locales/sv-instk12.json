@@ -1409,6 +1409,9 @@
   "similarity_score_f4b5c343": {
     "message": "Likhetsresultat"
   },
+  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
+    "message": "Eftersom det här är en gruppdiskussion har varje grupp sin egen konversation för det här ämnet. Här är den diskussion som du har åtkomst till."
+  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Något gick fel i slutet. Oroa dig inte, vi har spelat in det här och kommer att ta hand om det inom kort."
   },

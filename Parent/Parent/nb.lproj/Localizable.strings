@@ -19,6 +19,9 @@
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Opptre som bruker";
 
+/* No comment provided by engineer. */
+"Add Student" = "Legg til student";
+
 /* Label displayed when logged in as an admin */
 "Admin" = "Admin";
 
@@ -73,9 +76,6 @@
 /* Close Button Title */
 "Close" = "Lukk";
 
-/* No comment provided by engineer. */
-"Close App" = "Lukk app";
-
 /* Course Announcement Description */
 "Course announcements" = "Kunngjøringer for emne";
 
@@ -123,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "I klassen";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "Oppgi studentparingskoden som ble gitt til deg.";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Institusjonskunngjøringer";
@@ -197,6 +200,9 @@
 "Open in..." = "Åpne i ...";
 
 /* No comment provided by engineer. */
+"Pairing Code" = "Parringskode";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Tillatelse kreves";
 
 /* No comment provided by engineer. */
@@ -238,9 +244,6 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "Bruksvilkår";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Appen må startes på nytt for å bruke de nye språkinnstillingene. Relansere appen.";
-
 /* Error message */
 "There are no actions for this item" = "Det er ingen handlinger for dette elementet";
 
@@ -267,9 +270,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Ulest";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Oppdatert språkinnstillinger";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "Vis veivisning til Canvas";

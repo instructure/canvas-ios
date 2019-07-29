@@ -19,6 +19,9 @@
 /* Label for button that allows admin to Act as User */
 "Act as User" = "تصرف كمستخدم";
 
+/* No comment provided by engineer. */
+"Add Student" = "إضافة طالب";
+
 /* Label displayed when logged in as an admin */
 "Admin" = "المسؤول";
 
@@ -73,9 +76,6 @@
 /* Close Button Title */
 "Close" = "إغلاق";
 
-/* No comment provided by engineer. */
-"Close App" = "إغلاق التطبيق";
-
 /* Course Announcement Description */
 "Course announcements" = "إعلانات المساق";
 
@@ -123,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "في الصف";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "أدخل رمز إقران الطالب المقدم لك.";
 
 /* Institution Announcement Description */
 "Institution announcements" = "إعلانات المؤسسة";
@@ -197,6 +200,9 @@
 "Open in..." = "الفتح في...";
 
 /* No comment provided by engineer. */
+"Pairing Code" = "رمز الإقران";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "مطلوب إذن";
 
 /* No comment provided by engineer. */
@@ -238,9 +244,6 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "شروط الاستخدام";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "يحتاج التطبيق لإعادة التشغيل لاستخدام إعدادات اللغة الجديدة. يرجى إعادة تشغيل التطبيق.";
-
 /* Error message */
 "There are no actions for this item" = "لا توجد أي عملية لهذا العنصر";
 
@@ -267,9 +270,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "غير مقروء";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "إعدادات اللغة المحدثة";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "عرض Canvas Guides";

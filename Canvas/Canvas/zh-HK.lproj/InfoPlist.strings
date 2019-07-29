@@ -1,3 +1,6 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "學生";
+
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。";
 

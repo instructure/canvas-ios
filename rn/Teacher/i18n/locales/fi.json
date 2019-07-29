@@ -1409,6 +1409,9 @@
   "similarity_score_f4b5c343": {
     "message": "Samanlaisuuden pistemäärä"
   },
+  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
+    "message": "Koska tämä on ryhmäkeskustelu, jokaisella ryhmällä on oma keskustelu tällä aiheelle. Täällä on ne keskustelut, joihin sinulla on käyttöoikeus:"
+  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Jotakin meni pieleen meidän päässämme. Älä huolehdi, olemme nauhoittaneet tämän ja huolehdimme siitä pikaisesti."
   },

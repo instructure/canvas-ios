@@ -19,6 +19,9 @@
 /* Label for button that allows admin to Act as User */
 "Act as User" = "ユーザーとして行動する";
 
+/* No comment provided by engineer. */
+"Add Student" = "受講生を追加";
+
 /* Label displayed when logged in as an admin */
 "Admin" = "管理者";
 
@@ -73,9 +76,6 @@
 /* Close Button Title */
 "Close" = "閉じる";
 
-/* No comment provided by engineer. */
-"Close App" = "アプリを閉じる";
-
 /* Course Announcement Description */
 "Course announcements" = "コースのアナウンスメント";
 
@@ -123,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "教室内";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "提供されている受講生ペアリングコードを入力します。";
 
 /* Institution Announcement Description */
 "Institution announcements" = "教育機関のアナウンスメント";
@@ -197,6 +200,9 @@
 "Open in..." = "...で開く";
 
 /* No comment provided by engineer. */
+"Pairing Code" = "ペアリングコード";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "許可が必要";
 
 /* No comment provided by engineer. */
@@ -238,9 +244,6 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "利用規約";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "新しい言語設定を使用するには、アプリの再起動が必要です。アプリを再起動してください。";
-
 /* Error message */
 "There are no actions for this item" = "このアイテムへのアクションはありません";
 
@@ -267,9 +270,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "未読";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "更新された言語設定";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "Canvas ガイドを見る";
