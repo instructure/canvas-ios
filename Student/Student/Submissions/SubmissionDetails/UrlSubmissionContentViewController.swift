@@ -24,6 +24,7 @@ class UrlSubmissionContentViewController: UIViewController {
 
     @IBOutlet weak var descriptionLabel: DynamicLabel!
     @IBOutlet weak var previewImageView: UIImageView!
+    @IBOutlet weak var previewButton: UIButton!
     @IBOutlet weak var urlButton: UIButton!
     var submission: Submission?
 
@@ -41,6 +42,8 @@ class UrlSubmissionContentViewController: UIViewController {
 
         if let attachment = submission?.attachments?.first {
             previewImageView.load(url: attachment.url)
+        } else {
+            previewButton.isEnabled = false
         }
     }
 
