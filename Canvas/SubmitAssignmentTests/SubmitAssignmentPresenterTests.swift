@@ -49,9 +49,9 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
     var presenter: SubmitAssignmentPresenter!
 
     override func setUp() {
+        env.userDefaults?.reset()
         presenter = SubmitAssignmentPresenter()
         presenter.view = self
-        env.userDefaults?.reset()
         super.setUp()
     }
 

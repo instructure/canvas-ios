@@ -63,20 +63,6 @@ class SubmitAssignmentPresenter {
         env = AppEnvironment.shared
         env.userDidLogin(session: session)
         sharedContainer = container
-
-        if let courseID = env.userDefaults?.submitAssignmentCourseID {
-            defaultCourses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
-                if let course = self?.defaultCourses?.first {
-                    self?.selectCourse(course, autoSelectAssignment: false)
-                }
-                if let assignmentID = self?.env.userDefaults?.submitAssignmentID {
-                    self?.defaultAssignments = self?.env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID)) { [weak self] in
-                        self?.assignment = self?.defaultAssignments?.first
-                    }
-                    self?.defaultAssignments?.refresh(force: true)
-                }
-            }
-        }
     }
 
     func selectCourse(_ course: Course, autoSelectAssignment: Bool) {
@@ -92,10 +78,27 @@ class SubmitAssignmentPresenter {
     }
 
     func viewIsReady() {
+        loadDefaults()
         if let defaultCourses = defaultCourses {
             defaultCourses.refresh(force: true)
         } else {
             courses.refresh()
+        }
+    }
+
+    func loadDefaults() {
+        if let courseID = env.userDefaults?.submitAssignmentCourseID {
+            defaultCourses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+                if let course = self?.defaultCourses?.first {
+                    self?.selectCourse(course, autoSelectAssignment: false)
+                }
+                if let assignmentID = self?.env.userDefaults?.submitAssignmentID {
+                    self?.defaultAssignments = self?.env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID)) { [weak self] in
+                        self?.assignment = self?.defaultAssignments?.first
+                    }
+                    self?.defaultAssignments?.refresh(force: true)
+                }
+            }
         }
     }
 
