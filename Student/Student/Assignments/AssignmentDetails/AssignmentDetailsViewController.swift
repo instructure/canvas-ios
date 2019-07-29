@@ -126,6 +126,9 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         // Routing from description
         descriptionView?.linkDelegate = self
 
+        let tapGradedView = UITapGestureRecognizer(target: self, action: #selector(didTapSubmission(_:)))
+        gradedView?.addGestureRecognizer(tapGradedView)
+
         presenter?.viewIsReady()
     }
 

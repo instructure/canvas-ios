@@ -323,6 +323,20 @@ class AssignmentDetailsTests: StudentUITestCase {
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
     }
 
+    func testGradeCellNavigatesToSubmission() {
+        let assignment = mockAssignment(APIAssignment.make(
+            points_possible: 10,
+            submission: APISubmission.make(
+                grade: "80%",
+                score: 8
+            ),
+            grading_type: .percent
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.gradeCell.tap()
+        XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
+    }
+
     func testSubmitUrlSubmission() {
         let assignment = mockAssignment(APIAssignment.make(
             submission_types: [ .online_url ]
