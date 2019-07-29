@@ -44,7 +44,7 @@ class UploadManagerTests: CoreTestCase {
         super.setUp()
 
         manager.notificationManager = notificationManager
-        URLSessionAPI.delegateURLSession = { _, _ in self.backgroundSession }
+        URLSessionAPI.delegateURLSession = { _, _, _ in self.backgroundSession }
         MockURLSession.reset()
     }
 
