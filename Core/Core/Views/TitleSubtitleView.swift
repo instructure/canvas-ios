@@ -18,9 +18,15 @@
 
 import UIKit
 
-open class TitleSubtitleView: UIView {
-    @IBOutlet weak var titleLabel: UILabel?
-    @IBOutlet weak var subtitleLabel: UILabel?
+public protocol NavigationSubtitleView: UIView {
+    static func create() -> Self
+    var titleLabel: UILabel? { get set }
+    var subtitleLabel: UILabel? { get set }
+}
+
+open class TitleSubtitleView: UIView, NavigationSubtitleView {
+    @IBOutlet public weak var titleLabel: UILabel?
+    @IBOutlet public weak var subtitleLabel: UILabel?
 
     public var title: String? {
         get { return titleLabel?.text }
@@ -32,7 +38,7 @@ open class TitleSubtitleView: UIView {
         set { subtitleLabel?.text = newValue }
     }
 
-    public static func create() -> TitleSubtitleView {
+    public static func create() -> Self {
         let view = loadFromXib()
         view.titleLabel?.text = ""
         view.titleLabel?.textColor = .named(.white)

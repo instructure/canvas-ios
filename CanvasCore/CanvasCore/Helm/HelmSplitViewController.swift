@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import Core
 
 open class HelmSplitViewController: UISplitViewController {
 
@@ -53,6 +54,7 @@ open class HelmSplitViewController: UISplitViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         let notification = Notification.Name(rawValue: "HelmSplitViewControllerTraitsUpdated")
         NotificationCenter.default.post(name: notification, object: nil, userInfo: nil)
+        updateTitleViews()
     }
     
     open override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
@@ -63,6 +65,28 @@ open class HelmSplitViewController: UISplitViewController {
     open override func show(_ vc: UIViewController, sender: Any?) {
         super.show(vc, sender: sender)
         self.masterNavigationController?.syncStyles()
+    }
+
+    private func updateTitleViews() {
+        // Recreating the titleView seems to be the most reliable way to get it to draw
+        // correctly when the traitCollection changes on iPad
+        if let titleView = masterTopViewController?.navigationItem.titleView as? NavigationSubtitleView {
+            masterTopViewController?.navigationItem.titleView = titleView.recreate()
+        }
+        if let titleView = detailTopViewController?.navigationItem.titleView as? NavigationSubtitleView {
+            detailTopViewController?.navigationItem.titleView = titleView.recreate()
+        }
+    }
+}
+
+extension NavigationSubtitleView {
+    func recreate() -> NavigationSubtitleView {
+        let copy = TitleSubtitleView.create()
+        copy.title = titleLabel?.text
+        copy.subtitle = subtitleLabel?.text
+        copy.titleLabel?.textColor = titleLabel?.textColor
+        copy.subtitleLabel?.textColor = subtitleLabel?.textColor
+        return copy
     }
 }
 
