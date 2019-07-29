@@ -26,6 +26,7 @@ class SubmitAssignmentViewController: SLComposeServiceViewController, SubmitAssi
     override func viewDidLoad() {
         super.viewDidLoad()
         placeholder = NSLocalizedString("Comments...", bundle: .core, comment: "")
+        navigationController?.navigationBar.topItem?.rightBarButtonItem?.title = NSLocalizedString("Submit", bundle: .core, comment: "")
     }
 
     override func presentationAnimationDidFinish() {
