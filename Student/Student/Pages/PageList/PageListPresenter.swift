@@ -82,19 +82,6 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
         group?.refresh()
     }
 
-    func pageViewStarted() {
-        if let course = course?.first {
-            view?.updateNavBar(subtitle: course.name, color: course.color)
-        } else if let group = group?.first {
-            view?.updateNavBar(subtitle: group.name, color: group.color)
-        }
-        viewDidAppear()
-    }
-
-    func pageViewEnded() {
-        viewDidDisappear()
-    }
-
     func select(_ page: Page, from view: UIViewController) {
         env.router.route(to: page.htmlURL, from: view, options: nil)
     }

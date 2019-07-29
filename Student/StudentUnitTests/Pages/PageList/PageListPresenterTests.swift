@@ -31,6 +31,7 @@ class PageListPresenterTests: PersistenceTestCase {
 
     let update = XCTestExpectation(description: "presenter updated")
     var onUpdateNavBar: ((String?, UIColor?) -> Void)?
+    var onUpdate: () -> Void = {}
 
     var color: UIColor?
     var navigationController: UINavigationController?
@@ -40,8 +41,24 @@ class PageListPresenterTests: PersistenceTestCase {
     override func setUp() {
         super.setUp()
         coursePresenter = PageListPresenter(env: env, view: self, context: ContextModel(.course, id: "42"))
-//        groupPresenter = PageListPresenter(env: env, view: self, context: ContextModel(.group, id: "42"))
-//        groupPresenter.viewIsReady()
+        groupPresenter = PageListPresenter(env: env, view: self, context: ContextModel(.group, id: "42"))
+    }
+
+    func testLoadGroup() {
+        XCTAssertNil(resultingSubtitle)
+        XCTAssertNil(resultingBackgroundColor)
+
+        let g = Group.make(from: .make(id: "42"), in: databaseClient)
+        Color.make(canvasContextID: g.canvasContextID, color: UIColor.red)
+
+        let expectation = self.expectation(description: "navbar")
+        expectation.assertForOverFulfill = false
+        onUpdateNavBar = {
+            if $0 == g.name && $1 == g.color { expectation.fulfill() }
+        }
+        groupPresenter.viewIsReady()
+
+        wait(for: [expectation], timeout: 5)
     }
 
     func testLoadCourse() {
@@ -63,7 +80,16 @@ class PageListPresenterTests: PersistenceTestCase {
 
     func testLoadPages() {
         Page.make(from: .make(title: "Answers Page"))
+        let expectation = self.expectation(description: "pages")
+        expectation.assertForOverFulfill = false
+        onUpdate = {
+            if !self.coursePresenter.pages.isEmpty {
+                expectation.fulfill()
+
+            }
+        }
         coursePresenter.viewIsReady()
+        wait(for: [expectation], timeout: 1)
         XCTAssertEqual(coursePresenter.pages.first?.title, "Answers Page")
     }
 
@@ -89,6 +115,7 @@ class PageListPresenterTests: PersistenceTestCase {
 extension PageListPresenterTests: PageListViewProtocol {
     func update(isLoading: Bool) {
         update.fulfill()
+        onUpdate()
     }
 
     func showError(_ error: Error) {
