@@ -108,7 +108,7 @@ extension DocViewerPresenter: PSPDFViewControllerDelegate {
         in textRect: CGRect,
         on pageView: PSPDFPageView
     ) -> [PSPDFMenuItem] {
-        return menuItems
+        return menuItems.filter { $0.identifier != PSPDFTextMenu.annotationMenuHighlight.rawValue }
     }
 
     public func pdfViewController(
