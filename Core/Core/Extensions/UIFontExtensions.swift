@@ -63,7 +63,7 @@ public extension UIFont {
             return scaledFont(.title2, for: .systemFont(ofSize: 16, weight: .medium))
 
         case .semibold12:
-            return scaledFont(.caption1, for: .systemFont(ofSize: 12, weight: .semibold))
+            return scaledFont(.body, for: .systemFont(ofSize: 12, weight: .semibold))
         case .semibold14:
             return scaledFont(.callout, for: .systemFont(ofSize: 14, weight: .semibold))
         case .semibold16:
