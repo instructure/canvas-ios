@@ -20,8 +20,35 @@
 
 import Foundation
 
-@objc
 class MockDistantURLSession: URLSession {
+    static let defaultURLSession = URLSessionAPI.defaultURLSession
+    static let cachingURLSession = URLSessionAPI.cachingURLSession
+    static let delegateURLSession = URLSessionAPI.delegateURLSession
+    static let noFollowRedirectSession = NoFollowRedirect.session
+    static let api = AppEnvironment.shared.api
+
+    static func setup() {
+        if URLSessionAPI.defaultURLSession is MockDistantURLSession { return }
+        let session = MockDistantURLSession()
+        URLSessionAPI.defaultURLSession = session
+        URLSessionAPI.cachingURLSession = session
+        URLSessionAPI.delegateURLSession = { config, delegate, queue in session }
+        NoFollowRedirect.session = session
+        AppEnvironment.shared.api = URLSessionAPI()
+    }
+
+    static func reset() {
+        URLSessionAPI.defaultURLSession = defaultURLSession
+        URLSessionAPI.cachingURLSession = cachingURLSession
+        URLSessionAPI.delegateURLSession = delegateURLSession
+        NoFollowRedirect.session = noFollowRedirectSession
+        AppEnvironment.shared.api = api
+
+        dataMocks = [:]
+        downloadMocks = [:]
+        uploadMocks = [:]
+    }
+
     // MARK: data
     struct MockData {
         let data: Data?
@@ -43,10 +70,8 @@ class MockDistantURLSession: URLSession {
         }
     }
     static var dataMocks: [URL: MockData] = [:]
-    @objc static func mockData(_ data: Data) {
-        guard isSetup else {
-            fatalError("Mock URLSession failed to setup correctly")
-        }
+    static func mockData(_ data: Data) {
+        setup()
         guard let message = try? JSONDecoder().decode(MockDataMessage.self, from: data) else {
             fatalError("Could not decode mocking request")
         }
@@ -93,10 +118,8 @@ class MockDistantURLSession: URLSession {
         }
     }
     static var downloadMocks: [URL: MockDownload] = [:]
-    @objc static func mockDownload(_ data: Data) {
-        guard isSetup else {
-            fatalError("Mock URLSession failed to setup correctly")
-        }
+    static func mockDownload(_ data: Data) {
+        setup()
         guard let message = try? JSONDecoder().decode(MockDownloadMessage.self, from: data) else {
             fatalError("Could not decode mocking request")
         }
@@ -137,21 +160,6 @@ class MockDistantURLSession: URLSession {
         MockDistantURLSession.uploadMocks[request.url!] = task
         return task
     }
-
-    @objc static func reset() {
-        dataMocks = [:]
-        downloadMocks = [:]
-        uploadMocks = [:]
-    }
-
-    static let isSetup: Bool = {
-        URLSessionAPI.defaultURLSession = MockDistantURLSession()
-        URLSessionAPI.cachingURLSession = MockDistantURLSession()
-        URLSessionAPI.delegateURLSession = { _, _ in MockDistantURLSession() }
-        NoFollowRedirect.session = MockDistantURLSession()
-        AppEnvironment.shared.api = URLSessionAPI()
-        return true
-    }()
 }
 
 #endif

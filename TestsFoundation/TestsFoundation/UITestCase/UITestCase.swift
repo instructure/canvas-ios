@@ -102,12 +102,10 @@ open class UITestCase: XCTestCase {
         error: String? = nil,
         noCallback: Bool = false
     ) {
-        let api = URLSessionAPI()
-        let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.accessToken, actAsUserID: api.actAsUserID)
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         let data = value.flatMap { try! encoder.encode($0) }
-        return mockDataRequest(request, data: data, response: response, error: error, noCallback: noCallback)
+        return mockEncodedData(requestable, data: data, response: response, error: error, noCallback: noCallback)
     }
 
     open func mockEncodedData<R: APIRequestable>(
@@ -120,6 +118,20 @@ open class UITestCase: XCTestCase {
         let api = URLSessionAPI()
         let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.accessToken, actAsUserID: api.actAsUserID)
         return mockDataRequest(request, data: data, response: response, error: error, noCallback: noCallback)
+    }
+
+    open func mockEncodableRequest<D: Codable>(
+        _ path: String,
+        value: D? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        noCallback: Bool = false
+    ) {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let data = value.flatMap { try! encoder.encode($0) }
+        let api = URLSessionAPI()
+        mockDataRequest(URLRequest(url: URL(string: path, relativeTo: api.baseURL)!), data: data, response: response, error: error, noCallback: noCallback)
     }
 
     open func mockDataRequest(

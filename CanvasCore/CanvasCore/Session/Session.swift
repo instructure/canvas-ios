@@ -21,6 +21,7 @@ import ReactiveSwift
 import Marshal
 import WebKit // fixes random "library not loaded" errors.
 import AVFoundation // fixes random "library not loaded" errors.
+import Core
 
 let LocalStoreAppGroupName = "group.com.instructure.Contexts"
 
@@ -52,7 +53,7 @@ open class Session: NSObject {
         self.localStoreDirectory = localStoreDirectory
         let config = URLSessionConfiguration.default
         config.httpAdditionalHeaders = defaultHTTPHeaders
-        URLSession = Foundation.URLSession(configuration: config)
+        URLSession = URLSessionAPI.delegateURLSession(config, nil, nil)
     }
     
     @objc open var sessionID: String {

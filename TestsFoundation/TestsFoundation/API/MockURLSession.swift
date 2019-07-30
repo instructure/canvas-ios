@@ -70,7 +70,7 @@ public class MockURLSession: URLSession {
     static let isSetup: Bool = {
         URLSessionAPI.defaultURLSession = MockURLSession()
         URLSessionAPI.cachingURLSession = MockURLSession()
-        URLSessionAPI.delegateURLSession = { _, _ in MockURLSession() }
+        URLSessionAPI.delegateURLSession = { _, _, _ in MockURLSession() }
         NoFollowRedirect.session = MockURLSession()
         AppEnvironment.shared.api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
         return true

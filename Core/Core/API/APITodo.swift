@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,32 +18,18 @@
 
 import Foundation
 
-public enum ContextType: String, Codable {
-    case account, course, group, user, section
-
-    public var pathComponent: String {
-        return "\(self)s"
-    }
+public enum TodoType: String, Codable {
+    case grading, submitting
 }
 
-public protocol Context {
-    var contextType: ContextType { get }
-    var id: String { get }
-}
-
-public protocol APIContext: Context {
-    var id: ID { get }
-}
-extension APIContext {
-    var id: String { return id.value }
-}
-
-public extension Context {
-    var canvasContextID: String {
-        return "\(contextType)_\(id)"
-    }
-
-    var pathComponent: String {
-        return "\(contextType.pathComponent)/\(id)"
-    }
+struct APITodo: Codable {
+    let type: TodoType
+    let ignore: URL
+    let ignore_permanently: URL
+    let html_url: URL
+    let needs_grading_count: UInt?
+    let assignment: APIAssignment
+    let context_type: ContextType
+    let course_id: ID?
+    let group_id: ID?
 }

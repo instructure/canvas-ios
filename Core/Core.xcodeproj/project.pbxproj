@@ -169,6 +169,8 @@
 		7D6410EE2280C345008FA345 /* ActAsUserWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6410ED2280C345008FA345 /* ActAsUserWindow.swift */; };
 		7D6A2BE2214C11AD00DB15C4 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6A2BE1214C11AD00DB15C4 /* Route.swift */; };
 		7D6A2BE4214C538F00DB15C4 /* RouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6A2BE3214C538F00DB15C4 /* RouteTests.swift */; };
+		7D6C8C6922EA0A6E00E5ADD8 /* APIActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C6822EA0A6E00E5ADD8 /* APIActivity.swift */; };
+		7D6C8C6D22EFA0D400E5ADD8 /* APITodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C6C22EFA0D400E5ADD8 /* APITodo.swift */; };
 		7D7110BF213890AD0085C2E5 /* RouteHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110BE213890AD0085C2E5 /* RouteHandler.swift */; };
 		7D7110C12138910D0085C2E5 /* RouteHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C02138910D0085C2E5 /* RouteHandlerTests.swift */; };
 		7D7110CA2139A57A0085C2E5 /* URLComponentsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C92139A57A0085C2E5 /* URLComponentsExtensions.swift */; };
@@ -871,6 +873,8 @@
 		7D6410ED2280C345008FA345 /* ActAsUserWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserWindow.swift; sourceTree = "<group>"; };
 		7D6A2BE1214C11AD00DB15C4 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		7D6A2BE3214C538F00DB15C4 /* RouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTests.swift; sourceTree = "<group>"; };
+		7D6C8C6822EA0A6E00E5ADD8 /* APIActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIActivity.swift; sourceTree = "<group>"; };
+		7D6C8C6C22EFA0D400E5ADD8 /* APITodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITodo.swift; sourceTree = "<group>"; };
 		7D7110BE213890AD0085C2E5 /* RouteHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHandler.swift; sourceTree = "<group>"; };
 		7D7110C02138910D0085C2E5 /* RouteHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHandlerTests.swift; sourceTree = "<group>"; };
 		7D7110C92139A57A0085C2E5 /* URLComponentsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLComponentsExtensions.swift; sourceTree = "<group>"; };
@@ -1898,6 +1902,7 @@
 				7D80AC11212B4F8E00C40ECE /* API.swift */,
 				7D80AC22212B8A2100C40ECE /* APIAccount.swift */,
 				7D80AC20212B89C500C40ECE /* APIAccountRequestable.swift */,
+				7D6C8C6822EA0A6E00E5ADD8 /* APIActivity.swift */,
 				B1A32BD721599C610071B41E /* APIAssignment.swift */,
 				B1A6BC7D218A317A000515E3 /* APIAssignmentOverride.swift */,
 				B1A6BC7F218A32F3000515E3 /* APIAssignmentOverride+Requestable.swift */,
@@ -1949,6 +1954,7 @@
 				9FCD79D32188DC4E0054293A /* APISubmissionRequestable.swift */,
 				7D80AC0B212B4C6F00C40ECE /* APITab.swift */,
 				7D8262F0212B28FE00BD268D /* APITabRequestable.swift */,
+				7D6C8C6C22EFA0D400E5ADD8 /* APITodo.swift */,
 				7D80AC02212B445200C40ECE /* APIUser.swift */,
 				7D80AC04212B461F00C40ECE /* APIUserRequestable.swift */,
 				3B3467D32135B7B700F9BC2E /* ID.swift */,
@@ -2711,6 +2717,7 @@
 				7DD6CC6B21BD6DB1004C4BB6 /* LoadingViewController.swift in Sources */,
 				B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */,
 				9FBE5367223C1EE9001EC40C /* APIPermissionsRequestable.swift in Sources */,
+				7D6C8C6922EA0A6E00E5ADD8 /* APIActivity.swift in Sources */,
 				7D4D5EB2213F2A200080AC14 /* UIImageViewExtensions.swift in Sources */,
 				7D1219242243340200D3BF5C /* KeyboardTransitioning.swift in Sources */,
 				7836B0D22199021500FA25AE /* ShareExtensionViewController.swift in Sources */,
@@ -2759,6 +2766,7 @@
 				3B635B2D225CD377001F353D /* APICalendarRequestable.swift in Sources */,
 				3B6D23E72267B9000040D3FE /* APIRubricAssessment.swift in Sources */,
 				9FD504EC2180BF1A00B395BA /* File.swift in Sources */,
+				7D6C8C6D22EFA0D400E5ADD8 /* APITodo.swift in Sources */,
 				3B34674B213051FD00F9BC2E /* LoginWebViewController.swift in Sources */,
 				7D5AA3C62294AF9400438667 /* GetSSOLogin.swift in Sources */,
 				3B635B33225CDC95001F353D /* CalendarEvent.swift in Sources */,
