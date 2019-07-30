@@ -38,4 +38,5 @@ public extension Bundle {
     var isStudentApp: Bool { return bundleIdentifier == Bundle.studentBundleID }
     var isTeacherApp: Bool { return bundleIdentifier == Bundle.teacherBundleID }
     var isParentApp: Bool { return bundleIdentifier == Bundle.parentBundleID }
+    static var isExtension: Bool { return Bundle.main.bundleURL.pathExtension == "appex" }
 }

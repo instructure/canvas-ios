@@ -27,12 +27,13 @@ struct Pandata {
 class PageViewEventRequestManager {
     private let maxBatchCount = 300
     private let persistence: Persistency
-    private let api: API
+    private let env: AppEnvironment
     private let keychain = GeneralPurposeKeychain(serviceName: Pandata.tokenKeychainService)
+    var backgroundAppHelper: AppBackgroundHelperProtocol?
 
-    init(persistence: Persistency = Persistency.instance, api: API = AppEnvironment.shared.api) {
+    init(persistence: Persistency = Persistency.instance, env: AppEnvironment = AppEnvironment.shared) {
         self.persistence = persistence
-        self.api = api
+        self.env = env
     }
 
     func sendEvents(handler: @escaping ErrorHandler) {
@@ -42,22 +43,19 @@ class PageViewEventRequestManager {
             let count = min(self.maxBatchCount, self.persistence.queueCount)
             guard count > 0 else { return handler(nil) }
 
-            var backgroundTask = UIBackgroundTaskIdentifier.invalid
-            backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "send pageview events") {
-                backgroundTask = UIBackgroundTaskIdentifier.invalid
-            }
+            self.backgroundAppHelper?.startBackgroundTask(taskName: "send pageview events")
 
             let events = self.persistence.batchOfEvents(count)?.map { $0.apiEvent(token) } ?? []
 
-            self.api.makeRequest(PostPandataEventsRequest(token: token, events: events)) { (response, _, error) in
+            self.env.api.makeRequest(PostPandataEventsRequest(token: token, events: events)) { (response, _, error) in
                 guard response?.lowercased() == "\"ok\"", error == nil else {
                     handler(error)
-                    UIApplication.shared.endBackgroundTask(backgroundTask)
+                    self.backgroundAppHelper?.endBackgroundTask()
                     return
                 }
                 self.persistence.dequeue(count, handler: {
                     handler(nil)
-                    UIApplication.shared.endBackgroundTask(backgroundTask)
+                    self.backgroundAppHelper?.endBackgroundTask()
                 })
             }
         }
@@ -79,16 +77,14 @@ class PageViewEventRequestManager {
             return handler(token)
         }
 
-        var backgroundTask = UIBackgroundTaskIdentifier.invalid
-        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "fetch pandata token") {
-            backgroundTask = UIBackgroundTaskIdentifier.invalid
-        }
-        api.makeRequest(PostPandataEventsTokenRequest()) { [weak self] (token, _, _) in
+        self.backgroundAppHelper?.startBackgroundTask(taskName: "fetch pandata token")
+
+        env.api.makeRequest(PostPandataEventsTokenRequest()) { [weak self] (token, _, _) in
             if let token = token {
                 self?.storePandataEndpointInfo(token)
             }
             handler(token)
-            UIApplication.shared.endBackgroundTask(backgroundTask)
+            self?.backgroundAppHelper?.endBackgroundTask()
         }
     }
 }

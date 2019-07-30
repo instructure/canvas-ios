@@ -32,9 +32,10 @@ public class PageViewEventController: NSObject {
     private let session = PageViewSession()
     var persistency: Persistency = Persistency.instance
     var appCanLogEvents: () -> Bool = {
+        let isNotExtension = !Bundle.isExtension
         let isNotTest = !ProcessInfo.isUITest
         let isStudent = Bundle.main.isStudentApp
-        return isNotTest && isStudent
+        return isNotTest && isStudent && isNotExtension
     }
 
     deinit {
@@ -51,8 +52,14 @@ public class PageViewEventController: NSObject {
     }
 
     // MARK: - Public
+
+    public func configure(backgroundAppHelper: AppBackgroundHelperProtocol) {
+        requestManager.backgroundAppHelper = backgroundAppHelper
+    }
+
     @objc func logPageView(_ eventNameOrPath: String, attributes: [String: String] = [:], eventDurationInSeconds: TimeInterval = 0) {
         if(!appCanLogEvents()) { return }
+        assert(requestManager.backgroundAppHelper != nil, "configure(backgroundAppHelper: AppBackgroundHelperProtocol) was not called")
         guard let authSession = Keychain.mostRecentSession else { return }
 
         let userID = authSession.userID
