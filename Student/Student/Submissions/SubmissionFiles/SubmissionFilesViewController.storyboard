@@ -87,28 +87,49 @@
                                     <outlet property="delegate" destination="E1T-OF-0gO" id="s17-ye-WGQ"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no files to display." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yc0-x7-4Eo" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="80.5" y="323.5" width="214" height="20.5"/>
-                                <viewLayoutGuide key="safeArea" id="KDE-ba-Cre"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kvf-sx-Nga">
+                                <rect key="frame" x="16" y="238.5" width="343" height="190"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OSk-fn-QzF">
+                                        <rect key="frame" x="60.5" y="35" width="222" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="JXQ-Ez-0WF"/>
+                                            <constraint firstAttribute="width" constant="222" id="roJ-A4-gUf"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no files to display." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yc0-x7-4Eo" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="78.5" y="173" width="186" height="17"/>
+                                        <viewLayoutGuide key="safeArea" id="KDE-ba-Cre"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="yc0-x7-4Eo" firstAttribute="centerX" secondItem="Kvf-sx-Nga" secondAttribute="centerX" id="7XY-kg-TJM"/>
+                                    <constraint firstItem="OSk-fn-QzF" firstAttribute="centerX" secondItem="Kvf-sx-Nga" secondAttribute="centerX" id="DzV-6X-ee8"/>
+                                    <constraint firstAttribute="bottom" secondItem="yc0-x7-4Eo" secondAttribute="bottom" id="TX1-EA-QdE"/>
+                                    <constraint firstItem="OSk-fn-QzF" firstAttribute="centerY" secondItem="Kvf-sx-Nga" secondAttribute="centerY" id="bO9-3Z-u8p"/>
+                                    <constraint firstAttribute="height" constant="190" id="xtM-cd-Y5A"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="yc0-x7-4Eo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="odF-Ka-dPO" secondAttribute="leading" constant="16" id="FRZ-Lm-hYU"/>
-                            <constraint firstItem="odF-Ka-dPO" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yc0-x7-4Eo" secondAttribute="trailing" constant="16" id="PQD-Jk-yQ6"/>
-                            <constraint firstItem="yc0-x7-4Eo" firstAttribute="centerY" secondItem="tiw-Fm-cKb" secondAttribute="centerY" id="fn7-P3-ttO"/>
-                            <constraint firstItem="yc0-x7-4Eo" firstAttribute="centerX" secondItem="tiw-Fm-cKb" secondAttribute="centerX" id="gDd-Jh-F0a"/>
+                            <constraint firstItem="Kvf-sx-Nga" firstAttribute="leading" secondItem="odF-Ka-dPO" secondAttribute="leading" constant="16" id="Uav-Rm-9YB"/>
+                            <constraint firstItem="odF-Ka-dPO" firstAttribute="trailing" secondItem="Kvf-sx-Nga" secondAttribute="trailing" constant="16" id="jgf-3O-GwO"/>
+                            <constraint firstItem="Kvf-sx-Nga" firstAttribute="centerY" secondItem="tiw-Fm-cKb" secondAttribute="centerY" id="tnC-u6-Hpp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="odF-Ka-dPO"/>
                     </view>
                     <connections>
+                        <outlet property="emptyContainer" destination="Kvf-sx-Nga" id="aW2-Vi-QH2"/>
+                        <outlet property="emptyImageView" destination="OSk-fn-QzF" id="f54-cY-3ko"/>
                         <outlet property="emptyLabel" destination="yc0-x7-4Eo" id="4ra-6S-tQ5"/>
                         <outlet property="tableView" destination="FMR-RS-HgB" id="8Fs-GN-2qZ"/>
                     </connections>

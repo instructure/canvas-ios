@@ -24,6 +24,8 @@ class SubmissionFilesViewController: UIViewController {
     weak var presenter: SubmissionDetailsPresenter?
     @IBOutlet weak var emptyLabel: DynamicLabel?
     @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var emptyContainer: UIView!
+    @IBOutlet weak var emptyImageView: UIImageView!
 
     static func create(files: [File]?, presenter: SubmissionDetailsPresenter?) -> SubmissionFilesViewController {
         let controller = loadFromStoryboard()
@@ -36,8 +38,9 @@ class SubmissionFilesViewController: UIViewController {
         super.viewDidLoad()
         tableView?.separatorColor = .named(.borderMedium)
         tableView?.tintColor = .named(.textInfo)
-        emptyLabel?.text = NSLocalizedString("There are no files to display.", bundle: .student, comment: "")
-        emptyLabel?.isHidden = !files.isEmpty
+        emptyLabel?.text = NSLocalizedString("There are no files for this assignment.", bundle: .student, comment: "")
+        emptyContainer?.isHidden = !files.isEmpty
+        emptyImageView?.image = UIImage(named: "emptyFiles", in: .core, compatibleWith: nil)
     }
 }
 
