@@ -61,7 +61,7 @@ extension SubmissionFilesViewController: UITableViewDataSource, UITableViewDeleg
         cell.checkView?.isHidden = (file.id != presenter?.selectedFileID)
         let fileID = file.id ?? ""
         cell.checkView?.accessibilityIdentifier = "SubmissionFiles.cell.\(fileID).checkView"
-        cell.checkView?.isAccessibilityElement = true
+        cell.checkView?.isAccessibilityElement = !UIAccessibility.isSwitchControlRunning
         cell.accessibilityIdentifier = "SubmissionFiles.cell.\(fileID)"
         return cell
     }
