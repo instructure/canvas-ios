@@ -65,6 +65,12 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         presenter?.viewDidDisappear()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        drawerContentViewController?.view.accessibilityElementsHidden = drawer?.height == 0
+        contentView?.accessibilityElementsHidden = drawer?.height != 0
+    }
+
     func reload() {
         guard let presenter = presenter, let assignment = presenter.currentAssignment else {
             return
