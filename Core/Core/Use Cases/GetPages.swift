@@ -44,6 +44,12 @@ public struct GetPages: CollectionUseCase {
         return Scope(predicate: predicate, order: [order])
     }
 
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APIPage]?, URLResponse?, Error?) -> Void) {
+        environment.api.makeRequest(request) { (response, urlResponse, _) in
+            completionHandler(response, urlResponse, nil) // returns error when no pages exist except front page so ignore
+        }
+    }
+
     public func write(response: [APIPage]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         for item in response {
