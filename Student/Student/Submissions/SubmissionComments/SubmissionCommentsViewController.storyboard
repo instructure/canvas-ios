@@ -346,7 +346,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ed-hM-HU9">
-                                <rect key="frame" x="16" y="245" width="343" height="177.5"/>
+                                <rect key="frame" x="16" y="229.5" width="343" height="190"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G8F-Nx-Hbp">
                                         <rect key="frame" x="94.5" y="0.0" width="154" height="120"/>
@@ -356,7 +356,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have questions? Use this area to message your instructor about this assignment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxN-b5-Dqx" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="13.5" y="144" width="316" height="33.5"/>
+                                        <rect key="frame" x="13.5" y="140" width="316" height="33.5"/>
                                         <viewLayoutGuide key="safeArea" id="pIe-X1-3Uk"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -370,12 +370,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="G8F-Nx-Hbp" firstAttribute="centerX" secondItem="6ed-hM-HU9" secondAttribute="centerX" id="9yQ-LD-DPO"/>
-                                    <constraint firstItem="G8F-Nx-Hbp" firstAttribute="top" secondItem="6ed-hM-HU9" secondAttribute="top" id="EF1-o2-3Sc"/>
                                     <constraint firstItem="vxN-b5-Dqx" firstAttribute="centerX" secondItem="6ed-hM-HU9" secondAttribute="centerX" id="G4Y-xg-H7m"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vxN-b5-Dqx" secondAttribute="trailing" id="R2o-Tl-bWu"/>
-                                    <constraint firstItem="vxN-b5-Dqx" firstAttribute="top" secondItem="G8F-Nx-Hbp" secondAttribute="bottom" constant="24" id="UmU-Kq-zCH"/>
+                                    <constraint firstItem="G8F-Nx-Hbp" firstAttribute="top" secondItem="6ed-hM-HU9" secondAttribute="top" id="WSK-ZE-pig"/>
                                     <constraint firstItem="vxN-b5-Dqx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6ed-hM-HU9" secondAttribute="leading" id="Y3D-pI-p3J"/>
-                                    <constraint firstAttribute="height" constant="177.5" id="czI-bq-d32"/>
+                                    <constraint firstAttribute="height" constant="190" id="czI-bq-d32"/>
+                                    <constraint firstItem="vxN-b5-Dqx" firstAttribute="top" secondItem="G8F-Nx-Hbp" secondAttribute="bottom" constant="20" id="eJM-2e-TSN"/>
                                 </constraints>
                             </view>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SAr-z8-Qsj">
@@ -512,7 +512,7 @@
                         <constraints>
                             <constraint firstItem="SAr-z8-Qsj" firstAttribute="trailing" secondItem="WpC-Mf-1Fh" secondAttribute="trailing" id="8Vq-lM-gd0"/>
                             <constraint firstItem="WpC-Mf-1Fh" firstAttribute="trailing" secondItem="z6Z-9B-ukp" secondAttribute="trailing" id="H5P-6H-p7J"/>
-                            <constraint firstItem="6ed-hM-HU9" firstAttribute="centerY" secondItem="J4c-la-pV3" secondAttribute="centerY" id="PGP-a3-JVZ"/>
+                            <constraint firstItem="6ed-hM-HU9" firstAttribute="centerY" secondItem="J4c-la-pV3" secondAttribute="centerY" multiplier="0.97" constant="1" id="PGP-a3-JVZ"/>
                             <constraint firstItem="z6Z-9B-ukp" firstAttribute="top" secondItem="WpC-Mf-1Fh" secondAttribute="top" id="TqG-Sv-DpM"/>
                             <constraint firstItem="WpC-Mf-1Fh" firstAttribute="bottom" secondItem="SAr-z8-Qsj" secondAttribute="bottom" id="b2P-am-cmK"/>
                             <constraint firstItem="WpC-Mf-1Fh" firstAttribute="trailing" secondItem="6ed-hM-HU9" secondAttribute="trailing" constant="16" id="cku-Ix-FVQ"/>

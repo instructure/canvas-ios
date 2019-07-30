@@ -91,14 +91,14 @@
                                 <rect key="frame" x="16" y="238.5" width="343" height="190"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OSk-fn-QzF">
-                                        <rect key="frame" x="60.5" y="0.0" width="222" height="120"/>
+                                        <rect key="frame" x="60.5" y="35" width="222" height="120"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="120" id="JXQ-Ez-0WF"/>
                                             <constraint firstAttribute="width" constant="222" id="roJ-A4-gUf"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no files to display." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yc0-x7-4Eo" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="78.5" y="144" width="186" height="17"/>
+                                        <rect key="frame" x="78.5" y="173" width="186" height="17"/>
                                         <viewLayoutGuide key="safeArea" id="KDE-ba-Cre"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -113,8 +113,8 @@
                                 <constraints>
                                     <constraint firstItem="yc0-x7-4Eo" firstAttribute="centerX" secondItem="Kvf-sx-Nga" secondAttribute="centerX" id="7XY-kg-TJM"/>
                                     <constraint firstItem="OSk-fn-QzF" firstAttribute="centerX" secondItem="Kvf-sx-Nga" secondAttribute="centerX" id="DzV-6X-ee8"/>
-                                    <constraint firstItem="yc0-x7-4Eo" firstAttribute="top" secondItem="OSk-fn-QzF" secondAttribute="bottom" constant="24" id="XaU-0U-n3Z"/>
-                                    <constraint firstItem="OSk-fn-QzF" firstAttribute="top" secondItem="Kvf-sx-Nga" secondAttribute="top" id="Y8N-YJ-xCv"/>
+                                    <constraint firstAttribute="bottom" secondItem="yc0-x7-4Eo" secondAttribute="bottom" id="TX1-EA-QdE"/>
+                                    <constraint firstItem="OSk-fn-QzF" firstAttribute="centerY" secondItem="Kvf-sx-Nga" secondAttribute="centerY" id="bO9-3Z-u8p"/>
                                     <constraint firstAttribute="height" constant="190" id="xtM-cd-Y5A"/>
                                 </constraints>
                             </view>

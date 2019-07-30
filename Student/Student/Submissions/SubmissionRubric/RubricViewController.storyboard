@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14845" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14799.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,10 +36,10 @@
                                 </constraints>
                             </scrollView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ls2-gZ-h3j">
-                                <rect key="frame" x="0.0" y="251.5" width="375" height="164.5"/>
+                                <rect key="frame" x="0.0" y="238.5" width="375" height="190"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RXI-be-h0l" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="141.5" y="0.0" width="92" height="120"/>
+                                        <rect key="frame" x="141.5" y="35" width="92" height="120"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="92" id="8uC-vN-VGQ"/>
                                             <constraint firstAttribute="height" constant="120" id="piC-Fr-Nci"/>
@@ -47,7 +49,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no rubric for this assignment." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKN-3v-yJh" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="43" y="144" width="289" height="20.5"/>
+                                        <rect key="frame" x="62" y="173" width="251" height="17"/>
                                         <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.rubricEmptyLabel"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -62,9 +64,10 @@
                                 <accessibility key="accessibilityConfiguration" identifier="SubmisisonDetails.rubricEmptyView"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="vKN-3v-yJh" secondAttribute="bottom" id="0dO-1Q-aC4"/>
-                                    <constraint firstItem="vKN-3v-yJh" firstAttribute="top" secondItem="RXI-be-h0l" secondAttribute="bottom" constant="24" id="7Qy-XO-paM"/>
+                                    <constraint firstAttribute="bottom" secondItem="vKN-3v-yJh" secondAttribute="bottom" id="Eno-S6-pJB"/>
+                                    <constraint firstAttribute="height" constant="190" id="NML-e0-97M"/>
                                     <constraint firstItem="vKN-3v-yJh" firstAttribute="centerX" secondItem="ls2-gZ-h3j" secondAttribute="centerX" id="fTy-a0-MpT"/>
-                                    <constraint firstItem="RXI-be-h0l" firstAttribute="top" secondItem="ls2-gZ-h3j" secondAttribute="top" id="hLW-7V-fV1"/>
+                                    <constraint firstItem="RXI-be-h0l" firstAttribute="centerY" secondItem="ls2-gZ-h3j" secondAttribute="centerY" id="tvj-ph-VcA"/>
                                     <constraint firstItem="RXI-be-h0l" firstAttribute="centerX" secondItem="ls2-gZ-h3j" secondAttribute="centerX" id="wuR-Hd-YNF"/>
                                 </constraints>
                             </view>
