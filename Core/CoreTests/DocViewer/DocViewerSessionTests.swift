@@ -98,9 +98,12 @@ class DocViewerSessionTests: CoreTestCase {
         let metadata = APIDocViewerMetadata.make()
         let session = DocViewerSession { notified.fulfill() }
         session.api = api
-        api.mock(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: metadata)
+        api.mock(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), response: HTTPURLResponse(url: sessionURL, statusCode: 202, httpVersion: nil, headerFields: nil))
         session.loadMetadata(sessionURL: sessionURL)
-        wait(for: [notified], timeout: 1)
+
+        api.mock(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: metadata)
+        wait(for: [notified], timeout: 4)
+
         XCTAssertNil(session.error)
         XCTAssertEqual(session.metadata, metadata)
         XCTAssertEqual(session.remoteURL, URL(string: "download", relativeTo: sessionURL))
