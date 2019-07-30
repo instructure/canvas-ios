@@ -31,6 +31,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
     @IBOutlet weak var contentView: UIView?
     @IBOutlet weak var drawer: Drawer?
     @IBOutlet weak var emptyView: SubmissionDetailsEmptyView?
+    @IBOutlet weak var lockedEmptyView: SubmissionDetailsLockedEmptyView?
     @IBOutlet weak var pickerButton: DynamicButton?
     @IBOutlet weak var pickerButtonArrow: IconView?
     @IBOutlet weak var pickerButtonDivider: DividerView?
@@ -90,6 +91,8 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         if presenter.submissions.count <= 1 || assignment.isExternalToolAssignment {
             picker?.isHidden = true
         }
+
+        lockedEmptyView?.isHidden = presenter.lockedEmptyViewIsHidden()
     }
 
     func reloadNavBar() {
