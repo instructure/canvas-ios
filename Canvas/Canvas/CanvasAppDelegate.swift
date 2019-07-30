@@ -58,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         NetworkMonitor.engage()
         Router.shared().addCanvasRoutes(handleError)
         setupDefaultErrorHandling()
+        setupPageViewLogging()
         UIApplication.shared.reactive.applicationIconBadgeNumber
             <~ TabBarBadgeCounts.applicationIconBadgeNumber
         CanvasAnalytics.setHandler(self)
@@ -255,6 +256,28 @@ extension AppDelegate {
     }
 }
 
+// MARK: PageView Logging
+extension AppDelegate {
+    func setupPageViewLogging() {
+        class BackgroundAppHelper: AppBackgroundHelperProtocol {
+            var task: UIBackgroundTaskIdentifier?
+            func startBackgroundTask(taskName: String) {
+                task = UIBackgroundTaskIdentifier.invalid
+                task = UIApplication.shared.beginBackgroundTask(withName: taskName) { [weak self] in
+                    self?.task = UIBackgroundTaskIdentifier.invalid
+                }
+            }
+
+            func endBackgroundTask() {
+                if let task = task {
+                    UIApplication.shared.endBackgroundTask(task)
+                }
+            }
+        }
+        let helper = BackgroundAppHelper()
+        PageViewEventController.instance.configure(backgroundAppHelper: helper)
+    }
+}
 
 // MARK: Launching URLS
 extension AppDelegate {
