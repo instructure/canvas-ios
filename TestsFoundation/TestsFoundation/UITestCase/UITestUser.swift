@@ -25,6 +25,7 @@ public class UITestUser {
     public static let readTeacher1 = UITestUser(.testReadTeacher1)
     public static let ldapUser = UITestUser(.testLDAPUser)
     public static let notEnrolled = UITestUser(.testNotEnrolled)
+    public static let samlUser = UITestUser(.testSAMLUser)
 
     public let host: String
     public let username: String

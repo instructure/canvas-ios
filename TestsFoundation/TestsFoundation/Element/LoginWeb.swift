@@ -32,4 +32,12 @@ public enum LoginWeb: String, ElementWrapper {
     public static var logInButton: Element {
         return app.find(label: "Log In")
     }
+
+    public static var samlNextButton: Element {
+        return app.find(label: "Next")
+    }
+
+    public static var samlSignInButton: Element {
+        return app.find(label: "Sign in")
+    }
 }

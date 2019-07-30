@@ -95,6 +95,10 @@ open class UITestCase: XCTestCase {
         send(.show, [ route ])
     }
 
+    open func slowDown() {
+        send(.slowDown)
+    }
+
     open func mockData<R: APIRequestable>(
         _ requestable: R,
         value: R.Response? = nil,

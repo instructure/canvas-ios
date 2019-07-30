@@ -23,7 +23,7 @@ import UIKit
 
 public class UITestHelpers {
     public enum HelperType: String, Codable, Equatable {
-        case reset, login, show, mockData, mockDownload, tearDown, currentSession
+        case reset, login, show, mockData, mockDownload, tearDown, currentSession, slowDown, speedUp
     }
     public struct Helper: Codable {
         let type: HelperType
@@ -57,8 +57,6 @@ public class UITestHelpers {
         button.addTarget(self, action: #selector(checkPasteboard), for: .primaryActionTriggered)
         window?.addSubview(button)
         window?.uiTestHelper = button
-        window?.layer.speed = 100
-        UIView.setAnimationsEnabled(false)
     }
 
     @objc func checkPasteboard() {
@@ -91,6 +89,10 @@ public class UITestHelpers {
             MockDistantURLSession.mockDownload(data)
         case .tearDown:
             tearDown()
+        case .slowDown:
+            slowDown()
+        case .speedUp:
+            speedUp()
         }
     }
 
@@ -100,6 +102,7 @@ public class UITestHelpers {
         (appDelegate as? LoginDelegate)?.changeUser()
         resetDatabase()
         MockDistantURLSession.reset()
+        speedUp()
     }
 
     func resetNavigationStack() {
@@ -137,6 +140,16 @@ public class UITestHelpers {
         for entry in keychainBackup {
             Keychain.addEntry(entry)
         }
+    }
+
+    func slowDown() {
+        window?.layer.speed = 1
+        UIView.setAnimationsEnabled(true)
+    }
+
+    func speedUp() {
+        window?.layer.speed = 100
+        UIView.setAnimationsEnabled(false)
     }
 }
 

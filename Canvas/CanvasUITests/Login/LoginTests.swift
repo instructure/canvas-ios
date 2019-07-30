@@ -52,6 +52,22 @@ class LoginTests: CanvasUITests {
         TabBar.dashboardTab.waitToExist()
     }
 
+    func testSAMLLoginToDashboard() {
+        slowDown() // Microsoft login page requires animations
+        let user = UITestUser.samlUser
+        LoginStart.findSchoolButton.tap()
+        LoginFindSchool.searchField.typeText("\(user.host)\r")
+        XCUIElementWrapper(app.webViews.links["Azure"]).tap()
+        LoginWeb.emailField.typeText("") // give animations a chance to catch up
+        LoginWeb.samlNextButton.tap()
+        LoginWeb.emailField.typeText("\(user.username)\r")
+        LoginWeb.passwordField.tap()
+        LoginWeb.passwordField.typeText("\(user.password)\r")
+
+        Dashboard.coursesLabel.waitToExist()
+        TabBar.dashboardTab.waitToExist()
+    }
+
     func testMultipleUsers() {
         logInUser(.readStudent1)
         let entry1 = UITestUser.readStudent1.keychainEntry!
