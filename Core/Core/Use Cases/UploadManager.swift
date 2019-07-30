@@ -54,7 +54,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         }
         let configuration = URLSessionConfiguration.background(withIdentifier: "com.instructure.core.file-uploads")
         configuration.sharedContainerIdentifier = Bundle.main.appGroupID()
-        let session = URLSessionAPI.delegateURLSession(configuration, self)
+        let session = URLSessionAPI.delegateURLSession(configuration, self, nil)
         validSession = session
         return session
     }

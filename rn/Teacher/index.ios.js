@@ -123,11 +123,13 @@ const loginHandler = async ({
 
   setSession(session)
 
-  try {
-    await getUser('self')
-  } catch (err) {
-    if (err.response && err.response.status === 401) {
-      return NativeLogin.logout()
+  if (!NativeModules.SettingsManager.settings.IS_UI_TEST) {
+    try {
+      await getUser('self')
+    } catch (err) {
+      if (err.response && err.response.status === 401) {
+        return NativeLogin.logout()
+      }
     }
   }
 
