@@ -45,7 +45,7 @@ public extension UIFont {
         case .regular16:
             return scaledFont(.body, for: .systemFont(ofSize: 16, weight: .regular))
         case .regular20:
-            return scaledFont(.callout, for: .systemFont(ofSize: 20, weight: .semibold))
+            return scaledFont(.callout, for: .systemFont(ofSize: 20, weight: .regular))
         case .regular20Monodigit:
             return scaledFont(.title3, for: .monospacedDigitSystemFont(ofSize: 20, weight: .regular))
         case .regular24:
