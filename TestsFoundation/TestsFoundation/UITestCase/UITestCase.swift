@@ -131,7 +131,8 @@ open class UITestCase: XCTestCase {
         encoder.dateEncodingStrategy = .iso8601
         let data = value.flatMap { try! encoder.encode($0) }
         let api = URLSessionAPI()
-        mockDataRequest(URLRequest(url: URL(string: path, relativeTo: api.baseURL)!), data: data, response: response, error: error, noCallback: noCallback)
+        let url = URL(string: path, relativeTo: api.baseURL.appendingPathComponent("api/v1/"))!
+        mockDataRequest(URLRequest(url: url), data: data, response: response, error: error, noCallback: noCallback)
     }
 
     open func mockDataRequest(
@@ -162,5 +163,16 @@ open class UITestCase: XCTestCase {
             response: response.flatMap { MockResponse(http: $0) },
             url: url
         ))
+    }
+
+    open func mockBaseRequests() {
+        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!), data: """
+        {"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}
+        """.data(using: .utf8)) // CKIClient.fetchCurrentUser
+        mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self?display=borderless"))) // cookie keepalive
+        mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
+        mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
+        mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
+        mockEncodableRequest("dashboard/dashboard_cards", value: [String]())
     }
 }

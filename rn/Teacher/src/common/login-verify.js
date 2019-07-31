@@ -24,9 +24,6 @@ import canvas from '../canvas-api'
 // if the user has an invalid login, the promise will send `true`. Otherwise it will send `false`
 export default async function loginVerify (): Promise<boolean> {
   return new Promise((resolve, reject) => {
-    if (NativeModules.SettingsManager.settings.IS_UI_TEST) {
-      return resolve(false)
-    }
     canvas.getUserProfile('self')
       .then(() => resolve(false))
       .catch((e) => {
