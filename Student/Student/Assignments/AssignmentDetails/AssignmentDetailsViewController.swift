@@ -54,7 +54,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var quizTimeLimitValueLabel: UILabel?
     @IBOutlet weak var quizView: UIView?
 
-    @IBOutlet weak var lockedSection: AssignmentDetailsSectionContainerView?
+    @IBOutlet weak var lockedSection: UIView?
     @IBOutlet weak var gradeSection: UIStackView?
     @IBOutlet weak var submissionButtonSection: UIStackView?
     @IBOutlet weak var fileTypesSection: AssignmentDetailsSectionContainerView?
@@ -64,6 +64,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var lockedIconContainerView: UIView!
     @IBOutlet weak var lockedIconImageView: UIImageView!
     @IBOutlet weak var lockedIconHeight: NSLayoutConstraint!
+    @IBOutlet weak var lockedSubheaderWebView: CoreWebView!
+    @IBOutlet weak var lockedSectionHeader: DynamicLabel!
 
     //  Note to developer adding new views:
     //  If any new views are added, make sure they are properly hidden/shown
@@ -115,13 +117,17 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         quizQuestionsLabel?.text = NSLocalizedString("Questions:", bundle: .student, comment: "")
         quizTimeLimitLabel?.text = NSLocalizedString("Time Limit:", bundle: .student, comment: "")
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
-        submittedDetailsLabel?.text = NSLocalizedString("Your submission is now waiting to be graded", bundle: .student, comment: "")
+        submittedDetailsLabel?.text = NSLocalizedString("Your submission is now waiting to be graded.", bundle: .student, comment: "")
         submissionButton?.setTitle(NSLocalizedString("Submission & Rubric", bundle: .student, comment: ""), for: .normal)
 
+        //  locked
         lockedIconImageView.image = UIImage(named: "PandaLocked", in: .core, compatibleWith: nil)
 
         // Routing from description
         descriptionView?.linkDelegate = self
+
+        let tapGradedView = UITapGestureRecognizer(target: self, action: #selector(didTapSubmission(_:)))
+        gradedView?.addGestureRecognizer(tapGradedView)
 
         presenter?.viewIsReady()
     }
@@ -165,6 +171,11 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
 
         fileSubmissionButton?.isHidden = true
+
+        if submission.excused == true {
+            return
+        }
+
         if let onlineUploadState = presenter?.onlineUploadState {
             gradeSection?.isHidden = false
             gradeCellDivider?.isHidden = false
@@ -243,7 +254,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         showDescription(!presenter.descriptionIsHidden())
         submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
 
-        lockedSection?.subHeader.text = assignment.lockExplanation
+        lockedSubheaderWebView.loadHTMLString(assignment.lockExplanation ?? "")
         centerLockedIconContainerView()
 
         updateQuizSettings(quiz)

@@ -19,6 +19,9 @@
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Mahi rite kaiwhakamahi";
 
+/* No comment provided by engineer. */
+"Add Student" = "Tapiri ākonga";
+
 /* Label displayed when logged in as an admin */
 "Admin" = "Whakahaere";
 
@@ -73,9 +76,6 @@
 /* Close Button Title */
 "Close" = "Katia";
 
-/* No comment provided by engineer. */
-"Close App" = "Kati Taupānga";
-
 /* Course Announcement Description */
 "Course announcements" = "Kōrerorero akoranga";
 
@@ -123,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "I roto i te-Akomanga";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "Whakauru te ākonga waihere Hono kua tukuna atu ki a koe";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Whare huinga kōrerorero";
@@ -197,6 +200,9 @@
 "Open in..." = "Tuwhera i roto i ...";
 
 /* No comment provided by engineer. */
+"Pairing Code" = "Waihere Hono";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "E hiahiatia ana he whakāetanga";
 
 /* No comment provided by engineer. */
@@ -238,9 +244,6 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "Ngā ritenga whakamahi";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Me tīmata te taupānga anō ki te whakamahi i ngā tautuhinga reo hou. Tēna koa tuku anō i te taupānga";
-
 /* Error message */
 "There are no actions for this item" = "Kāore he mahi hoki mo tēnei tūemi";
 
@@ -267,9 +270,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "kia pānuitia";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Kua whakahoutia ngā Tautuhinga Reo";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "Titiro ki ngā Canvas Kaiarahi";

@@ -221,6 +221,9 @@
 "list_or_two" = "%1$@ neu %2$@";
 
 /* No comment provided by engineer. */
+"Log In" = "Mewngofnodi";
+
+/* No comment provided by engineer. */
 "Log In Again" = "Mewngofnodi Eto";
 
 /* No comment provided by engineer. */
@@ -279,6 +282,9 @@
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Previous Logins" = "Manylion Mewngofnodi Blaenorol";
 
 /* No comment provided by engineer. */
 "purple" = "porffor";

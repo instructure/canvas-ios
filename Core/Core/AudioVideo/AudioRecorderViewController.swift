@@ -120,6 +120,7 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
         try? FileManager.default.removeItem(at: url)
         borderView?.isHidden = false
         clearButton?.isHidden = true
+        player.pause()
         player.load(url: nil)
         playerView?.isHidden = true
         recordButton?.isHidden = false
@@ -134,6 +135,7 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
 
     @IBAction func cancel(_ sender: UIButton) {
         clear(sender)
+        recorder?.stop()
         delegate?.cancel(self)
     }
 }

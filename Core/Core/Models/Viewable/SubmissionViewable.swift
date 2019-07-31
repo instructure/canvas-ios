@@ -78,7 +78,7 @@ extension SubmissionViewable {
     }
 
     public var isSubmittable: Bool {
-        return !submissionTypes.contains(.none)
+        return !submissionTypes.contains { [.none, .not_graded].contains($0) }
     }
 
     public var isExternalToolAssignment: Bool {

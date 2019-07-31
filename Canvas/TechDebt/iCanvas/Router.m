@@ -249,6 +249,9 @@
     if (destinationViewController && options && options[@"modal"]) {
         HelmNavigationController *navigation = [[HelmNavigationController alloc] initWithRootViewController:destinationViewController];
         [destinationViewController addModalDismissButtonWithButtonTitle:nil];
+        if (options[@"formSheet"]) {
+            navigation.modalPresentationStyle = UIModalPresentationFormSheet;
+        }
         [sourceController presentViewController:navigation animated:YES completion:nil];
         return destinationViewController;
     }

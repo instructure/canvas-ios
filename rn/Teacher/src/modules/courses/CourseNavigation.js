@@ -133,8 +133,12 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
             url += '-fromHomeTab'
           }
           this.props.navigator.show(url, undefined, { color: processColor(this.props.color) })
-        } else if (tab.id === 'conferences' && featureFlagEnabled('conferences')) {
-          this.props.navigator.show(tab.html_url, undefined, { color: this.props.color, course: this.props.course })
+        } else if (tab.id === 'conferences') {
+          if (featureFlagEnabled('conferences')) {
+            this.props.navigator.show(tab.html_url, undefined, { color: this.props.color, course: this.props.course })
+          } else {
+            this.props.navigator.show(`/native-route${tab.html_url}`)
+          }
         } else {
           const url = `/native-route-master${tab.html_url}`
           this.props.navigator.show(url)

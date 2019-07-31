@@ -11,9 +11,6 @@
 "Allowed Attempts:" = "Tentatives autorisées :";
 
 /* No comment provided by engineer. */
-"Arc" = "Arc";
-
-/* No comment provided by engineer. */
 "Assignment Details" = "Détails de la tâche";
 
 /* No comment provided by engineer. */
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Choose File" = "Choisir un fichier";
-
-/* No comment provided by engineer. */
-"Close App" = "Fermer l’application";
 
 /* No comment provided by engineer. */
 "Comments" = "Commentaires";
@@ -221,6 +215,9 @@
 "Successfully submitted!" = "Envoyé avec succès!";
 
 /* No comment provided by engineer. */
+"Summary" = "Résumé";
+
+/* No comment provided by engineer. */
 "Surveys" = "Enquêtes";
 
 /* No comment provided by engineer. */
@@ -239,9 +236,6 @@
 "Text Entry" = "Saisie de texte";
 
 /* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "L’application doit redémarrer pour utiliser les nouveaux paramètres de langue. Veuillez relancer l’application.";
-
-/* No comment provided by engineer. */
 "There are no files to display." = "Il n'existe aucun fichier à afficher.";
 
 /* No comment provided by engineer. */
@@ -257,9 +251,6 @@
 "To Do" = "À faire";
 
 /* No comment provided by engineer. */
-"Updated Language Settings" = "Paramètres de langue mis à jour";
-
-/* No comment provided by engineer. */
 "Uploading" = "Téléversement";
 
 /* No comment provided by engineer. */
@@ -273,7 +264,4 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Adresse du site Web";
-
-/* No comment provided by engineer. */
-"Your submission is now waiting to be graded" = "Votre envoi est maintenant en attente d'être classé";
 

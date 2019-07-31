@@ -1409,6 +1409,9 @@
   "similarity_score_f4b5c343": {
     "message": "相似度得分"
   },
+  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
+    "message": "这是一项小组讨论，每个小组都有关于这个主题的会话。这些是您可以参与的讨论。"
+  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "我们这边出现了一些问题。别担心，我们进行了记录，并将尽快处理。"
   },

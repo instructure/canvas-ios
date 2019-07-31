@@ -29,52 +29,6 @@ protocol HelmScreen {
     var screenConfigRendered: Bool { get set }
 }
 
-class HelmTitleView: UIView {
-    @objc var contentStackView: UIStackView!
-    @objc var titleLabel: UILabel!
-    @objc var subtitleLabel: UILabel!
-    
-    public override func willMove(toSuperview: UIView?) {
-        if #available(iOS 11.0, *) {
-        } else if let parent = toSuperview {
-            self.frame = parent.bounds
-        }
-    }
-    
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    private func setup() {
-        titleLabel = UILabel(frame: CGRect(x:0, y:0, width:0, height:21))
-        subtitleLabel = UILabel(frame: CGRect(x:0, y:0, width:0, height:15))
-        
-        contentStackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
-        contentStackView.axis = .vertical
-        contentStackView.alignment = .center
-        contentStackView.distribution = .fillProportionally
-        contentStackView.spacing = 0
-        
-        contentStackView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(contentStackView)
-        
-        contentStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        contentStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        let metrics = ["stackviewHeight": 33]
-        if #available(iOS 11.0, *) {
-            contentStackView.superview?.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "V:|-(-1)-[stack(stackviewHeight)]-(0)-|", options: [], metrics: metrics, views: ["stack": contentStackView]) )
-        }
-        else {
-            contentStackView.superview?.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "V:[stack(stackviewHeight)]-(1)-|", options: [], metrics: metrics, views: ["stack": contentStackView]) )
-        }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
 public class HelmNavigationItem: UINavigationItem {
     @objc var reactRightBarButtonItems: [UIBarButtonItem] = []
     @objc var nativeLeftBarButtonItems: [UIBarButtonItem] = []
@@ -134,7 +88,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
             self.screenConfig.moduleName = self.moduleName
         }
     }
-    fileprivate var twoLineTitleView: HelmTitleView?
+    fileprivate var twoLineTitleView: TitleSubtitleView?
     public override var title: String?  {
         didSet {
             navigationItem.title = title
@@ -289,24 +243,11 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         return super.supportedInterfaceOrientations
     }
     
-    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        updateTitleViewForRotation()
-    }
-    
-    private func updateTitleViewForRotation() {
-        guard let titleView = twoLineTitleView else { return }
-        let height: CGFloat = UIDevice.current.orientation.isLandscape ? 32 : 44
-        var updatedFrame = titleView.frame
-        updatedFrame.size.height = height
-        titleView.frame = updatedFrame
-        titleView.layoutIfNeeded()
-    }
-    
     // MARK: - Styles
     @objc public func handleStyles() {
         if let title = screenConfig[PropKeys.title] as? String {
             if let subtitle = screenConfig[PropKeys.subtitle] as? String, subtitle.count > 0 {
-                if(twoLineTitleView == nil) {
+                if (twoLineTitleView == nil) {
                     twoLineTitleView = self.titleView(with: title, and: subtitle, given: screenConfig)
                     twoLineTitleView?.isAccessibilityElement = true
                     twoLineTitleView?.accessibilityTraits = UIAccessibilityTraits.header
@@ -314,10 +255,10 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
                     navigationItem.title = nil
                 }
                 
-                if let titleView = twoLineTitleView {
-                    styleTitleViewLabels(titleLabel: titleView.titleLabel, subtitleLabel: titleView.subtitleLabel)
-                    titleView.titleLabel.text = title
-                    titleView.subtitleLabel.text = subtitle
+                if let titleView = twoLineTitleView, let titleLabel = titleView.titleLabel, let subtitleLabel = titleView.subtitleLabel {
+                    styleTitleViewLabels(titleLabel: titleLabel, subtitleLabel: subtitleLabel)
+                    titleLabel.text = title
+                    subtitleLabel.text = subtitle
                     titleView.accessibilityLabel = "\(title), \(subtitle)"
                 }
             }
@@ -547,10 +488,10 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         self.navigationController?.syncStyles()
     }
     
-    private func titleView(with title: String, and subtitle: String, given config: HelmScreenConfig) -> HelmTitleView {
-        let titleView = HelmTitleView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
-        titleView.titleLabel.text = title
-        titleView.subtitleLabel.text = subtitle
+    private func titleView(with title: String, and subtitle: String, given config: HelmScreenConfig) -> TitleSubtitleView {
+        let titleView = TitleSubtitleView.create()
+        titleView.titleLabel?.text = title
+        titleView.subtitleLabel?.text = subtitle
         if let testID = screenConfig["testID"] as? String {
             titleView.accessibilityIdentifier = testID + ".nav-bar-title-view"
         }

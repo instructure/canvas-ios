@@ -19,6 +19,9 @@
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Действовать как пользователь";
 
+/* No comment provided by engineer. */
+"Add Student" = "Добавить студента";
+
 /* Label displayed when logged in as an admin */
 "Admin" = "Админ";
 
@@ -73,9 +76,6 @@
 /* Close Button Title */
 "Close" = "Закрыть";
 
-/* No comment provided by engineer. */
-"Close App" = "Закрыть приложение";
-
 /* Course Announcement Description */
 "Course announcements" = "Объявления курса";
 
@@ -123,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "Аудиторный";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "Введите полученный код привязки студента.";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Объявления заведения";
@@ -197,6 +200,9 @@
 "Open in..." = "Открыть в...";
 
 /* No comment provided by engineer. */
+"Pairing Code" = "Код сопряжения";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Требуется разрешение";
 
 /* No comment provided by engineer. */
@@ -238,9 +244,6 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "Условия использования";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Необходимо перезапустить приложение для использования новых языковых настроек. Перезапустите приложение.";
-
 /* Error message */
 "There are no actions for this item" = "Отсутствуют действия для этого элемента";
 
@@ -267,9 +270,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Не прочитано";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Обновленные языковые настройки";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "Просмотр руководств Canvas";

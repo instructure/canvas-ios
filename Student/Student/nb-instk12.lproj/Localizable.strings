@@ -11,9 +11,6 @@
 "Allowed Attempts:" = "Tillatte forsøk:";
 
 /* No comment provided by engineer. */
-"Arc" = "Arc";
-
-/* No comment provided by engineer. */
 "Assignment Details" = "Oppgavedetaljer";
 
 /* No comment provided by engineer. */
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Choose File" = "Velg fil";
-
-/* No comment provided by engineer. */
-"Close App" = "Lukk app";
 
 /* No comment provided by engineer. */
 "Comments" = "Kommentarer";
@@ -221,6 +215,9 @@
 "Successfully submitted!" = "Vellykket innsending!";
 
 /* No comment provided by engineer. */
+"Summary" = "Sammendrag";
+
+/* No comment provided by engineer. */
 "Surveys" = "Spørreundersøkelser";
 
 /* No comment provided by engineer. */
@@ -239,9 +236,6 @@
 "Text Entry" = "Innlegging av tekst";
 
 /* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Appen må åpnes på nytt for å ta i bruk de nye språkinnstillingene. Vennligst gjeninnfør appen.";
-
-/* No comment provided by engineer. */
 "There are no files to display." = "Det er ingen filer å vise.";
 
 /* No comment provided by engineer. */
@@ -257,9 +251,6 @@
 "To Do" = "Å gjøre";
 
 /* No comment provided by engineer. */
-"Updated Language Settings" = "Oppdatert språkinnstillinger";
-
-/* No comment provided by engineer. */
 "Uploading" = "Laster opp";
 
 /* No comment provided by engineer. */
@@ -273,7 +264,4 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Adresse til nettside";
-
-/* No comment provided by engineer. */
-"Your submission is now waiting to be graded" = "Din innlevering venter på å bli vurdert";
 

@@ -1,3 +1,6 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Élève";
+
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Joignez des photos et des vidéos aux messages et aux discussions ou envoyez-les comme soumission de travaux.";
 

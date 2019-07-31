@@ -18,6 +18,7 @@
 
 @import ReactiveObjC;
 @import AFNetworking;
+@import Core;
 #import <Mantle/Mantle.h>
 
 #import "CKIClient.h"
@@ -138,34 +139,37 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
     return language;
 }
 
-#pragma mark - Caching & Cookies
-
-- (void)clearCookiesAndCache
-{
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
-        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
-    }
-}
-
 #pragma mark - JSON API Helpers
 
 - (RACSignal *)deleteObjectAtPath:(NSString *)path modelClass:(Class)modelClass parameters:(NSDictionary *)parameters context:(id<CKIContext>)context
 {
     NSValueTransformer *transformer = [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:modelClass];
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        
-        NSURLSessionDataTask *deletionTask = [self DELETE:path parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-            if (responseObject) {
+
+        NSError *serializationError = nil;
+        NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"DELETE" URLString:[[NSURL URLWithString:path relativeToURL:self.baseURL] absoluteString] parameters:parameters error:&serializationError];
+        if (serializationError) {
+            [subscriber sendError:serializationError];
+            return [RACDisposable disposableWithBlock:^{}];
+        }
+        [request setValue:[NSString stringWithFormat:@"Bearer %@", self.accessToken] forHTTPHeaderField:@"Authorization"];
+
+        NSURLSessionDataTask *deletionTask = [[NSURLSession getDefaultURLSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) { dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                [subscriber sendError:[self errorForResponse:(NSHTTPURLResponse *)response]];
+                return [subscriber sendCompleted];
+            }
+            NSError *serializationError = nil;
+            id responseObject = [self.responseSerializer responseObjectForResponse:response data:data error:&serializationError];
+            if (serializationError) {
+                [subscriber sendError:serializationError];
+            } else if (responseObject) {
                 CKIModel *model = [self parseModel:transformer fromJSON:responseObject context:nil];
                 [subscriber sendNext:model];
             }
             [subscriber sendCompleted];
-            
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
-            [subscriber sendError:[self errorForResponse:response]];
-        }];
+        });}];
+        [deletionTask resume];
         
         return [RACDisposable disposableWithBlock:^{
             [deletionTask cancel];
@@ -237,13 +241,34 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
         if ([self.actAsUserID length]) {
             finalParameters = [@{@"as_user_id": self.actAsUserID} dictionaryByAddingObjectsFromDictionary:finalParameters];
         }
-        NSURLSessionDataTask *task = [self GET:path parameters:finalParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSHTTPURLResponse *response = (NSHTTPURLResponse *) task.response;
+
+        NSError *serializationError = nil;
+        NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"GET" URLString:[[NSURL URLWithString:path relativeToURL:self.baseURL] absoluteString] parameters:finalParameters error:&serializationError];
+        if (serializationError) {
+            [subscriber sendError:serializationError];
+            return [RACDisposable disposableWithBlock:^{}];
+        }
+        [request setValue:[NSString stringWithFormat:@"Bearer %@", self.accessToken] forHTTPHeaderField:@"Authorization"];
+
+        NSURLSessionDataTask *task = [[NSURLSession getDefaultURLSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) { dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                return [subscriber sendError:[self errorForResponse:(NSHTTPURLResponse *)response]];
+            }
+            NSError *serializationError = nil;
+            id responseObject = [self.responseSerializer responseObjectForResponse:response data:data error:&serializationError];
+            if (serializationError) {
+                return [subscriber sendError:serializationError];
+            }
+            if (!responseObject) {
+                return [subscriber sendCompleted];
+            }
+
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
             
             // check for pagination in the headers
-            NSURL *currentPage = response.currentPage;
-            NSURL *nextPage = response.nextPage;
-            NSURL *lastPage = response.lastPage;
+            NSURL *currentPage = httpResponse.currentPage;
+            NSURL *nextPage = httpResponse.nextPage;
+            NSURL *lastPage = httpResponse.lastPage;
 
             // check for JSONAPI pagination
             if (currentPage == nil && [responseObject isKindOfClass:[NSDictionary class]]){
@@ -264,23 +289,8 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
             }
 
             [[thisPageSignal concat:nextPageSignal] subscribe:subscriber];
-
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            // don't try this if we are attempting to masquerade!
-            if ([self isUnauthorizedError:error] &&
-                [self actAsUserID].length == 0 &&
-                !self.ignoreUnauthorizedErrors) {
-                // if the user gets a 401 that might be a server issue, lets
-                // do one more check to see if our access token has expired
-                // or been revoked
-                [[self fetchCurrentUser] subscribeError:^(NSError *error) {
-                    if ([self isUnauthorizedError:error]) {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:CKIClientAccessTokenExpiredNotification object:self userInfo:nil];
-                    }
-                }];
-            }
-            [subscriber sendError:error];
-        }];
+        });}];
+        [task resume];
 
         return [RACDisposable disposableWithBlock:^{
             [task cancel];

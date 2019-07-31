@@ -19,6 +19,9 @@
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Toimi käyttäjänä";
 
+/* No comment provided by engineer. */
+"Add Student" = "Lisää opiskelija";
+
 /* Label displayed when logged in as an admin */
 "Admin" = "Järjestelmävalvoja";
 
@@ -73,9 +76,6 @@
 /* Close Button Title */
 "Close" = "Sulje";
 
-/* No comment provided by engineer. */
-"Close App" = "Sulje sovellus";
-
 /* Course Announcement Description */
 "Course announcements" = "Kurssin ilmoitukset";
 
@@ -123,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "Luokassa";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "Pane opiskelijan parinmuodostuskoodi, joka on toimitettu sinulle.";
 
 /* Institution Announcement Description */
 "Institution announcements" = "Laitoksen ilmoitukset";
@@ -197,6 +200,9 @@
 "Open in..." = "Avaa kohteessa...";
 
 /* No comment provided by engineer. */
+"Pairing Code" = "Parinmuodostuskoodi";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Käyttöoikeus tarvitaan";
 
 /* No comment provided by engineer. */
@@ -238,9 +244,6 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "Käyttöehdot";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Sovellus täytyy käynnistää uudelleen, jotta uusia kieliasetuksia voidaan käyttää. Käynnistä sovellus uudelleen.";
-
 /* Error message */
 "There are no actions for this item" = "Tälle kohteelle ei ole toimintoja";
 
@@ -267,9 +270,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Lukematon";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Päivitetyt kieliasetukset";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "Tarkastele Canvas-oppaita";

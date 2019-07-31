@@ -18,7 +18,7 @@
 
 import Foundation
 
-class DocViewerSession: NSObject, URLSessionTaskDelegate {
+public class DocViewerSession: NSObject, URLSessionTaskDelegate {
     var annotations: [APIDocViewerAnnotation]?
     lazy var api: API = URLSessionAPI(accessToken: nil, baseURL: sessionURL)
     var callback: () -> Void
@@ -64,7 +64,13 @@ class DocViewerSession: NSObject, URLSessionTaskDelegate {
         guard error == nil, let sessionURL = sessionURL else { return notify() }
         self.sessionID = sessionURL.lastPathComponent
         self.sessionURL = sessionURL
-        task = api.makeRequest(GetDocViewerMetadataRequest(path: sessionURL.absoluteString)) { [weak self] metadata, _, error in
+        task = api.makeRequest(GetDocViewerMetadataRequest(path: sessionURL.absoluteString)) { [weak self] metadata, response, error in
+            if (response as? HTTPURLResponse)?.statusCode == 202 {
+                DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(2)) {
+                    self?.loadMetadata(sessionURL: sessionURL)
+                }
+                return
+            }
             self?.error = error
             if error == nil, let metadata = metadata, let downloadURL = URL(string: metadata.urls.pdf_download.absoluteString, relativeTo: sessionURL) {
                 self?.metadata = metadata

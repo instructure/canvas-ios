@@ -11,9 +11,6 @@
 "Allowed Attempts:" = "Dozwolone próby:";
 
 /* No comment provided by engineer. */
-"Arc" = "Arc";
-
-/* No comment provided by engineer. */
 "Assignment Details" = "Szczegóły zadania";
 
 /* No comment provided by engineer. */
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "Choose File" = "Wybierz plik";
-
-/* No comment provided by engineer. */
-"Close App" = "Zamknij aplikację";
 
 /* No comment provided by engineer. */
 "Comments" = "Komentarze";
@@ -221,6 +215,9 @@
 "Successfully submitted!" = "Przesłano pomyślnie!";
 
 /* No comment provided by engineer. */
+"Summary" = "Podsumowanie";
+
+/* No comment provided by engineer. */
 "Surveys" = "Ankiety";
 
 /* No comment provided by engineer. */
@@ -239,9 +236,6 @@
 "Text Entry" = "Zapis tekstu";
 
 /* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Aby użyć nowych ustawień językowych, aplikację należy uruchomić ponownie. Uruchom aplikację ponownie.";
-
-/* No comment provided by engineer. */
 "There are no files to display." = "Brak plików do wyświetlenia.";
 
 /* No comment provided by engineer. */
@@ -257,9 +251,6 @@
 "To Do" = "Lista zadań";
 
 /* No comment provided by engineer. */
-"Updated Language Settings" = "Zaktualizuj ustawienia językowe";
-
-/* No comment provided by engineer. */
 "Uploading" = "Przekazywanie";
 
 /* No comment provided by engineer. */
@@ -273,7 +264,4 @@
 
 /* No comment provided by engineer. */
 "Website Address" = "Adres witryny";
-
-/* No comment provided by engineer. */
-"Your submission is now waiting to be graded" = "Przesłane materiały oczekują na ocenę";
 

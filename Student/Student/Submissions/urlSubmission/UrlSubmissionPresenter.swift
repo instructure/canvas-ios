@@ -60,10 +60,12 @@ class UrlSubmissionPresenter {
         if let url = scrubUrl(text: text) {
             let useCase = CreateSubmission(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, userID: userID, submissionType: .online_url, url: url)
             useCase.fetch(environment: env) { [weak self] (_, _, error) in
-                if let error = error {
-                    self?.view?.showError(error)
-                } else {
-                    self?.view?.dismiss()
+                DispatchQueue.main.async {
+                    if let error = error {
+                        self?.view?.showError(error)
+                    } else {
+                        self?.view?.dismiss()
+                    }
                 }
             }
         } else {

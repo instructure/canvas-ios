@@ -78,19 +78,13 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     lazy var onlineUpload = UploadManager.shared.subscribe(batchID: "assignment-\(assignmentID)") { [weak self] in
-        self?.update()
+        self?.updateOnlineUpload()
     }
     var onlineUploadState: OnlineUploadState? {
-        if onlineUpload.isEmpty {
-            return nil
-        } else if onlineUpload.first(where: { $0.uploadError != nil }) != nil {
-            return .failed
-        } else if onlineUpload.allSatisfy({ $0.isUploaded }) {
-            return .completed
-        } else if onlineUpload.first(where: { $0.isUploading }) != nil {
-            return .uploading
-        } else {
-            return .staged
+        didSet {
+            if onlineUploadState != oldValue {
+                update()
+            }
         }
     }
 
@@ -142,6 +136,20 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         update()
     }
 
+    func updateOnlineUpload() {
+        if onlineUpload.isEmpty {
+            onlineUploadState = nil
+        } else if onlineUpload.first(where: { $0.uploadError != nil }) != nil {
+            onlineUploadState = .failed
+        } else if onlineUpload.allSatisfy({ $0.isUploaded }) {
+            onlineUploadState = .completed
+        } else if onlineUpload.first(where: { $0.isUploading }) != nil {
+            onlineUploadState = .uploading
+        } else {
+            onlineUploadState = .staged
+        }
+    }
+
     func viewIsReady() {
         colors.refresh()
         courses.refresh(force: true)
@@ -154,6 +162,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
             selector: #selector(uploadSubmitted(notification:)),
             name: UploadManager.AssignmentSubmittedNotification, object: nil
         )
+        NotificationCenter.default.post(moduleItem: .assignment(assignmentID), completedRequirement: .view, courseID: courseID)
     }
 
     func refresh() {
@@ -246,7 +255,9 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func submitAssignmentButtonIsHidden() -> Bool {
-        return assignment?.lockStatus != .unlocked
+        return assignment?.lockStatus != .unlocked ||
+            assignment?.isSubmittable == false ||
+            assignment?.submission?.excused == true
     }
 
     func assignmentDescription() -> String {

@@ -147,9 +147,6 @@
 		494AE0A61F843A8A001A8F31 /* A11yGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0A51F843A8A001A8F31 /* A11yGroupManager.m */; };
 		494AE0AD1F843AAC001A8F31 /* VideoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */; };
 		494AE0AE1F843AAC001A8F31 /* VideoContainerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */; };
-		494BC6031F953D0D00C77257 /* SubmitAnnotatedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494BC5FF1F953D0C00C77257 /* SubmitAnnotatedAssignmentViewController.swift */; };
-		494BC6041F953D0D00C77257 /* SubmitAnnotatedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494BC6001F953D0C00C77257 /* SubmitAnnotatedAssignmentViewController.storyboard */; };
-		494BC6051F953D0D00C77257 /* SubmitAssignmentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494BC6011F953D0C00C77257 /* SubmitAssignmentActivity.swift */; };
 		494BC6061F953D0D00C77257 /* PreSubmissionPDFDocumentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494BC6021F953D0C00C77257 /* PreSubmissionPDFDocumentPresenter.swift */; };
 		4961F5191F8FAC440093EC86 /* Graphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5151F8FAC3C0093EC86 /* Graphic.swift */; };
 		4961F51A1F8FAC440093EC86 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5161F8FAC3C0093EC86 /* Icon.swift */; };
@@ -685,9 +682,6 @@
 		494AE0B11F843B58001A8F31 /* PSPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSPDFView.swift; sourceTree = "<group>"; };
 		494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvadocViewManager.m; sourceTree = "<group>"; };
 		494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSPDFViewManager.m; sourceTree = "<group>"; };
-		494BC5FF1F953D0C00C77257 /* SubmitAnnotatedAssignmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitAnnotatedAssignmentViewController.swift; sourceTree = "<group>"; };
-		494BC6001F953D0C00C77257 /* SubmitAnnotatedAssignmentViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SubmitAnnotatedAssignmentViewController.storyboard; sourceTree = "<group>"; };
-		494BC6011F953D0C00C77257 /* SubmitAssignmentActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentActivity.swift; sourceTree = "<group>"; };
 		494BC6021F953D0C00C77257 /* PreSubmissionPDFDocumentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreSubmissionPDFDocumentPresenter.swift; sourceTree = "<group>"; };
 		4961F5151F8FAC3C0093EC86 /* Graphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graphic.swift; sourceTree = "<group>"; };
 		4961F5161F8FAC3C0093EC86 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
@@ -1721,9 +1715,6 @@
 			isa = PBXGroup;
 			children = (
 				494BC6021F953D0C00C77257 /* PreSubmissionPDFDocumentPresenter.swift */,
-				494BC6001F953D0C00C77257 /* SubmitAnnotatedAssignmentViewController.storyboard */,
-				494BC5FF1F953D0C00C77257 /* SubmitAnnotatedAssignmentViewController.swift */,
-				494BC6011F953D0C00C77257 /* SubmitAssignmentActivity.swift */,
 			);
 			path = "Pre Submission";
 			sourceTree = "<group>";
@@ -2908,7 +2899,6 @@
 				493020131F901CF5006BD777 /* CommentTableViewCell.xib in Resources */,
 				B1F4E8CF206189010056074A /* video-preview.png in Resources */,
 				4961F51B1F8FAC440093EC86 /* Icons.xcassets in Resources */,
-				494BC6041F953D0D00C77257 /* SubmitAnnotatedAssignmentViewController.storyboard in Resources */,
 				4961F59C1F8FB2920093EC86 /* PrettyImages.xcassets in Resources */,
 				49CE97491F8FFEA600121A43 /* Assignment.storyboard in Resources */,
 				4961F66C1F8FB9620093EC86 /* FileKit.xcassets in Resources */,
@@ -2990,7 +2980,6 @@
 				49CE96661F8FF41B00121A43 /* QuizService.swift in Sources */,
 				49CE968B1F8FF41B00121A43 /* CanvasTimedQuizSubmissionService.swift in Sources */,
 				49DD239D1F8F9EBE004727F7 /* Session+DiscussionKit.swift in Sources */,
-				494BC6051F953D0D00C77257 /* SubmitAssignmentActivity.swift in Sources */,
 				3BC7CEC620113F5B001DFF8C /* CKIClient+Extensions.swift in Sources */,
 				49CE96E21F8FFC4400121A43 /* MasteryPathsItem+Details.swift in Sources */,
 				2CCBD44720C0943B0082E616 /* URL+Core.swift in Sources */,
@@ -3293,7 +3282,6 @@
 				9F2E36382050918500A2B031 /* FeatureFlags.swift in Sources */,
 				49CE96921F8FF41B00121A43 /* QuizSubmission.swift in Sources */,
 				49301FBD1F901260006BD777 /* Activity+Network.swift in Sources */,
-				494BC6031F953D0D00C77257 /* SubmitAnnotatedAssignmentViewController.swift in Sources */,
 				49301FC11F901260006BD777 /* Session+SuchActivity.swift in Sources */,
 				49CE97391F8FFEA600121A43 /* Assignment+AllowedFileSubmissionTypes.swift in Sources */,
 				49CE966E1F8FF41B00121A43 /* SubmissionViewController.swift in Sources */,

@@ -57,7 +57,7 @@ class CoreTestCase: XCTestCase {
         environment.logger = logger
         environment.currentSession = currentSession
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)
-        URLSessionAPI.delegateURLSession = { _, _ in MockURLSession() }
+        URLSessionAPI.delegateURLSession = { _, _, _ in MockURLSession() }
         UploadManager.shared = MockUploadManager()
         MockUploadManager.reset()
         UUID.reset()

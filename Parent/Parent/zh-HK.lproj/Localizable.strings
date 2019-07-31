@@ -19,6 +19,9 @@
 /* Label for button that allows admin to Act as User */
 "Act as User" = "作為使用者";
 
+/* No comment provided by engineer. */
+"Add Student" = "添加學生";
+
 /* Label displayed when logged in as an admin */
 "Admin" = "管理員";
 
@@ -73,9 +76,6 @@
 /* Close Button Title */
 "Close" = "關閉";
 
-/* No comment provided by engineer. */
-"Close App" = "關閉應用程式";
-
 /* Course Announcement Description */
 "Course announcements" = "課程宣告";
 
@@ -123,6 +123,9 @@
 
 /* No comment provided by engineer. */
 "In-Class" = "課堂內的";
+
+/* No comment provided by engineer. */
+"Input the student pairing code provided to you." = "輸入已提供予您的學生配對代碼。";
 
 /* Institution Announcement Description */
 "Institution announcements" = "機構宣告";
@@ -197,6 +200,9 @@
 "Open in..." = "打開方式...";
 
 /* No comment provided by engineer. */
+"Pairing Code" = "配對代碼";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "需要權限";
 
 /* No comment provided by engineer. */
@@ -238,9 +244,6 @@
 /* No comment provided by engineer. */
 "Terms of Use" = "使用條款";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "若要使用新的語言設定，需要重新啟動應用程式。請重新啟動應用程式。";
-
 /* Error message */
 "There are no actions for this item" = "無法對此項目進行操作";
 
@@ -267,9 +270,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "未讀";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "已更新語言設定";
 
 /* No comment provided by engineer. */
 "View Canvas Guides" = "查看 Canvas 指南";

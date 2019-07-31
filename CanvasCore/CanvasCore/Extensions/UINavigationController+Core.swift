@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Core
 
 public extension UINavigationController {
     // Sets the barTintColor on self as well as a detail in a split view controller situation
@@ -42,13 +43,13 @@ public extension UINavigationController {
         detail.navigationBar.isTranslucent = master.navigationBar.isTranslucent
         detail.navigationBar.barStyle = master.navigationBar.barStyle
         
-        if let titleView = detail.topViewController?.navigationItem.titleView as? HelmTitleView {
+        if let titleView = detail.topViewController?.navigationItem.titleView as? TitleSubtitleView {
             var color: UIColor = master.navigationBar.tintColor
             if (master.navigationBar.barStyle != .default) {
                 color = .white
             }
-            titleView.titleLabel.textColor = color
-            titleView.subtitleLabel.textColor = color
+            titleView.titleLabel?.textColor = color
+            titleView.subtitleLabel?.textColor = color
         }
     }
 }

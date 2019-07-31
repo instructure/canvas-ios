@@ -18,10 +18,24 @@
 
 import XCTest
 import TestsFoundation
+@testable import Core
 
 class NotificationsListTests: CanvasUITests {
-    func xtestNotificationItemsDisplayed() {
+    override var user: UITestUser? { return nil }
+
+    func testNotificationItemsDisplayed() {
+        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!), data: """
+        {"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}
+        """.data(using: .utf8))
+        mockEncodableRequest("/api/v1/users/self/activity_stream?per_page=99", value: [
+            APIActivity.make(),
+            APIActivity.make(id: "2", title: "Another Notification"),
+        ], response: HTTPURLResponse(url: URL(string: "/")!, statusCode: 200, httpVersion: nil, headerFields: nil))
+
+        logIn(domain: "canvas.instructure.com", token: "t")
         TabBar.notificationsTab.tap()
+
         app.find(labelContaining: "Assignment Created").waitToExist()
+        app.find(labelContaining: "Another Notification").waitToExist()
     }
 }

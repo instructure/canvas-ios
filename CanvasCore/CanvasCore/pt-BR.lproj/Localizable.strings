@@ -135,9 +135,6 @@
 "Choose Date" = "Escolher data";
 
 /* No comment provided by engineer. */
-"Close App" = "Fechar app";
-
-/* No comment provided by engineer. */
 "Collapse" = "Recolher";
 
 /* No comment provided by engineer. */
@@ -645,9 +642,6 @@
 /* Teal course color button */
 "Teal" = "Cerceta";
 
-/* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "O app precisa ser reiniciado para usar as novas configurações de idioma. Reinicie o app.";
-
 /* Error message for a file missing */
 "The file does not exist." = "Este arquivo não existe.";
 
@@ -800,9 +794,6 @@
 
 /* Upcoming assignments */
 "Upcoming" = "Iminente";
-
-/* No comment provided by engineer. */
-"Updated Language Settings" = "Configurações de idioma atualizadas";
 
 /* File upload submission option */
 "Upload File" = "Carregar Arquivo";

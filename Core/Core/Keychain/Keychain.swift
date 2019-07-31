@@ -54,6 +54,17 @@ public struct KeychainEntry: Codable, Hashable {
         return masquerader?.host.flatMap { URL(string: "https://\($0)") }
     }
 
+    public var uniqueID: String {
+        return [
+            baseURL.host,
+            originalBaseURL?.host,
+            userID,
+            originalUserID,
+        ]
+        .compactMap { $0 }
+        .joined(separator: "-")
+    }
+
     public init(
         accessToken: String,
         baseURL: URL,

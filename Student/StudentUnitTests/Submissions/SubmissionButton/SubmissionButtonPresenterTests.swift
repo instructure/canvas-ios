@@ -90,6 +90,10 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         a.submission?.workflowState = .submitted
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Resubmit Assignment")
 
+        a.submission?.workflowState = .graded
+        a.submission?.submittedAt = nil
+        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Submit Assignment")
+
         a.submissionTypes = [ .discussion_topic ]
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "View Discussion")
 

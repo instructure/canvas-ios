@@ -46,8 +46,14 @@ public extension RouterProtocol {
                     view.addDoneButton()
                 }
                 let nav = view as? UINavigationController ?? UINavigationController(rootViewController: view)
+                if options?.contains(.formSheet) == true {
+                    nav.modalPresentationStyle = .formSheet
+                }
                 from.present(nav, animated: true, completion: nil)
             } else {
+                if options?.contains(.formSheet) == true {
+                    view.modalPresentationStyle = .formSheet
+                }
                 from.present(view, animated: true, completion: nil)
             }
         } else {
@@ -68,6 +74,7 @@ public class Router: RouterProtocol {
         public static let modal = RouteOptions(rawValue: 1)
         public static let embedInNav = RouteOptions(rawValue: 2)
         public static let addDoneButton = RouteOptions(rawValue: 4)
+        public static let formSheet = RouteOptions(rawValue: 8)
     }
 
     private let handlers: [RouteHandler]

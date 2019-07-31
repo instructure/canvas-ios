@@ -254,7 +254,7 @@
 "Assignment" = "作業";
 
 /* Title for Assignments view controller */
-"Assignments" = "作業";
+"Assignments" = "作業列表";
 
 /* An item for attaching to a discussion */
 "Attachment" = "附件";

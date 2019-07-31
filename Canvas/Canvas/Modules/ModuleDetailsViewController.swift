@@ -68,6 +68,8 @@ class ModuleDetailsViewController: CanvasCore.TableViewController, PageViewEvent
         super.viewDidLoad()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
+
+        NotificationCenter.default.addObserver(self, selector: #selector(requirementCompleted), name: .CompletedModuleItemRequirement, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,5 +100,9 @@ class ModuleDetailsViewController: CanvasCore.TableViewController, PageViewEvent
         default:
             return
         }
+    }
+
+    @objc func requirementCompleted() {
+        refresher?.refresh(true)
     }
 }

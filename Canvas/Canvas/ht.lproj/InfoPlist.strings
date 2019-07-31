@@ -1,3 +1,6 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Elèv";
+
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Mete foto ak videyo nan piblikasyon mesaj ak diskisyon yo oswa aktive yo kòm soumisyon sesyon.";
 

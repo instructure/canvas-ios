@@ -1409,6 +1409,9 @@
   "similarity_score_f4b5c343": {
     "message": "Rezultat ujemanja"
   },
+  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
+    "message": "Ker je to razprava skupine, ima za to temo vsaka skupina svoj pogovor. Tu so razprave, do katerih imate dostop."
+  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Prišlo je do težav pri nas. Ne skrbite, to smo zabeležili in bomo v kratkem uredili."
   },

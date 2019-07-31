@@ -35,6 +35,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     var resultingButtonTitle: String?
     var navigationController: UINavigationController?
     var pageViewLogger: MockPageViewLogger = MockPageViewLogger()
+    var onUpdate: (() -> Void)?
 
     class MockButton: SubmissionButtonPresenter {
         var submitted = false
@@ -350,6 +351,38 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
     }
 
+    func testPostsViewCompletedRequirement() {
+        let expectation = XCTestExpectation(description: "notification")
+        var notification: Notification?
+        let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) {
+            notification = $0
+            expectation.fulfill()
+        }
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 0.5)
+        XCTAssertNotNil(notification)
+        XCTAssertEqual(notification?.userInfo?["requirement"] as? ModuleItemCompletionRequirement, .view)
+        XCTAssertEqual(notification?.userInfo?["moduleItem"] as? ModuleItemType, .assignment("1"))
+        XCTAssertEqual(notification?.userInfo?["courseID"] as? String, "1")
+        NotificationCenter.default.removeObserver(token)
+    }
+
+    func testSubmitAssignmentButtonIsHiddenWhenNotSubmittable() {
+        Course.make()
+        Assignment.make(from: .make(submission_types: [ .none ]))
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue(presenter.submitAssignmentButtonIsHidden())
+    }
+
+    func testSubmitAssignmentButtonHiddenForExcused() {
+        Course.make()
+        Assignment.make(from: .make(submission: APISubmission.make(excused: true, workflow_state: .graded), submission_types: [ .online_text_entry ]))
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 1)
+        XCTAssertTrue(presenter.submitAssignmentButtonIsHidden())
+    }
+
     func setupIsHiddenTest(lockStatus: LockStatus) {
         Course.make()
         switch lockStatus {
@@ -384,6 +417,39 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         Assignment.make(from: .make(description: ""))
         XCTAssertEqual(presenter.assignmentDescription(), "No Content")
     }
+
+    func testCreatesSubmissionWhenOnlineUploadFinishes() {
+        Course.make()
+        let assignment = Assignment.make()
+        presenter.viewIsReady()
+        NotificationCenter.default.post(name: UploadManager.AssignmentSubmittedNotification, object: nil, userInfo: [
+            "assignmentID": assignment.id,
+            "submission": APISubmission.make(),
+        ])
+        let submissions: [Submission] = databaseClient.fetch()
+        XCTAssertEqual(submissions.count, 1)
+    }
+
+    func testUpdatesWhenOnlineUploadStateChanges() throws {
+        Course.make()
+        let assignment = Assignment.make()
+        let url = URL.temporaryDirectory.appendingPathComponent("assignment-details.txt")
+        FileManager.default.createFile(atPath: url.path, contents: "test".data(using: .utf8), attributes: nil)
+        let fileID = UploadManager.shared.add(environment: env, url: url, batchID: "assignment-\(assignment.id)")
+        let file = UploadManager.shared.viewContext.object(with: fileID!) as! File
+        presenter.viewIsReady()
+        let expectation = XCTestExpectation(description: "update was called after online upload updated")
+        expectation.expectedFulfillmentCount = 1
+        expectation.assertForOverFulfill = false
+        onUpdate = {
+            expectation.fulfill()
+        }
+        file.uploadError = "it failed"
+        try UploadManager.shared.viewContext.save()
+        file.uploadError = "im telling you, IT FAILED!!"
+        try UploadManager.shared.viewContext.save()
+        wait(for: [expectation], timeout: 0.1)
+    }
 }
 
 extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
@@ -401,6 +467,7 @@ extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
         resultingAssignment = assignment
         resultingBaseURL = baseURL
         resultingQuiz = quiz
+        onUpdate?()
         expectation.fulfill()
     }
 

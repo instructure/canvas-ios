@@ -1409,6 +1409,9 @@
   "similarity_score_f4b5c343": {
     "message": "Índice de similaridade"
   },
+  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
+    "message": "Visto que esta é uma discussão de grupo, cada grupo tem uma conversa própria relativa a este tópico. Aqui estão as discussões aos quais tem acesso."
+  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Algo deu errado no nosso fim. Não se preocupe, nós já gravamos isso e vamos cuidar disso em breve."
   },

@@ -49,6 +49,7 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
     var presenter: SubmitAssignmentPresenter!
 
     override func setUp() {
+        env.userDefaults?.reset()
         presenter = SubmitAssignmentPresenter()
         presenter.view = self
         super.setUp()
@@ -67,8 +68,27 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
     }
 
     func testViewIsReady() {
-        Assignment.make(from: .make(course_id: ID(stringLiteral: Course.make().id)))
+        Course.make(from: .make(id: "1"))
+        Assignment.make(from: .make(course_id: "1"))
         let expectation = XCTestExpectation(description: "got course and assignment")
+        expectation.assertForOverFulfill = false
+        onUpdate = {
+            if self.presenter.course != nil && self.presenter.assignment != nil {
+                expectation.fulfill()
+            }
+        }
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testAutoSelectsUserDefaults() {
+        env.userDefaults?.submitAssignmentCourseID = "1"
+        env.userDefaults?.submitAssignmentID = "2"
+        Course.make(from: .make(id: "0", name: "A"))
+        Course.make(from: .make(id: "1", name: "B"))
+        Assignment.make(from: .make(id: "0", course_id: "1", name: "AA"))
+        Assignment.make(from: .make(id: "2", course_id: "1", name: "BB"))
+        let expectation = XCTestExpectation(description: "got default course and assignment")
         expectation.assertForOverFulfill = false
         onUpdate = {
             if self.presenter.course != nil && self.presenter.assignment != nil {
@@ -103,9 +123,9 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
 
     func testLoadItemsContentIsValid() {
         XCTAssertFalse(presenter.isContentValid)
-        presenter.select(assignment: Assignment.make())
+        presenter.select(course: .make())
         XCTAssertFalse(presenter.isContentValid)
-        presenter.select(course: Course.make())
+        presenter.select(assignment: .make())
         XCTAssertFalse(presenter.isContentValid)
         let expectation = XCTestExpectation(description: "content is valid")
         onUpdate = {
@@ -116,7 +136,7 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
         let attachment = NSItemProvider(contentsOf: URL(string: "data:text/plain,abcde")!)!
         let item = TestExtensionItem(mockAttachments: [attachment])
         presenter.load(items: [item])
-        wait(for: [expectation], timeout: 0.5)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testSubmit() {

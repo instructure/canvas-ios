@@ -24,6 +24,8 @@ enum AssignmentDetails: String, ElementWrapper {
     case due
     case gradeCell
     case gradeCircle
+    case circleComplete
+    case gradeCircleOutOf
     case gradeDisplayGrade
     case gradeLatePenalty
     case name

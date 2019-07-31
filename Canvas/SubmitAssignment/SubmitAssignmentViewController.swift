@@ -26,6 +26,7 @@ class SubmitAssignmentViewController: SLComposeServiceViewController, SubmitAssi
     override func viewDidLoad() {
         super.viewDidLoad()
         placeholder = NSLocalizedString("Comments...", bundle: .core, comment: "")
+        navigationController?.navigationBar.topItem?.rightBarButtonItem?.title = NSLocalizedString("Submit", bundle: .core, comment: "")
     }
 
     override func presentationAnimationDidFinish() {
@@ -53,7 +54,7 @@ class SubmitAssignmentViewController: SLComposeServiceViewController, SubmitAssi
         guard let environment = presenter?.env else { return items }
         if let course = SLComposeSheetConfigurationItem() {
             course.title = NSLocalizedString("Course", bundle: .core, comment: "")
-            let pending = presenter?.courses?.pending == true
+            let pending = presenter?.courses.pending == true
             course.value = pending ? nil : presenter?.course?.name
             course.valuePending = pending
             course.tapHandler = {

@@ -91,7 +91,10 @@ class DocViewerPresenterTests: CoreTestCase {
     }
 
     func testShouldShowForSelectedText() {
-        let menuItems = [ PSPDFMenuItem(title: "test", block: {}) ]
+        let menuItems: [PSPDFMenuItem] = [
+            PSPDFMenuItem(title: "test", block: {}),
+            PSPDFMenuItem(title: "test1", block: {}, identifier: PSPDFTextMenu.annotationMenuHighlight.rawValue),
+        ]
         let results = presenter.pdfViewController(
             PSPDFViewController(),
             shouldShow: menuItems,
@@ -100,7 +103,8 @@ class DocViewerPresenterTests: CoreTestCase {
             in: .zero,
             on: PSPDFPageView(frame: .zero)
         )
-        XCTAssertEqual(results, menuItems)
+        XCTAssertEqual(results.count, 1)
+        XCTAssertEqual(results[0], menuItems[0])
     }
 
     class MockPDFViewController: PSPDFViewController {

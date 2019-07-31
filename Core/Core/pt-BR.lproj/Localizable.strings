@@ -221,6 +221,9 @@
 "list_or_two" = "%1$@ ou %2$@";
 
 /* No comment provided by engineer. */
+"Log In" = "Entrar";
+
+/* No comment provided by engineer. */
 "Log In Again" = "Entrar novamente";
 
 /* No comment provided by engineer. */
@@ -279,6 +282,9 @@
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Previous Logins" = "Logins prévios";
 
 /* No comment provided by engineer. */
 "purple" = "roxo";

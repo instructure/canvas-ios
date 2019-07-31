@@ -21,22 +21,13 @@ import Foundation
 public class GetCourses: CollectionUseCase {
     public typealias Model = Course
 
-    var showFavorites: Bool
-    var perPage: Int
-
-    public init(showFavorites: Bool = false, perPage: Int = 10) {
-        self.showFavorites = showFavorites
-        self.perPage = perPage
-    }
-
+    public let request: GetCoursesRequest
+    public let scope: Scope
     public let cacheKey: String? = "get-courses"
 
-    public var request: GetCoursesRequest {
-        return GetCoursesRequest(includeUnpublished: true, perPage: self.perPage)
-    }
-
-    public var scope: Scope {
-        return showFavorites ?
+    public init(showFavorites: Bool = false, state: [GetCoursesRequest.State]? = nil, perPage: Int = 10) {
+        request = GetCoursesRequest(state: state, perPage: perPage)
+        scope = showFavorites ?
             .where(#keyPath(Course.isFavorite), equals: true, orderBy: #keyPath(Course.name)) :
             .all(orderBy: #keyPath(Course.name), ascending: true, naturally: true)
     }

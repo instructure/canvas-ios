@@ -1409,6 +1409,9 @@
   "similarity_score_f4b5c343": {
     "message": "相似性分數"
   },
+  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
+    "message": "由於這是群組討論，每個群組都有其自己針對此主題的交談。以下是您可以訪問的討論區。"
+  },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "結束時出現問題。別擔心，我們已經記錄了這種情況，並會很快處理。"
   },
