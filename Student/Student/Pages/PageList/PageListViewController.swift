@@ -33,6 +33,7 @@ class PageListViewController: UIViewController, PageListViewProtocol {
     var color: UIColor?
     var presenter: PageListPresenter?
     var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
+    var showedFirstPage: Bool = false
 
     static func create(env: AppEnvironment = .shared, context: Context) -> PageListViewController {
         let view = loadFromStoryboard()
@@ -51,7 +52,8 @@ class PageListViewController: UIViewController, PageListViewProtocol {
             emptyLabel?.isHidden = true
         }
 
-        if !isLoading && !isEmpty {
+        if !isLoading && !isEmpty && !showedFirstPage {
+            showedFirstPage = true
             if UIApplication.shared.keyWindow?.traitCollection.horizontalSizeClass == .regular {
                 if let frontPage = presenter?.frontPage.first {
                     presenter?.select(frontPage, from: self)
