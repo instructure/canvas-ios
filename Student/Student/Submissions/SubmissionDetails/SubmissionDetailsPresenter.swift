@@ -265,7 +265,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func lockedEmptyViewIsHidden() -> Bool {
-        if let assignment = assignment.first {
+        if let assignment = assignment.first, assignment.quizID != nil {
             return assignment.lockExplanation == nil && !(assignment.lockedForUser)
         }
         return true

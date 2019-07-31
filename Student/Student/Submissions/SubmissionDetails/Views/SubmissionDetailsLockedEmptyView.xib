@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SubmissionDetailsLockedEmptyView">
             <connections>
+                <outlet property="headerLabel" destination="ent-lp-yUz" id="JGZ-jQ-tDZ"/>
                 <outlet property="imageView" destination="x1P-ec-FdF" id="TXh-dA-hcT"/>
             </connections>
         </placeholder>

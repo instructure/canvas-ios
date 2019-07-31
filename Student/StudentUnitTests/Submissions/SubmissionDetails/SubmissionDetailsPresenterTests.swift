@@ -298,7 +298,12 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testLockedEmptyViewIsNotHidden() {
-        Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: ["png"], unlock_at: Date().addYears(1), locked_for_user: true, lock_explanation: "this is locked"))
+        Assignment.make(from: .make(quiz_id: "1",
+                                    submission_types: [ .online_upload ],
+                                    allowed_extensions: ["png"],
+                                    unlock_at: Date().addYears(1),
+                                    locked_for_user: true,
+                                    lock_explanation: "this is locked"))
         XCTAssertFalse( presenter.lockedEmptyViewIsHidden() )
     }
 

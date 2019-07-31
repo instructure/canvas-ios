@@ -22,10 +22,12 @@ import Core
 @IBDesignable
 class SubmissionDetailsLockedEmptyView: UIView {
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var headerLabel: DynamicLabel!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadFromXib()
         imageView.image = UIImage(named: "PandaLocked", in: .core, compatibleWith: nil)
+        headerLabel.text = NSLocalizedString("Quiz Locked", comment: "")
     }
 }
