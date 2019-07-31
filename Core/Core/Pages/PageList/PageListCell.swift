@@ -17,7 +17,6 @@
 //
 
 import UIKit
-import Core
 
 class PageListCell: UITableViewCell {
     @IBOutlet weak var iconImageView: IconView!
