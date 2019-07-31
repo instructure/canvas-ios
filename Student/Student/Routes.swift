@@ -57,13 +57,13 @@ public let router = Router(routes: [
         return GroupNavigationViewController(groupID: ID.expandTildeID(groupID))
     },
 
-    RouteHandler(.pages(forCourse: ":courseID"), name: "course_page") { _, params in
+    RouteHandler(.pages(forCourse: ":courseID"), name: "course_pages") { _, params in
         guard let courseID = params["courseID"] else { return nil }
         let context = ContextModel(.course, id: ID.expandTildeID(courseID))
         return PageListViewController.create(context: context)
     },
 
-    RouteHandler(.pages(forGroup: ":groupID"), name: "group_page") { _, params in
+    RouteHandler(.pages(forGroup: ":groupID"), name: "group_pages") { _, params in
         guard let groupID = params["groupID"] else { return nil }
         let context = ContextModel(.group, id: ID.expandTildeID(groupID))
         return PageListViewController.create(context: context)

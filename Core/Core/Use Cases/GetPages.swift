@@ -45,8 +45,12 @@ public struct GetPages: CollectionUseCase {
     }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APIPage]?, URLResponse?, Error?) -> Void) {
-        environment.api.makeRequest(request) { (response, urlResponse, _) in
-            completionHandler(response, urlResponse, nil) // returns error when no pages exist except front page so ignore
+        environment.api.makeRequest(request) { (response, urlResponse, error) in
+            if (urlResponse as? HTTPURLResponse)?.statusCode == 404 {
+                completionHandler(response, urlResponse, nil) // always returns error when no pages exist so ignore
+            } else {
+                completionHandler(response, urlResponse, error)
+            }
         }
     }
 
