@@ -41,7 +41,7 @@
                                 <action selector="gripperPressed:" destination="-1" eventType="touchUpInside" id="nEk-bS-kvC"/>
                             </connections>
                         </button>
-                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RnZ-Eu-Ple">
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="RnZ-Eu-Ple">
                             <rect key="frame" x="16" y="16" width="381" height="437"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="kDR-tw-Pus"/>
