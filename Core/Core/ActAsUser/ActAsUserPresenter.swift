@@ -59,8 +59,8 @@ public class ActAsUserPresenter {
                 userName: user.short_name,
                 userEmail: user.email
             )
-            self.loginDelegate?.startActing(as: entry)
             callback(nil)
+            self.loginDelegate?.startActing(as: entry)
         } }
     }
 }

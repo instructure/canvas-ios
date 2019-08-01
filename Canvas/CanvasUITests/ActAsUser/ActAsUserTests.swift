@@ -43,5 +43,6 @@ class ActAsUserTests: CanvasUITests {
         Profile.open()
         Profile.userNameLabel.waitToExist()
         XCTAssertEqual(Profile.userNameLabel.label, "Admin One")
+        Profile.close()
     }
 }

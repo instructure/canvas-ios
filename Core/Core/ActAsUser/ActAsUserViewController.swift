@@ -108,9 +108,11 @@ public class ActAsUserViewController: UITableViewController {
         }
         view.endEditing(true)
         presenter?.didSubmit(domain: domain, userID: userID) { [weak self] err in
-            if err != nil {
+            guard err == nil else {
                 self?.showMasqueradingError()
+                return
             }
+            self?.dismiss(animated: true)
         }
     }
 }
