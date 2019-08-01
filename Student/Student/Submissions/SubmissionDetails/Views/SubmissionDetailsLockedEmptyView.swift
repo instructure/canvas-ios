@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2017-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
+import UIKit
+import Core
 
-import { NativeModules } from 'react-native'
-import canvas from '../canvas-api'
+@IBDesignable
+class SubmissionDetailsLockedEmptyView: UIView {
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var headerLabel: DynamicLabel!
 
-// if the user has an invalid login, the promise will send `true`. Otherwise it will send `false`
-export default async function loginVerify (): Promise<boolean> {
-  return new Promise((resolve, reject) => {
-    canvas.getUserProfile('self')
-      .then(() => resolve(false))
-      .catch((e) => {
-        if (e.response && e.response.status === 401) {
-          resolve(true)
-          NativeModules.NativeLogin.logout()
-        } else {
-          resolve(false)
-        }
-      })
-  })
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        loadFromXib()
+        imageView.image = UIImage(named: "PandaLocked", in: .core, compatibleWith: nil)
+        headerLabel.text = NSLocalizedString("Quiz Locked", comment: "")
+    }
 }
