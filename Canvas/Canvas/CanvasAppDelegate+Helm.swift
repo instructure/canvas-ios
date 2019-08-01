@@ -60,6 +60,7 @@ extension AppDelegate: RCTBridgeDelegate {
         registerScreen("/courses/:courseID/modules/:moduleID")
         registerScreen("/courses/:courseID/modules/:moduleID/items/:itemID")
         registerScreen("/courses/:courseID/modules/items/:itemID")
+        registerScreen("/courses/:courseID/pages")
 
         registerScreen("/groups/:groupID/conferences")
         registerScreen("/groups/:groupID/collaborations")

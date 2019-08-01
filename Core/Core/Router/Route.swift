@@ -67,6 +67,14 @@ public struct Route: Equatable {
         return Route("/groups/\(groupID)")
     }
 
+    public static func pages(forCourse courseID: String) -> Route {
+        return Route("/courses/\(courseID)/pages")
+    }
+
+    public static func pages(forGroup groupID: String) -> Route {
+        return Route("/groups/\(groupID)/pages")
+    }
+
     public static func quizzes(forCourse courseID: String) -> Route {
         return Route("/courses/\(courseID)/quizzes")
     }

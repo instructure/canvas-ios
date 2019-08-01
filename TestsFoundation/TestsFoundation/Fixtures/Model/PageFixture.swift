@@ -16,27 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+import CoreData
+import Foundation
+@testable import Core
 
-class DeepLinkTests: CanvasUITests {
-
-    override func setUp() {
-        super.setUp()
-
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.pages.tap()
-        PagesList.page(index: 0).tap()
-    }
-
-    func testDeepLinkToGroupAnnouncements() {
-        app.find(labelContaining: "group-announcements").tap()
-        app.find(labelContaining: "There are no announcements to display.").waitToExist()
-    }
-
-    func testDeepLinkToGroup() {
-        app.find(labelContaining: "group-home").tap()
-        app.find(labelContaining: "Home").waitToExist()
+extension Page {
+    @discardableResult
+    public static func make(
+        from api: APIPage = .make(),
+        context: Context = ContextModel(.course, id: "42"),
+        in managedObjectContext: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+        ) -> Page {
+        let model = Page.save(api, in: managedObjectContext)
+        model.contextID = context.canvasContextID
+        try! managedObjectContext.save()
+        return model
     }
 }

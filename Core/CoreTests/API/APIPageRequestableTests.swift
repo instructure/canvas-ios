@@ -17,26 +17,23 @@
 //
 
 import XCTest
-import TestsFoundation
+@testable import Core
 
-class DeepLinkTests: CanvasUITests {
+class APIPageRequestableTests: XCTestCase {
+    let courseContext = ContextModel(.course, id: "42")
+    let groupContext = ContextModel(.group, id: "42")
 
-    override func setUp() {
-        super.setUp()
-
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.pages.tap()
-        PagesList.page(index: 0).tap()
+    func testGetPagesRequest() {
+        XCTAssertEqual(GetPagesRequest(context: courseContext).path, "courses/42/pages")
+        XCTAssertEqual(GetPagesRequest(context: groupContext).path, "groups/42/pages")
+        XCTAssertEqual(GetPagesRequest(context: courseContext).queryItems, [
+            URLQueryItem(name: "sort", value: "title"),
+        ])
     }
 
-    func testDeepLinkToGroupAnnouncements() {
-        app.find(labelContaining: "group-announcements").tap()
-        app.find(labelContaining: "There are no announcements to display.").waitToExist()
+    func testGetFrontPageRequest() {
+        XCTAssertEqual(GetFrontPageRequest(context: courseContext).path, "courses/42/front_page")
+        XCTAssertEqual(GetFrontPageRequest(context: groupContext).path, "groups/42/front_page")
     }
 
-    func testDeepLinkToGroup() {
-        app.find(labelContaining: "group-home").tap()
-        app.find(labelContaining: "Home").waitToExist()
-    }
 }

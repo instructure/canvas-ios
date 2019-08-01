@@ -16,27 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+import Foundation
+@testable import Core
 
-class DeepLinkTests: CanvasUITests {
-
-    override func setUp() {
-        super.setUp()
-
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.pages.tap()
-        PagesList.page(index: 0).tap()
-    }
-
-    func testDeepLinkToGroupAnnouncements() {
-        app.find(labelContaining: "group-announcements").tap()
-        app.find(labelContaining: "There are no announcements to display.").waitToExist()
-    }
-
-    func testDeepLinkToGroup() {
-        app.find(labelContaining: "group-home").tap()
-        app.find(labelContaining: "Home").waitToExist()
+extension APIPage {
+    public static func make(
+        url: String = "",
+        updated_at: Date = Date(),
+        front_page: Bool = false,
+        page_id: ID = ID("42"),
+        title: String = "Answers Page",
+        html_url: String = "/courses/42/pages/Answers-Page"
+        ) -> APIPage {
+        return APIPage(
+            url: url,
+            updated_at: updated_at,
+            front_page: front_page,
+            page_id: page_id,
+            title: title,
+            html_url: html_url 
+        )
     }
 }
