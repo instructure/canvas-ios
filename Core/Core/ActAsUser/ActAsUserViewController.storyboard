@@ -50,6 +50,7 @@
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User ID" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="q3d-B6-ITy" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
                                                     <rect key="frame" x="40" y="326" width="295" height="50"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="ActAsUser.userIDField"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="mB5-Hi-Lbx"/>
                                                     </constraints>
@@ -63,6 +64,7 @@
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Domain" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="eC8-Jz-lGK" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
                                                     <rect key="frame" x="40" y="388" width="295" height="50"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="ActAsUser.domainField"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="NvL-5f-zSp"/>
                                                     </constraints>
@@ -76,6 +78,7 @@
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDI-G5-vxn" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                                     <rect key="frame" x="40" y="450" width="295" height="50"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="ActAsUser.actAsUserButton"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="nwi-dr-yNw"/>
                                                     </constraints>
