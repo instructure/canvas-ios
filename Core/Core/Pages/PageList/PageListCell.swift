@@ -25,7 +25,8 @@ class PageListCell: UITableViewCell {
 
     func update(page: Page, color: UIColor?) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d' at 'h:mm a"
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
         dateLabel?.text = formatter.string(from: page.lastUpdated)
         titleLabel?.text = page.title
         iconImageView?.tintColor = color

@@ -43,12 +43,14 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
     }
 
     func update(isLoading: Bool) {
+        tableView?.reloadData()
 
         let isEmpty = presenter?.pages.isEmpty == true && presenter?.frontPage.isEmpty == true
         if isEmpty && !isLoading {
             emptyLabel?.text = NSLocalizedString("There are no pages to display.", bundle: .core, comment: "")
             emptyLabel?.textColor = .named(.textDarkest)
             emptyLabel?.isHidden = false
+            view.bringSubviewToFront(emptyLabel)
         } else {
             emptyLabel?.isHidden = true
         }
@@ -68,7 +70,6 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
             loadingView?.stopAnimating()
             tableView?.refreshControl?.endRefreshing()
             view.setNeedsLayout()
-            tableView?.reloadData()
         }
     }
 
