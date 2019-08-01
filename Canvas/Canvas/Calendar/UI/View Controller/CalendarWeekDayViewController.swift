@@ -85,8 +85,8 @@ class CalendarWeekDayViewController: UIViewController, CalendarWeekViewDelegate 
     }
     
     @objc func layoutSubviews() {
-        let weekViewVerticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[topLayoutGuide]-topPadding-[weekView]-bottomPadding-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["topPadding": 0, "bottomPadding": 0], views: ["topLayoutGuide": topLayoutGuide, "weekView": weekView])
-        let weekViewHorizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-leftPadding-[weekView]-rightPadding-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["rightPadding": 0, "leftPadding": 0], views: ["weekView": weekView])
+        let weekViewVerticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[weekView]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["weekView": weekView as Any])
+        let weekViewHorizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-leftPadding-[weekView]-rightPadding-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["rightPadding": 0, "leftPadding": 0], views: ["weekView": weekView as Any])
         view.addConstraints(weekViewVerticalContraints)
         view.addConstraints(weekViewHorizontalContraints)
     }
