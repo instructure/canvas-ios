@@ -24,10 +24,8 @@ class TodoListTests: CanvasUITests {
     override var user: UITestUser? { return nil }
 
     func testTodoItemsDisplayed() {
-        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!), data: """
-        {"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}
-        """.data(using: .utf8))
-        mockEncodableRequest("/api/v1/users/self/todo?per_page=99", value: [
+        mockBaseRequests()
+        mockEncodableRequest("users/self/todo?per_page=99", value: [
             APITodo.make(assignment: .make(name: "One", due_at: Date().add(.day, number: 1))),
             APITodo.make(assignment: .make(id: "2", name: "Two")),
         ], response: HTTPURLResponse(url: URL(string: "/")!, statusCode: 200, httpVersion: nil, headerFields: nil))
