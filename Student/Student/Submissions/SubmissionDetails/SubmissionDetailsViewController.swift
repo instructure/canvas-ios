@@ -99,6 +99,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         }
 
         lockedEmptyView?.isHidden = presenter.lockedEmptyViewIsHidden()
+        lockedEmptyView?.headerLabel.text = presenter.lockedEmptyViewHeader()
     }
 
     func reloadNavBar() {
