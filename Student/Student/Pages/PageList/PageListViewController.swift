@@ -42,6 +42,7 @@ class PageListViewController: UIViewController, PageListViewProtocol {
     }
 
     func update(isLoading: Bool) {
+        tableView?.reloadData()
 
         let isEmpty = presenter?.pages.isEmpty == true && presenter?.frontPage.isEmpty == true
         if isEmpty && !isLoading {
@@ -67,7 +68,6 @@ class PageListViewController: UIViewController, PageListViewProtocol {
             loadingView?.stopAnimating()
             tableView?.refreshControl?.endRefreshing()
             view.setNeedsLayout()
-            tableView?.reloadData()
         }
     }
 
