@@ -4095,7 +4095,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\nexit 0\nfi\n\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\nif nc -w 5 -z localhost 8081 ; then\nif ! curl -s \"http://localhost:8081/status\" | grep -q \"packager-status:running\" ; then\necho \"Port 8081 already in use, packager is either not running or not running correctly\"\nexit 2\nfi\nelse\npwd\nopen \"$SRCROOT/../rn/Teacher/launchPackager.command\" || echo \"Can't start packager automatically\"\nfi\nfi";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ] || [ \"${CONFIGURATION}\" = \"Release\" ] ; then\nexit 0\nfi\n\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\nif nc -w 5 -z localhost 8081 ; then\nif ! curl -s \"http://localhost:8081/status\" | grep -q \"packager-status:running\" ; then\necho \"Port 8081 already in use, packager is either not running or not running correctly\"\nexit 2\nfi\nelse\npwd\nopen \"$SRCROOT/../rn/Teacher/launchPackager.command\" || echo \"Can't start packager automatically\"\nfi\nfi\n";
 		};
 		49383CF11F848FCD009C8F8E /* Bundle React Native Code and Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4109,7 +4109,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n\n# Define NVM_DIR and source the nvm.sh setup script\n[ -z \"$NVM_DIR\" ] && export NVM_DIR=\"$HOME/.nvm\"\nif [[ -s \"$HOME/.nvm/nvm.sh\" ]]; then\n. \"$HOME/.nvm/nvm.sh\"\nelif [[ -x \"$(command -v brew)\" && -s \"$(brew --prefix nvm)/nvm.sh\" ]]; then\n. \"$(brew --prefix nvm)/nvm.sh\"\nfi\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../rn/Teacher\"\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nreact-native bundle --entry-file ./index.ios.js --platform ios --bundle-output \"${DEST}/main.jsbundle\" --sourcemap-output \"${DEST}/main.jsbundle.map\" --dev false --assets-dest \"$DEST\" --reset-cache\ncd \"${PROJECT_DIR}\"\nelse\n../rn/Teacher/node_modules/react-native/scripts/react-native-xcode.sh\nfi";
+			shellScript = "export NODE_BINARY=node\n\n# Define NVM_DIR and source the nvm.sh setup script\n[ -z \"$NVM_DIR\" ] && export NVM_DIR=\"$HOME/.nvm\"\nif [[ -s \"$HOME/.nvm/nvm.sh\" ]]; then\n. \"$HOME/.nvm/nvm.sh\"\nelif [[ -x \"$(command -v brew)\" && -s \"$(brew --prefix nvm)/nvm.sh\" ]]; then\n. \"$(brew --prefix nvm)/nvm.sh\"\nfi\n\nif [ \"${CONFIGURATION}\" = \"Release\" ] || [ \"${CONFIGURATION}\" = \"Debug\" ]\nthen\ncd \"${PROJECT_DIR}/../rn/Teacher\"\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nreact-native bundle --entry-file ./index.ios.js --platform ios --bundle-output \"${DEST}/main.jsbundle\" --sourcemap-output \"${DEST}/main.jsbundle.map\" --dev false --assets-dest \"$DEST\" --reset-cache\ncd \"${PROJECT_DIR}\"\nelse\n../rn/Teacher/node_modules/react-native/scripts/react-native-xcode.sh\nfi\n";
 		};
 		71B7D2303DAF27D7EBF8BFDD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
