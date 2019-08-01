@@ -39,4 +39,9 @@ class DeepLinkTests: CanvasUITests {
         app.find(labelContaining: "group-home").tap()
         app.find(labelContaining: "Home").waitToExist()
     }
+
+    func testDeepLinkToPublicCourse() {
+        app.find(labelContaining: "public-course-page").tap()
+        app.find(labelContaining: "this is a public course").waitToExist()
+    }
 }
