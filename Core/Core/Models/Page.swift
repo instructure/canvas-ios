@@ -27,6 +27,7 @@ public class Page: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var title: String
     @NSManaged public var htmlURL: String
+    @NSManaged public var published: Bool
 }
 
 extension Page {
@@ -40,6 +41,7 @@ extension Page {
         model.id = item.page_id.value
         model.title = item.title
         model.htmlURL = item.html_url
+        model.published = item.published
 
         return model
     }
