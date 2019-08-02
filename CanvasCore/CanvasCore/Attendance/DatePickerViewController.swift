@@ -130,8 +130,8 @@ class DatePickerViewController: UIViewController {
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0),
-            collectionView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
     

@@ -64,13 +64,6 @@ class QuizDetailsViewController: UITableViewController {
         prepareDescriptionCell()
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        let insets = UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: bottomLayoutGuide.length, right: 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
-    }
-    
     fileprivate func prepareTable() {
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension

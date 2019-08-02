@@ -47,15 +47,10 @@ public class ArcVideoPickerViewController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
-        automaticallyAdjustsScrollViewInsets = false
-        
+
         webView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView)
-        webView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
-        webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        webView.pin(inside: view)
         
         // https://mobiledev.instructure.com/courses/24219/external_tools/282032/resource_selection?launch_type=homework_submission&assignment_id=405404
         let url = arcLTIURL

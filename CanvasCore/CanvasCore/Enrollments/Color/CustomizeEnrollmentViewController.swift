@@ -66,7 +66,7 @@ open class CustomizeEnrollmentViewController: UIViewController {
         
         self.navigationItem.title = NSLocalizedString("Customize", tableName: "Localizable", bundle: .core, value: "", comment: "Header label for a screen that customizes a course")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped(_:)))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[topGuide]-0-[header]", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["topGuide": self.topLayoutGuide, "header": self.header]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[header]", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["header": header as Any]))
         
         for courseColorButton in self.courseColorButtons {
             courseColorButton.layer.cornerRadius = 4.0

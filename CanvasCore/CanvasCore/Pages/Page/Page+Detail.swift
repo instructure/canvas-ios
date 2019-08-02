@@ -152,8 +152,6 @@ extension Page {
             view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[webView]-0-|", options: NSLayoutConstraint.FormatOptions(rawValue:0), metrics: nil, views: ["webView": webView]))
             view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[webView]-0-|", options: NSLayoutConstraint.FormatOptions(rawValue:0), metrics: nil, views: ["webView": webView]))
 
-            // Ensure that view doesn't hider under navbar
-            self.automaticallyAdjustsScrollViewInsets = false
             self.edgesForExtendedLayout = UIRectEdge()
 
             if let page = observer.object {
