@@ -119,8 +119,8 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
 
         calendarView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(calendarView)
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[top][view]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["view": calendarView, "top" : topLayoutGuide]))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["view": calendarView]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["view": calendarView as Any]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["view": calendarView as Any]))
 
         favCoursesCollection = try? Course.favoritesCollection(session)
         favCoursesDisposable = favCoursesCollection?.collectionUpdates
