@@ -570,7 +570,7 @@
 		2C964856211E303E002C3255 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2C96485A211E30B3002C3255 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
 		2C96485D211E3723002C3255 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
-		3B0897B022EF8EFD00F47142 /* AppBackgroundHelperProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppBackgroundHelperProtocol.swift"; sourceTree = "<group>"; };
+		3B0897B022EF8EFD00F47142 /* AppBackgroundHelperProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppBackgroundHelperProtocol.swift; sourceTree = "<group>"; };
 		3B0CEB762150408A00D07CFA /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B158C8C22E12DC50039A568 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		3B158C9F22E1343C0039A568 /* PageViewEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewEvent.swift; sourceTree = "<group>"; };

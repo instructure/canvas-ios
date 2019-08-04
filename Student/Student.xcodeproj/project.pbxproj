@@ -389,8 +389,8 @@
 		3B635B21225C0DA0001F353D /* SyllabusActionableItemsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenter.swift; sourceTree = "<group>"; };
 		3B635B24225C0E4F001F353D /* SyllabusActionableItemsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenterTests.swift; sourceTree = "<group>"; };
 		3B6386AE22653347002DEE72 /* DrawerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTests.swift; sourceTree = "<group>"; };
-		3B82680A22F0DCCF00278492 /* SubmissionDetailsLockedEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SubmissionDetailsLockedEmptyView.swift; path = "SubmissionDetailsLockedEmptyView.swift"; sourceTree = "<group>"; };
-		3B82680D22F0DCED00278492 /* SubmissionDetailsLockedEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SubmissionDetailsLockedEmptyView.xib; path = "SubmissionDetailsLockedEmptyView.xib"; sourceTree = "<group>"; };
+		3B82680A22F0DCCF00278492 /* SubmissionDetailsLockedEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsLockedEmptyView.swift; sourceTree = "<group>"; };
+		3B82680D22F0DCED00278492 /* SubmissionDetailsLockedEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubmissionDetailsLockedEmptyView.xib; sourceTree = "<group>"; };
 		3BBCF832224BFF29004B519D /* SyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewController.swift; sourceTree = "<group>"; };
 		3BBCF838224C142C004B519D /* SyllabusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusPresenter.swift; sourceTree = "<group>"; };
 		3BBCF847224C19A2004B519D /* SyllabusViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SyllabusViewController.storyboard; sourceTree = "<group>"; };
