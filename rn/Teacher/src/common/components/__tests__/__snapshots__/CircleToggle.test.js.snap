@@ -10,7 +10,6 @@ exports[`renders circle toggle correctly 1`] = `
   accessible={true}
   itemID="1"
   on={false}
-  onLongPress={undefined}
   onPress={[Function]}
   testID="circle-button"
   value="1"
@@ -35,8 +34,6 @@ exports[`renders circle toggle correctly 1`] = `
   >
     <Text
       accessible={false}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -74,7 +71,6 @@ exports[`renders circle toggle when on correctly 1`] = `
   accessible={true}
   itemID="1"
   on={true}
-  onLongPress={undefined}
   onPress={[Function]}
   testID="circle-button"
   value="1"
@@ -103,8 +99,6 @@ exports[`renders circle toggle when on correctly 1`] = `
   >
     <Text
       accessible={false}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -141,7 +135,6 @@ exports[`renders circle toggle with an image 1`] = `
   accessible={true}
   itemID="1"
   on={false}
-  onLongPress={undefined}
   onPress={[Function]}
   testID="circle-button"
   value="1"

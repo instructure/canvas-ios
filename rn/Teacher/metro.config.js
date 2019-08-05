@@ -16,4 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+/* eslint-disable flowtype/require-valid-file-annotation */
+module.exports = {
+  transformer: {
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: true,
+        inlineRequires: false,
+      },
+    }),
+  },
+}

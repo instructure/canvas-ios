@@ -24,9 +24,6 @@ exports[`GroupList renders empty list 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -64,9 +61,9 @@ exports[`GroupList renders properly 1`] = `
     <list>
       <item>
         <TouchableHighlight
-          accessibilityLabel={undefined}
           accessibilityTraits={Array []}
           activeOpacity={0.85}
+          delayPressOut={100}
           onPress={[Function]}
           style={
             Array [
@@ -116,6 +113,7 @@ exports[`GroupList renders properly 1`] = `
                 accessibilityLabel="Donald Trump Profile"
                 accessibilityTraits="button"
                 activeOpacity={0.85}
+                delayPressOut={100}
                 onPress={[Function]}
                 underlayColor="transparent"
               >
@@ -170,8 +168,6 @@ exports[`GroupList renders properly 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -229,9 +225,6 @@ exports[`GroupList renders without a group 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {

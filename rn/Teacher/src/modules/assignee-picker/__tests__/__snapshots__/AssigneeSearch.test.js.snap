@@ -2,6 +2,7 @@
 
 exports[`render correctly 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -25,15 +26,8 @@ exports[`render correctly 1`] = `
       <section>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -41,20 +35,13 @@ exports[`render correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "flex": 1,
-                  "height": "auto",
-                },
-              ]
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "flex": 1,
+                "height": "auto",
+              }
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -101,8 +88,6 @@ exports[`render correctly 1`] = `
                 >
                   <Text
                     accessible={false}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -129,9 +114,6 @@ exports[`render correctly 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -181,9 +163,6 @@ exports[`render correctly 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -213,15 +192,8 @@ exports[`render correctly 1`] = `
         </View>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -229,20 +201,13 @@ exports[`render correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "flex": 1,
-                  "height": "auto",
-                },
-              ]
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "flex": 1,
+                "height": "auto",
+              }
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -289,8 +254,6 @@ exports[`render correctly 1`] = `
                 >
                   <Text
                     accessible={false}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -317,9 +280,6 @@ exports[`render correctly 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -343,9 +303,6 @@ exports[`render correctly 1`] = `
                   the section 1
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -395,9 +352,6 @@ exports[`render correctly 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -427,15 +381,8 @@ exports[`render correctly 1`] = `
         </View>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -443,20 +390,13 @@ exports[`render correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "flex": 1,
-                  "height": "auto",
-                },
-              ]
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "flex": 1,
+                "height": "auto",
+              }
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -503,8 +443,6 @@ exports[`render correctly 1`] = `
                 >
                   <Text
                     accessible={false}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -531,9 +469,6 @@ exports[`render correctly 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -557,9 +492,6 @@ exports[`render correctly 1`] = `
                   Red Squadron
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -609,9 +541,6 @@ exports[`render correctly 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -641,15 +570,8 @@ exports[`render correctly 1`] = `
         </View>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -657,20 +579,13 @@ exports[`render correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "flex": 1,
-                  "height": "auto",
-                },
-              ]
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "flex": 1,
+                "height": "auto",
+              }
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -740,9 +655,6 @@ exports[`render correctly 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -777,6 +689,7 @@ exports[`render correctly 1`] = `
 
 exports[`render correctly 2`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -819,9 +732,6 @@ exports[`render correctly 2`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -851,15 +761,8 @@ exports[`render correctly 2`] = `
         </View>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -867,20 +770,13 @@ exports[`render correctly 2`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "flex": 1,
-                  "height": "auto",
-                },
-              ]
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "flex": 1,
+                "height": "auto",
+              }
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -927,8 +823,6 @@ exports[`render correctly 2`] = `
                 >
                   <Text
                     accessible={false}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -955,9 +849,6 @@ exports[`render correctly 2`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -981,9 +872,6 @@ exports[`render correctly 2`] = `
                   the section 1
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -1033,9 +921,6 @@ exports[`render correctly 2`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1065,15 +950,8 @@ exports[`render correctly 2`] = `
         </View>
         <item>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1081,20 +959,13 @@ exports[`render correctly 2`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "borderBottomColor": "#C7CDD1",
-                  "borderBottomWidth": 0.5,
-                  "flex": 1,
-                  "height": "auto",
-                },
-              ]
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "flex": 1,
+                "height": "auto",
+              }
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -1141,8 +1012,6 @@ exports[`render correctly 2`] = `
                 >
                   <Text
                     accessible={false}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -1169,9 +1038,6 @@ exports[`render correctly 2`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -1195,9 +1061,6 @@ exports[`render correctly 2`] = `
                   Red Squadron
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [

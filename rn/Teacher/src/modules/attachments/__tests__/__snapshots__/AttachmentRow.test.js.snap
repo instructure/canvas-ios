@@ -2,7 +2,6 @@
 
 exports[`AttachmentRow renders 1`] = `
 <TouchableHighlight
-  accessibilityLabel={undefined}
   accessibilityTraits={
     Array [
       "button",
@@ -67,8 +66,6 @@ exports[`AttachmentRow renders 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={0}
         style={

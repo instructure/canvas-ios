@@ -7,6 +7,5 @@ exports[`PDFView renders 1`] = `
       "documentURL": "",
     }
   }
-  style={undefined}
 />
 `;

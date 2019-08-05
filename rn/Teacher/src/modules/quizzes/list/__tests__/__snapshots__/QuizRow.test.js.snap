@@ -2,7 +2,6 @@
 
 exports[`QuizRow renders 1`] = `
 <TouchableHighlight
-  accessibilityLabel={undefined}
   accessibilityTraits={
     Array [
       "button",
@@ -122,8 +121,6 @@ exports[`QuizRow renders 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -156,9 +153,6 @@ exports[`QuizRow renders 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           separated={
             Array [
               "Due Jan 23, 2013 at 11:59 PM",
@@ -203,9 +197,6 @@ exports[`QuizRow renders 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             separated={
               Array [
                 "20 pts",
@@ -234,8 +225,6 @@ exports[`QuizRow renders 1`] = `
           <Text
             accessibilityLabel=""
             accessible={false}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -262,9 +251,6 @@ exports[`QuizRow renders 1`] = `
               •  
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             separated={
               Array [
                 "20 pts",
@@ -341,7 +327,6 @@ exports[`QuizRow renders 1`] = `
 
 exports[`QuizRow renders multiple question count 1`] = `
 <TouchableHighlight
-  accessibilityLabel={undefined}
   accessibilityTraits={
     Array [
       "button",
@@ -461,8 +446,6 @@ exports[`QuizRow renders multiple question count 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -495,9 +478,6 @@ exports[`QuizRow renders multiple question count 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           separated={
             Array [
               "Due Jan 23, 2013 at 11:59 PM",
@@ -542,9 +522,6 @@ exports[`QuizRow renders multiple question count 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             separated={
               Array [
                 "20 pts",
@@ -573,8 +550,6 @@ exports[`QuizRow renders multiple question count 1`] = `
           <Text
             accessibilityLabel=""
             accessible={false}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -601,9 +576,6 @@ exports[`QuizRow renders multiple question count 1`] = `
               •  
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             separated={
               Array [
                 "20 pts",
@@ -680,7 +652,6 @@ exports[`QuizRow renders multiple question count 1`] = `
 
 exports[`QuizRow renders published 1`] = `
 <TouchableHighlight
-  accessibilityLabel={undefined}
   accessibilityTraits={
     Array [
       "button",
@@ -800,8 +771,6 @@ exports[`QuizRow renders published 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -834,9 +803,6 @@ exports[`QuizRow renders published 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           separated={
             Array [
               "Due Jan 23, 2013 at 11:59 PM",
@@ -881,9 +847,6 @@ exports[`QuizRow renders published 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             separated={
               Array [
                 "20 pts",
@@ -912,8 +875,6 @@ exports[`QuizRow renders published 1`] = `
           <Text
             accessibilityLabel=""
             accessible={false}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -940,9 +901,6 @@ exports[`QuizRow renders published 1`] = `
               •  
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             separated={
               Array [
                 "20 pts",
@@ -1019,7 +977,6 @@ exports[`QuizRow renders published 1`] = `
 
 exports[`QuizRow renders selected 1`] = `
 <TouchableHighlight
-  accessibilityLabel={undefined}
   accessibilityTraits={
     Array [
       "button",
@@ -1140,8 +1097,6 @@ exports[`QuizRow renders selected 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -1174,9 +1129,6 @@ exports[`QuizRow renders selected 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           separated={
             Array [
               "Due Jan 23, 2013 at 11:59 PM",
@@ -1221,9 +1173,6 @@ exports[`QuizRow renders selected 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             separated={
               Array [
                 "20 pts",
@@ -1252,8 +1201,6 @@ exports[`QuizRow renders selected 1`] = `
           <Text
             accessibilityLabel=""
             accessible={false}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1280,9 +1227,6 @@ exports[`QuizRow renders selected 1`] = `
               •  
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             separated={
               Array [
                 "20 pts",
@@ -1359,7 +1303,6 @@ exports[`QuizRow renders selected 1`] = `
 
 exports[`QuizRow renders single question count 1`] = `
 <TouchableHighlight
-  accessibilityLabel={undefined}
   accessibilityTraits={
     Array [
       "button",
@@ -1479,8 +1422,6 @@ exports[`QuizRow renders single question count 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -1513,9 +1454,6 @@ exports[`QuizRow renders single question count 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           separated={
             Array [
               "Due Jan 23, 2013 at 11:59 PM",
@@ -1560,9 +1498,6 @@ exports[`QuizRow renders single question count 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             separated={
               Array [
                 "20 pts",
@@ -1591,8 +1526,6 @@ exports[`QuizRow renders single question count 1`] = `
           <Text
             accessibilityLabel=""
             accessible={false}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1619,9 +1552,6 @@ exports[`QuizRow renders single question count 1`] = `
               •  
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             separated={
               Array [
                 "20 pts",
@@ -1698,7 +1628,6 @@ exports[`QuizRow renders single question count 1`] = `
 
 exports[`QuizRow renders unpublished 1`] = `
 <TouchableHighlight
-  accessibilityLabel={undefined}
   accessibilityTraits={
     Array [
       "button",
@@ -1818,8 +1747,6 @@ exports[`QuizRow renders unpublished 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -1852,9 +1779,6 @@ exports[`QuizRow renders unpublished 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           separated={
             Array [
               "Due Jan 23, 2013 at 11:59 PM",
@@ -1899,9 +1823,6 @@ exports[`QuizRow renders unpublished 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             separated={
               Array [
                 "20 pts",
@@ -1930,8 +1851,6 @@ exports[`QuizRow renders unpublished 1`] = `
           <Text
             accessibilityLabel=""
             accessible={false}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1958,9 +1877,6 @@ exports[`QuizRow renders unpublished 1`] = `
               •  
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             separated={
               Array [
                 "20 pts",
@@ -2037,7 +1953,6 @@ exports[`QuizRow renders unpublished 1`] = `
 
 exports[`QuizRow renders without points possible 1`] = `
 <TouchableHighlight
-  accessibilityLabel={undefined}
   accessibilityTraits={
     Array [
       "button",
@@ -2157,8 +2072,6 @@ exports[`QuizRow renders without points possible 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -2191,9 +2104,6 @@ exports[`QuizRow renders without points possible 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           separated={
             Array [
               "Due Jan 23, 2013 at 11:59 PM",
@@ -2238,9 +2148,6 @@ exports[`QuizRow renders without points possible 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             separated={
               Array [
                 "12 Questions",

@@ -2,6 +2,7 @@
 
 exports[`Inbox filters conversations based on course 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -35,21 +36,8 @@ exports[`Inbox filters conversations based on course 1`] = `
       >
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-                "selected",
-              ]
-            }
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -66,12 +54,8 @@ exports[`Inbox filters conversations based on course 1`] = `
               }
             }
             testID="inbox.filter-btn-all"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -117,16 +101,8 @@ exports[`Inbox filters conversations based on course 1`] = `
             />
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -143,12 +119,8 @@ exports[`Inbox filters conversations based on course 1`] = `
               }
             }
             testID="inbox.filter-btn-unread"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -173,16 +145,8 @@ exports[`Inbox filters conversations based on course 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -199,12 +163,8 @@ exports[`Inbox filters conversations based on course 1`] = `
               }
             }
             testID="inbox.filter-btn-starred"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -229,16 +189,8 @@ exports[`Inbox filters conversations based on course 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -255,12 +207,8 @@ exports[`Inbox filters conversations based on course 1`] = `
               }
             }
             testID="inbox.filter-btn-sent"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -285,16 +233,8 @@ exports[`Inbox filters conversations based on course 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -311,12 +251,8 @@ exports[`Inbox filters conversations based on course 1`] = `
               }
             }
             testID="inbox.filter-btn-archived"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -365,9 +301,6 @@ exports[`Inbox filters conversations based on course 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -386,12 +319,8 @@ exports[`Inbox filters conversations based on course 1`] = `
           }
         />
         <View
-          accessibilityComponentType={undefined}
           accessibilityLabel="Clear Filter Inbox"
-          accessibilityTraits="button"
           accessible={true}
-          collapsable={undefined}
-          hasTVPreferredFocus={undefined}
           hitSlop={
             Object {
               "bottom": 15,
@@ -401,8 +330,6 @@ exports[`Inbox filters conversations based on course 1`] = `
             }
           }
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -418,13 +345,9 @@ exports[`Inbox filters conversations based on course 1`] = `
             }
           }
           testID="inbox.filterByCourse"
-          tvParallaxProperties={undefined}
         >
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -554,9 +477,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
                       Array [
@@ -582,9 +502,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                   </Text>
                   <View>
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -611,9 +528,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                 </View>
               </View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
                   Array [
@@ -637,9 +551,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                 learn to write code
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
                   Array [
@@ -673,6 +584,7 @@ exports[`Inbox filters conversations based on course 1`] = `
 
 exports[`Inbox refreshed component 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -706,21 +618,8 @@ exports[`Inbox refreshed component 1`] = `
       >
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-                "selected",
-              ]
-            }
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -737,12 +636,8 @@ exports[`Inbox refreshed component 1`] = `
               }
             }
             testID="inbox.filter-btn-all"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -788,16 +683,8 @@ exports[`Inbox refreshed component 1`] = `
             />
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -814,12 +701,8 @@ exports[`Inbox refreshed component 1`] = `
               }
             }
             testID="inbox.filter-btn-unread"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -844,16 +727,8 @@ exports[`Inbox refreshed component 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -870,12 +745,8 @@ exports[`Inbox refreshed component 1`] = `
               }
             }
             testID="inbox.filter-btn-starred"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -900,16 +771,8 @@ exports[`Inbox refreshed component 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -926,12 +789,8 @@ exports[`Inbox refreshed component 1`] = `
               }
             }
             testID="inbox.filter-btn-sent"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -956,16 +815,8 @@ exports[`Inbox refreshed component 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -982,12 +833,8 @@ exports[`Inbox refreshed component 1`] = `
               }
             }
             testID="inbox.filter-btn-archived"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1036,9 +883,6 @@ exports[`Inbox refreshed component 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -1059,12 +903,8 @@ exports[`Inbox refreshed component 1`] = `
           All Courses
         </Text>
         <View
-          accessibilityComponentType={undefined}
           accessibilityLabel="Filter Inbox"
-          accessibilityTraits="button"
           accessible={true}
-          collapsable={undefined}
-          hasTVPreferredFocus={undefined}
           hitSlop={
             Object {
               "bottom": 15,
@@ -1074,8 +914,6 @@ exports[`Inbox refreshed component 1`] = `
             }
           }
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1091,13 +929,9 @@ exports[`Inbox refreshed component 1`] = `
             }
           }
           testID="inbox.filterByCourse"
-          tvParallaxProperties={undefined}
         >
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1152,9 +986,6 @@ exports[`Inbox refreshed component 1`] = `
           }
         />
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1179,9 +1010,6 @@ exports[`Inbox refreshed component 1`] = `
           No Messages
         </Text>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1212,6 +1040,7 @@ exports[`Inbox refreshed component 1`] = `
 
 exports[`Inbox renders correctly 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -1245,21 +1074,8 @@ exports[`Inbox renders correctly 1`] = `
       >
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-                "selected",
-              ]
-            }
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1276,12 +1092,8 @@ exports[`Inbox renders correctly 1`] = `
               }
             }
             testID="inbox.filter-btn-all"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1327,16 +1139,8 @@ exports[`Inbox renders correctly 1`] = `
             />
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1353,12 +1157,8 @@ exports[`Inbox renders correctly 1`] = `
               }
             }
             testID="inbox.filter-btn-unread"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1383,16 +1183,8 @@ exports[`Inbox renders correctly 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1409,12 +1201,8 @@ exports[`Inbox renders correctly 1`] = `
               }
             }
             testID="inbox.filter-btn-starred"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1439,16 +1227,8 @@ exports[`Inbox renders correctly 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1465,12 +1245,8 @@ exports[`Inbox renders correctly 1`] = `
               }
             }
             testID="inbox.filter-btn-sent"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1495,16 +1271,8 @@ exports[`Inbox renders correctly 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1521,12 +1289,8 @@ exports[`Inbox renders correctly 1`] = `
               }
             }
             testID="inbox.filter-btn-archived"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1575,9 +1339,6 @@ exports[`Inbox renders correctly 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -1598,12 +1359,8 @@ exports[`Inbox renders correctly 1`] = `
           All Courses
         </Text>
         <View
-          accessibilityComponentType={undefined}
           accessibilityLabel="Filter Inbox"
-          accessibilityTraits="button"
           accessible={true}
-          collapsable={undefined}
-          hasTVPreferredFocus={undefined}
           hitSlop={
             Object {
               "bottom": 15,
@@ -1613,8 +1370,6 @@ exports[`Inbox renders correctly 1`] = `
             }
           }
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1630,13 +1385,9 @@ exports[`Inbox renders correctly 1`] = `
             }
           }
           testID="inbox.filterByCourse"
-          tvParallaxProperties={undefined}
         >
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1766,9 +1517,6 @@ exports[`Inbox renders correctly 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
                       Array [
@@ -1794,9 +1542,6 @@ exports[`Inbox renders correctly 1`] = `
                   </Text>
                   <View>
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -1823,9 +1568,6 @@ exports[`Inbox renders correctly 1`] = `
                 </View>
               </View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
                   Array [
@@ -1849,9 +1591,6 @@ exports[`Inbox renders correctly 1`] = `
                 learn to write code
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
                   Array [
@@ -1973,9 +1712,6 @@ exports[`Inbox renders correctly 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
                       Array [
@@ -2001,9 +1737,6 @@ exports[`Inbox renders correctly 1`] = `
                   </Text>
                   <View>
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -2030,9 +1763,6 @@ exports[`Inbox renders correctly 1`] = `
                 </View>
               </View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
                   Array [
@@ -2056,9 +1786,6 @@ exports[`Inbox renders correctly 1`] = `
                 learn to write code
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
                   Array [
@@ -2092,6 +1819,7 @@ exports[`Inbox renders correctly 1`] = `
 
 exports[`Inbox renders the activity indicator when loading conversations 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -2125,21 +1853,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
       >
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-                "selected",
-              ]
-            }
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2156,12 +1871,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
               }
             }
             testID="inbox.filter-btn-all"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2207,16 +1918,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
             />
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2233,12 +1936,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
               }
             }
             testID="inbox.filter-btn-unread"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2263,16 +1962,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2289,12 +1980,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
               }
             }
             testID="inbox.filter-btn-starred"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2319,16 +2006,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2345,12 +2024,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
               }
             }
             testID="inbox.filter-btn-sent"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2375,16 +2050,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2401,12 +2068,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
               }
             }
             testID="inbox.filter-btn-archived"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2455,9 +2118,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -2478,12 +2138,8 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
           All Courses
         </Text>
         <View
-          accessibilityComponentType={undefined}
           accessibilityLabel="Filter Inbox"
-          accessibilityTraits="button"
           accessible={true}
-          collapsable={undefined}
-          hasTVPreferredFocus={undefined}
           hitSlop={
             Object {
               "bottom": 15,
@@ -2493,8 +2149,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
             }
           }
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2510,13 +2164,9 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
             }
           }
           testID="inbox.filterByCourse"
-          tvParallaxProperties={undefined}
         >
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2568,6 +2218,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
 
 exports[`Inbox renders the starred empty state 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -2601,16 +2252,8 @@ exports[`Inbox renders the starred empty state 1`] = `
       >
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2627,12 +2270,8 @@ exports[`Inbox renders the starred empty state 1`] = `
               }
             }
             testID="inbox.filter-btn-all"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2657,16 +2296,8 @@ exports[`Inbox renders the starred empty state 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2683,12 +2314,8 @@ exports[`Inbox renders the starred empty state 1`] = `
               }
             }
             testID="inbox.filter-btn-unread"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2713,21 +2340,8 @@ exports[`Inbox renders the starred empty state 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-                "selected",
-              ]
-            }
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2744,12 +2358,8 @@ exports[`Inbox renders the starred empty state 1`] = `
               }
             }
             testID="inbox.filter-btn-starred"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2795,16 +2405,8 @@ exports[`Inbox renders the starred empty state 1`] = `
             />
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2821,12 +2423,8 @@ exports[`Inbox renders the starred empty state 1`] = `
               }
             }
             testID="inbox.filter-btn-sent"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2851,16 +2449,8 @@ exports[`Inbox renders the starred empty state 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -2877,12 +2467,8 @@ exports[`Inbox renders the starred empty state 1`] = `
               }
             }
             testID="inbox.filter-btn-archived"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2931,9 +2517,6 @@ exports[`Inbox renders the starred empty state 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -2954,12 +2537,8 @@ exports[`Inbox renders the starred empty state 1`] = `
           All Courses
         </Text>
         <View
-          accessibilityComponentType={undefined}
           accessibilityLabel="Filter Inbox"
-          accessibilityTraits="button"
           accessible={true}
-          collapsable={undefined}
-          hasTVPreferredFocus={undefined}
           hitSlop={
             Object {
               "bottom": 15,
@@ -2969,8 +2548,6 @@ exports[`Inbox renders the starred empty state 1`] = `
             }
           }
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2986,13 +2563,9 @@ exports[`Inbox renders the starred empty state 1`] = `
             }
           }
           testID="inbox.filterByCourse"
-          tvParallaxProperties={undefined}
         >
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3047,9 +2620,6 @@ exports[`Inbox renders the starred empty state 1`] = `
           }
         />
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -3074,9 +2644,6 @@ exports[`Inbox renders the starred empty state 1`] = `
           No Starred Messages
         </Text>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -3107,6 +2674,7 @@ exports[`Inbox renders the starred empty state 1`] = `
 
 exports[`Inbox renders with an empty state 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -3140,21 +2708,8 @@ exports[`Inbox renders with an empty state 1`] = `
       >
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-                "selected",
-              ]
-            }
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -3171,12 +2726,8 @@ exports[`Inbox renders with an empty state 1`] = `
               }
             }
             testID="inbox.filter-btn-all"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3222,16 +2773,8 @@ exports[`Inbox renders with an empty state 1`] = `
             />
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -3248,12 +2791,8 @@ exports[`Inbox renders with an empty state 1`] = `
               }
             }
             testID="inbox.filter-btn-unread"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3278,16 +2817,8 @@ exports[`Inbox renders with an empty state 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -3304,12 +2835,8 @@ exports[`Inbox renders with an empty state 1`] = `
               }
             }
             testID="inbox.filter-btn-starred"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3334,16 +2861,8 @@ exports[`Inbox renders with an empty state 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -3360,12 +2879,8 @@ exports[`Inbox renders with an empty state 1`] = `
               }
             }
             testID="inbox.filter-btn-sent"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3390,16 +2905,8 @@ exports[`Inbox renders with an empty state 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits="button"
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -3416,12 +2923,8 @@ exports[`Inbox renders with an empty state 1`] = `
               }
             }
             testID="inbox.filter-btn-archived"
-            tvParallaxProperties={undefined}
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3470,9 +2973,6 @@ exports[`Inbox renders with an empty state 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -3493,12 +2993,8 @@ exports[`Inbox renders with an empty state 1`] = `
           All Courses
         </Text>
         <View
-          accessibilityComponentType={undefined}
           accessibilityLabel="Filter Inbox"
-          accessibilityTraits="button"
           accessible={true}
-          collapsable={undefined}
-          hasTVPreferredFocus={undefined}
           hitSlop={
             Object {
               "bottom": 15,
@@ -3508,8 +3004,6 @@ exports[`Inbox renders with an empty state 1`] = `
             }
           }
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -3525,13 +3019,9 @@ exports[`Inbox renders with an empty state 1`] = `
             }
           }
           testID="inbox.filterByCourse"
-          tvParallaxProperties={undefined}
         >
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3586,9 +3076,6 @@ exports[`Inbox renders with an empty state 1`] = `
           }
         />
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -3613,9 +3100,6 @@ exports[`Inbox renders with an empty state 1`] = `
           No Messages
         </Text>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {

@@ -19,7 +19,6 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import React from 'react'
-import { AlertIOS } from 'react-native'
 import {
   SubmissionList,
   refreshSubmissionList,
@@ -38,7 +37,7 @@ const template = {
 
 jest
   .mock('../../../../routing')
-  .mock('AlertIOS', () => ({
+  .mock('Alert', () => ({
     alert: jest.fn(),
   }))
   .mock('knuth-shuffle-seeded', () => jest.fn())
@@ -302,7 +301,7 @@ test('should navigate to a submission', () => {
   )
 })
 
-test('shows message compose with correct data', () => {
+describe('shows message compose with correct data', () => {
   const expandedProps = cloneDeep(props)
   expandedProps.submissions = expandedProps.submissions.concat([
     template.submissionProps({
@@ -331,11 +330,12 @@ test('shows message compose with correct data', () => {
   let expectSubjectToBeCorrect = (subject: string) => {
     instance.messageStudentsWho()
     expect(navigator.show).toHaveBeenCalledWith('/conversations/compose', { modal: true }, {
-      recipients: instance.state.submissions.map((submission) => {
+      recipients: instance.state.filter(instance.props.submissions).map((submission) => {
         return { id: submission.userID, name: submission.name, avatar_url: submission.avatarURL }
       }),
       subject: subject,
-      course: expandedProps.course,
+      contextCode: `course_${instance.props.courseID}`,
+      contextName: instance.props.courseName,
       canAddRecipients: false,
       onlySendIndividualMessages: true,
     })
@@ -375,21 +375,6 @@ test('shows message compose with correct data', () => {
     instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'morethan', 50))
     expectSubjectToBeCorrect('Scored more than 50 - Blah')
   })
-})
-
-test('should prevent going to speed grader when offline', () => {
-  let submission = props.submissions[0]
-  let navigator = template.navigator({
-    show: jest.fn(),
-  })
-  let tree = renderer.create(
-    <SubmissionList {...props} navigator={navigator} />
-  )
-  tree.getInstance().setState({ isConnected: false })
-  tree.getInstance().navigateToSubmission(1)(submission.userID)
-
-  expect(AlertIOS.alert).toHaveBeenCalled()
-  expect(navigator.show).not.toHaveBeenCalled()
 })
 
 test('refreshSubmissionList', () => {

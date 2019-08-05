@@ -35,9 +35,6 @@ exports[`render larger icon size 1`] = `
     testID="assignment-details.published-icon.published-status-img"
   />
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -101,9 +98,6 @@ exports[`render published 1`] = `
     testID="assignment-details.published-icon.published-status-img"
   />
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -167,9 +161,6 @@ exports[`render unpublished 1`] = `
     testID="assignment-details.published-icon.unpublished-status-img"
   />
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {

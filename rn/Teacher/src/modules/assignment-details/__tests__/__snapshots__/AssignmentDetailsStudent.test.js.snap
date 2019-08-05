@@ -10,7 +10,7 @@ exports[`renders a single file type 1`] = `
   title="Assignment Details"
 >
   <RefreshableScrollView
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     refreshing={false}
   >
     <AssignmentSection
@@ -125,13 +125,13 @@ exports[`renders a single file type 1`] = `
         html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
         scrollEnabled={true}
@@ -157,7 +157,7 @@ exports[`renders even if there is fake data 1`] = `
   title="Assignment Details"
 >
   <RefreshableScrollView
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     refreshing={false}
   >
     <AssignmentSection
@@ -264,13 +264,13 @@ exports[`renders even if there is fake data 1`] = `
         html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
         scrollEnabled={true}
@@ -296,7 +296,7 @@ exports[`renders for a student 1`] = `
   title="Assignment Details"
 >
   <RefreshableScrollView
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     refreshing={false}
   >
     <AssignmentSection
@@ -403,13 +403,13 @@ exports[`renders for a student 1`] = `
         html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
         scrollEnabled={true}
@@ -435,7 +435,7 @@ exports[`renders multiple file types 1`] = `
   title="Assignment Details"
 >
   <RefreshableScrollView
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     refreshing={false}
   >
     <AssignmentSection
@@ -550,13 +550,13 @@ exports[`renders multiple file types 1`] = `
         html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
         scrollEnabled={true}
@@ -582,7 +582,7 @@ exports[`renders without a due date 1`] = `
   title="Assignment Details"
 >
   <RefreshableScrollView
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     refreshing={false}
   >
     <AssignmentSection
@@ -689,13 +689,13 @@ exports[`renders without a due date 1`] = `
         html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
         scrollEnabled={true}
@@ -721,7 +721,7 @@ exports[`renders without description 1`] = `
   title="Assignment Details"
 >
   <RefreshableScrollView
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     refreshing={false}
   >
     <AssignmentSection

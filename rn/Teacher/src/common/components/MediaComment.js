@@ -20,7 +20,7 @@
 
 import React, { Component } from 'react'
 import {
-  AlertIOS,
+  Alert,
   ActivityIndicator,
   StyleSheet,
   View,
@@ -67,7 +67,7 @@ export class MediaComment extends Component<Props, any> {
       this.props.onFinishedUploading({ fileName, filePath, mediaID, mediaType })
     } catch (e) {
       this.setState({ uploading: false })
-      AlertIOS.alert(i18n('Failed to upload media comment'))
+      Alert.alert(i18n('Failed to upload media comment'))
     }
   }
 

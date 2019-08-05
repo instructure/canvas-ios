@@ -280,24 +280,24 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               ],
               "courseID": "1",
               "drawerPosition": 0,
-              "getCourseEnabledFeatures": [Function],
-              "gradeSubmissionWithRubric": [Function],
+              "getCourseEnabledFeatures": [MockFunction],
+              "gradeSubmissionWithRubric": [MockFunction],
               "navigator": Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
               "pending": true,
-              "refresh": [Function],
-              "refreshSubmissionSummary": [Function],
-              "refreshSubmissions": [Function],
+              "refresh": [MockFunction],
+              "refreshSubmissionSummary": [MockFunction],
+              "refreshSubmissions": [MockFunction],
               "refreshing": false,
-              "resetDrawer": [Function],
+              "resetDrawer": [MockFunction],
               "submissionEntities": Object {},
               "submissions": Array [],
               "userID": "1",
@@ -341,36 +341,36 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
-                              Array [
-                                          "none",
-                                        ]
+                    Array [
+                      "none",
+                    ]
                   }
                   courseID="1"
                   drawerPosition={0}
-                  getCourseEnabledFeatures={[Function]}
-                  gradeSubmissionWithRubric={[Function]}
+                  getCourseEnabledFeatures={[MockFunction]}
+                  gradeSubmissionWithRubric={[MockFunction]}
                   navigator={
-                              Object {
-                                          "dismiss": [Function],
-                                          "dismissAllModals": [Function],
-                                          "isModal": false,
-                                          "pop": [Function],
-                                          "replace": [Function],
-                                          "show": [Function],
-                                          "traitCollection": [Function],
-                                        }
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
                   }
                   onDismiss={[Function]}
                   pending={true}
-                  refresh={[Function]}
-                  refreshSubmissionSummary={[Function]}
-                  refreshSubmissions={[Function]}
+                  refresh={[MockFunction]}
+                  refreshSubmissionSummary={[MockFunction]}
+                  refreshSubmissions={[MockFunction]}
                   refreshing={false}
-                  resetDrawer={[Function]}
+                  resetDrawer={[MockFunction]}
                   submissionEntities={Object {}}
                   submissions={Array []}
                   userID="1"
-      />,
+                />,
                 "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
@@ -385,53 +385,52 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   showDismissButton={true}
                   statusBarHidden={true}
                   statusBarStyle="default"
-      >
+                >
                   <View
-                              style={
-                                          Object {
-                                                      "flex": 1,
-                                                    }
-                              }
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
                   >
-                              <View
-                                          accessibilityLabel="In Progress"
-                                          accessible={true}
-                                          style={
-                                                      Object {
-                                                                  "alignItems": "center",
-                                                                  "flex": 1,
-                                                                  "justifyContent": "center",
-                                                                }
-                                          }
-                              >
-                                          <ActivityIndicator
-                                                      animating={true}
-                                                      color="#999999"
-                                                      hidesWhenStopped={true}
-                                                      size="small"
-                                          />
-                              </View>
-                              <Tutorial
-                                          tutorials={
-                                                      Array [
-                                                                  Object {
-                                                                    "id": "swipe-tutorial",
-                                                                    "image": Object {
-                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
-                                                                    },
-                                                                    "text": "Swipe left or right to view other student submissions",
-                                                                  },
-                                                                ]
-                                          }
-                              />
+                    <View
+                      accessibilityLabel="In Progress"
+                      accessible={true}
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <ActivityIndicator
+                        animating={true}
+                        color="#999999"
+                        hidesWhenStopped={true}
+                        size="small"
+                      />
+                    </View>
+                    <Tutorial
+                      tutorials={
+                        Array [
+                          Object {
+                            "id": "swipe-tutorial",
+                            "image": Object {
+                              "testUri": "../../../src/images/speedgrader/Swipe.png",
+                            },
+                            "text": "Swipe left or right to view other student submissions",
+                          },
+                        ]
+                      }
+                    />
                   </View>
-      </Screen>,
+                </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
                 "_workInProgressHook": null,
               },
             },
-            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
@@ -448,26 +447,26 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               ],
               "courseID": "1",
               "drawerPosition": 0,
-              "getCourseEnabledFeatures": [Function],
-              "gradeSubmissionWithRubric": [Function],
+              "getCourseEnabledFeatures": [MockFunction],
+              "gradeSubmissionWithRubric": [MockFunction],
               "groupAssignment": Object {},
               "hasAssignment": true,
               "navigator": Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
               "pending": true,
-              "refresh": [Function],
-              "refreshSubmissionSummary": [Function],
-              "refreshSubmissions": [Function],
+              "refresh": [MockFunction],
+              "refreshSubmissionSummary": [MockFunction],
+              "refreshSubmissions": [MockFunction],
               "refreshing": false,
-              "resetDrawer": [Function],
+              "resetDrawer": [MockFunction],
               "submissionEntities": Object {},
               "submissions": Array [],
               "userID": "1",
@@ -511,38 +510,38 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
-                              Array [
-                                          "none",
-                                        ]
+                    Array [
+                      "none",
+                    ]
                   }
                   courseID="1"
                   drawerPosition={0}
-                  getCourseEnabledFeatures={[Function]}
-                  gradeSubmissionWithRubric={[Function]}
+                  getCourseEnabledFeatures={[MockFunction]}
+                  gradeSubmissionWithRubric={[MockFunction]}
                   groupAssignment={Object {}}
                   hasAssignment={true}
                   navigator={
-                              Object {
-                                          "dismiss": [Function],
-                                          "dismissAllModals": [Function],
-                                          "isModal": false,
-                                          "pop": [Function],
-                                          "replace": [Function],
-                                          "show": [Function],
-                                          "traitCollection": [Function],
-                                        }
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
                   }
                   onDismiss={[Function]}
                   pending={true}
-                  refresh={[Function]}
-                  refreshSubmissionSummary={[Function]}
-                  refreshSubmissions={[Function]}
+                  refresh={[MockFunction]}
+                  refreshSubmissionSummary={[MockFunction]}
+                  refreshSubmissions={[MockFunction]}
                   refreshing={false}
-                  resetDrawer={[Function]}
+                  resetDrawer={[MockFunction]}
                   submissionEntities={Object {}}
                   submissions={Array []}
                   userID="1"
-      />,
+                />,
                 "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
@@ -557,53 +556,52 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   showDismissButton={true}
                   statusBarHidden={true}
                   statusBarStyle="default"
-      >
+                >
                   <View
-                              style={
-                                          Object {
-                                                      "flex": 1,
-                                                    }
-                              }
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
                   >
-                              <View
-                                          accessibilityLabel="In Progress"
-                                          accessible={true}
-                                          style={
-                                                      Object {
-                                                                  "alignItems": "center",
-                                                                  "flex": 1,
-                                                                  "justifyContent": "center",
-                                                                }
-                                          }
-                              >
-                                          <ActivityIndicator
-                                                      animating={true}
-                                                      color="#999999"
-                                                      hidesWhenStopped={true}
-                                                      size="small"
-                                          />
-                              </View>
-                              <Tutorial
-                                          tutorials={
-                                                      Array [
-                                                                  Object {
-                                                                    "id": "swipe-tutorial",
-                                                                    "image": Object {
-                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
-                                                                    },
-                                                                    "text": "Swipe left or right to view other student submissions",
-                                                                  },
-                                                                ]
-                                          }
-                              />
+                    <View
+                      accessibilityLabel="In Progress"
+                      accessible={true}
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <ActivityIndicator
+                        animating={true}
+                        color="#999999"
+                        hidesWhenStopped={true}
+                        size="small"
+                      />
+                    </View>
+                    <Tutorial
+                      tutorials={
+                        Array [
+                          Object {
+                            "id": "swipe-tutorial",
+                            "image": Object {
+                              "testUri": "../../../src/images/speedgrader/Swipe.png",
+                            },
+                            "text": "Swipe left or right to view other student submissions",
+                          },
+                        ]
+                      }
+                    />
                   </View>
-      </Screen>,
+                </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
                 "_workInProgressHook": null,
               },
             },
-            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
@@ -620,26 +618,26 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               ],
               "courseID": "1",
               "drawerPosition": 0,
-              "getCourseEnabledFeatures": [Function],
-              "gradeSubmissionWithRubric": [Function],
+              "getCourseEnabledFeatures": [MockFunction],
+              "gradeSubmissionWithRubric": [MockFunction],
               "groupAssignment": null,
               "hasAssignment": true,
               "navigator": Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
               "pending": true,
-              "refresh": [Function],
-              "refreshSubmissionSummary": [Function],
-              "refreshSubmissions": [Function],
+              "refresh": [MockFunction],
+              "refreshSubmissionSummary": [MockFunction],
+              "refreshSubmissions": [MockFunction],
               "refreshing": false,
-              "resetDrawer": [Function],
+              "resetDrawer": [MockFunction],
               "submissionEntities": Object {},
               "submissions": Array [],
               "userID": "1",
@@ -683,38 +681,38 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
-                              Array [
-                                          "none",
-                                        ]
+                    Array [
+                      "none",
+                    ]
                   }
                   courseID="1"
                   drawerPosition={0}
-                  getCourseEnabledFeatures={[Function]}
-                  gradeSubmissionWithRubric={[Function]}
+                  getCourseEnabledFeatures={[MockFunction]}
+                  gradeSubmissionWithRubric={[MockFunction]}
                   groupAssignment={null}
                   hasAssignment={true}
                   navigator={
-                              Object {
-                                          "dismiss": [Function],
-                                          "dismissAllModals": [Function],
-                                          "isModal": false,
-                                          "pop": [Function],
-                                          "replace": [Function],
-                                          "show": [Function],
-                                          "traitCollection": [Function],
-                                        }
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
                   }
                   onDismiss={[Function]}
                   pending={true}
-                  refresh={[Function]}
-                  refreshSubmissionSummary={[Function]}
-                  refreshSubmissions={[Function]}
+                  refresh={[MockFunction]}
+                  refreshSubmissionSummary={[MockFunction]}
+                  refreshSubmissions={[MockFunction]}
                   refreshing={false}
-                  resetDrawer={[Function]}
+                  resetDrawer={[MockFunction]}
                   submissionEntities={Object {}}
                   submissions={Array []}
                   userID="1"
-      />,
+                />,
                 "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
@@ -729,53 +727,52 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   showDismissButton={true}
                   statusBarHidden={true}
                   statusBarStyle="default"
-      >
+                >
                   <View
-                              style={
-                                          Object {
-                                                      "flex": 1,
-                                                    }
-                              }
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
                   >
-                              <View
-                                          accessibilityLabel="In Progress"
-                                          accessible={true}
-                                          style={
-                                                      Object {
-                                                                  "alignItems": "center",
-                                                                  "flex": 1,
-                                                                  "justifyContent": "center",
-                                                                }
-                                          }
-                              >
-                                          <ActivityIndicator
-                                                      animating={true}
-                                                      color="#999999"
-                                                      hidesWhenStopped={true}
-                                                      size="small"
-                                          />
-                              </View>
-                              <Tutorial
-                                          tutorials={
-                                                      Array [
-                                                                  Object {
-                                                                    "id": "swipe-tutorial",
-                                                                    "image": Object {
-                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
-                                                                    },
-                                                                    "text": "Swipe left or right to view other student submissions",
-                                                                  },
-                                                                ]
-                                          }
-                              />
+                    <View
+                      accessibilityLabel="In Progress"
+                      accessible={true}
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <ActivityIndicator
+                        animating={true}
+                        color="#999999"
+                        hidesWhenStopped={true}
+                        size="small"
+                      />
+                    </View>
+                    <Tutorial
+                      tutorials={
+                        Array [
+                          Object {
+                            "id": "swipe-tutorial",
+                            "image": Object {
+                              "testUri": "../../../src/images/speedgrader/Swipe.png",
+                            },
+                            "text": "Swipe left or right to view other student submissions",
+                          },
+                        ]
+                      }
+                    />
                   </View>
-      </Screen>,
+                </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
                 "_workInProgressHook": null,
               },
             },
-            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
@@ -793,24 +790,24 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               "courseID": "1",
               "drawerPosition": 0,
               "filter": [Function],
-              "getCourseEnabledFeatures": [Function],
-              "gradeSubmissionWithRubric": [Function],
+              "getCourseEnabledFeatures": [MockFunction],
+              "gradeSubmissionWithRubric": [MockFunction],
               "navigator": Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
               "pending": false,
-              "refresh": [Function],
-              "refreshSubmissionSummary": [Function],
-              "refreshSubmissions": [Function],
+              "refresh": [MockFunction],
+              "refreshSubmissionSummary": [MockFunction],
+              "refreshSubmissions": [MockFunction],
               "refreshing": false,
-              "resetDrawer": [Function],
+              "resetDrawer": [MockFunction],
               "submissionEntities": Object {},
               "submissions": Array [
                 Object {
@@ -881,56 +878,56 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
-                              Array [
-                                          "none",
-                                        ]
+                    Array [
+                      "none",
+                    ]
                   }
                   courseID="1"
                   drawerPosition={0}
                   filter={[Function]}
-                  getCourseEnabledFeatures={[Function]}
-                  gradeSubmissionWithRubric={[Function]}
+                  getCourseEnabledFeatures={[MockFunction]}
+                  gradeSubmissionWithRubric={[MockFunction]}
                   navigator={
-                              Object {
-                                          "dismiss": [Function],
-                                          "dismissAllModals": [Function],
-                                          "isModal": false,
-                                          "pop": [Function],
-                                          "replace": [Function],
-                                          "show": [Function],
-                                          "traitCollection": [Function],
-                                        }
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
                   }
                   onDismiss={[Function]}
                   pending={false}
-                  refresh={[Function]}
-                  refreshSubmissionSummary={[Function]}
-                  refreshSubmissions={[Function]}
+                  refresh={[MockFunction]}
+                  refreshSubmissionSummary={[MockFunction]}
+                  refreshSubmissions={[MockFunction]}
                   refreshing={false}
-                  resetDrawer={[Function]}
+                  resetDrawer={[MockFunction]}
                   submissionEntities={Object {}}
                   submissions={
-                              Array [
-                                          Object {
-                                            "avatarURL": "http://www.fillmurray.com/100/100",
-                                            "grade": "B-",
-                                            "name": "Donald Trump",
-                                            "sectionID": "1",
-                                            "status": "submitted",
-                                            "userID": "55",
-                                          },
-                                          Object {
-                                            "avatarURL": "http://www.fillmurray.com/100/100",
-                                            "grade": "B-",
-                                            "name": "Donald Trump",
-                                            "sectionID": "1",
-                                            "status": "missing",
-                                            "userID": "55",
-                                          },
-                                        ]
+                    Array [
+                      Object {
+                        "avatarURL": "http://www.fillmurray.com/100/100",
+                        "grade": "B-",
+                        "name": "Donald Trump",
+                        "sectionID": "1",
+                        "status": "submitted",
+                        "userID": "55",
+                      },
+                      Object {
+                        "avatarURL": "http://www.fillmurray.com/100/100",
+                        "grade": "B-",
+                        "name": "Donald Trump",
+                        "sectionID": "1",
+                        "status": "missing",
+                        "userID": "55",
+                      },
+                    ]
                   }
                   userID="1"
-      />,
+                />,
                 "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
@@ -945,69 +942,68 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   showDismissButton={true}
                   statusBarHidden={true}
                   statusBarStyle="default"
-      >
+                >
                   <View
-                              style={
-                                          Object {
-                                                      "flex": 1,
-                                                    }
-                              }
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
                   >
-                              <FlatList
-                                          data={
-                                                      Array [
-                                                                  Object {
-                                                                    "key": "55",
-                                                                    "submission": Object {
-                                                                      "avatarURL": "http://www.fillmurray.com/100/100",
-                                                                      "grade": "B-",
-                                                                      "name": "Donald Trump",
-                                                                      "sectionID": "1",
-                                                                      "status": "missing",
-                                                                      "userID": "55",
-                                                                    },
-                                                                  },
-                                                                ]
-                                          }
-                                          getItemLayout={[Function]}
-                                          horizontal={true}
-                                          initialNumToRender={null}
-                                          initialScrollIndex={0}
-                                          keyboardShouldPersistTaps="handled"
-                                          onLayout={[Function]}
-                                          onMomentumScrollEnd={[Function]}
-                                          pagingEnabled={true}
-                                          renderItem={[Function]}
-                                          showsHorizontalScrollIndicator={false}
-                                          style={
-                                                      Object {
-                                                                  "marginLeft": -10,
-                                                                  "marginRight": -10,
-                                                                }
-                                          }
-                                          windowSize={5}
-                              />
-                              <Tutorial
-                                          tutorials={
-                                                      Array [
-                                                                  Object {
-                                                                    "id": "swipe-tutorial",
-                                                                    "image": Object {
-                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
-                                                                    },
-                                                                    "text": "Swipe left or right to view other student submissions",
-                                                                  },
-                                                                ]
-                                          }
-                              />
+                    <FlatList
+                      data={
+                        Array [
+                          Object {
+                            "key": "55",
+                            "submission": Object {
+                              "avatarURL": "http://www.fillmurray.com/100/100",
+                              "grade": "B-",
+                              "name": "Donald Trump",
+                              "sectionID": "1",
+                              "status": "missing",
+                              "userID": "55",
+                            },
+                          },
+                        ]
+                      }
+                      getItemLayout={[Function]}
+                      horizontal={true}
+                      initialNumToRender={null}
+                      initialScrollIndex={0}
+                      keyboardShouldPersistTaps="handled"
+                      onLayout={[Function]}
+                      onMomentumScrollEnd={[Function]}
+                      pagingEnabled={true}
+                      renderItem={[Function]}
+                      showsHorizontalScrollIndicator={false}
+                      style={
+                        Object {
+                          "marginLeft": -10,
+                          "marginRight": -10,
+                        }
+                      }
+                      windowSize={5}
+                    />
+                    <Tutorial
+                      tutorials={
+                        Array [
+                          Object {
+                            "id": "swipe-tutorial",
+                            "image": Object {
+                              "testUri": "../../../src/images/speedgrader/Swipe.png",
+                            },
+                            "text": "Swipe left or right to view other student submissions",
+                          },
+                        ]
+                      }
+                    />
                   </View>
-      </Screen>,
+                </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
                 "_workInProgressHook": null,
               },
             },
-            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
@@ -1024,24 +1020,24 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               ],
               "courseID": "1",
               "drawerPosition": 0,
-              "getCourseEnabledFeatures": [Function],
-              "gradeSubmissionWithRubric": [Function],
+              "getCourseEnabledFeatures": [MockFunction],
+              "gradeSubmissionWithRubric": [MockFunction],
               "navigator": Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
               "pending": false,
-              "refresh": [Function],
-              "refreshSubmissionSummary": [Function],
-              "refreshSubmissions": [Function],
+              "refresh": [MockFunction],
+              "refreshSubmissionSummary": [MockFunction],
+              "refreshSubmissions": [MockFunction],
               "refreshing": false,
-              "resetDrawer": [Function],
+              "resetDrawer": [MockFunction],
               "submissionEntities": Object {},
               "submissions": Array [
                 Object {
@@ -1104,47 +1100,47 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
-                              Array [
-                                          "none",
-                                        ]
+                    Array [
+                      "none",
+                    ]
                   }
                   courseID="1"
                   drawerPosition={0}
-                  getCourseEnabledFeatures={[Function]}
-                  gradeSubmissionWithRubric={[Function]}
+                  getCourseEnabledFeatures={[MockFunction]}
+                  gradeSubmissionWithRubric={[MockFunction]}
                   navigator={
-                              Object {
-                                          "dismiss": [Function],
-                                          "dismissAllModals": [Function],
-                                          "isModal": false,
-                                          "pop": [Function],
-                                          "replace": [Function],
-                                          "show": [Function],
-                                          "traitCollection": [Function],
-                                        }
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
                   }
                   onDismiss={[Function]}
                   pending={false}
-                  refresh={[Function]}
-                  refreshSubmissionSummary={[Function]}
-                  refreshSubmissions={[Function]}
+                  refresh={[MockFunction]}
+                  refreshSubmissionSummary={[MockFunction]}
+                  refreshSubmissions={[MockFunction]}
                   refreshing={false}
-                  resetDrawer={[Function]}
+                  resetDrawer={[MockFunction]}
                   submissionEntities={Object {}}
                   submissions={
-                              Array [
-                                          Object {
-                                            "avatarURL": "http://www.fillmurray.com/100/100",
-                                            "grade": "B-",
-                                            "name": "Donald Trump",
-                                            "sectionID": "1",
-                                            "status": "submitted",
-                                            "userID": "55",
-                                          },
-                                        ]
+                    Array [
+                      Object {
+                        "avatarURL": "http://www.fillmurray.com/100/100",
+                        "grade": "B-",
+                        "name": "Donald Trump",
+                        "sectionID": "1",
+                        "status": "submitted",
+                        "userID": "55",
+                      },
+                    ]
                   }
                   userID="1"
-      />,
+                />,
                 "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
@@ -1159,69 +1155,68 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   showDismissButton={true}
                   statusBarHidden={true}
                   statusBarStyle="default"
-      >
+                >
                   <View
-                              style={
-                                          Object {
-                                                      "flex": 1,
-                                                    }
-                              }
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
                   >
-                              <FlatList
-                                          data={
-                                                      Array [
-                                                                  Object {
-                                                                    "key": "55",
-                                                                    "submission": Object {
-                                                                      "avatarURL": "http://www.fillmurray.com/100/100",
-                                                                      "grade": "B-",
-                                                                      "name": "Donald Trump",
-                                                                      "sectionID": "1",
-                                                                      "status": "submitted",
-                                                                      "userID": "55",
-                                                                    },
-                                                                  },
-                                                                ]
-                                          }
-                                          getItemLayout={[Function]}
-                                          horizontal={true}
-                                          initialNumToRender={null}
-                                          initialScrollIndex={0}
-                                          keyboardShouldPersistTaps="handled"
-                                          onLayout={[Function]}
-                                          onMomentumScrollEnd={[Function]}
-                                          pagingEnabled={true}
-                                          renderItem={[Function]}
-                                          showsHorizontalScrollIndicator={false}
-                                          style={
-                                                      Object {
-                                                                  "marginLeft": -10,
-                                                                  "marginRight": -10,
-                                                                }
-                                          }
-                                          windowSize={5}
-                              />
-                              <Tutorial
-                                          tutorials={
-                                                      Array [
-                                                                  Object {
-                                                                    "id": "swipe-tutorial",
-                                                                    "image": Object {
-                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
-                                                                    },
-                                                                    "text": "Swipe left or right to view other student submissions",
-                                                                  },
-                                                                ]
-                                          }
-                              />
+                    <FlatList
+                      data={
+                        Array [
+                          Object {
+                            "key": "55",
+                            "submission": Object {
+                              "avatarURL": "http://www.fillmurray.com/100/100",
+                              "grade": "B-",
+                              "name": "Donald Trump",
+                              "sectionID": "1",
+                              "status": "submitted",
+                              "userID": "55",
+                            },
+                          },
+                        ]
+                      }
+                      getItemLayout={[Function]}
+                      horizontal={true}
+                      initialNumToRender={null}
+                      initialScrollIndex={0}
+                      keyboardShouldPersistTaps="handled"
+                      onLayout={[Function]}
+                      onMomentumScrollEnd={[Function]}
+                      pagingEnabled={true}
+                      renderItem={[Function]}
+                      showsHorizontalScrollIndicator={false}
+                      style={
+                        Object {
+                          "marginLeft": -10,
+                          "marginRight": -10,
+                        }
+                      }
+                      windowSize={5}
+                    />
+                    <Tutorial
+                      tutorials={
+                        Array [
+                          Object {
+                            "id": "swipe-tutorial",
+                            "image": Object {
+                              "testUri": "../../../src/images/speedgrader/Swipe.png",
+                            },
+                            "text": "Swipe left or right to view other student submissions",
+                          },
+                        ]
+                      }
+                    />
                   </View>
-      </Screen>,
+                </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
                 "_workInProgressHook": null,
               },
             },
-            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
@@ -1238,24 +1233,24 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               ],
               "courseID": "1",
               "drawerPosition": 0,
-              "getCourseEnabledFeatures": [Function],
-              "gradeSubmissionWithRubric": [Function],
+              "getCourseEnabledFeatures": [MockFunction],
+              "gradeSubmissionWithRubric": [MockFunction],
               "navigator": Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
               "pending": false,
-              "refresh": [Function],
-              "refreshSubmissionSummary": [Function],
-              "refreshSubmissions": [Function],
+              "refresh": [MockFunction],
+              "refreshSubmissionSummary": [MockFunction],
+              "refreshSubmissions": [MockFunction],
               "refreshing": false,
-              "resetDrawer": [Function],
+              "resetDrawer": [MockFunction],
               "submissionEntities": Object {},
               "submissions": Array [
                 Object {
@@ -1318,47 +1313,47 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
-                              Array [
-                                          "none",
-                                        ]
+                    Array [
+                      "none",
+                    ]
                   }
                   courseID="1"
                   drawerPosition={0}
-                  getCourseEnabledFeatures={[Function]}
-                  gradeSubmissionWithRubric={[Function]}
+                  getCourseEnabledFeatures={[MockFunction]}
+                  gradeSubmissionWithRubric={[MockFunction]}
                   navigator={
-                              Object {
-                                          "dismiss": [Function],
-                                          "dismissAllModals": [Function],
-                                          "isModal": false,
-                                          "pop": [Function],
-                                          "replace": [Function],
-                                          "show": [Function],
-                                          "traitCollection": [Function],
-                                        }
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
                   }
                   onDismiss={[Function]}
                   pending={false}
-                  refresh={[Function]}
-                  refreshSubmissionSummary={[Function]}
-                  refreshSubmissions={[Function]}
+                  refresh={[MockFunction]}
+                  refreshSubmissionSummary={[MockFunction]}
+                  refreshSubmissions={[MockFunction]}
                   refreshing={false}
-                  resetDrawer={[Function]}
+                  resetDrawer={[MockFunction]}
                   submissionEntities={Object {}}
                   submissions={
-                              Array [
-                                          Object {
-                                            "avatarURL": "http://www.fillmurray.com/100/100",
-                                            "grade": "B-",
-                                            "name": "Donald Trump",
-                                            "sectionID": "1",
-                                            "status": "submitted",
-                                            "userID": "55",
-                                          },
-                                        ]
+                    Array [
+                      Object {
+                        "avatarURL": "http://www.fillmurray.com/100/100",
+                        "grade": "B-",
+                        "name": "Donald Trump",
+                        "sectionID": "1",
+                        "status": "submitted",
+                        "userID": "55",
+                      },
+                    ]
                   }
                   userID="1"
-      />,
+                />,
                 "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
@@ -1373,69 +1368,68 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   showDismissButton={true}
                   statusBarHidden={true}
                   statusBarStyle="default"
-      >
+                >
                   <View
-                              style={
-                                          Object {
-                                                      "flex": 1,
-                                                    }
-                              }
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
                   >
-                              <FlatList
-                                          data={
-                                                      Array [
-                                                                  Object {
-                                                                    "key": "55",
-                                                                    "submission": Object {
-                                                                      "avatarURL": "http://www.fillmurray.com/100/100",
-                                                                      "grade": "B-",
-                                                                      "name": "Donald Trump",
-                                                                      "sectionID": "1",
-                                                                      "status": "submitted",
-                                                                      "userID": "55",
-                                                                    },
-                                                                  },
-                                                                ]
-                                          }
-                                          getItemLayout={[Function]}
-                                          horizontal={true}
-                                          initialNumToRender={null}
-                                          initialScrollIndex={0}
-                                          keyboardShouldPersistTaps="handled"
-                                          onLayout={[Function]}
-                                          onMomentumScrollEnd={[Function]}
-                                          pagingEnabled={true}
-                                          renderItem={[Function]}
-                                          showsHorizontalScrollIndicator={false}
-                                          style={
-                                                      Object {
-                                                                  "marginLeft": -10,
-                                                                  "marginRight": -10,
-                                                                }
-                                          }
-                                          windowSize={5}
-                              />
-                              <Tutorial
-                                          tutorials={
-                                                      Array [
-                                                                  Object {
-                                                                    "id": "swipe-tutorial",
-                                                                    "image": Object {
-                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
-                                                                    },
-                                                                    "text": "Swipe left or right to view other student submissions",
-                                                                  },
-                                                                ]
-                                          }
-                              />
+                    <FlatList
+                      data={
+                        Array [
+                          Object {
+                            "key": "55",
+                            "submission": Object {
+                              "avatarURL": "http://www.fillmurray.com/100/100",
+                              "grade": "B-",
+                              "name": "Donald Trump",
+                              "sectionID": "1",
+                              "status": "submitted",
+                              "userID": "55",
+                            },
+                          },
+                        ]
+                      }
+                      getItemLayout={[Function]}
+                      horizontal={true}
+                      initialNumToRender={null}
+                      initialScrollIndex={0}
+                      keyboardShouldPersistTaps="handled"
+                      onLayout={[Function]}
+                      onMomentumScrollEnd={[Function]}
+                      pagingEnabled={true}
+                      renderItem={[Function]}
+                      showsHorizontalScrollIndicator={false}
+                      style={
+                        Object {
+                          "marginLeft": -10,
+                          "marginRight": -10,
+                        }
+                      }
+                      windowSize={5}
+                    />
+                    <Tutorial
+                      tutorials={
+                        Array [
+                          Object {
+                            "id": "swipe-tutorial",
+                            "image": Object {
+                              "testUri": "../../../src/images/speedgrader/Swipe.png",
+                            },
+                            "text": "Swipe left or right to view other student submissions",
+                          },
+                        ]
+                      }
+                    />
                   </View>
-      </Screen>,
+                </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
                 "_workInProgressHook": null,
               },
             },
-            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
@@ -1452,24 +1446,24 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               ],
               "courseID": "1",
               "drawerPosition": 0,
-              "getCourseEnabledFeatures": [Function],
-              "gradeSubmissionWithRubric": [Function],
+              "getCourseEnabledFeatures": [MockFunction],
+              "gradeSubmissionWithRubric": [MockFunction],
               "navigator": Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
               "pending": true,
-              "refresh": [Function],
-              "refreshSubmissionSummary": [Function],
-              "refreshSubmissions": [Function],
+              "refresh": [MockFunction],
+              "refreshSubmissionSummary": [MockFunction],
+              "refreshSubmissions": [MockFunction],
               "refreshing": false,
-              "resetDrawer": [Function],
+              "resetDrawer": [MockFunction],
               "submissionEntities": Object {},
               "submissions": Array [],
               "userID": "1",
@@ -1513,36 +1507,36 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
-                              Array [
-                                          "none",
-                                        ]
+                    Array [
+                      "none",
+                    ]
                   }
                   courseID="1"
                   drawerPosition={0}
-                  getCourseEnabledFeatures={[Function]}
-                  gradeSubmissionWithRubric={[Function]}
+                  getCourseEnabledFeatures={[MockFunction]}
+                  gradeSubmissionWithRubric={[MockFunction]}
                   navigator={
-                              Object {
-                                          "dismiss": [Function],
-                                          "dismissAllModals": [Function],
-                                          "isModal": false,
-                                          "pop": [Function],
-                                          "replace": [Function],
-                                          "show": [Function],
-                                          "traitCollection": [Function],
-                                        }
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
                   }
                   onDismiss={[Function]}
                   pending={true}
-                  refresh={[Function]}
-                  refreshSubmissionSummary={[Function]}
-                  refreshSubmissions={[Function]}
+                  refresh={[MockFunction]}
+                  refreshSubmissionSummary={[MockFunction]}
+                  refreshSubmissions={[MockFunction]}
                   refreshing={false}
-                  resetDrawer={[Function]}
+                  resetDrawer={[MockFunction]}
                   submissionEntities={Object {}}
                   submissions={Array []}
                   userID="1"
-      />,
+                />,
                 "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
@@ -1557,53 +1551,52 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   showDismissButton={true}
                   statusBarHidden={true}
                   statusBarStyle="default"
-      >
+                >
                   <View
-                              style={
-                                          Object {
-                                                      "flex": 1,
-                                                    }
-                              }
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
                   >
-                              <View
-                                          accessibilityLabel="In Progress"
-                                          accessible={true}
-                                          style={
-                                                      Object {
-                                                                  "alignItems": "center",
-                                                                  "flex": 1,
-                                                                  "justifyContent": "center",
-                                                                }
-                                          }
-                              >
-                                          <ActivityIndicator
-                                                      animating={true}
-                                                      color="#999999"
-                                                      hidesWhenStopped={true}
-                                                      size="small"
-                                          />
-                              </View>
-                              <Tutorial
-                                          tutorials={
-                                                      Array [
-                                                                  Object {
-                                                                    "id": "swipe-tutorial",
-                                                                    "image": Object {
-                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
-                                                                    },
-                                                                    "text": "Swipe left or right to view other student submissions",
-                                                                  },
-                                                                ]
-                                          }
-                              />
+                    <View
+                      accessibilityLabel="In Progress"
+                      accessible={true}
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <ActivityIndicator
+                        animating={true}
+                        color="#999999"
+                        hidesWhenStopped={true}
+                        size="small"
+                      />
+                    </View>
+                    <Tutorial
+                      tutorials={
+                        Array [
+                          Object {
+                            "id": "swipe-tutorial",
+                            "image": Object {
+                              "testUri": "../../../src/images/speedgrader/Swipe.png",
+                            },
+                            "text": "Swipe left or right to view other student submissions",
+                          },
+                        ]
+                      }
+                    />
                   </View>
-      </Screen>,
+                </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
                 "_workInProgressHook": null,
               },
             },
-            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
@@ -1620,24 +1613,24 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               ],
               "courseID": "1",
               "drawerPosition": 0,
-              "getCourseEnabledFeatures": [Function],
-              "gradeSubmissionWithRubric": [Function],
+              "getCourseEnabledFeatures": [MockFunction],
+              "gradeSubmissionWithRubric": [MockFunction],
               "navigator": Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
               "pending": true,
-              "refresh": [Function],
-              "refreshSubmissionSummary": [Function],
-              "refreshSubmissions": [Function],
+              "refresh": [MockFunction],
+              "refreshSubmissionSummary": [MockFunction],
+              "refreshSubmissions": [MockFunction],
               "refreshing": false,
-              "resetDrawer": [Function],
+              "resetDrawer": [MockFunction],
               "submissionEntities": Object {},
               "submissions": Array [],
               "userID": "1",
@@ -1681,36 +1674,36 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
-                              Array [
-                                          "none",
-                                        ]
+                    Array [
+                      "none",
+                    ]
                   }
                   courseID="1"
                   drawerPosition={0}
-                  getCourseEnabledFeatures={[Function]}
-                  gradeSubmissionWithRubric={[Function]}
+                  getCourseEnabledFeatures={[MockFunction]}
+                  gradeSubmissionWithRubric={[MockFunction]}
                   navigator={
-                              Object {
-                                          "dismiss": [Function],
-                                          "dismissAllModals": [Function],
-                                          "isModal": false,
-                                          "pop": [Function],
-                                          "replace": [Function],
-                                          "show": [Function],
-                                          "traitCollection": [Function],
-                                        }
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
                   }
                   onDismiss={[Function]}
                   pending={true}
-                  refresh={[Function]}
-                  refreshSubmissionSummary={[Function]}
-                  refreshSubmissions={[Function]}
+                  refresh={[MockFunction]}
+                  refreshSubmissionSummary={[MockFunction]}
+                  refreshSubmissions={[MockFunction]}
                   refreshing={false}
-                  resetDrawer={[Function]}
+                  resetDrawer={[MockFunction]}
                   submissionEntities={Object {}}
                   submissions={Array []}
                   userID="1"
-      />,
+                />,
                 "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
@@ -1725,53 +1718,52 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   showDismissButton={true}
                   statusBarHidden={true}
                   statusBarStyle="default"
-      >
+                >
                   <View
-                              style={
-                                          Object {
-                                                      "flex": 1,
-                                                    }
-                              }
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
                   >
-                              <View
-                                          accessibilityLabel="In Progress"
-                                          accessible={true}
-                                          style={
-                                                      Object {
-                                                                  "alignItems": "center",
-                                                                  "flex": 1,
-                                                                  "justifyContent": "center",
-                                                                }
-                                          }
-                              >
-                                          <ActivityIndicator
-                                                      animating={true}
-                                                      color="#999999"
-                                                      hidesWhenStopped={true}
-                                                      size="small"
-                                          />
-                              </View>
-                              <Tutorial
-                                          tutorials={
-                                                      Array [
-                                                                  Object {
-                                                                    "id": "swipe-tutorial",
-                                                                    "image": Object {
-                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
-                                                                    },
-                                                                    "text": "Swipe left or right to view other student submissions",
-                                                                  },
-                                                                ]
-                                          }
-                              />
+                    <View
+                      accessibilityLabel="In Progress"
+                      accessible={true}
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <ActivityIndicator
+                        animating={true}
+                        color="#999999"
+                        hidesWhenStopped={true}
+                        size="small"
+                      />
+                    </View>
+                    <Tutorial
+                      tutorials={
+                        Array [
+                          Object {
+                            "id": "swipe-tutorial",
+                            "image": Object {
+                              "testUri": "../../../src/images/speedgrader/Swipe.png",
+                            },
+                            "text": "Swipe left or right to view other student submissions",
+                          },
+                        ]
+                      }
+                    />
                   </View>
-      </Screen>,
+                </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
                 "_workInProgressHook": null,
               },
             },
-            Symbol(enzyme.__setState__): [Function],
           },
           SpeedGrader {
             "_captureFlatList": [Function],
@@ -1788,24 +1780,24 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               ],
               "courseID": "1",
               "drawerPosition": 0,
-              "getCourseEnabledFeatures": [Function],
-              "gradeSubmissionWithRubric": [Function],
+              "getCourseEnabledFeatures": [MockFunction],
+              "gradeSubmissionWithRubric": [MockFunction],
               "navigator": Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
               "pending": false,
-              "refresh": [Function],
-              "refreshSubmissionSummary": [Function],
-              "refreshSubmissions": [Function],
+              "refresh": [MockFunction],
+              "refreshSubmissionSummary": [MockFunction],
+              "refreshSubmissions": [MockFunction],
               "refreshing": false,
-              "resetDrawer": [Function],
+              "resetDrawer": [MockFunction],
               "submissionEntities": Object {},
               "submissions": Array [
                 Object {
@@ -1868,47 +1860,47 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "_element": <SpeedGrader
                   assignmentID="1"
                   assignmentSubmissionTypes={
-                              Array [
-                                          "none",
-                                        ]
+                    Array [
+                      "none",
+                    ]
                   }
                   courseID="1"
                   drawerPosition={0}
-                  getCourseEnabledFeatures={[Function]}
-                  gradeSubmissionWithRubric={[Function]}
+                  getCourseEnabledFeatures={[MockFunction]}
+                  gradeSubmissionWithRubric={[MockFunction]}
                   navigator={
-                              Object {
-                                          "dismiss": [Function],
-                                          "dismissAllModals": [Function],
-                                          "isModal": false,
-                                          "pop": [Function],
-                                          "replace": [Function],
-                                          "show": [Function],
-                                          "traitCollection": [Function],
-                                        }
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
                   }
                   onDismiss={[Function]}
                   pending={false}
-                  refresh={[Function]}
-                  refreshSubmissionSummary={[Function]}
-                  refreshSubmissions={[Function]}
+                  refresh={[MockFunction]}
+                  refreshSubmissionSummary={[MockFunction]}
+                  refreshSubmissions={[MockFunction]}
                   refreshing={false}
-                  resetDrawer={[Function]}
+                  resetDrawer={[MockFunction]}
                   submissionEntities={Object {}}
                   submissions={
-                              Array [
-                                          Object {
-                                            "avatarURL": "http://www.fillmurray.com/100/100",
-                                            "grade": "B-",
-                                            "name": "Donald Trump",
-                                            "sectionID": "1",
-                                            "status": "submitted",
-                                            "userID": "55",
-                                          },
-                                        ]
+                    Array [
+                      Object {
+                        "avatarURL": "http://www.fillmurray.com/100/100",
+                        "grade": "B-",
+                        "name": "Donald Trump",
+                        "sectionID": "1",
+                        "status": "submitted",
+                        "userID": "55",
+                      },
+                    ]
                   }
                   userID="1"
-      />,
+                />,
                 "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
@@ -1923,69 +1915,68 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   showDismissButton={true}
                   statusBarHidden={true}
                   statusBarStyle="default"
-      >
+                >
                   <View
-                              style={
-                                          Object {
-                                                      "flex": 1,
-                                                    }
-                              }
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
                   >
-                              <FlatList
-                                          data={
-                                                      Array [
-                                                                  Object {
-                                                                    "key": "55",
-                                                                    "submission": Object {
-                                                                      "avatarURL": "http://www.fillmurray.com/100/100",
-                                                                      "grade": "B-",
-                                                                      "name": "Donald Trump",
-                                                                      "sectionID": "1",
-                                                                      "status": "submitted",
-                                                                      "userID": "55",
-                                                                    },
-                                                                  },
-                                                                ]
-                                          }
-                                          getItemLayout={[Function]}
-                                          horizontal={true}
-                                          initialNumToRender={null}
-                                          initialScrollIndex={0}
-                                          keyboardShouldPersistTaps="handled"
-                                          onLayout={[Function]}
-                                          onMomentumScrollEnd={[Function]}
-                                          pagingEnabled={true}
-                                          renderItem={[Function]}
-                                          showsHorizontalScrollIndicator={false}
-                                          style={
-                                                      Object {
-                                                                  "marginLeft": -10,
-                                                                  "marginRight": -10,
-                                                                }
-                                          }
-                                          windowSize={5}
-                              />
-                              <Tutorial
-                                          tutorials={
-                                                      Array [
-                                                                  Object {
-                                                                    "id": "swipe-tutorial",
-                                                                    "image": Object {
-                                                                      "testUri": "../../../src/images/speedgrader/Swipe.png",
-                                                                    },
-                                                                    "text": "Swipe left or right to view other student submissions",
-                                                                  },
-                                                                ]
-                                          }
-                              />
+                    <FlatList
+                      data={
+                        Array [
+                          Object {
+                            "key": "55",
+                            "submission": Object {
+                              "avatarURL": "http://www.fillmurray.com/100/100",
+                              "grade": "B-",
+                              "name": "Donald Trump",
+                              "sectionID": "1",
+                              "status": "submitted",
+                              "userID": "55",
+                            },
+                          },
+                        ]
+                      }
+                      getItemLayout={[Function]}
+                      horizontal={true}
+                      initialNumToRender={null}
+                      initialScrollIndex={0}
+                      keyboardShouldPersistTaps="handled"
+                      onLayout={[Function]}
+                      onMomentumScrollEnd={[Function]}
+                      pagingEnabled={true}
+                      renderItem={[Function]}
+                      showsHorizontalScrollIndicator={false}
+                      style={
+                        Object {
+                          "marginLeft": -10,
+                          "marginRight": -10,
+                        }
+                      }
+                      windowSize={5}
+                    />
+                    <Tutorial
+                      tutorials={
+                        Array [
+                          Object {
+                            "id": "swipe-tutorial",
+                            "image": Object {
+                              "testUri": "../../../src/images/speedgrader/Swipe.png",
+                            },
+                            "text": "Swipe left or right to view other student submissions",
+                          },
+                        ]
+                      }
+                    />
                   </View>
-      </Screen>,
+                </Screen>,
                 "_rendering": false,
                 "_updater": [Circular],
                 "_workInProgressHook": null,
               },
             },
-            Symbol(enzyme.__setState__): [Function],
           },
         ],
         "registerCommentProgress": [Function],
@@ -1993,17 +1984,17 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
         "unregisterCommentProgress": [Function],
       }
     }
-    gradeSubmissionWithRubric={[Function]}
+    gradeSubmissionWithRubric={[MockFunction]}
     isCurrentStudent={false}
     navigator={
       Object {
-        "dismiss": [Function],
-        "dismissAllModals": [Function],
+        "dismiss": [MockFunction],
+        "dismissAllModals": [MockFunction],
         "isModal": false,
-        "pop": [Function],
-        "replace": [Function],
-        "show": [Function],
-        "traitCollection": [Function],
+        "pop": [MockFunction],
+        "replace": [MockFunction],
+        "show": [MockFunction],
+        "traitCollection": [MockFunction],
       }
     }
     selectedAttachmentIndex={null}

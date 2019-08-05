@@ -412,13 +412,13 @@ exports[`ConversationDetails renders correctly with some messages 2`] = `
       }
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction],
         }
       }
       onReply={[Function]}

@@ -2,10 +2,7 @@
 
 exports[`Token renders correctly 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
   color="#0077FF"
-  ellipsizeMode="tail"
   style={
     Array [
       Object {

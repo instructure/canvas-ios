@@ -28,7 +28,7 @@ exports[`PickerPage renders the given options as rows 1`] = `
 </Screen>
 `;
 
-exports[`a 1`] = `
+exports[`PickerPage renders the given options as rows: a 1`] = `
 <TouchableHighlight
   accessibilityTraits={
     Array [
@@ -36,6 +36,7 @@ exports[`a 1`] = `
     ]
   }
   activeOpacity={0.85}
+  delayPressOut={100}
   onPress={[Function]}
   style={
     Array [
@@ -103,7 +104,7 @@ exports[`a 1`] = `
 </TouchableHighlight>
 `;
 
-exports[`b 1`] = `
+exports[`PickerPage renders the given options as rows: b 1`] = `
 <TouchableHighlight
   accessibilityTraits={
     Array [
@@ -112,6 +113,7 @@ exports[`b 1`] = `
     ]
   }
   activeOpacity={0.85}
+  delayPressOut={100}
   onPress={[Function]}
   style={
     Array [
@@ -214,7 +216,7 @@ exports[`b 1`] = `
 </TouchableHighlight>
 `;
 
-exports[`c 1`] = `
+exports[`PickerPage renders the given options as rows: c 1`] = `
 <TouchableHighlight
   accessibilityTraits={
     Array [
@@ -222,6 +224,7 @@ exports[`c 1`] = `
     ]
   }
   activeOpacity={0.85}
+  delayPressOut={100}
   onPress={[Function]}
   style={
     Array [

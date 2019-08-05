@@ -174,7 +174,7 @@ exports[`ToDoList renders items 1`] = `
         ]
       }
       keyExtractor={[Function]}
-      onEndReached={[Function]}
+      onEndReached={[MockFunction]}
       onEndReachedThreshold={0.5}
       onRefresh={[Function]}
       refreshing={false}

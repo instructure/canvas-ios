@@ -21,7 +21,7 @@
 import { shallow } from 'enzyme'
 import React from 'react'
 import {
-  AlertIOS,
+  Alert,
   FlatList,
 } from 'react-native'
 import Attachments from '../Attachments'
@@ -86,7 +86,7 @@ describe('Attachments', () => {
   })
 
   it('removes attachments', async () => {
-    AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+    Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
     props.attachments = [template.attachment()]
     const tree = shallow(<Attachments {...props} />)
     expect(tree.find(FlatList).prop('data')).toHaveLength(1)

@@ -2,6 +2,7 @@
 
 exports[`SubmissionSettings renders properly 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -28,19 +29,9 @@ exports[`SubmissionSettings renders properly 1`] = `
         }
       />
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Mute Grades, Off"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -49,17 +40,10 @@ exports[`SubmissionSettings renders properly 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            Array [
-              undefined,
-              undefined,
-            ],
+            undefined,
+            undefined,
           ]
         }
-        testID={undefined}
-        tvParallaxProperties={undefined}
       >
         <View
           style={
@@ -96,8 +80,6 @@ exports[`SubmissionSettings renders properly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -140,26 +122,13 @@ exports[`SubmissionSettings renders properly 1`] = `
                 }
               }
             >
-              <RCTSwitch
-                disabled={false}
+              <Switch
                 identifier="submission-settings.muted"
-                onChange={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                onTintColor="#374A59"
                 onValueChange={[Function]}
-                style={
-                  Array [
-                    Object {
-                      "height": 31,
-                      "width": 51,
-                    },
-                    undefined,
-                  ]
-                }
                 testID="submission-settings.muted"
                 tintColor={null}
                 title="Mute Grades"
+                trackColor="#374A59"
                 value={false}
               />
             </View>

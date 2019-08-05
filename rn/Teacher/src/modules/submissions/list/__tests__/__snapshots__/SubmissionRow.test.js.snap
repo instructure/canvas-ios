@@ -41,7 +41,6 @@ exports[`anonymous grading doesnt show users names 1`] = `
       >
         <Avatar
           avatarURL={null}
-          onPress={undefined}
           userName="Student"
         />
       </View>
@@ -54,8 +53,6 @@ exports[`anonymous grading doesnt show users names 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -81,9 +78,6 @@ exports[`anonymous grading doesnt show users names 1`] = `
           Student
         </Text>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -181,7 +175,6 @@ exports[`excused row renders correctly 1`] = `
       >
         <Avatar
           avatarURL="https://cats.pajamas/"
-          onPress={undefined}
           userName="Green Latern"
         />
       </View>
@@ -194,8 +187,6 @@ exports[`excused row renders correctly 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -221,9 +212,6 @@ exports[`excused row renders correctly 1`] = `
           Green Latern
         </Text>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -253,9 +241,6 @@ exports[`excused row renders correctly 1`] = `
         </Text>
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -352,7 +337,6 @@ exports[`late graded row renders correctly 1`] = `
       >
         <Avatar
           avatarURL="https://cats.pajamas/"
-          onPress={undefined}
           userName="Green Latern"
         />
       </View>
@@ -365,8 +349,6 @@ exports[`late graded row renders correctly 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -392,9 +374,6 @@ exports[`late graded row renders correctly 1`] = `
           Green Latern
         </Text>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -424,9 +403,6 @@ exports[`late graded row renders correctly 1`] = `
         </Text>
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -523,7 +499,6 @@ exports[`missing ungraded row renders correctly 1`] = `
       >
         <Avatar
           avatarURL="https://cats.pajamas/"
-          onPress={undefined}
           userName="Green Latern"
         />
       </View>
@@ -536,8 +511,6 @@ exports[`missing ungraded row renders correctly 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -563,9 +536,6 @@ exports[`missing ungraded row renders correctly 1`] = `
           Green Latern
         </Text>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -663,7 +633,6 @@ exports[`submitted not_graded row renders correctly 1`] = `
       >
         <Avatar
           avatarURL="https://cats.pajamas/"
-          onPress={undefined}
           userName="Green Latern"
         />
       </View>
@@ -676,8 +645,6 @@ exports[`submitted not_graded row renders correctly 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -772,7 +739,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
       >
         <Avatar
           avatarURL="https://cats.pajamas/"
-          onPress={undefined}
           userName="Green Latern"
         />
       </View>
@@ -785,8 +751,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -812,9 +776,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
           Green Latern
         </Text>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -843,10 +804,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
           Submitted
         </Text>
         <Text
-          accessible={true}
-          allowFontScaling={true}
           color="#368BD8"
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -957,7 +915,6 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
       >
         <Avatar
           avatarURL="https://cats.pajamas/"
-          onPress={undefined}
           userName="Green Latern"
         />
       </View>
@@ -970,8 +927,6 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
           ellipsizeMode="tail"
           numberOfLines={2}
           style={
@@ -997,9 +952,6 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
           Green Latern
         </Text>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {

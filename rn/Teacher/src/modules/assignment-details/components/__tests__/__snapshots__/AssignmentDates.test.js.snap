@@ -9,9 +9,6 @@ exports[`render with multiple due dates 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -42,13 +39,9 @@ exports[`render with multiple due dates 2`] = `
   }
 >
   <View
-    accessibilityLabel={undefined}
     accessible={true}
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -69,9 +62,6 @@ exports[`render with multiple due dates 2`] = `
       testID="assignment-details.assignment-dates.due-date-lbl"
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -93,9 +83,6 @@ exports[`render with multiple due dates 2`] = `
         Due:
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -117,9 +104,6 @@ exports[`render with multiple due dates 2`] = `
     </Text>
   </View>
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -140,9 +124,6 @@ exports[`render with multiple due dates 2`] = `
     testID="assignment-details.assignment-dates.due-for-lbl"
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -164,9 +145,6 @@ exports[`render with multiple due dates 2`] = `
       For:
     </Text>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -188,9 +166,6 @@ exports[`render with multiple due dates 2`] = `
   </Text>
   <View>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -210,9 +185,6 @@ exports[`render with multiple due dates 2`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -234,9 +206,6 @@ exports[`render with multiple due dates 2`] = `
         Availability:
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {

@@ -21,7 +21,7 @@
 import i18n from 'format-message'
 import React, { Component } from 'react'
 import ReactNative, {
-  AlertIOS,
+  Alert,
   DatePickerIOS,
   StyleSheet,
   View,
@@ -163,7 +163,7 @@ export default class EditItem extends Component<Props, State> {
   handleDelete = () => {
     const { updated: { name } } = this.state
     const isFile = this.isFile()
-    AlertIOS.alert(
+    Alert.alert(
       isFile
         ? i18n('Are you sure you want to delete {name}?', { name })
         : i18n('Delete Folder?'),

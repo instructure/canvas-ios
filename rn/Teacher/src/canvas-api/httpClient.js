@@ -19,7 +19,7 @@
 // @flow
 /* global XMLHttpRequest, Blob */
 
-import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import { getSession } from './session'
 import * as models from './model'
 
@@ -133,7 +133,7 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
             resolve(response)
             break
           case 'error':
-            throw event.error || new Error(event.message || 'Network request failed')
+            throw new TypeError('Network request failed')
           case 'timeout':
             throw new TypeError('Network request timed out')
           case 'abort':

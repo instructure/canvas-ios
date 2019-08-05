@@ -23,9 +23,6 @@ exports[`CourseFilter renders correctly 1`] = `
   >
     <Text
       accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       numberOfLines={1}
       style={
         Array [
@@ -68,9 +65,6 @@ exports[`CourseFilter renders correctly 1`] = `
     >
       <View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {

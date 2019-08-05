@@ -17,7 +17,7 @@
 //
 
 /* eslint-disable flowtype/require-valid-file-annotation */
-
+import { shallow } from 'enzyme'
 import React from 'react'
 import { GroupList, mapStateToProps } from '../GroupList'
 import renderer from 'react-native-test-utils'
@@ -75,11 +75,11 @@ describe('GroupList', () => {
   })
 
   it('navigates to the context card when an avatar is pressed', () => {
-    let view = renderer(
+    const tree = shallow(
       <GroupList {...defaultProps} />
     )
-    let avatar = view.query('[accessibilityTraits="button"]')
-    avatar.simulate('press')
+    tree.find('FlatList').dive().find('Row').dive()
+      .find('Avatar').simulate('Press')
     expect(defaultProps.navigator.show).toHaveBeenCalledWith(
       `/courses/1/users/1`,
       { modal: true }

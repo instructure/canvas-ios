@@ -6,6 +6,7 @@ exports[`AutoGrowingTextInput adjusts the height when content size is updated 1`
   defaultHeight={54}
   multiline={true}
   onContentSizeChange={[Function]}
+  rejectResponderTermination={true}
   style={
     Array [
       undefined,
@@ -14,6 +15,7 @@ exports[`AutoGrowingTextInput adjusts the height when content size is updated 1`
       },
     ]
   }
+  underlineColorAndroid="transparent"
 />
 `;
 
@@ -23,6 +25,7 @@ exports[`AutoGrowingTextInput renders 1`] = `
   defaultHeight={54}
   multiline={true}
   onContentSizeChange={[Function]}
+  rejectResponderTermination={true}
   style={
     Array [
       undefined,
@@ -31,5 +34,6 @@ exports[`AutoGrowingTextInput renders 1`] = `
       },
     ]
   }
+  underlineColorAndroid="transparent"
 />
 `;

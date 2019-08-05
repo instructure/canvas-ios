@@ -4,19 +4,8 @@ exports[`renders correctly 1`] = `
 <View>
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -25,20 +14,14 @@ exports[`renders correctly 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Array [
+          undefined,
           Object {
-            "backgroundColor": "transparent",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
           },
-          Array [
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
         ]
       }
       testID="assignment-list.assignment-list-row.cell-123456789"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -143,8 +126,6 @@ exports[`renders correctly 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -170,9 +151,6 @@ exports[`renders correctly 1`] = `
             learn to write code
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -252,19 +230,8 @@ exports[`renders correctly assignment icon 1`] = `
 <View>
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -273,20 +240,14 @@ exports[`renders correctly assignment icon 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Array [
+          undefined,
           Object {
-            "backgroundColor": "transparent",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
           },
-          Array [
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
         ]
       }
       testID="assignment-list.assignment-list-row.cell-123456789"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -391,8 +352,6 @@ exports[`renders correctly assignment icon 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -418,9 +377,6 @@ exports[`renders correctly assignment icon 1`] = `
             learn to write code
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -500,19 +456,8 @@ exports[`renders correctly discussion icon 1`] = `
 <View>
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -521,20 +466,14 @@ exports[`renders correctly discussion icon 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Array [
+          undefined,
           Object {
-            "backgroundColor": "transparent",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
           },
-          Array [
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
         ]
       }
       testID="assignment-list.assignment-list-row.cell-123456789"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -639,8 +578,6 @@ exports[`renders correctly discussion icon 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -666,9 +603,6 @@ exports[`renders correctly discussion icon 1`] = `
             learn to write code
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -748,19 +682,8 @@ exports[`renders correctly not published icon 1`] = `
 <View>
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -769,20 +692,14 @@ exports[`renders correctly not published icon 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Array [
+          undefined,
           Object {
-            "backgroundColor": "transparent",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
           },
-          Array [
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
         ]
       }
       testID="assignment-list.assignment-list-row.cell-123456789"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -887,8 +804,6 @@ exports[`renders correctly not published icon 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -914,9 +829,6 @@ exports[`renders correctly not published icon 1`] = `
             learn to write code
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -996,19 +908,8 @@ exports[`renders correctly published icon 1`] = `
 <View>
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -1017,20 +918,14 @@ exports[`renders correctly published icon 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Array [
+          undefined,
           Object {
-            "backgroundColor": "transparent",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
           },
-          Array [
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
         ]
       }
       testID="assignment-list.assignment-list-row.cell-123456789"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -1135,8 +1030,6 @@ exports[`renders correctly published icon 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1162,9 +1055,6 @@ exports[`renders correctly published icon 1`] = `
             learn to write code
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1244,19 +1134,8 @@ exports[`renders correctly quiz icon 1`] = `
 <View>
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -1265,20 +1144,14 @@ exports[`renders correctly quiz icon 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Array [
+          undefined,
           Object {
-            "backgroundColor": "transparent",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
           },
-          Array [
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
         ]
       }
       testID="assignment-list.assignment-list-row.cell-123456789"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -1383,8 +1256,6 @@ exports[`renders correctly quiz icon 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1410,9 +1281,6 @@ exports[`renders correctly quiz icon 1`] = `
             learn to write code
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1492,19 +1360,8 @@ exports[`renders correctly with closed due dates 1`] = `
 <View>
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -1513,20 +1370,14 @@ exports[`renders correctly with closed due dates 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Array [
+          undefined,
           Object {
-            "backgroundColor": "transparent",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
           },
-          Array [
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
         ]
       }
       testID="assignment-list.assignment-list-row.cell-123456789"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -1631,8 +1482,6 @@ exports[`renders correctly with closed due dates 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1658,9 +1507,6 @@ exports[`renders correctly with closed due dates 1`] = `
             learn to write code
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1740,19 +1586,8 @@ exports[`renders correctly with needs_grading_count 1`] = `
 <View>
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -1761,20 +1596,14 @@ exports[`renders correctly with needs_grading_count 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Array [
+          undefined,
           Object {
-            "backgroundColor": "transparent",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
           },
-          Array [
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
         ]
       }
       testID="assignment-list.assignment-list-row.cell-123456789"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -1879,8 +1708,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1906,9 +1733,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
             learn to write code
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1935,9 +1759,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
             No Due Date
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -2025,19 +1846,8 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
 <View>
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -2046,20 +1856,14 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
       onStartShouldSetResponder={[Function]}
       style={
         Array [
+          undefined,
           Object {
-            "backgroundColor": "transparent",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
           },
-          Array [
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
         ]
       }
       testID="assignment-list.assignment-list-row.cell-123456789"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -2164,8 +1968,6 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -2191,9 +1993,6 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
             learn to write code
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -2273,19 +2072,8 @@ exports[`renders correctly with open due dates 1`] = `
 <View>
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -2294,20 +2082,14 @@ exports[`renders correctly with open due dates 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Array [
+          undefined,
           Object {
-            "backgroundColor": "transparent",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
           },
-          Array [
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
         ]
       }
       testID="assignment-list.assignment-list-row.cell-123456789"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -2412,8 +2194,6 @@ exports[`renders correctly with open due dates 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -2439,9 +2219,6 @@ exports[`renders correctly with open due dates 1`] = `
             learn to write code
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -2521,19 +2298,8 @@ exports[`renders correctly with selected props 1`] = `
 <View>
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -2542,20 +2308,14 @@ exports[`renders correctly with selected props 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Array [
+          undefined,
           Object {
-            "backgroundColor": "transparent",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
           },
-          Array [
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
         ]
       }
       testID="assignment-list.assignment-list-row.cell-123456789"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -2660,8 +2420,6 @@ exports[`renders correctly with selected props 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -2687,9 +2445,6 @@ exports[`renders correctly with selected props 1`] = `
             learn to write code
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {

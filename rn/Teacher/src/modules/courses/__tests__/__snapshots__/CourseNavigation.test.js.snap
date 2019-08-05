@@ -3,22 +3,86 @@
 exports[`CourseNavigation refreshes courses and tabs 1`] = `
 <CourseNavigation
   courseID="1"
-  getUserSettings={[Function]}
+  getUserSettings={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   navigator={
     Object {
-      "dismiss": [Function],
-      "dismissAllModals": [Function],
+      "dismiss": [MockFunction],
+      "dismissAllModals": [MockFunction],
       "isModal": false,
-      "pop": [Function],
-      "replace": [Function],
-      "show": [Function],
-      "traitCollection": [Function],
+      "pop": [MockFunction],
+      "replace": [MockFunction],
+      "show": [MockFunction],
+      "traitCollection": [MockFunction] {
+        "calls": Array [
+          Array [
+            [Function],
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      },
     }
   }
   refresh={[Function]}
-  refreshCourses={[Function]}
-  refreshLTITools={[Function]}
-  refreshTabs={[Function]}
+  refreshCourses={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  refreshLTITools={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "1",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  refreshTabs={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "1",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   refreshing={false}
   tabs={Array []}
 />
@@ -62,22 +126,86 @@ exports[`CourseNavigation refreshes when props change 1`] = `
     }
   }
   courseID="1"
-  getUserSettings={[Function]}
+  getUserSettings={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   navigator={
     Object {
-      "dismiss": [Function],
-      "dismissAllModals": [Function],
+      "dismiss": [MockFunction],
+      "dismissAllModals": [MockFunction],
       "isModal": false,
-      "pop": [Function],
-      "replace": [Function],
-      "show": [Function],
-      "traitCollection": [Function],
+      "pop": [MockFunction],
+      "replace": [MockFunction],
+      "show": [MockFunction],
+      "traitCollection": [MockFunction] {
+        "calls": Array [
+          Array [
+            [Function],
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      },
     }
   }
   refresh={[Function]}
-  refreshCourses={[Function]}
-  refreshLTITools={[Function]}
-  refreshTabs={[Function]}
+  refreshCourses={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  refreshLTITools={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "1",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  refreshTabs={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "1",
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   refreshing={false}
   tabs={Array []}
 />

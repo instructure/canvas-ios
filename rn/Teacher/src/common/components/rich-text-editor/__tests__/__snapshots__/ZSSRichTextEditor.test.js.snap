@@ -50,17 +50,6 @@ Array [
 
 exports[`ZSSRichTextEditor notifies when editor focused 1`] = `Array []`;
 
-exports[`ZSSRichTextEditor paste catches error and pastes clipboard if network call fails 1`] = `
-Array [
-  Array [
-    "zss_editor.prepareInsert();",
-  ],
-  Array [
-    "zss_editor.insertHTML('https:\\\\/\\\\/canvas.instructure.com\\\\/files\\\\/1\\\\/download');",
-  ],
-]
-`;
-
 exports[`ZSSRichTextEditor paste downloads and embeds image files 1`] = `
 Array [
   Array [
@@ -136,7 +125,6 @@ exports[`ZSSRichTextEditor renders 1`] = `
   scrollEnabled={true}
   source={
     Object {
-      "baseUrl": "file:///mainBundle",
       "html": "",
     }
   }
@@ -147,6 +135,7 @@ exports[`ZSSRichTextEditor renders 1`] = `
       "flexDirection": "column",
     }
   }
+  useWebKit={true}
 />
 `;
 

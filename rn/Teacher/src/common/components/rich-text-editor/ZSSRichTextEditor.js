@@ -91,7 +91,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   render () {
     return (
       <WebView
-        source={{ html: this.state.source || '', baseUrl: RNFS.MainBundlePath }}
+        source={{ html: this.state.source || '' }}
         ref={webView => { this.webView = webView }}
         onMessage={this._onMessage}
         onLoad={this._onLoad}
@@ -99,6 +99,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
         scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
         style={styles.editor}
         hideKeyboardAccessoryView={true}
+        useWebKit
       />
     )
   }

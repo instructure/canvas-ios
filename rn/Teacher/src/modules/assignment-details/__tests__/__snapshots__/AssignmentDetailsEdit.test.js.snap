@@ -95,9 +95,6 @@ exports[`error occurs when done pressed 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -156,9 +153,6 @@ exports[`error occurs when done pressed 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -193,9 +187,6 @@ exports[`error occurs when done pressed 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -239,6 +230,7 @@ exports[`error occurs when done pressed 1`] = `
           onChangeText={[Function]}
           onFocus={[Function]}
           placeholder="Title"
+          rejectResponderTermination={true}
           returnKeyType="done"
           style={
             Array [
@@ -257,15 +249,13 @@ exports[`error occurs when done pressed 1`] = `
             ]
           }
           testID="titleInput"
+          underlineColorAndroid="transparent"
           value="learn to write code"
         />
       </View>
       <View />
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -348,9 +338,6 @@ exports[`error occurs when done pressed 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -406,9 +393,6 @@ exports[`error occurs when done pressed 1`] = `
       </TouchableHighlight>
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -445,7 +429,6 @@ exports[`error occurs when done pressed 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -482,8 +465,6 @@ exports[`error occurs when done pressed 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -541,6 +522,7 @@ exports[`error occurs when done pressed 1`] = `
                   onChangeText={[Function]}
                   onFocus={[Function]}
                   placeholder="--"
+                  rejectResponderTermination={true}
                   style={
                     Array [
                       Object {
@@ -552,7 +534,7 @@ exports[`error occurs when done pressed 1`] = `
                     ]
                   }
                   testID="assignmentDetails.edit.points_possible.input"
-                  value={undefined}
+                  underlineColorAndroid="transparent"
                 />
               </View>
             </View>
@@ -614,8 +596,6 @@ exports[`error occurs when done pressed 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -667,9 +647,6 @@ exports[`error occurs when done pressed 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -686,7 +663,6 @@ exports[`error occurs when done pressed 1`] = `
                       },
                     ]
                   }
-                  testID={undefined}
                 >
                   Points
                 </Text>
@@ -714,7 +690,6 @@ exports[`error occurs when done pressed 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -751,8 +726,6 @@ exports[`error occurs when done pressed 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -795,27 +768,14 @@ exports[`error occurs when done pressed 1`] = `
                 }
               }
             >
-              <RCTSwitch
+              <Switch
                 border="bottom"
-                disabled={false}
                 identifier="published"
-                onChange={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                onTintColor="#374A59"
                 onValueChange={[Function]}
-                style={
-                  Array [
-                    Object {
-                      "height": 31,
-                      "width": 51,
-                    },
-                    undefined,
-                  ]
-                }
                 testID="published"
                 tintColor={null}
                 title="Publish"
+                trackColor="#374A59"
                 value={true}
               />
             </View>
@@ -864,13 +824,13 @@ exports[`error occurs when done pressed 1`] = `
         canEditAssignees={true}
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
       />
@@ -974,9 +934,6 @@ exports[`modal saving is shown on assignment update 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1035,9 +992,6 @@ exports[`modal saving is shown on assignment update 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1072,9 +1026,6 @@ exports[`modal saving is shown on assignment update 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1118,6 +1069,7 @@ exports[`modal saving is shown on assignment update 1`] = `
           onChangeText={[Function]}
           onFocus={[Function]}
           placeholder="Title"
+          rejectResponderTermination={true}
           returnKeyType="done"
           style={
             Array [
@@ -1136,15 +1088,13 @@ exports[`modal saving is shown on assignment update 1`] = `
             ]
           }
           testID="titleInput"
+          underlineColorAndroid="transparent"
           value="learn to write code"
         />
       </View>
       <View />
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1227,9 +1177,6 @@ exports[`modal saving is shown on assignment update 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1285,9 +1232,6 @@ exports[`modal saving is shown on assignment update 1`] = `
       </TouchableHighlight>
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1324,7 +1268,6 @@ exports[`modal saving is shown on assignment update 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -1361,8 +1304,6 @@ exports[`modal saving is shown on assignment update 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -1420,6 +1361,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                   onChangeText={[Function]}
                   onFocus={[Function]}
                   placeholder="--"
+                  rejectResponderTermination={true}
                   style={
                     Array [
                       Object {
@@ -1431,7 +1373,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                     ]
                   }
                   testID="assignmentDetails.edit.points_possible.input"
-                  value={undefined}
+                  underlineColorAndroid="transparent"
                 />
               </View>
             </View>
@@ -1493,8 +1435,6 @@ exports[`modal saving is shown on assignment update 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -1546,9 +1486,6 @@ exports[`modal saving is shown on assignment update 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -1565,7 +1502,6 @@ exports[`modal saving is shown on assignment update 1`] = `
                       },
                     ]
                   }
-                  testID={undefined}
                 >
                   Points
                 </Text>
@@ -1593,7 +1529,6 @@ exports[`modal saving is shown on assignment update 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -1630,8 +1565,6 @@ exports[`modal saving is shown on assignment update 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -1674,27 +1607,14 @@ exports[`modal saving is shown on assignment update 1`] = `
                 }
               }
             >
-              <RCTSwitch
+              <Switch
                 border="bottom"
-                disabled={false}
                 identifier="published"
-                onChange={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                onTintColor="#374A59"
                 onValueChange={[Function]}
-                style={
-                  Array [
-                    Object {
-                      "height": 31,
-                      "width": 51,
-                    },
-                    undefined,
-                  ]
-                }
                 testID="published"
                 tintColor={null}
                 title="Publish"
+                trackColor="#374A59"
                 value={true}
               />
             </View>
@@ -1743,13 +1663,13 @@ exports[`modal saving is shown on assignment update 1`] = `
         canEditAssignees={true}
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
       />
@@ -1853,9 +1773,6 @@ exports[`renders 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1914,9 +1831,6 @@ exports[`renders 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1951,9 +1865,6 @@ exports[`renders 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1997,6 +1908,7 @@ exports[`renders 1`] = `
           onChangeText={[Function]}
           onFocus={[Function]}
           placeholder="Title"
+          rejectResponderTermination={true}
           returnKeyType="done"
           style={
             Array [
@@ -2015,15 +1927,13 @@ exports[`renders 1`] = `
             ]
           }
           testID="titleInput"
+          underlineColorAndroid="transparent"
           value="learn to write code"
         />
       </View>
       <View />
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -2106,9 +2016,6 @@ exports[`renders 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2164,9 +2071,6 @@ exports[`renders 1`] = `
       </TouchableHighlight>
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -2203,7 +2107,6 @@ exports[`renders 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -2240,8 +2143,6 @@ exports[`renders 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -2299,6 +2200,7 @@ exports[`renders 1`] = `
                   onChangeText={[Function]}
                   onFocus={[Function]}
                   placeholder="--"
+                  rejectResponderTermination={true}
                   style={
                     Array [
                       Object {
@@ -2310,7 +2212,7 @@ exports[`renders 1`] = `
                     ]
                   }
                   testID="assignmentDetails.edit.points_possible.input"
-                  value={undefined}
+                  underlineColorAndroid="transparent"
                 />
               </View>
             </View>
@@ -2372,8 +2274,6 @@ exports[`renders 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -2425,9 +2325,6 @@ exports[`renders 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -2444,7 +2341,6 @@ exports[`renders 1`] = `
                       },
                     ]
                   }
-                  testID={undefined}
                 >
                   Points
                 </Text>
@@ -2472,7 +2368,6 @@ exports[`renders 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -2509,8 +2404,6 @@ exports[`renders 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -2553,27 +2446,14 @@ exports[`renders 1`] = `
                 }
               }
             >
-              <RCTSwitch
+              <Switch
                 border="bottom"
-                disabled={false}
                 identifier="published"
-                onChange={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                onTintColor="#374A59"
                 onValueChange={[Function]}
-                style={
-                  Array [
-                    Object {
-                      "height": 31,
-                      "width": 51,
-                    },
-                    undefined,
-                  ]
-                }
                 testID="published"
                 tintColor={null}
                 title="Publish"
+                trackColor="#374A59"
                 value={true}
               />
             </View>
@@ -2622,13 +2502,13 @@ exports[`renders 1`] = `
         canEditAssignees={true}
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
       />
@@ -2732,9 +2612,6 @@ exports[`saving invalid dates displays banner 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -2793,9 +2670,6 @@ exports[`saving invalid dates displays banner 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -2830,9 +2704,6 @@ exports[`saving invalid dates displays banner 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -2876,6 +2747,7 @@ exports[`saving invalid dates displays banner 1`] = `
           onChangeText={[Function]}
           onFocus={[Function]}
           placeholder="Title"
+          rejectResponderTermination={true}
           returnKeyType="done"
           style={
             Array [
@@ -2894,15 +2766,13 @@ exports[`saving invalid dates displays banner 1`] = `
             ]
           }
           testID="titleInput"
+          underlineColorAndroid="transparent"
           value="learn to write code"
         />
       </View>
       <View />
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -2985,9 +2855,6 @@ exports[`saving invalid dates displays banner 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3043,9 +2910,6 @@ exports[`saving invalid dates displays banner 1`] = `
       </TouchableHighlight>
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -3082,7 +2946,6 @@ exports[`saving invalid dates displays banner 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -3119,8 +2982,6 @@ exports[`saving invalid dates displays banner 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -3178,6 +3039,7 @@ exports[`saving invalid dates displays banner 1`] = `
                   onChangeText={[Function]}
                   onFocus={[Function]}
                   placeholder="--"
+                  rejectResponderTermination={true}
                   style={
                     Array [
                       Object {
@@ -3189,7 +3051,7 @@ exports[`saving invalid dates displays banner 1`] = `
                     ]
                   }
                   testID="assignmentDetails.edit.points_possible.input"
-                  value={undefined}
+                  underlineColorAndroid="transparent"
                 />
               </View>
             </View>
@@ -3251,8 +3113,6 @@ exports[`saving invalid dates displays banner 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -3304,9 +3164,6 @@ exports[`saving invalid dates displays banner 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -3323,7 +3180,6 @@ exports[`saving invalid dates displays banner 1`] = `
                       },
                     ]
                   }
-                  testID={undefined}
                 >
                   Points
                 </Text>
@@ -3351,7 +3207,6 @@ exports[`saving invalid dates displays banner 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -3388,8 +3243,6 @@ exports[`saving invalid dates displays banner 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -3432,27 +3285,14 @@ exports[`saving invalid dates displays banner 1`] = `
                 }
               }
             >
-              <RCTSwitch
+              <Switch
                 border="bottom"
-                disabled={false}
                 identifier="published"
-                onChange={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                onTintColor="#374A59"
                 onValueChange={[Function]}
-                style={
-                  Array [
-                    Object {
-                      "height": 31,
-                      "width": 51,
-                    },
-                    undefined,
-                  ]
-                }
                 testID="published"
                 tintColor={null}
                 title="Publish"
+                trackColor="#374A59"
                 value={true}
               />
             </View>
@@ -3505,13 +3345,13 @@ exports[`saving invalid dates displays banner 1`] = `
         canEditAssignees={true}
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
       />
@@ -3615,9 +3455,6 @@ exports[`saving invalid name displays banner 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3679,9 +3516,6 @@ exports[`saving invalid name displays banner 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -3716,9 +3550,6 @@ exports[`saving invalid name displays banner 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -3762,6 +3593,7 @@ exports[`saving invalid name displays banner 1`] = `
           onChangeText={[Function]}
           onFocus={[Function]}
           placeholder="Title"
+          rejectResponderTermination={true}
           returnKeyType="done"
           style={
             Array [
@@ -3780,6 +3612,7 @@ exports[`saving invalid name displays banner 1`] = `
             ]
           }
           testID="titleInput"
+          underlineColorAndroid="transparent"
           value=""
         />
       </View>
@@ -3795,9 +3628,6 @@ exports[`saving invalid name displays banner 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -3814,16 +3644,12 @@ exports[`saving invalid name displays banner 1`] = `
               },
             ]
           }
-          testID={undefined}
         >
           A title is required
         </Text>
       </View>
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -3906,9 +3732,6 @@ exports[`saving invalid name displays banner 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3964,9 +3787,6 @@ exports[`saving invalid name displays banner 1`] = `
       </TouchableHighlight>
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -4003,7 +3823,6 @@ exports[`saving invalid name displays banner 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -4040,8 +3859,6 @@ exports[`saving invalid name displays banner 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -4099,6 +3916,7 @@ exports[`saving invalid name displays banner 1`] = `
                   onChangeText={[Function]}
                   onFocus={[Function]}
                   placeholder="--"
+                  rejectResponderTermination={true}
                   style={
                     Array [
                       Object {
@@ -4110,7 +3928,7 @@ exports[`saving invalid name displays banner 1`] = `
                     ]
                   }
                   testID="assignmentDetails.edit.points_possible.input"
-                  value={undefined}
+                  underlineColorAndroid="transparent"
                 />
               </View>
             </View>
@@ -4172,8 +3990,6 @@ exports[`saving invalid name displays banner 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -4225,9 +4041,6 @@ exports[`saving invalid name displays banner 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -4244,7 +4057,6 @@ exports[`saving invalid name displays banner 1`] = `
                       },
                     ]
                   }
-                  testID={undefined}
                 >
                   Points
                 </Text>
@@ -4272,7 +4084,6 @@ exports[`saving invalid name displays banner 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -4309,8 +4120,6 @@ exports[`saving invalid name displays banner 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -4353,27 +4162,14 @@ exports[`saving invalid name displays banner 1`] = `
                 }
               }
             >
-              <RCTSwitch
+              <Switch
                 border="bottom"
-                disabled={false}
                 identifier="published"
-                onChange={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                onTintColor="#374A59"
                 onValueChange={[Function]}
-                style={
-                  Array [
-                    Object {
-                      "height": 31,
-                      "width": 51,
-                    },
-                    undefined,
-                  ]
-                }
                 testID="published"
                 tintColor={null}
                 title="Publish"
+                trackColor="#374A59"
                 value={true}
               />
             </View>
@@ -4422,13 +4218,13 @@ exports[`saving invalid name displays banner 1`] = `
         canEditAssignees={true}
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
       />
@@ -4532,9 +4328,6 @@ exports[`saving invalid points possible displays banner 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -4596,9 +4389,6 @@ exports[`saving invalid points possible displays banner 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -4633,9 +4423,6 @@ exports[`saving invalid points possible displays banner 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -4679,6 +4466,7 @@ exports[`saving invalid points possible displays banner 1`] = `
           onChangeText={[Function]}
           onFocus={[Function]}
           placeholder="Title"
+          rejectResponderTermination={true}
           returnKeyType="done"
           style={
             Array [
@@ -4697,15 +4485,13 @@ exports[`saving invalid points possible displays banner 1`] = `
             ]
           }
           testID="titleInput"
+          underlineColorAndroid="transparent"
           value="learn to write code"
         />
       </View>
       <View />
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -4788,9 +4574,6 @@ exports[`saving invalid points possible displays banner 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -4846,9 +4629,6 @@ exports[`saving invalid points possible displays banner 1`] = `
       </TouchableHighlight>
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -4885,7 +4665,6 @@ exports[`saving invalid points possible displays banner 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -4922,8 +4701,6 @@ exports[`saving invalid points possible displays banner 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -4981,6 +4758,7 @@ exports[`saving invalid points possible displays banner 1`] = `
                   onChangeText={[Function]}
                   onFocus={[Function]}
                   placeholder="--"
+                  rejectResponderTermination={true}
                   style={
                     Array [
                       Object {
@@ -4992,7 +4770,7 @@ exports[`saving invalid points possible displays banner 1`] = `
                     ]
                   }
                   testID="assignmentDetails.edit.points_possible.input"
-                  value={undefined}
+                  underlineColorAndroid="transparent"
                 />
               </View>
             </View>
@@ -5011,9 +4789,6 @@ exports[`saving invalid points possible displays banner 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -5030,7 +4805,6 @@ exports[`saving invalid points possible displays banner 1`] = `
               },
             ]
           }
-          testID={undefined}
         >
           Points possible must be a number
         </Text>
@@ -5089,8 +4863,6 @@ exports[`saving invalid points possible displays banner 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -5142,9 +4914,6 @@ exports[`saving invalid points possible displays banner 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -5161,7 +4930,6 @@ exports[`saving invalid points possible displays banner 1`] = `
                       },
                     ]
                   }
-                  testID={undefined}
                 >
                   Points
                 </Text>
@@ -5189,7 +4957,6 @@ exports[`saving invalid points possible displays banner 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -5226,8 +4993,6 @@ exports[`saving invalid points possible displays banner 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -5270,27 +5035,14 @@ exports[`saving invalid points possible displays banner 1`] = `
                 }
               }
             >
-              <RCTSwitch
+              <Switch
                 border="bottom"
-                disabled={false}
                 identifier="published"
-                onChange={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                onTintColor="#374A59"
                 onValueChange={[Function]}
-                style={
-                  Array [
-                    Object {
-                      "height": 31,
-                      "width": 51,
-                    },
-                    undefined,
-                  ]
-                }
                 testID="published"
                 tintColor={null}
                 title="Publish"
+                trackColor="#374A59"
                 value={true}
               />
             </View>
@@ -5339,13 +5091,13 @@ exports[`saving invalid points possible displays banner 1`] = `
         canEditAssignees={true}
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
       />
@@ -5449,9 +5201,6 @@ exports[`saving negative points possible displays banner 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -5513,9 +5262,6 @@ exports[`saving negative points possible displays banner 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -5550,9 +5296,6 @@ exports[`saving negative points possible displays banner 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -5596,6 +5339,7 @@ exports[`saving negative points possible displays banner 1`] = `
           onChangeText={[Function]}
           onFocus={[Function]}
           placeholder="Title"
+          rejectResponderTermination={true}
           returnKeyType="done"
           style={
             Array [
@@ -5614,15 +5358,13 @@ exports[`saving negative points possible displays banner 1`] = `
             ]
           }
           testID="titleInput"
+          underlineColorAndroid="transparent"
           value="learn to write code"
         />
       </View>
       <View />
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -5705,9 +5447,6 @@ exports[`saving negative points possible displays banner 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -5763,9 +5502,6 @@ exports[`saving negative points possible displays banner 1`] = `
       </TouchableHighlight>
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -5802,7 +5538,6 @@ exports[`saving negative points possible displays banner 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -5839,8 +5574,6 @@ exports[`saving negative points possible displays banner 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -5898,6 +5631,7 @@ exports[`saving negative points possible displays banner 1`] = `
                   onChangeText={[Function]}
                   onFocus={[Function]}
                   placeholder="--"
+                  rejectResponderTermination={true}
                   style={
                     Array [
                       Object {
@@ -5909,7 +5643,7 @@ exports[`saving negative points possible displays banner 1`] = `
                     ]
                   }
                   testID="assignmentDetails.edit.points_possible.input"
-                  value={undefined}
+                  underlineColorAndroid="transparent"
                 />
               </View>
             </View>
@@ -5928,9 +5662,6 @@ exports[`saving negative points possible displays banner 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -5947,7 +5678,6 @@ exports[`saving negative points possible displays banner 1`] = `
               },
             ]
           }
-          testID={undefined}
         >
           The value of possible points must be zero or greater
         </Text>
@@ -6006,8 +5736,6 @@ exports[`saving negative points possible displays banner 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -6059,9 +5787,6 @@ exports[`saving negative points possible displays banner 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
                     Array [
@@ -6078,7 +5803,6 @@ exports[`saving negative points possible displays banner 1`] = `
                       },
                     ]
                   }
-                  testID={undefined}
                 >
                   Points
                 </Text>
@@ -6106,7 +5830,6 @@ exports[`saving negative points possible displays banner 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -6143,8 +5866,6 @@ exports[`saving negative points possible displays banner 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -6187,27 +5908,14 @@ exports[`saving negative points possible displays banner 1`] = `
                 }
               }
             >
-              <RCTSwitch
+              <Switch
                 border="bottom"
-                disabled={false}
                 identifier="published"
-                onChange={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                onTintColor="#374A59"
                 onValueChange={[Function]}
-                style={
-                  Array [
-                    Object {
-                      "height": 31,
-                      "width": 51,
-                    },
-                    undefined,
-                  ]
-                }
                 testID="published"
                 tintColor={null}
                 title="Publish"
+                trackColor="#374A59"
                 value={true}
               />
             </View>
@@ -6256,13 +5964,13 @@ exports[`saving negative points possible displays banner 1`] = `
         canEditAssignees={true}
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
       />

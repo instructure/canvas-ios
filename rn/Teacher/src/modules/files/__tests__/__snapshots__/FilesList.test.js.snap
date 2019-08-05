@@ -35,19 +35,8 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -56,17 +45,11 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-folder-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -170,8 +153,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -197,9 +178,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                     some folder
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -277,19 +255,8 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -298,17 +265,11 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -412,8 +373,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -439,9 +398,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -519,19 +475,8 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -540,17 +485,11 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-2"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -654,8 +593,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -681,9 +618,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -766,13 +700,151 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
       }
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction] {
+            "calls": Array [
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+            ],
+          },
         }
       }
       style={
@@ -824,19 +896,8 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -845,17 +906,11 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-folder-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -959,8 +1014,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -986,9 +1039,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                     some folder
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -1066,19 +1116,8 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -1087,17 +1126,11 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -1201,8 +1234,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -1228,9 +1259,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -1308,19 +1336,8 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -1329,17 +1346,11 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-2"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -1443,8 +1454,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -1470,9 +1479,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -1555,13 +1561,151 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
       }
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction] {
+            "calls": Array [
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+            ],
+          },
         }
       }
       style={
@@ -1613,19 +1757,8 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -1634,17 +1767,11 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-folder-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -1748,8 +1875,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -1775,9 +1900,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                     some folder
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -1855,19 +1977,8 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -1876,17 +1987,11 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -1990,8 +2095,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2017,9 +2120,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2097,19 +2197,8 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -2118,17 +2207,11 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-2"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -2232,8 +2315,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2259,9 +2340,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2344,13 +2422,151 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
       }
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction] {
+            "calls": Array [
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+            ],
+          },
         }
       }
       style={
@@ -2402,19 +2618,8 @@ exports[`FilesList sending weird data into the progress update function should n
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -2423,17 +2628,11 @@ exports[`FilesList sending weird data into the progress update function should n
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-folder-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -2537,8 +2736,6 @@ exports[`FilesList sending weird data into the progress update function should n
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2564,9 +2761,6 @@ exports[`FilesList sending weird data into the progress update function should n
                     some folder
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2644,19 +2838,8 @@ exports[`FilesList sending weird data into the progress update function should n
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -2665,17 +2848,11 @@ exports[`FilesList sending weird data into the progress update function should n
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -2779,8 +2956,6 @@ exports[`FilesList sending weird data into the progress update function should n
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2806,9 +2981,6 @@ exports[`FilesList sending weird data into the progress update function should n
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2886,19 +3058,8 @@ exports[`FilesList sending weird data into the progress update function should n
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -2907,17 +3068,11 @@ exports[`FilesList sending weird data into the progress update function should n
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-2"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -3021,8 +3176,6 @@ exports[`FilesList sending weird data into the progress update function should n
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3048,9 +3201,6 @@ exports[`FilesList sending weird data into the progress update function should n
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3133,13 +3283,158 @@ exports[`FilesList sending weird data into the progress update function should n
       }
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction] {
+            "calls": Array [
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+            ],
+          },
         }
       }
       style={
@@ -3191,19 +3486,8 @@ exports[`FilesList should render 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -3212,17 +3496,11 @@ exports[`FilesList should render 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-folder-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -3326,8 +3604,6 @@ exports[`FilesList should render 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3353,9 +3629,6 @@ exports[`FilesList should render 1`] = `
                     some folder
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3433,19 +3706,8 @@ exports[`FilesList should render 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -3454,17 +3716,11 @@ exports[`FilesList should render 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -3568,8 +3824,6 @@ exports[`FilesList should render 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3595,9 +3849,6 @@ exports[`FilesList should render 1`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3675,19 +3926,8 @@ exports[`FilesList should render 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -3696,17 +3936,11 @@ exports[`FilesList should render 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-2"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -3810,8 +4044,6 @@ exports[`FilesList should render 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3837,9 +4069,6 @@ exports[`FilesList should render 1`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3922,13 +4151,25 @@ exports[`FilesList should render 1`] = `
       }
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction] {
+            "calls": Array [
+              Array [
+                [Function],
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+            ],
+          },
         }
       }
       style={
@@ -3980,19 +4221,8 @@ exports[`FilesList should render for course files 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -4001,17 +4231,11 @@ exports[`FilesList should render for course files 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-folder-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -4115,8 +4339,6 @@ exports[`FilesList should render for course files 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4142,9 +4364,6 @@ exports[`FilesList should render for course files 1`] = `
                     some folder
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -4222,19 +4441,8 @@ exports[`FilesList should render for course files 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -4243,17 +4451,11 @@ exports[`FilesList should render for course files 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -4357,8 +4559,6 @@ exports[`FilesList should render for course files 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4384,9 +4584,6 @@ exports[`FilesList should render for course files 1`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -4464,19 +4661,8 @@ exports[`FilesList should render for course files 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -4485,17 +4671,11 @@ exports[`FilesList should render for course files 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-2"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -4599,8 +4779,6 @@ exports[`FilesList should render for course files 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4626,9 +4804,6 @@ exports[`FilesList should render for course files 1`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -4711,13 +4886,32 @@ exports[`FilesList should render for course files 1`] = `
       }
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction] {
+            "calls": Array [
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+            ],
+          },
         }
       }
       style={
@@ -4769,19 +4963,8 @@ exports[`FilesList should render for user files 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -4790,17 +4973,11 @@ exports[`FilesList should render for user files 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-folder-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -4904,8 +5081,6 @@ exports[`FilesList should render for user files 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4931,9 +5106,6 @@ exports[`FilesList should render for user files 1`] = `
                     some folder
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -5011,19 +5183,8 @@ exports[`FilesList should render for user files 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -5032,17 +5193,11 @@ exports[`FilesList should render for user files 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -5146,8 +5301,6 @@ exports[`FilesList should render for user files 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -5173,9 +5326,6 @@ exports[`FilesList should render for user files 1`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -5253,19 +5403,8 @@ exports[`FilesList should render for user files 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -5274,17 +5413,11 @@ exports[`FilesList should render for user files 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-2"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -5388,8 +5521,6 @@ exports[`FilesList should render for user files 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -5415,9 +5546,6 @@ exports[`FilesList should render for user files 1`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -5500,13 +5628,39 @@ exports[`FilesList should render for user files 1`] = `
       }
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction] {
+            "calls": Array [
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+            ],
+          },
         }
       }
       style={
@@ -5558,19 +5712,8 @@ exports[`FilesList should render with folders 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -5579,17 +5722,11 @@ exports[`FilesList should render with folders 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-folder-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -5693,8 +5830,6 @@ exports[`FilesList should render with folders 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -5720,9 +5855,6 @@ exports[`FilesList should render with folders 1`] = `
                     some folder
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -5800,19 +5932,8 @@ exports[`FilesList should render with folders 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -5821,17 +5942,11 @@ exports[`FilesList should render with folders 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-1"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -5935,8 +6050,6 @@ exports[`FilesList should render with folders 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -5962,9 +6075,6 @@ exports[`FilesList should render with folders 1`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -6042,19 +6152,8 @@ exports[`FilesList should render with folders 1`] = `
         <View>
           <View>
             <View
-              accessibilityComponentType={undefined}
-              accessibilityLabel={undefined}
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
               accessible={true}
-              hasTVPreferredFocus={undefined}
-              hitSlop={undefined}
               isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -6063,17 +6162,11 @@ exports[`FilesList should render with folders 1`] = `
               onStartShouldSetResponder={[Function]}
               style={
                 Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Array [
-                    undefined,
-                    undefined,
-                  ],
+                  undefined,
+                  undefined,
                 ]
               }
               testID="file-list.file-list-row.cell-file-2"
-              tvParallaxProperties={undefined}
             >
               <View
                 style={
@@ -6177,8 +6270,6 @@ exports[`FilesList should render with folders 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -6204,9 +6295,6 @@ exports[`FilesList should render with folders 1`] = `
                     Book Report
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -6289,13 +6377,46 @@ exports[`FilesList should render with folders 1`] = `
       }
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction] {
+            "calls": Array [
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+            ],
+          },
         }
       }
       style={
@@ -6355,13 +6476,53 @@ exports[`FilesList should render with no data at all 1`] = `
       }
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction] {
+            "calls": Array [
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+            ],
+          },
         }
       }
       style={

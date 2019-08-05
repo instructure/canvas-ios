@@ -19,7 +19,7 @@
 /* @flow */
 
 import React from 'react'
-import { AlertIOS } from 'react-native'
+import { Alert } from 'react-native'
 import renderer from 'react-test-renderer'
 import { AudioComment, type Props } from '../AudioComment'
 import explore from '../../../../../test/helpers/explore'
@@ -93,7 +93,7 @@ describe('AudioComment', () => {
   it('alerts when downloading audio fails', async () => {
     const spy = jest.fn()
     // $FlowFixMe
-    AlertIOS.alert = spy
+    Alert.alert = spy
     props.downloadAudio = jest.fn(() => Promise.reject(new Error()))
     const view = render(props)
     const label: any = explore(view.toJSON()).selectByID('audio-comment.label')
@@ -104,7 +104,7 @@ describe('AudioComment', () => {
   it('alerts when playback fails', async () => {
     const spy = jest.fn()
     // $FlowFixMe
-    AlertIOS.alert = spy
+    Alert.alert = spy
     const sound = templates.sound({
       play: jest.fn(callback => callback(false)),
     })
