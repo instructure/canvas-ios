@@ -372,16 +372,14 @@ extension SubmissionViewController {
             }
         }
 
-        var hashValue: Int {
+        func hash(into hasher: inout Hasher) {
             switch self {
             case .quizDescription:
-                return 1
-
-            case .question(question: let q):
-                return q << 1
-
-            case .answer(question: let q, answer: let a):
-                return (q << 1) + (a << 16)
+                hasher.combine(1)
+            case .question(let question):
+                hasher.combine(question << 1)
+            case .answer(let question, let answer):
+                hasher.combine((question << 1) + (answer << 16))
             }
         }
 
