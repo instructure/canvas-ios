@@ -125,7 +125,6 @@ exports[`ZSSRichTextEditor renders 1`] = `
   scrollEnabled={true}
   source={
     Object {
-      "baseUrl": "file:///mainBundle",
       "html": "",
     }
   }
@@ -136,6 +135,7 @@ exports[`ZSSRichTextEditor renders 1`] = `
       "flexDirection": "column",
     }
   }
+  useWebKit={true}
 />
 `;
 

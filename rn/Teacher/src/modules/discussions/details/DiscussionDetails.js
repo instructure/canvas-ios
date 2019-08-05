@@ -241,7 +241,7 @@ export class DiscussionDetails extends Component<Props, any> {
     const showGroupTopicChildren = isTeacher() &&
       this.props.context === 'courses' &&
       discussion.group_topic_children &&
-      discussion.group_topic_children.length
+      discussion.group_topic_children.length > 0
     return (
       <View>
         <AssignmentSection isFirstRow={true} style={style.topContainer}>

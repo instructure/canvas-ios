@@ -78,7 +78,6 @@ describe('ZSSRichTextEditor', () => {
     const html = await RNFS.readFile()
     view.update()
     expect(view.prop('source').html).toEqual(html)
-    expect(view.prop('source').baseUrl).toEqual(RNFS.MainBundlePath)
   })
 
   it('provides unique active editor items', () => {
