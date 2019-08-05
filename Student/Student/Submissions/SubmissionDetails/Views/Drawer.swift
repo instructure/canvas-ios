@@ -34,7 +34,7 @@ class Drawer: UIView {
     @IBOutlet weak var contentView: UIView?
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint?
 
-    var height = CGFloat(integerLiteral: 0)
+    var height: CGFloat = 0
     // this number doesnt seem to be accurate all the time, especially on iphones with a notch
     // Thus this number is more of a starting place. There is a constraint on the drawer to prevent
     // it from going too high
@@ -67,6 +67,7 @@ class Drawer: UIView {
         drawer?.backgroundColor = UIColor.clear
 
         gripper?.layer.cornerRadius = 2
+        updateGripperLabel(height: height)
         tabs?.setTitle(NSLocalizedString("Comments", bundle: .student, comment: ""), forSegmentAt: Tab.comments.rawValue)
         tabs?.setTitle(NSLocalizedString("Files", bundle: .student, comment: ""), forSegmentAt: Tab.files.rawValue)
         tabs?.setTitle(NSLocalizedString("Rubric", bundle: .student, comment: ""), forSegmentAt: Tab.rubric.rawValue)
@@ -107,6 +108,9 @@ class Drawer: UIView {
 
 extension Drawer {
     @IBAction func gripperPressed(_ sender: UIButton) {
+        if tabs?.selectedSegmentIndex == UISegmentedControl.noSegment {
+            tabs?.selectedSegmentIndex = 0
+        }
         if height < midDrawerHeight {
             moveTo(height: midDrawerHeight, velocity: 100)
         } else if height == midDrawerHeight {
@@ -119,6 +123,9 @@ extension Drawer {
     @IBAction func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard let currentHeight = contentViewHeight?.constant else {
             return
+        }
+        if tabs?.selectedSegmentIndex == UISegmentedControl.noSegment {
+            tabs?.selectedSegmentIndex = 0
         }
         if gestureRecognizer.state == .ended {
             let velocity = gestureRecognizer.velocity(in: self).y

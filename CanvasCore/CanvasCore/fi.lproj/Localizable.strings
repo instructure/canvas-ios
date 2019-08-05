@@ -286,9 +286,6 @@
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NS:n lataus epäonnistuiManagedObjectModel";
 
-/* Error when submitting an assignment */
-"Failed to Submit" = "Lähetys epäonnistui";
-
 /* No comment provided by engineer. */
 "Failed to write image" = "Ei voi kirjoittaa kuvaa";
 
@@ -612,15 +609,6 @@
    Turn in this url button */
 "Submit" = "Lähetä";
 
-/* Title for button to submit assignment */
-"Submit Assignment" = "Lähetä tehtävä";
-
-/* No comment provided by engineer. */
-"Submitted!" = "Lähetetty!";
-
-/* No comment provided by engineer. */
-"Submitting" = "Lähetetään";
-
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "Tietovisaa lähetetään";
 
@@ -701,9 +689,6 @@
 
 /* Error description for Push Notifications registration error. */
 "There was a problem registering your device for push notifications." = "Laitteesi rekisteröinnissä push-ilmoituksia varten esiintyi ongelma.";
-
-/* Message when fails to submit an assignment */
-"There was a problem submitting your assignment. Please try again later." = "Tehtäväsi lähetys ei onnistunut. Yritä myöhemmin uudelleen.";
 
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "Tietovisan URL:n päivittämisessä ilmeni ongelma.";

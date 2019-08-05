@@ -286,9 +286,6 @@
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) をロードできませんでしたNSManagedObjectModel";
 
-/* Error when submitting an assignment */
-"Failed to Submit" = "提出できませんでした";
-
 /* No comment provided by engineer. */
 "Failed to write image" = "画像の書き込みに失敗しました";
 
@@ -612,15 +609,6 @@
    Turn in this url button */
 "Submit" = "提出";
 
-/* Title for button to submit assignment */
-"Submit Assignment" = "課題を提出する";
-
-/* No comment provided by engineer. */
-"Submitted!" = "提出しました！";
-
-/* No comment provided by engineer. */
-"Submitting" = "提出しています";
-
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "クイズを提出する";
 
@@ -701,9 +689,6 @@
 
 /* Error description for Push Notifications registration error. */
 "There was a problem registering your device for push notifications." = "デバイスにプッシュ通知を登録する際に問題が発生しました。";
-
-/* Message when fails to submit an assignment */
-"There was a problem submitting your assignment. Please try again later." = "課題提出の際に問題がありました。後ほどもういちど試してください。";
 
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "クイズURLのアップデート中に問題が発生しました";

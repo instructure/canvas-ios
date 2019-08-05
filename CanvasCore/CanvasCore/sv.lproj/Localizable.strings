@@ -286,9 +286,6 @@
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Misslyckades att ladda (discussionKitModelName) NSManagedObjectModel";
 
-/* Error when submitting an assignment */
-"Failed to Submit" = "Misslyckades att skicka";
-
 /* No comment provided by engineer. */
 "Failed to write image" = "Det gick inte att skriva bilden";
 
@@ -612,15 +609,6 @@
    Turn in this url button */
 "Submit" = "Lämna in";
 
-/* Title for button to submit assignment */
-"Submit Assignment" = "Lämna in uppgift";
-
-/* No comment provided by engineer. */
-"Submitted!" = "Skickad!";
-
-/* No comment provided by engineer. */
-"Submitting" = "Skickar";
-
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "Skickar in quiz";
 
@@ -701,9 +689,6 @@
 
 /* Error description for Push Notifications registration error. */
 "There was a problem registering your device for push notifications." = "Det gick inte att registrera enheten för push-meddelanden.";
-
-/* Message when fails to submit an assignment */
-"There was a problem submitting your assignment. Please try again later." = "Det var problem med att skicka din uppgift. Försök igen senare.";
 
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "Det uppstod ett fel när Quiz-URL:en uppdaterades";

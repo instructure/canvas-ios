@@ -286,9 +286,6 @@
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Laden mislukt (discussionKitModelName) NSManagedObjectModel";
 
-/* Error when submitting an assignment */
-"Failed to Submit" = "Inleveren mislukt";
-
 /* No comment provided by engineer. */
 "Failed to write image" = "Kan afbeelding niet schrijven";
 
@@ -612,15 +609,6 @@
    Turn in this url button */
 "Submit" = "Inzenden";
 
-/* Title for button to submit assignment */
-"Submit Assignment" = "Opdracht inleveren";
-
-/* No comment provided by engineer. */
-"Submitted!" = "Ingediend!";
-
-/* No comment provided by engineer. */
-"Submitting" = "In te leveren";
-
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "Toets inleveren";
 
@@ -701,9 +689,6 @@
 
 /* Error description for Push Notifications registration error. */
 "There was a problem registering your device for push notifications." = "Er is een fout opgetreden bij het registreren van je apparaat voor pushberichten.";
-
-/* Message when fails to submit an assignment */
-"There was a problem submitting your assignment. Please try again later." = "Er was een probleem bij het inleveren van je opdracht Probeer het later opnieuw.";
 
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "Er was een probleem bij het bijwerken van de Toets URL";

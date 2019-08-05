@@ -91,8 +91,6 @@ open class PagesHomeViewController: UIViewController {
             self.innerController = .frontPage
         }
 
-        // Prevent view from hiding under navbar
-        self.automaticallyAdjustsScrollViewInsets = false
         self.edgesForExtendedLayout = UIRectEdge()
     }
 

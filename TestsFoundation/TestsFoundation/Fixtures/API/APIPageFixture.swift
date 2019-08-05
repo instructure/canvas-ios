@@ -28,7 +28,7 @@ extension APIPage {
         title: String = "Answers Page",
         html_url: String = "/courses/42/pages/Answers-Page",
         published: Bool = false
-        ) -> APIPage {
+	) -> APIPage {
         return APIPage(
             url: url,
             updated_at: updated_at,

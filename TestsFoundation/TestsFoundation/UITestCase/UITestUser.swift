@@ -20,6 +20,7 @@ import Foundation
 @testable import Core
 
 public class UITestUser {
+    public static let readAdmin1 = UITestUser(.testReadAdmin1)
     public static let readStudent1 = UITestUser(.testReadStudent1)
     public static let readStudent2 = UITestUser(.testReadStudent2)
     public static let readTeacher1 = UITestUser(.testReadTeacher1)

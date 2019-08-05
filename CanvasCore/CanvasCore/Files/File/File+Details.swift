@@ -56,7 +56,6 @@ extension File {
             webView.loadRequest(request)
             webView.backgroundColor = UIColor.white
             self.view = webView
-            self.automaticallyAdjustsScrollViewInsets = false
             self.edgesForExtendedLayout = UIRectEdge()
         }
     }

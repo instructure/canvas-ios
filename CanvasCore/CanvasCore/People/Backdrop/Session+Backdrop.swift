@@ -29,14 +29,14 @@ extension Session {
     
     var backdropFile: BackdropFile? {
         get {
-            if let hash = UserDefaults.standard.object(forKey: backdropKey) as? NSNumber, let backdrop = BackdropFile.fromHash(hash.intValue) {
+            if let hash = UserDefaults.standard.object(forKey: backdropKey) as? NSNumber, let backdrop = BackdropFile.fromUniqueVaue(hash.intValue) {
                 self.backdropFile = backdrop
                 return backdrop
             }
             
             return nil
         } set {
-            UserDefaults.standard.set(newValue.map { NSNumber(value: $0.hashValue) }, forKey: backdropKey)
+            UserDefaults.standard.set(newValue.map { NSNumber(value: $0.uniqueValue) }, forKey: backdropKey)
         }
     }
     

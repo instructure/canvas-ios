@@ -582,6 +582,7 @@
 		7D067CF421505BA000B78AF2 /* StudentReborn.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D067CF221505BA000B78AF2 /* StudentReborn.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
 		7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7D6C8C7822F350DE00E5ADD8 /* ActAsUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C7722F350DE00E5ADD8 /* ActAsUserTests.swift */; };
 		7D86500022B2A432006B0127 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D864FFF22B2A432006B0127 /* TestsFoundation.framework */; };
 		7D86500122B2A4A2006B0127 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D86500222B2A4AB006B0127 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1535,6 +1536,7 @@
 		7D6384491FE1CD5E00659247 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D6711931FE1CCDB00CBB289 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D6711941FE1CCDB00CBB289 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		7D6C8C7722F350DE00E5ADD8 /* ActAsUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserTests.swift; sourceTree = "<group>"; };
 		7D7A55F11FE1CCE600F02381 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7D7A55F31FE1CCE600F02381 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7D864FFF22B2A432006B0127 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3078,6 +3080,14 @@
 			path = "Mastery Paths";
 			sourceTree = "<group>";
 		};
+		7D6C8C7622F350C600E5ADD8 /* ActAsUser */ = {
+			isa = PBXGroup;
+			children = (
+				7D6C8C7722F350DE00E5ADD8 /* ActAsUserTests.swift */,
+			);
+			path = ActAsUser;
+			sourceTree = "<group>";
+		};
 		7D903BFF22BABC3D009D9E9E /* Courses */ = {
 			isa = PBXGroup;
 			children = (
@@ -3125,6 +3135,7 @@
 		9F5D743622A99E91002FCCCE /* CanvasUITests */ = {
 			isa = PBXGroup;
 			children = (
+				7D6C8C7622F350C600E5ADD8 /* ActAsUser */,
 				EEEA99D622B7F2FC006AD5BF /* Announcements */,
 				B105FDDC22B29D4300B0D4B3 /* Assignments */,
 				EE7BB78122BA9379001C1EE7 /* Calendar */,
@@ -4444,6 +4455,7 @@
 				EE2BFBDE22BD4BEF0046BA8B /* ModulesTests.swift in Sources */,
 				7D903C0622BAC72B009D9E9E /* ProfileTests.swift in Sources */,
 				EE86F22C22C1625E00F90CF6 /* CourseGroupTests.swift in Sources */,
+				7D6C8C7822F350DE00E5ADD8 /* ActAsUserTests.swift in Sources */,
 				7D903C1522BD3618009D9E9E /* DiscussionDetails.swift in Sources */,
 				7D903C1722BD3690009D9E9E /* DiscussionDetailsTests.swift in Sources */,
 				7D903C0422BABE23009D9E9E /* Profile.swift in Sources */,
@@ -5194,6 +5206,7 @@
 				CODE_SIGN_ENTITLEMENTS = Canvas/Canvas.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

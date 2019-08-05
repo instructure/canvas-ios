@@ -81,6 +81,10 @@
 		3B635B42225D07CB001F353D /* SyllabusActionableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B1C225C0DA0001F353D /* SyllabusActionableItemsViewController.swift */; };
 		3B635B47225D07D6001F353D /* SyllabusActionableItemsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B21225C0DA0001F353D /* SyllabusActionableItemsPresenter.swift */; };
 		3B67BCB621B5784500055324 /* UrlSubmissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54260421B1D08B0009D069 /* UrlSubmissionPresenter.swift */; };
+		3B82680B22F0DCCF00278492 /* SubmissionDetailsLockedEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B82680A22F0DCCF00278492 /* SubmissionDetailsLockedEmptyView.swift */; };
+		3B82680C22F0DCDA00278492 /* SubmissionDetailsLockedEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B82680A22F0DCCF00278492 /* SubmissionDetailsLockedEmptyView.swift */; };
+		3B82680E22F0DCED00278492 /* SubmissionDetailsLockedEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B82680D22F0DCED00278492 /* SubmissionDetailsLockedEmptyView.xib */; };
+		3B82680F22F0E9A100278492 /* SubmissionDetailsLockedEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B82680D22F0DCED00278492 /* SubmissionDetailsLockedEmptyView.xib */; };
 		3BBCF833224BFF29004B519D /* SyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF832224BFF29004B519D /* SyllabusViewController.swift */; };
 		3BBCF834224BFF29004B519D /* SyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF832224BFF29004B519D /* SyllabusViewController.swift */; };
 		3BBCF839224C142C004B519D /* SyllabusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBCF838224C142C004B519D /* SyllabusPresenter.swift */; };
@@ -377,6 +381,8 @@
 		3B635B21225C0DA0001F353D /* SyllabusActionableItemsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenter.swift; sourceTree = "<group>"; };
 		3B635B24225C0E4F001F353D /* SyllabusActionableItemsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenterTests.swift; sourceTree = "<group>"; };
 		3B6386AE22653347002DEE72 /* DrawerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTests.swift; sourceTree = "<group>"; };
+		3B82680A22F0DCCF00278492 /* SubmissionDetailsLockedEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsLockedEmptyView.swift; sourceTree = "<group>"; };
+		3B82680D22F0DCED00278492 /* SubmissionDetailsLockedEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubmissionDetailsLockedEmptyView.xib; sourceTree = "<group>"; };
 		3BBCF832224BFF29004B519D /* SyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewController.swift; sourceTree = "<group>"; };
 		3BBCF838224C142C004B519D /* SyllabusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusPresenter.swift; sourceTree = "<group>"; };
 		3BBCF847224C19A2004B519D /* SyllabusViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SyllabusViewController.storyboard; sourceTree = "<group>"; };
@@ -748,6 +754,7 @@
 				7D979CD2215BE3CC00567627 /* Extensions */,
 				3B1B003B219BD9F50045E8A1 /* Groups */,
 				7D10194C215EBA530058FDD1 /* IBDesignables */,
+				EEC3EF5422E0EB1F00799FE2 /* Pages */,
 				3B1B005A219BD9F60045E8A1 /* Quizzes */,
 				7D2DC30D219CB65E008FE29A /* Submissions */,
 				2C5C698C211DFFAD00D9AD15 /* AppDelegate.swift */,
@@ -1088,6 +1095,8 @@
 				9FDDE2E1218CCBF5002B71F0 /* Drawer.xib */,
 				7D09E5B621935933006150FA /* SubmissionDetailsEmptyView.swift */,
 				7D09E5B521935933006150FA /* SubmissionDetailsEmptyView.xib */,
+				3B82680A22F0DCCF00278492 /* SubmissionDetailsLockedEmptyView.swift */,
+				3B82680D22F0DCED00278492 /* SubmissionDetailsLockedEmptyView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1650,7 +1659,9 @@
 				7DA5C494223863A2003CDB4C /* SubmissionCommentsViewController.storyboard in Resources */,
 				3BE1307421AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */,
 				7D1758E4215AA06C00F88613 /* Localizable.strings in Resources */,
+				3B82680E22F0DCED00278492 /* SubmissionDetailsLockedEmptyView.xib in Resources */,
 				3B19D28022666AD5003A0565 /* RubricViewController.storyboard in Resources */,
+				EEC3EF5922E0EB8900799FE2 /* PageListViewController.storyboard in Resources */,
 				B150C62922973FDA0096D58C /* ArcSubmissionViewController.storyboard in Resources */,
 				3B1B0077219BD9F60045E8A1 /* CourseListViewController.storyboard in Resources */,
 				7D1758E8215AA07E00F88613 /* Localizable.stringsdict in Resources */,
@@ -1688,6 +1699,8 @@
 				3BE1307521AE0074001D4582 /* UrlSubmissionContentViewController.storyboard in Resources */,
 				3B54260221B094DF0009D069 /* UrlSubmissionViewController.storyboard in Resources */,
 				9F74200C21932DEB00108A0F /* SubmissionDetailsViewController.storyboard in Resources */,
+				EEC3EF5B22E0ECEC00799FE2 /* PageListViewController.storyboard in Resources */,
+				3B82680F22F0E9A100278492 /* SubmissionDetailsLockedEmptyView.xib in Resources */,
 				7D09E5B821935933006150FA /* SubmissionDetailsEmptyView.xib in Resources */,
 				7DA61A5E216561A90085BAE8 /* Localizable.stringsdict in Resources */,
 				3B19D28122666AD5003A0565 /* RubricViewController.storyboard in Resources */,
@@ -1800,6 +1813,7 @@
 				9F5ADB31218B656400D8C973 /* SubmissionDetailsPresenter.swift in Sources */,
 				2C5C698D211DFFAD00D9AD15 /* AppDelegate.swift in Sources */,
 				788152F5212B7482005BA428 /* DashboardGroupCell.swift in Sources */,
+				EEC3EF6022E1041100799FE2 /* PageListCell.swift in Sources */,
 				9FDDE2E0218CCAB9002B71F0 /* Drawer.swift in Sources */,
 				3B1B0078219BD9F60045E8A1 /* CourseListCourseCell.swift in Sources */,
 				7D2FADD1225BD3D100BCE19E /* TextSubmissionPresenter.swift in Sources */,
@@ -1819,6 +1833,7 @@
 				7D2000432233355F003BE403 /* SubmissionFilesViewController.swift in Sources */,
 				3B1B0066219BD9F60045E8A1 /* GroupNavigationPresenter.swift in Sources */,
 				2CB3261D21387C99009496AF /* RouterViewController.swift in Sources */,
+				EEC3EF5722E0EB6500799FE2 /* PageListViewController.swift in Sources */,
 				7D10194E215EBA7B0058FDD1 /* DividerView.swift in Sources */,
 				7D25E1502292F862007302F9 /* SubmissionButtonAlertView.swift in Sources */,
 				3BE2ADCD21B70537008D91AB /* DynamicTextField.swift in Sources */,
@@ -1827,6 +1842,8 @@
 				7D79636B22307F2500CCF943 /* SubmissionFilesCell.swift in Sources */,
 				788152DD212B34F2005BA428 /* DashboardViewController.swift in Sources */,
 				3B1B007A219BD9F60045E8A1 /* QuizListPresenter.swift in Sources */,
+				EEC3EF5D22E0EDDA00799FE2 /* PageListPresenter.swift in Sources */,
+				3B82680B22F0DCCF00278492 /* SubmissionDetailsLockedEmptyView.swift in Sources */,
 				3B3785BF222DC0B90047DAE4 /* CourseNavigationViewController.swift in Sources */,
 				7D20F61621C3142E00B77E5E /* CourseListPresenter.swift in Sources */,
 				3B1B0064219BD9F60045E8A1 /* GroupNavigationViewController.swift in Sources */,
@@ -1867,6 +1884,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DA5C49D22386C1E003CDB4C /* SubmissionCommentTextCell.swift in Sources */,
+				EEC3EF5E22E0EDDA00799FE2 /* PageListPresenter.swift in Sources */,
 				3B19D28422667028003A0565 /* RubricCircleView.swift in Sources */,
 				7D067CE721505B3500B78AF2 /* DashboardSectionHeaderView.swift in Sources */,
 				7D005F7F2239DE920040CBD7 /* DynamicTextField.swift in Sources */,
@@ -1881,6 +1899,7 @@
 				7D067CE821505B3500B78AF2 /* DashboardPresenter.swift in Sources */,
 				7DD9E638223C4AA100B45A7E /* SubmissionCommentAttemptCell.swift in Sources */,
 				7D10194F215EBA7B0058FDD1 /* DividerView.swift in Sources */,
+				EEC3EF5A22E0ECCE00799FE2 /* PageListViewController.swift in Sources */,
 				B150C62A22977A610096D58C /* ArcSubmissionViewController.swift in Sources */,
 				7D63F781215D37B100151E49 /* CardView.swift in Sources */,
 				3B0B0F65219C8D1100F04216 /* CourseListSectionHeaderView.swift in Sources */,
@@ -1898,6 +1917,7 @@
 				B150C62722973CF20096D58C /* ArcSubmissionPresenter.swift in Sources */,
 				3B19D2702266475B003A0565 /* RubricPresenter.swift in Sources */,
 				7D979CD5215BE3E600567627 /* BundleExtensions.swift in Sources */,
+				EEC3EF6122E1041100799FE2 /* PageListCell.swift in Sources */,
 				9F74200B21932DCE00108A0F /* SubmissionDetailsViewController.swift in Sources */,
 				B1906E5522679A1A00FAD2DE /* UIViewControllerExtensions.swift in Sources */,
 				7D10A49321B5E3CF0040C311 /* RootViewController.swift in Sources */,
@@ -1925,6 +1945,7 @@
 				9FCF1538227B3F50009D35F6 /* RubricLongDescriptionViewController.swift in Sources */,
 				9F2C9F7D219B0F4D001F0F32 /* Drawer.swift in Sources */,
 				7D2FADCC225BCC8A00BCE19E /* TextSubmissionViewController.swift in Sources */,
+				3B82680C22F0DCDA00278492 /* SubmissionDetailsLockedEmptyView.swift in Sources */,
 				3BC49C5822B0507C00937125 /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				9FB25D4B21653AB40087003C /* (null) in Sources */,
 				9F74200D21932DEF00108A0F /* SubmissionDetailsPresenter.swift in Sources */,

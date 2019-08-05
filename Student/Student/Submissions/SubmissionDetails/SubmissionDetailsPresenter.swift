@@ -263,4 +263,15 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
         guard let assignment = assignment.first else { return }
         submissionButtonPresenter.submitAssignment(assignment, button: button)
     }
+
+    func lockedEmptyViewIsHidden() -> Bool {
+        if let assignment = assignment.first {
+            return assignment.lockExplanation == nil && !(assignment.lockedForUser)
+        }
+        return true
+    }
+
+    func lockedEmptyViewHeader() -> String {
+        return assignment.first?.quizID != nil ? NSLocalizedString("Quiz Locked", comment: "") : NSLocalizedString("Assignment Locked", comment: "")
+    }
 }

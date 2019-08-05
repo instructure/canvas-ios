@@ -95,9 +95,6 @@
 "Groups" = "المجموعات";
 
 /* No comment provided by engineer. */
-"Have questions? Use this area to message your instructor about this assignment." = "لديك أسئلة؟ استخدم هذه المساحة لمراسلة معلمك بشأن هذه المهمة.";
-
-/* No comment provided by engineer. */
 "Inbox" = "علبة الوارد";
 
 /* No comment provided by engineer. */
@@ -234,9 +231,6 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "إدخال النص";
-
-/* No comment provided by engineer. */
-"There are no files to display." = "لا توجد أي ملفات للعرض.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "لا توجد أي اختبارات موجزة للعرض.";

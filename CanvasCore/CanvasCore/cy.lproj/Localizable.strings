@@ -286,9 +286,6 @@
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Wedi methu llwytho (discussionKitModelName) NSManagedObjectModel";
 
-/* Error when submitting an assignment */
-"Failed to Submit" = "Wedi methu Cyflwyno";
-
 /* No comment provided by engineer. */
 "Failed to write image" = "Wedi methu ysgrifennu delwedd";
 
@@ -612,15 +609,6 @@
    Turn in this url button */
 "Submit" = "Cyflwyno";
 
-/* Title for button to submit assignment */
-"Submit Assignment" = "Cyflwyno Aseiniad";
-
-/* No comment provided by engineer. */
-"Submitted!" = "Wedi Cyflwyno!";
-
-/* No comment provided by engineer. */
-"Submitting" = "Wrthi'n Cyflwyno";
-
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "Wrthi'n cyflwyno'r Cwis";
 
@@ -701,9 +689,6 @@
 
 /* Error description for Push Notifications registration error. */
 "There was a problem registering your device for push notifications." = "Problem wrth gofrestru'ch dyfais i dderbyn hysbysiadau marchnata.";
-
-/* Message when fails to submit an assignment */
-"There was a problem submitting your assignment. Please try again later." = "Problem wrth gyflwyno’ch aseiniad. Rhowch gynnig arall arni rywbryd eto.";
 
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "Problem wrth ddiweddaru URL y Cwis";

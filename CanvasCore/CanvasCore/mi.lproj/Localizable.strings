@@ -286,9 +286,6 @@
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "I rahua te uta (discussionKitModelName) NSManagedObjectModel";
 
-/* Error when submitting an assignment */
-"Failed to Submit" = "I rahua te Tuku";
-
 /* No comment provided by engineer. */
 "Failed to write image" = "I rahua ki te tuhi āhua";
 
@@ -612,15 +609,6 @@
    Turn in this url button */
 "Submit" = "Tuku";
 
-/* Title for button to submit assignment */
-"Submit Assignment" = "tuku Whakataunga";
-
-/* No comment provided by engineer. */
-"Submitted!" = "I tukuna!";
-
-/* No comment provided by engineer. */
-"Submitting" = "E tuku ana";
-
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "Tuku Quiz ana";
 
@@ -701,9 +689,6 @@
 
 /* Error description for Push Notifications registration error. */
 "There was a problem registering your device for push notifications." = "He raruraru i te wā e rēhita ana i tō pūrere mo ngā whakamōhiotanga pana";
-
-/* Message when fails to submit an assignment */
-"There was a problem submitting your assignment. Please try again later." = "He raruraru i te wā e tuku ana i tō whakataunga Tēnā koa ngana anō i muri mai.";
 
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "He raruraru i te wā e whakahōu ana i te URL Quiz";
