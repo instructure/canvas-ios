@@ -86,11 +86,8 @@ struct BackdropFile: Hashable, Equatable {
         self.type = type
         self.n = n
     }
-    
-    // ---------------------------------------------
-    // MARK: - Hashing
-    // ---------------------------------------------
-    var hashValue: Int {
+
+    var uniqueValue: Int {
         // It is important that we avoid collisions here, because we use this to track
         // the preferences that we store to NSUserDefaults
         switch self.type {
@@ -101,12 +98,12 @@ struct BackdropFile: Hashable, Equatable {
         }
     }
     
-    static func fromHash(_ hash: Int) -> BackdropFile? {
-        if hash > 0 && hash <= numShapeBackdrops + numPhotoBackdrops {
-            if hash <= numShapeBackdrops {
-                return BackdropFile(type: .shapes, n: hash)
+    static func fromUniqueVaue(_ value: Int) -> BackdropFile? {
+        if value > 0 && value <= numShapeBackdrops + numPhotoBackdrops {
+            if value <= numShapeBackdrops {
+                return BackdropFile(type: .shapes, n: value)
             } else {
-                let n = hash - numShapeBackdrops
+                let n = value - numShapeBackdrops
                 return BackdropFile(type: .photos, n: n)
             }
         }

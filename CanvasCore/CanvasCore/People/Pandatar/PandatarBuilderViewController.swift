@@ -63,8 +63,6 @@ open class PandatarBuilderViewController: UIViewController {
         navigationItem.title = NSLocalizedString("Build Your Panda!", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "Title for screen to build a panda avatar")
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(PandatarBuilderViewController.cancel(_:)))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(PandatarBuilderViewController.done(_:)))
-
-        automaticallyAdjustsScrollViewInsets = false
     }
 
     override open func viewWillAppear(_ animated: Bool) {

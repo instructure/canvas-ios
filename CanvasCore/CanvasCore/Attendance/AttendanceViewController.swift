@@ -141,7 +141,7 @@ open class AttendanceViewController: UIViewController {
         bigBlueButton.translatesAutoresizingMaskIntoConstraints = false
         bigBlueButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.semibold)
         bigBlueButton.addTarget(self, action: #selector(markRemainingPresent(_:)), for: .touchUpInside)
-        bigBlueButtonBottom = bigBlueButton.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor, constant: 50)
+        bigBlueButtonBottom = bigBlueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 50)
         
         view.addSubview(tableView)
         view.addSubview(header)
@@ -162,7 +162,7 @@ open class AttendanceViewController: UIViewController {
             changeSectionButton.lastBaselineAnchor.constraint(equalTo: sectionLabel.lastBaselineAnchor),
             
             header.heightAnchor.constraint(greaterThanOrEqualToConstant: 50.0),
-            header.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             header.bottomAnchor.constraint(equalTo: tableView.topAnchor),
             header.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             header.trailingAnchor.constraint(equalTo: view.trailingAnchor),

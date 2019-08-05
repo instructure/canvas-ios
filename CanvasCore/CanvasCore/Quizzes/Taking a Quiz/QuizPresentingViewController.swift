@@ -379,7 +379,7 @@ class QuizPresentingViewController: UIViewController {
         timerToastLabel.text = text
         
         constrain(timerToastView, replace: self.timerToastViewConstraintGroup) { timerToastView in
-            timerToastView.top == timerToastView.superview!.top+self.topLayoutGuide.length; return
+            timerToastView.top == timerToastView.superview!.top+self.view.safeAreaInsets.top; return
         }
         UIView.animate(withDuration: 0.3, animations: {
             self.view.layoutIfNeeded()
