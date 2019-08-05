@@ -201,7 +201,7 @@ extension SubmissionViewController {
 
 // MARK: - File Uploads
 
-extension SubmissionViewController: DocumentMenuController, UIDocumentPickerDelegate, UIDocumentMenuDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension SubmissionViewController: DocumentMenuController, UIDocumentPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @objc func chooseFile(at indexPath: IndexPath) {
         self.currentFileUploadIndexPath = indexPath
         self.documentMenuViewModel.inputs.showDocumentMenuButtonTapped()
@@ -238,7 +238,7 @@ extension SubmissionViewController: DocumentMenuController, UIDocumentPickerDele
         self.present(alert, animated: true, completion: nil)
     }
 
-    @objc func presentDocumentMenuViewController(_ documentMenu: UIDocumentMenuViewController) {
+    @objc func presentDocumentMenuViewController(_ documentMenu: UIDocumentPickerViewController) {
         if let indexPath = currentFileUploadIndexPath, let cell = tableView.cellForRow(at: indexPath) {
             documentMenu.popoverPresentationController?.sourceView = cell
         }
@@ -256,13 +256,7 @@ extension SubmissionViewController: DocumentMenuController, UIDocumentPickerDele
         }
     }
 
-
-    // MARK: UIDocumentMenuDelegate
-    func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
-        self.documentMenuViewModel.inputs.tappedDocumentPicker(documentPicker)
-    }
-
-    func documentMenuWasCancelled(_ documentMenu: UIDocumentMenuViewController) {
+    func documentMenuWasCancelled() {
         if let indexPath = currentFileUploadIndexPath {
             self.tableView.deselectRow(at: indexPath, animated: true)
         }

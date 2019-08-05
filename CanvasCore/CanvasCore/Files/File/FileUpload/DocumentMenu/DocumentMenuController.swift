@@ -19,12 +19,13 @@
 import UIKit
 import ReactiveSwift
 
-public protocol DocumentMenuController: UIDocumentMenuDelegate, UIDocumentPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+public protocol DocumentMenuController: UIDocumentPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var documentMenuViewModel: DocumentMenuViewModelType { get }
 
-    func presentDocumentMenuViewController(_ documentMenu: UIDocumentMenuViewController)
+    func presentDocumentMenuViewController(_ documentMenu: UIDocumentPickerViewController)
     func documentMenuFinished(error: NSError)
     func documentMenuFinished(uploadable: Uploadable)
+    func documentMenuWasCancelled()
 }
 
 extension DocumentMenuController where Self: UIViewController {
@@ -66,19 +67,32 @@ extension DocumentMenuController where Self: UIViewController {
     }
 
     public func presentDocumentMenu(fileTypes: [String], options: [DocumentOption]) {
-        let docsMenu = UIDocumentMenuViewController(documentTypes: fileTypes, in: .import)
-        docsMenu.delegate = self
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         for option in options {
-            docsMenu.addOption(withTitle: option.title, image: option.icon, order: .first) { [weak self] in
+            let a = UIAlertAction(title: option.title, style: .default) {  [weak self] action in
                 self?.documentMenuViewModel.inputs.tappedDocumentOption(option)
             }
+            a.setValue(option.icon, forKey: "image")
+            alert.addAction(a)
         }
 
-        self.presentDocumentMenuViewController(docsMenu)
+        let icloudBrowser = UIAlertAction(title: NSLocalizedString("Browse", comment: ""), style: .default) {  [weak self] action in
+            let docPicker = UIDocumentPickerViewController(documentTypes: fileTypes, in: .import)
+            self?.documentMenuViewModel.inputs.tappedDocumentPicker(docPicker)
+        }
+
+        alert.addAction(icloudBrowser)
+
+        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { [weak self] action in
+            self?.documentMenuWasCancelled()
+        }
+        alert.addAction(cancel)
+
+        present(alert, animated: true, completion: nil)
     }
 
-    public func presentDocumentMenuViewController(_ documentMenu: UIDocumentMenuViewController) {
+    public func presentDocumentMenuViewController(_ documentMenu: UIDocumentPickerViewController) {
         present(documentMenu, animated: true, completion: nil)
     }
 
@@ -115,4 +129,6 @@ extension DocumentMenuController where Self: UIViewController {
             self.documentMenuViewModel.inputs.pickedDocument(at: url)
         }
     }
+
+    public func documentMenuWasCancelled() {}
 }
