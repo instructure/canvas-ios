@@ -26,6 +26,7 @@ import ReactNative, {
   LayoutAnimation,
   PickerIOS,
   findNodeHandle,
+  NativeModules,
 } from 'react-native'
 import Screen from '../../../routing/Screen'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -45,6 +46,7 @@ import { alertError } from '../../../redux/middleware/error-handler'
 import { isTeacher } from '../../app'
 
 const PickerItem = PickerIOS.Item
+const { NativeNotificationCenter } = NativeModules
 
 type HocProps = {
   courseID: string,
@@ -219,6 +221,7 @@ export class PageEdit extends Component<Props, State> {
         ? api.updatePage('courses', courseID, url, parameters)
         : api.createPage('courses', courseID, parameters)
       const response = await request
+        NativeNotificationCenter.postNotification("refresh-pages", {})
       await this.props.navigator.dismiss()
       this.props.onChange && this.props.onChange(response.data)
     } catch (error) {

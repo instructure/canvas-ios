@@ -79,6 +79,8 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
         frontPage.refresh()
         course?.refresh()
         group?.refresh()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshPages), name: Notification.Name("refresh-pages"), object: nil)
     }
 
     func select(_ page: Page, from view: UIViewController) {
@@ -87,6 +89,11 @@ class PageListPresenter: PageViewLoggerPresenterProtocol {
 
     func newPage(from view: UIViewController) {
         env.router.route(to: "/courses/\(context.id)/pages/new", from: view, options: [.modal, .embedInNav])
+    }
+
+    @objc func refreshPages() {
+        pages.refresh(force: true)
+        frontPage.refresh(force: true)
     }
 
 }
