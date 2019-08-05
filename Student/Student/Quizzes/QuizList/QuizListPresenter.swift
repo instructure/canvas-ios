@@ -19,7 +19,12 @@
 import CoreData
 import Core
 
-class QuizListPresenter {
+class QuizListPresenter: PageViewLoggerPresenterProtocol {
+
+    var pageViewEventName: String {
+        return "courses/\(courseID)/quizzes"
+    }
+
     let courseID: String
     let env: AppEnvironment
     weak var view: QuizListViewProtocol?
@@ -90,17 +95,6 @@ class QuizListPresenter {
         colors.refresh()
         course.refresh()
         quizzes.refresh()
-    }
-
-    func pageViewStarted() {
-        if let course = course.first, colors.pending == false {
-            view?.updateNavBar(subtitle: course.name, color: course.color)
-        }
-        // log page view
-    }
-
-    func pageViewEnded() {
-        // log page view
     }
 
     func select(_ quiz: Quiz, from view: UIViewController) {

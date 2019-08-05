@@ -57,12 +57,12 @@ class QuizListViewController: UIViewController, QuizListViewProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView?.selectRow(at: nil, animated: false, scrollPosition: .none)
-        presenter?.pageViewStarted()
+        presenter?.viewDidAppear()
     }
 
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        presenter?.pageViewEnded()
+        presenter?.viewDidDisappear()
     }
 
     @objc func refresh(_ control: UIRefreshControl) {

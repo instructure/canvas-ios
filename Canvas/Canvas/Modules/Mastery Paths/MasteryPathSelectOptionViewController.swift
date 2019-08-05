@@ -109,7 +109,7 @@ class MasteryPathSelectOptionViewController: UIViewController {
         view.addSubview(toolbar)
 
         toolbar.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+        toolbar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
 
@@ -142,7 +142,7 @@ class MasteryPathSelectOptionViewController: UIViewController {
             selectOptionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
             selectOptionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
             selectOptionButton.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
-            selectOptionButton.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
+            selectOptionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
 
             selectOptionActivityIndicator.hidesWhenStopped = true
             view.insertSubview(selectOptionActivityIndicator, aboveSubview: selectOptionButton)
@@ -150,7 +150,7 @@ class MasteryPathSelectOptionViewController: UIViewController {
             selectOptionActivityIndicator.centerXAnchor.constraint(equalTo: selectOptionButton.centerXAnchor).isActive = true
             selectOptionActivityIndicator.centerYAnchor.constraint(equalTo: selectOptionButton.centerYAnchor).isActive = true
         } else {
-            tableView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         }
     }
 

@@ -54,8 +54,8 @@ class CanvadocsCommentsViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(replyToolbar)
         
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tableView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["tableView": tableView]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tableView]-0-[replyToolbar]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["tableView": tableView, "replyToolbar": replyToolbar]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tableView]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["tableView": tableView as Any]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tableView]-0-[replyToolbar]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["tableView": tableView as Any, "replyToolbar": replyToolbar as Any]))
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 48.0
@@ -85,9 +85,9 @@ class CanvadocsCommentsViewController: UIViewController {
                 }
             }
             replyToolbar.translatesAutoresizingMaskIntoConstraints = false
-            replyToolbarBottom = NSLayoutConstraint(item: view, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: replyToolbar, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0.0)
+            replyToolbarBottom = NSLayoutConstraint(item: view as Any, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: replyToolbar, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1.0, constant: 0.0)
             view.addConstraint(replyToolbarBottom!)
-            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[replyToolbar]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["replyToolbar": replyToolbar]))
+            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[replyToolbar]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["replyToolbar": replyToolbar as Any]))
         } else {
             replyToolbar.isHidden = true
         }

@@ -95,9 +95,6 @@
 "Groups" = "Grwpiau";
 
 /* No comment provided by engineer. */
-"Have questions? Use this area to message your instructor about this assignment." = "Oes gennych chi gwestiwn? Defnyddiwch y man hwn i anfon sylw at eich addysgwr am yr aseiniad hwn.";
-
-/* No comment provided by engineer. */
 "Inbox" = "Blwch Derbyn";
 
 /* No comment provided by engineer. */
@@ -234,9 +231,6 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Cofnod Testun";
-
-/* No comment provided by engineer. */
-"There are no files to display." = "Does dim ffeiliau i’w dangos.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Does dim cwisiau i’w dangos.";

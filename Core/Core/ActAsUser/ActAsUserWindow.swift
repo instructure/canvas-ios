@@ -94,6 +94,7 @@ class ActAsUserOverlay: UIView {
     lazy var button: UIButton = {
         let button = UIButton(type: .custom)
         button.addTarget(self, action: #selector(stopActing), for: .primaryActionTriggered)
+        button.accessibilityIdentifier = "ActAsUser.endActAsUserButton"
         button.accessibilityLabel = NSLocalizedString("End Act as User", bundle: .core, comment: "")
         return button
     }()

@@ -59,13 +59,7 @@ open class CanvasWebViewController: UIViewController, PageViewEventViewControlle
         view.backgroundColor = .white
         
         view.addSubview(webView)
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            webView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
-            webView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor),
-            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
+        webView.pin(inside: view)
         buildUI()
     }
     

@@ -75,6 +75,7 @@
                     </view>
                     <connections>
                         <outlet property="descriptionLabel" destination="qIN-xp-4Y0" id="WhN-WC-ttC"/>
+                        <outlet property="previewButton" destination="V3F-Fa-g3P" id="A29-VZ-bYM"/>
                         <outlet property="previewImageView" destination="Y5V-BG-NEv" id="4lX-N5-qES"/>
                         <outlet property="urlButton" destination="yzx-td-6QU" id="Z4P-qe-anW"/>
                     </connections>

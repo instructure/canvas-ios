@@ -20,7 +20,7 @@ import UIKit
 
 public extension UIFont {
     enum Name: String, CaseIterable {
-        case regular10, regular11Monodigit, regular12, regular14, regular14Italic, regular16, regular20, regular20Monodigit, regular30
+        case regular10, regular11Monodigit, regular12, regular14, regular14Italic, regular16, regular20, regular24, regular20Monodigit, regular30
         case medium10, medium12, medium14, medium16
         case semibold12, semibold14, semibold16, semibold20
         case bold17, bold20, bold24
@@ -45,9 +45,11 @@ public extension UIFont {
         case .regular16:
             return scaledFont(.body, for: .systemFont(ofSize: 16, weight: .regular))
         case .regular20:
-            return scaledFont(.callout, for: .systemFont(ofSize: 16, weight: .semibold))
+            return scaledFont(.callout, for: .systemFont(ofSize: 20, weight: .regular))
         case .regular20Monodigit:
             return scaledFont(.title3, for: .monospacedDigitSystemFont(ofSize: 20, weight: .regular))
+        case .regular24:
+            return scaledFont(.body, for: .systemFont(ofSize: 24, weight: .regular))
         case .regular30:
             return scaledFont(.title1, for: .systemFont(ofSize: 30, weight: .regular))
 
@@ -61,7 +63,7 @@ public extension UIFont {
             return scaledFont(.title2, for: .systemFont(ofSize: 16, weight: .medium))
 
         case .semibold12:
-            return scaledFont(.caption1, for: .systemFont(ofSize: 12, weight: .semibold))
+            return scaledFont(.body, for: .systemFont(ofSize: 12, weight: .semibold))
         case .semibold14:
             return scaledFont(.callout, for: .systemFont(ofSize: 14, weight: .semibold))
         case .semibold16:

@@ -27,7 +27,7 @@ class DeepLinkTests: CanvasUITests {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
         CourseNavigation.pages.tap()
-        PagesList.page(index: 1).tap()
+        PagesList.page(index: 0).tap()
     }
 
     func testDeepLinkToGroupAnnouncements() {
@@ -38,5 +38,10 @@ class DeepLinkTests: CanvasUITests {
     func testDeepLinkToGroup() {
         app.find(labelContaining: "group-home").tap()
         app.find(labelContaining: "Home").waitToExist()
+    }
+
+    func testDeepLinkToPublicCourse() {
+        app.find(labelContaining: "public-course-page").tap()
+        app.find(labelContaining: "this is a public course").waitToExist()
     }
 }

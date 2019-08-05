@@ -31,6 +31,7 @@ class StudentUITestCase: UITestCase {
             app.launch()
         }
         reset()
+        mockDownload(URL(string: ".")!) // Use only mock data
     }
 
     func navBarColorHex() -> String? {

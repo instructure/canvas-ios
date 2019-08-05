@@ -51,8 +51,8 @@ public struct URLSessionAPI: API {
         configuration.urlCache = nil
         return URLSession(configuration: configuration)
     }()
-    public static var delegateURLSession = { (configuration: URLSessionConfiguration, delegate: URLSessionDelegate?) -> URLSession in
-        return URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
+    public static var delegateURLSession = { (configuration: URLSessionConfiguration, delegate: URLSessionDelegate?, delegateQueue: OperationQueue?) -> URLSession in
+        return URLSession(configuration: configuration, delegate: delegate, delegateQueue: delegateQueue)
     }
 
     public init(
@@ -111,5 +111,11 @@ public struct URLSessionAPI: API {
         print("to", request.url ?? "")
         #endif
         return urlSession.uploadTask(with: request, fromFile: url)
+    }
+}
+
+extension URLSession {
+    @objc public static func getDefaultURLSession() -> URLSession {
+        return URLSessionAPI.defaultURLSession
     }
 }

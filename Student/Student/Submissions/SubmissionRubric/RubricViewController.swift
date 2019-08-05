@@ -37,6 +37,7 @@ class RubricViewController: UIViewController {
     @IBOutlet weak var contentStackViewWidth: NSLayoutConstraint!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var emptyViewLabel: UILabel!
+    @IBOutlet weak var emptyImageView: IconView!
     var models: [RubricViewModel] = []
     var presenter: RubricPresenter!
     var collectionViewDidSetupCells = false
@@ -52,6 +53,7 @@ class RubricViewController: UIViewController {
 
         emptyViewLabel.text = NSLocalizedString("There is no rubric for this assignment", comment: "")
 
+        emptyImageView.image = UIImage(named: "emptyRubric", in: .core, compatibleWith: nil)
         presenter.viewIsReady()
     }
 

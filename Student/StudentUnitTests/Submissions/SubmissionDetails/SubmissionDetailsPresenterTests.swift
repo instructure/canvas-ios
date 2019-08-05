@@ -296,4 +296,39 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
 
         XCTAssertEqual(pageViewLogger.eventName, "/courses/1/assignments/1/submissions/1")
     }
+
+    func testLockedEmptyViewIsNotHidden() {
+        Assignment.make(from: .make(submission_types: [ .online_upload ],
+                                    allowed_extensions: ["png"],
+                                    unlock_at: Date().addYears(1),
+                                    locked_for_user: true,
+                                    lock_explanation: "this is locked"))
+        XCTAssertFalse( presenter.lockedEmptyViewIsHidden() )
+    }
+
+    func testLockedEmptyViewIsHidden() {
+        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1))
+        XCTAssertTrue( presenter.lockedEmptyViewIsHidden() )
+    }
+
+    func testLockedEmptyViewHeaderWithQuiz() {
+        Assignment.make(from: .make(quiz_id: "1",
+                                    submission_types: [ .online_upload ],
+                                    allowed_extensions: ["png"],
+                                    unlock_at: Date().addYears(1),
+                                    locked_for_user: true,
+                                    lock_explanation: "this is locked"))
+
+        XCTAssertEqual( presenter.lockedEmptyViewHeader(), "Quiz Locked" )
+    }
+
+    func testLockedEmptyViewHeaderWithAssignment() {
+        Assignment.make(from: .make(submission_types: [ .online_upload ],
+                                    allowed_extensions: ["png"],
+                                    unlock_at: Date().addYears(1),
+                                    locked_for_user: true,
+                                    lock_explanation: "this is locked"))
+
+        XCTAssertEqual( presenter.lockedEmptyViewHeader(), "Assignment Locked" )
+    }
 }

@@ -106,12 +106,10 @@ open class UITestCase: XCTestCase {
         error: String? = nil,
         noCallback: Bool = false
     ) {
-        let api = URLSessionAPI()
-        let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.accessToken, actAsUserID: api.actAsUserID)
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         let data = value.flatMap { try! encoder.encode($0) }
-        return mockDataRequest(request, data: data, response: response, error: error, noCallback: noCallback)
+        return mockEncodedData(requestable, data: data, response: response, error: error, noCallback: noCallback)
     }
 
     open func mockEncodedData<R: APIRequestable>(
@@ -124,6 +122,21 @@ open class UITestCase: XCTestCase {
         let api = URLSessionAPI()
         let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.accessToken, actAsUserID: api.actAsUserID)
         return mockDataRequest(request, data: data, response: response, error: error, noCallback: noCallback)
+    }
+
+    open func mockEncodableRequest<D: Codable>(
+        _ path: String,
+        value: D? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        noCallback: Bool = false
+    ) {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let data = value.flatMap { try! encoder.encode($0) }
+        let api = URLSessionAPI()
+        let url = URL(string: path, relativeTo: api.baseURL.appendingPathComponent("api/v1/"))!
+        mockDataRequest(URLRequest(url: url), data: data, response: response, error: error, noCallback: noCallback)
     }
 
     open func mockDataRequest(
@@ -154,5 +167,16 @@ open class UITestCase: XCTestCase {
             response: response.flatMap { MockResponse(http: $0) },
             url: url
         ))
+    }
+
+    open func mockBaseRequests() {
+        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!), data: """
+        {"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}
+        """.data(using: .utf8)) // CKIClient.fetchCurrentUser
+        mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self?display=borderless"))) // cookie keepalive
+        mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
+        mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
+        mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
+        mockEncodableRequest("dashboard/dashboard_cards", value: [String]())
     }
 }

@@ -286,9 +286,6 @@
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Echèk chajman (discussionKitModelName) NSManagedObjectModel";
 
-/* Error when submitting an assignment */
-"Failed to Submit" = "Echèk Soumisyon";
-
 /* No comment provided by engineer. */
 "Failed to write image" = "Echwe pou ekri imaj";
 
@@ -612,15 +609,6 @@
    Turn in this url button */
 "Submit" = "Soumèt";
 
-/* Title for button to submit assignment */
-"Submit Assignment" = "Soumèt Sesyon";
-
-/* No comment provided by engineer. */
-"Submitted!" = "Soumèt!";
-
-/* No comment provided by engineer. */
-"Submitting" = "Soumisyon";
-
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "Soumisyon Quiz";
 
@@ -701,9 +689,6 @@
 
 /* Error description for Push Notifications registration error. */
 "There was a problem registering your device for push notifications." = "Te gen yon pwoblèm pandan anrejistreman aparèy ou a pou ka resevwa notifikasyon push.";
-
-/* Message when fails to submit an assignment */
-"There was a problem submitting your assignment. Please try again later." = "Gen yon pwoblèm nan soumisyon sesyon ou an. Tanpri eseye ankò.";
 
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "Te gen yon pwoblèm nan aktyalizasyon URL Quiz la.";

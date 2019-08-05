@@ -123,8 +123,6 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
     }
     
     fileprivate func preparePageViewController() {
-        automaticallyAdjustsScrollViewInsets = false
-        
         pageViewController.delegate = self
         pageViewController.dataSource = self
         pageViewController.view.backgroundColor = UIColor.white
@@ -151,11 +149,8 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
             footerView.right == view.right
             footerView.height == 60
         }
-        
-        let bottomConstraint = NSLayoutConstraint(item: footerView, attribute: .bottom, relatedBy: .equal, toItem: self.bottomLayoutGuide, attribute: .top, multiplier: 1, constant: 0)
-        view.addConstraint(bottomConstraint)
-        
-        
+
+        footerView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         footerView.takeButton.addTarget(self, action: #selector(QuizIntroViewController.takeTheQuiz(_:)), for: .touchUpInside)
     }
     

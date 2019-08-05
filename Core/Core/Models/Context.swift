@@ -18,7 +18,7 @@
 
 import Foundation
 
-public enum ContextType: String {
+public enum ContextType: String, Codable {
     case account, course, group, user, section
 
     public var pathComponent: String {

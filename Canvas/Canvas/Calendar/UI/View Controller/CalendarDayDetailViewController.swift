@@ -151,31 +151,31 @@ open class CalendarDayDetailViewController: UIViewController, CalendarDayPageVie
     
     @objc func layoutViews() {
         // weekPaging on top
-        let weekPageVerticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[topLayoutGuide]-topPadding-[weekPageView(height)]", options: NSLayoutConstraint.FormatOptions(), metrics: ["topPadding": 0, "height": 40], views: ["topLayoutGuide": topLayoutGuide, "weekPageView": weekPageViewController.view])
-        let weekPageHorizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-leftPadding-[weekPageView]-rightPadding-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["rightPadding": 0, "leftPadding": 0], views: ["weekPageView": weekPageViewController.view])
+        let weekPageVerticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[weekPageView(height)]", options: NSLayoutConstraint.FormatOptions(), metrics: ["topPadding": 0, "height": 40], views: ["weekPageView": weekPageViewController.view as Any])
+        let weekPageHorizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-leftPadding-[weekPageView]-rightPadding-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["rightPadding": 0, "leftPadding": 0], views: ["weekPageView": weekPageViewController.view as Any])
         view.addConstraints(weekPageVerticalContraints)
         view.addConstraints(weekPageHorizontalContraints)
         
         // day buttons with label in the middle
-        let prevDayVerticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[topView]-topPadding-[prevDayButton(height)]", options: NSLayoutConstraint.FormatOptions(), metrics: ["topPadding": 0, "height": 60], views: ["topView": weekPageViewController.view, "prevDayButton": prevDayButton])
-        let prevDayHorizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-leftPadding-[prevDayButton(width)]", options: NSLayoutConstraint.FormatOptions(), metrics: ["leftPadding": 0, "width": 60], views: ["prevDayButton": prevDayButton])
+        let prevDayVerticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[topView]-topPadding-[prevDayButton(height)]", options: NSLayoutConstraint.FormatOptions(), metrics: ["topPadding": 0, "height": 60], views: ["topView": weekPageViewController.view as Any, "prevDayButton": prevDayButton as Any])
+        let prevDayHorizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-leftPadding-[prevDayButton(width)]", options: NSLayoutConstraint.FormatOptions(), metrics: ["leftPadding": 0, "width": 60], views: ["prevDayButton": prevDayButton as Any])
         view.addConstraints(prevDayVerticalContraints)
         view.addConstraints(prevDayHorizontalContraints)
         
-        let nextDayVerticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[topView]-topPadding-[nextDayButton(height)]", options: NSLayoutConstraint.FormatOptions(), metrics: ["topPadding": 0, "height": 60], views: ["topView": weekPageViewController.view, "nextDayButton": nextDayButton])
-        let nextDayHorizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[nextDayButton(width)]-rightPadding-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["rightPadding": 0, "width": 60], views: ["nextDayButton": nextDayButton])
+        let nextDayVerticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[topView]-topPadding-[nextDayButton(height)]", options: NSLayoutConstraint.FormatOptions(), metrics: ["topPadding": 0, "height": 60], views: ["topView": weekPageViewController.view as Any, "nextDayButton": nextDayButton as Any])
+        let nextDayHorizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[nextDayButton(width)]-rightPadding-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["rightPadding": 0, "width": 60], views: ["nextDayButton": nextDayButton as Any])
         view.addConstraints(nextDayVerticalContraints)
         view.addConstraints(nextDayHorizontalContraints)
         
         
-        let constraint = NSLayoutConstraint(item: dateLabel, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: prevDayButton, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1.0, constant: 0.0)
-        let dateLabelHorizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[prevDayButton]-[dateLabel]-[nextDayButton]", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["prevDayButton": prevDayButton, "dateLabel": dateLabel, "nextDayButton": nextDayButton])
+        let constraint = NSLayoutConstraint(item: dateLabel as Any, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: prevDayButton, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1.0, constant: 0.0)
+        let dateLabelHorizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[prevDayButton]-[dateLabel]-[nextDayButton]", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["prevDayButton": prevDayButton as Any, "dateLabel": dateLabel as Any, "nextDayButton": nextDayButton as Any])
         view.addConstraints([constraint])
         view.addConstraints(dateLabelHorizontalContraints)
         
         // dayPagination on bottom \o/
-        let dayPageVerticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[topView]-topPadding-[dayPageView]-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["topPadding": 0], views: ["topView": nextDayButton, "dayPageView": dayPageViewController.view])
-        let dayPageHorizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-leftPadding-[dayPageView]-rightPadding-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["rightPadding": 0, "leftPadding": 0], views: ["dayPageView": dayPageViewController.view])
+        let dayPageVerticalContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[topView]-topPadding-[dayPageView]-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["topPadding": 0], views: ["topView": nextDayButton as Any, "dayPageView": dayPageViewController.view as Any])
+        let dayPageHorizontalContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-leftPadding-[dayPageView]-rightPadding-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["rightPadding": 0, "leftPadding": 0], views: ["dayPageView": dayPageViewController.view as Any])
         view.addConstraints(dayPageVerticalContraints)
         view.addConstraints(dayPageHorizontalContraints)
     }

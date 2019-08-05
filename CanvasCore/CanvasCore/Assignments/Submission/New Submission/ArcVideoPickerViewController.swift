@@ -18,7 +18,7 @@
 
 import UIKit
 import WebKit
-
+import Core
 
 public class ArcVideoPickerViewController: UIViewController {
     
@@ -47,25 +47,15 @@ public class ArcVideoPickerViewController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
-        automaticallyAdjustsScrollViewInsets = false
-        
+
         webView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView)
-        webView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
-        webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        webView.pin(inside: view)
         
         // https://mobiledev.instructure.com/courses/24219/external_tools/282032/resource_selection?launch_type=homework_submission&assignment_id=405404
-        APIBridge.shared().call("getAuthenticatedSessionURL", args: [arcLTIURL.absoluteString]) { [weak self] response, error in
-            if let data = response as? [String: Any],
-                let sessionURL = data["session_url"] as? String,
-                let url = URL(string: sessionURL) {
-                self?.webView.loadRequest(URLRequest(url: url))
-            } else if let url = self?.arcLTIURL {
-                self?.webView.loadRequest(URLRequest(url: url))
-            }
+        let url = arcLTIURL
+        AppEnvironment.shared.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, _ in
+            DispatchQueue.main.async { self?.webView.loadRequest(URLRequest(url: response?.session_url ?? url)) }
         }
     }
     

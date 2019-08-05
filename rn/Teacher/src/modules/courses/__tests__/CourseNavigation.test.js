@@ -325,6 +325,28 @@ describe('CourseNavigation', () => {
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/syllabus')
   })
 
+  it('navigates to conferences', () => {
+    const tab = template.tab({
+      id: 'conferences',
+      html_url: '/courses/1/conferences',
+    })
+    const props = {
+      ...defaultProps,
+      tabs: [tab],
+      navigator: template.navigator({
+        show: jest.fn(),
+      }),
+    }
+
+    const tree = shallow(<CourseNavigation {...props} />)
+    tree
+      .find('TabsList').first().dive()
+      .find('OnLayout').first().dive()
+      .find('[testID="courses-details.tab.conferences"]')
+      .simulate('Press', tab)
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/conferences')
+  })
+
   it('shows collaborations in a web view', () => {
     const tab = template.tab({
       id: 'collaborations',
