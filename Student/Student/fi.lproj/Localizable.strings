@@ -95,9 +95,6 @@
 "Groups" = "Ryhmät";
 
 /* No comment provided by engineer. */
-"Have questions? Use this area to message your instructor about this assignment." = "Onko sinulla kysymyksiä? Lähetä ohjaajallesi viesti tästä tehtävästä tällä alueella.";
-
-/* No comment provided by engineer. */
 "Inbox" = "Tulevien laatikko";
 
 /* No comment provided by engineer. */
@@ -234,9 +231,6 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Tekstin syöttäminen";
-
-/* No comment provided by engineer. */
-"There are no files to display." = "Näytettäviä tiedostoja ei ole.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Näytettäviä tietovisoja ei ole.";

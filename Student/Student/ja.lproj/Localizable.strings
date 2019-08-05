@@ -95,9 +95,6 @@
 "Groups" = "グループ";
 
 /* No comment provided by engineer. */
-"Have questions? Use this area to message your instructor about this assignment." = "質問がありますか？この課題について講師にメッセージを送るには、このエリアを使用します。";
-
-/* No comment provided by engineer. */
 "Inbox" = "受信トレイ";
 
 /* No comment provided by engineer. */
@@ -234,9 +231,6 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "テキストエントリ";
-
-/* No comment provided by engineer. */
-"There are no files to display." = "表示するファイルはありません。";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "表示するクイズはありません。";

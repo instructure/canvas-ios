@@ -95,9 +95,6 @@
 "Groups" = "Grupy";
 
 /* No comment provided by engineer. */
-"Have questions? Use this area to message your instructor about this assignment." = "Masz pytania? Wyślij komentarz na temat tego zadania do instruktora, korzystając z tego obszaru.";
-
-/* No comment provided by engineer. */
 "Inbox" = "Skrzynka odbiorcza";
 
 /* No comment provided by engineer. */
@@ -234,9 +231,6 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Zapis tekstu";
-
-/* No comment provided by engineer. */
-"There are no files to display." = "Brak plików do wyświetlenia.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Brak testów do wyświetlenia.";

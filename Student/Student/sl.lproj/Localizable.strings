@@ -95,9 +95,6 @@
 "Groups" = "Skupine";
 
 /* No comment provided by engineer. */
-"Have questions? Use this area to message your instructor about this assignment." = "Imate vprašanja? Uporabite to polje, da izvajalcu pošljete komentar o tej nalogi.";
-
-/* No comment provided by engineer. */
 "Inbox" = "Pošta";
 
 /* No comment provided by engineer. */
@@ -234,9 +231,6 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Vnos besedila";
-
-/* No comment provided by engineer. */
-"There are no files to display." = "Ni nobenih datotek za prikaz.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Ni nobenih kvizov za prikaz.";

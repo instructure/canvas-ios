@@ -286,9 +286,6 @@
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "No se pudo cargar (discussionKitModelName) NSManagedObjectModel";
 
-/* Error when submitting an assignment */
-"Failed to Submit" = "No se puedo enviar";
-
 /* No comment provided by engineer. */
 "Failed to write image" = "No se pudo escribir la imagen";
 
@@ -612,15 +609,6 @@
    Turn in this url button */
 "Submit" = "Presentar";
 
-/* Title for button to submit assignment */
-"Submit Assignment" = "Presentar tarea";
-
-/* No comment provided by engineer. */
-"Submitted!" = "¡Enviado!";
-
-/* No comment provided by engineer. */
-"Submitting" = "Presentando";
-
 /* Label for indication of submitting quiz */
 "Submitting Quiz" = "Enviando la evaluación";
 
@@ -701,9 +689,6 @@
 
 /* Error description for Push Notifications registration error. */
 "There was a problem registering your device for push notifications." = "Se ha producido un problema al registrar tu dispositivo para notificaciones push.";
-
-/* Message when fails to submit an assignment */
-"There was a problem submitting your assignment. Please try again later." = "Hubo un problema al enviar su tarea. Por favor, inténtelo de nuevo más tarde.";
 
 /* Error description for failing to compute the URL to a quiz */
 "There was a problem updating the Quiz URL" = "Hubo un problema al subir la URL de la evaluación";

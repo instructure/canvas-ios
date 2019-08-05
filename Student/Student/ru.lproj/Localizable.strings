@@ -95,9 +95,6 @@
 "Groups" = "Группы";
 
 /* No comment provided by engineer. */
-"Have questions? Use this area to message your instructor about this assignment." = "Есть вопросы? Используйте эту область, чтобы сообщить своему преподавателю об этом задании.";
-
-/* No comment provided by engineer. */
 "Inbox" = "Входящие";
 
 /* No comment provided by engineer. */
@@ -234,9 +231,6 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Ввод текста";
-
-/* No comment provided by engineer. */
-"There are no files to display." = "Нет доступных для отображения файлов.";
 
 /* No comment provided by engineer. */
 "There are no quizzes to display." = "Нет доступных для отображения тестов.";
