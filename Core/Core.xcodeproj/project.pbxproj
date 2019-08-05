@@ -506,6 +506,7 @@
 		EE584C7F22F2048D00D1E201 /* PageListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE584C7B22F2048C00D1E201 /* PageListPresenter.swift */; };
 		EE584C8022F2048D00D1E201 /* PageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE584C7C22F2048C00D1E201 /* PageListCell.swift */; };
 		EE584C8122F2048D00D1E201 /* PageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE584C7D22F2048D00D1E201 /* PageListViewController.swift */; };
+		EE6CB48622F8C8890013D9A5 /* PageListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CB48522F8C8890013D9A5 /* PageListPresenterTests.swift */; };
 		EEC3EF6322E25F6100799FE2 /* APIPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3EF6222E25F6100799FE2 /* APIPage.swift */; };
 		EEC3EF6522E25FDC00799FE2 /* APIPageRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3EF6422E25FDC00799FE2 /* APIPageRequestable.swift */; };
 		EEC3EF6722E265CF00799FE2 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC3EF6622E265CF00799FE2 /* Page.swift */; };
@@ -1219,6 +1220,7 @@
 		EE584C7B22F2048C00D1E201 /* PageListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageListPresenter.swift; sourceTree = "<group>"; };
 		EE584C7C22F2048C00D1E201 /* PageListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageListCell.swift; sourceTree = "<group>"; };
 		EE584C7D22F2048D00D1E201 /* PageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageListViewController.swift; sourceTree = "<group>"; };
+		EE6CB48522F8C8890013D9A5 /* PageListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListPresenterTests.swift; sourceTree = "<group>"; };
 		EEC3EF6222E25F6100799FE2 /* APIPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPage.swift; sourceTree = "<group>"; };
 		EEC3EF6422E25FDC00799FE2 /* APIPageRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPageRequestable.swift; sourceTree = "<group>"; };
 		EEC3EF6622E265CF00799FE2 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
@@ -1342,6 +1344,7 @@
 				7D4C3D57222D9E22001B1198 /* LTI */,
 				7D062AF521249E5800677F66 /* Models */,
 				B1911CEA21C849AE00F42F91 /* Notifications */,
+				EE6CB48322F8C8410013D9A5 /* Pages */,
 				3BE2C76D219335FA004B8E5E /* Presenter */,
 				7DEAD09C22790B1E0030C28A /* RichContentEditor */,
 				2C964859211E30A0002C3255 /* Router */,
@@ -2326,6 +2329,22 @@
 			path = PageList;
 			sourceTree = "<group>";
 		};
+		EE6CB48322F8C8410013D9A5 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				EE6CB48422F8C8500013D9A5 /* PageList */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		EE6CB48422F8C8500013D9A5 /* PageList */ = {
+			isa = PBXGroup;
+			children = (
+				EE6CB48522F8C8890013D9A5 /* PageListPresenterTests.swift */,
+			);
+			path = PageList;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -2947,6 +2966,7 @@
 				7DCF2046216D652C003AF358 /* GetQuizzesTests.swift in Sources */,
 				7DCE0C8E22B015DC00BA549F /* QuizSubmissionTests.swift in Sources */,
 				7DDC4511215BF7AA003F3209 /* BundleExtensionsTests.swift in Sources */,
+				EE6CB48622F8C8890013D9A5 /* PageListPresenterTests.swift in Sources */,
 				7DB0A1BA21BF1904009ABB40 /* LoginStartPresenterTests.swift in Sources */,
 				7D7472D9218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift in Sources */,
 				B1A6BC8C218A9843000515E3 /* APILatePolicyRequestableTests.swift in Sources */,
