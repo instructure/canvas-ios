@@ -186,7 +186,7 @@ export class PageDetails extends Component<Props> {
     if (!page) return
     try {
       await api.deletePage('courses', courseID, page.url)
-        NativeNotificationCenter.postNotification("refresh-pages", {})
+      NativeNotificationCenter.postNotification('refresh-pages', {})
       this.props.navigator.pop()
     } catch (error) {
       alertError(error)
