@@ -1,9 +1,18 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Elèv";
+
 /* Privacy - Camera Usage Description */
-"NSCameraUsageDescription" = "$(PRODUCT_NAME) itilizasyon kamera";
+"NSCameraUsageDescription" = "Mete foto ak videyo nan piblikasyon mesaj ak diskisyon yo oswa aktive yo kòm soumisyon sesyon.";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "Ede nou jwenn lekòl ki tou pre w.";
 
 /* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "$(PRODUCT_NAME) itilizasyon mikwo";
+"NSMicrophoneUsageDescription" = "Mete anrejistreman odyo nan piblikasyon mesaj ak diskisyon yo oswa aktive yo kòm soumisyon sesyon.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Mete foto ak videyo nan piblikasyon mesaj ak diskisyon yo oswa aktive yo kòm soumisyon sesyon.";
 
 /* Privacy - Photo Library Usage Description */
-"NSPhotoLibraryUsageDescription" = "$(PRODUCT_NAME) itilizasyon foto";
+"NSPhotoLibraryUsageDescription" = "Mete foto ak videyo nan piblikasyon mesaj ak diskisyon yo oswa aktive yo kòm soumisyon sesyon.";
 

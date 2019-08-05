@@ -25,10 +25,10 @@ Depends on node & yarn dependencies, & awcli
  $ yarn
 
 Run this script from root with yarn
- $ yarn coverage --scheme Core
+ $ yarn coverage --scheme CITests
 
 Run with --test option to run tests first
- $ yarn coverage --scheme Core --test
+ $ yarn coverage --scheme CITests --test
 */
 const program = require('commander')
 const { execSync } = require('child_process')
@@ -43,8 +43,8 @@ program
   .version(require('../../package.json').version)
   .option('--device [name]', 'Run XCTest on [name]', 'iPhone 8')
   .option('--html', 'Deprecated, html reports are always generated')
-  .option('--os [name]', 'Run XCTest on [name]', '12.1')
-  .option('--scheme [name]', 'Report coverage for scheme [name]')
+  .option('--os [name]', 'Run XCTest on [name]', '12.2')
+  .option('--scheme [name]', 'Report coverage for scheme [name]', 'CITests')
   .option('--test', 'Run XCTest for scheme before generating reports')
   .parse(process.argv)
 
@@ -82,7 +82,7 @@ function reportCoverage () {
   console.log('Finding Xcode coverage report')
   let folder = resultBundlePath
   if (!existsSync(folder)) {
-    const settings = run(`xcrun xcodebuild -showBuildSettings -workspace AllTheThings.xcworkspace -scheme ${scheme}`)
+    const settings = run(`xcrun xcodebuild -showBuildSettings -workspace Canvas.xcworkspace -scheme ${scheme}`)
     folder = join(settings.match(/BUILD_DIR = (.*)/)[1], '../../Logs/Test/*.xcresult')
   }
 
@@ -241,7 +241,11 @@ function syncCoverage () {
   const s3folder = scheme.toLowerCase()
   if (process.env.BITRISEIO_GIT_BRANCH_DEST) { // This is a PR, pull master coverage
     console.log('Pulling master coverage summary from s3')
-    run(`aws s3 cp "s3://inseng-code-coverage/ios/coverage/${s3folder}/coverage-summary.json" "${coverageFolder}/coverage-summary-master.json"`)
+    try {
+      run(`aws s3 cp "s3://inseng-code-coverage/ios/coverage/${s3folder}/coverage-summary.json" "${coverageFolder}/coverage-summary-master.json"`)
+    } catch (err) {
+      console.log('Failed to pull prior code coverage.')
+    }
   } else { // This is a master run, push to s3
     console.log('Pushing all coverage files to s3')
     run(`aws s3 sync "${coverageFolder}" "s3://inseng-code-coverage/ios/coverage/${s3folder}"`)

@@ -1,9 +1,0 @@
-/* Privacy - Camera Usage Description */
-"NSCameraUsageDescription" = "$(PRODUCT_NAME) defnydd o gamera";
-
-/* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "$(PRODUCT_NAME) defnydd o ficroffon";
-
-/* Privacy - Photo Library Usage Description */
-"NSPhotoLibraryUsageDescription" = "$(PRODUCT_NAME) defnydd o lun";
-

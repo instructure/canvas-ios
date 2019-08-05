@@ -18,6 +18,7 @@
 
 exports.checkCoverage = checkCoverage
 function checkCoverage () {
+  return
   let table = checkSchemeCoverage('Core')
   table += checkSchemeCoverage('Student')
   table += checkSchemeCoverage('Teacher')
