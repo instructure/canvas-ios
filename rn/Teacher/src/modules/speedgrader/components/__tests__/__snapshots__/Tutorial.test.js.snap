@@ -3,7 +3,6 @@
 exports[`Tutorial will render the tutorial after data from async storage has been retrieved 1`] = `
 <View
   accessibilityViewIsModal={true}
-  collapsable={undefined}
   style={
     Object {
       "alignItems": "center",
@@ -37,9 +36,6 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -91,9 +87,6 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
     >
       <View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {

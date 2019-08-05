@@ -23,7 +23,7 @@ import {
   View,
   Image,
   StyleSheet,
-  AlertIOS,
+  Alert,
   ActionSheetIOS,
   AccessibilityInfo,
   findNodeHandle,
@@ -75,7 +75,7 @@ export default class RubricItem extends Component<RubricItemProps, RubricItemSta
 
   promptCustom = () => {
     let message = i18n('Out of {points, number}', { points: this.props.rubricItem.points })
-    AlertIOS.prompt(
+    Alert.prompt(
       i18n('Customize Grade'),
       message,
       [{

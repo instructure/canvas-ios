@@ -31,9 +31,6 @@ exports[`render 0 on graph 1`] = `
     />
   </View>
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -69,9 +66,6 @@ exports[`render 0 on graph 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "#2D3B45",
@@ -117,9 +111,6 @@ exports[`render 1`] = `
     />
   </View>
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -155,9 +146,6 @@ exports[`render 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "#2D3B45",
@@ -203,9 +191,6 @@ exports[`render undefined label 1`] = `
     />
   </View>
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -239,9 +224,6 @@ exports[`render undefined label 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "#2D3B45",

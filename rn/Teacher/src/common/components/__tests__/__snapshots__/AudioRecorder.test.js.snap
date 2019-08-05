@@ -40,9 +40,6 @@ exports[`AudioRecorder renders default state 1`] = `
     >
       <Text
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -182,9 +179,6 @@ exports[`AudioRecorder renders recording state 1`] = `
     >
       <Text
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -292,9 +286,6 @@ exports[`AudioRecorder renders reset state 1`] = `
     >
       <Text
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -465,9 +456,6 @@ exports[`AudioRecorder renders stopped state 1`] = `
     >
       <Text
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -554,9 +542,6 @@ exports[`AudioRecorder renders stopped state 1`] = `
     >
       <View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {

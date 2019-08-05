@@ -41,6 +41,7 @@ exports[`CommentInput CommentInput renders 1`] = `
         onChangeText={[Function]}
         placeholder="Comment"
         placeholderTextColor="#7F91A7"
+        rejectResponderTermination={true}
         style={
           Object {
             "flex": 1,
@@ -53,6 +54,7 @@ exports[`CommentInput CommentInput renders 1`] = `
           }
         }
         testID="comment-input.comment"
+        underlineColorAndroid="transparent"
         value=""
       />
     </View>
@@ -116,6 +118,7 @@ exports[`CommentInput Wont render the media buttons when allowMediaInputs is set
         onChangeText={[Function]}
         placeholder="Comment"
         placeholderTextColor="#7F91A7"
+        rejectResponderTermination={true}
         style={
           Object {
             "flex": 1,
@@ -128,6 +131,7 @@ exports[`CommentInput Wont render the media buttons when allowMediaInputs is set
           }
         }
         testID="comment-input.comment"
+        underlineColorAndroid="transparent"
         value=""
       />
     </View>
@@ -191,6 +195,7 @@ exports[`CommentInput disables the send button with a prop 1`] = `
         onChangeText={[Function]}
         placeholder="Comment"
         placeholderTextColor="#7F91A7"
+        rejectResponderTermination={true}
         style={
           Object {
             "flex": 1,
@@ -203,6 +208,7 @@ exports[`CommentInput disables the send button with a prop 1`] = `
           }
         }
         testID="comment-input.comment"
+        underlineColorAndroid="transparent"
         value=""
       />
     </View>

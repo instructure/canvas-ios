@@ -28,9 +28,9 @@ import {
   Linking,
   TouchableWithoutFeedback,
   SafeAreaView,
-  AsyncStorage,
   LayoutAnimation,
 } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import i18n from 'format-message'
 import { purgeUserStoreData } from '@redux/middleware/persist'
 import { Text, Paragraph, Heavy } from '@common/text'

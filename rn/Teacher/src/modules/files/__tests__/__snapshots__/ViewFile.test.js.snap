@@ -68,6 +68,7 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
         accessibilityLabel="Share"
         accessibilityTraits="button"
         activeOpacity={0.85}
+        delayPressOut={100}
         onPress={[Function]}
         style={
           Object {
@@ -100,6 +101,7 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
         accessibilityLabel="Copy Link"
         accessibilityTraits="button"
         activeOpacity={0.85}
+        delayPressOut={100}
         onPress={[Function]}
         style={
           Object {

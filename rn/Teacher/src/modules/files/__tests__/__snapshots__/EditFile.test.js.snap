@@ -2,9 +2,9 @@
 
 exports[`EditFile passes the correct props to EditItem 1`] = `
 <EditItem
-  delete={[Function]}
-  getCourseEnabledFeatures={[Function]}
-  getCourseLicenses={[Function]}
+  delete={[MockFunction]}
+  getCourseEnabledFeatures={[MockFunction]}
+  getCourseLicenses={[MockFunction]}
   item={
     Object {
       "content-type": "application/document",
@@ -37,7 +37,7 @@ exports[`EditFile passes the correct props to EditItem 1`] = `
   }
   onChange={[Function]}
   onDelete={[Function]}
-  update={[Function]}
+  update={[MockFunction]}
   updateUsageRights={[Function]}
 />
 `;

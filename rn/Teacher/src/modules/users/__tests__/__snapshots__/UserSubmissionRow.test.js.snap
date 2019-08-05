@@ -2,19 +2,8 @@
 
 exports[`UserSubmissionRow renders 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -23,20 +12,14 @@ exports[`UserSubmissionRow renders 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Array [
+      undefined,
       Object {
-        "backgroundColor": "transparent",
+        "borderBottomColor": "#C7CDD1",
+        "borderBottomWidth": 0.5,
       },
-      Array [
-        undefined,
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-        },
-      ],
     ]
   }
   testID="user-submission-row.cell-1"
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -141,8 +124,6 @@ exports[`UserSubmissionRow renders 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -168,9 +149,6 @@ exports[`UserSubmissionRow renders 1`] = `
         learn to write code
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -265,9 +243,6 @@ exports[`UserSubmissionRow renders 1`] = `
           </View>
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -300,19 +275,8 @@ exports[`UserSubmissionRow renders 1`] = `
 
 exports[`UserSubmissionRow renders complete 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -321,20 +285,14 @@ exports[`UserSubmissionRow renders complete 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Array [
+      undefined,
       Object {
-        "backgroundColor": "transparent",
+        "borderBottomColor": "#C7CDD1",
+        "borderBottomWidth": 0.5,
       },
-      Array [
-        undefined,
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-        },
-      ],
     ]
   }
   testID="user-submission-row.cell-1"
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -439,8 +397,6 @@ exports[`UserSubmissionRow renders complete 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -466,9 +422,6 @@ exports[`UserSubmissionRow renders complete 1`] = `
         learn to write code
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -563,9 +516,6 @@ exports[`UserSubmissionRow renders complete 1`] = `
           </View>
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -598,19 +548,8 @@ exports[`UserSubmissionRow renders complete 1`] = `
 
 exports[`UserSubmissionRow renders discussion 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -619,20 +558,14 @@ exports[`UserSubmissionRow renders discussion 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Array [
+      undefined,
       Object {
-        "backgroundColor": "transparent",
+        "borderBottomColor": "#C7CDD1",
+        "borderBottomWidth": 0.5,
       },
-      Array [
-        undefined,
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-        },
-      ],
     ]
   }
   testID="user-submission-row.cell-1"
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -737,8 +670,6 @@ exports[`UserSubmissionRow renders discussion 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -764,9 +695,6 @@ exports[`UserSubmissionRow renders discussion 1`] = `
         learn to write code
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -861,9 +789,6 @@ exports[`UserSubmissionRow renders discussion 1`] = `
           </View>
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -896,19 +821,8 @@ exports[`UserSubmissionRow renders discussion 1`] = `
 
 exports[`UserSubmissionRow renders excused 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -917,20 +831,14 @@ exports[`UserSubmissionRow renders excused 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Array [
+      undefined,
       Object {
-        "backgroundColor": "transparent",
+        "borderBottomColor": "#C7CDD1",
+        "borderBottomWidth": 0.5,
       },
-      Array [
-        undefined,
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-        },
-      ],
     ]
   }
   testID="user-submission-row.cell-1"
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -1035,8 +943,6 @@ exports[`UserSubmissionRow renders excused 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -1062,9 +968,6 @@ exports[`UserSubmissionRow renders excused 1`] = `
         learn to write code
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1101,19 +1004,8 @@ exports[`UserSubmissionRow renders excused 1`] = `
 
 exports[`UserSubmissionRow renders incomplete 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -1122,20 +1014,14 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Array [
+      undefined,
       Object {
-        "backgroundColor": "transparent",
+        "borderBottomColor": "#C7CDD1",
+        "borderBottomWidth": 0.5,
       },
-      Array [
-        undefined,
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-        },
-      ],
     ]
   }
   testID="user-submission-row.cell-1"
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -1240,8 +1126,6 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -1267,9 +1151,6 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
         learn to write code
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1364,9 +1245,6 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
           </View>
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1399,19 +1277,8 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
 
 exports[`UserSubmissionRow renders missing submittion types 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -1420,20 +1287,14 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Array [
+      undefined,
       Object {
-        "backgroundColor": "transparent",
+        "borderBottomColor": "#C7CDD1",
+        "borderBottomWidth": 0.5,
       },
-      Array [
-        undefined,
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-        },
-      ],
     ]
   }
   testID="user-submission-row.cell-1"
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -1538,8 +1399,6 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -1565,9 +1424,6 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
         learn to write code
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1662,9 +1518,6 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
           </View>
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1697,19 +1550,8 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
 
 exports[`UserSubmissionRow renders needs grading 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -1718,20 +1560,14 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Array [
+      undefined,
       Object {
-        "backgroundColor": "transparent",
+        "borderBottomColor": "#C7CDD1",
+        "borderBottomWidth": 0.5,
       },
-      Array [
-        undefined,
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-        },
-      ],
     ]
   }
   testID="user-submission-row.cell-1"
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -1836,8 +1672,6 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -1863,9 +1697,6 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
         learn to write code
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1903,10 +1734,7 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
         }
       >
         <Text
-          accessible={true}
-          allowFontScaling={true}
           color="#FC5E13"
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1952,19 +1780,8 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
 
 exports[`UserSubmissionRow renders online quiz 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -1973,20 +1790,14 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Array [
+      undefined,
       Object {
-        "backgroundColor": "transparent",
+        "borderBottomColor": "#C7CDD1",
+        "borderBottomWidth": 0.5,
       },
-      Array [
-        undefined,
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-        },
-      ],
     ]
   }
   testID="user-submission-row.cell-1"
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -2091,8 +1902,6 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -2118,9 +1927,6 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
         learn to write code
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -2215,9 +2021,6 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
           </View>
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -2250,19 +2053,8 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
 
 exports[`UserSubmissionRow renders published 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -2271,20 +2063,14 @@ exports[`UserSubmissionRow renders published 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Array [
+      undefined,
       Object {
-        "backgroundColor": "transparent",
+        "borderBottomColor": "#C7CDD1",
+        "borderBottomWidth": 0.5,
       },
-      Array [
-        undefined,
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-        },
-      ],
     ]
   }
   testID="user-submission-row.cell-1"
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -2389,8 +2175,6 @@ exports[`UserSubmissionRow renders published 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -2416,9 +2200,6 @@ exports[`UserSubmissionRow renders published 1`] = `
         learn to write code
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -2513,9 +2294,6 @@ exports[`UserSubmissionRow renders published 1`] = `
           </View>
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {

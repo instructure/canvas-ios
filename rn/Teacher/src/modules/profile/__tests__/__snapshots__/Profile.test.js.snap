@@ -17,6 +17,7 @@ exports[`Profile Tests renders correctly 1`] = `
     }
   />
   <RCTSafeAreaView
+    emulateUnlessSupported={true}
     style={
       Object {
         "flex": 1,
@@ -76,9 +77,7 @@ exports[`Profile Tests renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
         allowFontScaling={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -96,9 +95,7 @@ exports[`Profile Tests renders correctly 1`] = `
         Key and Peele
       </Text>
       <Text
-        accessible={true}
         allowFontScaling={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -124,7 +121,6 @@ exports[`Profile Tests renders correctly 1`] = `
         <View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -174,8 +170,6 @@ exports[`Profile Tests renders correctly 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -223,7 +217,6 @@ exports[`Profile Tests renders correctly 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -273,8 +266,6 @@ exports[`Profile Tests renders correctly 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -373,8 +364,6 @@ exports[`Profile Tests renders correctly 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -422,23 +411,16 @@ exports[`Profile Tests renders correctly 1`] = `
                     }
                   >
                     <RCTSwitch
-                      disabled={false}
+                      accessibilityRole="button"
                       onChange={[Function]}
                       onResponderTerminationRequest={[Function]}
                       onStartShouldSetResponder={[Function]}
-                      onTintColor="#374A59"
-                      onValueChange={[Function]}
                       style={
-                        Array [
-                          Object {
-                            "height": 31,
-                            "width": 51,
-                          },
-                          undefined,
-                        ]
+                        Object {
+                          "height": 31,
+                          "width": 51,
+                        }
                       }
-                      testID={undefined}
-                      tintColor={null}
                       title="Color Overlay"
                       titleStyles={
                         Object {
@@ -468,7 +450,6 @@ exports[`Profile Tests renders correctly 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -518,8 +499,6 @@ exports[`Profile Tests renders correctly 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -567,7 +546,6 @@ exports[`Profile Tests renders correctly 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -617,8 +595,6 @@ exports[`Profile Tests renders correctly 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -666,7 +642,6 @@ exports[`Profile Tests renders correctly 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -716,8 +691,6 @@ exports[`Profile Tests renders correctly 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -765,7 +738,6 @@ exports[`Profile Tests renders correctly 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -815,8 +787,6 @@ exports[`Profile Tests renders correctly 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -874,15 +844,7 @@ exports[`Profile Tests renders correctly 1`] = `
       }
     >
       <Text
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
         accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1216,6 +1178,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
     }
   />
   <RCTSafeAreaView
+    emulateUnlessSupported={true}
     style={
       Object {
         "flex": 1,
@@ -1275,9 +1238,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
       }
     >
       <Text
-        accessible={true}
         allowFontScaling={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1295,9 +1256,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
         Key and Peele
       </Text>
       <Text
-        accessible={true}
         allowFontScaling={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1323,7 +1282,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
         <View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -1373,8 +1331,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -1422,7 +1378,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -1472,8 +1427,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -1521,7 +1474,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -1571,8 +1523,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -1670,8 +1620,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -1719,23 +1667,16 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                     }
                   >
                     <RCTSwitch
-                      disabled={false}
+                      accessibilityRole="button"
                       onChange={[Function]}
                       onResponderTerminationRequest={[Function]}
                       onStartShouldSetResponder={[Function]}
-                      onTintColor="#374A59"
-                      onValueChange={[Function]}
                       style={
-                        Array [
-                          Object {
-                            "height": 31,
-                            "width": 51,
-                          },
-                          undefined,
-                        ]
+                        Object {
+                          "height": 31,
+                          "width": 51,
+                        }
                       }
-                      testID={undefined}
-                      tintColor={null}
                       title="Show Grades"
                       titleStyles={
                         Object {
@@ -1816,8 +1757,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -1865,23 +1804,16 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                     }
                   >
                     <RCTSwitch
-                      disabled={false}
+                      accessibilityRole="button"
                       onChange={[Function]}
                       onResponderTerminationRequest={[Function]}
                       onStartShouldSetResponder={[Function]}
-                      onTintColor="#374A59"
-                      onValueChange={[Function]}
                       style={
-                        Array [
-                          Object {
-                            "height": 31,
-                            "width": 51,
-                          },
-                          undefined,
-                        ]
+                        Object {
+                          "height": 31,
+                          "width": 51,
+                        }
                       }
-                      testID={undefined}
-                      tintColor={null}
                       title="Color Overlay"
                       titleStyles={
                         Object {
@@ -1911,7 +1843,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -1961,8 +1892,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2010,7 +1939,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -2060,8 +1988,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2109,7 +2035,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -2159,8 +2084,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2208,7 +2131,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -2258,8 +2180,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2317,15 +2237,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
       }
     >
       <Text
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
         accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -2376,6 +2288,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
     }
   />
   <RCTSafeAreaView
+    emulateUnlessSupported={true}
     style={
       Object {
         "flex": 1,
@@ -2435,9 +2348,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
       }
     >
       <Text
-        accessible={true}
         allowFontScaling={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -2455,9 +2366,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
         Key and Peele
       </Text>
       <Text
-        accessible={true}
         allowFontScaling={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -2483,7 +2392,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
         <View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -2533,8 +2441,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2582,7 +2488,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -2632,8 +2537,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2731,8 +2634,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2780,23 +2681,16 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                     }
                   >
                     <RCTSwitch
-                      disabled={false}
+                      accessibilityRole="button"
                       onChange={[Function]}
                       onResponderTerminationRequest={[Function]}
                       onStartShouldSetResponder={[Function]}
-                      onTintColor="#374A59"
-                      onValueChange={[Function]}
                       style={
-                        Array [
-                          Object {
-                            "height": 31,
-                            "width": 51,
-                          },
-                          undefined,
-                        ]
+                        Object {
+                          "height": 31,
+                          "width": 51,
+                        }
                       }
-                      testID={undefined}
-                      tintColor={null}
                       title="Show Grades"
                       titleStyles={
                         Object {
@@ -2877,8 +2771,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -2926,23 +2818,16 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                     }
                   >
                     <RCTSwitch
-                      disabled={false}
+                      accessibilityRole="button"
                       onChange={[Function]}
                       onResponderTerminationRequest={[Function]}
                       onStartShouldSetResponder={[Function]}
-                      onTintColor="#374A59"
-                      onValueChange={[Function]}
                       style={
-                        Array [
-                          Object {
-                            "height": 31,
-                            "width": 51,
-                          },
-                          undefined,
-                        ]
+                        Object {
+                          "height": 31,
+                          "width": 51,
+                        }
                       }
-                      testID={undefined}
-                      tintColor={null}
                       title="Color Overlay"
                       titleStyles={
                         Object {
@@ -2972,7 +2857,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -3022,8 +2906,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3071,7 +2953,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -3121,8 +3002,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3170,7 +3049,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -3220,8 +3098,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3269,7 +3145,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -3319,8 +3194,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3378,15 +3251,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
       }
     >
       <Text
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
         accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -3437,6 +3302,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
     }
   />
   <RCTSafeAreaView
+    emulateUnlessSupported={true}
     style={
       Object {
         "flex": 1,
@@ -3496,9 +3362,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
       }
     >
       <Text
-        accessible={true}
         allowFontScaling={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -3516,9 +3380,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
         Key and Peele
       </Text>
       <Text
-        accessible={true}
         allowFontScaling={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -3544,7 +3406,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
         <View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -3594,8 +3455,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3643,7 +3502,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -3693,8 +3551,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3793,8 +3649,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3842,23 +3696,16 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                     }
                   >
                     <RCTSwitch
-                      disabled={false}
+                      accessibilityRole="button"
                       onChange={[Function]}
                       onResponderTerminationRequest={[Function]}
                       onStartShouldSetResponder={[Function]}
-                      onTintColor="#374A59"
-                      onValueChange={[Function]}
                       style={
-                        Array [
-                          Object {
-                            "height": 31,
-                            "width": 51,
-                          },
-                          undefined,
-                        ]
+                        Object {
+                          "height": 31,
+                          "width": 51,
+                        }
                       }
-                      testID={undefined}
-                      tintColor={null}
                       title="Color Overlay"
                       titleStyles={
                         Object {
@@ -3888,7 +3735,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -3938,8 +3784,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -3987,7 +3831,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -4037,8 +3880,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4086,7 +3927,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -4136,8 +3976,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4185,7 +4023,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -4235,8 +4072,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4294,15 +4129,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
       }
     >
       <Text
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
         accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -4353,6 +4180,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
     }
   />
   <RCTSafeAreaView
+    emulateUnlessSupported={true}
     style={
       Object {
         "flex": 1,
@@ -4412,9 +4240,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
       }
     >
       <Text
-        accessible={true}
         allowFontScaling={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -4432,9 +4258,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
         Key and Peele
       </Text>
       <Text
-        accessible={true}
         allowFontScaling={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -4460,7 +4284,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
         <View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -4510,8 +4333,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4610,8 +4431,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4659,23 +4478,16 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                     }
                   >
                     <RCTSwitch
-                      disabled={false}
+                      accessibilityRole="button"
                       onChange={[Function]}
                       onResponderTerminationRequest={[Function]}
                       onStartShouldSetResponder={[Function]}
-                      onTintColor="#374A59"
-                      onValueChange={[Function]}
                       style={
-                        Array [
-                          Object {
-                            "height": 31,
-                            "width": 51,
-                          },
-                          undefined,
-                        ]
+                        Object {
+                          "height": 31,
+                          "width": 51,
+                        }
                       }
-                      testID={undefined}
-                      tintColor={null}
                       title="Color Overlay"
                       titleStyles={
                         Object {
@@ -4705,7 +4517,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -4755,8 +4566,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4804,7 +4613,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -4854,8 +4662,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -4903,7 +4709,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -4953,8 +4758,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -5002,7 +4805,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
           </View>
           <View>
             <TouchableHighlight
-              accessibilityLabel={undefined}
               accessibilityTraits={
                 Array [
                   "button",
@@ -5052,8 +4854,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
                     ellipsizeMode="tail"
                     numberOfLines={0}
                     style={
@@ -5111,15 +4911,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
       }
     >
       <Text
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
         accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        hitSlop={undefined}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}

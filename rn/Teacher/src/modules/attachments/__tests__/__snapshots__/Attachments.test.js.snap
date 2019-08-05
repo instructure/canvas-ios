@@ -119,13 +119,13 @@ exports[`Attachments renders attachments 1`] = `
       }
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction],
         }
       }
       style={
@@ -197,13 +197,13 @@ exports[`Attachments renders empty state 1`] = `
       }
       navigator={
         Object {
-          "dismiss": [Function],
-          "dismissAllModals": [Function],
+          "dismiss": [MockFunction],
+          "dismissAllModals": [MockFunction],
           "isModal": false,
-          "pop": [Function],
-          "replace": [Function],
-          "show": [Function],
-          "traitCollection": [Function],
+          "pop": [MockFunction],
+          "replace": [MockFunction],
+          "show": [MockFunction],
+          "traitCollection": [MockFunction],
         }
       }
       style={

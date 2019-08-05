@@ -22,6 +22,8 @@
 
 RCT_EXPORT_MODULE();
 
++ (BOOL)requiresMainQueueSetup { return YES; }
+
 - (id)init {
     self = [super init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(traitsUpdated:) name:@"HelmSplitViewControllerTraitsUpdated" object:nil];

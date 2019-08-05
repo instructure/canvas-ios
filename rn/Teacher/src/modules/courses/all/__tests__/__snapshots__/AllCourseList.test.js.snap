@@ -4,7 +4,19 @@ exports[`AllCourseList no refresh when at least one course exists 1`] = `
 <Dashboard
   courses={Array []}
   refresh={[Function]}
-  refreshCourses={[Function]}
+  refreshCourses={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   refreshing={false}
 />
 `;
@@ -13,7 +25,19 @@ exports[`AllCourseList refreshes courses when empty 1`] = `
 <Dashboard
   courses={Array []}
   refresh={[Function]}
-  refreshCourses={[Function]}
+  refreshCourses={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   refreshing={false}
 />
 `;
@@ -22,7 +46,19 @@ exports[`AllCourseList refreshes with new props 1`] = `
 <Dashboard
   courses={Array []}
   refresh={[Function]}
-  refreshCourses={[Function]}
+  refreshCourses={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
   refreshing={false}
 />
 `;

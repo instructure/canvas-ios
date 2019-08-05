@@ -27,9 +27,6 @@ exports[`VideoRecorder renders finished 1`] = `
   >
     <Text
       accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "white",
@@ -203,9 +200,6 @@ exports[`VideoRecorder renders loading 1`] = `
   >
     <Text
       accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "white",
@@ -316,9 +310,6 @@ exports[`VideoRecorder renders ready 1`] = `
   >
     <Text
       accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "white",
@@ -428,7 +419,6 @@ exports[`VideoRecorder renders ready 1`] = `
     </TouchableHighlight>
   </View>
   <Camera
-    aspect={undefined}
     captureAudio={true}
     captureMode="video"
     captureQuality="medium"
@@ -471,9 +461,6 @@ exports[`VideoRecorder renders recording 1`] = `
   >
     <Text
       accessibilityLabel="Time elapsed: 0 minutes, 1 second."
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "white",
@@ -536,7 +523,6 @@ exports[`VideoRecorder renders recording 1`] = `
     </TouchableHighlight>
   </View>
   <Camera
-    aspect={undefined}
     captureAudio={true}
     captureMode="video"
     captureQuality="medium"
@@ -579,9 +565,6 @@ exports[`VideoRecorder renders reset 1`] = `
   >
     <Text
       accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "white",

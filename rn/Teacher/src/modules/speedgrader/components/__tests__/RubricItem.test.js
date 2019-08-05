@@ -19,7 +19,7 @@
 // @flow
 
 import React from 'react'
-import { AlertIOS, AccessibilityInfo, ActionSheetIOS } from 'react-native'
+import { Alert, AccessibilityInfo, ActionSheetIOS } from 'react-native'
 import RubricItem from '../RubricItem'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
@@ -28,7 +28,7 @@ import * as templates from '../../../../__templates__'
 
 jest.mock('../../../../common/components/CircleToggle', () => 'CircleToggle')
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')
-jest.mock('AlertIOS', () => ({
+jest.mock('Alert', () => ({
   prompt: jest.fn(),
 }))
 jest.mock('ActionSheetIOS', () => ({
@@ -168,9 +168,9 @@ describe('RubricItem', () => {
     let button = explore(tree).selectByProp('testID', `rubric-item.customize-grade-${defaultProps.rubricItem.id}`).pop()
     button.props.onPress()
 
-    expect(AlertIOS.prompt).toHaveBeenCalled()
-    expect(AlertIOS.prompt.mock.calls[0][5]).toEqual('decimal-pad')
-    AlertIOS.prompt.mock.calls[0][2][1].onPress('12')
+    expect(Alert.prompt).toHaveBeenCalled()
+    expect(Alert.prompt.mock.calls[0][5]).toEqual('decimal-pad')
+    Alert.prompt.mock.calls[0][2][1].onPress('12')
     expect(defaultProps.changeRating).toHaveBeenCalledWith(defaultProps.rubricItem.id, 12, undefined)
     expect(AccessibilityInfo.setAccessibilityFocus).toHaveBeenCalled()
   })
@@ -183,8 +183,8 @@ describe('RubricItem', () => {
     let button = explore(tree).selectByProp('testID', `rubric-item.customize-grade-${defaultProps.rubricItem.id}`).pop()
     button.props.onPress()
 
-    expect(AlertIOS.prompt).toHaveBeenCalled()
-    AlertIOS.prompt.mock.calls[0][2][0].onPress()
+    expect(Alert.prompt).toHaveBeenCalled()
+    Alert.prompt.mock.calls[0][2][0].onPress()
     expect(AccessibilityInfo.setAccessibilityFocus).toHaveBeenCalled()
   })
 

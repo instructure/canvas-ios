@@ -37,7 +37,7 @@ export function getQuiz (courseID: string, quizID: string): ApiPromise<Quiz> {
   return httpClient.get(url)
 }
 
-export function getQuizSubmissions (courseID: string, quizID: string) {
+export function getQuizSubmissions (courseID: string, quizID: string): ApiPromise<QuizSubmission[]> {
   const url = `courses/${courseID}/quizzes/${quizID}/submissions`
   let options = {
     params: {

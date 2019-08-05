@@ -12,16 +12,16 @@ exports[`RichTextEditor can be keyboard aware 1`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
-    getFile={[Function]}
+    getFile={[MockFunction]}
     navigator={
       Object {
-        "dismiss": [Function],
-        "dismissAllModals": [Function],
+        "dismiss": [MockFunction],
+        "dismissAllModals": [MockFunction],
         "isModal": false,
-        "pop": [Function],
-        "replace": [Function],
-        "show": [Function],
-        "traitCollection": [Function],
+        "pop": [MockFunction],
+        "replace": [MockFunction],
+        "show": [MockFunction],
+        "traitCollection": [MockFunction],
       }
     }
     onBlur={[Function]}
@@ -55,16 +55,16 @@ exports[`RichTextEditor hides toolbar when editor blurs 1`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
-    getFile={[Function]}
+    getFile={[MockFunction]}
     navigator={
       Object {
-        "dismiss": [Function],
-        "dismissAllModals": [Function],
+        "dismiss": [MockFunction],
+        "dismissAllModals": [MockFunction],
         "isModal": false,
-        "pop": [Function],
-        "replace": [Function],
-        "show": [Function],
-        "traitCollection": [Function],
+        "pop": [MockFunction],
+        "replace": [MockFunction],
+        "show": [MockFunction],
+        "traitCollection": [MockFunction],
       }
     }
     onBlur={[Function]}
@@ -91,16 +91,16 @@ exports[`RichTextEditor hides toolbar when showToolbar is false 1`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
-    getFile={[Function]}
+    getFile={[MockFunction]}
     navigator={
       Object {
-        "dismiss": [Function],
-        "dismissAllModals": [Function],
+        "dismiss": [MockFunction],
+        "dismissAllModals": [MockFunction],
         "isModal": false,
-        "pop": [Function],
-        "replace": [Function],
-        "show": [Function],
-        "traitCollection": [Function],
+        "pop": [MockFunction],
+        "replace": [MockFunction],
+        "show": [MockFunction],
+        "traitCollection": [MockFunction],
       }
     }
     onBlur={[Function]}
@@ -127,16 +127,16 @@ exports[`RichTextEditor renders 1`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
-    getFile={[Function]}
+    getFile={[MockFunction]}
     navigator={
       Object {
-        "dismiss": [Function],
-        "dismissAllModals": [Function],
+        "dismiss": [MockFunction],
+        "dismissAllModals": [MockFunction],
         "isModal": false,
-        "pop": [Function],
-        "replace": [Function],
-        "show": [Function],
-        "traitCollection": [Function],
+        "pop": [MockFunction],
+        "replace": [MockFunction],
+        "show": [MockFunction],
+        "traitCollection": [MockFunction],
       }
     }
     onBlur={[Function]}
@@ -163,16 +163,16 @@ exports[`RichTextEditor renders toolbar when editor focused 1`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
-    getFile={[Function]}
+    getFile={[MockFunction]}
     navigator={
       Object {
-        "dismiss": [Function],
-        "dismissAllModals": [Function],
+        "dismiss": [MockFunction],
+        "dismissAllModals": [MockFunction],
         "isModal": false,
-        "pop": [Function],
-        "replace": [Function],
-        "show": [Function],
-        "traitCollection": [Function],
+        "pop": [MockFunction],
+        "replace": [MockFunction],
+        "show": [MockFunction],
+        "traitCollection": [MockFunction],
       }
     }
     onBlur={[Function]}
@@ -212,16 +212,16 @@ exports[`RichTextEditor should update active editor items in toolbar 1`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
-    getFile={[Function]}
+    getFile={[MockFunction]}
     navigator={
       Object {
-        "dismiss": [Function],
-        "dismissAllModals": [Function],
+        "dismiss": [MockFunction],
+        "dismissAllModals": [MockFunction],
         "isModal": false,
-        "pop": [Function],
-        "replace": [Function],
-        "show": [Function],
-        "traitCollection": [Function],
+        "pop": [MockFunction],
+        "replace": [MockFunction],
+        "show": [MockFunction],
+        "traitCollection": [MockFunction],
       }
     }
     onBlur={[Function]}
@@ -265,16 +265,16 @@ exports[`RichTextEditor should update active editor items in toolbar 2`] = `
 >
   <ZSSRichTextEditor
     editorItemsChanged={[Function]}
-    getFile={[Function]}
+    getFile={[MockFunction]}
     navigator={
       Object {
-        "dismiss": [Function],
-        "dismissAllModals": [Function],
+        "dismiss": [MockFunction],
+        "dismissAllModals": [MockFunction],
         "isModal": false,
-        "pop": [Function],
-        "replace": [Function],
-        "show": [Function],
-        "traitCollection": [Function],
+        "pop": [MockFunction],
+        "replace": [MockFunction],
+        "show": [MockFunction],
+        "traitCollection": [MockFunction],
       }
     }
     onBlur={[Function]}

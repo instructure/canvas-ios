@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
-<Component
+<_default
   contentStyle={
     Array [
       Object {
@@ -58,6 +58,7 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
       <TouchableHighlight
         accessibilityTraits="button"
         activeOpacity={0.85}
+        delayPressOut={100}
         hitSlop={
           Object {
             "bottom": 16,
@@ -90,23 +91,23 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
         html="
-      <style>
-        html, body {
-          color: #2D3B45;
-          font-size: 16px;
-        }
-      </style>
-      Don’t forget your permission slips this Wednesday."
+<style>
+  html, body {
+    color: #2D3B45;
+    font-size: 16px;
+  }
+</style>
+Don’t forget your permission slips this Wednesday."
         isOpaque={false}
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
         scrollEnabled={true}
@@ -119,11 +120,11 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
       />
     </View>
   </View>
-</Component>
+</_default>
 `;
 
 exports[`GlobalAnnouncementRow renders error announcements 1`] = `
-<Component
+<_default
   contentStyle={
     Array [
       Object {
@@ -180,6 +181,7 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
       <TouchableHighlight
         accessibilityTraits="button"
         activeOpacity={0.85}
+        delayPressOut={100}
         hitSlop={
           Object {
             "bottom": 16,
@@ -212,23 +214,23 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
         html="
-      <style>
-        html, body {
-          color: #2D3B45;
-          font-size: 16px;
-        }
-      </style>
-      Don’t forget your permission slips this Wednesday."
+<style>
+  html, body {
+    color: #2D3B45;
+    font-size: 16px;
+  }
+</style>
+Don’t forget your permission slips this Wednesday."
         isOpaque={false}
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
         scrollEnabled={true}
@@ -241,11 +243,11 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
       />
     </View>
   </View>
-</Component>
+</_default>
 `;
 
 exports[`GlobalAnnouncementRow renders information announcements 1`] = `
-<Component
+<_default
   contentStyle={
     Array [
       Object {
@@ -302,6 +304,7 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
       <TouchableHighlight
         accessibilityTraits="button"
         activeOpacity={0.85}
+        delayPressOut={100}
         hitSlop={
           Object {
             "bottom": 16,
@@ -334,23 +337,23 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
         html="
-      <style>
-        html, body {
-          color: #2D3B45;
-          font-size: 16px;
-        }
-      </style>
-      Don’t forget your permission slips this Wednesday."
+<style>
+  html, body {
+    color: #2D3B45;
+    font-size: 16px;
+  }
+</style>
+Don’t forget your permission slips this Wednesday."
         isOpaque={false}
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
         scrollEnabled={true}
@@ -363,11 +366,11 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
       />
     </View>
   </View>
-</Component>
+</_default>
 `;
 
 exports[`GlobalAnnouncementRow renders question announcements 1`] = `
-<Component
+<_default
   contentStyle={
     Array [
       Object {
@@ -424,6 +427,7 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
       <TouchableHighlight
         accessibilityTraits="button"
         activeOpacity={0.85}
+        delayPressOut={100}
         hitSlop={
           Object {
             "bottom": 16,
@@ -456,23 +460,23 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
         html="
-      <style>
-        html, body {
-          color: #2D3B45;
-          font-size: 16px;
-        }
-      </style>
-      Don’t forget your permission slips this Wednesday."
+<style>
+  html, body {
+    color: #2D3B45;
+    font-size: 16px;
+  }
+</style>
+Don’t forget your permission slips this Wednesday."
         isOpaque={false}
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
         scrollEnabled={true}
@@ -485,11 +489,11 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
       />
     </View>
   </View>
-</Component>
+</_default>
 `;
 
 exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
-<Component
+<_default
   contentStyle={
     Array [
       Object {
@@ -546,6 +550,7 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
       <TouchableHighlight
         accessibilityTraits="button"
         activeOpacity={0.85}
+        delayPressOut={100}
         hitSlop={
           Object {
             "bottom": 16,
@@ -578,23 +583,23 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
         html="
-      <style>
-        html, body {
-          color: #2D3B45;
-          font-size: 16px;
-        }
-      </style>
-      Don’t forget your permission slips this Wednesday."
+<style>
+  html, body {
+    color: #2D3B45;
+    font-size: 16px;
+  }
+</style>
+Don’t forget your permission slips this Wednesday."
         isOpaque={false}
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
         scrollEnabled={true}
@@ -607,11 +612,11 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
       />
     </View>
   </View>
-</Component>
+</_default>
 `;
 
 exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
-<Component
+<_default
   contentStyle={
     Array [
       Object {
@@ -668,6 +673,7 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
       <TouchableHighlight
         accessibilityTraits="button"
         activeOpacity={0.85}
+        delayPressOut={100}
         hitSlop={
           Object {
             "bottom": 16,
@@ -700,23 +706,23 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
         html="
-      <style>
-        html, body {
-          color: #2D3B45;
-          font-size: 16px;
-        }
-      </style>
-      Don’t forget your permission slips this Wednesday."
+<style>
+  html, body {
+    color: #2D3B45;
+    font-size: 16px;
+  }
+</style>
+Don’t forget your permission slips this Wednesday."
         isOpaque={false}
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
         scrollEnabled={true}
@@ -729,5 +735,5 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
       />
     </View>
   </View>
-</Component>
+</_default>
 `;

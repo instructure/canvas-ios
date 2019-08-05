@@ -19,7 +19,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 
 import { shallow } from 'enzyme'
-import { ActionSheetIOS, AlertIOS, AppState, FlatList } from 'react-native'
+import { ActionSheetIOS, Alert, AppState, FlatList } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { CommentsTab, mapStateToProps } from '../CommentsTab'
@@ -284,7 +284,7 @@ it('makes an audio media comment', async () => {
 it('alerts without audio permissions', async () => {
   Permissions.checkMicrophone = jest.fn(() => Promise.resolve(false))
   const spy = jest.fn()
-  AlertIOS.alert = spy
+  Alert.alert = spy
   const view = renderer.create(
     <CommentsTab commentRows={comments} drawerState={new DrawerState()} />
   )
@@ -297,7 +297,7 @@ it('alerts without audio permissions', async () => {
 it('alerts without video permissions', async () => {
   Permissions.checkCamera = jest.fn(() => Promise.resolve(false))
   const spy = jest.fn()
-  AlertIOS.alert = spy
+  Alert.alert = spy
   const view = renderer.create(
     <CommentsTab commentRows={comments} drawerState={new DrawerState()} />
   )

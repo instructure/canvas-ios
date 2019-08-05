@@ -45,9 +45,6 @@ exports[`comments render properly 1`] = `
           >
             <Text
               accessibilityTraits="header"
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -72,9 +69,6 @@ exports[`comments render properly 1`] = `
               Mrs. Fig
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -101,31 +95,16 @@ exports[`comments render properly 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Mrs. Fig Profile"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <View
               accessibilityLabel=""
@@ -218,9 +197,6 @@ exports[`comments render properly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -280,31 +256,16 @@ exports[`comments render properly 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Dim Whitted Profile"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <View
               accessibilityLabel=""
@@ -351,9 +312,6 @@ exports[`comments render properly 1`] = `
           >
             <Text
               accessibilityTraits="header"
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -378,9 +336,6 @@ exports[`comments render properly 1`] = `
               Dim Whitted
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -465,9 +420,6 @@ exports[`comments render properly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -536,9 +488,6 @@ exports[`comments render properly 1`] = `
           >
             <Text
               accessibilityTraits="header"
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -563,9 +512,6 @@ exports[`comments render properly 1`] = `
               Mrs. Fig
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -592,31 +538,16 @@ exports[`comments render properly 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Mrs. Fig Profile"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <View
               accessibilityLabel=""
@@ -696,31 +627,16 @@ exports[`comments render properly 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Dim Whitted Profile"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <View
               accessibilityLabel=""
@@ -767,9 +683,6 @@ exports[`comments render properly 1`] = `
           >
             <Text
               accessibilityTraits="header"
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -794,9 +707,6 @@ exports[`comments render properly 1`] = `
               Dim Whitted
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -872,9 +782,6 @@ exports[`comments render properly 1`] = `
           >
             <Text
               accessibilityTraits="header"
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -899,9 +806,6 @@ exports[`comments render properly 1`] = `
               Dim Whitted
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -928,31 +832,16 @@ exports[`comments render properly 1`] = `
             </Text>
           </View>
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Dim Whitted Profile"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <View
               accessibilityLabel=""
@@ -1036,31 +925,16 @@ exports[`comments render properly 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Dim Whitted Profile"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <View
               accessibilityLabel=""
@@ -1107,9 +981,6 @@ exports[`comments render properly 1`] = `
           >
             <Text
               accessibilityTraits="header"
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1134,9 +1005,6 @@ exports[`comments render properly 1`] = `
               Dim Whitted
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1175,16 +1043,8 @@ exports[`comments render properly 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1206,7 +1066,6 @@ exports[`comments render properly 1`] = `
               }
             }
             testID="submitted-content.item-1"
-            tvParallaxProperties={undefined}
           >
             <Image
               resizeMode="center"
@@ -1229,8 +1088,6 @@ exports[`comments render properly 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -1251,8 +1108,6 @@ exports[`comments render properly 1`] = `
                 Item 1
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={

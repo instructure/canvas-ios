@@ -24,7 +24,7 @@ import {
   Image,
   FlatList,
   StyleSheet,
-  AlertIOS,
+  Alert,
 } from 'react-native'
 import i18n from 'format-message'
 import Screen from '../../routing/Screen'
@@ -69,7 +69,7 @@ export default class Filter extends Component<FilterProps, FilterState> {
     let selectedOption = this.state.filterOptions.find(option => option.type === type) || {}
 
     if (selectedOption.prompt && !selectedOption.selected) {
-      AlertIOS.prompt(selectedOption.title(), this.props.filterPromptMessage, (promptValue) => {
+      Alert.prompt(selectedOption.title(), this.props.filterPromptMessage, (promptValue) => {
         this.updateFilterSelection(selectedOption.type, promptValue)
       }, 'plain-text', '', 'numeric')
     } else {

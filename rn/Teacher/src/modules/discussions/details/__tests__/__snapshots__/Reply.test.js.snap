@@ -120,13 +120,13 @@ exports[`DiscussionReplies renders 1`] = `
         html="<p>1.0</p>"
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
       />
@@ -343,13 +343,13 @@ exports[`DiscussionReplies renders without the reply button when the user cant r
         html="<p>1.0</p>"
         navigator={
           Object {
-            "dismiss": [Function],
-            "dismissAllModals": [Function],
+            "dismiss": [MockFunction],
+            "dismissAllModals": [MockFunction],
             "isModal": false,
-            "pop": [Function],
-            "replace": [Function],
-            "show": [Function],
-            "traitCollection": [Function],
+            "pop": [MockFunction],
+            "replace": [MockFunction],
+            "show": [MockFunction],
+            "traitCollection": [MockFunction],
           }
         }
       />

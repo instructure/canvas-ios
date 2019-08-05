@@ -64,83 +64,82 @@ export function registerScreen (
 }
 
 export function wrapComponentInProviders (moduleName: string, generator: (props: any) => any, store: Store): any {
-  const generatorWrapper = () =>
-    class extends React.Component<any, any> {
-      static displayName = `Scene(${moduleName})`
+  class Scene extends React.Component<any, any> {
+    static displayName = `Scene(${moduleName})`
 
-      state = { hasError: false }
+    state = { hasError: false }
 
-      static propTypes = {
-        screenInstanceID: PropTypes.string,
-      }
+    static propTypes = {
+      screenInstanceID: PropTypes.string,
+    }
 
-      static childContextTypes = {
-        screenInstanceID: PropTypes.string,
-      }
+    static childContextTypes = {
+      screenInstanceID: PropTypes.string,
+    }
 
-      componentDidCatch (error, info) {
-        global.crashReporter.setString('screenUrl', moduleName)
-        global.crashReporter.setBool('screenError', true)
+    componentDidCatch (error, info) {
+      global.crashReporter.setString('screenUrl', moduleName)
+      global.crashReporter.setBool('screenError', true)
 
-        let domain = `com.instructure.ios.${app.current().appId}`
-        global.crashReporter.recordError({
-          domain,
-          userInfo: {
-            errorMessage: error.message.split('\n')[0],
-          },
-        })
-        this.setState({ hasError: true })
-      }
+      let domain = `com.instructure.ios.${app.current().appId}`
+      global.crashReporter.recordError({
+        domain,
+        userInfo: {
+          errorMessage: error.message.split('\n')[0],
+        },
+      })
+      this.setState({ hasError: true })
+    }
 
-      getChildContext () {
-        return {
-          screenInstanceID: this.props.screenInstanceID,
-        }
-      }
-
-      render () {
-        let {
-          navigatorOptions,
-          ...props
-        } = this.props
-        const navigator = new Navigator(moduleName, navigatorOptions)
-
-        if (this.state.hasError) {
-          return <ErrorScreen {...props} navigator={navigator} />
-        }
-
-        const ScreenComponent = generator(props)
-        const session = getSession()
-        // $FlowFixMe
-        const uri = `${session.baseURL.replace(/\/?$/, '')}/api/graphql`
-        const headers = {
-          // $FlowFixMe
-          'Authorization': `Bearer ${session.authToken}`,
-          'GraphQL-Metrics': true,
-        }
-
-        const client = new ApolloClient({
-          link: new HttpLink({ uri, headers }),
-          cache: new InMemoryCache(),
-        })
-
-        return (
-          <ApolloProvider client={client}>
-            <Provider store={store}>
-              <ScreenComponent
-                testID={moduleName}
-                navigator={navigator}
-                apollo={client}
-                session={session}
-                {...props}
-                {...routeProps.get(this.props.screenInstanceID)}
-              />
-            </Provider>
-          </ApolloProvider>
-        )
+    getChildContext () {
+      return {
+        screenInstanceID: this.props.screenInstanceID,
       }
     }
-  return generatorWrapper
+
+    render () {
+      let {
+        navigatorOptions,
+        ...props
+      } = this.props
+      const navigator = new Navigator(moduleName, navigatorOptions)
+
+      if (this.state.hasError) {
+        return <ErrorScreen {...props} navigator={navigator} />
+      }
+
+      const ScreenComponent = generator(props)
+      const session = getSession()
+      // $FlowFixMe
+      const uri = `${session.baseURL.replace(/\/?$/, '')}/api/graphql`
+      const headers = {
+        // $FlowFixMe
+        'Authorization': `Bearer ${session.authToken}`,
+        'GraphQL-Metrics': true,
+      }
+
+      const client = new ApolloClient({
+        link: new HttpLink({ uri, headers }),
+        cache: new InMemoryCache(),
+      })
+
+      return (
+        <ApolloProvider client={client}>
+          <Provider store={store}>
+            <ScreenComponent
+              testID={moduleName}
+              navigator={navigator}
+              apollo={client}
+              session={session}
+              {...props}
+              {...routeProps.get(this.props.screenInstanceID)}
+            />
+          </Provider>
+        </ApolloProvider>
+      )
+    }
+  }
+  return () => Scene
 }
 
 export function route (url: string, additionalProps: Object = {}): ?RouteOptions {

@@ -22,13 +22,9 @@ import React from 'react'
 import { SubmissionSettings, mapStateToProps } from '../SubmissionSettings'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
+import * as template from '../../../../__templates__'
 
-const template = {
-  ...require('../../../../__templates__/helm'),
-  ...require('../../../../__templates__/assignments'),
-  ...require('../../../../__templates__/quiz'),
-  ...require('../../../../redux/__templates__/app-state'),
-}
+jest.mock('Switch', () => 'Switch')
 
 let defaultProps = {
   courseID: '1',

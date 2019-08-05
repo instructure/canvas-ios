@@ -25,7 +25,7 @@ import {
   Image,
   View,
   ActionSheetIOS,
-  AlertIOS,
+  Alert,
 } from 'react-native'
 import Row from '../../common/components/rows/Row'
 import images from '../../images'
@@ -174,7 +174,7 @@ export default class AttachmentRow extends Component<Props, any> {
   }
 
   onPressRemove = () => {
-    AlertIOS.alert(
+    Alert.alert(
       i18n('Remove this attachment?'),
       i18n('This action can not be undone.'),
       [

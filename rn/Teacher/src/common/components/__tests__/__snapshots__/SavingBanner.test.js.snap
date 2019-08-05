@@ -15,9 +15,6 @@ exports[`SavingBanner renders 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Object {
         "fontSize": 17,
@@ -56,9 +53,6 @@ exports[`SavingBanner renders 2`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Object {
         "fontSize": 17,

@@ -50,7 +50,7 @@ exports[`SubmissionGrader renders 1`] = `
     submissionID="1"
   />
   <SubmissionViewer
-    closeModal={[Function]}
+    closeModal={[MockFunction]}
     drawerState={
       DrawerState {
         "commentProgress": Object {},
@@ -68,9 +68,9 @@ exports[`SubmissionGrader renders 1`] = `
             "onDragBegan": [Function],
             "onLayout": [Function],
             "props": Object {
-              "closeModal": [Function],
+              "closeModal": [MockFunction],
               "drawerState": [Circular],
-              "gradeSubmissionWithRubric": [Function],
+              "gradeSubmissionWithRubric": [MockFunction],
               "submissionID": "1",
               "submissionProps": Object {},
             },
@@ -105,12 +105,12 @@ exports[`SubmissionGrader renders 1`] = `
                   "useState": [Function],
                 },
                 "_element": <SubmissionGrader
-                  closeModal={[Function]}
+                  closeModal={[MockFunction]}
                   drawerState={[Circular]}
-                  gradeSubmissionWithRubric={[Function]}
+                  gradeSubmissionWithRubric={[MockFunction]}
                   submissionID="1"
                   submissionProps={Object {}}
-      />,
+                />,
                 "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
@@ -121,66 +121,59 @@ exports[`SubmissionGrader renders 1`] = `
                 "_rendered": <A11yGroup
                   onLayout={[Function]}
                   style={
-                              Object {
-                                          "flex": 1,
-                                        }
+                    Object {
+                      "flex": 1,
+                    }
                   }
-      >
+                >
                   <ToolTip />
                   <Header
-                              assignmentID={undefined}
-                              closeModal={[Function]}
-                              courseID={undefined}
-                              navigator={undefined}
-                              submissionID="1"
-                              submissionProps={Object {}}
-                              userID={undefined}
+                    closeModal={[Function]}
+                    submissionID="1"
+                    submissionProps={Object {}}
                   />
                   <SubmissionPicker
-                              submissionID="1"
-                              submissionProps={Object {}}
+                    submissionID="1"
+                    submissionProps={Object {}}
                   />
                   <SimilarityScore
-                              submissionID="1"
+                    submissionID="1"
                   />
                   <SubmissionViewer
-                              closeModal={[Function]}
-                              drawerState={[Circular]}
-                              gradeSubmissionWithRubric={[Function]}
-                              size={
-                                          Object {
-                                                      "height": 200,
-                                                      "width": 200,
-                                                    }
-                              }
-                              submissionID="1"
-                              submissionProps={Object {}}
+                    closeModal={[MockFunction]}
+                    drawerState={[Circular]}
+                    gradeSubmissionWithRubric={[MockFunction]}
+                    size={
+                      Object {
+                        "height": 200,
+                        "width": 200,
+                      }
+                    }
+                    submissionID="1"
+                    submissionProps={Object {}}
                   />
                   <BottomDrawer
-                              containerHeight={200}
-                              containerWidth={200}
-                              drawerState={[Circular]}
-                              renderHandleContent={[Function]}
+                    containerHeight={200}
+                    containerWidth={200}
+                    drawerState={[Circular]}
+                    renderHandleContent={[Function]}
                   >
-                              <GradeTab
-                                          closeModal={[Function]}
-                                          dismissToolTip={undefined}
-                                          drawerState={[Circular]}
-                                          gradeSubmissionWithRubric={[Function]}
-                                          showToolTip={undefined}
-                                          submissionID="1"
-                                          submissionProps={Object {}}
-                                          unsavedChanges={null}
-                                          updateUnsavedChanges={[Function]}
-                              />
+                    <GradeTab
+                      closeModal={[MockFunction]}
+                      drawerState={[Circular]}
+                      gradeSubmissionWithRubric={[MockFunction]}
+                      submissionID="1"
+                      submissionProps={Object {}}
+                      unsavedChanges={null}
+                      updateUnsavedChanges={[Function]}
+                    />
                   </BottomDrawer>
-      </A11yGroup>,
+                </A11yGroup>,
                 "_rendering": false,
                 "_updater": [Circular],
                 "_workInProgressHook": null,
               },
             },
-            Symbol(enzyme.__setState__): [Function],
           },
         ],
         "registerCommentProgress": [Function],
@@ -188,7 +181,7 @@ exports[`SubmissionGrader renders 1`] = `
         "unregisterCommentProgress": [Function],
       }
     }
-    gradeSubmissionWithRubric={[Function]}
+    gradeSubmissionWithRubric={[MockFunction]}
     size={
       Object {
         "height": 200,
@@ -218,9 +211,9 @@ exports[`SubmissionGrader renders 1`] = `
             "onDragBegan": [Function],
             "onLayout": [Function],
             "props": Object {
-              "closeModal": [Function],
+              "closeModal": [MockFunction],
               "drawerState": [Circular],
-              "gradeSubmissionWithRubric": [Function],
+              "gradeSubmissionWithRubric": [MockFunction],
               "submissionID": "1",
               "submissionProps": Object {},
             },
@@ -255,12 +248,12 @@ exports[`SubmissionGrader renders 1`] = `
                   "useState": [Function],
                 },
                 "_element": <SubmissionGrader
-                  closeModal={[Function]}
+                  closeModal={[MockFunction]}
                   drawerState={[Circular]}
-                  gradeSubmissionWithRubric={[Function]}
+                  gradeSubmissionWithRubric={[MockFunction]}
                   submissionID="1"
                   submissionProps={Object {}}
-      />,
+                />,
                 "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
                 "_instance": [Circular],
@@ -271,66 +264,59 @@ exports[`SubmissionGrader renders 1`] = `
                 "_rendered": <A11yGroup
                   onLayout={[Function]}
                   style={
-                              Object {
-                                          "flex": 1,
-                                        }
+                    Object {
+                      "flex": 1,
+                    }
                   }
-      >
+                >
                   <ToolTip />
                   <Header
-                              assignmentID={undefined}
-                              closeModal={[Function]}
-                              courseID={undefined}
-                              navigator={undefined}
-                              submissionID="1"
-                              submissionProps={Object {}}
-                              userID={undefined}
+                    closeModal={[Function]}
+                    submissionID="1"
+                    submissionProps={Object {}}
                   />
                   <SubmissionPicker
-                              submissionID="1"
-                              submissionProps={Object {}}
+                    submissionID="1"
+                    submissionProps={Object {}}
                   />
                   <SimilarityScore
-                              submissionID="1"
+                    submissionID="1"
                   />
                   <SubmissionViewer
-                              closeModal={[Function]}
-                              drawerState={[Circular]}
-                              gradeSubmissionWithRubric={[Function]}
-                              size={
-                                          Object {
-                                                      "height": 200,
-                                                      "width": 200,
-                                                    }
-                              }
-                              submissionID="1"
-                              submissionProps={Object {}}
+                    closeModal={[MockFunction]}
+                    drawerState={[Circular]}
+                    gradeSubmissionWithRubric={[MockFunction]}
+                    size={
+                      Object {
+                        "height": 200,
+                        "width": 200,
+                      }
+                    }
+                    submissionID="1"
+                    submissionProps={Object {}}
                   />
                   <BottomDrawer
-                              containerHeight={200}
-                              containerWidth={200}
-                              drawerState={[Circular]}
-                              renderHandleContent={[Function]}
+                    containerHeight={200}
+                    containerWidth={200}
+                    drawerState={[Circular]}
+                    renderHandleContent={[Function]}
                   >
-                              <GradeTab
-                                          closeModal={[Function]}
-                                          dismissToolTip={undefined}
-                                          drawerState={[Circular]}
-                                          gradeSubmissionWithRubric={[Function]}
-                                          showToolTip={undefined}
-                                          submissionID="1"
-                                          submissionProps={Object {}}
-                                          unsavedChanges={null}
-                                          updateUnsavedChanges={[Function]}
-                              />
+                    <GradeTab
+                      closeModal={[MockFunction]}
+                      drawerState={[Circular]}
+                      gradeSubmissionWithRubric={[MockFunction]}
+                      submissionID="1"
+                      submissionProps={Object {}}
+                      unsavedChanges={null}
+                      updateUnsavedChanges={[Function]}
+                    />
                   </BottomDrawer>
-      </A11yGroup>,
+                </A11yGroup>,
                 "_rendering": false,
                 "_updater": [Circular],
                 "_workInProgressHook": null,
               },
             },
-            Symbol(enzyme.__setState__): [Function],
           },
         ],
         "registerCommentProgress": [Function],
@@ -341,7 +327,7 @@ exports[`SubmissionGrader renders 1`] = `
     renderHandleContent={[Function]}
   >
     <GradeTab
-      closeModal={[Function]}
+      closeModal={[MockFunction]}
       drawerState={
         DrawerState {
           "commentProgress": Object {},
@@ -359,9 +345,9 @@ exports[`SubmissionGrader renders 1`] = `
               "onDragBegan": [Function],
               "onLayout": [Function],
               "props": Object {
-                "closeModal": [Function],
+                "closeModal": [MockFunction],
                 "drawerState": [Circular],
-                "gradeSubmissionWithRubric": [Function],
+                "gradeSubmissionWithRubric": [MockFunction],
                 "submissionID": "1",
                 "submissionProps": Object {},
               },
@@ -396,12 +382,12 @@ exports[`SubmissionGrader renders 1`] = `
                     "useState": [Function],
                   },
                   "_element": <SubmissionGrader
-                    closeModal={[Function]}
+                    closeModal={[MockFunction]}
                     drawerState={[Circular]}
-                    gradeSubmissionWithRubric={[Function]}
+                    gradeSubmissionWithRubric={[MockFunction]}
                     submissionID="1"
                     submissionProps={Object {}}
-        />,
+                  />,
                   "_firstWorkInProgressHook": null,
                   "_forcedUpdate": false,
                   "_instance": [Circular],
@@ -412,66 +398,59 @@ exports[`SubmissionGrader renders 1`] = `
                   "_rendered": <A11yGroup
                     onLayout={[Function]}
                     style={
-                                Object {
-                                            "flex": 1,
-                                          }
+                      Object {
+                        "flex": 1,
+                      }
                     }
-        >
+                  >
                     <ToolTip />
                     <Header
-                                assignmentID={undefined}
-                                closeModal={[Function]}
-                                courseID={undefined}
-                                navigator={undefined}
-                                submissionID="1"
-                                submissionProps={Object {}}
-                                userID={undefined}
+                      closeModal={[Function]}
+                      submissionID="1"
+                      submissionProps={Object {}}
                     />
                     <SubmissionPicker
-                                submissionID="1"
-                                submissionProps={Object {}}
+                      submissionID="1"
+                      submissionProps={Object {}}
                     />
                     <SimilarityScore
-                                submissionID="1"
+                      submissionID="1"
                     />
                     <SubmissionViewer
-                                closeModal={[Function]}
-                                drawerState={[Circular]}
-                                gradeSubmissionWithRubric={[Function]}
-                                size={
-                                            Object {
-                                                        "height": 200,
-                                                        "width": 200,
-                                                      }
-                                }
-                                submissionID="1"
-                                submissionProps={Object {}}
+                      closeModal={[MockFunction]}
+                      drawerState={[Circular]}
+                      gradeSubmissionWithRubric={[MockFunction]}
+                      size={
+                        Object {
+                          "height": 200,
+                          "width": 200,
+                        }
+                      }
+                      submissionID="1"
+                      submissionProps={Object {}}
                     />
                     <BottomDrawer
-                                containerHeight={200}
-                                containerWidth={200}
-                                drawerState={[Circular]}
-                                renderHandleContent={[Function]}
+                      containerHeight={200}
+                      containerWidth={200}
+                      drawerState={[Circular]}
+                      renderHandleContent={[Function]}
                     >
-                                <GradeTab
-                                            closeModal={[Function]}
-                                            dismissToolTip={undefined}
-                                            drawerState={[Circular]}
-                                            gradeSubmissionWithRubric={[Function]}
-                                            showToolTip={undefined}
-                                            submissionID="1"
-                                            submissionProps={Object {}}
-                                            unsavedChanges={null}
-                                            updateUnsavedChanges={[Function]}
-                                />
+                      <GradeTab
+                        closeModal={[MockFunction]}
+                        drawerState={[Circular]}
+                        gradeSubmissionWithRubric={[MockFunction]}
+                        submissionID="1"
+                        submissionProps={Object {}}
+                        unsavedChanges={null}
+                        updateUnsavedChanges={[Function]}
+                      />
                     </BottomDrawer>
-        </A11yGroup>,
+                  </A11yGroup>,
                   "_rendering": false,
                   "_updater": [Circular],
                   "_workInProgressHook": null,
                 },
               },
-              Symbol(enzyme.__setState__): [Function],
             },
           ],
           "registerCommentProgress": [Function],
@@ -479,7 +458,7 @@ exports[`SubmissionGrader renders 1`] = `
           "unregisterCommentProgress": [Function],
         }
       }
-      gradeSubmissionWithRubric={[Function]}
+      gradeSubmissionWithRubric={[MockFunction]}
       submissionID="1"
       submissionProps={Object {}}
       unsavedChanges={null}
@@ -533,7 +512,7 @@ exports[`SubmissionGrader renders wide 1`] = `
         submissionID="1"
       />
       <SubmissionViewer
-        closeModal={[Function]}
+        closeModal={[MockFunction]}
         drawerInset={0}
         drawerState={
           DrawerState {
@@ -552,9 +531,9 @@ exports[`SubmissionGrader renders wide 1`] = `
                 "onDragBegan": [Function],
                 "onLayout": [Function],
                 "props": Object {
-                  "closeModal": [Function],
+                  "closeModal": [MockFunction],
                   "drawerState": [Circular],
-                  "gradeSubmissionWithRubric": [Function],
+                  "gradeSubmissionWithRubric": [MockFunction],
                   "submissionID": "1",
                   "submissionProps": Object {},
                 },
@@ -589,12 +568,12 @@ exports[`SubmissionGrader renders wide 1`] = `
                       "useState": [Function],
                     },
                     "_element": <SubmissionGrader
-                      closeModal={[Function]}
+                      closeModal={[MockFunction]}
                       drawerState={[Circular]}
-                      gradeSubmissionWithRubric={[Function]}
+                      gradeSubmissionWithRubric={[MockFunction]}
                       submissionID="1"
                       submissionProps={Object {}}
-          />,
+                    />,
                     "_firstWorkInProgressHook": null,
                     "_forcedUpdate": false,
                     "_instance": [Circular],
@@ -605,66 +584,59 @@ exports[`SubmissionGrader renders wide 1`] = `
                     "_rendered": <A11yGroup
                       onLayout={[Function]}
                       style={
-                                  Object {
-                                              "flex": 1,
-                                            }
+                        Object {
+                          "flex": 1,
+                        }
                       }
-          >
+                    >
                       <ToolTip />
                       <Header
-                                  assignmentID={undefined}
-                                  closeModal={[Function]}
-                                  courseID={undefined}
-                                  navigator={undefined}
-                                  submissionID="1"
-                                  submissionProps={Object {}}
-                                  userID={undefined}
+                        closeModal={[Function]}
+                        submissionID="1"
+                        submissionProps={Object {}}
                       />
                       <SubmissionPicker
-                                  submissionID="1"
-                                  submissionProps={Object {}}
+                        submissionID="1"
+                        submissionProps={Object {}}
                       />
                       <SimilarityScore
-                                  submissionID="1"
+                        submissionID="1"
                       />
                       <SubmissionViewer
-                                  closeModal={[Function]}
-                                  drawerState={[Circular]}
-                                  gradeSubmissionWithRubric={[Function]}
-                                  size={
-                                              Object {
-                                                          "height": 200,
-                                                          "width": 200,
-                                                        }
-                                  }
-                                  submissionID="1"
-                                  submissionProps={Object {}}
+                        closeModal={[MockFunction]}
+                        drawerState={[Circular]}
+                        gradeSubmissionWithRubric={[MockFunction]}
+                        size={
+                          Object {
+                            "height": 200,
+                            "width": 200,
+                          }
+                        }
+                        submissionID="1"
+                        submissionProps={Object {}}
                       />
                       <BottomDrawer
-                                  containerHeight={200}
-                                  containerWidth={200}
-                                  drawerState={[Circular]}
-                                  renderHandleContent={[Function]}
+                        containerHeight={200}
+                        containerWidth={200}
+                        drawerState={[Circular]}
+                        renderHandleContent={[Function]}
                       >
-                                  <GradeTab
-                                              closeModal={[Function]}
-                                              dismissToolTip={undefined}
-                                              drawerState={[Circular]}
-                                              gradeSubmissionWithRubric={[Function]}
-                                              showToolTip={undefined}
-                                              submissionID="1"
-                                              submissionProps={Object {}}
-                                              unsavedChanges={null}
-                                              updateUnsavedChanges={[Function]}
-                                  />
+                        <GradeTab
+                          closeModal={[MockFunction]}
+                          drawerState={[Circular]}
+                          gradeSubmissionWithRubric={[MockFunction]}
+                          submissionID="1"
+                          submissionProps={Object {}}
+                          unsavedChanges={null}
+                          updateUnsavedChanges={[Function]}
+                        />
                       </BottomDrawer>
-          </A11yGroup>,
+                    </A11yGroup>,
                     "_rendering": false,
                     "_updater": [Circular],
                     "_workInProgressHook": null,
                   },
                 },
-                Symbol(enzyme.__setState__): [Function],
               },
               SubmissionGrader {
                 "captureToolTip": [Function],
@@ -675,9 +647,9 @@ exports[`SubmissionGrader renders wide 1`] = `
                 "onDragBegan": [Function],
                 "onLayout": [Function],
                 "props": Object {
-                  "closeModal": [Function],
+                  "closeModal": [MockFunction],
                   "drawerState": [Circular],
-                  "gradeSubmissionWithRubric": [Function],
+                  "gradeSubmissionWithRubric": [MockFunction],
                   "submissionID": "1",
                   "submissionProps": Object {},
                 },
@@ -712,12 +684,12 @@ exports[`SubmissionGrader renders wide 1`] = `
                       "useState": [Function],
                     },
                     "_element": <SubmissionGrader
-                      closeModal={[Function]}
+                      closeModal={[MockFunction]}
                       drawerState={[Circular]}
-                      gradeSubmissionWithRubric={[Function]}
+                      gradeSubmissionWithRubric={[MockFunction]}
                       submissionID="1"
                       submissionProps={Object {}}
-          />,
+                    />,
                     "_firstWorkInProgressHook": null,
                     "_forcedUpdate": false,
                     "_instance": [Circular],
@@ -728,119 +700,112 @@ exports[`SubmissionGrader renders wide 1`] = `
                     "_rendered": <A11yGroup
                       onLayout={[Function]}
                       style={
-                                  Object {
-                                              "flex": 1,
-                                            }
+                        Object {
+                          "flex": 1,
+                        }
                       }
-          >
+                    >
                       <Header
-                                  assignmentID={undefined}
-                                  closeModal={[Function]}
-                                  courseID={undefined}
-                                  navigator={undefined}
-                                  style={
-                                              Object {
-                                                          "borderBottomColor": "#C7CDD1",
-                                                          "borderBottomWidth": 0.5,
-                                                          "paddingBottom": 16,
-                                                        }
-                                  }
-                                  submissionID="1"
-                                  submissionProps={Object {}}
-                                  userID={undefined}
+                        closeModal={[Function]}
+                        style={
+                          Object {
+                            "borderBottomColor": "#C7CDD1",
+                            "borderBottomWidth": 0.5,
+                            "paddingBottom": 16,
+                          }
+                        }
+                        submissionID="1"
+                        submissionProps={Object {}}
                       />
                       <View
-                                  style={
-                                              Object {
-                                                          "flex": 1,
-                                                          "flexDirection": "row",
-                                                        }
-                                  }
+                        style={
+                          Object {
+                            "flex": 1,
+                            "flexDirection": "row",
+                          }
+                        }
                       >
-                                  <View
-                                              style={
-                                                          Object {
-                                                                      "flex": 1,
-                                                                    }
-                                              }
-                                  >
-                                              <SubmissionPicker
-                                                          submissionID="1"
-                                                          submissionProps={Object {}}
-                                              />
-                                              <SimilarityScore
-                                                          submissionID="1"
-                                              />
-                                              <SubmissionViewer
-                                                          closeModal={[Function]}
-                                                          drawerInset={0}
-                                                          drawerState={[Circular]}
-                                                          gradeSubmissionWithRubric={[Function]}
-                                                          size={
-                                                                      Object {
-                                                                                  "height": 200,
-                                                                                  "width": 625,
-                                                                                }
-                                                          }
-                                                          submissionID="1"
-                                                          submissionProps={Object {}}
-                                              />
-                                  </View>
-                                  <View
-                                              style={
-                                                          Object {
-                                                                      "borderLeftColor": "#C7CDD1",
-                                                                      "borderLeftWidth": 0.5,
-                                                                      "paddingTop": 16,
-                                                                      "width": 375,
-                                                                    }
-                                              }
-                                  >
-                                              <View
-                                                          style={
-                                                                      Object {
-                                                                                  "borderBottomColor": "lightgray",
-                                                                                  "borderBottomWidth": 0.5,
-                                                                                  "paddingBottom": 8,
-                                                                                  "paddingHorizontal": 16,
-                                                                                }
-                                                          }
-                                              >
-                                                          <SegmentedControlIOS
-                                                                      onChange={[Function]}
-                                                                      selectedIndex={-1}
-                                                                      testID="speedgrader.segment-control"
-                                                                      tintColor="#374A59"
-                                                                      values={
-                                                                                  Array [
-                                                                                              "Grades",
-                                                                                              "Comments",
-                                                                                              "Files",
-                                                                                            ]
-                                                                      }
-                                                          />
-                                              </View>
-                                              <GradeTab
-                                                          closeModal={[Function]}
-                                                          dismissToolTip={undefined}
-                                                          drawerState={[Circular]}
-                                                          gradeSubmissionWithRubric={[Function]}
-                                                          showToolTip={undefined}
-                                                          submissionID="1"
-                                                          submissionProps={Object {}}
-                                                          unsavedChanges={null}
-                                                          updateUnsavedChanges={[Function]}
-                                              />
-                                  </View>
+                        <View
+                          style={
+                            Object {
+                              "flex": 1,
+                            }
+                          }
+                        >
+                          <SubmissionPicker
+                            submissionID="1"
+                            submissionProps={Object {}}
+                          />
+                          <SimilarityScore
+                            submissionID="1"
+                          />
+                          <SubmissionViewer
+                            closeModal={[MockFunction]}
+                            drawerInset={0}
+                            drawerState={[Circular]}
+                            gradeSubmissionWithRubric={[MockFunction]}
+                            size={
+                              Object {
+                                "height": 200,
+                                "width": 625,
+                              }
+                            }
+                            submissionID="1"
+                            submissionProps={Object {}}
+                          />
+                        </View>
+                        <View
+                          style={
+                            Object {
+                              "borderLeftColor": "#C7CDD1",
+                              "borderLeftWidth": 0.5,
+                              "paddingTop": 16,
+                              "width": 375,
+                            }
+                          }
+                        >
+                          <View
+                            style={
+                              Object {
+                                "borderBottomColor": "lightgray",
+                                "borderBottomWidth": 0.5,
+                                "paddingBottom": 8,
+                                "paddingHorizontal": 16,
+                              }
+                            }
+                          >
+                            <SegmentedControlIOS
+                              onChange={[Function]}
+                              selectedIndex={-1}
+                              testID="speedgrader.segment-control"
+                              tintColor="#374A59"
+                              values={
+                                Array [
+                                  "Grades",
+                                  "Comments",
+                                  "Files",
+                                ]
+                              }
+                            />
+                          </View>
+                          <GradeTab
+                            closeModal={[MockFunction]}
+                            drawerState={[Circular]}
+                            gradeSubmissionWithRubric={[MockFunction]}
+                            submissionID="1"
+                            submissionProps={Object {}}
+                            unsavedChanges={null}
+                            updateUnsavedChanges={[Function]}
+                          />
+                        </View>
                       </View>
                       <ToolTip />
-          </A11yGroup>,
+                    </A11yGroup>,
                     "_rendering": false,
                     "_updater": [Circular],
                     "_workInProgressHook": null,
                   },
                 },
-                Symbol(enzyme.__setState__): [Function],
               },
             ],
             "registerCommentProgress": [Function],
@@ -848,7 +813,7 @@ exports[`SubmissionGrader renders wide 1`] = `
             "unregisterCommentProgress": [Function],
           }
         }
-        gradeSubmissionWithRubric={[Function]}
+        gradeSubmissionWithRubric={[MockFunction]}
         size={
           Object {
             "height": 200,
@@ -894,7 +859,7 @@ exports[`SubmissionGrader renders wide 1`] = `
         />
       </View>
       <GradeTab
-        closeModal={[Function]}
+        closeModal={[MockFunction]}
         drawerState={
           DrawerState {
             "commentProgress": Object {},
@@ -912,9 +877,9 @@ exports[`SubmissionGrader renders wide 1`] = `
                 "onDragBegan": [Function],
                 "onLayout": [Function],
                 "props": Object {
-                  "closeModal": [Function],
+                  "closeModal": [MockFunction],
                   "drawerState": [Circular],
-                  "gradeSubmissionWithRubric": [Function],
+                  "gradeSubmissionWithRubric": [MockFunction],
                   "submissionID": "1",
                   "submissionProps": Object {},
                 },
@@ -949,12 +914,12 @@ exports[`SubmissionGrader renders wide 1`] = `
                       "useState": [Function],
                     },
                     "_element": <SubmissionGrader
-                      closeModal={[Function]}
+                      closeModal={[MockFunction]}
                       drawerState={[Circular]}
-                      gradeSubmissionWithRubric={[Function]}
+                      gradeSubmissionWithRubric={[MockFunction]}
                       submissionID="1"
                       submissionProps={Object {}}
-          />,
+                    />,
                     "_firstWorkInProgressHook": null,
                     "_forcedUpdate": false,
                     "_instance": [Circular],
@@ -965,66 +930,59 @@ exports[`SubmissionGrader renders wide 1`] = `
                     "_rendered": <A11yGroup
                       onLayout={[Function]}
                       style={
-                                  Object {
-                                              "flex": 1,
-                                            }
+                        Object {
+                          "flex": 1,
+                        }
                       }
-          >
+                    >
                       <ToolTip />
                       <Header
-                                  assignmentID={undefined}
-                                  closeModal={[Function]}
-                                  courseID={undefined}
-                                  navigator={undefined}
-                                  submissionID="1"
-                                  submissionProps={Object {}}
-                                  userID={undefined}
+                        closeModal={[Function]}
+                        submissionID="1"
+                        submissionProps={Object {}}
                       />
                       <SubmissionPicker
-                                  submissionID="1"
-                                  submissionProps={Object {}}
+                        submissionID="1"
+                        submissionProps={Object {}}
                       />
                       <SimilarityScore
-                                  submissionID="1"
+                        submissionID="1"
                       />
                       <SubmissionViewer
-                                  closeModal={[Function]}
-                                  drawerState={[Circular]}
-                                  gradeSubmissionWithRubric={[Function]}
-                                  size={
-                                              Object {
-                                                          "height": 200,
-                                                          "width": 200,
-                                                        }
-                                  }
-                                  submissionID="1"
-                                  submissionProps={Object {}}
+                        closeModal={[MockFunction]}
+                        drawerState={[Circular]}
+                        gradeSubmissionWithRubric={[MockFunction]}
+                        size={
+                          Object {
+                            "height": 200,
+                            "width": 200,
+                          }
+                        }
+                        submissionID="1"
+                        submissionProps={Object {}}
                       />
                       <BottomDrawer
-                                  containerHeight={200}
-                                  containerWidth={200}
-                                  drawerState={[Circular]}
-                                  renderHandleContent={[Function]}
+                        containerHeight={200}
+                        containerWidth={200}
+                        drawerState={[Circular]}
+                        renderHandleContent={[Function]}
                       >
-                                  <GradeTab
-                                              closeModal={[Function]}
-                                              dismissToolTip={undefined}
-                                              drawerState={[Circular]}
-                                              gradeSubmissionWithRubric={[Function]}
-                                              showToolTip={undefined}
-                                              submissionID="1"
-                                              submissionProps={Object {}}
-                                              unsavedChanges={null}
-                                              updateUnsavedChanges={[Function]}
-                                  />
+                        <GradeTab
+                          closeModal={[MockFunction]}
+                          drawerState={[Circular]}
+                          gradeSubmissionWithRubric={[MockFunction]}
+                          submissionID="1"
+                          submissionProps={Object {}}
+                          unsavedChanges={null}
+                          updateUnsavedChanges={[Function]}
+                        />
                       </BottomDrawer>
-          </A11yGroup>,
+                    </A11yGroup>,
                     "_rendering": false,
                     "_updater": [Circular],
                     "_workInProgressHook": null,
                   },
                 },
-                Symbol(enzyme.__setState__): [Function],
               },
               SubmissionGrader {
                 "captureToolTip": [Function],
@@ -1035,9 +993,9 @@ exports[`SubmissionGrader renders wide 1`] = `
                 "onDragBegan": [Function],
                 "onLayout": [Function],
                 "props": Object {
-                  "closeModal": [Function],
+                  "closeModal": [MockFunction],
                   "drawerState": [Circular],
-                  "gradeSubmissionWithRubric": [Function],
+                  "gradeSubmissionWithRubric": [MockFunction],
                   "submissionID": "1",
                   "submissionProps": Object {},
                 },
@@ -1072,12 +1030,12 @@ exports[`SubmissionGrader renders wide 1`] = `
                       "useState": [Function],
                     },
                     "_element": <SubmissionGrader
-                      closeModal={[Function]}
+                      closeModal={[MockFunction]}
                       drawerState={[Circular]}
-                      gradeSubmissionWithRubric={[Function]}
+                      gradeSubmissionWithRubric={[MockFunction]}
                       submissionID="1"
                       submissionProps={Object {}}
-          />,
+                    />,
                     "_firstWorkInProgressHook": null,
                     "_forcedUpdate": false,
                     "_instance": [Circular],
@@ -1088,119 +1046,112 @@ exports[`SubmissionGrader renders wide 1`] = `
                     "_rendered": <A11yGroup
                       onLayout={[Function]}
                       style={
-                                  Object {
-                                              "flex": 1,
-                                            }
+                        Object {
+                          "flex": 1,
+                        }
                       }
-          >
+                    >
                       <Header
-                                  assignmentID={undefined}
-                                  closeModal={[Function]}
-                                  courseID={undefined}
-                                  navigator={undefined}
-                                  style={
-                                              Object {
-                                                          "borderBottomColor": "#C7CDD1",
-                                                          "borderBottomWidth": 0.5,
-                                                          "paddingBottom": 16,
-                                                        }
-                                  }
-                                  submissionID="1"
-                                  submissionProps={Object {}}
-                                  userID={undefined}
+                        closeModal={[Function]}
+                        style={
+                          Object {
+                            "borderBottomColor": "#C7CDD1",
+                            "borderBottomWidth": 0.5,
+                            "paddingBottom": 16,
+                          }
+                        }
+                        submissionID="1"
+                        submissionProps={Object {}}
                       />
                       <View
-                                  style={
-                                              Object {
-                                                          "flex": 1,
-                                                          "flexDirection": "row",
-                                                        }
-                                  }
+                        style={
+                          Object {
+                            "flex": 1,
+                            "flexDirection": "row",
+                          }
+                        }
                       >
-                                  <View
-                                              style={
-                                                          Object {
-                                                                      "flex": 1,
-                                                                    }
-                                              }
-                                  >
-                                              <SubmissionPicker
-                                                          submissionID="1"
-                                                          submissionProps={Object {}}
-                                              />
-                                              <SimilarityScore
-                                                          submissionID="1"
-                                              />
-                                              <SubmissionViewer
-                                                          closeModal={[Function]}
-                                                          drawerInset={0}
-                                                          drawerState={[Circular]}
-                                                          gradeSubmissionWithRubric={[Function]}
-                                                          size={
-                                                                      Object {
-                                                                                  "height": 200,
-                                                                                  "width": 625,
-                                                                                }
-                                                          }
-                                                          submissionID="1"
-                                                          submissionProps={Object {}}
-                                              />
-                                  </View>
-                                  <View
-                                              style={
-                                                          Object {
-                                                                      "borderLeftColor": "#C7CDD1",
-                                                                      "borderLeftWidth": 0.5,
-                                                                      "paddingTop": 16,
-                                                                      "width": 375,
-                                                                    }
-                                              }
-                                  >
-                                              <View
-                                                          style={
-                                                                      Object {
-                                                                                  "borderBottomColor": "lightgray",
-                                                                                  "borderBottomWidth": 0.5,
-                                                                                  "paddingBottom": 8,
-                                                                                  "paddingHorizontal": 16,
-                                                                                }
-                                                          }
-                                              >
-                                                          <SegmentedControlIOS
-                                                                      onChange={[Function]}
-                                                                      selectedIndex={-1}
-                                                                      testID="speedgrader.segment-control"
-                                                                      tintColor="#374A59"
-                                                                      values={
-                                                                                  Array [
-                                                                                              "Grades",
-                                                                                              "Comments",
-                                                                                              "Files",
-                                                                                            ]
-                                                                      }
-                                                          />
-                                              </View>
-                                              <GradeTab
-                                                          closeModal={[Function]}
-                                                          dismissToolTip={undefined}
-                                                          drawerState={[Circular]}
-                                                          gradeSubmissionWithRubric={[Function]}
-                                                          showToolTip={undefined}
-                                                          submissionID="1"
-                                                          submissionProps={Object {}}
-                                                          unsavedChanges={null}
-                                                          updateUnsavedChanges={[Function]}
-                                              />
-                                  </View>
+                        <View
+                          style={
+                            Object {
+                              "flex": 1,
+                            }
+                          }
+                        >
+                          <SubmissionPicker
+                            submissionID="1"
+                            submissionProps={Object {}}
+                          />
+                          <SimilarityScore
+                            submissionID="1"
+                          />
+                          <SubmissionViewer
+                            closeModal={[MockFunction]}
+                            drawerInset={0}
+                            drawerState={[Circular]}
+                            gradeSubmissionWithRubric={[MockFunction]}
+                            size={
+                              Object {
+                                "height": 200,
+                                "width": 625,
+                              }
+                            }
+                            submissionID="1"
+                            submissionProps={Object {}}
+                          />
+                        </View>
+                        <View
+                          style={
+                            Object {
+                              "borderLeftColor": "#C7CDD1",
+                              "borderLeftWidth": 0.5,
+                              "paddingTop": 16,
+                              "width": 375,
+                            }
+                          }
+                        >
+                          <View
+                            style={
+                              Object {
+                                "borderBottomColor": "lightgray",
+                                "borderBottomWidth": 0.5,
+                                "paddingBottom": 8,
+                                "paddingHorizontal": 16,
+                              }
+                            }
+                          >
+                            <SegmentedControlIOS
+                              onChange={[Function]}
+                              selectedIndex={-1}
+                              testID="speedgrader.segment-control"
+                              tintColor="#374A59"
+                              values={
+                                Array [
+                                  "Grades",
+                                  "Comments",
+                                  "Files",
+                                ]
+                              }
+                            />
+                          </View>
+                          <GradeTab
+                            closeModal={[MockFunction]}
+                            drawerState={[Circular]}
+                            gradeSubmissionWithRubric={[MockFunction]}
+                            submissionID="1"
+                            submissionProps={Object {}}
+                            unsavedChanges={null}
+                            updateUnsavedChanges={[Function]}
+                          />
+                        </View>
                       </View>
                       <ToolTip />
-          </A11yGroup>,
+                    </A11yGroup>,
                     "_rendering": false,
                     "_updater": [Circular],
                     "_workInProgressHook": null,
                   },
                 },
-                Symbol(enzyme.__setState__): [Function],
               },
             ],
             "registerCommentProgress": [Function],
@@ -1208,7 +1159,7 @@ exports[`SubmissionGrader renders wide 1`] = `
             "unregisterCommentProgress": [Function],
           }
         }
-        gradeSubmissionWithRubric={[Function]}
+        gradeSubmissionWithRubric={[MockFunction]}
         submissionID="1"
         submissionProps={Object {}}
         unsavedChanges={null}

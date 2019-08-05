@@ -23,7 +23,7 @@ import {
   View,
   StyleSheet,
   ActionSheetIOS,
-  AlertIOS,
+  Alert,
   LayoutAnimation,
   FlatList,
 } from 'react-native'
@@ -280,7 +280,7 @@ export class FilesList extends Component<Props, State> {
   }
 
   promptForNewFolder = () => {
-    AlertIOS.prompt(
+    Alert.prompt(
       i18n('Create Folder'),
       null,
       // $FlowFixMe

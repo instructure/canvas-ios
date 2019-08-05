@@ -47,7 +47,7 @@ exports[`PagesList renders empty 1`] = `
         }
       }
       keyExtractor={[Function]}
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       refreshing={false}
       renderItem={[Function]}
       testID="pages.list.list"
@@ -98,7 +98,7 @@ exports[`PagesList renders loading 1`] = `
         }
       }
       keyExtractor={[Function]}
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       refreshing={true}
       renderItem={[Function]}
       testID="pages.list.list"

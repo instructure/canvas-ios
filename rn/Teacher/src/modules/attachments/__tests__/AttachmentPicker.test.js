@@ -22,7 +22,7 @@ import { shallow } from 'enzyme'
 import React from 'react'
 import {
   ActionSheetIOS,
-  AlertIOS,
+  Alert,
   NativeModules,
 } from 'react-native'
 import renderer from 'react-test-renderer'
@@ -261,7 +261,7 @@ describe('AttachmentPicker', () => {
   it('alerts document picker errors', async () => {
     const spy = jest.fn()
     // $FlowFixMe
-    AlertIOS.alert = spy
+    Alert.alert = spy
     DocumentPicker.pick = jest.fn((options) => Promise.reject('ERROR'))
     await picker.pickDocument(null, jest.fn())
     expect(spy).toHaveBeenCalledWith('Upload error')
@@ -405,7 +405,7 @@ describe('AttachmentPicker', () => {
 
   it('alerts if image picker lacks permissions', () => {
     const spy = jest.fn()
-    AlertIOS.alert = spy
+    Alert.alert = spy
     const response = {
       error: 'Camera permissions not granted',
     }
@@ -416,7 +416,7 @@ describe('AttachmentPicker', () => {
 
   it('alerts image picker errors', () => {
     const spy = jest.fn()
-    AlertIOS.alert = spy
+    Alert.alert = spy
     const response = {
       error: 'FAIL',
     }

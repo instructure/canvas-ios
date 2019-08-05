@@ -64,9 +64,6 @@ exports[`GroupRow renders 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -89,9 +86,6 @@ exports[`GroupRow renders 1`] = `
             Study Group 3
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -116,9 +110,6 @@ exports[`GroupRow renders 1`] = `
             Bio 101
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -208,9 +199,6 @@ exports[`GroupRow renders without a term 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -233,9 +221,6 @@ exports[`GroupRow renders without a term 1`] = `
             Study Group 3
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {

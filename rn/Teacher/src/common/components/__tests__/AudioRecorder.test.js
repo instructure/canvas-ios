@@ -20,7 +20,7 @@
 
 import React from 'react'
 import {
-  AlertIOS,
+  Alert,
 } from 'react-native'
 import renderer from 'react-test-renderer'
 import AudioRecorder from '../AudioRecorder'
@@ -123,7 +123,7 @@ describe('AudioRecorder', () => {
   it('alerts start recording errors', () => {
     const spy = jest.fn()
     // $FlowFixMe
-    AlertIOS.alert = spy
+    Alert.alert = spy
     RNAudioRecorder.startRecording = jest.fn(() => { throw new Error('fail') })
     const recordBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.record-btn')
     recordBtn.props.onPress()
@@ -133,7 +133,7 @@ describe('AudioRecorder', () => {
   it('alerts stop recording errors', () => {
     const spy = jest.fn()
     // $FlowFixMe
-    AlertIOS.alert = spy
+    Alert.alert = spy
     RNAudioRecorder.stopRecording = jest.fn(() => { throw new Error('fail') })
     const recordBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.record-btn')
     recordBtn.props.onPress()
@@ -145,7 +145,7 @@ describe('AudioRecorder', () => {
   it('records finish recording errors', () => {
     const spy = jest.fn()
     // $FlowFixMe
-    AlertIOS.alert = spy
+    Alert.alert = spy
     const error = {
       status: 'NOT OK',
     }

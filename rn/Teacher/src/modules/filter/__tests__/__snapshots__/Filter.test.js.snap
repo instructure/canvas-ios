@@ -26,7 +26,6 @@ exports[`Filter renders the filter options 1`] = `
   <list>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -80,8 +79,6 @@ exports[`Filter renders the filter options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -119,7 +116,6 @@ exports[`Filter renders the filter options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -173,8 +169,6 @@ exports[`Filter renders the filter options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -212,7 +206,6 @@ exports[`Filter renders the filter options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -266,8 +259,6 @@ exports[`Filter renders the filter options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -305,7 +296,6 @@ exports[`Filter renders the filter options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -359,8 +349,6 @@ exports[`Filter renders the filter options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -398,7 +386,6 @@ exports[`Filter renders the filter options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -452,8 +439,6 @@ exports[`Filter renders the filter options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -491,7 +476,6 @@ exports[`Filter renders the filter options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -545,8 +529,6 @@ exports[`Filter renders the filter options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -584,7 +566,6 @@ exports[`Filter renders the filter options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -638,8 +619,6 @@ exports[`Filter renders the filter options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -705,7 +684,6 @@ exports[`Filter renders with preselected options 1`] = `
   <list>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -759,8 +737,6 @@ exports[`Filter renders with preselected options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -800,7 +776,6 @@ exports[`Filter renders with preselected options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -854,8 +829,6 @@ exports[`Filter renders with preselected options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -895,7 +868,6 @@ exports[`Filter renders with preselected options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -949,8 +921,6 @@ exports[`Filter renders with preselected options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -990,7 +960,6 @@ exports[`Filter renders with preselected options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -1044,8 +1013,6 @@ exports[`Filter renders with preselected options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -1085,7 +1052,6 @@ exports[`Filter renders with preselected options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "selected",
@@ -1139,8 +1105,6 @@ exports[`Filter renders with preselected options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -1222,7 +1186,6 @@ exports[`Filter renders with preselected options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -1276,8 +1239,6 @@ exports[`Filter renders with preselected options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -1317,7 +1278,6 @@ exports[`Filter renders with preselected options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -1371,8 +1331,6 @@ exports[`Filter renders with preselected options 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -1440,7 +1398,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
   <list>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -1494,8 +1451,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -1535,7 +1490,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -1589,8 +1543,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -1630,7 +1582,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -1684,8 +1635,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -1725,7 +1674,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -1779,8 +1727,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -1820,7 +1766,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "selected",
@@ -1874,8 +1819,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -1957,7 +1900,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -2011,8 +1953,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={
@@ -2052,7 +1992,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
     </item>
     <item>
       <TouchableHighlight
-        accessibilityLabel={undefined}
         accessibilityTraits={
           Array [
             "none",
@@ -2106,8 +2045,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
               ellipsizeMode="tail"
               numberOfLines={0}
               style={

@@ -22,7 +22,7 @@ import React, { Component } from 'react'
 import {
   View,
   StyleSheet,
-  AlertIOS,
+  Alert,
   Image,
   ActivityIndicator,
   PickerIOS,
@@ -74,7 +74,7 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
     }
     if (this.state.promptValue && this.props.pending && !nextProps.pending && !nextProps.grade) {
       this.setState({ promptValue: null })
-      AlertIOS.alert(
+      Alert.alert(
         i18n('Error Saving Grade'),
         i18n('There was a problem saving the grade. Please try again.')
       )
@@ -150,7 +150,7 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
 
     let grade = this.applyLatePolicy() ? this.props.enteredGrade : this.props.grade
 
-    AlertIOS.prompt(
+    Alert.prompt(
       i18n('Customize Grade'),
       message,
       buttons,

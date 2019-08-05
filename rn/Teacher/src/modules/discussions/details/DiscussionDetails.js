@@ -28,7 +28,7 @@ import {
   Image,
   FlatList,
   ActionSheetIOS,
-  AlertIOS,
+  Alert,
   NativeModules,
 } from 'react-native'
 import i18n from 'format-message'
@@ -241,7 +241,7 @@ export class DiscussionDetails extends Component<Props, any> {
     const showGroupTopicChildren = isTeacher() &&
       this.props.context === 'courses' &&
       discussion.group_topic_children &&
-      discussion.group_topic_children.length
+      discussion.group_topic_children.length > 0
     return (
       <View>
         <AssignmentSection isFirstRow={true} style={style.topContainer}>
@@ -544,7 +544,7 @@ export class DiscussionDetails extends Component<Props, any> {
 
   _confirmDeleteDiscussion = () => {
     const alertTitle = this.props.isAnnouncement ? i18n('Are you sure you want to delete this announcement?') : i18n('Are you sure you want to delete this discussion?')
-    AlertIOS.alert(
+    Alert.alert(
       alertTitle,
       null,
       [
@@ -555,7 +555,7 @@ export class DiscussionDetails extends Component<Props, any> {
   }
 
   _confirmDeleteReply = (...args) => {
-    AlertIOS.alert(
+    Alert.alert(
       i18n('Are you sure you want to delete this reply?'),
       null,
       [

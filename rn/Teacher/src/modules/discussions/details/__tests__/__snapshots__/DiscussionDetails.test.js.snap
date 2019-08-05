@@ -218,13 +218,13 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                 html="<p>And why?</p>"
                 navigator={
                   Object {
-                    "dismiss": [Function],
-                    "dismissAllModals": [Function],
+                    "dismiss": [MockFunction],
+                    "dismissAllModals": [MockFunction],
                     "isModal": false,
-                    "pop": [Function],
-                    "replace": [Function],
-                    "show": [Function],
-                    "traitCollection": [Function],
+                    "pop": [MockFunction],
+                    "replace": [MockFunction],
+                    "show": [MockFunction],
+                    "traitCollection": [MockFunction],
                   }
                 }
                 scrollEnabled={true}
@@ -289,19 +289,19 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
       onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
       refreshing={false}
+      removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
@@ -320,13 +320,9 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
       <View>
         <View
           onLayout={[Function]}
-          style={null}
         >
           <View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -366,7 +362,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -378,9 +373,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -408,9 +400,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                       }
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -443,7 +432,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
             </TouchableHighlight>
             <TouchableHighlight
               onPress={[Function]}
-              testID={undefined}
             >
               <View
                 style={
@@ -485,7 +473,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -512,9 +499,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                         testID="undefined-title-img"
                       />
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -548,13 +532,9 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                       }
                     >
                       <View
-                        accessibilityLabel={undefined}
                         accessible={true}
                       >
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -575,9 +555,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                           testID="assignment-details.assignment-dates.due-date-lbl"
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -599,9 +576,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                             Due:
                           </Text>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -623,9 +597,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                         </Text>
                       </View>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -646,9 +617,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                         testID="assignment-details.assignment-dates.due-for-lbl"
                       >
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -670,9 +638,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                           For:
                         </Text>
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -694,13 +659,9 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                       </Text>
                       <View>
                         <View
-                          accessibilityLabel={undefined}
                           accessible={true}
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -721,9 +682,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                             testID="assignment-details.assignment-dates.available-from-lbl"
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -745,9 +703,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                               Available From:
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -769,13 +724,9 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                           </Text>
                         </View>
                         <View
-                          accessibilityLabel={undefined}
                           accessible={true}
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -796,9 +747,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                             testID="assignment-details.assignment-dates.available-to-lbl"
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -820,9 +768,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                               Available Until:
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -929,7 +874,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -940,9 +884,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                       }
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -1070,9 +1011,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -1095,9 +1033,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -1138,13 +1073,13 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                     html="<p>And why?</p>"
                     navigator={
                       Object {
-                        "dismiss": [Function],
-                        "dismissAllModals": [Function],
+                        "dismiss": [MockFunction],
+                        "dismissAllModals": [MockFunction],
                         "isModal": false,
-                        "pop": [Function],
-                        "replace": [Function],
-                        "show": [Function],
-                        "traitCollection": [Function],
+                        "pop": [MockFunction],
+                        "replace": [MockFunction],
+                        "show": [MockFunction],
+                        "traitCollection": [MockFunction],
                       }
                     }
                     onError={[Function]}
@@ -1168,10 +1103,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                 </View>
               </View>
             </View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -1214,7 +1146,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -1226,9 +1157,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -1330,9 +1258,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                 >
                   <Text
                     accessibilityTraits="header"
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -1355,9 +1280,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -1381,9 +1303,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                     May 23 at 11:12 AM
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Object {
                         "fontSize": 16,
@@ -1391,9 +1310,6 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -1642,13 +1558,13 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 html="<p>And why?</p>"
                 navigator={
                   Object {
-                    "dismiss": [Function],
-                    "dismissAllModals": [Function],
+                    "dismiss": [MockFunction],
+                    "dismissAllModals": [MockFunction],
                     "isModal": false,
-                    "pop": [Function],
-                    "replace": [Function],
-                    "show": [Function],
-                    "traitCollection": [Function],
+                    "pop": [MockFunction],
+                    "replace": [MockFunction],
+                    "show": [MockFunction],
+                    "traitCollection": [MockFunction],
                   }
                 }
                 scrollEnabled={true}
@@ -1781,19 +1697,19 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
       onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
       refreshing={false}
+      removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
@@ -1812,13 +1728,9 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
       <View>
         <View
           onLayout={[Function]}
-          style={null}
         >
           <View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -1858,7 +1770,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -1870,9 +1781,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -1909,7 +1817,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
             </TouchableHighlight>
             <TouchableHighlight
               onPress={[Function]}
-              testID={undefined}
             >
               <View
                 style={
@@ -1951,7 +1858,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -1978,9 +1884,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         testID="undefined-title-img"
                       />
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -2014,13 +1917,9 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       }
                     >
                       <View
-                        accessibilityLabel={undefined}
                         accessible={true}
                       >
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -2041,9 +1940,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           testID="assignment-details.assignment-dates.due-date-lbl"
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -2065,9 +1961,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             Due:
                           </Text>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -2089,9 +1982,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         </Text>
                       </View>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -2112,9 +2002,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         testID="assignment-details.assignment-dates.due-for-lbl"
                       >
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -2136,9 +2023,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           For:
                         </Text>
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -2160,13 +2044,9 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       </Text>
                       <View>
                         <View
-                          accessibilityLabel={undefined}
                           accessible={true}
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -2187,9 +2067,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             testID="assignment-details.assignment-dates.available-from-lbl"
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -2211,9 +2088,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                               Available From:
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -2235,13 +2109,9 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           </Text>
                         </View>
                         <View
-                          accessibilityLabel={undefined}
                           accessible={true}
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -2262,9 +2132,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             testID="assignment-details.assignment-dates.available-to-lbl"
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -2286,9 +2153,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                               Available Until:
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -2395,7 +2259,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -2406,9 +2269,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       }
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -2536,9 +2396,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2561,9 +2418,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2604,13 +2458,13 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     html="<p>And why?</p>"
                     navigator={
                       Object {
-                        "dismiss": [Function],
-                        "dismissAllModals": [Function],
+                        "dismiss": [MockFunction],
+                        "dismissAllModals": [MockFunction],
                         "isModal": false,
-                        "pop": [Function],
-                        "replace": [Function],
-                        "show": [Function],
-                        "traitCollection": [Function],
+                        "pop": [MockFunction],
+                        "replace": [MockFunction],
+                        "show": [MockFunction],
+                        "traitCollection": [MockFunction],
                       }
                     }
                     onError={[Function]}
@@ -2682,9 +2536,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       }
                     />
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -2717,10 +2568,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 </TouchableHighlight>
               </View>
             </View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -2763,7 +2611,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -2775,9 +2622,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -2879,9 +2723,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 >
                   <Text
                     accessibilityTraits="header"
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2904,9 +2745,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -2930,9 +2768,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     May 23 at 11:12 AM
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Object {
                         "fontSize": 16,
@@ -2940,9 +2775,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -3004,9 +2836,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       >
                         <View>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -3040,8 +2869,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       </TouchableOpacity>
                       <Text
                         accessible={false}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -3097,9 +2924,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       >
                         <View>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -3280,13 +3104,13 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                 html="<p>And why?</p>"
                 navigator={
                   Object {
-                    "dismiss": [Function],
-                    "dismissAllModals": [Function],
+                    "dismiss": [MockFunction],
+                    "dismissAllModals": [MockFunction],
                     "isModal": false,
-                    "pop": [Function],
-                    "replace": [Function],
-                    "show": [Function],
-                    "traitCollection": [Function],
+                    "pop": [MockFunction],
+                    "replace": [MockFunction],
+                    "show": [MockFunction],
+                    "traitCollection": [MockFunction],
                   }
                 }
                 scrollEnabled={true}
@@ -3351,19 +3175,19 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
       onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
       refreshing={false}
+      removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
@@ -3382,13 +3206,9 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
       <View>
         <View
           onLayout={[Function]}
-          style={null}
         >
           <View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -3428,7 +3248,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -3440,9 +3259,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -3470,9 +3286,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                       }
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -3551,9 +3364,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3576,9 +3386,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3619,13 +3426,13 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     html="<p>And why?</p>"
                     navigator={
                       Object {
-                        "dismiss": [Function],
-                        "dismissAllModals": [Function],
+                        "dismiss": [MockFunction],
+                        "dismissAllModals": [MockFunction],
                         "isModal": false,
-                        "pop": [Function],
-                        "replace": [Function],
-                        "show": [Function],
-                        "traitCollection": [Function],
+                        "pop": [MockFunction],
+                        "replace": [MockFunction],
+                        "show": [MockFunction],
+                        "traitCollection": [MockFunction],
                       }
                     }
                     onError={[Function]}
@@ -3649,10 +3456,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                 </View>
               </View>
             </View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -3695,7 +3499,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -3707,9 +3510,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -3811,9 +3611,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                 >
                   <Text
                     accessibilityTraits="header"
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3836,9 +3633,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -3862,9 +3656,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     May 23 at 11:12 AM
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Object {
                         "fontSize": 16,
@@ -3872,9 +3663,6 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -4036,13 +3824,13 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 html="<p>And why?</p>"
                 navigator={
                   Object {
-                    "dismiss": [Function],
-                    "dismissAllModals": [Function],
+                    "dismiss": [MockFunction],
+                    "dismissAllModals": [MockFunction],
                     "isModal": false,
-                    "pop": [Function],
-                    "replace": [Function],
-                    "show": [Function],
-                    "traitCollection": [Function],
+                    "pop": [MockFunction],
+                    "replace": [MockFunction],
+                    "show": [MockFunction],
+                    "traitCollection": [MockFunction],
                   }
                 }
                 scrollEnabled={true}
@@ -4175,19 +3963,19 @@ exports[`DiscussionDetails renders in student app 1`] = `
       onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
       refreshing={false}
+      removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
@@ -4206,13 +3994,9 @@ exports[`DiscussionDetails renders in student app 1`] = `
       <View>
         <View
           onLayout={[Function]}
-          style={null}
         >
           <View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -4252,7 +4036,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -4264,9 +4047,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -4294,9 +4074,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                       }
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -4375,9 +4152,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -4400,9 +4174,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -4443,13 +4214,13 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     html="<p>And why?</p>"
                     navigator={
                       Object {
-                        "dismiss": [Function],
-                        "dismissAllModals": [Function],
+                        "dismiss": [MockFunction],
+                        "dismissAllModals": [MockFunction],
                         "isModal": false,
-                        "pop": [Function],
-                        "replace": [Function],
-                        "show": [Function],
-                        "traitCollection": [Function],
+                        "pop": [MockFunction],
+                        "replace": [MockFunction],
+                        "show": [MockFunction],
+                        "traitCollection": [MockFunction],
                       }
                     }
                     onError={[Function]}
@@ -4521,9 +4292,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                       }
                     />
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -4556,10 +4324,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 </TouchableHighlight>
               </View>
             </View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -4602,7 +4367,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -4614,9 +4378,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -4718,9 +4479,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 >
                   <Text
                     accessibilityTraits="header"
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -4743,9 +4501,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -4769,9 +4524,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     May 23 at 11:12 AM
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Object {
                         "fontSize": 16,
@@ -4779,9 +4531,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -4843,9 +4592,6 @@ exports[`DiscussionDetails renders in student app 1`] = `
                       >
                         <View>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -5109,13 +4855,13 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 html="<p>And why?</p>"
                 navigator={
                   Object {
-                    "dismiss": [Function],
-                    "dismissAllModals": [Function],
+                    "dismiss": [MockFunction],
+                    "dismissAllModals": [MockFunction],
                     "isModal": false,
-                    "pop": [Function],
-                    "replace": [Function],
-                    "show": [Function],
-                    "traitCollection": [Function],
+                    "pop": [MockFunction],
+                    "replace": [MockFunction],
+                    "show": [MockFunction],
+                    "traitCollection": [MockFunction],
                   }
                 }
                 scrollEnabled={true}
@@ -5216,19 +4962,19 @@ exports[`DiscussionDetails renders no replies 1`] = `
       onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
       refreshing={false}
+      removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
@@ -5247,13 +4993,9 @@ exports[`DiscussionDetails renders no replies 1`] = `
       <View>
         <View
           onLayout={[Function]}
-          style={null}
         >
           <View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -5293,7 +5035,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -5305,9 +5046,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -5335,9 +5073,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       }
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -5370,7 +5105,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
             </TouchableHighlight>
             <TouchableHighlight
               onPress={[Function]}
-              testID={undefined}
             >
               <View
                 style={
@@ -5412,7 +5146,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -5439,9 +5172,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                         testID="undefined-title-img"
                       />
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -5475,13 +5205,9 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       }
                     >
                       <View
-                        accessibilityLabel={undefined}
                         accessible={true}
                       >
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -5502,9 +5228,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                           testID="assignment-details.assignment-dates.due-date-lbl"
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -5526,9 +5249,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             Due:
                           </Text>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -5550,9 +5270,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                         </Text>
                       </View>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -5573,9 +5290,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                         testID="assignment-details.assignment-dates.due-for-lbl"
                       >
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -5597,9 +5311,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                           For:
                         </Text>
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -5621,13 +5332,9 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       </Text>
                       <View>
                         <View
-                          accessibilityLabel={undefined}
                           accessible={true}
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -5648,9 +5355,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             testID="assignment-details.assignment-dates.available-from-lbl"
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -5672,9 +5376,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                               Available From:
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -5696,13 +5397,9 @@ exports[`DiscussionDetails renders no replies 1`] = `
                           </Text>
                         </View>
                         <View
-                          accessibilityLabel={undefined}
                           accessible={true}
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -5723,9 +5420,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             testID="assignment-details.assignment-dates.available-to-lbl"
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -5747,9 +5441,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                               Available Until:
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -5856,7 +5547,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -5867,9 +5557,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       }
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -5997,9 +5684,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -6022,9 +5706,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -6065,13 +5746,13 @@ exports[`DiscussionDetails renders no replies 1`] = `
                     html="<p>And why?</p>"
                     navigator={
                       Object {
-                        "dismiss": [Function],
-                        "dismissAllModals": [Function],
+                        "dismiss": [MockFunction],
+                        "dismissAllModals": [MockFunction],
                         "isModal": false,
-                        "pop": [Function],
-                        "replace": [Function],
-                        "show": [Function],
-                        "traitCollection": [Function],
+                        "pop": [MockFunction],
+                        "replace": [MockFunction],
+                        "show": [MockFunction],
+                        "traitCollection": [MockFunction],
                       }
                     }
                     onError={[Function]}
@@ -6143,9 +5824,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       }
                     />
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -6404,13 +6082,13 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                 html="<p>And why?</p>"
                 navigator={
                   Object {
-                    "dismiss": [Function],
-                    "dismissAllModals": [Function],
+                    "dismiss": [MockFunction],
+                    "dismissAllModals": [MockFunction],
                     "isModal": false,
-                    "pop": [Function],
-                    "replace": [Function],
-                    "show": [Function],
-                    "traitCollection": [Function],
+                    "pop": [MockFunction],
+                    "replace": [MockFunction],
+                    "show": [MockFunction],
+                    "traitCollection": [MockFunction],
                   }
                 }
                 scrollEnabled={true}
@@ -6543,19 +6221,19 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
       onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
       refreshing={false}
+      removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
@@ -6574,13 +6252,9 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
       <View>
         <View
           onLayout={[Function]}
-          style={null}
         >
           <View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -6620,7 +6294,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -6632,9 +6305,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -6662,9 +6332,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                       }
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -6697,7 +6364,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
             </TouchableHighlight>
             <TouchableHighlight
               onPress={[Function]}
-              testID={undefined}
             >
               <View
                 style={
@@ -6739,7 +6405,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -6766,9 +6431,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                         testID="undefined-title-img"
                       />
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -6802,13 +6464,9 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                       }
                     >
                       <View
-                        accessibilityLabel={undefined}
                         accessible={true}
                       >
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -6829,9 +6487,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                           testID="assignment-details.assignment-dates.due-date-lbl"
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -6853,9 +6508,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                             Due:
                           </Text>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -6877,9 +6529,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                         </Text>
                       </View>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -6900,9 +6549,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                         testID="assignment-details.assignment-dates.due-for-lbl"
                       >
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -6924,9 +6570,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                           For:
                         </Text>
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -6948,13 +6591,9 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                       </Text>
                       <View>
                         <View
-                          accessibilityLabel={undefined}
                           accessible={true}
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -6975,9 +6614,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                             testID="assignment-details.assignment-dates.available-from-lbl"
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -6999,9 +6635,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                               Available From:
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -7023,13 +6656,9 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                           </Text>
                         </View>
                         <View
-                          accessibilityLabel={undefined}
                           accessible={true}
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -7050,9 +6679,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                             testID="assignment-details.assignment-dates.available-to-lbl"
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -7074,9 +6700,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                               Available Until:
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -7183,7 +6806,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -7194,9 +6816,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                       }
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -7324,9 +6943,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -7349,9 +6965,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -7392,13 +7005,13 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                     html="<p>And why?</p>"
                     navigator={
                       Object {
-                        "dismiss": [Function],
-                        "dismissAllModals": [Function],
+                        "dismiss": [MockFunction],
+                        "dismissAllModals": [MockFunction],
                         "isModal": false,
-                        "pop": [Function],
-                        "replace": [Function],
-                        "show": [Function],
-                        "traitCollection": [Function],
+                        "pop": [MockFunction],
+                        "replace": [MockFunction],
+                        "show": [MockFunction],
+                        "traitCollection": [MockFunction],
                       }
                     }
                     onError={[Function]}
@@ -7470,9 +7083,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                       }
                     />
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -7505,10 +7115,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                 </TouchableHighlight>
               </View>
             </View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -7551,7 +7158,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -7563,9 +7169,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -7667,9 +7270,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                 >
                   <Text
                     accessibilityTraits="header"
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -7692,9 +7292,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -7718,9 +7315,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                     May 23 at 11:12 AM
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Object {
                         "fontSize": 16,
@@ -7728,9 +7322,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -7792,9 +7383,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                       >
                         <View>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -7828,8 +7416,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                       </TouchableOpacity>
                       <Text
                         accessible={false}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -7885,9 +7471,6 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                       >
                         <View>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -8151,13 +7734,13 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 html="<p>And why?</p>"
                 navigator={
                   Object {
-                    "dismiss": [Function],
-                    "dismissAllModals": [Function],
+                    "dismiss": [MockFunction],
+                    "dismissAllModals": [MockFunction],
                     "isModal": false,
-                    "pop": [Function],
-                    "replace": [Function],
-                    "show": [Function],
-                    "traitCollection": [Function],
+                    "pop": [MockFunction],
+                    "replace": [MockFunction],
+                    "show": [MockFunction],
+                    "traitCollection": [MockFunction],
                   }
                 }
                 scrollEnabled={true}
@@ -8362,19 +7945,19 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
       onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
       refreshing={false}
+      removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
@@ -8393,13 +7976,9 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
       <View>
         <View
           onLayout={[Function]}
-          style={null}
         >
           <View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -8439,7 +8018,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -8451,9 +8029,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -8481,9 +8056,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       }
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -8516,7 +8088,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
             </TouchableHighlight>
             <TouchableHighlight
               onPress={[Function]}
-              testID={undefined}
             >
               <View
                 style={
@@ -8558,7 +8129,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -8585,9 +8155,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         testID="undefined-title-img"
                       />
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -8621,13 +8188,9 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       }
                     >
                       <View
-                        accessibilityLabel={undefined}
                         accessible={true}
                       >
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -8648,9 +8211,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           testID="assignment-details.assignment-dates.due-date-lbl"
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -8672,9 +8232,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             Due:
                           </Text>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -8696,9 +8253,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         </Text>
                       </View>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -8719,9 +8273,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         testID="assignment-details.assignment-dates.due-for-lbl"
                       >
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -8743,9 +8294,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           For:
                         </Text>
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -8767,13 +8315,9 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       </Text>
                       <View>
                         <View
-                          accessibilityLabel={undefined}
                           accessible={true}
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -8794,9 +8338,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             testID="assignment-details.assignment-dates.available-from-lbl"
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -8818,9 +8359,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                               Available From:
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -8842,13 +8380,9 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           </Text>
                         </View>
                         <View
-                          accessibilityLabel={undefined}
                           accessible={true}
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -8869,9 +8403,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             testID="assignment-details.assignment-dates.available-to-lbl"
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -8893,9 +8424,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                               Available Until:
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -9002,7 +8530,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -9013,9 +8540,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       }
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -9143,9 +8667,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -9168,9 +8689,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -9211,13 +8729,13 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     html="<p>And why?</p>"
                     navigator={
                       Object {
-                        "dismiss": [Function],
-                        "dismissAllModals": [Function],
+                        "dismiss": [MockFunction],
+                        "dismissAllModals": [MockFunction],
                         "isModal": false,
-                        "pop": [Function],
-                        "replace": [Function],
-                        "show": [Function],
-                        "traitCollection": [Function],
+                        "pop": [MockFunction],
+                        "replace": [MockFunction],
+                        "show": [MockFunction],
+                        "traitCollection": [MockFunction],
                       }
                     }
                     onError={[Function]}
@@ -9289,9 +8807,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       }
                     />
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -9324,10 +8839,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 </TouchableHighlight>
               </View>
             </View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -9370,7 +8882,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -9415,9 +8926,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           }
                         />
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -9525,9 +9033,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 >
                   <Text
                     accessibilityTraits="header"
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -9550,9 +9055,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -9576,9 +9078,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     May 23 at 11:12 AM
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Object {
                         "fontSize": 16,
@@ -9586,9 +9085,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -9647,9 +9143,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       >
                         <View>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -9683,8 +9176,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       </TouchableOpacity>
                       <Text
                         accessible={false}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -9740,9 +9231,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       >
                         <View>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -9880,9 +9368,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 >
                   <Text
                     accessibilityTraits="header"
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -9905,9 +9390,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -9931,9 +9413,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     May 23 at 11:12 AM
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Object {
                         "fontSize": 16,
@@ -9941,9 +9420,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -10005,9 +9481,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       >
                         <View>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -10041,8 +9514,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       </TouchableOpacity>
                       <Text
                         accessible={false}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -10098,9 +9569,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       >
                         <View>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -10193,19 +9661,19 @@ exports[`DiscussionDetails renders with no discussion 1`] = `
       onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
       refreshing={false}
+      removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
@@ -10445,13 +9913,13 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 html="<p>And why?</p>"
                 navigator={
                   Object {
-                    "dismiss": [Function],
-                    "dismissAllModals": [Function],
+                    "dismiss": [MockFunction],
+                    "dismissAllModals": [MockFunction],
                     "isModal": false,
-                    "pop": [Function],
-                    "replace": [Function],
-                    "show": [Function],
-                    "traitCollection": [Function],
+                    "pop": [MockFunction],
+                    "replace": [MockFunction],
+                    "show": [MockFunction],
+                    "traitCollection": [MockFunction],
                   }
                 }
                 scrollEnabled={true}
@@ -10584,19 +10052,19 @@ exports[`DiscussionDetails renders with replies 1`] = `
       onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
       refreshing={false}
+      removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
@@ -10615,13 +10083,9 @@ exports[`DiscussionDetails renders with replies 1`] = `
       <View>
         <View
           onLayout={[Function]}
-          style={null}
         >
           <View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -10661,7 +10125,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -10673,9 +10136,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -10703,9 +10163,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       }
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -10738,7 +10195,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
             </TouchableHighlight>
             <TouchableHighlight
               onPress={[Function]}
-              testID={undefined}
             >
               <View
                 style={
@@ -10780,7 +10236,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -10807,9 +10262,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         testID="undefined-title-img"
                       />
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -10843,13 +10295,9 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       }
                     >
                       <View
-                        accessibilityLabel={undefined}
                         accessible={true}
                       >
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -10870,9 +10318,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           testID="assignment-details.assignment-dates.due-date-lbl"
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -10894,9 +10339,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             Due:
                           </Text>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -10918,9 +10360,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         </Text>
                       </View>
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -10941,9 +10380,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         testID="assignment-details.assignment-dates.due-for-lbl"
                       >
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -10965,9 +10401,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           For:
                         </Text>
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
@@ -10989,13 +10422,9 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       </Text>
                       <View>
                         <View
-                          accessibilityLabel={undefined}
                           accessible={true}
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -11016,9 +10445,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             testID="assignment-details.assignment-dates.available-from-lbl"
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -11040,9 +10466,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                               Available From:
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -11064,13 +10487,9 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           </Text>
                         </View>
                         <View
-                          accessibilityLabel={undefined}
                           accessible={true}
                         >
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -11091,9 +10510,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             testID="assignment-details.assignment-dates.available-to-lbl"
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -11115,9 +10531,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                               Available Until:
                             </Text>
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
                               style={
                                 Array [
                                   Object {
@@ -11224,7 +10637,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -11235,9 +10647,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       }
                     >
                       <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -11365,9 +10774,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -11390,9 +10796,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -11433,13 +10836,13 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     html="<p>And why?</p>"
                     navigator={
                       Object {
-                        "dismiss": [Function],
-                        "dismissAllModals": [Function],
+                        "dismiss": [MockFunction],
+                        "dismissAllModals": [MockFunction],
                         "isModal": false,
-                        "pop": [Function],
-                        "replace": [Function],
-                        "show": [Function],
-                        "traitCollection": [Function],
+                        "pop": [MockFunction],
+                        "replace": [MockFunction],
+                        "show": [MockFunction],
+                        "traitCollection": [MockFunction],
                       }
                     }
                     onError={[Function]}
@@ -11511,9 +10914,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       }
                     />
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -11546,10 +10946,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 </TouchableHighlight>
               </View>
             </View>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
-            >
+            <TouchableHighlight>
               <View
                 style={
                   Array [
@@ -11592,7 +10989,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     }
                   >
                     <View
-                      accessibilityLabel={undefined}
                       accessible={false}
                       style={
                         Object {
@@ -11604,9 +11000,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     />
                     <Text
                       accessibilityTraits="header"
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -11708,9 +11101,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 >
                   <Text
                     accessibilityTraits="header"
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -11733,9 +11123,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     The Donald
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Array [
                         Object {
@@ -11759,9 +11146,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     May 23 at 11:12 AM
                   </Text>
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Object {
                         "fontSize": 16,
@@ -11769,9 +11153,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     }
                   >
                     <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
                       style={
                         Array [
                           Object {
@@ -11833,9 +11214,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       >
                         <View>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -11869,8 +11247,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       </TouchableOpacity>
                       <Text
                         accessible={false}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
                         style={
                           Array [
                             Object {
@@ -11926,9 +11302,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       >
                         <View>
                           <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
                             style={
                               Array [
                                 Object {
@@ -12021,19 +11394,19 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
       onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
-          progressViewOffset={undefined}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
       refreshing={false}
+      removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}

@@ -66,6 +66,7 @@ exports[`Rubric renders a rubric 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
@@ -76,7 +77,6 @@ exports[`Rubric renders a rubric 1`] = `
     <View>
       <View
         onLayout={[Function]}
-        style={null}
       >
         <View>
           <GradePicker
@@ -95,17 +95,17 @@ exports[`Rubric renders a rubric 1`] = `
                 "unregisterCommentProgress": [Function],
               }
             }
-            gradeSubmissionWithRubric={[Function]}
+            gradeSubmissionWithRubric={[MockFunction]}
             isModeratedGrading={false}
             navigator={
               Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               }
             }
             rubricAssessment={
@@ -157,7 +157,7 @@ exports[`Rubric renders a rubric 1`] = `
             setScrollEnabled={[Function]}
             submissionID="1"
             unsavedChanges={Object {}}
-            updateUnsavedChanges={[Function]}
+            updateUnsavedChanges={[MockFunction]}
             useRubricForGrading={false}
             userID="1"
           />
@@ -175,9 +175,6 @@ exports[`Rubric renders a rubric 1`] = `
             <View>
               <Text
                 accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -195,9 +192,6 @@ exports[`Rubric renders a rubric 1`] = `
                 Rubric
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -238,9 +232,6 @@ exports[`Rubric renders a rubric 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -321,8 +312,6 @@ exports[`Rubric renders a rubric 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -392,8 +381,6 @@ exports[`Rubric renders a rubric 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -463,8 +450,6 @@ exports[`Rubric renders a rubric 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -498,7 +483,6 @@ exports[`Rubric renders a rubric 1`] = `
               }
               accessible={true}
               on={false}
-              onLongPress={undefined}
               onPress={[Function]}
               style={
                 Object {
@@ -567,9 +551,6 @@ exports[`Rubric renders a rubric 1`] = `
             >
               <View>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -674,6 +655,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
@@ -684,7 +666,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
     <View>
       <View
         onLayout={[Function]}
-        style={null}
       >
         <View>
           <GradePicker
@@ -703,17 +684,17 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 "unregisterCommentProgress": [Function],
               }
             }
-            gradeSubmissionWithRubric={[Function]}
+            gradeSubmissionWithRubric={[MockFunction]}
             isModeratedGrading={false}
             navigator={
               Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               }
             }
             rubricAssessment={
@@ -765,7 +746,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             setScrollEnabled={[Function]}
             submissionID="1"
             unsavedChanges={Object {}}
-            updateUnsavedChanges={[Function]}
+            updateUnsavedChanges={[MockFunction]}
             useRubricForGrading={false}
             userID="1"
           />
@@ -783,9 +764,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             <View>
               <Text
                 accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -803,9 +781,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 Rubric
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -846,9 +821,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -889,7 +861,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               }
               accessible={true}
               on={true}
-              onLongPress={undefined}
               onPress={[Function]}
               style={
                 Object {
@@ -927,8 +898,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -976,9 +945,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             >
               <View>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1011,8 +977,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             </TouchableOpacity>
             <Text
               accessible={false}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1051,9 +1015,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             >
               <View>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1129,6 +1090,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           onChangeText={[Function]}
           placeholder="Comment"
           placeholderTextColor="#7F91A7"
+          rejectResponderTermination={true}
           style={
             Object {
               "flex": 1,
@@ -1141,6 +1103,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             }
           }
           testID="comment-input.comment"
+          underlineColorAndroid="transparent"
           value=""
         />
       </View>
@@ -1203,6 +1166,7 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
@@ -1213,7 +1177,6 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
     <View>
       <View
         onLayout={[Function]}
-        style={null}
       >
         <View>
           <GradePicker
@@ -1232,17 +1195,17 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
                 "unregisterCommentProgress": [Function],
               }
             }
-            gradeSubmissionWithRubric={[Function]}
+            gradeSubmissionWithRubric={[MockFunction]}
             isModeratedGrading={false}
             navigator={
               Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               }
             }
             rubricAssessment={
@@ -1268,7 +1231,7 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
             setScrollEnabled={[Function]}
             submissionID="1"
             unsavedChanges={Object {}}
-            updateUnsavedChanges={[Function]}
+            updateUnsavedChanges={[MockFunction]}
             useRubricForGrading={false}
             userID="1"
           />
@@ -1345,6 +1308,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
     renderItem={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
@@ -1355,7 +1319,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
     <View>
       <View
         onLayout={[Function]}
-        style={null}
       >
         <View>
           <GradePicker
@@ -1374,17 +1337,17 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 "unregisterCommentProgress": [Function],
               }
             }
-            gradeSubmissionWithRubric={[Function]}
+            gradeSubmissionWithRubric={[MockFunction]}
             isModeratedGrading={false}
             navigator={
               Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
+                "dismiss": [MockFunction],
+                "dismissAllModals": [MockFunction],
                 "isModal": false,
-                "pop": [Function],
-                "replace": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
+                "pop": [MockFunction],
+                "replace": [MockFunction],
+                "show": [MockFunction],
+                "traitCollection": [MockFunction],
               }
             }
             rubricAssessment={
@@ -1436,7 +1399,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
             setScrollEnabled={[Function]}
             submissionID="1"
             unsavedChanges={Object {}}
-            updateUnsavedChanges={[Function]}
+            updateUnsavedChanges={[MockFunction]}
             useRubricForGrading={false}
             userID="1"
           />
@@ -1454,9 +1417,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
             <View>
               <Text
                 accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1474,9 +1434,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 Rubric
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1523,9 +1480,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1606,8 +1560,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1677,8 +1629,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1748,8 +1698,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               >
                 <Text
                   accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -1783,7 +1731,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               }
               accessible={true}
               on={false}
-              onLongPress={undefined}
               onPress={[Function]}
               style={
                 Object {
@@ -1852,9 +1799,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
             >
               <View>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {

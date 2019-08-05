@@ -110,9 +110,6 @@ exports[`AnnouncementEdit renders 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -170,9 +167,6 @@ exports[`AnnouncementEdit renders 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -205,7 +199,6 @@ exports[`AnnouncementEdit renders 1`] = `
             },
           ]
         }
-        testID={undefined}
       >
         <View
           style={
@@ -244,10 +237,10 @@ exports[`AnnouncementEdit renders 1`] = `
             <TextInput
               allowFontScaling={true}
               defaultValue="Cursed Hollow"
-              keyboardType={undefined}
               onChangeText={[Function]}
               onFocus={[Function]}
               placeholder="Add title"
+              rejectResponderTermination={true}
               style={
                 Array [
                   Object {
@@ -257,16 +250,13 @@ exports[`AnnouncementEdit renders 1`] = `
                 ]
               }
               testID="announcements.edit.titleInput"
-              value={undefined}
+              underlineColorAndroid="transparent"
             />
           </View>
         </View>
       </TouchableHighlight>
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -302,13 +292,13 @@ exports[`AnnouncementEdit renders 1`] = `
           keyboardAware={false}
           navigator={
             Object {
-              "dismiss": [Function],
-              "dismissAllModals": [Function],
+              "dismiss": [MockFunction],
+              "dismissAllModals": [MockFunction],
               "isModal": false,
-              "pop": [Function],
-              "replace": [Function],
-              "show": [Function],
-              "traitCollection": [Function],
+              "pop": [MockFunction],
+              "replace": [MockFunction],
+              "show": [MockFunction],
+              "traitCollection": [MockFunction],
             }
           }
           onFocus={[Function]}
@@ -324,9 +314,6 @@ exports[`AnnouncementEdit renders 1`] = `
       <View>
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -363,7 +350,6 @@ exports[`AnnouncementEdit renders 1`] = `
               },
             ]
           }
-          testID={undefined}
         >
           <View
             style={
@@ -400,8 +386,6 @@ exports[`AnnouncementEdit renders 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -453,9 +437,6 @@ exports[`AnnouncementEdit renders 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     numberOfLines={1}
                     style={
                       Array [
@@ -472,7 +453,6 @@ exports[`AnnouncementEdit renders 1`] = `
                         },
                       ]
                     }
-                    testID={undefined}
                   >
                     All
                   </Text>
@@ -521,7 +501,6 @@ exports[`AnnouncementEdit renders 1`] = `
               },
             ]
           }
-          testID={undefined}
         >
           <View
             style={
@@ -558,8 +537,6 @@ exports[`AnnouncementEdit renders 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -605,11 +582,11 @@ exports[`AnnouncementEdit renders 1`] = `
                 <Switch
                   border="bottom"
                   identifier="announcements.edit.delay-posting-toggle"
-                  onTintColor="#374A59"
                   onValueChange={[Function]}
                   testID="announcements.edit.delay-posting-toggle"
                   tintColor={null}
                   title="Delay Posting"
+                  trackColor="#374A59"
                   value={false}
                 />
               </View>
@@ -633,7 +610,6 @@ exports[`AnnouncementEdit renders 1`] = `
               },
             ]
           }
-          testID={undefined}
         >
           <View
             style={
@@ -670,8 +646,6 @@ exports[`AnnouncementEdit renders 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
                 ellipsizeMode="tail"
                 numberOfLines={0}
                 style={
@@ -716,11 +690,10 @@ exports[`AnnouncementEdit renders 1`] = `
               >
                 <Switch
                   border="bottom"
-                  onTintColor="#374A59"
                   onValueChange={[Function]}
-                  testID={undefined}
                   tintColor={null}
                   title="Students must post before seeing replies"
+                  trackColor="#374A59"
                   value={false}
                 />
               </View>
@@ -824,13 +797,13 @@ exports[`AnnouncementEdit updates with new props 1`] = `
           keyboardAware={false}
           navigator={
             Object {
-              "dismiss": [Function],
-              "dismissAllModals": [Function],
+              "dismiss": [MockFunction],
+              "dismissAllModals": [MockFunction],
               "isModal": false,
-              "pop": [Function],
-              "replace": [Function],
-              "show": [Function],
-              "traitCollection": [Function],
+              "pop": [MockFunction],
+              "replace": [MockFunction],
+              "show": [MockFunction],
+              "traitCollection": [MockFunction],
             }
           }
           onFocus={[Function]}

@@ -20,7 +20,7 @@
 
 import { shallow } from 'enzyme'
 import React from 'react'
-import { AlertIOS, Animated, NativeModules } from 'react-native'
+import { Alert, Animated, NativeModules } from 'react-native'
 import { GradePicker, mapStateToProps } from '../GradePicker'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
@@ -29,7 +29,7 @@ import * as templates from '../../../../__templates__/index'
 
 jest
   .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('AlertIOS', () => ({
+  .mock('Alert', () => ({
     prompt: jest.fn(),
     alert: jest.fn(),
   }))
@@ -173,7 +173,7 @@ describe('GradePicker', () => {
     expect(tree.toJSON()).toMatchSnapshot()
   })
 
-  it('calls AlertIOS.prompt when the grade picker button is pressed', () => {
+  it('calls Alert.prompt when the grade picker button is pressed', () => {
     let tree = renderer.create(
       <GradePicker {...defaultProps} />
     ).toJSON()
@@ -181,11 +181,11 @@ describe('GradePicker', () => {
     let button = explore(tree).selectByID('grade-picker.button') || {}
     button.props.onPress()
 
-    expect(AlertIOS.prompt).toHaveBeenCalled()
+    expect(Alert.prompt).toHaveBeenCalled()
   })
 
   it('calls gradeSubmission with no value when No Grade is pressed', () => {
-    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[0].onPress())
+    Alert.prompt = jest.fn((title, message, buttons) => buttons[0].onPress())
     let tree = renderer.create(
       <GradePicker {...defaultProps} />
     )
@@ -200,7 +200,7 @@ describe('GradePicker', () => {
   })
 
   it('calls excuseAssignment with the right ids when the excuse button is pressed', () => {
-    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[1].onPress())
+    Alert.prompt = jest.fn((title, message, buttons) => buttons[1].onPress())
 
     let tree = renderer.create(
       <GradePicker {...defaultProps} />
@@ -216,7 +216,7 @@ describe('GradePicker', () => {
   })
 
   it('calls gradeSubmission with the prompt value', () => {
-    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('34'))
+    Alert.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('34'))
 
     let tree = renderer.create(
       <GradePicker {...defaultProps} />
@@ -232,7 +232,7 @@ describe('GradePicker', () => {
   })
 
   it('calls gradeSubmission with a % at the end of the grade for percentage grading type if the user leaves it off', () => {
-    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('80'))
+    Alert.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('80'))
 
     let tree = renderer.create(
       <GradePicker {...defaultProps} gradingType='percent' />
@@ -252,12 +252,12 @@ describe('GradePicker', () => {
     let button = explore(tree).selectByID('grade-picker.button') || {}
     button.props.onPress()
 
-    expect(AlertIOS.prompt.mock.calls[0][2].length).toEqual(3)
-    expect(AlertIOS.prompt.mock.calls[0][4]).not.toEqual('')
+    expect(Alert.prompt.mock.calls[0][2].length).toEqual(3)
+    expect(Alert.prompt.mock.calls[0][4]).not.toEqual('')
   })
 
   it('does not do anything if the student is already excused and ok is pressed', () => {
-    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[1].onPress('Excused'))
+    Alert.prompt = jest.fn((title, message, buttons) => buttons[1].onPress('Excused'))
     const spy = jest.fn()
     let tree = renderer.create(
       <GradePicker {...defaultProps} excused={true} gradeSubmission={spy} />
@@ -270,7 +270,7 @@ describe('GradePicker', () => {
   })
 
   it('calls gradeSubmission for a previously excused submission if ok is pressed and the prompt value no longer equals Excused', () => {
-    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[1].onPress('Excuse'))
+    Alert.prompt = jest.fn((title, message, buttons) => buttons[1].onPress('Excuse'))
     const spy = jest.fn()
     let tree = renderer.create(
       <GradePicker {...defaultProps} excused={true} gradeSubmission={spy} />
@@ -290,7 +290,7 @@ describe('GradePicker', () => {
     let button = explore(tree).selectByID('grade-picker.button') || {}
     button.props.onPress()
 
-    expect(AlertIOS.prompt.mock.calls[0][4]).toEqual('80%')
+    expect(Alert.prompt.mock.calls[0][4]).toEqual('80%')
   })
 
   it('submits when onSumitEditing is called', () => {
@@ -369,8 +369,8 @@ describe('GradePicker', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('calls AlertIOS.alert when the grade doesnt stick', () => {
-    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('asdf'))
+  it('calls Alert.alert when the grade doesnt stick', () => {
+    Alert.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('asdf'))
 
     let view = renderer.create(
       <GradePicker {...defaultProps} />
@@ -382,7 +382,7 @@ describe('GradePicker', () => {
     setProps(view, { grade: 'asdf', pending: true })
     setProps(view, { grade: null, pending: false })
 
-    expect(AlertIOS.alert).toHaveBeenCalledWith(
+    expect(Alert.alert).toHaveBeenCalledWith(
       'Error Saving Grade',
       'There was a problem saving the grade. Please try again.',
     )
@@ -459,7 +459,7 @@ describe('GradePicker', () => {
     let button = explore(tree).selectByID('grade-picker.button') || {}
     button.props.onPress()
 
-    expect(AlertIOS.prompt.mock.calls[0][4]).toEqual('90%')
+    expect(Alert.prompt.mock.calls[0][4]).toEqual('90%')
   })
 })
 

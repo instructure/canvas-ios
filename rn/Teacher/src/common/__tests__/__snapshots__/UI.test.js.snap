@@ -2,6 +2,7 @@
 
 exports[`renders UI correctly 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -26,9 +27,6 @@ exports[`renders UI correctly 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -46,14 +44,9 @@ exports[`renders UI correctly 1`] = `
             Text
           </Text>
         </View>
-        <View
-          style={undefined}
-        >
+        <View>
           <Text
             accessibilityTraits="header"
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -73,9 +66,6 @@ exports[`renders UI correctly 1`] = `
             Heading1
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -95,9 +85,6 @@ exports[`renders UI correctly 1`] = `
             Heading2
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -117,9 +104,6 @@ exports[`renders UI correctly 1`] = `
             Title
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -138,9 +122,6 @@ exports[`renders UI correctly 1`] = `
             SubTitle
           </Text>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -177,9 +158,6 @@ exports[`renders UI correctly 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -229,9 +207,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -251,9 +226,6 @@ exports[`renders UI correctly 1`] = `
               link
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -294,9 +266,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -316,9 +285,6 @@ exports[`renders UI correctly 1`] = `
               tabBarBg
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -359,9 +325,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -381,9 +344,6 @@ exports[`renders UI correctly 1`] = `
               tabBarTab
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -424,9 +384,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -446,9 +403,6 @@ exports[`renders UI correctly 1`] = `
               navBarBg
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -489,9 +443,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -511,9 +462,6 @@ exports[`renders UI correctly 1`] = `
               darkText
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -554,9 +502,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -576,9 +521,6 @@ exports[`renders UI correctly 1`] = `
               lightText
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -619,9 +561,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -641,9 +580,6 @@ exports[`renders UI correctly 1`] = `
               grey1
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -684,9 +620,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -706,9 +639,6 @@ exports[`renders UI correctly 1`] = `
               grey2
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -749,9 +679,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -771,9 +698,6 @@ exports[`renders UI correctly 1`] = `
               grey3
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -814,9 +738,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -836,9 +757,6 @@ exports[`renders UI correctly 1`] = `
               grey4
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -879,9 +797,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -901,9 +816,6 @@ exports[`renders UI correctly 1`] = `
               grey5
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -944,9 +856,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -966,9 +875,6 @@ exports[`renders UI correctly 1`] = `
               primaryButton
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1009,9 +915,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1031,9 +934,6 @@ exports[`renders UI correctly 1`] = `
               primaryButtonText
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1074,9 +974,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1096,9 +993,6 @@ exports[`renders UI correctly 1`] = `
               secondaryButton
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1139,9 +1033,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1161,9 +1052,6 @@ exports[`renders UI correctly 1`] = `
               checkmarkGreen
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1204,9 +1092,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1226,9 +1111,6 @@ exports[`renders UI correctly 1`] = `
               seperatorColor
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1269,9 +1151,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1291,9 +1170,6 @@ exports[`renders UI correctly 1`] = `
               errorAnnouncementBg
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1334,9 +1210,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1356,9 +1229,6 @@ exports[`renders UI correctly 1`] = `
               inviteAnnouncementBg
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1399,9 +1269,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1421,9 +1288,6 @@ exports[`renders UI correctly 1`] = `
               warningAnnouncementBg
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1464,9 +1328,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1486,9 +1347,6 @@ exports[`renders UI correctly 1`] = `
               navBarColor
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1529,9 +1387,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1551,9 +1406,6 @@ exports[`renders UI correctly 1`] = `
               navBarButtonColor
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1594,9 +1446,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1616,9 +1465,6 @@ exports[`renders UI correctly 1`] = `
               navBarTextColor
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1659,9 +1505,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1681,9 +1524,6 @@ exports[`renders UI correctly 1`] = `
               primaryButtonTextColor
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1724,9 +1564,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1746,9 +1583,6 @@ exports[`renders UI correctly 1`] = `
               primaryButtonColor
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1789,9 +1623,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1811,9 +1642,6 @@ exports[`renders UI correctly 1`] = `
               primaryBrandColor
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1854,9 +1682,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1876,9 +1701,6 @@ exports[`renders UI correctly 1`] = `
               destructiveButtonColor
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1919,9 +1741,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1941,9 +1760,6 @@ exports[`renders UI correctly 1`] = `
               electric
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1984,9 +1800,6 @@ exports[`renders UI correctly 1`] = `
               }
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2006,9 +1819,6 @@ exports[`renders UI correctly 1`] = `
               backgroundLight
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
