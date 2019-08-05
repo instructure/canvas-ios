@@ -62,6 +62,8 @@ class LoginTests: CanvasUITests {
         LoginWeb.samlNextButton.tap()
         LoginWeb.emailField.typeText("\(user.username)\r")
         LoginWeb.passwordField.tap()
+        LoginWeb.passwordField.typeText(" \r")
+        LoginWeb.passwordField.tap()
         LoginWeb.passwordField.typeText("\(user.password)\r")
 
         Dashboard.coursesLabel.waitToExist()
