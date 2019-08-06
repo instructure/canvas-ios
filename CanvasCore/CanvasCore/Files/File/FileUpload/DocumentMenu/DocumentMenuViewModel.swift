@@ -207,8 +207,7 @@ private func mediaTypes(allowsPhotos: Bool, allowsVideos: Bool) -> [String] {
 
 private func uploadable(for info: [String: Any]) -> SignalProducer<Uploadable, NSError> {
     return SignalProducer { observer, _ in
-        if let assetURL = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)] as? URL,
-            let asset = PHAsset.fetchAssets(withALAssetURLs: [assetURL], options: nil).firstObject {
+        if let asset = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.phAsset)] as? PHAsset {
                 Asset.fromCameraRoll(asset: asset) { result in
                     if let uploadable = result.value {
                         observer.send(value: uploadable)
