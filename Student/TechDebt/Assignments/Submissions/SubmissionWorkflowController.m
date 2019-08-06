@@ -276,10 +276,13 @@ static void deleteFiles(NSArray *fileURLs) {
     [sheet addCancelButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Cancel", nil, bundle, nil)];
     
     if (self.viewController.tabBarController) {
-        [sheet showFromTabBar:self.viewController.tabBarController.tabBar];
+        sheet.modalPresentationStyle = UIModalPresentationPopover;
+        sheet.popoverPresentationController.sourceView = self.viewController.tabBarController.tabBar;
+        sheet.popoverPresentationController.sourceRect = self.viewController.tabBarController.tabBar.bounds;
+        [sheet showfromViewController:self.viewController.tabBarController];
     }
     else {
-        [sheet showInView:self.viewController.parentViewController.parentViewController.view];
+        [sheet showfromViewController:self.viewController];
     }
 }
 
@@ -301,11 +304,12 @@ static void deleteFiles(NSArray *fileURLs) {
     [picker addCancelButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Cancel", nil, bundle, nil)];
     
     if (self.viewController.tabBarController) {
-        [picker showFromTabBar:self.viewController.tabBarController.tabBar];
+        picker.modalPresentationStyle = UIModalPresentationPopover;
+        picker.popoverPresentationController.sourceView = self.viewController.tabBarController.tabBar;
+        picker.popoverPresentationController.sourceRect = self.viewController.tabBarController.tabBar.bounds;
     }
-    else {
-        [picker showInView:self.viewController.view.window];
-    }
+
+    [picker showfromViewController:self];
 }
 
 - (void)showVideoRecorderWithSourceType:(UIImagePickerControllerSourceType)sourceType {

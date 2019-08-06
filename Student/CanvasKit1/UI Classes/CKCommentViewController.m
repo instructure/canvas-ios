@@ -183,7 +183,7 @@ static void * MediaCommentFrameContext = &MediaCommentFrameContext;
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+- (BOOL)shouldAutorotate {
     // Overriden to allow any orientation.
     return YES;
 }
@@ -197,10 +197,14 @@ static void * MediaCommentFrameContext = &MediaCommentFrameContext;
 #pragma GCC diagnostic pop
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    [self.recorderView rotateVideoToOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
-    [self resizeCommentsPopover:nil];
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext> context)
+     {
+         [self.recorderView rotateVideoToOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+         [self resizeCommentsPopover:nil];
+     }];
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
 

@@ -22,56 +22,47 @@
 NSString * const CKActionSheetDidShowNotification = @"CKAlertViewDidShowNotification";
 
 @interface CKActionSheetWithBlocks () <UIActionSheetDelegate>
+@property (nonatomic, strong) NSMutableDictionary *blocks;
 @end
 
 @implementation CKActionSheetWithBlocks {
-    NSMutableDictionary *blocks;
 }
 
 @synthesize dismissalBlock;
 
 - (id)initWithTitle:(NSString *)title
 {
-    self = [super initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    self = [super init];
+    self.title = title;
     if (self) {
-        blocks = [NSMutableDictionary dictionary];
+        self.blocks = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
-- (void)showInView:(UIView *)view
+- (void)showfromViewController:(UIViewController *)viewController
 {
-    [super showInView:view];
+    [viewController presentViewController: self animated: YES completion:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:CKActionSheetDidShowNotification object:self];
 }
 
 - (void)addButtonWithTitle:(NSString *)title handler:(void (^)(void))handler {
-    NSInteger buttonIndex = [super addButtonWithTitle:title];
-    if (handler) {
-        blocks[@(buttonIndex)] = [handler copy];
-    }
+
+    UIAlertAction * action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        handler();
+    }];
+
+    [self addAction: action];
 }
 
 - (void)addCancelButtonWithTitle:(NSString *)title {
-    NSInteger buttonIndex = [super addButtonWithTitle:title];
-    self.cancelButtonIndex = buttonIndex;
+    __weak CKActionSheetWithBlocks *weakSelf = self;
+    UIAlertAction * action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        if (weakSelf.dismissalBlock) {
+            weakSelf.dismissalBlock();
+        }
+        [weakSelf.blocks removeAllObjects];
+    }];
+    [self addAction: action];
 }
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    void (^handler)(void) = blocks[@(buttonIndex)];
-    if (handler) {
-        handler();
-    }
-    [blocks removeAllObjects];
-    
-    if (dismissalBlock) {
-        dismissalBlock();
-    }
-}
-
-#pragma GCC diagnostic pop
-
 @end
