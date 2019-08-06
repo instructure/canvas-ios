@@ -309,7 +309,7 @@ static void deleteFiles(NSArray *fileURLs) {
         picker.popoverPresentationController.sourceRect = self.viewController.tabBarController.tabBar.bounds;
     }
 
-    [picker showfromViewController:self];
+    [picker showfromViewController:self.viewController];
 }
 
 - (void)showVideoRecorderWithSourceType:(UIImagePickerControllerSourceType)sourceType {

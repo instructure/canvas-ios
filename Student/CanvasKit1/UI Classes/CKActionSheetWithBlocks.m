@@ -30,7 +30,7 @@ NSString * const CKActionSheetDidShowNotification = @"CKAlertViewDidShowNotifica
 
 @synthesize dismissalBlock;
 
-- (id)initWithTitle:(NSString *)title
+- (instancetype)initWithTitle:(NSString *)title
 {
     self = [super init];
     self.title = title;
@@ -40,22 +40,22 @@ NSString * const CKActionSheetDidShowNotification = @"CKAlertViewDidShowNotifica
     return self;
 }
 
-- (void)showfromViewController:(UIViewController *)viewController
+- (void)showfromViewController:(UIViewController *_Nullable)viewController
 {
     [viewController presentViewController: self animated: YES completion:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:CKActionSheetDidShowNotification object:self];
 }
 
-- (void)addButtonWithTitle:(NSString *)title handler:(void (^)(void))handler {
-
+- (void)addButtonWithTitle:(NSString *_Nullable)title handler:(void (^ _Nullable )(void))handler
+{
     UIAlertAction * action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        handler();
+        if (handler) { handler(); }
     }];
 
     [self addAction: action];
 }
 
-- (void)addCancelButtonWithTitle:(NSString *)title {
+- (void)addCancelButtonWithTitle:(NSString *_Nullable)title {
     __weak CKActionSheetWithBlocks *weakSelf = self;
     UIAlertAction * action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         if (weakSelf.dismissalBlock) {

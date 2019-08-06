@@ -18,15 +18,15 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString * const CKActionSheetDidShowNotification;
+extern NSString * _Nonnull const CKActionSheetDidShowNotification;
 
 @interface CKActionSheetWithBlocks : UIAlertController
 
-- (id)initWithTitle:(NSString *)title;
-- (void)addButtonWithTitle:(NSString *)title handler:(void (^)(void))handler;
-- (void)addCancelButtonWithTitle:(NSString *)title;
-- (void)showfromViewController:(UIViewController *)viewController;
+- (instancetype _Nonnull )initWithTitle:(NSString *_Nullable)title;
+- (void)addButtonWithTitle:(NSString *_Nullable)title handler:(void (^ _Nullable )(void))handler;
+- (void)addCancelButtonWithTitle:(NSString *_Nullable)title;
+- (void)showfromViewController:(UIViewController *_Nullable)viewController;
 
-@property (copy) void (^dismissalBlock)(void);
+@property (copy) void (^ _Nullable dismissalBlock)(void);
 
 @end

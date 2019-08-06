@@ -342,7 +342,6 @@ static NSURL *receivedFilesFolder() {
                                     [UIAlertController showAlertWithTitle:nil message:[error localizedDescription]];
                                 }
                             }];
-    actionSheet.destructiveButtonIndex = actionSheet.numberOfButtons - 1;
     [actionSheet addCancelButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Cancel", nil, bundle, @"Cancel button title")];
     
     actionSheet.dismissalBlock = ^{
