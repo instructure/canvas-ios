@@ -18,17 +18,17 @@
 //
 
 /*
-Runs code coverage report for `scheme`.
+Runs code coverage report.
 
 Depends on node & yarn dependencies, & awcli
  $ brew install yarn awscli
  $ yarn
 
 Run this script from root with yarn
- $ yarn coverage --scheme CITests
+ $ yarn coverage
 
 Run with --test option to run tests first
- $ yarn coverage --scheme CITests --test
+ $ yarn coverage --test
 */
 const program = require('commander')
 const { execSync } = require('child_process')
@@ -86,7 +86,7 @@ function reportCoverage () {
     folder = join(settings.match(/BUILD_DIR = (.*)/)[1], '../../Logs/Test/*.xcresult')
   }
 
-  console.log('Reading Xcode coverage report')
+  console.log(`Reading Xcode coverage report ${folder}`)
   const report = JSON.parse(run(`xcrun xccov view --json ${folder}/*Test/*.xccovreport`))
 
   console.log('Generating html report')
@@ -101,12 +101,13 @@ function reportCoverage () {
   const folders = {}
   for (const target of report.targets) {
     for (const file of target.files) {
-      if (ignoreExps.some(exp => exp.test(file.path))) { continue }
-      coveredLines += file.coveredLines
-      executableLines += file.executableLines
-      summary[relative(process.cwd(), file.path)] = {
-        executableLines: file.executableLines,
-        coveredLines: file.coveredLines,
+      if (!ignoreExps.some(exp => exp.test(file.path))) {
+        coveredLines += file.coveredLines
+        executableLines += file.executableLines
+        summary[relative(process.cwd(), file.path)] = {
+          executableLines: file.executableLines,
+          coveredLines: file.coveredLines,
+        }
       }
       writeFileHTML(file, cssPath)
       updateFolders(folders, file)
@@ -120,6 +121,7 @@ function reportCoverage () {
   console.log('Generating coverage-summary')
   summary.total = { executableLines, coveredLines }
   writeFileSync(`${coverageFolder}/coverage-summary.json`, JSON.stringify(summary))
+  writeFileSync(`${coverageFolder}/coverage-final.json`, JSON.stringify(report))
 }
 
 function run (cmd, opts) {
@@ -147,9 +149,9 @@ function writeFileHTML (file, cssPath) {
 }
 
 function header (path, offset = 1) {
-  if (!path) return `${scheme} Scheme`
+  if (!path) return 'Code Coverage canvas-ios'
   const parts = path.split('/')
-  const root = `<a href="${'../'.repeat(parts.length - offset)}index.html">${scheme} Scheme</a> `
+  const root = `Code Coverage <a href="${'../'.repeat(parts.length - offset)}index.html">canvas-ios/</a>`
   return root + parts.map((part, i, a) => {
     if (i === a.length - 1) return part
     return `<a href="${'../'.repeat(a.length - i - offset)}${part}/index.html">${part}/</a>`
@@ -210,10 +212,10 @@ async function writeFolderHTML (folder, cssPath) {
     <h1>${header(folder.path, 0)}</h1>
     <h2>${(folder.coveredLines / folder.executableLines * 100).toFixed(2)}%
       (${folder.coveredLines}/${folder.executableLines}) Lines Covered</h2>
-    <table>
+    <table style="text-align:right">
       <thead>
         <tr>
-          <th>File</th>
+          <th style="text-align:left">File</th>
           <th>Line %</th>
           <th>Lines</th>
         </tr>
@@ -223,7 +225,7 @@ async function writeFolderHTML (folder, cssPath) {
         const name = basename(file.path)
         const path = name.includes('.') ? `${name}.html` : `${name}/index.html`
         return `<tr>
-          <td><a href="./${path}">${name}</a></td>
+          <td style="text-align:left"><a href="./${path}">${name}</a></td>
           <td>${(file.coveredLines / file.executableLines * 100).toFixed(2)}%</td>
           <td>${file.coveredLines}/${file.executableLines}</td>
         </tr>`

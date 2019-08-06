@@ -136,7 +136,7 @@
       "/src/canvas-api/apis",
       "/test/scripts"
     ],
-    "coverageDirectory": "./coverage",
+    "coverageDirectory": "../../scripts/coverage/react-native",
     "coverageReporters": [
       "json",
       "json-summary",
