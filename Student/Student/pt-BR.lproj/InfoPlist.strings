@@ -1,9 +1,18 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Aluno";
+
 /* Privacy - Camera Usage Description */
-"NSCameraUsageDescription" = "$(PRODUCT_NAME) uso da câmera";
+"NSCameraUsageDescription" = "Anexe fotos e vídeos a mensagens e posts de discussões ou entregue-as como envios de tarefa.";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "Ajude-nos a encontrar escolas perto de você.";
 
 /* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "$(PRODUCT_NAME) uso do microfone";
+"NSMicrophoneUsageDescription" = "Anexe gravações de aúdio a mensagens e posts de discussões ou entregue-as como envios de tarefa.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Anexe fotos e vídeos a mensagens e posts de discussões ou entregue-as como envios de tarefa.";
 
 /* Privacy - Photo Library Usage Description */
-"NSPhotoLibraryUsageDescription" = "$(PRODUCT_NAME) uso da foto";
+"NSPhotoLibraryUsageDescription" = "Anexe fotos e vídeos a mensagens e posts de discussões ou entregue-as como envios de tarefa.";
 

@@ -18,17 +18,18 @@
 
 exports.checkCoverage = checkCoverage
 function checkCoverage () {
-  let table = checkSchemeCoverage('Core')
-  table += checkSchemeCoverage('Student')
-  table += checkSchemeCoverage('Teacher')
-
-  const master = require('../../rn/Teacher/coverage/coverage-summary-master.json')
-  const pr = require('../../rn/Teacher/coverage/coverage-summary.json')
-  table += checkSchemeCoverage('React Native', convertCoverage(master), convertCoverage(pr))
   markdown(`
     Coverage | New % | Master % | Delta
     -------- | ----- | -------- | -----
-    ${table}
+    ${checkSchemeCoverage(
+      'Canvas iOS',
+      require(`./citest/coverage-summary-master.json`),
+      require(`./citest/coverage-summary.json`)
+    )}${checkSchemeCoverage(
+      'React Native',
+      convertCoverage(require('./react-native/coverage-summary-master.json')),
+      convertCoverage(require('./react-native/coverage-summary.json'))
+    )}
   `.trim().replace(/\n\s+/g, '\n'))
 }
 
@@ -45,11 +46,7 @@ function convertCoverage (jest) {
   return xccov
 }
 
-function checkSchemeCoverage (scheme, masterCoverage, prCoverage) {
-  const coverageFolder = `./${scheme.toLowerCase()}`
-  const master = masterCoverage || require(`${coverageFolder}/coverage-summary-master.json`)
-  const pr = prCoverage || require(`${coverageFolder}/coverage-summary.json`)
-
+function checkSchemeCoverage (scheme, master, pr) {
   const { fileMinCoverage, totalMinCoverage } = require('./config.json')
   const empty = { executableLines: 0, coveredLines: 0 }
   const files = Object.keys(pr).filter(path => (path !== 'total' &&

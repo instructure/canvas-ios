@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4CAE790B904C6277683CC787CA4DCA59"
+               BlueprintIdentifier = "ACD2950C8007D2B9F3129F706FB6138B"
                BuildableName = "Pods_defaults_CanvasKeymaster.framework"
                BlueprintName = "Pods-defaults-CanvasKeymaster"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
@@ -56,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B886C6606AF746242B64685ADD80ABA2"
+               BlueprintIdentifier = "607531D8125D8B916A7B324EDB16639A"
                BuildableName = "Pods_defaults_CanvasKit.framework"
                BlueprintName = "Pods-defaults-CanvasKit"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
@@ -70,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AD4748FC27684016C3C2C37711B2A53A"
+               BlueprintIdentifier = "47CCF1D9F019FFC6546DA481B71A2C4E"
                BuildableName = "Mantle.framework"
                BlueprintName = "Mantle"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
