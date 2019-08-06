@@ -622,13 +622,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSound\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/React\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactNativeSearchBar\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveCocoa\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveObjC\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveObjCBridge\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveSwift\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Result\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftSimplify\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/TBBModal\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-camera\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-document-picker\"",
@@ -637,6 +631,7 @@
 					"$(PROJECT_DIR)/../../Carthage/Build/iOS",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = CanvasKeymaster/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -685,13 +680,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSound\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/React\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactNativeSearchBar\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveCocoa\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveObjC\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveObjCBridge\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactiveSwift\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Result\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftSimplify\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/TBBModal\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-camera\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-document-picker\"",
@@ -700,6 +689,7 @@
 					"$(PROJECT_DIR)/../../Carthage/Build/iOS",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = CanvasKeymaster/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

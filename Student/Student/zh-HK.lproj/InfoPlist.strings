@@ -1,9 +1,18 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "學生";
+
 /* Privacy - Camera Usage Description */
-"NSCameraUsageDescription" = "$(PRODUCT_NAME)鏡頭使用";
+"NSCameraUsageDescription" = "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "幫助我們找到您附近的學校。";
 
 /* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "$(PRODUCT_NAME)麥克風使用";
+"NSMicrophoneUsageDescription" = "將錄音附加到訊息和討論區中，或將他們變成作業提交項目。";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。";
 
 /* Privacy - Photo Library Usage Description */
-"NSPhotoLibraryUsageDescription" = "$(PRODUCT_NAME)照片使用";
+"NSPhotoLibraryUsageDescription" = "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。";
 

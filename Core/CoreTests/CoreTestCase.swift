@@ -34,6 +34,7 @@ class CoreTestCase: XCTestCase {
     var logger = TestLogger()
     var environment: AppEnvironment!
     var currentSession = KeychainEntry.make()
+    let entriesBackup = Keychain.entries
 
     let notificationCenter = MockUserNotificationCenter()
     var notificationManager: NotificationManager!
@@ -61,6 +62,13 @@ class CoreTestCase: XCTestCase {
         UploadManager.shared = MockUploadManager()
         MockUploadManager.reset()
         UUID.reset()
+    }
+
+    override func tearDown() {
+        Keychain.clearEntries()
+        for entry in entriesBackup {
+            Keychain.addEntry(entry)
+        }
     }
 
     func waitForMainAsync() {

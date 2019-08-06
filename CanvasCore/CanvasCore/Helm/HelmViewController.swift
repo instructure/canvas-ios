@@ -150,15 +150,10 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         super.init(nibName: nil, bundle: nil)
         
         HelmManager.shared.register(screen: self)
-        setupSensibleDefaults()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupSensibleDefaults() {
-        automaticallyAdjustsScrollViewInsets = false
     }
     
     // MARK: - View lifecycle
@@ -285,17 +280,12 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         } else {
             edgesForExtendedLayout.remove(.bottom)
         }
-        
-        if let autoAdjustInsets = screenConfig[PropKeys.automaticallyAdjustsScrollViewInsets] as? Bool {
-            automaticallyAdjustsScrollViewInsets = autoAdjustInsets
-        }
-        
+
         if screenConfig.navBarTransparent {
             navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationController?.navigationBar.shadowImage = UIImage()
             navigationController?.navigationBar.isTranslucent = true
             edgesForExtendedLayout.insert(.top)
-            automaticallyAdjustsScrollViewInsets = false
         }
         else {
             navigationController?.navigationBar.setBackgroundImage(nil, for: .default)

@@ -201,7 +201,7 @@ extension SubmissionViewController {
 
 // MARK: - File Uploads
 
-extension SubmissionViewController: DocumentMenuController, UIDocumentPickerDelegate, UIDocumentMenuDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension SubmissionViewController: DocumentMenuController, UIDocumentPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @objc func chooseFile(at indexPath: IndexPath) {
         self.currentFileUploadIndexPath = indexPath
         self.documentMenuViewModel.inputs.showDocumentMenuButtonTapped()
@@ -238,7 +238,7 @@ extension SubmissionViewController: DocumentMenuController, UIDocumentPickerDele
         self.present(alert, animated: true, completion: nil)
     }
 
-    @objc func presentDocumentMenuViewController(_ documentMenu: UIDocumentMenuViewController) {
+    @objc func presentDocumentMenuViewController(_ documentMenu: UIDocumentPickerViewController) {
         if let indexPath = currentFileUploadIndexPath, let cell = tableView.cellForRow(at: indexPath) {
             documentMenu.popoverPresentationController?.sourceView = cell
         }
@@ -256,13 +256,7 @@ extension SubmissionViewController: DocumentMenuController, UIDocumentPickerDele
         }
     }
 
-
-    // MARK: UIDocumentMenuDelegate
-    func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
-        self.documentMenuViewModel.inputs.tappedDocumentPicker(documentPicker)
-    }
-
-    func documentMenuWasCancelled(_ documentMenu: UIDocumentMenuViewController) {
+    func documentMenuWasCancelled() {
         if let indexPath = currentFileUploadIndexPath {
             self.tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -378,16 +372,14 @@ extension SubmissionViewController {
             }
         }
 
-        var hashValue: Int {
+        func hash(into hasher: inout Hasher) {
             switch self {
             case .quizDescription:
-                return 1
-
-            case .question(question: let q):
-                return q << 1
-
-            case .answer(question: let q, answer: let a):
-                return (q << 1) + (a << 16)
+                hasher.combine(1)
+            case .question(let question):
+                hasher.combine(question << 1)
+            case .answer(let question, let answer):
+                hasher.combine((question << 1) + (answer << 16))
             }
         }
 
