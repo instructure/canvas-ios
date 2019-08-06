@@ -188,7 +188,7 @@ export default class AttachmentPicker extends Component<Props, any> {
       if (DocumentPicker.isCancel(err)) {
         return
       }
-      AlertIOS.alert(i18n('Upload error'))
+      Alert.alert(i18n('Upload error'))
     }
   }
 

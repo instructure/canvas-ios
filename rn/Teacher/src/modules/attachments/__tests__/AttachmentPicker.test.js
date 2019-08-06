@@ -289,7 +289,7 @@ describe('AttachmentPicker', () => {
     DocumentPicker.isCancel = jest.fn((e) => true)
     const callback = jest.fn()
     const alert = jest.fn()
-    AlertIOS.alert = alert
+    Alert.alert = alert
     await picker.pickDocument(null, callback)
     expect(callback).not.toHaveBeenCalled()
     expect(alert).not.toHaveBeenCalled()
