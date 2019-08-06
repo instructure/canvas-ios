@@ -106,26 +106,9 @@ We don't do any manual QA of our products. We write code that tests our apps for
 ## Using the Canvas Apps
 
 ### How to connect to a local canvas instance or a Portal instance
-- Modify the contents of preload-account-info.plist (it's at the root of the repo)
-  * See How To Generate a Developer Key section below
-  * `client_id` is the `ID` of a generated Developer Key
-  * `client_secret` is the `Key` of the generated Developer Key
-- If you are connecting to a portal instance you must be connected to the VPN. This requires Full VPN tunnel and not just the typical Employee VPN connection. After you hit connect in the Cisco VPN client to connect to vpn.instructure.com there will be a drop down where you can select Full Tunnel
-- Build and run the app locally
-- On the login page, your local canvas instance will appear in the top left corner of the screen
+https://instructure.atlassian.net/wiki/spaces/MOBILE/pages/563937366/Manual+Oauth+Login+Bypassing+mobile+verify
 
-### How to Generate a Developer Key
-- Visit `web.canvas.docker/accounts/self/developer_keys` (replace `web.canvas.docker`
-with your local instance or Portal url
-- Click `+ Developer Key`
-- Give it a name and the following fields:
-  * `Redirect URI (Legacy)`: `https://canvas/login`
-  * `Redirect URIs` (separated by new lines):
-    - https://canvas/login
-    - canvas-courses://canvas/login
-    - canvas-teacher://canvas/login
-    - canvas-parent://canvas/login
- - You must turn on the developer key after you create it as it will be off by default
+If you are connecting to a portal instance you must be connected to the VPN. This requires Full VPN tunnel and not just the typical Employee VPN connection. After you hit connect in the Cisco VPN client to connect to vpn.instructure.com there will be a drop down where you can select Full Tunnel
 
 ### Generating icons from [instructure.design](https://instructure.design/#iconography)
 
