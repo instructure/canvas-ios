@@ -26,7 +26,7 @@ enum AnnouncementList {
 }
 
 class AnnouncementTest: CanvasUITests {
-    func xtestAnnouncementsMatchWebOrder() { // TODO: reenable when fixed for CI
+    func testAnnouncementsMatchWebOrder() {
         Dashboard.courseCard(id: "262").waitToExist()
         Dashboard.courseCard(id: "262").tap()
         CourseNavigation.announcements.tap()
