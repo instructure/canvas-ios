@@ -727,7 +727,6 @@
 		7DE1161422F8AB5C005BFE98 /* SyllabusPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1122F8A096000AACCE /* SyllabusPresenterTests.swift */; };
 		7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */; };
 		7DE1161622F8AB5C005BFE98 /* GroupNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1622F8A096000AACCE /* GroupNavigationPresenterTests.swift */; };
-		7DE1161722F8AB5C005BFE98 /* PageListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1922F8A096000AACCE /* PageListPresenterTests.swift */; };
 		7DE1161822F8AB5C005BFE98 /* QuizListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1C22F8A096000AACCE /* QuizListPresenterTests.swift */; };
 		7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */; };
 		7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */; };
@@ -1815,7 +1814,6 @@
 		7DCF0F1122F8A096000AACCE /* SyllabusPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1622F8A096000AACCE /* GroupNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenterTests.swift; sourceTree = "<group>"; };
-		7DCF0F1922F8A096000AACCE /* PageListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1C22F8A096000AACCE /* QuizListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageStudentExtensionTests.swift; sourceTree = "<group>"; };
 		7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
@@ -3842,22 +3840,6 @@
 			path = Groups;
 			sourceTree = "<group>";
 		};
-		7DCF0F1A22F8A096000AACCE /* PageList */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0F1922F8A096000AACCE /* PageListPresenterTests.swift */,
-			);
-			path = PageList;
-			sourceTree = "<group>";
-		};
-		7DCF0F1B22F8A096000AACCE /* Pages */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0F1A22F8A096000AACCE /* PageList */,
-			);
-			path = Pages;
-			sourceTree = "<group>";
-		};
 		7DCF0F1D22F8A096000AACCE /* QuizList */ = {
 			isa = PBXGroup;
 			children = (
@@ -3975,7 +3957,6 @@
 				7DCF0F0F22F8A096000AACCE /* Assignments */,
 				7DCF0F1522F8A096000AACCE /* Courses */,
 				7DCF0F1822F8A096000AACCE /* Groups */,
-				7DCF0F1B22F8A096000AACCE /* Pages */,
 				7DCF0F1E22F8A096000AACCE /* Quizzes */,
 				7DCF0F1F22F8A096000AACCE /* Dashboard */,
 				7DCF0F2222F8A096000AACCE /* Extensions */,
@@ -5700,7 +5681,6 @@
 				7DE1161C22F8AB5C005BFE98 /* BlockExpectation.swift in Sources */,
 				7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */,
 				7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */,
-				7DE1161722F8AB5C005BFE98 /* PageListPresenterTests.swift in Sources */,
 				7DE1161B22F8AB5C005BFE98 /* TestEnvironment.swift in Sources */,
 				7DE1161222F8AB5C005BFE98 /* AssignmentDetailsPresenterTests.swift in Sources */,
 				7DE1161422F8AB5C005BFE98 /* SyllabusPresenterTests.swift in Sources */,

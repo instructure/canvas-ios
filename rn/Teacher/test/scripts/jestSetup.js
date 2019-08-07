@@ -133,6 +133,7 @@ NativeModules.RNSound = {
 
 NativeModules.NativeNotificationCenter = {
   postAsyncActionNotification: jest.fn(),
+  postNotification: jest.fn(),
 }
 
 NativeModules.TabBarItemCounts = {
