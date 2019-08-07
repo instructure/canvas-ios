@@ -23,8 +23,8 @@ function checkCoverage () {
     -------- | ----- | -------- | -----
     ${checkSchemeCoverage(
       'Canvas iOS',
-      require(`./citest/coverage-summary-master.json`),
-      require(`./citest/coverage-summary.json`)
+      require(`./citests/coverage-summary-master.json`),
+      require(`./citests/coverage-summary.json`)
     )}${checkSchemeCoverage(
       'React Native',
       convertCoverage(require('./react-native/coverage-summary-master.json')),
