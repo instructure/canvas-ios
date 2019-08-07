@@ -42,3 +42,5 @@ FOUNDATION_EXPORT const unsigned char TechDebtVersionString[];
 #import <TechDebt/MyLittleViewController.h>
 #import <TechDebt/FileViewController.h>
 #import <TechDebt/InsetTableViewCell.h>
+#import <TechDebt/NSObject+RACCollectionChanges.h>
+#import <TechDebt/UICollectionView+MyLittleViewController.h>

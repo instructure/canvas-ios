@@ -70,3 +70,4 @@ FOUNDATION_EXPORT const unsigned char CanvasKit1VersionString[];
 #import <CanvasKit1/CKStylingButton.h>
 #import <CanvasKit1/CKCourse.h>
 #import <CanvasKit1/CKMediaServer.h>
+#import <CanvasKit1/CKDiscussionEntry.h>
