@@ -24,7 +24,7 @@ public struct APIModule: Codable, Equatable {
     public let name: String
     /// the position of this module in the course (1-based)
     public let position: Int
-    public let published: Bool
+    public let published: Bool?
     public let items: [APIModuleItem]?
 }
 

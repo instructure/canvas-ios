@@ -31,10 +31,17 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var indent: Int
     @NSManaged public var htmlURL: URL?
     @NSManaged public var url: URL?
-    @NSManaged public var published: Bool
+    @NSManaged public var publishedRaw: NSNumber?
     @NSManaged public var typeRaw: Data?
     @NSManaged public var module: Module?
     @NSManaged public var dueAt: Date?
+
+    public var published: Bool? {
+        get {
+            return publishedRaw?.boolValue
+        }
+        set { publishedRaw = NSNumber(value: newValue) }
+    }
 
     public var type: ModuleItemType? {
         get {
@@ -57,7 +64,7 @@ public class ModuleItem: NSManagedObject {
         model.indent = item.indent
         model.htmlURL = item.html_url
         model.url = item.url
-        model.published = item.published ?? false
+        model.published = item.published
         model.type = item.content
         model.courseID = courseID
         model.dueAt = item.content_details.due_at

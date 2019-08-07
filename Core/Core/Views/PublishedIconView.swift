@@ -8,7 +8,7 @@
 // License, or (at your option) any later version.
 //
 // This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// but WITHOUT ANY WARRANTY; without even the implied warranty of   
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
 //
@@ -21,12 +21,17 @@ import Foundation
 public class PublishedIconView: IconView {
     public var published: Bool? {
         didSet {
-            if published == true {
+            switch published {
+            case true:
                 image = .icon(.publish, .solid)
                 tintColor = UIColor.named(.backgroundSuccess)
-            } else {
+            case false:
                 image = .icon(.no, .solid)
                 tintColor = UIColor.named(.ash)
+            case nil:
+                image = nil
+            default:
+                break
             }
         }
     }
