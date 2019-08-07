@@ -36,7 +36,15 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
     {
       type: 'all',
       title: () => i18n('All submissions'),
-      filterFunc: (submission) => submission,
+      filterFunc: () => ({
+        states: ['submitted', 'unsubmitted', 'pending_review', 'graded', 'ungraded'],
+        late: null,
+        scoredMoreThan: null,
+        scoredLessThan: null,
+        sectionIDs: [],
+        gradingStatus: null,
+      }),
+      oldFilterFunc: (submission) => submission,
       selected: false,
       disabled: false,
       exclusive: true,
@@ -44,7 +52,10 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
     {
       type: 'late',
       title: () => i18n('Submitted late'),
-      filterFunc: (submission) => submission.status === 'late',
+      filterFunc: () => ({
+        late: true,
+      }),
+      oldFilterFunc: (submission) => submission.status === 'late',
       selected: false,
       disabled: false,
       exclusive: true,
@@ -52,7 +63,10 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
     {
       type: 'not_submitted',
       title: () => i18n("Haven't submitted yet"),
-      filterFunc: (submission) => submission.grade === 'not_submitted',
+      filterFunc: () => ({
+        states: ['unsubmitted'],
+      }),
+      oldFilterFunc: (submission) => submission.grade === 'not_submitted',
       selected: false,
       disabled: false,
       exclusive: true,
@@ -60,7 +74,10 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
     {
       type: 'ungraded',
       title: () => i18n("Haven't been graded"),
-      filterFunc: (submission) => submission.grade === 'ungraded',
+      filterFunc: () => ({
+        gradingStatus: 'needs_grading',
+      }),
+      oldFilterFunc: (submission) => submission.grade === 'ungraded',
       selected: false,
       disabled: false,
       exclusive: true,
@@ -68,7 +85,10 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
     {
       type: 'graded',
       title: () => i18n('Graded'),
-      filterFunc: (submission) => submission.grade === 'excused' || (submission.grade !== 'not_submitted' && submission.grade !== 'ungraded'),
+      filterFunc: () => ({
+        states: ['graded'],
+      }),
+      oldFilterFunc: (submission) => submission.grade === 'excused' || (submission.grade !== 'not_submitted' && submission.grade !== 'ungraded'),
       selected: false,
       disabled: false,
       exclusive: true,
@@ -80,7 +100,12 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
           ? i18n('Scored less than {promptValue}', { promptValue: this.promptValue })
           : i18n('Scored less than…')
       },
-      filterFunc: function (submission: any) {
+      filterFunc: function () {
+        return {
+          scoredLessThan: +this.promptValue,
+        }
+      },
+      oldFilterFunc: function (submission: any) {
         return (submission.score !== null && submission.score !== undefined) && (submission.score < this.promptValue)
       },
       prompt: true,
@@ -95,7 +120,12 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
           ? i18n('Scored more than {promptValue}', { promptValue: this.promptValue })
           : i18n('Scored more than…')
       },
-      filterFunc: function (submission: any) {
+      filterFunc: function () {
+        return {
+          scoredMoreThan: +this.promptValue,
+        }
+      },
+      oldFilterFunc: function (submission: any) {
         return (submission.score !== null && submission.score !== undefined) && (submission.score > this.promptValue)
       },
       prompt: true,
@@ -130,13 +160,38 @@ export function updateFilterSelection (filterOptions: Array<SubmissionFilterOpti
 }
 
 export function createFilter (filterOptions: Array<SubmissionFilterOption>): Function {
+  let defaultFilter = {
+    states: ['submitted', 'unsubmitted', 'pending_review', 'graded', 'ungraded'],
+    late: null,
+    scoredMoreThan: null,
+    scoredLessThan: null,
+    sectionIDs: [],
+    gradingStatus: null,
+  }
+
+  return filterOptions
+    .filter(option => option.selected)
+    .reduce((filter, option) => {
+      if (option.filterFunc().sectionIDs != null) {
+        filter.sectionIDs.push(...option.filterFunc().sectionIDs)
+        return filter
+      }
+
+      return {
+        ...filter,
+        ...option.filterFunc(),
+      }
+    }, defaultFilter)
+}
+
+export function oldCreateFilter (filterOptions: Array<SubmissionFilterOption>): Function {
   let exclusiveFilter = filterOptions.find(option => option.exclusive && option.selected)
   let otherFilters = filterOptions.filter(option => !option.exclusive && option.selected)
 
   return (items) => {
     return items.filter(item => {
-      if (otherFilters.length > 0 && !otherFilters.some(filter => filter.filterFunc(item))) return false
-      if (exclusiveFilter && !exclusiveFilter.filterFunc(item, +exclusiveFilter.promptValue)) return false
+      if (otherFilters.length > 0 && !otherFilters.some(filter => filter.oldFilterFunc(item))) return false
+      if (exclusiveFilter && !exclusiveFilter.oldFilterFunc(item, +exclusiveFilter.promptValue)) return false
       return true
     })
   }

@@ -33,14 +33,14 @@ import {
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
 import SubmissionsHeader from '../../submissions/SubmissionsHeader'
-import SubmissionRow, { type SubmissionRowDataProps } from '../../submissions/list/SubmissionRow'
+import OldSubmissionRow, { type OldSubmissionRowDataProps } from '../../submissions/list/OldSubmissionRow'
 import mapStateToProps from './map-state-to-props'
 import Images from '../../../images'
 import i18n from 'format-message'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
-import defaultFilterOptions, { type SubmissionFilterOption, createFilter, joinTitles } from '../../filter/filter-options'
+import defaultFilterOptions, { type SubmissionFilterOption, oldCreateFilter as createFilter, joinTitles } from '../../filter/filter-options'
 
 export type QuizSubmissionListNavProps = {
   courseID: string,
@@ -51,7 +51,7 @@ export type QuizSubmissionListNavProps = {
 }
 
 export type QuizSubmissionListDataProps = {
-  rows: SubmissionRowDataProps[],
+  rows: OldSubmissionRowDataProps[],
   quiz: QuizState,
   pending: boolean,
   error: ?string,
@@ -112,12 +112,12 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
     })
   }
 
-  renderRow = ({ item, index }: { item: SubmissionRowDataProps, index: number }) => {
+  renderRow = ({ item, index }: { item: OldSubmissionRowDataProps, index: number }) => {
     let disclosure = true
     if (this.props.quiz) {
       disclosure = !!this.props.quiz.data.assignment_id
     }
-    return <SubmissionRow
+    return <OldSubmissionRow
       {...item}
       onPress={this.navigateToSubmission(index)}
       disclosure={disclosure}
@@ -126,7 +126,7 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
     />
   }
 
-  keyExtractor = (item: SubmissionRowDataProps) => {
+  keyExtractor = (item: OldSubmissionRowDataProps) => {
     return item.userID
   }
 
@@ -259,7 +259,7 @@ function createFilterFromSection (section) {
     disabled: false,
     selected: false,
     exclusive: false,
-    filterFunc: (submission) => {
+    oldFilterFunc: (submission) => {
       return submission.allSectionIDs.includes(section.id)
     },
   }

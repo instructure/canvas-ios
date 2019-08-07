@@ -21,18 +21,14 @@
 import React from 'react'
 import {
   SubmissionList,
-  refreshSubmissionList,
-  shouldRefresh,
+  props as graphqlProps,
 } from '../SubmissionList'
 import renderer from 'react-test-renderer'
-import cloneDeep from 'lodash/cloneDeep'
 import defaultFilterOptions, { updateFilterSelection } from '../../../filter/filter-options'
+import * as templates from '../../../../canvas-api-v2/__templates__'
 
 const template = {
   ...require('../../../../__templates__/helm'),
-  ...require('../__templates__/submission-props'),
-  ...require('../../../../__templates__/course'),
-  ...require('../../../../__templates__/section'),
 }
 
 jest
@@ -42,54 +38,60 @@ jest
   }))
   .mock('knuth-shuffle-seeded', () => jest.fn())
 
-const submissionProps: Array<SubmissionDataProps> = [
-  template.submissionProps({
-    name: 'S1',
-    status: 'none',
-    grade: 'not_submitted',
-    userID: '1',
+const submissions = [
+  templates.submission({
+    state: 'unsubmitted',
+    grade: null,
+    submittedAt: null,
+    user: templates.user({
+      name: 'S1',
+      id: '1',
+    }),
   }),
-  template.submissionProps({
-    name: 'S2',
-    status: 'none',
-    grade: 'excused',
-    userID: '2',
+  templates.submission({
+    gradingStatus: 'graded',
+    state: 'graded',
+    excused: true,
+    grade: null,
+    submittedAt: null,
+    user: templates.user({
+      name: 'S2',
+      id: '2',
+    }),
   }),
-  template.submissionProps({
-    name: 'S3',
-    status: 'late',
-    grade: 'ungraded',
-    userID: '3',
+  templates.submission({
+    state: 'submitted',
+    late: true,
+    gradingStatus: 'needs_grading',
+    user: templates.user({
+      name: 'S3',
+      id: '3',
+    }),
   }),
-  template.submissionProps({
-    name: 'S4',
-    status: 'submitted',
+  templates.submission({
+    state: 'submitted',
     grade: 'A-',
-    userID: '4',
+    user: templates.user({
+      name: 'S4',
+      id: '4',
+    }),
   }),
 ]
 
 const props = {
-  submissions: submissionProps,
+  submissions: submissions,
   pending: false,
   courseID: '12',
   assignmentID: '32',
   courseColor: '#ddd',
   courseName: 'fancy name',
-  refreshSubmissions: jest.fn(),
-  refreshEnrollments: jest.fn(),
-  refreshGroupsForCourse: jest.fn(),
-  refreshSections: jest.fn(),
-  shouldRefresh: false,
-  refreshing: false,
-  refresh: jest.fn(),
   anonymous: false,
   muted: false,
   assignmentName: 'Blah',
   groupAssignment: null,
-  sections: [template.section()],
-  getCourseEnabledFeatures: jest.fn(),
+  sections: [templates.section()],
   isGroupGradedAssignment: false,
+  refetch: jest.fn(),
 }
 
 beforeEach(() => jest.resetAllMocks())
@@ -101,26 +103,6 @@ test('SubmissionList loaded', () => {
   expect(tree).toMatchSnapshot()
 })
 
-test('SubmissionList calls refreshSubmissions if the assignmentName is present', () => {
-  renderer.create(
-    <SubmissionList {...props} />
-  )
-  expect(props.refreshSubmissions).toHaveBeenCalledWith('12', '32', false)
-})
-
-test('SubmissionList calls refreshSubmissions on update if the assignmentName was empty', () => {
-  const tree = renderer.create(
-    <SubmissionList {...props} assignmentName='' isGroupGradedAssignment />
-  )
-  expect(props.refreshSubmissions).not.toHaveBeenCalled()
-  tree.getInstance().componentWillReceiveProps({
-    ...props,
-    assignmentName: 'Blah',
-    isGroupGradedAssignment: true,
-  })
-  expect(props.refreshSubmissions).toHaveBeenCalledWith('12', '32', true)
-})
-
 test('SubmissionList shows loading indicator', () => {
   const tree = renderer.create(
     <SubmissionList {...props} navigator={template.navigator()} pending={true} />
@@ -129,145 +111,69 @@ test('SubmissionList shows loading indicator', () => {
 })
 
 test('SubmissionList select filter function', () => {
-  const expandedProps = cloneDeep(props)
-  expandedProps.submissions = expandedProps.submissions.concat([
-    template.submissionProps({
-      name: 'S5',
-      status: 'submitted',
-      grade: '60',
-      score: 60,
-      userID: '5',
-    }),
-    template.submissionProps({
-      name: 'S6',
-      status: 'submitted',
-      grade: '30',
-      score: 30,
-      userID: '6',
-    }),
-  ])
-
   const instance = renderer.create(
-    <SubmissionList { ...expandedProps } navigator={template.navigator()} />
+    <SubmissionList { ...props } navigator={template.navigator()} />
   ).getInstance()
 
   instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'all'))
-  expect(instance.state.filter(instance.props.submissions)).toMatchObject(expandedProps.submissions)
+  expect(instance.state.filter).toEqual({
+    late: null,
+    scoredLessThan: null,
+    scoredMoreThan: null,
+    sectionIDs: [],
+    states: ['submitted', 'unsubmitted', 'pending_review', 'graded', 'ungraded'],
+    gradingStatus: null,
+  })
+  expect(props.refetch).toHaveBeenCalledTimes(1)
 
   instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'late'))
-  expect(instance.state.filter(instance.props.submissions)).toMatchObject([
-    {
-      status: 'late',
-    },
-  ])
+  expect(instance.state.filter).toMatchObject({
+    late: true,
+  })
+  expect(props.refetch).toHaveBeenCalledTimes(2)
 
   instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'not_submitted'))
-  expect(instance.state.filter(instance.props.submissions)).toMatchObject([
-    {
-      grade: 'not_submitted',
-    },
-  ])
+  expect(instance.state.filter).toMatchObject({
+    states: ['unsubmitted'],
+  })
+  expect(props.refetch).toHaveBeenCalledTimes(3)
 
   instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'ungraded'))
-  expect(instance.state.filter(instance.props.submissions)).toMatchObject([
-    {
-      grade: 'ungraded',
-    },
-  ])
+  expect(instance.state.filter).toMatchObject({
+    gradingStatus: 'needs_grading',
+  })
+  expect(props.refetch).toHaveBeenCalledTimes(4)
 
   instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'lessthan', 50))
-  expect(instance.state.filter(instance.props.submissions)).toMatchObject([
-    {
-      score: 30,
-      status: 'submitted',
-    },
-  ])
+  expect(instance.state.filter).toMatchObject({
+    scoredLessThan: 50,
+  })
+  expect(props.refetch).toHaveBeenCalledTimes(5)
 
   instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'morethan', 50))
-  expect(instance.state.filter(instance.props.submissions)).toMatchObject([
-    {
-      score: 60,
-      status: 'submitted',
-    },
-  ])
+  expect(instance.state.filter).toMatchObject({
+    scoredMoreThan: 50,
+  })
+  expect(props.refetch).toHaveBeenCalledTimes(6)
 
   // Cancel
   instance.applyFilter(defaultFilterOptions())
-  expect(instance.state.filter(instance.props.submissions)).toMatchObject(expandedProps.submissions)
-})
-
-test('SubmissionList renders correctly with graded filter', () => {
-  const expandedProps = cloneDeep(props)
-  expandedProps.submissions = expandedProps.submissions.concat([
-    template.submissionProps({
-      name: 'S5',
-      status: 'graded',
-      grade: '60',
-      score: 60,
-      userID: '5',
-    }),
-  ])
-
-  expandedProps.filterType = 'graded'
-
-  const tree = renderer.create(
-    <SubmissionList {...expandedProps} navigator={template.navigator()} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
-
-test('SubmissionList renders correctly with ungraded filter', () => {
-  const expandedProps = cloneDeep(props)
-  expandedProps.submissions = expandedProps.submissions.concat([
-    template.submissionProps({
-      name: 'S6',
-      status: 'submitted',
-      grade: '70',
-      score: 70,
-      userID: '6',
-    }),
-  ])
-
-  expandedProps.filterType = 'ungraded'
-
-  const tree = renderer.create(
-    <SubmissionList {...expandedProps} navigator={template.navigator()} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
-
-test('SubmissionList renders correctly with not_submitted filter', () => {
-  const expandedProps = cloneDeep(props)
-  expandedProps.submissions = expandedProps.submissions.concat([
-    template.submissionProps({
-      name: 'S7',
-      status: 'none',
-      grade: null,
-      score: null,
-      userID: '7',
-    }),
-  ])
-
-  expandedProps.filterType = 'not_submitted'
-
-  const tree = renderer.create(
-    <SubmissionList {...expandedProps} navigator={template.navigator()} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  expect(instance.state.filter).toEqual({
+    late: null,
+    scoredLessThan: null,
+    scoredMoreThan: null,
+    sectionIDs: [],
+    states: ['submitted', 'unsubmitted', 'pending_review', 'graded', 'ungraded'],
+    gradingStatus: null,
+  })
+  expect(props.refetch).toHaveBeenCalledTimes(7)
 })
 
 test('SubmissionList renders correctly with empty list', () => {
-  const expandedProps = cloneDeep(props)
-  expandedProps.submissions = []
-
   const tree = renderer.create(
-    <SubmissionList {...expandedProps} navigator={template.navigator()} />
+    <SubmissionList {...props} submissions={[]} navigator={template.navigator()} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
-})
-
-test('should refresh', () => {
-  expect(shouldRefresh(props)).toEqual(true)
 })
 
 test('should navigate to submission settings', () => {
@@ -293,46 +199,57 @@ test('should navigate to a submission', () => {
   )
   let instance = tree.getInstance()
 
-  instance.navigateToSubmission(1)(submission.userID)
+  instance.navigateToSubmission(0)(submission.user.id)
   expect(navigator.show).toHaveBeenCalledWith(
     '/courses/12/assignments/32/submissions/1',
     { modal: true, modalPresentationStyle: 'fullscreen' },
-    { filter: instance.state.filter, studentIndex: 1 }
+    { filter: instance.state.filter, studentIndex: 0 }
   )
 })
 
+it('renders the row properly', () => {
+  let comp = new SubmissionList(props)
+
+  expect(renderer.create(
+    comp.renderRow({ item: comp.props.submissions[0], index: 0 })
+  ).toJSON()).toMatchSnapshot()
+})
+
+it.only('renders a group row properly', () => {
+  let newProps = {
+    ...props,
+    isGroupGradedAssignment: true,
+    submissions: [templates.submission({
+      user: templates.user({ id: '1' }),
+    })],
+    groups: [templates.group({
+      members: {
+        edges: [{
+          member: { user: templates.user({ id: '1' }) },
+        }],
+      },
+    })],
+  }
+  let comp = new SubmissionList(newProps)
+
+  expect(renderer.create(
+    comp.renderRow({ item: comp.props.submissions[0], index: 0 })
+  ).toJSON()).toMatchSnapshot()
+})
+
 describe('shows message compose with correct data', () => {
-  const expandedProps = cloneDeep(props)
-  expandedProps.submissions = expandedProps.submissions.concat([
-    template.submissionProps({
-      name: 'S5',
-      status: 'submitted',
-      grade: '60',
-      score: 60,
-      userID: '5',
-    }),
-    template.submissionProps({
-      name: 'S6',
-      status: 'submitted',
-      grade: '30',
-      score: 30,
-      userID: '6',
-    }),
-  ])
   let navigator = template.navigator({
     show: jest.fn(),
   })
   const tree = renderer.create(
-    <SubmissionList {...expandedProps} navigator={navigator} />
+    <SubmissionList {...props} navigator={navigator} />
   )
   let instance = tree.getInstance()
 
   let expectSubjectToBeCorrect = (subject: string) => {
     instance.messageStudentsWho()
     expect(navigator.show).toHaveBeenCalledWith('/conversations/compose', { modal: true }, {
-      recipients: instance.state.filter(instance.props.submissions).map((submission) => {
-        return { id: submission.userID, name: submission.name, avatar_url: submission.avatarURL }
-      }),
+      recipients: instance.props.submissions.map(({ user }) => user),
       subject: subject,
       contextCode: `course_${instance.props.courseID}`,
       contextName: instance.props.courseName,
@@ -377,8 +294,65 @@ describe('shows message compose with correct data', () => {
   })
 })
 
-test('refreshSubmissionList', () => {
-  refreshSubmissionList(props)
-  expect(props.refreshEnrollments).toHaveBeenCalledWith(props.courseID)
-  expect(props.refreshGroupsForCourse).toHaveBeenCalledWith(props.courseID)
+describe('graphql props', () => {
+  it('returns default props when loading', () => {
+    expect(graphqlProps({ data: { loading: true } })).toEqual({
+      isGroupGradedAssignment: false,
+      pointsPossible: 100,
+      pending: true,
+      submissions: [],
+      anonymous: false,
+      muted: false,
+      gradingType: 'points',
+      sections: [],
+    })
+  })
+
+  it('works for basic properties', () => {
+    let results = templates.submissionListResult()
+    expect(graphqlProps({ data: results })).toMatchObject({
+      courseName: results.assignment.course.name,
+      pointsPossible: results.assignment.pointsPossible,
+      submissions: results.assignment.submissions.edges.map(({ submission }) => submission),
+      anonymous: results.assignment.anonymousGrading,
+      muted: results.assignment.muted,
+      assignmentName: results.assignment.name,
+      gradingType: results.assignment.gradingType,
+      sections: results.assignment.course.sections.edges.map(({ section }) => section),
+    })
+  })
+
+  it('isGroupGradedAssignment', () => {
+    let results = templates.submissionListResult({
+      assignment: templates.assignment({
+        gradeGroupStudentsIndividually: true,
+        groupSet: templates.groupSet(),
+        course: templates.course({
+          sections: { edges: [] },
+          groups: {
+            edges: [{
+              group: templates.group({
+                members: {
+                  edges: [{ member: templates.user({ id: '1' }) }],
+                },
+              }),
+            }],
+          },
+        }),
+        submissions: { edges: [] },
+        groupedSubmissions: { edges: [{ submission: templates.submission({ user_id: '1' }) }] },
+      }),
+    })
+
+    expect(graphqlProps({ data: results }).isGroupGradedAssignment).toBeFalsy()
+
+    results.assignment.gradeGroupStudentsIndividually = false
+    expect(graphqlProps({ data: results }).isGroupGradedAssignment).toBeTruthy()
+    expect(graphqlProps({ data: results }).submissions).toEqual([
+      templates.submission({ user_id: '1' }),
+    ])
+
+    results.assignment.groupSet = undefined
+    expect(graphqlProps({ data: results }).isGroupGradedAssignment).toBeFalsy()
+  })
 })

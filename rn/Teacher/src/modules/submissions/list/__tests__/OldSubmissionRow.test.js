@@ -1,6 +1,7 @@
+// @flow
 //
 // This file is part of Canvas.
-// Copyright (C) 2017-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,114 +17,102 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import 'react-native'
 import React from 'react'
-import SubmissionRow from '../SubmissionRow'
+import OldSubmissionRow from '../OldSubmissionRow'
 import explore from '../../../../../test/helpers/explore'
 import renderer from 'react-test-renderer'
-
-import * as templates from '../../../../canvas-api-v2/__templates__'
 
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('../../../../common/components/Avatar', () => 'Avatar')
 
-const defaultProps = {
-  user: templates.user({
-    id: '1',
+const mockSubmission = (status = 'none', grade = null) => {
+  return {
+    userID: '1',
+    avatarURL: 'https://cats.pajamas/',
     name: 'Green Latern',
-    avatarUrl: 'https://cats.pajamas/',
-  }),
-  submissionID: null,
-  submission: null,
-  anonymous: false,
+    status,
+    grade,
+    submissionID: null,
+    submission: null,
+    anonymous: false,
+  }
 }
 
 test('unsubmitted ungraded row renders correctly', () => {
+  const submission = mockSubmission()
+
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} onPress={jest.fn()} />
+    <OldSubmissionRow {...submission} onPress={jest.fn()} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('missing ungraded row renders correctly', () => {
-  let submission = templates.submission({
-    missing: true,
-    grade: null,
-  })
+  const submission = mockSubmission('missing')
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} submission={submission} onPress={jest.fn()} />
+    <OldSubmissionRow {...submission} onPress={jest.fn()} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('late graded row renders correctly', () => {
-  const submission = templates.submission({
-    late: true,
-    grade: 'B-',
-  })
+  const submission = mockSubmission('late', 'B-')
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} submission={submission} onPress={jest.fn()} />
+    <OldSubmissionRow {...submission} onPress={jest.fn()} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('submitted ungraded row renders correctly', () => {
-  const submission = templates.submission({
-    submittedAt: new Date().toISOString(),
-    gradingStatus: 'needs_grading',
-  })
+  const submission = mockSubmission('submitted', 'ungraded')
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} submission={submission} onPress={jest.fn()} />
+    <OldSubmissionRow {...submission} onPress={jest.fn()} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('submitted not_graded row renders correctly', () => {
-  const submission = templates.submission({
-    submittedAt: new Date().toISOString(),
-    gradingStatus: 'needs_grading',
-  })
+  const submission = mockSubmission('submitted', 'ungraded')
+  submission.gradingType = 'not_graded'
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} submission={submission} gradingType='not_graded' onPress={jest.fn()} />
+    <OldSubmissionRow {...submission} onPress={jest.fn()} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('excused row renders correctly', () => {
-  const submission = templates.submission({
-    missing: true,
-    excused: true,
-  })
+  const submission = mockSubmission('missing', 'excused')
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} submission={submission} onPress={jest.fn()} />
+    <OldSubmissionRow {...submission} onPress={jest.fn()} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('onPress called on tap', () => {
+  const submission = mockSubmission()
   const onPress = jest.fn()
-  let submission = templates.submission()
   let row = explore(renderer.create(
-    <SubmissionRow {...defaultProps} submission={submission} onPress={onPress} />
-  ).toJSON()).selectByID(`submission-${defaultProps.user.id}`)
+    <OldSubmissionRow {...submission} onPress={onPress} />
+  ).toJSON()).selectByID(`submission-${submission.userID}`)
   row && row.props.onPress()
-  expect(onPress).toHaveBeenCalledWith(defaultProps.user.id)
+  expect(onPress).toHaveBeenCalledWith(submission.userID)
 })
 
 test('anonymous grading doesnt show users names', () => {
+  const submission = mockSubmission()
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} anonymous />
+    <OldSubmissionRow {...submission} anonymous />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('pressing the avatar calls onAvatarPress', () => {
+  const submission = mockSubmission()
   const onAvatarPress = jest.fn()
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} onAvatarPress={onAvatarPress} />
+    <OldSubmissionRow {...submission} onAvatarPress={onAvatarPress} />
   ).toJSON()
   let avatar = explore(tree).selectByType('Avatar')
   avatar.props.onPress()

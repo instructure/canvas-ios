@@ -31,7 +31,6 @@ exports[`grades list row renders correctly 1`] = `
 >
   <SubmissionStatusLabel
     onlineSubmissionType={true}
-    status="none"
   />
 </Row>
 `;

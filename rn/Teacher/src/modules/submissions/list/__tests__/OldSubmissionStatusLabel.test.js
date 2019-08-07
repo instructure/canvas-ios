@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2017-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -20,42 +20,41 @@
 
 import 'react-native'
 import React from 'react'
-import SubmissionStatusLabel from '../SubmissionStatusLabel'
-import * as templates from '../../../../__templates__'
+import OldSubmissionStatusLabel from '../OldSubmissionStatusLabel'
 import renderer from 'react-test-renderer'
 
 describe('SubmissionStatus', () => {
   it('status `none` renders properly', () => {
     let tree = renderer.create(
-      <SubmissionStatusLabel />
+      <OldSubmissionStatusLabel status={'none'} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it('status `missing` renders properly', () => {
     let tree = renderer.create(
-      <SubmissionStatusLabel submission={templates.submission({ missing: true })} />
+      <OldSubmissionStatusLabel status={'missing'} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it('status `late` renders properly', () => {
     let tree = renderer.create(
-      <SubmissionStatusLabel submission={templates.submission({ late: true })} />
+      <OldSubmissionStatusLabel status={'late'} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it('status `submitted` renders properly', () => {
     let tree = renderer.create(
-      <SubmissionStatusLabel submission={templates.submission({ submittedAt: new Date().toISOString() })} />
+      <OldSubmissionStatusLabel status={'submitted'} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it('status `excused` renders properly', () => {
     let tree = renderer.create(
-      <SubmissionStatusLabel submission={templates.submission({ excused: true })} />
+      <OldSubmissionStatusLabel status='excused' />
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })

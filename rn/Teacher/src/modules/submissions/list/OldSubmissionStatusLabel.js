@@ -24,27 +24,34 @@ import {
 import i18n from 'format-message'
 import { Text } from '../../../common/text'
 
-type SubmissionStatusLabelProps = {
+type OldSubmissionStatusLabelProps = {
   status: SubmissionStatus,
   onlineSubmissionType?: boolean,
   style?: any,
 }
 
-export default class SubmissionStatusLabel extends Component<SubmissionStatusLabelProps, any> {
+export default class OldSubmissionStatusLabel extends Component<OldSubmissionStatusLabelProps, any> {
   render () {
-    let submission = this.props.submission || {}
     let color: string = '#8B969E' // none
     let title: string = i18n('Not Submitted')
 
-    if (submission.late) {
-      color = '#FC5E13'
-      title = i18n('Late')
-    } else if (submission.missing) {
-      color = '#EE0612'
-      title = i18n('Missing')
-    } else if (submission.submittedAt != null) {
-      color = '#07AF1F'
-      title = i18n('Submitted')
+    switch (this.props.status) {
+      case 'late':
+        color = '#FC5E13'
+        title = i18n('Late')
+        break
+      case 'missing':
+        color = '#EE0612'
+        title = i18n('Missing')
+        break
+      case 'submitted':
+      case 'resubmitted':
+        color = '#07AF1F'
+        title = i18n('Submitted')
+        break
+      case 'excused':
+        title = i18n('Excused')
+        break
     }
 
     if (this.props.onlineSubmissionType !== undefined && !this.props.onlineSubmissionType) { title = '' }

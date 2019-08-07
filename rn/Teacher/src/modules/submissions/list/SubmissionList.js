@@ -24,20 +24,12 @@ import {
   FlatList,
   StyleSheet,
 } from 'react-native'
-import { connect } from 'react-redux'
 import type {
   SubmissionListProps,
   SubmissionProps,
 } from './submission-prop-types'
-import { mapStateToProps } from './map-state-to-props'
 import i18n from 'format-message'
 import SubmissionRow from './SubmissionRow'
-import SubmissionActions from './actions'
-import EnrollmentActions from '../../enrollments/actions'
-import SectionActions from '../../assignee-picker/actions'
-import GroupActions from '../../groups/actions'
-import CourseActions from '../../courses/actions'
-import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import SubmissionsHeader from '../SubmissionsHeader'
@@ -46,6 +38,8 @@ import Images from '../../../images'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
+import { graphql } from 'react-apollo'
+import query from '../../../canvas-api-v2/queries/SubmissionList'
 
 type Props = SubmissionListProps & { navigator: Navigator } & RefreshProps
 type State = {
@@ -62,26 +56,19 @@ export class SubmissionList extends Component<Props, State> {
     this.state = {
       filterOptions,
       filter,
-    }
-  }
-
-  componentDidMount () {
-    if (this.props.assignmentName !== '') {
-      this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.isGroupGradedAssignment)
+      refreshing: false,
     }
   }
 
   componentWillReceiveProps = (newProps: Props) => {
-    if (this.props.sections.length !== newProps.sections.length) {
-      let filterOptions = [ ...this.state.filterOptions, ...newProps.sections.map(createFilterFromSection) ]
+    let sectionsWithNoFilter = newProps.sections.filter(section => this.state.filterOptions.find(option => option.type === `section.${section.id}`) == null)
+    if (sectionsWithNoFilter.length > 0) {
+      let filterOptions = [ ...this.state.filterOptions, ...sectionsWithNoFilter.map(createFilterFromSection) ]
       let filter = createFilter(filterOptions)
       this.setState({
         filterOptions,
         filter,
       })
-    }
-    if (this.props.assignmentName === '' && newProps.assignmentName !== '') {
-      this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.isGroupGradedAssignment)
     }
   }
 
@@ -94,7 +81,10 @@ export class SubmissionList extends Component<Props, State> {
     this.props.navigator.show(
       path,
       { modal: true, modalPresentationStyle: 'fullscreen' },
-      { filter: this.state.filter, studentIndex: index }
+      {
+        filter: this.state.filter,
+        studentIndex: index,
+      }
     )
   }
 
@@ -106,9 +96,17 @@ export class SubmissionList extends Component<Props, State> {
   }
 
   renderRow = ({ item, index }: { item: SubmissionProps, index: number }) => {
+    let group
+    if (this.props.isGroupGradedAssignment) {
+      let userID = item.user.id
+      group = this.props.groups.find(group => group.members.edges.find(({ member }) => member.user.id === userID))
+    }
+
     return (
       <SubmissionRow
-        {...item}
+        submission={item}
+        user={item.user}
+        group={group}
         onAvatarPress={!this.props.groupAssignment ? this.navigateToContextCard : undefined}
         onPress={this.navigateToSubmission(index)}
         anonymous={this.props.anonymous}
@@ -118,9 +116,14 @@ export class SubmissionList extends Component<Props, State> {
   }
 
   applyFilter = (filterOptions: Array<SubmissionFilterOption>): void => {
+    let filter = createFilter(filterOptions)
     this.setState({
       filterOptions,
-      filter: createFilter(filterOptions),
+      filter,
+    })
+    this.props.refetch({
+      assignmentID: this.props.assignmentID,
+      ...filter,
     })
   }
 
@@ -138,15 +141,22 @@ export class SubmissionList extends Component<Props, State> {
     }
 
     this.props.navigator.show('/conversations/compose', { modal: true }, {
-      recipients: this.state.filter(this.props.submissions).map((submission) => {
-        return { id: submission.userID, name: submission.name, avatar_url: submission.avatarURL }
-      }),
+      recipients: this.props.submissions.map(({ user }) => user),
       subject: subject,
       contextName: this.props.courseName,
       contextCode: `course_${this.props.courseID}`,
       canAddRecipients: false,
       onlySendIndividualMessages: true,
     })
+  }
+
+  refresh = async () => {
+    this.setState({ refreshing: true })
+    await this.props.refetch({
+      assignmentID: this.props.assignmentID,
+      ...this.state.filter,
+    })
+    this.setState({ refreshing: false })
   }
 
   render () {
@@ -185,17 +195,18 @@ export class SubmissionList extends Component<Props, State> {
               navigator={this.props.navigator}
             />
             <FlatList
-              data={this.state.filter(this.props.submissions)}
+              data={this.props.submissions}
               keyExtractor={this.keyExtractor}
               testID='submission-list'
               renderItem={this.renderRow}
-              refreshing={this.props.refreshing}
-              onRefresh={this.props.refresh}
+              refreshing={this.state.refreshing}
+              onRefresh={this.refresh}
               ItemSeparatorComponent={RowSeparator}
               ListFooterComponent={RowSeparator}
               ListEmptyComponent={
                 <ListEmptyComponent title={i18n('No results')} />
               }
+              windowSize={31}
             />
           </View>
         }
@@ -229,30 +240,58 @@ const styles = StyleSheet.create({
   },
 })
 
-export function refreshSubmissionList (props: SubmissionListProps): void {
-  props.refreshSections(props.courseID)
-  props.getCourseEnabledFeatures(props.courseID)
-  props.refreshEnrollments(props.courseID)
-  props.refreshGroupsForCourse(props.courseID)
+export function props (props) {
+  if (props.data.loading) {
+    return {
+      isGroupGradedAssignment: false,
+      pointsPossible: 100,
+      pending: true,
+      submissions: [],
+      anonymous: false,
+      muted: false,
+      gradingType: 'points',
+      sections: [],
+    }
+  }
+
+  let assignment = props.data.assignment
+  let submissions = assignment.submissions && assignment.submissions.edges.map(({ submission }) => submission)
+  let groupedSubmissions = assignment.groupedSubmissions && assignment.groupedSubmissions.edges.map(({ submission }) => submission)
+  let groupSet = assignment.groupSet
+  let course = assignment.course
+  let sections = course.sections.edges.map(({ section }) => section)
+  let groups = course.groups.edges.map(({ group }) => group)
+  let isGroupGradedAssignment = groupSet && groupSet.id && !assignment.gradeGroupStudentsIndividually
+  return {
+    isGroupGradedAssignment,
+    courseName: course.name,
+    pointsPossible: assignment.pointsPossible,
+    pending: false,
+    submissions: isGroupGradedAssignment ? groupedSubmissions : submissions,
+    anonymous: assignment.anonymousGrading,
+    muted: assignment.muted,
+    assignmentName: assignment.name,
+    gradingType: assignment.gradingType,
+    sections,
+    groups,
+    refetch: props.data.refetch,
+  }
 }
 
-export function shouldRefresh (props: SubmissionListProps): boolean {
-  return props.submissions.every(({ submission }) => !submission) || props.sections.length === 0
-}
-
-const Refreshed = refresh(
-  refreshSubmissionList,
-  shouldRefresh,
-  props => props.pending
-)(SubmissionList)
-const Connected = connect(mapStateToProps, {
-  ...SubmissionActions,
-  ...EnrollmentActions,
-  ...GroupActions,
-  ...SectionActions,
-  ...CourseActions,
-})(Refreshed)
-export default (Connected: Component<SubmissionListProps, any>)
+export default graphql(query, {
+  options: ({ assignmentID, filterType }) => {
+    let filterOptions = defaultFilterOptions(filterType)
+    let filter = createFilter(filterOptions)
+    return {
+      variables: {
+        assignmentID,
+        ...filter,
+      },
+    }
+  },
+  fetchPolicy: 'cache-and-network',
+  props,
+})(SubmissionList)
 
 function createFilterFromSection (section) {
   return {
@@ -261,9 +300,8 @@ function createFilterFromSection (section) {
     disabled: false,
     selected: false,
     exclusive: false,
-    filterFunc: (submission) => {
-      if (!submission || !submission.allSectionIDs) return false
-      return submission.allSectionIDs.includes(section.id)
-    },
+    filterFunc: () => ({
+      sectionIDs: [section.id],
+    }),
   }
 }
