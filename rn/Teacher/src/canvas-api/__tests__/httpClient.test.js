@@ -19,19 +19,12 @@
 // @flow
 /* global FormData:true, Blob:true */
 
-import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import httpClient, { isAbort, httpCache, inFlight } from '../httpClient'
 import { setSession } from '../session'
 import * as templates from '../../__templates__'
 
 jest.unmock('../httpClient')
-jest.mock('AsyncStorage', () => ({
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  removeItem: jest.fn(),
-  getAllKeys: jest.fn(),
-  multiRemove: jest.fn(),
-}))
 
 describe('httpClient', () => {
   const originalXHR = global.XMLHttpRequest
@@ -204,27 +197,7 @@ describe('httpClient', () => {
     expect(error.message).toBe('Network request timed out')
   })
 
-  it('handles error events with actual errors attached', async () => {
-    const fetching = httpClient.get('')
-    expect(request.addEventListener).toHaveBeenCalledWith('error', expect.any(Object))
-    const handler = request.addEventListener.mock.calls[0][1]
-    handler.handleEvent({ type: 'error', error: new Error('oops') })
-    const error = await fetching.catch(error => error)
-    expect(isAbort(error)).toBe(false)
-    expect(error.message).toBe('oops')
-  })
-
-  it('handles error events with message attached', async () => {
-    const fetching = httpClient.get('')
-    expect(request.addEventListener).toHaveBeenCalledWith('error', expect.any(Object))
-    const handler = request.addEventListener.mock.calls[0][1]
-    handler.handleEvent({ type: 'error', message: 'oops2' })
-    const error = await fetching.catch(error => error)
-    expect(isAbort(error)).toBe(false)
-    expect(error.message).toBe('oops2')
-  })
-
-  it('handles empty error events', async () => {
+  it('handles error events', async () => {
     const fetching = httpClient.get('')
     expect(request.addEventListener).toHaveBeenCalledWith('error', expect.any(Object))
     const handler = request.addEventListener.mock.calls[0][1]

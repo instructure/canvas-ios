@@ -1,9 +1,18 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Student";
+
 /* Privacy - Camera Usage Description */
-"NSCameraUsageDescription" = "$(PRODUCT_NAME) kamerabruk";
+"NSCameraUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer.";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "Hjelp oss med å finne skoler nær deg.";
 
 /* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "$(PRODUCT_NAME) mikrofonbruk";
+"NSMicrophoneUsageDescription" = "Legg ved lydinnspillinger til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnlevering.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer.";
 
 /* Privacy - Photo Library Usage Description */
-"NSPhotoLibraryUsageDescription" = "$(PRODUCT_NAME) bildebruk";
+"NSPhotoLibraryUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer.";
 

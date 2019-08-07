@@ -19,7 +19,7 @@
 /* @flow */
 
 import React from 'react'
-import { AlertIOS } from 'react-native'
+import { Alert } from 'react-native'
 import renderer from 'react-test-renderer'
 import { MediaComment, type Props } from '../MediaComment'
 import explore from '../../../../test/helpers/explore'
@@ -70,7 +70,7 @@ describe('MediaComment', () => {
   it('alerts when upload fails', async () => {
     const spy = jest.fn()
     // $FlowFixMe
-    AlertIOS.alert = spy
+    Alert.alert = spy
     props.uploadMedia = jest.fn(() => Promise.reject(new Error()))
     const recorder = explore(render(props).toJSON()).selectByType('AudioRecorder')
     await recorder.props.onFinishedRecording({ fileName: 'foo.mp4', filePath: '/foo.mp4' })

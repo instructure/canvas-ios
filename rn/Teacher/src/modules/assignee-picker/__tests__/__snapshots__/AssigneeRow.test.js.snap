@@ -2,15 +2,8 @@
 
 exports[`render correctly 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -18,20 +11,13 @@ exports[`render correctly 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
-        "backgroundColor": "transparent",
-      },
-      Object {
-        "borderBottomColor": "#C7CDD1",
-        "borderBottomWidth": 0.5,
-        "flex": 1,
-        "height": "auto",
-      },
-    ]
+    Object {
+      "borderBottomColor": "#C7CDD1",
+      "borderBottomWidth": 0.5,
+      "flex": 1,
+      "height": "auto",
+    }
   }
-  testID={undefined}
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -101,9 +87,6 @@ exports[`render correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         numberOfLines={1}
         style={
           Array [
@@ -127,9 +110,6 @@ exports[`render correctly 1`] = `
         Bill Murray
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         numberOfLines={1}
         style={
           Array [
@@ -159,15 +139,8 @@ exports[`render correctly 1`] = `
 
 exports[`render correctly without image url 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -175,20 +148,13 @@ exports[`render correctly without image url 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
-        "backgroundColor": "transparent",
-      },
-      Object {
-        "borderBottomColor": "#C7CDD1",
-        "borderBottomWidth": 0.5,
-        "flex": 1,
-        "height": "auto",
-      },
-    ]
+    Object {
+      "borderBottomColor": "#C7CDD1",
+      "borderBottomWidth": 0.5,
+      "flex": 1,
+      "height": "auto",
+    }
   }
-  testID={undefined}
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -235,8 +201,6 @@ exports[`render correctly without image url 1`] = `
       >
         <Text
           accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -263,9 +227,6 @@ exports[`render correctly without image url 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         numberOfLines={1}
         style={
           Array [
@@ -289,9 +250,6 @@ exports[`render correctly without image url 1`] = `
         Bill Murray
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         numberOfLines={1}
         style={
           Array [

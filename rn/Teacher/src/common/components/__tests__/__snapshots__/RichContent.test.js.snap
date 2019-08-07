@@ -2,9 +2,6 @@
 
 exports[`RichContent can convert a color attribute for RN styles 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Object {
       "fontSize": 16,
@@ -12,9 +9,6 @@ exports[`RichContent can convert a color attribute for RN styles 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     key="0"
     style={
       Array [
@@ -34,9 +28,6 @@ exports[`RichContent can convert a color attribute for RN styles 1`] = `
 
 exports[`RichContent can convert style rules for RN 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Object {
       "fontSize": 16,
@@ -44,9 +35,6 @@ exports[`RichContent can convert style rules for RN 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     key="0"
     style={
       Array [
@@ -70,9 +58,6 @@ exports[`RichContent can convert style rules for RN 1`] = `
 
 exports[`RichContent can handle bs 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Object {
       "fontSize": 16,
@@ -80,9 +65,6 @@ exports[`RichContent can handle bs 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     key="0"
     style={
       Array [
@@ -103,9 +85,6 @@ exports[`RichContent can handle bs 1`] = `
 
 exports[`RichContent can handle complex html 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Object {
       "fontSize": 16,
@@ -113,11 +92,8 @@ exports[`RichContent can handle complex html 1`] = `
   }
 >
   
-            
+          
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     key="1"
     style={
       Array [
@@ -129,13 +105,10 @@ exports[`RichContent can handle complex html 1`] = `
     }
   >
     
+
     
-    
-                
+            
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       key="1"
       style={
         Array [
@@ -147,22 +120,19 @@ exports[`RichContent can handle complex html 1`] = `
       }
     >
       
+
       
+              Some p tag
+              
       
-                    Some p tag
-                    
+              Then some more text that should all be inline
+            
       
-                    Then some more text that should all be inline
-                  
-      
-      
+
     </Text>
     
-                
+            
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       key="3"
       style={
         Array [
@@ -175,9 +145,6 @@ exports[`RichContent can handle complex html 1`] = `
     >
       Woah we are spanning it up 
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         key="1"
         style={
           Array [
@@ -193,11 +160,8 @@ exports[`RichContent can handle complex html 1`] = `
       >
         Boldly
         
-                    
+            
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           key="2"
           style={
             Array [
@@ -213,11 +177,8 @@ exports[`RichContent can handle complex html 1`] = `
           And we will throw some font in there
         </Text>
         
-                    
+            
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           key="4"
           style={
             Array [
@@ -234,13 +195,10 @@ exports[`RichContent can handle complex html 1`] = `
           How about a little italics
         </Text>
         
-                  
+          
         
-                  
+          
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           key="7"
           style={
             Array [
@@ -253,9 +211,6 @@ exports[`RichContent can handle complex html 1`] = `
         >
           Woah and there is more span 
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             key="1"
             style={
               Array [
@@ -272,7 +227,7 @@ exports[`RichContent can handle complex html 1`] = `
           </Text>
         </Text>
         
-                
+        
       </Text>
     </Text>
   </Text>
@@ -281,9 +236,6 @@ exports[`RichContent can handle complex html 1`] = `
 
 exports[`RichContent can handle data-api-endpoint and data-api-returntype attributes 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Object {
       "fontSize": 16,
@@ -294,9 +246,6 @@ exports[`RichContent can handle data-api-endpoint and data-api-returntype attrib
 
 exports[`RichContent can handle divs 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Object {
       "fontSize": 16,
@@ -304,9 +253,6 @@ exports[`RichContent can handle divs 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     key="0"
     style={
       Array [
@@ -324,9 +270,6 @@ exports[`RichContent can handle divs 1`] = `
 
 exports[`RichContent can handle fonts 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Object {
       "fontSize": 16,
@@ -334,9 +277,6 @@ exports[`RichContent can handle fonts 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     key="0"
     style={
       Array [
@@ -354,9 +294,6 @@ exports[`RichContent can handle fonts 1`] = `
 
 exports[`RichContent can handle i tags 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Object {
       "fontSize": 16,
@@ -364,9 +301,6 @@ exports[`RichContent can handle i tags 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     key="0"
     style={
       Array [
@@ -387,9 +321,6 @@ exports[`RichContent can handle i tags 1`] = `
 
 exports[`RichContent can handle p tags 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Object {
       "fontSize": 16,
@@ -397,9 +328,6 @@ exports[`RichContent can handle p tags 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     key="0"
     style={
       Array [
@@ -417,9 +345,6 @@ exports[`RichContent can handle p tags 1`] = `
 
 exports[`RichContent can handle spans 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Object {
       "fontSize": 16,
@@ -427,9 +352,6 @@ exports[`RichContent can handle spans 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     key="0"
     style={
       Array [
@@ -447,9 +369,6 @@ exports[`RichContent can handle spans 1`] = `
 
 exports[`RichContent can handle text at the root 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Object {
       "fontSize": 16,

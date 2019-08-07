@@ -23,8 +23,6 @@ import {
   View,
   FlatList,
   StyleSheet,
-  NetInfo,
-  AlertIOS,
 } from 'react-native'
 import { connect } from 'react-redux'
 import type {
@@ -51,7 +49,6 @@ import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 
 type Props = SubmissionListProps & { navigator: Navigator } & RefreshProps
 type State = {
-  isConnected: boolean,
   filterOptions: SubmissionFilterOption[],
   filter: Function,
 }
@@ -63,7 +60,6 @@ export class SubmissionList extends Component<Props, State> {
     let filter = createFilter(filterOptions)
 
     this.state = {
-      isConnected: true,
       filterOptions,
       filter,
     }
@@ -73,15 +69,6 @@ export class SubmissionList extends Component<Props, State> {
     if (this.props.assignmentName !== '') {
       this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.isGroupGradedAssignment)
     }
-  }
-
-  componentWillMount = () => {
-    NetInfo.isConnected.fetch().then(this.setConnection)
-    NetInfo.isConnected.addEventListener('change', this.setConnection)
-  }
-
-  componentWillUnmount = () => {
-    NetInfo.isConnected.removeEventListener('change', this.setConnection)
   }
 
   componentWillReceiveProps = (newProps: Props) => {
@@ -98,19 +85,11 @@ export class SubmissionList extends Component<Props, State> {
     }
   }
 
-  setConnection = (isConnected: boolean) => {
-    this.setState({ isConnected })
-  }
-
   keyExtractor = (item: SubmissionProps) => {
     return item.userID
   }
 
   navigateToSubmission = (index: number) => (userID: string) => {
-    if (!this.state.isConnected) {
-      return AlertIOS.alert(i18n('No internet connection'), i18n('This action requires an internet connection.'))
-    }
-
     const path = `/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submissions/${userID}`
     this.props.navigator.show(
       path,

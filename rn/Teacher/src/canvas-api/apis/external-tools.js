@@ -21,7 +21,7 @@
 import httpClient from '../httpClient'
 import { paginate, exhaust } from '../utils/pagination'
 
-export function getLTILaunchDefinitions (courseID: string): ApiPromise<getLTILaunchDefinitions[]> {
+export function getLTILaunchDefinitions (courseID: string): ApiPromise<LTILaunchDefinition[]> {
   const url = `courses/${courseID}/lti_apps/launch_definitions`
 
   const paginated = paginate(url, {

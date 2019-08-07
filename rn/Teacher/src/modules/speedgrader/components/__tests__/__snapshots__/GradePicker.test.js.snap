@@ -28,9 +28,6 @@ exports[`GradePicker disables the button and has correct text for not graded ass
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -61,9 +58,6 @@ exports[`GradePicker disables the button and has correct text for not graded ass
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -115,9 +109,6 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -175,41 +166,22 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
       }
     >
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Lowest possible score, 0"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.zero"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -263,7 +235,6 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
         <Adjustable
           accessibilityLabel="No Grade"
           accessible={true}
-          collapsable={undefined}
           hitSlop={
             Object {
               "bottom": 5,
@@ -314,41 +285,22 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
         />
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Highest possible score, 10"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.pointsPossible"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -406,9 +358,6 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -441,9 +390,6 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -476,9 +422,6 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -501,9 +444,6 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
         Late
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -539,9 +479,6 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -560,9 +497,6 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
       </Text>
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -593,41 +527,22 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
       }
     >
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Lowest possible score, 0"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.zero"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -681,7 +596,6 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
         <Adjustable
           accessibilityLabel="9 out of 10 points possible"
           accessible={true}
-          collapsable={undefined}
           hitSlop={
             Object {
               "bottom": 5,
@@ -732,41 +646,22 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
         />
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Highest possible score, 10"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.pointsPossible"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -824,9 +719,6 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -859,9 +751,6 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -894,9 +783,6 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -919,9 +805,6 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
         Late
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -957,9 +840,6 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -978,9 +858,6 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
       </Text>
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1011,41 +888,22 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
       }
     >
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Lowest possible score, 0"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.zero"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1099,7 +957,6 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
         <Adjustable
           accessibilityLabel="9 out of 10 points possible"
           accessible={true}
-          collapsable={undefined}
           hitSlop={
             Object {
               "bottom": 5,
@@ -1150,41 +1007,22 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
         />
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Highest possible score, 10"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.pointsPossible"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1241,9 +1079,6 @@ exports[`GradePicker renders points based grades 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1274,9 +1109,6 @@ exports[`GradePicker renders points based grades 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1308,41 +1140,22 @@ exports[`GradePicker renders points based grades 1`] = `
       }
     >
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Lowest possible score, 0"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.zero"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1396,7 +1209,6 @@ exports[`GradePicker renders points based grades 1`] = `
         <Adjustable
           accessibilityLabel="5 out of 10 points possible"
           accessible={true}
-          collapsable={undefined}
           hitSlop={
             Object {
               "bottom": 5,
@@ -1447,41 +1259,22 @@ exports[`GradePicker renders points based grades 1`] = `
         />
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Highest possible score, 10"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.pointsPossible"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1538,9 +1331,6 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1590,41 +1380,22 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
       }
     >
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Lowest possible score, 0"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.zero"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1678,7 +1449,6 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
         <Adjustable
           accessibilityLabel="0 out of 10 points possible"
           accessible={true}
-          collapsable={undefined}
           hitSlop={
             Object {
               "bottom": 5,
@@ -1729,41 +1499,22 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
         />
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Highest possible score, 10"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.pointsPossible"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1820,9 +1571,6 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1867,7 +1615,6 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
     </View>
   </View>
   <View
-    collapsable={undefined}
     style={
       Object {
         "height": 0,
@@ -1928,9 +1675,6 @@ exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -1961,9 +1705,6 @@ exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -2014,9 +1755,6 @@ exports[`GradePicker renders with excused 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -2047,9 +1785,6 @@ exports[`GradePicker renders with excused 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -2081,41 +1816,22 @@ exports[`GradePicker renders with excused 1`] = `
       }
     >
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Lowest possible score, 0"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.zero"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -2169,7 +1885,6 @@ exports[`GradePicker renders with excused 1`] = `
         <Adjustable
           accessibilityLabel="Excused"
           accessible={true}
-          collapsable={undefined}
           hitSlop={
             Object {
               "bottom": 5,
@@ -2220,41 +1935,22 @@ exports[`GradePicker renders with excused 1`] = `
         />
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Highest possible score, 10"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.pointsPossible"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -2311,9 +2007,6 @@ exports[`GradePicker renders with no grade 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -2369,41 +2062,22 @@ exports[`GradePicker renders with no grade 1`] = `
       }
     >
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Lowest possible score, 0"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.zero"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -2457,7 +2131,6 @@ exports[`GradePicker renders with no grade 1`] = `
         <Adjustable
           accessibilityLabel="0 out of 10 points possible"
           accessible={true}
-          collapsable={undefined}
           hitSlop={
             Object {
               "bottom": 5,
@@ -2508,41 +2181,22 @@ exports[`GradePicker renders with no grade 1`] = `
         />
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Highest possible score, 10"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            undefined,
-          ]
-        }
+        style={null}
         testID="slider.pointsPossible"
-        tvParallaxProperties={undefined}
       >
-        <View>
+        <View
+          style={null}
+        >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -2599,9 +2253,6 @@ exports[`GradePicker updates the visible rubric score when useRubricForGrading a
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -2632,9 +2283,6 @@ exports[`GradePicker updates the visible rubric score when useRubricForGrading a
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {

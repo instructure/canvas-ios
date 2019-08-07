@@ -8,6 +8,7 @@ exports[`RowWithTextInput renders 1`] = `
   <TextInput
     allowFontScaling={true}
     onChangeText={[Function]}
+    rejectResponderTermination={true}
     style={
       Array [
         Object {
@@ -16,6 +17,7 @@ exports[`RowWithTextInput renders 1`] = `
         undefined,
       ]
     }
+    underlineColorAndroid="transparent"
   />
 </Row>
 `;
@@ -34,11 +36,8 @@ exports[`RowWithTextInput renders with a title 1`] = `
     >
       <TextInput
         allowFontScaling={true}
-        defaultValue={undefined}
-        keyboardType={undefined}
         onChangeText={[Function]}
-        onFocus={undefined}
-        placeholder={undefined}
+        rejectResponderTermination={true}
         style={
           Array [
             Object {
@@ -49,8 +48,7 @@ exports[`RowWithTextInput renders with a title 1`] = `
             },
           ]
         }
-        testID={undefined}
-        value={undefined}
+        underlineColorAndroid="transparent"
       />
     </View>
   }

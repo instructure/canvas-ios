@@ -18,7 +18,6 @@ exports[`SubmissionViewer renders a discussion_topic submission 1`] = `
         "bottom": 0,
       }
     }
-    navigator={undefined}
     openLinksInSafari={true}
     source={
       Object {
@@ -57,9 +56,6 @@ exports[`SubmissionViewer renders a file (stub) 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -141,7 +137,6 @@ exports[`SubmissionViewer renders a moderated graded assignment submission 1`] =
         }
       }
       html="This is my submission!"
-      navigator={undefined}
       onError={[Function]}
       onFinishedLoading={[Function]}
       onHeightChange={[Function]}
@@ -226,7 +221,6 @@ exports[`SubmissionViewer renders an online_text_entry submission 1`] = `
         }
       }
       html="<p>Form Voltron</p>"
-      navigator={undefined}
       onError={[Function]}
       onFinishedLoading={[Function]}
       onHeightChange={[Function]}
@@ -272,9 +266,6 @@ exports[`SubmissionViewer renders external tool submission 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -323,9 +314,6 @@ exports[`SubmissionViewer renders external tool submission with a submission 1`]
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -374,9 +362,6 @@ exports[`SubmissionViewer renders grade-only submission 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -425,9 +410,6 @@ exports[`SubmissionViewer renders no group submission 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -476,9 +458,6 @@ exports[`SubmissionViewer renders no submission 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -527,9 +506,6 @@ exports[`SubmissionViewer renders on-paper submission 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -578,9 +554,6 @@ exports[`SubmissionViewer renders submission type of none 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {

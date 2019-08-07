@@ -7,6 +7,5 @@ exports[`Avatar renders with image 1`] = `
       "uri": "https://youtube.com/cat_video",
     }
   }
-  style={undefined}
 />
 `;

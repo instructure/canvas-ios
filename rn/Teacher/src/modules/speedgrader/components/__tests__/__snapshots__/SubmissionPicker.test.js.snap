@@ -29,9 +29,6 @@ exports[`SubmissionPicker closes the picker 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -106,9 +103,6 @@ exports[`SubmissionPicker opens the picker 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -183,9 +177,6 @@ exports[`SubmissionPicker renders the picker with a 0 index 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -282,9 +273,6 @@ exports[`SubmissionPicker renders the picker with a non-zero index 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -381,9 +369,6 @@ exports[`SubmissionPicker renders with a submission 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -472,9 +457,6 @@ exports[`SubmissionPicker renders with only one submission history 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {

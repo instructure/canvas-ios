@@ -24,16 +24,16 @@ exports[`PageDetails renders 1`] = `
   <CanvasWebView
     navigator={
       Object {
-        "dismiss": [Function],
-        "dismissAllModals": [Function],
+        "dismiss": [MockFunction],
+        "dismissAllModals": [MockFunction],
         "isModal": false,
-        "pop": [Function],
-        "replace": [Function],
-        "show": [Function],
-        "traitCollection": [Function],
+        "pop": [MockFunction],
+        "replace": [MockFunction],
+        "show": [MockFunction],
+        "traitCollection": [MockFunction],
       }
     }
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     scrollEnabled={true}
     source={
       Object {
@@ -62,16 +62,16 @@ exports[`PageDetails renders while loading 1`] = `
   <CanvasWebView
     navigator={
       Object {
-        "dismiss": [Function],
-        "dismissAllModals": [Function],
+        "dismiss": [MockFunction],
+        "dismissAllModals": [MockFunction],
         "isModal": false,
-        "pop": [Function],
-        "replace": [Function],
-        "show": [Function],
-        "traitCollection": [Function],
+        "pop": [MockFunction],
+        "replace": [MockFunction],
+        "show": [MockFunction],
+        "traitCollection": [MockFunction],
       }
     }
-    onRefresh={[Function]}
+    onRefresh={[MockFunction]}
     scrollEnabled={true}
     source={
       Object {

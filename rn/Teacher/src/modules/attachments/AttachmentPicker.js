@@ -22,12 +22,12 @@ import React, { Component } from 'react'
 import {
   View,
   ActionSheetIOS,
-  AlertIOS,
+  Alert,
   StyleSheet,
   Modal,
   NativeModules,
 } from 'react-native'
-import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker'
+import DocumentPicker from 'react-native-document-picker'
 import ImagePicker from 'react-native-image-picker'
 import AudioRecorder from '../../common/components/AudioRecorder'
 import i18n from 'format-message'
@@ -60,22 +60,22 @@ export const DEFAULT_OPTIONS: Options = {
 }
 
 function documentPickerFileTypes (types: Array<FileType>) {
-  const { allFiles, images, video, audio } = DocumentPickerUtil
+  const { allFiles, images, video, audio } = DocumentPicker.types
   if (types.includes('all')) {
-    return [allFiles()]
+    return [allFiles]
   }
 
   let pickerTypes = []
   if (types.includes('image')) {
-    pickerTypes.push(images())
+    pickerTypes.push(images)
   }
 
   if (types.includes('video')) {
-    pickerTypes.push(video())
+    pickerTypes.push(video)
   }
 
   if (types.includes('audio')) {
-    pickerTypes.push(audio())
+    pickerTypes.push(audio)
   }
 
   return pickerTypes
@@ -171,12 +171,25 @@ export default class AttachmentPicker extends Component<Props, any> {
     ImagePicker.launchImageLibrary(opts, this.handleImagePickerResponse(callback, 'photoLibrary'))
   }
 
-  pickDocument (options: ?Options, callback: Callback) {
-    DocumentPicker.show({
-      filetype: documentPickerFileTypes(this.props.fileTypes),
-      top: 12,
-      left: this.state.width - 30,
-    }, this.handleDocumentPickerResponse(callback))
+  async pickDocument (options: ?Options, callback: Callback) {
+    try {
+      const result = await DocumentPicker.pick({
+        type: documentPickerFileTypes(this.props.fileTypes),
+      })
+      const { uri, name, size } = result
+      const attachment = {
+        uri,
+        display_name: name,
+        size: size,
+        mime_class: 'file',
+      }
+      callback(attachment, 'files')
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+        return
+      }
+      Alert.alert(i18n('Upload error'))
+    }
   }
 
   userFiles (options: ?Options, callback: Callback) {
@@ -247,7 +260,7 @@ export default class AttachmentPicker extends Component<Props, any> {
         if (IMAGE_PICKER_PERMISSION_ERRORS[response.error]) {
           Permissions.alert(IMAGE_PICKER_PERMISSION_ERRORS[response.error])
         } else {
-          AlertIOS.alert(
+          Alert.alert(
             i18n('Error'),
             response.error,
             [{ text: i18n('OK'), onPress: null, style: 'cancel' }],
@@ -267,7 +280,7 @@ export default class AttachmentPicker extends Component<Props, any> {
           uri = await NativeModules.NativeFileSystem.convertToJPEG(uri)
           name = `${timestamp}.jpg`
         } catch (e) {
-          AlertIOS.alert(
+          Alert.alert(
             i18n('Error'),
             i18n('Unrecognized file format'),
             [{ text: i18n('OK'), onPress: null, style: 'cancel' }],
@@ -297,23 +310,6 @@ export default class AttachmentPicker extends Component<Props, any> {
 
   onAudioRecorderCancel = () => {
     this.setState({ audioRecorderVisible: false })
-  }
-
-  handleDocumentPickerResponse = (callback: Callback) => {
-    return (error: any, result: *) => {
-      if (error) {
-        AlertIOS.alert(i18n('Upload error'))
-        return
-      }
-      const { uri, fileName, fileSize } = result
-      const attachment = {
-        uri,
-        display_name: fileName,
-        size: fileSize,
-        mime_class: 'file',
-      }
-      callback(attachment, 'files')
-    }
   }
 
   handleUserFile = (callback: Callback) => async (file: Attachment) => {

@@ -43,7 +43,7 @@ struct FileUploadTableViewCellViewModel: TableViewCellViewModel {
     }
 }
 
-open class FileUploadsViewController: FetchedTableViewController<FileUpload>, UIDocumentMenuDelegate, UIDocumentPickerDelegate, DocumentMenuController, FileUploadTableViewCellDelegate {
+open class FileUploadsViewController: FetchedTableViewController<FileUpload>, UIDocumentPickerDelegate, DocumentMenuController, FileUploadTableViewCellDelegate {
     fileprivate let viewModel: FileUploadsViewModelType = FileUploadsViewModel()
     public let documentMenuViewModel: DocumentMenuViewModelType = DocumentMenuViewModel()
     public weak var delegate: FileUploadsViewControllerDelegate?
@@ -179,10 +179,6 @@ open class FileUploadsViewController: FetchedTableViewController<FileUpload>, UI
         controller.dismiss(animated: true) {
             self.documentMenuViewModel.inputs.pickedDocument(at: url)
         }
-    }
-
-    public func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
-        self.documentMenuViewModel.inputs.tappedDocumentPicker(documentPicker)
     }
 
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

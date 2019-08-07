@@ -18,11 +18,11 @@
 
 // @flow
 
-import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import mockStore from '../../../../test/helpers/mockStore'
 import { hydrateStoreFromPersistedState } from '../persist'
 
-jest.mock('AsyncStorage', () => ({
+jest.mock('@react-native-community/async-storage', () => ({
   getItem: jest.fn(),
   setItem: jest.fn(),
   removeItem: jest.fn(),

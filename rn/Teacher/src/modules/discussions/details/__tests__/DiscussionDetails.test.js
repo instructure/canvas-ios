@@ -21,7 +21,7 @@
 import React from 'react'
 import {
   ActionSheetIOS,
-  AlertIOS,
+  Alert,
   NativeModules,
   I18nManager,
 } from 'react-native'
@@ -284,12 +284,12 @@ describe('DiscussionDetails', () => {
 
   it('alerts to confirm delete discussion', () => {
     // $FlowFixMe
-    AlertIOS.alert = jest.fn()
+    Alert.alert = jest.fn()
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
     const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
     kabob.action()
-    expect(AlertIOS.alert).toHaveBeenCalledWith(
+    expect(Alert.alert).toHaveBeenCalledWith(
       'Are you sure you want to delete this discussion?',
       null,
       [
@@ -301,12 +301,12 @@ describe('DiscussionDetails', () => {
 
   it('alerts to confirm delete reply', () => {
     // $FlowFixMe
-    AlertIOS.alert = jest.fn()
+    Alert.alert = jest.fn()
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
     const tree = render(props).getInstance()
     tree._confirmDeleteReply('1', '1', '1')
-    expect(AlertIOS.alert).toHaveBeenCalledWith(
+    expect(Alert.alert).toHaveBeenCalledWith(
       'Are you sure you want to delete this reply?',
       null,
       [
@@ -321,7 +321,7 @@ describe('DiscussionDetails', () => {
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
     // $FlowFixMe
-    AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+    Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
     const tree = render(props).getInstance()
     tree._confirmDeleteReply('1', '1', '1', [0, 1])
     expect(props.deleteDiscussionEntry).toHaveBeenCalledWith('1', '1', '1', [0, 1])
@@ -468,7 +468,7 @@ describe('DiscussionDetails', () => {
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
     // $FlowFixMe
-    AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+    Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
     props.courseID = '1'
     props.discussionID = '2'
     const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
@@ -595,7 +595,7 @@ describe('DiscussionDetails', () => {
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
     // $FlowFixMe
-    AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+    Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
     const screen = render(props)
     const deleteDiscussion = jest.fn(() => {
       setProps(screen, { pending: 0, discussion: null })

@@ -2,7 +2,6 @@
 
 exports[`AuthenticatedWebView renders 1`] = `
 <View
-  style={undefined}
   testID="web-container.view"
 >
   <CanvasWebView
@@ -29,7 +28,6 @@ exports[`AuthenticatedWebView renders 1`] = `
 
 exports[`AuthenticatedWebView renders without uri 1`] = `
 <View
-  style={undefined}
   testID="web-container.view"
 >
   <CanvasWebView

@@ -22,7 +22,7 @@ import { shallow } from 'enzyme'
 import * as React from 'react'
 import {
   ActionSheetIOS,
-  AlertIOS,
+  Alert,
 } from 'react-native'
 import * as template from '../../../../__templates__'
 import {
@@ -33,7 +33,7 @@ import {
 } from '../ConversationDetails'
 
 jest
-  .mock('AlertIOS', () => ({ alert: jest.fn() }))
+  .mock('Alert', () => ({ alert: jest.fn() }))
   .mock('ActionSheetIOS', () => ({
     showActionSheetWithOptions: jest.fn(),
   }))
@@ -241,7 +241,7 @@ describe('ConversationDetails', () => {
     props.conversation = template.conversation({ id: '1', context_code: undefined })
     const tree = shallow(<ConversationDetails {...props} />)
     tree.find('Screen').prop('rightBarButtons')[0].action('3')
-    expect(AlertIOS.alert).toHaveBeenCalled()
+    expect(Alert.alert).toHaveBeenCalled()
     expect(props.navigator.show).not.toHaveBeenCalled()
   })
 

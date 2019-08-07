@@ -31,19 +31,24 @@ public enum FeatureFlagName: String {
 
 @objc(FeatureFlags)
 open class FeatureFlags: NSObject {
-    @objc public static var featureFlags: [String: Any] = [:]
+    @objc public static var featureFlags: [String: Any] = [
+        "favoriteGroups": [:],
+        "simpleDiscussionRenderer": [:],
+        "newStudentAssignmentView": [ "enabled": true ],
+        "conferences": [:],
+    ]
     
     // The logic in this method is duplicated from ./rn/Teacher/src/common/feature-flags.js
     // Any changes here should be duplicated into that file
     public class func featureFlagEnabled(_ flagName: FeatureFlagName) -> Bool {
-        guard let baseURL = AppEnvironment.shared.currentSession?.baseURL.absoluteString else { return false }
-        
         if let featureFlag = featureFlags[flagName.rawValue] as? [String: Any] {
             if let exemptions = featureFlag["exempt"] as? [String: Any] {
                 // if the flag exists return whether or not the domain is listed in
                 // the exemptions
-                if let institutions = exemptions["domains"] as? [String] {
-                    return institutions.contains(baseURL)
+                if let institutions = exemptions["domains"] as? [String],
+                    let baseURL = AppEnvironment.shared.currentSession?.baseURL.absoluteString,
+                    institutions.contains(baseURL) {
+                    return true
                 }
             }
             if let enabled = featureFlag["enabled"] as? Bool, enabled {

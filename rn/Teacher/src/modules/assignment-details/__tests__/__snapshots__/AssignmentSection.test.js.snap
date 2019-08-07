@@ -2,31 +2,15 @@
 
 exports[`render 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
-  style={
-    Array [
-      Object {
-        "backgroundColor": "transparent",
-      },
-      undefined,
-    ]
-  }
-  testID={undefined}
-  tvParallaxProperties={undefined}
+  style={null}
 >
   <View
     style={
@@ -68,7 +52,6 @@ exports[`render 1`] = `
         }
       >
         <View
-          accessibilityLabel={undefined}
           accessible={false}
           style={
             Object {
@@ -79,9 +62,6 @@ exports[`render 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -115,31 +95,15 @@ exports[`render 1`] = `
 
 exports[`render first row 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
-  style={
-    Array [
-      Object {
-        "backgroundColor": "transparent",
-      },
-      undefined,
-    ]
-  }
-  testID={undefined}
-  tvParallaxProperties={undefined}
+  style={null}
 >
   <View
     style={
@@ -175,7 +139,6 @@ exports[`render first row 1`] = `
         }
       >
         <View
-          accessibilityLabel={undefined}
           accessible={false}
           style={
             Object {
@@ -193,31 +156,15 @@ exports[`render first row 1`] = `
 
 exports[`render no title 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
   onResponderTerminate={[Function]}
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
-  style={
-    Array [
-      Object {
-        "backgroundColor": "transparent",
-      },
-      undefined,
-    ]
-  }
-  testID={undefined}
-  tvParallaxProperties={undefined}
+  style={null}
 >
   <View
     style={
@@ -259,7 +206,6 @@ exports[`render no title 1`] = `
         }
       >
         <View
-          accessibilityLabel={undefined}
           accessible={false}
           style={
             Object {

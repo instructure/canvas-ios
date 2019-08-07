@@ -25,9 +25,6 @@ exports[`EmptyInbox renders correctly 1`] = `
     }
   />
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -52,9 +49,6 @@ exports[`EmptyInbox renders correctly 1`] = `
     Title
   </Text>
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {

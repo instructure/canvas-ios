@@ -373,7 +373,7 @@ exports[`RichTextToolbar renders active items 1`] = `
               "button",
             ]
           }
-          onPress={[Function]}
+          onPress={[MockFunction]}
           style={
             Object {
               "alignItems": "center",

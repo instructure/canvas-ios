@@ -2,6 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -44,9 +45,6 @@ exports[`renders correctly 1`] = `
         }
       />
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -71,9 +69,6 @@ exports[`renders correctly 1`] = `
         Learn React Native
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -103,6 +98,7 @@ exports[`renders correctly 1`] = `
 
 exports[`renders correctly 2`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -145,9 +141,6 @@ exports[`renders correctly 2`] = `
         }
       />
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -172,9 +165,6 @@ exports[`renders correctly 2`] = `
         Learn React Native
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {

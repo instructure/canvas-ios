@@ -19,7 +19,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { ActionSheetIOS, AlertIOS, Alert } from 'react-native'
+import { ActionSheetIOS, Alert } from 'react-native'
 import { shallow } from 'enzyme'
 import { FilesList, mapStateToProps } from '../FilesList'
 import images from '../../../images'
@@ -228,9 +228,9 @@ describe('FilesList', () => {
       <FilesList data={data} navigator={navigator} contextID={courseID} context={'courses'}/>
     ).getInstance()
 
-    AlertIOS.prompt = jest.fn()
+    Alert.prompt = jest.fn()
     instance.handleAddItem(0)
-    expect(AlertIOS.prompt).toHaveBeenCalledWith('Create Folder', null, instance.createNewFolder)
+    expect(Alert.prompt).toHaveBeenCalledWith('Create Folder', null, instance.createNewFolder)
   })
 
   it('adding file should show the file picker stuff', () => {

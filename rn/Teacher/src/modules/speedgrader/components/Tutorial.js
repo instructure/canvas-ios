@@ -20,13 +20,13 @@
 
 import React, { PureComponent } from 'react'
 import {
-  AsyncStorage,
   View,
   Image,
   StyleSheet,
   Animated,
   NativeModules,
 } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import { LinkButton } from '../../../common/buttons'
 import { Text } from '../../../common/text'
 import i18n from 'format-message'

@@ -20,7 +20,7 @@
 
 import Permissions from '../permissions'
 import {
-  AlertIOS,
+  Alert,
   Linking,
 } from 'react-native'
 
@@ -39,7 +39,7 @@ test('alert links to settings', () => {
   // $FlowFixMe
   Linking.openURL = spy
   // $FlowFixMe
-  AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+  Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
   Permissions.alert('microphone')
   expect(spy).toHaveBeenCalledWith('app-settings:')
 })
@@ -51,7 +51,7 @@ test('alert does not link to settings if cant open url', () => {
   // $FlowFixMe
   Linking.openURL = spy
   // $FlowFixMe
-  AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+  Alert.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
   Permissions.alert('microphone')
   expect(spy).not.toHaveBeenCalled()
 })

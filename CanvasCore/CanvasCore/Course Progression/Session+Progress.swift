@@ -44,7 +44,7 @@ extension Session {
     // MARK: - Objective-C Compatability
 
     // MARK: Discussions
-    @objc @available(*, deprecated)
+    @objc
     public func postProgressDiscussionContributed(courseID: String, discussionTopicID: String) {
         postProgress(.contributed, type: .discussion, context: .course, contextID: courseID, itemID: discussionTopicID)
     }
@@ -54,7 +54,7 @@ extension Session {
         postProgress(.contributed, type: .discussion, context: .group, contextID: groupID, itemID: discussionTopicID)
     }
     
-    @objc @available(*, deprecated)
+    @objc
     public func postProgressDiscussionViewed(courseID: String, discussionTopicID: String) {
         postProgress(.viewed, type: .discussion, context: .course, contextID: courseID, itemID: discussionTopicID)
     }
@@ -77,7 +77,7 @@ extension Session {
     
     
     // MARK: Pages
-    @objc @available(*, deprecated)
+    @objc
     public func postProgressPageViewed(courseID: String, pageURL: String) {
         postProgress(.viewed, type: .page, context: .course, contextID: courseID, itemID: pageURL)
     }

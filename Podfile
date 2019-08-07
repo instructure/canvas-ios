@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-workspace 'AllTheThings.xcworkspace'
+workspace 'Canvas.xcworkspace'
 inhibit_all_warnings!
 platform :ios, '11.0'
 
@@ -9,26 +9,34 @@ abstract_target 'defaults' do
 
   nm_path = './rn/Teacher/node_modules/'
   rn_path = nm_path + 'react-native/'
-  pod 'yoga', :path => rn_path + 'ReactCommon/yoga'
   pod 'React', :path => rn_path, :subspecs => [
     'Core',
+    'CxxBridge', # Include this for RN >= 0.47
+    'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
+    'RCTText',
+    'RCTNetwork',
+    'RCTWebSocket', # needed for debugging
+    # Add any other subspecs you want to use in your project
     'ART',
     'RCTActionSheet',
     'RCTAnimation',
     'RCTImage',
     'RCTSettings',
     'RCTVibration',
-    'RCTNetwork',
-    'RCTText',
-    'RCTWebSocket',
     'RCTPushNotification',
     'RCTLinkingIOS',
-    'DevSupport',
-    'BatchedBridge',
     'fishhook'
   ]
+  # Explicitly include Yoga if you are using RN >= 0.42.0
+  pod "yoga", :path => rn_path + 'ReactCommon/yoga'
+
+  # Third party deps podspec link
+  pod 'DoubleConversion', :podspec => rn_path + 'third-party-podspecs/DoubleConversion.podspec'
+  pod 'glog', :podspec => rn_path + 'third-party-podspecs/glog.podspec'
+  pod 'Folly', :podspec => rn_path + 'third-party-podspecs/Folly.podspec'
 
   # node modules
+  pod 'RNCAsyncStorage', :path => nm_path + '@react-native-community/async-storage'
   pod 'RNFS', :path => nm_path + 'react-native-fs'
   pod 'RNDeviceInfo', :path => nm_path + 'react-native-device-info'
   pod 'react-native-image-picker', :path => nm_path + 'react-native-image-picker'
@@ -69,11 +77,17 @@ abstract_target 'defaults' do
   end
 
   target 'TechDebt' do
-    project 'Canvas/Canvas.xcodeproj'
+    project 'Student/Student.xcodeproj'
   end
 
-  target 'Canvas' do
-    project 'Canvas/Canvas.xcodeproj'
+  target 'Student' do
+    project 'Student/Student.xcodeproj'
+    pod 'Fabric', '~> 1.7.7'
+    pod 'Firebase/Core', '~> 5.20'
+  end
+
+  target 'StudentUnitTests' do
+    project 'Student/Student.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
     pod 'Firebase/Core', '~> 5.20'
   end
@@ -84,7 +98,7 @@ abstract_target 'defaults' do
   end
 
   target 'CanvasKit1' do
-    project 'Canvas/Canvas.xcodeproj'
+    project 'Student/Student.xcodeproj'
   end
 
   target 'CanvasKit' do

@@ -25,7 +25,7 @@ import {
   TouchableHighlight,
   View,
   Image,
-  AlertIOS,
+  Alert,
 } from 'react-native'
 import i18n from 'format-message'
 import { AudioRecorder as RNAudioRecorder, AudioUtils } from 'react-native-audio'
@@ -143,7 +143,7 @@ export default class AudioRecorder extends Component<Props, any> {
       await RNAudioRecorder.startRecording()
     } catch (error) {
       this.setState({ recording: false })
-      AlertIOS.alert(i18n('Could not start recording'))
+      Alert.alert(i18n('Could not start recording'))
     }
   }
 
@@ -155,7 +155,7 @@ export default class AudioRecorder extends Component<Props, any> {
       await RNAudioRecorder.stopRecording()
     } catch (error) {
       this.prepareRecording()
-      AlertIOS.alert(i18n('Recording failed'))
+      Alert.alert(i18n('Recording failed'))
     }
   }
 
@@ -186,7 +186,7 @@ export default class AudioRecorder extends Component<Props, any> {
       this.setState({ stoppedRecording: true, filePath })
     } else {
       this.prepareRecording()
-      AlertIOS.alert(i18n('Recording failed'))
+      Alert.alert(i18n('Recording failed'))
     }
   }
 

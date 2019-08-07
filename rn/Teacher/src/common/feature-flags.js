@@ -19,7 +19,8 @@
 // @flow
 
 import { getSession } from '../canvas-api/session'
-import { NativeModules, AsyncStorage } from 'react-native'
+import { NativeModules } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 
 type Exemption = {
   domains?: Array<string>,

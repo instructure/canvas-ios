@@ -54,9 +54,6 @@ exports[`render 0 submissions 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -92,9 +89,6 @@ exports[`render 0 submissions 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -150,9 +144,6 @@ exports[`render 0 submissions 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -188,9 +179,6 @@ exports[`render 0 submissions 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -246,9 +234,6 @@ exports[`render 0 submissions 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -284,9 +269,6 @@ exports[`render 0 submissions 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -358,9 +340,6 @@ exports[`render 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -396,9 +375,6 @@ exports[`render 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -454,9 +430,6 @@ exports[`render 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -492,9 +465,6 @@ exports[`render 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -550,9 +520,6 @@ exports[`render 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -588,9 +555,6 @@ exports[`render 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -662,9 +626,6 @@ exports[`render 1 needs grading 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -700,9 +661,6 @@ exports[`render 1 needs grading 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -758,9 +716,6 @@ exports[`render 1 needs grading 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -796,9 +751,6 @@ exports[`render 1 needs grading 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -854,9 +806,6 @@ exports[`render 1 needs grading 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -892,9 +841,6 @@ exports[`render 1 needs grading 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -966,9 +912,6 @@ exports[`render 2 need grading 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1004,9 +947,6 @@ exports[`render 2 need grading 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -1062,9 +1002,6 @@ exports[`render 2 need grading 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1100,9 +1037,6 @@ exports[`render 2 need grading 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -1158,9 +1092,6 @@ exports[`render 2 need grading 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1196,9 +1127,6 @@ exports[`render 2 need grading 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -1270,9 +1198,6 @@ exports[`render loading with pending set 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1358,9 +1283,6 @@ exports[`render loading with pending set 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1446,9 +1368,6 @@ exports[`render loading with pending set 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1550,9 +1469,6 @@ exports[`render no graded 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1588,9 +1504,6 @@ exports[`render no graded 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -1646,9 +1559,6 @@ exports[`render no graded 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1684,9 +1594,6 @@ exports[`render no graded 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -1742,9 +1649,6 @@ exports[`render no graded 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1780,9 +1684,6 @@ exports[`render no graded 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -1854,9 +1755,6 @@ exports[`render with an assignment id 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1892,9 +1790,6 @@ exports[`render with an assignment id 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -1950,9 +1845,6 @@ exports[`render with an assignment id 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1988,9 +1880,6 @@ exports[`render with an assignment id 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",
@@ -2046,9 +1935,6 @@ exports[`render with an assignment id 1`] = `
           />
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -2084,9 +1970,6 @@ exports[`render with an assignment id 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#2D3B45",

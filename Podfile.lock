@@ -14,13 +14,15 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - BVLinearGradient (2.5.4):
+  - boost-for-react-native (1.63.0)
+  - BVLinearGradient (2.5.6):
     - React
   - Cartography (3.1.0)
-  - Crashlytics (3.10.2):
-    - Fabric (~> 1.7.7)
+  - Crashlytics (3.10.9):
+    - Fabric (~> 1.7.13)
+  - DoubleConversion (1.1.6)
   - Eureka (4.3.1)
-  - Fabric (1.7.7)
+  - Fabric (1.7.13)
   - Firebase/Core (5.20.2):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.8.1)
@@ -42,6 +44,11 @@ PODS:
     - FirebaseCore (~> 5.2)
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/UserDefaults (~> 5.2)
+  - Folly (2018.10.22.00):
+    - boost-for-react-native
+    - DoubleConversion
+    - glog
+  - glog (0.3.5)
   - GoogleAppMeasurement (5.8.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
@@ -80,50 +87,66 @@ PODS:
   - nanopb/encode (0.3.901)
   - RCTSFSafariViewController (0.2.6):
     - React
-  - React (0.51.0):
-    - React/Core (= 0.51.0)
+  - React (0.59.9):
+    - React/Core (= 0.59.9)
   - react-native-camera (0.10.0):
     - React
   - react-native-document-picker (3.2.0):
     - React
   - react-native-image-picker (0.14.3):
     - React
-  - React/ART (0.51.0):
+  - React/ART (0.59.9):
     - React/Core
-  - React/BatchedBridge (0.51.0):
+  - React/Core (0.59.9):
+    - yoga (= 0.59.9.React)
+  - React/CxxBridge (0.59.9):
+    - Folly (= 2018.10.22.00)
     - React/Core
-    - React/cxxreact_legacy
-  - React/Core (0.51.0):
-    - yoga (= 0.51.0.React)
-  - React/cxxreact_legacy (0.51.0):
-    - React/jschelpers_legacy
-  - React/DevSupport (0.51.0):
+    - React/cxxreact
+    - React/jsiexecutor
+  - React/cxxreact (0.59.9):
+    - boost-for-react-native (= 1.63.0)
+    - DoubleConversion
+    - Folly (= 2018.10.22.00)
+    - glog
+    - React/jsinspector
+  - React/DevSupport (0.59.9):
     - React/Core
     - React/RCTWebSocket
-  - React/fishhook (0.51.0)
-  - React/jschelpers_legacy (0.51.0)
-  - React/RCTActionSheet (0.51.0):
+  - React/fishhook (0.59.9)
+  - React/jsi (0.59.9):
+    - DoubleConversion
+    - Folly (= 2018.10.22.00)
+    - glog
+  - React/jsiexecutor (0.59.9):
+    - DoubleConversion
+    - Folly (= 2018.10.22.00)
+    - glog
+    - React/cxxreact
+    - React/jsi
+  - React/jsinspector (0.59.9)
+  - React/RCTActionSheet (0.59.9):
     - React/Core
-  - React/RCTAnimation (0.51.0):
+  - React/RCTAnimation (0.59.9):
     - React/Core
-  - React/RCTBlob (0.51.0):
+  - React/RCTBlob (0.59.9):
     - React/Core
-  - React/RCTImage (0.51.0):
+  - React/RCTImage (0.59.9):
     - React/Core
     - React/RCTNetwork
-  - React/RCTLinkingIOS (0.51.0):
+  - React/RCTLinkingIOS (0.59.9):
     - React/Core
-  - React/RCTNetwork (0.51.0):
+  - React/RCTNetwork (0.59.9):
     - React/Core
-  - React/RCTPushNotification (0.51.0):
+  - React/RCTPushNotification (0.59.9):
     - React/Core
-  - React/RCTSettings (0.51.0):
+  - React/RCTSettings (0.59.9):
     - React/Core
-  - React/RCTText (0.51.0):
+  - React/RCTText (0.59.9):
     - React/Core
-  - React/RCTVibration (0.51.0):
+  - React/RCTVibration (0.59.9):
     - React/Core
-  - React/RCTWebSocket (0.51.0):
+  - React/RCTWebSocket (0.59.9):
     - React/Core
     - React/fishhook
     - React/RCTBlob
@@ -131,9 +154,11 @@ PODS:
     - React
   - RNAudio (3.6.0):
     - React
+  - RNCAsyncStorage (1.6.1):
+    - React
   - RNDeviceInfo (0.9.3):
     - React
-  - RNFS (2.13.3):
+  - RNFS (2.14.1):
     - React
   - RNSound (0.10.12):
     - React/Core
@@ -142,16 +167,19 @@ PODS:
     - React/Core
   - SVProgressHUD (2.2.5)
   - TBBModal (1.0.2)
-  - yoga (0.51.0.React)
+  - yoga (0.59.9.React)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - BVLinearGradient (from `./rn/Teacher/node_modules/react-native-linear-gradient`)
   - Cartography (~> 3.1)
   - Crashlytics (~> 3.10.2)
+  - DoubleConversion (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - Eureka (~> 4.3)
   - Fabric (~> 1.7.7)
   - Firebase/Core (~> 5.20)
+  - Folly (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/Folly.podspec`)
+  - glog (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/glog.podspec`)
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
   - Kingfisher (~> 4.10)
   - Mantle (~> 1.5.5)
@@ -161,8 +189,8 @@ DEPENDENCIES:
   - react-native-document-picker (from `./rn/Teacher/node_modules/react-native-document-picker`)
   - react-native-image-picker (from `./rn/Teacher/node_modules/react-native-image-picker`)
   - React/ART (from `./rn/Teacher/node_modules/react-native/`)
-  - React/BatchedBridge (from `./rn/Teacher/node_modules/react-native/`)
   - React/Core (from `./rn/Teacher/node_modules/react-native/`)
+  - React/CxxBridge (from `./rn/Teacher/node_modules/react-native/`)
   - React/DevSupport (from `./rn/Teacher/node_modules/react-native/`)
   - React/fishhook (from `./rn/Teacher/node_modules/react-native/`)
   - React/RCTActionSheet (from `./rn/Teacher/node_modules/react-native/`)
@@ -177,6 +205,7 @@ DEPENDENCIES:
   - React/RCTWebSocket (from `./rn/Teacher/node_modules/react-native/`)
   - ReactNativeSearchBar (from `./rn/Teacher/node_modules/react-native-search-bar`)
   - RNAudio (from `./rn/Teacher/node_modules/react-native-audio`)
+  - "RNCAsyncStorage (from `./rn/Teacher/node_modules/@react-native-community/async-storage`)"
   - RNDeviceInfo (from `./rn/Teacher/node_modules/react-native-device-info`)
   - RNFS (from `./rn/Teacher/node_modules/react-native-fs`)
   - RNSound (from `./rn/Teacher/node_modules/react-native-sound`)
@@ -187,6 +216,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - boost-for-react-native
     - Cartography
     - Crashlytics
     - Eureka
@@ -207,6 +237,12 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   BVLinearGradient:
     :path: "./rn/Teacher/node_modules/react-native-linear-gradient"
+  DoubleConversion:
+    :podspec: "./rn/Teacher/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
+  Folly:
+    :podspec: "./rn/Teacher/node_modules/react-native/third-party-podspecs/Folly.podspec"
+  glog:
+    :podspec: "./rn/Teacher/node_modules/react-native/third-party-podspecs/glog.podspec"
   Interactable:
     :path: "./rn/Teacher/node_modules/react-native-interactable"
   RCTSFSafariViewController:
@@ -223,6 +259,8 @@ EXTERNAL SOURCES:
     :path: "./rn/Teacher/node_modules/react-native-search-bar"
   RNAudio:
     :path: "./rn/Teacher/node_modules/react-native-audio"
+  RNCAsyncStorage:
+    :path: "./rn/Teacher/node_modules/@react-native-community/async-storage"
   RNDeviceInfo:
     :path: "./rn/Teacher/node_modules/react-native-device-info"
   RNFS:
@@ -234,15 +272,19 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  BVLinearGradient: 8cbc5155c978f2e43098818c91d206d07aae6d30
+  boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   Cartography: 1988b7578871a56c036e7af17195cb2190edf18c
-  Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
+  Crashlytics: 55e24fc23989680285a21cb1146578d9d18e432c
+  DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
-  Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
+  Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
   Firebase: 0c8cf33f266410c61ab3e2265cfa412200351d9c
   FirebaseAnalytics: ece1aa57a4f43c64d53a648b5a5e05151aae947b
   FirebaseCore: f1a9a8be1aee4bf71a2fc0f4096df6788bdfda61
   FirebaseInstanceID: a122b0c258720cf250551bb2bedf48c699f80d90
+  Folly: de497beb10f102453a1afa9edbf8cf8a251890de
+  glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
   GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
   GoogleUtilities: 273e67030e0de313e7304f6dcfa96fc5214f6c23
   Interactable: 0a9f2a42b02ea03114d7e03e714d946a65cd8d0b
@@ -251,19 +293,20 @@ SPEC CHECKSUMS:
   Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   RCTSFSafariViewController: 709bddbde953cd94f373827b02d36224a9ad8293
-  React: 352f02f1db6e4744f9a758527e13e3fdefbbd6ba
+  React: a86b92f00edbe1873a63e4a212c29b7a7ad5224f
   react-native-camera: a4446f056fb28a9aa7acb3e14af595216aac0a8d
   react-native-document-picker: e3516aff0dcf65ee0785d9bcf190eb10e2261154
   react-native-image-picker: 3693786b3d5958c8f71deed66ec068b323565e0d
   ReactNativeSearchBar: 1e3e667edb51de2cbc878b977c5b13f3b25fe21e
   RNAudio: 5a5bc9863f6db8b6c9f34f98a7b472c03c684246
+  RNCAsyncStorage: 2e2e3feb9bdadc752a026703d8c4065ca912e75a
   RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
-  RNFS: c9bbde46b0d59619f8e7b735991c60e0f73d22c1
+  RNFS: a8fbe7060fa49157d819466404794ad9c58e58cf
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
-  yoga: b5d96400ca8b2936965a7a6516da7c1177f432a3
+  yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
 
-PODFILE CHECKSUM: a539f6aee10238e32afc683897d50063e2028039
+PODFILE CHECKSUM: 1318f20bc1a412ba1995045ac5502586e58906df
 
 COCOAPODS: 1.7.1

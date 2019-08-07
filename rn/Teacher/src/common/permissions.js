@@ -21,7 +21,7 @@
 import i18n from 'format-message'
 import Camera from 'react-native-camera'
 import {
-  AlertIOS,
+  Alert,
   Linking,
 } from 'react-native'
 
@@ -49,7 +49,7 @@ function errorMessages (): ErrorMessages {
 }
 
 function alert (permission: Permission) {
-  AlertIOS.alert(
+  Alert.alert(
     i18n('Permission Needed'),
     errorMessages()[permission],
     [

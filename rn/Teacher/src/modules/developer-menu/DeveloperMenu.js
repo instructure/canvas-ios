@@ -25,10 +25,10 @@ import {
   StyleSheet,
   ScrollView,
   Alert,
-  AsyncStorage,
   NativeModules,
   SegmentedControlIOS,
 } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import { route, type RouteOptions } from '../../routing'
 import Navigator from '../../routing/Navigator'
 import Screen from '../../routing/Screen'

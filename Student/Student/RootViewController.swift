@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2016-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,65 +16,54 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import UIKit
+import ReactiveSwift
+import Kingfisher
+import TechDebt
+import CanvasCore
 import Core
 
-class RootViewController: UITabBarController {
-    static func create() -> RootViewController {
-        let controller = RootViewController()
-        controller.viewControllers = [
-            controller.dashboard,
-            controller.calendar,
-            controller.todo,
-            controller.notifications,
-            controller.inbox,
+func rootViewController(_ session: Session) -> UIViewController {
+    let tabs = CanvasTabBarController()
+    
+    do {
+        tabs.viewControllers = [
+            dashboardTab(session: session),
+            UINavigationController(rootViewController: CalendarTabViewController(session: session) { vc, url in
+                Router.shared().route(from: vc, to: url)
+            }),
+            try ToDoTabViewController(session: session) { vc, url in
+                Router.shared().route(from: vc, to: url)
+            },
+            try NotificationsTab(session: session),
+            inboxTab()
         ]
-        controller.tabBar.useGlobalNavStyle()
-        return controller
+    } catch let e as NSError {
+        delay(0.1) {
+            ErrorReporter.reportError(e, from: tabs)
+        }
     }
+    
+    let selectedTab = UserPreferences.landingPage(session.user.id)
+    tabs.selectedIndex = selectedTab.tabIndex
+    tabs.tabBar.useGlobalNavStyle()
+    return tabs
+}
 
-    lazy var dashboard: UINavigationController = {
-        let controller = DashboardViewController.create()
-        controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Dashboard", bundle: .student, comment: ""), image: .icon(.dashboard, .line), selectedImage: .icon(.dashboard, .solid))
-        controller.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
-        return navigation(for: controller)
-    }()
-
-    lazy var calendar: UINavigationController = {
-        let controller = UIViewController()
-        controller.view.backgroundColor = .green
-        controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Calendar", bundle: .student, comment: ""), image: .icon(.calendarMonth, .line), selectedImage: .icon(.calendarMonth, .solid))
-        controller.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
-        return navigation(for: controller)
-    }()
-
-    lazy var todo: UINavigationController = {
-        let controller = UIViewController()
-        controller.view.backgroundColor = .blue
-        controller.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", bundle: .student, comment: ""), image: .icon(.todo), selectedImage: .icon(.todoSolid))
-        controller.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
-        return navigation(for: controller)
-    }()
-
-    lazy var notifications: UINavigationController = {
-        let controller = UIViewController()
-        controller.view.backgroundColor = .yellow
-        controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Notifications", bundle: .student, comment: ""), image: .icon(.alerts, .line), selectedImage: .icon(.alerts, .solid))
-        controller.tabBarItem.accessibilityIdentifier = "TabBar.notificationsTab"
-        return navigation(for: controller)
-    }()
-
-    lazy var inbox: UINavigationController = {
-        let controller = UIViewController()
-        controller.view.backgroundColor = .red
-        controller.tabBarItem = UITabBarItem(title: NSLocalizedString("Inbox", bundle: .student, comment: ""), image: .icon(.email, .line), selectedImage: .icon(.email, .solid))
-        controller.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
-        return navigation(for: controller)
-    }()
-
-    private func navigation(for controller: UIViewController) -> UINavigationController {
-        let nav = UINavigationController(rootViewController: controller)
-        nav.navigationBar.useGlobalNavStyle()
-        return nav
-    }
+func dashboardTab(session: Session) -> UIViewController {
+    let dashboardVC = HelmViewController(moduleName: "/", props: [:])
+    let dashboardNav = HelmNavigationController(rootViewController: dashboardVC)
+    let dashboardSplit = EnrollmentSplitViewController()
+    let emptyNav = UINavigationController(rootViewController:EmptyViewController())
+    emptyNav.navigationBar.useGlobalNavStyle()
+    dashboardNav.delegate = dashboardSplit
+    dashboardNav.navigationBar.useGlobalNavStyle()
+    dashboardSplit.viewControllers = [dashboardNav, emptyNav]
+    dashboardSplit.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
+    dashboardSplit.tabBarItem.image = .icon(.dashboard, .line)
+    dashboardSplit.tabBarItem.selectedImage = .icon(.dashboard, .solid)
+    dashboardSplit.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
+    dashboardSplit.navigationItem.titleView = Brand.current.navBarTitleView()
+    return dashboardSplit
 }

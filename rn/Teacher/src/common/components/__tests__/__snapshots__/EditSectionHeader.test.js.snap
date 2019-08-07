@@ -18,9 +18,6 @@ exports[`render 1`] = `
 >
   <Text
     accessibilityTraits="header"
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -58,9 +55,6 @@ exports[`render no title 1`] = `
 >
   <Text
     accessibilityTraits="header"
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {

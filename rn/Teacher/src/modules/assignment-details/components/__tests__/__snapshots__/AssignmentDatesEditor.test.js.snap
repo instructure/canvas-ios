@@ -34,9 +34,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -66,20 +63,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -91,14 +76,9 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 "opacity": 1,
               }
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -126,19 +106,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         </View>
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -146,20 +115,13 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "height": "auto",
-              "minHeight": 54,
-            },
-          ]
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": "auto",
+            "minHeight": 54,
+          }
         }
-        testID={undefined}
-        tvParallaxProperties={undefined}
       >
         <View
           style={
@@ -175,9 +137,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -207,9 +166,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -251,19 +207,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -271,17 +216,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -308,9 +246,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -343,9 +278,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -361,7 +293,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 May 31 11:59 PM
               </Text>
@@ -381,31 +312,16 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -413,6 +329,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -437,19 +354,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -457,17 +363,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -494,9 +393,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -529,9 +425,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -547,7 +440,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 Mar 17 12:00 AM
               </Text>
@@ -567,31 +459,16 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -599,6 +476,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -623,19 +501,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -643,17 +510,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -680,9 +540,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -715,9 +572,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -733,7 +587,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 May 31 11:59 PM
               </Text>
@@ -753,31 +606,16 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -785,6 +623,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -820,9 +659,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -852,20 +688,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -877,14 +701,9 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 "opacity": 1,
               }
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -912,19 +731,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         </View>
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -932,20 +740,13 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "height": "auto",
-              "minHeight": 54,
-            },
-          ]
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": "auto",
+            "minHeight": 54,
+          }
         }
-        testID={undefined}
-        tvParallaxProperties={undefined}
       >
         <View
           style={
@@ -961,9 +762,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -993,9 +791,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1037,19 +832,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1057,17 +841,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1094,9 +871,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1129,9 +903,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1147,7 +918,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 May 31 11:59 PM
               </Text>
@@ -1167,31 +937,16 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -1199,6 +954,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -1223,19 +979,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1243,17 +988,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1280,9 +1018,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1315,9 +1050,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1333,7 +1065,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 Mar 17 12:00 AM
               </Text>
@@ -1353,31 +1084,16 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -1385,6 +1101,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -1409,19 +1126,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1429,17 +1135,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1466,9 +1165,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1501,9 +1197,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1519,7 +1212,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 May 31 11:59 PM
               </Text>
@@ -1539,31 +1231,16 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -1571,6 +1248,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -1606,9 +1284,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -1638,20 +1313,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -1663,14 +1326,9 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 "opacity": 1,
               }
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1698,19 +1356,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         </View>
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1718,20 +1365,13 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "height": "auto",
-              "minHeight": 54,
-            },
-          ]
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": "auto",
+            "minHeight": 54,
+          }
         }
-        testID={undefined}
-        tvParallaxProperties={undefined}
       >
         <View
           style={
@@ -1747,9 +1387,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -1779,9 +1416,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1823,19 +1457,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -1843,17 +1466,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1880,9 +1496,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1915,9 +1528,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1933,7 +1543,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 May 31 11:59 PM
               </Text>
@@ -1953,31 +1562,16 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -1985,6 +1579,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -2009,19 +1604,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2029,17 +1613,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2066,9 +1643,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -2101,9 +1675,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -2119,7 +1690,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 Mar 17 12:00 AM
               </Text>
@@ -2139,31 +1709,16 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -2171,6 +1726,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -2195,19 +1751,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2215,17 +1760,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2252,9 +1790,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -2287,9 +1822,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -2305,7 +1837,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 May 31 11:59 PM
               </Text>
@@ -2325,31 +1856,16 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -2357,6 +1873,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -2376,19 +1893,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
   />
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -2396,22 +1902,15 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "borderBottomColor": "#C7CDD1",
-            "borderBottomWidth": 0.5,
-            "borderTopColor": "#C7CDD1",
-            "borderTopWidth": 0.5,
-            "height": "auto",
-            "minHeight": 54,
-          },
-        ]
+        Object {
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
+          "height": "auto",
+          "minHeight": 54,
+        }
       }
-      testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -2445,9 +1944,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           }
         />
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -2523,9 +2019,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -2545,19 +2038,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
         <View />
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -2565,20 +2047,13 @@ exports[`snapshots! render with multiple due dates 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "height": "auto",
-              "minHeight": 54,
-            },
-          ]
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": "auto",
+            "minHeight": 54,
+          }
         }
-        testID={undefined}
-        tvParallaxProperties={undefined}
       >
         <View
           style={
@@ -2594,9 +2069,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -2626,9 +2098,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2670,19 +2139,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2690,17 +2148,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2727,9 +2178,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -2762,9 +2210,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -2780,7 +2225,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 May 31 11:59 PM
               </Text>
@@ -2800,31 +2244,16 @@ exports[`snapshots! render with multiple due dates 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -2832,6 +2261,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -2856,19 +2286,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -2876,17 +2295,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -2913,9 +2325,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -2948,9 +2357,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -2966,7 +2372,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 Mar 17 12:00 AM
               </Text>
@@ -2986,31 +2391,16 @@ exports[`snapshots! render with multiple due dates 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -3018,6 +2408,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -3042,19 +2433,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -3062,17 +2442,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -3099,9 +2472,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3134,9 +2504,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3152,7 +2519,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 May 31 11:59 PM
               </Text>
@@ -3172,31 +2538,16 @@ exports[`snapshots! render with multiple due dates 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -3204,6 +2555,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -3239,9 +2591,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -3271,20 +2620,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            collapsable={undefined}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -3296,14 +2633,9 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 "opacity": 1,
               }
             }
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3331,19 +2663,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
         </View>
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -3351,20 +2672,13 @@ exports[`snapshots! render with multiple due dates 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "height": "auto",
-              "minHeight": 54,
-            },
-          ]
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": "auto",
+            "minHeight": 54,
+          }
         }
-        testID={undefined}
-        tvParallaxProperties={undefined}
       >
         <View
           style={
@@ -3380,9 +2694,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -3412,9 +2723,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3456,19 +2764,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -3476,17 +2773,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -3513,9 +2803,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3548,9 +2835,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3566,7 +2850,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 May 31 11:59 PM
               </Text>
@@ -3586,31 +2869,16 @@ exports[`snapshots! render with multiple due dates 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -3618,6 +2886,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -3642,19 +2911,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -3662,17 +2920,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -3699,9 +2950,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3734,9 +2982,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3752,7 +2997,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 Mar 17 12:00 AM
               </Text>
@@ -3772,31 +3016,16 @@ exports[`snapshots! render with multiple due dates 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -3804,6 +3033,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -3828,19 +3058,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -3848,17 +3067,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -3885,9 +3097,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3920,9 +3129,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3938,7 +3144,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 May 31 11:59 PM
               </Text>
@@ -3958,31 +3163,16 @@ exports[`snapshots! render with multiple due dates 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -3990,6 +3180,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -4009,19 +3200,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
   />
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -4029,22 +3209,15 @@ exports[`snapshots! render with multiple due dates 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "borderBottomColor": "#C7CDD1",
-            "borderBottomWidth": 0.5,
-            "borderTopColor": "#C7CDD1",
-            "borderTopWidth": 0.5,
-            "height": "auto",
-            "minHeight": 54,
-          },
-        ]
+        Object {
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
+          "height": "auto",
+          "minHeight": 54,
+        }
       }
-      testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -4078,9 +3251,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
           }
         />
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -4156,9 +3326,6 @@ exports[`snapshots! render with single due date 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {
@@ -4178,19 +3345,8 @@ exports[`snapshots! render with single due date 1`] = `
         <View />
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
         accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -4198,20 +3354,13 @@ exports[`snapshots! render with single due date 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "height": "auto",
-              "minHeight": 54,
-            },
-          ]
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "height": "auto",
+            "minHeight": 54,
+          }
         }
-        testID={undefined}
-        tvParallaxProperties={undefined}
       >
         <View
           style={
@@ -4227,9 +3376,6 @@ exports[`snapshots! render with single due date 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -4259,9 +3405,6 @@ exports[`snapshots! render with single due date 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -4303,19 +3446,8 @@ exports[`snapshots! render with single due date 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -4323,17 +3455,10 @@ exports[`snapshots! render with single due date 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -4360,9 +3485,6 @@ exports[`snapshots! render with single due date 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -4395,9 +3517,6 @@ exports[`snapshots! render with single due date 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -4413,7 +3532,6 @@ exports[`snapshots! render with single due date 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 May 31 11:59 PM
               </Text>
@@ -4433,31 +3551,16 @@ exports[`snapshots! render with single due date 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -4465,6 +3568,7 @@ exports[`snapshots! render with single due date 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -4489,19 +3593,8 @@ exports[`snapshots! render with single due date 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -4509,17 +3602,10 @@ exports[`snapshots! render with single due date 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -4546,9 +3632,6 @@ exports[`snapshots! render with single due date 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -4581,9 +3664,6 @@ exports[`snapshots! render with single due date 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -4599,7 +3679,6 @@ exports[`snapshots! render with single due date 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 Mar 17 12:00 AM
               </Text>
@@ -4619,31 +3698,16 @@ exports[`snapshots! render with single due date 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -4651,6 +3715,7 @@ exports[`snapshots! render with single due date 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -4675,19 +3740,8 @@ exports[`snapshots! render with single due date 1`] = `
         }
       >
         <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
           accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
           isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
           onResponderRelease={[Function]}
@@ -4695,17 +3749,10 @@ exports[`snapshots! render with single due date 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -4732,9 +3779,6 @@ exports[`snapshots! render with single due date 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -4767,9 +3811,6 @@ exports[`snapshots! render with single due date 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -4785,7 +3826,6 @@ exports[`snapshots! render with single due date 1`] = `
                     },
                   ]
                 }
-                testID={undefined}
               >
                 May 31 11:59 PM
               </Text>
@@ -4805,31 +3845,16 @@ exports[`snapshots! render with single due date 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
             accessibilityLabel="Remove date"
-            accessibilityTraits="button"
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ]
-            }
-            testID={undefined}
-            tvParallaxProperties={undefined}
+            style={null}
           >
             <Image
               source={
@@ -4837,6 +3862,7 @@ exports[`snapshots! render with single due date 1`] = `
                   "testUri": "../../../src/images/Clear.png",
                 }
               }
+              style={null}
             />
           </View>
         </View>
@@ -4856,19 +3882,8 @@ exports[`snapshots! render with single due date 1`] = `
   />
   <View>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
       accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -4876,22 +3891,15 @@ exports[`snapshots! render with single due date 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "borderBottomColor": "#C7CDD1",
-            "borderBottomWidth": 0.5,
-            "borderTopColor": "#C7CDD1",
-            "borderTopWidth": 0.5,
-            "height": "auto",
-            "minHeight": 54,
-          },
-        ]
+        Object {
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "borderTopColor": "#C7CDD1",
+          "borderTopWidth": 0.5,
+          "height": "auto",
+          "minHeight": 54,
+        }
       }
-      testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -4925,9 +3933,6 @@ exports[`snapshots! render with single due date 1`] = `
           }
         />
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Array [
               Object {

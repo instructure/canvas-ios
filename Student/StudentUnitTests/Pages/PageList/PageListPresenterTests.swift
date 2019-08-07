@@ -83,14 +83,13 @@ class PageListPresenterTests: PersistenceTestCase {
         let expectation = self.expectation(description: "pages")
         expectation.assertForOverFulfill = false
         onUpdate = {
-            if !self.coursePresenter.pages.isEmpty {
+            if self.coursePresenter.pages.first?.title == "Answers Page" {
                 expectation.fulfill()
 
             }
         }
         coursePresenter.viewIsReady()
         wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(coursePresenter.pages.first?.title, "Answers Page")
     }
 
     func testLoadFrontPage() {

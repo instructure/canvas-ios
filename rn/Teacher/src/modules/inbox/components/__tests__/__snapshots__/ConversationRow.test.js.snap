@@ -95,9 +95,6 @@ exports[`renders correctly 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             numberOfLines={1}
             style={
               Array [
@@ -123,9 +120,6 @@ exports[`renders correctly 1`] = `
           </Text>
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -152,9 +146,6 @@ exports[`renders correctly 1`] = `
         </View>
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         numberOfLines={1}
         style={
           Array [
@@ -178,9 +169,6 @@ exports[`renders correctly 1`] = `
         learn to write code
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         numberOfLines={1}
         style={
           Array [
@@ -307,9 +295,6 @@ exports[`renders correctly with a bunch of people in there 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             numberOfLines={1}
             style={
               Array [
@@ -335,9 +320,6 @@ exports[`renders correctly with a bunch of people in there 1`] = `
           </Text>
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -364,9 +346,6 @@ exports[`renders correctly with a bunch of people in there 1`] = `
         </View>
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         numberOfLines={1}
         style={
           Array [
@@ -390,9 +369,6 @@ exports[`renders correctly with a bunch of people in there 1`] = `
         learn to write code
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         numberOfLines={1}
         style={
           Array [
@@ -547,9 +523,6 @@ exports[`renders correctly with different data 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             numberOfLines={1}
             style={
               Array [
@@ -575,9 +548,6 @@ exports[`renders correctly with different data 1`] = `
           </Text>
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -604,9 +574,6 @@ exports[`renders correctly with different data 1`] = `
         </View>
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         numberOfLines={1}
         style={
           Array [
@@ -630,9 +597,6 @@ exports[`renders correctly with different data 1`] = `
         No Subject
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         numberOfLines={1}
         style={
           Array [

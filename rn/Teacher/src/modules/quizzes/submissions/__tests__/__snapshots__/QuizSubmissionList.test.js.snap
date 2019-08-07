@@ -2,6 +2,7 @@
 
 exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -40,9 +41,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -62,12 +60,8 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
         </Text>
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Filter Submissions. (0) selected."
-        accessibilityTraits="button"
         accessible={true}
-        collapsable={undefined}
-        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -77,8 +71,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
           }
         }
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -93,13 +85,9 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
           }
         }
         testID="submission-list.filter"
-        tvParallaxProperties={undefined}
       >
         <View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -132,19 +120,8 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
       <item>
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -152,17 +129,11 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "flex": 1,
-                },
-              ]
+              Object {
+                "flex": 1,
+              }
             }
             testID="submission-1"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -231,8 +202,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -258,9 +227,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                   Bill Murray
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -290,9 +256,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                 </Text>
               </View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -331,6 +294,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
 
 exports[`QuizSubmissionList loads while pending 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -363,6 +327,7 @@ exports[`QuizSubmissionList loads while pending 1`] = `
 
 exports[`QuizSubmissionList loads with a filter type 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -401,9 +366,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -423,12 +385,8 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
         </Text>
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Filter Submissions. (1) selected."
-        accessibilityTraits="button"
         accessible={true}
-        collapsable={undefined}
-        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -438,8 +396,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
           }
         }
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -454,13 +410,9 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
           }
         }
         testID="submission-list.filter"
-        tvParallaxProperties={undefined}
       >
         <View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -493,19 +445,8 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
       <item>
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -513,17 +454,11 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "flex": 1,
-                },
-              ]
+              Object {
+                "flex": 1,
+              }
             }
             testID="submission-1"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -592,8 +527,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -619,9 +552,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                   Bill Murray
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -651,9 +581,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                 </Text>
               </View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -692,6 +619,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
 
 exports[`QuizSubmissionList navigate to submission settings 1`] = `
 <RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Object {
       "flex": 1,
@@ -730,9 +658,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
       >
         <Text
           accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           numberOfLines={1}
           style={
             Array [
@@ -752,12 +677,8 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
         </Text>
       </View>
       <View
-        accessibilityComponentType={undefined}
         accessibilityLabel="Filter Submissions. (0) selected."
-        accessibilityTraits="button"
         accessible={true}
-        collapsable={undefined}
-        hasTVPreferredFocus={undefined}
         hitSlop={
           Object {
             "bottom": 15,
@@ -767,8 +688,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
           }
         }
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -783,13 +702,9 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
           }
         }
         testID="submission-list.filter"
-        tvParallaxProperties={undefined}
       >
         <View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
@@ -822,19 +737,8 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
       <item>
         <View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={
-              Array [
-                "button",
-              ]
-            }
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -842,17 +746,11 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                Object {
-                  "flex": 1,
-                },
-              ]
+              Object {
+                "flex": 1,
+              }
             }
             testID="submission-1"
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -921,8 +819,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -948,9 +844,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                   Bill Murray
                 </Text>
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Array [
                       Object {
@@ -980,9 +873,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                 </Text>
               </View>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {

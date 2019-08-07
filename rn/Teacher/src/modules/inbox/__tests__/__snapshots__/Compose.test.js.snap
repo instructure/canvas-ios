@@ -68,6 +68,7 @@ exports[`Compose renders 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
+        delayPressOut={100}
         onPress={[Function]}
         style={
           Object {
@@ -121,6 +122,7 @@ exports[`Compose renders 1`] = `
           onChangeText={[Function]}
           placeholder="Subject"
           placeholderTextColor="#7F91A7"
+          rejectResponderTermination={true}
           style={
             Array [
               Object {
@@ -138,6 +140,7 @@ exports[`Compose renders 1`] = `
               },
             ]
           }
+          underlineColorAndroid="transparent"
           value={null}
         />
       </View>
@@ -255,6 +258,7 @@ exports[`Compose renders after picking a course 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
+        delayPressOut={100}
         onPress={[Function]}
         style={
           Object {
@@ -390,6 +394,7 @@ exports[`Compose renders after picking a course 1`] = `
           onChangeText={[Function]}
           placeholder="Subject"
           placeholderTextColor="#7F91A7"
+          rejectResponderTermination={true}
           style={
             Array [
               Object {
@@ -407,6 +412,7 @@ exports[`Compose renders after picking a course 1`] = `
               },
             ]
           }
+          underlineColorAndroid="transparent"
           value={null}
         />
       </View>
@@ -524,6 +530,7 @@ exports[`Compose renders reply 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
+        delayPressOut={100}
         style={
           Object {
             "borderBottomColor": "#C7CDD1",
@@ -657,6 +664,7 @@ exports[`Compose renders reply 1`] = `
           onChangeText={[Function]}
           placeholder="Subject"
           placeholderTextColor="#7F91A7"
+          rejectResponderTermination={true}
           style={
             Array [
               Object {
@@ -674,6 +682,7 @@ exports[`Compose renders reply 1`] = `
               },
             ]
           }
+          underlineColorAndroid="transparent"
           value="(no subject)"
         />
       </View>
@@ -791,6 +800,7 @@ exports[`Compose renders with passed in recipients 1`] = `
     >
       <TouchableHighlight
         activeOpacity={0.85}
+        delayPressOut={100}
         onPress={[Function]}
         style={
           Object {
@@ -844,6 +854,7 @@ exports[`Compose renders with passed in recipients 1`] = `
           onChangeText={[Function]}
           placeholder="Subject"
           placeholderTextColor="#7F91A7"
+          rejectResponderTermination={true}
           style={
             Array [
               Object {
@@ -861,6 +872,7 @@ exports[`Compose renders with passed in recipients 1`] = `
               },
             ]
           }
+          underlineColorAndroid="transparent"
           value={null}
         />
       </View>

@@ -36,9 +36,6 @@ exports[`My message rows render correctly 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -63,9 +60,6 @@ exports[`My message rows render correctly 1`] = `
         Higgs Boson
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -152,9 +146,6 @@ exports[`My message rows render correctly 1`] = `
         }
       />
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -229,9 +220,6 @@ exports[`Their message rows render correctly 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -256,9 +244,6 @@ exports[`Their message rows render correctly 1`] = `
         Higgs Boson
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -343,9 +328,6 @@ exports[`Their message rows render correctly 1`] = `
         }
       />
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -420,9 +402,6 @@ exports[`their submissions render correctly 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -447,9 +426,6 @@ exports[`their submissions render correctly 1`] = `
         Higgs Boson
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -531,9 +507,6 @@ exports[`video comments without url render correctly 1`] = `
     >
       <Text
         accessibilityTraits="header"
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -558,9 +531,6 @@ exports[`video comments without url render correctly 1`] = `
         Higgs Boson
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {

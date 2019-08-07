@@ -19,7 +19,7 @@
 /* eslint-disable flowtype/require-valid-file-annotation */
 import React from 'react'
 import { shallow } from 'enzyme'
-import { AlertIOS } from 'react-native'
+import { Alert } from 'react-native'
 import { alertError } from '../../../redux/middleware/error-handler'
 
 import EditItem from '../EditItem'
@@ -205,10 +205,10 @@ describe('EditItem folder', () => {
     const dismissing = Promise.resolve()
     props.delete = jest.fn(() => deleting)
     props.navigator.dismiss = jest.fn(() => dismissing)
-    AlertIOS.alert = jest.fn()
+    Alert.alert = jest.fn()
     const tree = shallow(<EditItem {...props} />)
     tree.find(selector.delete).simulate('Press')
-    expect(AlertIOS.alert).toHaveBeenCalledWith(
+    expect(Alert.alert).toHaveBeenCalledWith(
       'Delete Folder?',
       'Deleting this folder will also delete all of the files inside the folder.',
       [
@@ -216,7 +216,7 @@ describe('EditItem folder', () => {
         { text: 'Delete', onPress: expect.any(Function) },
       ],
     )
-    AlertIOS.alert.mock.calls[0][2][1].onPress()
+    Alert.alert.mock.calls[0][2][1].onPress()
     await deleting
     expect(props.delete).toHaveBeenCalledWith(props.itemID, true)
     await updatedState(tree)
@@ -231,10 +231,10 @@ describe('EditItem folder', () => {
     props.delete = jest.fn(() => Promise.resolve())
     props.navigator.dismiss = jest.fn(() => dismissing)
     props.onDelete = jest.fn()
-    AlertIOS.alert = jest.fn()
+    Alert.alert = jest.fn()
     const tree = shallow(<EditItem {...props} />)
     tree.find(selector.delete).simulate('Press')
-    AlertIOS.alert.mock.calls[0][2][1].onPress()
+    Alert.alert.mock.calls[0][2][1].onPress()
     await dismissing
     await updatedState(tree)
     expect(props.onDelete).toHaveBeenCalled()
@@ -243,10 +243,10 @@ describe('EditItem folder', () => {
   it('alerts if it cannot delete', async () => {
     const deleting = Promise.reject('oh noes!')
     props.delete = jest.fn(() => deleting)
-    AlertIOS.alert = jest.fn()
+    Alert.alert = jest.fn()
     const tree = shallow(<EditItem {...props} />)
     tree.find(selector.delete).simulate('Press')
-    AlertIOS.alert.mock.calls[0][2][1].onPress()
+    Alert.alert.mock.calls[0][2][1].onPress()
     await deleting.catch(() => {})
     jest.runOnlyPendingTimers()
     expect(alertError.error).toBe('oh noes!')
@@ -342,10 +342,10 @@ describe('EditItem file', () => {
     const dismissing = Promise.resolve()
     props.delete = jest.fn(() => deleting)
     props.navigator.dismiss = jest.fn(() => dismissing)
-    AlertIOS.alert = jest.fn()
+    Alert.alert = jest.fn()
     const tree = shallow(<EditItem {...props} />)
     tree.find(selector.delete).simulate('Press')
-    expect(AlertIOS.alert).toHaveBeenCalledWith(
+    expect(Alert.alert).toHaveBeenCalledWith(
       'Are you sure you want to delete passwords.txt?',
       null,
       [
@@ -353,7 +353,7 @@ describe('EditItem file', () => {
         { text: 'Delete', onPress: expect.any(Function) },
       ],
     )
-    AlertIOS.alert.mock.calls[0][2][1].onPress()
+    Alert.alert.mock.calls[0][2][1].onPress()
     await deleting
     expect(props.delete).toHaveBeenCalled()
     await updatedState(tree)

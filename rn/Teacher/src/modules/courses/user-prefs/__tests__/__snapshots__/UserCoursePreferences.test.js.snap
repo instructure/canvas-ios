@@ -90,9 +90,6 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -134,10 +131,10 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
       </View>
     </Modal>
     <RCTScrollView
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
@@ -191,9 +188,6 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -217,6 +211,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
             <TextInput
               allowFontScaling={true}
               onChangeText={[Function]}
+              rejectResponderTermination={true}
               style={
                 Array [
                   Object {
@@ -243,6 +238,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                 ]
               }
               testID="nameInput"
+              underlineColorAndroid="transparent"
               value="Learn React Native"
             />
           </View>
@@ -256,9 +252,6 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
           />
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -282,9 +275,6 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
               Color
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -875,9 +865,6 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -919,10 +906,10 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
       </View>
     </Modal>
     <RCTScrollView
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
@@ -976,9 +963,6 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1002,6 +986,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
             <TextInput
               allowFontScaling={true}
               onChangeText={[Function]}
+              rejectResponderTermination={true}
               style={
                 Array [
                   Object {
@@ -1028,6 +1013,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                 ]
               }
               testID="nameInput"
+              underlineColorAndroid="transparent"
               value="Learn React Native"
             />
           </View>
@@ -1041,9 +1027,6 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
           />
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1067,9 +1050,6 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
               Color
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1690,9 +1670,6 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -1734,10 +1711,10 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
       </View>
     </Modal>
     <RCTScrollView
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
@@ -1791,9 +1768,6 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1817,6 +1791,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
             <TextInput
               allowFontScaling={true}
               onChangeText={[Function]}
+              rejectResponderTermination={true}
               style={
                 Array [
                   Object {
@@ -1843,6 +1818,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                 ]
               }
               testID="nameInput"
+              underlineColorAndroid="transparent"
               value="New Course Name"
             />
           </View>
@@ -1856,9 +1832,6 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
           />
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -1882,9 +1855,6 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
               Color
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2685,9 +2655,6 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -2729,10 +2696,10 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
       </View>
     </Modal>
     <RCTScrollView
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
@@ -2786,9 +2753,6 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2812,6 +2776,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
             <TextInput
               allowFontScaling={true}
               onChangeText={[Function]}
+              rejectResponderTermination={true}
               style={
                 Array [
                   Object {
@@ -2838,6 +2803,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                 ]
               }
               testID="nameInput"
+              underlineColorAndroid="transparent"
               value="Learn React Native"
             />
           </View>
@@ -2851,9 +2817,6 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
           />
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -2877,9 +2840,6 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
               Color
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3680,9 +3640,6 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -3781,9 +3738,6 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3807,6 +3761,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
             <TextInput
               allowFontScaling={true}
               onChangeText={[Function]}
+              rejectResponderTermination={true}
               style={
                 Array [
                   Object {
@@ -3833,6 +3788,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                 ]
               }
               testID="nameInput"
+              underlineColorAndroid="transparent"
               value="Learn React Native"
             />
           </View>
@@ -3846,9 +3802,6 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
           />
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -3872,9 +3825,6 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
               Color
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -4675,9 +4625,6 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -4776,9 +4723,6 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -4802,6 +4746,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
             <TextInput
               allowFontScaling={true}
               onChangeText={[Function]}
+              rejectResponderTermination={true}
               style={
                 Array [
                   Object {
@@ -4828,6 +4773,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                 ]
               }
               testID="nameInput"
+              underlineColorAndroid="transparent"
               value="Learn React Native"
             />
           </View>
@@ -4841,9 +4787,6 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
           />
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -4867,9 +4810,6 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
               Color
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -5670,9 +5610,6 @@ exports[`UserCoursePreferences renders 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -5714,10 +5651,10 @@ exports[`UserCoursePreferences renders 1`] = `
       </View>
     </Modal>
     <RCTScrollView
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
@@ -5787,9 +5724,6 @@ exports[`UserCoursePreferences renders 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -5813,6 +5747,7 @@ exports[`UserCoursePreferences renders 1`] = `
             <TextInput
               allowFontScaling={true}
               onChangeText={[Function]}
+              rejectResponderTermination={true}
               style={
                 Array [
                   Object {
@@ -5839,6 +5774,7 @@ exports[`UserCoursePreferences renders 1`] = `
                 ]
               }
               testID="nameInput"
+              underlineColorAndroid="transparent"
               value="Learn React Native"
             />
           </View>
@@ -5852,9 +5788,6 @@ exports[`UserCoursePreferences renders 1`] = `
           />
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -5878,9 +5811,6 @@ exports[`UserCoursePreferences renders 1`] = `
               Color
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -6681,9 +6611,6 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -6782,9 +6709,6 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -6808,6 +6732,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
             <TextInput
               allowFontScaling={true}
               onChangeText={[Function]}
+              rejectResponderTermination={true}
               style={
                 Array [
                   Object {
@@ -6834,6 +6759,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                 ]
               }
               testID="nameInput"
+              underlineColorAndroid="transparent"
               value="Learn React Native"
             />
           </View>
@@ -6847,9 +6773,6 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
           />
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -6873,9 +6796,6 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
               Color
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -7676,9 +7596,6 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -7720,10 +7637,10 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
       </View>
     </Modal>
     <RCTScrollView
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
@@ -7777,9 +7694,6 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -7803,6 +7717,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
             <TextInput
               allowFontScaling={true}
               onChangeText={[Function]}
+              rejectResponderTermination={true}
               style={
                 Array [
                   Object {
@@ -7829,6 +7744,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                 ]
               }
               testID="nameInput"
+              underlineColorAndroid="transparent"
               value="Learn React Native"
             />
           </View>
@@ -7842,9 +7758,6 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
           />
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -7868,9 +7781,6 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
               Color
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -8671,9 +8581,6 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -8715,10 +8622,10 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
       </View>
     </Modal>
     <RCTScrollView
-      onRefresh={[Function]}
+      onRefresh={[MockFunction]}
       refreshControl={
         <RefreshControlMock
-          onRefresh={[Function]}
+          onRefresh={[MockFunction]}
           refreshing={false}
         />
       }
@@ -8775,9 +8682,6 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -8801,6 +8705,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
             <TextInput
               allowFontScaling={true}
               onChangeText={[Function]}
+              rejectResponderTermination={true}
               style={
                 Array [
                   Object {
@@ -8827,6 +8732,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                 ]
               }
               testID="nameInput"
+              underlineColorAndroid="transparent"
               value="Learn React Native"
             />
           </View>
@@ -8840,9 +8746,6 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
           />
           <View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
@@ -8866,9 +8769,6 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
               Color
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
