@@ -26,7 +26,7 @@ import Core
 
 func rootViewController(_ session: Session) -> UIViewController {
     let tabs = CanvasTabBarController()
-    
+
     do {
         tabs.viewControllers = [
             dashboardTab(session: session),
@@ -37,14 +37,14 @@ func rootViewController(_ session: Session) -> UIViewController {
                 Router.shared().route(from: vc, to: url)
             },
             try NotificationsTab(session: session),
-            inboxTab()
+            inboxTab(),
         ]
     } catch let e as NSError {
         delay(0.1) {
             ErrorReporter.reportError(e, from: tabs)
         }
     }
-    
+
     let selectedTab = UserPreferences.landingPage(session.user.id)
     tabs.selectedIndex = selectedTab.tabIndex
     tabs.tabBar.useGlobalNavStyle()
@@ -55,7 +55,7 @@ func dashboardTab(session: Session) -> UIViewController {
     let dashboardVC = HelmViewController(moduleName: "/", props: [:])
     let dashboardNav = HelmNavigationController(rootViewController: dashboardVC)
     let dashboardSplit = EnrollmentSplitViewController()
-    let emptyNav = UINavigationController(rootViewController:EmptyViewController())
+    let emptyNav = UINavigationController(rootViewController: EmptyViewController())
     emptyNav.navigationBar.useGlobalNavStyle()
     dashboardNav.delegate = dashboardSplit
     dashboardNav.navigationBar.useGlobalNavStyle()

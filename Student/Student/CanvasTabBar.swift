@@ -29,13 +29,13 @@ class CanvasTabBarController: UITabBarController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         NotificationKitController.registerForPushNotifications()
         DispatchQueue.main.async {
             StartupManager.shared.markStartupFinished()
         }
     }
-    
+
     // Should be called when from the delegate method shouldSelectViewController
     @objc func logShouldSelectViewController(viewController: UIViewController) {
         let map = ["dashboard_selected", "calendar_selected", "todo_list_selected", "notifications_selected", "inbox_selected"]

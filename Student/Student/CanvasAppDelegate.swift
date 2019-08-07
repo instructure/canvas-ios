@@ -103,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             LegacyModuleProgressShim.observeProgress(legacyClient.authSession)
             ModuleItem.beginObservingProgress(legacyClient.authSession)
             CKCanvasAPI.updateCurrentAPI()
-            GetBrandVariables().fetch(environment: self.environment) { response, _, _ in
+            GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
                 NativeLoginManager.login(as: session, wasReload: wasReload)
             }
@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             self.userDidLogout(keychainEntry: session)
         } })
     }
-    
+
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
         return openCanvasURL(url)
     }
@@ -120,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         return self.application(application, handleOpen: url)
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         return openCanvasURL(url)
     }
 
@@ -152,16 +152,24 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         NotificationKitController.didRegisterForRemoteNotifications(deviceToken, errorHandler: handlePushNotificationRegistrationError)
     }
-    
+
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         handlePushNotificationRegistrationError((error as NSError).addingInfo())
     }
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
         handlePush(userInfo: response.notification.request.content.userInfo)
     }
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
         completionHandler([.alert, .sound])
     }
 
@@ -171,7 +179,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
-            let _ = notification["aps"] as? [String: AnyObject] {
+            notification["aps"] as? [String: AnyObject] != nil {
             handlePush(userInfo: notification)
         }
     }
@@ -197,7 +205,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 }
 
 extension AppDelegate: CanvasAnalyticsHandler {
-    func handleEvent(_ name: String, parameters: [String : Any]?) {
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
         if hasFirebase {
             Analytics.logEvent(name, parameters: parameters)
         }
@@ -206,16 +214,16 @@ extension AppDelegate: CanvasAnalyticsHandler {
 
 // MARK: SoErroneous
 extension AppDelegate {
-    
+
     @objc func alertUser(of error: NSError, from presentingViewController: UIViewController?) {
         guard let presentFrom = presentingViewController else { return }
-        
+
         DispatchQueue.main.async {
             let alertDetails = error.alertDetails(reportAction: {
                 let support = SupportTicketViewController.present(from: presentFrom, supportTicketType: SupportTicketTypeProblem, defaultSubject: nil)
                 support.reportedError = error
             })
-            
+
             if let deets = alertDetails {
                 let alert = UIAlertController(title: deets.title, message: deets.description, preferredStyle: .alert)
                 deets.actions.forEach(alert.addAction)
@@ -223,17 +231,17 @@ extension AppDelegate {
             }
         }
     }
-    
+
     @objc func setupDefaultErrorHandling() {
         CanvasCore.ErrorReporter.setErrorHandler({ error, presentingViewController in
             self.alertUser(of: error, from: presentingViewController)
-            
+
             if error.shouldRecordInCrashlytics {
                 Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: nil)
             }
         })
     }
-    
+
     @objc func handleError(_ error: NSError) {
         DispatchQueue.main.async {
             ErrorReporter.reportError(error, from: self.window?.rootViewController)
@@ -243,14 +251,14 @@ extension AppDelegate {
 
 // MARK: Crashlytics
 extension AppDelegate {
-    
+
     @objc func setupCrashlytics() {
         guard !uiTesting else { return }
         guard hasFabric else {
-            NSLog("WARNING: Crashlytics was not properly initialized.");
+            NSLog("WARNING: Crashlytics was not properly initialized.")
             return
         }
-        
+
         Fabric.with([Crashlytics.self])
         CanvasCrashlytics.setupForReactNative()
     }
@@ -294,23 +302,23 @@ extension AppDelegate {
         StartupManager.shared.enqueueTask({ [weak self] in
             let path = url.path
             var index: Int?
-            
+
             for (i, element) in tabRoutes.enumerated() {
-                if let _ = element.firstIndex(of: path) {
+                if element.firstIndex(of: path) != nil {
                     index = i
                     break
                 }
             }
-            
+
             if let i = index {
                 guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController else { return }
-                
+
                 let finish = {
                     tabBarController.selectedIndex = i
                     tabBarController.resetSelectedViewController()
                 }
-                
-                if let _ = tabBarController.presentedViewController {
+
+                if tabBarController.presentedViewController != nil {
                     tabBarController.dismiss(animated: true, completion: {
                         DispatchQueue.main.async(execute: finish)
                     })
@@ -318,11 +326,11 @@ extension AppDelegate {
                     finish()
                 }
             } else {
-                
+
                 if handleDropboxOpenURL(url) {
                     return
                 }
-                
+
                 if url.scheme == "file" {
                     do {
                         try ReceivedFilesViewController.add(toReceivedFiles: url)
@@ -333,7 +341,7 @@ extension AppDelegate {
                     Router.shared().openCanvasURL(url, withOptions: ["modal": true])
                 }
             }
-        })        
+        })
         return true
     }
 }
@@ -386,7 +394,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 }
 
-//  MARK: - Handle siri notifications
+// MARK: - Handle siri notifications
 extension AppDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url) {
@@ -407,4 +415,3 @@ extension AppDelegate {
         return false
     }
 }
-

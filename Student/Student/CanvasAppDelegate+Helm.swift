@@ -41,7 +41,7 @@ extension AppDelegate: RCTBridgeDelegate {
             guard self.window?.rootViewController is CanvasTabBarController else { return }
             guard let session = Keychain.mostRecentSession else {
                 self.changeUser()
-                return	
+                return
             }
             self.setup(session: session, wasReload: true)
         }
@@ -53,7 +53,7 @@ extension AppDelegate: RCTBridgeDelegate {
         registerScreen("/:context/:contextID/files/:fileID/download")
 
         registerScreen("/courses/:courseID/assignments/syllabus")
-        
+
         registerScreen("/courses/:courseID/quizzes")
         registerScreen("/courses/:courseID/quizzes/:quizID")
         registerScreen("/courses/:courseID/modules")
@@ -77,9 +77,8 @@ extension AppDelegate: RCTBridgeDelegate {
         }
         registerModuleItemScreen("/courses/:courseID/pages/:url", parametersToProps: pageParamsToProps)
         registerModuleItemScreen("/courses/:courseID/wiki/:url", parametersToProps: pageParamsToProps)
-        
-        
-        HelmManager.shared.registerNativeViewController(for: "/profile/settings", factory: { props in
+
+        HelmManager.shared.registerNativeViewController(for: "/profile/settings", factory: { _ in
             let settings = SettingsViewController.controller(CKCanvasAPI.current())
             return UINavigationController(rootViewController: settings)
         })
@@ -90,28 +89,28 @@ extension AppDelegate: RCTBridgeDelegate {
             let url = URL(string: "api/v1/groups/\(groupID)/tabs")
             return Router.shared().controller(forHandling: url)
         })
-        
+
         registerScreen("/courses/:courseID/assignments/:assignmentID")
         registerScreen("/act-as-user")
         registerScreen("/act-as-user/:userID")
-        
+
         let nativeFactory: ([String: Any]) -> UIViewController? = { props in
             guard let route = props["route"] as? String else { return nil }
             let url = URL(string: "api/v1/\(route)")
             let controller = Router.shared().controller(forHandling: url)
-            
+
                 // Work around all these controllers not setting the nav color
             DispatchQueue.main.async {
                 guard let color = RCTConvert.uiColor(props["color"]) else { return }
                 controller?.navigationController?.navigationBar.useContextColor(color)
             }
-            
+
             return controller
         }
-        
+
         HelmManager.shared.registerNativeViewController(for: "/native-route/*route", factory: nativeFactory)
         HelmManager.shared.registerNativeViewController(for: "/native-route-master/*route", factory: nativeFactory)
-        
+
         CanvasCore.registerSharedNativeViewControllers()
     }
 
@@ -126,7 +125,7 @@ extension AppDelegate: RCTBridgeDelegate {
         let url = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index.ios", fallbackResource: nil)
         return url
     }
-    
+
     // Use this if the moduleName maps cleanly to a native route we already have set up.
     @objc open func registerScreen(_ moduleName: ModuleName) {
         HelmManager.shared.registerNativeViewController(for: moduleName, factory: { props in
@@ -134,7 +133,7 @@ extension AppDelegate: RCTBridgeDelegate {
             return Router.shared().controller(forHandling: url)
         })
     }
-    
+
     // Use this if the moduleName maps to a RN view
     // but needs to be embedded in a ModuleItemDetailViewController
     // when a module_item_id param is present
@@ -191,10 +190,4 @@ func moduleItemDetailViewController(courseID: String, moduleItemID: String) -> M
     } catch {
         return nil
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
-	guard let input = input else { return nil }
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }
