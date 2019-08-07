@@ -7,6 +7,7 @@
     "View.\\w+$",
     "Window.\\w+$",
     "\\/Views\\/",
+    "CanvasCore\/",
     "CanvasKit1\/",
     "Core\/ShareExtension\/",
     "Core\/Use Cases\/SubmitFileSubmission",

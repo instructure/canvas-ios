@@ -60,7 +60,7 @@ function checkSchemeCoverage (scheme, master, pr) {
     fail(`The total test coverage in ${scheme} is below the minimum ${percent(totalMinCoverage)}`)
   }
   return `**${scheme}** | ${coverageMarkdown(pr.total, master.total)}
-    ${files.map(path =>
+    ${files.slice(0, 10).map(path =>
       `${path} | ${coverageMarkdown(pr[path], master[path] || empty)}`
     ).join('\n')}\n`
 }
