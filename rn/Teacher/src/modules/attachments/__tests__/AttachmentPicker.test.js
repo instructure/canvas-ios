@@ -28,7 +28,7 @@ import {
 import renderer from 'react-test-renderer'
 import AttachmentPicker from '../AttachmentPicker'
 import ImagePicker from 'react-native-image-picker'
-import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker'
+import DocumentPicker from 'react-native-document-picker'
 import explore from '../../../../test/helpers/explore'
 import Permissions from '../../../common/permissions'
 import * as template from '../../../__templates__'
@@ -38,6 +38,23 @@ jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('../../../common/components/AudioRecorder', () => 'AudioRecorder')
+  .mock('react-native-document-picker', () => ({
+    __esModule: true,
+    default: {
+      pick: jest.fn((options) => Promise.resolve({
+        uri: 'file://path/to/somewhere/on/disk.pdf',
+        name: 'disk.pdf',
+        size: 100,
+      })),
+      types: {
+        allFiles: jest.fn(() => 'content'),
+        images: jest.fn(() => 'image'),
+        video: jest.fn(() => 'video'),
+        audio: jest.fn(() => 'audio'),
+      },
+      isCancel: jest.fn(),
+    },
+  }))
   .mock('../../../common/permissions')
 
 describe('AttachmentPicker', () => {
@@ -216,61 +233,66 @@ describe('AttachmentPicker', () => {
     expect(ImagePicker.launchImageLibrary).toHaveBeenCalledWith(options.imagePicker, expect.any(Function))
   })
 
-  it('launches document picker', () => {
+  it('launches document picker', async () => {
     const picker = renderer.create(<AttachmentPicker />).getInstance()
     picker.onLayout({ nativeEvent: { layout: { width: 100, height: 200 } } })
-    DocumentPicker.show = jest.fn()
-    DocumentPickerUtil.allFiles = jest.fn()
-    picker.pickDocument(null, jest.fn())
-    expect(DocumentPicker.show).toHaveBeenCalledWith({
-      filetype: [DocumentPickerUtil.allFiles()],
-      top: 12,
-      left: 70,
-    }, expect.any(Function))
-    expect(DocumentPickerUtil.allFiles).toHaveBeenCalled()
+    DocumentPicker.pick = jest.fn()
+    await picker.pickDocument(null, jest.fn())
+    expect(DocumentPicker.pick).toHaveBeenCalledWith({
+      type: [DocumentPicker.types.allFiles],
+    })
   })
 
-  it('launches document picker with limited file types', () => {
+  it('launches document picker with limited file types', async () => {
     const fileTypes = ['image', 'video', 'audio']
     const picker = renderer.create(<AttachmentPicker fileTypes={fileTypes} />).getInstance()
     picker.onLayout({ nativeEvent: { layout: { width: 100, height: 200 } } })
-    DocumentPicker.show = jest.fn()
-    picker.pickDocument(null, jest.fn())
-    expect(DocumentPicker.show).toHaveBeenCalledWith({
-      filetype: [
-        DocumentPickerUtil.images(),
-        DocumentPickerUtil.video(),
-        DocumentPickerUtil.audio(),
+    DocumentPicker.pick = jest.fn()
+    await picker.pickDocument(null, jest.fn())
+    expect(DocumentPicker.pick).toHaveBeenCalledWith({
+      type: [
+        DocumentPicker.types.images,
+        DocumentPicker.types.video,
+        DocumentPicker.types.audio,
       ],
-      top: 12,
-      left: 70,
-    }, expect.any(Function))
+    })
   })
 
-  it('alerts document picker errors', () => {
+  it('alerts document picker errors', async () => {
     const spy = jest.fn()
     // $FlowFixMe
     Alert.alert = spy
-    DocumentPicker.show = jest.fn((options, callback) => callback('ERROR', null))
-    picker.pickDocument(null, jest.fn())
+    DocumentPicker.pick = jest.fn((options) => Promise.reject('ERROR'))
+    await picker.pickDocument(null, jest.fn())
     expect(spy).toHaveBeenCalledWith('Upload error')
   })
 
-  it('returns attachment from document picker', () => {
+  it('returns attachment from document picker', async () => {
     const doc = {
       uri: 'file://path/to/somewhere/on/disk.pdf',
-      fileName: 'disk.pdf',
-      fileSize: 100,
+      name: 'disk.pdf',
+      size: 100,
     }
-    DocumentPicker.show = jest.fn((options, callback) => callback(null, doc))
+    DocumentPicker.pick = jest.fn((options) => Promise.resolve(doc))
     const spy = jest.fn()
-    picker.pickDocument(null, spy)
+    await picker.pickDocument(null, spy)
     expect(spy).toHaveBeenCalledWith({
       uri: doc.uri,
-      display_name: doc.fileName,
-      size: doc.fileSize,
+      display_name: doc.name,
+      size: doc.size,
       mime_class: 'file',
     }, 'files')
+  })
+
+  it('cancels document picker', async () => {
+    DocumentPicker.pick = jest.fn((options) => Promise.reject('cancel'))
+    DocumentPicker.isCancel = jest.fn((e) => true)
+    const callback = jest.fn()
+    const alert = jest.fn()
+    Alert.alert = alert
+    await picker.pickDocument(null, callback)
+    expect(callback).not.toHaveBeenCalled()
+    expect(alert).not.toHaveBeenCalled()
   })
 
   it('shows audio recorder', async () => {

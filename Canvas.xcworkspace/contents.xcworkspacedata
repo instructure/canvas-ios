@@ -2,10 +2,28 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CanvasCore/CanvasCore.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Frameworks/CanvasKeymaster/CanvasKeymaster.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Frameworks/CanvasKit/CanvasKit.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Core/Core.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Parent/Parent.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Student/Student.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:rn/Teacher/ios/Teacher.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:TestsFoundation/TestsFoundation.xcodeproj">

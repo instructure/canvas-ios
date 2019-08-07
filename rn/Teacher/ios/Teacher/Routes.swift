@@ -26,6 +26,7 @@ class Router: RouterProtocol {
         let name = NSNotification.Name("route")
         let userInfo: [AnyHashable: Any] = [
             "url": url.absoluteString,
+            "modal": options?.contains(.modal) == true,
         ]
         NotificationCenter.default.post(name: name, object: nil, userInfo: userInfo)
     }

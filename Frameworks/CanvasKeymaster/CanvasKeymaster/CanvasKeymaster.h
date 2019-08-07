@@ -60,3 +60,4 @@ NS_ASSUME_NONNULL_END
 #import <CanvasKeymaster/SupportTicketViewController.h>
 #import <CanvasKeymaster/SupportTicketManager.h>
 #import <CanvasKeymaster/SupportTicket.h>
+#import <CanvasKeymaster/ImpactTableViewController.h>

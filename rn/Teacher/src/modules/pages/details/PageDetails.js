@@ -38,6 +38,7 @@ import Images from '../../../images'
 import { isTeacher, isStudent } from '../../app'
 
 const { ModuleItemsProgress } = NativeModules
+const { NativeNotificationCenter } = NativeModules
 
 type Props = {
   location: URL,
@@ -62,6 +63,10 @@ export class PageDetails extends Component<Props> {
     if (isStudent()) {
       ModuleItemsProgress.viewedPage(props.courseID, props.url)
     }
+  }
+
+  componentDidMount () {
+    this.props.refresh()
   }
 
   componentWillReceiveProps (nextProps: Props) {
@@ -185,6 +190,7 @@ export class PageDetails extends Component<Props> {
     if (!page) return
     try {
       await api.deletePage('courses', courseID, page.url)
+      NativeNotificationCenter.postNotification('refresh-pages', {})
       this.props.navigator.pop()
     } catch (error) {
       alertError(error)

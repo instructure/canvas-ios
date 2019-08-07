@@ -44,7 +44,7 @@ open class AccessIconView: UIView {
                 statusIconView.image = .icon(.no, .solid)
                 statusIconView.tintColor = UIColor.named(.ash)
             case nil:
-                statusIconView.isHidden = true
+                statusIconContainer.isHidden = true
             }
         }
     }

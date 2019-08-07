@@ -33,7 +33,19 @@ exports[`PageDetails renders 1`] = `
         "traitCollection": [MockFunction],
       }
     }
-    onRefresh={[MockFunction]}
+    onRefresh={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
     scrollEnabled={true}
     source={
       Object {
@@ -71,7 +83,19 @@ exports[`PageDetails renders while loading 1`] = `
         "traitCollection": [MockFunction],
       }
     }
-    onRefresh={[MockFunction]}
+    onRefresh={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
     scrollEnabled={true}
     source={
       Object {

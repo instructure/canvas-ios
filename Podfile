@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-workspace 'AllTheThings.xcworkspace'
+workspace 'Canvas.xcworkspace'
 inhibit_all_warnings!
 platform :ios, '11.0'
 
@@ -77,11 +77,17 @@ abstract_target 'defaults' do
   end
 
   target 'TechDebt' do
-    project 'Canvas/Canvas.xcodeproj'
+    project 'Student/Student.xcodeproj'
   end
 
-  target 'Canvas' do
-    project 'Canvas/Canvas.xcodeproj'
+  target 'Student' do
+    project 'Student/Student.xcodeproj'
+    pod 'Fabric', '~> 1.7.7'
+    pod 'Firebase/Core', '~> 5.20'
+  end
+
+  target 'StudentUnitTests' do
+    project 'Student/Student.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
     pod 'Firebase/Core', '~> 5.20'
   end
@@ -92,7 +98,7 @@ abstract_target 'defaults' do
   end
 
   target 'CanvasKit1' do
-    project 'Canvas/Canvas.xcodeproj'
+    project 'Student/Student.xcodeproj'
   end
 
   target 'CanvasKit' do
