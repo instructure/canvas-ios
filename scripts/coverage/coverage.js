@@ -246,7 +246,10 @@ function syncCoverage () {
     try {
       run(`aws s3 cp "s3://inseng-code-coverage/ios/coverage/${s3folder}/coverage-summary.json" "${coverageFolder}/coverage-summary-master.json"`)
     } catch (err) {
-      console.log('Failed to pull prior code coverage.')
+      writeFileSync(`${coverageFolder}/coverage-summary-master.json`, JSON.stringify({
+        total: { executableLines: 0, coveredLines: 0 },
+      }))
+      console.log('Failed to pull prior code coverage. Creating empty coverage for master.')
     }
   } else { // This is a master run, push to s3
     console.log('Pushing all coverage files to s3')
