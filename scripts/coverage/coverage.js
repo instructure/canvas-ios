@@ -76,6 +76,7 @@ function runTests() {
     -resultBundlePath ${resultBundlePath}`,
     { stdio: 'inherit' }
   )
+  run(`yarn test --coverage`, { cwd: 'rn/Teacher' })
 }
 
 function reportCoverage () {
@@ -89,12 +90,40 @@ function reportCoverage () {
   console.log(`Reading Xcode coverage report ${folder}`)
   const report = JSON.parse(run(`xcrun xccov view --json ${folder}/*Test/*.xccovreport`))
 
+  try {
+    console.log(`Reading Jest Istanbul coverage report`)
+    const jest = JSON.parse(readFileSync('scripts/coverage/react-native/coverage-summary.json', 'utf8'))
+    const rnfiles = []
+    for (const path of Object.keys(jest)) {
+      if (!path.endsWith('.js')) { continue }
+      rnfiles.push({
+        path,
+        name: basename(path),
+        coveredLines: jest[path].lines.covered,
+        lineCoverage: jest[path].lines.pct / 100,
+        executableLines: jest[path].lines.total,
+        functions: [],
+      })
+    }
+    report.targets.push({
+      coveredLines: jest.total.lines.total,
+      lineCoverage: jest.total.lines.pct / 100,
+      files: rnfiles,
+    })
+  } catch (err) {
+    console.error(err)
+    console.log('Failed to read Jest Istanbul coverage report. Skipping.')
+  }
+
   console.log('Generating html report')
   const cssPath = resolve(`${coverageFolder}/hljs.css`)
   run(`rm -rf "${coverageFolder}"`)
-  run(`mkdir -p "${coverageFolder}"`)
+  run(`mkdir -p "${coverageFolder}/rn/Teacher"`)
   run(`cp node_modules/highlight.js/styles/xcode.css "${cssPath}"`)
   run(`cat scripts/coverage/coverage.css >> "${cssPath}"`)
+  try {
+    run(`cp scripts/coverage/react-native/*.{css,png,js} "${coverageFolder}/rn/Teacher/"`)
+  } catch (err) {}
   let coveredLines = 0
   let executableLines = 0
   const summary = {}
@@ -134,11 +163,20 @@ function writeFileHTML (file, cssPath) {
   const htmlPath = resolve(`${coverageFolder}/${relPath}.html`)
   run(`mkdir -p "${dirname(htmlPath)}"`)
 
+  if (ext === 'js') {
+    const path = relPath.replace('rn/Teacher', 'scripts/coverage/react-native')
+    const html = readFileSync(`${path}.html`, 'utf8')
+    return writeFileSync(htmlPath, html.replace(
+      /<h1>.*<\/h1>/is,
+      `<h1>${header(relPath)}</h1>`
+    ))
+  }
+
   const source = hljs.highlight(ext, readFileSync(file.path, 'utf8')).value
   writeFileSync(htmlPath, `<!doctype html>
     <link rel="stylesheet" href="${relative(dirname(htmlPath), cssPath)}" />
     <h1>${header(relPath)}</h1>
-    <h2>${(file.coveredLines / file.executableLines * 100).toFixed(2)}%
+    <h2>${percent(file)}%
       (${file.coveredLines}/${file.executableLines}) Lines Covered</h2>
     <div class="source">
       <div class="coverage">${lineCoverage(file.functions)}</div>
@@ -148,14 +186,19 @@ function writeFileHTML (file, cssPath) {
   `)
 }
 
+function percent(file) {
+  if (!file.executableLines) { return (100).toFixed(2) }
+  return (file.coveredLines / file.executableLines * 100).toFixed(2)
+}
+
 function header (path, offset = 1) {
   if (!path) return 'Code Coverage canvas-ios'
   const parts = path.split('/')
-  const root = `Code Coverage <a href="${'../'.repeat(parts.length - offset)}index.html">canvas-ios/</a>`
+  const root = `Code Coverage <a href="${'../'.repeat(parts.length - offset)}index.html">canvas-ios</a>/`
   return root + parts.map((part, i, a) => {
     if (i === a.length - 1) return part
-    return `<a href="${'../'.repeat(a.length - i - offset)}${part}/index.html">${part}/</a>`
-  }).join('')
+    return `<a href="${'../'.repeat(a.length - i - offset)}${part}/index.html">${part}</a>`
+  }).join('/')
 }
 
 function lineNumbers (count) {
@@ -196,6 +239,9 @@ function updateFolders (folders, file) {
         .map(f => f.executableLines)
         .reduce((a, b) => a + b)
     },
+    get hasOwnFiles() {
+      return Array.from(this.files).some(file => !file.files)
+    },
     files: new Set(),
     path: path
   })
@@ -208,9 +254,22 @@ function updateFolders (folders, file) {
 async function writeFolderHTML (folder, cssPath) {
   const htmlPath = resolve(`${coverageFolder}/${folder.path || '.'}/index.html`)
   run(`mkdir -p "${dirname(htmlPath)}"`)
+  let files = []
+  const flatFiles = (set, depth) => {
+    for (const file of set) {
+      if (file.hasOwnFiles || (!depth && !file.files)) {
+        files.push(file)
+      }
+      if (file.files) {
+        flatFiles(file.files, depth + 1)
+      }
+    }
+  }
+  flatFiles(folder.files, 0)
   writeFileSync(htmlPath, `<!doctype html>
+    <link rel="stylesheet" href="${relative(dirname(htmlPath), cssPath)}" />
     <h1>${header(folder.path, 0)}</h1>
-    <h2>${(folder.coveredLines / folder.executableLines * 100).toFixed(2)}%
+    <h2>${percent(folder)}%
       (${folder.coveredLines}/${folder.executableLines}) Lines Covered</h2>
     <table style="text-align:right">
       <thead>
@@ -221,12 +280,12 @@ async function writeFolderHTML (folder, cssPath) {
         </tr>
       </thead>
       <tbody>
-      ${Array.from(folder.files).map(file => {
-        const name = basename(file.path)
-        const path = name.includes('.') ? `${name}.html` : `${name}/index.html`
+      ${files.map(file => {
+        const name = relative(folder.path, file.path)
+        const path = file.files ? `${name}/index.html` : `${name}.html`
         return `<tr>
           <td style="text-align:left"><a href="./${path}">${name}</a></td>
-          <td>${(file.coveredLines / file.executableLines * 100).toFixed(2)}%</td>
+          <td>${percent(file)}%</td>
           <td>${file.coveredLines}/${file.executableLines}</td>
         </tr>`
       }).join('')}

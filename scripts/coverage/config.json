@@ -18,6 +18,7 @@
     "Student\/Canvas\/",
     "Student\/Courses\/CourseList\/",
     "Student\/Dashboard\/",
+    "Student\/GradesWidget\/",
     "TechDebt\/",
     "UITestHelpers\/"
   ],
