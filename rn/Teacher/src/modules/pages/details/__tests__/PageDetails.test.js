@@ -38,6 +38,7 @@ describe('PageDetails', () => {
   beforeEach(() => {
     httpCache.clear()
     app.setCurrentApp('teacher')
+    jest.clearAllMocks()
     props = {
       location: new URL('/pages/page-1#jumpto'),
       courseID: '1',
@@ -286,9 +287,14 @@ describe('PageDetails', () => {
   it('refreshes when webview refreshes', () => {
     props.refresh = jest.fn()
     const screen = shallow(<PageDetails {...props} />)
-    expect(props.refresh).not.toHaveBeenCalled()
     const webView = screen.find('CanvasWebView')
     webView.simulate('Refresh')
+    expect(props.refresh).toHaveBeenCalledTimes(2)
+  })
+
+  it('refreshes on mount', () => {
+    props.refresh = jest.fn()
+    shallow(<PageDetails {...props} />)
     expect(props.refresh).toHaveBeenCalled()
   })
 

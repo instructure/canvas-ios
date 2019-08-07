@@ -51,6 +51,11 @@ extension AppDelegate {
             return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
         })
 
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/pages", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
+            return PageListViewController.create(context: ContextModel(.course, id: courseID), appTraitCollection: UIApplication.shared.keyWindow?.traitCollection)
+        })
+
         HelmManager.shared.registerNativeViewController(for: "/act-as-user", factory: { props in
             guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
             return ActAsUserViewController.create(loginDelegate: loginDelegate)

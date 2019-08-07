@@ -742,10 +742,6 @@
 		7DE1162322F8AB5C005BFE98 /* UrlSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3222F8A096000AACCE /* UrlSubmissionPresenterTests.swift */; };
 		7DE1162422F8AB5C005BFE98 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3722F8A096000AACCE /* RoutesTests.swift */; };
 		7DE1162522F8AB5C005BFE98 /* PersistenceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3822F8A096000AACCE /* PersistenceTestCase.swift */; };
-		7DE1162622F8AC78005BFE98 /* PageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0ECB22F8A02D000AACCE /* PageListCell.swift */; };
-		7DE1162722F8AC78005BFE98 /* PageListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0ECC22F8A02D000AACCE /* PageListPresenter.swift */; };
-		7DE1162822F8AC78005BFE98 /* PageListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0ECD22F8A02D000AACCE /* PageListViewController.storyboard */; };
-		7DE1162922F8AC78005BFE98 /* PageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0ECE22F8A02D000AACCE /* PageListViewController.swift */; };
 		7DEFE57122C3CE4700376F66 /* TodoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEFE57022C3CE4700376F66 /* TodoListTests.swift */; };
 		9C50D612DA6414266300170B /* Pods_defaults_CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */; };
 		9F00A5692245593200C0CC32 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
@@ -1766,10 +1762,6 @@
 		7DCF0EC722F8A01C000AACCE /* DynamicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTextField.swift; sourceTree = "<group>"; };
 		7DCF0EC822F8A01C000AACCE /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		7DCF0EC922F8A01C000AACCE /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
-		7DCF0ECB22F8A02D000AACCE /* PageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListCell.swift; sourceTree = "<group>"; };
-		7DCF0ECC22F8A02D000AACCE /* PageListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListPresenter.swift; sourceTree = "<group>"; };
-		7DCF0ECD22F8A02D000AACCE /* PageListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PageListViewController.storyboard; sourceTree = "<group>"; };
-		7DCF0ECE22F8A02D000AACCE /* PageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListViewController.swift; sourceTree = "<group>"; };
 		7DCF0ED022F8A03D000AACCE /* QuizListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListCell.swift; sourceTree = "<group>"; };
 		7DCF0ED122F8A03D000AACCE /* QuizListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListPresenter.swift; sourceTree = "<group>"; };
 		7DCF0ED222F8A03D000AACCE /* QuizListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QuizListViewController.storyboard; sourceTree = "<group>"; };
@@ -2372,7 +2364,6 @@
 				7DCF0EBD22F8A001000AACCE /* Extensions */,
 				7DCF0EC122F8A00D000AACCE /* Groups */,
 				7DCF0ECA22F8A01C000AACCE /* IBDesignables */,
-				49E80A2B1CFF8EC2002AF45E /* Pages */,
 				49A04E6F1CF64DE30051E1E7 /* Profile */,
 				7DCF0ED522F8A03D000AACCE /* Quizzes */,
 				7DCF0F0A22F8A050000AACCE /* Submissions */,
@@ -3296,14 +3287,6 @@
 			path = Messages;
 			sourceTree = "<group>";
 		};
-		49E80A2B1CFF8EC2002AF45E /* Pages */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0ECF22F8A02D000AACCE /* PageList */,
-			);
-			path = Pages;
-			sourceTree = "<group>";
-		};
 		49F9FA6D1CF8FC6A00654758 /* SoPushy */ = {
 			isa = PBXGroup;
 			children = (
@@ -3649,17 +3632,6 @@
 				7DCF0EC922F8A01C000AACCE /* IconView.swift */,
 			);
 			path = IBDesignables;
-			sourceTree = "<group>";
-		};
-		7DCF0ECF22F8A02D000AACCE /* PageList */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0ECB22F8A02D000AACCE /* PageListCell.swift */,
-				7DCF0ECC22F8A02D000AACCE /* PageListPresenter.swift */,
-				7DCF0ECD22F8A02D000AACCE /* PageListViewController.storyboard */,
-				7DCF0ECE22F8A02D000AACCE /* PageListViewController.swift */,
-			);
-			path = PageList;
 			sourceTree = "<group>";
 		};
 		7DCF0ED422F8A03D000AACCE /* QuizList */ = {
@@ -4974,7 +4946,6 @@
 				7DCF0F8722F8A831000AACCE /* AssignmentDetailsSectionContainerView.xib in Resources */,
 				7DCF0F8422F8A831000AACCE /* AssignmentDetailsViewController.storyboard in Resources */,
 				7DCF0FBD22F8A8D7000AACCE /* Drawer.xib in Resources */,
-				7DE1162822F8AC78005BFE98 /* PageListViewController.storyboard in Resources */,
 				5EB46E001D21A75C00C859A4 /* CalendarDayListViewController.storyboard in Resources */,
 				5EB46DFC1D21A75C00C859A4 /* IconTodayView.xib in Resources */,
 				7DCF0FC122F8A8D7000AACCE /* SubmissionDetailsLockedEmptyView.xib in Resources */,
@@ -5407,7 +5378,6 @@
 				61074F051DB7E88100DEEE63 /* MasteryPathSelectOptionViewController.swift in Sources */,
 				5EB46DF61D21A75C00C859A4 /* CalendarDaysOfWeekView.swift in Sources */,
 				7DCF0F8F22F8A84D000AACCE /* CourseNavigationViewController.swift in Sources */,
-				7DE1162922F8AC78005BFE98 /* PageListViewController.swift in Sources */,
 				5EB46DF31D21A75C00C859A4 /* CalendarDayCell.swift in Sources */,
 				5EB46DF71D21A75C00C859A4 /* CalendarMonthHeaderView.swift in Sources */,
 				7DCF0FA222F8A897000AACCE /* IconView.swift in Sources */,
@@ -5422,7 +5392,6 @@
 				B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */,
 				7DCF0F9E22F8A897000AACCE /* DynamicButton.swift in Sources */,
 				7DCF0F9B22F8A897000AACCE /* AvatarView.swift in Sources */,
-				7DE1162622F8AC78005BFE98 /* PageListCell.swift in Sources */,
 				49A04E541CF64C510051E1E7 /* NotificationsTab.swift in Sources */,
 				7DCF0FD122F8A8D7000AACCE /* UrlSubmissionPresenter.swift in Sources */,
 				490687961D02151E0072DBEA /* SystemSettingsLinkCell.swift in Sources */,
@@ -5448,7 +5417,6 @@
 				7DCF0F9622F8A860000AACCE /* BundleExtensions.swift in Sources */,
 				5EB46DFB1D21A75C00C859A4 /* IconTodayView.swift in Sources */,
 				6181F1311DFF47AF00B94488 /* ActivityStreamTableViewController.swift in Sources */,
-				7DE1162722F8AC78005BFE98 /* PageListPresenter.swift in Sources */,
 				7DCF0F9A22F8A868000AACCE /* GroupNavigationPresenter.swift in Sources */,
 				7DCF0FB322F8A8D7000AACCE /* SubmissionCommentAudioCell.swift in Sources */,
 				49F9FA6F1CF8FC8500654758 /* AppDelegate+Push.swift in Sources */,
