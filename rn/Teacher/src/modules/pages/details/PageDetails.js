@@ -65,6 +65,10 @@ export class PageDetails extends Component<Props> {
     }
   }
 
+  componentDidMount () {
+    this.props.refresh()
+  }
+
   componentWillReceiveProps (nextProps: Props) {
     const { isLoading, loadError } = nextProps
     if (loadError && loadError !== this.props.loadError) {
