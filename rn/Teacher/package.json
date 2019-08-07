@@ -20,9 +20,7 @@
     "danger": "danger",
     "packager:kill": "react-native-kill-packager",
     "postinstall": "./rn-mods.sh",
-    "prepush": "yarn test --coverage && yarn lint:fix && yarn flow",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "prepush": "yarn test --coverage && yarn lint:fix && yarn flow"
   },
   "optionalDependencies": {
     "fsevents": "^1.2.4"
@@ -71,7 +69,6 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-actions": "^1.2.2",
-    "snyk": "^1.124.1",
     "striptags": "^3.0.1",
     "url-parse": "^1.4.3",
     "uuid": "^3.1.0",
@@ -139,7 +136,7 @@
       "/src/canvas-api/apis",
       "/test/scripts"
     ],
-    "coverageDirectory": "./coverage",
+    "coverageDirectory": "../../scripts/coverage/react-native",
     "coverageReporters": [
       "json",
       "json-summary",

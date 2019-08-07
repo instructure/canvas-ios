@@ -1,9 +1,18 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Myfyriwr";
+
 /* Privacy - Camera Usage Description */
-"NSCameraUsageDescription" = "$(PRODUCT_NAME) defnydd o gamera";
+"NSCameraUsageDescription" = "Atodwch luniau a fideos ar gyfer negeseuon a phostiadau trafodaeth, neu eu cyflwyno fel aseiniadau.";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "Helpwch ni i ddod o hyd i ysgolion yn eich ardal.";
 
 /* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "$(PRODUCT_NAME) defnydd o ficroffon";
+"NSMicrophoneUsageDescription" = "Atodwch recordiadau sain ar gyfer negeseuon a phostiadau trafodaeth, neu eu cyflwyno fel aseiniadau.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Atodwch luniau a fideos ar gyfer negeseuon a phostiadau trafodaeth, neu eu cyflwyno fel aseiniadau.";
 
 /* Privacy - Photo Library Usage Description */
-"NSPhotoLibraryUsageDescription" = "$(PRODUCT_NAME) defnydd o lun";
+"NSPhotoLibraryUsageDescription" = "Atodwch luniau a fideos ar gyfer negeseuon a phostiadau trafodaeth, neu eu cyflwyno fel aseiniadau.";
 

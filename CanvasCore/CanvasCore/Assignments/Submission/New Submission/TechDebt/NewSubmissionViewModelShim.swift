@@ -79,12 +79,6 @@ public class NewSubmissionViewModelShim: NewSubmissionViewModel {
                 self?.documentMenuViewModel.inputs.showDocumentMenuButtonTapped()
             }
 
-        documentMenuViewModel.outputs.showDocumentMenu
-            .observe(on: UIScheduler())
-            .observeValues { [weak self] options, fileTypes in
-                self?.presentDocumentMenu(fileTypes: fileTypes, options: options)
-            }
-
         documentMenuViewModel.outputs.showImagePicker
             .observe(on: UIScheduler())
             .observeValues { [weak self] sourceType, mediaTypes in
@@ -189,19 +183,6 @@ public class NewSubmissionViewModelShim: NewSubmissionViewModel {
         self.delegate?.newSubmissionViewModel(self, wantsToPresentViewController: nav, completion: nil)
     }
 
-    private func presentDocumentMenu(fileTypes: [String], options: [DocumentOption]) {
-        let docsMenu = UIDocumentMenuViewController(documentTypes: fileTypes, in: .import)
-        docsMenu.delegate = self
-
-        for option in options {
-            docsMenu.addOption(withTitle: option.title, image: option.icon, order: .first) { [weak self] in
-                self?.documentMenuViewModel.inputs.tappedDocumentOption(option)
-            }
-        }
-
-        self.delegate?.newSubmissionViewModel(self, wantsToPresentViewController: docsMenu, completion: nil)
-    }
-
     private func presentImagePickerController(sourceType: UIImagePickerController.SourceType, mediaTypes: [String]) {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -238,12 +219,6 @@ extension NewSubmissionViewModelShim: FileUploadsViewControllerDelegate {
         viewController.dismiss(animated: true) { [weak self] in
             self?.inputs.submit(newSubmission: .fileUpload(files))
         }
-    }
-}
-
-extension NewSubmissionViewModelShim: UIDocumentMenuDelegate {
-    public func documentMenu(_ documentMenu: UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
-        self.documentMenuViewModel.inputs.tappedDocumentPicker(documentPicker)
     }
 }
 
