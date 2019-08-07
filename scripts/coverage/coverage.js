@@ -176,7 +176,7 @@ function writeFileHTML (file, cssPath) {
   writeFileSync(htmlPath, `<!doctype html>
     <link rel="stylesheet" href="${relative(dirname(htmlPath), cssPath)}" />
     <h1>${header(relPath)}</h1>
-    <h2>${(file.coveredLines / file.executableLines * 100).toFixed(2)}%
+    <h2>${percent(file)}%
       (${file.coveredLines}/${file.executableLines}) Lines Covered</h2>
     <div class="source">
       <div class="coverage">${lineCoverage(file.functions)}</div>
@@ -184,6 +184,11 @@ function writeFileHTML (file, cssPath) {
       <pre class="code"><code class="hljs ${ext}">${source}</code></pre>
     </div>
   `)
+}
+
+function percent(file) {
+  if (!file.executableLines) { return (100).toFixed(2) }
+  return (file.coveredLines / file.executableLines * 100).toFixed(2)
 }
 
 function header (path, offset = 1) {
@@ -264,7 +269,7 @@ async function writeFolderHTML (folder, cssPath) {
   writeFileSync(htmlPath, `<!doctype html>
     <link rel="stylesheet" href="${relative(dirname(htmlPath), cssPath)}" />
     <h1>${header(folder.path, 0)}</h1>
-    <h2>${(folder.coveredLines / folder.executableLines * 100).toFixed(2)}%
+    <h2>${percent(folder)}%
       (${folder.coveredLines}/${folder.executableLines}) Lines Covered</h2>
     <table style="text-align:right">
       <thead>
@@ -280,7 +285,7 @@ async function writeFolderHTML (folder, cssPath) {
         const path = file.files ? `${name}/index.html` : `${name}.html`
         return `<tr>
           <td style="text-align:left"><a href="./${path}">${name}</a></td>
-          <td>${(file.coveredLines / file.executableLines * 100).toFixed(2)}%</td>
+          <td>${percent(file)}%</td>
           <td>${file.coveredLines}/${file.executableLines}</td>
         </tr>`
       }).join('')}
