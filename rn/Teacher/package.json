@@ -138,20 +138,9 @@
     ],
     "coverageDirectory": "../../scripts/coverage/react-native",
     "coverageReporters": [
-      "json",
       "json-summary",
-      "lcov",
       "text-summary",
       "html"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 85,
-        "functions": 80,
-        "lines": 90,
-        "statements": 90
-      }
-    }
-  },
-  "snyk": true
+    ]
+  }
 }

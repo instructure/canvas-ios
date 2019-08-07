@@ -1,7 +1,27 @@
+body {
+  font-family: Helvetica Neue, Helvetica, Arial;
+  font-size: 14px;
+  color: #333;
+}
+h1 {
+  font-size: 20px;
+  margin: 10px 2px;
+}
 pre {
+  font: 12px/1.4 Consolas, "Liberation Mono", Menlo, Courier, monospace;
   margin: 0;
   padding: 0;
+  -moz-tab-size: 2;
+  -o-tab-size:  2;
+  tab-size: 2;
   position: relative;
+}
+a {
+  color: #0074D9;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 
 .source {
