@@ -17,10 +17,9 @@
 //
 
 import UIKit
-import Core
 
 class PageListCell: UITableViewCell {
-    @IBOutlet weak var iconImageView: IconView!
+    @IBOutlet weak var accessIconView: AccessIconView!
     @IBOutlet weak var titleLabel: DynamicLabel!
     @IBOutlet weak var dateLabel: DynamicLabel!
 
@@ -30,6 +29,12 @@ class PageListCell: UITableViewCell {
         formatter.timeStyle = .short
         dateLabel?.text = formatter.string(from: page.lastUpdated)
         titleLabel?.text = page.title
-        iconImageView?.tintColor = color
+        accessIconView.icon = UIImage.icon(.document, .line)
+        accessIconView.tintColor = color
+        if Bundle.main.isTeacherApp {
+            accessIconView.published = page.published
+        } else {
+            accessIconView.state = nil
+        }
     }
 }

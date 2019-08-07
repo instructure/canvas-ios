@@ -25,4 +25,5 @@ public struct APIPage: Codable, Equatable {
     let page_id: ID
     let title: String
     let html_url: String
+    let published: Bool
 }

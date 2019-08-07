@@ -23,10 +23,13 @@ import TestsFoundation
 class CanvasUITests: UITestCase {
     var user: UITestUser? { return .readStudent1 }
 
+    private static var firstRun = true
+
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
-        if app.state != .runningForeground {
+        if CanvasUITests.firstRun || app.state != .runningForeground {
+            CanvasUITests.firstRun = false
             launch()
             if currentSession() != nil {
                 Dashboard.coursesLabel.waitToExist()

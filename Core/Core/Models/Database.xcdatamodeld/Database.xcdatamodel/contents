@@ -193,6 +193,7 @@
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="isFrontPage" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastUpdated" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="published" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="url" attributeType="String" syncable="YES"/>
     </entity>
@@ -414,7 +415,7 @@
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="135"/>
         <element name="Module" positionX="-369" positionY="-18" width="128" height="135"/>
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="225"/>
-        <element name="Page" positionX="-549" positionY="-27" width="128" height="150"/>
+        <element name="Page" positionX="-549" positionY="-27" width="128" height="165"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="465"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
