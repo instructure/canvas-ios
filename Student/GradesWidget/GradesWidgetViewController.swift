@@ -20,8 +20,8 @@ import UIKit
 import NotificationCenter
 import Core
 
-let VERTICAL_PADDING = CGFloat(20)
-let DEFAULT_ERROR_MESSAGE = NSLocalizedString("Failed to load grades", comment: "")
+let verticalPadding: CGFloat = 20
+let defaultErrorMessage = NSLocalizedString("Failed to load grades", comment: "")
 
 enum GradesWidgetError: Error {
     case notLoggedIn
@@ -69,18 +69,18 @@ class GradesWidgetViewController: UIViewController {
 
     var error: Error?
 
-    var SECTION_HEADER_HEIGHT: CGFloat {
-        return UIFont.scaledNamedFont(.bold20).lineHeight + VERTICAL_PADDING
+    var sectionHeaderHeight: CGFloat {
+        return UIFont.scaledNamedFont(.bold20).lineHeight + verticalPadding
     }
 
-    var ROW_HEIGHT: CGFloat {
-        return UIFont.scaledNamedFont(.medium12).lineHeight + UIFont.scaledNamedFont(.semibold16).lineHeight + VERTICAL_PADDING
+    var rowHeight: CGFloat {
+        return UIFont.scaledNamedFont(.medium12).lineHeight + UIFont.scaledNamedFont(.semibold16).lineHeight + verticalPadding
     }
 
     // The ROW_HEIGHT is designed around the size of the collapsed widget height on a mobile device
     // But on ipad the collapsed widget height is slightly larger than on mobile and thus just using
     // the ROW_HEIGHT would show a little bit of the third row thus we have a COMPACT_ROW_HEIGHT
-    var COMPACT_ROW_HEIGHT: CGFloat = 0
+    var compactRowHeight: CGFloat = 0
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewMoreButton: UIButton?
@@ -99,7 +99,7 @@ class GradesWidgetViewController: UIViewController {
 
         viewMoreButton?.setTitle(NSLocalizedString("View more", comment: ""), for: .normal)
 
-        COMPACT_ROW_HEIGHT = self.ROW_HEIGHT
+        compactRowHeight = self.rowHeight
 
         login()
     }
@@ -140,9 +140,9 @@ class GradesWidgetViewController: UIViewController {
 extension GradesWidgetViewController: UITableViewDataSource {
     func maxNumCourseRows() -> Int {
         let totalHeight = extensionContext?.widgetMaximumSize(for: .expanded).height ?? 0
-        let assignmentSectionHeight = self.tableView(self.tableView, heightForHeaderInSection: 0) + (CGFloat(presenter.submissions.count) * self.ROW_HEIGHT)
-        let maxCourseRowsHeight = totalHeight - assignmentSectionHeight - self.SECTION_HEADER_HEIGHT
-        return Int(floor(maxCourseRowsHeight / self.ROW_HEIGHT))
+        let assignmentSectionHeight = self.tableView(self.tableView, heightForHeaderInSection: 0) + (CGFloat(presenter.submissions.count) * self.rowHeight)
+        let maxCourseRowsHeight = totalHeight - assignmentSectionHeight - self.sectionHeaderHeight
+        return Int(floor(maxCourseRowsHeight / self.rowHeight))
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -161,11 +161,11 @@ extension GradesWidgetViewController: UITableViewDataSource {
             return 0
         }
 
-        return self.SECTION_HEADER_HEIGHT
+        return self.sectionHeaderHeight
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: self.SECTION_HEADER_HEIGHT))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: self.sectionHeaderHeight))
         view.backgroundColor = .clear
 
         let sectionFont = UIFont.scaledNamedFont(.bold20)
@@ -178,7 +178,7 @@ extension GradesWidgetViewController: UITableViewDataSource {
 
         let bottomBorder = UIView()
         bottomBorder.backgroundColor = UIColor.named(.borderDark).withAlphaComponent(0.25)
-        bottomBorder.frame = CGRect(x: 16, y: self.SECTION_HEADER_HEIGHT, width: tableView.frame.size.width - 32, height: 1)
+        bottomBorder.frame = CGRect(x: 16, y: self.sectionHeaderHeight, width: tableView.frame.size.width - 32, height: 1)
 
         view.addSubview(title)
         view.addSubview(bottomBorder)
@@ -208,7 +208,7 @@ extension GradesWidgetViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return extensionContext?.widgetActiveDisplayMode == .compact ? COMPACT_ROW_HEIGHT : ROW_HEIGHT
+        return extensionContext?.widgetActiveDisplayMode == .compact ? compactRowHeight : rowHeight
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -247,7 +247,7 @@ extension GradesWidgetViewController: UITableViewDataSource {
     }
 
     func errorCell(_ error: Error) -> UITableViewCell {
-        let message = (error as? GradesWidgetError).flatMap { $0.localizedDescription } ?? DEFAULT_ERROR_MESSAGE
+        let message = (error as? GradesWidgetError).flatMap { $0.localizedDescription } ?? defaultErrorMessage
 
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = message
@@ -301,8 +301,8 @@ extension GradesWidgetViewController: NCWidgetProviding {
         if activeDisplayMode == .compact {
             // on iPad the maxSize is also the minSize so when collapsed we can't make it any smaller
             // so update the COMPACT_ROW_HEIGHT to ensure we only show two rows regardless of the size
-            if maxSize.height > (2 * COMPACT_ROW_HEIGHT) {
-                COMPACT_ROW_HEIGHT = maxSize.height / 2
+            if maxSize.height > (2 * compactRowHeight) {
+                compactRowHeight = maxSize.height / 2
             }
             viewMoreButton?.isHidden = true
             preferredContentSize = maxSize
@@ -311,9 +311,9 @@ extension GradesWidgetViewController: NCWidgetProviding {
         }
 
         let numSections = presenter.submissions.count > 0 ? 2 : 1
-        let sectionsHeight = self.SECTION_HEADER_HEIGHT * CGFloat(numSections)
-        let assignmentGradesHeight = self.ROW_HEIGHT * CGFloat(presenter.submissions.count)
-        let courseGradesHeight = self.ROW_HEIGHT * CGFloat(presenter.favorites.count)
+        let sectionsHeight = self.sectionHeaderHeight * CGFloat(numSections)
+        let assignmentGradesHeight = self.rowHeight * CGFloat(presenter.submissions.count)
+        let courseGradesHeight = self.rowHeight * CGFloat(presenter.favorites.count)
         let tableViewHeight = sectionsHeight + assignmentGradesHeight + courseGradesHeight
         let maxHeight = min(maxSize.height, tableViewHeight)
 

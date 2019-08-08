@@ -20,7 +20,7 @@ import Foundation
 
 extension Date {
 
-    public func add(_ calendarComponent: Calendar.Component, number: Int) -> Date{
+    public func add(_ calendarComponent: Calendar.Component, number: Int) -> Date {
         let endDate = Calendar.current.date(byAdding: calendarComponent, value: number, to: self)
         return endDate ?? Date()
     }

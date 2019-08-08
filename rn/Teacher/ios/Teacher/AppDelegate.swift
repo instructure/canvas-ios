@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         legacyClient.fetchCurrentUser().subscribeNext({ user in
             legacyClient.setValue(user, forKey: "currentUser")
             CanvasKeymaster.the().setup(with: legacyClient)
-            GetBrandVariables().fetch(environment: self.environment) { response, _, _ in
+            GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
                 NativeLoginManager.login(as: session, wasReload: wasReload)
             }
@@ -122,8 +122,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             ErrorReporter.reportError(error.addingInfo(), from: self?.window?.rootViewController)
         }
     }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
         completionHandler([.alert, .sound])
     }
 
@@ -142,7 +146,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
-            let _ = notification["aps"] as? [String: AnyObject] {
+            notification["aps"] as? [String: AnyObject] != nil {
             handlePush(userInfo: notification, completionHandler: {})
         }
     }
@@ -160,8 +164,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             exit(EXIT_SUCCESS)
         }
     }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         StartupManager.shared.enqueueTask {
             guard let rootView = app.keyWindow?.rootViewController as? RootTabBarController, let tabViewControllers = rootView.viewControllers else { return }
             for (index, vc) in tabViewControllers.enumerated() {
@@ -171,7 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 } else {
                     navigationController = vc as? UINavigationController
                 }
-                
+
                 guard let navController = navigationController, let helmVC = navController.viewControllers.first as? HelmViewController else { break }
                 if helmVC.moduleName == url.path {
                     rootView.selectedIndex = index
@@ -179,7 +183,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     return
                 }
             }
-            
+
             RCTLinkingManager.application(app, open: url, options: options)
         }
         return true
@@ -187,7 +191,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 }
 
 extension AppDelegate: CanvasAnalyticsHandler {
-    func handleEvent(_ name: String, parameters: [String : Any]?) {
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
         if hasFirebase {
             Analytics.logEvent(name, parameters: parameters)
         }
@@ -253,7 +257,7 @@ extension AppDelegate {
     @objc func setupCrashlytics() {
         guard !uiTesting else { return }
         guard hasFabric else {
-            NSLog("WARNING: Crashlytics was not properly initialized.");
+            NSLog("WARNING: Crashlytics was not properly initialized.")
             return
         }
 

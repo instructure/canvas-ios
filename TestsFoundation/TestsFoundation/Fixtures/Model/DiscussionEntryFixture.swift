@@ -32,7 +32,6 @@ extension DiscussionEntry {
     }
 }
 
-
 extension DiscussionTopic {
     @discardableResult
     public static func make(
