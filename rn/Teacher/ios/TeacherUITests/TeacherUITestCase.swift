@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2018-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,29 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import Foundation
 import XCTest
-import TestsFoundation
+@testable import Core
+@testable import TestsFoundation
 
-class CanvasUITests: UITestCase {
-    var user: UITestUser? { return .readStudent1 }
-
-    private static var firstRun = true
-
+class TeacherUITestCase: UITestCase {
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
-        if CanvasUITests.firstRun || app.state != .runningForeground {
-            CanvasUITests.firstRun = false
+        if app.state != .runningForeground {
             launch()
-            if currentSession() != nil {
-                Dashboard.coursesLabel.waitToExist()
-            }
         }
         reset()
-        if let user = user {
-            logInUser(user)
-            Dashboard.coursesLabel.waitToExist()
-        }
+        // mockDownload(URL(string: ".")!) // Use only mock data
     }
+
 }
