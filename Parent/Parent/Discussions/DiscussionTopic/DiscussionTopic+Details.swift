@@ -17,11 +17,9 @@
 //
 
 import Foundation
-
-
 import CoreData
 import ReactiveSwift
-
+import CanvasCore
 
 extension DiscussionTopic {
     @objc public static func predicate(_ discussionTopicID: String) -> NSPredicate {

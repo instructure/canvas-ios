@@ -299,7 +299,7 @@ extension AppDelegate {
         // several views, does not have a route configured for them so for now we
         // will hard code until we move more things over to helm
         let tabRoutes = [["/", "", "/courses", "/groups"], ["/calendar"], ["/to-do"], ["/notifications"], ["/conversations", "/inbox"]]
-        StartupManager.shared.enqueueTask({ [weak self] in
+        StartupManager.shared.enqueueTask {
             let path = url.path
             var index: Int?
 
@@ -326,22 +326,9 @@ extension AppDelegate {
                     finish()
                 }
             } else {
-
-                if handleDropboxOpenURL(url) {
-                    return
-                }
-
-                if url.scheme == "file" {
-                    do {
-                        try ReceivedFilesViewController.add(toReceivedFiles: url)
-                    } catch let e as NSError {
-                        self?.handleError(e)
-                    }
-                } else {
-                    Router.shared().openCanvasURL(url, withOptions: ["modal": true])
-                }
+                Router.shared().openCanvasURL(url, withOptions: ["modal": true])
             }
-        })
+        }
         return true
     }
 }

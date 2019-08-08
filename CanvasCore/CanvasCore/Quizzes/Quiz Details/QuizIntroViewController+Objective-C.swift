@@ -21,13 +21,8 @@ import Foundation
 
 
 extension QuizIntroViewController {
-    @objc public convenience init(session: Session, quizURL: URL, quizID: String) {
-        let components = NSURLComponents(url:quizURL, resolvingAgainstBaseURL: false)
-        components?.path = nil
-        components?.query = nil
-        components?.fragment = nil
-
-        let context = ContextID(url: quizURL)!
+    @objc public convenience init(session: Session, courseID: String, quizID: String) {
+        let context = ContextID(id: courseID, context: .course)
         let service = CanvasQuizService(session: session, context: context, quizID: quizID)
         let controller = QuizController(service: service, quiz: nil)
 

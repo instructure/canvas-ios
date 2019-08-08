@@ -22,25 +22,14 @@
 #import <CanvasKit1/CanvasKit1.h>
 #import <CanvasKit/CanvasKit.h>
 #import "UIViewController+Transitions.h"
-#import "CBIQuizViewModel.h"
 #import <TechDebt/MyLittleViewController.h>
 
-#import "CBICalendarEventViewModel.h"
-
-#import "CBIFilesTabViewModel.h"
-#import "CBIFolderViewModel.h"
-
 #import "UnsupportedViewController.h"
-#import "CBIFileViewModel.h"
-#import "CBIFileViewController.h"
 #import "CBIPeopleTabViewModel.h"
 #import "CBIPeopleViewModel.h"
 #import "CBIPeopleDetailViewController.h"
 #import "CKIClient+CBIClient.h"
 #import "UnsupportedViewController.h"
-
-#import "CBIAssignmentViewModel.h"
-#import "CBIAssignmentDetailViewController.h"
 
 #import <CanvasKit/CanvasKit.h>
 #import "CKCanvasAPI+CurrentAPI.h"
@@ -81,41 +70,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     }
 
     return nil;
-}
-
-- (id(^)(NSDictionary *params, CBIFilesTabViewModel *viewModel)) filesBlockForClass:(Class)type
-{
-    return ^ (NSDictionary *params, CBIFilesTabViewModel *viewModel) {
-        if(viewModel == nil){
-            CKIModel *context = [type modelWithID:[params[@"contextID"] description]];
-            CKITab *filesTab = [CKITab modelWithID:@"files" context:context];
-            viewModel = [CBIFilesTabViewModel viewModelForModel:filesTab];
-            viewModel.viewControllerTitle = NSLocalizedStringFromTableInBundle(@"Files", nil, [NSBundle bundleForClass:self.class], @"Title for the files screen");
-        }
-
-        ((CBIColorfulViewModel *)viewModel).tintColor = [self tintColorForContextID:params[@"contextID"] contextClass:type];
-        NSString * url = [params[@"url"] description];
-        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Files List Screen" canBeMaster:YES style:UITableViewStylePlain url:url];
-    };
-}
-
-- (id(^)(NSDictionary *params, CBIFolderViewModel *viewModel)) folderBlockForClass:(Class)type
-{
-    return ^ (NSDictionary *params, CBIFolderViewModel *viewModel) {
-        if ([[params[@"folderID"] description] isEqualToString:@"root"]) {
-            return [self filesBlockForClass:type](params, nil);
-        }
-
-        if (viewModel == nil) {
-            CKIModel *context = [type modelWithID:[params[@"contextID"] description]];
-            CKIFolder *folder = [CKIFolder modelWithID:[params[@"folderID"] description] context:context];
-            viewModel = [CBIFolderViewModel viewModelForModel:folder];
-        }
-
-        ((CBIColorfulViewModel *)viewModel).tintColor = [self tintColorForContextID:params[@"contextID"] contextClass:type];
-        NSString * url = [params[@"url"] description];
-        return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Folder List Screen" canBeMaster:YES style:UITableViewStylePlain url: url];
-    };
 }
 
 - (id(^)(NSDictionary *params, id viewModel)) usersDetailBlockForClass:(Class)type
@@ -188,65 +142,19 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     };
     
     [self addRoutesWithDictionary:@{
-        // TODO: SoPersistent assignments
-        @"/courses/:courseID/old-assignments/:assignmentID" : ^ (NSDictionary *params, id viewModel) {
-            if ([self moduleItemControllerForParams:params forClass:[CKICourse class]]) {
-                return [self moduleItemControllerForParams:params forClass:[CKICourse class]];
-            }
-        
-            if(viewModel == nil){
-                CKICourse *course = [CKICourse modelWithID:[params[@"courseID"] description]];
-                CKIAssignment *assignment = [CKIAssignment modelWithID:[params[@"assignmentID"] description] context:course];
-                viewModel = [CBIAssignmentViewModel viewModelForModel:assignment];
-            }
-
-            ((CBIColorfulViewModel *)viewModel).tintColor = [TheKeymaster.currentClient.authSession colorForCourse:[params[@"courseID"] description]];
-            UIViewController *viewController = [CBIAssignmentDetailViewController new];
-            ((CBIAssignmentDetailViewController *)viewController).viewModel = viewModel;
-        
-            return viewController;
-        },
-        
-
-        @"/courses/:courseID/old-assignments/:assignmentID/submissions/:submissionID" : ^ (NSDictionary *params, id viewModel) {
-            if (viewModel == nil) {
-                CKICourse *course = [CKICourse modelWithID:[params[@"courseID"] description]];
-                CKIAssignment *assignment = [CKIAssignment modelWithID:[params[@"assignmentID"] description] context:course];
-                viewModel = [CBIAssignmentViewModel viewModelForModel:assignment];
-            }
-
-            ((CBIColorfulViewModel *)viewModel).tintColor = [TheKeymaster.currentClient.authSession colorForCourse:[params[@"courseID"] description]];
-            CBIAssignmentDetailViewController *assignmentDetailViewController = [CBIAssignmentDetailViewController new];
-            assignmentDetailViewController.viewModel = viewModel;
-            assignmentDetailViewController.initialTab = SUBMISSION_TAB_INDEX;
-            return assignmentDetailViewController;
-        },
-        @"/groups/:contextID/files" : [self filesBlockForClass:[CKIGroup class]],
-        @"/groups/:contextID/folders/root": [self filesBlockForClass:[CKIGroup class]],
-        @"/groups/:contextID/folders/:folderID": [self folderBlockForClass:[CKIGroup class]],
-        @"/folders/:folderID" : ^(NSDictionary *params, CBIColorfulViewModel *viewModel) {
-            if(viewModel == nil){
-                CKIFolder *folder = [CKIFolder modelWithID:[params[@"folderID"] description]];
-                viewModel = [CBIFolderViewModel viewModelForModel:folder];
-                viewModel.tintColor = [UIColor prettyBlack];
-            }
-        
-            NSString * url = [params[@"url"] description];
-            return [self MLVCTableViewControllerForViewModel:viewModel screenName:@"Folder List Screen" canBeMaster:YES style:UITableViewStylePlain url: url];
-        },
         @"/courses/:contextID/people" : [self usersBlockForClass:[CKICourse class]],
         @"/courses/:contextID/users" : [self usersBlockForClass:[CKICourse class]],
         @"/groups/:contextID/people" : [self usersBlockForClass:[CKIGroup class]],
         @"/groups/:contextID/users" : [self usersBlockForClass:[CKIGroup class]],
         @"/courses/:contextID/users/:userID" : [self usersDetailBlockForClass:[CKICourse class]],
         @"/groups/:contextID/users/:userID" : [self usersDetailBlockForClass:[CKIGroup class]],
-        @"/courses/:contextID/settings" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
+        @"/courses/:contextID/settings" : ^(NSDictionary *params, CBIViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedStringFromTableInBundle(@"Settings", nil, bundle, @"Title for Settings");
             unsupportedVC.canvasURL = params[@"url"];
             return unsupportedVC;
         },
-        @"/courses/:contextID/conferences" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
+        @"/courses/:contextID/conferences" : ^(NSDictionary *params, CBIViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedStringFromTableInBundle(@"Conferences", nil, bundle, @"Title for Conferences tab");
             NSURL *baseURL = TheKeymaster.currentClient.baseURL;
@@ -255,7 +163,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             unsupportedVC.canvasURL = fullURL;
             return unsupportedVC;
         },
-        @"/courses/:contextID/collaborations" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
+        @"/courses/:contextID/collaborations" : ^(NSDictionary *params, CBIViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedStringFromTableInBundle(@"Collaborations", nil, bundle, @"Title for Collaborations tab");
             NSURL *baseURL = TheKeymaster.currentClient.baseURL;
@@ -264,7 +172,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             unsupportedVC.canvasURL = fullURL;
             return unsupportedVC;
         },
-        @"/courses/:contextID/outcomes" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
+        @"/courses/:contextID/outcomes" : ^(NSDictionary *params, CBIViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedStringFromTableInBundle(@"Outcomes", nil, bundle, @"Title for Outcomes tab");
             NSURL *baseURL = TheKeymaster.currentClient.baseURL;
@@ -273,7 +181,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             unsupportedVC.canvasURL = fullURL;
             return unsupportedVC;
         },
-        @"/groups/:contextID/conferences" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
+        @"/groups/:contextID/conferences" : ^(NSDictionary *params, CBIViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedStringFromTableInBundle(@"Conferences", nil, bundle, @"Title for Conferences tab");
             NSURL *baseURL = TheKeymaster.currentClient.baseURL;
@@ -282,7 +190,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             unsupportedVC.canvasURL = fullURL;
             return unsupportedVC;
         },
-        @"/groups/:contextID/collaborations" : ^(NSDictionary *params, CBIFileViewModel *viewModel) {
+        @"/groups/:contextID/collaborations" : ^(NSDictionary *params, CBIViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedStringFromTableInBundle(@"Collaborations", nil, bundle, @"Title for Collaborations tab");
             NSURL *baseURL = TheKeymaster.currentClient.baseURL;
@@ -291,29 +199,16 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             unsupportedVC.canvasURL = fullURL;
             return unsupportedVC;
         },
-    }];
-    
-    
-    // Quizzes
-    UIViewController *(^quizControllerConstructor)(NSDictionary *, CBIQuizViewModel *) = ^ UIViewController *(NSDictionary *params, CBIQuizViewModel *vm) {
-        if ([self moduleItemControllerForParams:params forClass:[CKICourse class]]) {
-            return [self moduleItemControllerForParams:params forClass:[CKICourse class]];
-        }
+        @"/courses/:courseID/quizzes/:quizID" : ^ UIViewController *(NSDictionary *params, CBIViewModel *vm) {
+            if ([self moduleItemControllerForParams:params forClass:[CKICourse class]]) {
+                return [self moduleItemControllerForParams:params forClass:[CKICourse class]];
+            }
 
-        if (vm == nil) {
-            CKICourse *course = [CKICourse modelWithID:[params[@"courseID"] description]];
-            vm = [CBIQuizViewModel viewModelForModel:[CKIQuiz modelWithID:[params[@"quizID"] description] context:course]];
+            Session *session = TheKeymaster.currentClient.authSession;
+            QuizIntroViewController *intro = [[QuizIntroViewController alloc] initWithSession:session courseID:[params[@"courseID"] description] quizID:[params[@"quizID"] description]];
+            return intro;
         }
-        
-        Session *session = TheKeymaster.currentClient.authSession;
-        NSURL *baseURL = TheKeymaster.currentClient.baseURL;
-        NSURL *fullURL = [baseURL URLByAppendingPathComponent:vm.model.path];
-        
-        QuizIntroViewController *intro = [[QuizIntroViewController alloc] initWithSession:session quizURL:fullURL quizID:vm.model.id];
-        return intro;
-    };
-    
-    [self addRoute:@"/courses/:courseID/quizzes/:quizID" handler:quizControllerConstructor];
+    }];
     
     [WhizzyWigView setOpenURLHandler:^(NSURL *url) {
         [self openCanvasURL:url withOptions:nil];

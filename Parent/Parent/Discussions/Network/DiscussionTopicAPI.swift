@@ -17,8 +17,7 @@
 //
 
 import Foundation
-
-
+import CanvasCore
 
 open class DiscussionTopicAPI {
 

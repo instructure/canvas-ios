@@ -18,7 +18,6 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <CanvasKit1/CanvasKit1.h>
-#import <CanvasKit1/CKURLPreviewViewController.h>
 #import <CanvasKit1/CKUploadProgressToolbar.h>
 #import "FileViewController.h"
 #import "NoPreviewAvailableController.h"
@@ -27,7 +26,6 @@
 #import "UIWebView+SafeAPIURL.h"
 #import "CBIModuleProgressNotifications.h"
 #import "CKIClient+CBIClient.h"
-#import "CBIAssignmentDetailViewController.h"
 #import "UIAlertController+TechDebt.h"
 #import "UIImage+TechDebt.h"
 
@@ -415,19 +413,12 @@
     if (self.assignmentID) {
         return self.assignmentID.stringValue;
     }
-    
-    CBIAssignmentDetailViewController *assignmentDeets = [self assignmentDeets];
-    return assignmentDeets.viewModel.model.id;
+    return nil;
 }
 
 - (NSString * _Nullable)hackishlyGetDefaultCourseIfPossible {
     if (self.courseID) {
         return self.courseID.stringValue;
-    }
-
-    CBIAssignmentDetailViewController *assignmentDeets = [self assignmentDeets];
-    if (assignmentDeets.viewModel.model.courseID) {
-        return assignmentDeets.viewModel.model.courseID;
     }
     
     if (self.contextInfo.contextType == CKContextTypeCourse) {
@@ -435,32 +426,6 @@
     }
     
     return nil;
-}
-
-- (CBIAssignmentDetailViewController * _Nullable)assignmentDeets {
-    if (self.navigationController.viewControllers.count < 2) { return nil; }
-
-    UIViewController *previousViewController = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
-    UIViewController *realFRD = previousViewController;
-    if ([previousViewController isKindOfClass:[UISplitViewController class]]) {
-        UISplitViewController *splitView = (UISplitViewController *)realFRD;
-        if ([[splitView.viewControllers objectAtIndex:1] isKindOfClass:[UINavigationController class]] && [((UINavigationController *)[splitView.viewControllers objectAtIndex:1]).topViewController isKindOfClass:[CBIAssignmentDetailViewController class]]) {
-            realFRD = [splitView.viewControllers objectAtIndex:1];
-        }
-        // TODO: This never worked in the first place, put we should fix it!
-        /*else if ([splitView.detail isKindOfClass:[CBIModuleProgressionViewController class]]) {
-            CBIModuleProgressionViewController *progressionVC = (CBIModuleProgressionViewController *)splitView.detail;
-            if ([progressionVC.childViewController isKindOfClass:[CBIAssignmentDetailViewController class]]) {
-                realFRD = progressionVC.childViewController;
-            }
-        }*/
-    }
-
-    if ([realFRD isKindOfClass:[CBIAssignmentDetailViewController class]]) {
-        return (CBIAssignmentDetailViewController *)realFRD;
-    } else {
-        return nil;
-    }
 }
 
 - (void)setUrl:(NSURL *)url {

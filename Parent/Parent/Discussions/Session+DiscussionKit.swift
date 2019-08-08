@@ -17,9 +17,8 @@
 //
 
 import Foundation
-
 import CoreData
-
+import CanvasCore
 
 let discussionKitModelName = "DiscussionKit"
 let discussionKitSubdomain = "DiscussionKit"

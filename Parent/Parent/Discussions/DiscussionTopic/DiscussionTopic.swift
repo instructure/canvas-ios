@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import CanvasCore
 
 public enum DiscussionTopicType: String {
     case SideComment = "side_comment"

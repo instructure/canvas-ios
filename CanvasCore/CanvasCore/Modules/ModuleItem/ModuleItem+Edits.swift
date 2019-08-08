@@ -89,7 +89,6 @@ extension ModuleItem {
                 let contextID = ContextID(id: me.courseID, context: .course)
                 try Tab.invalidateCache(session: session, contextID: contextID)
                 try Page.invalidateCache(session: session, contextID: contextID)
-                try Assignment.invalidateCache(session, courseID: me.courseID)
             }
         }
         return remote.flatMap(.concat, local)
