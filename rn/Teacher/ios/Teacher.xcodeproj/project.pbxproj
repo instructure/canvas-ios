@@ -20,6 +20,9 @@
 		2C8E35722093AD760071ED94 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E35712093AD760071ED94 /* Settings.bundle */; };
 		2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */; };
 		2CA347401F2147290000BB79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3473E1F2147290000BB79 /* Localizable.strings */; };
+		3B55FEC922FC871400FCB7B2 /* PostGradesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FEC822FC871400FCB7B2 /* PostGradesViewController.storyboard */; };
+		3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */; };
+		3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */; };
 		4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; };
 		4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; };
@@ -194,6 +197,9 @@
 		2E32426347BE56C907EB34A1 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_ui_tests_TeacherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3088A0FC28C5D205A6F7EBBA /* Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-common_ui_tests-TeacherUITests/Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3581D3E58E310D454B137601 /* Pods-defaults-TeacherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TeacherTests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-TeacherTests/Pods-defaults-TeacherTests.release.xcconfig"; sourceTree = "<group>"; };
+		3B55FEC822FC871400FCB7B2 /* PostGradesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostGradesViewController.storyboard; sourceTree = "<group>"; };
+		3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSettingsViewController.swift; sourceTree = "<group>"; };
+		3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGradesViewController.swift; sourceTree = "<group>"; };
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
@@ -337,6 +343,7 @@
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				3B55FEC522FC861F00FCB7B2 /* Submissions */,
 				B15CA293221E0F890014FB02 /* IBDesignables */,
 				B15CA241221DC4DA0014FB02 /* Extensions */,
 				B15CA23E221DB3480014FB02 /* Modules */,
@@ -387,6 +394,16 @@
 				B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B55FEC522FC861F00FCB7B2 /* Submissions */ = {
+			isa = PBXGroup;
+			children = (
+				3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */,
+				3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */,
+				3B55FEC822FC871400FCB7B2 /* PostGradesViewController.storyboard */,
+			);
+			path = Submissions;
 			sourceTree = "<group>";
 		};
 		83CBB9F61A601CBA00E9B192 = {
@@ -664,6 +681,7 @@
 				2C3DE50E1F21498A00AE1D59 /* InfoPlist.strings in Resources */,
 				13B07FBF1A68108700A75B9A /* Assets.xcassets in Resources */,
 				B15CA247221DC5CC0014FB02 /* ModuleListViewController.storyboard in Resources */,
+				3B55FEC922FC871400FCB7B2 /* PostGradesViewController.storyboard in Resources */,
 				2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */,
 				2C8E35722093AD760071ED94 /* Settings.bundle in Resources */,
 				B1A890BE224F16F900CEE000 /* ModuleSectionHeaderView.xib in Resources */,
@@ -855,6 +873,8 @@
 				B1A890BC224F161100CEE000 /* ModuleSectionHeaderView.swift in Sources */,
 				B1A890AA224D272D00CEE000 /* ModuleItemSubHeaderCell.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */,
+				3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */,
+				3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */,
 				B1D5CFBC224FDEF3004A1361 /* DividerView.swift in Sources */,
 				B15CA240221DBA940014FB02 /* Routes.swift in Sources */,
 				B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */,
