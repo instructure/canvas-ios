@@ -86,7 +86,6 @@
     // Make sure the popoverController and actionSheet are dismissed, or crashes could occur. See MBL-314.
     [self.popoverController dismissPopoverAnimated:YES];
     self.popoverController = nil;
-    [self.actionSheet dismissWithClickedButtonIndex:self.actionSheet.cancelButtonIndex animated:NO];
     self.actionSheet = nil;
     [CKEmbeddedMediaAttachment clearAttachmentsTempFolder];
 }
@@ -186,20 +185,22 @@
     }
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self.actionSheet showFromRect:presentFromRect
-                           inView:presentFromView
-                         animated:YES];
+        self.actionSheet.modalPresentationStyle = UIModalPresentationPopover;
+        self.actionSheet.popoverPresentationController.sourceView = presentFromView;
+        self.actionSheet.popoverPresentationController.sourceRect = presentFromRect;
+        [self.actionSheet showfromViewController:self.presentFromViewController];
     } else{
         
         [self.actionSheet addCancelButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Cancel", nil, bundle, @"Cancel button title")];
         
-        self.actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+
         if (self.presentFromViewController.tabBarController) {
-            [self.actionSheet showFromTabBar:self.presentFromViewController.tabBarController.tabBar];
+            self.actionSheet.modalPresentationStyle = UIModalPresentationPopover;
+            self.actionSheet.popoverPresentationController.sourceView = self.presentFromViewController.tabBarController.tabBar;
+            self.actionSheet.popoverPresentationController.sourceRect = self.presentFromViewController.tabBarController.tabBar.bounds;
         }
-        else {
-            [self.actionSheet showInView:self.presentFromViewController.view];
-        }
+
+        [self.actionSheet showfromViewController:self.presentFromViewController];
     }
 }
 

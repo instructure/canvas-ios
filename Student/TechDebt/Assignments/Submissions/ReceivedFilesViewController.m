@@ -342,14 +342,12 @@ static NSURL *receivedFilesFolder() {
                                     [UIAlertController showAlertWithTitle:nil message:[error localizedDescription]];
                                 }
                             }];
-    actionSheet.destructiveButtonIndex = actionSheet.numberOfButtons - 1;
     [actionSheet addCancelButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Cancel", nil, bundle, @"Cancel button title")];
     
     actionSheet.dismissalBlock = ^{
         sender.enabled = YES;
     };
-    
-    [actionSheet showFromBarButtonItem:sender animated:YES];
+    [actionSheet showfromViewController:self];
 }
 
 - (void)showImagePickerWithSourceType:(UIImagePickerControllerSourceType)sourceType {
@@ -391,8 +389,10 @@ static NSURL *receivedFilesFolder() {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
             [actionSheet addCancelButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Cancel", nil, bundle, nil)];
         }
-        
-        [actionSheet showFromRect:filenameLabel.bounds inView:filenameLabel animated:YES];
+        actionSheet.modalPresentationStyle = UIModalPresentationPopover;
+        actionSheet.popoverPresentationController.sourceView = filenameLabel;
+        actionSheet.popoverPresentationController.sourceRect = filenameLabel.bounds;
+        [actionSheet showfromViewController:self];
     }
     else {
         [self showImagePickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];

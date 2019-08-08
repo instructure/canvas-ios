@@ -373,10 +373,11 @@ CGFloat square(CGFloat x){return x*x;}
     }];
     [actionSheet addCancelButtonWithTitle:NSLocalizedStringFromTableInBundle(@"Cancel", nil, bundle, nil)];
     if (self.tabBarController) {
-        [actionSheet showFromTabBar:self.tabBarController.tabBar];
-    } else {
-        [actionSheet showInView:self.view];
+        actionSheet.modalPresentationStyle = UIModalPresentationPopover;
+        actionSheet.popoverPresentationController.sourceView = self.tabBarController.tabBar;
+        actionSheet.popoverPresentationController.sourceRect = self.tabBarController.tabBar.bounds;
     }
+    [actionSheet showfromViewController:self];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
