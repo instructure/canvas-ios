@@ -37,9 +37,7 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var dueAt: Date?
 
     public var published: Bool? {
-        get {
-            return publishedRaw?.boolValue
-        }
+        get { return publishedRaw?.boolValue }
         set { publishedRaw = NSNumber(value: newValue) }
     }
 
