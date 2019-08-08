@@ -26,7 +26,6 @@ enum CommunicationChannelType: String, CustomStringConvertible {
     case yo = "yo"
     case push = "push"
     case slack = "slack"
-    case unknown = "unknown"
     
     var description: String {
         switch self {
@@ -44,8 +43,6 @@ enum CommunicationChannelType: String, CustomStringConvertible {
             return NSLocalizedString("Push Notifications", tableName: "Localizable", bundle: .core, value: "", comment: "Description for Push Notification channel")
         case .slack:
             return NSLocalizedString("Slack", tableName: "Localizable", bundle: .core, value: "", comment: "Description for Slack communication channel")
-        case .unknown:
-            return NSLocalizedString("Unknown", tableName: "Localizable", bundle: .core, value: "", comment: "Description for Unknown communication channel")
         }
     }
 }
