@@ -73,7 +73,7 @@ extension APIDocViewerMetadata {
     public static func make(
         annotations: APIDocViewerAnnotationsMetadata? = .make(),
         panda_push: APIDocViewerPandaPushMetadata? = nil,
-        rotations: [String : UInt]? = nil,
+        rotations: [String: UInt]? = nil,
         urls: APIDocViewerURLsMetadata = .make()
     ) -> APIDocViewerMetadata {
         return APIDocViewerMetadata(

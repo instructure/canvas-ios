@@ -89,7 +89,7 @@ class LoginTests: CanvasUITests {
         launch { app in
             app.launchArguments.append(contentsOf: [
                 "-com.apple.configuration.managed",
-                user.profile
+                user.profile,
             ])
         }
 
@@ -111,7 +111,7 @@ class LoginTests: CanvasUITests {
                         <key>host</key><string>\(user.host)</string>
                     </dict>
                 """
-                .replacingOccurrences(of: "[\\n\\s]", with: "", options: .regularExpression, range: nil)
+                .replacingOccurrences(of: "[\\n\\s]", with: "", options: .regularExpression, range: nil),
             ])
         }
 

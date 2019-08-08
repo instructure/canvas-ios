@@ -53,7 +53,7 @@ class DashboardTests: CanvasUITests {
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "263").waitToExist()
     }
-    
+
     func testCourseCardInfo() {
         Dashboard.courseCard(id: "263").waitToExist()
         XCTAssertEqual(Dashboard.courseCard(id: "263").label, "Assignments")
@@ -61,7 +61,7 @@ class DashboardTests: CanvasUITests {
 
     func testSeeAllButtonDisplaysCorrectCourses() {
         Dashboard.seeAllButton.tap()
-        
+
         // expired course and others should be listed
         Dashboard.courseCard(id: "303").waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()

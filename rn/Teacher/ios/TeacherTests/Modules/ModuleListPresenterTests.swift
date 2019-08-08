@@ -236,7 +236,7 @@ class ModuleListPresenterTests: TeacherTestCase {
             APIModule.make(
                 id: "1",
                 position: 1
-            )
+            ),
         ]
         let prev = "https://cgnuonline-eniversity.edu/api/v1/courses/1/modules"
         let curr = "https://cgnuonline-eniversity.edu/api/v1/courses/1/modules?page=2"
@@ -251,7 +251,7 @@ class ModuleListPresenterTests: TeacherTestCase {
             APIModule.make(
                 id: "2",
                 position: 2
-            )
+            ),
         ]
         api.mock(page2Request, value: page2Response, response: nil, error: nil)
         let scrolled = expectation(description: "scrolled to module")
@@ -273,7 +273,7 @@ class ModuleListPresenterTests: TeacherTestCase {
             APIModule.make(
                 id: "1",
                 position: 1
-            )
+            ),
         ]
         let prev = "https://cgnuonline-eniversity.edu/api/v1/courses/1/modules"
         let curr = "https://cgnuonline-eniversity.edu/api/v1/courses/1/modules?page=2"
@@ -288,7 +288,7 @@ class ModuleListPresenterTests: TeacherTestCase {
             APIModule.make(
                 id: "2",
                 position: 2
-            )
+            ),
         ]
         api.mock(page2Request, value: page2Response, response: nil, error: nil)
         var reloaded = expectation(description: "first page")

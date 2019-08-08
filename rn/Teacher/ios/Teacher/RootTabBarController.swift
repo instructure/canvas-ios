@@ -23,21 +23,21 @@ import ReactiveSwift
 import UserNotifications
 
 class RootTabBarController: UITabBarController {
-    
+
     init() {
         super.init(nibName: nil, bundle: nil)
         self.delegate = self
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabs()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         DispatchQueue.main.async {
@@ -46,20 +46,20 @@ class RootTabBarController: UITabBarController {
 
         NotificationKitController.registerForPushNotifications()
     }
-    
+
     @objc func configureTabs() {
-        viewControllers = [coursesTab(),  toDoTab(), inboxTab()]
+        viewControllers = [coursesTab(), toDoTab(), inboxTab()]
         tabBar.useGlobalNavStyle()
     }
-    
+
     @objc func coursesTab() -> UIViewController {
         let split = EnrollmentSplitViewController()
         let emptyNav = HelmNavigationController(rootViewController: EmptyViewController())
-        
+
         let enrollmentsVC = HelmViewController(moduleName: "/", props: [:])
         enrollmentsVC.view.accessibilityIdentifier = "favorited-course-list.view1"
         enrollmentsVC.navigationItem.titleView = Brand.current.navBarTitleView()
-        
+
         let masterNav = HelmNavigationController(rootViewController: enrollmentsVC)
         masterNav.view.backgroundColor = .white
         masterNav.delegate = split
@@ -93,7 +93,7 @@ extension RootTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return NoAnimatedTransitioning()
     }
-    
+
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         tabBarController.resetViewControllerIfSelected(viewController)
         return true
