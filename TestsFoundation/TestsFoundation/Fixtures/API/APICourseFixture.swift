@@ -59,7 +59,7 @@ extension APICourse {
             term: term,
             permissions: permissions,
             access_restricted_by_date: access_restricted_by_date,
-            image_download_url: image_download_url,
+            image_download_url: image_download_url?.absoluteString,
             is_favorite: is_favorite,
             sections: sections
         )
