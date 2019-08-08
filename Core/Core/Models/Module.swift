@@ -24,8 +24,13 @@ public class Module: NSManagedObject {
     @NSManaged public var name: String
     @NSManaged public var position: Int
     @NSManaged public var courseID: String
-    @NSManaged public var published: Bool
+    @NSManaged public var publishedRaw: NSNumber?
     @NSManaged public var itemsRaw: NSOrderedSet?
+
+    public var published: Bool? {
+        get { return publishedRaw?.boolValue }
+        set { publishedRaw = NSNumber(value: newValue) }
+    }
 
     public var items: [ModuleItem] {
         get { return itemsRaw?.array as? [ModuleItem] ?? [] }

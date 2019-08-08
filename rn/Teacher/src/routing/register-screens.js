@@ -66,7 +66,6 @@ import EditFile from '../modules/files/EditFile'
 import EditFolder from '../modules/files/EditFolder'
 import ViewFile from '../modules/files/ViewFile'
 import PageDetails from '../modules/pages/details/PageDetails'
-import PagesList from '../modules/pages/list/PagesList'
 import PageEdit from '../modules/pages/edit/PageEdit'
 import UI from '../common/UI'
 import PickerPage from '../common/components/PickerPage'
@@ -181,7 +180,6 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/quizzes/:quizID/preview', wrap(QuizPreview), store)
     registerScreen('/courses/:courseID/quizzes/:quizID/edit', wrap(QuizEdit), store)
     registerScreen('/courses/:courseID/quizzes/:quizID/submissions', wrap(QuizSubmissions), store, { deepLink: true })
-    registerScreen('/courses/:courseID/pages', wrap(PagesList), store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/pages/new', wrap(PageEdit), store)
     registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store, { deepLink: true })
     registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store, { deepLink: true })
