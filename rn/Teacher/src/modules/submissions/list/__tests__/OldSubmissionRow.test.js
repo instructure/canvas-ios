@@ -1,4 +1,3 @@
-// @flow
 //
 // This file is part of Canvas.
 // Copyright (C) 2019-present  Instructure, Inc.

@@ -215,7 +215,7 @@ it('renders the row properly', () => {
   ).toJSON()).toMatchSnapshot()
 })
 
-it.only('renders a group row properly', () => {
+it('renders a group row properly', () => {
   let newProps = {
     ...props,
     isGroupGradedAssignment: true,
