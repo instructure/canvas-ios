@@ -27,6 +27,7 @@
 		3B55FED122FD05E500FCB7B2 /* PostToVisibilitySelectionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FED022FD05E500FCB7B2 /* PostToVisibilitySelectionViewController.storyboard */; };
 		3B55FED422FDE70F00FCB7B2 /* HideGradesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */; };
 		3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */; };
+		3B55FED722FE280500FCB7B2 /* PostSettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FED622FE280500FCB7B2 /* PostSettingsViewController.storyboard */; };
 		4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; };
 		4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; };
@@ -208,6 +209,7 @@
 		3B55FED022FD05E500FCB7B2 /* PostToVisibilitySelectionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostToVisibilitySelectionViewController.storyboard; sourceTree = "<group>"; };
 		3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HideGradesViewController.storyboard; sourceTree = "<group>"; };
 		3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideGradesViewController.swift; sourceTree = "<group>"; };
+		3B55FED622FE280500FCB7B2 /* PostSettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostSettingsViewController.storyboard; sourceTree = "<group>"; };
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */,
 				3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */,
 				3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */,
+				3B55FED622FE280500FCB7B2 /* PostSettingsViewController.storyboard */,
 				3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */,
 				3B55FEC822FC871400FCB7B2 /* PostGradesViewController.storyboard */,
 				3B55FECE22FD059500FCB7B2 /* PostToVisibilitySelectionViewController.swift */,
@@ -691,6 +694,7 @@
 			files = (
 				2CA347401F2147290000BB79 /* Localizable.strings in Resources */,
 				3B55FED422FDE70F00FCB7B2 /* HideGradesViewController.storyboard in Resources */,
+				3B55FED722FE280500FCB7B2 /* PostSettingsViewController.storyboard in Resources */,
 				2C3DE50E1F21498A00AE1D59 /* InfoPlist.strings in Resources */,
 				13B07FBF1A68108700A75B9A /* Assets.xcassets in Resources */,
 				B15CA247221DC5CC0014FB02 /* ModuleListViewController.storyboard in Resources */,
