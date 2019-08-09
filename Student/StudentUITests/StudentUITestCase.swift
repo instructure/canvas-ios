@@ -32,15 +32,6 @@ class StudentUITestCase: UITestCase {
         mockDownload(URL(string: ".")!) // Use only mock data
     }
 
-    func launch(_ block: ((XCUIApplication) -> Void)? = nil) {
-        let app = XCUIApplication()
-        app.launchEnvironment["IS_UI_TEST"] = "TRUE"
-        block?(app)
-        app.launch()
-        // Wait for RN to finish loading
-        app.find(labelContaining: "Loading").waitToVanish(120)
-    }
-
     func navBarColorHex() -> String? {
         let image = app.navigationBars.firstMatch.screenshot().image
         guard let pixelData = image.cgImage?.dataProvider?.data,

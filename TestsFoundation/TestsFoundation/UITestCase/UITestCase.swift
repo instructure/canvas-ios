@@ -46,6 +46,15 @@ open class UITestCase: XCTestCase {
         LoginStart.findSchoolButton.waitToExist()
     }
 
+    open func launch(_ block: ((XCUIApplication) -> Void)? = nil) {
+        let app = XCUIApplication()
+        app.launchEnvironment["IS_UI_TEST"] = "TRUE"
+        block?(app)
+        app.launch()
+        // Wait for RN to finish loading
+        app.find(labelContaining: "Loading").waitToVanish(120)
+    }
+
     open func logIn(domain: String, token: String) {
         let baseURL = URL(string: "https://\(domain)")!
         send(.login, KeychainEntry(
