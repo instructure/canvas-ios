@@ -58,7 +58,7 @@
 		B1F4060522E2444D008FAFE6 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FF22E2444D008FAFE6 /* ReactiveSwift.framework */; };
 		B1F4060622E2444D008FAFE6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4060022E2444D008FAFE6 /* ReactiveCocoa.framework */; };
 		B1F4060722E2444D008FAFE6 /* ReactiveMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4060122E2444D008FAFE6 /* ReactiveMapKit.framework */; };
-		E8315D4622FCA01C003CD27C /* LoginStartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8315D4522FCA01C003CD27C /* LoginStartTests.swift */; };
+		E8315D4622FCA01C003CD27C /* DemoLoginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8315D4522FCA01C003CD27C /* DemoLoginTest.swift */; };
 		E881134122FCA1D000354C59 /* TeacherUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E881134022FCA1CF00354C59 /* TeacherUITestCase.swift */; };
 		E881134922FCA81B00354C59 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E881134B22FCA8AC00354C59 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F6221492580083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -278,7 +278,7 @@
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E8315D3622FC9E60003CD27C /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8315D3A22FC9E60003CD27C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8315D4522FCA01C003CD27C /* LoginStartTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginStartTests.swift; sourceTree = "<group>"; };
+		E8315D4522FCA01C003CD27C /* DemoLoginTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoLoginTest.swift; sourceTree = "<group>"; };
 		E881134022FCA1CF00354C59 /* TeacherUITestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherUITestCase.swift; sourceTree = "<group>"; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9B946F6221492580083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
@@ -494,7 +494,7 @@
 		E8315D4422FCA009003CD27C /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				E8315D4522FCA01C003CD27C /* LoginStartTests.swift */,
+				E8315D4522FCA01C003CD27C /* DemoLoginTest.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -882,7 +882,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8315D4622FCA01C003CD27C /* LoginStartTests.swift in Sources */,
+				E8315D4622FCA01C003CD27C /* DemoLoginTest.swift in Sources */,
 				E881134122FCA1D000354C59 /* TeacherUITestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
