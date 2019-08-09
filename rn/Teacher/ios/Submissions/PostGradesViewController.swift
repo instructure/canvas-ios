@@ -83,6 +83,10 @@ class PostGradesViewController: UIViewController {
         sections = ["section A", "section B"]     // FIXME: remove these static sections once we have real sections
         sectionToggles = Array(repeating: false, count: sections.count)
     }
+
+    @IBAction func actionUserDidClickPostGrades(_ sender: Any) {
+        print(#function)
+    }
 }
 
 extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
