@@ -21,6 +21,7 @@ import Core
 
 class PostGradesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var postGradesButton: DynamicButton!
 
     private enum Row: Int, CaseIterable {
         case postTo, section
@@ -47,7 +48,9 @@ class PostGradesViewController: UIViewController {
             }
         }
     }
-
+    @IBOutlet weak var allGradesPostedView: UIView!
+    @IBOutlet weak var allGradesPostedLabel: DynamicLabel!
+    @IBOutlet weak var allGradesPostedSubheader: DynamicLabel!
     private var sections: [String] = []
     private var showSections: Bool = false
     private var sectionToggles: [Bool] = []
@@ -63,6 +66,12 @@ class PostGradesViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupSections()
+
+        postGradesButton.setTitle(NSLocalizedString("Post Grades", comment: ""), for: .normal)
+
+        allGradesPostedView.isHidden = true
+        allGradesPostedLabel.text = NSLocalizedString("All Posted", comment: "")
+        allGradesPostedSubheader.text = NSLocalizedString("All grades are currently posted.", comment: "")
     }
 
     func setupTableView() {

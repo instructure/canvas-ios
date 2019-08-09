@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Post Grades View Controller-->
+        <!--Hide Grades View Controller-->
         <scene sceneID="MZy-zS-2b7">
             <objects>
-                <viewController storyboardIdentifier="PostGradesViewController" id="aW3-7i-Bwb" customClass="PostGradesViewController" customModule="Teacher" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HideGradesViewController" id="aW3-7i-Bwb" customClass="HideGradesViewController" customModule="Teacher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bXh-QH-fWl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,7 +31,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="exj-mb-ME9"/>
                                 </constraints>
-                                <state key="normal" title="Post Grades"/>
+                                <state key="normal" title="Hide Grades"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electric"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
@@ -44,22 +44,22 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="61v-qe-CCM">
                                         <rect key="frame" x="87" y="248.5" width="240" height="200"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="e6V-eU-gjs"/>
-                                            <constraint firstAttribute="width" constant="240" id="hcu-Tq-qFM"/>
+                                            <constraint firstAttribute="height" constant="200" id="UD1-50-V35"/>
+                                            <constraint firstAttribute="width" constant="240" id="xTJ-nc-y8W"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Posted" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRm-Rr-fzw" customClass="DynamicLabel" customModule="Teacher" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="494.5" width="382" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Hidden" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ke5-7p-KcG" customClass="DynamicLabel" customModule="Teacher" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="494.5" width="382" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium20"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All grades are currently posted." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4DY-Dq-0wc" customClass="DynamicLabel" customModule="Teacher" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="523" width="382" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All grades are currently hidden" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pad-Q2-QIM" customClass="DynamicLabel" customModule="Teacher" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="522" width="382" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -71,14 +71,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="4DY-Dq-0wc" secondAttribute="trailing" constant="16" id="41V-uK-VAf"/>
-                                    <constraint firstItem="rRm-Rr-fzw" firstAttribute="leading" secondItem="cNE-2B-Mg6" secondAttribute="leading" constant="16" id="CRi-yb-3O9"/>
-                                    <constraint firstItem="4DY-Dq-0wc" firstAttribute="leading" secondItem="cNE-2B-Mg6" secondAttribute="leading" constant="16" id="N6f-34-iM8"/>
-                                    <constraint firstAttribute="trailing" secondItem="rRm-Rr-fzw" secondAttribute="trailing" constant="16" id="P9n-Mk-PgS"/>
-                                    <constraint firstItem="4DY-Dq-0wc" firstAttribute="top" secondItem="rRm-Rr-fzw" secondAttribute="bottom" constant="8" id="Tnf-fa-piC"/>
-                                    <constraint firstItem="rRm-Rr-fzw" firstAttribute="top" secondItem="61v-qe-CCM" secondAttribute="bottom" constant="46" id="VkN-i9-7QU"/>
-                                    <constraint firstItem="61v-qe-CCM" firstAttribute="centerX" secondItem="cNE-2B-Mg6" secondAttribute="centerX" id="ZHi-NM-EkH"/>
-                                    <constraint firstItem="61v-qe-CCM" firstAttribute="centerY" secondItem="cNE-2B-Mg6" secondAttribute="centerY" multiplier="0.85" constant="1" id="cKp-FS-S9I"/>
+                                    <constraint firstItem="Pad-Q2-QIM" firstAttribute="leading" secondItem="cNE-2B-Mg6" secondAttribute="leading" constant="16" id="CMQ-uW-qQz"/>
+                                    <constraint firstItem="61v-qe-CCM" firstAttribute="centerY" secondItem="cNE-2B-Mg6" secondAttribute="centerY" multiplier="0.85" constant="1" id="GIB-vq-iGu"/>
+                                    <constraint firstItem="61v-qe-CCM" firstAttribute="centerX" secondItem="cNE-2B-Mg6" secondAttribute="centerX" id="IQ7-QQ-Hfx"/>
+                                    <constraint firstItem="Pad-Q2-QIM" firstAttribute="top" secondItem="Ke5-7p-KcG" secondAttribute="bottom" constant="8" id="VQF-8a-xJK"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ke5-7p-KcG" secondAttribute="trailing" constant="16" id="WSu-5I-PW1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pad-Q2-QIM" secondAttribute="trailing" constant="16" id="YRG-VP-bUA"/>
+                                    <constraint firstItem="Ke5-7p-KcG" firstAttribute="leading" secondItem="cNE-2B-Mg6" secondAttribute="leading" constant="16" id="xsY-4t-S0u"/>
+                                    <constraint firstItem="Ke5-7p-KcG" firstAttribute="top" secondItem="61v-qe-CCM" secondAttribute="bottom" constant="46" id="zTK-F1-4xV"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -99,10 +99,10 @@
                         <viewLayoutGuide key="safeArea" id="s9d-36-Fgj"/>
                     </view>
                     <connections>
-                        <outlet property="allGradesPostedLabel" destination="rRm-Rr-fzw" id="ky8-eO-MdU"/>
-                        <outlet property="allGradesPostedSubheader" destination="4DY-Dq-0wc" id="acu-by-lWe"/>
-                        <outlet property="allGradesPostedView" destination="cNE-2B-Mg6" id="R9G-zL-Xl9"/>
-                        <outlet property="postGradesButton" destination="JlB-jJ-y1w" id="6eO-Tt-QjV"/>
+                        <outlet property="allGradesHiddenView" destination="cNE-2B-Mg6" id="naS-tC-PEL"/>
+                        <outlet property="allHiddenLabel" destination="Ke5-7p-KcG" id="pIR-v9-wTc"/>
+                        <outlet property="allHiddenSubHeader" destination="Pad-Q2-QIM" id="f8h-Q1-gAM"/>
+                        <outlet property="hideGradesButton" destination="JlB-jJ-y1w" id="A12-gg-6ex"/>
                         <outlet property="tableView" destination="YcC-TQ-h2X" id="0i9-Vd-TWB"/>
                     </connections>
                 </viewController>
