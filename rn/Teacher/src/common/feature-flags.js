@@ -42,7 +42,6 @@ const { FeatureFlagsManager } = NativeModules
 // type FeatureFlagName = 'someFeatureFlag' | 'otherFeatureFlag'
 export type FeatureFlagName = 'favoriteGroups' |
                               'simpleDiscussionRenderer' |
-                              'newStudentAssignmentView' |
                               'conferences'
 
 // if a feature is listed here it will be turned off
@@ -52,7 +51,6 @@ export type FeatureFlagName = 'favoriteGroups' |
 export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
   favoriteGroups: {},
   simpleDiscussionRenderer: {},
-  newStudentAssignmentView: { enabled: true },
   conferences: {},
 }
 

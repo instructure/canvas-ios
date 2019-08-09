@@ -79,13 +79,9 @@ extension TechDebt.Router {
         addContextRoute([.course], subPath: "assignments/:assignmentID") { contextID, params in
             if (params["assignmentID"] as? String) == "syllabus", let url = params["url"] as? URL {
                 return router.match(.parse(url))
-            } else if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView), let url = params["url"] as? URL,
+            } else if let url = params["url"] as? URL,
                 !((params["query"] as? [String: Any])?["module_item_id"] is String) {
                 return router.match(.parse(url))
-            }
-
-            if let url = params["url"] as? URL, let old = URL(string: url.absoluteString.replacingOccurrences(of: "/assignments/", with: "/old-assignments/")) {
-                return Router.shared().controller(forHandling: old)
             }
             return nil
         }
@@ -101,32 +97,28 @@ extension TechDebt.Router {
         }
 
         addContextRoute([.course], subPath: "assignments/:assignmentID/submissions/:userID") { contextID, params in
-            if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView), let url = params["url"] as? URL {
+            if let url = params["url"] as? URL {
                 return router.match(.parse(url))
-            }
-
-            if let url = params["url"] as? URL, let old = URL(string: url.absoluteString.replacingOccurrences(of: "/assignments/", with: "/old-assignments/")) {
-                return Router.shared().controller(forHandling: old)
             }
             return nil
         }
 
         addContextRoute([.course], subPath: "assignments/:assignmentID/fileupload") { contextID, params in
-            if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView), let url = params["url"] as? URL {
+            if let url = params["url"] as? URL {
                 return router.match(.parse(url))
             }
             return nil
         }
 
         addContextRoute([.course], subPath: "assignments/:assignmentID/submissions/:userID/online_text_entry") { contextID, params in
-            if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView), let url = params["url"] as? URL {
+            if let url = params["url"] as? URL {
                 return router.match(.parse(url))
             }
             return nil
         }
 
         addContextRoute([.course], subPath: "assignments/:assignmentID/submissions/:userID/urlsubmission") { _, params in
-            if FeatureFlags.featureFlagEnabled(.newStudentAssignmentView), let url = params["url"] as? URL {
+            if let url = params["url"] as? URL {
                 return router.match(.parse(url))
             }
             return nil

@@ -348,9 +348,6 @@ class ModuleItemViewModel: NSObject {
             let contextID = ContextID(id: courseID, context: .course)
             try Page.invalidateCache(session: session, contextID: contextID)
             try Page.invalidateDetailCache(session: session, contextID: contextID, url: url)
-        case let .assignment(id: id):
-            try Assignment.invalidateCache(session, courseID: courseID)
-            try Assignment.invalidateDetailsCache(session: session, courseID: courseID, id: id)
         default:
             break
         }

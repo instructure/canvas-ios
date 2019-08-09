@@ -18,9 +18,7 @@
 
 import Foundation
 import CoreData
-
 import Marshal
-
 
 public enum EventWorkflowState: String {
     case active = "active"
@@ -291,4 +289,3 @@ extension CalendarEvent: SynchronizedModel {
         self.status = status
     }
 }
-

@@ -17,9 +17,7 @@
 //
 
 import ReactiveSwift
-
 import Marshal
-
 
 extension Submission {
     static func getStudentSubmissions(_ session: Session, courseID: String, assignmentID: String) throws -> SignalProducer<[JSONObject], NSError> {
@@ -31,34 +29,5 @@ extension Submission {
         let request = try SubmissionAPI.getSubmission(session, courseID: courseID, assignmentID: assignmentID)
         
         return session.JSONSignalProducer(request)
-    }
-
-    static func post(_ newSubmission: NewSubmission, session: Session, courseID: String, assignmentID: String, comment: String?) throws -> SignalProducer<JSONObject, NSError> {
-        let path = "/api/v1/courses/\(courseID)/assignments/\(assignmentID)/submissions"
-        let parameters = Session.rejectNilParameters(["submission": newSubmission.parameters, "comment": comment])
-        let request = try session.POST(path, parameters: parameters)
-        return session.JSONSignalProducer(request)
-    }
-}
-
-// Objective-C compatible bridge, cuz `NewSubmission` is an enum, and not compatible...
-public extension Submission {
-    @objc static func submitArcSubmission(_ url: URL, session: Session, courseID: String, assignmentID: String, completion: @escaping (NSError?)->()) {
-        let newSubmission = NewSubmission.arc(url)
-        do {
-            let sp = try post(newSubmission, session: session, courseID: courseID, assignmentID: assignmentID, comment: nil)
-            sp.startWithSignal { signal, disposable in
-                signal.observe(on: UIScheduler()).observeResult { result in
-                    if case .failure(let error) = result {
-                        completion(error)
-                    } else {
-                        completion(nil)
-                    }
-                }
-            }
-        } catch let error as NSError {
-            completion(error)
-        }
-        
     }
 }
