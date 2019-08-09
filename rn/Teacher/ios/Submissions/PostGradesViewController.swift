@@ -26,10 +26,33 @@ class PostGradesViewController: UIViewController {
         case postTo, section
     }
 
+    enum PostToVisisbility: String, CaseIterable {
+        case everyone, graded
+
+        var title: String {
+            switch self {
+            case .everyone:
+                return NSLocalizedString("Everyone", comment: "")
+            case .graded:
+                return NSLocalizedString("Graded", comment: "")
+            }
+        }
+
+        var subHeader: String {
+            switch self {
+            case .everyone:
+                return NSLocalizedString("Grades will be made visible to all students", comment: "")
+            case .graded:
+                return NSLocalizedString("Grades will be made visible to students with graded submissions", comment: "")
+            }
+        }
+    }
+
     private var sections: [String] = []
     private var showSections: Bool = false
     private var sectionToggles: [Bool] = []
     private var gradesCurrentlyHidden = 0
+    private var visibility: PostToVisisbility = .everyone
 
     static func create() -> PostGradesViewController {
         let controller = loadFromStoryboard()
@@ -71,7 +94,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
                 switch row {
                 case .postTo:
                     cell.textLabel?.text = NSLocalizedString("Post to...", comment: "")
-                    cell.detailTextLabel?.text = NSLocalizedString("Everyone", comment: "")
+                    cell.detailTextLabel?.text = visibility.title
                     cell.accessoryType = .disclosureIndicator
                     cell.selectionStyle = .default
                 case .section:
@@ -85,7 +108,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         } else {    //  sections
-            let index = indexPath.row - Row.allCases.count
+            let index = abs(indexPath.row - Row.allCases.count)
             cell.textLabel?.text = sections[index]
             cell.selectionStyle = .none
             if let cell = cell as? SectionCell {
@@ -105,6 +128,15 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             return String(format: localized, gradesCurrentlyHidden)
         }
         return nil
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        if let row = Row(rawValue: indexPath.row), row == .postTo {
+            let vc = PostToVisibilitySelectionViewController.create(visibility: visibility, delegate: self)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     @objc
@@ -140,5 +172,12 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
+    }
+}
+
+extension PostGradesViewController: PostToVisibilitySelectionDelegate {
+    func visibilityDidChange(visibility: PostGradesViewController.PostToVisisbility) {
+        self.visibility = visibility
+        tableView.reloadData()
     }
 }
