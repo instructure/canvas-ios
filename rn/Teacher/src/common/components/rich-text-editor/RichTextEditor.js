@@ -75,7 +75,6 @@ export default class RichTextEditor extends Component<Props, State> {
 
   componentWillReceiveProps (newProps: Props) {
     if (newProps.defaultValue !== this.props.defaultValue) {
-      console.log('default value changed')
       this.editor.updateHTML(newProps.defaultValue)
     }
   }
@@ -134,7 +133,6 @@ export default class RichTextEditor extends Component<Props, State> {
   // EDITOR EVENTS
 
   _onLoad = () => {
-    console.log('onLoad')
     NativeModules.WebViewHacker.removeInputAccessoryView()
     NativeModules.WebViewHacker.setKeyboardDisplayRequiresUserAction(false)
     this.editor.setFeatureFlags(enabledFeatureFlags())

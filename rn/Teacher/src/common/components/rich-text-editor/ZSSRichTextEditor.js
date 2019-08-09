@@ -31,7 +31,6 @@ import isEqual from 'lodash/isEqual'
 import RNFS from 'react-native-fs'
 import canvas from './../../../canvas-api'
 import CanvasWebView from '../CanvasWebView'
-import { getSession } from '../../../canvas-api/session'
 
 const { NativeFileSystem } = NativeModules
 
@@ -77,7 +76,6 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   webView: ?CanvasWebView
   showingLinkModal: boolean
   onHTML: ?((string) => void)
-  loaded = false
 
   state: State = {
     linkModalVisible: false,
@@ -92,7 +90,6 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   }
 
   render () {
-    console.log('ZSS render')
     return (
       <CanvasWebView
         source={require('../../../../lib/zss-rich-text-editor.html')}
@@ -129,7 +126,6 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   }
 
   updateHTML = (html: ?string) => {
-    console.log('updateHTML')
     const cleanHTML = this.escapeJSONString(html || '')
     this.trigger(`zss_editor.setHTML("${cleanHTML}");`)
   }
@@ -204,9 +200,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
     if (!this.webView) return
     try {
       await this.webView.evaluateJavaScript(js)
-    } catch (e) {
-      console.log('error', e)
-    }
+    } catch (e) {}
   }
 
   setFeatureFlags = (flags) => {
@@ -216,7 +210,6 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   // PRIVATE
 
   _onMessage = (event) => {
-    console.log('onMessage', event)
     const message = JSON.parse(event.body)
     switch (message.type) {
       case 'CALLBACK':
@@ -238,7 +231,6 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
         this._handleBlur()
         break
       case 'EDITOR_HTML':
-        console.log('HTML', message.data)
         this._handleHTML(message.data)
         break
       case 'EDITOR_PASTE':
@@ -339,7 +331,6 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   }
 
   _onZSSLoaded = async () => {
-    console.log('onZSSLoaded')
     this.setCustomCSS()
     await this._setVideoPreviewImagePath()
     this.props.onLoad && this.props.onLoad()

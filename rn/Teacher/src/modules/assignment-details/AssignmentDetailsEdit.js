@@ -379,7 +379,6 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
   }
 
   componentWillReceiveProps (nextProps: AssignmentDetailsProps) {
-    console.log('componentWillReceiveProps', nextProps)
     if (!nextProps.pending) {
       if (nextProps.error) {
         const error = nextProps.error.response
