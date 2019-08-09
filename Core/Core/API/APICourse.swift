@@ -66,7 +66,7 @@ public struct APICourse: Codable, Equatable {
     // let blueprint: Bool?
     // let blueprint_restrictions: ?
     // let blueprint_restrictions_by_object_type: ?
-    let image_download_url: URL? // include[]=course_image
+    let image_download_url: String? // include[]=course_image, api sometimes returns an empty string instead of nil so don't use URL
     let is_favorite: Bool? // include[]=favorites
     let sections: [APISection]? // include[]=sections
 
