@@ -37,6 +37,9 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="actionUserDidClickPostGrades:" destination="aW3-7i-Bwb" eventType="touchUpInside" id="427-rk-Ofp"/>
+                                </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNE-2B-Mg6">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>

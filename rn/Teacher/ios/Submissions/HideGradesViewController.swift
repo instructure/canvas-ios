@@ -55,6 +55,10 @@ class HideGradesViewController: UIViewController {
         sections = ["section A", "section B"]     // FIXME: remove these static sections once we have real sections
         sectionToggles = Array(repeating: false, count: sections.count)
     }
+
+    @IBAction func actionUserDidClickHideGrades(_ sender: Any) {
+        print(#function)
+    }
 }
 
 extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
