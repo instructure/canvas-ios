@@ -28,6 +28,7 @@ import {
   Dimensions,
   NativeModules,
 } from 'react-native'
+import { enabledFeatureFlags } from '../../feature-flags'
 
 export type Props = {
   defaultValue?: ?string,
@@ -74,6 +75,7 @@ export default class RichTextEditor extends Component<Props, State> {
 
   componentWillReceiveProps (newProps: Props) {
     if (newProps.defaultValue !== this.props.defaultValue) {
+      console.log('default value changed')
       this.editor.updateHTML(newProps.defaultValue)
     }
   }
@@ -132,8 +134,10 @@ export default class RichTextEditor extends Component<Props, State> {
   // EDITOR EVENTS
 
   _onLoad = () => {
+    console.log('onLoad')
     NativeModules.WebViewHacker.removeInputAccessoryView()
     NativeModules.WebViewHacker.setKeyboardDisplayRequiresUserAction(false)
+    this.editor.setFeatureFlags(enabledFeatureFlags())
     if (this.props.contentHeight) {
       this.editor.setContentHeight(this.props.contentHeight)
     }

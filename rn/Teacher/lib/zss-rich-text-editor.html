@@ -89,6 +89,10 @@ const zss_editor = window.zss_editor = {}
 // If we are using iOS or desktop
 zss_editor.isUsingiOS = true
 
+zss_editor.featureFlags = []
+
+zss_editor.baseURL = null
+
 // If the user is draging
 zss_editor.isDragging = false
 
@@ -165,7 +169,7 @@ zss_editor.init = () => {
         url: e.target.href
       }
 
-      postMessage(JSON.stringify({type: 'LINK_TOUCHED', data: link}))
+      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'LINK_TOUCHED', data: link}))
 
       e.preventDefault()
     }
@@ -176,11 +180,11 @@ zss_editor.init = () => {
 
   // Post message on focus
   zss_editor_content.addEventListener('focus', () => {
-    postMessage(JSON.stringify({type: 'EDITOR_FOCUSED'}))
+    window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'EDITOR_FOCUSED'}))
   })
 
   zss_editor_content.addEventListener('blur', () => {
-    postMessage(JSON.stringify({type: 'EDITOR_BLURRED'}))
+    window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'EDITOR_BLURRED'}))
   })
 
   zss_editor_content.addEventListener('focusout', () => {
@@ -191,13 +195,13 @@ zss_editor.init = () => {
   })
 
   zss_editor_content.addEventListener('paste', (e) => {
-    postMessage(JSON.stringify({type: 'EDITOR_PASTE'}))
+    window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'EDITOR_PASTE'}))
     e.stopPropagation()
     e.preventDefault()
   })
 
   setTimeout(() => {
-    postMessage(JSON.stringify({type: 'ZSS_LOADED'}))
+    window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'ZSS_LOADED'}))
   }, 0)
 }//end
 
@@ -209,7 +213,7 @@ zss_editor.postHTML = () => {
     html = ''
   }
 
-  postMessage(JSON.stringify({type: 'EDITOR_HTML', data: html}))
+  window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'EDITOR_HTML', data: html}))
 }
 
 zss_editor.updateOffset = () => {
@@ -239,13 +243,13 @@ zss_editor.updateOffset = () => {
 
 // This will show up in the XCode console as we are able to push this into an NSLog.
 zss_editor.debug = msg => {
-  postMessage(JSON.stringify({type: 'DEBUG', data: msg}))
+  window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'DEBUG', data: msg}))
 }
 
 
 zss_editor.setScrollPosition = () => {
   let position = window.pageYOffset
-  postMessage(JSON.stringify({type: 'SCROLL', data: position}))
+  window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'SCROLL', data: position}))
 }
 
 
@@ -601,11 +605,7 @@ zss_editor.insertImage = (url, alt) => {
 }
 
 function videoPreviewHTML (mediaID) {
-  let html = `<img class="zss_postprocess_remove video-preview" src="${zss_editor.videoPreviewImagePath}" width="192px" />`
-  if (mediaID) {
-    html += `<p class="zss_final_video_comment"><a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a></p>`
-  }
-  return html
+  return `<img src="${zss_editor.videoPreviewImagePath}" width="192px" data-media_comment_id="${mediaID}" class="video-preview" />`
 }
 
 zss_editor.insertVideoComment = mediaID => {
@@ -656,6 +656,17 @@ zss_editor.getHTML = () => {
 
   // Get the contents
   let clone = zss_editor_content.cloneNode(true)
+  for (let img of clone.querySelectorAll('[data-media_comment_id]')) {
+    let mediaID = img.dataset.media_comment_id
+    let enhanced = zss_editor.featureFlags.includes('enhancedRCE')
+    if (enhanced) {
+      img.outerHTML = `<div id="media_object_${mediaID}" class="zss_final_video_comment" style="width: 768px; height: 432px;">
+        <iframe src="/media_objects_iframe/${mediaID}" width="100%" height="100%"></iframe>
+      </div>`
+    } else {
+      img.outerHTML = `<a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a>`
+    }
+  }
   for (let remove of clone.querySelectorAll('.zss_postprocess_remove')) {
     remove.parentNode.removeChild(remove)
   }
@@ -779,7 +790,7 @@ zss_editor.enabledEditingItems = e => {
   }
 
   setTimeout(() => {
-    postMessage(JSON.stringify({type: 'CALLBACK', data: items}))
+    window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'CALLBACK', data: items}))
   }, 0)
 }
 
@@ -801,6 +812,10 @@ zss_editor.blurEditor = () => {
 
 zss_editor.setCustomCSS = customCSS => {
   document.querySelector('style').innerHTML = customCSS
+}
+
+zss_editor.setFeatureFlags = flags => {
+  zss_editor.featureFlags = flags.split(',')
 }
 //end
 })()

@@ -286,9 +286,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
   }
 
   updateFromInput (key: string, value: any) {
-    const assignment = this.state.assignment
-    assignment[key] = value
-    this.setState({ assignment })
+    this.setState({ assignment: { ...this.state.assignment, [key]: value } })
   }
 
   defaultValueForInput (key: string): string {
@@ -381,6 +379,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
   }
 
   componentWillReceiveProps (nextProps: AssignmentDetailsProps) {
+    console.log('componentWillReceiveProps', nextProps)
     if (!nextProps.pending) {
       if (nextProps.error) {
         const error = nextProps.error.response

@@ -42,7 +42,8 @@ const { FeatureFlagsManager } = NativeModules
 // type FeatureFlagName = 'someFeatureFlag' | 'otherFeatureFlag'
 export type FeatureFlagName = 'favoriteGroups' |
                               'simpleDiscussionRenderer' |
-                              'conferences'
+                              'conferences' |
+                              'enhancedRCE'
 
 // if a feature is listed here it will be turned off
 // unless in development, the current user is on a domain
@@ -52,6 +53,11 @@ export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
   favoriteGroups: {},
   simpleDiscussionRenderer: {},
   conferences: {},
+  enhancedRCE: {},
+}
+
+export function enabledFeatureFlags() {
+  return Object.keys(featureFlags).filter(f => featureFlagEnabled(f))
 }
 
 var enableAllFeatureFlags = false

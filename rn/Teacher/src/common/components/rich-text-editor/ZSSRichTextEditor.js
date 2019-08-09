@@ -30,6 +30,8 @@ import {
 import isEqual from 'lodash/isEqual'
 import RNFS from 'react-native-fs'
 import canvas from './../../../canvas-api'
+import CanvasWebView from '../CanvasWebView'
+import { getSession } from '../../../canvas-api/session'
 
 const { NativeFileSystem } = NativeModules
 
@@ -72,9 +74,10 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
     getFile: canvas.getFile,
   }
 
-  webView: ?WebView
+  webView: ?CanvasWebView
   showingLinkModal: boolean
   onHTML: ?((string) => void)
+  loaded = false
 
   state: State = {
     linkModalVisible: false,
@@ -89,17 +92,17 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   }
 
   render () {
+    console.log('ZSS render')
     return (
-      <WebView
-        source={{ html: this.state.source || '' }}
+      <CanvasWebView
+        source={require('../../../../lib/zss-rich-text-editor.html')}
         ref={webView => { this.webView = webView }}
+        onFinishedLoading={this._onLoad}
         onMessage={this._onMessage}
-        onLoad={this._onLoad}
         scalesPageToFit={true}
         scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
         style={styles.editor}
         hideKeyboardAccessoryView={true}
-        useWebKit
       />
     )
   }
@@ -117,7 +120,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   insertLink = () => {
     this.trigger(`
       var selection = getSelection().toString();
-      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
+      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
     `)
   }
 
@@ -126,6 +129,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   }
 
   updateHTML = (html: ?string) => {
+    console.log('updateHTML')
     const cleanHTML = this.escapeJSONString(html || '')
     this.trigger(`zss_editor.setHTML("${cleanHTML}");`)
   }
@@ -199,14 +203,21 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   trigger = async (js: string) => {
     if (!this.webView) return
     try {
-      await this.webView.injectJavaScript(js)
-    } catch (e) {}
+      await this.webView.evaluateJavaScript(js)
+    } catch (e) {
+      console.log('error', e)
+    }
+  }
+
+  setFeatureFlags = (flags) => {
+    this.trigger(`zss_editor.setFeatureFlags("${flags.join(',')}")`)
   }
 
   // PRIVATE
 
   _onMessage = (event) => {
-    const message = JSON.parse(event.nativeEvent.data)
+    console.log('onMessage', event)
+    const message = JSON.parse(event.body)
     switch (message.type) {
       case 'CALLBACK':
         this._handleItemsCallback(message.data)
@@ -227,6 +238,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
         this._handleBlur()
         break
       case 'EDITOR_HTML':
+        console.log('HTML', message.data)
         this._handleHTML(message.data)
         break
       case 'EDITOR_PASTE':
@@ -327,6 +339,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   }
 
   _onZSSLoaded = async () => {
+    console.log('onZSSLoaded')
     this.setCustomCSS()
     await this._setVideoPreviewImagePath()
     this.props.onLoad && this.props.onLoad()
