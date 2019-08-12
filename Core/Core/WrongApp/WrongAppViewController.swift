@@ -61,7 +61,7 @@ public class WrongAppViewController: UIViewController {
 
     @IBAction func loginAgainButtonPressed(_ sender: UIButton) {
         guard let entry = AppEnvironment.shared.currentSession else { return }
-        delegate?.userDidLogout(keychainEntry: entry)
+        delegate?.userDidLogout(session: entry)
     }
 
     @IBAction func canvasGuidesButtonPressed(_ sender: UIButton) {

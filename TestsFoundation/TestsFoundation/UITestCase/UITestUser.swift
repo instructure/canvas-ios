@@ -30,7 +30,7 @@ public class UITestUser {
     public let host: String
     public let username: String
     public let password: String
-    public var keychainEntry: KeychainEntry?
+    public var session: LoginSession?
 
     public var profile: String {
         return """

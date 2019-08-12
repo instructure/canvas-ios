@@ -18,23 +18,23 @@
 
 import UIKit
 
-protocol LoginStartKeychainEntryDelegate: class {
-    func removeKeychainEntry(_ entry: KeychainEntry)
+protocol LoginStartSessionDelegate: class {
+    func removeSession(_ session: LoginSession)
 }
 
-class LoginStartKeychainEntryCell: UITableViewCell {
+class LoginStartSessionCell: UITableViewCell {
     @IBOutlet weak var avatarView: AvatarView?
     @IBOutlet weak var domainLabel: DynamicLabel?
     @IBOutlet weak var forgetButton: DynamicButton?
     @IBOutlet weak var nameLabel: DynamicLabel?
 
-    var entry: KeychainEntry?
-    weak var delegate: LoginStartKeychainEntryDelegate?
+    var entry: LoginSession?
+    weak var delegate: LoginStartSessionDelegate?
 
-    func update(entry: KeychainEntry, delegate: LoginStartKeychainEntryDelegate) {
+    func update(entry: LoginSession, delegate: LoginStartSessionDelegate) {
         self.entry = entry
         self.delegate = delegate
-        let identifier = "LoginStartKeychainEntry.\(entry.baseURL.host ?? "").\(entry.userID)"
+        let identifier = "LoginStartSession.\(entry.baseURL.host ?? "").\(entry.userID)"
         self.accessibilityIdentifier = identifier
         avatarView?.name = entry.userName
         avatarView?.url = entry.userAvatarURL
@@ -46,6 +46,6 @@ class LoginStartKeychainEntryCell: UITableViewCell {
 
     @IBAction func removeTapped(_ sender: UIButton) {
         guard let entry = entry else { return }
-        delegate?.removeKeychainEntry(entry)
+        delegate?.removeSession(entry)
     }
 }

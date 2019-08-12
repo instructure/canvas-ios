@@ -20,7 +20,7 @@ import Foundation
 import Core
 
 extension NativeLoginManager {
-    public static func login(as entry: KeychainEntry, brand: Core.Brand = .shared, wasReload: Bool = false) {
+    public static func login(as entry: LoginSession, brand: Core.Brand = .shared, wasReload: Bool = false) {
         var body: [String: Any] = [
             "appId": Bundle.main.isTeacherApp ? "teacher" : "student",
             "authToken": entry.accessToken,

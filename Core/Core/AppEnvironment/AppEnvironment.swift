@@ -29,7 +29,7 @@ open class AppEnvironment {
     public var globalDatabase: NSPersistentContainer = NSPersistentContainer.create()
     public var logger: LoggerProtocol
     public var router: RouterProtocol
-    public var currentSession: KeychainEntry?
+    public var currentSession: LoginSession?
     public var pageViewLogger: PageViewEventViewControllerLoggingProtocol = PresenterPageViewLogger()
     public var userDefaults: SessionDefaults?
 
@@ -40,7 +40,7 @@ open class AppEnvironment {
         self.logger = Logger.shared
     }
 
-    public func userDidLogin(session: KeychainEntry) {
+    public func userDidLogin(session: LoginSession) {
         database = NSPersistentContainer.create(session: session)
         api = URLSessionAPI(accessToken: session.accessToken, actAsUserID: session.actAsUserID, baseURL: session.baseURL)
         currentSession = session
@@ -48,7 +48,7 @@ open class AppEnvironment {
         Logger.shared.database = database
     }
 
-    public func userDidLogout(session: KeychainEntry) {
+    public func userDidLogout(session: LoginSession) {
         guard session == currentSession else { return }
         database.destroy()
         database = globalDatabase

@@ -109,7 +109,7 @@ class GradesWidgetViewController: UIViewController {
             return showError(GradesWidgetError.deviceLocked)
         }
 
-        guard let mostRecentKeyChain = Keychain.mostRecentSession else {
+        guard let mostRecentKeyChain = LoginSession.mostRecent else {
             return showError(GradesWidgetError.notLoggedIn)
         }
         AppEnvironment.shared.userDidLogin(session: mostRecentKeyChain)

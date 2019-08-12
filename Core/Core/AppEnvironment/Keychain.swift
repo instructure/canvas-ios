@@ -18,21 +18,12 @@
 
 import Foundation
 
-class GeneralPurposeKeychain {
+class Keychain {
+    private let serviceName: String
+    private let accessGroup: String?
+    static let shared = Keychain()
 
-    private (set) public var serviceName: String
-    private (set) public var accessGroup: String?
-    static let shared = GeneralPurposeKeychain()
-
-    private static let defaultServiceName: String = {
-        return Bundle.main.bundleIdentifier ?? "com.instructure.general-purpose-keychain"
-    }()
-
-    private convenience init() {
-        self.init(serviceName: type(of: self).defaultServiceName)
-    }
-
-    init(serviceName: String, accessGroup: String? = nil) {
+    init(serviceName: String = Bundle.main.bundleIdentifier ?? "com.instructure.general-purpose-keychain", accessGroup: String? = nil) {
         self.serviceName = serviceName
         self.accessGroup = accessGroup
     }
@@ -68,7 +59,12 @@ class GeneralPurposeKeychain {
         return false
     }
 
-    func data(for key: String) -> Data? {
+    @discardableResult
+    func setJSON<T: Encodable>(_ value: T, for key: String) throws -> Bool {
+        return setData(try JSONEncoder().encode(value), for: key)
+    }
+
+    func getData(for key: String) -> Data? {
         var query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: serviceName,
@@ -88,8 +84,13 @@ class GeneralPurposeKeychain {
         return nil
     }
 
+    func getJSON<T: Decodable>(for key: String) -> T? {
+        guard let data = getData(for: key) else { return nil }
+        return try? JSONDecoder().decode(T.self, from: data)
+    }
+
     @discardableResult
-    func removeItem(for key: String) -> Bool {
+    func removeData(for key: String) -> Bool {
         var query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: serviceName,

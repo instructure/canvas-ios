@@ -180,7 +180,7 @@ class UploadManagerTests: CoreTestCase {
     }
 
     func testSessionTaskDidCompleteSubmissionUpload() throws {
-        Keychain.addEntry(currentSession)
+        LoginSession.add(currentSession)
         mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["3"], comment: "test comment", taskID: 2)
         let file = context.insert() as File
         file.id = "3"
@@ -199,11 +199,11 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertNotNil(submitTask)
         XCTAssertEqual(submitTask?.resumed, true)
         XCTAssertEqual(submitTask?.uploadStep, .submit)
-        Keychain.removeEntry(currentSession)
+        LoginSession.remove(currentSession)
     }
 
     func testSessionTaskDidCompleteSubmissionBatchUpload() throws {
-        Keychain.addEntry(currentSession)
+        LoginSession.add(currentSession)
         mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["1", "2"], taskID: 3)
         let one = context.insert() as File
         one.id = "2"
@@ -227,11 +227,11 @@ class UploadManagerTests: CoreTestCase {
         let submitTask = MockURLSession.dataMocks.first { $0.value.taskIdentifier == 3 }?.value
         XCTAssertNotNil(submitTask)
         XCTAssertEqual(submitTask?.resumed, true)
-        Keychain.removeEntry(currentSession)
+        LoginSession.remove(currentSession)
     }
 
     func testSessionTaskDidComplete201Error() throws {
-        Keychain.addEntry(currentSession)
+        LoginSession.add(currentSession)
         let file = context.insert() as File
         file.id = nil
         file.taskID = 1
@@ -255,7 +255,7 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertEqual(file.taskID, 2)
         XCTAssertTrue(locationTask.resumed)
         XCTAssertEqual(locationTask.uploadStep, .upload)
-        Keychain.removeEntry(currentSession)
+        LoginSession.remove(currentSession)
     }
 
     func testSessionTaskDidCompleteSubmit() throws {

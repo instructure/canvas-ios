@@ -36,7 +36,7 @@ class PersistenceTestCase: XCTestCase {
     var env = testEnvironment()
     var logger = TestLogger()
     var uploadManager = MockUploadManager()
-    var currentSession = KeychainEntry.make()
+    var currentSession = LoginSession.make()
 
     override func setUp() {
         super.setUp()

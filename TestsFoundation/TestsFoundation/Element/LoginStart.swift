@@ -29,12 +29,12 @@ public enum LoginStart: String, ElementWrapper {
     case whatsNewLink
 }
 
-public enum LoginStartKeychainEntry {
+public enum LoginStartSession {
     public static func cell(host: String, userID: String) -> Element {
-        return app.find(id: "LoginStartKeychainEntry.\(host).\(userID)")
+        return app.find(id: "LoginStartSession.\(host).\(userID)")
     }
 
-    public static func cell(_ entry: KeychainEntry) -> Element {
+    public static func cell(_ entry: LoginSession) -> Element {
         return cell(host: entry.baseURL.host!, userID: entry.userID)
     }
 

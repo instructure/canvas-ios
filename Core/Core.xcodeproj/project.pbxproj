@@ -24,8 +24,8 @@
 		3B158CAF22E153120039A568 /* PersistencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CAE22E153120039A568 /* PersistencyTests.swift */; };
 		3B158CB122E167CD0039A568 /* PageViewEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CB022E167CD0039A568 /* PageViewEventTests.swift */; };
 		3B158CB322E16D0E0039A568 /* PageViewEventRequestManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CB222E16D0E0039A568 /* PageViewEventRequestManagerTests.swift */; };
-		3B158CB622E230510039A568 /* GeneralPurposeKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CB522E230510039A568 /* GeneralPurposeKeychain.swift */; };
-		3B158CB822E241130039A568 /* GeneralPurposeKeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CB722E241130039A568 /* GeneralPurposeKeychainTests.swift */; };
+		3B158CB622E230510039A568 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CB522E230510039A568 /* Keychain.swift */; };
+		3B158CB822E241130039A568 /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CB722E241130039A568 /* KeychainTests.swift */; };
 		3B158CBA22E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CB922E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift */; };
 		3B158CBC22E267FF0039A568 /* PageViewSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CBB22E267FF0039A568 /* PageViewSessionTests.swift */; };
 		3B300C852277981100743C59 /* RubricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B300C842277981100743C59 /* RubricTests.swift */; };
@@ -91,7 +91,7 @@
 		7D0215A721BB1750009A8E69 /* LoginStartViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D0215A621BB1750009A8E69 /* LoginStartViewController.storyboard */; };
 		7D0215A921BB1762009A8E69 /* LoginStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0215A821BB1762009A8E69 /* LoginStartViewController.swift */; };
 		7D0215AB21BB18C6009A8E69 /* LoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0215AA21BB18C6009A8E69 /* LoginDelegate.swift */; };
-		7D0215AE21BB2D68009A8E69 /* LoginStartKeychainEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0215AD21BB2D68009A8E69 /* LoginStartKeychainEntryCell.swift */; };
+		7D0215AE21BB2D68009A8E69 /* LoginStartSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0215AD21BB2D68009A8E69 /* LoginStartSessionCell.swift */; };
 		7D062AF4212496E600677F66 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF3212496E600677F66 /* Context.swift */; };
 		7D062AF721249E7700677F66 /* ContextModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF621249E7700677F66 /* ContextModelTests.swift */; };
 		7D062AF92124A0F400677F66 /* ContextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF82124A0F400677F66 /* ContextModel.swift */; };
@@ -494,8 +494,8 @@
 		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		B1F6D6B822EB672500CDD44D /* SessionDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */; };
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
-		DFE1FF1D212F5E1A003F27AA /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1C212F5E1A003F27AA /* Keychain.swift */; };
-		DFE1FF20212F5E41003F27AA /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* KeychainTests.swift */; };
+		DFE1FF1D212F5E1A003F27AA /* LoginSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1C212F5E1A003F27AA /* LoginSession.swift */; };
+		DFE1FF20212F5E41003F27AA /* LoginSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */; };
 		DFE1FF28212F69B3003F27AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF27212F69B3003F27AA /* AppDelegate.swift */; };
 		DFE1FF2A212F69B3003F27AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF29212F69B3003F27AA /* ViewController.swift */; };
 		DFE1FF2D212F69B3003F27AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFE1FF2B212F69B3003F27AA /* Main.storyboard */; };
@@ -589,8 +589,8 @@
 		3B158CAE22E153120039A568 /* PersistencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistencyTests.swift; sourceTree = "<group>"; };
 		3B158CB022E167CD0039A568 /* PageViewEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventTests.swift; sourceTree = "<group>"; };
 		3B158CB222E16D0E0039A568 /* PageViewEventRequestManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventRequestManagerTests.swift; sourceTree = "<group>"; };
-		3B158CB522E230510039A568 /* GeneralPurposeKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeKeychain.swift; sourceTree = "<group>"; };
-		3B158CB722E241130039A568 /* GeneralPurposeKeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeKeychainTests.swift; sourceTree = "<group>"; };
+		3B158CB522E230510039A568 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		3B158CB722E241130039A568 /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		3B158CB922E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventViewControllerLoggingProtocolTests.swift; sourceTree = "<group>"; };
 		3B158CBB22E267FF0039A568 /* PageViewSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewSessionTests.swift; sourceTree = "<group>"; };
 		3B300C842277981100743C59 /* RubricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricTests.swift; sourceTree = "<group>"; };
@@ -795,7 +795,7 @@
 		7D0215A621BB1750009A8E69 /* LoginStartViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginStartViewController.storyboard; sourceTree = "<group>"; };
 		7D0215A821BB1762009A8E69 /* LoginStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartViewController.swift; sourceTree = "<group>"; };
 		7D0215AA21BB18C6009A8E69 /* LoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegate.swift; sourceTree = "<group>"; };
-		7D0215AD21BB2D68009A8E69 /* LoginStartKeychainEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartKeychainEntryCell.swift; sourceTree = "<group>"; };
+		7D0215AD21BB2D68009A8E69 /* LoginStartSessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartSessionCell.swift; sourceTree = "<group>"; };
 		7D062AF3212496E600677F66 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		7D062AF621249E7700677F66 /* ContextModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextModelTests.swift; sourceTree = "<group>"; };
 		7D062AF82124A0F400677F66 /* ContextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextModel.swift; sourceTree = "<group>"; };
@@ -1207,8 +1207,8 @@
 		B1F3780B22499037000B7CAA /* MockMDMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMDMManager.swift; sourceTree = "<group>"; };
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
-		DFE1FF1C212F5E1A003F27AA /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
-		DFE1FF1F212F5E41003F27AA /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
+		DFE1FF1C212F5E1A003F27AA /* LoginSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSession.swift; sourceTree = "<group>"; };
+		DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSessionTests.swift; sourceTree = "<group>"; };
 		DFE1FF25212F69B3003F27AA /* CoreTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFE1FF27212F69B3003F27AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFE1FF29212F69B3003F27AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1304,7 +1304,6 @@
 				3B47227E2137972200BF6FF3 /* Frameworks */,
 				2C964832211E2F1A002C3255 /* Info.plist */,
 				5BF786A8218599B600471A5F /* InfoPlist.strings */,
-				DFE1FF1B212F5E0A003F27AA /* Keychain */,
 				7DCF1ECE216BFE5D003AF358 /* Localizable.strings */,
 				7DCF1ED1216BFE61003AF358 /* Localizable.stringsdict */,
 				B1E789B221B1AD380087FE4A /* Logger */,
@@ -1342,7 +1341,6 @@
 				7D80AC59212DB09300C40ECE /* Extensions */,
 				B1B42C1422403AE90087399A /* FilePicker */,
 				3B34675F2130554C00F9BC2E /* Helpers */,
-				DFE1FF1E212F5E2C003F27AA /* Keychain */,
 				B1E789B321B1AD720087FE4A /* Logger */,
 				3B3467512130527000F9BC2E /* Login */,
 				7D4C3D57222D9E22001B1198 /* LTI */,
@@ -1390,6 +1388,7 @@
 				B191D5E5226E28E100D02948 /* CacheManager.swift */,
 				B17F23B02137981B00771F86 /* Clock.swift */,
 				7D52D8AA2301BA5100684932 /* ExperimentalFeature.swift */,
+				3B158CB522E230510039A568 /* Keychain.swift */,
 				7DAFB46221A361C400311275 /* LocalizationManager.swift */,
 				B1BEB2CA22458B5E00E893A4 /* MDMManager.swift */,
 				7DD6948E2196891200BA4984 /* Secret.swift */,
@@ -1437,7 +1436,8 @@
 				7DD752A221BEFA8F00E26260 /* LoginManualOAuthViewController.storyboard */,
 				7DD752A021BEFA7C00E26260 /* LoginManualOAuthViewController.swift */,
 				7DD6CC6421BCC101004C4BB6 /* LoginNavigationController.swift */,
-				7D0215AD21BB2D68009A8E69 /* LoginStartKeychainEntryCell.swift */,
+				DFE1FF1C212F5E1A003F27AA /* LoginSession.swift */,
+				7D0215AD21BB2D68009A8E69 /* LoginStartSessionCell.swift */,
 				7DB3C6582285F0C700325B72 /* LoginStartMDMLoginCell.swift */,
 				7DD6CC6221BB6BF7004C4BB6 /* LoginStartPresenter.swift */,
 				7D0215A621BB1750009A8E69 /* LoginStartViewController.storyboard */,
@@ -1453,6 +1453,7 @@
 			children = (
 				7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */,
 				7DB0A1B721BF175E009ABB40 /* LoginFindSchoolPresenterTests.swift */,
+				DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */,
 				7DB0A1B921BF1904009ABB40 /* LoginStartPresenterTests.swift */,
 				3B3467C821349EC000F9BC2E /* LoginWebPresenterTests.swift */,
 			);
@@ -1989,6 +1990,7 @@
 				7D8B78FA215EC9BE005E08F1 /* BrandTests.swift */,
 				B191D5E7226E2CBA00D02948 /* CacheManagerTests.swift */,
 				7D52D8AC2301C0A400684932 /* ExperimentalFeatureTests.swift */,
+				3B158CB722E241130039A568 /* KeychainTests.swift */,
 				7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */,
 				B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */,
 				7D2DC2F32199EC93008FE29A /* SecretTests.swift */,
@@ -2281,24 +2283,6 @@
 				B15CA22C221CA2EE0014FB02 /* UseCaseTests.swift */,
 			);
 			path = Store;
-			sourceTree = "<group>";
-		};
-		DFE1FF1B212F5E0A003F27AA /* Keychain */ = {
-			isa = PBXGroup;
-			children = (
-				DFE1FF1C212F5E1A003F27AA /* Keychain.swift */,
-				3B158CB522E230510039A568 /* GeneralPurposeKeychain.swift */,
-			);
-			path = Keychain;
-			sourceTree = "<group>";
-		};
-		DFE1FF1E212F5E2C003F27AA /* Keychain */ = {
-			isa = PBXGroup;
-			children = (
-				DFE1FF1F212F5E41003F27AA /* KeychainTests.swift */,
-				3B158CB722E241130039A568 /* GeneralPurposeKeychainTests.swift */,
-			);
-			path = Keychain;
 			sourceTree = "<group>";
 		};
 		DFE1FF26212F69B3003F27AA /* CoreTester */ = {
@@ -2675,7 +2659,7 @@
 				B11D321721E464AB00F37ABF /* Store.swift in Sources */,
 				7DF4FFCA217116BC007E5F81 /* Course.swift in Sources */,
 				3B158CA822E1343D0039A568 /* PageViewSession.swift in Sources */,
-				DFE1FF1D212F5E1A003F27AA /* Keychain.swift in Sources */,
+				DFE1FF1D212F5E1A003F27AA /* LoginSession.swift in Sources */,
 				7D80AC2B212C77C600C40ECE /* APIOAuth.swift in Sources */,
 				7D20F61921C3166800B77E5E /* UICollectionViewExtensions.swift in Sources */,
 				B1E789B121B199E40087FE4A /* LogEventListPresenter.swift in Sources */,
@@ -2875,12 +2859,12 @@
 				EE584C8022F2048D00D1E201 /* PageListCell.swift in Sources */,
 				B1A6BC7E218A317A000515E3 /* APIAssignmentOverride.swift in Sources */,
 				B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */,
-				7D0215AE21BB2D68009A8E69 /* LoginStartKeychainEntryCell.swift in Sources */,
+				7D0215AE21BB2D68009A8E69 /* LoginStartSessionCell.swift in Sources */,
 				7DF4FFE021713919007E5F81 /* Submission.swift in Sources */,
 				B1A8CD3722375D6400E2242D /* FileUploadTarget.swift in Sources */,
 				3B346755213052C700F9BC2E /* NSErrorExtensions.swift in Sources */,
 				7D8262EF212B228F00BD268D /* APICourseRequestable.swift in Sources */,
-				3B158CB622E230510039A568 /* GeneralPurposeKeychain.swift in Sources */,
+				3B158CB622E230510039A568 /* Keychain.swift in Sources */,
 				3B5369E2219CDD3500D3F62E /* URLExtensions.swift in Sources */,
 				787BD02121AE5C28000C90A1 /* DiscussionEntry.swift in Sources */,
 				3B69254021A12E020023ED75 /* Int64Extensions.swift in Sources */,
@@ -2982,7 +2966,7 @@
 				B1A32BE22159A3100071B41E /* APIAssignmentRequestableTests.swift in Sources */,
 				7DA20E932168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift in Sources */,
 				7D63F788215D44A600151E49 /* APIBrandVariablesRequestableTests.swift in Sources */,
-				DFE1FF20212F5E41003F27AA /* KeychainTests.swift in Sources */,
+				DFE1FF20212F5E41003F27AA /* LoginSessionTests.swift in Sources */,
 				B15CA22D221CA2EE0014FB02 /* UseCaseTests.swift in Sources */,
 				B164DC1F22DE2AB30037FA86 /* APIAccountResultTests.swift in Sources */,
 				7D52D8AD2301C0A400684932 /* ExperimentalFeatureTests.swift in Sources */,
@@ -3008,7 +2992,7 @@
 				7D7110C12138910D0085C2E5 /* RouteHandlerTests.swift in Sources */,
 				B195DC5521324DA600797FE4 /* GetUserGroupsTest.swift in Sources */,
 				3B84C38F218B9B51005946BA /* AssignmentDatesTests.swift in Sources */,
-				3B158CB822E241130039A568 /* GeneralPurposeKeychainTests.swift in Sources */,
+				3B158CB822E241130039A568 /* KeychainTests.swift in Sources */,
 				7D8B78F8215EC74A005E08F1 /* UIImageExtensionsTests.swift in Sources */,
 				B1AAFFFE226988440088BC20 /* UITableViewCellExtensionsTests.swift in Sources */,
 				B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */,

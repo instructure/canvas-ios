@@ -28,7 +28,7 @@ class PageViewEventRequestManager {
     private let maxBatchCount = 300
     private let persistence: Persistency
     private let env: AppEnvironment
-    private let keychain = GeneralPurposeKeychain(serviceName: Pandata.tokenKeychainService)
+    private let keychain = Keychain(serviceName: Pandata.tokenKeychainService)
     var backgroundAppHelper: AppBackgroundHelperProtocol?
 
     init(persistence: Persistency = Persistency.instance, env: AppEnvironment = AppEnvironment.shared) {
@@ -62,17 +62,15 @@ class PageViewEventRequestManager {
     }
 
     func cleanup() {
-        keychain.removeItem(for: Pandata.tokenKeychainKey)
+        keychain.removeData(for: Pandata.tokenKeychainKey)
     }
 
     private func storePandataEndpointInfo(_ token: APIPandataEventsToken) {
-        guard let data = try? JSONEncoder().encode(token) else { return }
-        keychain.setData(data, for: Pandata.tokenKeychainKey)
+        _ = try? keychain.setJSON(token, for: Pandata.tokenKeychainKey)
     }
 
     private func retrievePandataEndpointInfo(handler: @escaping (APIPandataEventsToken?) -> Void) {
-        if let data = keychain.data(for: Pandata.tokenKeychainKey),
-            let token = try? JSONDecoder().decode(APIPandataEventsToken.self, from: data),
+        if let token: APIPandataEventsToken = keychain.getJSON(for: Pandata.tokenKeychainKey),
             Date(timeIntervalSince1970: token.expires_at / 1000) >= Date() {
             return handler(token)
         }

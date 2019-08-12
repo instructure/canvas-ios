@@ -49,8 +49,8 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
     var presenter: SubmitAssignmentPresenter!
 
     override func setUp() {
-        Keychain.clearEntries()
-        Keychain.addEntry(.make())
+        LoginSession.clearAll()
+        LoginSession.add(.make())
         env.userDefaults?.reset()
         presenter = SubmitAssignmentPresenter()
         presenter.view = self
@@ -58,14 +58,14 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
     }
 
     func testInitNilWithoutRecentSession() {
-        let entries = Keychain.entries
-        Keychain.clearEntries()
+        let sessions = LoginSession.sessions
+        LoginSession.clearAll()
         XCTAssertNil(SubmitAssignmentPresenter())
-        entries.forEach { Keychain.addEntry($0) }
+        LoginSession.sessions = sessions
     }
 
     func testInitValid() {
-        XCTAssertNotNil(Keychain.mostRecentSession)
+        XCTAssertNotNil(LoginSession.mostRecent)
         XCTAssertNotNil(SubmitAssignmentPresenter())
     }
 
