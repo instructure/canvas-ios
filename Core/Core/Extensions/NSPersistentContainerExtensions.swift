@@ -31,13 +31,24 @@ extension NSPersistentContainer {
         }
 
         container.loadPersistentStores { _, error in
-            if let error = error {
-                fatalError(error.localizedDescription)
+            guard error == nil else {
+                container.destroy() // ignore migration conflicts
+                container.loadPersistentStores { _, error in
+                    if let error = error {
+                        fatalError(error.localizedDescription)
+                    }
+                    container.setUp()
+                }
+                return
             }
-            container.viewContext.automaticallyMergesChangesFromParent = true
-            container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+            container.setUp()
         }
         return container
+    }
+
+    func setUp() {
+        viewContext.automaticallyMergesChangesFromParent = true
+        viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
     }
 
     public static func databaseURL(for appGroup: String?, session: KeychainEntry?) -> URL? {
