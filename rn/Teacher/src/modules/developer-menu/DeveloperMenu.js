@@ -36,7 +36,7 @@ import Row from '../../common/components/rows/Row'
 import SectionHeader from '../../common/components/rows/SectionHeader'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
-import { featureFlagKey } from '../../common/feature-flags'
+import ExperimentalFeature from '../../common/ExperimentalFeature'
 import { formattedDueDate } from '../../common/formatters'
 const { NativeNotificationCenter, Helm } = NativeModules
 
@@ -80,17 +80,12 @@ export async function getLastRoute () {
 }
 
 export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
-  constructor (props: DeveloperMenuProps) {
-    super(props)
-    this.state = {}
-  }
+  state = {}
 
   componentDidMount = async () => {
     let path = await AsyncStorage.getItem(stagingKey)
-    let featureFlagEnabled = Boolean(await AsyncStorage.getItem(featureFlagKey))
     this.setState({
       path,
-      featureFlagEnabled,
       selectedRouteMethod: 'Modal',
     })
   }
@@ -165,8 +160,8 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
     this.props.navigator.show('/logs')
   }
 
-  viewFeatureFlags = () => {
-    this.props.navigator.show('/feature-flags')
+  viewExperimentalFeatures = () => {
+    this.props.navigator.show('/dev-menu/experimental-features')
   }
 
   viewRouteHistory = () => {
@@ -178,17 +173,11 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
   }
 
   toggleExperimentalFeatures = async () => {
-    if (this.state.featureFlagEnabled) {
-      this.setState({
-        featureFlagEnabled: false,
-      })
-      await AsyncStorage.removeItem(featureFlagKey)
+    if (ExperimentalFeature.allEnabled) {
+      ExperimentalFeature.allEnabled = false
       this.restartApp()
     } else {
-      this.setState({
-        featureFlagEnabled: true,
-      })
-      await AsyncStorage.setItem(featureFlagKey, 'enabled')
+      ExperimentalFeature.allEnabled = true
       Alert.alert(
         '',
         'The app will now restart. If you do not see the features enabled that you expected, you may need to force close the app and open it again.',
@@ -213,7 +202,6 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
 
   render () {
     const path = this.state.path || ''
-    const featureFlagEnabled = Boolean(this.state.featureFlagEnabled)
     const routeHistory = routes && routes.length && routes.reduce((accumulator, route) => {
       const subtitle = formattedDueDate(new Date(route.timestamp))
       accumulator.push(<Row title={route.url} subtitle={subtitle} key={`${route.url}-${route.timestamp}`}disclosureIndicator onPress={() => this.route(route) } />)
@@ -248,15 +236,15 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
           </View>
           <View style={{ flex: 1, flexDirection: 'column' }}>
             <RowSeparator />
-            <RowWithSwitch title='Enable Experimental Features' onValueChange={this.toggleExperimentalFeatures} value={featureFlagEnabled} />
+            <RowWithSwitch title='Enable Experimental Features' onValueChange={this.toggleExperimentalFeatures} value={ExperimentalFeature.allEnabled} />
+            <RowSeparator />
+            <Row title='View Experimental Features' disclosureIndicator onPress={this.viewExperimentalFeatures} />
             <RowSeparator />
             <Row title='View Push Notifications' disclosureIndicator onPress={this.viewPushNotifications} />
             <RowSeparator />
             <Row title='View Page Views' disclosureIndicator onPress={this.viewPageViews} />
             <RowSeparator />
             <Row title='View Logs' disclosureIndicator onPress={this.viewLogs} />
-            <RowSeparator />
-            <Row title='View Feature Flags' disclosureIndicator onPress={this.viewFeatureFlags} />
             <RowSeparator />
             <Row title='Manage Rating Request' disclosureIndicator onPress={this.manageRatingRequest} />
             <RowSeparator />

@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 import React, { Component } from 'react'
 import {
@@ -25,31 +25,36 @@ import {
 
 import Screen from '../../routing/Screen'
 import Row from '../../common/components/rows/Row'
-import { featureFlags, featureFlagEnabled, type FeatureFlagName } from '../../common/feature-flags'
+import ExperimentalFeature from '../../common/ExperimentalFeature'
 import { Text } from '../../common/text'
 
-function subtitle (flagName: FeatureFlagName) {
-  const flag = featureFlags[flagName]
-  const domains = (flag.exempt && flag.exempt.domains) || []
-  const apps = (flag.exempt && flag.exempt.apps) || []
-  return `On for: \n${domains.concat(apps).join('\n')}`
+function subtitle (name) {
+  const state = ExperimentalFeature[name]
+  if (state === true) {
+    return 'enabled'
+  } else if (state === 'beta') {
+    return 'enabled in beta'
+  } else if (Array.isArray(state)) {
+    return `enabled for:\n${state.join('\n')}`
+  }
+  return 'disabled'
 }
 
-export default class FeatureFlags extends Component<any, any> {
+export default class ExperimentalFeatures extends Component {
   render () {
     return (
       <Screen
-        title='Feature Flags'
+        title='Experimental Features'
       >
-        <ScrollView style={{ flex: 1, padding: 16 }}>
-          {Object.keys(featureFlags).map(flagName => {
+        <ScrollView style={{ flex: 1 }}>
+          {Object.keys(ExperimentalFeature).map(name => {
             return (
               <Row
-                title={flagName}
-                key={flagName}
-                subtitle={subtitle(flagName)}
+                title={name}
+                key={name}
+                subtitle={subtitle(name)}
                 border='bottom'
-                accessories={<Text>{featureFlagEnabled(flagName) ? 'On' : 'Off'}</Text>}
+                accessories={<Text>{ExperimentalFeature[name].isEnabled ? 'On' : 'Off'}</Text>}
               />
             )
           })}
