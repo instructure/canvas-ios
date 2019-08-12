@@ -21,7 +21,6 @@
 import React, { Component } from 'react'
 import {
   StyleSheet,
-  WebView,
   NativeModules,
   Clipboard,
   I18nManager,

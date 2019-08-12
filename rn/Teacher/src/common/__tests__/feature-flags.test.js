@@ -21,7 +21,13 @@
 // are in the enum but that's ok cause we need to test some logic here
 
 import { setSession } from '../../canvas-api'
-import { featureFlagEnabled, featureFlags, enableAllFeaturesFlagsForTesting, disableAllFeatureFlagsForTesting } from '../feature-flags'
+import {
+  featureFlagEnabled,
+  featureFlags,
+  enableAllFeaturesFlagsForTesting,
+  disableAllFeatureFlagsForTesting,
+  enabledFeatureFlags,
+} from '../feature-flags'
 import * as templates from '../../__templates__'
 
 describe('Feature Flags', () => {
@@ -69,5 +75,14 @@ describe('Feature Flags', () => {
     featureFlags['testEnabled'] = { enabled: true }
     expect(featureFlagEnabled('testEnabled')).toEqual(true)
     delete featureFlags['testEnabled']
+  })
+
+  it('returns enabled feature flags', () => {
+    expect(enabledFeatureFlags().length).toEqual(0)
+    enableAllFeaturesFlagsForTesting()
+    expect(enabledFeatureFlags().length).not.toEqual(0)
+    disableAllFeatureFlagsForTesting()
+    featureFlags['not a flag yo'] = { enabled: true }
+    expect(enabledFeatureFlags().length).toEqual(1)
   })
 })

@@ -56,11 +56,14 @@ export const featureFlags: { [FeatureFlagName]: FeatureFlag } = {
   enhancedRCE: {},
 }
 
-export function enabledFeatureFlags() {
+var enableAllFeatureFlags = false
+
+export function enabledFeatureFlags () {
+  if (enableAllFeatureFlags) {
+    return Object.keys
+  }
   return Object.keys(featureFlags).filter(f => featureFlagEnabled(f))
 }
-
-var enableAllFeatureFlags = false
 
 // if you ever have to change the logic here you must also update
 // CanvasCore/CanvasCore/FeatureFlags/FeatureFlags.swift as the logic

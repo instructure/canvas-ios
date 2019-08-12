@@ -5,7 +5,7 @@ Array [
   Array [
     "
       var selection = getSelection().toString();
-      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
+      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
     ",
   ],
   Array [
@@ -25,7 +25,7 @@ Array [
   Array [
     "
       var selection = getSelection().toString();
-      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
+      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
     ",
   ],
   Array [
@@ -117,17 +117,13 @@ Array [
 `;
 
 exports[`ZSSRichTextEditor renders 1`] = `
-<WebView
+<CanvasWebView
   hideKeyboardAccessoryView={true}
-  onLoad={[Function]}
+  onFinishedLoading={[Function]}
   onMessage={[Function]}
   scalesPageToFit={true}
   scrollEnabled={true}
-  source={
-    Object {
-      "html": "",
-    }
-  }
+  source={Object {}}
   style={
     Object {
       "backgroundColor": "transparent",
@@ -135,7 +131,6 @@ exports[`ZSSRichTextEditor renders 1`] = `
       "flexDirection": "column",
     }
   }
-  useWebKit={true}
 />
 `;
 
