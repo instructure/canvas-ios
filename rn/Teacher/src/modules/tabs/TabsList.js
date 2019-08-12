@@ -117,11 +117,7 @@ export default class TabsList extends Component<TabsListProps, any> {
     }
 
     return (
-      <View
-        style={styles.container}
-        refreshing={this.props.refreshing}
-        onRefresh={this.props.onRefresh}
-      >
+      <View style={styles.container}>
         <OnLayout style={styles.tabContainer}>
           {({ height }) => (
             <Animated.ScrollView
@@ -131,7 +127,7 @@ export default class TabsList extends Component<TabsListProps, any> {
               onScroll={this.onScroll}
               refreshControl={
                 <RefreshControl
-                  refreshing={this.props.refreshing}
+                  refreshing={false /* this.props.refreshing MBL-13034 */}
                   onRefresh={this.props.onRefresh}
                   style={{ position: 'absolute', top: headerHeight }}
                 />
