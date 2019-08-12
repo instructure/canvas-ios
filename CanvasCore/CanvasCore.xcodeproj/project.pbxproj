@@ -451,8 +451,6 @@
 		7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD89E8A20AB626600650227 /* AppStoreReview.m */; };
 		7DF5A776208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF5A775208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift */; };
 		9F068D64207C082B0040EFFA /* registerSharedNativeViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F068D63207C082B0040EFFA /* registerSharedNativeViewControllers.swift */; };
-		9F2E363520507F3500A2B031 /* FeatureFlags.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E363420507F3500A2B031 /* FeatureFlags.m */; };
-		9F2E36382050918500A2B031 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E36372050918500A2B031 /* FeatureFlags.swift */; };
 		9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E071FBB766E00BB2D84 /* InfoPlist.strings */; };
 		9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E0C1FBB766E00BB2D84 /* Localizable.strings */; };
 		9FA866972086820D000ECFC9 /* Adjustable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA866962086820D000ECFC9 /* Adjustable.swift */; };
@@ -1023,8 +1021,6 @@
 		9F25DB6E1FBB769400DBF510 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9F25DB6F1FBB769400DBF510 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9F25DB701FBB769400DBF510 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
-		9F2E363420507F3500A2B031 /* FeatureFlags.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeatureFlags.m; sourceTree = "<group>"; };
-		9F2E36372050918500A2B031 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		9F2EF2E51FBB769700230166 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		9F2EF2E61FBB769700230166 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9F2EF2E71FBB769700230166 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1180,7 +1176,6 @@
 			children = (
 				7D52D83C22FCC73100684932 /* Assignments */,
 				B1F4E8CD206188DC0056074A /* RCE */,
-				9F2E363320507F0B00A2B031 /* FeatureFlags */,
 				3BBEAA47204726E4004D334C /* Page View Analytics */,
 				49301FB51F901235006BD777 /* Activity Stream */,
 				49301FF41F901CA0006BD777 /* Annotations */,
@@ -2618,15 +2613,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		9F2E363320507F0B00A2B031 /* FeatureFlags */ = {
-			isa = PBXGroup;
-			children = (
-				9F2E363420507F3500A2B031 /* FeatureFlags.m */,
-				9F2E36372050918500A2B031 /* FeatureFlags.swift */,
-			);
-			path = FeatureFlags;
-			sourceTree = "<group>";
-		};
 		B1F4E8CD206188DC0056074A /* RCE */ = {
 			isa = PBXGroup;
 			children = (
@@ -3023,7 +3009,6 @@
 				497815311FCE14B800D57BBB /* Tab+Details.swift in Sources */,
 				49CE968F1F8FF41B00121A43 /* JSONDecodable.swift in Sources */,
 				49CE96901F8FF41B00121A43 /* CanvasRequest.swift in Sources */,
-				9F2E363520507F3500A2B031 /* FeatureFlags.m in Sources */,
 				2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */,
 				2CD7769C200977EC00589D4F /* UIApplicationDelegate+Core.swift in Sources */,
 				3B158C9022E12E2F0039A568 /* PageViewEventLogger.m in Sources */,
@@ -3136,7 +3121,6 @@
 				2C7CBD2B1F79A42600E5EC02 /* CGRect+Core.swift in Sources */,
 				493020761F902462006BD777 /* NSDate+Marshal.swift in Sources */,
 				49CE96E91F8FFC4400121A43 /* Module+Collections.swift in Sources */,
-				9F2E36382050918500A2B031 /* FeatureFlags.swift in Sources */,
 				49CE96921F8FF41B00121A43 /* QuizSubmission.swift in Sources */,
 				49301FBD1F901260006BD777 /* Activity+Network.swift in Sources */,
 				49301FC11F901260006BD777 /* Session+SuchActivity.swift in Sources */,

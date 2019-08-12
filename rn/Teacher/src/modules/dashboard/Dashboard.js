@@ -55,7 +55,7 @@ import { getSessionUnsafe, getSession } from '@canvas-api'
 import AccountNotificationActions from './account-notification-actions'
 import { extractGradeInfo } from '@utils/course-grades'
 import { extractDateFromString } from '@utils/dateUtils'
-import { featureFlagEnabled } from '@common/feature-flags'
+import ExperimentalFeature from '@common/ExperimentalFeature'
 import { logEvent } from '@common/CanvasAnalytics'
 
 type ColorfulCourse = { color: string } & Course
@@ -593,7 +593,7 @@ export function mapStateToProps (isFullDashboard: boolean) {
         }
       })
 
-    if (featureFlagEnabled('favoriteGroups')) {
+    if (ExperimentalFeature.favoriteGroups.isEnabled) {
       if (userHasFavoriteGroups) { groups = groups.filter((g) => groupFavorites.includes(g.id)) }
     }
 

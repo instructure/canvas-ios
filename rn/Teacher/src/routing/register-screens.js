@@ -73,7 +73,7 @@ import Dashboard from '../modules/dashboard/Dashboard'
 import TermsOfUse from '../modules/tos/TermsOfUse'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
 import SectionSelector from '../modules/announcements/edit/SectionSelector'
-import FeatureFlags from '../modules/developer-menu/FeatureFlags'
+import ExperimentalFeatures from '../modules/developer-menu/ExperimentalFeatures'
 import RatingRequest from '../modules/developer-menu/RatingRequest'
 import GradesList from '../modules/grades/GradesList'
 import PageViewEvents from '../modules/developer-menu/PageViewEvents'
@@ -162,7 +162,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/ui', wrap(UI), store)
   registerScreen('/push-notifications', wrap(PushNotifications), store)
   registerScreen('/page-view-events', wrap(PageViewEvents), store)
-  registerScreen('/feature-flags', wrap(FeatureFlags), store)
+  registerScreen('/dev-menu/experimental-features', wrap(ExperimentalFeatures), store)
   registerScreen('/rating-request', wrap(RatingRequest), store)
   registerScreen('/logs')
   registerScreen('/act-as-user')

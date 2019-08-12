@@ -151,6 +151,8 @@
 		7D4D5EB721402CAA0080AC14 /* TestImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D5EB421402CA90080AC14 /* TestImage.png */; };
 		7D4D5EB821402CAA0080AC14 /* TestImage.svg in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D5EB521402CA90080AC14 /* TestImage.svg */; };
 		7D4D5EB921402CAA0080AC14 /* TestImage.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D5EB621402CA90080AC14 /* TestImage.gif */; };
+		7D52D8AB2301BA5100684932 /* ExperimentalFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D8AA2301BA5100684932 /* ExperimentalFeature.swift */; };
+		7D52D8AD2301C0A400684932 /* ExperimentalFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D8AC2301C0A400684932 /* ExperimentalFeatureTests.swift */; };
 		7D54501121BDFB5C0008E75D /* LoginFindSchoolPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54501021BDFB5C0008E75D /* LoginFindSchoolPresenter.swift */; };
 		7D58FBCA2141B43400705CDF /* APIAccountResults.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D58FBC92141B43300705CDF /* APIAccountResults.json */; };
 		7D5A2BC222CD062E0029B6AC /* APIList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5A2BC122CD062E0029B6AC /* APIList.swift */; };
@@ -861,6 +863,8 @@
 		7D4D5EB421402CA90080AC14 /* TestImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TestImage.png; sourceTree = "<group>"; };
 		7D4D5EB521402CA90080AC14 /* TestImage.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestImage.svg; sourceTree = "<group>"; };
 		7D4D5EB621402CA90080AC14 /* TestImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TestImage.gif; sourceTree = "<group>"; };
+		7D52D8AA2301BA5100684932 /* ExperimentalFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeature.swift; sourceTree = "<group>"; };
+		7D52D8AC2301C0A400684932 /* ExperimentalFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeatureTests.swift; sourceTree = "<group>"; };
 		7D54501021BDFB5C0008E75D /* LoginFindSchoolPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolPresenter.swift; sourceTree = "<group>"; };
 		7D58FBC92141B43300705CDF /* APIAccountResults.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = APIAccountResults.json; sourceTree = "<group>"; };
 		7D5A2BC122CD062E0029B6AC /* APIList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIList.swift; sourceTree = "<group>"; };
@@ -1385,6 +1389,7 @@
 				7D63F78B215D4BD300151E49 /* Brand.swift */,
 				B191D5E5226E28E100D02948 /* CacheManager.swift */,
 				B17F23B02137981B00771F86 /* Clock.swift */,
+				7D52D8AA2301BA5100684932 /* ExperimentalFeature.swift */,
 				7DAFB46221A361C400311275 /* LocalizationManager.swift */,
 				B1BEB2CA22458B5E00E893A4 /* MDMManager.swift */,
 				7DD6948E2196891200BA4984 /* Secret.swift */,
@@ -1983,6 +1988,7 @@
 				7D1F704721CAE4E700E78D69 /* AppEnvironmentTests.swift */,
 				7D8B78FA215EC9BE005E08F1 /* BrandTests.swift */,
 				B191D5E7226E2CBA00D02948 /* CacheManagerTests.swift */,
+				7D52D8AC2301C0A400684932 /* ExperimentalFeatureTests.swift */,
 				7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */,
 				B1F3780922498AF1000B7CAA /* MDMManagerTests.swift */,
 				7D2DC2F32199EC93008FE29A /* SecretTests.swift */,
@@ -2811,6 +2817,7 @@
 				7D80AC03212B445200C40ECE /* APIUser.swift in Sources */,
 				7D8262F9212B3B2000BD268D /* APISection.swift in Sources */,
 				3B4B75C7222F09C7002CCBEC /* CreateSubmission.swift in Sources */,
+				7D52D8AB2301BA5100684932 /* ExperimentalFeature.swift in Sources */,
 				B195DC512132257500797FE4 /* GetCourse.swift in Sources */,
 				7D29D2FF218A4FEA0036437C /* PSPDFAnnotationExtension.swift in Sources */,
 				7D80AC0E212B4D4100C40ECE /* APIFavorite.swift in Sources */,
@@ -2978,6 +2985,7 @@
 				DFE1FF20212F5E41003F27AA /* KeychainTests.swift in Sources */,
 				B15CA22D221CA2EE0014FB02 /* UseCaseTests.swift in Sources */,
 				B164DC1F22DE2AB30037FA86 /* APIAccountResultTests.swift in Sources */,
+				7D52D8AD2301C0A400684932 /* ExperimentalFeatureTests.swift in Sources */,
 				B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */,
 				3BD364AB225D3C02006CEBD8 /* DiscussionTopicTests.swift in Sources */,
 				7D80AC17212B689E00C40ECE /* APITabRequestableTests.swift in Sources */,
