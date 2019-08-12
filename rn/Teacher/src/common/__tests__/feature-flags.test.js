@@ -80,7 +80,7 @@ describe('Feature Flags', () => {
   it('returns enabled feature flags', () => {
     expect(enabledFeatureFlags().length).toEqual(0)
     enableAllFeaturesFlagsForTesting()
-    expect(enabledFeatureFlags().length).not.toEqual(0)
+    expect(enabledFeatureFlags().length).toBeGreaterThan(1)
     disableAllFeatureFlagsForTesting()
     featureFlags['not a flag yo'] = { enabled: true }
     expect(enabledFeatureFlags().length).toEqual(1)

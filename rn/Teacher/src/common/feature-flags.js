@@ -60,7 +60,7 @@ var enableAllFeatureFlags = false
 
 export function enabledFeatureFlags () {
   if (enableAllFeatureFlags) {
-    return Object.keys
+    return Object.keys(featureFlags)
   }
   return Object.keys(featureFlags).filter(f => featureFlagEnabled(f))
 }
