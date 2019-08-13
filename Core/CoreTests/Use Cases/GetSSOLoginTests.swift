@@ -34,9 +34,9 @@ class GetSSOLoginTest: CoreTestCase {
 
     func testFetch() {
         let login = GetSSOLogin(url: URL(string: "https://sso.beta.canvaslms.com/canvas/login?code=code&domain=canvas.instructure.com")!)!
-        var entry: KeychainEntry?
+        var entry: LoginSession?
         var error: Error?
-        let callback = { (session: KeychainEntry?, err: Error?) in
+        let callback = { (session: LoginSession?, err: Error?) in
             entry = session
             error = err
         }

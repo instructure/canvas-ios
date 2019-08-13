@@ -56,7 +56,7 @@ class SubmitAssignmentPresenter {
 
     init?() {
         guard
-            let session = Keychain.mostRecentSession,
+            let session = LoginSession.mostRecent,
             let appGroup = Bundle.main.appGroupID(),
             let container = URL.sharedContainer(appGroup)
         else { return nil }

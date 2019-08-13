@@ -57,7 +57,7 @@ open class UITestCase: XCTestCase {
 
     open func logIn(domain: String, token: String) {
         let baseURL = URL(string: "https://\(domain)")!
-        send(.login, KeychainEntry(
+        send(.login, LoginSession(
             accessToken: token,
             baseURL: baseURL,
             expiresAt: nil,
@@ -68,12 +68,12 @@ open class UITestCase: XCTestCase {
         ))
     }
 
-    open func logInEntry(_ entry: KeychainEntry) {
-        send(.login, entry)
+    open func logInEntry(_ session: LoginSession) {
+        send(.login, session)
     }
 
     open func logInUser(_ user: UITestUser) {
-        if let entry = user.keychainEntry {
+        if let entry = user.session {
             return logInEntry(entry)
         }
 
@@ -87,17 +87,17 @@ open class UITestCase: XCTestCase {
         LoginWeb.logInButton.tap()
 
         app.find(label: "Courses").waitToExist()
-        user.keychainEntry = currentSession()
+        user.session = currentSession()
     }
 
-    open func currentSession() -> KeychainEntry? {
+    open func currentSession() -> LoginSession? {
         send(.currentSession)
         guard
             let data = UIPasteboard.general.data(forPasteboardType: pasteboardType),
             let helper = try? decoder.decode(UITestHelpers.Helper.self, from: data),
             helper.type == .currentSession, let entryData = helper.data
         else { return nil }
-        return try? decoder.decode(KeychainEntry.self, from: entryData)
+        return try? decoder.decode(LoginSession.self, from: entryData)
     }
 
     open func show(_ route: String) {

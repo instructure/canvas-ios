@@ -43,7 +43,7 @@ public class CacheManager {
         }
 
         clear()
-        Keychain.clearEntries()
+        LoginSession.clearAll()
         clearDirectory(.documentsDirectory) // Also clear documents, which we normally keep around
     }
 

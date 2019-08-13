@@ -120,7 +120,7 @@ class LoginWebPresenter {
                 if let model = response {
                     DispatchQueue.main.async {
                         self?.view?.show(LoadingViewController.create(), sender: nil)
-                        self?.loginDelegate?.userDidLogin(keychainEntry: KeychainEntry(
+                        self?.loginDelegate?.userDidLogin(session: LoginSession(
                             accessToken: model.access_token,
                             baseURL: baseURL,
                             expiresAt: model.expires_in.flatMap { Date().addingTimeInterval($0) },

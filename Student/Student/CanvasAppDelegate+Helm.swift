@@ -39,7 +39,7 @@ extension AppDelegate: RCTBridgeDelegate {
 
         HelmManager.shared.onReactReload = {
             guard self.window?.rootViewController is CanvasTabBarController else { return }
-            guard let session = Keychain.mostRecentSession else {
+            guard let session = LoginSession.mostRecent else {
                 self.changeUser()
                 return
             }

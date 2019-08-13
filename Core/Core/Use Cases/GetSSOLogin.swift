@@ -36,17 +36,17 @@ public class GetSSOLogin {
         self.domain = domain
     }
 
-    public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (KeychainEntry?, Error?) -> Void) {
+    public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (LoginSession?, Error?) -> Void) {
         let api = environment.api
         let code = self.code
-        let done = { (session: KeychainEntry?, error: Error?) in
+        let done = { (session: LoginSession?, error: Error?) in
             DispatchQueue.main.async { callback(session, error) }
         }
         api.makeRequest(GetMobileVerifyRequest(domain: domain)) { (response, _, error) in
             guard let client = response, let baseURL = client.base_url, error == nil else { return done(nil, error) }
             api.makeRequest(PostLoginOAuthRequest(client: client, code: code)) { (response, _, error) in
                 guard let model = response, error == nil else { return done(nil, error) }
-                done(KeychainEntry(
+                done(LoginSession(
                     accessToken: model.access_token,
                     baseURL: baseURL,
                     expiresAt: model.expires_in.flatMap { Date().addingTimeInterval($0) },

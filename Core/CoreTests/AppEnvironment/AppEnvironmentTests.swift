@@ -22,15 +22,15 @@ import XCTest
 class AppEnvironmentTests: CoreTestCase {
     func testUserDidLogin() {
         let env = AppEnvironment()
-        env.userDidLogin(session: KeychainEntry.make(accessToken: "token"))
+        env.userDidLogin(session: LoginSession.make(accessToken: "token"))
         XCTAssertEqual(env.api.accessToken, "token")
     }
 
     func testUserDidLogout() {
         let env = AppEnvironment()
-        let current = KeychainEntry.make(accessToken: "token")
+        let current = LoginSession.make(accessToken: "token")
         env.userDidLogin(session: current)
-        env.userDidLogout(session: KeychainEntry.make(userID: "7"))
+        env.userDidLogout(session: LoginSession.make(userID: "7"))
         XCTAssertEqual(env.api.accessToken, "token")
         env.userDidLogout(session: current)
         XCTAssertNil(env.api.accessToken)

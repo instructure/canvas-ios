@@ -22,8 +22,8 @@ import TestsFoundation
 
 class LoginStartPresenterTests: XCTestCase {
     var logins: [Login]?
-    var loggedIn: KeychainEntry?
-    var loggedOut: KeychainEntry?
+    var loggedIn: LoginSession?
+    var loggedOut: LoginSession?
     var method: String?
     var opened: URL?
     var hasOpenedSupportTicket = false
@@ -34,8 +34,7 @@ class LoginStartPresenterTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        Keychain.config = KeychainConfig(service: "com.instructure.service", accessGroup: nil)
-        Keychain.clearEntries()
+        LoginSession.clearAll()
         MDMManager.reset()
         AppEnvironment.shared.currentSession = nil
     }
@@ -51,18 +50,18 @@ class LoginStartPresenterTests: XCTestCase {
         MockURLProtocolSupport.responses.append(MockURLProtocolSupport.responseWithStatusCode(200, responseData: responseData))
         MockURLProtocolSupport.responses.append(MockURLProtocolSupport.responseWithStatusCode(200, responseData: responseData))
         MDMManager.mockDefaults()
-        let bill = KeychainEntry.make(lastUsedAt: Date().addingTimeInterval(100), userID: "1", userName: "Bill")
-        let bob = KeychainEntry.make(lastUsedAt: Date(), userID: "3", userName: "Bob")
+        let bill = LoginSession.make(lastUsedAt: Date().addingTimeInterval(100), userID: "1", userName: "Bill")
+        let bob = LoginSession.make(lastUsedAt: Date(), userID: "3", userName: "Bob")
         let apple = MDMManager.shared.logins[0]
-        Keychain.addEntry(bill)
-        Keychain.addEntry(bob)
+        LoginSession.add(bill)
+        LoginSession.add(bob)
         AppEnvironment.shared.currentSession = bill
         let presenter = LoginStartPresenter(loginDelegate: self, view: self)
-        presenter.session = mockSession
+        presenter.urlSession = mockSession
         presenter.viewIsReady()
-        XCTAssertEqual(logins, [ Login.keychain(bill), Login.keychain(bob), Login.mdm(apple) ])
+        XCTAssertEqual(logins, [ Login.session(bill), Login.session(bob), Login.mdm(apple) ])
         let poll = expectation(for: NSPredicate(value: true), evaluatedWith: presenter) {
-            if case .keychain(let entry)? = self.logins?[0], entry.userAvatarURL != nil {
+            if case .session(let entry)? = self.logins?[0], entry.userAvatarURL != nil {
                 return true
             }
             return false
@@ -124,17 +123,17 @@ class LoginStartPresenterTests: XCTestCase {
 
     func testSelectKeychainEntry() {
         let presenter = LoginStartPresenter(loginDelegate: self, view: self)
-        let entry = KeychainEntry.make()
-        presenter.selectKeychainEntry(entry)
-        XCTAssertEqual(loggedIn, entry)
+        let session = LoginSession.make()
+        presenter.selectSession(session)
+        XCTAssertEqual(loggedIn, session)
         XCTAssert(shown is LoadingViewController)
     }
 
     func testRemoveKeychainEntry() {
         let presenter = LoginStartPresenter(loginDelegate: self, view: self)
-        let entry = KeychainEntry.make()
-        presenter.removeKeychainEntry(entry)
-        XCTAssertEqual(loggedOut, entry)
+        let session = LoginSession.make()
+        presenter.removeSession(session)
+        XCTAssertEqual(loggedOut, session)
     }
 
     func testSelectMDMLogin() {
@@ -172,11 +171,11 @@ extension LoginStartPresenterTests: LoginDelegate {
         hasOpenedSupportTicket = true
     }
 
-    func userDidLogin(keychainEntry: KeychainEntry) {
-        loggedIn = keychainEntry
+    func userDidLogin(session: LoginSession) {
+        loggedIn = session
     }
 
-    func userDidLogout(keychainEntry: KeychainEntry) {
-        loggedOut = keychainEntry
+    func userDidLogout(session: LoginSession) {
+        loggedOut = session
     }
 }

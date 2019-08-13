@@ -56,9 +56,9 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
-        if let session = Keychain.mostRecentSession {
+        if let session = LoginSession.mostRecent {
             window?.rootViewController = LoadingViewController.create()
-            userDidLogin(keychainEntry: session)
+            userDidLogin(session: session)
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
         }
@@ -96,7 +96,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func setup(session: KeychainEntry) {
+    func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
         CoreWebView.keepCookieAlive(for: environment)
         // UX requires that students are given color schemes in a specific order.
@@ -119,7 +119,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: legacyClient.authSession])
             self.showRootView()
         }, error: { _ in DispatchQueue.main.async {
-            self.userDidLogout(keychainEntry: session)
+            self.userDidLogout(session: session)
         } })
     }
 
@@ -168,31 +168,31 @@ extension ParentAppDelegate: LoginDelegate {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
-    func userDidLogin(keychainEntry: KeychainEntry) {
-        Keychain.addEntry(keychainEntry)
+    func userDidLogin(session: LoginSession) {
+        LoginSession.add(session)
         // TODO: Register for push notifications?
-        LocalizationManager.localizeForApp(UIApplication.shared, locale: keychainEntry.locale) {
-            setup(session: keychainEntry)
+        LocalizationManager.localizeForApp(UIApplication.shared, locale: session.locale) {
+            setup(session: session)
         }
     }
 
-    func userDidStopActing(as keychainEntry: KeychainEntry) {
-        Keychain.removeEntry(keychainEntry)
+    func userDidStopActing(as session: LoginSession) {
+        LoginSession.remove(session)
         // TODO: Deregister push notifications?
-        guard environment.currentSession == keychainEntry else { return }
-        environment.userDidLogout(session: keychainEntry)
+        guard environment.currentSession == session else { return }
+        environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
     }
 
-    func userDidLogout(keychainEntry: KeychainEntry) {
-        let wasCurrent = environment.currentSession == keychainEntry
-        userDidStopActing(as: keychainEntry)
+    func userDidLogout(session: LoginSession) {
+        let wasCurrent = environment.currentSession == session
+        userDidStopActing(as: session)
         if wasCurrent { changeUser() }
     }
 
     func logout() {
         if let session = environment.currentSession {
-            userDidLogout(keychainEntry: session)
+            userDidLogout(session: session)
         }
     }
 }

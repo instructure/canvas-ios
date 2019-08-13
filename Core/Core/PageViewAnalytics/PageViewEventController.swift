@@ -60,7 +60,7 @@ public class PageViewEventController: NSObject {
     @objc func logPageView(_ eventNameOrPath: String, attributes: [String: String] = [:], eventDurationInSeconds: TimeInterval = 0) {
         if(!appCanLogEvents()) { return }
         assert(requestManager.backgroundAppHelper != nil, "configure(backgroundAppHelper: AppBackgroundHelperProtocol) was not called")
-        guard let authSession = Keychain.mostRecentSession else { return }
+        guard let authSession = LoginSession.mostRecent else { return }
 
         let userID = authSession.userID
         var mutableAttributes = attributes
@@ -142,7 +142,7 @@ public class PageViewEventController: NSObject {
     }
 
     private func populatePlaceholderUrl(urlWithPlaceholders: String?, params: PageViewEventDictionary?) -> String? {
-        guard let baseURL = Keychain.mostRecentSession?.baseURL,
+        guard let baseURL = LoginSession.mostRecent?.baseURL,
             let urlWithPlaceholders = urlWithPlaceholders
             else { return nil }
         var path = urlWithPlaceholders

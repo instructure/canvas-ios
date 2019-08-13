@@ -56,6 +56,9 @@ if (!scheme) {
 
 const coverageFolder = `scripts/coverage/${scheme.toLowerCase()}`
 const resultBundlePath = `scripts/coverage/${scheme.toLowerCase()}.xcresult`
+const naturalCompare = new Intl.Collator('en', {
+  sensitivity: 'base', numeric: true,
+}).compare
 
 try {
   runTests()
@@ -266,6 +269,7 @@ async function writeFolderHTML (folder, cssPath) {
     }
   }
   flatFiles(folder.files, 0)
+  files.sort((a, b) => naturalCompare(a.path, b.path))
   writeFileSync(htmlPath, `<!doctype html>
     <link rel="stylesheet" href="${relative(dirname(htmlPath), cssPath)}" />
     <h1>${header(folder.path, 0)}</h1>

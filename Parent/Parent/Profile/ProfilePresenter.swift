@@ -86,7 +86,7 @@ public class ProfilePresenter: ProfilePresenterProtocol {
                 block: { _ in
                     guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
                     guard let session = delegate.environment.currentSession else { return }
-                    delegate.userDidLogout(keychainEntry: session)
+                    delegate.userDidLogout(session: session)
                 }
             )
         ])

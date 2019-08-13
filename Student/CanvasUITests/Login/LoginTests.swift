@@ -54,20 +54,20 @@ class LoginTests: CanvasUITests {
 
     func testMultipleUsers() {
         logInUser(.readStudent1)
-        let entry1 = UITestUser.readStudent1.keychainEntry!
+        let entry1 = UITestUser.readStudent1.session!
 
         Profile.open()
         Profile.changeUserButton.tap()
 
         logInUser(.readStudent2)
-        let entry2 = UITestUser.readStudent2.keychainEntry!
+        let entry2 = UITestUser.readStudent2.session!
 
         Profile.open()
         Profile.changeUserButton.tap()
 
         LoginStart.findSchoolButton.waitToExist()
-        XCTAssert(LoginStartKeychainEntry.cell(host: entry1.baseURL.host!, userID: entry1.userID).exists)
-        XCTAssert(LoginStartKeychainEntry.cell(host: entry2.baseURL.host!, userID: entry2.userID).exists)
+        XCTAssert(LoginStartSession.cell(host: entry1.baseURL.host!, userID: entry1.userID).exists)
+        XCTAssert(LoginStartSession.cell(host: entry2.baseURL.host!, userID: entry2.userID).exists)
     }
 
     func testSessionMaintainedAfterTermination() {

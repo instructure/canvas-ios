@@ -25,7 +25,7 @@ final public class File: NSManagedObject {
         let baseURL: URL
         let actAsUserID: String?
 
-        static func == (lhs: User, rhs: KeychainEntry) -> Bool {
+        static func == (lhs: User, rhs: LoginSession) -> Bool {
             return lhs.baseURL == rhs.baseURL &&
                 lhs.id == rhs.userID &&
                 lhs.actAsUserID == rhs.actAsUserID
@@ -135,7 +135,7 @@ final public class File: NSManagedObject {
         self.batchID = nil
     }
 
-    func setUser(session: KeychainEntry) {
+    func setUser(session: LoginSession) {
         self.user = File.User(id: session.userID, baseURL: session.baseURL, actAsUserID: session.actAsUserID)
     }
 }

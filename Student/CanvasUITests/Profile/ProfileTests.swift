@@ -45,16 +45,16 @@ class ProfileTests: CanvasUITests {
     func testProfileChangesUser() {
         Profile.open()
         Profile.changeUserButton.tap()
-        let entry = user!.keychainEntry!
-        LoginStartKeychainEntry.cell(host: entry.baseURL.host!, userID: entry.userID).waitToExist()
+        let entry = user!.session!
+        LoginStartSession.cell(host: entry.baseURL.host!, userID: entry.userID).waitToExist()
     }
 
     func testProfileLogsOut() {
         Profile.open()
         Profile.logOutButton.tap()
         LoginStart.findSchoolButton.waitToExist()
-        let entry = user!.keychainEntry!
-        XCTAssertFalse(LoginStartKeychainEntry.cell(host: entry.baseURL.host!, userID: entry.userID).exists)
+        let entry = user!.session!
+        XCTAssertFalse(LoginStartSession.cell(host: entry.baseURL.host!, userID: entry.userID).exists)
     }
 
     func testPreviewUserFile() {
@@ -66,7 +66,7 @@ class ProfileTests: CanvasUITests {
     }
 
     func xtestProfileLandingPage() { // TODO: reenable
-        guard let entry = user?.keychainEntry else {
+        guard let entry = user?.session else {
             return XCTFail("Couldn't get keychain entry")
         }
         for cell in LandingPageCell.allCases.reversed() { // dashboard last
@@ -79,7 +79,7 @@ class ProfileTests: CanvasUITests {
             app.find(label: "Done", type: .button).tap()
             Profile.open()
             Profile.changeUserButton.tap()
-            LoginStartKeychainEntry.cell(entry).tap()
+            LoginStartSession.cell(entry).tap()
             cell.relatedTab.waitToExist()
             XCTAssertTrue(cell.relatedTab.isSelected)
         }

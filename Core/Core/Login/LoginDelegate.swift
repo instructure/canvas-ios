@@ -25,10 +25,10 @@ public protocol LoginDelegate: class {
 
     func openExternalURL(_ url: URL)
     func openSupportTicket()
-    func userDidLogin(keychainEntry: KeychainEntry)
-    func userDidStartActing(as keychainEntry: KeychainEntry)
-    func userDidStopActing(as keychainEntry: KeychainEntry)
-    func userDidLogout(keychainEntry: KeychainEntry)
+    func userDidLogin(session: LoginSession)
+    func userDidStartActing(as session: LoginSession)
+    func userDidStopActing(as session: LoginSession)
+    func userDidLogout(session: LoginSession)
     func changeUser()
 }
 
@@ -40,24 +40,24 @@ extension LoginDelegate {
     public func openSupportTicket() {}
     public func changeUser() {}
 
-    public func userDidStartActing(as keychainEntry: KeychainEntry) {
-        userDidLogin(keychainEntry: keychainEntry)
+    public func userDidStartActing(as session: LoginSession) {
+        userDidLogin(session: session)
     }
-    public func userDidStopActing(as keychainEntry: KeychainEntry) {
-        userDidLogout(keychainEntry: keychainEntry)
-    }
-
-    public func startActing(as keychainEntry: KeychainEntry) {
-        userDidStartActing(as: keychainEntry)
+    public func userDidStopActing(as session: LoginSession) {
+        userDidLogout(session: session)
     }
 
-    public func stopActing(as keychainEntry: KeychainEntry, findOriginalFrom entries: Set<KeychainEntry> = Keychain.entries) {
-        guard let baseURL = keychainEntry.originalBaseURL, let userID = keychainEntry.originalUserID else { return }
+    public func startActing(as session: LoginSession) {
+        userDidStartActing(as: session)
+    }
+
+    public func stopActing(as session: LoginSession, findOriginalFrom entries: Set<LoginSession> = LoginSession.sessions) {
+        guard let baseURL = session.originalBaseURL, let userID = session.originalUserID else { return }
         if let original = entries.first(where: { $0.baseURL == baseURL && $0.userID == userID && $0.masquerader == nil }) {
-            userDidStopActing(as: keychainEntry)
-            userDidLogin(keychainEntry: original.bumpLastUsedAt())
+            userDidStopActing(as: session)
+            userDidLogin(session: original.bumpLastUsedAt())
         } else {
-            userDidLogout(keychainEntry: keychainEntry)
+            userDidLogout(session: session)
         }
     }
 }

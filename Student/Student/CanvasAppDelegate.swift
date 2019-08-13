@@ -64,10 +64,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         CanvasAnalytics.setHandler(self)
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
-        if let session = Keychain.mostRecentSession {
+        if let session = LoginSession.mostRecent {
             window?.rootViewController = LoadingViewController.create()
             window?.makeKeyAndVisible()
-            userDidLogin(keychainEntry: session)
+            userDidLogin(session: session)
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
             window?.makeKeyAndVisible()
@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         return true
     }
 
-    func setup(session: KeychainEntry, wasReload: Bool = false) {
+    func setup(session: LoginSession, wasReload: Bool = false) {
         environment.userDidLogin(session: session)
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
@@ -108,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
                 NativeLoginManager.login(as: session, wasReload: wasReload)
             }
         }, error: { _ in DispatchQueue.main.async {
-            self.userDidLogout(keychainEntry: session)
+            self.userDidLogout(session: session)
         } })
     }
 
@@ -290,7 +290,7 @@ extension AppDelegate {
 // MARK: Launching URLS
 extension AppDelegate {
     @objc @discardableResult func openCanvasURL(_ url: URL) -> Bool {
-        if Keychain.mostRecentSession == nil, let host = url.host {
+        if LoginSession.mostRecent == nil, let host = url.host {
             let loginNav = LoginNavigationController.create(loginDelegate: self)
             loginNav.login(host: host)
             window?.rootViewController = loginNav
@@ -349,7 +349,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 
     func logout() {
         if let session = environment.currentSession {
-            userDidLogout(keychainEntry: session)
+            userDidLogout(session: session)
         }
     }
 
@@ -357,26 +357,26 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
-    func userDidLogin(keychainEntry: KeychainEntry) {
-        Keychain.addEntry(keychainEntry)
-        LocalizationManager.localizeForApp(UIApplication.shared, locale: keychainEntry.locale) {
-            setup(session: keychainEntry)
+    func userDidLogin(session: LoginSession) {
+        LoginSession.add(session)
+        LocalizationManager.localizeForApp(UIApplication.shared, locale: session.locale) {
+            setup(session: session)
         }
     }
 
-    func userDidStopActing(as keychainEntry: KeychainEntry) {
-        Keychain.removeEntry(keychainEntry)
-        guard environment.currentSession == keychainEntry else { return }
+    func userDidStopActing(as session: LoginSession) {
+        LoginSession.remove(session)
+        guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
         NotificationKitController.deregisterPushNotifications { _ in }
         UIApplication.shared.applicationIconBadgeNumber = 0
-        environment.userDidLogout(session: keychainEntry)
+        environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
     }
 
-    func userDidLogout(keychainEntry: KeychainEntry) {
-        let wasCurrent = environment.currentSession == keychainEntry
-        userDidStopActing(as: keychainEntry)
+    func userDidLogout(session: LoginSession) {
+        let wasCurrent = environment.currentSession == session
+        userDidStopActing(as: session)
         if wasCurrent { changeUser() }
     }
 }
@@ -391,7 +391,7 @@ extension AppDelegate {
                     self?.changeUser()
                     return
                 }
-                self?.userDidLogin(keychainEntry: session)
+                self?.userDidLogin(session: session)
             }
             return true
         }
