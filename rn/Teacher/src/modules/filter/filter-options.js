@@ -75,6 +75,7 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
       type: 'ungraded',
       title: () => i18n("Haven't been graded"),
       filterFunc: () => ({
+        states: ['submitted', 'pending_review', 'ungraded'],
         gradingStatus: 'needs_grading',
       }),
       oldFilterFunc: (submission) => submission.grade === 'ungraded',
