@@ -19,14 +19,14 @@
 import XCTest
 @testable import Core
 
-class GeneralPurposeKeychainTests: XCTestCase {
+class KeychainTests: XCTestCase {
 
     let serviceName = "com.test"
     let accessGroup = "com.instructure.test"
-    var keychain: GeneralPurposeKeychain!
+    var keychain: Keychain!
     override func setUp() {
         super.setUp()
-        keychain = GeneralPurposeKeychain(serviceName: serviceName, accessGroup: nil)
+        keychain = Keychain(serviceName: serviceName, accessGroup: nil)
     }
 
     func testGetData() {
@@ -35,8 +35,8 @@ class GeneralPurposeKeychainTests: XCTestCase {
         var data = str.data(using: .utf8)!
         keychain.setData(data, for: key)
 
-        let newInstance = GeneralPurposeKeychain(serviceName: serviceName, accessGroup: nil)
-        var strData = newInstance.data(for: key)!
+        let newInstance = Keychain(serviceName: serviceName, accessGroup: nil)
+        var strData = newInstance.getData(for: key)!
         var result = String(data: strData, encoding: .utf8)
         XCTAssertEqual(result, str)
 
@@ -44,7 +44,7 @@ class GeneralPurposeKeychainTests: XCTestCase {
         data = str.data(using: .utf8)!
         keychain.setData(data, for: key)
 
-        strData = newInstance.data(for: key)!
+        strData = newInstance.getData(for: key)!
         result = String(data: strData, encoding: .utf8)
         XCTAssertEqual(result, str)
     }
@@ -56,8 +56,8 @@ class GeneralPurposeKeychainTests: XCTestCase {
         let data = NSKeyedArchiver.archivedData(withRootObject: dict)
         keychain.setData(data, for: key)
 
-        let newInstance = GeneralPurposeKeychain(serviceName: serviceName, accessGroup: nil)
-        if let data = newInstance.data(for: key), let result = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String: Any] {
+        let newInstance = Keychain(serviceName: serviceName, accessGroup: nil)
+        if let data = newInstance.getData(for: key), let result = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String: Any] {
             XCTAssertEqual(result["foo"] as! String, dict["foo"] as! String)
             XCTAssertEqual(result["date"] as! Date, dict["date"] as! Date)
         } else {
@@ -65,23 +65,23 @@ class GeneralPurposeKeychainTests: XCTestCase {
         }
     }
 
-    func testRemoveItem() {
+    func testRemoveData() {
         let key = "foo"
         let str = "test"
 
         keychain.setData(str.data(using: .utf8)!, for: key)
 
-        if let data = keychain.data(for: key) {
+        if let data = keychain.getData(for: key) {
             let value = String(data: data, encoding: .utf8)
             XCTAssertEqual(str, value)
         } else {
             XCTFail()
         }
 
-        let result = keychain.removeItem(for: key)
+        let result = keychain.removeData(for: key)
         XCTAssertTrue(result)
 
-        let shouldBeNil = keychain.data(for: key)
+        let shouldBeNil = keychain.getData(for: key)
         XCTAssertNil(shouldBeNil)
     }
 
@@ -89,9 +89,9 @@ class GeneralPurposeKeychainTests: XCTestCase {
         let key = "foo"
         let str = "test"
 
-        GeneralPurposeKeychain.shared.setData(str.data(using: .utf8)!, for: key)
+        Keychain.shared.setData(str.data(using: .utf8)!, for: key)
 
-        if let data = GeneralPurposeKeychain.shared.data(for: key) {
+        if let data = Keychain.shared.getData(for: key) {
             let value = String(data: data, encoding: .utf8)
             XCTAssertEqual(str, value)
         } else {

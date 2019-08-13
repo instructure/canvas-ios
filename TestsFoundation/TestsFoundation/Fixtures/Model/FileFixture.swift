@@ -31,7 +31,7 @@ extension File {
         removeURL: Bool = false,
         taskID: Int? = nil,
         uploadError: String? = nil,
-        session: KeychainEntry? = nil,
+        session: LoginSession? = nil,
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> File {
         let model = File.save(api, in: context)

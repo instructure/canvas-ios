@@ -27,7 +27,7 @@ class SubmitAssignmentTests: XCTestCase {
         return TestsFoundation.singleSharedTestDatabase
     }
     let uploadManager = MockUploadManager()
-    let entriesBackup = Keychain.entries
+    let sessionsBackup = LoginSession.sessions
 
     override func setUp() {
         super.setUp()
@@ -40,9 +40,6 @@ class SubmitAssignmentTests: XCTestCase {
     }
 
     override func tearDown() {
-        Keychain.clearEntries()
-        for entry in entriesBackup {
-            Keychain.addEntry(entry)
-        }
+        LoginSession.sessions = sessionsBackup
     }
 }

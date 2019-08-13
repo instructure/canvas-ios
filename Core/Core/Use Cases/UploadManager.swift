@@ -227,7 +227,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 let location = response.allHeaderFields[HttpHeader.location] as? String,
                 let url = URL(string: location),
                 let user = file.user,
-                let session = Keychain.entries.first(where: { user == $0 }) {
+                let session = LoginSession.sessions.first(where: { user == $0 }) {
                 do {
                     // Upload failed with a 201 so fetch the file using the url in the Location header
                     var request = URLRequest(url: url)
@@ -355,7 +355,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     }
 
     private func submit(file: File, courseID: String, assignmentID: String, comment: String?) {
-        guard let user = file.user, let session = Keychain.entries.first(where: { user == $0 }) else { return }
+        guard let user = file.user, let session = LoginSession.sessions.first(where: { user == $0 }) else { return }
         var files = [file]
         if let batchID = file.batchID {
             files = context.fetch(predicate(userID: user.id, batchID: batchID))

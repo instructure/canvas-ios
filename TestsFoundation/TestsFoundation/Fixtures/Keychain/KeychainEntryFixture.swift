@@ -18,7 +18,7 @@
 
 import Core
 
-extension KeychainEntry {
+extension LoginSession {
     public static func make(
         accessToken: String = "token",
         baseURL: URL = URL(string: "https://canvas.instructure.com")!,
@@ -30,8 +30,8 @@ extension KeychainEntry {
         userAvatarURL: URL? = nil,
         userID: String = "1",
         userName: String = "Eve"
-    ) -> KeychainEntry {
-        return KeychainEntry(
+    ) -> LoginSession {
+        return LoginSession(
             accessToken: accessToken,
             baseURL: baseURL,
             expiresAt: expiresAt,

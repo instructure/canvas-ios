@@ -97,8 +97,8 @@ extension LoginFindSchoolPresenterTests: LoginFindSchoolViewProtocol, LoginDeleg
         opened = url
     }
 
-    func userDidLogin(keychainEntry: KeychainEntry) {}
-    func userDidLogout(keychainEntry: KeychainEntry) {}
+    func userDidLogin(session: LoginSession) {}
+    func userDidLogout(session: LoginSession) {}
 
     func show(_ vc: UIViewController, sender: Any?) {
         shown = vc

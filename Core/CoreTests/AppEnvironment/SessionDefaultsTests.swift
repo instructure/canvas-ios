@@ -21,7 +21,7 @@ import Foundation
 import XCTest
 
 class SessionDefaultsTests: XCTestCase {
-    var defaults = SessionDefaults(sessionID: KeychainEntry.make().uniqueID)
+    var defaults = SessionDefaults(sessionID: LoginSession.make().uniqueID)
 
     override func tearDown() {
         defaults.reset()

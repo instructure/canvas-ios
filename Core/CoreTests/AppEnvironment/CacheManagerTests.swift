@@ -24,20 +24,20 @@ class CacheManagerTests: CoreTestCase {
         .appendingPathComponent("RCTAsyncLocalStorage_V1")
         .appendingPathComponent("manifest.json")
 
-    var backupEntries: Set<KeychainEntry>!
+    var backupEntries: Set<LoginSession>!
     var backupManifest: Data?
 
     override func setUp() {
         super.setUp()
-        backupEntries = Keychain.entries
+        backupEntries = LoginSession.sessions
         backupManifest = try? Data(contentsOf: rnManifestURL)
     }
 
     override func tearDown() {
         super.tearDown()
-        Keychain.clearEntries()
+        LoginSession.clearAll()
         for entry in backupEntries {
-            Keychain.addEntry(entry)
+            LoginSession.add(entry)
         }
         try? backupManifest?.write(to: rnManifestURL, options: .atomic)
     }
@@ -62,11 +62,11 @@ class CacheManagerTests: CoreTestCase {
     func testResetAppNecessary() {
         UserDefaults.standard.setValue(true, forKey: "reset_cache_on_next_launch")
         let doc = write("doc", in: .documentsDirectory)
-        Keychain.addEntry(KeychainEntry.make())
+        LoginSession.add(LoginSession.make())
         CacheManager.resetAppIfNecessary()
         XCTAssertNil(UserDefaults.standard.dictionaryRepresentation()["reset_cache_on_next_launch"])
         XCTAssertFalse(FileManager.default.fileExists(atPath: doc.path))
-        XCTAssert(Keychain.entries.isEmpty)
+        XCTAssert(LoginSession.sessions.isEmpty)
     }
 
     func testClearNoNeeded() {

@@ -44,7 +44,7 @@ public class ActAsUserPresenter {
             guard let user = user, error == nil else {
                 return callback(error ?? NSError.internalError())
             }
-            let entry = KeychainEntry(
+            let entry = LoginSession(
                 accessToken: session.accessToken,
                 baseURL: baseURL,
                 expiresAt: session.expiresAt,

@@ -33,8 +33,8 @@ class CoreTestCase: XCTestCase {
     var router = TestRouter()
     var logger = TestLogger()
     var environment: AppEnvironment!
-    var currentSession = KeychainEntry.make()
-    let entriesBackup = Keychain.entries
+    var currentSession = LoginSession.make()
+    let entriesBackup = LoginSession.sessions
 
     let notificationCenter = MockUserNotificationCenter()
     var notificationManager: NotificationManager!
@@ -65,10 +65,7 @@ class CoreTestCase: XCTestCase {
     }
 
     override func tearDown() {
-        Keychain.clearEntries()
-        for entry in entriesBackup {
-            Keychain.addEntry(entry)
-        }
+        LoginSession.sessions = entriesBackup
     }
 
     func waitForMainAsync() {
