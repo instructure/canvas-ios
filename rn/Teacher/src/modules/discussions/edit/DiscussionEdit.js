@@ -26,13 +26,11 @@ import ReactNative, {
   LayoutAnimation,
   PickerIOS,
   DatePickerIOS,
-  Image,
   NativeModules,
   processColor,
 } from 'react-native'
 import i18n from 'format-message'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import Button from 'react-native-button'
 
 import Screen from '../../../routing/Screen'
 import { FormLabel } from '../../../common/text'
