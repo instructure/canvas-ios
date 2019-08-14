@@ -46,10 +46,8 @@ class DashboardTests: CoreUITests {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
-        CourseNavigation.modules.tap()
-
-        ModulesDetail.module(index: 1).tap()
-        ModulesDetail.moduleItem(index: 0).tap()
+        CourseNavigation.pages.tap()
+        PagesList.frontPage.tap()
 
         TabBar.dashboardTab.tap()
         Dashboard.coursesLabel.waitToExist()

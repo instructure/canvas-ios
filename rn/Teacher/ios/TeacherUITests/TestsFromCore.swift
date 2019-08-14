@@ -19,4 +19,6 @@
 import Foundation
 @testable import CoreUITests
 
+class TeacherDashboardTests: DashboardTests {}
+class TeacherDashboardEmptyTests: DashboardEmptyTests {}
 class TeacherDiscussionDetailsTests: DiscussionDetailsTests {}

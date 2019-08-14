@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
 import TestsFoundation
 
 enum AssignmentDetails: String, ElementWrapper {
@@ -38,4 +38,42 @@ enum AssignmentDetails: String, ElementWrapper {
     case fileSubmissionButton
     case lockIcon
     case lockSection
+
+    static func description(_ description: String) -> Element {
+        return app.find(label: description)
+    }
+
+    static func link(_ description: String) -> Element {
+        return XCUIElementWrapper(app.webViews.staticTexts[description])
+    }
+}
+
+enum AssignmentsList {
+    static func assignment(id: String) -> Element {
+        return app.find(id: "assignment-list.assignment-list-row.cell-\(id)")
+    }
+}
+
+enum GradesList {
+    static var title: Element {
+        return app.find(label: "Grades")
+    }
+
+    static func assignment(id: String) -> Element {
+        return app.find(id: "grades-list.grades-list-row.cell-\(id)")
+    }
+}
+
+enum QuizzesNext {
+    static func text(_ description: String) -> Element {
+        return XCUIElementWrapper(app.webViews.staticTexts[description])
+    }
+
+    static var beginButton: Element {
+        return XCUIElementWrapper(app.webViews.buttons["Begin"])
+    }
+
+    static var doneButton: Element {
+        return XCUIElementWrapper(app.buttons["Done"].firstMatch)
+    }
 }

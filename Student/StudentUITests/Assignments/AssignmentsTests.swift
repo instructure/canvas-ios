@@ -18,10 +18,9 @@
 
 import XCTest
 @testable import TestsFoundation
+@testable import CoreUITests
 
 class AssignmentsTests: CoreUITests {
-    override var abstractTestClass: CoreUITests.Type { return AssignmentsTests.self }
-
     func testCourseGradeIsCorrect() {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()

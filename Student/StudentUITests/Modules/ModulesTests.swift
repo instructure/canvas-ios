@@ -18,10 +18,9 @@
 
 import XCTest
 import TestsFoundation
+@testable import CoreUITests
 
 class ModulesTests: CoreUITests {
-    override var abstractTestClass: CoreUITests.Type { return ModulesTests.self }
-
     func testLaunchIntoAssignmentsAndNavigateModuleItems() {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()

@@ -19,9 +19,9 @@
 import XCTest
 import TestsFoundation
 @testable import Core
+@testable import CoreUITests
 
 class NotificationsListTests: CoreUITests {
-    override var abstractTestClass: CoreUITests.Type { return NotificationsListTests.self }
     override var user: UITestUser? { return nil }
 
     func testNotificationItemsDisplayed() {

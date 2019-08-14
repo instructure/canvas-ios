@@ -20,8 +20,6 @@ import Foundation
 @testable import CoreUITests
 
 class StudentCourseGroupTests: CourseGroupTests {}
-class StudentAssignmentsTests: AssignmentsTests {}
-class StudentCalendarTests: CalendarTests {}
 class StudentInboxTests: InboxTests {}
 class StudentDiscussionListTests: DiscussionListTests {}
 class StudentDiscussionDetailsTests: DiscussionDetailsTests {}
@@ -31,10 +29,7 @@ class StudentActAsUserTests: ActAsUserTests {}
 class StudentAnnouncementTests: AnnouncementTests {}
 class StudentTodoListTests: TodoListTests {}
 class StudentDashboardTests: DashboardTests {}
+class StudentDashboardEmptyTests: DashboardEmptyTests {}
 class StudentProfileTests: ProfileTests {}
-class StudentPeopleTests: PeopleTests {}
-class StudentModulesTests: ModulesTests {}
 class StudentPageTests: PageTests {}
-class StudentQuizTests: QuizTests {}
-class StudentNotificationsListTests: NotificationsListTests {}
 class StudentLoginTests: LoginTests {}

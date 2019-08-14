@@ -18,8 +18,9 @@
 
 import XCTest
 import TestsFoundation
+@testable import CoreUITests
 
-enum Calendar {
+enum CalendarElements {
     static var todayButton: Element {
         return app.find(labelContaining: "Today")
     }
@@ -30,8 +31,6 @@ enum Calendar {
 }
 
 class CalendarTests: CoreUITests {
-    override var abstractTestClass: CoreUITests.Type { return CalendarTests.self }
-
     func testCalendarTodayButton() {
 
         let formatter = DateFormatter()
@@ -43,9 +42,9 @@ class CalendarTests: CoreUITests {
         TabBar.calendarTab.tap()
         app.swipeDown()
         app.swipeDown()
-        XCTAssertFalse(Calendar.text(containing: monthYear).exists)
-        Calendar.todayButton.tap()
-        Calendar.text(containing: monthYear).waitToExist()
-        Calendar.text(containing: day).waitToExist()
+        XCTAssertFalse(CalendarElements.text(containing: monthYear).exists)
+        CalendarElements.todayButton.tap()
+        CalendarElements.text(containing: monthYear).waitToExist()
+        CalendarElements.text(containing: day).waitToExist()
     }
 }
