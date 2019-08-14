@@ -30,6 +30,8 @@ enum Calendar {
 }
 
 class CalendarTests: CoreUITests {
+    override var abstractTestClass: CoreUITests.Type { return CalendarTests.self }
+
     func testCalendarTodayButton() {
 
         let formatter = DateFormatter()

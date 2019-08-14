@@ -20,6 +20,8 @@ import XCTest
 import TestsFoundation
 
 class DashboardTests: CoreUITests {
+    override var abstractTestClass: CoreUITests.Type { return DashboardTests.self }
+
     func testAnnouncementBelowInvite() {
         CourseInvitation.acceptButton(id: "998").waitToExist()
         GlobalAnnouncement.toggle(id: "2").waitToExist()
@@ -74,6 +76,7 @@ class DashboardTests: CoreUITests {
 }
 
 class DashboardEmptyTests: CoreUITests {
+    override var abstractTestClass: CoreUITests.Type { return DashboardEmptyTests.self }
     override var user: UITestUser { return .notEnrolled }
 
     func testEmptyCanAddCourses() {

@@ -20,6 +20,7 @@ import XCTest
 import TestsFoundation
 
 class ModulesTests: CoreUITests {
+    override var abstractTestClass: CoreUITests.Type { return ModulesTests.self }
 
     func testLaunchIntoAssignmentsAndNavigateModuleItems() {
         Dashboard.courseCard(id: "263").waitToExist()

@@ -20,6 +20,7 @@ import XCTest
 import TestsFoundation
 
 class DeepLinkTests: CoreUITests {
+    override var abstractTestClass: CoreUITests.Type { return DeepLinkTests.self }
 
     override func setUp() {
         super.setUp()

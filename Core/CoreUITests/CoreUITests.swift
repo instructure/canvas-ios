@@ -21,17 +21,23 @@ import XCTest
 import TestsFoundation
 
 class CoreUITests: UITestCase {
-    var user: UITestUser? { return .readStudent1 }
+    var user: UITestUser? {
+        if Bundle.main.isStudentUITestsRunner {
+            return .readStudent1
+        } else if Bundle.main.isTeacherUITestsRunner {
+            return .readTeacher1
+        } else {
+            return nil
+        }
+    }
+
+    // The class in this variable will not have tests run for it, only for subclasses
+    var abstractTestClass: CoreUITests.Type { return CoreUITests.self }
 
     private static var firstRun = true
 
-    // The class in this variable will not have tests run for it, only for subclasses
-    class func abstractTestClass() -> CoreUITests.Type {
-        return CoreUITests.self
-    }
-
     override func perform(_ run: XCTestRun) {
-        if type(of: self) != type(of: self).abstractTestClass() {
+        if type(of: self) != abstractTestClass {
             super.perform(run)
         }
     }

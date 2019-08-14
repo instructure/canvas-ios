@@ -32,6 +32,8 @@ enum PersonContextCard {
 }
 
 class PeopleTests: CoreUITests {
+    override var abstractTestClass: CoreUITests.Type { return PeopleTests.self }
+
     func testCourseUsersAndUserContextCardDisplay() {
         // Dashboard
         Dashboard.courseCard(id: "262").waitToExist()

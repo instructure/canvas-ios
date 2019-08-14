@@ -20,9 +20,7 @@ import XCTest
 import TestsFoundation
 
 class DiscussionDetailsTests: CoreUITests {
-    override class func abstractTestClass() -> CoreUITests.Type {
-        return DiscussionDetailsTests.self
-    }
+    override var abstractTestClass: CoreUITests.Type { return DiscussionDetailsTests.self }
 
     override func setUp() {
         super.setUp()
@@ -50,7 +48,7 @@ class DiscussionDetailsTests: CoreUITests {
         NavBar.backButton.tap()
 
         app.find(label: "Page Module", type: .link).tap()
-        app.find(label: "ITEMS").waitToExist()
+        app.find(label: "Page One").waitToExist()
         NavBar.backButton.tap()
 
         app.find(label: "Syllabus", type: .link).tap()

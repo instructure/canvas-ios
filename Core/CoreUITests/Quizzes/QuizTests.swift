@@ -20,6 +20,8 @@ import XCTest
 import TestsFoundation
 
 class QuizTests: CoreUITests {
+    override var abstractTestClass: CoreUITests.Type { return QuizTests.self }
+
     func testQuizQuestionsOpenInNativeView() {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()

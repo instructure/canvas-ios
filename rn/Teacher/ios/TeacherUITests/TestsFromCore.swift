@@ -19,5 +19,4 @@
 import Foundation
 @testable import CoreUITests
 
-class StudentDiscussionDetailsTests: DiscussionDetailsTests {
-}
+class TeacherDiscussionDetailsTests: DiscussionDetailsTests {}

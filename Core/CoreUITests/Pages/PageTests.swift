@@ -20,6 +20,8 @@ import XCTest
 import TestsFoundation
 
 class PageTests: CoreUITests {
+    override var abstractTestClass: CoreUITests.Type { return PageTests.self }
+
     func testFrontPageLoadByDefault() {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()

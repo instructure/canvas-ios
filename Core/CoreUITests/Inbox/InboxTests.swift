@@ -20,6 +20,8 @@ import XCTest
 import TestsFoundation
 
 class InboxTests: CoreUITests {
+    override var abstractTestClass: CoreUITests.Type { return InboxTests.self }
+
     func testCannotMessageEntireClassWhenDisabled() {
         TabBar.inboxTab.tap()
         Inbox.newMessageButton.tap()

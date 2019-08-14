@@ -26,6 +26,8 @@ enum FilesList {
 }
 
 class CourseFileTests: CoreUITests {
+    override var abstractTestClass: CoreUITests.Type { return CourseFileTests.self }
+
     func testPreviewCourseFile() {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
