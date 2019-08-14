@@ -72,15 +72,3 @@ class DashboardTests: CoreUITests {
         Dashboard.courseCard(id: "338").waitToVanish()
     }
 }
-
-class DashboardEmptyTests: CoreUITests {
-    override var abstractTestClass: CoreUITests.Type { return DashboardEmptyTests.self }
-    override var user: UITestUser { return .notEnrolled }
-
-    func testEmptyCanAddCourses() {
-        Dashboard.emptyTitleLabel.waitToExist()
-        XCTAssertEqual(Dashboard.emptyTitleLabel.label, "Welcome!")
-        Dashboard.addCoursesButton.tap()
-        app.find(label: "Edit Dashboard").waitToExist()
-    }
-}

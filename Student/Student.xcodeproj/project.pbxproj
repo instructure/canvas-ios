@@ -559,6 +559,7 @@
 		E8EA860E230497AC00E4FD76 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA860D230497AC00E4FD76 /* PeopleTests.swift */; };
 		E8EA86142304980000E4FD76 /* QuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA86122304980000E4FD76 /* QuizTests.swift */; };
 		E8EA86152304980000E4FD76 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA86132304980000E4FD76 /* Quiz.swift */; };
+		E8EA86182304A39500E4FD76 /* DashboardEmptyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA86172304A39500E4FD76 /* DashboardEmptyTests.swift */; };
 		E8F6D0032304838C004347D9 /* TestsFromCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E879CF29230386CD00988DAB /* TestsFromCore.swift */; };
 		E8F6D00423048506004347D9 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8AD066723035B0900D498ED /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1FDF738C22DCB5A94323B15 /* Pods_defaults_Student.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CB0F553F9954BEE58A730D /* Pods_defaults_Student.framework */; };
@@ -1583,6 +1584,7 @@
 		E8EA860D230497AC00E4FD76 /* PeopleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		E8EA86122304980000E4FD76 /* QuizTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTests.swift; sourceTree = "<group>"; };
 		E8EA86132304980000E4FD76 /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
+		E8EA86172304A39500E4FD76 /* DashboardEmptyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardEmptyTests.swift; sourceTree = "<group>"; };
 		E95379D1460BDF2C6A9F2EEE /* Pods-defaults-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		F9B946EE221492040083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
@@ -3171,6 +3173,7 @@
 		7DCF0F7622F8A0A0000AACCE /* StudentUITests */ = {
 			isa = PBXGroup;
 			children = (
+				E8EA86162304A36000E4FD76 /* Dashboard */,
 				E8EA8601230495AB00E4FD76 /* Calendar */,
 				E879CF29230386CD00988DAB /* TestsFromCore.swift */,
 				7DCF0F3D22F8A0A0000AACCE /* Assignments */,
@@ -3316,6 +3319,14 @@
 				E8EA86132304980000E4FD76 /* Quiz.swift */,
 			);
 			path = Quizzes;
+			sourceTree = "<group>";
+		};
+		E8EA86162304A36000E4FD76 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				E8EA86172304A39500E4FD76 /* DashboardEmptyTests.swift */,
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -4406,6 +4417,7 @@
 				E8EA85FF2304959200E4FD76 /* Assignments.swift in Sources */,
 				7DC5718622F8B1CB00F2E9BB /* CommentList.swift in Sources */,
 				E8EA86152304980000E4FD76 /* Quiz.swift in Sources */,
+				E8EA86182304A39500E4FD76 /* DashboardEmptyTests.swift in Sources */,
 				7DC5718B22F8B1CB00F2E9BB /* SubmissionFiles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

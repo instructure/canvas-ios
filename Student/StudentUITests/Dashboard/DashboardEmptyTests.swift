@@ -17,6 +17,17 @@
 //
 
 import Foundation
+import XCTest
+import TestsFoundation
 @testable import CoreUITests
 
-class TeacherDiscussionDetailsTests: DiscussionDetailsTests {}
+class DashboardEmptyTests: CoreUITests {
+    override var user: UITestUser { return .notEnrolled }
+
+    func testEmptyCanAddCourses() {
+        Dashboard.emptyTitleLabel.waitToExist()
+        XCTAssertEqual(Dashboard.emptyTitleLabel.label, "Welcome!")
+        Dashboard.addCoursesButton.tap()
+        app.find(label: "Edit Dashboard").waitToExist()
+    }
+}
