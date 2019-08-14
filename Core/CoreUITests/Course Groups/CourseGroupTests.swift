@@ -16,8 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import CoreUITests
+import XCTest
+import TestsFoundation
 
-class StudentDiscussionDetailsTests: DiscussionDetailsTests {
+class CourseGroupTests: CoreUITests {
+    func testGroupCardDisplaysAndShowsDetails() {
+        Dashboard.groupCard(id: "35").waitToExist()
+        app.find(labelContaining: "Group One").waitToExist()
+        app.find(labelContaining: "DEFAULT TERM").waitToExist()
+        Dashboard.groupCard(id: "35").tap()
+        app.find(labelContaining: "Home").waitToExist()
+    }
 }

@@ -16,8 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import CoreUITests
+import XCTest
+import TestsFoundation
 
-class StudentDiscussionDetailsTests: DiscussionDetailsTests {
+class PageTests: CoreUITests {
+    func testFrontPageLoadByDefault() {
+        Dashboard.courseCard(id: "263").waitToExist()
+        Dashboard.courseCard(id: "263").tap()
+
+        CourseNavigation.pages.tap()
+
+        PagesList.frontPage.tap()
+        app.find(labelContaining: "This is a page for testing modules").waitToExist()
+    }
 }

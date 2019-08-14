@@ -16,8 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import CoreUITests
+#import <UIKit/UIKit.h>
 
-class StudentDiscussionDetailsTests: DiscussionDetailsTests {
-}
+//! Project version number for CoreUITests.
+FOUNDATION_EXPORT double CoreUITestsVersionNumber;
+
+//! Project version string for CoreUITests.
+FOUNDATION_EXPORT const unsigned char CoreUITestsVersionString[];
+
+// In this header, you should import all the public headers of your framework using statements like #import <CoreUITests/PublicHeader.h>
+
+
