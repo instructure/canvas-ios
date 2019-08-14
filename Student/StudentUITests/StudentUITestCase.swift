@@ -24,11 +24,6 @@ import XCTest
 class StudentUITestCase: UITestCase {
     override func setUp() {
         super.setUp()
-        continueAfterFailure = false
-        if app.state != .runningForeground {
-            launch()
-        }
-        reset()
         mockDownload(URL(string: ".")!) // Use only mock data
     }
 

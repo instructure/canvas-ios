@@ -24,10 +24,40 @@ open class UITestCase: XCTestCase {
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
     let pasteboardType = "com.instructure.ui-test-helper"
+    open var user: UITestUser? { return nil }
+    open var homeScreen: Element { return Dashboard.coursesLabel }
+
+    private static var firstRun = true
+
+    open override func setUp() {
+        super.setUp()
+        continueAfterFailure = false
+        if UITestCase.firstRun || app.state != .runningForeground {
+            UITestCase.firstRun = false
+            launch()
+            if currentSession() != nil {
+                homeScreen.waitToExist()
+            }
+        }
+        reset()
+        if let user = user {
+            logInUser(user)
+            homeScreen.waitToExist()
+        }
+    }
 
     open override func tearDown() {
         super.tearDown()
         send(.tearDown)
+    }
+
+    open func launch(_ block: ((XCUIApplication) -> Void)? = nil) {
+        let app = XCUIApplication()
+        app.launchEnvironment["IS_UI_TEST"] = "TRUE"
+        block?(app)
+        app.launch()
+        // Wait for RN to finish loading
+        app.find(labelContaining: "Loading").waitToVanish(120)
     }
 
     func send<T: Encodable>(_ type: UITestHelpers.HelperType, _ data: T) {
@@ -44,15 +74,6 @@ open class UITestCase: XCTestCase {
     open func reset() {
         send(.reset)
         LoginStart.findSchoolButton.waitToExist()
-    }
-
-    open func launch(_ block: ((XCUIApplication) -> Void)? = nil) {
-        let app = XCUIApplication()
-        app.launchEnvironment["IS_UI_TEST"] = "TRUE"
-        block?(app)
-        app.launch()
-        // Wait for RN to finish loading
-        app.find(labelContaining: "Loading").waitToVanish(120)
     }
 
     open func logIn(domain: String, token: String) {
@@ -182,6 +203,8 @@ open class UITestCase: XCTestCase {
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
         mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
         mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
+        mockEncodableRequest("users/self/todo", value: [String]())
+        mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
         mockEncodableRequest("dashboard/dashboard_cards", value: [String]())
     }
 }

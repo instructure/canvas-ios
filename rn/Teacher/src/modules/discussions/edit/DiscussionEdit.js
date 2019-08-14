@@ -208,13 +208,13 @@ export class DiscussionEdit extends Component<Props, any> {
         rightBarButtons={[
           {
             title: i18n('Done'),
-            testID: 'discussions.edit.doneButton',
+            testID: 'DiscussionEdit.doneButton',
             style: 'done',
             action: this._donePressed,
           },
           this.props.allowAttachments ? {
             image: Images.paperclip,
-            testID: 'discussions.edit.attachment-btn',
+            testID: 'DiscussionEdit.attachmentButton',
             action: this.addAttachment,
             accessibilityLabel: i18n('Edit attachment ({count})', { count: this.state.attachment ? '1' : i18n('none') }),
             badge: this.state.attachment && {
@@ -231,28 +231,28 @@ export class DiscussionEdit extends Component<Props, any> {
           <UnmetRequirementBanner
             text={i18n('Invalid field')}
             visible={Boolean(Object.keys(this.state.errors).length)}
-            testID='discussions.edit.unmet-requirement-banner'
+            testID='DiscussionEdit.invalidLabel'
           />
           <KeyboardAwareScrollView
             style={style.container}
             keyboardShouldPersistTaps='handled'
             enableAutoAutomaticScroll={false}
             ref={(r) => { this.scrollView = r }}
-            keyboardDismissMode={'on-drag'}
+            keyboardDismissMode='on-drag'
           >
             <FormLabel>{i18n('Title')}</FormLabel>
             <RowWithTextInput
               defaultValue={this.state.title}
               border='both'
               onChangeText={this._valueChanged('title')}
-              identifier='discussions.edit.titleInput'
+              identifier='DiscussionEdit.titleField'
               placeholder={i18n('Add title (required)')}
               onFocus={this._scrollToInput}
             />
             <RequiredFieldSubscript
               title={this.state.errors.title}
               visible={Boolean(this.state.errors.title)}
-              testID='discussions.edit.title.validation-error'
+              testID='DiscussionEdit.invalidTitleLabel'
             />
 
             <FormLabel>{i18n('Description')}</FormLabel>
@@ -280,7 +280,7 @@ export class DiscussionEdit extends Component<Props, any> {
                 border='both'
                 value={this.state.published}
                 onValueChange={this._valueChanged('published')}
-                testID='discussions.edit.published.switch'
+                testID='DiscussionEdit.publishSwitch'
               />
             }
             <RowWithSwitch
@@ -288,7 +288,7 @@ export class DiscussionEdit extends Component<Props, any> {
               border='bottom'
               value={this.state.discussion_type === 'threaded'}
               onValueChange={this._valueChanged('discussion_type', b => b ? 'threaded' : 'side_comment')}
-              identifier='discussions.edit.discussion_type.switch'
+              testID='DiscussionEdit.threadSwitch'
             />
             { this.props.discussionID &&
               <RowWithSwitch
@@ -296,7 +296,7 @@ export class DiscussionEdit extends Component<Props, any> {
                 border='bottom'
                 value={this.state.subscribed}
                 onValueChange={this._subscribe}
-                identifier='discussions.edit.subscribed.switch'
+                testID='DiscussionEdit.subscribeSwitch'
               />
             }
             { isTeacher() &&
@@ -305,6 +305,7 @@ export class DiscussionEdit extends Component<Props, any> {
                 border='bottom'
                 value={this.state.require_initial_post}
                 onValueChange={this._valueChanged('require_initial_post')}
+                testID='DiscussionEdit.requirePostSwitch'
               />
             }
             { this.isGraded() &&
@@ -318,7 +319,7 @@ export class DiscussionEdit extends Component<Props, any> {
                   keyboardType='number-pad'
                   defaultValue={(this.state.points_possible && String(this.state.points_possible)) || '0'}
                   onFocus={this._scrollToInput}
-                  identifier='discussions.edit.points_possible.input'
+                  testID='DiscussionEdit.pointsField'
                 />
                 <RowWithDetail
                   title={i18n('Display Grade as...')}
@@ -327,13 +328,13 @@ export class DiscussionEdit extends Component<Props, any> {
                   disclosureIndicator={true}
                   border='bottom'
                   onPress={this._toggleGradingTypePicker}
-                  testID='discussions.edit.grading_type.row'
+                  testID='DiscussionEdit.gradeAsButton'
                 />
                 { this.state.gradingTypePickerShown &&
                   <PickerIOS
                     selectedValue={this.state.grading_type}
                     onValueChange={this._valueChanged('grading_type', null, false)}
-                    testID='discussions.edit.grading_type.picker'>
+                    testID='DiscussionEdit.gradeTypePicker'>
                     {Array.from(gradeDisplayOpts.keys()).map((key) => (
                       <PickerItem
                         key={key}
@@ -346,7 +347,7 @@ export class DiscussionEdit extends Component<Props, any> {
                 <RequiredFieldSubscript
                   title={this.state.errors.points_possible}
                   visible={Boolean(this.state.errors.points_possible)}
-                  testID='discussions.edit.points_possible.validation-error'
+                  testID='DiscussionEdit.invalidPointsLabel'
                 />
               </View>
             }
@@ -370,25 +371,14 @@ export class DiscussionEdit extends Component<Props, any> {
                   border='bottom'
                   onPress={this._toggleDatePicker('delayed_post_at')}
                   onRemoveDatePress={this._clearDate('delayed_post_at')}
-                  testID={'discussions.edit.delayed_post_at.row'}
-                  removeButtonTestID={'discussions.edit.clear-delayed-post-at.button'}
+                  testID='DiscussionEdit.delayPostAtButton'
+                  removeButtonTestID='DiscussionEdit.delayPostAtClearButton'
                 />
                 { this.state.showingDatePicker.delayed_post_at &&
                   <DatePickerIOS
                     date={extractDateFromString(this.state.delayed_post_at) || defaultDate}
                     onDateChange={this._valueChanged('delayed_post_at', d => d.toISOString())}
-                    testID='discussions.edit.delayed_post_at.picker'
-                    accessories={ Boolean(this.state.delayed_post_at) &&
-                      <View style={{ marginLeft: 8 }}>
-                        <Button
-                          testID={`discussions.edit.clear-delayed-post-at.button`}
-                          activeOpacity={1}
-                          onPress={this._clearDate('delayed_post_at')}
-                        >
-                          <Image source={Images.clear} />
-                        </Button>
-                      </View>
-                    }
+                    testID='DiscussionEdit.delayPostAtPicker'
                   />
                 }
                 <RowWithDateInput
@@ -399,14 +389,14 @@ export class DiscussionEdit extends Component<Props, any> {
                   border='bottom'
                   onPress={this._toggleDatePicker('lock_at')}
                   onRemoveDatePress={this._clearDate('lock_at')}
-                  testID={'discussions.edit.lock_at.row'}
-                  removeButtonTestID={'discussions.edit.clear-lock-at.button'}
+                  testID='DiscussionEdit.lockAtButton'
+                  removeButtonTestID='DiscussionEdit.lockAtClearButton'
                 />
                 { this.state.showingDatePicker.lock_at &&
                   <DatePickerIOS
                     date={extractDateFromString(this.state.lock_at) || defaultDate}
                     onDateChange={this._valueChanged('lock_at', d => d.toISOString())}
-                    testID='discussions.edit.lock_at.picker'
+                    testID='DiscussionEdit.lockAtPicker'
                   />
                 }
               </View>
@@ -433,7 +423,7 @@ export class DiscussionEdit extends Component<Props, any> {
 
   _donePressed = () => {
     if (!this.validate()) {
-      setTimeout(function () { NativeAccessibility.focusElement('discussions.edit.unmet-requirement-banner') }, 500)
+      setTimeout(function () { NativeAccessibility.focusElement('DiscussionEdit.invalidLabel') }, 500)
       return
     }
     this.setState({ pending: true })

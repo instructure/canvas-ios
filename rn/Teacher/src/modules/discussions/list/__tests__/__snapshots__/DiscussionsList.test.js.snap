@@ -14,7 +14,7 @@ exports[`DiscussionsList renders 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "discussions.list.add.button",
+        "testID": "DiscussionList.newButton",
       },
     ]
   }
@@ -149,7 +149,7 @@ exports[`DiscussionsList renders discussions 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "discussions.list.add.button",
+        "testID": "DiscussionList.newButton",
       },
     ]
   }
@@ -1034,7 +1034,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "discussions.list.add.button",
+        "testID": "DiscussionList.newButton",
       },
     ]
   }
@@ -1859,7 +1859,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "discussions.list.add.button",
+        "testID": "DiscussionList.newButton",
       },
     ]
   }
@@ -2744,7 +2744,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "discussions.list.add.button",
+        "testID": "DiscussionList.newButton",
       },
     ]
   }

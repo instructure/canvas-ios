@@ -21,24 +21,5 @@ import XCTest
 import TestsFoundation
 
 class CanvasUITests: UITestCase {
-    var user: UITestUser? { return .readStudent1 }
-
-    private static var firstRun = true
-
-    override func setUp() {
-        super.setUp()
-        continueAfterFailure = false
-        if CanvasUITests.firstRun || app.state != .runningForeground {
-            CanvasUITests.firstRun = false
-            launch()
-            if currentSession() != nil {
-                Dashboard.coursesLabel.waitToExist()
-            }
-        }
-        reset()
-        if let user = user {
-            logInUser(user)
-            Dashboard.coursesLabel.waitToExist()
-        }
-    }
+    override var user: UITestUser? { return .readStudent1 }
 }

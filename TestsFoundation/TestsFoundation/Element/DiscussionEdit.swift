@@ -16,24 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
-@testable import Core
+import Foundation
 
-class NotificationsListTests: CanvasUITests {
-    override var user: UITestUser? { return nil }
-
-    func testNotificationItemsDisplayed() {
-        mockBaseRequests()
-        mockEncodableRequest("users/self/activity_stream?per_page=99", value: [
-            APIActivity.make(),
-            APIActivity.make(id: "2", title: "Another Notification"),
-        ])
-
-        logIn(domain: "canvas.instructure.com", token: "t")
-        TabBar.notificationsTab.tap()
-
-        app.find(labelContaining: "Assignment Created").waitToExist()
-        app.find(labelContaining: "Another Notification").waitToExist()
-    }
+public enum DiscussionEdit: String, ElementWrapper {
+    case
+        attachmentButton,
+        delayPostAtButton, delayPostAtClearButton, delayPostAtPicker,
+        doneButton,
+        gradeAsButton, gradeTypePicker,
+        invalidLabel, invalidPointsLabel, invalidTitleLabel,
+        lockAtButton, lockAtClearButton, lockAtPicker,
+        pointsField,
+        publishSwitch,
+        requirePostSwitch,
+        subscribeSwitch,
+        threadSwitch,
+        titleField
 }

@@ -20,17 +20,13 @@
 
 import { paginate, exhaust } from '../utils/pagination'
 import httpClient from '../httpClient'
-import { isTeacher } from '../../modules/app'
 
 export function getCourses (): ApiPromise<Course[]> {
-  let state = ['available', 'completed']
-  if (isTeacher()) {
-    state.push('unpublished')
-  }
   const courses = paginate('courses', {
     params: {
-      include: ['term', 'favorites', 'course_image', 'sections', 'total_scores', 'current_grading_period_scores', 'observed_users'],
-      state,
+      include: [ 'course_image', 'current_grading_period_scores', 'favorites', 'observed_users', 'sections', 'term', 'total_scores' ],
+      state: [ 'available', 'completed', 'unpublished' ],
+      per_page: 10,
     },
   })
   return exhaust(courses)
@@ -46,7 +42,7 @@ export function getCourseTabs (courseID: string): ApiPromise<Tab[]> {
 export function getCourse (courseID: string): ApiPromise<Course> {
   return httpClient.get(`/courses/${courseID}`, {
     params: {
-      include: ['permissions', 'term', 'favorites', 'course_image', 'sections', 'total_scores', 'current_grading_period_scores'],
+      include: [ 'course_image', 'current_grading_period_scores', 'favorites', 'permissions', 'sections', 'syllabus_body', 'term', 'total_scores' ],
     },
   })
 }

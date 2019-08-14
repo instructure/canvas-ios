@@ -214,7 +214,7 @@ export class DiscussionsList extends Component<Props, any> {
         rightBarButtons={(this.props.permissions && this.props.permissions.create_discussion_topic) && [
           {
             image: Images.add,
-            testID: 'discussions.list.add.button',
+            testID: 'DiscussionList.newButton',
             accessibilityLabel: i18n('New Discussion'),
             action: this.addDiscussion,
           },

@@ -16,57 +16,56 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+import Foundation
 
-enum CourseInvitation {
-    static func acted(id: String) -> Element {
+public enum CourseInvitation {
+    public static func acted(id: String) -> Element {
         return app.find(id: "CourseInvitation.\(id).acted")
     }
 
-    static func acceptButton(id: String) -> Element {
+    public static func acceptButton(id: String) -> Element {
         return app.find(id: "CourseInvitation.\(id).acceptButton")
     }
 
-    static func rejectButton(id: String) -> Element {
+    public static func rejectButton(id: String) -> Element {
         return app.find(id: "CourseInvitation.\(id).rejectButton")
     }
 }
 
-enum Dashboard: String, ElementWrapper {
+public enum Dashboard: String, ElementWrapper {
     case addCoursesButton, emptyBodyLabel, emptyTitleLabel
 
-    static var coursesLabel: Element {
+    public static var coursesLabel: Element {
         return app.find(id: "dashboard.courses.heading-lbl")
     }
 
-    static var seeAllButton: Element {
+    public static var seeAllButton: Element {
         return app.find(id: "dashboard.courses.see-all-btn")
     }
 
-    static func courseCard(id: String) -> Element {
+    public static func courseCard(id: String) -> Element {
         return app.find(id: "course-\(id)")
     }
 
-    static func courseGrade(percent: String) -> Element {
+    public static func courseGrade(percent: String) -> Element {
         return app.find(labelContaining: "\(percent)%")
     }
 
-    static func groupCard(id: String) -> Element {
+    public static func groupCard(id: String) -> Element {
         return app.find(id: "group-row-\(id)")
     }
 
-    static var profileButton: Element {
+    public static var profileButton: Element {
         return app.find(id: "favorited-course-list.profile-btn")
     }
 }
 
-enum GlobalAnnouncement {
-    static func toggle(id: String) -> Element {
+public enum GlobalAnnouncement {
+    public static func toggle(id: String) -> Element {
         return app.find(id: "GlobalAnnouncement.\(id).toggle")
     }
 
-    static func dismiss(id: String) -> Element {
+    public static func dismiss(id: String) -> Element {
         return app.find(id: "GlobalAnnouncement.\(id).dismiss")
     }
 }

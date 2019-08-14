@@ -183,7 +183,7 @@ exports[`AnnouncementEdit renders 1`] = `
       >
         Title
       </Text>
-      <TouchableHighlight
+      <View
         accessibilityLabel="Add title, text field"
         accessibilityTraits={Array []}
         onPress={[Function]}
@@ -254,7 +254,7 @@ exports[`AnnouncementEdit renders 1`] = `
             />
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <Text
         accessibilityTraits="header"
         style={
