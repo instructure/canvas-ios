@@ -25,7 +25,6 @@ import color from '../../../common/colors'
 import Screen from '../../../routing/Screen'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import Actions from './actions'
-import { alertError } from '../../../redux/middleware/error-handler'
 import ModalOverlay from '../../../common/components/ModalOverlay'
 import { isTeacher } from '../../app'
 import Images from '../../../images'
@@ -112,7 +111,6 @@ export class EditReply extends React.Component<Props, any> {
 
   componentWillReceiveProps (props: Props) {
     if (props.error) {
-      this._handleError(props.error)
       this.setState({ pending: false })
       return
     }
@@ -141,11 +139,14 @@ export class EditReply extends React.Component<Props, any> {
       attachment: this.state.attachment,
     }
     this.setState({ pending: true })
+    let promise
     if (this.props.isEdit) {
-      this.props.editEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath)
+      promise = this.props.editEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath)
     } else {
-      this.props.createEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath, this.props.lastReplyAt)
+      promise = this.props.createEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath, this.props.lastReplyAt)
     }
+    try { await promise } catch (e) {}
+    this.setState({ pending: false })
   }
 
   _valueChanged (property: string, transformer?: any, animated?: boolean = true): Function {
@@ -160,12 +161,6 @@ export class EditReply extends React.Component<Props, any> {
       LayoutAnimation.easeInEaseOut()
     }
     this.setState({ ...values })
-  }
-
-  _handleError (error: string) {
-    setTimeout(() => {
-      alertError(error)
-    }, 1000)
   }
 
   addAttachment = () => {

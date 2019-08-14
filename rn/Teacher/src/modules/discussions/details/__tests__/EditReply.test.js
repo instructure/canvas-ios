@@ -23,15 +23,12 @@ import React from 'react'
 import { EditReply, mapStateToProps } from '../EditReply'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
-import { Alert, NativeModules } from 'react-native'
+import { NativeModules } from 'react-native'
 import renderer from 'react-test-renderer'
 import app from '../../../app'
 import * as template from '../../../../__templates__'
 
 jest
-  .mock('Alert', () => ({
-    alert: jest.fn(),
-  }))
   .mock('../../../../routing')
   .mock('../../../../routing/Screen')
   .mock('../../../../common/components/rich-text-editor/RichTextEditor', () => 'RichTextEditor')
@@ -86,20 +83,6 @@ describe('EditReply', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
-  })
-
-  it('presents error alert', () => {
-    jest.useFakeTimers()
-    let component = renderer.create(
-      <EditReply {...defaultProps} />
-    )
-
-    let errorMessage = 'error'
-
-    setProps(component, { error: errorMessage })
-    jest.runAllTimers()
-
-    expect(Alert.alert).toHaveBeenCalled()
   })
 
   it('deletes pending replies on unmount', () => {
