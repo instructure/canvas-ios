@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import XCTest
+import TestsFoundation
 @testable import Core
 
 open class CoreUITestCase: XCTestCase {
@@ -39,7 +39,7 @@ open class CoreUITestCase: XCTestCase {
     // The class in this variable will not have tests run for it, only for subclasses
     open var abstractTestClass: CoreUITestCase.Type { return CoreUITestCase.self }
 
-    override func perform(_ run: XCTestRun) {
+    open override func perform(_ run: XCTestRun) {
         if type(of: self) != abstractTestClass {
             super.perform(run)
         }

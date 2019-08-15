@@ -20,3 +20,4 @@ import Foundation
 @testable import CoreUITests
 
 class TeacherDiscussionDetailsTests: DiscussionDetailsTests {}
+class TeacherDiscussionEditTests: DiscussionEditTests {}

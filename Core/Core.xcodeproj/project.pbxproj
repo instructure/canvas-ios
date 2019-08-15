@@ -160,7 +160,7 @@
 		7D5AA3C62294AF9400438667 /* GetSSOLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5AA3C52294AF9400438667 /* GetSSOLogin.swift */; };
 		7D5AA3C822959D5D00438667 /* GetSSOLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5AA3C722959D5D00438667 /* GetSSOLoginTests.swift */; };
 		7D5C08962305F0CC0022E0DB /* DiscussionEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C08952305F0CC0022E0DB /* DiscussionEdit.swift */; };
-		7D5C08992305F25C0022E0DB /* UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C08982305F25B0022E0DB /* UITestCase.swift */; };
+		7D5C08992305F25C0022E0DB /* CoreUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C08982305F25B0022E0DB /* CoreUITestCase.swift */; };
 		7D5C089A2305F25C0022E0DB /* UITestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C08972305F25B0022E0DB /* UITestUser.swift */; };
 		7D5C089C2305F39B0022E0DB /* DiscussionEditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C089B2305F39B0022E0DB /* DiscussionEditTests.swift */; };
 		7D5C871F2239A45300D99651 /* GetSubmissionCommentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C871E2239A45300D99651 /* GetSubmissionCommentsTests.swift */; };
@@ -909,7 +909,7 @@
 		7D5AA3C722959D5D00438667 /* GetSSOLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSSOLoginTests.swift; sourceTree = "<group>"; };
 		7D5C08952305F0CC0022E0DB /* DiscussionEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEdit.swift; sourceTree = "<group>"; };
 		7D5C08972305F25B0022E0DB /* UITestUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestUser.swift; sourceTree = "<group>"; };
-		7D5C08982305F25B0022E0DB /* UITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestCase.swift; sourceTree = "<group>"; };
+		7D5C08982305F25B0022E0DB /* CoreUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreUITestCase.swift; sourceTree = "<group>"; };
 		7D5C089B2305F39B0022E0DB /* DiscussionEditTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussionEditTests.swift; sourceTree = "<group>"; };
 		7D5C871E2239A45300D99651 /* GetSubmissionCommentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionCommentsTests.swift; sourceTree = "<group>"; };
 		7D5C87202239A99E00D99651 /* SubmissionCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentTests.swift; sourceTree = "<group>"; };
@@ -2397,9 +2397,9 @@
 				E819192A23034C2C0039616A /* Pages */,
 				E819193D23034C2D0039616A /* Profile */,
 				E819192D23034C2C0039616A /* Todo */,
+				7D5C08982305F25B0022E0DB /* CoreUITestCase.swift */,
 				E81918E6230348440039616A /* CoreUITests.h */,
 				E81918E7230348440039616A /* Info.plist */,
-				7D5C08982305F25B0022E0DB /* UITestCase.swift */,
 				7D5C08972305F25B0022E0DB /* UITestUser.swift */,
 			);
 			path = CoreUITests;
@@ -3354,7 +3354,7 @@
 				E819194C23034C2D0039616A /* TodoListTests.swift in Sources */,
 				E819194923034C2D0039616A /* CourseGroupTests.swift in Sources */,
 				E81918F9230348860039616A /* DiscussionDetailsTests.swift in Sources */,
-				7D5C08992305F25C0022E0DB /* UITestCase.swift in Sources */,
+				7D5C08992305F25C0022E0DB /* CoreUITestCase.swift in Sources */,
 				E819194E23034C2D0039616A /* ActAsUserTests.swift in Sources */,
 				E8AD06722303713300D498ED /* DashboardTests.swift in Sources */,
 				E819195123034C2D0039616A /* InboxTests.swift in Sources */,

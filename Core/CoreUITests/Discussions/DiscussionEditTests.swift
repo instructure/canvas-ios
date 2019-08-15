@@ -20,10 +20,10 @@ import XCTest
 import TestsFoundation
 @testable import Core
 
-open class DiscussionEditTests: CoreUITestCase {
-    open override var abstractTestClass: CoreUITestCase.Type { return DiscussionEditTests.self }
-    open override var user: UITestUser? { return nil }
-    
+class DiscussionEditTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return DiscussionEditTests.self }
+    override var user: UITestUser? { return nil }
+
     let course1 = APICourse.make(id: "1", enrollments: [ .make(type: .teacher) ], permissions: .init(
         create_announcement: true,
         create_discussion_topic: true
@@ -33,7 +33,7 @@ open class DiscussionEditTests: CoreUITestCase {
         create_discussion_topic: false
     ))
 
-    public func testCantCreateDiscussion() {
+    func testCantCreateDiscussion() {
         mockBaseRequests()
         mockData(GetCoursesRequest(), value: [ noPermissionCourse ])
         mockData(GetCourseRequest(courseID: "1"), value: noPermissionCourse)
@@ -45,7 +45,7 @@ open class DiscussionEditTests: CoreUITestCase {
         XCTAssertFalse(DiscussionList.newButton.isVisible)
     }
 
-    public func testCreateDiscussion() {
+    func testCreateDiscussion() {
         mockBaseRequests()
         mockData(GetCoursesRequest(), value: [ course1 ])
         mockData(GetCourseRequest(courseID: "1"), value: course1)
