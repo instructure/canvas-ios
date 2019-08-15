@@ -105,6 +105,7 @@ exports[`Rubric renders a rubric 1`] = `
                 "pop": [MockFunction],
                 "replace": [MockFunction],
                 "show": [MockFunction],
+                "showWebView": [MockFunction],
                 "traitCollection": [MockFunction],
               }
             }
@@ -694,6 +695,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 "pop": [MockFunction],
                 "replace": [MockFunction],
                 "show": [MockFunction],
+                "showWebView": [MockFunction],
                 "traitCollection": [MockFunction],
               }
             }
@@ -1205,6 +1207,7 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
                 "pop": [MockFunction],
                 "replace": [MockFunction],
                 "show": [MockFunction],
+                "showWebView": [MockFunction],
                 "traitCollection": [MockFunction],
               }
             }
@@ -1347,6 +1350,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 "pop": [MockFunction],
                 "replace": [MockFunction],
                 "show": [MockFunction],
+                "showWebView": [MockFunction],
                 "traitCollection": [MockFunction],
               }
             }

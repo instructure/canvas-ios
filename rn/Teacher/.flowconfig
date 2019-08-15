@@ -24,7 +24,6 @@
 
 [untyped]
 .*/node_modules/react-native/Libraries/.*\(StyleSheetValidation\|Share\|List.*\|Easing\|Inspector\|InteractionManager\|ScrollResponder\|CameraRoll\)\.js
-.*/node_modules/react-native-sfsafariviewcontroller/.*
 .*/node_modules/react-native-keyboard-aware-scroll-view/.*
 .*/node_modules/react-native-image-picker/.*
 ./generate-release-notes.js

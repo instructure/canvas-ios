@@ -147,6 +147,7 @@ exports[`EditReply dismisses modal activity upon save error 1`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction],
         }
       }
@@ -306,6 +307,7 @@ exports[`EditReply renders 1`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction],
         }
       }
@@ -465,6 +467,7 @@ exports[`EditReply renders title correctly when editing 1`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction],
         }
       }

@@ -149,6 +149,7 @@ NativeModules.SettingsManager = {
 
 NativeModules.Helm = {
   setScreenConfig: jest.fn(),
+  openInSafariViewController: jest.fn(() => Promise.resolve()),
   pushFrom: jest.fn(() => Promise.resolve()),
   popFrom: jest.fn(() => Promise.resolve()),
   present: jest.fn(() => Promise.resolve()),

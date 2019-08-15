@@ -24,6 +24,7 @@ exports[`CourseNavigation refreshes courses and tabs 1`] = `
       "pop": [MockFunction],
       "replace": [MockFunction],
       "show": [MockFunction],
+      "showWebView": [MockFunction],
       "traitCollection": [MockFunction] {
         "calls": Array [
           Array [
@@ -147,6 +148,7 @@ exports[`CourseNavigation refreshes when props change 1`] = `
       "pop": [MockFunction],
       "replace": [MockFunction],
       "show": [MockFunction],
+      "showWebView": [MockFunction],
       "traitCollection": [MockFunction] {
         "calls": Array [
           Array [

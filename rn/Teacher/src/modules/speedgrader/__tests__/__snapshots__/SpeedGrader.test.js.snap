@@ -289,6 +289,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "pop": [MockFunction],
                 "replace": [MockFunction],
                 "show": [MockFunction],
+                "showWebView": [MockFunction],
                 "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
@@ -357,6 +358,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                       "pop": [MockFunction],
                       "replace": [MockFunction],
                       "show": [MockFunction],
+                      "showWebView": [MockFunction],
                       "traitCollection": [MockFunction],
                     }
                   }
@@ -458,6 +460,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "pop": [MockFunction],
                 "replace": [MockFunction],
                 "show": [MockFunction],
+                "showWebView": [MockFunction],
                 "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
@@ -528,6 +531,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                       "pop": [MockFunction],
                       "replace": [MockFunction],
                       "show": [MockFunction],
+                      "showWebView": [MockFunction],
                       "traitCollection": [MockFunction],
                     }
                   }
@@ -629,6 +633,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "pop": [MockFunction],
                 "replace": [MockFunction],
                 "show": [MockFunction],
+                "showWebView": [MockFunction],
                 "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
@@ -699,6 +704,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                       "pop": [MockFunction],
                       "replace": [MockFunction],
                       "show": [MockFunction],
+                      "showWebView": [MockFunction],
                       "traitCollection": [MockFunction],
                     }
                   }
@@ -799,6 +805,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "pop": [MockFunction],
                 "replace": [MockFunction],
                 "show": [MockFunction],
+                "showWebView": [MockFunction],
                 "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
@@ -895,6 +902,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                       "pop": [MockFunction],
                       "replace": [MockFunction],
                       "show": [MockFunction],
+                      "showWebView": [MockFunction],
                       "traitCollection": [MockFunction],
                     }
                   }
@@ -1029,6 +1037,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "pop": [MockFunction],
                 "replace": [MockFunction],
                 "show": [MockFunction],
+                "showWebView": [MockFunction],
                 "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
@@ -1116,6 +1125,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                       "pop": [MockFunction],
                       "replace": [MockFunction],
                       "show": [MockFunction],
+                      "showWebView": [MockFunction],
                       "traitCollection": [MockFunction],
                     }
                   }
@@ -1242,6 +1252,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "pop": [MockFunction],
                 "replace": [MockFunction],
                 "show": [MockFunction],
+                "showWebView": [MockFunction],
                 "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
@@ -1329,6 +1340,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                       "pop": [MockFunction],
                       "replace": [MockFunction],
                       "show": [MockFunction],
+                      "showWebView": [MockFunction],
                       "traitCollection": [MockFunction],
                     }
                   }
@@ -1455,6 +1467,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "pop": [MockFunction],
                 "replace": [MockFunction],
                 "show": [MockFunction],
+                "showWebView": [MockFunction],
                 "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
@@ -1523,6 +1536,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                       "pop": [MockFunction],
                       "replace": [MockFunction],
                       "show": [MockFunction],
+                      "showWebView": [MockFunction],
                       "traitCollection": [MockFunction],
                     }
                   }
@@ -1622,6 +1636,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "pop": [MockFunction],
                 "replace": [MockFunction],
                 "show": [MockFunction],
+                "showWebView": [MockFunction],
                 "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
@@ -1690,6 +1705,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                       "pop": [MockFunction],
                       "replace": [MockFunction],
                       "show": [MockFunction],
+                      "showWebView": [MockFunction],
                       "traitCollection": [MockFunction],
                     }
                   }
@@ -1789,6 +1805,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 "pop": [MockFunction],
                 "replace": [MockFunction],
                 "show": [MockFunction],
+                "showWebView": [MockFunction],
                 "traitCollection": [MockFunction],
               },
               "onDismiss": [Function],
@@ -1876,6 +1893,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                       "pop": [MockFunction],
                       "replace": [MockFunction],
                       "show": [MockFunction],
+                      "showWebView": [MockFunction],
                       "traitCollection": [MockFunction],
                     }
                   }
@@ -1994,6 +2012,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
         "pop": [MockFunction],
         "replace": [MockFunction],
         "show": [MockFunction],
+        "showWebView": [MockFunction],
         "traitCollection": [MockFunction],
       }
     }

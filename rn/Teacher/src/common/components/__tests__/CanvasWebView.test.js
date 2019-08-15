@@ -23,21 +23,11 @@ import { NativeModules } from 'react-native'
 import { shallow } from 'enzyme'
 import CanvasWebView, { type Props, heightCache } from '../CanvasWebView'
 import { setSession } from '../../../canvas-api/session'
-import SFSafariViewController from 'react-native-sfsafariviewcontroller'
-import canvas from '../../../canvas-api'
 
 const template = {
   ...require('../../../__templates__/helm'),
   ...require('../../../__templates__/session'),
 }
-
-jest
-  .mock('react-native-sfsafariviewcontroller', () => ({
-    open: jest.fn(),
-  }))
-  .mock('../../../canvas-api', () => ({
-    getAuthenticatedSessionURL: jest.fn(),
-  }))
 
 describe('CanvasWebView', () => {
   let props: Props
@@ -94,23 +84,13 @@ describe('CanvasWebView', () => {
     })
   })
 
-  it('handles navigation by opening in SFSafariViewController when openLinksInSafari is provided', async () => {
-    let authedURL = 'https://google.com'
-    let promise = Promise.resolve({
-      data: {
-        session_url: authedURL,
-      },
-    })
-    canvas.getAuthenticatedSessionURL.mockReturnValueOnce(promise)
-
+  it('handles navigation when openLinksInSafari is provided', async () => {
     const navigator = template.navigator({ show: jest.fn() })
     const tree = shallow(<CanvasWebView {...props} navigator={navigator} openLinksInSafari />)
     const webView = tree.find('WebView')
     const url = 'https://canvas.instructure.com/courses/1/assignments/1'
     webView.simulate('Navigation', { nativeEvent: { url } })
-    await promise
-
-    expect(SFSafariViewController.open).toHaveBeenCalledWith(authedURL)
+    expect(navigator.showWebView).toHaveBeenCalledWith(url)
   })
 
   it('handles navigation callback', () => {

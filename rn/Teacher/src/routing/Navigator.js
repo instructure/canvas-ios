@@ -19,7 +19,6 @@
 // @flow
 import { NativeModules, type PushNotificationIOS, Linking } from 'react-native'
 import { route } from './index'
-import SFSafariViewController from 'react-native-sfsafariviewcontroller'
 import { getAuthenticatedSessionURL } from '../canvas-api'
 import { recordRoute } from '../modules/developer-menu/DeveloperMenu'
 import { logEvent } from '@common/CanvasAnalytics'
@@ -77,9 +76,9 @@ export default class Navigator {
       logEvent('webview_content_selected', { url })
       try {
         let { data: { session_url: authenticatedURL } } = await getAuthenticatedSessionURL(url)
-        SFSafariViewController.open(authenticatedURL)
+        NativeModules.Helm.openInSafariViewController(authenticatedURL)
       } catch (err) {
-        SFSafariViewController.open(url)
+        NativeModules.Helm.openInSafariViewController(url)
       }
     } else {
       Linking.openURL(url)

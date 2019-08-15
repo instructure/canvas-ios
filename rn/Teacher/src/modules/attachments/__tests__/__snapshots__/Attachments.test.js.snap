@@ -125,6 +125,7 @@ exports[`Attachments renders attachments 1`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction],
         }
       }
@@ -203,6 +204,7 @@ exports[`Attachments renders empty state 1`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction],
         }
       }

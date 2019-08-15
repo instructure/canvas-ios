@@ -298,6 +298,7 @@ exports[`AnnouncementEdit renders 1`] = `
               "pop": [MockFunction],
               "replace": [MockFunction],
               "show": [MockFunction],
+              "showWebView": [MockFunction],
               "traitCollection": [MockFunction],
             }
           }
@@ -803,6 +804,7 @@ exports[`AnnouncementEdit updates with new props 1`] = `
               "pop": [MockFunction],
               "replace": [MockFunction],
               "show": [MockFunction],
+              "showWebView": [MockFunction],
               "traitCollection": [MockFunction],
             }
           }
