@@ -270,6 +270,8 @@ export class DiscussionEdit extends Component<Props, any> {
                 navigator={this.props.navigator}
                 attachmentUploadPath={isTeacher() ? `/${this.props.context}/${this.props.contextID}/files` : '/users/self/files'}
                 onFocus={this._scrollToRCE}
+                context={this.props.context}
+                contextID={this.props.contextID}
               />
             </View>
 

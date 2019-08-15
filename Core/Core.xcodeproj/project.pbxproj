@@ -438,6 +438,9 @@
 		B19792FB21769B320000369C /* QuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792FA21769B320000369C /* QuizTests.swift */; };
 		B19792FD21769E280000369C /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792FC21769E280000369C /* GroupTests.swift */; };
 		B19792FF2176A0F00000369C /* TabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792FE2176A0F00000369C /* TabTests.swift */; };
+		B1999AAD2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1999AAC2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift */; };
+		B1999AAF2305AAC300DA97A4 /* APIFeatureFlagsRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1999AAE2305AAC300DA97A4 /* APIFeatureFlagsRequestable.swift */; };
+		B1999AB12305AE3300DA97A4 /* FeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1999AB02305AE3300DA97A4 /* FeatureFlag.swift */; };
 		B1A32BD821599C610071B41E /* APIAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BD721599C610071B41E /* APIAssignment.swift */; };
 		B1A32BDA21599C700071B41E /* APIAssignmentRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BD921599C700071B41E /* APIAssignmentRequestable.swift */; };
 		B1A32BDC21599F1C0071B41E /* APISubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BDB21599F1C0071B41E /* APISubmission.swift */; };
@@ -1150,6 +1153,9 @@
 		B19792FA21769B320000369C /* QuizTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizTests.swift; sourceTree = "<group>"; };
 		B19792FC21769E280000369C /* GroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTests.swift; sourceTree = "<group>"; };
 		B19792FE2176A0F00000369C /* TabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTests.swift; sourceTree = "<group>"; };
+		B1999AAC2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnabledFeatureFlags.swift; sourceTree = "<group>"; };
+		B1999AAE2305AAC300DA97A4 /* APIFeatureFlagsRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFeatureFlagsRequestable.swift; sourceTree = "<group>"; };
+		B1999AB02305AE3300DA97A4 /* FeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlag.swift; sourceTree = "<group>"; };
 		B1A32BD721599C610071B41E /* APIAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignment.swift; sourceTree = "<group>"; };
 		B1A32BD921599C700071B41E /* APIAssignmentRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentRequestable.swift; sourceTree = "<group>"; };
 		B1A32BDB21599F1C0071B41E /* APISubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubmission.swift; sourceTree = "<group>"; };
@@ -1541,6 +1547,7 @@
 				9FE6D44B2249541E00EFFF5C /* EnrollmentRole.swift */,
 				7DCF1EAD216BC48F003AF358 /* EnrollmentState.swift */,
 				B150C62C2297814E0096D58C /* ExternalTool.swift */,
+				B1999AB02305AE3300DA97A4 /* FeatureFlag.swift */,
 				9FD504EB2180BF1A00B395BA /* File.swift */,
 				B1BB68F321B5F0C90079C78B /* FileUploadContext.swift */,
 				B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */,
@@ -1945,6 +1952,7 @@
 				9FAE40FE21B6C54700FE7F58 /* APIExternalToolRequestable.swift */,
 				7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */,
 				7D8262F2212B2E3100BD268D /* APIFavoriteRequestable.swift */,
+				B1999AAE2305AAC300DA97A4 /* APIFeatureFlagsRequestable.swift */,
 				9FD504E52180BE1300B395BA /* APIFile.swift */,
 				9FD504E62180BE1400B395BA /* APIFileRequestable.swift */,
 				7D80AC09212B4A8D00C40ECE /* APIGroup.swift */,
@@ -2128,11 +2136,13 @@
 				B1A32BE5215A81350071B41E /* GetAssignment.swift */,
 				3BF5C54E2187800B0081A858 /* GetAssignments.swift */,
 				7D63F789215D46AB00151E49 /* GetBrandVariables.swift */,
+				3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */,
 				7D9BB1E722527F310058D9C6 /* GetContextPermissions.swift */,
 				9FE84DDD2150281300B95A68 /* GetContextTabs.swift */,
 				B195DC502132257500797FE4 /* GetCourse.swift */,
 				B1EA5AEA212E641900DABC5F /* GetCourses.swift */,
 				7851D9B22138264800E76EC3 /* GetCustomColors.swift */,
+				B1999AAC2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift */,
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
 				B15CA270221DE1C80014FB02 /* GetModules.swift */,
 				EEC3EF6822E267BE00799FE2 /* GetPages.swift */,
@@ -2140,6 +2150,7 @@
 				7D819FFE228DB48C00C61EDD /* GetQuiz.swift */,
 				7DD371BE22E7B20900C2D0F7 /* GetQuizSubmissions.swift */,
 				7DCF2043216D622B003AF358 /* GetQuizzes.swift */,
+				9FE21AAB226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift */,
 				7D5AA3C52294AF9400438667 /* GetSSOLogin.swift */,
 				9FCD79D72188DFD00054293A /* GetSubmission.swift */,
 				7DA5C48B22385F95003CDB4C /* GetSubmissionComments.swift */,
@@ -2149,8 +2160,6 @@
 				B14B704C228F30A100B568D6 /* UploadFileComment.swift */,
 				B17855B0226ABDB100B30C80 /* UploadMedia.swift */,
 				7D92D656224ACC7A0015B368 /* UploadMediaComment.swift */,
-				3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */,
-				9FE21AAB226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -2749,6 +2758,7 @@
 				7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */,
 				3BE2C760218CB50B004B8E5E /* ColoredNavViewProtocol.swift in Sources */,
 				7DD694872195F76C00BA4984 /* DocViewerViewController.swift in Sources */,
+				B1999AAF2305AAC300DA97A4 /* APIFeatureFlagsRequestable.swift in Sources */,
 				B195DC49213215A300797FE4 /* NSPredicateExtensions.swift in Sources */,
 				7DD371BF22E7B20900C2D0F7 /* GetQuizSubmissions.swift in Sources */,
 				B1E789A421B0EC1A0087FE4A /* LogEvent.swift in Sources */,
@@ -2782,6 +2792,7 @@
 				7DFFAB1C219DDB8B003E71F8 /* CommentListViewController.swift in Sources */,
 				7D8B78FD21627887005E08F1 /* CoreWebView.swift in Sources */,
 				7D13C52E22B956C200345253 /* MockDistantURLSession.swift in Sources */,
+				B1999AB12305AE3300DA97A4 /* FeatureFlag.swift in Sources */,
 				7D29D303218A54CC0036437C /* DocViewerCommentReplyAnnotation.swift in Sources */,
 				7DD7F890215ADFA5006E1715 /* UIFontExtensions.swift in Sources */,
 				B150C624229733C50096D58C /* GetArc.swift in Sources */,
@@ -2792,6 +2803,7 @@
 				B150C62D2297814E0096D58C /* ExternalTool.swift in Sources */,
 				7D80AC23212B8A2100C40ECE /* APIAccount.swift in Sources */,
 				7D765026215AEDE300BB4F38 /* DynamicLabel.swift in Sources */,
+				B1999AAD2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift in Sources */,
 				B150C63A2298DAB90096D58C /* WKWebViewExtensions.swift in Sources */,
 				7D2E828B2270BBA900735854 /* FilePickerProgressView.swift in Sources */,
 				7DCF2034216D5458003AF358 /* APIQuiz.swift in Sources */,

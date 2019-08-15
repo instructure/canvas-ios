@@ -21,6 +21,7 @@ import Foundation
 import UIKit
 
 public protocol RichContentEditorViewProtocol: class {
+    func loadHTML()
     func showError(_ error: Error)
     func insertImagePlaceholder(_ url: URL, placeholder: String)
     func insertVideoPlaceholder(_ url: URL)
@@ -30,6 +31,7 @@ public protocol RichContentEditorViewProtocol: class {
 public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     let batchID = UUID.string
     var env: AppEnvironment = .shared
+    let context: Context
     let uploadContext: FileUploadContext
     weak var view: RichContentEditorViewProtocol?
 
@@ -37,10 +39,19 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
         self?.update()
     }
 
-    public init(env: AppEnvironment = .shared, view: RichContentEditorViewProtocol?, uploadTo: FileUploadContext) {
+    lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context)) {}
+
+    public init(env: AppEnvironment = .shared, view: RichContentEditorViewProtocol?, context: Context, uploadTo: FileUploadContext) {
         self.env = env
+        self.context = context
         self.uploadContext = uploadTo
         self.view = view
+    }
+
+    func viewIsReady() {
+        featureFlags.refresh(force: false) { [weak self] _ in
+            self?.view?.loadHTML()
+        }
     }
 
     func update() {

@@ -606,6 +606,8 @@ export class QuizEdit extends Component<Props, any> {
       showToolbar: 'always',
       placeholder: i18n('Description'),
       attachmentUploadPath: `/courses/${this.props.courseID}/files`,
+      context: 'courses',
+      contextID: this.props.courseID,
     })
   }
 }

@@ -23,7 +23,7 @@ const editor = window.editor = {
     currentEditingImage: null,
     currentEditingLink: null,
     enabledItems: {},
-    enhancedRCE: false,
+    featureFlags: [],
 
     backupRange () {
         const selection = getSelection()
@@ -174,7 +174,7 @@ const editor = window.editor = {
         }
         for (let img of clone.querySelectorAll('[data-media_comment_id]')) {
             let mediaID = img.dataset.media_comment_id
-            if (editor.enhancedRCE) {
+            if (editor.featureFlags.includes('rce_enhancements')) {
                 img.outerHTML = `<div id="media_object_${mediaID}" style="width: 768px; height: 432px;"><iframe src="/media_objects_iframe/${mediaID}" width="100%" height="100%"></iframe></div>`
             } else {
                 img.outerHTML = `<a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a>`
