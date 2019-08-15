@@ -40,6 +40,9 @@ class LoginFindSchoolTests: StudentUITestCase {
         LoginFindSchool.searchField.typeText("zxzx")
         LoginFindAccountResult.emptyCell.waitToExist()
 
+        // TODO: flakey test
+        sleep(2)
+
         XCTAssertEqual(LoginFindAccountResult.emptyCell.label, "Can’t find your school? Try typing the full school URL. Tap here for help.")
     }
 

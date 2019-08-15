@@ -22,6 +22,7 @@ import template, { type Template } from '../utils/template'
 
 export const navigator: Template<any> = template({
   show: jest.fn(() => Promise.resolve()),
+  showWebView: jest.fn(() => Promise.resolve()),
   dismiss: jest.fn(() => Promise.resolve()),
   dismissAllModals: jest.fn(() => Promise.resolve()),
   traitCollection: jest.fn(),

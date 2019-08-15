@@ -43,7 +43,6 @@ abstract_target 'defaults' do
   pod 'Interactable', :path => nm_path + 'react-native-interactable'
   pod 'BVLinearGradient', :path => nm_path + 'react-native-linear-gradient'
   pod 'ReactNativeSearchBar', :path => nm_path + 'react-native-search-bar'
-  pod 'RCTSFSafariViewController', :path => nm_path + 'react-native-sfsafariviewcontroller'
   pod 'react-native-document-picker', :path => nm_path + 'react-native-document-picker'
   pod 'RNAudio', :path => nm_path + 'react-native-audio'
   pod 'RNSound', :path => nm_path + 'react-native-sound'

@@ -706,6 +706,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction] {
             "calls": Array [
               Array [
@@ -1567,6 +1568,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction] {
             "calls": Array [
               Array [
@@ -2428,6 +2430,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction] {
             "calls": Array [
               Array [
@@ -3289,6 +3292,7 @@ exports[`FilesList sending weird data into the progress update function should n
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction] {
             "calls": Array [
               Array [
@@ -4157,6 +4161,7 @@ exports[`FilesList should render 1`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction] {
             "calls": Array [
               Array [
@@ -4892,6 +4897,7 @@ exports[`FilesList should render for course files 1`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction] {
             "calls": Array [
               Array [
@@ -5634,6 +5640,7 @@ exports[`FilesList should render for user files 1`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction] {
             "calls": Array [
               Array [
@@ -6383,6 +6390,7 @@ exports[`FilesList should render with folders 1`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction] {
             "calls": Array [
               Array [
@@ -6482,6 +6490,7 @@ exports[`FilesList should render with no data at all 1`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction] {
             "calls": Array [
               Array [

@@ -78,6 +78,7 @@ exports[`PageEdit renders 1`] = `
               "pop": [MockFunction],
               "replace": [MockFunction],
               "show": [MockFunction],
+              "showWebView": [MockFunction],
               "traitCollection": [MockFunction],
             }
           }
@@ -185,6 +186,7 @@ exports[`PageEdit renders when the student app 1`] = `
               "pop": [MockFunction],
               "replace": [MockFunction],
               "show": [MockFunction],
+              "showWebView": [MockFunction],
               "traitCollection": [MockFunction],
             }
           }

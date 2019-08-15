@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import SafariServices
 import CanvasKeymaster
 import React
 import Core
@@ -120,6 +121,17 @@ open class HelmManager: NSObject {
     }
 
     //  MARK: - Navigation
+
+    public class ResetTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
+        public static let shared = ResetTransitionDelegate()
+    }
+
+    @objc public func openInSafariViewController(_ url : URL, completion: @escaping () -> Void) {
+        guard let topViewController = topMostViewController() else { return completion() }
+        let safari = SFSafariViewController(url: url)
+        safari.transitioningDelegate = ResetTransitionDelegate.shared
+        topViewController.present(safari, animated: true, completion: completion)
+    }
 
     @objc public func pushFrom(_ sourceModule: ModuleName, destinationModule: ModuleName, withProps props: [String: Any], options: [String: Any], callback: (() -> Void)? = nil) {
         guard let topViewController = topMostViewController() else { return }
