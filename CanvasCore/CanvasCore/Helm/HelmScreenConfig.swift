@@ -30,7 +30,10 @@ class HelmScreenConfig {
     }
     
     var navBarColor: UIColor? {
-        guard let color = (self[PropKeys.navBarColor] ?? HelmManager.shared.defaultScreenConfiguration[self.moduleName ?? ""]?[PropKeys.navBarColor]) else { return nil }
+
+        guard let color = (self[PropKeys.navBarColor] ?? HelmManager.shared.defaultScreenConfiguration[self.moduleName ?? ""]?[PropKeys.navBarColor]),
+            !(color is NSNull)
+            else { return nil }
         if let stringColor = color as? String, stringColor == "none" { return nil }
         return RCTConvert.uiColor(color)
     }
