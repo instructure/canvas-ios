@@ -21,6 +21,7 @@ exports[`RichTextEditor can be keyboard aware 1`] = `
         "pop": [MockFunction],
         "replace": [MockFunction],
         "show": [MockFunction],
+        "showWebView": [MockFunction],
         "traitCollection": [MockFunction],
       }
     }
@@ -64,6 +65,7 @@ exports[`RichTextEditor hides toolbar when editor blurs 1`] = `
         "pop": [MockFunction],
         "replace": [MockFunction],
         "show": [MockFunction],
+        "showWebView": [MockFunction],
         "traitCollection": [MockFunction],
       }
     }
@@ -100,6 +102,7 @@ exports[`RichTextEditor hides toolbar when showToolbar is false 1`] = `
         "pop": [MockFunction],
         "replace": [MockFunction],
         "show": [MockFunction],
+        "showWebView": [MockFunction],
         "traitCollection": [MockFunction],
       }
     }
@@ -136,6 +139,7 @@ exports[`RichTextEditor renders 1`] = `
         "pop": [MockFunction],
         "replace": [MockFunction],
         "show": [MockFunction],
+        "showWebView": [MockFunction],
         "traitCollection": [MockFunction],
       }
     }
@@ -172,6 +176,7 @@ exports[`RichTextEditor renders toolbar when editor focused 1`] = `
         "pop": [MockFunction],
         "replace": [MockFunction],
         "show": [MockFunction],
+        "showWebView": [MockFunction],
         "traitCollection": [MockFunction],
       }
     }
@@ -221,6 +226,7 @@ exports[`RichTextEditor should update active editor items in toolbar 1`] = `
         "pop": [MockFunction],
         "replace": [MockFunction],
         "show": [MockFunction],
+        "showWebView": [MockFunction],
         "traitCollection": [MockFunction],
       }
     }
@@ -274,6 +280,7 @@ exports[`RichTextEditor should update active editor items in toolbar 2`] = `
         "pop": [MockFunction],
         "replace": [MockFunction],
         "show": [MockFunction],
+        "showWebView": [MockFunction],
         "traitCollection": [MockFunction],
       }
     }

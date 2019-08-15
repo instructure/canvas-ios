@@ -418,6 +418,7 @@ exports[`ConversationDetails renders correctly with some messages 2`] = `
           "pop": [MockFunction],
           "replace": [MockFunction],
           "show": [MockFunction],
+          "showWebView": [MockFunction],
           "traitCollection": [MockFunction],
         }
       }

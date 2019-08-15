@@ -830,6 +830,7 @@ exports[`error occurs when done pressed 1`] = `
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -1669,6 +1670,7 @@ exports[`modal saving is shown on assignment update 1`] = `
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -2508,6 +2510,7 @@ exports[`renders 1`] = `
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -3351,6 +3354,7 @@ exports[`saving invalid dates displays banner 1`] = `
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -4224,6 +4228,7 @@ exports[`saving invalid name displays banner 1`] = `
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -5097,6 +5102,7 @@ exports[`saving invalid points possible displays banner 1`] = `
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -5970,6 +5976,7 @@ exports[`saving negative points possible displays banner 1`] = `
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
