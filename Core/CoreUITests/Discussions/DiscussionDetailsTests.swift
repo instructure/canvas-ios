@@ -51,9 +51,9 @@ class DiscussionDetailsTests: CoreUITests {
         app.find(label: "Page One").waitToExist()
         NavBar.backButton.tap()
 
-        app.find(label: "Syllabus", type: .link).tap()
-        app.find(label: "Course Syllabus").waitToExist()
-        NavBar.backButton.tap()
+//        app.find(label: "Syllabus", type: .link).tap()
+//        app.find(label: "Course Syllabus").waitToExist()
+//        NavBar.backButton.tap()
 
         app.swipeUp()
 
