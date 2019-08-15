@@ -109,25 +109,6 @@ export class EditReply extends React.Component<Props, any> {
     )
   }
 
-  componentWillReceiveProps (props: Props) {
-    if (props.error) {
-      this.setState({ pending: false })
-      return
-    }
-    if (this.state.pending && !props.pending) {
-      const isNew = !this.props.isEdit
-      this.props.refreshDiscussionEntries(this.props.context, this.props.contextID, this.props.discussionID, true)
-      this.props.navigator.dismissAllModals()
-        .then(() => {
-          if (isNew) {
-            NativeModules.AppStoreReview.handleSuccessfulSubmit()
-            NativeModules.ModuleItemsProgress.contributedDiscussion(this.props.contextID, this.props.discussionID)
-          }
-        })
-      return
-    }
-  }
-
   componentWillUnmount () {
     this.props.deletePendingReplies(this.props.discussionID)
   }
@@ -139,14 +120,22 @@ export class EditReply extends React.Component<Props, any> {
       attachment: this.state.attachment,
     }
     this.setState({ pending: true })
-    let promise
-    if (this.props.isEdit) {
-      promise = this.props.editEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath)
-    } else {
-      promise = this.props.createEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath, this.props.lastReplyAt)
+    const isNew = !this.props.isEdit
+    try {
+      if (isNew) {
+        await this.props.createEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath, this.props.lastReplyAt)
+      } else {
+        await this.props.editEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath)
+      }
+      this.props.refreshDiscussionEntries(this.props.context, this.props.contextID, this.props.discussionID, true)
+      await this.props.navigator.dismissAllModals()
+      if (isNew) {
+        NativeModules.AppStoreReview.handleSuccessfulSubmit()
+        NativeModules.ModuleItemsProgress.contributedDiscussion(this.props.contextID, this.props.discussionID)
+      }
+    } catch (e) {
+      this.setState({ pending: false })
     }
-    try { await promise } catch (e) {}
-    this.setState({ pending: false })
   }
 
   _valueChanged (property: string, transformer?: any, animated?: boolean = true): Function {

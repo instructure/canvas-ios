@@ -117,6 +117,8 @@ describe('EditReply', () => {
     component.update(<EditReply {...defaultProps} createEntry={postReply} refreshDiscussionEntries={refresh} />)
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
     doneButton.action()
+    expect(postReply).toHaveBeenCalled()
+    await Promise.resolve() // createEntry
     expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
     await Promise.resolve() // dismissAllModals
     expect(NativeModules.AppStoreReview.handleSuccessfulSubmit).toHaveBeenCalled()
