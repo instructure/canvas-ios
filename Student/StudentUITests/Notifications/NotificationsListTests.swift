@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import Core
-import TestsFoundation
 import XCTest
+import TestsFoundation
+@testable import Core
 @testable import CoreUITests
 
-class DemoLoginTest: CoreUITestCase {
+class NotificationsListTests: CoreUITestCase {
     override var user: UITestUser? { return nil }
 
-    func testLogin() {
-        logInUser(.readTeacher1)
-        XCTAssert(TabBar.dashboardTab.exists)
+    func testNotificationItemsDisplayed() {
+        mockBaseRequests()
+        mockEncodableRequest("users/self/activity_stream?per_page=99", value: [
+            APIActivity.make(),
+            APIActivity.make(id: "2", title: "Another Notification"),
+        ], response: HTTPURLResponse(url: URL(string: "/")!, statusCode: 200, httpVersion: nil, headerFields: nil))
+
+        logIn(domain: "canvas.instructure.com", token: "t")
+        TabBar.notificationsTab.tap()
+
+        app.find(labelContaining: "Assignment Created").waitToExist()
+        app.find(labelContaining: "Another Notification").waitToExist()
     }
 }

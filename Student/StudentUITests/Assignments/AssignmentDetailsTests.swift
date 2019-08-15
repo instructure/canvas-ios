@@ -1,0 +1,351 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2017-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Foundation
+@testable import Core
+@testable import CoreUITests
+import TestsFoundation
+import XCTest
+
+class AssignmentDetailsTests: StudentUITestCase {
+    lazy var course: APICourse = {
+        let course = APICourse.make()
+        mockData(GetCourseRequest(courseID: course.id), value: course)
+        return course
+    }()
+
+    func mockAssignment(_ assignment: APIAssignment) -> APIAssignment {
+        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
+        return assignment
+    }
+
+    override func setUp() {
+        super.setUp()
+        sleep(1) // only this file seems to need some extra cooldown time.
+    }
+
+    override func show(_ route: String) {
+        super.show(route)
+        sleep(1)
+    }
+
+    func testUnsubmittedUpload() {
+        mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
+            course.canvasContextID: "#123456",
+        ]))
+        logIn(domain: "canvas.instructure.com", token: "")
+        let assignment = mockAssignment(APIAssignment.make(
+            description: "A description",
+            points_possible: 12.3,
+            due_at: DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
+            submission_types: [ .online_upload ],
+            allowed_extensions: [ "doc", "docx", "pdf" ]
+        ))
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.allowedExtensions.waitToExist()
+        XCTAssertEqual(NavBar.title.label, "Assignment Details")
+        XCTAssertEqual(NavBar.subtitle.label, course.name!)
+        XCTAssertEqual(navBarColorHex(), "#123456")
+
+        XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
+        XCTAssertEqual(AssignmentDetails.points.label, "12.3 pts")
+        XCTAssertEqual(AssignmentDetails.status.label, "Not Submitted")
+        XCTAssertEqual(AssignmentDetails.due.label, "Jan 1, 2035 at 8:00 AM")
+        XCTAssertEqual(AssignmentDetails.submissionTypes.label, "File Upload")
+        XCTAssertEqual(AssignmentDetails.allowedExtensions.label, "doc, docx, or pdf")
+        XCTAssertFalse(AssignmentDetails.submittedText.isVisible)
+        XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+
+        let description = app.webViews.staticTexts.firstMatch.label
+        XCTAssertEqual(description, assignment.description)
+    }
+
+    func testUnsubmittedDiscussion() {
+        let assignment = mockAssignment(APIAssignment.make(
+            name: "Discuss this",
+            description: "Say it like you mean it",
+            points_possible: 15.1,
+            due_at: DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
+            submission_types: [ .discussion_topic ],
+            discussion_topic: APIDiscussionTopic.make(
+                message: "Say something I'm giving up on you."
+            )
+        ))
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.submissionTypes.waitToExist()
+        XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
+        XCTAssertEqual(AssignmentDetails.points.label, "15.1 pts")
+        XCTAssertEqual(AssignmentDetails.status.label, "Not Submitted")
+        XCTAssertEqual(AssignmentDetails.due.label, "Jan 1, 2035 at 8:00 AM")
+        XCTAssertEqual(AssignmentDetails.submissionTypes.label, "Discussion Comment")
+        XCTAssertFalse(AssignmentDetails.allowedExtensions.isVisible)
+        XCTAssertFalse(AssignmentDetails.submittedText.isVisible)
+        XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "View Discussion")
+
+        let authorAvatar = app.webViews.staticTexts.element(boundBy: 0).label
+        let authorName = app.webViews.staticTexts.element(boundBy: 1).label
+        let message = app.webViews.staticTexts.element(boundBy: 2).label
+        XCTAssertEqual(authorAvatar, "B")
+        XCTAssertEqual(authorName, assignment.discussion_topic?.author.display_name)
+        XCTAssertEqual(message, assignment.discussion_topic?.message)
+    }
+
+    func testSubmittedDiscussion() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission: APISubmission.make(
+                discussion_entries: [ APIDiscussionEntry.make(
+                    message: "My discussion entry"
+                ), ]
+            ),
+            submission_types: [ .discussion_topic ]
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
+        XCTAssertTrue(AssignmentDetails.submittedText.isVisible)
+        XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "View Discussion")
+    }
+
+    func testResubmitAssignmentButton() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission: APISubmission.make(),
+            submission_types: [ .online_upload ]
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Resubmit Assignment")
+    }
+
+    func testSubmitAssignmentButton() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .online_upload ]
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+    }
+
+    func testNoSubmitAssignmentButtonShows() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .none ]
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
+    }
+
+    func testNoSubmitAssignmentButtonShowsForNotGraded() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .not_graded ]
+        ))
+        show("/courses/\(course.id)/assignments\(assignment.id)")
+        XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
+    }
+
+    func testNoSubmitAssignmentButtonShowsWhenExcused() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission: .make(excused: true),
+            submission_types: [.online_text_entry]
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
+    }
+
+    func testNoLockSection() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .online_upload ]
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+        XCTAssertFalse(AssignmentDetails.lockIcon.isVisible)
+        XCTAssertFalse(AssignmentDetails.lockSection.isVisible)
+    }
+
+    func testNoSubmitAssignmentButtonShowsWhenLockAtLessThanNow() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .online_upload ],
+            allowed_extensions: ["png"],
+            lock_at: Date().addDays(-1),
+            locked_for_user: true,
+            lock_explanation: "this is locked"
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
+        XCTAssertFalse(AssignmentDetails.lockIcon.isVisible)
+        XCTAssertTrue(AssignmentDetails.lockSection.isVisible)
+        XCTAssertTrue(AssignmentDetails.due.isVisible)
+        XCTAssertTrue(AssignmentDetails.submissionTypes.isVisible)
+        XCTAssertTrue(AssignmentDetails.viewSubmissionButton.isVisible)
+    }
+
+    func testNoSubmitAssignmentButtonShowsWhenUnLockAtGreaterThanNow() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .online_upload ],
+            allowed_extensions: ["png"],
+            unlock_at: Date().addDays(1),
+            locked_for_user: true,
+            lock_explanation: "this is locked"
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.lockIcon.waitToExist(5)
+        XCTAssertTrue(AssignmentDetails.lockIcon.isVisible)
+        XCTAssertTrue(AssignmentDetails.lockSection.isVisible)
+        XCTAssertFalse(AssignmentDetails.due.isVisible)
+        XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
+        XCTAssertFalse(AssignmentDetails.submissionTypes.isVisible)
+        XCTAssertFalse(AssignmentDetails.viewSubmissionButton.isVisible)
+        XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
+    }
+
+    func testNoSubmitAssignmentButtonShowsUserNotStudentEnrollment() {
+        mockData(GetCourseRequest(courseID: course.id), value: APICourse.make(enrollments: []))
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .online_upload ]
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
+    }
+
+    func testTappingSubmitButtonShowsFileUploadOption() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .online_upload, .online_url ]
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.submitAssignmentButton.waitToExist(5)
+        AssignmentDetails.submitAssignmentButton.tap()
+        XCTAssertTrue(app.find(label: "File Upload").isVisible)
+    }
+
+    func testCancelSubmitAction() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .online_upload, .online_url ]
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.submitAssignmentButton.tap()
+        app.find(label: "Cancel").tap()
+        XCTAssertEqual(app.alerts.count, 0)
+    }
+
+    func testGradeCellShowsSubmittedTextWhenNotGraded() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission: APISubmission.make()
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertTrue(AssignmentDetails.submittedText.isVisible)
+        XCTAssertEqual(AssignmentDetails.submittedText.label, "Successfully submitted!")
+    }
+
+    func testGradeCellShowsDialWhenGraded() {
+        let assignment = mockAssignment(APIAssignment.make(
+            points_possible: 100,
+            submission: APISubmission.make(
+                grade: "90",
+                score: 90
+            )
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.gradeCircle.label, "Scored 90 out of 100 points possible")
+    }
+
+    func testDisplayGradeAs() {
+        let assignment = mockAssignment(APIAssignment.make(
+            points_possible: 10,
+            submission: APISubmission.make(
+                grade: "80%",
+                score: 8
+            ),
+            grading_type: .percent
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.gradeCircle.label, "Scored 8 out of 10 points possible")
+        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label, "80%")
+    }
+
+    func testGradeCellShowsLatePenalty() {
+        let assignment = mockAssignment(APIAssignment.make(
+            points_possible: 100,
+            due_at: Date(timeIntervalSinceNow: -10000), // less than 1 day should deduct 5 points
+            submission: APISubmission.make(
+                grade: "85",
+                score: 85,
+                late: true,
+                late_policy_status: .late,
+                points_deducted: 5
+            )
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertEqual(AssignmentDetails.gradeLatePenalty.label, "Late penalty (-5 pts)")
+    }
+
+    func testGradeCellShowsExcused() {
+        let assignment = mockAssignment(APIAssignment.make(
+            points_possible: 100,
+            submission: .make(excused: true)
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertTrue(AssignmentDetails.gradeCell.isVisible)
+        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label, "Excused")
+        XCTAssertEqual(AssignmentDetails.gradeCircleOutOf.label, "Out of 100 pts")
+    }
+
+    func testViewSubmissionButtonWorksWithNoSubmission() {
+        let assignment = mockAssignment(APIAssignment.make(
+            points_possible: 10
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.viewSubmissionButton.waitToExist(5)
+        AssignmentDetails.viewSubmissionButton.tap()
+        XCTAssertTrue(SubmissionDetails.emptySubmitButton.exists)
+    }
+
+    func testSubmissionButtonNavigatesToSubmission() {
+        let assignment = mockAssignment(APIAssignment.make(
+            points_possible: 10,
+            submission: APISubmission.make()
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.viewSubmissionButton.tap()
+        XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
+    }
+
+    func testGradeCellNavigatesToSubmission() {
+        let assignment = mockAssignment(APIAssignment.make(
+            points_possible: 10,
+            submission: APISubmission.make(
+                grade: "80%",
+                score: 8
+            ),
+            grading_type: .percent
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.gradeCell.tap()
+        XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
+    }
+
+    func testSubmitUrlSubmission() {
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .online_url ]
+        ))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.submitAssignmentButton.waitToExist()
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+        AssignmentDetails.submitAssignmentButton.tap()
+        AssignmentDetails.submitAssignmentButton.waitToVanish()
+    }
+}
