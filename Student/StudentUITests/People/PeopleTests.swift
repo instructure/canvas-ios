@@ -32,7 +32,7 @@ enum PersonContextCard {
     }
 }
 
-class PeopleTests: CoreUITests {
+class PeopleTests: CoreUITestCase {
     func testCourseUsersAndUserContextCardDisplay() {
         // Dashboard
         Dashboard.courseCard(id: "262").waitToExist()

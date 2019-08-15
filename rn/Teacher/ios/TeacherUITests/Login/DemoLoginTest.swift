@@ -22,7 +22,7 @@ import TestsFoundation
 import XCTest
 @testable import CoreUITests
 
-class DemoLoginTest: CoreUITests {
+class DemoLoginTest: CoreUITestCase {
     override var user: UITestUser? { return nil }
 
     func testLogin() {

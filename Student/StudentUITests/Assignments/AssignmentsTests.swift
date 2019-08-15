@@ -20,7 +20,7 @@ import XCTest
 @testable import TestsFoundation
 @testable import CoreUITests
 
-class AssignmentsTests: CoreUITests {
+class AssignmentsTests: CoreUITestCase {
     func testCourseGradeIsCorrect() {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()

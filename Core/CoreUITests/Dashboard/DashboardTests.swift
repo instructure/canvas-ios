@@ -19,8 +19,8 @@
 import XCTest
 import TestsFoundation
 
-class DashboardTests: CoreUITests {
-    override var abstractTestClass: CoreUITests.Type { return DashboardTests.self }
+class DashboardTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return DashboardTests.self }
 
     func testAnnouncementBelowInvite() {
         CourseInvitation.acceptButton(id: "998").waitToExist()

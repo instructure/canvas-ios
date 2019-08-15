@@ -19,9 +19,9 @@
 import XCTest
 import TestsFoundation
 
-class ActAsUserTests: CoreUITests {
+class ActAsUserTests: CoreUITestCase {
     override var user: UITestUser? { return .readAdmin1 }
-    override var abstractTestClass: CoreUITests.Type { return ActAsUserTests.self }
+    override var abstractTestClass: CoreUITestCase.Type { return ActAsUserTests.self }
 
     func xtestActAsUser() { // TODO: reenable
         Profile.open()

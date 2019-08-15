@@ -21,7 +21,7 @@ import XCTest
 import TestsFoundation
 @testable import CoreUITests
 
-class DashboardEmptyTests: CoreUITests {
+class DashboardEmptyTests: CoreUITestCase {
     override var user: UITestUser { return .notEnrolled }
 
     func testEmptyCanAddCourses() {

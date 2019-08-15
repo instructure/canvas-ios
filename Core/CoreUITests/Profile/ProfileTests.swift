@@ -19,8 +19,8 @@
 import XCTest
 import TestsFoundation
 
-class ProfileTests: CoreUITests {
-    override var abstractTestClass: CoreUITests.Type { return ProfileTests.self }
+class ProfileTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return ProfileTests.self }
 
     func testCourseCardGrades() {
         Profile.open()

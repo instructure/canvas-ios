@@ -19,8 +19,8 @@
 import XCTest
 import TestsFoundation
 
-class DiscussionListTests: CoreUITests {
-    override var abstractTestClass: CoreUITests.Type { return DiscussionListTests.self }
+class DiscussionListTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return DiscussionListTests.self }
 
     override func setUp() {
         super.setUp()

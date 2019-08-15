@@ -20,8 +20,8 @@ import XCTest
 import TestsFoundation
 @testable import Core
 
-class TodoListTests: CoreUITests {
-    override var abstractTestClass: CoreUITests.Type { return TodoListTests.self }
+class TodoListTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return TodoListTests.self }
     override var user: UITestUser? { return nil }
 
     func testTodoItemsDisplayed() {

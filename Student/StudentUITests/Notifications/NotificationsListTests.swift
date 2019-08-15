@@ -21,7 +21,7 @@ import TestsFoundation
 @testable import Core
 @testable import CoreUITests
 
-class NotificationsListTests: CoreUITests {
+class NotificationsListTests: CoreUITestCase {
     override var user: UITestUser? { return nil }
 
     func testNotificationItemsDisplayed() {

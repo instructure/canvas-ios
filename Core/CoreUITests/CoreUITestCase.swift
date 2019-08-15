@@ -20,7 +20,7 @@ import Core
 import XCTest
 import TestsFoundation
 
-class CoreUITests: UITestCase {
+class CoreUITestCase: UITestCase {
     var user: UITestUser? {
         if Bundle.main.isStudentUITestsRunner {
             return .readStudent1
@@ -32,7 +32,7 @@ class CoreUITests: UITestCase {
     }
 
     // The class in this variable will not have tests run for it, only for subclasses
-    var abstractTestClass: CoreUITests.Type { return CoreUITests.self }
+    var abstractTestClass: CoreUITestCase.Type { return CoreUITestCase.self }
 
     private static var firstRun = true
 
@@ -45,8 +45,8 @@ class CoreUITests: UITestCase {
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
-        if CoreUITests.firstRun || app.state != .runningForeground {
-            CoreUITests.firstRun = false
+        if CoreUITestCase.firstRun || app.state != .runningForeground {
+            CoreUITestCase.firstRun = false
             launch()
             if currentSession() != nil {
                 Dashboard.coursesLabel.waitToExist()

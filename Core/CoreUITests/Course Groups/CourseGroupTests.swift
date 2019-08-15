@@ -19,8 +19,8 @@
 import XCTest
 import TestsFoundation
 
-class CourseGroupTests: CoreUITests {
-    override var abstractTestClass: CoreUITests.Type { return CourseGroupTests.self }
+class CourseGroupTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return CourseGroupTests.self }
 
     func testGroupCardDisplaysAndShowsDetails() {
         Dashboard.groupCard(id: "35").waitToExist()

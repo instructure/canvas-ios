@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 @testable import CoreUITests
 
-class QuizTests: CoreUITests {
+class QuizTests: CoreUITestCase {
     func testQuizQuestionsOpenInNativeView() {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()

@@ -30,7 +30,7 @@ enum CalendarElements {
     }
 }
 
-class CalendarTests: CoreUITests {
+class CalendarTests: CoreUITestCase {
     func testCalendarTodayButton() {
 
         let formatter = DateFormatter()

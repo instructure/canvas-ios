@@ -19,8 +19,8 @@
 import XCTest
 import TestsFoundation
 
-class LoginTests: CoreUITests {
-    override var abstractTestClass: CoreUITests.Type { return LoginTests.self }
+class LoginTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return LoginTests.self }
     override var user: UITestUser? { return nil }
 
     func testFindSchool() {

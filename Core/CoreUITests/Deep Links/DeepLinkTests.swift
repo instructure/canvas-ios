@@ -19,8 +19,8 @@
 import XCTest
 import TestsFoundation
 
-class DeepLinkTests: CoreUITests {
-    override var abstractTestClass: CoreUITests.Type { return DeepLinkTests.self }
+class DeepLinkTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return DeepLinkTests.self }
 
     override func setUp() {
         super.setUp()

@@ -25,8 +25,8 @@ enum AnnouncementList {
     }
 }
 
-class AnnouncementTests: CoreUITests {
-    override var abstractTestClass: CoreUITests.Type { return AnnouncementTests.self }
+class AnnouncementTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return AnnouncementTests.self }
 
     func testAnnouncementsMatchWebOrder() {
         Dashboard.courseCard(id: "262").waitToExist()
