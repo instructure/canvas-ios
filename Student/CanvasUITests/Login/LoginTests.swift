@@ -37,7 +37,8 @@ class LoginTests: CanvasUITests {
         XCTAssert(TabBar.dashboardTab.exists)
     }
 
-    func testLDAPLoginToDashboard() {
+    // TODO: Get new LDAP account
+    func xtestLDAPLoginToDashboard() {
         let user = UITestUser.ldapUser
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("\(user.host)\r")
