@@ -107,6 +107,7 @@ Don’t forget your permission slips this Wednesday."
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -230,6 +231,7 @@ Don’t forget your permission slips this Wednesday."
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -353,6 +355,7 @@ Don’t forget your permission slips this Wednesday."
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -476,6 +479,7 @@ Don’t forget your permission slips this Wednesday."
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -599,6 +603,7 @@ Don’t forget your permission slips this Wednesday."
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -722,6 +727,7 @@ Don’t forget your permission slips this Wednesday."
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }

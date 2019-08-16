@@ -39,6 +39,12 @@ RCT_EXPORT_METHOD(setDefaultScreenConfig:(NSDictionary *)config forModule:(NSStr
     [[HelmManager shared] setDefaultScreenConfig:config forModule:module];
 }
 
+RCT_REMAP_METHOD(openInSafariViewController, openInSafariViewControllerURL:(NSURL *)url resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    [[HelmManager shared] openInSafariViewController:url completion:^() {
+        resolve(nil);
+    }];
+}
+
 RCT_REMAP_METHOD(pushFrom, pushModule:(NSString *)sourceModule destinationModule:(NSString*)module withProps:(NSDictionary *)props options:(NSDictionary *)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     [[HelmManager shared] pushFrom:sourceModule destinationModule:module withProps:props options:options callback:^() {
         resolve(nil);

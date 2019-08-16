@@ -23,7 +23,6 @@ import XCTest
 
 class LoginFindSchoolTests: StudentUITestCase {
     func testEnterDomain() {
-        show(Route.login.url.path)
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.waitToExist()
 
@@ -32,7 +31,6 @@ class LoginFindSchoolTests: StudentUITestCase {
     }
 
     func testEmptyStates() {
-        show(Route.login.url.path)
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.waitToExist()
 
@@ -42,6 +40,9 @@ class LoginFindSchoolTests: StudentUITestCase {
         LoginFindSchool.searchField.typeText("zxzx")
         LoginFindAccountResult.emptyCell.waitToExist()
 
+        // TODO: flakey test
+        sleep(2)
+
         XCTAssertEqual(LoginFindAccountResult.emptyCell.label, "Can’t find your school? Try typing the full school URL. Tap here for help.")
     }
 
@@ -50,7 +51,6 @@ class LoginFindSchoolTests: StudentUITestCase {
             APIAccountResult.make(name: "Crazy Go Nuts University", domain: "http://cgnuonline-eniversity.edu"),
         ])
 
-        show(Route.login.url.path)
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.waitToExist()
 

@@ -23,14 +23,12 @@ import XCTest
 
 class LoginStartTests: StudentUITestCase {
     func testHiddenElements() {
-        show(Route.login.url.path)
         XCTAssertFalse(LoginStart.helpButton.isVisible)
         XCTAssertFalse(LoginStart.whatsNewLabel.isVisible)
         XCTAssertFalse(LoginStart.whatsNewLink.isVisible)
     }
 
     func testFindSchool() {
-        show(Route.login.url.path)
         XCTAssertTrue(LoginStart.findSchoolButton.isEnabled)
         LoginStart.findSchoolButton.tap()
 
@@ -38,7 +36,6 @@ class LoginStartTests: StudentUITestCase {
     }
 
     func testCanvasNetwork() {
-        show(Route.login.url.path)
         XCTAssertTrue(LoginStart.canvasNetworkButton.isEnabled)
         LoginStart.canvasNetworkButton.tap()
 

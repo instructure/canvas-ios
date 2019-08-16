@@ -6902,10 +6902,6 @@ react-native-search-bar@^3.4.0:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-sfsafariviewcontroller@skycocker/react-native-sfsafariviewcontroller:
-  version "0.2.6"
-  resolved "https://codeload.github.com/skycocker/react-native-sfsafariviewcontroller/tar.gz/65b56448709b15999f7b0fec2d543cda6612eb48"
-
 react-native-sound@^0.10.4:
   version "0.10.12"
   resolved "https://registry.yarnpkg.com/react-native-sound/-/react-native-sound-0.10.12.tgz#f912d6f9d6e9e2b42b391e0226787628d940f01a"
