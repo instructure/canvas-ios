@@ -24,7 +24,10 @@ public class GetEnabledFeatureFlags: APIUseCase {
     public let context: Context
 
     public var scope: Scope {
-        return Scope.where(#keyPath(FeatureFlag.canvasContextID), equals: context.canvasContextID)
+        let context = NSPredicate(format: "%K == %@", #keyPath(FeatureFlag.canvasContextID), self.context.canvasContextID)
+        let enabled = NSPredicate(format: "%K == true", #keyPath(FeatureFlag.enabled))
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [context, enabled])
+        return Scope(predicate: predicate, order: [NSSortDescriptor(key: #keyPath(FeatureFlag.name), ascending: true)])
     }
 
     public var cacheKey: String? {
