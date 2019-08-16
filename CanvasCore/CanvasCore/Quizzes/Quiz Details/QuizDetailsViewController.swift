@@ -74,10 +74,7 @@ class QuizDetailsViewController: UITableViewController {
     
     fileprivate func prepareDescriptionCell() {
         descriptionCell.cellSizeUpdated = { [weak self] cell in
-            if let me = self {
-                let tv = me.tableView
-                tv?.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .none)
-            }
+            self?.tableView.reloadData()
         }
         descriptionCell.readMore = { wwvc in
             let nav = UINavigationController(rootViewController: wwvc)
