@@ -1113,12 +1113,12 @@
 				B1F405F822E23D28008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */,
 				B1F405F922E23D28008FAFE6 /* ReactiveSwift.framework in Frameworks */,
 				B1F405FB22E23D28008FAFE6 /* ReactiveObjC.framework in Frameworks */,
-				49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */,
-				49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */,
-				7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */,
-				630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */,
 				F9B946EC221491F00083E660 /* PSPDFKit.framework in Frameworks */,
 				F9B946ED221491F00083E660 /* PSPDFKitUI.framework in Frameworks */,
+				49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */,
+				630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */,
+				49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */,
+				7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3545,6 +3545,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				REEXPORTED_FRAMEWORK_NAMES = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
@@ -3580,6 +3581,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				REEXPORTED_FRAMEWORK_NAMES = "";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
