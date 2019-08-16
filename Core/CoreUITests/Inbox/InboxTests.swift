@@ -27,7 +27,7 @@ class InboxTests: CoreUITestCase {
         Inbox.newMessageButton.tap()
 
         // Course Selection
-        NewMessage.selectCourseButton.tapAt(.zero)
+        NewMessage.selectCourseButton.tap()
         MessageCourseSelection.course(id: "263").tap()
         NewMessage.addRecipientButton.tap()
 
@@ -43,7 +43,7 @@ class InboxTests: CoreUITestCase {
         Inbox.newMessageButton.tap()
 
         // Course Selection
-        NewMessage.selectCourseButton.tapAt(.zero)
+        NewMessage.selectCourseButton.tap()
         MessageCourseSelection.course(id: "263").tap()
         NewMessage.addRecipientButton.tap()
 

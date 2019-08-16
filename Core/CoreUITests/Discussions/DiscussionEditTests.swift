@@ -24,11 +24,11 @@ class DiscussionEditTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return DiscussionEditTests.self }
     override var user: UITestUser? { return nil }
 
-    let course1 = APICourse.make(id: "1", enrollments: [ .make(type: .teacher) ], permissions: .init(
+    let course1 = APICourse.make(id: "1", enrollments: [ .make(type: "TeacherEnrollment") ], permissions: .init(
         create_announcement: true,
         create_discussion_topic: true
     ))
-    let noPermissionCourse = APICourse.make(id: "1", enrollments: [ .make(type: .teacher) ], permissions: .init(
+    let noPermissionCourse = APICourse.make(id: "1", enrollments: [ .make(type: "TeacherEnrollment") ], permissions: .init(
         create_announcement: false,
         create_discussion_topic: false
     ))

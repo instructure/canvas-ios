@@ -33,7 +33,7 @@ struct APIEnrollment: Codable, Equatable {
     // let limit_privileges_to_course_section: Bool?
     // let sis_import_id: String?
     // let root_account_id: String
-    let type: EnrollmentType
+    let type: String
     let user_id: String
     let associated_user_id: String?
     let role: String

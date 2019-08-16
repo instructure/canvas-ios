@@ -21,12 +21,3 @@ import Foundation
 public enum EnrollmentState: String, Codable {
     case active, inactive, invited, completed, creation_pending
 }
-
-public enum EnrollmentType: String, Codable {
-    case student = "StudentEnrollment"
-    case studentView = "StudentViewEnrollment"
-    case teacher = "TeacherEnrollment"
-    case ta = "TaEnrollment"
-    case designer = "DesignerEnrollment"
-    case observer = "ObserverEnrollment"
-}

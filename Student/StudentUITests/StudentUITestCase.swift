@@ -23,6 +23,7 @@ import XCTest
 @testable import TestsFoundation
 
 class StudentUITestCase: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return StudentUITestCase.self }
     override var user: UITestUser? { return nil }
 
     override func setUp() {

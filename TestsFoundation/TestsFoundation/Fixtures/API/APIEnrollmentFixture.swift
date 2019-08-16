@@ -25,7 +25,7 @@ extension APIEnrollment {
         course_id: String? = nil,
         course_section_id: String? = nil,
         enrollment_state: EnrollmentState = .active,
-        type: EnrollmentType = .student,
+        type: String = "StudentEnrollment",
         user_id: String = "12",
         associated_user_id: String? = nil,
         role: String = "StudentEnrollment",
