@@ -210,8 +210,8 @@ describe('RichTextEditor', () => {
   it('sets feature flags on load', async () => {
     const setFeatureFlags = jest.fn()
     props.getEnabledFeatureFlags = jest.fn(() => Promise.resolve({ data: ['rce_enhancements'] }))
-    props.context = "courses"
-    props.contextID = "1"
+    props.context = 'courses'
+    props.contextID = '1'
     const tree = shallow(<RichTextEditor {...props} />)
     const editor = tree.find('ZSSRichTextEditor')
     editor.getElement().ref({ updateHTML: jest.fn(), setFeatureFlags })
