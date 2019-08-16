@@ -134,6 +134,7 @@ export class EditReply extends React.Component<Props, any> {
         NativeModules.ModuleItemsProgress.contributedDiscussion(this.props.contextID, this.props.discussionID)
       }
     } catch (e) {
+      console.warn(e)
       this.setState({ pending: false })
     }
   }

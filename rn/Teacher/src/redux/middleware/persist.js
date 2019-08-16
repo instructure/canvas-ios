@@ -84,10 +84,11 @@ const createPersistMiddleware = (timeoutWait: number): MiddlewareAPI => {
   return (store) => {
     let timeout
     return next => async (action) => {
-      next(action)
+      let value = next(action)
 
       clearTimeout(timeout)
       timeout = setTimeout(() => persistState(store), timeoutWait)
+      return value
     }
   }
 }
