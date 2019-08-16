@@ -379,6 +379,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         completionHandler?()
         session.finishTasksAndInvalidate()
+        validSession = nil
     }
 
     func file(taskID: Int) -> File? {
