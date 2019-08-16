@@ -207,6 +207,19 @@ describe('RichTextEditor', () => {
     expect(mock).toHaveBeenCalledWith(props.defaultValue)
   })
 
+  it('sets feature flags on load', async () => {
+    const setFeatureFlags = jest.fn()
+    props.getEnabledFeatureFlags = jest.fn(() => Promise.resolve({ data: ['rce_enhancements'] }))
+    props.context = "courses"
+    props.contextID = "1"
+    const tree = shallow(<RichTextEditor {...props} />)
+    const editor = tree.find('ZSSRichTextEditor')
+    editor.getElement().ref({ updateHTML: jest.fn(), setFeatureFlags })
+    await editor.simulate('Load')
+    expect(setFeatureFlags).toHaveBeenCalledWith(['rce_enhancements'])
+    expect(props.getEnabledFeatureFlags).toHaveBeenCalledWith('courses', '1')
+  })
+
   it('sets html when defaultValue changes', () => {
     props.defaultValue = null
     const mock = jest.fn()

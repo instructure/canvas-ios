@@ -308,6 +308,16 @@ describe('ZSSRichTextEditor', () => {
     expect(onLoad).toHaveBeenCalled()
   })
 
+  it('sets feature flags', async () => {
+    const screen = shallow(<ZSSRichTextEditor />)
+    const webView = screen.find('CanvasWebView')
+
+    let js = jest.fn()
+    webView.getElement().ref({ evaluateJavaScript: js })
+    screen.instance().setFeatureFlags(['one', 'two'])
+    expect(js.mock.calls).toMatchSnapshot()
+  })
+
   it('notifies when editor blurred', () => {
     const onBlur = jest.fn()
     const component = renderer.create(

@@ -13,8 +13,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+/* eslint-disable flowtype/require-valid-file-annotation */
+
 import httpClient from '../httpClient'
 
-export function getEnabledFeatureFlags(context, contextID) {
+export function getEnabledFeatureFlags (context, contextID) {
   return httpClient.get(`${context}/${contextID}/features/enabled`)
 }

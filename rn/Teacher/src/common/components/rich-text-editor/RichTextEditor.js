@@ -30,6 +30,8 @@ import {
 } from 'react-native'
 import * as canvas from '../../../canvas-api'
 
+const { getEnabledFeatureFlags } = canvas
+
 export type Props = {
   defaultValue?: ?string,
   showToolbar?: 'never' | 'always' | 'onFocus',
@@ -55,7 +57,7 @@ export default class RichTextEditor extends Component<Props, State> {
   container: View
 
   static defaultProps = {
-    canvas,
+    getEnabledFeatureFlags,
   }
 
   state: State = {
@@ -141,11 +143,10 @@ export default class RichTextEditor extends Component<Props, State> {
     NativeModules.WebViewHacker.setKeyboardDisplayRequiresUserAction(false)
     if (this.props.context && this.props.contextID) {
       try {
-        let flags = await this.props.canvas.getEnabledFeatureFlags(this.props.context, this.props.contextID)
+        let flags = await this.props.getEnabledFeatureFlags(this.props.context, this.props.contextID)
         this.editor.setFeatureFlags(flags.data)
       } catch (e) {}
     }
-    // this.editor.setFeatureFlags(enabledFeatureFlags())
     if (this.props.contentHeight) {
       this.editor.setContentHeight(this.props.contentHeight)
     }

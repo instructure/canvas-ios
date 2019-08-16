@@ -68,6 +68,8 @@ exports[`PageEdit renders 1`] = `
         <RichTextEditor
           attachmentUploadPath="/courses/1/files"
           contentHeight={150}
+          context="courses"
+          contextID="1"
           defaultValue=""
           keyboardAware={false}
           navigator={
@@ -175,6 +177,8 @@ exports[`PageEdit renders when the student app 1`] = `
         <RichTextEditor
           attachmentUploadPath="/courses/1/files"
           contentHeight={150}
+          context="courses"
+          contextID="1"
           defaultValue=""
           keyboardAware={false}
           navigator={
