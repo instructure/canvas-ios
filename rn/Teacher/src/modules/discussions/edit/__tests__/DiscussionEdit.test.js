@@ -115,7 +115,7 @@ describe('DiscussionEdit', () => {
     props.title = 'Hanamura'
     props.createDiscussion = jest.fn()
     const tree = shallow(<DiscussionEdit {...props} />)
-    tree.find('[identifier="discussions.edit.titleInput"]')
+    tree.find('[identifier="DiscussionEdit.titleField"]')
       .simulate('ChangeText', 'Haunted Mines')
     tree.find('RichTextEditor')
       .getElement()
@@ -222,7 +222,7 @@ describe('DiscussionEdit', () => {
     expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
     jest.runAllTimers()
     expect(NativeModules.NativeAccessibility.focusElement)
-      .toHaveBeenCalledWith('discussions.edit.unmet-requirement-banner')
+      .toHaveBeenCalledWith('DiscussionEdit.invalidLabel')
   })
 
   it('calls updateDiscussion on done', async () => {
@@ -230,7 +230,7 @@ describe('DiscussionEdit', () => {
     props.contextID = '1'
     props.discussionID = '2'
     const tree = shallow(<DiscussionEdit {...props} />)
-    tree.find('[identifier="discussions.edit.titleInput"]')
+    tree.find('[identifier="DiscussionEdit.titleField"]')
       .simulate('ChangeText', 'UPDATED TITLE')
     tree.find('RichTextEditor')
       .getElement()
@@ -262,7 +262,7 @@ describe('DiscussionEdit', () => {
     props.discussion_type = 'side_comment'
     props.updateDiscussion = jest.fn()
     const tree = shallow(<DiscussionEdit {...props} />)
-    tree.find('[identifier="discussions.edit.discussion_type.switch"]')
+    tree.find('[testID="DiscussionEdit.threadSwitch"]')
       .simulate('ValueChange', true)
     await tapDone(tree)
     expect(props.updateDiscussion).toHaveBeenCalledWith(props.context, props.contextID, {
@@ -284,7 +284,7 @@ describe('DiscussionEdit', () => {
     props.discussion_type = 'threaded'
     props.updateDiscussion = jest.fn()
     const tree = shallow(<DiscussionEdit {...props} />)
-    tree.find('[identifier="discussions.edit.discussion_type.switch"]')
+    tree.find('[testID="DiscussionEdit.threadSwitch"]')
       .simulate('ValueChange', false)
     await tapDone(tree)
     expect(props.updateDiscussion).toHaveBeenCalledWith(props.context, props.contextID, {
@@ -304,9 +304,9 @@ describe('DiscussionEdit', () => {
   it('toggles grading type picker', () => {
     props.assignment = template.assignment()
     const tree = shallow(<DiscussionEdit {...props} />)
-    expect(tree.find('[testID="discussions.edit.grading_type.picker"]').exists()).toBe(false)
-    tree.find('[testID="discussions.edit.grading_type.row"]').simulate('Press')
-    expect(tree.find('[testID="discussions.edit.grading_type.picker"]').exists()).toBe(true)
+    expect(tree.find('[testID="DiscussionEdit.gradeTypePicker"]').exists()).toBe(false)
+    tree.find('[testID="DiscussionEdit.gradeAsButton"]').simulate('Press')
+    expect(tree.find('[testID="DiscussionEdit.gradeTypePicker"]').exists()).toBe(true)
   })
 
   it('renders assignment dates editor', () => {
@@ -333,15 +333,15 @@ describe('DiscussionEdit', () => {
     const tree = shallow(<DiscussionEdit {...props} />)
     await tapDone(tree)
     expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
-    expect(tree.find('[testID="discussions.edit.title.validation-error"]').prop('visible')).toBeTruthy()
-    tree.find('[identifier="discussions.edit.titleInput"]').simulate('ChangeText', 'not blank')
+    expect(tree.find('[testID="DiscussionEdit.invalidTitleLabel"]').prop('visible')).toBeTruthy()
+    tree.find('[identifier="DiscussionEdit.titleField"]').simulate('ChangeText', 'not blank')
     await tapDone(tree)
     expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeFalsy()
-    expect(tree.find('[testID="discussions.edit.title.validation-error"]').prop('visible')).toBeFalsy()
-    tree.find('[identifier="discussions.edit.titleInput"]').simulate('ChangeText', '')
+    expect(tree.find('[testID="DiscussionEdit.invalidTitleLabel"]').prop('visible')).toBeFalsy()
+    tree.find('[identifier="DiscussionEdit.titleField"]').simulate('ChangeText', '')
     await tapDone(tree)
     expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
-    expect(tree.find('[testID="discussions.edit.title.validation-error"]').prop('visible')).toBeTruthy()
+    expect(tree.find('[testID="DiscussionEdit.invalidTitleLabel"]').prop('visible')).toBeTruthy()
   })
 
   it('shows validation errors if points is invalid', async () => {
@@ -353,31 +353,31 @@ describe('DiscussionEdit', () => {
     }
     await tapDone(tree)
     expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
-    expect(tree.find('[testID="discussions.edit.points_possible.validation-error"]').prop('visible')).toBeTruthy()
+    expect(tree.find('[testID="DiscussionEdit.invalidPointsLabel"]').prop('visible')).toBeTruthy()
 
-    tree.find('[identifier="discussions.edit.points_possible.input"]')
+    tree.find('[testID="DiscussionEdit.pointsField"]')
       .simulate('ChangeText', 'D')
     await tapDone(tree)
     expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
-    expect(tree.find('[testID="discussions.edit.points_possible.validation-error"]').prop('visible')).toBeTruthy()
+    expect(tree.find('[testID="DiscussionEdit.invalidPointsLabel"]').prop('visible')).toBeTruthy()
 
-    tree.find('[identifier="discussions.edit.points_possible.input"]')
+    tree.find('[testID="DiscussionEdit.pointsField"]')
       .simulate('ChangeText', '1')
     await tapDone(tree)
     expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeFalsy()
-    expect(tree.find('[testID="discussions.edit.points_possible.validation-error"]').prop('visible')).toBeFalsy()
+    expect(tree.find('[testID="DiscussionEdit.invalidPointsLabel"]').prop('visible')).toBeFalsy()
 
-    tree.find('[identifier="discussions.edit.points_possible.input"]')
+    tree.find('[testID="DiscussionEdit.pointsField"]')
       .simulate('ChangeText', '-1')
     await tapDone(tree)
     expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
-    expect(tree.find('[testID="discussions.edit.points_possible.validation-error"]').prop('visible')).toBeTruthy()
+    expect(tree.find('[testID="DiscussionEdit.invalidPointsLabel"]').prop('visible')).toBeTruthy()
 
-    tree.find('[identifier="discussions.edit.points_possible.input"]')
+    tree.find('[testID="DiscussionEdit.pointsField"]')
       .simulate('ChangeText', '')
     await tapDone(tree)
     expect(tree.find('UnmetRequirementBanner').prop('visible')).toBeTruthy()
-    expect(tree.find('[testID="discussions.edit.points_possible.validation-error"]').prop('visible')).toBeTruthy()
+    expect(tree.find('[testID="DiscussionEdit.invalidPointsLabel"]').prop('visible')).toBeTruthy()
   })
 
   it('updates from props', () => {
@@ -400,7 +400,7 @@ describe('DiscussionEdit', () => {
     props.subscribeDiscussion = jest.fn()
     props.subscribed = false
     const tree = shallow(<DiscussionEdit {...props} />)
-    tree.find('[identifier="discussions.edit.subscribed.switch"]')
+    tree.find('[testID="DiscussionEdit.subscribeSwitch"]')
       .simulate('ValueChange', true)
     expect(props.subscribeDiscussion).toHaveBeenCalledWith('courses', '1', '2', true)
   })
@@ -411,7 +411,7 @@ describe('DiscussionEdit', () => {
     props.subscribeDiscussion = jest.fn()
     props.subscribed = true
     const tree = shallow(<DiscussionEdit {...props} />)
-    tree.find('[identifier="discussions.edit.subscribed.switch"]')
+    tree.find('[testID="DiscussionEdit.subscribeSwitch"]')
       .simulate('ValueChange', false)
     expect(props.subscribeDiscussion).toHaveBeenCalledWith('courses', '1', '2', false)
   })
@@ -419,48 +419,48 @@ describe('DiscussionEdit', () => {
   it('toggles available from date picker', () => {
     props.assignment = null
     const tree = shallow(<DiscussionEdit {...props} />)
-    expect(tree.find('[testID="discussions.edit.delayed_post_at.picker"]').exists()).toBe(false)
-    tree.find('[testID="discussions.edit.delayed_post_at.row"]').simulate('Press')
-    expect(tree.find('[testID="discussions.edit.delayed_post_at.picker"]').exists()).toBe(true)
+    expect(tree.find('[testID="DiscussionEdit.delayPostAtPicker"]').exists()).toBe(false)
+    tree.find('[testID="DiscussionEdit.delayPostAtButton"]').simulate('Press')
+    expect(tree.find('[testID="DiscussionEdit.delayPostAtPicker"]').exists()).toBe(true)
   })
 
   it('toggles available until date picker', () => {
     props.assignment = null
     const tree = shallow(<DiscussionEdit {...props} />)
-    expect(tree.find('[testID="discussions.edit.lock_at.picker"]').exists()).toBe(false)
-    tree.find('[testID="discussions.edit.lock_at.row"]')
+    expect(tree.find('[testID="DiscussionEdit.lockAtPicker"]').exists()).toBe(false)
+    tree.find('[testID="DiscussionEdit.lockAtButton"]')
       .simulate('Press')
-    expect(tree.find('[testID="discussions.edit.lock_at.picker"]').exists()).toBe(true)
+    expect(tree.find('[testID="DiscussionEdit.lockAtPicker"]').exists()).toBe(true)
   })
 
   it('should clear dates', () => {
     props.assignment = null
     const tree = shallow(<DiscussionEdit {...props} />)
-    tree.find('[testID="discussions.edit.delayed_post_at.row"]')
+    tree.find('[testID="DiscussionEdit.delayPostAtButton"]')
       .simulate('Press')
-    tree.find('[testID="discussions.edit.delayed_post_at.picker"]')
+    tree.find('[testID="DiscussionEdit.delayPostAtPicker"]')
       .simulate('DateChange', new Date(1000))
-    tree.find('[testID="discussions.edit.delayed_post_at.row"]')
+    tree.find('[testID="DiscussionEdit.delayPostAtButton"]')
       .simulate('RemoveDatePress')
-    expect(tree.find('[testID="discussions.edit.delayed_post_at.picker"]').exists()).toBe(false)
+    expect(tree.find('[testID="DiscussionEdit.delayPostAtPicker"]').exists()).toBe(false)
 
-    tree.find('[testID="discussions.edit.lock_at.row"]')
+    tree.find('[testID="DiscussionEdit.lockAtButton"]')
       .simulate('Press')
-    tree.find('[testID="discussions.edit.lock_at.picker"]')
+    tree.find('[testID="DiscussionEdit.lockAtPicker"]')
       .simulate('DateChange', new Date(1000))
-    tree.find('[testID="discussions.edit.lock_at.row"]')
+    tree.find('[testID="DiscussionEdit.lockAtButton"]')
       .simulate('RemoveDatePress')
-    expect(tree.find('[testID="discussions.edit.lock_at.picker"]').exists()).toBe(false)
+    expect(tree.find('[testID="DiscussionEdit.lockAtPicker"]').exists()).toBe(false)
   })
 
   it('hides publish switch if cant unpublish', () => {
     props.published = true
     props.can_unpublish = false
     const tree = shallow(<DiscussionEdit {...props} />)
-    expect(tree.find('[testID="discussions.edit.published.switch"]').exists()).toBe(false)
+    expect(tree.find('[testID="DiscussionEdit.publishSwitch"]').exists()).toBe(false)
 
     tree.setProps({ can_unpublish: true })
-    expect(tree.find('[testID="discussions.edit.published.switch"]').exists()).toBe(true)
+    expect(tree.find('[testID="DiscussionEdit.publishSwitch"]').exists()).toBe(true)
   })
 
   it('shows attachments', () => {
@@ -469,7 +469,7 @@ describe('DiscussionEdit', () => {
     props.attachment = template.attachment()
     const tree = shallow(<DiscussionEdit {...props} />)
     tree.find('Screen').prop('rightBarButtons')
-      .find(({ testID }) => testID === 'discussions.edit.attachment-btn')
+      .find(({ testID }) => testID === 'DiscussionEdit.attachmentButton')
       .action()
     expect(spy).toHaveBeenCalledWith(
       '/attachments',
@@ -511,7 +511,7 @@ describe('DiscussionEdit', () => {
 
   function tapDone (tree: ShallowWrapper) {
     tree.find('Screen').prop('rightBarButtons')
-      .find(({ testID }) => testID === 'discussions.edit.doneButton')
+      .find(({ testID }) => testID === 'DiscussionEdit.doneButton')
       .action()
     return new Promise(resolve => tree.setState({}, resolve))
   }

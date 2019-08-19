@@ -19,11 +19,15 @@
 import XCTest
 import TestsFoundation
 
-enum DiscussionListCell: String, ElementWrapper {
+public enum DiscussionList: String, ElementWrapper {
+    case newButton
+}
+
+public enum DiscussionListCell: String, ElementWrapper {
     case graded = "14393"
     case simple = "14392"
 
-    static func cell(id: String) -> Element {
+    public static func cell(id: String) -> Element {
         return app.find(id: "DiscussionListCell.\(id)")
     }
 }

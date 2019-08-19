@@ -62,9 +62,9 @@ public struct GetCourseRequest: APIRequestable {
         case favorites
         case permissions
         case sections
+        case syllabusBody = "syllabus_body"
         case term
         case totalScores = "total_scores"
-        case syllabusBody = "syllabus_body"
     }
 
     let courseID: String
@@ -74,9 +74,9 @@ public struct GetCourseRequest: APIRequestable {
         Include.favorites,
         Include.permissions,
         Include.sections,
+        Include.syllabusBody,
         Include.term,
         Include.totalScores,
-        Include.syllabusBody,
     ]
 
     var include: [Include] = defaultIncludes

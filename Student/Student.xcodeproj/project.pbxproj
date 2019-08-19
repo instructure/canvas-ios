@@ -3175,7 +3175,6 @@
 			children = (
 				E8EA86162304A36000E4FD76 /* Dashboard */,
 				E8EA8601230495AB00E4FD76 /* Calendar */,
-				E879CF29230386CD00988DAB /* TestsFromCore.swift */,
 				7DCF0F3D22F8A0A0000AACCE /* Assignments */,
 				7DCF0F3F22F8A0A0000AACCE /* AudioVideo */,
 				E8EA86042304960800E4FD76 /* Modules */,
@@ -3189,6 +3188,7 @@
 				7DCF0F5E22F8A0A0000AACCE /* Info.plist */,
 				7DCF0F7422F8A0A0000AACCE /* InfoPlist.strings */,
 				7DCF0F7522F8A0A0000AACCE /* StudentUITestCase.swift */,
+				E879CF29230386CD00988DAB /* TestsFromCore.swift */,
 			);
 			path = StudentUITests;
 			sourceTree = "<group>";

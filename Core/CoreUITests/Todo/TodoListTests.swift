@@ -29,7 +29,7 @@ class TodoListTests: CoreUITestCase {
         mockEncodableRequest("users/self/todo?per_page=99", value: [
             APITodo.make(assignment: .make(name: "One", due_at: Date().add(.day, number: 1))),
             APITodo.make(assignment: .make(id: "2", name: "Two")),
-        ], response: HTTPURLResponse(url: URL(string: "/")!, statusCode: 200, httpVersion: nil, headerFields: nil))
+        ])
 
         logIn(domain: "canvas.instructure.com", token: "t")
         TabBar.todoTab.tap()

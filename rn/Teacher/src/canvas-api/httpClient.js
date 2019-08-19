@@ -123,7 +123,7 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
               statusText: request.statusText,
             }
 
-            if (request.status >= 400) {
+            if (!request.status || request.status >= 400) {
               throw new TypeError('Network request failed')
             }
             if (config.transform) {

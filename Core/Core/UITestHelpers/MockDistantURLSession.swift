@@ -79,9 +79,15 @@ public class MockDistantURLSession: URLSession {
         guard let message = try? JSONDecoder().decode(MockDataMessage.self, from: data) else {
             fatalError("Could not decode mocking request")
         }
+        var response = message.response?.http
+        if response == nil, message.data != nil {
+            response = HTTPURLResponse(url: message.request.url!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: [
+                HttpHeader.contentType: "application/json",
+            ])
+        }
         dataMocks[message.request.url!] = MockData(
             data: message.data,
-            response: message.response?.http,
+            response: response,
             error: message.error.flatMap { NSError.instructureError($0) },
             noCallback: message.noCallback
         )

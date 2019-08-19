@@ -21,8 +21,9 @@ import Foundation
 
 class StudentCourseGroupTests: CourseGroupTests {}
 class StudentInboxTests: InboxTests {}
-class StudentDiscussionListTests: DiscussionListTests {}
 class StudentDiscussionDetailsTests: DiscussionDetailsTests {}
+class StudentDiscussionEditTests: DiscussionEditTests {}
+class StudentDiscussionListTests: DiscussionListTests {}
 class StudentDeepLinkTests: DeepLinkTests {}
 class StudentCourseFileTests: CourseFileTests {}
 class StudentActAsUserTests: ActAsUserTests {}
