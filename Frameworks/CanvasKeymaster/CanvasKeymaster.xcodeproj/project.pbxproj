@@ -141,11 +141,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BCAF3CC1F63B12200EEF0A7 /* CanvasKit.framework in Frameworks */,
-				B1F3780E224A8550000B7CAA /* Core.framework in Frameworks */,
 				0427ED71F9517BC9C905670E /* Pods_defaults_CanvasKeymaster.framework in Frameworks */,
 				B1F37816224A8738000B7CAA /* PSPDFKit.framework in Frameworks */,
 				B1F37815224A8738000B7CAA /* PSPDFKitUI.framework in Frameworks */,
+				3BCAF3CC1F63B12200EEF0A7 /* CanvasKit.framework in Frameworks */,
+				B1F3780E224A8550000B7CAA /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

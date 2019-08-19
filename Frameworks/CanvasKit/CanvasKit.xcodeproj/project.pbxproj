@@ -532,9 +532,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B14E029B21AC900A00328622 /* Pods_defaults_CanvasKit.framework in Frameworks */,
-				B1F3781E224AACD9000B7CAA /* Core.framework in Frameworks */,
 				B1F37821224AAD00000B7CAA /* PSPDFKitUI.framework in Frameworks */,
 				B1F37822224AAD00000B7CAA /* PSPDFKit.framework in Frameworks */,
+				B1F3781E224AACD9000B7CAA /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
