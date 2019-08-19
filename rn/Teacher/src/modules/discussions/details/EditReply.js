@@ -127,8 +127,8 @@ export class EditReply extends React.Component<Props, any> {
       } else {
         await this.props.editEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath).promise
       }
-      this.props.refreshDiscussionEntries(this.props.context, this.props.contextID, this.props.discussionID, true)
       await this.props.navigator.dismissAllModals()
+      this.props.refreshDiscussionEntries(this.props.context, this.props.contextID, this.props.discussionID, true)
       if (isNew) {
         NativeModules.AppStoreReview.handleSuccessfulSubmit()
         NativeModules.ModuleItemsProgress.contributedDiscussion(this.props.contextID, this.props.discussionID)
