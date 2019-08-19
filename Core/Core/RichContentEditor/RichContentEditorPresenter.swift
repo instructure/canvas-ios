@@ -138,7 +138,7 @@ public class RichContentEditorPresenter: NSObject, UIImagePickerControllerDelega
 
     func uploadMedia(_ url: URL, file: File, isRetry: Bool) {
         if !isRetry { view?.insertVideoPlaceholder(url) }
-        UploadMedia(type: .video, url: url, file: file).fetch(environment: env) { [weak self] mediaID, error in
+        UploadMedia(type: .video, url: url, file: file, context: context).fetch(environment: env) { [weak self] mediaID, error in
             self?.updateFile(file, error: error, mediaID: mediaID)
         }
     }

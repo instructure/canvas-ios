@@ -212,6 +212,8 @@ export default class RichTextEditor extends Component<Props, State> {
       onComplete: this.insertAttachments,
       fileTypes: ['image', 'video'],
       userFiles: true,
+      context: this.props.context,
+      contextID: this.props.contextID,
     })
   }
 
