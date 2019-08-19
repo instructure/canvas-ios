@@ -123,9 +123,9 @@ export class EditReply extends React.Component<Props, any> {
     const isNew = !this.props.isEdit
     try {
       if (isNew) {
-        await this.props.createEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath, this.props.lastReplyAt).promise
+        await this.props.createEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath, this.props.lastReplyAt).payload.promise
       } else {
-        await this.props.editEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath).promise
+        await this.props.editEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath).payload.promise
       }
       await this.props.navigator.dismissAllModals()
       this.props.refreshDiscussionEntries(this.props.context, this.props.contextID, this.props.discussionID, true)

@@ -97,9 +97,7 @@ describe('EditReply', () => {
     let component = renderer.create(
       <EditReply {...defaultProps} />
     )
-    let postReply = jest.fn(() => {
-      setProps(component, { pending: 0, error: 'error' })
-    })
+    let postReply = jest.fn(() => ({ payload: { promise: Promise.reject('error') } }))
     component.update(<EditReply {...defaultProps} createEntry={postReply} />)
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
     doneButton.action()
@@ -110,8 +108,8 @@ describe('EditReply', () => {
     let component = renderer.create(
       <EditReply {...defaultProps} />
     )
-    let postReply = jest.fn(() => ({ promise: Promise.resolve() }))
-    let refresh = jest.fn(() => ({ promise: Promise.resolve() }))
+    let postReply = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
+    let refresh = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
     component.update(<EditReply {...defaultProps} createEntry={postReply} refreshDiscussionEntries={refresh} />)
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
     await doneButton.action()
@@ -131,9 +129,9 @@ describe('EditReply', () => {
   })
 
   it('enters text and posts reply', async () => {
-    let refresh = jest.fn(() => ({ promise: Promise.resolve() }))
+    let refresh = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
     let component = shallow(<EditReply {...defaultProps} refreshDiscussionEntries={refresh} />)
-    let postReply = jest.fn(() => ({ promise: Promise.resolve() }))
+    let postReply = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
     component.setProps({ createEntry: postReply })
     let textEditor = component.find('RichTextEditor')
     let message = 'not empty'
@@ -149,10 +147,10 @@ describe('EditReply', () => {
       ...defaultProps,
       message: 'default message',
       isEdit: true,
-      refreshDiscussionEntries: jest.fn(() => ({ promise: Promise.resolve() })),
+      refreshDiscussionEntries: jest.fn(() => ({ payload: { promise: Promise.resolve() } })),
     }
     let component = shallow(<EditReply {...editProps} />)
-    let editEntry = jest.fn(() => ({ promise: Promise.resolve() }))
+    let editEntry = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
     component.setProps({ editEntry })
     let textEditor = component.find('RichTextEditor')
     let message = 'edited message'
