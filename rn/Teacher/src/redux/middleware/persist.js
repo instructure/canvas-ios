@@ -83,11 +83,10 @@ export async function purgeUserStoreData () {
 const createPersistMiddleware = (timeoutWait: number): MiddlewareAPI => {
   return (store) => {
     let timeout
-    return next => async (action) => {
-      next(action)
-
+    return next => action => {
       clearTimeout(timeout)
       timeout = setTimeout(() => persistState(store), timeoutWait)
+      return next(action)
     }
   }
 }

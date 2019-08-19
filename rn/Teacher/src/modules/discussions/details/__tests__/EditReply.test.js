@@ -22,16 +22,12 @@ import { shallow } from 'enzyme'
 import React from 'react'
 import { EditReply, mapStateToProps } from '../EditReply'
 import explore from '../../../../../test/helpers/explore'
-import setProps from '../../../../../test/helpers/setProps'
-import { Alert, NativeModules } from 'react-native'
+import { NativeModules } from 'react-native'
 import renderer from 'react-test-renderer'
 import app from '../../../app'
 import * as template from '../../../../__templates__'
 
 jest
-  .mock('Alert', () => ({
-    alert: jest.fn(),
-  }))
   .mock('../../../../routing')
   .mock('../../../../routing/Screen')
   .mock('../../../../common/components/rich-text-editor/RichTextEditor', () => 'RichTextEditor')
@@ -88,20 +84,6 @@ describe('EditReply', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('presents error alert', () => {
-    jest.useFakeTimers()
-    let component = renderer.create(
-      <EditReply {...defaultProps} />
-    )
-
-    let errorMessage = 'error'
-
-    setProps(component, { error: errorMessage })
-    jest.runAllTimers()
-
-    expect(Alert.alert).toHaveBeenCalled()
-  })
-
   it('deletes pending replies on unmount', () => {
     let component = renderer.create(
       <EditReply {...defaultProps} />
@@ -114,9 +96,7 @@ describe('EditReply', () => {
     let component = renderer.create(
       <EditReply {...defaultProps} />
     )
-    let postReply = jest.fn(() => {
-      setProps(component, { pending: 0, error: 'error' })
-    })
+    let postReply = jest.fn(() => ({ payload: { promise: Promise.reject('error') } }))
     component.update(<EditReply {...defaultProps} createEntry={postReply} />)
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
     doneButton.action()
@@ -127,15 +107,13 @@ describe('EditReply', () => {
     let component = renderer.create(
       <EditReply {...defaultProps} />
     )
-    let postReply = jest.fn(() => {
-      setProps(component, { pending: 0 })
-    })
-    let refresh = jest.fn()
+    let postReply = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
+    let refresh = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
     component.update(<EditReply {...defaultProps} createEntry={postReply} refreshDiscussionEntries={refresh} />)
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
-    doneButton.action()
-    expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
-    await Promise.resolve() // dismissAllModals
+    await doneButton.action()
+    expect(postReply).toHaveBeenCalled()
+    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
     expect(NativeModules.AppStoreReview.handleSuccessfulSubmit).toHaveBeenCalled()
     expect(NativeModules.ModuleItemsProgress.contributedDiscussion).toHaveBeenCalledWith(defaultProps.contextID, defaultProps.discussionID)
   })
@@ -150,10 +128,9 @@ describe('EditReply', () => {
   })
 
   it('enters text and posts reply', async () => {
-    let component = shallow(<EditReply {...defaultProps} refreshDiscussionEntries={jest.fn()} />)
-    let postReply = jest.fn(() => {
-      component.setProps({ pending: 0 })
-    })
+    let refresh = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
+    let component = shallow(<EditReply {...defaultProps} refreshDiscussionEntries={refresh} />)
+    let postReply = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
     component.setProps({ createEntry: postReply })
     let textEditor = component.find('RichTextEditor')
     let message = 'not empty'
@@ -161,7 +138,7 @@ describe('EditReply', () => {
     const doneButton = component.prop('rightBarButtons')[0]
     await doneButton.action()
     expect(postReply).toBeCalledWith(defaultProps.context, defaultProps.contextID, defaultProps.discussionID, defaultProps.entryID, { attachment: null, message }, [], defaultProps.lastReplyAt)
-    expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
+    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
   })
 
   it('edits an existing reply', async () => {
@@ -169,12 +146,10 @@ describe('EditReply', () => {
       ...defaultProps,
       message: 'default message',
       isEdit: true,
-      refreshDiscussionEntries: jest.fn(),
+      refreshDiscussionEntries: jest.fn(() => ({ payload: { promise: Promise.resolve() } })),
     }
     let component = shallow(<EditReply {...editProps} />)
-    let editEntry = jest.fn(() => {
-      component.setProps({ pending: 0 })
-    })
+    let editEntry = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
     component.setProps({ editEntry })
     let textEditor = component.find('RichTextEditor')
     let message = 'edited message'
@@ -182,8 +157,7 @@ describe('EditReply', () => {
     const doneButton = component.prop('rightBarButtons')[0]
     await doneButton.action()
     expect(editEntry).toBeCalledWith(defaultProps.context, defaultProps.contextID, editProps.discussionID, editProps.entryID, { attachment: null, message }, [])
-    expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
-    await Promise.resolve() // dismissAllModals
+    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
     expect(NativeModules.AppStoreReview.handleSuccessfulSubmit).not.toHaveBeenCalled()
     expect(NativeModules.ModuleItemsProgress.contributedDiscussion).not.toHaveBeenCalled()
   })
