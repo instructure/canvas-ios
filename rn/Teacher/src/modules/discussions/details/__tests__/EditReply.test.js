@@ -113,7 +113,7 @@ describe('EditReply', () => {
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
     await doneButton.action()
     expect(postReply).toHaveBeenCalled()
-    expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
+    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
     expect(NativeModules.AppStoreReview.handleSuccessfulSubmit).toHaveBeenCalled()
     expect(NativeModules.ModuleItemsProgress.contributedDiscussion).toHaveBeenCalledWith(defaultProps.contextID, defaultProps.discussionID)
   })
@@ -138,7 +138,7 @@ describe('EditReply', () => {
     const doneButton = component.prop('rightBarButtons')[0]
     await doneButton.action()
     expect(postReply).toBeCalledWith(defaultProps.context, defaultProps.contextID, defaultProps.discussionID, defaultProps.entryID, { attachment: null, message }, [], defaultProps.lastReplyAt)
-    expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
+    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
   })
 
   it('edits an existing reply', async () => {
@@ -157,7 +157,7 @@ describe('EditReply', () => {
     const doneButton = component.prop('rightBarButtons')[0]
     await doneButton.action()
     expect(editEntry).toBeCalledWith(defaultProps.context, defaultProps.contextID, editProps.discussionID, editProps.entryID, { attachment: null, message }, [])
-    expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
+    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
     expect(NativeModules.AppStoreReview.handleSuccessfulSubmit).not.toHaveBeenCalled()
     expect(NativeModules.ModuleItemsProgress.contributedDiscussion).not.toHaveBeenCalled()
   })

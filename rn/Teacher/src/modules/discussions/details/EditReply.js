@@ -25,14 +25,15 @@ import color from '../../../common/colors'
 import Screen from '../../../routing/Screen'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import Actions from './actions'
-import ModalOverlay from '../../../common/components/ModalOverlay'
 import { isTeacher } from '../../app'
 import Images from '../../../images'
 import {
+  ActivityIndicator,
   View,
   LayoutAnimation,
   processColor,
   NativeModules,
+  StyleSheet,
 } from 'react-native'
 
 type OwnProps = {
@@ -92,7 +93,6 @@ export class EditReply extends React.Component<Props, any> {
         dismissButtonTitle={i18n('Cancel')}
       >
         <View style={{ flex: 1 }}>
-          <ModalOverlay text={i18n('Saving')} visible={this.state.pending} />
           <RichTextEditor
             ref={(r) => { this.editor = r }}
             onChangeValue={this._valueChanged('message')}
@@ -104,6 +104,9 @@ export class EditReply extends React.Component<Props, any> {
             navigator={this.props.navigator}
             attachmentUploadPath={isTeacher() ? `/${this.props.context}/${this.props.contextID}/files` : '/users/self/files'}
           />
+          { this.state.pending &&
+            <ActivityIndicator style={StyleSheet.absoluteFill} size='large' />
+          }
         </View>
       </Screen>
     )
@@ -127,8 +130,8 @@ export class EditReply extends React.Component<Props, any> {
       } else {
         await this.props.editEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath).payload.promise
       }
-      await this.props.navigator.dismissAllModals()
       this.props.refreshDiscussionEntries(this.props.context, this.props.contextID, this.props.discussionID, true)
+      await this.props.navigator.dismiss()
       if (isNew) {
         NativeModules.AppStoreReview.handleSuccessfulSubmit()
         NativeModules.ModuleItemsProgress.contributedDiscussion(this.props.contextID, this.props.discussionID)
