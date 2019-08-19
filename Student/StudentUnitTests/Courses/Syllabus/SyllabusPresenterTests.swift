@@ -92,9 +92,8 @@ class SyllabusPresenterTests: PersistenceTestCase {
     }
 
     func testShowURL() {
-        let api = URL(string: "https://canvas.instructure.com/api/v1/courses/1/pages/page-one")!
         let url = URL(string: "https://canvas.instructure.com/courses/1/pages/page-one")!
-        presenter.show(api, from: UIViewController())
+        presenter.show(url, from: UIViewController())
         XCTAssertTrue(router.lastRoutedTo(url))
     }
 }

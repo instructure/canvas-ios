@@ -46,10 +46,4 @@ public extension URLComponents {
         url.path = string
         return url
     }
-
-    mutating func cleanupApiVersionInPath() {
-        if let range = path.range(of: "^[/]*api/[vV]\\d+", options: .regularExpression, range: nil, locale: nil) {
-            self.path = path.replacingCharacters(in: range, with: "")
-        }
-    }
 }
