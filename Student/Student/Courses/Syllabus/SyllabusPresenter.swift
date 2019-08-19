@@ -60,6 +60,8 @@ class SyllabusPresenter {
     }
 
     func show(_ url: URL, from viewController: UIViewController) {
-        env.router.route(to: url, from: viewController)
+        var components = URLComponents.parse(url)
+        components.cleanupApiVersionInPath()
+        env.router.route(to: components, from: viewController, options: nil)
     }
 }

@@ -32,7 +32,6 @@ public extension URLComponents {
         components.path = url.path
         components.percentEncodedQuery = url.query
         components.percentEncodedFragment = url.fragment
-        components.cleanupApiVersionInPath()
         return components
     }
 

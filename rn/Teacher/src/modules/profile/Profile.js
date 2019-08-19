@@ -282,7 +282,7 @@ export class Profile extends Component<Object, State> {
       { this.props.helpLinks && buildRow(this.props.helpLinks.help_link_name, this.showHelpMenu, null, { testID: 'Profile.helpButton' }) }
       { buildRow(i18n('Settings'), this.settings, null, { testID: 'Profile.settingsButton' }) }
       { this.state.showsDeveloperMenu && buildRow(i18n('Developer Menu'), this.showDeveloperMenu, null, { testID: 'Profile.developerMenuButton' }) }
-      { !actingAsUser && buildRow(i18n('Change User'), this.switchUser, null, { testID: 'Profile.changeUserButton' }) }
+      { buildRow(i18n('Change User'), this.switchUser, null, { testID: 'Profile.changeUserButton' }) }
       { !actingAsUser && buildRow(i18n('Log Out'), this.logout, null, { testID: 'Profile.logOutButton' }) }
     </View>)
   }
