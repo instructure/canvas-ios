@@ -19,7 +19,7 @@
 import Foundation
 import CoreData
 
-public class GetEnabledFeatureFlags: APIUseCase {
+public class GetEnabledFeatureFlags: CollectionUseCase {
     public typealias Model = FeatureFlag
     public let context: Context
 
