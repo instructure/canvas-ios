@@ -16,9 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import CoreUITests
+import XCTest
+@testable import Core
 
-class TeacherAccountNotificationsTests: AccountNotificationsTests {}
-class TeacherDiscussionDetailsTests: DiscussionDetailsTests {}
-class TeacherDiscussionEditTests: DiscussionEditTests {}
+class APIAccountNotificationTests: XCTestCase {
+    func testGetAccountNotificationsRequest() {
+        XCTAssertEqual(GetAccountNotificationsRequest().path, "accounts/self/users/self/account_notifications")
+        XCTAssertEqual(GetAccountNotificationsRequest().query, [ .value("per_page", "99") ])
+    }
+
+    func testDeleteAccountNotificationRequest() {
+        XCTAssertEqual(DeleteAccountNotificationRequest(id: "1").method, .delete)
+        XCTAssertEqual(DeleteAccountNotificationRequest(id: "1").path, "accounts/self/users/self/account_notifications/1")
+    }
+}

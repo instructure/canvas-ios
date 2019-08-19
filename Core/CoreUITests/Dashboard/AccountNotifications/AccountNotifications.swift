@@ -16,9 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import CoreUITests
+import XCTest
+import TestsFoundation
 
-class TeacherAccountNotificationsTests: AccountNotificationsTests {}
-class TeacherDiscussionDetailsTests: DiscussionDetailsTests {}
-class TeacherDiscussionEditTests: DiscussionEditTests {}
+public enum AccountNotifications {
+    public static func toggleButton(id: String) -> Element {
+        return app.find(id: "AccountNotification.\(id).toggleButton")
+    }
+
+    public static func dismissButton(id: String) -> Element {
+        return app.find(id: "AccountNotification.\(id).dismissButton")
+    }
+}

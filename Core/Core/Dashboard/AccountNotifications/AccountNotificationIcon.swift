@@ -17,8 +17,7 @@
 //
 
 import Foundation
-@testable import CoreUITests
 
-class TeacherAccountNotificationsTests: AccountNotificationsTests {}
-class TeacherDiscussionDetailsTests: DiscussionDetailsTests {}
-class TeacherDiscussionEditTests: DiscussionEditTests {}
+public enum AccountNotificationIcon: String, Codable {
+    case calendar, error, information, question, warning
+}

@@ -16,9 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import CoreUITests
+import XCTest
+import TestsFoundation
+@testable import Core
 
-class TeacherAccountNotificationsTests: AccountNotificationsTests {}
-class TeacherDiscussionDetailsTests: DiscussionDetailsTests {}
-class TeacherDiscussionEditTests: DiscussionEditTests {}
+class AccountNotificationsTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return AccountNotificationsTests.self }
+    override var user: UITestUser? { return nil }
+
+    func testRefresh() {
+        mockBaseRequests()
+        logIn(domain: "canvas.instructure.com", token: "t")
+
+        Dashboard.coursesLabel.waitToExist()
+        mockData(GetAccountNotificationsRequest(), value: [ .make() ])
+        pullToRefresh()
+        AccountNotifications.toggleButton(id: "1").waitToExist()
+    }
+}

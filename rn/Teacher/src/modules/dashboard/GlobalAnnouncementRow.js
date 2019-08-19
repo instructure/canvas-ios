@@ -124,7 +124,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
               hitSlop={{ top: 8, right: 16, bottom: 16, left: 56 }}
               onPress={this.toggle}
               underlayColor='transparent'
-              testID={`GlobalAnnouncement.${id}.toggle`}
+              testID={`AccountNotification.${id}.toggleButton`}
             >
               <View>
                 <Text style={styles.title}>{subject}</Text>
@@ -146,7 +146,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
                 accessibilityLabel={i18n('Dismiss {name}', { name: subject })}
                 style={styles.dismiss}
                 onPress={this.dismiss}
-                testID={`GlobalAnnouncement.${id}.dismiss`}
+                testID={`AccountNotification.${id}.dismissButton`}
               >
                 {i18n('Dismiss')}
               </LinkButton>
