@@ -108,6 +108,7 @@ exports[`DiscussionEdit renders 1`] = `
               "pop": [MockFunction],
               "replace": [MockFunction],
               "show": [MockFunction],
+              "showWebView": [MockFunction],
               "traitCollection": [MockFunction],
             }
           }
@@ -287,6 +288,7 @@ exports[`DiscussionEdit renders new form 1`] = `
               "pop": [MockFunction],
               "replace": [MockFunction],
               "show": [MockFunction],
+              "showWebView": [MockFunction],
               "traitCollection": [MockFunction],
             }
           }
@@ -459,6 +461,7 @@ exports[`DiscussionEdit updates from props 1`] = `
               "pop": [MockFunction],
               "replace": [MockFunction],
               "show": [MockFunction],
+              "showWebView": [MockFunction],
               "traitCollection": [MockFunction],
             }
           }
@@ -653,6 +656,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
               "pop": [MockFunction],
               "replace": [MockFunction],
               "show": [MockFunction],
+              "showWebView": [MockFunction],
               "traitCollection": [MockFunction],
             }
           }

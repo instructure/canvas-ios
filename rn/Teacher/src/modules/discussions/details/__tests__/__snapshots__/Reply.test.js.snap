@@ -126,6 +126,7 @@ exports[`DiscussionReplies renders 1`] = `
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -349,6 +350,7 @@ exports[`DiscussionReplies renders without the reply button when the user cant r
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }

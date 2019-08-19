@@ -30,6 +30,7 @@ exports[`PageDetails renders 1`] = `
         "pop": [MockFunction],
         "replace": [MockFunction],
         "show": [MockFunction],
+        "showWebView": [MockFunction],
         "traitCollection": [MockFunction],
       }
     }
@@ -80,6 +81,7 @@ exports[`PageDetails renders while loading 1`] = `
         "pop": [MockFunction],
         "replace": [MockFunction],
         "show": [MockFunction],
+        "showWebView": [MockFunction],
         "traitCollection": [MockFunction],
       }
     }

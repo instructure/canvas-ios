@@ -20,7 +20,11 @@ import Foundation
 @testable import Core
 import TestsFoundation
 import XCTest
-class DemoLoginTest: TeacherUITestCase {
+@testable import CoreUITests
+
+class DemoLoginTest: CoreUITestCase {
+    override var user: UITestUser? { return nil }
+
     func testLogin() {
         logInUser(.readTeacher1)
         XCTAssert(TabBar.dashboardTab.exists)
