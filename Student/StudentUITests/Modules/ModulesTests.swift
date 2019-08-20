@@ -37,6 +37,7 @@ class ModulesTests: CoreUITestCase {
         AssignmentDetails.description("Assignment One").waitToExist()
 
         ModuleItemNavigation.backButton.tap()
+        ModulesDetail.moduleItem(index: 0).waitToExist()
         XCTAssertEqual(ModulesDetail.moduleItem(index: 0).label, "Assignment One. Type: Assignment")
         XCTAssertEqual(ModulesDetail.moduleItem(index: 1).label, "Assignment Two. Type: Assignment")
     }
