@@ -37,6 +37,9 @@ class Keychain {
             kSecAttrService: serviceName,
             kSecAttrAccount: key,
         ]
+        if accessGroup?.isEmpty == false {
+            query[kSecAttrAccessGroup] = accessGroup
+        }
         let exists = SecItemCopyMatching(query as CFDictionary, nil) == noErr
         var status: OSStatus?
         if exists {
@@ -44,9 +47,6 @@ class Keychain {
         } else {
             query[kSecAttrAccessible] = kSecAttrAccessibleWhenUnlocked
             query[kSecValueData] = data
-            if accessGroup?.isEmpty == false {
-                query[kSecAttrAccessGroup] = accessGroup
-            }
             status = SecItemAdd(query as CFDictionary, nil)
         }
         assert(status == errSecSuccess)
