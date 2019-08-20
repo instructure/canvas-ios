@@ -34,21 +34,17 @@ class AssignmentDetailsTests: StudentUITestCase {
         return assignment
     }
 
-    override func setUp() {
-        super.setUp()
-        sleep(1) // only this file seems to need some extra cooldown time.
-    }
-
     override func show(_ route: String) {
         super.show(route)
         sleep(1)
     }
 
     func testUnsubmittedUpload() {
+        mockBaseRequests()
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
             course.canvasContextID: "#123456",
         ]))
-        logIn(domain: "canvas.instructure.com", token: "")
+        logIn()
         let assignment = mockAssignment(APIAssignment.make(
             description: "A description",
             points_possible: 12.3,

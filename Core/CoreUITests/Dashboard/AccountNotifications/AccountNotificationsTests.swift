@@ -26,7 +26,7 @@ class AccountNotificationsTests: CoreUITestCase {
 
     func testRefresh() {
         mockBaseRequests()
-        logIn(domain: "canvas.instructure.com", token: "t")
+        logIn()
 
         Dashboard.coursesLabel.waitToExist()
         mockData(GetAccountNotificationsRequest(), value: [ .make() ])
