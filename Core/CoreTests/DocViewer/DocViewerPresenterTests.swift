@@ -29,8 +29,12 @@ class DocViewerPresenterTests: CoreTestCase {
     let url = Bundle(for: DocViewerPresenterTests.self).url(forResource: "instructure", withExtension: "pdf")!
 
     class MockSession: DocViewerSession {
+        var requested: URL?
         var loading: URL?
-        override func load(url: URL, accessToken: String) { notify() }
+        override func load(url: URL, accessToken: String) {
+            requested = url
+            notify()
+        }
         override func loadDocument(downloadURL: URL) {
             loading = downloadURL
         }
@@ -56,6 +60,12 @@ class DocViewerPresenterTests: CoreTestCase {
         presenter.previewURL = nil
         presenter.viewIsReady()
         XCTAssertEqual(session.loading, presenter.fallbackURL)
+    }
+
+    func testViewIsReadyMasquerade() {
+        api.actAsUserID = "1"
+        presenter.viewIsReady()
+        XCTAssertEqual(session.requested?.query, "as_user_id=1")
     }
 
     func testSessionIsReady() {

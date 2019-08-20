@@ -37,7 +37,7 @@ class RouteHandlerTests: XCTestCase {
                 "c": "c",
                 "e": "e/f/g",
             ])
-            XCTAssertEqual(url.path, "a/b//c/d/e//f/g")
+            XCTAssertEqual(url.path, "/api/v1/a/b//c/d/e//f/g")
             XCTAssertEqual(url.queryItems, [
                 URLQueryItem(name: "h", value: "i"),
                 URLQueryItem(name: "j", value: " k"),
@@ -46,7 +46,7 @@ class RouteHandlerTests: XCTestCase {
             XCTAssertEqual(url.fragment, "mnop")
             return UIViewController()
         }
-        XCTAssertNotNil(route.match(URLComponents(string: "a/b//c/d/e//f/g?h=%69&j=+k&l#mnop")!))
+        XCTAssertNotNil(route.match(URLComponents(string: "/api/v1/a/b//c/d/e//f/g?h=%69&j=+k&l#mnop")!))
     }
 
     func testMatchTooShort() {

@@ -32,7 +32,6 @@ public extension URLComponents {
         components.path = url.path
         components.percentEncodedQuery = url.query
         components.percentEncodedFragment = url.fragment
-        components.cleanupApiVersionInPath()
         return components
     }
 
@@ -46,11 +45,5 @@ public extension URLComponents {
         var url = URLComponents()
         url.path = string
         return url
-    }
-
-    mutating func cleanupApiVersionInPath() {
-        if let range = path.range(of: "^[/]*api/[vV]\\d+", options: .regularExpression, range: nil, locale: nil) {
-            self.path = path.replacingCharacters(in: range, with: "")
-        }
     }
 }
