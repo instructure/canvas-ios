@@ -39,7 +39,7 @@ class DiscussionEditTests: CoreUITestCase {
         mockData(GetCourseRequest(courseID: "1"), value: noPermissionCourse)
         mockEncodableRequest("courses/1/discussion_topics?per_page=99&include[]=sections", value: [String]())
 
-        logIn(domain: "canvas.instructure.com", token: "t")
+        logIn()
         show("/courses/1/discussion_topics")
         app.find(label: "There are no discussions to display.").waitToExist()
         XCTAssertFalse(DiscussionList.newButton.isVisible)
@@ -52,7 +52,7 @@ class DiscussionEditTests: CoreUITestCase {
         mockEncodableRequest("courses/1/discussion_topics?per_page=99&include[]=sections", value: [String]())
         mockEncodableRequest("courses/1/discussion_topics", value: [String: String](), error: "error")
 
-        logIn(domain: "canvas.instructure.com", token: "t")
+        logIn()
         show("/courses/1/discussion_topics")
         DiscussionList.newButton.tap()
 

@@ -6,6 +6,7 @@ disabled_rules: # rule identifiers to exclude from running
   - cyclomatic_complexity
   - file_length
   - type_body_length
+  - identifier_name
 opt_in_rules: # some rules are only opt-in
   - yoda_condition
 included: # paths to include during linting. `--path` is ignored if present.
@@ -21,6 +22,7 @@ type_name:
   max_length: 50
 
 identifier_name:
+  allowed_symbols: "_"
   min_length: 1 # only min_length
   max_length: 50
   excluded: # excluded via string array

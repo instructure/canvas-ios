@@ -25,6 +25,7 @@
 		3BAA4179218A3ACE00701E03 /* APIEnrollmentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */; };
 		3BD364AD225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */; };
 		3BDB8F3C22E663A2003D81C3 /* MockPageViewLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3B22E663A2003D81C3 /* MockPageViewLogger.swift */; };
+		7D148647230B49DC003944A2 /* APIAccountNotificationFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D148646230B49DC003944A2 /* APIAccountNotificationFixture.swift */; };
 		7D2DC2FF219A0514008FE29A /* APIDocViewerFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC2FE219A0514008FE29A /* APIDocViewerFixture.swift */; };
 		7D37BE8F21C8398D0063FAAC /* DiscussionEntryFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE8E21C8398D0063FAAC /* DiscussionEntryFixture.swift */; };
 		7D47769821AF356200B441CE /* APIQuizRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47769721AF356200B441CE /* APIQuizRequestable.swift */; };
@@ -100,6 +101,7 @@
 		3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentFixture.swift; sourceTree = "<group>"; };
 		3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussionTopicFixture.swift; sourceTree = "<group>"; };
 		3BDB8F3B22E663A2003D81C3 /* MockPageViewLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPageViewLogger.swift; sourceTree = "<group>"; };
+		7D148646230B49DC003944A2 /* APIAccountNotificationFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountNotificationFixture.swift; sourceTree = "<group>"; };
 		7D2DC2FE219A0514008FE29A /* APIDocViewerFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDocViewerFixture.swift; sourceTree = "<group>"; };
 		7D37BE8E21C8398D0063FAAC /* DiscussionEntryFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntryFixture.swift; sourceTree = "<group>"; };
 		7D47769721AF356200B441CE /* APIQuizRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuizRequestable.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 		3B0CEB9121504B6F00D07CFA /* API */ = {
 			isa = PBXGroup;
 			children = (
+				7D148646230B49DC003944A2 /* APIAccountNotificationFixture.swift */,
 				7DB0A1D321C1C90D009ABB40 /* APIAccountResultsFixture.swift */,
 				7D6C8C6A22EA0C5900E5ADD8 /* APIActivityFixture.swift */,
 				B1A32BDD2159A1D70071B41E /* APIAssignmentFixture.swift */,
@@ -519,6 +522,7 @@
 				B171A10921B9E51F000325D3 /* MockAPI.swift in Sources */,
 				3B0CEB732150406400D07CFA /* GroupFixture.swift in Sources */,
 				3B0CEBA421504C2500D07CFA /* APIGroupFixture.swift in Sources */,
+				7D148647230B49DC003944A2 /* APIAccountNotificationFixture.swift in Sources */,
 				3B0CEB7E2150445100D07CFA /* TabFixture.swift in Sources */,
 				7DB0A1CE21C16D5A009ABB40 /* KeychainEntryFixture.swift in Sources */,
 				B19792F521767B830000369C /* ColorFixture.swift in Sources */,
@@ -611,6 +615,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -667,6 +672,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -705,7 +711,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -740,7 +745,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

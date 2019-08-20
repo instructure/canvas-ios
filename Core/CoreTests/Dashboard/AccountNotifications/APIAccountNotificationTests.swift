@@ -17,26 +17,16 @@
 //
 
 import XCTest
-import TestsFoundation
 @testable import Core
 
-class TodoListTests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { return TodoListTests.self }
-    override var user: UITestUser? { return nil }
+class APIAccountNotificationTests: XCTestCase {
+    func testGetAccountNotificationsRequest() {
+        XCTAssertEqual(GetAccountNotificationsRequest().path, "accounts/self/users/self/account_notifications")
+        XCTAssertEqual(GetAccountNotificationsRequest().query, [ .value("per_page", "99") ])
+    }
 
-    func testTodoItemsDisplayed() {
-        mockBaseRequests()
-        mockEncodableRequest("users/self/todo?per_page=99", value: [
-            APITodo.make(assignment: .make(name: "One", due_at: Date().add(.day, number: 1))),
-            APITodo.make(assignment: .make(id: "2", name: "Two")),
-        ])
-
-        logIn()
-        TabBar.todoTab.tap()
-
-        app.find(labelContaining: "One").waitToExist()
-        app.find(labelContaining: "Two").waitToExist()
-        app.find(labelContaining: "Due:").waitToExist()
-        app.find(labelContaining: "No Due Date").waitToExist()
+    func testDeleteAccountNotificationRequest() {
+        XCTAssertEqual(DeleteAccountNotificationRequest(id: "1").method, .delete)
+        XCTAssertEqual(DeleteAccountNotificationRequest(id: "1").path, "accounts/self/users/self/account_notifications/1")
     }
 }

@@ -19,5 +19,6 @@
 import Foundation
 @testable import CoreUITests
 
+class TeacherAccountNotificationsTests: AccountNotificationsTests {}
 class TeacherDiscussionDetailsTests: DiscussionDetailsTests {}
 class TeacherDiscussionEditTests: DiscussionEditTests {}

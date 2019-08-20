@@ -18,25 +18,13 @@
 
 import XCTest
 import TestsFoundation
-@testable import Core
 
-class TodoListTests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { return TodoListTests.self }
-    override var user: UITestUser? { return nil }
+public enum AccountNotifications {
+    public static func toggleButton(id: String) -> Element {
+        return app.find(id: "AccountNotification.\(id).toggleButton")
+    }
 
-    func testTodoItemsDisplayed() {
-        mockBaseRequests()
-        mockEncodableRequest("users/self/todo?per_page=99", value: [
-            APITodo.make(assignment: .make(name: "One", due_at: Date().add(.day, number: 1))),
-            APITodo.make(assignment: .make(id: "2", name: "Two")),
-        ])
-
-        logIn()
-        TabBar.todoTab.tap()
-
-        app.find(labelContaining: "One").waitToExist()
-        app.find(labelContaining: "Two").waitToExist()
-        app.find(labelContaining: "Due:").waitToExist()
-        app.find(labelContaining: "No Due Date").waitToExist()
+    public static func dismissButton(id: String) -> Element {
+        return app.find(id: "AccountNotification.\(id).dismissButton")
     }
 }

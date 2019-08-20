@@ -16,25 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
-@testable import Core
-@testable import CoreUITests
+import Foundation
 
-class NotificationsListTests: CoreUITestCase {
-    override var user: UITestUser? { return nil }
-
-    func testNotificationItemsDisplayed() {
-        mockBaseRequests()
-        mockEncodableRequest("users/self/activity_stream?per_page=99", value: [
-            APIActivity.make(),
-            APIActivity.make(id: "2", title: "Another Notification"),
-        ])
-
-        logIn()
-        TabBar.notificationsTab.tap()
-
-        app.find(labelContaining: "Assignment Created").waitToExist()
-        app.find(labelContaining: "Another Notification").waitToExist()
-    }
+public enum AccountNotificationIcon: String, Codable {
+    case calendar, error, information, question, warning
 }

@@ -89,14 +89,14 @@ open class CoreUITestCase: XCTestCase {
         app.find(id: "ui-test-helper").tap()
     }
 
-    open func reset() {
+    open func reset(file: StaticString = #file, line: UInt = #line) {
         send(.reset)
-        LoginStart.findSchoolButton.waitToExist()
+        LoginStart.findSchoolButton.waitToExist(file: file, line: line)
     }
 
-    open func logIn(domain: String, token: String) {
+    open func logIn(domain: String = "canvas.instructure.com", token: String = "t", file: StaticString = #file, line: UInt = #line) {
         let baseURL = URL(string: "https://\(domain)")!
-        send(.login, LoginSession(
+        logInEntry(LoginSession(
             accessToken: token,
             baseURL: baseURL,
             expiresAt: nil,
@@ -104,11 +104,12 @@ open class CoreUITestCase: XCTestCase {
             refreshToken: nil,
             userID: "",
             userName: ""
-        ))
+        ), file: file, line: line)
     }
 
-    open func logInEntry(_ session: LoginSession) {
+    open func logInEntry(_ session: LoginSession, file: StaticString = #file, line: UInt = #line) {
         send(.login, session)
+        homeScreen.waitToExist(file: file, line: line)
     }
 
     open func logInUser(_ user: UITestUser) {
@@ -125,7 +126,7 @@ open class CoreUITestCase: XCTestCase {
         LoginWeb.passwordField.typeText(user.password)
         LoginWeb.logInButton.tap()
 
-        app.find(label: "Courses").waitToExist()
+        homeScreen.waitToExist()
         user.session = currentSession()
     }
 
@@ -218,12 +219,22 @@ open class CoreUITestCase: XCTestCase {
         mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!), data: """
         {"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}
         """.data(using: .utf8)) // CKIClient.fetchCurrentUser
-        mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self?display=borderless"))) // cookie keepalive
+        mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self"))) // cookie keepalive
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
         mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
         mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
+        mockData(GetAccountNotificationsRequest(), value: [])
+        mockData(GetCoursesRequest(), value: [ .make(id: "1", enrollments: [ .make(
+            type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
+            role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
+        ), ]), ])
         mockEncodableRequest("users/self/todo", value: [String]())
         mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
         mockEncodableRequest("dashboard/dashboard_cards", value: [String]())
+    }
+
+    open func pullToRefresh() {
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+            .press(forDuration: 0.05, thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.9)))
     }
 }

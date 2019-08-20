@@ -20,23 +20,17 @@ import XCTest
 import TestsFoundation
 @testable import Core
 
-class TodoListTests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { return TodoListTests.self }
+class AccountNotificationsTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return AccountNotificationsTests.self }
     override var user: UITestUser? { return nil }
 
-    func testTodoItemsDisplayed() {
+    func testRefresh() {
         mockBaseRequests()
-        mockEncodableRequest("users/self/todo?per_page=99", value: [
-            APITodo.make(assignment: .make(name: "One", due_at: Date().add(.day, number: 1))),
-            APITodo.make(assignment: .make(id: "2", name: "Two")),
-        ])
-
         logIn()
-        TabBar.todoTab.tap()
 
-        app.find(labelContaining: "One").waitToExist()
-        app.find(labelContaining: "Two").waitToExist()
-        app.find(labelContaining: "Due:").waitToExist()
-        app.find(labelContaining: "No Due Date").waitToExist()
+        Dashboard.coursesLabel.waitToExist()
+        mockData(GetAccountNotificationsRequest(), value: [ .make() ])
+        pullToRefresh()
+        AccountNotifications.toggleButton(id: "1").waitToExist()
     }
 }
