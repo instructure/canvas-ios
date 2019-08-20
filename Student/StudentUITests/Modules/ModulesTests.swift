@@ -22,12 +22,14 @@ import TestsFoundation
 
 class ModulesTests: CoreUITestCase {
     func testLaunchIntoAssignmentsAndNavigateModuleItems() {
-        Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
 
         ModulesDetail.module(index: 0).tap()
+        ModulesDetail.moduleItem(index: 0).waitToExist()
+        XCTAssertEqual(ModulesDetail.moduleItem(index: 0).label, "Assignment One. Type: Assignment")
+        XCTAssertEqual(ModulesDetail.moduleItem(index: 1).label, "Assignment Two. Type: Assignment")
         ModulesDetail.moduleItem(index: 0).tap()
 
         AssignmentDetails.description("Assignment One").waitToExist()
@@ -38,8 +40,6 @@ class ModulesTests: CoreUITestCase {
 
         ModuleItemNavigation.backButton.tap()
         ModulesDetail.moduleItem(index: 0).waitToExist()
-        XCTAssertEqual(ModulesDetail.moduleItem(index: 0).label, "Assignment One. Type: Assignment")
-        XCTAssertEqual(ModulesDetail.moduleItem(index: 1).label, "Assignment Two. Type: Assignment")
     }
 
     func testLaunchIntoDiscussionModuleItem() {
