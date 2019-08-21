@@ -97,6 +97,7 @@ struct CanvadocsAnnotation: Codable {
     let deletedAt: Date?
     let deletedBy: String?
     let deletedByID: String?
+    let width: Double?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -110,6 +111,7 @@ struct CanvadocsAnnotation: Codable {
         case deletedAt = "deleted_at"
         case deletedBy = "deleted_by"
         case deletedByID = "deleted_by_id"
+        case width
         
         case type
         case subject
@@ -120,7 +122,6 @@ struct CanvadocsAnnotation: Codable {
         case parent = "inreplyto"
         case coords
         case inklist
-        case width
         case rect
         case icon
     }
@@ -143,6 +144,7 @@ struct CanvadocsAnnotation: Codable {
         self.deletedAt = try container.decodeIfPresent(Date.self, forKey: .deletedAt)
         self.deletedBy = try container.decodeIfPresent(String.self, forKey: .deletedBy)
         self.deletedByID = try container.decodeIfPresent(String.self, forKey: .deletedByID)
+        self.width = try container.decodeIfPresent(Double.self, forKey: .width)
         
         let type = try container.decode(String.self, forKey: .type)
         switch type {
@@ -258,7 +260,7 @@ struct CanvadocsAnnotation: Codable {
                         width: $0.width.flatMap(Double.init),
                         opacity: $0.opacity.flatMap(Double.init)
                     ) }
-                    let simpleGesture = simplify(points)
+                    let simpleGesture = simplify(points, within: 0.5)
                     try gesturesContainer.encode(simpleGesture)
                 } else {
                     try gesturesContainer.encode(gesture)
@@ -266,6 +268,7 @@ struct CanvadocsAnnotation: Codable {
             }
             try container.encode(color, forKey: .color)
             try container.encode("ink", forKey: .type)
+            try container.encode(width, forKey: .width)
             try encodeRect(rect: rect)
         case .square(let color, let width, let rect):
             try container.encode(color, forKey: .color)
@@ -289,6 +292,7 @@ struct CanvadocsAnnotation: Codable {
         self.deletedAt = pspdfAnnotation.deletedAt
         self.deletedBy = pspdfAnnotation.deletedBy
         self.deletedByID = pspdfAnnotation.deletedByID
+        var width: Double?
 
         switch pspdfAnnotation.type {
         case .highlight:
@@ -315,10 +319,18 @@ struct CanvadocsAnnotation: Codable {
             for line in inkAnnot.lines {
                 let points: [CanvadocsInkAnnotationGesturePoint] = line
                     .map { $0.pspdf_drawingPointValue }
-                    .map { CanvadocsInkAnnotationGesturePoint(x: $0.location.x, y: $0.location.y, width: width(for: $0.intensity), opacity: 1) }
+                    .map { point in
+                        return CanvadocsInkAnnotationGesturePoint(
+                            x: point.location.x,
+                            y: point.location.y,
+                            width: inkAnnot.lineWidth,
+                            opacity: 1
+                        )
+                    }
                 gestures.append(points)
             }
             self.type = .ink(gestures: gestures, color: color, rect: inkAnnot.boundingBox)
+            width = Double(inkAnnot.lineWidth)
         case .square:
             guard let squareAnnot = pspdfAnnotation as? PSPDFSquareAnnotation else { fallthrough }
             guard let color = pspdfAnnotation.color?.hex else { return nil }
@@ -336,6 +348,7 @@ struct CanvadocsAnnotation: Codable {
                 return nil
             }
         }
+        self.width = width
     }
     
     func pspdfAnnotation(for document: PSPDFDocument) -> PSPDFAnnotation? {
@@ -374,16 +387,20 @@ struct CanvadocsAnnotation: Codable {
             pspdfAnnotation = replyAnnot
         case .ink(let gestures, let color, let rect):
             let inkAnnotation = PSPDFInkAnnotation()
-            inkAnnotation.boundingBox = rect
             inkAnnotation.color = .colorFromHexString(color)
             var lines = [[NSValue]]()
             for gesture in gestures {
-                let line = gesture.map { point in
-                    return NSValue(cgPoint: CGPoint(x: point.x, y: point.y))
+                let line = gesture.map { (point: CanvadocsInkAnnotationGesturePoint) -> NSValue in
+                    let drawingPoint = PSPDFDrawingPointFromCGPoint(CGPoint(x: point.x, y: point.y))
+                    return NSValue.pspdf_value(with: drawingPoint)
                 }
                 lines.append(line)
             }
             inkAnnotation.lines = lines
+            if let width = self.width {
+                inkAnnotation.lineWidth = CGFloat(width)
+            }
+            inkAnnotation.setBoundingBox(rect, transformLines: false)
             pspdfAnnotation = inkAnnotation
         case .square(let color, let width, let rect):
             let squareAnnotation = PSPDFSquareAnnotation()
@@ -405,7 +422,7 @@ struct CanvadocsAnnotation: Codable {
         pspdfAnnotation?.deletedAt = self.deletedAt
         pspdfAnnotation?.deletedBy = self.deletedBy
         pspdfAnnotation?.deletedByID = self.deletedByID
-        
+
         return pspdfAnnotation
     }
     
@@ -514,17 +531,4 @@ extension String {
             return []
         }
     }
-}
-
-fileprivate func width(for intensity: CGFloat) -> CGFloat {
-    let minIntensity: CGFloat = 0.06
-    let maxIntensity: CGFloat = 1
-
-    // Tweak these to adjust parity with web
-    let minimum: CGFloat = 1.0
-    let maximum: CGFloat = 3.0
-
-    let bounded = max(minIntensity, min(intensity, maxIntensity))
-    let result = (((maximum - minimum) / (maxIntensity - minIntensity)) * (bounded - minIntensity)) + minimum
-    return result
 }

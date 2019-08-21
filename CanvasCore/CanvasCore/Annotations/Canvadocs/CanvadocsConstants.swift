@@ -78,16 +78,16 @@ func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
     builder.editableAnnotationTypes = [.stamp, .highlight, .freeText, .strikeOut, .ink, .eraser, .square]
     builder.naturalDrawingAnnotationEnabled = true
 
-    builder.propertiesForAnnotations = [
-        .stamp: [["color"]],
-        .highlight: [["color"]],
-        .ink: [["color"]],
-        .square: [["color"]],
-        .circle: [["color"]],
-        .line: [["color"]],
+    let properties: [AnnotationString: [[AnnotationStyleKey]]] = [
+        .stamp: [[.color]],
+        .highlight: [[.color]],
+        .ink: [[.color, .lineWidth]],
+        .square: [[.color]],
+        .line: [[.color]],
         .strikeOut: [[]],
-        .freeText: [["fontSize"]],
+        .freeText: [[.fontSize]]
     ]
+    builder.propertiesForAnnotations = properties
 
     builder.overrideClass(PSPDFAnnotationToolbar.self, with: CanvadocsAnnotationToolbar.self)
     builder.overrideClass(PSPDFAnnotationStateManager.self, with: CanvadocsAnnotationStateManager.self)

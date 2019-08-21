@@ -49,7 +49,7 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         rect: [[Double]]? = [[0, 0], [1, 1]],
         font: String? = nil,
         inklist: APIDocViewerInklist? = nil,
-        width: Double? = nil
+        width: Double? = 0
     ) -> APIDocViewerAnnotation {
         return APIDocViewerAnnotation(
             id: id, document_id: document_id, user_id: user_id, user_name: user_name, page: page,
@@ -118,7 +118,7 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         let apiAnnotation = model(type: .ink, color: "#00ffff", inklist: APIDocViewerInklist(gestures: [
             [APIDocViewerInkPoint(x: 1, y: 1, width: 1, opacity: 1), APIDocViewerInkPoint(x: 10, y: 10, width: 3, opacity: 1)],
             [APIDocViewerInkPoint(x: 5, y: 5, width: 1, opacity: 1), APIDocViewerInkPoint(x: 10, y: 10, width: 2, opacity: 1)],
-        ]))
+        ]), width: 4.5)
         let annotation = PSPDFAnnotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
         XCTAssert(annotation is PSPDFInkAnnotation)
@@ -126,10 +126,11 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         XCTAssertEqual(annotation?.color?.hexString, "#00ffff")
         let lines = (annotation as! PSPDFInkAnnotation).lines!
         XCTAssertEqual(lines.count, 2)
-        XCTAssertEqual(lines[0][0].pspdf_drawingPointValue.intensity, 0.06)
-        XCTAssertEqual(lines[0][1].pspdf_drawingPointValue.intensity, 1)
-        XCTAssertEqual(lines[1][0].pspdf_drawingPointValue.intensity, 0.06)
-        XCTAssertEqual(lines[1][1].pspdf_drawingPointValue.intensity, 0.53)
+        XCTAssertEqual(lines[0][0].pspdf_drawingPointValue.location, CGPoint(x: 1, y: 1))
+        XCTAssertEqual(lines[0][1].pspdf_drawingPointValue.location, CGPoint(x: 10, y: 10))
+        XCTAssertEqual(lines[1][0].pspdf_drawingPointValue.location, CGPoint(x: 5, y: 5))
+        XCTAssertEqual(lines[1][1].pspdf_drawingPointValue.location, CGPoint(x: 10, y: 10))
+        XCTAssertEqual(annotation?.lineWidth, 4.5)
     }
 
     func testSquare() {
