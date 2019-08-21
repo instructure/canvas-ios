@@ -433,8 +433,7 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     @objc func frameForItemAtIndexPath(_ indexPath: IndexPath) -> CGRect {
-        let attrs = collectionView!.layoutAttributesForItem(at: indexPath)!
-        return attrs.frame
+        return collectionView?.layoutAttributesForItem(at: indexPath)?.frame ?? .zero
     }
     
     // ---------------------------------------------
