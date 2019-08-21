@@ -20,5 +20,5 @@ import Foundation
 
 public struct FileUploadTarget: Codable, Equatable {
     public let upload_url: URL
-    public let upload_params: [String: String]
+    public let upload_params: [String: String?]
 }
