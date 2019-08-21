@@ -60,10 +60,8 @@ exports[`GroupList renders properly 1`] = `
   >
     <list>
       <item>
-        <TouchableHighlight
+        <View
           accessibilityTraits={Array []}
-          activeOpacity={0.85}
-          delayPressOut={100}
           onPress={[Function]}
           style={
             Array [
@@ -78,7 +76,6 @@ exports[`GroupList renders properly 1`] = `
             ]
           }
           testID="1"
-          underlayColor="black"
         >
           <View
             style={
@@ -194,7 +191,7 @@ exports[`GroupList renders properly 1`] = `
               </Text>
             </View>
           </View>
-        </TouchableHighlight>
+        </View>
       </item>
     </list>
   </View>

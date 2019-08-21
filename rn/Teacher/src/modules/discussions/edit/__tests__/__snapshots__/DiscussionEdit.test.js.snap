@@ -9,7 +9,7 @@ exports[`DiscussionEdit renders 1`] = `
       Object {
         "action": [Function],
         "style": "done",
-        "testID": "discussions.edit.doneButton",
+        "testID": "DiscussionEdit.doneButton",
         "title": "Done",
       },
       Object {
@@ -19,7 +19,7 @@ exports[`DiscussionEdit renders 1`] = `
         "image": Object {
           "testUri": "../../../src/images/paperclip-icon.png",
         },
-        "testID": "discussions.edit.attachment-btn",
+        "testID": "DiscussionEdit.attachmentButton",
       },
     ]
   }
@@ -47,7 +47,7 @@ exports[`DiscussionEdit renders 1`] = `
     />
     <UnmetRequirementBanner
       backgroundColor="#EE0612"
-      testID="discussions.edit.unmet-requirement-banner"
+      testID="DiscussionEdit.invalidLabel"
       text="Invalid field"
       visible={false}
     />
@@ -68,14 +68,14 @@ exports[`DiscussionEdit renders 1`] = `
       <RowWithTextInput
         border="both"
         defaultValue="Cursed Hollow"
-        identifier="discussions.edit.titleInput"
+        identifier="DiscussionEdit.titleField"
         onChangeText={[Function]}
         onFocus={[Function]}
         placeholder="Add title (required)"
         title=""
       />
       <RequiredFieldSubscript
-        testID="discussions.edit.title.validation-error"
+        testID="DiscussionEdit.invalidTitleLabel"
         visible={false}
       />
       <FormLabel>
@@ -124,27 +124,28 @@ exports[`DiscussionEdit renders 1`] = `
       <RowWithSwitch
         border="both"
         onValueChange={[Function]}
-        testID="discussions.edit.published.switch"
+        testID="DiscussionEdit.publishSwitch"
         title="Publish"
         value={false}
       />
       <RowWithSwitch
         border="bottom"
-        identifier="discussions.edit.discussion_type.switch"
         onValueChange={[Function]}
+        testID="DiscussionEdit.threadSwitch"
         title="Allow threaded replies"
         value={false}
       />
       <RowWithSwitch
         border="bottom"
-        identifier="discussions.edit.subscribed.switch"
         onValueChange={[Function]}
+        testID="DiscussionEdit.subscribeSwitch"
         title="Subscribe"
         value={false}
       />
       <RowWithSwitch
         border="bottom"
         onValueChange={[Function]}
+        testID="DiscussionEdit.requirePostSwitch"
         title="Students must post before seeing replies"
         value={false}
       />
@@ -157,10 +158,10 @@ exports[`DiscussionEdit renders 1`] = `
           date={null}
           onPress={[Function]}
           onRemoveDatePress={[Function]}
-          removeButtonTestID="discussions.edit.clear-delayed-post-at.button"
+          removeButtonTestID="DiscussionEdit.delayPostAtClearButton"
           selected={false}
           showRemoveButton={false}
-          testID="discussions.edit.delayed_post_at.row"
+          testID="DiscussionEdit.delayPostAtButton"
           title="Available From"
         />
         <RowWithDateInput
@@ -168,10 +169,10 @@ exports[`DiscussionEdit renders 1`] = `
           date={null}
           onPress={[Function]}
           onRemoveDatePress={[Function]}
-          removeButtonTestID="discussions.edit.clear-lock-at.button"
+          removeButtonTestID="DiscussionEdit.lockAtClearButton"
           selected={false}
           showRemoveButton={false}
-          testID="discussions.edit.lock_at.row"
+          testID="DiscussionEdit.lockAtButton"
           title="Available Until"
         />
       </View>
@@ -189,7 +190,7 @@ exports[`DiscussionEdit renders new form 1`] = `
       Object {
         "action": [Function],
         "style": "done",
-        "testID": "discussions.edit.doneButton",
+        "testID": "DiscussionEdit.doneButton",
         "title": "Done",
       },
       Object {
@@ -199,7 +200,7 @@ exports[`DiscussionEdit renders new form 1`] = `
         "image": Object {
           "testUri": "../../../src/images/paperclip-icon.png",
         },
-        "testID": "discussions.edit.attachment-btn",
+        "testID": "DiscussionEdit.attachmentButton",
       },
     ]
   }
@@ -227,7 +228,7 @@ exports[`DiscussionEdit renders new form 1`] = `
     />
     <UnmetRequirementBanner
       backgroundColor="#EE0612"
-      testID="discussions.edit.unmet-requirement-banner"
+      testID="DiscussionEdit.invalidLabel"
       text="Invalid field"
       visible={false}
     />
@@ -248,14 +249,14 @@ exports[`DiscussionEdit renders new form 1`] = `
       <RowWithTextInput
         border="both"
         defaultValue={null}
-        identifier="discussions.edit.titleInput"
+        identifier="DiscussionEdit.titleField"
         onChangeText={[Function]}
         onFocus={[Function]}
         placeholder="Add title (required)"
         title=""
       />
       <RequiredFieldSubscript
-        testID="discussions.edit.title.validation-error"
+        testID="DiscussionEdit.invalidTitleLabel"
         visible={false}
       />
       <FormLabel>
@@ -304,20 +305,21 @@ exports[`DiscussionEdit renders new form 1`] = `
       <RowWithSwitch
         border="both"
         onValueChange={[Function]}
-        testID="discussions.edit.published.switch"
+        testID="DiscussionEdit.publishSwitch"
         title="Publish"
         value={null}
       />
       <RowWithSwitch
         border="bottom"
-        identifier="discussions.edit.discussion_type.switch"
         onValueChange={[Function]}
+        testID="DiscussionEdit.threadSwitch"
         title="Allow threaded replies"
         value={false}
       />
       <RowWithSwitch
         border="bottom"
         onValueChange={[Function]}
+        testID="DiscussionEdit.requirePostSwitch"
         title="Students must post before seeing replies"
         value={null}
       />
@@ -330,10 +332,10 @@ exports[`DiscussionEdit renders new form 1`] = `
           date={null}
           onPress={[Function]}
           onRemoveDatePress={[Function]}
-          removeButtonTestID="discussions.edit.clear-delayed-post-at.button"
+          removeButtonTestID="DiscussionEdit.delayPostAtClearButton"
           selected={false}
           showRemoveButton={false}
-          testID="discussions.edit.delayed_post_at.row"
+          testID="DiscussionEdit.delayPostAtButton"
           title="Available From"
         />
         <RowWithDateInput
@@ -341,10 +343,10 @@ exports[`DiscussionEdit renders new form 1`] = `
           date={null}
           onPress={[Function]}
           onRemoveDatePress={[Function]}
-          removeButtonTestID="discussions.edit.clear-lock-at.button"
+          removeButtonTestID="DiscussionEdit.lockAtClearButton"
           selected={false}
           showRemoveButton={false}
-          testID="discussions.edit.lock_at.row"
+          testID="DiscussionEdit.lockAtButton"
           title="Available Until"
         />
       </View>
@@ -362,7 +364,7 @@ exports[`DiscussionEdit updates from props 1`] = `
       Object {
         "action": [Function],
         "style": "done",
-        "testID": "discussions.edit.doneButton",
+        "testID": "DiscussionEdit.doneButton",
         "title": "Done",
       },
       Object {
@@ -372,7 +374,7 @@ exports[`DiscussionEdit updates from props 1`] = `
         "image": Object {
           "testUri": "../../../src/images/paperclip-icon.png",
         },
-        "testID": "discussions.edit.attachment-btn",
+        "testID": "DiscussionEdit.attachmentButton",
       },
     ]
   }
@@ -400,7 +402,7 @@ exports[`DiscussionEdit updates from props 1`] = `
     />
     <UnmetRequirementBanner
       backgroundColor="#EE0612"
-      testID="discussions.edit.unmet-requirement-banner"
+      testID="DiscussionEdit.invalidLabel"
       text="Invalid field"
       visible={false}
     />
@@ -421,14 +423,14 @@ exports[`DiscussionEdit updates from props 1`] = `
       <RowWithTextInput
         border="both"
         defaultValue="Cursed Hollow"
-        identifier="discussions.edit.titleInput"
+        identifier="DiscussionEdit.titleField"
         onChangeText={[Function]}
         onFocus={[Function]}
         placeholder="Add title (required)"
         title=""
       />
       <RequiredFieldSubscript
-        testID="discussions.edit.title.validation-error"
+        testID="DiscussionEdit.invalidTitleLabel"
         visible={false}
       />
       <FormLabel>
@@ -477,27 +479,28 @@ exports[`DiscussionEdit updates from props 1`] = `
       <RowWithSwitch
         border="both"
         onValueChange={[Function]}
-        testID="discussions.edit.published.switch"
+        testID="DiscussionEdit.publishSwitch"
         title="Publish"
         value={false}
       />
       <RowWithSwitch
         border="bottom"
-        identifier="discussions.edit.discussion_type.switch"
         onValueChange={[Function]}
+        testID="DiscussionEdit.threadSwitch"
         title="Allow threaded replies"
         value={false}
       />
       <RowWithSwitch
         border="bottom"
-        identifier="discussions.edit.subscribed.switch"
         onValueChange={[Function]}
+        testID="DiscussionEdit.subscribeSwitch"
         title="Subscribe"
         value={false}
       />
       <RowWithSwitch
         border="bottom"
         onValueChange={[Function]}
+        testID="DiscussionEdit.requirePostSwitch"
         title="Students must post before seeing replies"
         value={false}
       />
@@ -510,10 +513,10 @@ exports[`DiscussionEdit updates from props 1`] = `
           date={null}
           onPress={[Function]}
           onRemoveDatePress={[Function]}
-          removeButtonTestID="discussions.edit.clear-delayed-post-at.button"
+          removeButtonTestID="DiscussionEdit.delayPostAtClearButton"
           selected={false}
           showRemoveButton={false}
-          testID="discussions.edit.delayed_post_at.row"
+          testID="DiscussionEdit.delayPostAtButton"
           title="Available From"
         />
         <RowWithDateInput
@@ -521,10 +524,10 @@ exports[`DiscussionEdit updates from props 1`] = `
           date={null}
           onPress={[Function]}
           onRemoveDatePress={[Function]}
-          removeButtonTestID="discussions.edit.clear-lock-at.button"
+          removeButtonTestID="DiscussionEdit.lockAtClearButton"
           selected={false}
           showRemoveButton={false}
-          testID="discussions.edit.lock_at.row"
+          testID="DiscussionEdit.lockAtButton"
           title="Available Until"
         />
       </View>
@@ -542,7 +545,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
       Object {
         "action": [Function],
         "style": "done",
-        "testID": "discussions.edit.doneButton",
+        "testID": "DiscussionEdit.doneButton",
         "title": "Done",
       },
       Object {
@@ -552,7 +555,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
         "image": Object {
           "testUri": "../../../src/images/paperclip-icon.png",
         },
-        "testID": "discussions.edit.attachment-btn",
+        "testID": "DiscussionEdit.attachmentButton",
       },
     ]
   }
@@ -580,7 +583,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
     />
     <UnmetRequirementBanner
       backgroundColor="#EE0612"
-      testID="discussions.edit.unmet-requirement-banner"
+      testID="DiscussionEdit.invalidLabel"
       text="Invalid field"
       visible={false}
     />
@@ -601,14 +604,14 @@ exports[`DiscussionEdit updates with new props 1`] = `
       <RowWithTextInput
         border="both"
         defaultValue="Cursed Hollow"
-        identifier="discussions.edit.titleInput"
+        identifier="DiscussionEdit.titleField"
         onChangeText={[Function]}
         onFocus={[Function]}
         placeholder="Add title (required)"
         title=""
       />
       <RequiredFieldSubscript
-        testID="discussions.edit.title.validation-error"
+        testID="DiscussionEdit.invalidTitleLabel"
         visible={false}
       />
       <FormLabel>
@@ -672,27 +675,28 @@ exports[`DiscussionEdit updates with new props 1`] = `
       <RowWithSwitch
         border="both"
         onValueChange={[Function]}
-        testID="discussions.edit.published.switch"
+        testID="DiscussionEdit.publishSwitch"
         title="Publish"
         value={false}
       />
       <RowWithSwitch
         border="bottom"
-        identifier="discussions.edit.discussion_type.switch"
         onValueChange={[Function]}
+        testID="DiscussionEdit.threadSwitch"
         title="Allow threaded replies"
         value={false}
       />
       <RowWithSwitch
         border="bottom"
-        identifier="discussions.edit.subscribed.switch"
         onValueChange={[Function]}
+        testID="DiscussionEdit.subscribeSwitch"
         title="Subscribe"
         value={false}
       />
       <RowWithSwitch
         border="bottom"
         onValueChange={[Function]}
+        testID="DiscussionEdit.requirePostSwitch"
         title="Students must post before seeing replies"
         value={false}
       />
@@ -705,10 +709,10 @@ exports[`DiscussionEdit updates with new props 1`] = `
           date={null}
           onPress={[Function]}
           onRemoveDatePress={[Function]}
-          removeButtonTestID="discussions.edit.clear-delayed-post-at.button"
+          removeButtonTestID="DiscussionEdit.delayPostAtClearButton"
           selected={false}
           showRemoveButton={false}
-          testID="discussions.edit.delayed_post_at.row"
+          testID="DiscussionEdit.delayPostAtButton"
           title="Available From"
         />
         <RowWithDateInput
@@ -716,10 +720,10 @@ exports[`DiscussionEdit updates with new props 1`] = `
           date={null}
           onPress={[Function]}
           onRemoveDatePress={[Function]}
-          removeButtonTestID="discussions.edit.clear-lock-at.button"
+          removeButtonTestID="DiscussionEdit.lockAtClearButton"
           selected={false}
           showRemoveButton={false}
-          testID="discussions.edit.lock_at.row"
+          testID="DiscussionEdit.lockAtButton"
           title="Available Until"
         />
       </View>

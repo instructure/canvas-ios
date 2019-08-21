@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import Core
-import TestsFoundation
 import XCTest
-@testable import CoreUITests
+import TestsFoundation
+@testable import Core
 
-class DemoLoginTest: CoreUITestCase {
+class AccountNotificationsTests: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return AccountNotificationsTests.self }
     override var user: UITestUser? { return nil }
 
-    func testLogin() {
-        logInUser(.readTeacher1)
-        XCTAssert(TabBar.dashboardTab.exists)
+    func testRefresh() {
+        mockBaseRequests()
+        logIn()
+
+        Dashboard.coursesLabel.waitToExist()
+        mockData(GetAccountNotificationsRequest(), value: [ .make() ])
+        pullToRefresh()
+        AccountNotifications.toggleButton(id: "1").waitToExist()
     }
 }

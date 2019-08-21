@@ -33,108 +33,6 @@ exports[`EditReply dismisses modal activity upon save error 1`] = `
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
     <RichTextEditor
       attachmentUploadPath="/courses/1/files"
       context="courses"
@@ -157,6 +55,21 @@ exports[`EditReply dismisses modal activity upon save error 1`] = `
       placeholder="Message"
       scrollEnabled={true}
       showToolbar="always"
+    />
+    <ActivityIndicator
+      animating={true}
+      color="#999999"
+      hidesWhenStopped={true}
+      size="large"
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
     />
   </View>
 </Screen>
@@ -195,108 +108,6 @@ exports[`EditReply renders 1`] = `
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
     <RichTextEditor
       attachmentUploadPath="/courses/1/files"
       context="courses"
@@ -357,108 +168,6 @@ exports[`EditReply renders title correctly when editing 1`] = `
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
     <RichTextEditor
       attachmentUploadPath="/courses/1/files"
       context="courses"

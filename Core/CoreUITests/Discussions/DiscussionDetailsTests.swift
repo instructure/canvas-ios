@@ -24,7 +24,9 @@ class DiscussionDetailsTests: CoreUITestCase {
 
     override func setUp() {
         super.setUp()
-        Dashboard.courseCard(id: "263").tap()
+        Dashboard.courseCard(id: "263").tapUntil {
+            CourseNavigation.discussions.exists
+        }
         CourseNavigation.discussions.tap()
         DiscussionListCell.graded.waitToExist()
     }

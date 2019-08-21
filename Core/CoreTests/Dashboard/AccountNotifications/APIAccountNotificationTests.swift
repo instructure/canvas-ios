@@ -17,13 +17,16 @@
 //
 
 import XCTest
-import TestsFoundation
+@testable import Core
 
-enum DiscussionListCell: String, ElementWrapper {
-    case graded = "14393"
-    case simple = "14392"
+class APIAccountNotificationTests: XCTestCase {
+    func testGetAccountNotificationsRequest() {
+        XCTAssertEqual(GetAccountNotificationsRequest().path, "accounts/self/users/self/account_notifications")
+        XCTAssertEqual(GetAccountNotificationsRequest().query, [ .value("per_page", "99") ])
+    }
 
-    static func cell(id: String) -> Element {
-        return app.find(id: "DiscussionListCell.\(id)")
+    func testDeleteAccountNotificationRequest() {
+        XCTAssertEqual(DeleteAccountNotificationRequest(id: "1").method, .delete)
+        XCTAssertEqual(DeleteAccountNotificationRequest(id: "1").path, "accounts/self/users/self/account_notifications/1")
     }
 }

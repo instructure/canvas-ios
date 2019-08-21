@@ -22,10 +22,9 @@ import TestsFoundation
 
 class QuizTests: CoreUITestCase {
     func testQuizQuestionsOpenInNativeView() {
-        Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
-
         CourseNavigation.quizzes.tap()
+
         app.find(labelContaining: "Quiz One").tap()
         Quiz.resumeButton.tap()
 
@@ -45,13 +44,12 @@ class QuizTests: CoreUITestCase {
     }
 
     func testQuizQuestionsOpenInWebView() {
-        Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
         CourseNavigation.quizzes.tap()
 
         app.find(labelContaining: "Web Quiz").tap()
-        Quiz.resumeButton.tapAt(.zero)
-        Quiz.resumeButton.tapAt(.zero)
+        Quiz.resumeButton.tap()
+        app.find(label: "Resume Quiz").tap() // in web view
 
         Quiz.text(string: "Question 1").waitToExist()
         Quiz.text(string: "Question 2").waitToExist()
@@ -66,7 +64,6 @@ class QuizTests: CoreUITestCase {
     }
 
     func testQuizzesShowEmptyState() {
-        Dashboard.courseCard(id: "262").waitToExist()
         Dashboard.courseCard(id: "262").tap()
         CourseNavigation.announcements.waitToExist()
         CourseNavigation.quizzes.waitToVanish()

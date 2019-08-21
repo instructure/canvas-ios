@@ -25,15 +25,15 @@ import color from '../../../common/colors'
 import Screen from '../../../routing/Screen'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import Actions from './actions'
-import { alertError } from '../../../redux/middleware/error-handler'
-import ModalOverlay from '../../../common/components/ModalOverlay'
 import { isTeacher } from '../../app'
 import Images from '../../../images'
 import {
+  ActivityIndicator,
   View,
   LayoutAnimation,
   processColor,
   NativeModules,
+  StyleSheet,
 } from 'react-native'
 
 type OwnProps = {
@@ -93,7 +93,6 @@ export class EditReply extends React.Component<Props, any> {
         dismissButtonTitle={i18n('Cancel')}
       >
         <View style={{ flex: 1 }}>
-          <ModalOverlay text={i18n('Saving')} visible={this.state.pending} />
           <RichTextEditor
             ref={(r) => { this.editor = r }}
             onChangeValue={this._valueChanged('message')}
@@ -107,29 +106,12 @@ export class EditReply extends React.Component<Props, any> {
             context={this.props.context}
             contextID={this.props.contextID}
           />
+          { this.state.pending &&
+            <ActivityIndicator style={StyleSheet.absoluteFill} size='large' />
+          }
         </View>
       </Screen>
     )
-  }
-
-  componentWillReceiveProps (props: Props) {
-    if (props.error) {
-      this._handleError(props.error)
-      this.setState({ pending: false })
-      return
-    }
-    if (this.state.pending && !props.pending) {
-      const isNew = !this.props.isEdit
-      this.props.refreshDiscussionEntries(this.props.context, this.props.contextID, this.props.discussionID, true)
-      this.props.navigator.dismissAllModals()
-        .then(() => {
-          if (isNew) {
-            NativeModules.AppStoreReview.handleSuccessfulSubmit()
-            NativeModules.ModuleItemsProgress.contributedDiscussion(this.props.contextID, this.props.discussionID)
-          }
-        })
-      return
-    }
   }
 
   componentWillUnmount () {
@@ -143,10 +125,22 @@ export class EditReply extends React.Component<Props, any> {
       attachment: this.state.attachment,
     }
     this.setState({ pending: true })
-    if (this.props.isEdit) {
-      this.props.editEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath)
-    } else {
-      this.props.createEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath, this.props.lastReplyAt)
+    const isNew = !this.props.isEdit
+    try {
+      if (isNew) {
+        await this.props.createEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath, this.props.lastReplyAt).payload.promise
+      } else {
+        await this.props.editEntry(this.props.context, this.props.contextID, this.props.discussionID, this.props.entryID, params, this.props.indexPath).payload.promise
+      }
+      this.props.refreshDiscussionEntries(this.props.context, this.props.contextID, this.props.discussionID, true)
+      await this.props.navigator.dismiss()
+      if (isNew) {
+        NativeModules.AppStoreReview.handleSuccessfulSubmit()
+        NativeModules.ModuleItemsProgress.contributedDiscussion(this.props.contextID, this.props.discussionID)
+      }
+    } catch (e) {
+      console.warn(e)
+      this.setState({ pending: false })
     }
   }
 
@@ -162,12 +156,6 @@ export class EditReply extends React.Component<Props, any> {
       LayoutAnimation.easeInEaseOut()
     }
     this.setState({ ...values })
-  }
-
-  _handleError (error: string) {
-    setTimeout(() => {
-      alertError(error)
-    }, 1000)
   }
 
   addAttachment = () => {
