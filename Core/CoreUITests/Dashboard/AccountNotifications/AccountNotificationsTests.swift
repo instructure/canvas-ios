@@ -28,7 +28,6 @@ class AccountNotificationsTests: CoreUITestCase {
         mockBaseRequests()
         logIn()
 
-        Dashboard.coursesLabel.waitToExist()
         mockData(GetAccountNotificationsRequest(), value: [ .make() ])
         pullToRefresh()
         AccountNotifications.toggleButton(id: "1").waitToExist()
