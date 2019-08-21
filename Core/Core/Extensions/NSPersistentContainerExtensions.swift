@@ -22,7 +22,7 @@ import CoreData
 extension NSPersistentContainer {
     public static let shared = create(appGroup: Bundle.main.appGroupID())
 
-    public static func create(appGroup: String? = Bundle.main.appGroupID(), session: KeychainEntry? = nil) -> NSPersistentContainer {
+    public static func create(appGroup: String? = Bundle.main.appGroupID(), session: LoginSession? = nil) -> NSPersistentContainer {
         let model = NSManagedObjectModel(contentsOf: Bundle.core.url(forResource: "Database", withExtension: "momd")!)!
         let container = NSPersistentContainer(name: "Database", managedObjectModel: model)
 
@@ -31,16 +31,27 @@ extension NSPersistentContainer {
         }
 
         container.loadPersistentStores { _, error in
-            if let error = error {
-                fatalError(error.localizedDescription)
+            guard error == nil else {
+                container.destroy() // ignore migration conflicts
+                container.loadPersistentStores { _, error in
+                    if let error = error {
+                        fatalError(error.localizedDescription)
+                    }
+                    container.setUp()
+                }
+                return
             }
-            container.viewContext.automaticallyMergesChangesFromParent = true
-            container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+            container.setUp()
         }
         return container
     }
 
-    public static func databaseURL(for appGroup: String?, session: KeychainEntry?) -> URL? {
+    func setUp() {
+        viewContext.automaticallyMergesChangesFromParent = true
+        viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+    }
+
+    public static func databaseURL(for appGroup: String?, session: LoginSession?) -> URL? {
         var folder = URL.cachesDirectory
 
         if let appGroup = appGroup {

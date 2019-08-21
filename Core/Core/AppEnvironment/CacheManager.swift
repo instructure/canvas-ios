@@ -43,7 +43,7 @@ public class CacheManager {
         }
 
         clear()
-        Keychain.clearEntries()
+        LoginSession.clearAll()
         clearDirectory(.documentsDirectory) // Also clear documents, which we normally keep around
     }
 
@@ -81,7 +81,7 @@ public class CacheManager {
         let manifestURL = asyncStorage.appendingPathComponent("manifest.json")
         let json = (try? Data(contentsOf: manifestURL)).flatMap { try? JSONSerialization.jsonObject(with: $0) } as? [String: Any]
         clearDirectory(asyncStorage)
-        let preserve = [ "speed-grader-tutorial", "teacher.profile.developermenu", "teacher.developermenu.featureflagkey" ]
+        let preserve = [ "speed-grader-tutorial", "teacher.profile.developermenu" ]
         guard
             let previous = json,
             let manifest = try? JSONSerialization.data(withJSONObject: previous.filter({ entry in preserve.contains(entry.key) }))

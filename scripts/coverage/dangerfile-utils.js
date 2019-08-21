@@ -18,35 +18,8 @@
 
 exports.checkCoverage = checkCoverage
 function checkCoverage () {
-  markdown(`
-    Coverage | New % | Master % | Delta
-    -------- | ----- | -------- | -----
-    ${checkSchemeCoverage(
-      'Canvas iOS',
-      require(`./citest/coverage-summary-master.json`),
-      require(`./citest/coverage-summary.json`)
-    )}${checkSchemeCoverage(
-      'React Native',
-      convertCoverage(require('./react-native/coverage-summary-master.json')),
-      convertCoverage(require('./react-native/coverage-summary.json'))
-    )}
-  `.trim().replace(/\n\s+/g, '\n'))
-}
-
-// Convert to `xcrun xccov view --json` format
-function convertCoverage (jest) {
-  const xccov = {}
-  for (const key of Object.keys(jest)) {
-    const path = key.replace(/^.*\/rn\//, 'rn/')
-    xccov[path] = {
-      executableLines: jest[key].lines.total,
-      coveredLines: jest[key].lines.covered,
-    }
-  }
-  return xccov
-}
-
-function checkSchemeCoverage (scheme, master, pr) {
+  const master = require(`./citests/coverage-summary-master.json`)
+  const pr = require(`./citests/coverage-summary.json`)
   const { fileMinCoverage, totalMinCoverage } = require('./config.json')
   const empty = { executableLines: 0, coveredLines: 0 }
   const files = Object.keys(pr).filter(path => (path !== 'total' &&
@@ -54,15 +27,19 @@ function checkSchemeCoverage (scheme, master, pr) {
   ))
 
   if (files.length > 0) {
-    fail(`One or more files in ${scheme} are below the minimum test coverage ${percent(fileMinCoverage)}`)
+    fail(`One or more files are below the minimum test coverage ${percent(fileMinCoverage)}`)
   }
   if (pr.total.coveredLines / pr.total.executableLines < totalMinCoverage) {
-    fail(`The total test coverage in ${scheme} is below the minimum ${percent(totalMinCoverage)}`)
+    fail(`The total test coverage is below the minimum ${percent(totalMinCoverage)}`)
   }
-  return `**${scheme}** | ${coverageMarkdown(pr.total, master.total)}
-    ${files.map(path =>
+  markdown(`
+    Coverage | New % | Master % | Delta
+    -------- | ----- | -------- | -----
+    **Canvas iOS** | ${coverageMarkdown(pr.total, master.total)}
+    ${files.slice(0, 10).map(path =>
       `${path} | ${coverageMarkdown(pr[path], master[path] || empty)}`
-    ).join('\n')}\n`
+    ).join('\n')}\n
+  `.trim().replace(/\n\s+/g, '\n'))
 }
 
 function coverageMarkdown (pr, master) {

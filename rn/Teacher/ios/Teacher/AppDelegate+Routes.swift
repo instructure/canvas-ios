@@ -30,7 +30,7 @@ extension AppDelegate {
                 let courseID = props["courseID"] as? String,
                 let courseColor = props["courseColor"].flatMap(RCTConvert.uiColor)
                 else { return nil }
-            
+
             return try? TeacherAttendanceViewController(
                 courseName: courseName,
                 courseColor: courseColor,
@@ -51,7 +51,12 @@ extension AppDelegate {
             return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
         })
 
-        HelmManager.shared.registerNativeViewController(for: "/act-as-user", factory: { props in
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/pages", factory: { props in
+            guard let courseID = props["courseID"] as? String else { return nil }
+            return PageListViewController.create(context: ContextModel(.course, id: courseID), appTraitCollection: UIApplication.shared.keyWindow?.traitCollection)
+        })
+
+        HelmManager.shared.registerNativeViewController(for: "/act-as-user", factory: { _ in
             guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
             return ActAsUserViewController.create(loginDelegate: loginDelegate)
         })
@@ -61,16 +66,16 @@ extension AppDelegate {
             return ActAsUserViewController.create(loginDelegate: loginDelegate, userID: props["userID"] as? String)
         })
 
-        HelmManager.shared.registerNativeViewController(for: Route.wrongApp.url.path, factory: { props in
+        HelmManager.shared.registerNativeViewController(for: Route.wrongApp.url.path, factory: { _ in
             guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
             return WrongAppViewController.create(delegate: loginDelegate)
         })
-        
+
         CanvasCore.registerSharedNativeViewControllers()
     }
 }
 
-// MARK - HelmModules
+// MARK: - HelmModules
 
 extension ModuleListViewController: HelmModule {
     var moduleName: String { return "/courses/:courseID/modules" }

@@ -50,7 +50,6 @@ import ActivityIndicatorView from '../../common/components/ActivityIndicatorView
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import { getGradesForGradingPeriod } from '../../canvas-api'
 import { logEvent } from '../../common/CanvasAnalytics'
-import { featureFlagEnabled } from '../../common/feature-flags'
 
 type State = {
   currentFilter: {
@@ -198,9 +197,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     logEvent('assignment_selected')
     this.props.updateCourseDetailsSelectedTabSelectedRow(assignment.id)
     this.setState({ selectedRowID: assignment.id })
-    if (assignment.quiz_id && !featureFlagEnabled('newStudentAssignmentView')) {
-      this.props.navigator.show(`/courses/${assignment.course_id}/quizzes/${assignment.quiz_id}`)
-    } else if (assignment.discussion_topic && isTeacher()) {
+    if (assignment.discussion_topic && isTeacher()) {
       this.props.navigator.show(`/courses/${assignment.course_id}/discussion_topics/${assignment.discussion_topic.id}`)
     } else {
       this.props.navigator.show(assignment.html_url)

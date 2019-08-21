@@ -68,7 +68,7 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
           }
         }
         onPress={[Function]}
-        testID="GlobalAnnouncement.1.toggle"
+        testID="AccountNotification.1.toggleButton"
         underlayColor="transparent"
       >
         <View>
@@ -107,6 +107,7 @@ Don’t forget your permission slips this Wednesday."
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -191,7 +192,7 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
           }
         }
         onPress={[Function]}
-        testID="GlobalAnnouncement.1.toggle"
+        testID="AccountNotification.1.toggleButton"
         underlayColor="transparent"
       >
         <View>
@@ -230,6 +231,7 @@ Don’t forget your permission slips this Wednesday."
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -314,7 +316,7 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
           }
         }
         onPress={[Function]}
-        testID="GlobalAnnouncement.1.toggle"
+        testID="AccountNotification.1.toggleButton"
         underlayColor="transparent"
       >
         <View>
@@ -353,6 +355,7 @@ Don’t forget your permission slips this Wednesday."
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -437,7 +440,7 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
           }
         }
         onPress={[Function]}
-        testID="GlobalAnnouncement.1.toggle"
+        testID="AccountNotification.1.toggleButton"
         underlayColor="transparent"
       >
         <View>
@@ -476,6 +479,7 @@ Don’t forget your permission slips this Wednesday."
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -560,7 +564,7 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
           }
         }
         onPress={[Function]}
-        testID="GlobalAnnouncement.1.toggle"
+        testID="AccountNotification.1.toggleButton"
         underlayColor="transparent"
       >
         <View>
@@ -599,6 +603,7 @@ Don’t forget your permission slips this Wednesday."
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }
@@ -683,7 +688,7 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
           }
         }
         onPress={[Function]}
-        testID="GlobalAnnouncement.1.toggle"
+        testID="AccountNotification.1.toggleButton"
         underlayColor="transparent"
       >
         <View>
@@ -722,6 +727,7 @@ Don’t forget your permission slips this Wednesday."
             "pop": [MockFunction],
             "replace": [MockFunction],
             "show": [MockFunction],
+            "showWebView": [MockFunction],
             "traitCollection": [MockFunction],
           }
         }

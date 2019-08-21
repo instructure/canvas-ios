@@ -49,8 +49,8 @@ class PageViewEventRequestManagerTests: CoreTestCase {
     }
 
     func testRetrievePandataEndpointInfo() {
-        let keychain = GeneralPurposeKeychain(serviceName: Pandata.tokenKeychainService)
-        keychain.removeItem(for: Pandata.tokenKeychainKey)
+        let keychain = Keychain(serviceName: Pandata.tokenKeychainService)
+        keychain.removeData(for: Pandata.tokenKeychainKey)
 
         let token = "token"
         //  mock pandata endpoint req
@@ -73,7 +73,7 @@ class PageViewEventRequestManagerTests: CoreTestCase {
         api.mocks[batchUrlReq] = ("\"ok\"".data(using: .utf8), nil, nil)
         print(api.mocks.keys)
 
-        wait(for: [writeWait1], timeout: 0.5)
+        wait(for: [writeWait1], timeout: 5)
         XCTAssertEqual(p.queueCount, 2)
 
         requestManager.sendEvents { (error) in
@@ -81,17 +81,17 @@ class PageViewEventRequestManagerTests: CoreTestCase {
             self.expectation.fulfill()
         }
 
-        wait(for: [expectation], timeout: 0.5)
+        wait(for: [expectation], timeout: 5)
 
         XCTAssertEqual(p.queueCount, 0)
     }
 
     func testCleanup() {
-        let keychain = GeneralPurposeKeychain(serviceName: Pandata.tokenKeychainService)
+        let keychain = Keychain(serviceName: Pandata.tokenKeychainService)
         let added = keychain.setData("foobar".data(using: .utf8)!, for: Pandata.tokenKeychainKey)
         XCTAssertTrue(added)
 
-        if let data = keychain.data(for: Pandata.tokenKeychainKey), let value = String(data: data, encoding: .utf8) {
+        if let data = keychain.getData(for: Pandata.tokenKeychainKey), let value = String(data: data, encoding: .utf8) {
             XCTAssertNotNil(value)
         } else {
             XCTFail()
@@ -99,7 +99,7 @@ class PageViewEventRequestManagerTests: CoreTestCase {
 
         requestManager.cleanup()
 
-        let data = keychain.data(for: Pandata.tokenKeychainKey)
+        let data = keychain.getData(for: Pandata.tokenKeychainKey)
         XCTAssertNil(data)
     }
 }

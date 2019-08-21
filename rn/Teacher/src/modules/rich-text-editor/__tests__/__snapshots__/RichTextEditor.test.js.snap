@@ -25,6 +25,7 @@ exports[`RichTextEditor renders 1`] = `
         "pop": [MockFunction],
         "replace": [MockFunction],
         "show": [MockFunction],
+        "showWebView": [MockFunction],
         "traitCollection": [MockFunction],
       }
     }

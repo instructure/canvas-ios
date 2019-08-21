@@ -31,7 +31,7 @@ enum UserPreferences {
         var tabIndex: Int {
             return LandingPage.allCases.firstIndex(of: self) ?? 0
         }
-        
+
         var description: String {
             switch self {
             case .dashboard:
@@ -47,24 +47,22 @@ enum UserPreferences {
             }
         }
     }
-    
+
     private static let landingPageKey = "landingPageSettings"
     private static var landingPageDict: [String: String] {
         return UserDefaults.standard.object(forKey: landingPageKey) as? [String: String] ?? [:]
     }
-    
+
     static func landingPage(_ userID: String) -> UserPreferences.LandingPage {
         guard let raw = landingPageDict[userID], let page = LandingPage(rawValue: raw) else {
             return .dashboard
         }
         return page
     }
-    
+
     static func setLandingPage(_ userID: String, page: LandingPage) {
         var dict = landingPageDict
         dict[userID] = page.rawValue
         UserDefaults.standard.set(dict, forKey: landingPageKey)
     }
 }
-
-

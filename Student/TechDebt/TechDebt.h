@@ -35,10 +35,10 @@ FOUNDATION_EXPORT const unsigned char TechDebtVersionString[];
 #import <TechDebt/CKIClient+CBIClient.h>
 #import <TechDebt/UIImage+TechDebt.h>
 #import <TechDebt/UIViewController+Transitions.h>
-#import <TechDebt/HandleDropboxOpen.h>
-#import <TechDebt/ReceivedFilesViewController.h>
 #import <TechDebt/AboutViewController.h>
 #import <TechDebt/WebBrowserViewController.h>
 #import <TechDebt/MyLittleViewController.h>
 #import <TechDebt/FileViewController.h>
 #import <TechDebt/InsetTableViewCell.h>
+#import <TechDebt/NSObject+RACCollectionChanges.h>
+#import <TechDebt/UICollectionView+MyLittleViewController.h>

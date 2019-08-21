@@ -24,7 +24,13 @@ import Cartography
 class QuizDetailsViewController: UITableViewController {
     
     // displayed properties - this is just a dummy view controller
-    
+
+    var quizController: QuizController? {
+        didSet {
+            quiz = quizController?.quiz
+            submission = quizController?.submission
+        }
+    }
     var quiz: Quiz? {
         didSet {
             quizUpdated()
@@ -70,14 +76,14 @@ class QuizDetailsViewController: UITableViewController {
         tableView.estimatedRowHeight = 44
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 20+44+20)) // padding for scrolling above the page indicator, TODO: make constants
         tableView.register(QuizDetailCell.Nib, forCellReuseIdentifier: QuizDetailCell.ReuseID)
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        tableView?.refreshControl = refresh
     }
     
     fileprivate func prepareDescriptionCell() {
         descriptionCell.cellSizeUpdated = { [weak self] cell in
-            if let me = self {
-                let tv = me.tableView
-                tv?.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .none)
-            }
+            self?.tableView.reloadData()
         }
         descriptionCell.readMore = { wwvc in
             let nav = UINavigationController(rootViewController: wwvc)
@@ -133,6 +139,12 @@ class QuizDetailsViewController: UITableViewController {
         
         if isViewLoaded {
             tableView.reloadData()
+        }
+    }
+
+    @objc func refresh(_ control: UIRefreshControl) {
+        quizController?.refreshQuiz {
+            control.endRefreshing()
         }
     }
 }

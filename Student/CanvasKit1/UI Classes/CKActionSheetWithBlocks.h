@@ -18,18 +18,15 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString * const CKActionSheetDidShowNotification;
+extern NSString * _Nonnull const CKActionSheetDidShowNotification;
 
-// TODO: Remove this silly action sheet thing
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-@interface CKActionSheetWithBlocks : UIActionSheet
-#pragma GCC diagnostic pop
+@interface CKActionSheetWithBlocks : UIAlertController
 
-- (id)initWithTitle:(NSString *)title;
-- (void)addButtonWithTitle:(NSString *)title handler:(void (^)(void))handler;
-- (void)addCancelButtonWithTitle:(NSString *)title;
+- (instancetype _Nonnull )initWithTitle:(NSString *_Nullable)title;
+- (void)addButtonWithTitle:(NSString *_Nullable)title handler:(void (^ _Nullable )(void))handler;
+- (void)addCancelButtonWithTitle:(NSString *_Nullable)title;
+- (void)showfromViewController:(UIViewController *_Nullable)viewController;
 
-@property (copy) void (^dismissalBlock)(void);
+@property (copy) void (^ _Nullable dismissalBlock)(void);
 
 @end

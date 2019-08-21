@@ -36,7 +36,7 @@ open class ShareExtensionViewController: SLComposeServiceViewController, ShareEx
     open override func viewDidLoad() {
         super.viewDidLoad()
 
-        if Keychain.entries.count > 0 {
+        if LoginSession.sessions.count > 0 {
             presenter = ShareExtensionPresenter(view: self, courseID: "165", assignmentID: "2169")
             presenter?.viewIsReady()
         } else {
@@ -52,13 +52,13 @@ open class ShareExtensionViewController: SLComposeServiceViewController, ShareEx
 
     public func updateNavBar(backgroundColor: UIColor?) {
         guard let item = navigationController?.navigationBar.items?.first?.rightBarButtonItem else { return }
-        item.title = Keychain.entries.count == 0 ? "" : submitTitle
+        item.title = LoginSession.sessions.count == 0 ? "" : submitTitle
     }
 
     open override func presentationAnimationDidFinish() {
         super.presentationAnimationDidFinish()
 
-        if Keychain.entries.count == 0 {
+        if LoginSession.sessions.count == 0 {
             // return presentNotSignedInMessage()
         }
     }
@@ -93,14 +93,14 @@ open class ShareExtensionViewController: SLComposeServiceViewController, ShareEx
     }
 
     open override func configurationItems() -> [Any]! {
-        guard Keychain.entries.count > 0 else {
+        guard LoginSession.sessions.count > 0 else {
             return []
         }
 
         let account = SLComposeSheetConfigurationItem()!
         account.title = "Account"
-        account.value = Keychain.entries.first?.accessToken ?? NSLocalizedString("Select Account", comment: "")
-        if Keychain.entries.count > 1 {
+        account.value = LoginSession.sessions.first?.accessToken ?? NSLocalizedString("Select Account", comment: "")
+        if LoginSession.sessions.count > 1 {
             account.tapHandler = {
                 // TODO: Push account selection view
             }

@@ -34,8 +34,7 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
         end = Date()
         start = end.addMinutes(-1)
 
-        Keychain.config = KeychainConfig(service: "com.instructure.service", accessGroup: nil)
-        Keychain.clearEntries()
+        LoginSession.clearAll()
 
         waitExpectation = XCTestExpectation(description: "description")
 
@@ -57,8 +56,8 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
 
     func testTracking() {
 
-        let entry = KeychainEntry.make()
-        Keychain.addEntry(entry)
+        let entry = LoginSession.make()
+        LoginSession.add(entry)
 
         PageViewEventController.instance.appCanLogEvents = { return true }
 

@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 
 enum Login: Equatable {
-    case keychain(KeychainEntry)
+    case session(LoginSession)
     case mdm(MDMLogin)
 }
 
@@ -34,7 +34,7 @@ class LoginStartPresenter {
     var method = AuthenticationMethod.normalLogin
     weak var loginDelegate: LoginDelegate?
     weak var view: LoginStartViewProtocol?
-    var session = URLSessionAPI.defaultURLSession
+    var urlSession = URLSessionAPI.defaultURLSession
     var mdmObservation: NSKeyValueObservation?
 
     init(loginDelegate: LoginDelegate?, view: LoginStartViewProtocol) {
@@ -45,22 +45,22 @@ class LoginStartPresenter {
     func viewIsReady() {
         loadEntries()
         let group = DispatchGroup()
-        var refreshed = Set<KeychainEntry>()
-        for entry in Keychain.entries {
-            let api = URLSessionAPI(accessToken: entry.accessToken, baseURL: entry.baseURL, urlSession: session)
+        var refreshed = Set<LoginSession>()
+        for session in LoginSession.sessions {
+            let api = URLSessionAPI(accessToken: session.accessToken, baseURL: session.baseURL, urlSession: urlSession)
             group.enter()
-            api.makeRequest(GetUserRequest(userID: entry.userID)) { (response, _, error) in
+            api.makeRequest(GetUserRequest(userID: session.userID)) { (response, _, error) in
                 if let response = response, error == nil {
-                    refreshed.insert(KeychainEntry(
-                        accessToken: entry.accessToken,
-                        baseURL: entry.baseURL,
-                        expiresAt: entry.expiresAt,
-                        lastUsedAt: entry.lastUsedAt,
+                    refreshed.insert(LoginSession(
+                        accessToken: session.accessToken,
+                        baseURL: session.baseURL,
+                        expiresAt: session.expiresAt,
+                        lastUsedAt: session.lastUsedAt,
                         locale: response.locale ?? response.effective_locale,
-                        masquerader: entry.masquerader,
-                        refreshToken: entry.refreshToken,
+                        masquerader: session.masquerader,
+                        refreshToken: session.refreshToken,
                         userAvatarURL: response.avatar_url,
-                        userID: entry.userID,
+                        userID: session.userID,
                         userName: response.short_name,
                         userEmail: response.email
                     ))
@@ -70,8 +70,8 @@ class LoginStartPresenter {
         }
         group.notify(queue: DispatchQueue.main) { [weak self] in
             for entry in refreshed {
-                if Keychain.entries.contains(entry) {
-                    Keychain.addEntry(entry)
+                if LoginSession.sessions.contains(entry) {
+                    LoginSession.add(entry)
                 }
                 if AppEnvironment.shared.currentSession == entry {
                     AppEnvironment.shared.currentSession = entry
@@ -86,9 +86,9 @@ class LoginStartPresenter {
     }
 
     func loadEntries() {
-        var logins = Keychain.entries
+        var logins = LoginSession.sessions
             .sorted { a, b in a.lastUsedAt > b.lastUsedAt }
-            .map { Login.keychain($0) }
+            .map { Login.session($0) }
         logins.append(contentsOf: MDMManager.shared.logins.map { Login.mdm($0) })
         view?.update(logins: logins)
     }
@@ -146,15 +146,15 @@ class LoginStartPresenter {
         loginDelegate?.openExternalURL(url)
     }
 
-    func selectKeychainEntry(_ entry: KeychainEntry) {
+    func selectSession(_ session: LoginSession) {
         let controller = LoadingViewController.create()
         view?.show(controller, sender: nil)
-        loginDelegate?.userDidLogin(keychainEntry: entry.bumpLastUsedAt())
+        loginDelegate?.userDidLogin(session: session.bumpLastUsedAt())
     }
 
-    func removeKeychainEntry(_ entry: KeychainEntry) {
+    func removeSession(_ session: LoginSession) {
         // View has already updated itself.
-        loginDelegate?.userDidLogout(keychainEntry: entry)
+        loginDelegate?.userDidLogout(session: session)
     }
 
     func selectMDMLogin(_ login: MDMLogin) {

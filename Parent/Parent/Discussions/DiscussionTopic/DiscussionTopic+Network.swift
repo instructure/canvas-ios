@@ -17,9 +17,9 @@
 //
 
 import Foundation
-
 import Marshal
 import ReactiveSwift
+import CanvasCore
 
 extension DiscussionTopic {
     public static func getDiscussionTopic(_ session: Session, courseID: String, discussionTopicID: String) throws -> SignalProducer<JSONObject, NSError> {

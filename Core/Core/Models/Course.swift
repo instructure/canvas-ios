@@ -45,7 +45,7 @@ final public class Course: NSManagedObject, Context, WriteableModel {
         model.name = item.name
         model.isFavorite = item.is_favorite ?? false
         model.courseCode = item.course_code
-        model.imageDownloadURL = item.image_download_url
+        model.imageDownloadURL = URL(string: item.image_download_url ?? "")
         model.syllabusBody = item.syllabus_body
 
         model.enrollments?.forEach { context.delete($0) }

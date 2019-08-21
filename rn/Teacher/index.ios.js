@@ -42,7 +42,6 @@ import hydrate from './src/redux/hydrate-action'
 import { beginUpdatingBadgeCounts, stopUpdatingBadgeCounts, updateBadgeCounts } from './src/modules/tabbar/badge-counts'
 import App, { type AppId } from './src/modules/app'
 import Navigator from './src/routing/Navigator'
-import { featureFlagSetup } from './src/common/feature-flags'
 import APIBridge from './src/canvas-api/APIBridge'
 import { Crashlytics } from './src/common/CanvasCrashlytics'
 import { getLastRoute } from './src/modules/developer-menu/DeveloperMenu'
@@ -137,7 +136,6 @@ const loginHandler = async ({
   } else {
     store.dispatch(hydrate())
   }
-  await featureFlagSetup()
   registerScreens(store)
   Helm.loginComplete()
   loginVerify()
@@ -171,7 +169,7 @@ notificationCenter.addListener('Notification', (notification) => {
       const userInfo = notification.userInfo
       if (userInfo && userInfo.url) {
         const navigator = new Navigator('')
-        navigator.show(userInfo.url)
+        navigator.show(userInfo.url, { modal: userInfo.modal === true })
       }
       break
   }

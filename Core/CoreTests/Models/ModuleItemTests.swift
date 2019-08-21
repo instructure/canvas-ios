@@ -52,12 +52,12 @@ class ModuleItemTests: CoreTestCase {
 
     func testSavePublished() {
         let published = APIModuleItem.make(published: true)
-        XCTAssertTrue(ModuleItem.save(published, forCourse: "1", in: databaseClient).published)
+        XCTAssertTrue(ModuleItem.save(published, forCourse: "1", in: databaseClient).published ?? false)
 
         let notPublished = APIModuleItem.make(published: false)
-        XCTAssertFalse(ModuleItem.save(notPublished, forCourse: "1", in: databaseClient).published)
+        XCTAssertFalse(ModuleItem.save(notPublished, forCourse: "1", in: databaseClient).published ?? true)
 
         let empty = APIModuleItem.make(published: nil)
-        XCTAssertFalse(ModuleItem.save(empty, forCourse: "1", in: databaseClient).published)
+        XCTAssertNil(ModuleItem.save(empty, forCourse: "1", in: databaseClient).published)
     }
 }

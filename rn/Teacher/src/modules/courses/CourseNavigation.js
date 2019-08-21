@@ -40,7 +40,7 @@ import currentWindowTraits from '../../utils/windowTraits'
 import { isTeacher, isStudent } from '../app'
 import * as LTITools from '../../common/LTITools'
 import TabsList from '../tabs/TabsList'
-import { featureFlagEnabled } from '@common/feature-flags'
+import ExperimentalFeature from '../../common/ExperimentalFeature'
 import { logEvent } from '@common/CanvasAnalytics'
 import showColorOverlayForCourse from '../../common/show-color-overlay-for-course'
 
@@ -134,7 +134,7 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
           }
           this.props.navigator.show(url, undefined, { color: processColor(this.props.color) })
         } else if (tab.id === 'conferences') {
-          if (featureFlagEnabled('conferences')) {
+          if (ExperimentalFeature.conferences.isEnabled) {
             this.props.navigator.show(tab.html_url, undefined, { color: this.props.color, course: this.props.course })
           } else {
             this.props.navigator.show(`/native-route${tab.html_url}`)

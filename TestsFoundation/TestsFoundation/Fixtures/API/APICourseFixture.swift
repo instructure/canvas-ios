@@ -40,7 +40,7 @@ extension APICourse {
         term: Term? = nil,
         permissions: Permissions? = nil,
         access_restricted_by_date: Bool? = nil,
-        image_download_url: URL? = nil,
+        image_download_url: String? = nil,
         is_favorite: Bool? = nil,
         sections: [APISection]? = nil
     ) -> APICourse {

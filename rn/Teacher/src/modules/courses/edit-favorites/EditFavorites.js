@@ -33,7 +33,7 @@ import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import colors from '../../../common/colors'
 import SectionHeader from '../../../common/components/rows/SectionHeader'
-import { featureFlagEnabled } from '../../../common/feature-flags'
+import ExperimentalFeature from '../../../common/ExperimentalFeature'
 
 type SectionListSection = {
   sectionID: string,
@@ -122,7 +122,7 @@ export class FavoritesList extends Component<Props> {
       })
     }
     // Groups
-    if (featureFlagEnabled('favoriteGroups')) {
+    if (ExperimentalFeature.favoriteGroups.isEnabled) {
       if (App.current().appId === 'student' &&
         this.props.groups &&
         this.props.groups.length > 0) {

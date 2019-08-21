@@ -26,7 +26,6 @@ import {
 import { registerScreens } from '../register-screens'
 import Navigator from '../Navigator'
 import canvas from '../../canvas-api'
-import SFSafariViewController from 'react-native-sfsafariviewcontroller'
 
 jest.mock('../../canvas-api', () => ({
   getAuthenticatedSessionURL: jest.fn(),
@@ -43,10 +42,6 @@ jest.mock('../../canvas-api', () => ({
   }),
 }))
 
-jest.mock('react-native-sfsafariviewcontroller', () => ({
-  open: jest.fn(),
-}))
-
 jest.mock('Linking', () => ({ openURL: jest.fn() }))
 
 registerScreens({})
@@ -54,15 +49,6 @@ registerScreens({})
 describe('Navigator', () => {
   beforeEach(() => {
     jest.clearAllMocks()
-
-    NativeModules.Helm = {
-      pushFrom: jest.fn(() => Promise.resolve()),
-      popFrom: jest.fn(() => Promise.resolve()),
-      present: jest.fn(() => Promise.resolve()),
-      dismiss: jest.fn(() => Promise.resolve()),
-      dismissAllModals: jest.fn(() => Promise.resolve()),
-      traitCollection: jest.fn(),
-    }
   })
 
   it('forwards show as a push', () => {
@@ -183,7 +169,7 @@ describe('Navigator', () => {
 
     await promise
 
-    expect(SFSafariViewController.open).toHaveBeenCalledWith('https://google.com')
+    expect(NativeModules.Helm.openInSafariViewController).toHaveBeenCalledWith('https://google.com')
   })
 
   it('linking should  be called if something is unsupported and it is not http or https', () => {
@@ -200,7 +186,7 @@ describe('Navigator', () => {
     new Navigator('push').show('https://google.com')
 
     await promise
-    expect(SFSafariViewController.open).toHaveBeenCalledWith('https://google.com')
+    expect(NativeModules.Helm.openInSafariViewController).toHaveBeenCalledWith('https://google.com')
   })
 
   it('opens a webview with the https url if we dont route some canvas protocol', async () => {
@@ -211,7 +197,7 @@ describe('Navigator', () => {
 
     expect(canvas.getAuthenticatedSessionURL).toHaveBeenCalledWith(httpsUrl)
     await promise
-    expect(SFSafariViewController.open).toHaveBeenCalledWith(httpsUrl + '?auth')
+    expect(NativeModules.Helm.openInSafariViewController).toHaveBeenCalledWith(httpsUrl + '?auth')
   })
 
   it('opens the original url if getting the authenticated session url errors', async () => {
@@ -222,7 +208,7 @@ describe('Navigator', () => {
     try {
       await promise
     } catch (err) {
-      expect(SFSafariViewController.open).toHaveBeenCalledWith('https://google.com')
+      expect(NativeModules.Helm.openInSafariViewController).toHaveBeenCalledWith('https://google.com')
     }
   })
 

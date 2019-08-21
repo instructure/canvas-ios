@@ -101,7 +101,7 @@ class ModuleListViewController: UIViewController, ModuleListViewProtocol {
     }
 }
 
-extension ModuleListViewController: UITableViewDataSource { 
+extension ModuleListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return presenter?.modules.count ?? 0
     }

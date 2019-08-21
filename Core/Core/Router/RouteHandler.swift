@@ -55,6 +55,9 @@ public struct RouteHandler {
 
     public func match(_ url: URLComponents) -> UIViewController? {
         var parts = url.path.split(separator: "/")
+        if parts.count >= 2, parts[0] == "api", parts[1] == "v1" {
+            parts.removeFirst(2)
+        }
         var params: [String: String] = [:]
         for segment in segments {
             switch segment {

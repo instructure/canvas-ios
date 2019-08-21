@@ -26,15 +26,17 @@ extension APIPage {
         front_page: Bool = false,
         page_id: ID = ID("42"),
         title: String = "Answers Page",
-        html_url: String = "/courses/42/pages/Answers-Page"
-        ) -> APIPage {
+        html_url: String = "/courses/42/pages/Answers-Page",
+        published: Bool = false
+	) -> APIPage {
         return APIPage(
             url: url,
             updated_at: updated_at,
             front_page: front_page,
             page_id: page_id,
             title: title,
-            html_url: html_url 
+            html_url: html_url,
+            published: published
         )
     }
 }

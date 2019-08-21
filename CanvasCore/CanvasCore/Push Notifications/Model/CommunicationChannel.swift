@@ -25,6 +25,7 @@ enum CommunicationChannelType: String, CustomStringConvertible {
     case twitter = "twitter"
     case yo = "yo"
     case push = "push"
+    case slack = "slack"
     
     var description: String {
         switch self {
@@ -40,6 +41,8 @@ enum CommunicationChannelType: String, CustomStringConvertible {
             return NSLocalizedString("Yo", tableName: "Localizable", bundle: .core, value: "", comment: "Description for Yo communication channel")
         case .push:
             return NSLocalizedString("Push Notifications", tableName: "Localizable", bundle: .core, value: "", comment: "Description for Push Notification channel")
+        case .slack:
+            return NSLocalizedString("Slack", tableName: "Localizable", bundle: .core, value: "", comment: "Description for Slack communication channel")
         }
     }
 }
@@ -91,8 +94,10 @@ open class CommunicationChannel {
             let position        = dictionary["position"] as? Int,
             let type            = dictionary["type"] as? String,
             let userID          = dictionary["user_id"] as? Int,
-            let workflowState   = dictionary["workflow_state"]as? String {
-                return CommunicationChannel(address: address, id: "\(id)", position: "\(position)", type: CommunicationChannelType(rawValue: type)!, userID: "\(userID)", workflowState: CommunicationChannelWorkflowState(rawValue: workflowState)!)
+            let workflowState   = dictionary["workflow_state"] as? String,
+            let channelType     = CommunicationChannelType(rawValue: type),
+            let channelWorkflowState = CommunicationChannelWorkflowState(rawValue: workflowState) {
+                return CommunicationChannel(address: address, id: "\(id)", position: "\(position)", type: channelType, userID: "\(userID)", workflowState: channelWorkflowState)
         } else {
             return nil
         }

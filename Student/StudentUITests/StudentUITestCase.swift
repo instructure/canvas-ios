@@ -19,26 +19,16 @@
 import Foundation
 import XCTest
 @testable import Core
+@testable import CoreUITests
 @testable import TestsFoundation
 
-class StudentUITestCase: UITestCase {
+class StudentUITestCase: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return StudentUITestCase.self }
+    override var user: UITestUser? { return nil }
+
     override func setUp() {
         super.setUp()
-        continueAfterFailure = false
-        if app.state != .runningForeground {
-            launch()
-        }
-        reset()
         mockDownload(URL(string: ".")!) // Use only mock data
-    }
-
-    func launch(_ block: ((XCUIApplication) -> Void)? = nil) {
-        let app = XCUIApplication()
-        app.launchEnvironment["IS_UI_TEST"] = "TRUE"
-        block?(app)
-        app.launch()
-        // Wait for RN to finish loading
-        app.find(labelContaining: "Loading").waitToVanish(120)
     }
 
     func navBarColorHex() -> String? {

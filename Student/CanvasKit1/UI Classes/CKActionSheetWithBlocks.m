@@ -22,56 +22,47 @@
 NSString * const CKActionSheetDidShowNotification = @"CKAlertViewDidShowNotification";
 
 @interface CKActionSheetWithBlocks () <UIActionSheetDelegate>
+@property (nonatomic, strong) NSMutableDictionary *blocks;
 @end
 
 @implementation CKActionSheetWithBlocks {
-    NSMutableDictionary *blocks;
 }
 
 @synthesize dismissalBlock;
 
-- (id)initWithTitle:(NSString *)title
+- (instancetype)initWithTitle:(NSString *)title
 {
-    self = [super initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    self = [super init];
+    self.title = title;
     if (self) {
-        blocks = [NSMutableDictionary dictionary];
+        self.blocks = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
-- (void)showInView:(UIView *)view
+- (void)showfromViewController:(UIViewController *_Nullable)viewController
 {
-    [super showInView:view];
+    [viewController presentViewController: self animated: YES completion:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:CKActionSheetDidShowNotification object:self];
 }
 
-- (void)addButtonWithTitle:(NSString *)title handler:(void (^)(void))handler {
-    NSInteger buttonIndex = [super addButtonWithTitle:title];
-    if (handler) {
-        blocks[@(buttonIndex)] = [handler copy];
-    }
-}
-
-- (void)addCancelButtonWithTitle:(NSString *)title {
-    NSInteger buttonIndex = [super addButtonWithTitle:title];
-    self.cancelButtonIndex = buttonIndex;
-}
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+- (void)addButtonWithTitle:(NSString *_Nullable)title handler:(void (^ _Nullable )(void))handler
 {
-    void (^handler)(void) = blocks[@(buttonIndex)];
-    if (handler) {
-        handler();
-    }
-    [blocks removeAllObjects];
-    
-    if (dismissalBlock) {
-        dismissalBlock();
-    }
+    UIAlertAction * action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (handler) { handler(); }
+    }];
+
+    [self addAction: action];
 }
 
-#pragma GCC diagnostic pop
-
+- (void)addCancelButtonWithTitle:(NSString *_Nullable)title {
+    __weak CKActionSheetWithBlocks *weakSelf = self;
+    UIAlertAction * action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        if (weakSelf.dismissalBlock) {
+            weakSelf.dismissalBlock();
+        }
+        [weakSelf.blocks removeAllObjects];
+    }];
+    [self addAction: action];
+}
 @end

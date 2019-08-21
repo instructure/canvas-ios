@@ -26,14 +26,14 @@ class ActAsUserPresenterTests: CoreTestCase, LoginDelegate {
         opened = url
     }
 
-    var login: KeychainEntry?
-    func userDidLogin(keychainEntry: KeychainEntry) {
-        login = keychainEntry
+    var login: LoginSession?
+    func userDidLogin(session: LoginSession) {
+        login = session
     }
 
-    var logout: KeychainEntry?
-    func userDidLogout(keychainEntry: KeychainEntry) {
-        logout = keychainEntry
+    var logout: LoginSession?
+    func userDidLogout(session: LoginSession) {
+        logout = session
     }
 
     class MockTask: URLSessionDataTask {

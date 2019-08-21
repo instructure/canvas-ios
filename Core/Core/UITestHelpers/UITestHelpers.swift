@@ -40,8 +40,8 @@ public class UITestHelpers {
     weak var appDelegate: UIApplicationDelegate?
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
-    let keychainBackup = Keychain.entries
     let pasteboardType = "com.instructure.ui-test-helper"
+    let sessionBackup = LoginSession.sessions
     let window: ActAsUserWindow?
 
     init(_ appDelegate: UIApplicationDelegate) {
@@ -50,6 +50,7 @@ public class UITestHelpers {
 
         CacheManager.clear()
         UserDefaults.standard.set(true, forKey: "IS_UI_TEST")
+        ExperimentalFeature.allEnabled = true
 
         let button = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 1, y: 44, width: 1, height: 1))
         button.accessibilityIdentifier = "ui-test-helper"
@@ -72,7 +73,7 @@ public class UITestHelpers {
         case .reset:
             reset()
         case .login:
-            guard let data = helper.data, let entry = try? decoder.decode(KeychainEntry.self, from: data) else { return }
+            guard let data = helper.data, let entry = try? decoder.decode(LoginSession.self, from: data) else { return }
             logIn(entry)
         case .currentSession:
             guard
@@ -95,7 +96,7 @@ public class UITestHelpers {
     }
 
     func reset() {
-        Keychain.clearEntries()
+        LoginSession.clearAll()
         UserDefaults.standard.removeObject(forKey: MDMManager.MDMUserDefaultsKey)
         (appDelegate as? LoginDelegate)?.changeUser()
         resetDatabase()
@@ -121,9 +122,9 @@ public class UITestHelpers {
         try? AppEnvironment.shared.database.clearAllRecords()
     }
 
-    func logIn(_ entry: KeychainEntry) {
+    func logIn(_ entry: LoginSession) {
         guard let loginDelegate = appDelegate as? LoginDelegate else { return }
-        loginDelegate.userDidLogin(keychainEntry: entry)
+        loginDelegate.userDidLogin(session: entry)
     }
 
     func show(_ route: String) {
@@ -133,10 +134,8 @@ public class UITestHelpers {
 
     func tearDown() {
         resetNavigationStack()
-        Keychain.clearEntries()
-        for entry in keychainBackup {
-            Keychain.addEntry(entry)
-        }
+        LoginSession.clearAll()
+        LoginSession.sessions = sessionBackup
     }
 }
 

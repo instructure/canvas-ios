@@ -25,7 +25,7 @@
 		3BAA4179218A3ACE00701E03 /* APIEnrollmentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */; };
 		3BD364AD225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */; };
 		3BDB8F3C22E663A2003D81C3 /* MockPageViewLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3B22E663A2003D81C3 /* MockPageViewLogger.swift */; };
-		7D13C52522B94F5F00345253 /* UITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13C52422B94F5F00345253 /* UITestCase.swift */; };
+		7D148647230B49DC003944A2 /* APIAccountNotificationFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D148646230B49DC003944A2 /* APIAccountNotificationFixture.swift */; };
 		7D2DC2FF219A0514008FE29A /* APIDocViewerFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2DC2FE219A0514008FE29A /* APIDocViewerFixture.swift */; };
 		7D37BE8F21C8398D0063FAAC /* DiscussionEntryFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE8E21C8398D0063FAAC /* DiscussionEntryFixture.swift */; };
 		7D47769821AF356200B441CE /* APIQuizRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D47769721AF356200B441CE /* APIQuizRequestable.swift */; };
@@ -35,7 +35,6 @@
 		7D6C8C6B22EA0C5900E5ADD8 /* APIActivityFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C6A22EA0C5900E5ADD8 /* APIActivityFixture.swift */; };
 		7D6C8C6F22EFA29F00E5ADD8 /* APITodoFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C6E22EFA29F00E5ADD8 /* APITodoFixture.swift */; };
 		7D6C8C7A22F351F400E5ADD8 /* ActAsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C7922F351F400E5ADD8 /* ActAsUser.swift */; };
-		7D903C0822BBE80D009D9E9E /* UITestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0722BBE80D009D9E9E /* UITestUser.swift */; };
 		7D903C0A22BC1329009D9E9E /* LoginStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0922BC1329009D9E9E /* LoginStart.swift */; };
 		7D903C0C22BC132E009D9E9E /* LoginWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0B22BC132E009D9E9E /* LoginWeb.swift */; };
 		7D903C0E22BC133B009D9E9E /* LoginFindSchool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0D22BC133B009D9E9E /* LoginFindSchool.swift */; };
@@ -102,7 +101,7 @@
 		3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentFixture.swift; sourceTree = "<group>"; };
 		3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussionTopicFixture.swift; sourceTree = "<group>"; };
 		3BDB8F3B22E663A2003D81C3 /* MockPageViewLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPageViewLogger.swift; sourceTree = "<group>"; };
-		7D13C52422B94F5F00345253 /* UITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestCase.swift; sourceTree = "<group>"; };
+		7D148646230B49DC003944A2 /* APIAccountNotificationFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountNotificationFixture.swift; sourceTree = "<group>"; };
 		7D2DC2FE219A0514008FE29A /* APIDocViewerFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDocViewerFixture.swift; sourceTree = "<group>"; };
 		7D37BE8E21C8398D0063FAAC /* DiscussionEntryFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntryFixture.swift; sourceTree = "<group>"; };
 		7D47769721AF356200B441CE /* APIQuizRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuizRequestable.swift; sourceTree = "<group>"; };
@@ -112,7 +111,6 @@
 		7D6C8C6A22EA0C5900E5ADD8 /* APIActivityFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIActivityFixture.swift; sourceTree = "<group>"; };
 		7D6C8C6E22EFA29F00E5ADD8 /* APITodoFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITodoFixture.swift; sourceTree = "<group>"; };
 		7D6C8C7922F351F400E5ADD8 /* ActAsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUser.swift; sourceTree = "<group>"; };
-		7D903C0722BBE80D009D9E9E /* UITestUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestUser.swift; sourceTree = "<group>"; };
 		7D903C0922BC1329009D9E9E /* LoginStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStart.swift; sourceTree = "<group>"; };
 		7D903C0B22BC132E009D9E9E /* LoginWeb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWeb.swift; sourceTree = "<group>"; };
 		7D903C0D22BC133B009D9E9E /* LoginFindSchool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchool.swift; sourceTree = "<group>"; };
@@ -192,19 +190,18 @@
 		3B032CFD215037AA00B570F7 /* TestsFoundation */ = {
 			isa = PBXGroup;
 			children = (
-				3BDB8F3A22E6638C003D81C3 /* Presenter */,
-				7DAC287222B199D100C0B692 /* Element */,
-				B1E789B621B1B0620087FE4A /* Logger */,
 				7D47769621AF354400B441CE /* API */,
+				3B0CEB782150429300D07CFA /* Database */,
+				7DAC287222B199D100C0B692 /* Element */,
 				3B84C390218BB0F1005946BA /* Extensions */,
 				B15DCD55224121EE0044A8A2 /* Files */,
-				B1911CED21C84AF700F42F91 /* Notifications */,
-				B16F036F215BD5E60011E952 /* Router */,
-				3B0CEB782150429300D07CFA /* Database */,
 				3B032D15215037B900B570F7 /* Fixtures */,
-				7D13C52722B9517700345253 /* UITestCase */,
-				3B032CFE215037AA00B570F7 /* TestsFoundation.h */,
+				B1E789B621B1B0620087FE4A /* Logger */,
+				B1911CED21C84AF700F42F91 /* Notifications */,
+				3BDB8F3A22E6638C003D81C3 /* Presenter */,
+				B16F036F215BD5E60011E952 /* Router */,
 				3B032CFF215037AA00B570F7 /* Info.plist */,
+				3B032CFE215037AA00B570F7 /* TestsFoundation.h */,
 			);
 			path = TestsFoundation;
 			sourceTree = "<group>";
@@ -240,6 +237,7 @@
 		3B0CEB9121504B6F00D07CFA /* API */ = {
 			isa = PBXGroup;
 			children = (
+				7D148646230B49DC003944A2 /* APIAccountNotificationFixture.swift */,
 				7DB0A1D321C1C90D009ABB40 /* APIAccountResultsFixture.swift */,
 				7D6C8C6A22EA0C5900E5ADD8 /* APIActivityFixture.swift */,
 				B1A32BDD2159A1D70071B41E /* APIAssignmentFixture.swift */,
@@ -313,15 +311,6 @@
 				3BDB8F3B22E663A2003D81C3 /* MockPageViewLogger.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		7D13C52722B9517700345253 /* UITestCase */ = {
-			isa = PBXGroup;
-			children = (
-				7D13C52422B94F5F00345253 /* UITestCase.swift */,
-				7D903C0722BBE80D009D9E9E /* UITestUser.swift */,
-			);
-			path = UITestCase;
 			sourceTree = "<group>";
 		};
 		7D47769621AF354400B441CE /* API */ = {
@@ -412,6 +401,7 @@
 				3B032CF7215037AA00B570F7 /* Frameworks */,
 				3B032CF8215037AA00B570F7 /* Headers */,
 				3B032CF9215037AA00B570F7 /* Resources */,
+				7D52D83922FCA09D00684932 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -466,12 +456,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7D52D83922FCA09D00684932 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --config ../.swiftlint.yml\n    swiftlint --config ../.swiftlint.yml --strict\nelse\n    echo \"warning: SwiftLint not installed, download --> `brew install swfitlint`\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3B032CF6215037AA00B570F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D13C52522B94F5F00345253 /* UITestCase.swift in Sources */,
 				9F10A66D22931C5B00E3360C /* UserSettingsFixture.swift in Sources */,
 				7D903C0E22BC133B009D9E9E /* LoginFindSchool.swift in Sources */,
 				B1911CEF21C84B1000F42F91 /* MockNotificationManager.swift in Sources */,
@@ -512,6 +522,7 @@
 				B171A10921B9E51F000325D3 /* MockAPI.swift in Sources */,
 				3B0CEB732150406400D07CFA /* GroupFixture.swift in Sources */,
 				3B0CEBA421504C2500D07CFA /* APIGroupFixture.swift in Sources */,
+				7D148647230B49DC003944A2 /* APIAccountNotificationFixture.swift in Sources */,
 				3B0CEB7E2150445100D07CFA /* TabFixture.swift in Sources */,
 				7DB0A1CE21C16D5A009ABB40 /* KeychainEntryFixture.swift in Sources */,
 				B19792F521767B830000369C /* ColorFixture.swift in Sources */,
@@ -540,7 +551,6 @@
 				3BAA4179218A3ACE00701E03 /* APIEnrollmentFixture.swift in Sources */,
 				B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */,
 				7D903C0C22BC132E009D9E9E /* LoginWeb.swift in Sources */,
-				7D903C0822BBE80D009D9E9E /* UITestUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +615,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -661,6 +672,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -699,7 +711,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -734,7 +745,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

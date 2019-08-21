@@ -33,7 +33,7 @@ class ModuleItemCell: UITableViewCell {
         didSet {
             nameLabel.text = item?.title
             iconView.image = item?.type?.icon
-            publishedIconView.published = item?.published == true
+            publishedIconView.published = item?.published
             indentConstraint.constant = CGFloat((item?.indent ?? 0)) * ModuleItemCell.IndentMultiplier
             dueLabel.isHidden = item?.dueAt == nil
             dueLabel.text = item?.dueAt.flatMap {

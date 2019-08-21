@@ -77,14 +77,14 @@ let promiseMiddleware = <S, A: Action>({ dispatch }: MiddlewareAPI<S, A>): Middl
           if (tracksAsyncActions) dispatch(rejected(action.type, error))
           return dispatch({ ...action, payload, error: true })
         }
-      )
+      ).catch(error => { console.error(error) })
       if (tracksAsyncActions) dispatch(pending(action.type))
-      next({
+      return next({
         ...action,
         pending: true,
       })
     } else {
-      next(action)
+      return next(action)
     }
   }
 }

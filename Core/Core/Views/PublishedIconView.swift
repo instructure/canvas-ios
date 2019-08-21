@@ -21,12 +21,17 @@ import Foundation
 public class PublishedIconView: IconView {
     public var published: Bool? {
         didSet {
-            if published == true {
+            switch published {
+            case true:
                 image = .icon(.publish, .solid)
                 tintColor = UIColor.named(.backgroundSuccess)
-            } else {
+            case false:
                 image = .icon(.no, .solid)
                 tintColor = UIColor.named(.ash)
+            case nil:
+                image = nil
+            default:
+                break
             }
         }
     }

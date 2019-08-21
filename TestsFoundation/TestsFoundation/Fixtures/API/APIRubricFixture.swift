@@ -63,7 +63,6 @@ extension APIRubricRating {
     }
 }
 
-
 extension APIRubricAssessment {
     public static func make(
         submissionID: String? = "1",

@@ -21,12 +21,12 @@ import XCTest
 
 class LoginDelegateTests: XCTestCase {
     class MockLogin: LoginDelegate {
-        var login: KeychainEntry?
-        var logout: KeychainEntry?
+        var login: LoginSession?
+        var logout: LoginSession?
 
         func openExternalURL(_ url: URL) {}
-        func userDidLogin(keychainEntry: KeychainEntry) { login = keychainEntry }
-        func userDidLogout(keychainEntry: KeychainEntry) { logout = keychainEntry }
+        func userDidLogin(session: LoginSession) { login = session }
+        func userDidLogout(session: LoginSession) { logout = session }
     }
 
     func testDefaults() {
@@ -40,25 +40,25 @@ class LoginDelegateTests: XCTestCase {
 
     func testUserDidStartActing() {
         let login = MockLogin()
-        login.userDidStartActing(as: KeychainEntry.make())
+        login.userDidStartActing(as: LoginSession.make())
         XCTAssertNotNil(login.login)
     }
 
     func testUserDidStopActing() {
         let login = MockLogin()
-        login.userDidStopActing(as: KeychainEntry.make())
+        login.userDidStopActing(as: LoginSession.make())
         XCTAssertNotNil(login.logout)
     }
 
     func testStartActing() {
         let login = MockLogin()
-        login.startActing(as: KeychainEntry.make())
+        login.startActing(as: LoginSession.make())
         XCTAssertNotNil(login.login)
     }
 
     func testStopActing() {
-        let original = KeychainEntry.make()
-        let acting = KeychainEntry.make(
+        let original = LoginSession.make()
+        let acting = LoginSession.make(
             baseURL: URL(string: "https://cgnu2.online")!,
             masquerader: original.baseURL.appendingPathComponent("users").appendingPathComponent(original.userID),
             userID: "7"
@@ -70,7 +70,7 @@ class LoginDelegateTests: XCTestCase {
     }
 
     func testStopActingNoOriginal() {
-        let acting = KeychainEntry.make(masquerader: URL(string: "https://cgnu2.online/users/7"))
+        let acting = LoginSession.make(masquerader: URL(string: "https://cgnu2.online/users/7"))
         let login = MockLogin()
         login.stopActing(as: acting, findOriginalFrom: [])
         XCTAssertNotNil(login.logout)
@@ -78,7 +78,7 @@ class LoginDelegateTests: XCTestCase {
     }
 
     func testStopActingNotActing() {
-        let acting = KeychainEntry.make()
+        let acting = LoginSession.make()
         let login = MockLogin()
         login.stopActing(as: acting, findOriginalFrom: [acting])
         XCTAssertNil(login.logout)

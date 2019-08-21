@@ -31,7 +31,6 @@ import * as template from '../../src/__templates__'
 import i18n from 'format-message'
 import setupI18n from '../../i18n/setup'
 import { shouldTrackAsyncActions } from '../../src/redux/middleware/redux-promise'
-import { enableAllFeaturesFlagsForTesting } from '@common/feature-flags'
 
 setupI18n('en')
 
@@ -46,7 +45,6 @@ for (const key of Object.keys(formats.time)) {
 
 shouldTrackAsyncActions(false)
 setSession(template.session())
-enableAllFeaturesFlagsForTesting()
 
 // import mockAsyncStorage from '@react-native-community/async-storage/jest/async-storage-mock'
 jest.mock('@react-native-community/async-storage', () => ({
@@ -133,6 +131,7 @@ NativeModules.RNSound = {
 
 NativeModules.NativeNotificationCenter = {
   postAsyncActionNotification: jest.fn(),
+  postNotification: jest.fn(),
 }
 
 NativeModules.TabBarItemCounts = {
@@ -143,11 +142,14 @@ NativeModules.TabBarItemCounts = {
 NativeModules.SettingsManager = {
   settings: {
     AppleLocale: 'en',
+    'ExperimentalFeature.allEnabled': true,
   },
+  setValues: jest.fn(),
 }
 
 NativeModules.Helm = {
   setScreenConfig: jest.fn(),
+  openInSafariViewController: jest.fn(() => Promise.resolve()),
   pushFrom: jest.fn(() => Promise.resolve()),
   popFrom: jest.fn(() => Promise.resolve()),
   present: jest.fn(() => Promise.resolve()),

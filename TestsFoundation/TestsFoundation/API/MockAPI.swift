@@ -22,7 +22,7 @@ import Core
 public class MockAPI: API {
     public var baseURL = URL(string: "https://cgnuonline-eniversity.edu")!
     public var accessToken: String? = "fhwdgads"
-    public var actAsUserID: String? = nil
+    public var actAsUserID: String?
 
     public var identifier: String? {
         return "mock-api"

@@ -206,12 +206,12 @@ class LoginWebPresenterTests: XCTestCase {
 extension LoginWebPresenterTests: LoginWebViewProtocol, LoginDelegate {
     func openExternalURL(_ url: URL) {}
 
-    func userDidLogin(keychainEntry: KeychainEntry) {
-        resultingAuthToken = keychainEntry.accessToken
+    func userDidLogin(session: LoginSession) {
+        resultingAuthToken = session.accessToken
         expectation.fulfill()
     }
 
-    func userDidLogout(keychainEntry: KeychainEntry) {}
+    func userDidLogout(session: LoginSession) {}
 
     func show(_ vc: UIViewController, sender: Any?) {
         // Loading is shown

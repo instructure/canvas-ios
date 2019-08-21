@@ -52,63 +52,9 @@
 	</dict>
 	<dict>
 		<key>name</key>
-		<string>Nimble</string>
-		<key>url</key>
-		<string>https://github.com/Quick/Nimble</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>Quick</string>
-		<key>url</key>
-		<string>https://github.com/Quick/Quick</string>
-	</dict>
-	<dict>
-		<key>name</key>
 		<string>Reactive Cocoa</string>
 		<key>url</key>
 		<string>https://github.com/ReactiveCocoa/ReactiveCocoa</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>Result</string>
-		<key>url</key>
-		<string>https://github.com/antitypical/Result</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>URITemplate</string>
-		<key>url</key>
-		<string>https://github.com/kylef/URITemplate.swift</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>JSTokenField</string>
-		<key>url</key>
-		<string>https://github.com/jasarien/JSTokenField</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>SimulatorStatusMagic</string>
-		<key>url</key>
-		<string>https://github.com/shinydevelopment/SimulatorStatusMagic</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>Google Analytics</string>
-		<key>url</key>
-		<string>https://github.com/googleanalytics/</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>GData</string>
-		<key>url</key>
-		<string>https://github.com/google/gdata-objectivec-client</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>UIView-DebugQuickLook</string>
-		<key>url</key>
-		<string>https://github.com/Inferis/UIView-DebugQuickLook</string>
 	</dict>
 	<dict>
 		<key>name</key>

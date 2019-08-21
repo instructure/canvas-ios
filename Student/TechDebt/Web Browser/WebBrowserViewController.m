@@ -130,7 +130,7 @@
     
     // Set up the error action sheet
     openInErrorSheet = [[CKActionSheetWithBlocks alloc] initWithTitle:NSLocalizedStringFromTableInBundle(@"No installed apps support opening this file", nil, bundle, @"Error message")];
-    [openInErrorSheet addButtonWithTitle:NSLocalizedStringFromTableInBundle(@"OK", nil, bundle, nil)];
+    [openInErrorSheet addButtonWithTitle:NSLocalizedStringFromTableInBundle(@"OK", nil, bundle, nil) handler: nil];
     
     if (self.request) {
         [self.request loadRequestInWebView:self.webView];
@@ -266,14 +266,7 @@
 - (IBAction)actionButtonTapped:(id)sender
 {
     NSBundle *bundle = [NSBundle bundleForClass:self.class];
-    if ([optionsActionSheet isVisible]) {
-        [optionsActionSheet dismissWithClickedButtonIndex:[optionsActionSheet cancelButtonIndex] animated:NO];
-    }
-    
-    if ([openInErrorSheet isVisible]) {
-        [openInErrorSheet dismissWithClickedButtonIndex:[openInErrorSheet cancelButtonIndex] animated:NO];
-    }
-
+    __weak __typeof__(self) weakSelf = self;
     [self.webView evaluateJavaScript:@"document.title" completionHandler:^(id result, NSError *error) {
         BOOL addedAtLeastOneButton = NO;
         self->optionsActionSheet = [[CKActionSheetWithBlocks alloc] initWithTitle:result];
@@ -301,7 +294,9 @@
                 BOOL presentedOpenInMenu = [weakDic presentOpenInMenuFromBarButtonItem:sender animated:YES];
 
                 if (presentedOpenInMenu == NO) {
-                    [localOpenInErrorSheet showFromBarButtonItem:sender animated:YES];
+                    localOpenInErrorSheet.modalPresentationStyle = UIModalPresentationPopover;
+                    localOpenInErrorSheet.popoverPresentationController.sourceView = sender;
+                    [localOpenInErrorSheet showfromViewController:weakSelf];
                 }
             }];
             addedAtLeastOneButton = YES;
@@ -317,7 +312,9 @@
             self->optionsActionSheet.title = NSLocalizedStringFromTableInBundle(@"There are no actions for this item", nil, bundle, @"Error message");
         }
 
-        [self->optionsActionSheet showFromBarButtonItem:sender animated:YES];
+        self->optionsActionSheet.modalPresentationStyle = UIModalPresentationPopover;
+        self->optionsActionSheet.popoverPresentationController.sourceView = sender;
+        [self->optionsActionSheet showfromViewController:self];
     }];
 }
 

@@ -45,6 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
         setupCrashlytics()
+        #if DEBUG
+            UITestHelpers.setup(self)
+        #endif
+
         CacheManager.resetAppIfNecessary()
         if hasFirebase {
             FirebaseApp.configure()
@@ -56,10 +60,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         UIApplication.shared.reactive.applicationIconBadgeNumber <~ TabBarBadgeCounts.applicationIconBadgeNumber
 
-        if let session = Keychain.mostRecentSession {
+        if let session = LoginSession.mostRecent {
             window?.rootViewController = LoadingViewController.create()
             window?.makeKeyAndVisible()
-            userDidLogin(keychainEntry: session)
+            userDidLogin(session: session)
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true)
             window?.makeKeyAndVisible()
@@ -70,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
 
-    func setup(session: KeychainEntry, wasReload: Bool = false) {
+    func setup(session: LoginSession, wasReload: Bool = false) {
         environment.userDidLogin(session: session)
         CoreWebView.keepCookieAlive(for: environment)
         if Locale.current.regionCode != "CA" {
@@ -85,12 +89,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         legacyClient.fetchCurrentUser().subscribeNext({ user in
             legacyClient.setValue(user, forKey: "currentUser")
             CanvasKeymaster.the().setup(with: legacyClient)
-            GetBrandVariables().fetch(environment: self.environment) { response, _, _ in
+            GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
                 NativeLoginManager.login(as: session, wasReload: wasReload)
             }
         }, error: { _ in DispatchQueue.main.async {
-            self.userDidLogout(keychainEntry: session)
+            self.userDidLogout(session: session)
         } })
     }
 
@@ -109,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         HelmManager.shared.onReactReload = {
             guard self.window?.rootViewController is RootTabBarController else { return }
-            guard let session = Keychain.mostRecentSession else {
+            guard let session = LoginSession.mostRecent else {
                 self.changeUser()
                 return
             }
@@ -122,8 +126,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             ErrorReporter.reportError(error.addingInfo(), from: self?.window?.rootViewController)
         }
     }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
         completionHandler([.alert, .sound])
     }
 
@@ -142,7 +150,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
-            let _ = notification["aps"] as? [String: AnyObject] {
+            notification["aps"] as? [String: AnyObject] != nil {
             handlePush(userInfo: notification, completionHandler: {})
         }
     }
@@ -160,8 +168,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             exit(EXIT_SUCCESS)
         }
     }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         StartupManager.shared.enqueueTask {
             guard let rootView = app.keyWindow?.rootViewController as? RootTabBarController, let tabViewControllers = rootView.viewControllers else { return }
             for (index, vc) in tabViewControllers.enumerated() {
@@ -171,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 } else {
                     navigationController = vc as? UINavigationController
                 }
-                
+
                 guard let navController = navigationController, let helmVC = navController.viewControllers.first as? HelmViewController else { break }
                 if helmVC.moduleName == url.path {
                     rootView.selectedIndex = index
@@ -179,7 +187,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     return
                 }
             }
-            
+
             RCTLinkingManager.application(app, open: url, options: options)
         }
         return true
@@ -187,7 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 }
 
 extension AppDelegate: CanvasAnalyticsHandler {
-    func handleEvent(_ name: String, parameters: [String : Any]?) {
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
         if hasFirebase {
             Analytics.logEvent(name, parameters: parameters)
         }
@@ -217,7 +225,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 
     func logout() {
         if let session = environment.currentSession {
-            userDidLogout(keychainEntry: session)
+            userDidLogout(session: session)
         }
     }
 
@@ -225,25 +233,25 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
-    func userDidLogin(keychainEntry: KeychainEntry) {
-        Keychain.addEntry(keychainEntry)
-        LocalizationManager.localizeForApp(UIApplication.shared, locale: keychainEntry.locale) {
-            setup(session: keychainEntry)
+    func userDidLogin(session: LoginSession) {
+        LoginSession.add(session)
+        LocalizationManager.localizeForApp(UIApplication.shared, locale: session.locale) {
+            setup(session: session)
         }
     }
 
-    func userDidStopActing(as keychainEntry: KeychainEntry) {
-        Keychain.removeEntry(keychainEntry)
-        guard environment.currentSession == keychainEntry else { return }
+    func userDidStopActing(as session: LoginSession) {
+        LoginSession.remove(session)
+        guard environment.currentSession == session else { return }
         NotificationKitController.deregisterPushNotifications { _ in }
         UIApplication.shared.applicationIconBadgeNumber = 0
-        environment.userDidLogout(session: keychainEntry)
+        environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
     }
 
-    func userDidLogout(keychainEntry: KeychainEntry) {
-        let wasCurrent = environment.currentSession == keychainEntry
-        userDidStopActing(as: keychainEntry)
+    func userDidLogout(session: LoginSession) {
+        let wasCurrent = environment.currentSession == session
+        userDidStopActing(as: session)
         if wasCurrent { changeUser() }
     }
 }
@@ -253,7 +261,7 @@ extension AppDelegate {
     @objc func setupCrashlytics() {
         guard !uiTesting else { return }
         guard hasFabric else {
-            NSLog("WARNING: Crashlytics was not properly initialized.");
+            NSLog("WARNING: Crashlytics was not properly initialized.")
             return
         }
 

@@ -62,7 +62,6 @@
     "react-native-on-layout": "^2.0.2",
     "react-native-progress": "^3.5.0",
     "react-native-search-bar": "^3.4.0",
-    "react-native-sfsafariviewcontroller": "skycocker/react-native-sfsafariviewcontroller",
     "react-native-sound": "^0.10.4",
     "react-native-status-bar-size": "^0.3.3",
     "react-native-test-utils": "^1.0.6",
@@ -138,20 +137,9 @@
     ],
     "coverageDirectory": "../../scripts/coverage/react-native",
     "coverageReporters": [
-      "json",
       "json-summary",
-      "lcov",
       "text-summary",
       "html"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 85,
-        "functions": 80,
-        "lines": 90,
-        "statements": 90
-      }
-    }
-  },
-  "snyk": true
+    ]
+  }
 }
