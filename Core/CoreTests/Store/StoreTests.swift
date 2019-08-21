@@ -357,11 +357,13 @@ class StoreTests: CoreTestCase {
         XCTAssertEqual(store.count, 1)
     }
 
-    func testSubscriptNilIfObjectDeleted() {
+    func testDeletedObjects() {
         let store = environment.subscribe(TestUseCase()) {}
         let course = Course.make()
         XCTAssertNotNil(store[0])
         databaseClient.delete(course)
+        XCTAssertEqual(store.numberOfSections, 1)
+        XCTAssertEqual(store.numberOfObjects(inSection: 0), 1)
         XCTAssertNil(store[0])
     }
 }
