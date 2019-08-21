@@ -31,7 +31,11 @@ export async function uploadMedia (uri: string, type: string, options: MediaUplo
   const session = await getMediaSession()
   const token = await getUploadToken(domain, session)
   await postUpload(uri, domain, session, token, type, options)
-  return getMediaID(domain, session, token, type)
+  let mediaID = await getMediaID(domain, session, token, type)
+  if (options.context && options.contextID) {
+    await completeUpload(mediaID, type, options.context, options.contextID)
+  }
+  return mediaID
 }
 
 // HELPERS
@@ -100,6 +104,30 @@ async function getMediaID (domain: string, session: string, token: string, type:
     },
   })
   return response.data.match(/<id>([^<]+)<\/id>/)[1]
+}
+
+async function completeUpload (id, type, context, contextID) {
+  let contextType
+  switch (context) {
+    case 'courses':
+      contextType = 'course'
+      break
+    case 'accounts':
+      contextType = 'account'
+      break
+    case 'users':
+      contextType = 'user'
+      break
+    case 'groups':
+      contextType = 'group'
+      break
+  }
+  let body = {
+    id,
+    type,
+    context_code: `${contextType}_${contextID}`,
+  }
+  await httpClient.post('media_objects', body)
 }
 
 // UTILS

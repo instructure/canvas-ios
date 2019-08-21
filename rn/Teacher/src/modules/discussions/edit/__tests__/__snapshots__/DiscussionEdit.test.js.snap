@@ -96,6 +96,8 @@ exports[`DiscussionEdit renders 1`] = `
         <RichTextEditor
           attachmentUploadPath="/courses/1/files"
           contentHeight={150}
+          context="courses"
+          contextID="1"
           defaultValue="Gather tribute or face my curse."
           keyboardAware={false}
           navigator={
@@ -275,6 +277,8 @@ exports[`DiscussionEdit renders new form 1`] = `
         <RichTextEditor
           attachmentUploadPath="/courses/1/files"
           contentHeight={150}
+          context="courses"
+          contextID="1"
           defaultValue={null}
           keyboardAware={false}
           navigator={
@@ -447,6 +451,8 @@ exports[`DiscussionEdit updates from props 1`] = `
         <RichTextEditor
           attachmentUploadPath="/courses/1/files"
           contentHeight={150}
+          context="courses"
+          contextID="1"
           defaultValue="Gather tribute or face my curse."
           keyboardAware={false}
           navigator={
@@ -626,6 +632,8 @@ exports[`DiscussionEdit updates with new props 1`] = `
         <RichTextEditor
           attachmentUploadPath="/courses/1/files"
           contentHeight={150}
+          context="courses"
+          contextID="1"
           defaultValue="Gather tribute or face my curse."
           keyboardAware={false}
           navigator={

@@ -22,7 +22,6 @@ import Foundation
 public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     var env = AppEnvironment.shared
     let database = UploadManager.shared.database
-    lazy var context = database.newBackgroundContext()
     lazy var urlSession = URLSessionAPI.delegateURLSession(.ephemeral, self, nil)
     var mediaAPI: API?
     var task: URLSessionTask?
@@ -31,11 +30,13 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     let url: URL
     let type: MediaCommentType
     var isUploading = false
+    let context: Context?
 
-    public init(type: MediaCommentType, url: URL, file: File? = nil) {
+    public init(type: MediaCommentType, url: URL, file: File? = nil, context: Context? = nil) {
         self.file = file
         self.type = type
         self.url = url
+        self.context = context
     }
 
     public func cancel() {
@@ -113,7 +114,17 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
             guard error == nil, let mediaID = data?.id, !mediaID.isEmpty else {
                 return self.callback(nil, error)
             }
-            self.callback(mediaID, nil)
+            self.completeUpload(mediaID: mediaID)
+        }
+    }
+
+    func completeUpload(mediaID: String) {
+        guard let context = context else {
+            return self.callback(mediaID, nil)
+        }
+        let request = PostCompleteMediaUploadRequest(mediaID: mediaID, context: context, type: type)
+        task = env.api.makeRequest(request) { response, _, error in
+            self.callback(response?.media_object.media_id, error)
         }
     }
 }

@@ -26,9 +26,10 @@ class RichContentEditorPresenterTests: CoreTestCase {
     var viewImage: (url: URL, placeholder: String)?
     var viewMedia: URL?
     var viewFiles: [File]?
+    var onLoadHTML: (() -> Void)?
     let filesContext = NSPersistentContainer.shared.viewContext
 
-    lazy var presenter = RichContentEditorPresenter(view: self, uploadTo: .myFiles)
+    lazy var presenter = RichContentEditorPresenter(view: self, context: ContextModel(.course, id: "1"), uploadTo: .myFiles)
 
     func testUpdate() throws {
         let file = File.make(batchID: presenter.batchID, removeURL: true, session: currentSession, in: filesContext)
@@ -79,9 +80,21 @@ class RichContentEditorPresenterTests: CoreTestCase {
         presenter.retry(URL(string: "/file.m4v")!)
         XCTAssertNil(viewMedia)
     }
+
+    func testLoadHTML() {
+        let expectation = XCTestExpectation(description: "loads html")
+        onLoadHTML = { expectation.fulfill() }
+        FeatureFlag.make(context: presenter.context, enabled: true)
+        presenter.viewIsReady()
+        wait(for: [expectation], timeout: 1)
+    }
 }
 
 extension RichContentEditorPresenterTests: RichContentEditorViewProtocol {
+    func loadHTML() {
+        onLoadHTML?()
+    }
+
     func showError(_ error: Error) {
         viewError = error
     }

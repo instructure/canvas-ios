@@ -33,12 +33,12 @@ public class RichContentEditorViewController: UIViewController {
     lazy var toolbar = RichContentToolbarView()
     public lazy var webView = CoreWebView(frame: .zero)
 
-    public static func create(env: AppEnvironment = .shared, uploadTo context: FileUploadContext?) -> RichContentEditorViewController {
+    public static func create(env: AppEnvironment = .shared, context: Context, uploadTo uploadContext: FileUploadContext?) -> RichContentEditorViewController {
         let controller = RichContentEditorViewController()
-        if let context = context {
-            controller.presenter = RichContentEditorPresenter(env: env, view: controller, uploadTo: context)
+        if let uploadContext = uploadContext {
+            controller.presenter = RichContentEditorPresenter(env: env, view: controller, context: context, uploadTo: uploadContext)
         }
-        controller.fileUploadContext = context
+        controller.fileUploadContext = uploadContext
         return controller
     }
 
@@ -58,18 +58,7 @@ public class RichContentEditorViewController: UIViewController {
         toolbar.controller = self
         webView.contentInputAccessoryView = toolbar
         webView.scrollView.keyboardDismissMode = .interactive
-        webView.loadHTMLString("""
-            <style>
-            :root {
-                --background-danger: \(UIColor.named(.backgroundDanger).hexString);
-                --background-darkest: \(UIColor.named(.backgroundDarkest).hexString);
-                --brand-link-color: \(Brand.shared.linkColor.ensureContrast(against: .white).hexString);
-                --brand-primary: \(Brand.shared.primary.ensureContrast(against: .white).hexString);
-                --text-dark: \(UIColor.named(.textDark).hexString);
-            }
-            </style>
-            <div id="content" contenteditable=\"true\" placeholder=\"\(placeholder)\">\(html ?? "")</div>
-        """)
+        presenter?.viewIsReady()
     }
 }
 
@@ -127,6 +116,14 @@ extension RichContentEditorViewController {
         let isUploading = state?["isUploading"] as? Bool ?? false
         delegate?.rce(self, canSubmit: !isEmpty && !isUploading)
     }
+
+    func setFeatureFlags() {
+        let featureFlags = presenter?.featureFlags.map { $0.name } ?? []
+        if let data = try? JSONSerialization.data(withJSONObject: featureFlags),
+            let flags = String(data: data, encoding: .utf8) {
+            webView.evaluateJavaScript("editor.featureFlags = \(flags)")
+        }
+    }
 }
 
 extension RichContentEditorViewController {
@@ -175,6 +172,7 @@ extension RichContentEditorViewController {
         case .link:
             toolbar.linkAction()
         case .ready:
+            setFeatureFlags()
             if let html = html { setHTML(html) }
         case .state:
             updateState(message.body as? [String: Any?])
@@ -186,6 +184,21 @@ extension RichContentEditorViewController {
 }
 
 extension RichContentEditorViewController: RichContentEditorViewProtocol {
+    public func loadHTML() {
+        webView.loadHTMLString("""
+            <style>
+            :root {
+                --background-danger: \(UIColor.named(.backgroundDanger).hexString);
+                --background-darkest: \(UIColor.named(.backgroundDarkest).hexString);
+                --brand-link-color: \(Brand.shared.linkColor.ensureContrast(against: .white).hexString);
+                --brand-primary: \(Brand.shared.primary.ensureContrast(against: .white).hexString);
+                --text-dark: \(UIColor.named(.textDark).hexString);
+            }
+            </style>
+            <div id="content" contenteditable=\"true\" placeholder=\"\(placeholder)\">\(html ?? "")</div>
+        """)
+    }
+
     func editLink(href: String?, text: String?) {
         backupRange()
         let alert = UIAlertController(title: NSLocalizedString("Link to Website URL", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
