@@ -51,14 +51,15 @@ class PostGradesViewController: UIViewController {
     @IBOutlet weak var allGradesPostedView: UIView!
     @IBOutlet weak var allGradesPostedLabel: DynamicLabel!
     @IBOutlet weak var allGradesPostedSubheader: DynamicLabel!
-    private var sections: [String] = []
     private var showSections: Bool = false
     private var sectionToggles: [Bool] = []
-    private var gradesCurrentlyHidden = 0
     private var visibility: PostToVisisbility = .everyone
+    var presenter: PostGradesPresenter!
+    var viewModel: PostGradesPresenter.ViewModel?
 
-    static func create() -> PostGradesViewController {
+    static func create(courseID: String, assignmentID: String) -> PostGradesViewController {
         let controller = loadFromStoryboard()
+        controller.presenter = PostGradesPresenter(courseID: courseID, assignmentID: assignmentID, view: controller)
         return controller
     }
 
@@ -72,6 +73,7 @@ class PostGradesViewController: UIViewController {
         allGradesPostedView.isHidden = true
         allGradesPostedLabel.text = NSLocalizedString("All Posted", comment: "")
         allGradesPostedSubheader.text = NSLocalizedString("All grades are currently posted.", comment: "")
+        presenter.viewIsReady()
     }
 
     func setupTableView() {
@@ -80,8 +82,7 @@ class PostGradesViewController: UIViewController {
     }
 
     func setupSections() {
-        sections = ["section A", "section B"]     // FIXME: remove these static sections once we have real sections
-        sectionToggles = Array(repeating: false, count: sections.count)
+        sectionToggles = Array(repeating: false, count: viewModel?.sections.count ?? 0)
     }
 
     @IBAction func actionUserDidClickPostGrades(_ sender: Any) {
@@ -91,7 +92,7 @@ class PostGradesViewController: UIViewController {
 
 extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Row.allCases.count +  (showSections ? sections.count : 0)
+        return Row.allCases.count +  (showSections ? (viewModel?.sections.count ?? 0) : 0)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -122,7 +123,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else {    //  sections
             let index = abs(indexPath.row - Row.allCases.count)
-            cell.textLabel?.text = sections[index]
+            cell.textLabel?.text = viewModel?.sections[index].name
             cell.selectionStyle = .none
             if let cell = cell as? SectionCell {
                 cell.toggle.removeTarget(self, action: #selector(actionDidToggleSection(toggle:)), for: UIControl.Event.valueChanged)
@@ -138,7 +139,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             let localized = NSLocalizedString("%d grades currently hidden", comment: "number of grades hidden")
-            return String(format: localized, gradesCurrentlyHidden)
+            return String(format: localized, viewModel?.gradesCurrentlyHidden ?? 0)
         }
         return nil
     }
@@ -192,5 +193,12 @@ extension PostGradesViewController: PostToVisibilitySelectionDelegate {
     func visibilityDidChange(visibility: PostGradesViewController.PostToVisisbility) {
         self.visibility = visibility
         tableView.reloadData()
+    }
+}
+
+extension PostGradesViewController: PostGradesViewProtocol {
+    func update(_ viewModel: PostGradesPresenter.ViewModel) {
+        self.viewModel = viewModel
+        setupSections()
     }
 }

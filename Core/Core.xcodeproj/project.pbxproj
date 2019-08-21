@@ -28,6 +28,7 @@
 		3B158CB822E241130039A568 /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CB722E241130039A568 /* KeychainTests.swift */; };
 		3B158CBA22E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CB922E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift */; };
 		3B158CBC22E267FF0039A568 /* PageViewSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CBB22E267FF0039A568 /* PageViewSessionTests.swift */; };
+		3B18E82D230C9F3D006CAF5C /* APIPostGradesRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18E82C230C9F3D006CAF5C /* APIPostGradesRequestable.swift */; };
 		3B300C852277981100743C59 /* RubricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B300C842277981100743C59 /* RubricTests.swift */; };
 		3B339B6A226FA9AF00D3283D /* ChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */; };
 		3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */; };
@@ -629,6 +630,7 @@
 		3B158CB722E241130039A568 /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		3B158CB922E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventViewControllerLoggingProtocolTests.swift; sourceTree = "<group>"; };
 		3B158CBB22E267FF0039A568 /* PageViewSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewSessionTests.swift; sourceTree = "<group>"; };
+		3B18E82C230C9F3D006CAF5C /* APIPostGradesRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPostGradesRequestable.swift; sourceTree = "<group>"; };
 		3B300C842277981100743C59 /* RubricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricTests.swift; sourceTree = "<group>"; };
 		3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleView.swift; sourceTree = "<group>"; };
 		3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatBubbleView.xib; sourceTree = "<group>"; };
@@ -2059,6 +2061,7 @@
 				7D80AC02212B445200C40ECE /* APIUser.swift */,
 				7D80AC04212B461F00C40ECE /* APIUserRequestable.swift */,
 				3B3467D32135B7B700F9BC2E /* ID.swift */,
+				3B18E82C230C9F3D006CAF5C /* APIPostGradesRequestable.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -3071,6 +3074,7 @@
 				B195DC512132257500797FE4 /* GetCourse.swift in Sources */,
 				7D29D2FF218A4FEA0036437C /* PSPDFAnnotationExtension.swift in Sources */,
 				7D80AC0E212B4D4100C40ECE /* APIFavorite.swift in Sources */,
+				3B18E82D230C9F3D006CAF5C /* APIPostGradesRequestable.swift in Sources */,
 				3B158CA922E1343D0039A568 /* PageViewEventController.swift in Sources */,
 				7DF9BF04215191840099026B /* BundleExtensions.swift in Sources */,
 				7DA057522193A30E00A3CFBB /* IconView.swift in Sources */,

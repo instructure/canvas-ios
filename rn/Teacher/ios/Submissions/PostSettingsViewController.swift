@@ -50,7 +50,7 @@ class PostSettingsViewController: UIViewController {
     }
 
     func configurePost() {
-        postGradesViewController = PostGradesViewController.create()
+        postGradesViewController = PostGradesViewController.create(courseID: "165", assignmentID: "1936")
         embed(postGradesViewController, in: scrollView) { child, _ in
             child.view.addConstraintsWithVFL("H:|[view(==superview)]")
             child.view.addConstraintsWithVFL("V:|[view(==superview)]|")
