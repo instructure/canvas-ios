@@ -155,7 +155,6 @@
 		B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		EE424B3722E8E72D00D083EE /* APIPageFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPageFixture.swift; sourceTree = "<group>"; };
 		EE424B3922E8E97100D083EE /* PageFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFixture.swift; sourceTree = "<group>"; };
-		F92C1A2922838400007E0942 /* AppFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				7DAC287D22B19D5C00C0B692 /* XCTest.framework */,
-				F92C1A2922838400007E0942 /* AppFramework.framework */,
 				3B0CEB6721503B5A00D07CFA /* Core.framework */,
 			);
 			name = Frameworks;
