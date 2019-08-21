@@ -3,7 +3,7 @@
 exports[`ImageSubmissionViewer renders 1`] = `
 <RCTScrollView
   maximumZoomScale={2}
-  minimumZoomScale={0.5}
+  minimumZoomScale={1}
   showsHorizontalScrollIndicator={true}
   showsVerticalScrollIndicator={true}
   style={
