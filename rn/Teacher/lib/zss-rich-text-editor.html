@@ -626,6 +626,11 @@ zss_editor.setHTML = html => {
   for (let video of document.querySelectorAll('video')) {
     video.outerHTML = videoPreviewHTML(video.dataset.media_comment_id)
   }
+
+  for (let mediaEmbed of document.querySelectorAll('div[id^="media_object_"]')) {
+    let mediaID = mediaEmbed.id.replace('media_object_', '')
+    mediaEmbed.outerHTML = videoPreviewHTML(mediaID)
+  }
 }
 
 zss_editor.insertHTML = html => {
