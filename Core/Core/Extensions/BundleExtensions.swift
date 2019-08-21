@@ -39,8 +39,8 @@ public extension Bundle {
         return nil
     }
 
-    var isStudentApp: Bool { return bundleIdentifier == Bundle.studentBundleID }
-    var isTeacherApp: Bool { return bundleIdentifier == Bundle.teacherBundleID }
+    var isStudentApp: Bool { return [Bundle.studentBundleID, Bundle.studentUITestsBundleID].contains(bundleIdentifier) }
+    var isTeacherApp: Bool { return [Bundle.teacherBundleID, Bundle.teacherUITestsBundleID].contains(bundleIdentifier) }
     var isParentApp: Bool { return bundleIdentifier == Bundle.parentBundleID }
     #if DEBUG
     var isStudentUITestsRunner: Bool { return bundleIdentifier == Bundle.studentUITestsBundleID }
