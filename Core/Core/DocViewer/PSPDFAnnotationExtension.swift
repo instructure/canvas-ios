@@ -183,7 +183,7 @@ private func pointsFrom(_ rect: CGRect) -> [[Double]] {
     return [ [ Double(rect.minX), Double(rect.minY) ], [ Double(rect.maxX), Double(rect.maxY) ] ]
 }
 
-public func interpolate(value: CGFloat, fromMin: CGFloat, fromMax: CGFloat, toMin: CGFloat, toMax: CGFloat) -> CGFloat {
+private func interpolate(value: CGFloat, fromMin: CGFloat, fromMax: CGFloat, toMin: CGFloat, toMax: CGFloat) -> CGFloat {
     let bounded = max(fromMin, min(value, fromMax))
     return (((toMax - toMin) / (fromMax - fromMin)) * (bounded - fromMin)) + toMin
 }
