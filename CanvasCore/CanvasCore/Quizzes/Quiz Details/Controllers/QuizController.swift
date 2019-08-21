@@ -37,7 +37,7 @@ class QuizController {
         self.quiz = quiz
     }
     
-    func refreshQuiz() {
+    func refreshQuiz(completionHandler: (() -> Void)? = nil) {
         service.getQuiz { [weak self] quizResult in
             if let quiz = quizResult.value?.content {
                 self?.quiz = quiz
@@ -45,6 +45,9 @@ class QuizController {
             self?.service.getSubmission { submissionResult in
                 self?.submission = submissionResult.value?.content
                 self?.quizUpdated(quizResult)
+                DispatchQueue.main.async {
+                    completionHandler?()
+                }
             }
         }
     }

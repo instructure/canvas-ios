@@ -24,10 +24,12 @@ class InboxTests: CoreUITestCase {
 
     func testCannotMessageEntireClassWhenDisabled() {
         TabBar.inboxTab.tap()
-        Inbox.newMessageButton.tap()
+        Inbox.newMessageButton.tapUntil {
+            NewMessage.selectCourseButton.exists
+        }
 
         // Course Selection
-        NewMessage.selectCourseButton.tapAt(.zero)
+        NewMessage.selectCourseButton.tap()
         MessageCourseSelection.course(id: "263").tap()
         NewMessage.addRecipientButton.tap()
 
@@ -40,10 +42,12 @@ class InboxTests: CoreUITestCase {
 
     func testCannotMessageIndividialsWhenDisabled() {
         TabBar.inboxTab.tap()
-        Inbox.newMessageButton.tap()
+        Inbox.newMessageButton.tapUntil {
+            NewMessage.selectCourseButton.exists
+        }
 
         // Course Selection
-        NewMessage.selectCourseButton.tapAt(.zero)
+        NewMessage.selectCourseButton.tap()
         MessageCourseSelection.course(id: "263").tap()
         NewMessage.addRecipientButton.tap()
 

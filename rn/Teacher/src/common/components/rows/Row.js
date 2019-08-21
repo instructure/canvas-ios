@@ -105,8 +105,9 @@ export default class Row extends Component<RowProps> {
 
     const titleStyles = [style.title, this.props.titleStyles].filter(Boolean)
     const subtitleStyles = [style.subtitle, this.props.subtitleStyles].filter(Boolean)
+    const RowView = this.props.onPress ? TouchableHighlight : View
 
-    return (<TouchableHighlight style={[topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayProps}>
+    return (<RowView style={[topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayProps}>
       <View style={[style.container, { backgroundColor }]}>
         { this.props.renderImage && this.props.renderImage() }
         { this.props.image && <Image style={[style.image, { tintColor: this.props.imageTint, height: imageSize.height, width: imageSize.width }]} source={this.props.image} /> }
@@ -132,7 +133,7 @@ export default class Row extends Component<RowProps> {
           </View>
         }
       </View>
-    </TouchableHighlight>)
+    </RowView>)
   }
 }
 

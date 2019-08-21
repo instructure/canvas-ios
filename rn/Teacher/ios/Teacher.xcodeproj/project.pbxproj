@@ -58,7 +58,6 @@
 		B1F4060522E2444D008FAFE6 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FF22E2444D008FAFE6 /* ReactiveSwift.framework */; };
 		B1F4060622E2444D008FAFE6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4060022E2444D008FAFE6 /* ReactiveCocoa.framework */; };
 		B1F4060722E2444D008FAFE6 /* ReactiveMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4060122E2444D008FAFE6 /* ReactiveMapKit.framework */; };
-		E8315D4622FCA01C003CD27C /* DemoLoginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8315D4522FCA01C003CD27C /* DemoLoginTest.swift */; };
 		E881134922FCA81B00354C59 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E881134B22FCA8AC00354C59 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F6221492580083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E881134C22FCA8B100354C59 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F7221492580083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -280,7 +279,6 @@
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E8315D3622FC9E60003CD27C /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8315D3A22FC9E60003CD27C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8315D4522FCA01C003CD27C /* DemoLoginTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoLoginTest.swift; sourceTree = "<group>"; };
 		E8A2FCAA23048AF80070B732 /* TestsFromCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsFromCore.swift; sourceTree = "<group>"; };
 		E8F6CFFE23045A01004347D9 /* CoreUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -495,19 +493,10 @@
 		E8315D3722FC9E60003CD27C /* TeacherUITests */ = {
 			isa = PBXGroup;
 			children = (
-				E8315D4422FCA009003CD27C /* Login */,
 				E8315D3A22FC9E60003CD27C /* Info.plist */,
 				E8A2FCAA23048AF80070B732 /* TestsFromCore.swift */,
 			);
 			path = TeacherUITests;
-			sourceTree = "<group>";
-		};
-		E8315D4422FCA009003CD27C /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				E8315D4522FCA01C003CD27C /* DemoLoginTest.swift */,
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -894,7 +883,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8315D4622FCA01C003CD27C /* DemoLoginTest.swift in Sources */,
 				E8A2FCAB23048AF80070B732 /* TestsFromCore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1057,7 +1045,6 @@
 					"$(SRCROOT)/../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1085,7 +1072,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Teacher/bridging-header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1121,7 +1107,6 @@
 					"$(SRCROOT)/../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1147,7 +1132,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Teacher/bridging-header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1203,6 +1187,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1251,6 +1236,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1273,7 +1259,6 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1286,7 +1271,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teacher.app/Teacher";
 			};
 			name = Debug;
@@ -1310,7 +1294,6 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1320,7 +1303,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teacher.app/Teacher";
 			};
 			name = Release;
@@ -1340,7 +1322,6 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1353,7 +1334,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Teacher;
 			};
 			name = Debug;
@@ -1374,7 +1354,6 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1384,7 +1363,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Teacher;
 			};
 			name = Release;

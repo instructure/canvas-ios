@@ -133,6 +133,17 @@ class RouterTests: XCTestCase {
         XCTAssertNotNil(mockView.shown)
     }
 
+    func testRouteApiV1() {
+        let mockView = MockViewController()
+        let router = Router(routes: [
+            RouteHandler("/somewhere", name: "somewhere") { _, _ in
+                return UIViewController()
+            },
+        ])
+        router.route(to: "/api/v1/somewhere", from: mockView)
+        XCTAssertNotNil(mockView.shown)
+    }
+
     func testMatchFallback() {
         let router = Router(routes: [
             RouteHandler("/somewhere", name: "somewhere") { _, _ in

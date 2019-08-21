@@ -16,25 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+import Foundation
 @testable import Core
-@testable import CoreUITests
 
-class NotificationsListTests: CoreUITestCase {
-    override var user: UITestUser? { return nil }
-
-    func testNotificationItemsDisplayed() {
-        mockBaseRequests()
-        mockEncodableRequest("users/self/activity_stream?per_page=99", value: [
-            APIActivity.make(),
-            APIActivity.make(id: "2", title: "Another Notification"),
-        ])
-
-        logIn()
-        TabBar.notificationsTab.tap()
-
-        app.find(labelContaining: "Assignment Created").waitToExist()
-        app.find(labelContaining: "Another Notification").waitToExist()
+extension APIAccountNotification {
+    public static func make(
+        end_at: Date? = nil,
+        icon: AccountNotificationIcon = .warning,
+        id: ID = "1",
+        message: String = "The financial aid office is closed on Tuesdays.",
+        start_at: Date = Date(),
+        subject: String = "Financial Aid"
+    ) -> APIAccountNotification {
+        return APIAccountNotification(
+            end_at: end_at,
+            icon: icon,
+            id: id,
+            message: message,
+            start_at: start_at,
+            subject: subject
+        )
     }
 }

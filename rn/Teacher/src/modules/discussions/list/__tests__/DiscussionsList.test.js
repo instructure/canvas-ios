@@ -205,7 +205,7 @@ describe('DiscussionsList', () => {
   it('navigates to new discussion form', () => {
     props.navigator.show = jest.fn()
     props.contextID = '1'
-    const addBtn: any = explore(render(props).toJSON()).selectRightBarButton('discussions.list.add.button')
+    const addBtn: any = explore(render(props).toJSON()).selectRightBarButton('DiscussionList.newButton')
     addBtn.action()
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/new', { modal: true, modalPresentationStyle: 'formsheet' })
   })

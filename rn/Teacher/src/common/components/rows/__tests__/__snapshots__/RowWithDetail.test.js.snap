@@ -3,14 +3,8 @@
 exports[`Render row with detail label 1`] = `
 <View
   accessibilityLabel="Row with a switch in it!, this is a detail label"
-  accessible={true}
-  isTVSelectable={true}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
+  accessibilityTraits={Array []}
+  onPress={[Function]}
   style={
     Array [
       undefined,

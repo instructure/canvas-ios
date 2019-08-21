@@ -69,13 +69,13 @@ const errorHandlerMiddleware: MiddlewareAPI = () => {
           }
           next(action)
         })
-        return // Bail out of this because of the promise. Next will be called after the promise has finished
+        return action // Bail out of this because of the promise. Next will be called after the promise has finished
       } else {
         if (action.payload.handlesError) return next(action)
         showGlobalErrorAlertIfNecessary(error)
       }
     }
-    next(action)
+    return next(action)
   }
 }
 
