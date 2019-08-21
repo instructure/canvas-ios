@@ -168,8 +168,7 @@ class SubmissionCommentsTests: StudentUITestCase {
         SubmissionComments.audioCellPlayPauseButton(commentID: "2").tap()
     }
 
-    // Skipped since it fails on bitrise right now.
-    func xtestAudioRecording() {
+    func testAudioRecording() {
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
         mockData(GetMediaServiceRequest(), value: APIMediaService(domain: "canvas.instructure.com"))
         mockData(PostMediaSessionRequest(), value: APIMediaSession(ks: "k"))
@@ -192,7 +191,6 @@ class SubmissionCommentsTests: StudentUITestCase {
             ), ]
         ))
 
-        logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.drawerGripper.tap()
 
