@@ -21,7 +21,6 @@
 import React, { Component } from 'react'
 import {
   StyleSheet,
-  WebView,
   NativeModules,
   Clipboard,
   I18nManager,
@@ -30,6 +29,7 @@ import {
 import isEqual from 'lodash/isEqual'
 import RNFS from 'react-native-fs'
 import canvas from './../../../canvas-api'
+import CanvasWebView from '../CanvasWebView'
 
 const { NativeFileSystem } = NativeModules
 
@@ -72,7 +72,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
     getFile: canvas.getFile,
   }
 
-  webView: ?WebView
+  webView: ?CanvasWebView
   showingLinkModal: boolean
   onHTML: ?((string) => void)
 
@@ -90,16 +90,15 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
 
   render () {
     return (
-      <WebView
-        source={{ html: this.state.source || '' }}
+      <CanvasWebView
+        source={require('../../../../lib/zss-rich-text-editor.html')}
         ref={webView => { this.webView = webView }}
+        onFinishedLoading={this._onLoad}
         onMessage={this._onMessage}
-        onLoad={this._onLoad}
         scalesPageToFit={true}
         scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
         style={styles.editor}
         hideKeyboardAccessoryView={true}
-        useWebKit
       />
     )
   }
@@ -117,7 +116,7 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   insertLink = () => {
     this.trigger(`
       var selection = getSelection().toString();
-      postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
+      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
     `)
   }
 
@@ -199,14 +198,18 @@ export default class ZSSRichTextEditor extends Component<Props, State> {
   trigger = async (js: string) => {
     if (!this.webView) return
     try {
-      await this.webView.injectJavaScript(js)
+      await this.webView.evaluateJavaScript(js)
     } catch (e) {}
+  }
+
+  setFeatureFlags = (flags) => {
+    this.trigger(`zss_editor.setFeatureFlags("${flags.join(',')}")`)
   }
 
   // PRIVATE
 
   _onMessage = (event) => {
-    const message = JSON.parse(event.nativeEvent.data)
+    const message = JSON.parse(event.body)
     switch (message.type) {
       case 'CALLBACK':
         this._handleItemsCallback(message.data)

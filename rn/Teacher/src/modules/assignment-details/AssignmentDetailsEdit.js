@@ -265,6 +265,8 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
       placeholder: i18n('Description'),
       showToolbar: 'always',
       attachmentUploadPath: `/courses/${this.props.courseID}/files`,
+      context: 'courses',
+      contextID: this.props.courseID,
     })
   }
 
@@ -286,9 +288,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
   }
 
   updateFromInput (key: string, value: any) {
-    const assignment = this.state.assignment
-    assignment[key] = value
-    this.setState({ assignment })
+    this.setState({ assignment: { ...this.state.assignment, [key]: value } })
   }
 
   defaultValueForInput (key: string): string {

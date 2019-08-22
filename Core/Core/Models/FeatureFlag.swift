@@ -17,8 +17,15 @@
 //
 
 import Foundation
+import CoreData
 
-public struct FileUploadTarget: Codable, Equatable {
-    public let upload_url: URL
-    public let upload_params: [String: String?]
+public class FeatureFlag: NSManagedObject {
+    @NSManaged public private(set) var canvasContextID: String?
+    @NSManaged public var name: String
+    @NSManaged public var enabled: Bool
+
+    public var context: Context? {
+        get { return canvasContextID.flatMap { ContextModel(canvasContextID: $0) } }
+        set { canvasContextID = newValue?.canvasContextID }
+    }
 }

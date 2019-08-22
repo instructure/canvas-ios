@@ -18,7 +18,27 @@
 
 import Foundation
 
-public struct FileUploadTarget: Codable, Equatable {
-    public let upload_url: URL
-    public let upload_params: [String: String?]
+public struct GraphQLBody: Codable, Equatable {
+    let query: String
+}
+
+protocol APIGraphQLRequestable: APIRequestable {
+    var query: String? { get }
+}
+
+extension APIGraphQLRequestable {
+    public var method: APIMethod {
+        return .post
+    }
+    public var path: String {
+        return "/api/graphql"
+    }
+
+    public var body: GraphQLBody? {
+        if let query = query {
+            return GraphQLBody(query: query)
+        }
+        return nil
+    }
+
 }

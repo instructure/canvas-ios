@@ -17,8 +17,21 @@
 //
 
 import Foundation
+import CoreData
+@testable import Core
 
-public struct FileUploadTarget: Codable, Equatable {
-    public let upload_url: URL
-    public let upload_params: [String: String?]
+extension FeatureFlag {
+    @discardableResult
+    public static func make(
+        context: Context = ContextModel(.course, id: "1"),
+        name: String = "feature_flag",
+        enabled: Bool = true,
+        in managedContext: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> FeatureFlag {
+        let model: FeatureFlag = managedContext.insert()
+        model.context = context
+        model.name = name
+        model.enabled = enabled
+        return model
+    }
 }

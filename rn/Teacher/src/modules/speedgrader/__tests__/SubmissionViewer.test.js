@@ -23,7 +23,6 @@ import React from 'react'
 import SubmissionViewer from '../SubmissionViewer'
 import renderer from 'react-test-renderer'
 import setProps from '../../../../test/helpers/setProps'
-import explore from '../../../../test/helpers/explore'
 
 const templates = {
   ...require('../../../__templates__/submissions'),
@@ -286,14 +285,15 @@ describe('SubmissionViewer', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('renders an image using the ImageSubmissionViewer', () => {
+  it('renders heic', () => {
+    let url = 'https://fillmurray.com/200/200.heic'
     let sub = {
       ...defaultSub,
       submission: {
-        submission_type: 'online_text_entry',
-        body: '<p>Form Voltron</p>',
+        attempt: 1,
+        submission_type: 'online_upload',
         attachments: [
-          { mime_class: 'image', url: 'https://fillmurray.com/200/200' },
+          { mime_class: 'image', url, 'content-type': 'image/heic' },
         ],
       },
     }
@@ -308,11 +308,10 @@ describe('SubmissionViewer', () => {
       drawerInset: 0,
     }
 
-    let tree = renderer.create(
-      <SubmissionViewer {...props} />
-    ).toJSON()
-
-    expect(explore(tree).selectByType('ImageSubmissionViewer')).not.toBeNull()
+    let tree = shallow(<SubmissionViewer {...props} />)
+    console.log(tree.debug())
+    let viewer = tree.find('ImageSubmissionViewer')
+    expect(viewer.prop('attachment').url).toEqual(url)
   })
 
   it('renders a media submission', () => {

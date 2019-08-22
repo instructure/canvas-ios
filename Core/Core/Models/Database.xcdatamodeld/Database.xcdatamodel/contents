@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18G87" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
         <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="courseID" attributeType="String" syncable="YES"/>
@@ -101,6 +101,11 @@
         <attribute name="arc" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FeatureFlag" representedClassName="Core.FeatureFlag" syncable="YES">
+        <attribute name="canvasContextID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="enabled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="File" representedClassName="Core.File" syncable="YES">
         <attribute name="assignmentID" optional="YES" attributeType="String" syncable="YES"/>
@@ -427,5 +432,6 @@
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
     </elements>
 </model>

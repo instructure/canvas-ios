@@ -37,6 +37,6 @@ export function submissionTypes (): { [string]: string } {
 }
 
 export function submissionTypeIsOnline (submissionType: SubmissionType): boolean {
-  return submissionType !== 'on_paper' && submissionType !== 'none'
+  return submissionType !== 'on_paper' && submissionType !== 'not_graded' && submissionType !== 'none'
 }
 

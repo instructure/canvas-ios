@@ -200,6 +200,14 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
                     controller.view.accessibilityIdentifier = "SubmissionDetails.mediaPlayer"
                     return controller
                 default:
+                    if attachment.contentType == "image/heic" {
+                        let imageView = UIImageView()
+                        imageView.contentMode = .scaleAspectFit
+                        imageView.load(url: url)
+                        let controller = UIViewController()
+                        controller.view = imageView
+                        return controller
+                    }
                     let controller = CoreWebViewController()
                     controller.webView.accessibilityIdentifier = "SubmissionDetails.webView"
                     controller.webView.load(URLRequest(url: url))

@@ -75,9 +75,12 @@ extension PSPDFAnnotation {
         case .ink:
             let ink = PSPDFInkAnnotation()
             ink.lines = apiAnnotation.inklist?.gestures.map { $0.map { (point: APIDocViewerInkPoint) -> NSValue in
-                let intensity = interpolate(value: CGFloat(point.width ?? 1), fromMin: 1, fromMax: 3, toMin: 0.06, toMax: 1)
-                return NSValue.pspdf_value(with: PSPDFDrawingPoint(location: CGPoint(x: point.x, y: point.y), intensity: intensity))
+                let drawingPoint = PSPDFDrawingPointFromCGPoint(CGPoint(x: point.x, y: point.y))
+                return NSValue.pspdf_value(with: drawingPoint)
             } }
+            if let width = apiAnnotation.width {
+                ink.lineWidth = CGFloat(width)
+            }
             annotation = ink
         case .square:
             let square = PSPDFSquareAnnotation()
@@ -85,7 +88,9 @@ extension PSPDFAnnotation {
             annotation = square
         }
 
-        annotation.boundingBox = apiAnnotation.rect.flatMap(rectFrom) ?? .zero
+        let boundingBox = apiAnnotation.rect.flatMap(rectFrom) ?? .zero
+        // Don't transform lines so that we match web
+        annotation.setBoundingBox(boundingBox, transform: false, includeOptional: false)
         annotation.color = UIColor(hexString: apiAnnotation.color)
         annotation.name = apiAnnotation.id
         annotation.user = apiAnnotation.user_id
@@ -122,9 +127,8 @@ extension PSPDFAnnotation {
             let lines = (self as? PSPDFInkAnnotation)?.lines ?? []
             inklist = APIDocViewerInklist(gestures: lines.map { simplify($0.map { (value: NSValue) -> APIDocViewerInkPoint in
                 let point = value.pspdf_drawingPointValue
-                let width = interpolate(value: point.intensity, fromMin: 0.06, fromMax: 1, toMin: 1, toMax: 3)
-                return APIDocViewerInkPoint(x: Double(point.location.x), y: Double(point.location.y), width: Double(width), opacity: 1)
-            }) })
+                return APIDocViewerInkPoint(x: Double(point.location.x), y: Double(point.location.y), width: Double(self.lineWidth), opacity: 1)
+            }, within: 0.5) })
         case is PSPDFSquareAnnotation:
             type = .square
         case is DocViewerCommentReplyAnnotation:
@@ -156,7 +160,7 @@ extension PSPDFAnnotation {
             rect: pointsFrom(boundingBox),
             font: fontName.flatMap { "\(Int(fontSize))pt \($0)" },
             inklist: inklist,
-            width: type == .square ? Double(lineWidth) : nil
+            width: Double(lineWidth)
         )
     }
 }
