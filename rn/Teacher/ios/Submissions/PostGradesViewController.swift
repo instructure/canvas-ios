@@ -75,8 +75,8 @@ class PostGradesViewController: UIViewController {
     }
 
     func setupTableView() {
-        tableView.register(SectionCell.self, forCellReuseIdentifier: String(describing: SectionCell.self))
-        tableView.register(PostToCell.self, forCellReuseIdentifier: String(describing: PostToCell.self))
+        tableView.registerCell(SectionCell.self)
+        tableView.registerCell(PostToCell.self)
     }
 
     func setupSections() {

@@ -27,4 +27,11 @@ class UITableViewExtensionsTests: XCTestCase {
         view.register(Cell.self, forCellReuseIdentifier: "Cell")
         XCTAssertNoThrow(view.dequeue(for: IndexPath(row: 0, section: 0)) as Cell)
     }
+
+    func tsetRegister() {
+        let table = UITableView(frame: .zero)
+        table.registerCell(Cell.self)
+        let cell = table.dequeueReusableCell(withIdentifier: "Cell") as? Cell
+        XCTAssertNotNil(cell)
+    }
 }
