@@ -29,8 +29,8 @@ public struct APIPostPolicyInfo: Codable {
 
     public init(from decoder: Decoder) throws {
         let rawResponse = try APIPostPolicyInfoRawServerResponse(from: decoder)
-        sections = rawResponse.data.course.sectionsConnection.nodes
-        submissions = rawResponse.data.assignment.submissionsConnection.nodes
+        sections = rawResponse.data.course.sections.nodes
+        submissions = rawResponse.data.assignment.submissions.nodes
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -67,11 +67,11 @@ private struct APIPostPolicyInfoRawServerResponse: Decodable {
     }
 
     struct Course: Decodable {
-        var sectionsConnection: Sections
+        var sections: Sections
     }
 
     struct Assignment: Decodable {
-        var submissionsConnection: Submissions
+        var submissions: Submissions
     }
 
     struct Submissions: Decodable {

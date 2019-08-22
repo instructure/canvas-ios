@@ -39,4 +39,49 @@ class APIPostPolicyInfoTests: XCTestCase {
         let node = APIPostPolicyInfo.SubmissionNode(score: 0.5, excused: false, state: "graded", postedAt: Date())
         XCTAssertFalse(node.isHidden)
     }
+
+    func testDecode() {
+        let str = """
+        {
+            "data": {
+                "course": {
+                    "sections": {
+                        "nodes": [{
+                            "id": "1",
+                            "name": "Quiz Questions"
+                        }]
+                    }
+                },
+                "assignment": {
+                    "submissions": {
+                        "nodes": [{
+                            "score": 0.5,
+                            "excused": false,
+                            "state": "graded",
+                            "postedAt": "2019-08-22T07:28:44-06:00"
+                        }]
+                    }
+                }
+            }
+        }
+        """
+        let data = str.data(using: .utf8)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let model = try? decoder.decode(APIPostPolicyInfo.self, from: data!)
+
+        XCTAssertNotNil(model)
+        XCTAssertEqual(model?.sections.count, 1)
+        XCTAssertEqual(model?.submissions.count, 1)
+
+        let section = model?.sections.first
+        XCTAssertEqual(section?.name, "Quiz Questions")
+        XCTAssertEqual(section?.id, "1")
+
+        let submission = model?.submissions.first
+        XCTAssertEqual(submission?.score, 0.5)
+        XCTAssertEqual(submission?.state, "graded")
+        XCTAssertEqual(submission?.excused, false)
+        XCTAssertEqual(submission?.postedAt, Date(fromISOString: "2019-08-22T07:28:44-06:00"))
+    }
 }

@@ -61,7 +61,7 @@ public struct GetAssignmentPostPolicyInfoRequest: GraphqlRequestable {
         return """
         {
             course(id: "\(courseID)") {
-                sectionsConnection {
+                sections: sectionsConnection {
                   nodes {
                     id
                     name
@@ -69,7 +69,7 @@ public struct GetAssignmentPostPolicyInfoRequest: GraphqlRequestable {
                 }
               }
               assignment(id: "\(assignmentID)") {
-                submissionsConnection {
+                submissions: submissionsConnection {
                   nodes {
                     score
                     excused
