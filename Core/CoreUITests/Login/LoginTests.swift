@@ -117,6 +117,7 @@ class LoginTests: CoreUITestCase {
             ])
         }
 
+        LoginStart.findSchoolButton.waitToExist()
         XCTAssertEqual(LoginStart.findSchoolButton.label, "Log In")
         XCTAssertFalse(LoginStart.canvasNetworkButton.isVisible)
         LoginStart.findSchoolButton.tap()
@@ -125,6 +126,6 @@ class LoginTests: CoreUITestCase {
         LoginWeb.passwordField.typeText(user.password)
         LoginWeb.logInButton.tap()
 
-        Dashboard.coursesLabel.waitToExist()
+        homeScreen.waitToExist()
     }
 }
