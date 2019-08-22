@@ -369,7 +369,7 @@
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="niV-Ke-SwN" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="400" y="0.0" width="50" height="44"/>
-                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.imageButton"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.cameraButton"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="3p9-jL-niu"/>
                                                 <constraint firstAttribute="height" constant="44" id="OmH-cS-fvS"/>
@@ -385,7 +385,7 @@
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvG-nJ-iI7" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                             <rect key="frame" x="450" y="0.0" width="50" height="44"/>
-                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.imageButton"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="RichContentToolbar.libraryButton"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="Pf8-SH-Jpl"/>
                                                 <constraint firstAttribute="width" constant="50" id="fb0-IO-EeS"/>
