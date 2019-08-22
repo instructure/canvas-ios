@@ -21,7 +21,7 @@ import XCTest
 
 class APIGraphqlRequestableTests: XCTestCase {
 
-    struct MockRequest: APIGraphqlRequestable {
+    struct MockRequest: APIGraphQLRequestable {
         typealias Response = APINoContent
 
         var query: String? {

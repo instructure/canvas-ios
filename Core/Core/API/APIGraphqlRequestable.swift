@@ -22,11 +22,11 @@ public struct GraphqlBody: Codable, Equatable {
     let query: String
 }
 
-protocol APIGraphqlRequestable: APIRequestable {
+protocol APIGraphQLRequestable: APIRequestable {
     var query: String? { get }
 }
 
-extension APIGraphqlRequestable {
+extension APIGraphQLRequestable {
     public var method: APIMethod {
         return .post
     }

@@ -19,8 +19,8 @@
 import Foundation
 
 public struct APIPostPolicyInfo: Codable {
-    public var sections: [SectionNode]
-    public var submissions: [SubmissionNode]
+    public let sections: [SectionNode]
+    public let submissions: [SubmissionNode]
 
     public init(sections: [SectionNode], submissions: [SubmissionNode]) {
         self.sections = sections
@@ -42,15 +42,15 @@ public struct APIPostPolicyInfo: Codable {
     }
 
     public struct SectionNode: Decodable {
-        public var id: String
-        public var name: String
+        public let id: String
+        public let name: String
     }
 
     public struct SubmissionNode: Decodable {
-        public var score: Double?
-        public var excused: Bool
-        public var state: String
-        public var postedAt: Date?
+        public let score: Double?
+        public let excused: Bool
+        public let state: String
+        public let postedAt: Date?
         public var isGraded: Bool {
             return ( score != nil && state == "graded" ) || excused
         }
