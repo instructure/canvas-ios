@@ -233,6 +233,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
         <ToolTip ref={this.captureToolTip} />
         <Header
           closeModal={this.donePressed}
+          assignmentSubmissionTypes={this.props.assignmentSubmissionTypes}
           submissionProps={this.props.submissionProps}
           submissionID={this.props.submissionID}
           assignmentID={this.props.assignmentID}

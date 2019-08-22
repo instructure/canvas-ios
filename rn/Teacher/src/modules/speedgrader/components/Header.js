@@ -33,6 +33,7 @@ import type {
 import SubmissionStatusLabel from '../../submissions/list/SubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
 import { isAssignmentAnonymous } from '../../../common/anonymous-grading'
+import { submissionTypeIsOnline } from '@common/submissionTypes'
 
 export class Header extends Component<HeaderProps, State> {
   state: State = {
@@ -76,6 +77,7 @@ export class Header extends Component<HeaderProps, State> {
       action = this.showGroup
       testID = 'header.groupList.button'
     }
+    const onlineSubmissionType = this.props.assignmentSubmissionTypes.every(submissionTypeIsOnline)
 
     return (
       <View style={styles.profileContainer}>
@@ -95,7 +97,10 @@ export class Header extends Component<HeaderProps, State> {
               </View>
               <View style={styles.nameContainer}>
                 <Text style={styles.name} accessibilityTraits='header'>{name}</Text>
-                <SubmissionStatusLabel status={sub.status} />
+                <SubmissionStatusLabel
+                  status={sub.status}
+                  onlineSubmissionType={onlineSubmissionType}
+                />
               </View>
             </View>
           </TouchableHighlight>
@@ -182,6 +187,7 @@ type RouterProps = {
   userID: string,
   submissionID: ?string,
   submissionProps: SubmissionDataProps,
+  assignmentSubmissionTypes: SubmissionType[],
   closeModal: Function,
   style?: Object,
 }
