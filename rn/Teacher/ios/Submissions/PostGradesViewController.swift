@@ -114,7 +114,6 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
                     cell.textLabel?.text = NSLocalizedString("Specific Sections", comment: "")
                     cell.selectionStyle = .none
                     if let cell = cell as? SectionCell {
-                        cell.toggle.removeTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
                         cell.toggle.isOn = showSections
                         cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
                     }
@@ -125,7 +124,6 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = sections[index]
             cell.selectionStyle = .none
             if let cell = cell as? SectionCell {
-                cell.toggle.removeTarget(self, action: #selector(actionDidToggleSection(toggle:)), for: UIControl.Event.valueChanged)
                 cell.toggle.isOn = sectionToggles[index]
                 cell.toggle.tag = index
                 cell.toggle.addTarget(self, action: #selector(actionDidToggleSection(toggle:)), for: UIControl.Event.valueChanged)
