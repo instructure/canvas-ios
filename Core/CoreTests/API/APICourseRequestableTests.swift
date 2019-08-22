@@ -32,7 +32,6 @@ class APICourseRequestableTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "total_scores"),
             URLQueryItem(name: "state[]", value: "available"),
             URLQueryItem(name: "state[]", value: "completed"),
-            URLQueryItem(name: "state[]", value: "unpublished"),
             URLQueryItem(name: "per_page", value: "10"),
         ])
         XCTAssertEqual(GetCoursesRequest(state: [.available, .deleted], perPage: 20).queryItems, [

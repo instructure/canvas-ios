@@ -25,7 +25,7 @@ public class GetCourses: CollectionUseCase {
     public let scope: Scope
     public let cacheKey: String? = "get-courses"
 
-    public init(showFavorites: Bool = false, state: [GetCoursesRequest.State]? = nil, perPage: Int = 10) {
+    public init(showFavorites: Bool = false, state: [GetCoursesRequest.State] = GetCoursesRequest.State.defaults, perPage: Int = 10) {
         request = GetCoursesRequest(state: state, perPage: perPage)
         scope = showFavorites ?
             .where(#keyPath(Course.isFavorite), equals: true, orderBy: #keyPath(Course.name)) :
