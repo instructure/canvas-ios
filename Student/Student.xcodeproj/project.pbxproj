@@ -360,6 +360,7 @@
 		787BAAE0215445BB002D0381 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787BAADF215445BB002D0381 /* UserInfoTableViewCell.swift */; };
 		78F0DFDE21A311530099D5A8 /* ToDoEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0DFDD21A311530099D5A8 /* ToDoEmptyView.swift */; };
 		7D14864E230EF4AF003944A2 /* TextSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14864D230EF4AF003944A2 /* TextSubmissionTests.swift */; };
+		7D148654230F0EAF003944A2 /* SubmissionButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D148653230F0EAF003944A2 /* SubmissionButtonTests.swift */; };
 		7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
 		7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D52D8A922FCD4F500684932 /* CKUploadProgressToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D52D8A822FCD4F500684932 /* CKUploadProgressToolbar.xib */; };
@@ -1137,6 +1138,7 @@
 		7D0C4EC21FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D0C4EC41FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D14864D230EF4AF003944A2 /* TextSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubmissionTests.swift; sourceTree = "<group>"; };
+		7D148653230F0EAF003944A2 /* SubmissionButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionButtonTests.swift; sourceTree = "<group>"; };
 		7D1669791FE1CCB10081482E /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D16697A1FE1CCB10081482E /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D1D7E04213743D300F7CCFE /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2517,6 +2519,14 @@
 			path = "Mastery Paths";
 			sourceTree = "<group>";
 		};
+		7D148652230F0E7F003944A2 /* SubmissionButton */ = {
+			isa = PBXGroup;
+			children = (
+				7D148653230F0EAF003944A2 /* SubmissionButtonTests.swift */,
+			);
+			path = SubmissionButton;
+			sourceTree = "<group>";
+		};
 		7D52D8A722FCD4F500684932 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -3164,6 +3174,7 @@
 			isa = PBXGroup;
 			children = (
 				7DCF0F4B22F8A0A0000AACCE /* Fixtures */,
+				7D148652230F0E7F003944A2 /* SubmissionButton */,
 				7DCF0F4E22F8A0A0000AACCE /* SubmissionComments */,
 				7DCF0F5422F8A0A0000AACCE /* SubmissionDetails */,
 				7DCF0F5722F8A0A0000AACCE /* SubmissionFiles */,
@@ -4410,6 +4421,7 @@
 				E8EA860E230497AC00E4FD76 /* PeopleTests.swift in Sources */,
 				E8EA860B2304974C00E4FD76 /* NotificationsListTests.swift in Sources */,
 				E8EA86142304980000E4FD76 /* QuizTests.swift in Sources */,
+				7D148654230F0EAF003944A2 /* SubmissionButtonTests.swift in Sources */,
 				7DC5718522F8B1CB00F2E9BB /* SubmissionCommentsTests.swift in Sources */,
 				7DC5718F22F8B1CB00F2E9BB /* URLSubmissionTests.swift in Sources */,
 				7DC5718922F8B1CB00F2E9BB /* SubmissionDetails.swift in Sources */,
