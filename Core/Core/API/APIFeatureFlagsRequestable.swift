@@ -18,7 +18,15 @@
 
 import Foundation
 
-public struct FileUploadTarget: Codable, Equatable {
-    public let upload_url: URL
-    public let upload_params: [String: String?]
+public struct GetEnabledFeatureFlagsRequest: APIRequestable {
+    public typealias Response = [String]
+
+    public let context: Context
+    public var path: String {
+        return "\(context.pathComponent)/features/enabled"
+    }
+
+    public init(context: Context) {
+        self.context = context
+    }
 }

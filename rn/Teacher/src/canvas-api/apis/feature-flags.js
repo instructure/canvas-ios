@@ -16,9 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-public struct FileUploadTarget: Codable, Equatable {
-    public let upload_url: URL
-    public let upload_params: [String: String?]
+import httpClient from '../httpClient'
+
+export function getEnabledFeatureFlags (context, contextID) {
+  return httpClient.get(`${context}/${contextID}/features/enabled`)
 }

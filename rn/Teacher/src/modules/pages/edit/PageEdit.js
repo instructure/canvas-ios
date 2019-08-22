@@ -149,6 +149,8 @@ export class PageEdit extends Component<Props, State> {
                 navigator={this.props.navigator}
                 attachmentUploadPath={`/courses/${this.props.courseID}/files`}
                 onFocus={this._scrollToRCE}
+                context='courses'
+                contextID={this.props.courseID}
               />
             </View>
             {isTeacher() &&

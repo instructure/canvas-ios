@@ -56,6 +56,7 @@
 		9F4B53AE218100BC0056A557 /* APIFileFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B53AD218100BC0056A557 /* APIFileFixture.swift */; };
 		9F6878B322396A7900E559CE /* APIMediaCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B222396A7900E559CE /* APIMediaCommentFixture.swift */; };
 		9F6878B52239701F00E559CE /* MediaCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B42239701F00E559CE /* MediaCommentFixture.swift */; };
+		B119B4BF230720FF00A74062 /* FeatureFlagFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119B4BE230720FF00A74062 /* FeatureFlagFixture.swift */; };
 		B150C6362298D67E0096D58C /* ExternalToolFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C6352298D67E0096D58C /* ExternalToolFixture.swift */; };
 		B150C6382298D6F20096D58C /* APIExternalToolFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C6372298D6F20096D58C /* APIExternalToolFixture.swift */; };
 		B15CA280221DFED00014FB02 /* ModuleFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA27F221DFED00014FB02 /* ModuleFixture.swift */; };
@@ -133,6 +134,7 @@
 		9F4B53AD218100BC0056A557 /* APIFileFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFileFixture.swift; sourceTree = "<group>"; };
 		9F6878B222396A7900E559CE /* APIMediaCommentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMediaCommentFixture.swift; sourceTree = "<group>"; };
 		9F6878B42239701F00E559CE /* MediaCommentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCommentFixture.swift; sourceTree = "<group>"; };
+		B119B4BE230720FF00A74062 /* FeatureFlagFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagFixture.swift; sourceTree = "<group>"; };
 		B150C6352298D67E0096D58C /* ExternalToolFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolFixture.swift; sourceTree = "<group>"; };
 		B150C6372298D6F20096D58C /* APIExternalToolFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIExternalToolFixture.swift; sourceTree = "<group>"; };
 		B15CA27F221DFED00014FB02 /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
@@ -155,7 +157,6 @@
 		B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		EE424B3722E8E72D00D083EE /* APIPageFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPageFixture.swift; sourceTree = "<group>"; };
 		EE424B3922E8E97100D083EE /* PageFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFixture.swift; sourceTree = "<group>"; };
-		F92C1A2922838400007E0942 /* AppFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				7DAC287D22B19D5C00C0B692 /* XCTest.framework */,
-				F92C1A2922838400007E0942 /* AppFramework.framework */,
 				3B0CEB6721503B5A00D07CFA /* Core.framework */,
 			);
 			name = Frameworks;
@@ -275,6 +275,7 @@
 				7D37BE8E21C8398D0063FAAC /* DiscussionEntryFixture.swift */,
 				3BAA4176218A361100701E03 /* EnrollmentFixture.swift */,
 				B150C6352298D67E0096D58C /* ExternalToolFixture.swift */,
+				B119B4BE230720FF00A74062 /* FeatureFlagFixture.swift */,
 				9F4B53AB2180FFDF0056A557 /* FileFixture.swift */,
 				B1B42C1722404AB20087399A /* FileUploadTargetFixture.swift */,
 				3B032D19215037CA00B570F7 /* GroupFixture.swift */,
@@ -526,6 +527,7 @@
 				3B0CEB7E2150445100D07CFA /* TabFixture.swift in Sources */,
 				7DB0A1CE21C16D5A009ABB40 /* KeychainEntryFixture.swift in Sources */,
 				B19792F521767B830000369C /* ColorFixture.swift in Sources */,
+				B119B4BF230720FF00A74062 /* FeatureFlagFixture.swift in Sources */,
 				B15CA282221DFF240014FB02 /* APIModuleFixture.swift in Sources */,
 				7DAC287A22B199D100C0B692 /* Element.swift in Sources */,
 				B1B42C1822404AB20087399A /* FileUploadTargetFixture.swift in Sources */,

@@ -211,6 +211,8 @@ test('edit description', () => {
     showToolbar: 'always',
     placeholder: 'Description',
     attachmentUploadPath: '/courses/1/files',
+    context: 'courses',
+    contextID: '1',
   })
 })
 

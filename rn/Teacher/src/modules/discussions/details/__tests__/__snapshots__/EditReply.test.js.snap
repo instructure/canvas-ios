@@ -35,6 +35,8 @@ exports[`EditReply dismisses modal activity upon save error 1`] = `
   >
     <RichTextEditor
       attachmentUploadPath="/courses/1/files"
+      context="courses"
+      contextID="1"
       defaultValue=""
       focusOnLoad={true}
       navigator={
@@ -108,6 +110,8 @@ exports[`EditReply renders 1`] = `
   >
     <RichTextEditor
       attachmentUploadPath="/courses/1/files"
+      context="courses"
+      contextID="1"
       defaultValue=""
       focusOnLoad={true}
       navigator={
@@ -166,6 +170,8 @@ exports[`EditReply renders title correctly when editing 1`] = `
   >
     <RichTextEditor
       attachmentUploadPath="/courses/1/files"
+      context="courses"
+      contextID="1"
       defaultValue=""
       focusOnLoad={true}
       navigator={

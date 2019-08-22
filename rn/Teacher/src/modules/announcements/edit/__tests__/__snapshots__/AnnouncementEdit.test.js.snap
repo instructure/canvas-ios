@@ -288,6 +288,8 @@ exports[`AnnouncementEdit renders 1`] = `
         <RichTextEditor
           attachmentUploadPath="/courses/1/files"
           contentHeight={150}
+          context="courses"
+          contextID="1"
           defaultValue="Gather tribute or face my curse."
           keyboardAware={false}
           navigator={
@@ -794,6 +796,8 @@ exports[`AnnouncementEdit updates with new props 1`] = `
         <RichTextEditor
           attachmentUploadPath="/courses/1/files"
           contentHeight={150}
+          context="courses"
+          contextID="1"
           defaultValue="Gather tribute or face my curse."
           keyboardAware={false}
           navigator={

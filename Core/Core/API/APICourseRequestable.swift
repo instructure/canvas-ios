@@ -24,13 +24,20 @@ public struct GetCoursesRequest: APIRequestable {
 
     public enum State: String {
         case available, completed, unpublished, deleted
+
+        public static var defaults: [State] {
+            if Bundle.main.isTeacherApp {
+                return [.available, .completed, .unpublished]
+            }
+            return [.available, .completed]
+        }
     }
 
     let state: [State]
     let perPage: Int
 
-    public init(state: [State]? = nil, perPage: Int = 10) {
-        self.state = state ?? [.available, .completed, .unpublished]
+    public init(state: [State] = State.defaults, perPage: Int = 10) {
+        self.state = state
         self.perPage = perPage
     }
 

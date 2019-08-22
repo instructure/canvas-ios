@@ -219,15 +219,22 @@ open class CoreUITestCase: XCTestCase {
         mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!), data: """
         {"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}
         """.data(using: .utf8)) // CKIClient.fetchCurrentUser
+        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile")!), data: """
+        {"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}
+        """.data(using: .utf8))
         mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self"))) // cookie keepalive
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
         mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
         mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
         mockData(GetAccountNotificationsRequest(), value: [])
-        mockData(GetCoursesRequest(), value: [ .make(id: "1", enrollments: [ .make(
+        let enrollment = APIEnrollment.make(
             type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
             role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
-        ), ]), ])
+        )
+        mockData(GetCoursesRequest(), value: [ .make(id: "1", enrollments: [ enrollment ]) ])
+        mockEncodableRequest("users/self/custom_data/favorites/groups?ns=com.canvas.canvas-app", value: [String: String]())
+        mockEncodableRequest("users/self/enrollments?include[]=avatar_url", value: [enrollment])
+        mockEncodableRequest("users/self/groups", value: [String]())
         mockEncodableRequest("users/self/todo", value: [String]())
         mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
         mockEncodableRequest("dashboard/dashboard_cards", value: [String]())

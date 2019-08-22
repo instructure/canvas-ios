@@ -103,6 +103,8 @@ export class EditReply extends React.Component<Props, any> {
             focusOnLoad={true}
             navigator={this.props.navigator}
             attachmentUploadPath={isTeacher() ? `/${this.props.context}/${this.props.contextID}/files` : '/users/self/files'}
+            context={this.props.context}
+            contextID={this.props.contextID}
           />
           { this.state.pending &&
             <ActivityIndicator style={StyleSheet.absoluteFill} size='large' />

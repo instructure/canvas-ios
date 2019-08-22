@@ -17,8 +17,12 @@
 //
 
 import Foundation
+import TestsFoundation
+@testable import Core
+import XCTest
 
-public struct FileUploadTarget: Codable, Equatable {
-    public let upload_url: URL
-    public let upload_params: [String: String?]
+class APIFeatureFlagsRequestableTests: CoreTestCase {
+    func testGetEnabledFeatureFlagsRequest() {
+        XCTAssertEqual(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: "1")).path, "courses/1/features/enabled")
+    }
 }

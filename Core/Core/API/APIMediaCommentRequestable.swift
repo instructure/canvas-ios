@@ -150,3 +150,28 @@ class MediaIDFinder: NSObject, XMLParserDelegate {
         inIDElement = false
     }
 }
+
+struct PostCompleteMediaUploadRequest: APIRequestable {
+    struct Response: Codable {
+        struct MediaObject: Codable {
+            let media_id: String
+        }
+        let media_object: MediaObject
+    }
+
+    struct Body: Encodable {
+        let id: String
+        let context_code: String
+        let type: MediaCommentType
+    }
+
+    let mediaID: String
+    let context: Context
+    let type: MediaCommentType
+
+    let path = "media_objects"
+    var body: Body? {
+        return Body(id: mediaID, context_code: context.canvasContextID, type: type)
+    }
+    let method = APIMethod.post
+}
