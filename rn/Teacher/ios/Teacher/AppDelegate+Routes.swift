@@ -71,6 +71,10 @@ extension AppDelegate {
             return WrongAppViewController.create(delegate: loginDelegate)
         })
 
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/assignments/:assignmentID/post_policy", factory: { _ in
+            return nil
+        })
+
         CanvasCore.registerSharedNativeViewControllers()
     }
 }

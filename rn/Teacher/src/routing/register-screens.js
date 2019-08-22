@@ -114,6 +114,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-search', wrap(AssigneeSearch), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', wrap(SubmissionList), store, { deepLink: true })
   registerScreen('/courses/:courseID/assignments/:assignmentID/submission_settings', wrap(SubmissionSettings), store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/post_policy')
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', wrap(SpeedGrader), store, { deepLink: true })
   registerScreen('/courses/:courseID/gradebook/speed_grader', wrap(SpeedGrader), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/rubrics/:rubricID/description', wrap(RubricDescription), store)
