@@ -28,6 +28,7 @@
 		3B158CB822E241130039A568 /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CB722E241130039A568 /* KeychainTests.swift */; };
 		3B158CBA22E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CB922E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift */; };
 		3B158CBC22E267FF0039A568 /* PageViewSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CBB22E267FF0039A568 /* PageViewSessionTests.swift */; };
+		3B18E82D230C9F3D006CAF5C /* APIPostPolicyRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18E82C230C9F3D006CAF5C /* APIPostPolicyRequestable.swift */; };
 		3B300C852277981100743C59 /* RubricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B300C842277981100743C59 /* RubricTests.swift */; };
 		3B339B6A226FA9AF00D3283D /* ChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */; };
 		3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */; };
@@ -43,6 +44,11 @@
 		3B3467D821360A7C00F9BC2E /* APILoginWebRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467D721360A7C00F9BC2E /* APILoginWebRequestable.swift */; };
 		3B3467DA2136FFBA00F9BC2E /* APILoginWebRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467D92136FFBA00F9BC2E /* APILoginWebRequestableTests.swift */; };
 		3B3467DC2137087100F9BC2E /* HTTPHeaderConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467DB2137087100F9BC2E /* HTTPHeaderConstants.swift */; };
+		3B35F06B230EEAA800674FF5 /* APIGraphQLRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35F06A230EEAA800674FF5 /* APIGraphQLRequestable.swift */; };
+		3B35F06D230EEB4800674FF5 /* APIPostPolicyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35F06C230EEB4800674FF5 /* APIPostPolicyInfo.swift */; };
+		3B35F06F230EEE1700674FF5 /* APIPostPolicyInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35F06E230EEE1700674FF5 /* APIPostPolicyInfoTests.swift */; };
+		3B35F071230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35F070230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift */; };
+		3B35F073230F01F600674FF5 /* APIGraphQLRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35F072230F01F600674FF5 /* APIGraphQLRequestableTests.swift */; };
 		3B4B75C7222F09C7002CCBEC /* CreateSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */; };
 		3B5369E2219CDD3500D3F62E /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5369E1219CDD3500D3F62E /* URLExtensions.swift */; };
 		3B5369E4219D0FD000D3F62E /* URLExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */; };
@@ -639,6 +645,7 @@
 		3B158CB722E241130039A568 /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		3B158CB922E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventViewControllerLoggingProtocolTests.swift; sourceTree = "<group>"; };
 		3B158CBB22E267FF0039A568 /* PageViewSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewSessionTests.swift; sourceTree = "<group>"; };
+		3B18E82C230C9F3D006CAF5C /* APIPostPolicyRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPostPolicyRequestable.swift; sourceTree = "<group>"; };
 		3B300C842277981100743C59 /* RubricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricTests.swift; sourceTree = "<group>"; };
 		3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleView.swift; sourceTree = "<group>"; };
 		3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatBubbleView.xib; sourceTree = "<group>"; };
@@ -654,6 +661,11 @@
 		3B3467D721360A7C00F9BC2E /* APILoginWebRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILoginWebRequestable.swift; sourceTree = "<group>"; };
 		3B3467D92136FFBA00F9BC2E /* APILoginWebRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILoginWebRequestableTests.swift; sourceTree = "<group>"; };
 		3B3467DB2137087100F9BC2E /* HTTPHeaderConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeaderConstants.swift; sourceTree = "<group>"; };
+		3B35F06A230EEAA800674FF5 /* APIGraphQLRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGraphQLRequestable.swift; sourceTree = "<group>"; };
+		3B35F06C230EEB4800674FF5 /* APIPostPolicyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPostPolicyInfo.swift; sourceTree = "<group>"; };
+		3B35F06E230EEE1700674FF5 /* APIPostPolicyInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPostPolicyInfoTests.swift; sourceTree = "<group>"; };
+		3B35F070230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPostPolicyRequestableTests.swift; sourceTree = "<group>"; };
+		3B35F072230F01F600674FF5 /* APIGraphQLRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGraphQLRequestableTests.swift; sourceTree = "<group>"; };
 		3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmission.swift; sourceTree = "<group>"; };
 		3B5369E1219CDD3500D3F62E /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
@@ -2025,6 +2037,9 @@
 				7D80AC1E212B738500C40ECE /* APITests.swift */,
 				7D80AC14212B67E100C40ECE /* APIUserRequestableTests.swift */,
 				3B3467D52135B99700F9BC2E /* IDTests.swift */,
+				3B35F06E230EEE1700674FF5 /* APIPostPolicyInfoTests.swift */,
+				3B35F070230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift */,
+				3B35F072230F01F600674FF5 /* APIGraphQLRequestableTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -2126,6 +2141,9 @@
 				7D80AC02212B445200C40ECE /* APIUser.swift */,
 				7D80AC04212B461F00C40ECE /* APIUserRequestable.swift */,
 				3B3467D32135B7B700F9BC2E /* ID.swift */,
+				3B18E82C230C9F3D006CAF5C /* APIPostPolicyRequestable.swift */,
+				3B35F06A230EEAA800674FF5 /* APIGraphQLRequestable.swift */,
+				3B35F06C230EEB4800674FF5 /* APIPostPolicyInfo.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -3126,6 +3144,7 @@
 				B150C624229733C50096D58C /* GetArc.swift in Sources */,
 				7D63F786215D3CE300151E49 /* APIBrandVariablesRequestable.swift in Sources */,
 				3B6386A92264FB17002DEE72 /* Rubric.swift in Sources */,
+				3B35F06D230EEB4800674FF5 /* APIPostPolicyInfo.swift in Sources */,
 				7DF4001E217509D6007E5F81 /* Quiz.swift in Sources */,
 				7D29D305218A57560036437C /* DocViewerAnnotationStateManager.swift in Sources */,
 				B150C62D2297814E0096D58C /* ExternalTool.swift in Sources */,
@@ -3145,6 +3164,7 @@
 				B195DC512132257500797FE4 /* GetCourse.swift in Sources */,
 				7D29D2FF218A4FEA0036437C /* PSPDFAnnotationExtension.swift in Sources */,
 				7D80AC0E212B4D4100C40ECE /* APIFavorite.swift in Sources */,
+				3B18E82D230C9F3D006CAF5C /* APIPostPolicyRequestable.swift in Sources */,
 				3B158CA922E1343D0039A568 /* PageViewEventController.swift in Sources */,
 				7DF9BF04215191840099026B /* BundleExtensions.swift in Sources */,
 				7DA057522193A30E00A3CFBB /* IconView.swift in Sources */,
@@ -3197,6 +3217,7 @@
 				7DCF1EB6216BC861003AF358 /* SubmissionWorkflowState.swift in Sources */,
 				2C96485E211E3723002C3255 /* AppEnvironment.swift in Sources */,
 				B1AE17AE21877C37002995E6 /* APIEnrollmentRequestable.swift in Sources */,
+				3B35F06B230EEAA800674FF5 /* APIGraphQLRequestable.swift in Sources */,
 				EE584C8022F2048D00D1E201 /* PageListCell.swift in Sources */,
 				B1A6BC7E218A317A000515E3 /* APIAssignmentOverride.swift in Sources */,
 				B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */,
@@ -3303,6 +3324,7 @@
 				EE6CB48622F8C8890013D9A5 /* PageListPresenterTests.swift in Sources */,
 				7DB0A1BA21BF1904009ABB40 /* LoginStartPresenterTests.swift in Sources */,
 				7D7472D9218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift in Sources */,
+				3B35F073230F01F600674FF5 /* APIGraphQLRequestableTests.swift in Sources */,
 				B1A6BC8C218A9843000515E3 /* APILatePolicyRequestableTests.swift in Sources */,
 				9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */,
 				9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */,
@@ -3352,6 +3374,7 @@
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,
 				B1A464BD225669B50052F8DF /* DispatchExtensionsTests.swift in Sources */,
 				3B158CAF22E153120039A568 /* PersistencyTests.swift in Sources */,
+				3B35F06F230EEE1700674FF5 /* APIPostPolicyInfoTests.swift in Sources */,
 				7D3A1EEF227BEFD00094531E /* ActAsUserPresenterTests.swift in Sources */,
 				7D062AFB2124A14700677F66 /* ContextTests.swift in Sources */,
 				7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */,
@@ -3382,6 +3405,7 @@
 				7DB0A1B821BF175E009ABB40 /* LoginFindSchoolPresenterTests.swift in Sources */,
 				7D63F792215D8EEC00151E49 /* GetBrandVariablesTests.swift in Sources */,
 				EE424B3622E8E16D00D083EE /* GetPagesTests.swift in Sources */,
+				3B35F071230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift in Sources */,
 				7DCF2040216D5EF1003AF358 /* APIQuizRequestableTests.swift in Sources */,
 				3B158CBA22E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift in Sources */,
 				B1E789BD21B1D3D50087FE4A /* LogEventListPresenterTests.swift in Sources */,
