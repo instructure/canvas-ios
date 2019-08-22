@@ -42,33 +42,4 @@ class StudentUITestCase: CoreUITestCase {
         return "#\(String(num, radix: 16))".replacingOccurrences(of: "#ff", with: "#")
     }
 
-    func capturePhoto() {
-        allowAccessToCamera()
-        app.buttons["PhotoCapture"].tap()
-        let usePhoto = app.buttons["Use Photo"]
-
-        // Sometimes takes a few seconds to focus
-        _ = usePhoto.waitForExistence(timeout: 10)
-        usePhoto.tap()
-    }
-
-    func allowAccessToCamera() {
-        let alert = app.alerts["“Student” Would Like to Access the Camera"]
-        if alert.exists {
-            alert.buttons["OK"].tap()
-        }
-    }
-
-    func allowAccessToMicrophone(block: () -> Void) {
-        let alertHandler = addUIInterruptionMonitor(withDescription: "Permission Alert") { (alert) -> Bool in
-            if alert.buttons["OK"].exists {
-                alert.buttons["OK"].tap()
-                return true
-            }
-            return false
-        }
-        block()
-        app.swipeUp()
-        removeUIInterruptionMonitor(alertHandler)
-    }
 }

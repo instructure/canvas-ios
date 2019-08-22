@@ -58,6 +58,7 @@ class DiscussionEditTests: CoreUITestCase {
 
         DiscussionEdit.titleField.waitToExist()
         XCTAssertFalse(DiscussionEdit.invalidLabel.isVisible)
+        XCTAssertFalse(DiscussionEdit.attachmentButton.isVisible)
         DiscussionEdit.doneButton.tap()
         DiscussionEdit.invalidLabel.waitToExist()
         DiscussionEdit.invalidTitleLabel.waitToExist()
@@ -65,5 +66,52 @@ class DiscussionEditTests: CoreUITestCase {
         DiscussionEdit.titleField.typeText("Discuss This")
         XCUIElementWrapper(app.webViews.firstMatch).typeText("A new topic")
         DiscussionEdit.doneButton.tap()
+    }
+
+    func testCreateDiscussionWithAttachment() {
+        mockBaseRequests()
+        mockData(GetCoursesRequest(), value: [course1])
+        mockData(GetCourseRequest(courseID: "1"), value: course1)
+        mockEncodableRequest("courses/1/discussion_topics?per_page=99&include[]=sections", value: [String]())
+        mockEncodableRequest("courses/1/discussion_topics", value: [String: String]())
+        mockEncodableRequest("courses/1/settings", value: ["allow_student_forum_attachments": true])
+        mockEncodableRequest("courses/1/features/enabled", value: [String: String]())
+
+        let targetUrl = "https://canvas.s3.bucket.com/bucket/1"
+        mockEncodableRequest("users/self/files", value: FileUploadTarget.make(upload_url: URL(string: targetUrl)!))
+        mockEncodableRequest(targetUrl, value: ["id": "1"])
+        mockEncodableRequest("files/1", value: APIFile.make())
+
+        logIn()
+        show("/courses/1/discussion_topics")
+        DiscussionList.newButton.tap()
+        DiscussionEdit.attachmentButton.tap()
+        Attachments.addButton.tap()
+        allowAccessToPhotos {
+            app.find(label: "Choose From Library").tap()
+        }
+        app.find(label: "Camera Roll").tap()
+        app.find(labelContaining: "Photo, ").tap()
+
+        app.find(label: "Upload complete").waitToExist()
+        let img = XCUIElementWrapper(app.images.firstMatch)
+        XCTAssertFalse(img.exists)
+        app.find(label: "Upload complete").tap()
+        img.waitToExist()
+        app.find(id: "screen.dismiss").tap()
+        app.find(id: "attachments.attachment-row.0.remove.btn").tap()
+        app.find(label: "Remove").tap()
+
+        app.find(label: "No Attachments").waitToExist()
+
+        Attachments.addButton.tap()
+        app.find(label: "Choose From Library").tap()
+        app.find(label: "Camera Roll").tap()
+        app.find(labelContaining: "Photo, ").tap()
+        app.find(label: "Upload complete").waitToExist()
+
+        Attachments.dismissButton.tap()
+
+        XCTAssertEqual(DiscussionEdit.attachmentButton.waitToExist().label, "Edit attachment (1)")
     }
 }

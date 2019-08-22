@@ -81,6 +81,7 @@
 		3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C76E219335FA004B8E5E /* ColoredNavViewProtocol.swift */; };
 		3BF5C54F218780140081A858 /* GetAssignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5C54E2187800B0081A858 /* GetAssignments.swift */; };
 		3BF5C55321879A430081A858 /* GetAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */; };
+		58595ECB6194A295709A98F7 /* Attachments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585959ACAB816578B2B2ECC0 /* Attachments.swift */; };
 		5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BF786A8218599B600471A5F /* InfoPlist.strings */; };
 		5BF786AE218599B700471A5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BF786B0218599B700471A5F /* InfoPlist.strings */; };
 		78151DCB21AE75D400692862 /* APIDiscussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78151DCA21AE75D400692862 /* APIDiscussion.swift */; };
@@ -699,6 +700,7 @@
 		3BE2C76E219335FA004B8E5E /* ColoredNavViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredNavViewProtocol.swift; sourceTree = "<group>"; };
 		3BF5C54E2187800B0081A858 /* GetAssignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignments.swift; sourceTree = "<group>"; };
 		3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignmentsTests.swift; sourceTree = "<group>"; };
+		585959ACAB816578B2B2ECC0 /* Attachments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachments.swift; sourceTree = "<group>"; };
 		5B030508218599BD00B3C13E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B030509218599BE00B3C13E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B03050A218599BE00B3C13E /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1629,6 +1631,14 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		58595347851A4610CAF9CA42 /* Attachments */ = {
+			isa = PBXGroup;
+			children = (
+				585959ACAB816578B2B2ECC0 /* Attachments.swift */,
+			);
+			path = Attachments;
+			sourceTree = "<group>";
+		};
 		7836B0CD219901B800FA25AE /* ShareExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -2499,6 +2509,7 @@
 				E81918E6230348440039616A /* CoreUITests.h */,
 				E81918E7230348440039616A /* Info.plist */,
 				7D5C08972305F25B0022E0DB /* UITestUser.swift */,
+				58595347851A4610CAF9CA42 /* Attachments */,
 			);
 			path = CoreUITests;
 			sourceTree = "<group>";
@@ -3490,6 +3501,7 @@
 				7D5C08962305F0CC0022E0DB /* DiscussionEdit.swift in Sources */,
 				E819194A23034C2D0039616A /* Pages.swift in Sources */,
 				E819195523034C2D0039616A /* ProfileTests.swift in Sources */,
+				58595ECB6194A295709A98F7 /* Attachments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
