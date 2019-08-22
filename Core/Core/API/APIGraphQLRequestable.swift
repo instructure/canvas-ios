@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct GraphqlBody: Codable, Equatable {
+public struct GraphQLBody: Codable, Equatable {
     let query: String
 }
 
@@ -34,9 +34,9 @@ extension APIGraphQLRequestable {
         return "/api/graphql"
     }
 
-    public var body: GraphqlBody? {
+    public var body: GraphQLBody? {
         if let query = query {
-            return GraphqlBody(query: query)
+            return GraphQLBody(query: query)
         }
         return nil
     }
