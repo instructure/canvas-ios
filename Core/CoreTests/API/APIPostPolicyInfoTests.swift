@@ -20,11 +20,6 @@ import XCTest
 @testable import Core
 
 class APIPostPolicyInfoTests: XCTestCase {
-    func testInfoModel() {
-        let model = APIPostPolicyInfo(sections: [], submissions: [])
-        XCTAssertNotNil(model)
-    }
-
     func testSubmissionNodeIsHidden() {
         let node = APIPostPolicyInfo.SubmissionNode(score: 0.5, excused: false, state: "graded", postedAt: nil)
         XCTAssertTrue(node.isHidden)
@@ -83,17 +78,5 @@ class APIPostPolicyInfoTests: XCTestCase {
         XCTAssertEqual(submission?.state, "graded")
         XCTAssertEqual(submission?.excused, false)
         XCTAssertEqual(submission?.postedAt, Date(fromISOString: "2019-08-22T07:28:44-06:00"))
-    }
-
-    func testEncode() {
-        let model = APIPostPolicyInfo(sections: [], submissions: [])
-        let encoder = JSONEncoder()
-        do {
-            let result = try encoder.encode(model)
-            XCTAssertNotNil(result)
-        } catch {
-            print(error)
-            XCTFail()
-        }
     }
 }

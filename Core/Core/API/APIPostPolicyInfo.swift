@@ -19,34 +19,20 @@
 import Foundation
 
 public struct APIPostPolicyInfo: Codable {
-    public let sections: [SectionNode]
-    public let submissions: [SubmissionNode]
-
-    public init(sections: [SectionNode], submissions: [SubmissionNode]) {
-        self.sections = sections
-        self.submissions = submissions
+    public var sections: [SectionNode] {
+        return data.course.sections.nodes
     }
-
-    public init(from decoder: Decoder) throws {
-        let rawResponse = try APIPostPolicyInfoRawServerResponse(from: decoder)
-        sections = rawResponse.data.course.sections.nodes
-        submissions = rawResponse.data.assignment.submissions.nodes
+    public var submissions: [SubmissionNode] {
+        return data.assignment.submissions.nodes
     }
+    private var data: PostPolicyData
 
-    public func encode(to encoder: Encoder) throws {
-        enum Keys: CodingKey {
-            case empty
-        }
-        var container = encoder.container(keyedBy: Keys.self)
-        try container.encode("empty", forKey: .empty)
-    }
-
-    public struct SectionNode: Decodable {
+    public struct SectionNode: Codable {
         public let id: String
         public let name: String
     }
 
-    public struct SubmissionNode: Decodable {
+    public struct SubmissionNode: Codable {
         public let score: Double?
         public let excused: Bool
         public let state: String
@@ -59,29 +45,25 @@ public struct APIPostPolicyInfo: Codable {
             return isGraded && postedAt == nil
         }
     }
-}
 
-private struct APIPostPolicyInfoRawServerResponse: Decodable {
-    struct Sections: Decodable {
+    struct Sections: Codable {
         var nodes: [APIPostPolicyInfo.SectionNode]
     }
 
-    struct PostPolicyData: Decodable {
+    struct PostPolicyData: Codable {
         var course: Course
         var assignment: Assignment
     }
 
-    struct Course: Decodable {
+    struct Course: Codable {
         var sections: Sections
     }
 
-    struct Assignment: Decodable {
+    struct Assignment: Codable {
         var submissions: Submissions
     }
 
-    struct Submissions: Decodable {
+    struct Submissions: Codable {
         var nodes: [APIPostPolicyInfo.SubmissionNode]
     }
-
-    var data: PostPolicyData
 }
