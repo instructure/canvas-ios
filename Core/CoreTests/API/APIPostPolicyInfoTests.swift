@@ -84,4 +84,16 @@ class APIPostPolicyInfoTests: XCTestCase {
         XCTAssertEqual(submission?.excused, false)
         XCTAssertEqual(submission?.postedAt, Date(fromISOString: "2019-08-22T07:28:44-06:00"))
     }
+
+    func testEncode() {
+        let model = APIPostPolicyInfo(sections: [], submissions: [])
+        let encoder = JSONEncoder()
+        do {
+            let result = try encoder.encode(model)
+            XCTAssertNotNil(result)
+        } catch {
+            print(error)
+            XCTFail()
+        }
+    }
 }

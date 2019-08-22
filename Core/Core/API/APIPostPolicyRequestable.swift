@@ -22,7 +22,7 @@ public enum PostGradePolicy: String, CaseIterable {
     case everyone, graded
 }
 
-public struct PostAssignmentGradesPostPolicyRequest: GraphqlRequestable {
+public struct PostAssignmentGradesPostPolicyRequest: APIGraphqlRequestable {
     public typealias Response = APINoContent
 
     public let postPolicy: PostGradePolicy
@@ -46,7 +46,7 @@ public struct PostAssignmentGradesPostPolicyRequest: GraphqlRequestable {
     }
 }
 
-public struct GetAssignmentPostPolicyInfoRequest: GraphqlRequestable {
+public struct GetAssignmentPostPolicyInfoRequest: APIGraphqlRequestable {
     public typealias Response = APIPostPolicyInfo
 
     public let courseID: String

@@ -34,6 +34,11 @@ public struct APIPostPolicyInfo: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
+        enum Keys: CodingKey {
+            case empty
+        }
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode("empty", forKey: .empty)
     }
 
     public struct SectionNode: Decodable {
