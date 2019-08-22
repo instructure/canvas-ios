@@ -20,7 +20,6 @@
 
 import { paginate, exhaust } from '../utils/pagination'
 import httpClient from '../httpClient'
-import { isTeacher } from '../../modules/app'
 
 export function getCourses (): ApiPromise<Course[]> {
   const courses = paginate('courses', {
