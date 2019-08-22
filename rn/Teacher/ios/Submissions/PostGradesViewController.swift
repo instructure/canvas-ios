@@ -137,8 +137,8 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            let localized = NSLocalizedString("%d grades currently hidden", comment: "number of grades hidden")
-            return String(format: localized, gradesCurrentlyHidden)
+            let localizedFormat = NSLocalizedString("grades_currently_hidden", comment: "number of grades hidden")
+            return String(format: localizedFormat, gradesCurrentlyHidden)
         }
         return nil
     }
