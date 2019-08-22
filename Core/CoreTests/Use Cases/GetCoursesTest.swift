@@ -36,13 +36,20 @@ class GetCoursesTest: CoreTestCase {
     }
 
     func testCache() {
-        let useCase = GetCourses()
+        var useCase = GetCourses()
+        XCTAssertEqual("get-courses-active", useCase.cacheKey)
+
+        useCase = GetCourses(enrollmentState: .completed)
+        XCTAssertEqual("get-courses-completed", useCase.cacheKey)
+
+        useCase = GetCourses(enrollmentState: nil)
         XCTAssertEqual("get-courses", useCase.cacheKey)
     }
 
     func testRequest() {
-        XCTAssertEqual(GetCourses(state: [.available]).request.state, [.available])
-        XCTAssertEqual(GetCourses(state: [.available, .completed]).request.state, [.available, .completed])
+        XCTAssertEqual(GetCourses().request.enrollmentState, .active)
+        XCTAssertEqual(GetCourses(enrollmentState: .active).request.enrollmentState, .active)
+        XCTAssertEqual(GetCourses(enrollmentState: .completed).request.enrollmentState, .completed)
         XCTAssertEqual(GetCourses(perPage: 123).request.perPage, 123)
     }
 
@@ -60,12 +67,26 @@ class GetCoursesTest: CoreTestCase {
         XCTAssertEqual(courses.last, c)
     }
 
+    func testScopeEnrollmentState() {
+        let active = Course.make(from: .make(id: "1", enrollments: [.make(id: "1", enrollment_state: .active)]))
+        let completed = Course.make(from: .make(id: "2", enrollments: [.make(id: "2", enrollment_state: .completed)]))
+        var useCase = GetCourses(enrollmentState: .active)
+        XCTAssertTrue(useCase.scope.predicate.evaluate(with: active))
+        XCTAssertFalse(useCase.scope.predicate.evaluate(with: completed))
+
+        useCase = GetCourses(enrollmentState: .completed)
+        let courses: [Course] = databaseClient.fetch()
+        XCTAssertEqual(courses.count, 2)
+        XCTAssertFalse(useCase.scope.predicate.evaluate(with: active))
+        XCTAssertTrue(useCase.scope.predicate.evaluate(with: completed))
+    }
+
     func testScopeShowAll() {
         let c = Course.make(from: .make(id: "3", name: "3", is_favorite: true))
         let a = Course.make(from: .make(id: "1", name: "1", is_favorite: true))
         Course.make(from: .make(id: "2", name: "2", is_favorite: true))
 
-        let useCase = GetCourses()
+        let useCase = GetCourses(enrollmentState: nil)
         let courses: [Course] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
 
         XCTAssertEqual(courses.count, 3)

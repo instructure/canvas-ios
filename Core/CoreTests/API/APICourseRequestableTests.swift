@@ -30,12 +30,10 @@ class APICourseRequestableTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "sections"),
             URLQueryItem(name: "include[]", value: "term"),
             URLQueryItem(name: "include[]", value: "total_scores"),
-            URLQueryItem(name: "state[]", value: "available"),
-            URLQueryItem(name: "state[]", value: "completed"),
-            URLQueryItem(name: "state[]", value: "unpublished"),
             URLQueryItem(name: "per_page", value: "10"),
+            URLQueryItem(name: "enrollment_state", value: "active"),
         ])
-        XCTAssertEqual(GetCoursesRequest(state: [.available, .deleted], perPage: 20).queryItems, [
+        XCTAssertEqual(GetCoursesRequest(enrollmentState: .completed, perPage: 20).queryItems, [
             URLQueryItem(name: "include[]", value: "course_image"),
             URLQueryItem(name: "include[]", value: "current_grading_period_scores"),
             URLQueryItem(name: "include[]", value: "favorites"),
@@ -43,9 +41,8 @@ class APICourseRequestableTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "sections"),
             URLQueryItem(name: "include[]", value: "term"),
             URLQueryItem(name: "include[]", value: "total_scores"),
-            URLQueryItem(name: "state[]", value: "available"),
-            URLQueryItem(name: "state[]", value: "deleted"),
             URLQueryItem(name: "per_page", value: "20"),
+            URLQueryItem(name: "enrollment_state", value: "completed"),
         ])
     }
 

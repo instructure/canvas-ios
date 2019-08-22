@@ -22,10 +22,11 @@ import { paginate, exhaust } from '../utils/pagination'
 import httpClient from '../httpClient'
 
 export function getCourses (): ApiPromise<Course[]> {
+  let enrollment_state = ['active', 'completed']
   const courses = paginate('courses', {
     params: {
       include: [ 'course_image', 'current_grading_period_scores', 'favorites', 'observed_users', 'sections', 'term', 'total_scores' ],
-      state: [ 'available', 'completed', 'unpublished' ],
+      enrollment_state,
       per_page: 10,
     },
   })
