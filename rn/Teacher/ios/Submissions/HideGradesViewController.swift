@@ -72,14 +72,12 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 {
             cell.textLabel?.text = NSLocalizedString("Specific Sections", comment: "")
             cell.selectionStyle = .none
-            cell.toggle.removeTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
             cell.toggle.isOn = showSections
             cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
         } else {    //  sections
             let index = abs(indexPath.row - 1)
             cell.textLabel?.text = sections[index]
             cell.selectionStyle = .none
-            cell.toggle.removeTarget(self, action: #selector(actionDidToggleSection(toggle:)), for: UIControl.Event.valueChanged)
             cell.toggle.isOn = sectionToggles[index]
             cell.toggle.tag = index
             cell.toggle.addTarget(self, action: #selector(actionDidToggleSection(toggle:)), for: UIControl.Event.valueChanged)
@@ -91,7 +89,7 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            let localized = NSLocalizedString("%d grades currently posted", comment: "number of grades posted")
+            let localized = NSLocalizedString("grades_currently_posted", comment: "number of grades posted")
             return String(format: localized, gradesCurrentlyPosted)
         }
         return nil
