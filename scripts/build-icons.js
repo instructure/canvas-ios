@@ -58,6 +58,7 @@ const whitelist = [
   'document',
   'email',
   'empty',
+  'eye',
   'folder',
   'forward',
   'gradebook',
