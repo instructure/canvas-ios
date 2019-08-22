@@ -18,7 +18,60 @@
 
 import Foundation
 
-public struct GetPostGradesRequest: APIRequestable {
+public enum PostGradePolicy: String, CaseIterable {
+    case everyone, graded
+}
+
+public struct GraphqlBody: Codable, Equatable {
+    let query: String
+}
+
+protocol GraphqlRequestable: APIRequestable {
+    var query: String? { get }
+}
+
+extension GraphqlRequestable {
+    public var method: APIMethod {
+        return .post
+    }
+    public var path: String {
+        return "/api/graphql"
+    }
+
+    public var body: GraphqlBody? {
+        if let query = query {
+            return GraphqlBody(query: query)
+        }
+        return nil
+    }
+
+}
+
+public struct PostAssignmentGrades: GraphqlRequestable {
+    public typealias Response = APINoContent
+
+    public let postPolicy: PostGradePolicy
+    public let assignmentID: String
+
+    public init(assignmentID: String, postPolicy: PostGradePolicy) {
+        self.postPolicy = postPolicy
+        self.assignmentID = assignmentID
+    }
+
+    public var query: String? {
+        return """
+        mutation PostAssignmentGrades
+            {
+                postAssignmentGrades(input: {assignmentId: "\(assignmentID)", gradedOnly: \(postPolicy == .graded)})
+                {
+                    assignment { id }
+                }
+            }
+        """
+    }
+}
+
+public struct GetAssignmentPostPolicyInfoRequest: GraphqlRequestable {
     public typealias Response = PostPolicyModel
 
     public let courseID: String
@@ -29,17 +82,8 @@ public struct GetPostGradesRequest: APIRequestable {
         self.assignmentID = assignmentID
     }
 
-    public var method: APIMethod = .post
-    public var path: String {
-        return "/api/graphql"
-    }
-
-    public struct Body: Codable, Equatable {
-        let query: String
-    }
-
-    public var body: GetPostGradesRequest.Body? {
-        let query = """
+    public var query: String? {
+        return """
         {
             course(id: "\(courseID)") {
                 sectionsConnection {
@@ -61,7 +105,6 @@ public struct GetPostGradesRequest: APIRequestable {
               }
         }
         """
-        return Body(query: query)
     }
 }
 

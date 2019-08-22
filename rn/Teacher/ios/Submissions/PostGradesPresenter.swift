@@ -41,13 +41,24 @@ class PostGradesPresenter {
     }
 
     func refresh() {
-        let req = GetPostGradesRequest(courseID: courseID, assignmentID: assignmentID)
+        let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
         env.api.makeRequest(req, callback: { [weak self] data, _, error in
             if let error = error {
                 print(error)
             } else if let data = data {
                 let model = ViewModel(data: data)
-                self?.view?.update(model)
+                DispatchQueue.main.async { self?.view?.update(model) }
+            }
+        })
+    }
+
+    func updatePostGradesPolicy(postPolicy: PostGradePolicy, sectionIDs: [String]) {
+        print("sectionIDs: \(sectionIDs)")
+        //  TODO: - add sections
+        let req = PostAssignmentGrades(assignmentID: assignmentID, postPolicy: postPolicy)
+        env.api.makeRequest(req, callback: { _, _, error in
+            if let error = error {
+                print(error)
             }
         })
     }

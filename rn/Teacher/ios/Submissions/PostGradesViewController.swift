@@ -27,33 +27,12 @@ class PostGradesViewController: UIViewController {
         case postTo, section
     }
 
-    enum PostToVisisbility: String, CaseIterable {
-        case everyone, graded
-
-        var title: String {
-            switch self {
-            case .everyone:
-                return NSLocalizedString("Everyone", comment: "")
-            case .graded:
-                return NSLocalizedString("Graded", comment: "")
-            }
-        }
-
-        var subHeader: String {
-            switch self {
-            case .everyone:
-                return NSLocalizedString("Grades will be made visible to all students", comment: "")
-            case .graded:
-                return NSLocalizedString("Grades will be made visible to students with graded submissions", comment: "")
-            }
-        }
-    }
     @IBOutlet weak var allGradesPostedView: UIView!
     @IBOutlet weak var allGradesPostedLabel: DynamicLabel!
     @IBOutlet weak var allGradesPostedSubheader: DynamicLabel!
     private var showSections: Bool = false
     private var sectionToggles: [Bool] = []
-    private var visibility: PostToVisisbility = .everyone
+    private var postPolicy: PostGradePolicy = .everyone
     var presenter: PostGradesPresenter!
     var viewModel: PostGradesPresenter.ViewModel?
 
@@ -86,7 +65,8 @@ class PostGradesViewController: UIViewController {
     }
 
     @IBAction func actionUserDidClickPostGrades(_ sender: Any) {
-        print(#function)
+        let sectionIDs = sectionToggles.enumerated().compactMap { i, s in s ? viewModel?.sections[i].id : nil }
+        presenter.updatePostGradesPolicy(postPolicy: postPolicy, sectionIDs: sectionIDs)
     }
 }
 
@@ -108,7 +88,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
                 switch row {
                 case .postTo:
                     cell.textLabel?.text = NSLocalizedString("Post to...", comment: "")
-                    cell.detailTextLabel?.text = visibility.title
+                    cell.detailTextLabel?.text = postPolicy.title
                     cell.accessoryType = .disclosureIndicator
                     cell.selectionStyle = .default
                 case .section:
@@ -148,7 +128,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
 
         if let row = Row(rawValue: indexPath.row), row == .postTo {
-            let vc = PostToVisibilitySelectionViewController.create(visibility: visibility, delegate: self)
+            let vc = PostToVisibilitySelectionViewController.create(visibility: postPolicy, delegate: self)
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -190,8 +170,8 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension PostGradesViewController: PostToVisibilitySelectionDelegate {
-    func visibilityDidChange(visibility: PostGradesViewController.PostToVisisbility) {
-        self.visibility = visibility
+    func visibilityDidChange(visibility: PostGradePolicy) {
+        self.postPolicy = visibility
         tableView.reloadData()
     }
 }
@@ -200,5 +180,26 @@ extension PostGradesViewController: PostGradesViewProtocol {
     func update(_ viewModel: PostGradesPresenter.ViewModel) {
         self.viewModel = viewModel
         setupSections()
+        tableView.reloadData()
+    }
+}
+
+extension PostGradePolicy {
+    var title: String {
+        switch self {
+        case .everyone:
+            return NSLocalizedString("Everyone", comment: "")
+        case .graded:
+            return NSLocalizedString("Graded", comment: "")
+        }
+    }
+
+    var subHeader: String {
+        switch self {
+        case .everyone:
+            return NSLocalizedString("Grades will be made visible to all students", comment: "")
+        case .graded:
+            return NSLocalizedString("Grades will be made visible to students with graded submissions", comment: "")
+        }
     }
 }
