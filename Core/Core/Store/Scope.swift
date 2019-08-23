@@ -29,6 +29,11 @@ public struct Scope: Equatable {
         self.sectionNameKeyPath = sectionNameKeyPath
     }
 
+    public init(predicate: NSPredicate, orderBy order: String, ascending: Bool = true, naturally: Bool = false, sectionNameKeyPath: String? = nil) {
+        let sort = NSSortDescriptor(key: order, ascending: ascending, selector: naturally ? #selector(NSString.localizedStandardCompare(_:)) : nil)
+        self.init(predicate: predicate, order: [sort], sectionNameKeyPath: sectionNameKeyPath)
+    }
+
     /// Returns a scope where all `key`s match `value`
     /// Adds a default `order` using the `key` ascending
     public static func `where`(_ key: String, equals value: Any, orderBy order: String? = nil, ascending: Bool = true, naturally: Bool = false) -> Scope {

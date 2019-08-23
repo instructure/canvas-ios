@@ -31,7 +31,7 @@ class NotificationsListTests: CoreUITestCase {
             APIActivity.make(id: "2", title: "Another Notification"),
         ])
 
-        logIn(domain: "canvas.instructure.com", token: "t")
+        logIn()
         TabBar.notificationsTab.tap()
 
         app.find(labelContaining: "Assignment Created").waitToExist()

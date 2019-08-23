@@ -55,10 +55,10 @@ class PostGradesViewController: UIViewController {
         presenter.viewIsReady()
     }
 
-    func setupTableView() {
-        tableView.register(SectionCell.self, forCellReuseIdentifier: String(describing: SectionCell.self))
-        tableView.register(PostToCell.self, forCellReuseIdentifier: String(describing: PostToCell.self))
-    }
+        func setupTableView() {
+        tableView.registerCell(SectionCell.self)
+        tableView.registerCell(PostToCell.self)
+        }
 
     func setupSections() {
         sectionToggles = Array(repeating: false, count: viewModel?.sections.count ?? 0)
@@ -83,22 +83,19 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             cell = tableView.dequeue(for: indexPath) as SectionCell
         }
 
-        if indexPath.row < Row.allCases.count { //  first two rows (Row enum)
-            if let row = Row(rawValue: indexPath.row) {
-                switch row {
-                case .postTo:
-                    cell.textLabel?.text = NSLocalizedString("Post to...", comment: "")
-                    cell.detailTextLabel?.text = postPolicy.title
-                    cell.accessoryType = .disclosureIndicator
-                    cell.selectionStyle = .default
-                case .section:
-                    cell.textLabel?.text = NSLocalizedString("Specific Sections", comment: "")
-                    cell.selectionStyle = .none
-                    if let cell = cell as? SectionCell {
-                        cell.toggle.removeTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
-                        cell.toggle.isOn = showSections
-                        cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
-                    }
+        if let row = Row(rawValue: indexPath.row) {
+            switch row {
+            case .postTo:
+                cell.textLabel?.text = NSLocalizedString("Post to...", comment: "")
+                cell.detailTextLabel?.text = postPolicy.title
+                cell.accessoryType = .disclosureIndicator
+                cell.selectionStyle = .default
+            case .section:
+                cell.textLabel?.text = NSLocalizedString("Specific Sections", comment: "")
+                cell.selectionStyle = .none
+                if let cell = cell as? SectionCell {
+                    cell.toggle.isOn = showSections
+                    cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
                 }
             }
         } else {    //  sections
@@ -106,7 +103,6 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = viewModel?.sections[index].name
             cell.selectionStyle = .none
             if let cell = cell as? SectionCell {
-                cell.toggle.removeTarget(self, action: #selector(actionDidToggleSection(toggle:)), for: UIControl.Event.valueChanged)
                 cell.toggle.isOn = sectionToggles[index]
                 cell.toggle.tag = index
                 cell.toggle.addTarget(self, action: #selector(actionDidToggleSection(toggle:)), for: UIControl.Event.valueChanged)
@@ -118,8 +114,8 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            let localized = NSLocalizedString("%d grades currently hidden", comment: "number of grades hidden")
-            return String(format: localized, viewModel?.gradesCurrentlyHidden ?? 0)
+            let localizedFormat = NSLocalizedString("grades_currently_hidden", comment: "number of grades hidden")
+            return String(format: localizedFormat, viewModel?.gradesCurrentlyHidden ?? 0)
         }
         return nil
     }

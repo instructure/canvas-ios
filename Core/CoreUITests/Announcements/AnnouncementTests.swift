@@ -29,8 +29,9 @@ class AnnouncementTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return AnnouncementTests.self }
 
     func testAnnouncementsMatchWebOrder() {
-        Dashboard.courseCard(id: "262").waitToExist()
-        Dashboard.courseCard(id: "262").tap()
+        Dashboard.courseCard(id: "262").tapUntil {
+            CourseNavigation.announcements.exists
+        }
         CourseNavigation.announcements.tap()
 
         AnnouncementList.cell(index: 0).waitToExist()
@@ -40,8 +41,9 @@ class AnnouncementTests: CoreUITestCase {
     }
 
     func testViewAnnouncement() {
-        Dashboard.courseCard(id: "262").waitToExist()
-        Dashboard.courseCard(id: "262").tap()
+        Dashboard.courseCard(id: "262").tapUntil {
+            CourseNavigation.announcements.exists
+        }
         CourseNavigation.announcements.tap()
 
         AnnouncementList.cell(index: 0).tap()
@@ -49,8 +51,9 @@ class AnnouncementTests: CoreUITestCase {
     }
 
     func testPreviewAnouncementAttachment() {
-        Dashboard.courseCard(id: "262").waitToExist()
-        Dashboard.courseCard(id: "262").tap()
+        Dashboard.courseCard(id: "262").tapUntil {
+            CourseNavigation.announcements.exists
+        }
         CourseNavigation.announcements.tap()
 
         AnnouncementList.cell(index: 0).tap()

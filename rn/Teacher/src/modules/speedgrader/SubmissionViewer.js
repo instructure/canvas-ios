@@ -33,6 +33,7 @@ import CanvasWebView from '../../common/components/CanvasWebView'
 import Video from '../../common/components/Video'
 import AuthenticatedWebView from '../../common/components/AuthenticatedWebView'
 import URLSubmissionViewer from './submission-viewers/URLSubmissionViewer'
+import ImageSubmissionViewer from './submission-viewers/ImageSubmissionViewer'
 import CanvadocViewer from './components/CanvadocViewer'
 import debounce from 'lodash/debounce'
 
@@ -168,6 +169,18 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
   renderFile (submission: Submission) {
     if (submission.attachments) {
       let attachment = submission.attachments[this.props.selectedAttachmentIndex]
+      if (attachment['content-type'] === 'image/heic') {
+        let { width, height } = this.props.size
+        return (
+          <View style={{ flex: 1 }}>
+            <ImageSubmissionViewer
+              width={width}
+              height={height}
+              attachment={attachment}
+            />
+          </View>
+        )
+      }
       return (
         <View style={{ flex: 1 }}>
           { this.renderSavingHeader() }

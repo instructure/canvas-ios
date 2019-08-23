@@ -31,7 +31,7 @@ class TodoListTests: CoreUITestCase {
             APITodo.make(assignment: .make(id: "2", name: "Two")),
         ])
 
-        logIn(domain: "canvas.instructure.com", token: "t")
+        logIn()
         TabBar.todoTab.tap()
 
         app.find(labelContaining: "One").waitToExist()

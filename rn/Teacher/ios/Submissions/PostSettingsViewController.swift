@@ -25,6 +25,8 @@ class PostSettingsViewController: UIViewController {
     @IBOutlet weak var menuHeight: NSLayoutConstraint!
     private var postGradesViewController: PostGradesViewController!
     private var hideGradesViewController: HideGradesViewController!
+    @IBOutlet weak var containerA: UIView!
+    @IBOutlet weak var containerB: UIView!
 
     enum MenuItem: Int {
         case post, hide
@@ -51,19 +53,12 @@ class PostSettingsViewController: UIViewController {
 
     func configurePost() {
         postGradesViewController = PostGradesViewController.create(courseID: "165", assignmentID: "1936")
-        embed(postGradesViewController, in: scrollView) { child, _ in
-            child.view.addConstraintsWithVFL("H:|[view(==superview)]")
-            child.view.addConstraintsWithVFL("V:|[view(==superview)]|")
-        }
+        embed(postGradesViewController, in: containerA)
     }
 
     func configureHide() {
         hideGradesViewController = HideGradesViewController.create()
-        embed(hideGradesViewController, in: scrollView) { [weak self] child, _ in
-            guard let post = self?.postGradesViewController.view else { return }
-            child.view.addConstraintsWithVFL("H:[post][view(==superview)]|", views: ["post": post])
-            child.view.addConstraintsWithVFL("V:|[view(==superview)]|")
-        }
+        embed(hideGradesViewController, in: containerB)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -75,17 +70,17 @@ class PostSettingsViewController: UIViewController {
     }
 
     func showPost() {
-        scrollView.scrollRectToVisible(postGradesViewController.view.frame, animated: true)
+        scrollView.scrollRectToVisible(containerA.frame, animated: true)
     }
 
     func showHide() {
-        scrollView.scrollRectToVisible(hideGradesViewController.view.frame, animated: true)
+        scrollView.scrollRectToVisible(containerB.frame, animated: true)
     }
 }
 
 extension PostSettingsViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if hideGradesViewController.view.frame.contains(scrollView.contentOffset) {
+        if containerB.frame.contains(scrollView.contentOffset) {
             menu.selectMenuItem(at: IndexPath(row: MenuItem.hide.rawValue, section: 0), animated: true)
         } else {
             menu.selectMenuItem(at: IndexPath(row: MenuItem.post.rawValue, section: 0), animated: true)

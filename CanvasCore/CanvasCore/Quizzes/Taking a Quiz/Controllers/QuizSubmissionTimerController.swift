@@ -92,7 +92,7 @@ class QuizSubmissionTimerController: NSObject {
     
     fileprivate func syncStartingTime() {
         if quiz.timed {
-            if let submission = submission {
+            if let submission = submission, let startTime = submission.dateStarted {
                 var secondsTimeLimit = 0
                 switch quiz.timeLimit {
                 case .minutes(let minutes):
@@ -100,7 +100,6 @@ class QuizSubmissionTimerController: NSObject {
                 default: break
                 }
                 
-                let startTime = submission.dateStarted!
                 let currentTime = Date()
                 let diff = currentTime.timeIntervalSince(startTime as Date)
                 timerTime = secondsTimeLimit - Int(diff)

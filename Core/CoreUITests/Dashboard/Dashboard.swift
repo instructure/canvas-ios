@@ -60,13 +60,3 @@ public enum Dashboard: String, ElementWrapper {
         return app.find(id: "favorited-course-list.profile-btn")
     }
 }
-
-public enum GlobalAnnouncement {
-    public static func toggle(id: String) -> Element {
-        return app.find(id: "GlobalAnnouncement.\(id).toggle")
-    }
-
-    public static func dismiss(id: String) -> Element {
-        return app.find(id: "GlobalAnnouncement.\(id).dismiss")
-    }
-}

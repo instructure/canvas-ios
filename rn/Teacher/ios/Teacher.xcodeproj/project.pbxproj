@@ -29,6 +29,7 @@
 		3B55FED422FDE70F00FCB7B2 /* HideGradesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */; };
 		3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */; };
 		3B55FED722FE280500FCB7B2 /* PostSettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FED622FE280500FCB7B2 /* PostSettingsViewController.storyboard */; };
+		3BC35E42230F1F9F00C0D35D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 3BC35E41230F1F9F00C0D35D /* Localizable.stringsdict */; };
 		4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; };
 		4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; };
@@ -212,6 +213,7 @@
 		3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HideGradesViewController.storyboard; sourceTree = "<group>"; };
 		3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideGradesViewController.swift; sourceTree = "<group>"; };
 		3B55FED622FE280500FCB7B2 /* PostSettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostSettingsViewController.storyboard; sourceTree = "<group>"; };
+		3BC35E41230F1F9F00C0D35D /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */,
 				2CA3473E1F2147290000BB79 /* Localizable.strings */,
 				B15CA23F221DBA940014FB02 /* Routes.swift */,
+				3BC35E41230F1F9F00C0D35D /* Localizable.stringsdict */,
 			);
 			name = Teacher;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				B15CA247221DC5CC0014FB02 /* ModuleListViewController.storyboard in Resources */,
 				3B55FEC922FC871400FCB7B2 /* PostGradesViewController.storyboard in Resources */,
 				2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */,
+				3BC35E42230F1F9F00C0D35D /* Localizable.stringsdict in Resources */,
 				2C8E35722093AD760071ED94 /* Settings.bundle in Resources */,
 				B1A890BE224F16F900CEE000 /* ModuleSectionHeaderView.xib in Resources */,
 				78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */,
@@ -1089,7 +1093,6 @@
 					"$(SRCROOT)/../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1117,7 +1120,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Teacher/bridging-header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1153,7 +1155,6 @@
 					"$(SRCROOT)/../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1179,7 +1180,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Teacher/bridging-header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1235,6 +1235,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1283,6 +1284,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1305,7 +1307,6 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1318,7 +1319,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teacher.app/Teacher";
 			};
 			name = Debug;
@@ -1342,7 +1342,6 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1352,7 +1351,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teacher.app/Teacher";
 			};
 			name = Release;
@@ -1372,7 +1370,6 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1385,7 +1382,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Teacher;
 			};
 			name = Debug;
@@ -1406,7 +1402,6 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1416,7 +1411,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Teacher;
 			};
 			name = Release;

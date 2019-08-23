@@ -21,14 +21,35 @@ import Foundation
 public class GetCourses: CollectionUseCase {
     public typealias Model = Course
 
-    public let request: GetCoursesRequest
-    public let scope: Scope
-    public let cacheKey: String? = "get-courses"
+    let showFavorites: Bool
+    let enrollmentState: GetCoursesRequest.EnrollmentState?
+    let perPage: Int
 
-    public init(showFavorites: Bool = false, state: [GetCoursesRequest.State]? = nil, perPage: Int = 10) {
-        request = GetCoursesRequest(state: state, perPage: perPage)
-        scope = showFavorites ?
-            .where(#keyPath(Course.isFavorite), equals: true, orderBy: #keyPath(Course.name)) :
-            .all(orderBy: #keyPath(Course.name), ascending: true, naturally: true)
+    public var scope: Scope {
+        if showFavorites {
+            return Scope.where(#keyPath(Course.isFavorite), equals: true, orderBy: #keyPath(Course.name), ascending: true, naturally: true)
+        }
+        if let enrollmentState = enrollmentState {
+            let predicate = NSPredicate(format: "ANY %K == %@", #keyPath(Course.enrollments.stateRaw), enrollmentState.rawValue)
+            return Scope(predicate: predicate, orderBy: #keyPath(Course.name), ascending: true, naturally: true)
+        }
+        return Scope.all(orderBy: #keyPath(Course.name), ascending: true, naturally: true)
+    }
+
+    public var request: GetCoursesRequest {
+        return GetCoursesRequest(enrollmentState: enrollmentState, perPage: perPage)
+    }
+
+    public var cacheKey: String? {
+        if let enrollmentState = enrollmentState {
+            return "get-courses-\(enrollmentState)"
+        }
+        return "get-courses"
+    }
+
+    public init(showFavorites: Bool = false, enrollmentState: GetCoursesRequest.EnrollmentState? = .active, perPage: Int = 10) {
+        self.showFavorites = showFavorites
+        self.enrollmentState = enrollmentState
+        self.perPage = perPage
     }
 }

@@ -45,7 +45,7 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
         return PSPDFConfiguration { (builder) -> Void in
             applySharedAppConfiguration(to: builder)
             let sharing = PSPDFDocumentSharingConfiguration { builder in
-                builder.annotationOptions = [.embed]
+                builder.annotationOptions = [.flatten]
                 builder.pageSelectionOptions = .all
             }
             builder.sharingConfigurations = [sharing]

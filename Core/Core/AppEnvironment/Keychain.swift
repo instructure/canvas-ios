@@ -30,33 +30,27 @@ class Keychain {
 
     @discardableResult
     func setData(_ data: Data, for key: String) -> Bool {
+        // Only query with class, service, and account
+        // https://forums.developer.apple.com/message/259602#259602
         var query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: serviceName,
             kSecAttrAccount: key,
-            kSecValueData: data,
-            kSecAttrAccessible: kSecAttrAccessibleWhenUnlocked,
         ]
-
         if accessGroup?.isEmpty == false {
             query[kSecAttrAccessGroup] = accessGroup
         }
-
-        //  try add
-        var status: OSStatus = SecItemAdd(query as CFDictionary, nil)
-
-        if status == errSecSuccess {
-            return true
+        let exists = SecItemCopyMatching(query as CFDictionary, nil) == noErr
+        var status: OSStatus?
+        if exists {
+            status = SecItemUpdate(query as CFDictionary, [kSecValueData: data] as CFDictionary)
+        } else {
+            query[kSecAttrAccessible] = kSecAttrAccessibleWhenUnlocked
+            query[kSecValueData] = data
+            status = SecItemAdd(query as CFDictionary, nil)
         }
-        // try to update
-        else if status == errSecDuplicateItem {
-            query[kSecValueData] = nil
-            let updateQuery: [CFString: Any] = [kSecValueData: data]
-            status = SecItemUpdate(query as CFDictionary, updateQuery as CFDictionary)
-            return status == errSecSuccess
-        }
-
-        return false
+        assert(status == errSecSuccess)
+        return status == errSecSuccess
     }
 
     @discardableResult

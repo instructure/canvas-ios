@@ -192,6 +192,8 @@ export class AnnouncementEdit extends Component<Props, any> {
                 navigator={this.props.navigator}
                 attachmentUploadPath={`/${this.props.context}/${this.props.contextID}/files`}
                 onFocus={this._scrollToRCE}
+                context={this.props.context}
+                contextID={this.props.contextID}
               />
             </View>
             <RequiredFieldSubscript title={i18n('A description is required')} visible={!this.state.isValid} />

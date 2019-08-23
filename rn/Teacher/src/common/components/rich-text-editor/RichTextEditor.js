@@ -28,6 +28,9 @@ import {
   Dimensions,
   NativeModules,
 } from 'react-native'
+import * as canvas from '../../../canvas-api'
+
+const { getEnabledFeatureFlags } = canvas
 
 export type Props = {
   defaultValue?: ?string,
@@ -52,6 +55,10 @@ type State = {
 export default class RichTextEditor extends Component<Props, State> {
   editor: ZSSRichTextEditor
   container: View
+
+  static defaultProps = {
+    getEnabledFeatureFlags,
+  }
 
   state: State = {
     activeEditorItems: [],
@@ -131,9 +138,15 @@ export default class RichTextEditor extends Component<Props, State> {
 
   // EDITOR EVENTS
 
-  _onLoad = () => {
+  _onLoad = async () => {
     NativeModules.WebViewHacker.removeInputAccessoryView()
     NativeModules.WebViewHacker.setKeyboardDisplayRequiresUserAction(false)
+    if (this.props.context && this.props.contextID) {
+      try {
+        let flags = await this.props.getEnabledFeatureFlags(this.props.context, this.props.contextID)
+        this.editor.setFeatureFlags(flags.data)
+      } catch (e) {}
+    }
     if (this.props.contentHeight) {
       this.editor.setContentHeight(this.props.contentHeight)
     }
@@ -199,6 +212,8 @@ export default class RichTextEditor extends Component<Props, State> {
       onComplete: this.insertAttachments,
       fileTypes: ['image', 'video'],
       userFiles: true,
+      context: this.props.context,
+      contextID: this.props.contextID,
     })
   }
 

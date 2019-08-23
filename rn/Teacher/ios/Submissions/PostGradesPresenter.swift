@@ -55,7 +55,7 @@ class PostGradesPresenter {
     func updatePostGradesPolicy(postPolicy: PostGradePolicy, sectionIDs: [String]) {
         print("sectionIDs: \(sectionIDs)")
         //  TODO: - add sections
-        let req = PostAssignmentGrades(assignmentID: assignmentID, postPolicy: postPolicy)
+        let req = PostAssignmentGradesPostPolicyRequest(assignmentID: assignmentID, postPolicy: postPolicy)
         env.api.makeRequest(req, callback: { _, _, error in
             if let error = error {
                 print(error)
@@ -64,10 +64,10 @@ class PostGradesPresenter {
     }
 
     struct ViewModel {
-        var sections: [PostPolicyModel.SectionNode] = []
+        var sections: [APIPostPolicyInfo.SectionNode] = []
         var gradesCurrentlyHidden: Int = 0
 
-        init(data: PostPolicyModel) {
+        init(data: APIPostPolicyInfo) {
             self.sections = data.sections
             let hidden = data.submissions.filter { $0.isHidden }
             gradesCurrentlyHidden = hidden.count

@@ -72,12 +72,6 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
         NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) { [weak self] _ in
             self?.takeabilityController?.refreshTakeability()
         }
-        
-        if #available(iOS 10.0, *) {
-            self.takeabilityTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
-                self?.takeabilityController?.refreshTakeability()
-            }
-        }
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -194,9 +188,8 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
         pageViewController.setViewControllers(pages, direction: .forward, animated: false, completion: nil)
         
         let detailsPage = pages[0] as! QuizDetailsViewController
-        detailsPage.quiz = quizController.quiz
-        detailsPage.submission = quizController.submission
-        
+        detailsPage.quizController = quizController
+
         if quizController.quiz != nil {
             if quizController.quiz!.oneQuestionAtATime && quizController.quiz!.cantGoBack {
                 pages.append(buildAnswersFinalPage())
