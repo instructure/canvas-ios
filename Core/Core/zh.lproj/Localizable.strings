@@ -74,6 +74,9 @@
 "Clear recording" = "清除录制";
 
 /* No comment provided by engineer. */
+"Close App" = "关闭应用程序";
+
+/* No comment provided by engineer. */
 "Closed" = "已关闭";
 
 /* No comment provided by engineer. */
@@ -117,6 +120,9 @@
 
 /* No comment provided by engineer. */
 "Error" = "错误";
+
+/* No comment provided by engineer. */
+"Excused" = "已请假";
 
 /* No comment provided by engineer. */
 "External Tool" = "外部工具";
@@ -383,6 +389,9 @@
 "Text Entry" = "文本输入";
 
 /* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "需重启应用程序才能使用新语言设置。请重启该应用程序。";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "提取使用条款时出错。";
 
 /* No comment provided by engineer. */
@@ -414,6 +423,9 @@
 
 /* No comment provided by engineer. */
 "Unordered List" = "无序的列表";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "已更新语言设置";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "正在上传 %1$@，共%2$@";

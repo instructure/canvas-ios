@@ -74,6 +74,9 @@
 "Clear recording" = "Ryd optagelse";
 
 /* No comment provided by engineer. */
+"Close App" = "Luk app";
+
+/* No comment provided by engineer. */
 "Closed" = "Lukket";
 
 /* No comment provided by engineer. */
@@ -117,6 +120,9 @@
 
 /* No comment provided by engineer. */
 "Error" = "Fejl";
+
+/* No comment provided by engineer. */
+"Excused" = "Undskyldt";
 
 /* No comment provided by engineer. */
 "External Tool" = "Eksternt værktøj";
@@ -383,6 +389,9 @@
 "Text Entry" = "Tekstindlæg";
 
 /* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Appen skal genstarte for at bruge de nye sprogindstillinger. Genstart venligst appen.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Der opstod et problem ved hentning af Betingelser for brug";
 
 /* No comment provided by engineer. */
@@ -414,6 +423,9 @@
 
 /* No comment provided by engineer. */
 "Unordered List" = "Ikke ordnet liste";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Opdaterede sprogindstillinger";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "Overfører %1$@ af %2$@";

@@ -18,7 +18,7 @@
 //
 
 const program = require('commander')
-const { spawn } = require('child_process')
+const { spawnSync } = require('child_process')
 const { createReadStream, readFileSync, writeFileSync, readdir } = require('fs')
 const mkdirp = require('mkdirp')
 const path = require('path')
@@ -61,15 +61,11 @@ importTranslations().catch(err => {
 })
 
 function run(cmd, args, opts) {
-  return new Promise((resolve, reject) => {
-    const command = spawn(cmd, args, opts)
-    command.on('error', reject)
-    command.on('exit', code => {
-      if (code === 0) return resolve()
-      console.error(command.stderr.toString())
-      reject(`${cmd} failed with code ${code}.`)
-    })
-  })
+  const { error, status, stderr } = spawnSync(cmd, args, opts)
+  if (error || status) {
+    console.error(stderr.toString())
+    throw error || status
+  }
 }
 
 // make it more difficult for translators to accidentally break stuff

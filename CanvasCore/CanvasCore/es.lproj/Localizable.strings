@@ -32,9 +32,6 @@
    Student is present in class */
 "Absent" = "Ausente";
 
-/* URL submission option */
-"Add Website Address" = "Agregar la dirección de un sitio web";
-
 /* Shows the number questions */
 "All %@ Questions" = "Todas las %@ preguntas";
 
@@ -55,9 +52,6 @@
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Intentos permitidos";
-
-/* Default error message displayed when a file fails to upload */
-"An error occurred, please try again." = "Ocurrió un error. Por favor, vuelva a intentarlo.";
 
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Se produjo un error inesperado.";
@@ -106,7 +100,6 @@
 
 /* Cancel Audio recording.
    Cancel button title
-   Cancel submission option
    Cancel upload */
 "Cancel" = "Cancelar";
 
@@ -139,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Comments" = "Comentarios";
-
-/* File upload completed */
-"Complete" = "Completar";
 
 /* Title of a screen that shows all of our open source components */
 "Components" = "Componentes";
@@ -185,8 +175,7 @@
 /* DeepPurple course color button */
 "DeepPurple" = "DeepPurple";
 
-/* Delete button
-   Delete button for file upload */
+/* Delete button */
 "Delete" = "Eliminar";
 
 /* No comment provided by engineer. */
@@ -226,14 +215,8 @@
 /* Default text for essay cell */
 "Enter answer..." = "Ingresar la respuesta...";
 
-/* Text submission option */
-"Enter Text" = "Ingresar texto";
-
 /* Placeholder for URL */
 "Enter URL..." = "Ingrese la URL...";
-
-/* Prompt for text upload */
-"Enter your submission..." = "Ingrese su envío...";
 
 /* No comment provided by engineer. */
 "Error" = "Error";
@@ -277,14 +260,8 @@
 /* label to be read for visually impaired users with external tool assignment types */
 "external tool" = "herramienta externa";
 
-/* File upload failed */
-"Failed" = "Falló";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "No se pudo encontrar la imagen en la ruta";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "No se pudo cargar (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
 "Failed to write image" = "No se pudo escribir la imagen";
@@ -294,9 +271,6 @@
 
 /* title for file upload errors */
 "File Upload Error" = "Error al subir el archivo";
-
-/* File uploads screen title */
-"File Uploads" = "Cargas de archivos";
 
 /* State of the flagged question */
 "Flagged" = "Marcada";
@@ -598,14 +572,10 @@
 /* stop recording button a11y label */
 "Stop" = "Detener";
 
-/* File upload was stopped */
-"Stopped" = "Detenido.";
-
 /* No comment provided by engineer. */
 "Style" = "Estilo";
 
-/* Submit assignment button
-   Submit button title
+/* Submit button title
    Turn in this url button */
 "Submit" = "Presentar";
 
@@ -662,9 +632,6 @@
 
 /* CalendarKit Database Load Failure Message */
 "There was a problem loading the CalendarKit database file." = "Hubo un problema al cargar el CalendarKit archivo de la base de datos.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Hubo un problema al cargar el DiscussionKit archivo de la base de datos.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Hubo un problema al cargar el EnrollmentKit archivo de la base de datos.";
@@ -780,14 +747,8 @@
 /* Upcoming assignments */
 "Upcoming" = "Próxima";
 
-/* File upload submission option */
-"Upload File" = "Cargar archivo";
-
 /* Message displayed while a file is being uploaded */
 "Uploading file..." = "Cargando archivo...";
-
-/* File upload in progress */
-"uploading..." = "cargando...";
 
 /* permission denied button a11y hint */
 "User has denied record permission" = "El usuario ha negado el permiso para grabar";
