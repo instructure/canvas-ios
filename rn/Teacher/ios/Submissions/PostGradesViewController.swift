@@ -55,10 +55,10 @@ class PostGradesViewController: UIViewController {
         presenter.viewIsReady()
     }
 
-        func setupTableView() {
+    func setupTableView() {
         tableView.registerCell(SectionCell.self)
         tableView.registerCell(PostToCell.self)
-        }
+    }
 
     func setupSections() {
         sectionToggles = Array(repeating: false, count: viewModel?.sections.count ?? 0)
