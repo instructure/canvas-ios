@@ -140,6 +140,7 @@ describe('defaultFilterOptions', () => {
     let ungraded = defaultFilterOptions().find(option => option.type === 'ungraded') || {}
     expect(ungraded.filterFunc()).toEqual({
       gradingStatus: 'needs_grading',
+      states: ['submitted', 'pending_review', 'ungraded'],
     })
   })
 
@@ -232,7 +233,7 @@ describe('createFilter', () => {
       scoredLessThan: null,
       scoredMoreThan: null,
       sectionIDs: [],
-      states: ['submitted', 'unsubmitted', 'pending_review', 'graded', 'ungraded'],
+      states: ['submitted', 'pending_review', 'ungraded'],
       gradingStatus: 'needs_grading',
     })
   })
