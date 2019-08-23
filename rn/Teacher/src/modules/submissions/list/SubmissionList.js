@@ -174,6 +174,8 @@ export class SubmissionList extends Component<Props, State> {
         image: icon('email', 'solid'),
         testID: 'submission-list.message-who-btn',
         action: this.messageStudentsWho,
+        width: 29,
+        height: 29,
       },
       {
         accessibilityLabel: i18n('Submission Settings'),
@@ -189,6 +191,8 @@ export class SubmissionList extends Component<Props, State> {
         testID: 'submission-list.post-policy',
         action: this.openPostPolicy,
         accessibilityLabel: i18n('Grade post policy'),
+        width: 29,
+        height: 29,
       })
     }
 

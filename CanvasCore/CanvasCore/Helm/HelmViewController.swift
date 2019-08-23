@@ -410,7 +410,25 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
                     badged.addSubview(button)
                     badged.addSubview(badgeLabel)
                     barButtonItem = UIBarButtonItem(customView: badged)
-                } else if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig) {
+                } else if let imageConfig = buttonConfig["image"],
+                    let image = RCTConvert.uiImage(imageConfig),
+                    let width = buttonConfig["width"] as? CGFloat,
+                    let height = buttonConfig["height"] as? CGFloat
+                {
+                    let button = UIButton(type: .custom)
+                    let templateImage = image.withRenderingMode(.alwaysTemplate)
+                    button.setImage(templateImage, for: .normal)
+                    button.imageView?.contentMode = .scaleAspectFit
+                    let view = UIView()
+                    view.contentMode = .scaleAspectFit
+                    let frame = CGRect(x: 0, y: 0, width: width, height: height)
+                    view.frame = frame
+                    button.frame = frame
+                    view.addSubview(button)
+                    barButtonItem = UIBarButtonItem(customView: view)
+                    button.addTarget(self, action: #selector(barButtonTapped(_:)), for: .touchUpInside)
+                }
+                else if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig) {
                     barButtonItem = UIBarButtonItem(image: image, style: style, target: self, action: #selector(barButtonTapped(_:)))
                 } else if let title = buttonConfig["title"] as? String {
                     barButtonItem = UIBarButtonItem(title: title, style: style, target: self, action: #selector(barButtonTapped(_:)))
