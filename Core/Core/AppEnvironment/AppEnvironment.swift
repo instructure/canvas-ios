@@ -42,7 +42,14 @@ open class AppEnvironment {
 
     public func userDidLogin(session: LoginSession) {
         database = NSPersistentContainer.create(session: session)
-        api = URLSessionAPI(accessToken: session.accessToken, actAsUserID: session.actAsUserID, baseURL: session.baseURL)
+        api = URLSessionAPI(
+            accessToken: session.accessToken,
+            refreshToken: session.refreshToken,
+            actAsUserID: session.actAsUserID,
+            clientID: session.clientID,
+            clientSecret: session.clientSecret,
+            baseURL: session.baseURL
+        )
         currentSession = session
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
         Logger.shared.database = database

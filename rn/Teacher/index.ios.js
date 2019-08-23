@@ -67,6 +67,9 @@ function logout () {
 const loginHandler = async ({
   appId,
   authToken,
+  refreshToken,
+  clientID,
+  clientSecret,
   baseURL,
   branding,
   user,
@@ -99,7 +102,7 @@ const loginHandler = async ({
     setupBrandingFromNativeBrandingInfo(branding)
   }
 
-  const session = { authToken, baseURL, user, actAsUserID }
+  const session = { authToken, baseURL, user, actAsUserID, refreshToken, clientID, clientSecret }
   const previous = getSessionUnsafe()
   if (previous && !compareSessions(session, previous)) {
     logout()

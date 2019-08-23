@@ -41,19 +41,44 @@ struct GetMobileVerifyRequest: APIRequestable {
 struct PostLoginOAuthRequest: APIRequestable {
     typealias Response = APIOAuthToken
 
+    enum GrantType {
+        case code(String)
+        case refreshToken(String)
+    }
+
     let client: APIVerifyClient
-    let code: String
+    let grantType: GrantType
+
+    init(client: APIVerifyClient, code: String) {
+        self.client = client
+        self.grantType = .code(code)
+    }
+
+    init(client: APIVerifyClient, refreshToken: String) {
+        self.client = client
+        self.grantType = .refreshToken(refreshToken)
+    }
 
     let method = APIMethod.post
     var path: String {
         return URL(string: "login/oauth2/token", relativeTo: client.base_url)?.absoluteString ?? "login/oauth2/token"
     }
     var query: [APIQueryItem] {
-        return [
+        var query: [APIQueryItem] = [
             .value("client_id", client.client_id ?? ""),
             .value("client_secret", client.client_secret ?? ""),
-            .value("code", code),
         ]
+
+        switch grantType {
+        case .code(let code):
+            query.append(.value("grant_type", "authorization_code"))
+            query.append(.value("code", code))
+        case .refreshToken(let token):
+            query.append(.value("grant_type", "refresh_token"))
+            query.append(.value("refresh_token", token))
+        }
+
+        return query
     }
     let headers: [String: String?] = [
         HttpHeader.authorization: nil,

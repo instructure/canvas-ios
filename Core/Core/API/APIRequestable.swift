@@ -187,3 +187,36 @@ public struct GetNextRequest<T: Codable>: APIRequestable {
 }
 
 public struct APINoContent: Codable {}
+
+extension URLRequest: APIRequestable {
+    public typealias Response = Data
+
+    public var path: String {
+        return ""
+    }
+    public var method: APIMethod {
+        return .get
+    }
+    public var headers: [String: String?] {
+        return [:]
+    }
+    public var query: [APIQueryItem] {
+        return []
+    }
+
+    public func decode(_ data: Data) throws -> Data {
+        return data
+    }
+
+    public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
+        guard let url = url else { throw NSError.internalError() }
+        var request = self
+        if let token = accessToken {
+            request.addValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
+        }
+        if let actAsUserID = actAsUserID {
+            request.url = url.appendingQueryItems(URLQueryItem(name: "as_user_id", value: actAsUserID))
+        }
+        return request
+    }
+}

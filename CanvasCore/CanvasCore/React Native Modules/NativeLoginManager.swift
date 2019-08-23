@@ -24,6 +24,9 @@ extension NativeLoginManager {
         var body: [String: Any] = [
             "appId": Bundle.main.isTeacherApp ? "teacher" : "student",
             "authToken": entry.accessToken,
+            "refreshToken": entry.refreshToken ?? "",
+            "clientID": entry.clientID ?? "",
+            "clientSecret": entry.clientSecret ?? "",
             "baseURL": entry.baseURL.absoluteString,
             "branding": [
                 "buttonPrimaryBackground": brand.buttonPrimaryBackground.hexString,

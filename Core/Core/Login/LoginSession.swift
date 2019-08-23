@@ -30,6 +30,8 @@ public struct LoginSession: Codable, Hashable {
     public let userID: String
     public let userName: String
     public let userEmail: String?
+    public let clientID: String?
+    public let clientSecret: String?
 
     public var actAsUserID: String? {
         return masquerader == nil ? nil : userID
@@ -65,7 +67,9 @@ public struct LoginSession: Codable, Hashable {
         userAvatarURL: URL? = nil,
         userID: String,
         userName: String,
-        userEmail: String? = nil
+        userEmail: String? = nil,
+        clientID: String? = nil,
+        clientSecret: String? = nil
     ) {
         self.accessToken = accessToken
         // remove trailing slash
@@ -81,6 +85,8 @@ public struct LoginSession: Codable, Hashable {
         self.userID = userID
         self.userName = userName
         self.userEmail = userEmail
+        self.clientID = clientID
+        self.clientSecret = clientSecret
     }
 
     // Only keep 1 entry per account user

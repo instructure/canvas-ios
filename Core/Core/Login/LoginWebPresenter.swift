@@ -128,7 +128,9 @@ class LoginWebPresenter {
                             refreshToken: model.refresh_token,
                             userID: model.user.id.value,
                             userName: model.user.name,
-                            userEmail: model.user.email
+                            userEmail: model.user.email,
+                            clientID: mobileVerify.client_id,
+                            clientSecret: mobileVerify.client_secret
                         ))
                     }
                 }
