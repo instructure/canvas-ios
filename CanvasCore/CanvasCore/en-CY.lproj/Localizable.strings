@@ -32,9 +32,6 @@
    Student is present in class */
 "Absent" = "Absent";
 
-/* URL submission option */
-"Add Website Address" = "Add website address";
-
 /* Shows the number questions */
 "All %@ Questions" = "All %@ questions";
 
@@ -55,9 +52,6 @@
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Allowed attempts";
-
-/* Default error message displayed when a file fails to upload */
-"An error occurred, please try again." = "An error occurred. Please try again.";
 
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "An unexpected error has occurred.";
@@ -106,7 +100,6 @@
 
 /* Cancel Audio recording.
    Cancel button title
-   Cancel submission option
    Cancel upload */
 "Cancel" = "Cancel";
 
@@ -139,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Comments" = "Comments";
-
-/* File upload completed */
-"Complete" = "Complete";
 
 /* Title of a screen that shows all of our open source components */
 "Components" = "Components";
@@ -185,8 +175,7 @@
 /* DeepPurple course color button */
 "DeepPurple" = "DeepPurple";
 
-/* Delete button
-   Delete button for file upload */
+/* Delete button */
 "Delete" = "Delete";
 
 /* No comment provided by engineer. */
@@ -226,14 +215,8 @@
 /* Default text for essay cell */
 "Enter answer..." = "Enter answer...";
 
-/* Text submission option */
-"Enter Text" = "Enter text";
-
 /* Placeholder for URL */
 "Enter URL..." = "Enter URL";
-
-/* Prompt for text upload */
-"Enter your submission..." = "Enter your submission...";
 
 /* No comment provided by engineer. */
 "Error" = "Error";
@@ -277,14 +260,8 @@
 /* label to be read for visually impaired users with external tool assignment types */
 "external tool" = "External tool";
 
-/* File upload failed */
-"Failed" = "Failed";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Failed to find image at path";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Failed to load (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
 "Failed to write image" = "Failed to write image";
@@ -294,9 +271,6 @@
 
 /* title for file upload errors */
 "File Upload Error" = "File upload error";
-
-/* File uploads screen title */
-"File Uploads" = "File uploads";
 
 /* State of the flagged question */
 "Flagged" = "Flagged";
@@ -598,14 +572,10 @@
 /* stop recording button a11y label */
 "Stop" = "Stop";
 
-/* File upload was stopped */
-"Stopped" = "Stopped";
-
 /* No comment provided by engineer. */
 "Style" = "Style";
 
-/* Submit assignment button
-   Submit button title
+/* Submit button title
    Turn in this url button */
 "Submit" = "Submit";
 
@@ -662,9 +632,6 @@
 
 /* CalendarKit Database Load Failure Message */
 "There was a problem loading the CalendarKit database file." = "There was a problem loading the CalendarKit database file.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "There was a problem loading the DiscussionKit database file.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "There was a problem loading the EnrollmentKit database file.";
@@ -780,14 +747,8 @@
 /* Upcoming assignments */
 "Upcoming" = "Upcoming";
 
-/* File upload submission option */
-"Upload File" = "Upload file";
-
 /* Message displayed while a file is being uploaded */
 "Uploading file..." = "Uploading file...";
-
-/* File upload in progress */
-"uploading..." = "uploading...";
 
 /* permission denied button a11y hint */
 "User has denied record permission" = "User has denied record permission";
