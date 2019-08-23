@@ -26,11 +26,17 @@ public struct GetCoursesRequest: APIRequestable {
         case active, invited_or_pending, completed
     }
 
+    public enum State: String {
+        case available, completed, unpublished
+    }
+
     let enrollmentState: EnrollmentState?
+    let state: [State]?
     let perPage: Int
 
-    public init(enrollmentState: EnrollmentState? = .active, perPage: Int = 10) {
+    public init(enrollmentState: EnrollmentState? = .active, state: [State]? = nil, perPage: Int = 10) {
         self.enrollmentState = enrollmentState
+        self.state = state
         self.perPage = perPage
     }
 
@@ -50,6 +56,9 @@ public struct GetCoursesRequest: APIRequestable {
         ]
         if let enrollmentState = enrollmentState {
             query.append(.value("enrollment_state", enrollmentState.rawValue))
+        }
+        if let state = state {
+            query.append(.array("state", state.map { $0.rawValue }))
         }
         return query
     }

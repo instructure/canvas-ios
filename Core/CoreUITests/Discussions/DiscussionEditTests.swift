@@ -35,7 +35,11 @@ class DiscussionEditTests: CoreUITestCase {
 
     func testCantCreateDiscussion() {
         mockBaseRequests()
-        mockData(GetCoursesRequest(), value: [ noPermissionCourse ])
+        if Bundle.main.isTeacherApp {
+            mockData(GetCoursesRequest(state: [.available, .completed, .unpublished]), value: [ noPermissionCourse ])
+        } else {
+            mockData(GetCoursesRequest(state: [.available, .completed]), value: [ noPermissionCourse ])
+        }
         mockData(GetCourseRequest(courseID: "1"), value: noPermissionCourse)
         mockEncodableRequest("courses/1/discussion_topics?per_page=99&include[]=sections", value: [String]())
 
@@ -47,7 +51,11 @@ class DiscussionEditTests: CoreUITestCase {
 
     func testCreateDiscussion() {
         mockBaseRequests()
-        mockData(GetCoursesRequest(), value: [ course1 ])
+        if Bundle.main.isTeacherApp {
+            mockData(GetCoursesRequest(state: [.available, .completed, .unpublished]), value: [ noPermissionCourse ])
+        } else {
+            mockData(GetCoursesRequest(state: [.available, .completed]), value: [ noPermissionCourse ])
+        }
         mockData(GetCourseRequest(courseID: "1"), value: course1)
         mockEncodableRequest("courses/1/discussion_topics?per_page=99&include[]=sections", value: [String]())
         mockEncodableRequest("courses/1/discussion_topics", value: [String: String](), error: "error")
