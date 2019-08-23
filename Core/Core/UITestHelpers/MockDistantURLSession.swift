@@ -102,7 +102,7 @@ public class MockDistantURLSession: URLSession {
 
             task.mock = MockData(
                     data: nil,
-                    response: request.url.flatMap { HTTPURLResponse(url: $0, statusCode: 401, httpVersion: "HTTP/1.1", headerFields: [:]) },
+                    response: request.url.flatMap { HTTPURLResponse(url: $0, statusCode: 501, httpVersion: "HTTP/1.1", headerFields: [:]) },
                     error: NSError.instructureError("no mock found for \(urlStr)"),
                     noCallback: false)
         }
