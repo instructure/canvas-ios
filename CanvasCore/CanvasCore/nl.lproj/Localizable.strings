@@ -32,9 +32,6 @@
    Student is present in class */
 "Absent" = "Afwezig";
 
-/* URL submission option */
-"Add Website Address" = "Website-adres toevoegen";
-
 /* Shows the number questions */
 "All %@ Questions" = "Alle %@ vragen";
 
@@ -55,9 +52,6 @@
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Toegestaan aantal pogingen";
-
-/* Default error message displayed when a file fails to upload */
-"An error occurred, please try again." = "Er heeft zich een fout voorgedaan, probeer het nogmaals.";
 
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Er is een onverwachte fout opgetreden.";
@@ -106,7 +100,6 @@
 
 /* Cancel Audio recording.
    Cancel button title
-   Cancel submission option
    Cancel upload */
 "Cancel" = "Annuleren";
 
@@ -139,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Comments" = "Opmerkingen";
-
-/* File upload completed */
-"Complete" = "Voltooid";
 
 /* Title of a screen that shows all of our open source components */
 "Components" = "Componenten";
@@ -185,8 +175,7 @@
 /* DeepPurple course color button */
 "DeepPurple" = "DeepPurple";
 
-/* Delete button
-   Delete button for file upload */
+/* Delete button */
 "Delete" = "Verwijderen";
 
 /* No comment provided by engineer. */
@@ -226,14 +215,8 @@
 /* Default text for essay cell */
 "Enter answer..." = "Antwoord invoeren...";
 
-/* Text submission option */
-"Enter Text" = "Tekst invoeren";
-
 /* Placeholder for URL */
 "Enter URL..." = "URL invoeren...";
-
-/* Prompt for text upload */
-"Enter your submission..." = "Voer je inlevering in...";
 
 /* No comment provided by engineer. */
 "Error" = "Fout";
@@ -277,14 +260,8 @@
 /* label to be read for visually impaired users with external tool assignment types */
 "external tool" = "externe tool";
 
-/* File upload failed */
-"Failed" = "Mislukt";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Kan afbeelding niet vinden op pad";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Laden mislukt (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
 "Failed to write image" = "Kan afbeelding niet schrijven";
@@ -294,9 +271,6 @@
 
 /* title for file upload errors */
 "File Upload Error" = "Fout bij uploaden bestand";
-
-/* File uploads screen title */
-"File Uploads" = "Bestanden uploaden";
 
 /* State of the flagged question */
 "Flagged" = "Gevlagd";
@@ -598,14 +572,10 @@
 /* stop recording button a11y label */
 "Stop" = "Stoppen";
 
-/* File upload was stopped */
-"Stopped" = "Gestopt";
-
 /* No comment provided by engineer. */
 "Style" = "Stijl";
 
-/* Submit assignment button
-   Submit button title
+/* Submit button title
    Turn in this url button */
 "Submit" = "Inzenden";
 
@@ -662,9 +632,6 @@
 
 /* CalendarKit Database Load Failure Message */
 "There was a problem loading the CalendarKit database file." = "Er is een probleem met het laden van het CalendarKit-databasebestand.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Er is een probleem met het laden van het DiscussionKit-databasebestand.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Er is een probleem met het laden van het EnrollmentKit-databasebestand.";
@@ -780,14 +747,8 @@
 /* Upcoming assignments */
 "Upcoming" = "Aanstaand";
 
-/* File upload submission option */
-"Upload File" = "Bestand uploaden";
-
 /* Message displayed while a file is being uploaded */
 "Uploading file..." = "Bestand aan het uploaden...";
-
-/* File upload in progress */
-"uploading..." = "bezig met uploaden...";
 
 /* permission denied button a11y hint */
 "User has denied record permission" = "Gebruiker heeft toestemming om op te nemen geweigerd";
