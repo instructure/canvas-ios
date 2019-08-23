@@ -47,7 +47,7 @@ import ActivityIndicatorView from '../../../common/components/ActivityIndicatorV
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import * as canvas from '../../../canvas-api'
-import icon, { type InstIconName } from '../../../images/inst-icons'
+import icon from '../../../images/inst-icons'
 
 const { getEnabledFeatureFlags } = canvas
 
@@ -63,7 +63,7 @@ export class SubmissionList extends Component<Props, State> {
   }
 
   flags = []
-  
+
   constructor (props: Props) {
     super(props)
     let filterOptions = [ ...defaultFilterOptions(this.props.filterType), ...this.props.sections.map(createFilterFromSection) ]
@@ -182,7 +182,7 @@ export class SubmissionList extends Component<Props, State> {
         action: this.openSettings,
       },
     ]
-    
+
     if (this.flags.includes('new_gradebook')) {
       rightBarButtons.push({
         image: icon('eye'),
