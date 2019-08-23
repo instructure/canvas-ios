@@ -419,6 +419,9 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
                     let templateImage = image.withRenderingMode(.alwaysTemplate)
                     button.setImage(templateImage, for: .normal)
                     button.imageView?.contentMode = .scaleAspectFit
+                    if let action = buttonConfig["action"] as? NSString {
+                        button.setAssociatedObject(action, forKey: &Associated.barButtonAction)
+                    }
                     let view = UIView()
                     view.contentMode = .scaleAspectFit
                     let frame = CGRect(x: 0, y: 0, width: width, height: height)

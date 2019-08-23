@@ -71,8 +71,9 @@ extension AppDelegate {
             return WrongAppViewController.create(delegate: loginDelegate)
         })
 
-        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/assignments/:assignmentID/post_policy", factory: { _ in
-            return nil
+        HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/assignments/:assignmentID/post_policy", factory: { props in
+            guard let courseID = props["courseID"] as? String, let assignmentID = props["assignmentID"] as? String else { return nil }
+            return PostSettingsViewController.create(courseID: courseID, assignmentID: assignmentID)
         })
 
         CanvasCore.registerSharedNativeViewControllers()
