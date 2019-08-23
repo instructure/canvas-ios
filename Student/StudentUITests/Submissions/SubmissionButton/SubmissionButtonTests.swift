@@ -60,4 +60,42 @@ class SubmissionButtonTests: StudentUITestCase {
         FilePicker.submitButton.tap()
         FilePicker.submitButton.waitToVanish()
     }
+
+    func testExternalTool() {
+        mockBaseRequests()
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .external_tool ]
+        ))
+        mockData(GetSessionlessLaunchURLRequest(
+            context: course,
+            id: nil,
+            url: nil,
+            assignmentID: assignment.id.value,
+            moduleItemID: nil,
+            launchType: .assessment
+        ), value: APIGetSessionlessLaunchResponse(url: URL(string: "https://canvas.instructure.com")!))
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.submitAssignmentButton.tap()
+        app.find(label: "Done").tap()
+    }
+
+    func testBasicLTILaunch() {
+        mockBaseRequests()
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .basic_lti_launch ]
+        ))
+        mockData(GetSessionlessLaunchURLRequest(
+            context: course,
+            id: nil,
+            url: nil,
+            assignmentID: assignment.id.value,
+            moduleItemID: nil,
+            launchType: .assessment
+        ), value: APIGetSessionlessLaunchResponse(url: URL(string: "https://canvas.instructure.com")!))
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.submitAssignmentButton.tap()
+        app.find(label: "Done").tap()
+    }
 }
