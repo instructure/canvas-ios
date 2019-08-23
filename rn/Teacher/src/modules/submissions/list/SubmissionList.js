@@ -174,25 +174,27 @@ export class SubmissionList extends Component<Props, State> {
         image: icon('email', 'solid'),
         testID: 'submission-list.message-who-btn',
         action: this.messageStudentsWho,
-        width: 29,
-        height: 29,
-      },
-      {
-        accessibilityLabel: i18n('Submission Settings'),
-        image: Images.course.settings,
-        testID: 'submission-list.settings',
-        action: this.openSettings,
+        width: 20,
+        height: 20,
       },
     ]
 
     if (this.flags.includes('new_gradebook')) {
       rightBarButtons.push({
-        image: icon('eye'),
+        image: icon('eye', 'solid'),
         testID: 'submission-list.post-policy',
         action: this.openPostPolicy,
         accessibilityLabel: i18n('Grade post policy'),
-        width: 29,
-        height: 29,
+        width: 20,
+        height: 20,
+      })
+    }
+    else {
+      rightBarButtons.push({
+        accessibilityLabel: i18n('Submission Settings'),
+        image: Images.course.settings,
+        testID: 'submission-list.settings',
+        action: this.openSettings,
       })
     }
 
