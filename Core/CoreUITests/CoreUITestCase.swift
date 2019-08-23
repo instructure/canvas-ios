@@ -231,7 +231,11 @@ open class CoreUITestCase: XCTestCase {
             type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
             role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
         )
-        mockData(GetCoursesRequest(), value: [ .make(id: "1", enrollments: [ enrollment ]) ])
+        var state: [GetCoursesRequest.State] = [.available, .completed]
+        if Bundle.main.isTeacherApp {
+            state.append(.unpublished)
+        }
+        mockData(GetCoursesRequest(state: state), value: [ .make(id: "1", enrollments: [ enrollment ]) ])
         mockEncodableRequest("users/self/custom_data/favorites/groups?ns=com.canvas.canvas-app", value: [String: String]())
         mockEncodableRequest("users/self/enrollments?include[]=avatar_url", value: [enrollment])
         mockEncodableRequest("users/self/groups", value: [String]())

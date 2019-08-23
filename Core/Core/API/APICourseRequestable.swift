@@ -22,28 +22,27 @@ import Foundation
 public struct GetCoursesRequest: APIRequestable {
     public typealias Response = [APICourse]
 
-    public enum State: String {
-        case available, completed, unpublished, deleted
-
-        public static var defaults: [State] {
-            if Bundle.main.isTeacherApp {
-                return [.available, .completed, .unpublished]
-            }
-            return [.available, .completed]
-        }
+    public enum EnrollmentState: String {
+        case active, invited_or_pending, completed
     }
 
-    let state: [State]
+    public enum State: String {
+        case available, completed, unpublished
+    }
+
+    let enrollmentState: EnrollmentState?
+    let state: [State]?
     let perPage: Int
 
-    public init(state: [State] = State.defaults, perPage: Int = 10) {
+    public init(enrollmentState: EnrollmentState? = .active, state: [State]? = nil, perPage: Int = 10) {
+        self.enrollmentState = enrollmentState
         self.state = state
         self.perPage = perPage
     }
 
     public let path = "courses"
     public var query: [APIQueryItem] {
-        return [
+        var query: [APIQueryItem] = [
             .array("include", [
                 "course_image",
                 "current_grading_period_scores",
@@ -53,9 +52,15 @@ public struct GetCoursesRequest: APIRequestable {
                 "term",
                 "total_scores",
             ]),
-            .array("state", state.map { $0.rawValue }),
             .value("per_page", String(perPage)),
         ]
+        if let enrollmentState = enrollmentState {
+            query.append(.value("enrollment_state", enrollmentState.rawValue))
+        }
+        if let state = state {
+            query.append(.array("state", state.map { $0.rawValue }))
+        }
+        return query
     }
 }
 
