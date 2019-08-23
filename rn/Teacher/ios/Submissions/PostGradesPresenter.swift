@@ -19,8 +19,9 @@
 import Foundation
 import Core
 
-protocol PostGradesViewProtocol: class {
+protocol PostGradesViewProtocol: ErrorViewController {
     func update(_ viewModel: PostGradesPresenter.ViewModel)
+    func didUpdatePostGradesPolicy()
 }
 
 class PostGradesPresenter {
@@ -43,8 +44,8 @@ class PostGradesPresenter {
     func refresh() {
         let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
         env.api.makeRequest(req, callback: { [weak self] data, _, error in
-            if let error = error {
-                print(error)
+            if error != nil {
+                self?.view?.showError(message: NSLocalizedString("An error ocurred", comment: ""))
             } else if let data = data {
                 let model = ViewModel(data: data)
                 DispatchQueue.main.async { self?.view?.update(model) }
@@ -53,12 +54,12 @@ class PostGradesPresenter {
     }
 
     func updatePostGradesPolicy(postPolicy: PostGradePolicy, sectionIDs: [String]) {
-        print("sectionIDs: \(sectionIDs)")
-        //  TODO: - add sections
-        let req = PostAssignmentGradesPostPolicyRequest(assignmentID: assignmentID, postPolicy: postPolicy)
-        env.api.makeRequest(req, callback: { _, _, error in
-            if let error = error {
-                print(error)
+        let req = PostAssignmentGradesPostPolicyRequest(assignmentID: assignmentID, postPolicy: postPolicy, sections: sectionIDs)
+        env.api.makeRequest(req, callback: { [weak self] _, _, error in
+            if error != nil {
+                self?.view?.showError(message: NSLocalizedString("An error ocurred", comment: ""))
+            } else {
+                self?.view?.didUpdatePostGradesPolicy()
             }
         })
     }

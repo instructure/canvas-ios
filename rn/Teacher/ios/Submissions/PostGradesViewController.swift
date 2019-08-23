@@ -178,6 +178,10 @@ extension PostGradesViewController: PostGradesViewProtocol {
         setupSections()
         tableView.reloadData()
     }
+
+    func didUpdatePostGradesPolicy() {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension PostGradePolicy {

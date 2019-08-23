@@ -36,6 +36,16 @@ class PostAssignmentGradesPostPolicyRequestTests: XCTestCase {
         """
         XCTAssertEqual(req.query, expected)
     }
+
+    func testQueryWithSectionIDs() {
+        let sectionIDReq = PostAssignmentGradesPostPolicyRequest(assignmentID: "1", postPolicy: .everyone, sections: [ "2", "3" ])
+        // swiftlint:disable line_length
+        let expected = """
+        mutation PostAssignmentGrades\n    {\n        postAssignmentGradesForSections(input: {assignmentId: \"1\", gradedOnly: false sectionIds: [ \"2\",\"3\" ]})\n        {\n            assignment { id }\n        }\n    }
+        """
+        // swiftlint:enable line_length
+        XCTAssertEqual(sectionIDReq.query, expected)
+    }
 }
 
 class GetAssignmentPostPolicyInfoRequestTests: XCTestCase {

@@ -21,6 +21,7 @@
 		2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */; };
 		2CA347401F2147290000BB79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3473E1F2147290000BB79 /* Localizable.strings */; };
 		3B18E82B230C683D006CAF5C /* PostGradesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18E82A230C683D006CAF5C /* PostGradesPresenter.swift */; };
+		3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D37C8231085830017CCA2 /* PostGradesPresenterTests.swift */; };
 		3B55FEC922FC871400FCB7B2 /* PostGradesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FEC822FC871400FCB7B2 /* PostGradesViewController.storyboard */; };
 		3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */; };
 		3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */; };
@@ -205,6 +206,7 @@
 		3088A0FC28C5D205A6F7EBBA /* Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-common_ui_tests-TeacherUITests/Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3581D3E58E310D454B137601 /* Pods-defaults-TeacherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TeacherTests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-TeacherTests/Pods-defaults-TeacherTests.release.xcconfig"; sourceTree = "<group>"; };
 		3B18E82A230C683D006CAF5C /* PostGradesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGradesPresenter.swift; sourceTree = "<group>"; };
+		3B1D37C8231085830017CCA2 /* PostGradesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGradesPresenterTests.swift; sourceTree = "<group>"; };
 		3B55FEC822FC871400FCB7B2 /* PostGradesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostGradesViewController.storyboard; sourceTree = "<group>"; };
 		3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSettingsViewController.swift; sourceTree = "<group>"; };
 		3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGradesViewController.swift; sourceTree = "<group>"; };
@@ -411,6 +413,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3B1D37C72310855E0017CCA2 /* Submissions */ = {
+			isa = PBXGroup;
+			children = (
+				3B1D37C8231085830017CCA2 /* PostGradesPresenterTests.swift */,
+			);
+			path = Submissions;
+			sourceTree = "<group>";
+		};
 		3B55FEC522FC861F00FCB7B2 /* Submissions */ = {
 			isa = PBXGroup;
 			children = (
@@ -473,6 +483,7 @@
 		B15CA25E221DDB820014FB02 /* TeacherTests */ = {
 			isa = PBXGroup;
 			children = (
+				3B1D37C72310855E0017CCA2 /* Submissions */,
 				B15CA267221DDB8D0014FB02 /* Modules */,
 				B15CA261221DDB820014FB02 /* Info.plist */,
 				B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */,
@@ -921,6 +932,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
 				B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */,
 				B15CA26A221DDB9F0014FB02 /* ModuleListPresenterTests.swift in Sources */,

@@ -27,17 +27,22 @@ public struct PostAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
 
     public let postPolicy: PostGradePolicy
     public let assignmentID: String
+    let sections: [String]
 
-    public init(assignmentID: String, postPolicy: PostGradePolicy) {
+    public init(assignmentID: String, postPolicy: PostGradePolicy, sections: [String] = []) {
         self.postPolicy = postPolicy
         self.assignmentID = assignmentID
+        self.sections = sections
     }
 
     public var query: String? {
+        let mutation = sections.count > 0 ? "postAssignmentGradesForSections" : "postAssignmentGrades"
+        let sectionsAsString = "[ \( sections.map { "\"\($0)\"" }.joined(separator: ",") ) ]"
+        let sectionIDs = sections.count > 0 ? "sectionIds: \(sectionsAsString)" : ""
         return """
         mutation PostAssignmentGrades
             {
-                postAssignmentGrades(input: {assignmentId: "\(assignmentID)", gradedOnly: \(postPolicy == .graded)})
+                \(mutation)(input: {assignmentId: "\(assignmentID)", gradedOnly: \(postPolicy == .graded) \(sectionIDs)})
                 {
                     assignment { id }
                 }

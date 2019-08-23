@@ -27,12 +27,12 @@ public struct APIPostPolicyInfo: Codable {
     }
     private var data: PostPolicyData
 
-    public struct SectionNode: Codable {
+    public struct SectionNode: Codable, Equatable {
         public let id: String
         public let name: String
     }
 
-    public struct SubmissionNode: Codable {
+    public struct SubmissionNode: Codable, Equatable {
         public let score: Double?
         public let excused: Bool
         public let state: String
