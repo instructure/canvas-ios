@@ -96,15 +96,8 @@ public class MockDistantURLSession: URLSession {
         let task = MockDataTask()
         task.mock = MockDistantURLSession.dataMocks[request.url!]
         if task.mock == nil {
-            let urlStr = request.url?.absoluteString ?? "<n/a>"
-            print("⚠️ mock not found for url: \(urlStr)")
+            print("⚠️ mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
             print(MockDistantURLSession.dataMocks.keys)
-
-            task.mock = MockData(
-                    data: nil,
-                    response: request.url.flatMap { HTTPURLResponse(url: $0, statusCode: 501, httpVersion: "HTTP/1.1", headerFields: [:]) },
-                    error: NSError.instructureError("no mock found for \(urlStr)"),
-                    noCallback: false)
         }
         task.callback = completionHandler
         return task
