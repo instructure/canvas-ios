@@ -102,21 +102,19 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             cell = tableView.dequeue(for: indexPath) as SectionCell
         }
 
-        if indexPath.row < Row.allCases.count { //  first two rows (Row enum)
-            if let row = Row(rawValue: indexPath.row) {
-                switch row {
-                case .postTo:
-                    cell.textLabel?.text = NSLocalizedString("Post to...", comment: "")
-                    cell.detailTextLabel?.text = visibility.title
-                    cell.accessoryType = .disclosureIndicator
-                    cell.selectionStyle = .default
-                case .section:
-                    cell.textLabel?.text = NSLocalizedString("Specific Sections", comment: "")
-                    cell.selectionStyle = .none
-                    if let cell = cell as? SectionCell {
-                        cell.toggle.isOn = showSections
-                        cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
-                    }
+        if let row = Row(rawValue: indexPath.row) {
+            switch row {
+            case .postTo:
+                cell.textLabel?.text = NSLocalizedString("Post to...", comment: "")
+                cell.detailTextLabel?.text = visibility.title
+                cell.accessoryType = .disclosureIndicator
+                cell.selectionStyle = .default
+            case .section:
+                cell.textLabel?.text = NSLocalizedString("Specific Sections", comment: "")
+                cell.selectionStyle = .none
+                if let cell = cell as? SectionCell {
+                    cell.toggle.isOn = showSections
+                    cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
                 }
             }
         } else {    //  sections

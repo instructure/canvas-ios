@@ -48,7 +48,7 @@ class HideGradesViewController: UIViewController {
     }
 
     func setupTableView() {
-        tableView.register(PostGradesViewController.SectionCell.self, forCellReuseIdentifier: String(describing: PostGradesViewController.SectionCell.self))
+        tableView.registerCell(PostGradesViewController.SectionCell.self)
     }
 
     func setupSections() {
