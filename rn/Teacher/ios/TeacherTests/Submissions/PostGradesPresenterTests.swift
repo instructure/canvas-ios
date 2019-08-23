@@ -25,10 +25,12 @@ class PostGradesPresenterTests: TeacherTestCase {
     var presenter: PostGradesPresenter!
     var updateExpectation = XCTestExpectation(description: "expectation")
     var didUpdatePostGradesExpectation = XCTestExpectation(description: "expectation")
+    var didHideGradesExpectation = XCTestExpectation(description: "expectation")
     var errorExpectation = XCTestExpectation(description: "expectation")
     let courseID = "1"
     let assignmentID = "1"
     var didUpdatePostGrades = false
+    var didUpdateHideGrades = false
     var errorMessage: String?
     var viewModel: PostGradesPresenter.ViewModel?
 
@@ -37,13 +39,15 @@ class PostGradesPresenterTests: TeacherTestCase {
         viewModel = nil
         errorMessage = nil
         didUpdatePostGrades = false
+        didUpdateHideGrades = false
+        didHideGradesExpectation = XCTestExpectation(description: "expectation")
         errorExpectation = XCTestExpectation(description: "expectation")
         updateExpectation = XCTestExpectation(description: "expectation")
         didUpdatePostGradesExpectation = XCTestExpectation(description: "expectation")
         presenter = PostGradesPresenter(courseID: courseID, assignmentID: assignmentID, view: self, env: environment)
     }
 
-    func testUpdatePostGradesPolicy() {
+    func testPostGrades() {
         let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
         let str = """
         {
@@ -56,18 +60,38 @@ class PostGradesPresenterTests: TeacherTestCase {
             }
         }
         """
-        api.mock(req, data: str.data(using: .utf8), response: nil, error: nil)
-        presenter.updatePostGradesPolicy(postPolicy: .everyone, sectionIDs: ["sectionID"])
+        api.mock(req, data: str.data(using: .utf8)!, response: nil, error: nil)
+        presenter.postGrades(postPolicy: .everyone, sectionIDs: ["sectionID"])
 
         wait(for: [didUpdatePostGradesExpectation], timeout: 0.5)
         XCTAssertTrue(didUpdatePostGrades)
     }
 
-    func testUpdatePostGradesPolicyWithError() {
+    func testHideGrades() {
+        let req = HideAssignmentGradesPostPolicyRequest(assignmentID: assignmentID)
+        let str = """
+        {
+        "data": {
+        "hideAssignmentGradesForSections": {
+        "assignment": {
+        "id": "\(assignmentID)"
+        }
+        }
+        }
+        }
+        """
+        api.mock(req, data: str.data(using: .utf8)!, response: nil, error: nil)
+        presenter.hideGrades(sectionIDs: ["sectionID"])
+
+        wait(for: [didHideGradesExpectation], timeout: 0.5)
+        XCTAssertTrue(didUpdateHideGrades)
+    }
+
+    func testPostGradesWithError() {
         let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
 
         api.mock(req, value: nil, response: nil, error: NSError.internalError())
-        presenter.updatePostGradesPolicy(postPolicy: .everyone, sectionIDs: ["sectionID"])
+        presenter.postGrades(postPolicy: .everyone, sectionIDs: ["sectionID"])
 
         wait(for: [errorExpectation], timeout: 0.5)
         XCTAssertEqual(errorMessage, "An error ocurred")
@@ -100,7 +124,7 @@ class PostGradesPresenterTests: TeacherTestCase {
             }
         }
         """
-        api.mock(req, data: str.data(using: .utf8), response: nil, error: nil)
+        api.mock(req, data: str.data(using: .utf8)!, response: nil, error: nil)
         presenter.viewIsReady()
 
         wait(for: [updateExpectation], timeout: 0.5)
@@ -124,9 +148,14 @@ extension PostGradesPresenterTests: PostGradesViewProtocol {
         updateExpectation.fulfill()
     }
 
-    func didUpdatePostGradesPolicy() {
+    func didPostGrades() {
         didUpdatePostGrades = true
         didUpdatePostGradesExpectation.fulfill()
+    }
+
+    func didHideGrades() {
+        didUpdateHideGrades = true
+        didHideGradesExpectation.fulfill()
     }
 
     var navigationController: UINavigationController? {

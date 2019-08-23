@@ -29,9 +29,12 @@ class HideGradesViewController: UIViewController {
     @IBOutlet weak var allGradesHiddenView: UIView!
     @IBOutlet weak var allHiddenLabel: DynamicLabel!
     @IBOutlet weak var allHiddenSubHeader: DynamicLabel!
+    var presenter: PostGradesPresenter!
+    var viewModel: PostGradesPresenter.ViewModel?
 
-    static func create() -> HideGradesViewController {
+    static func create(courseID: String, assignmentID: String) -> HideGradesViewController {
         let controller = loadFromStoryboard()
+        controller.presenter = PostGradesPresenter(courseID: courseID, assignmentID: assignmentID, view: controller)
         return controller
     }
 
@@ -45,6 +48,8 @@ class HideGradesViewController: UIViewController {
         allHiddenSubHeader.text = NSLocalizedString("All grades are currently hidden.", comment: "")
 
         hideGradesButton.setTitle(NSLocalizedString("Hide Grades", comment: ""), for: .normal)
+
+        presenter.viewIsReady()
     }
 
     func setupTableView() {
@@ -52,18 +57,19 @@ class HideGradesViewController: UIViewController {
     }
 
     func setupSections() {
-        sections = ["section A", "section B"]     // FIXME: remove these static sections once we have real sections
-        sectionToggles = Array(repeating: false, count: sections.count)
+        sectionToggles = Array(repeating: false, count: viewModel?.sections.count ?? 0)
     }
 
     @IBAction func actionUserDidClickHideGrades(_ sender: Any) {
-        print(#function)
+        let sectionIDs = sectionToggles.enumerated().compactMap { i, s in s ? viewModel?.sections[i].id : nil }
+        presenter.hideGrades(sectionIDs: sectionIDs)
+
     }
 }
 
 extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (showSections ? sections.count : 0) + 1
+        return (showSections ? (viewModel?.sections.count ?? 0) : 0) + 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,7 +82,7 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
             cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
         } else {    //  sections
             let index = abs(indexPath.row - 1)
-            cell.textLabel?.text = sections[index]
+            cell.textLabel?.text = viewModel?.sections[index].name
             cell.selectionStyle = .none
             cell.toggle.isOn = sectionToggles[index]
             cell.toggle.tag = index
@@ -88,8 +94,8 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            let localized = NSLocalizedString("grades_currently_posted", comment: "number of grades posted")
-            return String(format: localized, gradesCurrentlyPosted)
+            let localizedFormat = NSLocalizedString("grades_currently_posted", comment: "number of grades hidden")
+            return String(format: localizedFormat, viewModel?.gradesCurrentlyPosted ?? 0)
         }
         return nil
     }
@@ -103,5 +109,17 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
     @objc
     func actionDidToggleSection(toggle: UISwitch) {
         sectionToggles[toggle.tag] = toggle.isOn
+    }
+}
+
+extension HideGradesViewController: PostGradesViewProtocol {
+    func update(_ viewModel: PostGradesPresenter.ViewModel) {
+        self.viewModel = viewModel
+        setupSections()
+        tableView.reloadData()
+    }
+
+    func didHideGrades() {
+        dismiss(animated: true, completion: nil)
     }
 }

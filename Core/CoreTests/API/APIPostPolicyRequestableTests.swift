@@ -48,6 +48,30 @@ class PostAssignmentGradesPostPolicyRequestTests: XCTestCase {
     }
 }
 
+class HideAssignmentGradesPostPolicyRequestTests: XCTestCase {
+    var req: HideAssignmentGradesPostPolicyRequest!
+
+    override func setUp() {
+        super.setUp()
+        req = HideAssignmentGradesPostPolicyRequest(assignmentID: "1")
+    }
+
+    func testQuery() {
+        let expected = """
+        mutation HideAssignmentGrades\n{\n    hideAssignmentGrades(input: {assignmentId: \"1\", })\n    {\n        assignment { id }\n    }\n}
+        """
+        XCTAssertEqual(req.query, expected)
+    }
+
+    func testQueryWithSectionIDs() {
+        let sectionIDReq = HideAssignmentGradesPostPolicyRequest(assignmentID: "1", sections: [ "2", "3" ])
+        let expected = """
+        mutation HideAssignmentGrades\n{\n    hideAssignmentGrades(input: {assignmentId: \"1\", sectionIds: [ \"2\",\"3\" ]})\n    {\n        assignment { id }\n    }\n}
+        """
+        XCTAssertEqual(sectionIDReq.query, expected)
+    }
+}
+
 class GetAssignmentPostPolicyInfoRequestTests: XCTestCase {
     var req: GetAssignmentPostPolicyInfoRequest!
 

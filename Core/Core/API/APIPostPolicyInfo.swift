@@ -44,6 +44,10 @@ public struct APIPostPolicyInfo: Codable {
         public var isHidden: Bool {
             return isGraded && postedAt == nil
         }
+
+        public var isPosted: Bool {
+            return postedAt != nil && isGraded
+        }
     }
 
     struct Sections: Codable {

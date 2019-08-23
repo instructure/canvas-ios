@@ -51,6 +51,33 @@ public struct PostAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
     }
 }
 
+public struct HideAssignmentGradesPostPolicyRequest: APIGraphQLRequestable {
+    public typealias Response = APINoContent
+
+    public let assignmentID: String
+    let sections: [String]
+
+    public init(assignmentID: String, sections: [String] = []) {
+        self.assignmentID = assignmentID
+        self.sections = sections
+    }
+
+    public var query: String? {
+        let mutation = sections.count > 0 ? "hideAssignmentGradesForSections" : "hideAssignmentGrades"
+        let sectionsAsString = "[ \( sections.map { "\"\($0)\"" }.joined(separator: ",") ) ]"
+        let sectionIDs = sections.count > 0 ? "sectionIds: \(sectionsAsString)" : ""
+        return """
+        mutation HideAssignmentGrades
+        {
+            \(mutation)(input: {assignmentId: "\(assignmentID)", \(sectionIDs)})
+            {
+                assignment { id }
+            }
+        }
+        """
+    }
+}
+
 public struct GetAssignmentPostPolicyInfoRequest: APIGraphQLRequestable {
     public typealias Response = APIPostPolicyInfo
 

@@ -66,7 +66,7 @@ class PostGradesViewController: UIViewController {
 
     @IBAction func actionUserDidClickPostGrades(_ sender: Any) {
         let sectionIDs = sectionToggles.enumerated().compactMap { i, s in s ? viewModel?.sections[i].id : nil }
-        presenter.updatePostGradesPolicy(postPolicy: postPolicy, sectionIDs: sectionIDs)
+        presenter.postGrades(postPolicy: postPolicy, sectionIDs: sectionIDs)
     }
 }
 
@@ -179,7 +179,7 @@ extension PostGradesViewController: PostGradesViewProtocol {
         tableView.reloadData()
     }
 
-    func didUpdatePostGradesPolicy() {
+    func didPostGrades() {
         dismiss(animated: true, completion: nil)
     }
 }

@@ -47,7 +47,7 @@ public class MockAPI: API {
         mocks[request] = (data, response, error)
     }
 
-    public func mock<R: APIRequestable>(_ requestable: R, data: Data? = nil, response: URLResponse? = nil, error: Error? = nil) {
+    public func mock<R: APIRequestable>(_ requestable: R, data: Data, response: URLResponse? = nil, error: Error? = nil) {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: actAsUserID)
         mocks[request] = (data, response, error)
     }

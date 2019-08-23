@@ -61,7 +61,7 @@ class PostSettingsViewController: UIViewController {
     }
 
     func configureHide() {
-        hideGradesViewController = HideGradesViewController.create()
+        hideGradesViewController = HideGradesViewController.create(courseID: courseID, assignmentID: assignmentID)
         embed(hideGradesViewController, in: containerB)
     }
 
