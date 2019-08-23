@@ -27,7 +27,7 @@ public class GetCourses: CollectionUseCase {
 
     public var scope: Scope {
         if showFavorites {
-            return Scope.where(#keyPath(Course.isFavorite), equals: true, orderBy: #keyPath(Course.name))
+            return Scope.where(#keyPath(Course.isFavorite), equals: true, orderBy: #keyPath(Course.name), ascending: true, naturally: true)
         }
         if let enrollmentState = enrollmentState {
             let predicate = NSPredicate(format: "ANY %K == %@", #keyPath(Course.enrollments.stateRaw), enrollmentState.rawValue)
