@@ -90,7 +90,7 @@ class DiscussionEditTests: CoreUITestCase {
         allowAccessToPhotos {
             app.find(label: "Choose From Library").tap()
         }
-        app.find(label: "Camera Roll").tap()
+        app.find(label: "Camera Roll").tapUntil { !app.find(label: "Camera Roll").exists }
         app.find(labelContaining: "Photo, ").tap()
 
         app.find(label: "Upload complete").waitToExist()
@@ -106,7 +106,7 @@ class DiscussionEditTests: CoreUITestCase {
 
         Attachments.addButton.tap()
         app.find(label: "Choose From Library").tap()
-        app.find(label: "Camera Roll").tap()
+        app.find(label: "Camera Roll").tapUntil { !app.find(label: "Camera Roll").exists }
         app.find(labelContaining: "Photo, ").tap()
         app.find(label: "Upload complete").waitToExist()
 
