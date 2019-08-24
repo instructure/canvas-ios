@@ -50,11 +50,13 @@ class PostGradesPresenter {
     func refresh() {
         let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
         env.api.makeRequest(req, callback: { [weak self] data, _, error in
-            if error != nil {
-                self?.view?.showError(message: NSLocalizedString("An error ocurred", comment: ""))
-            } else if let data = data {
-                let model = ViewModel(data: data)
-                DispatchQueue.main.async { self?.view?.update(model) }
+            DispatchQueue.main.async {
+                if error != nil {
+                    self?.view?.showError(message: NSLocalizedString("An error ocurred", comment: ""))
+                } else if let data = data {
+                    let model = ViewModel(data: data)
+                    self?.view?.update(model)
+                }
             }
         })
     }
@@ -62,10 +64,12 @@ class PostGradesPresenter {
     func postGrades(postPolicy: PostGradePolicy, sectionIDs: [String]) {
         let req = PostAssignmentGradesPostPolicyRequest(assignmentID: assignmentID, postPolicy: postPolicy, sections: sectionIDs)
         env.api.makeRequest(req, callback: { [weak self] _, _, error in
-            if error != nil {
-                self?.view?.showError(message: NSLocalizedString("An error ocurred", comment: ""))
-            } else {
-                self?.view?.didPostGrades()
+            DispatchQueue.main.async {
+                if error != nil {
+                    self?.view?.showError(message: NSLocalizedString("An error ocurred", comment: ""))
+                } else {
+                    self?.view?.didPostGrades()
+                }
             }
         })
     }
@@ -73,10 +77,12 @@ class PostGradesPresenter {
     func hideGrades(sectionIDs: [String]) {
         let req = HideAssignmentGradesPostPolicyRequest(assignmentID: assignmentID, sections: sectionIDs)
         env.api.makeRequest(req, callback: { [weak self] _, _, error in
-            if error != nil {
-                self?.view?.showError(message: NSLocalizedString("An error ocurred", comment: ""))
-            } else {
-                self?.view?.didHideGrades()
+            DispatchQueue.main.async {
+                if error != nil {
+                    self?.view?.showError(message: NSLocalizedString("An error ocurred", comment: ""))
+                } else {
+                    self?.view?.didHideGrades()
+                }
             }
         })
     }

@@ -71,13 +71,13 @@ class PostGradesPresenterTests: TeacherTestCase {
         let req = HideAssignmentGradesPostPolicyRequest(assignmentID: assignmentID)
         let str = """
         {
-        "data": {
-        "hideAssignmentGradesForSections": {
-        "assignment": {
-        "id": "\(assignmentID)"
-        }
-        }
-        }
+            "data": {
+                "hideAssignmentGradesForSections": {
+                    "assignment": {
+                        "id": "\(assignmentID)"
+                    }
+                }
+            }
         }
         """
         api.mock(req, data: str.data(using: .utf8)!, response: nil, error: nil)
