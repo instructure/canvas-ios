@@ -188,8 +188,7 @@ export class SubmissionList extends Component<Props, State> {
         width: 20,
         height: 20,
       })
-    }
-    else {
+    } else {
       rightBarButtons.push({
         accessibilityLabel: i18n('Submission Settings'),
         image: Images.course.settings,
