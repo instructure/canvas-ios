@@ -182,7 +182,7 @@ export class SubmissionList extends Component<Props, State> {
     if (this.flags.includes('new_gradebook')) {
       rightBarButtons.push({
         image: icon('eye', 'solid'),
-        testID: 'submission-list.post-policy',
+        testID: 'SubmissionsList.postpolicy',
         action: this.openPostPolicy,
         accessibilityLabel: i18n('Grade post policy'),
         width: 20,

@@ -88,13 +88,16 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             case .postTo:
                 cell.textLabel?.text = NSLocalizedString("Post to...", comment: "")
                 cell.detailTextLabel?.text = postPolicy.title
+                cell.detailTextLabel?.accessibilityIdentifier = "PostPolicy.postToValue"
                 cell.accessoryType = .disclosureIndicator
                 cell.selectionStyle = .default
+                cell.accessibilityIdentifier = "PostPolicy.postTo"
             case .section:
                 cell.textLabel?.text = NSLocalizedString("Specific Sections", comment: "")
                 cell.selectionStyle = .none
                 if let cell = cell as? SectionCell {
                     cell.toggle.isOn = showSections
+                    cell.toggle.accessibilityIdentifier = "PostPolicy.togglePostToSections"
                     cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
                 }
             }
@@ -105,6 +108,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             if let cell = cell as? SectionCell {
                 cell.toggle.isOn = sectionToggles[index]
                 cell.toggle.tag = index
+                cell.toggle.accessibilityIdentifier = "PostPolicy.post.section.toggle.\(viewModel?.sections[index].id ?? "")"
                 cell.toggle.addTarget(self, action: #selector(actionDidToggleSection(toggle:)), for: UIControl.Event.valueChanged)
             }
         }

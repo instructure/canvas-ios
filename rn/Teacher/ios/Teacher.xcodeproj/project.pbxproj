@@ -31,6 +31,10 @@
 		3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */; };
 		3B55FED722FE280500FCB7B2 /* PostSettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FED622FE280500FCB7B2 /* PostSettingsViewController.storyboard */; };
 		3BC35E42230F1F9F00C0D35D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 3BC35E41230F1F9F00C0D35D /* Localizable.stringsdict */; };
+		3BFD1D412311DED8003AE3AB /* AssignmentPostPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D402311DED8003AE3AB /* AssignmentPostPolicyTests.swift */; };
+		3BFD1D432311E209003AE3AB /* TeacherUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */; };
+		3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */; };
+		3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */; };
 		4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; };
 		4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; };
@@ -216,6 +220,10 @@
 		3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideGradesViewController.swift; sourceTree = "<group>"; };
 		3B55FED622FE280500FCB7B2 /* PostSettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostSettingsViewController.storyboard; sourceTree = "<group>"; };
 		3BC35E41230F1F9F00C0D35D /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
+		3BFD1D402311DED8003AE3AB /* AssignmentPostPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPostPolicyTests.swift; sourceTree = "<group>"; };
+		3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherUITestCase.swift; sourceTree = "<group>"; };
+		3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsList.swift; sourceTree = "<group>"; };
+		3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPolicy.swift; sourceTree = "<group>"; };
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
@@ -437,6 +445,16 @@
 			path = Submissions;
 			sourceTree = "<group>";
 		};
+		3BFD1D3F2311DEAB003AE3AB /* Submissions */ = {
+			isa = PBXGroup;
+			children = (
+				3BFD1D402311DED8003AE3AB /* AssignmentPostPolicyTests.swift */,
+				3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */,
+				3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */,
+			);
+			path = Submissions;
+			sourceTree = "<group>";
+		};
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
@@ -542,6 +560,8 @@
 		E8315D3722FC9E60003CD27C /* TeacherUITests */ = {
 			isa = PBXGroup;
 			children = (
+				3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */,
+				3BFD1D3F2311DEAB003AE3AB /* Submissions */,
 				E8315D3A22FC9E60003CD27C /* Info.plist */,
 				E8A2FCAA23048AF80070B732 /* TestsFromCore.swift */,
 			);
@@ -943,7 +963,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BFD1D412311DED8003AE3AB /* AssignmentPostPolicyTests.swift in Sources */,
 				E8A2FCAB23048AF80070B732 /* TestsFromCore.swift in Sources */,
+				3BFD1D432311E209003AE3AB /* TeacherUITestCase.swift in Sources */,
+				3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */,
+				3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

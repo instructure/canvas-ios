@@ -419,6 +419,9 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
                     let templateImage = image.withRenderingMode(.alwaysTemplate)
                     button.setImage(templateImage, for: .normal)
                     button.imageView?.contentMode = .scaleAspectFit
+                    button.accessibilityLabel = buttonConfig["accessibilityLabel"] as? String
+                    button.accessibilityIdentifier = buttonConfig["testID"] as? String
+                    button.accessibilityTraits = [.button]
                     if let action = buttonConfig["action"] as? NSString {
                         button.setAssociatedObject(action, forKey: &Associated.barButtonAction)
                     }

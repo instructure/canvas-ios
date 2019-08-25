@@ -28,6 +28,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlB-jJ-y1w" customClass="DynamicButton" customModule="Core">
                                 <rect key="frame" x="0.0" y="806" width="414" height="56"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PostPolicy.hideGradesButton"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="exj-mb-ME9"/>
                                 </constraints>
@@ -52,7 +53,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Hidden" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ke5-7p-KcG" customClass="DynamicLabel" customModule="Teacher" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="494.5" width="382" height="19.5"/>
+                                        <rect key="frame" x="16" y="494.5" width="382" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -62,7 +63,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All grades are currently hidden" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pad-Q2-QIM" customClass="DynamicLabel" customModule="Teacher" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="522" width="382" height="19.5"/>
+                                        <rect key="frame" x="16" y="523" width="382" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
