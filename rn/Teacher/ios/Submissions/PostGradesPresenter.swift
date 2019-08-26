@@ -51,8 +51,8 @@ class PostGradesPresenter {
         let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
         env.api.makeRequest(req, callback: { [weak self] data, _, error in
             DispatchQueue.main.async {
-                if error != nil {
-                    self?.view?.showError(message: NSLocalizedString("An error ocurred", comment: ""))
+                if let error = error {
+                    self?.view?.showError(APIError.from(data: nil, response: nil, error: error))
                 } else if let data = data {
                     let model = ViewModel(data: data)
                     self?.view?.update(model)
@@ -65,8 +65,8 @@ class PostGradesPresenter {
         let req = PostAssignmentGradesPostPolicyRequest(assignmentID: assignmentID, postPolicy: postPolicy, sections: sectionIDs)
         env.api.makeRequest(req, callback: { [weak self] _, _, error in
             DispatchQueue.main.async {
-                if error != nil {
-                    self?.view?.showError(message: NSLocalizedString("An error ocurred", comment: ""))
+                if let error = error {
+                    self?.view?.showError(APIError.from(data: nil, response: nil, error: error))
                 } else {
                     self?.view?.didPostGrades()
                 }
@@ -78,8 +78,8 @@ class PostGradesPresenter {
         let req = HideAssignmentGradesPostPolicyRequest(assignmentID: assignmentID, sections: sectionIDs)
         env.api.makeRequest(req, callback: { [weak self] _, _, error in
             DispatchQueue.main.async {
-                if error != nil {
-                    self?.view?.showError(message: NSLocalizedString("An error ocurred", comment: ""))
+                if let error = error {
+                    self?.view?.showError(APIError.from(data: nil, response: nil, error: error))
                 } else {
                     self?.view?.didHideGrades()
                 }

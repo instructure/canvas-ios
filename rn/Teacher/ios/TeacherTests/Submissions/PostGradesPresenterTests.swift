@@ -94,7 +94,7 @@ class PostGradesPresenterTests: TeacherTestCase {
         presenter.postGrades(postPolicy: .everyone, sectionIDs: ["sectionID"])
 
         wait(for: [errorExpectation], timeout: 0.5)
-        XCTAssertEqual(errorMessage, "An error ocurred")
+        XCTAssertEqual(errorMessage, "Internal Error")
     }
 
     func testViewIsReady() {
@@ -138,7 +138,7 @@ class PostGradesPresenterTests: TeacherTestCase {
         presenter.viewIsReady()
 
         wait(for: [errorExpectation], timeout: 0.5)
-        XCTAssertEqual(errorMessage, "An error ocurred")
+        XCTAssertEqual(errorMessage, "Internal Error")
     }
 }
 
