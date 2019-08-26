@@ -36,6 +36,40 @@ class PostAssignmentGradesPostPolicyRequestTests: XCTestCase {
         """
         XCTAssertEqual(req.query, expected)
     }
+
+    func testQueryWithSectionIDs() {
+        let sectionIDReq = PostAssignmentGradesPostPolicyRequest(assignmentID: "1", postPolicy: .everyone, sections: [ "2", "3" ])
+        // swiftlint:disable line_length
+        let expected = """
+        mutation PostAssignmentGrades\n    {\n        postAssignmentGradesForSections(input: {assignmentId: \"1\", gradedOnly: false, sectionIds: [ \"2\",\"3\" ]})\n        {\n            assignment { id }\n        }\n    }
+        """
+        // swiftlint:enable line_length
+        XCTAssertEqual(sectionIDReq.query, expected)
+    }
+}
+
+class HideAssignmentGradesPostPolicyRequestTests: XCTestCase {
+    var req: HideAssignmentGradesPostPolicyRequest!
+
+    override func setUp() {
+        super.setUp()
+        req = HideAssignmentGradesPostPolicyRequest(assignmentID: "1")
+    }
+
+    func testQuery() {
+        let expected = """
+        mutation HideAssignmentGrades\n{\n    hideAssignmentGrades(input: {assignmentId: \"1\"})\n    {\n        assignment { id }\n    }\n}
+        """
+        XCTAssertEqual(req.query, expected)
+    }
+
+    func testQueryWithSectionIDs() {
+        let sectionIDReq = HideAssignmentGradesPostPolicyRequest(assignmentID: "1", sections: [ "2", "3" ])
+        let expected = """
+        mutation HideAssignmentGrades\n{\n    hideAssignmentGradesForSections(input: {assignmentId: \"1\", sectionIds: [ \"2\",\"3\" ]})\n    {\n        assignment { id }\n    }\n}
+        """
+        XCTAssertEqual(sectionIDReq.query, expected)
+    }
 }
 
 class GetAssignmentPostPolicyInfoRequestTests: XCTestCase {

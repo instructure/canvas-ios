@@ -27,38 +27,18 @@ class PostGradesViewController: UIViewController {
         case postTo, section
     }
 
-    enum PostToVisisbility: String, CaseIterable {
-        case everyone, graded
-
-        var title: String {
-            switch self {
-            case .everyone:
-                return NSLocalizedString("Everyone", comment: "")
-            case .graded:
-                return NSLocalizedString("Graded", comment: "")
-            }
-        }
-
-        var subHeader: String {
-            switch self {
-            case .everyone:
-                return NSLocalizedString("Grades will be made visible to all students", comment: "")
-            case .graded:
-                return NSLocalizedString("Grades will be made visible to students with graded submissions", comment: "")
-            }
-        }
-    }
     @IBOutlet weak var allGradesPostedView: UIView!
     @IBOutlet weak var allGradesPostedLabel: DynamicLabel!
     @IBOutlet weak var allGradesPostedSubheader: DynamicLabel!
-    private var sections: [String] = []
     private var showSections: Bool = false
     private var sectionToggles: [Bool] = []
-    private var gradesCurrentlyHidden = 0
-    private var visibility: PostToVisisbility = .everyone
+    private var postPolicy: PostGradePolicy = .everyone
+    var presenter: PostGradesPresenter!
+    var viewModel: APIPostPolicyInfo?
 
-    static func create() -> PostGradesViewController {
+    static func create(courseID: String, assignmentID: String) -> PostGradesViewController {
         let controller = loadFromStoryboard()
+        controller.presenter = PostGradesPresenter(courseID: courseID, assignmentID: assignmentID, view: controller)
         return controller
     }
 
@@ -72,6 +52,7 @@ class PostGradesViewController: UIViewController {
         allGradesPostedView.isHidden = true
         allGradesPostedLabel.text = NSLocalizedString("All Posted", comment: "")
         allGradesPostedSubheader.text = NSLocalizedString("All grades are currently posted.", comment: "")
+        presenter.viewIsReady()
     }
 
     func setupTableView() {
@@ -80,18 +61,18 @@ class PostGradesViewController: UIViewController {
     }
 
     func setupSections() {
-        sections = ["section A", "section B"]     // FIXME: remove these static sections once we have real sections
-        sectionToggles = Array(repeating: false, count: sections.count)
+        sectionToggles = Array(repeating: false, count: viewModel?.sections.count ?? 0)
     }
 
     @IBAction func actionUserDidClickPostGrades(_ sender: Any) {
-        print(#function)
+        let sectionIDs = sectionToggles.enumerated().compactMap { i, s in s ? viewModel?.sections[i].id : nil }
+        presenter.postGrades(postPolicy: postPolicy, sectionIDs: sectionIDs)
     }
 }
 
 extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Row.allCases.count +  (showSections ? sections.count : 0)
+        return Row.allCases.count +  (showSections ? (viewModel?.sections.count ?? 0) : 0)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -106,24 +87,28 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             switch row {
             case .postTo:
                 cell.textLabel?.text = NSLocalizedString("Post to...", comment: "")
-                cell.detailTextLabel?.text = visibility.title
+                cell.detailTextLabel?.text = postPolicy.title
+                cell.detailTextLabel?.accessibilityIdentifier = "PostPolicy.postToValue"
                 cell.accessoryType = .disclosureIndicator
                 cell.selectionStyle = .default
+                cell.accessibilityIdentifier = "PostPolicy.postTo"
             case .section:
                 cell.textLabel?.text = NSLocalizedString("Specific Sections", comment: "")
                 cell.selectionStyle = .none
                 if let cell = cell as? SectionCell {
                     cell.toggle.isOn = showSections
+                    cell.toggle.accessibilityIdentifier = "PostPolicy.togglePostToSections"
                     cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
                 }
             }
         } else {    //  sections
             let index = abs(indexPath.row - Row.allCases.count)
-            cell.textLabel?.text = sections[index]
+            cell.textLabel?.text = viewModel?.sections[index].name
             cell.selectionStyle = .none
             if let cell = cell as? SectionCell {
                 cell.toggle.isOn = sectionToggles[index]
                 cell.toggle.tag = index
+                cell.toggle.accessibilityIdentifier = "PostPolicy.post.section.toggle.\(viewModel?.sections[index].id ?? "")"
                 cell.toggle.addTarget(self, action: #selector(actionDidToggleSection(toggle:)), for: UIControl.Event.valueChanged)
             }
         }
@@ -134,7 +119,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             let localizedFormat = NSLocalizedString("grades_currently_hidden", comment: "number of grades hidden")
-            return String(format: localizedFormat, gradesCurrentlyHidden)
+            return String(format: localizedFormat, viewModel?.submissions.hiddenCount ?? 0)
         }
         return nil
     }
@@ -143,7 +128,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
 
         if let row = Row(rawValue: indexPath.row), row == .postTo {
-            let vc = PostToVisibilitySelectionViewController.create(visibility: visibility, delegate: self)
+            let vc = PostToVisibilitySelectionViewController.create(visibility: postPolicy, delegate: self)
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -185,8 +170,40 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension PostGradesViewController: PostToVisibilitySelectionDelegate {
-    func visibilityDidChange(visibility: PostGradesViewController.PostToVisisbility) {
-        self.visibility = visibility
+    func visibilityDidChange(visibility: PostGradePolicy) {
+        self.postPolicy = visibility
         tableView.reloadData()
+    }
+}
+
+extension PostGradesViewController: PostGradesViewProtocol {
+    func update(_ viewModel: APIPostPolicyInfo) {
+        self.viewModel = viewModel
+        setupSections()
+        tableView.reloadData()
+    }
+
+    func didPostGrades() {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension PostGradePolicy {
+    var title: String {
+        switch self {
+        case .everyone:
+            return NSLocalizedString("Everyone", comment: "")
+        case .graded:
+            return NSLocalizedString("Graded", comment: "")
+        }
+    }
+
+    var subHeader: String {
+        switch self {
+        case .everyone:
+            return NSLocalizedString("Grades will be made visible to all students", comment: "")
+        case .graded:
+            return NSLocalizedString("Grades will be made visible to students with graded submissions", comment: "")
+        }
     }
 }

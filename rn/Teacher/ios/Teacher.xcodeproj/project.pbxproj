@@ -20,6 +20,8 @@
 		2C8E35722093AD760071ED94 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E35712093AD760071ED94 /* Settings.bundle */; };
 		2C96863D1FFE9FC4005127A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */; };
 		2CA347401F2147290000BB79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3473E1F2147290000BB79 /* Localizable.strings */; };
+		3B18E82B230C683D006CAF5C /* PostGradesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18E82A230C683D006CAF5C /* PostGradesPresenter.swift */; };
+		3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D37C8231085830017CCA2 /* PostGradesPresenterTests.swift */; };
 		3B55FEC922FC871400FCB7B2 /* PostGradesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FEC822FC871400FCB7B2 /* PostGradesViewController.storyboard */; };
 		3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */; };
 		3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */; };
@@ -29,6 +31,10 @@
 		3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */; };
 		3B55FED722FE280500FCB7B2 /* PostSettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FED622FE280500FCB7B2 /* PostSettingsViewController.storyboard */; };
 		3BC35E42230F1F9F00C0D35D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 3BC35E41230F1F9F00C0D35D /* Localizable.stringsdict */; };
+		3BFD1D412311DED8003AE3AB /* AssignmentPostPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D402311DED8003AE3AB /* AssignmentPostPolicyTests.swift */; };
+		3BFD1D432311E209003AE3AB /* TeacherUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */; };
+		3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */; };
+		3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */; };
 		4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; };
 		4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; };
@@ -203,6 +209,8 @@
 		2E32426347BE56C907EB34A1 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_ui_tests_TeacherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3088A0FC28C5D205A6F7EBBA /* Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-common_ui_tests-TeacherUITests/Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3581D3E58E310D454B137601 /* Pods-defaults-TeacherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TeacherTests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-TeacherTests/Pods-defaults-TeacherTests.release.xcconfig"; sourceTree = "<group>"; };
+		3B18E82A230C683D006CAF5C /* PostGradesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGradesPresenter.swift; sourceTree = "<group>"; };
+		3B1D37C8231085830017CCA2 /* PostGradesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGradesPresenterTests.swift; sourceTree = "<group>"; };
 		3B55FEC822FC871400FCB7B2 /* PostGradesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostGradesViewController.storyboard; sourceTree = "<group>"; };
 		3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSettingsViewController.swift; sourceTree = "<group>"; };
 		3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGradesViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +220,10 @@
 		3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideGradesViewController.swift; sourceTree = "<group>"; };
 		3B55FED622FE280500FCB7B2 /* PostSettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostSettingsViewController.storyboard; sourceTree = "<group>"; };
 		3BC35E41230F1F9F00C0D35D /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
+		3BFD1D402311DED8003AE3AB /* AssignmentPostPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPostPolicyTests.swift; sourceTree = "<group>"; };
+		3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherUITestCase.swift; sourceTree = "<group>"; };
+		3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsList.swift; sourceTree = "<group>"; };
+		3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPolicy.swift; sourceTree = "<group>"; };
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
@@ -409,6 +421,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3B1D37C72310855E0017CCA2 /* Submissions */ = {
+			isa = PBXGroup;
+			children = (
+				3B1D37C8231085830017CCA2 /* PostGradesPresenterTests.swift */,
+			);
+			path = Submissions;
+			sourceTree = "<group>";
+		};
 		3B55FEC522FC861F00FCB7B2 /* Submissions */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,10 +436,21 @@
 				3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */,
 				3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */,
 				3B55FED622FE280500FCB7B2 /* PostSettingsViewController.storyboard */,
+				3B18E82A230C683D006CAF5C /* PostGradesPresenter.swift */,
 				3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */,
 				3B55FEC822FC871400FCB7B2 /* PostGradesViewController.storyboard */,
 				3B55FECE22FD059500FCB7B2 /* PostToVisibilitySelectionViewController.swift */,
 				3B55FED022FD05E500FCB7B2 /* PostToVisibilitySelectionViewController.storyboard */,
+			);
+			path = Submissions;
+			sourceTree = "<group>";
+		};
+		3BFD1D3F2311DEAB003AE3AB /* Submissions */ = {
+			isa = PBXGroup;
+			children = (
+				3BFD1D402311DED8003AE3AB /* AssignmentPostPolicyTests.swift */,
+				3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */,
+				3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */,
 			);
 			path = Submissions;
 			sourceTree = "<group>";
@@ -470,6 +501,7 @@
 		B15CA25E221DDB820014FB02 /* TeacherTests */ = {
 			isa = PBXGroup;
 			children = (
+				3B1D37C72310855E0017CCA2 /* Submissions */,
 				B15CA267221DDB8D0014FB02 /* Modules */,
 				B15CA261221DDB820014FB02 /* Info.plist */,
 				B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */,
@@ -528,6 +560,8 @@
 		E8315D3722FC9E60003CD27C /* TeacherUITests */ = {
 			isa = PBXGroup;
 			children = (
+				3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */,
+				3BFD1D3F2311DEAB003AE3AB /* Submissions */,
 				E8315D3A22FC9E60003CD27C /* Info.plist */,
 				E8A2FCAA23048AF80070B732 /* TestsFromCore.swift */,
 			);
@@ -907,6 +941,7 @@
 				B15CA292221E082D0014FB02 /* ModuleListPresenter.swift in Sources */,
 				B15CA297221E103B0014FB02 /* DynamicLabel.swift in Sources */,
 				B18359B2222485E60005A918 /* AccessIconView.swift in Sources */,
+				3B18E82B230C683D006CAF5C /* PostGradesPresenter.swift in Sources */,
 				B183F99B2252925F000A6930 /* IconView.swift in Sources */,
 				494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */,
 				B15CA299221E10900014FB02 /* ModuleItemCell.swift in Sources */,
@@ -917,6 +952,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
 				B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */,
 				B15CA26A221DDB9F0014FB02 /* ModuleListPresenterTests.swift in Sources */,
@@ -927,7 +963,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BFD1D412311DED8003AE3AB /* AssignmentPostPolicyTests.swift in Sources */,
 				E8A2FCAB23048AF80070B732 /* TestsFromCore.swift in Sources */,
+				3BFD1D432311E209003AE3AB /* TeacherUITestCase.swift in Sources */,
+				3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */,
+				3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

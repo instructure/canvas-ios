@@ -22,9 +22,9 @@
 export type InstIconName =
   'add' | 'alerts' | 'announcement' | 'arrowOpenLeft' | 'arrowOpenRight' | 'assignment' | 'audio' |
   'bold' | 'box' | 'bulletList' | 'calendarMonth' | 'check' | 'complete' | 'courses' | 'dashboard' |
-  'discussion' | 'document' | 'email' | 'empty' | 'folder' | 'forward' | 'gradebook' | 'group' |
-  'hamburger' | 'highlighter' | 'image' | 'instructure' | 'italic' | 'link' | 'lock' | 'lti' |
-  'marker' | 'miniArrowDown' | 'miniArrowUp' | 'module' | 'more' | 'no' | 'numberedList' |
+  'discussion' | 'document' | 'email' | 'empty' | 'eye' | 'folder' | 'forward' | 'gradebook' |
+  'group' | 'hamburger' | 'highlighter' | 'image' | 'instructure' | 'italic' | 'link' | 'lock' |
+  'lti' | 'marker' | 'miniArrowDown' | 'miniArrowUp' | 'module' | 'more' | 'no' | 'numberedList' |
   'outcomes' | 'paint' | 'paperclip' | 'pause' | 'pdf' | 'play' | 'prerequisite' | 'publish' |
   'question' | 'quiz' | 'refresh' | 'reply' | 'rubric' | 'settings' | 'star' | 'strikethrough' |
   'text' | 'textColor' | 'trash' | 'trouble' | 'unlock' | 'user' | 'video' | 'warning' | 'x'

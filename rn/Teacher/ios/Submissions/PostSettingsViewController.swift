@@ -27,13 +27,17 @@ class PostSettingsViewController: UIViewController {
     private var hideGradesViewController: HideGradesViewController!
     @IBOutlet weak var containerA: UIView!
     @IBOutlet weak var containerB: UIView!
+    var courseID: String = ""
+    var assignmentID: String = ""
 
     enum MenuItem: Int {
         case post, hide
     }
 
-    static func create() -> PostSettingsViewController {
+    static func create(courseID: String, assignmentID: String) -> PostSettingsViewController {
         let controller = loadFromStoryboard()
+        controller.courseID = courseID
+        controller.assignmentID = assignmentID
         return controller
     }
 
@@ -52,12 +56,12 @@ class PostSettingsViewController: UIViewController {
     }
 
     func configurePost() {
-        postGradesViewController = PostGradesViewController.create()
+        postGradesViewController = PostGradesViewController.create(courseID: courseID, assignmentID: assignmentID)
         embed(postGradesViewController, in: containerA)
     }
 
     func configureHide() {
-        hideGradesViewController = HideGradesViewController.create()
+        hideGradesViewController = HideGradesViewController.create(courseID: courseID, assignmentID: assignmentID)
         embed(hideGradesViewController, in: containerB)
     }
 

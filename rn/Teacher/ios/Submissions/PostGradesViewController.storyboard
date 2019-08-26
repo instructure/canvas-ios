@@ -28,6 +28,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlB-jJ-y1w" customClass="DynamicButton" customModule="Core">
                                 <rect key="frame" x="0.0" y="806" width="414" height="56"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PostPolicy.postGradesButton"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="exj-mb-ME9"/>
                                 </constraints>

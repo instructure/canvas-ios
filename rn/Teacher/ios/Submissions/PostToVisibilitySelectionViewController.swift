@@ -20,15 +20,15 @@ import UIKit
 import Core
 
 protocol PostToVisibilitySelectionDelegate: class {
-    func visibilityDidChange(visibility: PostGradesViewController.PostToVisisbility)
+    func visibilityDidChange(visibility: PostGradePolicy)
 }
 
 class PostToVisibilitySelectionViewController: UITableViewController {
 
-    var selectedVisibility: PostGradesViewController.PostToVisisbility = .everyone
+    var selectedVisibility: PostGradePolicy = .everyone
     weak var delegate: PostToVisibilitySelectionDelegate?
 
-    static func create(visibility: PostGradesViewController.PostToVisisbility, delegate: PostToVisibilitySelectionDelegate?) -> PostToVisibilitySelectionViewController {
+    static func create(visibility: PostGradePolicy, delegate: PostToVisibilitySelectionDelegate?) -> PostToVisibilitySelectionViewController {
         let controller = loadFromStoryboard()
         controller.selectedVisibility = visibility
         controller.delegate = delegate
@@ -42,13 +42,13 @@ class PostToVisibilitySelectionViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return PostGradesViewController.PostToVisisbility.allCases.count
+        return PostGradePolicy.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(for: indexPath)
 
-        let row = PostGradesViewController.PostToVisisbility.allCases[indexPath.row]
+        let row = PostGradePolicy.allCases[indexPath.row]
         cell.detailTextLabel?.numberOfLines = 0
         cell.textLabel?.text = row.title
         cell.detailTextLabel?.text = row.subHeader
@@ -58,7 +58,7 @@ class PostToVisibilitySelectionViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedVisibility = PostGradesViewController.PostToVisisbility.allCases[indexPath.row]
+        selectedVisibility = PostGradePolicy.allCases[indexPath.row]
         tableView.reloadData()
         delegate?.visibilityDidChange(visibility: selectedVisibility)
     }
