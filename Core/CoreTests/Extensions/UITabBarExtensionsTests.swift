@@ -34,7 +34,7 @@ class UITabBarExtensionsTests: XCTestCase {
         let shiny = Brand(response: APIBrandVariables.make(
             nav_bgd: "#ffffff",
             nav_text_color: "#333"
-        ))
+        ), baseURL: URL(string: "https://canvas.instructure.com")!)
         tabBar.useGlobalNavStyle(brand: shiny)
         XCTAssertEqual(tabBar.tintColor, shiny.navTextColor)
     }
