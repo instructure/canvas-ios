@@ -72,7 +72,7 @@ public struct Brand: Equatable {
         self.primary = primary ?? .named(.electric)
     }
 
-    public init(response: APIBrandVariables) {
+    public init(response: APIBrandVariables, baseURL: URL) {
         self.init(
             buttonPrimaryBackground: UIColor(hexString: response.button_primary_bgd),
             buttonPrimaryText: UIColor(hexString: response.button_primary_text),
@@ -80,7 +80,7 @@ public struct Brand: Equatable {
             buttonSecondaryText: UIColor(hexString: response.button_secondary_text),
             fontColorDark: UIColor(hexString: response.font_color_dark),
             headerImageBackground: UIColor(hexString: response.header_image_bgd),
-            headerImageUrl: response.header_image,
+            headerImageUrl: response.header_image.flatMap { URL(string: $0.absoluteString, relativeTo: baseURL) },
             linkColor: UIColor(hexString: response.link_color),
             navBackground: UIColor(hexString: response.nav_bgd),
             navBadgeBackground: UIColor(hexString: response.nav_badge_bgd),

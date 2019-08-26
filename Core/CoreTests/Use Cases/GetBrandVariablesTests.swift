@@ -23,12 +23,13 @@ import TestsFoundation
 
 class GetBrandVariablesTest: CoreTestCase {
     func testItUpdatesBrandVariables() {
+        let response = HTTPURLResponse(url: URL(string: "https://canvas.instructure.com/brand_variables")!, statusCode: 200, httpVersion: nil, headerFields: nil)
         let prev = Brand.shared
-        GetBrandVariables().write(response: nil, urlResponse: nil, to: databaseClient)
+        GetBrandVariables().write(response: nil, urlResponse: response, to: databaseClient)
         XCTAssertEqual(Brand.shared, prev)
 
         let brand = APIBrandVariables.make(primary: "#ffff00")
-        GetBrandVariables().write(response: brand, urlResponse: nil, to: databaseClient)
+        GetBrandVariables().write(response: brand, urlResponse: response, to: databaseClient)
         XCTAssertEqual(Brand.shared.primary.hexString, "#ffff00")
     }
 }

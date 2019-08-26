@@ -26,7 +26,7 @@ public class GetBrandVariables: APIUseCase {
     public init() {}
 
     public func write(response: APIBrandVariables?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response else { return }
-        Brand.shared = Brand(response: response)
+        guard let response = response, let url = urlResponse?.url else { return }
+        Brand.shared = Brand(response: response, baseURL: url)
     }
 }
