@@ -40,9 +40,10 @@ export default class AssignmentSection extends Component<Object> {
       dividerStyle = assignmentSectionStyles.divider
       headerStyle = assignmentSectionStyles.header
     }
+    const Wrapper = this.props.onPress ? TouchableHighlight : View
 
     return (
-      <TouchableHighlight onPress={this.props.onPress} testID={this.props.testID}>
+      <Wrapper onPress={this.props.onPress} testID={this.props.testID}>
         <View style={[assignmentSectionStyles.container, this.props.style]}>
           <View style={dividerStyle}></View>
           <View style={assignmentSectionStyles.innerContainer}>
@@ -61,7 +62,7 @@ export default class AssignmentSection extends Component<Object> {
             </View> }
           </View>
         </View>
-      </TouchableHighlight>
+      </Wrapper>
     )
   }
 }

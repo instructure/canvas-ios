@@ -175,7 +175,7 @@ exports[`Rubric renders a rubric 1`] = `
           >
             <View>
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -765,7 +765,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           >
             <View>
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -1420,7 +1420,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
           >
             <View>
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {

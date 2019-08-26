@@ -25,7 +25,7 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
     }
   >
     <Text
-      accessibilityTraits="header"
+      accessibilityRole="header"
       numberOfLines={1}
       style={
         Array [
@@ -144,7 +144,7 @@ exports[`SubmissionHeader anonymous grading 1`] = `
     }
   >
     <Text
-      accessibilityTraits="header"
+      accessibilityRole="header"
       numberOfLines={1}
       style={
         Array [
@@ -263,7 +263,7 @@ exports[`SubmissionHeader muted grading 1`] = `
     }
   >
     <Text
-      accessibilityTraits="header"
+      accessibilityRole="header"
       numberOfLines={1}
       style={
         Array [

@@ -236,6 +236,8 @@ open class CoreUITestCase: XCTestCase {
             state.append(.unpublished)
         }
         mockData(GetCoursesRequest(state: state), value: [ .make(id: "1", enrollments: [ enrollment ]) ])
+        mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: "1")), value: [ "rce_enhancements" ])
+        mockEncodableRequest("courses/1/external_tools?per_page=99&include_parents=true", value: [String]())
         mockEncodableRequest("users/self/custom_data/favorites/groups?ns=com.canvas.canvas-app", value: [String: String]())
         mockEncodableRequest("users/self/enrollments?include[]=avatar_url", value: [enrollment])
         mockEncodableRequest("users/self/groups", value: [String]())

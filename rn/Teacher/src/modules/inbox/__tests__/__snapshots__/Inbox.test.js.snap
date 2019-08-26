@@ -300,7 +300,7 @@ exports[`Inbox filters conversations based on course 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           numberOfLines={1}
           style={
             Array [
@@ -882,7 +882,7 @@ exports[`Inbox refreshed component 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           numberOfLines={1}
           style={
             Array [
@@ -1338,7 +1338,7 @@ exports[`Inbox renders correctly 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           numberOfLines={1}
           style={
             Array [
@@ -2117,7 +2117,7 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           numberOfLines={1}
           style={
             Array [
@@ -2516,7 +2516,7 @@ exports[`Inbox renders the starred empty state 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           numberOfLines={1}
           style={
             Array [
@@ -2972,7 +2972,7 @@ exports[`Inbox renders with an empty state 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           numberOfLines={1}
           style={
             Array [

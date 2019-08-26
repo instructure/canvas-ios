@@ -44,7 +44,7 @@ exports[`comments render properly 1`] = `
             }
           >
             <Text
-              accessibilityTraits="header"
+              accessibilityRole="header"
               style={
                 Array [
                   Object {
@@ -311,7 +311,7 @@ exports[`comments render properly 1`] = `
             }
           >
             <Text
-              accessibilityTraits="header"
+              accessibilityRole="header"
               style={
                 Array [
                   Object {
@@ -487,7 +487,7 @@ exports[`comments render properly 1`] = `
             }
           >
             <Text
-              accessibilityTraits="header"
+              accessibilityRole="header"
               style={
                 Array [
                   Object {
@@ -682,7 +682,7 @@ exports[`comments render properly 1`] = `
             }
           >
             <Text
-              accessibilityTraits="header"
+              accessibilityRole="header"
               style={
                 Array [
                   Object {
@@ -781,7 +781,7 @@ exports[`comments render properly 1`] = `
             }
           >
             <Text
-              accessibilityTraits="header"
+              accessibilityRole="header"
               style={
                 Array [
                   Object {
@@ -980,7 +980,7 @@ exports[`comments render properly 1`] = `
             }
           >
             <Text
-              accessibilityTraits="header"
+              accessibilityRole="header"
               style={
                 Array [
                   Object {

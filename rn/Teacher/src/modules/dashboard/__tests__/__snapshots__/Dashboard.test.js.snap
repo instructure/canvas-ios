@@ -57,7 +57,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           style={
             Array [
               Object {
@@ -1306,7 +1306,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           style={
             Array [
               Object {
@@ -1579,7 +1579,7 @@ exports[`Dashboard render 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           style={
             Array [
               Object {
@@ -2278,7 +2278,7 @@ exports[`Dashboard render while pending 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           style={
             Array [
               Object {
@@ -2977,7 +2977,7 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           style={
             Array [
               Object {
@@ -3231,7 +3231,7 @@ exports[`Dashboard render without favorite courses 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           style={
             Array [
               Object {
@@ -3993,7 +3993,7 @@ exports[`Dashboard renders course invites 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           style={
             Array [
               Object {
@@ -4651,7 +4651,7 @@ exports[`Dashboard renders course invites 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           style={
             Array [
               Object {

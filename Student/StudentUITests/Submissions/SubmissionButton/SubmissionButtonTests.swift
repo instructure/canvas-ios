@@ -98,4 +98,47 @@ class SubmissionButtonTests: StudentUITestCase {
         AssignmentDetails.submitAssignmentButton.tap()
         app.find(label: "Done").tap()
     }
+
+    func testOnlineQuiz() {
+        mockBaseRequests()
+        let quiz = APIQuiz.make()
+        let assignment = mockAssignment(APIAssignment.make(
+            quiz_id: quiz.id,
+            submission_types: [ .online_quiz ]
+        ))
+        mockData(GetQuizRequest(courseID: course.id.value, quizID: quiz.id.value), value: .make())
+        let submission = APIQuizSubmission.make()
+        mockData(GetQuizSubmissionsRequest(courseID: course.id.value, quizID: quiz.id.value), value: .init(quiz_submissions: [submission]))
+        mockEncodableRequest("courses/\(course.id)/quizzes/\(quiz.id)/submission", value: submission)
+
+        logIn()
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.submitAssignmentButton.tap()
+        app.find(label: "Exit").tap()
+    }
+
+    func testDiscussionTopic() {
+        mockBaseRequests()
+        let topic = APIDiscussionTopic.make(html_url: URL(string: "/courses/\(course.id)/discussion_topics/1"))
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .discussion_topic ],
+            discussion_topic: topic
+        ))
+        mockData(GetContextPermissionsRequest(context: course), value: .make())
+        mockEncodableRequest("courses/\(course.id)/discussion_topics/1?include[]=sections", value: topic)
+        mockEncodableRequest("courses/\(course.id)/discussion_topics/1/view?include_new_entries=1", value: [
+            "unread_entries": [String](),
+            "participants": [String](),
+            "view": [String](),
+            "new_entries": [String](),
+            "entry_ratings": [String](),
+        ])
+
+        logIn()
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.submitAssignmentButton.tap()
+        DiscussionDetails.titleLabel.waitToExist()
+        XCTAssertEqual(DiscussionDetails.titleLabel.label, topic.title)
+        NavBar.backButton.tap()
+    }
 }
