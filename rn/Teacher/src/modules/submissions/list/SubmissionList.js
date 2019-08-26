@@ -55,14 +55,14 @@ type Props = SubmissionListProps & { navigator: Navigator } & RefreshProps
 type State = {
   filterOptions: SubmissionFilterOption[],
   filter: Function,
+  flags: string[],
+  didFetchFlags: boolean,
 }
 
 export class SubmissionList extends Component<Props, State> {
   static defaultProps = {
     getEnabledFeatureFlags,
   }
-
-  flags = []
 
   constructor (props: Props) {
     super(props)
@@ -72,6 +72,8 @@ export class SubmissionList extends Component<Props, State> {
     this.state = {
       filterOptions,
       filter,
+      flags: [],
+      didFetchFlags: false,
     }
   }
 
@@ -79,8 +81,12 @@ export class SubmissionList extends Component<Props, State> {
     if (this.props.assignmentName !== '') {
       this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.isGroupGradedAssignment)
     }
-    let flags = await this.props.getEnabledFeatureFlags('courses', this.props.courseID)
-    this.flags = flags.data
+    try {
+      let flags = await this.props.getEnabledFeatureFlags('courses', this.props.courseID)
+      this.setState({ flags: flags.data, didFetchFlags: true })
+    } catch (e) {
+      this.setState({ didFetchFlags: true })
+    }
   }
 
   componentWillReceiveProps = (newProps: Props) => {
@@ -179,7 +185,7 @@ export class SubmissionList extends Component<Props, State> {
       },
     ]
 
-    if (this.flags.includes('new_gradebook')) {
+    if (this.state.flags.includes('new_gradebook')) {
       rightBarButtons.push({
         image: icon('eye', 'solid'),
         testID: 'SubmissionsList.postpolicy',
@@ -188,7 +194,7 @@ export class SubmissionList extends Component<Props, State> {
         width: 20,
         height: 20,
       })
-    } else {
+    } else if (this.state.didFetchFlags) {
       rightBarButtons.push({
         accessibilityLabel: i18n('Submission Settings'),
         image: Images.course.settings,
