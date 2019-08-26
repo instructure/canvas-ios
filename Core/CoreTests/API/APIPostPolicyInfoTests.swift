@@ -25,6 +25,11 @@ class APIPostPolicyInfoTests: XCTestCase {
         XCTAssertTrue(node.isPosted)
     }
 
+    func testSubmissionNodeIsNotPosted() {
+        let node = APIPostPolicyInfo.SubmissionNode(score: 0.5, excused: false, state: "graded", postedAt: nil)
+        XCTAssertFalse(node.isPosted)
+    }
+
     func testSubmissionNodeIsHidden() {
         let node = APIPostPolicyInfo.SubmissionNode(score: 0.5, excused: false, state: "graded", postedAt: nil)
         XCTAssertTrue(node.isHidden)
