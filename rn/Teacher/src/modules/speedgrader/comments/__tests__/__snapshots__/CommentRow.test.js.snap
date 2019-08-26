@@ -35,7 +35,7 @@ exports[`My message rows render correctly 1`] = `
       }
     >
       <Text
-        accessibilityTraits="header"
+        accessibilityRole="header"
         style={
           Array [
             Object {
@@ -219,7 +219,7 @@ exports[`Their message rows render correctly 1`] = `
       }
     >
       <Text
-        accessibilityTraits="header"
+        accessibilityRole="header"
         style={
           Array [
             Object {
@@ -401,7 +401,7 @@ exports[`their submissions render correctly 1`] = `
       }
     >
       <Text
-        accessibilityTraits="header"
+        accessibilityRole="header"
         style={
           Array [
             Object {
@@ -506,7 +506,7 @@ exports[`video comments without url render correctly 1`] = `
       }
     >
       <Text
-        accessibilityTraits="header"
+        accessibilityRole="header"
         style={
           Array [
             Object {
