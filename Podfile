@@ -117,7 +117,6 @@ post_install do |installer|
     end
     usesNonAppExAPI = %w[
       SVProgressHUD
-      RCTSFSafariViewController
       react-native-camera
       React
       react-native-document-picker

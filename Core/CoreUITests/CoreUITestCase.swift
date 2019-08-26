@@ -248,4 +248,28 @@ open class CoreUITestCase: XCTestCase {
         app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
             .press(forDuration: 0.05, thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.9)))
     }
+
+    open func allowAccessToPhotos(block: () -> Void) {
+        let alertHandler = addUIInterruptionMonitor(withDescription: "Photos Access Alert") { (alert) -> Bool in
+            _ = alert.buttons["OK"].waitForExistence(timeout: 3)
+            alert.buttons["OK"].tap()
+            return true
+        }
+        block()
+        app.swipeUp()
+        removeUIInterruptionMonitor(alertHandler)
+    }
+
+    open func allowAccessToMicrophone(block: () -> Void) {
+        let alertHandler = addUIInterruptionMonitor(withDescription: "Permission Alert") { (alert) -> Bool in
+            if alert.buttons["OK"].exists {
+                alert.buttons["OK"].tap()
+                return true
+            }
+            return false
+        }
+        block()
+        app.swipeUp()
+        removeUIInterruptionMonitor(alertHandler)
+    }
 }
