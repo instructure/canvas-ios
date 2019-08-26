@@ -32,7 +32,7 @@ class PostGradesPresenterTests: TeacherTestCase {
     var didUpdatePostGrades = false
     var didUpdateHideGrades = false
     var errorMessage: String?
-    var viewModel: PostGradesPresenter.ViewModel?
+    var viewModel: APIPostPolicyInfo?
 
     override func setUp() {
         super.setUp()
@@ -128,7 +128,7 @@ class PostGradesPresenterTests: TeacherTestCase {
         presenter.viewIsReady()
 
         wait(for: [updateExpectation], timeout: 0.5)
-        XCTAssertEqual(viewModel?.gradesCurrentlyHidden, 1)
+        XCTAssertEqual(viewModel?.submissions.hiddenCount, 1)
         XCTAssertEqual(viewModel?.sections, expectedSections)
     }
 
@@ -143,7 +143,7 @@ class PostGradesPresenterTests: TeacherTestCase {
 }
 
 extension PostGradesPresenterTests: PostGradesViewProtocol {
-    func update(_ viewModel: PostGradesPresenter.ViewModel) {
+    func update(_ viewModel: APIPostPolicyInfo) {
         self.viewModel = viewModel
         updateExpectation.fulfill()
     }
