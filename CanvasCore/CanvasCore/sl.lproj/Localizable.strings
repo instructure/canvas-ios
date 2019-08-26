@@ -32,9 +32,6 @@
    Student is present in class */
 "Absent" = "Odsoten";
 
-/* URL submission option */
-"Add Website Address" = "Dodaj naslov spletnega mesta";
-
 /* Shows the number questions */
 "All %@ Questions" = "Vseh %@ vprašanj";
 
@@ -55,9 +52,6 @@
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Dovoljeni poskusi";
-
-/* Default error message displayed when a file fails to upload */
-"An error occurred, please try again." = "Prišlo je do napake, poskusite znova.";
 
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Prišlo je do nepričakovane napake.";
@@ -106,7 +100,6 @@
 
 /* Cancel Audio recording.
    Cancel button title
-   Cancel submission option
    Cancel upload */
 "Cancel" = "Prekliči";
 
@@ -139,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Comments" = "Komentarji";
-
-/* File upload completed */
-"Complete" = "Zaključeno";
 
 /* Title of a screen that shows all of our open source components */
 "Components" = "Komponente";
@@ -185,8 +175,7 @@
 /* DeepPurple course color button */
 "DeepPurple" = "DeepPurple";
 
-/* Delete button
-   Delete button for file upload */
+/* Delete button */
 "Delete" = "Odstrani";
 
 /* No comment provided by engineer. */
@@ -226,14 +215,8 @@
 /* Default text for essay cell */
 "Enter answer..." = "Vnos odgovora ...";
 
-/* Text submission option */
-"Enter Text" = "Vnos besedila";
-
 /* Placeholder for URL */
 "Enter URL..." = "Vnos naslova URL ...";
-
-/* Prompt for text upload */
-"Enter your submission..." = "Vnesite svojo oddajo ...";
 
 /* No comment provided by engineer. */
 "Error" = "Napaka";
@@ -277,14 +260,8 @@
 /* label to be read for visually impaired users with external tool assignment types */
 "external tool" = "zunanje orodje";
 
-/* File upload failed */
-"Failed" = "Neuspelo";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Iskanje slike pri poti ni uspelo.";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Nalaganje (discussionKitModelName) ni uspelo NSManagedObjectModel";
 
 /* No comment provided by engineer. */
 "Failed to write image" = "Zapisovanje slike ni uspelo.";
@@ -294,9 +271,6 @@
 
 /* title for file upload errors */
 "File Upload Error" = "Napaka pri nalaganju datoteke";
-
-/* File uploads screen title */
-"File Uploads" = "Nalaganje datotek";
 
 /* State of the flagged question */
 "Flagged" = "Označeno";
@@ -598,14 +572,10 @@
 /* stop recording button a11y label */
 "Stop" = "Zaustavi";
 
-/* File upload was stopped */
-"Stopped" = "Zaustavljeno";
-
 /* No comment provided by engineer. */
 "Style" = "Slog";
 
-/* Submit assignment button
-   Submit button title
+/* Submit button title
    Turn in this url button */
 "Submit" = "Pošlji";
 
@@ -662,9 +632,6 @@
 
 /* CalendarKit Database Load Failure Message */
 "There was a problem loading the CalendarKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov CalendarKit.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov DiscussionKit.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov EnrollmentKit.";
@@ -780,14 +747,8 @@
 /* Upcoming assignments */
 "Upcoming" = "Prihodnje";
 
-/* File upload submission option */
-"Upload File" = "Naloži datoteko";
-
 /* Message displayed while a file is being uploaded */
 "Uploading file..." = "Nalaganje datoteke ...";
-
-/* File upload in progress */
-"uploading..." = "nalaganje ...";
 
 /* permission denied button a11y hint */
 "User has denied record permission" = "Uporabnik je zavrnil dovoljenje za snemanje.";

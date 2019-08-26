@@ -19,7 +19,7 @@
 import Foundation
 
 public enum APIError: Error {
-    static func from(data: Data?, response: URLResponse?, error: Error) -> Error {
+    public static func from(data: Data?, response: URLResponse?, error: Error) -> Error {
         if let data = data, let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
             if let message = json["message"] as? String, !message.isEmpty {
                 return NSError.instructureError(message)

@@ -129,15 +129,15 @@ zss_editor.init = () => {
     }
   })
 
-  document.addEventListener('selectionchange', e => {
+  document.addEventListener('selectionchange', throttle(e => {
     zss_editor.calculateEditorHeightWithCaretPosition()
     zss_editor.setScrollPosition()
     zss_editor.enabledEditingItems()
-  })
+  }), { passive: true })
 
-  window.addEventListener('scroll', e => {
+  window.addEventListener('scroll', throttle(e => {
     zss_editor.updateOffset()
-  })
+  }), { passive: true })
 
   // Make sure that when we tap anywhere in the document we focus on the editor
   window.addEventListener('touchmove', e => {
@@ -145,7 +145,7 @@ zss_editor.init = () => {
     zss_editor.updateScrollOffset = true
     zss_editor.setScrollPosition()
     zss_editor.enabledEditingItems(e)
-  })
+  }, { passive: true })
   window.addEventListener('touchstart', e => {
     zss_editor.isDragging = false
 
@@ -155,7 +155,7 @@ zss_editor.init = () => {
       }
       e.target.classList.add('zs_active')
     }
-  })
+  }, { passive: true })
   window.addEventListener('touchend', e => {
     if (e.target.nodeName.toLowerCase() === "a") {
       let anchor = event.currentTarget
@@ -706,38 +706,11 @@ zss_editor.enabledEditingItems = e => {
   if (zss_editor.isCommandEnabled('italic')) {
     items.push('italic')
   }
-  if (zss_editor.isCommandEnabled('subscript')) {
-    items.push('subscript')
-  }
-  if (zss_editor.isCommandEnabled('superscript')) {
-    items.push('superscript')
-  }
-  if (zss_editor.isCommandEnabled('strikeThrough')) {
-    items.push('strikeThrough')
-  }
-  if (zss_editor.isCommandEnabled('underline')) {
-    items.push('underline')
-  }
   if (zss_editor.isCommandEnabled('insertOrderedList')) {
     items.push('orderedList')
   }
   if (zss_editor.isCommandEnabled('insertUnorderedList')) {
     items.push('unorderedList')
-  }
-  if (zss_editor.isCommandEnabled('justifyCenter')) {
-    items.push('justifyCenter')
-  }
-  if (zss_editor.isCommandEnabled('justifyFull')) {
-    items.push('justifyFull')
-  }
-  if (zss_editor.isCommandEnabled('justifyLeft')) {
-    items.push('justifyLeft')
-  }
-  if (zss_editor.isCommandEnabled('justifyRight')) {
-    items.push('justifyRight')
-  }
-  if (zss_editor.isCommandEnabled('insertHorizontalRule')) {
-    items.push('horizontalRule')
   }
   let formatBlock = document.queryCommandValue('formatBlock')
   if (formatBlock.length > 0) {
@@ -792,9 +765,7 @@ zss_editor.enabledEditingItems = e => {
     }
   }
 
-  setTimeout(() => {
-    window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'CALLBACK', data: items}))
-  }, 0)
+  window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'CALLBACK', data: items}))
 }
 
 zss_editor.focusEditor = () => {
@@ -819,6 +790,24 @@ zss_editor.setCustomCSS = customCSS => {
 
 zss_editor.setFeatureFlags = flags => {
   zss_editor.featureFlags = flags.split(',')
+}
+
+function throttle (fn, ms = 200) {
+  let timer, last
+  return function () {
+    const context = this, args = arguments
+    const now = performance.now()
+    if (now < last + ms) {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            last = now
+            fn.apply(context, args)
+        }, ms)
+    } else {
+        last = now
+        fn.apply(context, args)
+    }
+  }
 }
 //end
 })()

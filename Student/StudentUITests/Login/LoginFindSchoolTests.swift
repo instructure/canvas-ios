@@ -31,6 +31,7 @@ class LoginFindSchoolTests: StudentUITestCase {
     }
 
     func testEmptyStates() {
+        mockData(GetAccountsSearchRequest(searchTerm: "zxzx"), value: [])
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.waitToExist()
 
@@ -38,10 +39,7 @@ class LoginFindSchoolTests: StudentUITestCase {
         XCTAssertEqual(LoginFindAccountResult.emptyCell.label, "How do I find my school?")
 
         LoginFindSchool.searchField.typeText("zxzx")
-        LoginFindAccountResult.emptyCell.waitToExist()
-
-        // TODO: flakey test
-        sleep(2)
+        XCUIElementWrapper(app.activityIndicators.firstMatch).waitToVanish()
 
         XCTAssertEqual(LoginFindAccountResult.emptyCell.label, "Can’t find your school? Try typing the full school URL. Tap here for help.")
     }

@@ -19,17 +19,15 @@
 import Foundation
 import XCTest
 @testable import Core
+@testable import CoreUITests
 @testable import TestsFoundation
 
-class TeacherUITestCase: UITestCase {
+@testable import TestsFoundation
+
+class TeacherUITestCase: CoreUITestCase {
+    override var abstractTestClass: CoreUITestCase.Type { return TeacherUITestCase.self }
+
     override func setUp() {
         super.setUp()
-        continueAfterFailure = false
-        if app.state != .runningForeground {
-            launch()
-        }
-        reset()
-        // mockDownload(URL(string: ".")!) // Use only mock data
     }
-
 }

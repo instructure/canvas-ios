@@ -20,7 +20,7 @@ exports[`renders ModalOverlayText correctly 1`] = `
 
 exports[`renders heading1 correctly 1`] = `
 <Text
-  accessibilityTraits="header"
+  accessibilityRole="header"
   style={
     Array [
       Object {

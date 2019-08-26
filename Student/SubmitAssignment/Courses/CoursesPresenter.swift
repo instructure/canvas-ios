@@ -28,7 +28,7 @@ class CoursesPresenter {
     let callback: (Course) -> Void
     weak var view: CoursesView?
 
-    lazy var courses: Store<GetCourses> = env.subscribe(GetCourses(showFavorites: false, state: [.available], perPage: 10)) { [weak self] in
+    lazy var courses: Store<GetCourses> = env.subscribe(GetCourses()) { [weak self] in
         self?.view?.update()
     }
 

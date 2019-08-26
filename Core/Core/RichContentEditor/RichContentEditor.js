@@ -353,7 +353,7 @@ function throttle (fn, ms = 200) {
 document.addEventListener('selectionchange', e => {
     editor.updateScroll()
     editor.postState()
-})
+}, { passive: true })
 
 new MutationObserver(() => {
     editor.updateOverlays()
@@ -361,11 +361,11 @@ new MutationObserver(() => {
 
 window.addEventListener('touchstart', e => {
     editor.isDragging = false
-})
+}, { passive: true })
 window.addEventListener('touchmove', e => {
     editor.isDragging = true
     editor.postState(e)
-})
+}, { passive: true })
 window.addEventListener('touchend', e => {
     editor.postState(e)
     if (editor.currentEditingLink) {
