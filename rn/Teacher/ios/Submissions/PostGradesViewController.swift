@@ -34,7 +34,7 @@ class PostGradesViewController: UIViewController {
     private var sectionToggles: [Bool] = []
     private var postPolicy: PostGradePolicy = .everyone
     var presenter: PostGradesPresenter!
-    var viewModel: PostGradesPresenter.ViewModel?
+    var viewModel: APIPostPolicyInfo?
 
     static func create(courseID: String, assignmentID: String) -> PostGradesViewController {
         let controller = loadFromStoryboard()
@@ -119,7 +119,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             let localizedFormat = NSLocalizedString("grades_currently_hidden", comment: "number of grades hidden")
-            return String(format: localizedFormat, viewModel?.gradesCurrentlyHidden ?? 0)
+            return String(format: localizedFormat, viewModel?.submissions.hiddenCount ?? 0)
         }
         return nil
     }
@@ -177,7 +177,7 @@ extension PostGradesViewController: PostToVisibilitySelectionDelegate {
 }
 
 extension PostGradesViewController: PostGradesViewProtocol {
-    func update(_ viewModel: PostGradesPresenter.ViewModel) {
+    func update(_ viewModel: APIPostPolicyInfo) {
         self.viewModel = viewModel
         setupSections()
         tableView.reloadData()

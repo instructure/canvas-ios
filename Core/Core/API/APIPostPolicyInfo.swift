@@ -32,7 +32,7 @@ public struct APIPostPolicyInfo: Codable {
         public let name: String
     }
 
-    public struct SubmissionNode: Codable, Equatable {
+    public struct SubmissionNode: Codable, Equatable, PostPolicyLogicProtocol {
         public let score: Double?
         public let excused: Bool
         public let state: String
@@ -69,5 +69,21 @@ public struct APIPostPolicyInfo: Codable {
 
     struct Submissions: Codable {
         var nodes: [APIPostPolicyInfo.SubmissionNode]
+    }
+}
+
+public protocol PostPolicyLogicProtocol {
+    var isGraded: Bool { get }
+    var isHidden: Bool { get }
+    var isPosted: Bool { get }
+}
+
+extension Array where Element: PostPolicyLogicProtocol {
+    public var hiddenCount: Int {
+        return filter { $0.isHidden }.count
+    }
+
+    public var postedCount: Int {
+        return filter { $0.isPosted }.count
     }
 }

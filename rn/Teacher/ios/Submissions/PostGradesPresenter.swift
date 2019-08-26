@@ -20,7 +20,7 @@ import Foundation
 import Core
 
 protocol PostGradesViewProtocol: ErrorViewController {
-    func update(_ viewModel: PostGradesPresenter.ViewModel)
+    func update(_ viewModel: APIPostPolicyInfo)
     func didHideGrades()
     func didPostGrades()
 }
@@ -54,8 +54,7 @@ class PostGradesPresenter {
                 if let error = error {
                     self?.view?.showError(APIError.from(data: nil, response: nil, error: error))
                 } else if let data = data {
-                    let model = ViewModel(data: data)
-                    self?.view?.update(model)
+                    self?.view?.update(data)
                 }
             }
         })
@@ -85,19 +84,5 @@ class PostGradesPresenter {
                 }
             }
         })
-    }
-
-    struct ViewModel {
-        var sections: [APIPostPolicyInfo.SectionNode] = []
-        var gradesCurrentlyHidden: Int = 0
-        var gradesCurrentlyPosted: Int = 0
-
-        init(data: APIPostPolicyInfo) {
-            self.sections = data.sections
-            let hidden = data.submissions.filter { $0.isHidden }
-            let posted = data.submissions.filter { $0.isPosted }
-            gradesCurrentlyHidden = hidden.count
-            gradesCurrentlyPosted = posted.count
-        }
     }
 }

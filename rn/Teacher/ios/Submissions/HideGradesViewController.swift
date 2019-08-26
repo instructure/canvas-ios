@@ -30,7 +30,7 @@ class HideGradesViewController: UIViewController {
     @IBOutlet weak var allHiddenLabel: DynamicLabel!
     @IBOutlet weak var allHiddenSubHeader: DynamicLabel!
     var presenter: PostGradesPresenter!
-    var viewModel: PostGradesPresenter.ViewModel?
+    var viewModel: APIPostPolicyInfo?
 
     static func create(courseID: String, assignmentID: String) -> HideGradesViewController {
         let controller = loadFromStoryboard()
@@ -97,7 +97,7 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             let localizedFormat = NSLocalizedString("grades_currently_posted", comment: "number of grades hidden")
-            return String(format: localizedFormat, viewModel?.gradesCurrentlyPosted ?? 0)
+            return String(format: localizedFormat, viewModel?.submissions.postedCount ?? 0)
         }
         return nil
     }
@@ -115,7 +115,7 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension HideGradesViewController: PostGradesViewProtocol {
-    func update(_ viewModel: PostGradesPresenter.ViewModel) {
+    func update(_ viewModel: APIPostPolicyInfo) {
         self.viewModel = viewModel
         setupSections()
         tableView.reloadData()
