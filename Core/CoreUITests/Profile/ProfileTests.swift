@@ -22,7 +22,7 @@ import TestsFoundation
 class ProfileTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return ProfileTests.self }
 
-    func testCourseCardGrades() {
+    func xtestCourseCardGrades() {
         Profile.open()
         Profile.showGradesToggle.waitToExist()
         if !Profile.showGradesToggle.isSelected {

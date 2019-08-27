@@ -37,7 +37,7 @@ class DiscussionEditTests: CoreUITestCase {
         create_discussion_topic: false
     ))
 
-    func testCantCreateDiscussion() {
+    func xtestCantCreateDiscussion() {
         mockBaseRequests()
         if Bundle.main.isTeacherApp {
             mockData(GetCoursesRequest(state: [.available, .completed, .unpublished]), value: [ noPermissionCourse ])
