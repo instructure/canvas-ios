@@ -74,6 +74,9 @@
 "Clear recording" = "Borrar grabación";
 
 /* No comment provided by engineer. */
+"Close App" = "Cerrar aplicación";
+
+/* No comment provided by engineer. */
 "Closed" = "Cerrado";
 
 /* No comment provided by engineer. */
@@ -117,6 +120,9 @@
 
 /* No comment provided by engineer. */
 "Error" = "Error";
+
+/* No comment provided by engineer. */
+"Excused" = "Justificado";
 
 /* No comment provided by engineer. */
 "External Tool" = "Herramienta externa";
@@ -383,6 +389,9 @@
 "Text Entry" = "Entrada de texto";
 
 /* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "La aplicación se debe reiniciar para usar las nuevas configuraciones de idioma. Vuelva a iniciar la aplicación.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Hubo un problema al intentar acceder a los Términos de uso.";
 
 /* No comment provided by engineer. */
@@ -414,6 +423,9 @@
 
 /* No comment provided by engineer. */
 "Unordered List" = "Lista no ordenada";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Configuraciones de idioma actualizadas";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "Cargando %1$@ de %2$@";

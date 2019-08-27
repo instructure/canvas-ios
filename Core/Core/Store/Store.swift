@@ -104,11 +104,15 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     public subscript(indexPath: IndexPath) -> U.Model? {
-        return frc.object(at: indexPath)
+        let object = frc.object(at: indexPath)
+        if object.isDeleted {
+            return nil
+        }
+        return object
     }
 
     public subscript(index: Int) -> U.Model? {
-        return frc.object(at: IndexPath(row: index, section: 0))
+        return self[IndexPath(row: index, section: 0)]
     }
 
     public func numberOfObjects(inSection section: Int) -> Int {

@@ -32,9 +32,6 @@
    Student is present in class */
 "Absent" = "欠席";
 
-/* URL submission option */
-"Add Website Address" = "ウェブサイトアドレスを追加する";
-
 /* Shows the number questions */
 "All %@ Questions" = "すべての %@ 質問";
 
@@ -55,9 +52,6 @@
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "試行許可数";
-
-/* Default error message displayed when a file fails to upload */
-"An error occurred, please try again." = "エラーが発生しました。再度お試しください。";
 
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "予期しないエラーが発生しました。";
@@ -106,7 +100,6 @@
 
 /* Cancel Audio recording.
    Cancel button title
-   Cancel submission option
    Cancel upload */
 "Cancel" = "キャンセル";
 
@@ -139,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Comments" = "コメント";
-
-/* File upload completed */
-"Complete" = "完了";
 
 /* Title of a screen that shows all of our open source components */
 "Components" = "コンポーネント";
@@ -185,8 +175,7 @@
 /* DeepPurple course color button */
 "DeepPurple" = "DeepPurple";
 
-/* Delete button
-   Delete button for file upload */
+/* Delete button */
 "Delete" = "削除";
 
 /* No comment provided by engineer. */
@@ -226,14 +215,8 @@
 /* Default text for essay cell */
 "Enter answer..." = "回答を入力...";
 
-/* Text submission option */
-"Enter Text" = "テキストを入力する";
-
 /* Placeholder for URL */
 "Enter URL..." = "URLを入力...";
-
-/* Prompt for text upload */
-"Enter your submission..." = "提出物を入力する...";
 
 /* No comment provided by engineer. */
 "Error" = "エラー";
@@ -277,14 +260,8 @@
 /* label to be read for visually impaired users with external tool assignment types */
 "external tool" = "外部ツール";
 
-/* File upload failed */
-"Failed" = "失敗";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "パスで画像を見つけることができませんでした";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) をロードできませんでしたNSManagedObjectModel";
 
 /* No comment provided by engineer. */
 "Failed to write image" = "画像の書き込みに失敗しました";
@@ -294,9 +271,6 @@
 
 /* title for file upload errors */
 "File Upload Error" = "ファイルアップロードエラー";
-
-/* File uploads screen title */
-"File Uploads" = "ファイルのアップロード";
 
 /* State of the flagged question */
 "Flagged" = "フラグ付き";
@@ -598,14 +572,10 @@
 /* stop recording button a11y label */
 "Stop" = "停止";
 
-/* File upload was stopped */
-"Stopped" = "停止";
-
 /* No comment provided by engineer. */
 "Style" = "スタイル";
 
-/* Submit assignment button
-   Submit button title
+/* Submit button title
    Turn in this url button */
 "Submit" = "提出";
 
@@ -662,9 +632,6 @@
 
 /* CalendarKit Database Load Failure Message */
 "There was a problem loading the CalendarKit database file." = "CalendarKit データベースファイルを読み込み中、問題がありました。.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "DiscussionKit データベースファイルを読み込み中、問題がありました。.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "EnrollmentKit データベースファイルを読み込み中、問題がありました。.";
@@ -780,14 +747,8 @@
 /* Upcoming assignments */
 "Upcoming" = "今後の";
 
-/* File upload submission option */
-"Upload File" = "ファイルアップロード";
-
 /* Message displayed while a file is being uploaded */
 "Uploading file..." = "ファイルアップロード中...";
-
-/* File upload in progress */
-"uploading..." = "アップロード中...";
 
 /* permission denied button a11y hint */
 "User has denied record permission" = "ユーザーが録音許可のリクエストを拒否しました";

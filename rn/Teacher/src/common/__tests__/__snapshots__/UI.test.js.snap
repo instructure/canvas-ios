@@ -46,7 +46,7 @@ exports[`renders UI correctly 1`] = `
         </View>
         <View>
           <Text
-            accessibilityTraits="header"
+            accessibilityRole="header"
             style={
               Array [
                 Object {

@@ -21,11 +21,8 @@ import TestsFoundation
 
 enum FilePicker: String, ElementWrapper {
     case emptyView
-    case cameraButton
-    case libraryButton
-    case filesButton
-    case submitButton
-    case cancelButton
+    case cameraButton, filesButton, libraryButton
+    case cancelButton, closeButton, retryButton, submitButton
 }
 
 enum FilePickerListItem {

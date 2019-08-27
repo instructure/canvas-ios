@@ -24,13 +24,27 @@ class AccountNotificationsTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return AccountNotificationsTests.self }
     override var user: UITestUser? { return nil }
 
+    let announcement1 = APIAccountNotification.make(id: "1")
+    let announcement2 = APIAccountNotification.make(id: "2")
+
     func testRefresh() {
         mockBaseRequests()
         logIn()
 
-        Dashboard.coursesLabel.waitToExist()
-        mockData(GetAccountNotificationsRequest(), value: [ .make() ])
+        mockData(GetAccountNotificationsRequest(), value: [ announcement1 ])
         pullToRefresh()
-        AccountNotifications.toggleButton(id: "1").waitToExist()
+        AccountNotifications.toggleButton(id: announcement1.id.value).waitToExist()
+    }
+
+    func testDismiss() {
+        mockBaseRequests()
+        mockData(GetAccountNotificationsRequest(), value: [announcement1, announcement2])
+        mockData(DeleteAccountNotificationRequest(id: "1"), value: APINoContent())
+
+        logIn()
+
+        AccountNotifications.toggleButton(id: announcement1.id.value).tap()
+        AccountNotifications.dismissButton(id: announcement1.id.value).tap().waitToVanish()
+        XCTAssert(AccountNotifications.toggleButton(id: announcement2.id.value).isVisible)
     }
 }

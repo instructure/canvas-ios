@@ -74,6 +74,9 @@
 "Clear recording" = "Удалить запись";
 
 /* No comment provided by engineer. */
+"Close App" = "Закрыть приложение";
+
+/* No comment provided by engineer. */
 "Closed" = "Закрыто";
 
 /* No comment provided by engineer. */
@@ -117,6 +120,9 @@
 
 /* No comment provided by engineer. */
 "Error" = "Ошибка";
+
+/* No comment provided by engineer. */
+"Excused" = "По уважительной причине";
 
 /* No comment provided by engineer. */
 "External Tool" = "Внешний инструмент";
@@ -383,6 +389,9 @@
 "Text Entry" = "Ввод текста";
 
 /* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Необходимо перезапустить приложение для использования новых языковых настроек. Перезапустите приложение.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Возникла проблема при обращении к условиям использования.";
 
 /* No comment provided by engineer. */
@@ -414,6 +423,9 @@
 
 /* No comment provided by engineer. */
 "Unordered List" = "Неупорядоченный список";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Обновленные языковые настройки";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "Загрузка %1$@ из %2$@";

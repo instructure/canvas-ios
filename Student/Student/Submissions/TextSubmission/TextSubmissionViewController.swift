@@ -29,7 +29,7 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
 
     static func create(env: AppEnvironment = .shared, courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
-        controller.editor = RichContentEditorViewController.create(env: env, uploadTo: .myFiles)
+        controller.editor = RichContentEditorViewController.create(env: env, context: ContextModel(.course, id: courseID), uploadTo: .myFiles)
         controller.presenter = TextSubmissionPresenter(env: env, view: controller, courseID: courseID, assignmentID: assignmentID, userID: userID)
         return controller
     }

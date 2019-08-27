@@ -32,9 +32,6 @@
    Student is present in class */
 "Absent" = "Ngaro";
 
-/* URL submission option */
-"Add Website Address" = "Tāpiri Wāhitau Paetukutuku";
-
 /* Shows the number questions */
 "All %@ Questions" = "Katoa %@ Ngā Pātai";
 
@@ -55,9 +52,6 @@
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Ngā ngana e whakāetia ana";
-
-/* Default error message displayed when a file fails to upload */
-"An error occurred, please try again." = "He hapa i puta, tēnā koa ngana anō";
 
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "He hapa ohorere i puta";
@@ -106,7 +100,6 @@
 
 /* Cancel Audio recording.
    Cancel button title
-   Cancel submission option
    Cancel upload */
 "Cancel" = "Whakakore";
 
@@ -139,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Comments" = "Ngā Kōrerorero";
-
-/* File upload completed */
-"Complete" = "Oti";
 
 /* Title of a screen that shows all of our open source components */
 "Components" = "Ngā wāhanga";
@@ -185,8 +175,7 @@
 /* DeepPurple course color button */
 "DeepPurple" = "DeepPurple";
 
-/* Delete button
-   Delete button for file upload */
+/* Delete button */
 "Delete" = "Muku";
 
 /* No comment provided by engineer. */
@@ -226,14 +215,8 @@
 /* Default text for essay cell */
 "Enter answer..." = "Whakauru whakahoki ...";
 
-/* Text submission option */
-"Enter Text" = "Whakauru Kuputuhi";
-
 /* Placeholder for URL */
 "Enter URL..." = "Whakauru URL ...";
-
-/* Prompt for text upload */
-"Enter your submission..." = "Whakauru i tō tāpaetanga";
 
 /* No comment provided by engineer. */
 "Error" = "Hapa";
@@ -277,14 +260,8 @@
 /* label to be read for visually impaired users with external tool assignment types */
 "external tool" = "taputapu waho";
 
-/* File upload failed */
-"Failed" = "I rahua";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "I rahua te kite i te āhua i te huarahi";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "I rahua te uta (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
 "Failed to write image" = "I rahua ki te tuhi āhua";
@@ -294,9 +271,6 @@
 
 /* title for file upload errors */
 "File Upload Error" = "Hapa Tukuake Kōnae";
-
-/* File uploads screen title */
-"File Uploads" = "Ngā kōnae tukuake";
 
 /* State of the flagged question */
 "Flagged" = "karaina";
@@ -598,14 +572,10 @@
 /* stop recording button a11y label */
 "Stop" = "Kāti";
 
-/* File upload was stopped */
-"Stopped" = "Mutu";
-
 /* No comment provided by engineer. */
 "Style" = "Kāhua";
 
-/* Submit assignment button
-   Submit button title
+/* Submit button title
    Turn in this url button */
 "Submit" = "Tuku";
 
@@ -662,9 +632,6 @@
 
 /* CalendarKit Database Load Failure Message */
 "There was a problem loading the CalendarKit database file." = "He raruraru i te wā e uta ana i te CalendarKit kōnae pātengi rarunga.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "He raruraru i te wā e uta ana i te DiscussionKit kōnae pātengi rarunga.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "He raruraru i te wā e uta ana i te EnrollmentKit kōnae pātengi rarunga.";
@@ -780,14 +747,8 @@
 /* Upcoming assignments */
 "Upcoming" = "E haere mai ana";
 
-/* File upload submission option */
-"Upload File" = "Tukuake kōnae";
-
 /* Message displayed while a file is being uploaded */
 "Uploading file..." = "Tukuake kōnae ...";
-
-/* File upload in progress */
-"uploading..." = "E tukuake ana...";
 
 /* permission denied button a11y hint */
 "User has denied record permission" = "Kua whakakahore te whakāetanga rekoata a te Kaiwhakamahi";

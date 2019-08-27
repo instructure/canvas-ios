@@ -161,6 +161,9 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 file.id = nil
                 file.target = nil
                 file.bytesSent = 0
+                file.submitData = nil
+                file.targetData = nil
+                file.uploadData = nil
                 try context.save()
                 task.resume()
             } catch {

@@ -24,6 +24,8 @@ import {
   props as graphqlProps,
 } from '../SubmissionList'
 import renderer from 'react-test-renderer'
+import { shallow } from 'enzyme'
+import cloneDeep from 'lodash/cloneDeep'
 import defaultFilterOptions, { updateFilterSelection } from '../../../filter/filter-options'
 import * as templates from '../../../../canvas-api-v2/__templates__'
 
@@ -187,6 +189,57 @@ test('should navigate to submission settings', () => {
   tree.getInstance().openSettings()
 
   expect(navigator.show).toHaveBeenCalledWith('/courses/12/assignments/32/submission_settings', { modal: true })
+})
+
+test('should navigate to post policy settings', () => {
+  let navigator = template.navigator({
+    show: jest.fn(),
+  })
+
+  const tree = renderer.create(
+    <SubmissionList {...props} navigator={navigator} />
+  )
+  tree.getInstance().openPostPolicy()
+
+  expect(navigator.show).toHaveBeenCalledWith('/courses/12/assignments/32/post_policy', { modal: true })
+})
+
+test('should show eye button if new gradebook enabled', async () => {
+  let navigator = template.navigator({
+    show: jest.fn(),
+  })
+
+  let tree = shallow(
+    <SubmissionList {...props} navigator={navigator} />
+  )
+
+  await new Promise(resolve => tree.setState({ flags: ['new_gradebook'] }, resolve))
+  const button = tree.find('Screen').prop('rightBarButtons')
+    .find(({ testID }) => testID === 'SubmissionsList.postpolicy')
+  expect(button).toBeDefined()
+
+  const settingsButton = tree.find('Screen').prop('rightBarButtons')
+    .find(({ testID }) => testID === 'submission-list.settings')
+  expect(settingsButton).toBeUndefined()
+})
+
+test('should show old settings button if new gradebook not enabled', async () => {
+  let navigator = template.navigator({
+    show: jest.fn(),
+  })
+
+  let tree = shallow(
+    <SubmissionList {...props} navigator={navigator} />
+  )
+
+  await new Promise(resolve => tree.setState({ flags: [], didFetchFlags: true }, resolve))
+  const button = tree.find('Screen').prop('rightBarButtons')
+    .find(({ testID }) => testID === 'SubmissionsList.postpolicy')
+  expect(button).toBeUndefined()
+
+  const settingsButton = tree.find('Screen').prop('rightBarButtons')
+    .find(({ testID }) => testID === 'submission-list.settings')
+  expect(settingsButton).toBeDefined()
 })
 
 test('should navigate to a submission', () => {

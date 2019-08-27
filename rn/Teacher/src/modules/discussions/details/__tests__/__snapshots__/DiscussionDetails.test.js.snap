@@ -41,7 +41,9 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
               }
             }
           >
-            <Heading1>
+            <Heading1
+              testID="DiscussionDetails.titleLabel"
+            >
               Dear Ivy Iversen, your last name cannot start with your first name
             </Heading1>
             <View
@@ -323,7 +325,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
           onLayout={[Function]}
         >
           <View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -373,7 +375,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -387,6 +389,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                           undefined,
                         ]
                       }
+                      testID="DiscussionDetails.titleLabel"
                     >
                       Dear Ivy Iversen, your last name cannot start with your first name
                     </Text>
@@ -430,7 +433,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <TouchableHighlight
               onPress={[Function]}
             >
@@ -1105,7 +1108,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                 </View>
               </View>
             </View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -1158,7 +1161,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -1178,7 +1181,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <View />
           </View>
         </View>
@@ -1394,7 +1397,9 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
               }
             }
           >
-            <Heading1>
+            <Heading1
+              testID="DiscussionDetails.titleLabel"
+            >
               Dear Ivy Iversen, your last name cannot start with your first name
             </Heading1>
             <View
@@ -1733,7 +1738,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
           onLayout={[Function]}
         >
           <View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -1783,7 +1788,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -1797,6 +1802,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           undefined,
                         ]
                       }
+                      testID="DiscussionDetails.titleLabel"
                     >
                       Dear Ivy Iversen, your last name cannot start with your first name
                     </Text>
@@ -1817,7 +1823,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <TouchableHighlight
               onPress={[Function]}
             >
@@ -2572,7 +2578,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 </TouchableHighlight>
               </View>
             </View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -2625,7 +2631,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -2645,7 +2651,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <View />
           </View>
         </View>
@@ -3003,7 +3009,9 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
               }
             }
           >
-            <Heading1>
+            <Heading1
+              testID="DiscussionDetails.titleLabel"
+            >
               Dear Ivy Iversen, your last name cannot start with your first name
             </Heading1>
             <View
@@ -3213,7 +3221,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
           onLayout={[Function]}
         >
           <View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -3263,7 +3271,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -3277,6 +3285,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                           undefined,
                         ]
                       }
+                      testID="DiscussionDetails.titleLabel"
                     >
                       Dear Ivy Iversen, your last name cannot start with your first name
                     </Text>
@@ -3317,7 +3326,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <View
               style={
                 Object {
@@ -3462,7 +3471,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                 </View>
               </View>
             </View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -3515,7 +3524,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -3535,7 +3544,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <View />
           </View>
         </View>
@@ -3725,7 +3734,9 @@ exports[`DiscussionDetails renders in student app 1`] = `
               }
             }
           >
-            <Heading1>
+            <Heading1
+              testID="DiscussionDetails.titleLabel"
+            >
               Dear Ivy Iversen, your last name cannot start with your first name
             </Heading1>
             <View
@@ -4003,7 +4014,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
           onLayout={[Function]}
         >
           <View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -4053,7 +4064,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -4067,6 +4078,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                           undefined,
                         ]
                       }
+                      testID="DiscussionDetails.titleLabel"
                     >
                       Dear Ivy Iversen, your last name cannot start with your first name
                     </Text>
@@ -4107,7 +4119,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <View
               style={
                 Object {
@@ -4332,7 +4344,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 </TouchableHighlight>
               </View>
             </View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -4385,7 +4397,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -4405,7 +4417,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <View />
           </View>
         </View>
@@ -4686,7 +4698,9 @@ exports[`DiscussionDetails renders no replies 1`] = `
               }
             }
           >
-            <Heading1>
+            <Heading1
+              testID="DiscussionDetails.titleLabel"
+            >
               Dear Ivy Iversen, your last name cannot start with your first name
             </Heading1>
             <View
@@ -5004,7 +5018,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
           onLayout={[Function]}
         >
           <View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -5054,7 +5068,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -5068,6 +5082,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                           undefined,
                         ]
                       }
+                      testID="DiscussionDetails.titleLabel"
                     >
                       Dear Ivy Iversen, your last name cannot start with your first name
                     </Text>
@@ -5111,7 +5126,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <TouchableHighlight
               onPress={[Function]}
             >
@@ -5915,7 +5930,9 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
               }
             }
           >
-            <Heading1>
+            <Heading1
+              testID="DiscussionDetails.titleLabel"
+            >
               Dear Ivy Iversen, your last name cannot start with your first name
             </Heading1>
             <View
@@ -6265,7 +6282,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
           onLayout={[Function]}
         >
           <View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -6315,7 +6332,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -6329,6 +6346,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                           undefined,
                         ]
                       }
+                      testID="DiscussionDetails.titleLabel"
                     >
                       Dear Ivy Iversen, your last name cannot start with your first name
                     </Text>
@@ -6372,7 +6390,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <TouchableHighlight
               onPress={[Function]}
             >
@@ -7127,7 +7145,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                 </TouchableHighlight>
               </View>
             </View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -7180,7 +7198,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -7200,7 +7218,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <View />
           </View>
         </View>
@@ -7569,7 +7587,9 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
               }
             }
           >
-            <Heading1>
+            <Heading1
+              testID="DiscussionDetails.titleLabel"
+            >
               Dear Ivy Iversen, your last name cannot start with your first name
             </Heading1>
             <View
@@ -7991,7 +8011,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
           onLayout={[Function]}
         >
           <View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -8041,7 +8061,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -8055,6 +8075,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           undefined,
                         ]
                       }
+                      testID="DiscussionDetails.titleLabel"
                     >
                       Dear Ivy Iversen, your last name cannot start with your first name
                     </Text>
@@ -8098,7 +8119,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <TouchableHighlight
               onPress={[Function]}
             >
@@ -8853,7 +8874,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 </TouchableHighlight>
               </View>
             </View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -8966,7 +8987,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
           </View>
         </View>
         <View
@@ -9750,7 +9771,9 @@ exports[`DiscussionDetails renders with replies 1`] = `
               }
             }
           >
-            <Heading1>
+            <Heading1
+              testID="DiscussionDetails.titleLabel"
+            >
               Dear Ivy Iversen, your last name cannot start with your first name
             </Heading1>
             <View
@@ -10100,7 +10123,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
           onLayout={[Function]}
         >
           <View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -10150,7 +10173,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -10164,6 +10187,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           undefined,
                         ]
                       }
+                      testID="DiscussionDetails.titleLabel"
                     >
                       Dear Ivy Iversen, your last name cannot start with your first name
                     </Text>
@@ -10207,7 +10231,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <TouchableHighlight
               onPress={[Function]}
             >
@@ -10962,7 +10986,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 </TouchableHighlight>
               </View>
             </View>
-            <TouchableHighlight>
+            <View>
               <View
                 style={
                   Array [
@@ -11015,7 +11039,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       }
                     />
                     <Text
-                      accessibilityTraits="header"
+                      accessibilityRole="header"
                       style={
                         Array [
                           Object {
@@ -11035,7 +11059,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableHighlight>
+            </View>
             <View />
           </View>
         </View>

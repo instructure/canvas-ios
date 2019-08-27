@@ -21,4 +21,5 @@ import TestsFoundation
 
 enum DiscussionDetails: String, ElementWrapper {
     case attachmentButton
+    case titleLabel
 }

@@ -214,6 +214,18 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         XCTAssert(view.embedded is CoreWebViewController)
     }
 
+    func testEmbedUploadHeic() {
+        Assignment.make()
+        Submission.make(from: .make(
+            submission_type: .online_upload,
+            attachments: [ .make(contentType: "image/heic", mime_class: "file") ]
+        ))
+        presenter.update()
+
+        XCTAssertNotNil(view.embedded)
+        XCTAssert(view.embedded?.view is UIImageView)
+    }
+
     func testEmbedDiscussion() {
         Assignment.make()
         Submission.make(from: .make(submission_type: .discussion_topic, preview_url: URL(string: "preview")))

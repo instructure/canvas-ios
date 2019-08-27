@@ -27,7 +27,7 @@ class AssignmentsTests: CoreUITestCase {
 
         CourseNavigation.grades.tap()
 
-        app.find(labelContaining: "70%").waitToExist()
+        app.find(labelContaining: "72.73%").waitToExist()
     }
 
     func testViewAssignmentAndPreviewAttachment() {

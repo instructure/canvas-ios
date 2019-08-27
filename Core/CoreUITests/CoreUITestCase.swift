@@ -219,15 +219,28 @@ open class CoreUITestCase: XCTestCase {
         mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!), data: """
         {"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}
         """.data(using: .utf8)) // CKIClient.fetchCurrentUser
+        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile")!), data: """
+        {"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}
+        """.data(using: .utf8))
         mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self"))) // cookie keepalive
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
         mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
         mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
         mockData(GetAccountNotificationsRequest(), value: [])
-        mockData(GetCoursesRequest(), value: [ .make(id: "1", enrollments: [ .make(
+        let enrollment = APIEnrollment.make(
             type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
             role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
-        ), ]), ])
+        )
+        var state: [GetCoursesRequest.State] = [.available, .completed]
+        if Bundle.main.isTeacherApp {
+            state.append(.unpublished)
+        }
+        mockData(GetCoursesRequest(state: state), value: [ .make(id: "1", enrollments: [ enrollment ]) ])
+        mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: "1")), value: [ "rce_enhancements" ])
+        mockEncodableRequest("courses/1/external_tools?per_page=99&include_parents=true", value: [String]())
+        mockEncodableRequest("users/self/custom_data/favorites/groups?ns=com.canvas.canvas-app", value: [String: String]())
+        mockEncodableRequest("users/self/enrollments?include[]=avatar_url", value: [enrollment])
+        mockEncodableRequest("users/self/groups", value: [String]())
         mockEncodableRequest("users/self/todo", value: [String]())
         mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
         mockEncodableRequest("dashboard/dashboard_cards", value: [String]())
@@ -236,5 +249,29 @@ open class CoreUITestCase: XCTestCase {
     open func pullToRefresh() {
         app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
             .press(forDuration: 0.05, thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.9)))
+    }
+
+    open func allowAccessToPhotos(block: () -> Void) {
+        let alertHandler = addUIInterruptionMonitor(withDescription: "Photos Access Alert") { (alert) -> Bool in
+            _ = alert.buttons["OK"].waitForExistence(timeout: 3)
+            alert.buttons["OK"].tap()
+            return true
+        }
+        block()
+        app.swipeUp()
+        removeUIInterruptionMonitor(alertHandler)
+    }
+
+    open func allowAccessToMicrophone(block: () -> Void) {
+        let alertHandler = addUIInterruptionMonitor(withDescription: "Permission Alert") { (alert) -> Bool in
+            if alert.buttons["OK"].exists {
+                alert.buttons["OK"].tap()
+                return true
+            }
+            return false
+        }
+        block()
+        app.swipeUp()
+        removeUIInterruptionMonitor(alertHandler)
     }
 }

@@ -25,7 +25,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -75,7 +75,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -189,8 +189,8 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -557,7 +557,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -1329,7 +1329,7 @@ exports[`QuizDetails displays access code 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -1379,7 +1379,7 @@ exports[`QuizDetails displays access code 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -1493,8 +1493,8 @@ exports[`QuizDetails displays access code 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -1861,7 +1861,7 @@ exports[`QuizDetails displays access code 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -2633,7 +2633,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -2683,7 +2683,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -2797,8 +2797,8 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -3165,7 +3165,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -3833,7 +3833,7 @@ exports[`QuizDetails renders 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -3883,7 +3883,7 @@ exports[`QuizDetails renders 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -3997,8 +3997,8 @@ exports[`QuizDetails renders 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -4365,7 +4365,7 @@ exports[`QuizDetails renders 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -5085,7 +5085,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -5135,7 +5135,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -5249,8 +5249,8 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -5617,7 +5617,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -6389,7 +6389,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -6439,7 +6439,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -6553,8 +6553,8 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -6921,7 +6921,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -7641,7 +7641,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -7691,7 +7691,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -7805,8 +7805,8 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -8173,7 +8173,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -8893,7 +8893,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -8943,7 +8943,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -9057,8 +9057,8 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -9425,7 +9425,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -10145,7 +10145,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -10195,7 +10195,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -10309,8 +10309,8 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -10677,7 +10677,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -11397,7 +11397,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -11447,7 +11447,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -11561,8 +11561,8 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -11929,7 +11929,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -12649,7 +12649,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -12699,7 +12699,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -12813,8 +12813,8 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -13181,7 +13181,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -13849,7 +13849,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -13899,7 +13899,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -14013,8 +14013,8 @@ exports[`QuizDetails renders allowed attempts 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -14381,7 +14381,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -15101,7 +15101,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -15151,7 +15151,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -15265,8 +15265,8 @@ exports[`QuizDetails renders allowed attempts 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -15633,7 +15633,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -16353,7 +16353,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -16403,7 +16403,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -16517,7 +16517,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewDueDatesButton"
@@ -17639,7 +17639,7 @@ exports[`QuizDetails renders assignment group 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -17689,7 +17689,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -17803,8 +17803,8 @@ exports[`QuizDetails renders assignment group 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -18171,7 +18171,7 @@ exports[`QuizDetails renders assignment group 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -18943,7 +18943,7 @@ exports[`QuizDetails renders published state 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -18993,7 +18993,7 @@ exports[`QuizDetails renders published state 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -19107,8 +19107,8 @@ exports[`QuizDetails renders published state 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -19475,7 +19475,7 @@ exports[`QuizDetails renders published state 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -20195,7 +20195,7 @@ exports[`QuizDetails renders published state 2`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -20245,7 +20245,7 @@ exports[`QuizDetails renders published state 2`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -20359,8 +20359,8 @@ exports[`QuizDetails renders published state 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -20727,7 +20727,7 @@ exports[`QuizDetails renders published state 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -21447,7 +21447,7 @@ exports[`QuizDetails renders quiz type 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -21497,7 +21497,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -21611,8 +21611,8 @@ exports[`QuizDetails renders quiz type 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -21979,7 +21979,7 @@ exports[`QuizDetails renders quiz type 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -22699,7 +22699,7 @@ exports[`QuizDetails renders quiz type 2`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -22749,7 +22749,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -22863,8 +22863,8 @@ exports[`QuizDetails renders quiz type 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -23231,7 +23231,7 @@ exports[`QuizDetails renders quiz type 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -23951,7 +23951,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -24001,7 +24001,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -24115,8 +24115,8 @@ exports[`QuizDetails renders scoring policy 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -24483,7 +24483,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -25203,7 +25203,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -25253,7 +25253,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -25367,8 +25367,8 @@ exports[`QuizDetails renders scoring policy 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -25735,7 +25735,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -26455,7 +26455,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -26505,7 +26505,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -26619,8 +26619,8 @@ exports[`QuizDetails renders scoring policy 3`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -26987,7 +26987,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -27707,7 +27707,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -27757,7 +27757,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -27871,8 +27871,8 @@ exports[`QuizDetails renders show correct answers 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -28239,7 +28239,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -28959,7 +28959,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -29009,7 +29009,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -29123,8 +29123,8 @@ exports[`QuizDetails renders show correct answers 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -29491,7 +29491,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -30211,7 +30211,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -30261,7 +30261,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -30375,8 +30375,8 @@ exports[`QuizDetails renders shuffle answers 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -30743,7 +30743,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -31463,7 +31463,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -31513,7 +31513,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -31627,8 +31627,8 @@ exports[`QuizDetails renders shuffle answers 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -31995,7 +31995,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -32715,7 +32715,7 @@ exports[`QuizDetails renders time limit 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -32765,7 +32765,7 @@ exports[`QuizDetails renders time limit 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -32879,8 +32879,8 @@ exports[`QuizDetails renders time limit 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -33247,7 +33247,7 @@ exports[`QuizDetails renders time limit 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -33967,7 +33967,7 @@ exports[`QuizDetails renders time limit 2`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -34017,7 +34017,7 @@ exports[`QuizDetails renders time limit 2`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -34131,8 +34131,8 @@ exports[`QuizDetails renders time limit 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -34499,7 +34499,7 @@ exports[`QuizDetails renders time limit 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -35219,7 +35219,7 @@ exports[`QuizDetails renders view responses 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -35269,7 +35269,7 @@ exports[`QuizDetails renders view responses 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -35383,8 +35383,8 @@ exports[`QuizDetails renders view responses 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -35751,7 +35751,7 @@ exports[`QuizDetails renders view responses 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -36471,7 +36471,7 @@ exports[`QuizDetails renders view responses 2`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -36521,7 +36521,7 @@ exports[`QuizDetails renders view responses 2`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -36635,8 +36635,8 @@ exports[`QuizDetails renders view responses 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -37003,7 +37003,7 @@ exports[`QuizDetails renders view responses 2`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -37671,7 +37671,7 @@ exports[`QuizDetails renders view responses 3`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -37721,7 +37721,7 @@ exports[`QuizDetails renders view responses 3`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -37835,8 +37835,8 @@ exports[`QuizDetails renders view responses 3`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -38203,7 +38203,7 @@ exports[`QuizDetails renders view responses 3`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"
@@ -38871,7 +38871,7 @@ exports[`QuizDetails renders without a description 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -38921,7 +38921,7 @@ exports[`QuizDetails renders without a description 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -39035,8 +39035,8 @@ exports[`QuizDetails renders without a description 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
-      <TouchableHighlight
+      </View>
+      <View
         onPress={null}
         testID="quizzes.details.viewDueDatesButton"
       >
@@ -39403,7 +39403,7 @@ exports[`QuizDetails renders without a description 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="quizzes.details.viewAllSubmissionsRow"

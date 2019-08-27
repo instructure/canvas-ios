@@ -89,6 +89,8 @@ const zss_editor = window.zss_editor = {}
 // If we are using iOS or desktop
 zss_editor.isUsingiOS = true
 
+zss_editor.featureFlags = []
+
 // If the user is draging
 zss_editor.isDragging = false
 
@@ -127,15 +129,15 @@ zss_editor.init = () => {
     }
   })
 
-  document.addEventListener('selectionchange', e => {
+  document.addEventListener('selectionchange', throttle(e => {
     zss_editor.calculateEditorHeightWithCaretPosition()
     zss_editor.setScrollPosition()
     zss_editor.enabledEditingItems()
-  })
+  }), { passive: true })
 
-  window.addEventListener('scroll', e => {
+  window.addEventListener('scroll', throttle(e => {
     zss_editor.updateOffset()
-  })
+  }), { passive: true })
 
   // Make sure that when we tap anywhere in the document we focus on the editor
   window.addEventListener('touchmove', e => {
@@ -143,7 +145,7 @@ zss_editor.init = () => {
     zss_editor.updateScrollOffset = true
     zss_editor.setScrollPosition()
     zss_editor.enabledEditingItems(e)
-  })
+  }, { passive: true })
   window.addEventListener('touchstart', e => {
     zss_editor.isDragging = false
 
@@ -153,7 +155,7 @@ zss_editor.init = () => {
       }
       e.target.classList.add('zs_active')
     }
-  })
+  }, { passive: true })
   window.addEventListener('touchend', e => {
     if (e.target.nodeName.toLowerCase() === "a") {
       let anchor = event.currentTarget
@@ -165,7 +167,7 @@ zss_editor.init = () => {
         url: e.target.href
       }
 
-      postMessage(JSON.stringify({type: 'LINK_TOUCHED', data: link}))
+      window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'LINK_TOUCHED', data: link}))
 
       e.preventDefault()
     }
@@ -176,11 +178,11 @@ zss_editor.init = () => {
 
   // Post message on focus
   zss_editor_content.addEventListener('focus', () => {
-    postMessage(JSON.stringify({type: 'EDITOR_FOCUSED'}))
+    window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'EDITOR_FOCUSED'}))
   })
 
   zss_editor_content.addEventListener('blur', () => {
-    postMessage(JSON.stringify({type: 'EDITOR_BLURRED'}))
+    window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'EDITOR_BLURRED'}))
   })
 
   zss_editor_content.addEventListener('focusout', () => {
@@ -191,13 +193,13 @@ zss_editor.init = () => {
   })
 
   zss_editor_content.addEventListener('paste', (e) => {
-    postMessage(JSON.stringify({type: 'EDITOR_PASTE'}))
+    window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'EDITOR_PASTE'}))
     e.stopPropagation()
     e.preventDefault()
   })
 
   setTimeout(() => {
-    postMessage(JSON.stringify({type: 'ZSS_LOADED'}))
+    window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'ZSS_LOADED'}))
   }, 0)
 }//end
 
@@ -209,7 +211,7 @@ zss_editor.postHTML = () => {
     html = ''
   }
 
-  postMessage(JSON.stringify({type: 'EDITOR_HTML', data: html}))
+  window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'EDITOR_HTML', data: html}))
 }
 
 zss_editor.updateOffset = () => {
@@ -239,13 +241,13 @@ zss_editor.updateOffset = () => {
 
 // This will show up in the XCode console as we are able to push this into an NSLog.
 zss_editor.debug = msg => {
-  postMessage(JSON.stringify({type: 'DEBUG', data: msg}))
+  window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'DEBUG', data: msg}))
 }
 
 
 zss_editor.setScrollPosition = () => {
   let position = window.pageYOffset
-  postMessage(JSON.stringify({type: 'SCROLL', data: position}))
+  window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'SCROLL', data: position}))
 }
 
 
@@ -601,11 +603,7 @@ zss_editor.insertImage = (url, alt) => {
 }
 
 function videoPreviewHTML (mediaID) {
-  let html = `<img class="zss_postprocess_remove video-preview" src="${zss_editor.videoPreviewImagePath}" width="192px" />`
-  if (mediaID) {
-    html += `<p class="zss_final_video_comment"><a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a></p>`
-  }
-  return html
+  return `<img src="${zss_editor.videoPreviewImagePath}" width="192px" data-media_comment_id="${mediaID}" class="video-preview" />`
 }
 
 zss_editor.insertVideoComment = mediaID => {
@@ -627,6 +625,11 @@ zss_editor.setHTML = html => {
   // replace <video> with preview <img>
   for (let video of document.querySelectorAll('video')) {
     video.outerHTML = videoPreviewHTML(video.dataset.media_comment_id)
+  }
+
+  for (let mediaEmbed of document.querySelectorAll('div[id^="media_object_"]')) {
+    let mediaID = mediaEmbed.id.replace('media_object_', '')
+    mediaEmbed.outerHTML = videoPreviewHTML(mediaID)
   }
 }
 
@@ -656,6 +659,17 @@ zss_editor.getHTML = () => {
 
   // Get the contents
   let clone = zss_editor_content.cloneNode(true)
+  for (let img of clone.querySelectorAll('[data-media_comment_id]')) {
+    let mediaID = img.dataset.media_comment_id
+    let enhanced = zss_editor.featureFlags.includes('rce_enhancements')
+    if (enhanced) {
+      img.outerHTML = `<div id="media_object_${mediaID}" style="width: 768px; height: 432px;">
+        <iframe src="/media_objects_iframe/${mediaID}" width="100%" height="100%"></iframe>
+      </div>`
+    } else {
+      img.outerHTML = `<a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a>`
+    }
+  }
   for (let remove of clone.querySelectorAll('.zss_postprocess_remove')) {
     remove.parentNode.removeChild(remove)
   }
@@ -692,38 +706,11 @@ zss_editor.enabledEditingItems = e => {
   if (zss_editor.isCommandEnabled('italic')) {
     items.push('italic')
   }
-  if (zss_editor.isCommandEnabled('subscript')) {
-    items.push('subscript')
-  }
-  if (zss_editor.isCommandEnabled('superscript')) {
-    items.push('superscript')
-  }
-  if (zss_editor.isCommandEnabled('strikeThrough')) {
-    items.push('strikeThrough')
-  }
-  if (zss_editor.isCommandEnabled('underline')) {
-    items.push('underline')
-  }
   if (zss_editor.isCommandEnabled('insertOrderedList')) {
     items.push('orderedList')
   }
   if (zss_editor.isCommandEnabled('insertUnorderedList')) {
     items.push('unorderedList')
-  }
-  if (zss_editor.isCommandEnabled('justifyCenter')) {
-    items.push('justifyCenter')
-  }
-  if (zss_editor.isCommandEnabled('justifyFull')) {
-    items.push('justifyFull')
-  }
-  if (zss_editor.isCommandEnabled('justifyLeft')) {
-    items.push('justifyLeft')
-  }
-  if (zss_editor.isCommandEnabled('justifyRight')) {
-    items.push('justifyRight')
-  }
-  if (zss_editor.isCommandEnabled('insertHorizontalRule')) {
-    items.push('horizontalRule')
   }
   let formatBlock = document.queryCommandValue('formatBlock')
   if (formatBlock.length > 0) {
@@ -778,9 +765,7 @@ zss_editor.enabledEditingItems = e => {
     }
   }
 
-  setTimeout(() => {
-    postMessage(JSON.stringify({type: 'CALLBACK', data: items}))
-  }, 0)
+  window.webkit.messageHandlers.canvas.postMessage(JSON.stringify({type: 'CALLBACK', data: items}))
 }
 
 zss_editor.focusEditor = () => {
@@ -801,6 +786,28 @@ zss_editor.blurEditor = () => {
 
 zss_editor.setCustomCSS = customCSS => {
   document.querySelector('style').innerHTML = customCSS
+}
+
+zss_editor.setFeatureFlags = flags => {
+  zss_editor.featureFlags = flags.split(',')
+}
+
+function throttle (fn, ms = 200) {
+  let timer, last
+  return function () {
+    const context = this, args = arguments
+    const now = performance.now()
+    if (now < last + ms) {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            last = now
+            fn.apply(context, args)
+        }, ms)
+    } else {
+        last = now
+        fn.apply(context, args)
+    }
+  }
 }
 //end
 })()

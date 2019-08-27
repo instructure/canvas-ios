@@ -22,20 +22,14 @@ import { shallow } from 'enzyme'
 import _ from 'lodash'
 import React from 'react'
 import { Header, mapStateToProps } from '../Header'
-
-const templates = {
-  ...require('../../../../__templates__/submissions'),
-  ...require('../../../../redux/__templates__/app-state'),
-  ...require('../../../../__templates__/helm'),
-  ...require('../../../../__templates__/assignments'),
-  ...require('../../../../__templates__/quiz'),
-}
+import * as templates from '../../../../__templates__'
 
 let noSubProps = {
   submissionID: null,
   assignmentID: '2',
   courseID: '3',
   userID: '4',
+  assignmentSubmissionTypes: [ 'online_upload' ],
   submissionProps: {
     name: 'Allura',
     avatarURL: 'https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg',
@@ -110,6 +104,15 @@ describe('SpeedGraderHeader', () => {
     let props = _.cloneDeep(subProps)
     props.submissionProps.status = 'missing'
     props.submissionProps.submission = null
+
+    let tree = shallow(<Header {...props} />)
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders with an ungraded submission', () => {
+    let props = _.cloneDeep(subProps)
+    props.submissionProps.status = 'missing'
+    props.assignmentSubmissionTypes = [ 'not_graded' ]
 
     let tree = shallow(<Header {...props} />)
     expect(tree).toMatchSnapshot()

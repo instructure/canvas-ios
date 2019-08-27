@@ -32,9 +32,6 @@
    Student is present in class */
 "Absent" = "Absent";
 
-/* URL submission option */
-"Add Website Address" = "Ajouter une adresse de site internet";
-
 /* Shows the number questions */
 "All %@ Questions" = "Toutes les %@ questions";
 
@@ -55,9 +52,6 @@
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tentatives autorisées";
-
-/* Default error message displayed when a file fails to upload */
-"An error occurred, please try again." = "Une erreur s'est produite, veuillez réessayer.";
 
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Une erreur inattendue est survenue.";
@@ -106,7 +100,6 @@
 
 /* Cancel Audio recording.
    Cancel button title
-   Cancel submission option
    Cancel upload */
 "Cancel" = "Annuler";
 
@@ -139,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Comments" = "Commentaires";
-
-/* File upload completed */
-"Complete" = "Terminer";
 
 /* Title of a screen that shows all of our open source components */
 "Components" = "Composants";
@@ -185,8 +175,7 @@
 /* DeepPurple course color button */
 "DeepPurple" = "DeepPurple";
 
-/* Delete button
-   Delete button for file upload */
+/* Delete button */
 "Delete" = "Supprimer";
 
 /* No comment provided by engineer. */
@@ -226,14 +215,8 @@
 /* Default text for essay cell */
 "Enter answer..." = "Saisir la réponse...";
 
-/* Text submission option */
-"Enter Text" = "Entrer du texte";
-
 /* Placeholder for URL */
 "Enter URL..." = "Saisir l'URL...";
-
-/* Prompt for text upload */
-"Enter your submission..." = "Entrez votre soumission...";
 
 /* No comment provided by engineer. */
 "Error" = "Erreur";
@@ -277,14 +260,8 @@
 /* label to be read for visually impaired users with external tool assignment types */
 "external tool" = "outil externe";
 
-/* File upload failed */
-"Failed" = "Échec";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Impossible de trouver l'image au chemin d'accès";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Échec du chargement (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
 "Failed to write image" = "Échec de l'écriture de l'image";
@@ -294,9 +271,6 @@
 
 /* title for file upload errors */
 "File Upload Error" = "Erreur de téléchargement du fichier";
-
-/* File uploads screen title */
-"File Uploads" = "Envoi de fichiers";
 
 /* State of the flagged question */
 "Flagged" = "Marqué";
@@ -598,14 +572,10 @@
 /* stop recording button a11y label */
 "Stop" = "Stop";
 
-/* File upload was stopped */
-"Stopped" = "Arrêté";
-
 /* No comment provided by engineer. */
 "Style" = "Style";
 
-/* Submit assignment button
-   Submit button title
+/* Submit button title
    Turn in this url button */
 "Submit" = "Soumettre";
 
@@ -662,9 +632,6 @@
 
 /* CalendarKit Database Load Failure Message */
 "There was a problem loading the CalendarKit database file." = "Un problème est survenu lors du chargement du fichier de base de données CalendarKit.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Un problème est survenu lors du chargement du fichier de base de données DiscussionKit.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Un problème est survenu lors du chargement du fichier de base de données EnrollmentKit.";
@@ -780,14 +747,8 @@
 /* Upcoming assignments */
 "Upcoming" = "Prochainement";
 
-/* File upload submission option */
-"Upload File" = "Envoyer fichier";
-
 /* Message displayed while a file is being uploaded */
 "Uploading file..." = "Envoi du fichier en cours...";
-
-/* File upload in progress */
-"uploading..." = "envoi en cours...";
 
 /* permission denied button a11y hint */
 "User has denied record permission" = "L'utilisateur a rejeté la permission d'enregistrement";

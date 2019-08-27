@@ -65,16 +65,16 @@ func docViewerConfigurationBuilder(_ builder: PSPDFConfigurationBuilder) {
     builder.spreadFitting = .fill
     builder.userInterfaceViewMode = .never
 
-    builder.propertiesForAnnotations = [
-        .stamp: [["color"]],
-        .highlight: [["color"]],
-        .ink: [["color"]],
-        .square: [["color"]],
-        .circle: [["color"]],
-        .line: [["color"]],
+    let properties: [AnnotationString: [[AnnotationStyleKey]]] = [
+        .stamp: [[.color]],
+        .highlight: [[.color]],
+        .ink: [[.color, .lineWidth]],
+        .square: [[.color]],
+        .line: [[.color]],
         .strikeOut: [[]],
-        .freeText: [["fontSize"]],
+        .freeText: [[.fontSize]],
     ]
+    builder.propertiesForAnnotations = properties
 
     builder.overrideClass(PSPDFAnnotationToolbar.self, with: DocViewerAnnotationToolbar.self)
     builder.overrideClass(PSPDFAnnotationStateManager.self, with: DocViewerAnnotationStateManager.self)

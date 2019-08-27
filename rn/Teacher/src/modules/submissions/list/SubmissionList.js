@@ -40,14 +40,24 @@ import RowSeparator from '../../../common/components/rows/RowSeparator'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import { graphql } from 'react-apollo'
 import query from '../../../canvas-api-v2/queries/SubmissionList'
+import * as canvas from '../../../canvas-api'
+import icon from '../../../images/inst-icons'
+
+const { getEnabledFeatureFlags } = canvas
 
 type Props = SubmissionListProps & { navigator: Navigator } & RefreshProps
 type State = {
   filterOptions: SubmissionFilterOption[],
   filter: Function,
+  flags: string[],
+  didFetchFlags: boolean,
 }
 
 export class SubmissionList extends Component<Props, State> {
+  static defaultProps = {
+    getEnabledFeatureFlags,
+  }
+
   constructor (props: Props) {
     super(props)
     let filterOptions = [ ...defaultFilterOptions(this.props.filterType), ...this.props.sections.map(createFilterFromSection) ]
@@ -57,6 +67,20 @@ export class SubmissionList extends Component<Props, State> {
       filterOptions,
       filter,
       refreshing: false,
+      flags: [],
+      didFetchFlags: false,
+    }
+  }
+
+  async componentDidMount () {
+    if (this.props.assignmentName !== '') {
+      this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.isGroupGradedAssignment)
+    }
+    try {
+      let flags = await this.props.getEnabledFeatureFlags('courses', this.props.courseID)
+      this.setState({ flags: flags.data, didFetchFlags: true })
+    } catch (e) {
+      this.setState({ didFetchFlags: true })
     }
   }
 
@@ -133,6 +157,12 @@ export class SubmissionList extends Component<Props, State> {
     })
   }
 
+  openPostPolicy = () => {
+    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/post_policy`, {
+      modal: true,
+    })
+  }
+
   messageStudentsWho = () => {
     var subject = ''
     let jointTitles = joinTitles(this.state.filterOptions)
@@ -160,26 +190,42 @@ export class SubmissionList extends Component<Props, State> {
   }
 
   render () {
+    let rightBarButtons = [
+      {
+        accessibilityLabel: i18n('Message students who'),
+        image: icon('email', 'solid'),
+        testID: 'submission-list.message-who-btn',
+        action: this.messageStudentsWho,
+        width: 20,
+        height: 20,
+      },
+    ]
+
+    if (this.state.flags.includes('new_gradebook')) {
+      rightBarButtons.push({
+        image: icon('eye', 'solid'),
+        testID: 'SubmissionsList.postpolicy',
+        action: this.openPostPolicy,
+        accessibilityLabel: i18n('Grade post policy'),
+        width: 20,
+        height: 20,
+      })
+    } else if (this.state.didFetchFlags) {
+      rightBarButtons.push({
+        accessibilityLabel: i18n('Submission Settings'),
+        image: Images.course.settings,
+        testID: 'submission-list.settings',
+        action: this.openSettings,
+      })
+    }
+
     return (
       <Screen
         title={i18n('Submissions')}
         subtitle={this.props.assignmentName}
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
-        rightBarButtons={[
-          {
-            accessibilityLabel: i18n('Message students who'),
-            image: Images.smallMail,
-            testID: 'submission-list.message-who-btn',
-            action: this.messageStudentsWho,
-          },
-          {
-            accessibilityLabel: i18n('Submission Settings'),
-            image: Images.course.settings,
-            testID: 'submission-list.settings',
-            action: this.openSettings,
-          },
-        ]}
+        rightBarButtons={rightBarButtons}
       >
         { this.props.pending && !this.props.refreshing
           ? <ActivityIndicatorView />

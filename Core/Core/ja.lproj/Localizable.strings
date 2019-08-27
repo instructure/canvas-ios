@@ -74,6 +74,9 @@
 "Clear recording" = "録音をクリアする";
 
 /* No comment provided by engineer. */
+"Close App" = "アプリを閉じる";
+
+/* No comment provided by engineer. */
 "Closed" = "終了済み";
 
 /* No comment provided by engineer. */
@@ -117,6 +120,9 @@
 
 /* No comment provided by engineer. */
 "Error" = "エラー";
+
+/* No comment provided by engineer. */
+"Excused" = "免除";
 
 /* No comment provided by engineer. */
 "External Tool" = "外部ツール";
@@ -383,6 +389,9 @@
 "Text Entry" = "テキストエントリ";
 
 /* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "新しい言語設定を使用するには、アプリの再起動が必要です。アプリを再起動してください。";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "利用規約の取得中に問題が発生しました。";
 
 /* No comment provided by engineer. */
@@ -414,6 +423,9 @@
 
 /* No comment provided by engineer. */
 "Unordered List" = "順不同リスト";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "更新された言語設定";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "～の %1$@ をアップロード中%2$@";

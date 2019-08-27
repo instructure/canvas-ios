@@ -325,6 +325,8 @@ export default class Attachments extends Component<Props, any> {
 
   uploadMedia = async (attachment: Attachment) => {
     const mediaID = await this.props.uploadMedia(attachment.uri, attachment.mime_class, {
+      context: this.props.context,
+      contextID: this.props.contextID,
       onProgress: this.updateProgress(attachment.id),
       cancelUpload: this.captureCancel(attachment),
     })

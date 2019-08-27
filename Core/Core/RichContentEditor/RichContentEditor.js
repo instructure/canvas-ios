@@ -23,6 +23,7 @@ const editor = window.editor = {
     currentEditingImage: null,
     currentEditingLink: null,
     enabledItems: {},
+    featureFlags: [],
 
     backupRange () {
         const selection = getSelection()
@@ -149,6 +150,11 @@ const editor = window.editor = {
             let mediaID = video.dataset.media_comment_id
             video.outerHTML = `<img src='${videoPreviewURL}' alt="" data-media_comment_id="${mediaID}" />`
         }
+
+        for (let mediaEmbed of document.querySelectorAll('div[id^="media_object_"]')) {
+            let mediaID = mediaEmbed.id.replace('media_object_', '')
+            mediaEmbed.outerHTML = `<img src='${videoPreviewURL}' alt="" data-media_comment_id="${mediaID}" />`
+        }
     },
 
     insertHTML (html) {
@@ -168,7 +174,11 @@ const editor = window.editor = {
         }
         for (let img of clone.querySelectorAll('[data-media_comment_id]')) {
             let mediaID = img.dataset.media_comment_id
-            img.outerHTML = `<a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a>`
+            if (editor.featureFlags.includes('rce_enhancements')) {
+                img.outerHTML = `<div id="media_object_${mediaID}" style="width: 768px; height: 432px;"><iframe src="/media_objects_iframe/${mediaID}" width="100%" height="100%"></iframe></div>`
+            } else {
+                img.outerHTML = `<a id="media_comment_${mediaID}" class="instructure_inline_media_comment video_comment" href="/media_objects/${mediaID}">this is a media comment</a>`
+            }
         }
         let html = clone.innerHTML
         // backspaces can leave behind empty line breaks
@@ -343,7 +353,7 @@ function throttle (fn, ms = 200) {
 document.addEventListener('selectionchange', e => {
     editor.updateScroll()
     editor.postState()
-})
+}, { passive: true })
 
 new MutationObserver(() => {
     editor.updateOverlays()
@@ -351,11 +361,11 @@ new MutationObserver(() => {
 
 window.addEventListener('touchstart', e => {
     editor.isDragging = false
-})
+}, { passive: true })
 window.addEventListener('touchmove', e => {
     editor.isDragging = true
     editor.postState(e)
-})
+}, { passive: true })
 window.addEventListener('touchend', e => {
     editor.postState(e)
     if (editor.currentEditingLink) {

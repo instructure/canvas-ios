@@ -73,7 +73,7 @@ exports[`renders with overrides 1`] = `
           }
         >
           <Text
-            accessibilityTraits="header"
+            accessibilityRole="header"
             style={
               Array [
                 Object {
@@ -305,7 +305,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
           }
         >
           <Text
-            accessibilityTraits="header"
+            accessibilityRole="header"
             style={
               Array [
                 Object {
@@ -501,7 +501,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
           }
         >
           <Text
-            accessibilityTraits="header"
+            accessibilityRole="header"
             style={
               Array [
                 Object {
@@ -697,7 +697,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
           }
         >
           <Text
-            accessibilityTraits="header"
+            accessibilityRole="header"
             style={
               Array [
                 Object {
@@ -893,7 +893,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
           }
         >
           <Text
-            accessibilityTraits="header"
+            accessibilityRole="header"
             style={
               Array [
                 Object {

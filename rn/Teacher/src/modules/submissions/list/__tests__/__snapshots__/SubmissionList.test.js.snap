@@ -40,7 +40,7 @@ exports[`SubmissionList loaded 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           numberOfLines={1}
           style={
             Array [
@@ -972,7 +972,7 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
         }
       >
         <Text
-          accessibilityTraits="header"
+          accessibilityRole="header"
           numberOfLines={1}
           style={
             Array [

@@ -46,8 +46,10 @@ describe('RichTextEditor', () => {
     const tree = shallow(<RichTextEditor {...props} />)
     tree.getElement().ref({ measureInWindow })
     tree.simulate('Layout')
-    tree.find('ZSSRichTextEditor').simulate('Load')
-    tree.find('ZSSRichTextEditor').simulate('Focus')
+    const editor = tree.find('ZSSRichTextEditor')
+    editor.getElement().ref({ setFeatureFlags: jest.fn() })
+    editor.simulate('Load')
+    editor.simulate('Focus')
     expect(tree).toMatchSnapshot()
   })
 
@@ -63,7 +65,9 @@ describe('RichTextEditor', () => {
   it('hides toolbar when showToolbar is false', () => {
     props.showToolbar = 'never'
     const tree = shallow(<RichTextEditor {...props} />)
-    tree.find('ZSSRichTextEditor').simulate('Load')
+    const editor = tree.find('ZSSRichTextEditor')
+    editor.getElement().ref({ setFeatureFlags: jest.fn() })
+    editor.simulate('Load')
     expect(tree).toMatchSnapshot()
   })
 
@@ -125,13 +129,14 @@ describe('RichTextEditor', () => {
       const tree = shallow(<RichTextEditor {...props} />)
       tree.getElement().ref({ measureInWindow })
       const editor = tree.find('ZSSRichTextEditor')
-      editor.simulate('Load')
-      editor.simulate('Focus')
       editor.getElement().ref({
         insertImage: mock,
         prepareInsert: jest.fn(),
         insertVideoComment: jest.fn(),
+        setFeatureFlags: jest.fn(),
       })
+      editor.simulate('Load')
+      editor.simulate('Focus')
       const toolbar = tree.find('RichTextToolbar')
       toolbar.props().insertImage()
       expect(mock).toHaveBeenLastCalledWith(image.url)
@@ -154,13 +159,14 @@ describe('RichTextEditor', () => {
       const tree = shallow(<RichTextEditor {...props} />)
       tree.getElement().ref({ measureInWindow })
       const editor = tree.find('ZSSRichTextEditor')
-      editor.simulate('Load')
-      editor.simulate('Focus')
       editor.getElement().ref({
         insertImage: jest.fn(),
         prepareInsert: jest.fn(),
         insertVideoComment: mock,
+        setFeatureFlags: jest.fn(),
       })
+      editor.simulate('Load')
+      editor.simulate('Focus')
       const toolbar = tree.find('RichTextToolbar')
       toolbar.props().insertImage()
       expect(mock).toHaveBeenCalledWith(video.media_entry_id)
@@ -171,6 +177,7 @@ describe('RichTextEditor', () => {
     const tree = shallow(<RichTextEditor {...props} />)
     tree.getElement().ref({ measureInWindow })
     const editor = tree.find('ZSSRichTextEditor')
+    editor.getElement().ref({ setFeatureFlags: jest.fn() })
     editor.simulate('Focus')
     editor.simulate('Load')
     editor.props().editorItemsChanged(['italic'])
@@ -185,7 +192,7 @@ describe('RichTextEditor', () => {
     const tree = shallow(<RichTextEditor {...props} />)
     tree.getElement().ref({ measureInWindow })
     const editor = tree.find('ZSSRichTextEditor')
-    editor.getElement().ref({ setContentHeight: mock })
+    editor.getElement().ref({ setContentHeight: mock, setFeatureFlags: jest.fn() })
     editor.simulate('Load')
     expect(mock).toHaveBeenCalledWith(200)
   })
@@ -195,9 +202,22 @@ describe('RichTextEditor', () => {
     const mock = jest.fn()
     const tree = shallow(<RichTextEditor {...props} />)
     const editor = tree.find('ZSSRichTextEditor')
-    editor.getElement().ref({ updateHTML: mock })
+    editor.getElement().ref({ updateHTML: mock, setFeatureFlags: jest.fn() })
     editor.simulate('Load')
     expect(mock).toHaveBeenCalledWith(props.defaultValue)
+  })
+
+  it('sets feature flags on load', async () => {
+    const setFeatureFlags = jest.fn()
+    props.getEnabledFeatureFlags = jest.fn(() => Promise.resolve({ data: ['rce_enhancements'] }))
+    props.context = 'courses'
+    props.contextID = '1'
+    const tree = shallow(<RichTextEditor {...props} />)
+    const editor = tree.find('ZSSRichTextEditor')
+    editor.getElement().ref({ updateHTML: jest.fn(), setFeatureFlags })
+    await editor.simulate('Load')
+    expect(setFeatureFlags).toHaveBeenCalledWith(['rce_enhancements'])
+    expect(props.getEnabledFeatureFlags).toHaveBeenCalledWith('courses', '1')
   })
 
   it('sets html when defaultValue changes', () => {
@@ -244,6 +264,7 @@ describe('RichTextEditor', () => {
     editor.getElement().ref({
       setContentHeight: setContentHeightMock,
       trigger: triggerMock,
+      setFeatureFlags: jest.fn(),
     })
     editor.simulate('Load')
     tree.find('RichTextToolbar').simulate('ColorPickerShown', true)
@@ -257,7 +278,7 @@ describe('RichTextEditor', () => {
     const setContentHeightMock = jest.fn()
     const tree = shallow(<RichTextEditor {...props} />)
     const editor = tree.find('ZSSRichTextEditor')
-    editor.getElement().ref({ setContentHeight: setContentHeightMock })
+    editor.getElement().ref({ setContentHeight: setContentHeightMock, setFeatureFlags: jest.fn() })
     editor.simulate('Load')
     tree.find('RichTextToolbar').simulate('ColorPickerShown', false)
     expect(setContentHeightMock).toHaveBeenCalledWith(200)
@@ -269,7 +290,7 @@ describe('RichTextEditor', () => {
     const setContentHeightMock = jest.fn()
     const tree = shallow(<RichTextEditor {...props} />)
     const editor = tree.find('ZSSRichTextEditor')
-    editor.getElement().ref({ setContentHeight: setContentHeightMock })
+    editor.getElement().ref({ setContentHeight: setContentHeightMock, setFeatureFlags: jest.fn() })
     editor.simulate('Load')
     tree.find('RichTextToolbar').simulate('ColorPickerShown', false)
     expect(setContentHeightMock).not.toHaveBeenCalled()
@@ -280,7 +301,7 @@ describe('RichTextEditor', () => {
     props.placeholder = 'This is a placeholder'
     const tree = shallow(<RichTextEditor {...props} />)
     const editor = tree.find('ZSSRichTextEditor')
-    editor.getElement().ref({ setPlaceholder: mock })
+    editor.getElement().ref({ setPlaceholder: mock, setFeatureFlags: jest.fn() })
     editor.simulate('Load')
     expect(mock).toHaveBeenCalledWith('This is a placeholder')
   })
@@ -292,7 +313,7 @@ describe('RichTextEditor', () => {
     }
     const mock = jest.fn()
     const tree = shallow(<RichTextEditor {...focusProps} />)
-    tree.find('ZSSRichTextEditor').getElement().ref({ focusEditor: mock })
+    tree.find('ZSSRichTextEditor').getElement().ref({ focusEditor: mock, setFeatureFlags: jest.fn() })
     tree.find('ZSSRichTextEditor').simulate('Load')
     expect(mock).toHaveBeenCalled()
   })
@@ -315,12 +336,13 @@ describe('RichTextEditor', () => {
     const mock = jest.fn()
     const tree = shallow(<RichTextEditor {...props} />)
     tree.getElement().ref({ measureInWindow })
-    tree.find('ZSSRichTextEditor').simulate('Load')
-    tree.find('ZSSRichTextEditor').simulate('Focus')
     tree.find('ZSSRichTextEditor').getElement().ref({
       [action]: mock,
       prepareInsert: jest.fn(),
+      setFeatureFlags: jest.fn(),
     })
+    tree.find('ZSSRichTextEditor').simulate('Load')
+    tree.find('ZSSRichTextEditor').simulate('Focus')
     tree.find('RichTextToolbar').prop(action)()
     expect(mock).toHaveBeenCalled()
   }

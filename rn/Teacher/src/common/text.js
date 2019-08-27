@@ -48,7 +48,7 @@ Text.propTypes = ReactNative.Text.propTypes
 type TextProps = React.ElementConfig<typeof ReactNative.Text>
 
 export function Heading1 ({ style, ...props }: Object) {
-  return <ReactNative.Text style={[styles.font, styles.h1, style]} {...props} accessibilityTraits='header' />
+  return <ReactNative.Text style={[styles.font, styles.h1, style]} {...props} accessibilityRole='header' />
 }
 
 export function Heading2 ({ style, ...props }: Object) {

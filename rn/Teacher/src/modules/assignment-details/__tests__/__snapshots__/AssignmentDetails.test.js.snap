@@ -21,7 +21,7 @@ exports[`renders 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -71,7 +71,7 @@ exports[`renders 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -188,7 +188,7 @@ exports[`renders 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="assignment-details.assignment-section.due"
@@ -591,7 +591,7 @@ exports[`renders 1`] = `
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight
+      <View
         onPress={null}
         testID="assignment-details.assignment-section.submission-type"
       >
@@ -769,7 +769,7 @@ exports[`renders 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <View
         style={
           Object {
@@ -880,7 +880,7 @@ exports[`renders as a designer 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -930,7 +930,7 @@ exports[`renders as a designer 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -1047,7 +1047,7 @@ exports[`renders as a designer 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="assignment-details.assignment-section.due"
@@ -1450,7 +1450,7 @@ exports[`renders as a designer 1`] = `
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight
+      <View
         onPress={null}
         testID="assignment-details.assignment-section.submission-type"
       >
@@ -1562,7 +1562,7 @@ exports[`renders as a designer 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <View
         style={
           Object {
@@ -1673,7 +1673,7 @@ exports[`renders loading 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -1723,7 +1723,7 @@ exports[`renders loading 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -1840,7 +1840,7 @@ exports[`renders loading 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="assignment-details.assignment-section.due"
@@ -2243,7 +2243,7 @@ exports[`renders loading 1`] = `
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight
+      <View
         onPress={null}
         testID="assignment-details.assignment-section.submission-type"
       >
@@ -2353,7 +2353,7 @@ exports[`renders loading 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <View
         style={
           Object {
@@ -2466,7 +2466,7 @@ exports[`renders with no submission types 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -2516,7 +2516,7 @@ exports[`renders with no submission types 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -2633,7 +2633,7 @@ exports[`renders with no submission types 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="assignment-details.assignment-section.due"
@@ -3036,7 +3036,7 @@ exports[`renders with no submission types 1`] = `
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight
+      <View
         onPress={null}
         testID="assignment-details.assignment-section.submission-type"
       >
@@ -3148,7 +3148,7 @@ exports[`renders with no submission types 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <View
         style={
           Object {
@@ -3259,7 +3259,7 @@ exports[`renders with not_graded submission type 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -3309,7 +3309,7 @@ exports[`renders with not_graded submission type 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -3426,7 +3426,7 @@ exports[`renders with not_graded submission type 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="assignment-details.assignment-section.due"
@@ -3829,7 +3829,7 @@ exports[`renders with not_graded submission type 1`] = `
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight
+      <View
         onPress={null}
         testID="assignment-details.assignment-section.submission-type"
       >
@@ -3939,7 +3939,7 @@ exports[`renders with not_graded submission type 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <View
         style={
           Object {
@@ -4050,7 +4050,7 @@ exports[`renders without description 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <TouchableHighlight>
+      <View>
         <View
           style={
             Array [
@@ -4100,7 +4100,7 @@ exports[`renders without description 1`] = `
                 }
               />
               <Text
-                accessibilityTraits="header"
+                accessibilityRole="header"
                 style={
                   Array [
                     Object {
@@ -4217,7 +4217,7 @@ exports[`renders without description 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <TouchableHighlight
         onPress={[Function]}
         testID="assignment-details.assignment-section.due"
@@ -4620,7 +4620,7 @@ exports[`renders without description 1`] = `
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight
+      <View
         onPress={null}
         testID="assignment-details.assignment-section.submission-type"
       >
@@ -4798,7 +4798,7 @@ exports[`renders without description 1`] = `
             </View>
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <View
         style={
           Object {

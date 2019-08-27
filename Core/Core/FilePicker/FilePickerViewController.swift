@@ -66,25 +66,31 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
 
         var tabBarItems: [UITabBarItem] = []
         if sources.contains(.camera) {
-            tabBarItems.append(UITabBarItem(
+            let item = UITabBarItem(
                 title: NSLocalizedString("Camera", bundle: .core, comment: ""),
                 image: .icon(.addCameraLine),
                 tag: FilePickerSource.camera.rawValue
-            ))
+            )
+            item.accessibilityIdentifier = "FilePicker.cameraButton"
+            tabBarItems.append(item)
         }
         if sources.contains(.library) {
-            tabBarItems.append(UITabBarItem(
+            let item = UITabBarItem(
                 title: NSLocalizedString("Library", bundle: .core, comment: ""),
                 image: .icon(.addImageLine),
                 tag: FilePickerSource.library.rawValue
-            ))
+            )
+            item.accessibilityIdentifier = "FilePicker.libraryButton"
+            tabBarItems.append(item)
         }
         if sources.contains(.files) {
-            tabBarItems.append(UITabBarItem(
+            let item = UITabBarItem(
                 title: NSLocalizedString("Files", bundle: .core, comment: ""),
                 image: .icon(.addDocumentLine),
                 tag: FilePickerSource.files.rawValue
-            ))
+            )
+            item.accessibilityIdentifier = "FilePicker.filesButton"
+            tabBarItems.append(item)
         }
         sourcesTabBar?.items = tabBarItems
         let linkColor = Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
@@ -135,25 +141,35 @@ open class FilePickerViewController: UIViewController, ErrorViewController, File
             navigationController?.setToolbarHidden(false, animated: true)
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
+            navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
+            let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancel(sender:)))
+            cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
             toolbarItems = [
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-                UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancel(sender:))),
+                cancelButton,
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             ]
         } else if failed {
             navigationController?.setToolbarHidden(false, animated: true)
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
+            navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
+            let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel(sender:)))
+            cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
+            let retryButton = UIBarButtonItem(title: NSLocalizedString("Retry", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(retry))
+            retryButton.accessibilityIdentifier = "FilePicker.retryButton"
             toolbarItems = [
-                UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel(sender:))),
+                cancelButton,
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-                UIBarButtonItem(title: NSLocalizedString("Retry", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(retry)),
+                retryButton,
             ]
         } else {
             navigationController?.setToolbarHidden(true, animated: true)
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancel(sender:)))
+            navigationItem.leftBarButtonItem?.accessibilityIdentifier = "FilePicker.cancelButton"
             let submitButton = UIBarButtonItem(title: submitButtonTitle, style: .plain, target: self, action: #selector(submit))
             submitButton.isEnabled = delegate?.canSubmit(self) == true
+            submitButton.accessibilityIdentifier = "FilePicker.submitButton"
             navigationItem.rightBarButtonItem = submitButton
         }
     }

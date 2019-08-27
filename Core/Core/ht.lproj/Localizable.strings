@@ -74,6 +74,9 @@
 "Clear recording" = "Efase anrejistreman";
 
 /* No comment provided by engineer. */
+"Close App" = "Fèmen App";
+
+/* No comment provided by engineer. */
 "Closed" = "Fèmen";
 
 /* No comment provided by engineer. */
@@ -117,6 +120,9 @@
 
 /* No comment provided by engineer. */
 "Error" = "Erè";
+
+/* No comment provided by engineer. */
+"Excused" = "Egzante";
 
 /* No comment provided by engineer. */
 "External Tool" = "Zouti Ekstèn";
@@ -383,6 +389,9 @@
 "Text Entry" = "Antre Tèks";
 
 /* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikasyon an dwe redemare pou l ka itilize nouvo paramèt lang lan. Re lanse aplikasyon an.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Gen yon pwoblèm ki pase pandan rekiperasyon Kondisyon Itilizasyon an";
 
 /* No comment provided by engineer. */
@@ -414,6 +423,9 @@
 
 /* No comment provided by engineer. */
 "Unordered List" = "Lis non Òdone";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "Paramèt Langaj Aktyalize";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "Transfè %1$@ sou %2$@";

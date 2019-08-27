@@ -47,7 +47,7 @@ export default class ImageSubmissionViewer extends Component<{
     return (
       <ScrollView
         maximumZoomScale={2.0}
-        minimumZoomScale={0.5}
+        minimumZoomScale={1}
         showsHorizontalScrollIndicator
         showsVerticalScrollIndicator
         style={{ paddingHorizontal: 16 }}

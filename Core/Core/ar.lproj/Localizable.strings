@@ -74,6 +74,9 @@
 "Clear recording" = "مسح التسجيل";
 
 /* No comment provided by engineer. */
+"Close App" = "إغلاق التطبيق";
+
+/* No comment provided by engineer. */
 "Closed" = "مغلق";
 
 /* No comment provided by engineer. */
@@ -117,6 +120,9 @@
 
 /* No comment provided by engineer. */
 "Error" = "خطأ";
+
+/* No comment provided by engineer. */
+"Excused" = "معفى";
 
 /* No comment provided by engineer. */
 "External Tool" = "أداة خارجية";
@@ -383,6 +389,9 @@
 "Text Entry" = "إدخال النص";
 
 /* No comment provided by engineer. */
+"The app needs to restart to use the new language settings. Please relaunch the app." = "يحتاج التطبيق لإعادة التشغيل لاستخدام إعدادات اللغة الجديدة. يرجى إعادة تشغيل التطبيق.";
+
+/* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "حدثت مشكلة أثناء استرداد شروط الاستخدام.";
 
 /* No comment provided by engineer. */
@@ -414,6 +423,9 @@
 
 /* No comment provided by engineer. */
 "Unordered List" = "قائمة غير مرتبة";
+
+/* No comment provided by engineer. */
+"Updated Language Settings" = "إعدادات اللغة المحدثة";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "جارٍ تحميل %1$@ من %2$@";

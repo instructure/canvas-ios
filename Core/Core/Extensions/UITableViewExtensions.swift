@@ -27,4 +27,8 @@ extension UITableView {
         }
         return cell
     }
+
+    public func registerCell<T: UITableViewCell>(_ type: T.Type) {
+        register(type, forCellReuseIdentifier: String(describing: T.self))
+    }
 }
