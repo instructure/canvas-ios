@@ -21,6 +21,7 @@ import Core
 
 protocol PostGradesViewProtocol: ErrorViewController {
     func update(_ viewModel: APIPostPolicyInfo)
+    func updateCourseColor(_ color: UIColor)
     func didHideGrades()
     func didPostGrades()
 }
@@ -36,6 +37,14 @@ class PostGradesPresenter {
     let courseID: String
     let assignmentID: String
 
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.update()
+    }
+
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID), { [weak self] in
+        self?.update()
+    })
+
     init(courseID: String, assignmentID: String, view: PostGradesViewProtocol, env: AppEnvironment = .shared) {
         self.courseID = courseID
         self.assignmentID = assignmentID
@@ -44,7 +53,16 @@ class PostGradesPresenter {
     }
 
     func viewIsReady() {
+        colors.refresh()
         refresh()
+    }
+
+    func update() {
+        if colors.pending == false {
+            if let course = courses.first {
+                view?.updateCourseColor(course.color)
+            }
+        }
     }
 
     func refresh() {
