@@ -25,6 +25,7 @@ class StudentInboxTests: InboxTests {}
 class StudentDiscussionDetailsTests: DiscussionDetailsTests {}
 class StudentDiscussionEditTests: DiscussionEditTests {}
 class StudentDiscussionListTests: DiscussionListTests {}
+class StudentDiscussionReplyTests: DiscussionReplyTests {}
 class StudentDeepLinkTests: DeepLinkTests {}
 class StudentCourseFileTests: CourseFileTests {}
 class StudentActAsUserTests: ActAsUserTests {}

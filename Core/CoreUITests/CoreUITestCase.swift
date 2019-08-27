@@ -280,7 +280,7 @@ open class CoreUITestCase: XCTestCase {
         return assignment
     }
 
-    open func mockBaseRequests() {
+    open func mockBaseRequests(courseIDs: [ID] = [1]) {
         mockData(GetUserRequest(userID: "self"), value: APIUser.make())
         mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!),
                         data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8)) // CKIClient.fetchCurrentUser

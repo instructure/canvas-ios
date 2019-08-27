@@ -26,7 +26,8 @@ extension APIDiscussionEntry {
         parent_id: ID? = nil,
         created_at: Date? = nil,
         updated_at: Date? = nil,
-        message: String = "message"
+        message: String = "message",
+        replies: [APIDiscussionEntry]? = nil
     ) -> APIDiscussionEntry {
         return APIDiscussionEntry(
             id: id,
@@ -34,7 +35,8 @@ extension APIDiscussionEntry {
             parent_id: parent_id,
             created_at: created_at,
             updated_at: updated_at,
-            message: message
+            message: message,
+            replies: replies
         )
     }
 }

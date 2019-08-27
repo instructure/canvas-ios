@@ -19,7 +19,7 @@
 import Foundation
 
 //  swiftlint:disable type_name
-public struct ID: Codable, Equatable, CustomStringConvertible {
+public struct ID: Codable, Equatable, Hashable, CustomStringConvertible {
 //  swiftlint:enable type_name
 
     public let value: String

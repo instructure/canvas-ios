@@ -87,7 +87,7 @@ describe('DiscussionReplies', () => {
     props.discussionLockedForUser = true
     let tree = shallow(<Reply {...props} />)
 
-    expect(tree.find('[testID="discussions.reply-btn"]').length).toEqual(0)
+    expect(tree.find(`[testID="discussions.reply-btn.${props.reply.id}"]`).length).toEqual(0)
     expect(tree.find('[testID="discussions.edit-btn"]').length).toEqual(0)
     expect(tree.find('[testID="discussion.reply.rate-btn"]').length).toEqual(0)
   })
@@ -165,7 +165,7 @@ describe('DiscussionReplies', () => {
 
   it('reply to entry', () => {
     let tree = shallow(<Reply {...props} />)
-    let reply = tree.find('[testID="discussion.reply-btn"]')
+    let reply = tree.find(`[testID="discussion.reply-btn.${props.reply.id}"]`)
     reply.simulate('press')
 
     expect(props.replyToEntry).toHaveBeenCalledWith('1', [0])

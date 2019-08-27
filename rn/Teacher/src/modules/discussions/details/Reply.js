@@ -238,7 +238,7 @@ export default class Reply extends Component<Props, State> {
       <View style={containerStyles}>
         { !discussionLockedForUser && userCanReply &&
           <View style={style.footerActionsContainer}>
-            <LinkButton style={style.footer} textStyle={buttonTextStyle} onPress={this._actionReply} testID='discussion.reply-btn'>
+            <LinkButton style={style.footer} textStyle={buttonTextStyle} onPress={this._actionReply} testID={`discussion.reply-btn.${this.props.reply.id}`}>
               {i18n('Reply')}
             </LinkButton>
             { this._canEdit() &&
@@ -311,7 +311,7 @@ export default class Reply extends Component<Props, State> {
 
   _renderUnreadDot (reply: DiscussionReply, state: ReadState) {
     return state === 'unread' && !reply.deleted ? (
-      <View style={style.unreadDot} accessible={true} accessibilityLabel={i18n('Unread')} />
+      <View style={style.unreadDot} accessible={true} accessibilityLabel={i18n('Unread')} testID={`reply.${this.props.reply.id}.unread`} />
     ) : <View />
   }
 

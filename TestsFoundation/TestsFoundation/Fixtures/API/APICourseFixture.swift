@@ -23,7 +23,7 @@ extension APICourse {
     public static func make(
         id: ID = "1",
         name: String? = "Course One",
-        course_code: String? = nil,
+        course_code: String? = "C1",
         workflow_state: CourseWorkflowState? = nil,
         account_id: String? = nil,
         start_at: Date? = nil,
