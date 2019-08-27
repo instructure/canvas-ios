@@ -76,6 +76,7 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PostGradesViewController.SectionCell = tableView.dequeue(for: indexPath)
         cell.textLabel?.font = UIFont.scaledNamedFont(.semibold16)
+        cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
 
         if indexPath.row == 0 {
             cell.textLabel?.text = NSLocalizedString("Specific Sections", comment: "")
