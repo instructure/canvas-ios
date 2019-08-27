@@ -107,7 +107,13 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
         }
         // Legacy CanvasKeymaster support
-        let legacyClient = CKIClient(baseURL: session.baseURL, token: session.accessToken)!
+        let legacyClient = CKIClient(
+            baseURL: session.baseURL,
+            token: session.accessToken,
+            refreshToken: session.refreshToken,
+            clientID: session.clientID,
+            clientSecret: session.clientSecret
+        )!
         legacyClient.actAsUserID = session.actAsUserID
         legacyClient.originalIDOfMasqueradingUser = session.originalUserID
         legacyClient.originalBaseURL = session.originalBaseURL

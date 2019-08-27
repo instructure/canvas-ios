@@ -36,22 +36,29 @@ open class Session: NSObject {
     @objc open var URLSession: Foundation.URLSession {
         return URLSessionAPI.defaultURLSession
     }
+    open lazy var api: API = URLSessionAPI(accessToken: token, refreshToken: refreshToken, actAsUserID: masqueradeAsUserID, clientID: clientID, clientSecret: clientSecret, baseURL: baseURL, urlSession: URLSession)
     @objc open var token: String?
+    @objc open var refreshToken: String?
+    @objc open var clientID: String?
+    @objc open var clientSecret: String?
     public let localStoreDirectory: LocalStoreDirectory
 
     @objc public static var unauthenticated: Session {
-        return Session(baseURL: URL(string: "https://canvas.instructure.com/")!, user: SessionUser(id: "", name: ""), token: nil)
+        return Session(baseURL: URL(string: "https://canvas.instructure.com/")!, user: SessionUser(id: "", name: ""), token: nil, refreshToken: nil, clientID: nil, clientSecret: nil)
     }
 
-    @objc public convenience init(baseURL: URL, user: SessionUser, token: String?, masqueradeAsUserID: String? = nil) {
-        self.init(baseURL: baseURL, user: user, token: token, localStoreDirectory: .AppGroup, masqueradeAsUserID: masqueradeAsUserID)
+    @objc public convenience init(baseURL: URL, user: SessionUser, token: String?, refreshToken: String?, clientID: String?, clientSecret: String?, masqueradeAsUserID: String? = nil) {
+        self.init(baseURL: baseURL, user: user, token: token, refreshToken: refreshToken, clientID: clientID, clientSecret: clientSecret, localStoreDirectory: .AppGroup, masqueradeAsUserID: masqueradeAsUserID)
     }
 
-    public init(baseURL: URL, user: SessionUser, token: String?, localStoreDirectory: LocalStoreDirectory, masqueradeAsUserID: String? = nil) {
+    public init(baseURL: URL, user: SessionUser, token: String?, refreshToken: String?, clientID: String?, clientSecret: String?, localStoreDirectory: LocalStoreDirectory, masqueradeAsUserID: String? = nil) {
         self.user = user
         self.masqueradeAsUserID = masqueradeAsUserID
         self.baseURL = baseURL
         self.token = token
+        self.refreshToken = refreshToken
+        self.clientID = clientID
+        self.clientSecret = clientSecret
         self.localStoreDirectory = localStoreDirectory
     }
     
@@ -112,31 +119,6 @@ open class Session: NSObject {
 
 
 extension Session {
-    @objc public static func fromJSON(_ data: [String: Any]) -> Session? {
-        let token = data["accessToken"] as? String
-        let baseURL = (data["baseURL"] as? String).flatMap { URL(string: $0) }
-        let user = (data["currentUser"] as? [String: AnyObject]).flatMap { SessionUser.fromJSON($0) }
-        let masqueradeUserID = data["actAsUserID"] as? String
-        let localStoreDirectory = (data["localStoreDirectory"] as? String).flatMap(LocalStoreDirectory.init) ?? .AppGroup
-        
-        if let token = token, let baseURL = baseURL, let user = user {
-            return Session(baseURL: baseURL, user: user, token: token, localStoreDirectory: localStoreDirectory, masqueradeAsUserID: masqueradeUserID)
-        }
-        return nil
-    }
-    
-    @objc public func dictionaryValue() -> [String: Any] {
-        var dictionary = [String: Any]()
-        dictionary["accessToken"] = self.token
-        dictionary["baseURL"] = self.baseURL.absoluteString
-        dictionary["currentUser"] = self.user.JSONDictionary()
-        dictionary["localStoreDirectory"] = self.localStoreDirectory.rawValue
-        if let actAsUserID = self.masqueradeAsUserID {
-            dictionary["actAsUserID"] = actAsUserID
-        }
-        return dictionary
-    }
-
     @objc public func compare(_ session: Session) -> Bool {
         // Same if Token is equal or userID & baseURL are equal
         return (self.token == session.token) || (session.user.id == self.user.id && session.baseURL.absoluteString == self.baseURL.absoluteString)

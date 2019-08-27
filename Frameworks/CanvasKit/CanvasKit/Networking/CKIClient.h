@@ -48,6 +48,10 @@ extern NSString * _Nonnull const CKIClientAccessTokenExpiredNotification;
 */
 @property (nonatomic, readonly, nonnull) NSString *accessToken;
 
+@property (nonatomic, strong, nullable) NSString *refreshToken;
+@property (nonatomic, strong, nullable) NSString *clientID;
+@property (nonatomic, strong, nullable) NSString *clientSecret;
+
 /**
  THe current effective locale (if logged in)
 */
@@ -56,7 +60,7 @@ extern NSString * _Nonnull const CKIClientAccessTokenExpiredNotification;
 /**
  The user that is currently logged in via this client.
  */
-@property (nonatomic, readonly, nonnull) CKIUser *currentUser;
+@property (nonatomic, strong, nonnull) CKIUser *currentUser;
 
 
 /**
@@ -89,31 +93,10 @@ extern NSString * _Nonnull const CKIClientAccessTokenExpiredNotification;
 @property (nonatomic) BOOL ignoreUnauthorizedErrors;
 
 /**
- Instantiates a canvas client with the given information.
-
- @param baseURL the base URL to be used by the client
- @param clientID the special client ID that uniquely identifies this application
- @param clientSecret the client secret for the application
- */
-+ (nullable instancetype)clientWithBaseURL:(nonnull NSURL *)baseURL clientID:(nonnull NSString *)clientID clientSecret:(nonnull NSString *)clientSecret authenticationProvider:(nullable NSString *)authenticationProvider;
-
-/**
- Instantiates a canvas client with the given information.
-
- @param baseURL the base URL to be used by the client
- @param clientID the special client ID that uniquely identifies this application
- @param clientSecret the client secret for the application
- */
-- (nullable instancetype)initWithBaseURL:(nonnull NSURL *)baseURL clientID:(nonnull NSString *)clientID clientSecret:(nonnull NSString *)clientSecret authenticationProvider:(nullable NSString *)authenticationProvider;
-
-
-/**
- This method is intended for testing only. It should not be used in a production app
- 
  @param url the base URL to be used by the client
  @param token the auth token acquired from Canvas web for the user
  */
-- (nullable instancetype)initWithBaseURL:(nonnull NSURL *)url token:(nonnull NSString *)token;
+- (nullable instancetype)initWithBaseURL:(nonnull NSURL *)url token:(nonnull NSString *)token refreshToken:(nullable NSString *)refreshToken clientID:(nullable NSString *)clientID clientSecret:(nullable NSString *)clientSecret;
 
 /**
  Checks to see if the user is logged in.

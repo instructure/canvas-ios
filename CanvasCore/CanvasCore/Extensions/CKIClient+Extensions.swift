@@ -35,7 +35,7 @@ extension CKIClient {
         let url = baseURL ?? URL(string: "")!
         var masqueradeID: String? = nil
         if let actAsUserID = actAsUserID, actAsUserID.count > 0 { masqueradeID = actAsUserID }
-        let session = Session(baseURL: url, user: currentUser.sessionUser(), token: accessToken, masqueradeAsUserID: masqueradeID)
+        let session = Session(baseURL: url, user: currentUser.sessionUser(), token: accessToken, refreshToken: refreshToken, clientID: clientID, clientSecret: clientSecret, masqueradeAsUserID: masqueradeID)
         objc_setAssociatedObject(self, &sessionAssociationKey, session, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         return session
     }

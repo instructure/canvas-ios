@@ -32,11 +32,8 @@
 NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessTokenExpiredNotification";
 
 @interface CKIClient ()
-@property (nonatomic, strong) NSString *clientID;
-@property (nonatomic, strong) NSString *clientSecret;
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, strong) NSString *effectiveLocale;
-@property (nonatomic, strong) CKIUser *currentUser;
 @property (nonatomic, assign) BOOL invalidated;
 @property (nonatomic, strong) NSString *authenticationProvider;
 
@@ -69,34 +66,14 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
     return self;
 }
 
-+ (instancetype)clientWithBaseURL:(NSURL *)baseURL clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret authenticationProvider:(NSString *)authenticationProvider
-{
-    return [[CKIClient alloc] initWithBaseURL:baseURL clientID:clientID clientSecret:clientSecret authenticationProvider:authenticationProvider];
-}
-
-- (instancetype)initWithBaseURL:(NSURL *)baseURL clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret authenticationProvider:(NSString *)authenticationProvider
-{
-    NSParameterAssert(baseURL);
-    NSParameterAssert(clientID);
-    NSParameterAssert(clientSecret);
-
-    self = [self initWithBaseURL:baseURL];
-    if (!self) {
-        return nil;
-    }
-
-    self.clientID = clientID;
-    self.clientSecret = clientSecret;
-    self.authenticationProvider = authenticationProvider;
-
-    return self;
-}
-
-- (instancetype)initWithBaseURL:(NSURL *)url token:(NSString *)token {
+- (nullable instancetype)initWithBaseURL:(nonnull NSURL *)url token:(nonnull NSString *)token refreshToken:(nullable NSString *)refreshToken clientID:(nullable NSString *)clientID clientSecret:(nullable NSString *)clientSecret {
     self = [self initWithBaseURL:url];
     if (!self) {
         return nil;
     }
+    self.refreshToken = refreshToken;
+    self.clientID = clientID;
+    self.clientSecret = clientSecret;
     [self setAccessToken:token];
     return self;
 }
