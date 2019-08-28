@@ -151,7 +151,6 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func viewIsReady() {
-        Analytics.shared.logEvent("assignment_detail_assignment")
         colors.refresh()
         courses.refresh(force: true)
         assignments.refresh(force: true)
