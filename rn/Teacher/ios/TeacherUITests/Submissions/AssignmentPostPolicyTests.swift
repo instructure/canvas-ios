@@ -18,54 +18,75 @@
 
 import XCTest
 import TestsFoundation
+@testable import Core
 
 class AssignmentPostPolicyTests: TeacherUITestCase {
     func testPostPolicySettings() {
         let courseID = "263"
         let assignmentID = "5431"
+
         show("/courses/\(courseID)/assignments/\(assignmentID)/submissions")
 
         SubmissionsList.postpolicy.waitToExist()
         SubmissionsList.postpolicy.tap()
+        sleep(1)
 
-        //  POST
-        var predicate = NSPredicate(format: "label CONTAINS[c] %@", "GRADE CURRENTLY HIDDEN")
-        _ = app.staticTexts.containing(predicate).firstMatch.waitForExistence(timeout: 0.5)
+        func checkPost() {
+            let predicate = NSPredicate(format: "label CONTAINS[c] %@", "GRADE CURRENTLY HIDDEN")
+            _ = app.staticTexts.containing(predicate).firstMatch.waitForExistence(timeout: 0.5)
 
-        XCTAssertEqual(PostPolicy.postToValue.label, "Everyone")
-        PostPolicy.postTo.tap()
+            XCTAssertEqual(PostPolicy.postToValue.label, "Everyone")
+            PostPolicy.postTo.tap()
 
-        let cells = app.cells.containing(NSPredicate(format: "label CONTAINS %@", "Graded"))
+            let cells = app.cells.containing(NSPredicate(format: "label CONTAINS %@", "Graded"))
 
-        let gradedCell = cells.firstMatch
-        gradedCell.tap()
-        app.find(label: "Back").tap()
+            let gradedCell = cells.firstMatch
+            gradedCell.tap()
+            app.find(label: "Back").tap()
 
-        XCTAssertEqual(PostPolicy.postToValue.label, "Graded")
+            XCTAssertEqual(PostPolicy.postToValue.label, "Graded")
 
-        PostPolicy.togglePostToSections.tap()
+            PostPolicy.togglePostToSections.tap()
 
-        let postToSectionToggle = PostPolicy.postToSectionToggle(id: "U2VjdGlvbi0yMjE=")
-        postToSectionToggle.waitToExist()
-        postToSectionToggle.tap()
-        PostPolicy.postGradesButton.tap()
+            let postToSectionToggle = PostPolicy.postToSectionToggle(id: "U2VjdGlvbi0yMjE=")
+            postToSectionToggle.waitToExist()
+            postToSectionToggle.tap()
+            PostPolicy.postGradesButton.tap()
 
-        SubmissionsList.postpolicy.waitToExist()
-        SubmissionsList.postpolicy.tap()
+            SubmissionsList.postpolicy.waitToExist()
+        }
 
-        app.find(label: "All grades are currently posted.").waitToExist()
-        app.swipeLeft()
+        func checkHide() {
+            let predicate = NSPredicate(format: "label CONTAINS[c] %@", "GRADE CURRENTLY POSTED")
+            _ = app.staticTexts.containing(predicate).firstMatch.waitForExistence(timeout: 0.5)
 
-        //  HIDE
-        predicate = NSPredicate(format: "label CONTAINS[c] %@", "GRADE CURRENTLY POSTED")
-        _ = app.staticTexts.containing(predicate).firstMatch.waitForExistence(timeout: 0.5)
+            PostPolicy.toggleHideGradeSections.tap()
+            let hideSectionToggle = PostPolicy.hideSectionToggle(id: "U2VjdGlvbi0yMjE=")
+            hideSectionToggle.waitToExist()
+            hideSectionToggle.tap()
+            PostPolicy.hideGradesButton.tap()
+            SubmissionsList.postpolicy.waitToExist()
+        }
 
-        PostPolicy.toggleHideGradeSections.tap()
-        let hideSectionToggle = PostPolicy.hideSectionToggle(id: "U2VjdGlvbi0yMjE=")
-        hideSectionToggle.waitToExist()
-        hideSectionToggle.tap()
-        PostPolicy.hideGradesButton.tap()
-        SubmissionsList.postpolicy.waitToExist()
+        let waitForAPI: UInt32 = 10
+        let allGradesPostedView = app.find(id: "PostPolicy.allGradesPosted")
+
+        if allGradesPostedView.exists {
+            app.swipeLeft()
+            checkHide()
+            sleep(waitForAPI)
+            SubmissionsList.postpolicy.waitToExist()
+            SubmissionsList.postpolicy.tap()
+            checkPost()
+        } else {
+            checkPost()
+            sleep(waitForAPI)
+            SubmissionsList.postpolicy.waitToExist()
+            SubmissionsList.postpolicy.tap()
+            sleep(1)
+            app.swipeLeft()
+            checkHide()
+        }
     }
 
 }

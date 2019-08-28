@@ -74,6 +74,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PostPolicy.allGradesPosted"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="4DY-Dq-0wc" secondAttribute="trailing" constant="16" id="41V-uK-VAf"/>
                                     <constraint firstItem="rRm-Rr-fzw" firstAttribute="leading" secondItem="cNE-2B-Mg6" secondAttribute="leading" constant="16" id="CRi-yb-3O9"/>

@@ -74,6 +74,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PostPolicy.allGradesHidden"/>
                                 <constraints>
                                     <constraint firstItem="Pad-Q2-QIM" firstAttribute="leading" secondItem="cNE-2B-Mg6" secondAttribute="leading" constant="16" id="CMQ-uW-qQz"/>
                                     <constraint firstItem="61v-qe-CCM" firstAttribute="centerY" secondItem="cNE-2B-Mg6" secondAttribute="centerY" multiplier="0.85" constant="1" id="GIB-vq-iGu"/>
