@@ -39,7 +39,7 @@ class AssignmentPostPolicyTests: TeacherUITestCase {
 
         let gradedCell = cells.firstMatch
         gradedCell.tap()
-        app.find(label: "Post Settings").tap()
+        app.find(label: "Back").tap()
 
         XCTAssertEqual(PostPolicy.postToValue.label, "Graded")
 
