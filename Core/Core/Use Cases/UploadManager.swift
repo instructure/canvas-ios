@@ -304,7 +304,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             } else {
                 sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
                 Analytics.shared.logEvent("submit_fileupload_failed", parameters: [
-                    "error": error?.localizedDescription ?? "unknown"
+                    "error": error?.localizedDescription ?? "unknown",
                 ])
             }
         }
