@@ -44,13 +44,11 @@ class DocViewerPresenter: NSObject {
     }
 
     func viewIsReady() {
-        guard var url = URL(string: previewURL?.absoluteString ?? "", relativeTo: env.api.baseURL) else {
+        guard
+            let url = URL(string: previewURL?.absoluteString ?? "", relativeTo: env.api.baseURL), let loginSession = env.currentSession else {
             return loadFallback()
         }
-        if let actAsUserID = env.api.actAsUserID {
-            url = url.appendingQueryItems(URLQueryItem(name: "as_user_id", value: actAsUserID))
-        }
-        session.load(url: url, accessToken: env.api.accessToken ?? "")
+        session.load(url: url, session: loginSession)
     }
 
     func sessionIsReady() {

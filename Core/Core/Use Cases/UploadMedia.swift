@@ -61,7 +61,7 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
             else {
                 return self.callback(nil, error)
             }
-            self.mediaAPI = URLSessionAPI(accessToken: nil, baseURL: url, urlSession: self.urlSession)
+            self.mediaAPI = URLSessionAPI(baseURL: url, urlSession: self.urlSession)
             self.getSession()
         }
     }

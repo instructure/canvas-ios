@@ -120,6 +120,22 @@ public struct LoginSession: Codable, Hashable {
         )
     }
 
+    public func refresh(accessToken: String) -> LoginSession {
+        return LoginSession(
+            accessToken: accessToken,
+            baseURL: baseURL,
+            expiresAt: expiresAt,
+            lastUsedAt: lastUsedAt,
+            locale: locale,
+            masquerader: masquerader,
+            refreshToken: refreshToken,
+            userAvatarURL: userAvatarURL,
+            userID: userID,
+            userName: userName,
+            userEmail: userEmail
+        )
+    }
+
     // MARK: Persistence into keychain
 
     private static let key = "CanvasUsers"

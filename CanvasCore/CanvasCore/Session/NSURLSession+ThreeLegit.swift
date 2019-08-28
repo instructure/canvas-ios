@@ -126,7 +126,7 @@ public enum JSONObjectResponse {
 extension Session {
     public func rac_dataWithRequest(_ request: URLRequest) -> SignalProducer<(Data, URLResponse), NSError> {
         return SignalProducer { [weak self] observer, disposable in
-            let task = self?.URLSession.dataTask(with: request) { data, urlResponse, error in
+            let task = self?.api.makeRequest(request) { data, urlResponse, error in
                 guard let data = data, let response = urlResponse, error == nil else {
                     observer.send(error: error as NSError? ?? NSError.invalidResponseError(urlResponse?.url))
                     return
@@ -220,8 +220,8 @@ extension Session {
     }
 
     @discardableResult
-    public func makeRequest<T>(_ request: URLRequest, callback: @escaping (Result<T, NSError>) -> Void) -> URLSessionTask where T: Decodable {
-        let task = URLSession.dataTask(with: request) { (data, response, error) in
+    public func makeRequest<T>(_ request: URLRequest, callback: @escaping (Result<T, NSError>) -> Void) -> URLSessionTask? where T: Decodable {
+        return api.makeRequest(request) { data, response, error in
             if let error = error {
                 callback(.failure(error as NSError))
                 return
@@ -240,8 +240,5 @@ extension Session {
                 callback(.failure(error as NSError))
             }
         }
-
-        task.resume()
-        return task
     }
 }

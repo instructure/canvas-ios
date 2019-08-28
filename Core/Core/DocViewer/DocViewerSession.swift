@@ -20,8 +20,8 @@ import Foundation
 
 public class DocViewerSession: NSObject, URLSessionTaskDelegate {
     var annotations: [APIDocViewerAnnotation]?
-    lazy var api: API = URLSessionAPI(accessToken: nil, baseURL: sessionURL)
-    lazy var sessionAPI: API = URLSessionAPI(accessToken: nil, baseURL: nil, urlSession: URLSessionAPI.noFollowRedirectURLSession)
+    lazy var api: API = URLSessionAPI(baseURL: sessionURL)
+    var sessionAPI: API?
     var callback: () -> Void
     var error: Error?
     var localURL: URL?
@@ -44,10 +44,11 @@ public class DocViewerSession: NSObject, URLSessionTaskDelegate {
         task?.cancel()
     }
 
-    func load(url: URL, accessToken: String) {
-        var request = URLRequest(url: url)
-        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: HttpHeader.authorization)
-        task = sessionAPI.makeRequest(request) { [weak self] _, response, error in
+    func load(url: URL, session: LoginSession) {
+        task?.cancel()
+        sessionAPI = URLSessionAPI(session: session, urlSession: URLSessionAPI.noFollowRedirectURLSession)
+        let request = URLRequest(url: url)
+        task = sessionAPI?.makeRequest(request) { [weak self] _, response, error in
             self?.error = error
             if let url = (response as? HTTPURLResponse)?.allHeaderFields["Location"] as? String {
                 var components = URLComponents.parse(url)
