@@ -53,7 +53,7 @@ class DiscussionEditTests: CoreUITestCase {
         XCTAssertFalse(DiscussionList.newButton.isVisible)
     }
 
-    func testCreateDiscussion() {
+    func xtestCreateDiscussion() {
         mockBaseRequests()
         if Bundle.main.isTeacherApp {
             mockData(GetCoursesRequest(state: [.available, .completed, .unpublished]), value: [ noPermissionCourse ])
