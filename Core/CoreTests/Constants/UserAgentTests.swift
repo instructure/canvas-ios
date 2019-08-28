@@ -30,8 +30,9 @@ class UserAgentTests: XCTestCase {
 
     func testDescription() {
         XCTAssertEqual(UserAgent.default.description, "iCanvas/1.0 (1) \(UIDevice.current.model)/\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)")
-        let systemVersion = UIDevice.current.systemVersion.replacingOccurrences(of: ".", with: "_")
-        XCTAssertEqual(UserAgent.safari.description, "Mozilla/5.0 (iPhone; CPU iPhone OS \(systemVersion) like Mac OS X)"
-            + " AppleWebKit/603.1.23 (KHTML, like Gecko) Version/10.0 Mobile/14E5239e Safari/602.1")
+        let version = UIDevice.current.systemVersion
+        let os = version.replacingOccurrences(of: ".", with: "_")
+        XCTAssertEqual(UserAgent.safari.description, "Mozilla/5.0 (iPhone; CPU iPhone OS \(os) like Mac OS X)"
+            + " AppleWebKit/605.1.15 (KHTML, like Gecko) Version/\(version) Mobile/15E148 Safari/604.1")
     }
 }
