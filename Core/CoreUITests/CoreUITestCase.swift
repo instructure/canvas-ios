@@ -264,11 +264,9 @@ open class CoreUITestCase: XCTestCase {
 
     open func allowAccessToMicrophone(block: () -> Void) {
         let alertHandler = addUIInterruptionMonitor(withDescription: "Permission Alert") { (alert) -> Bool in
-            if alert.buttons["OK"].exists {
-                alert.buttons["OK"].tap()
-                return true
-            }
-            return false
+            _ = alert.buttons["OK"].waitForExistence(timeout: 3)
+            alert.buttons["OK"].tap()
+            return true
         }
         block()
         app.swipeUp()
