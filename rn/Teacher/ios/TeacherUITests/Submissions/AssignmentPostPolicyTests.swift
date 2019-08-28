@@ -44,10 +44,16 @@ class AssignmentPostPolicyTests: TeacherUITestCase {
         XCTAssertEqual(PostPolicy.postToValue.label, "Graded")
 
         PostPolicy.togglePostToSections.tap()
+
         let postToSectionToggle = PostPolicy.postToSectionToggle(id: "U2VjdGlvbi0yMjE=")
         postToSectionToggle.waitToExist()
         postToSectionToggle.tap()
+        PostPolicy.postGradesButton.tap()
 
+        SubmissionsList.postpolicy.waitToExist()
+        SubmissionsList.postpolicy.tap()
+
+        app.find(label: "All grades are currently posted.").waitToExist()
         app.swipeLeft()
 
         //  HIDE
@@ -58,13 +64,7 @@ class AssignmentPostPolicyTests: TeacherUITestCase {
         let hideSectionToggle = PostPolicy.hideSectionToggle(id: "U2VjdGlvbi0yMjE=")
         hideSectionToggle.waitToExist()
         hideSectionToggle.tap()
-
         PostPolicy.hideGradesButton.tap()
-
-        SubmissionsList.postpolicy.waitToExist()
-        SubmissionsList.postpolicy.tap()
-
-        PostPolicy.postGradesButton.tap()
         SubmissionsList.postpolicy.waitToExist()
     }
 

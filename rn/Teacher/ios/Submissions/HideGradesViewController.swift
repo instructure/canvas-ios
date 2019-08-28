@@ -131,4 +131,8 @@ extension HideGradesViewController: PostGradesViewProtocol {
     func updateCourseColor(_ color: UIColor) {
         self.color = color
     }
+
+    func showAllHiddenView() {
+        allGradesHiddenView.isHidden = false
+    }
 }
