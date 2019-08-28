@@ -443,7 +443,7 @@ exports[`SubmissionList loaded 1`] = `
                     ]
                   }
                 >
-                  Not Submitted
+                  Excused
                 </Text>
               </View>
               <Text

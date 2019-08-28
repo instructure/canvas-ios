@@ -112,7 +112,7 @@ describe('defaultFilterOptions', () => {
 
   it('all just returns the item', () => {
     let all = defaultFilterOptions().find(option => option.type === 'all') || {}
-    expect(all.filterFunc()).toEqual({
+    expect(all.getFilter()).toEqual({
       states: ['submitted', 'unsubmitted', 'pending_review', 'graded', 'ungraded'],
       late: null,
       scoredMoreThan: null,
@@ -124,21 +124,21 @@ describe('defaultFilterOptions', () => {
 
   it('late works', () => {
     let late = defaultFilterOptions().find(option => option.type === 'late') || {}
-    expect(late.filterFunc()).toEqual({
+    expect(late.getFilter()).toEqual({
       late: true,
     })
   })
 
   it('not_submitted works', () => {
     let notSubmitted = defaultFilterOptions().find(option => option.type === 'not_submitted') || {}
-    expect(notSubmitted.filterFunc()).toEqual({
+    expect(notSubmitted.getFilter()).toEqual({
       states: ['unsubmitted'],
     })
   })
 
   it('ungraded works', () => {
     let ungraded = defaultFilterOptions().find(option => option.type === 'ungraded') || {}
-    expect(ungraded.filterFunc()).toEqual({
+    expect(ungraded.getFilter()).toEqual({
       gradingStatus: 'needs_grading',
       states: ['submitted', 'pending_review', 'ungraded'],
     })
@@ -146,7 +146,7 @@ describe('defaultFilterOptions', () => {
 
   it('graded works', () => {
     let graded = defaultFilterOptions().find(option => option.type === 'graded') || {}
-    expect(graded.filterFunc()).toEqual({
+    expect(graded.getFilter()).toEqual({
       states: ['graded'],
     })
   })
@@ -154,7 +154,7 @@ describe('defaultFilterOptions', () => {
   it('lessthan works', () => {
     let lessThan = defaultFilterOptions().find(option => option.type === 'lessthan') || {}
     lessThan.promptValue = '10'
-    expect(lessThan.filterFunc()).toEqual({
+    expect(lessThan.getFilter()).toEqual({
       scoredLessThan: 10,
     })
   })
@@ -162,7 +162,7 @@ describe('defaultFilterOptions', () => {
   it('moreThan works', () => {
     let moreThan = defaultFilterOptions().find(option => option.type === 'morethan') || {}
     moreThan.promptValue = '10'
-    expect(moreThan.filterFunc()).toEqual({
+    expect(moreThan.getFilter()).toEqual({
       scoredMoreThan: 10,
     })
   })
@@ -191,7 +191,7 @@ describe('updateFilterSelection', () => {
       disabled: false,
       selected: false,
       exclusive: false,
-      filterFunc: () => ({ sectionIDs: ['1'] }),
+      getFilter: () => ({ sectionIDs: ['1'] }),
       title: () => '',
     }
 
@@ -211,7 +211,7 @@ describe('updateFilterSelection', () => {
         selected: false,
         exclusive: false,
         title: () => 'yo',
-        filterFunc: () => ({ sectionIDs: ['1'] }),
+        getFilter: () => ({ sectionIDs: ['1'] }),
       },
     ], 'graded')
     expect(updatedFilterOptions.every(option => !option.disabled))
@@ -242,7 +242,7 @@ describe('createFilter', () => {
     let filterOptions = [{
       type: 'yo',
       selected: true,
-      filterFunc: () => ({ sectionIDs: ['1'] }),
+      getFilter: () => ({ sectionIDs: ['1'] }),
       title: () => 'yo',
       disabled: false,
       exclusive: false,
@@ -262,14 +262,14 @@ describe('createFilter', () => {
     let filterOptions = [{
       type: 'yo',
       selected: true,
-      filterFunc: () => ({ sectionIDs: ['1'] }),
+      getFilter: () => ({ sectionIDs: ['1'] }),
       exclusive: false,
       disabled: false,
       title: () => 'yo',
     }, {
       type: 'ya',
       selected: true,
-      filterFunc: () => ({ sectionIDs: ['2'] }),
+      getFilter: () => ({ sectionIDs: ['2'] }),
       exclusive: false,
       disabled: false,
       title: () => 'ya',
@@ -289,14 +289,14 @@ describe('createFilter', () => {
     let filterOptions = [...defaultFilterOptions('late'), {
       type: 'yo',
       selected: true,
-      filterFunc: () => ({ sectionIDs: ['1'] }),
+      getFilter: () => ({ sectionIDs: ['1'] }),
       title: () => 'yo',
       disabled: false,
       exclusive: false,
     }, {
       type: 'ya',
       selected: true,
-      filterFunc: () => ({ sectionIDs: ['2'] }),
+      getFilter: () => ({ sectionIDs: ['2'] }),
       title: () => 'ya',
       disabled: false,
       exclusive: false,
@@ -317,49 +317,49 @@ describe('old', () => {
   it('all just returns the item', () => {
     let all = defaultFilterOptions().find(option => option.type === 'all') || {}
     let item = {}
-    expect(all.oldFilterFunc(item)).toEqual(item)
+    expect(all.filterFunc(item)).toEqual(item)
   })
 
   it('late works', () => {
     let late = defaultFilterOptions().find(option => option.type === 'late') || {}
-    expect(late.oldFilterFunc({})).toBeFalsy()
-    expect(late.oldFilterFunc({ status: 'late' })).toBeTruthy()
+    expect(late.filterFunc({})).toBeFalsy()
+    expect(late.filterFunc({ status: 'late' })).toBeTruthy()
   })
 
   it('not_submitted works', () => {
     let notSubmitted = defaultFilterOptions().find(option => option.type === 'not_submitted') || {}
-    expect(notSubmitted.oldFilterFunc({})).toBeFalsy()
-    expect(notSubmitted.oldFilterFunc({ grade: 'not_submitted' })).toBeTruthy()
+    expect(notSubmitted.filterFunc({})).toBeFalsy()
+    expect(notSubmitted.filterFunc({ grade: 'not_submitted' })).toBeTruthy()
   })
 
   it('ungraded works', () => {
     let ungraded = defaultFilterOptions().find(option => option.type === 'ungraded') || {}
-    expect(ungraded.oldFilterFunc({})).toBeFalsy()
-    expect(ungraded.oldFilterFunc({ grade: 'ungraded' })).toBeTruthy()
+    expect(ungraded.filterFunc({})).toBeFalsy()
+    expect(ungraded.filterFunc({ grade: 'ungraded' })).toBeTruthy()
   })
 
   it('graded works', () => {
     let graded = defaultFilterOptions().find(option => option.type === 'graded') || {}
-    expect(graded.oldFilterFunc({ grade: 'not_submitted' })).toBeFalsy()
-    expect(graded.oldFilterFunc({ grade: 'ungraded' })).toBeFalsy()
-    expect(graded.oldFilterFunc({ grade: 'excused' })).toBeTruthy()
-    expect(graded.oldFilterFunc({ grade: 'A+' })).toBeTruthy()
+    expect(graded.filterFunc({ grade: 'not_submitted' })).toBeFalsy()
+    expect(graded.filterFunc({ grade: 'ungraded' })).toBeFalsy()
+    expect(graded.filterFunc({ grade: 'excused' })).toBeTruthy()
+    expect(graded.filterFunc({ grade: 'A+' })).toBeTruthy()
   })
 
   it('lessthan works', () => {
     let lessThan = defaultFilterOptions().find(option => option.type === 'lessthan') || {}
     lessThan.promptValue = '10'
-    expect(lessThan.oldFilterFunc({})).toBeFalsy()
-    expect(lessThan.oldFilterFunc({ score: 11 })).toBeFalsy()
-    expect(lessThan.oldFilterFunc({ score: 9 })).toBeTruthy()
+    expect(lessThan.filterFunc({})).toBeFalsy()
+    expect(lessThan.filterFunc({ score: 11 })).toBeFalsy()
+    expect(lessThan.filterFunc({ score: 9 })).toBeTruthy()
   })
 
   it('moreThan works', () => {
     let moreThan = defaultFilterOptions().find(option => option.type === 'morethan') || {}
     moreThan.promptValue = '10'
-    expect(moreThan.oldFilterFunc({})).toBeFalsy()
-    expect(moreThan.oldFilterFunc({ score: 9 })).toBeFalsy()
-    expect(moreThan.oldFilterFunc({ score: 11 })).toBeTruthy()
+    expect(moreThan.filterFunc({})).toBeFalsy()
+    expect(moreThan.filterFunc({ score: 9 })).toBeFalsy()
+    expect(moreThan.filterFunc({ score: 11 })).toBeTruthy()
   })
 })
 
@@ -386,7 +386,7 @@ describe('updateFilterSelection', () => {
       disabled: false,
       selected: false,
       exclusive: false,
-      oldFilterFunc: () => true,
+      filterFunc: () => true,
       title: () => '',
     }
 
@@ -406,7 +406,7 @@ describe('updateFilterSelection', () => {
         selected: false,
         exclusive: false,
         title: () => 'yo',
-        oldFilterFunc: () => true,
+        filterFunc: () => true,
       },
     ], 'graded')
     expect(updatedFilterOptions.every(option => !option.disabled))
@@ -437,7 +437,7 @@ describe('oldCreateFilter', () => {
     let filterOptions = [{
       type: 'yo',
       selected: true,
-      oldFilterFunc: (item) => item.score === 'yo',
+      filterFunc: (item) => item.score === 'yo',
       title: () => 'yo',
       disabled: false,
       exclusive: false,
@@ -457,14 +457,14 @@ describe('oldCreateFilter', () => {
     let filterOptions = [{
       type: 'yo',
       selected: true,
-      oldFilterFunc: (item) => item.score === 'yo',
+      filterFunc: (item) => item.score === 'yo',
       exclusive: false,
       disabled: false,
       title: () => 'yo',
     }, {
       type: 'ya',
       selected: true,
-      oldFilterFunc: (item) => item.score === 'ya',
+      filterFunc: (item) => item.score === 'ya',
       exclusive: false,
       disabled: false,
       title: () => 'ya',
@@ -485,14 +485,14 @@ describe('oldCreateFilter', () => {
     let filterOptions = [...defaultFilterOptions('late'), {
       type: 'yo',
       selected: true,
-      oldFilterFunc: (item) => item.score === 'yo',
+      filterFunc: (item) => item.score === 'yo',
       title: () => 'yo',
       disabled: false,
       exclusive: false,
     }, {
       type: 'ya',
       selected: true,
-      oldFilterFunc: (item) => item.score === 'ya',
+      filterFunc: (item) => item.score === 'ya',
       title: () => 'ya',
       disabled: false,
       exclusive: false,

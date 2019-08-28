@@ -315,12 +315,7 @@ describe('refresh functions', () => {
     expect(is).toBeTruthy()
   })
   it('shouldRefresh', () => {
-    const should = shouldRefresh(props)
-    expect(should).toBeTruthy()
-
-    const submissions = [templates.submissionProps()]
-    const shouldNot = shouldRefresh({ ...props, submissions })
-    expect(shouldNot).toBeFalsy()
+    expect(shouldRefresh()).toEqual(true)
   })
 })
 

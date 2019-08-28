@@ -33,7 +33,7 @@ import SubmissionRow from './SubmissionRow'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import SubmissionsHeader from '../SubmissionsHeader'
-import defaultFilterOptions, { type SubmissionFilterOption, createFilter, joinTitles } from '../../filter/filter-options'
+import defaultFilterOptions, { type SubmissionFilterOption, createFilter, oldCreateFilter, joinTitles } from '../../filter/filter-options'
 import Images from '../../../images'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
@@ -73,9 +73,6 @@ export class SubmissionList extends Component<Props, State> {
   }
 
   async componentDidMount () {
-    if (this.props.assignmentName !== '') {
-      this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.isGroupGradedAssignment)
-    }
     try {
       let flags = await this.props.getEnabledFeatureFlags('courses', this.props.courseID)
       this.setState({ flags: flags.data, didFetchFlags: true })
@@ -106,7 +103,7 @@ export class SubmissionList extends Component<Props, State> {
       path,
       { modal: true, modalPresentationStyle: 'fullscreen' },
       {
-        filter: this.state.filter,
+        filter: oldCreateFilter(this.state.filterOptions),
         studentIndex: index,
       }
     )
@@ -346,8 +343,10 @@ function createFilterFromSection (section) {
     disabled: false,
     selected: false,
     exclusive: false,
-    filterFunc: () => ({
-      sectionIDs: [section.id],
-    }),
+    getFilter: () => {
+      return {
+        sectionIDs: [section.id],
+      }
+    },
   }
 }

@@ -416,7 +416,9 @@ export function refreshSpeedGrader (props: SpeedGraderProps): void {
 }
 
 export function shouldRefresh (props: SpeedGraderProps): boolean {
-  return !props.hasAssignment || !props.submissions || props.submissions.length === 0
+  // as of right now, submission list uses graphql so we need to refresh speed grader
+  // every time just to be safe
+  return true
 }
 
 export function isRefreshing (props: SpeedGraderProps): boolean {

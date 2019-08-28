@@ -25,7 +25,6 @@ import {
 } from '../SubmissionList'
 import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
-import cloneDeep from 'lodash/cloneDeep'
 import defaultFilterOptions, { updateFilterSelection } from '../../../filter/filter-options'
 import * as templates from '../../../../canvas-api-v2/__templates__'
 
@@ -243,7 +242,7 @@ test('should show old settings button if new gradebook not enabled', async () =>
 })
 
 test('should navigate to a submission', () => {
-  let submission = props.submissions[0]
+  let submission = props.submissions[1]
   let navigator = template.navigator({
     show: jest.fn(),
   })
@@ -252,11 +251,11 @@ test('should navigate to a submission', () => {
   )
   let instance = tree.getInstance()
 
-  instance.navigateToSubmission(0)(submission.user.id)
+  instance.navigateToSubmission(1)(submission.user.id)
   expect(navigator.show).toHaveBeenCalledWith(
-    '/courses/12/assignments/32/submissions/1',
+    '/courses/12/assignments/32/submissions/2',
     { modal: true, modalPresentationStyle: 'fullscreen' },
-    { filter: instance.state.filter, studentIndex: 0 }
+    { filter: expect.any(Function), studentIndex: 1 }
   )
 })
 
