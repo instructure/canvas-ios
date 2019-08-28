@@ -160,7 +160,9 @@ class SubmissionButtonTests: StudentUITestCase {
         allowAccessToMicrophone {
             app.find(label: "Record Audio").tap()
         }
-        AudioRecorder.recordButton.tap()
+        AudioRecorder.recordButton.tapUntil {
+            AudioRecorder.stopButton.exists
+        }
         AudioRecorder.stopButton.tap()
         AudioRecorder.sendButton.tap()
         app.find(label: "Successfully submitted!").waitToExist()

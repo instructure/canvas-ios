@@ -201,7 +201,9 @@ class SubmissionCommentsTests: StudentUITestCase {
         allowAccessToMicrophone {
             app.find(label: "Record Audio").tap()
         }
-        AudioRecorder.recordButton.tap()
+        AudioRecorder.recordButton.tapUntil {
+            AudioRecorder.stopButton.exists
+        }
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
         AudioRecorder.clearButton.tap()

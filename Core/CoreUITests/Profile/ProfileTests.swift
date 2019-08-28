@@ -30,7 +30,7 @@ class ProfileTests: CoreUITestCase {
         }
         Profile.close()
         Dashboard.courseCard(id: "263").waitToExist()
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label, "Assignments 72.73%")
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label, "Assignments 70%")
 
         Profile.open()
         Profile.showGradesToggle.tap()
