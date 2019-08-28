@@ -86,6 +86,7 @@ public class URLSessionAPI: API {
             let task = urlSession.dataTask(with: request) { [weak self] data, response, error in
                 if (response as? HTTPURLResponse)?.statusCode == 401, refreshToken {
                     self?.refreshToken { self?.makeRequest(requestable, refreshToken: false, callback: callback) }
+                    return
                 }
                 guard let data = data, error == nil, !(R.Response.self is APINoContent.Type) else {
                     return callback(nil, response, error)
@@ -139,7 +140,7 @@ public class URLSessionAPI: API {
         }
         let client = APIVerifyClient(authorized: true, base_url: baseURL, client_id: clientID, client_secret: clientSecret)
         let request = PostLoginOAuthRequest(client: client, refreshToken: refreshToken)
-        print("old access token", loginSession.accessToken)
+        print("old access token", loginSession.accessToken!)
         makeRequest(request, refreshToken: false) { [weak self] response, _, error in
             if let response = response, error == nil {
                 print("got a new access token baby!", response.access_token)

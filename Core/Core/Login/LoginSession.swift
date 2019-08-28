@@ -19,7 +19,7 @@
 import Foundation
 
 public struct LoginSession: Codable, Hashable {
-    public let accessToken: String
+    public let accessToken: String?
     public let baseURL: URL
     public let expiresAt: Date?
     public let lastUsedAt: Date
@@ -57,7 +57,7 @@ public struct LoginSession: Codable, Hashable {
     }
 
     public init(
-        accessToken: String,
+        accessToken: String? = nil,
         baseURL: URL,
         expiresAt: Date?,
         lastUsedAt: Date = Date(),

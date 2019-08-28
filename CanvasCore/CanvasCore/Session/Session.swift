@@ -36,7 +36,25 @@ open class Session: NSObject {
     @objc open var URLSession: Foundation.URLSession {
         return URLSessionAPI.defaultURLSession
     }
-    open lazy var api: API = URLSessionAPI(accessToken: token, refreshToken: refreshToken, actAsUserID: masqueradeAsUserID, clientID: clientID, clientSecret: clientSecret, baseURL: baseURL, urlSession: URLSession)
+    open lazy var api: API = {
+        let masquerader = masqueradeAsUserID.flatMap { baseURL.appendingPathComponent("users").appendingPathComponent($0) }
+        let session = LoginSession(
+            accessToken: token,
+            baseURL: baseURL,
+            expiresAt: nil,
+            lastUsedAt: Date(),
+            locale: nil,
+            masquerader: masquerader,
+            refreshToken: refreshToken,
+            userAvatarURL: user.avatarURL,
+            userID: masqueradeAsUserID ?? user.id,
+            userName: user.name,
+            userEmail: user.email,
+            clientID: clientID,
+            clientSecret: clientSecret
+        )
+        return URLSessionAPI(loginSession: session, urlSession: URLSession)
+    }()
     @objc open var token: String?
     @objc open var refreshToken: String?
     @objc open var clientID: String?

@@ -17,8 +17,6 @@
 //
 
 import WebKit
-import CanvasKeymaster
-import CanvasKit
 import ReactiveSwift
 import Core
 
@@ -236,19 +234,13 @@ public class CanvasWebView: WKWebView {
 
     /// Reloads `self` with an authenticated url for `src`
     @objc func loadFrame(src: String) {
-        guard let session = CanvasKeymaster.the().currentClient?.authSession, let url = URL(string: src) else {
-            return
-        }
-
-        session.getAuthenticatedURL(forURL: url) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let url):
-                    self?.load(URLRequest(url: url))
-                case .failure(let error):
-                    self?.onError?(error)
-                }
+        let request = GetWebSessionRequest(to: url)
+        AppEnvironment.shared.api.makeRequest(request) { [weak self] response, urlResponse, error in
+            guard let response = response, error != nil else {
+                self?.onError?(error ?? NSError.internalError())
+                return
             }
+            self?.load(URLRequest(url: response.session_url))
         }
     }
 }

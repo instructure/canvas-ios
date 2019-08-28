@@ -21,7 +21,6 @@ import Foundation
 public class ActAsUserPresenter {
     let env: AppEnvironment
     weak var loginDelegate: LoginDelegate?
-    lazy var urlSession = URLSessionAPI.defaultURLSession
 
     init(env: AppEnvironment = .shared, loginDelegate: LoginDelegate) {
         self.env = env
@@ -39,8 +38,8 @@ public class ActAsUserPresenter {
         guard let baseURL = URL(string: host), let session = env.currentSession else {
             return callback(NSError.internalError())
         }
-        let api = URLSessionAPI(accessToken: session.accessToken, actAsUserID: userID, baseURL: baseURL, urlSession: urlSession)
-        api.makeRequest(GetUserRequest(userID: "self")) { (user, _, error) in DispatchQueue.main.async {
+        let api = URLSessionAPI(loginSession: session, baseURL: baseURL)
+        api.makeRequest(GetUserRequest(userID: userID)) { (user, _, error) in DispatchQueue.main.async {
             guard let user = user, error == nil else {
                 return callback(error ?? NSError.internalError())
             }

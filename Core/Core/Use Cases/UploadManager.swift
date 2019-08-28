@@ -109,7 +109,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 file.batchID = batchID
                 file.size = url.lookupFileSize()
                 if let session = environment.currentSession {
-                    file.user = File.User(id: session.userID, baseURL: session.baseURL, actAsUserID: session.actAsUserID)
+                    file.user = File.User(id: session.userID, baseURL: session.baseURL, masquerader: session.masquerader)
                 }
                 try context.save()
                 objectID = file.objectID
@@ -151,7 +151,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 let api = environment.api
                 let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil, size: file.size)
                 let requestable = PostFileUploadTargetRequest(context: uploadContext, body: body)
-                let request = try requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.accessToken, actAsUserID: api.actAsUserID)
+                let request = try requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.loginSession?.accessToken, actAsUserID: api.loginSession?.actAsUserID)
                 let task = backgroundSession.dataTask(with: request)
                 file.localFileURL = url
                 task.uploadStep = .target
@@ -234,7 +234,9 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 do {
                     // Upload failed with a 201 so fetch the file using the url in the Location header
                     var request = URLRequest(url: url)
-                    request.setValue("Bearer \(session.accessToken)", forHTTPHeaderField: HttpHeader.authorization)
+                    if let token = session.accessToken {
+                        request.setValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
+                    }
                     request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
                     let task = backgroundSession.dataTask(with: request)
                     task.uploadStep = .upload
@@ -273,7 +275,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             do {
                 let target = try decoder.decode(FileUploadTarget.self, from: data)
                 let request = PostFileUploadRequest(fileURL: url, target: target)
-                let api = URLSessionAPI(accessToken: nil, actAsUserID: file.user?.actAsUserID, baseURL: target.upload_url, urlSession: backgroundSession)
+                let api = URLSessionAPI(baseURL: target.upload_url, urlSession: backgroundSession)
                 let task = try api.uploadTask(request)
                 task.uploadStep = .upload
                 file.taskID = task.taskIdentifier

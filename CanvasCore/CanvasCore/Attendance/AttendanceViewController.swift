@@ -17,7 +17,6 @@
 //
 
 import UIKit
-import CanvasKit
 
 private func attendanceError(message: String) -> Error {
     return NSError(domain: "com.instructure.rollcall", code: 0, userInfo: [

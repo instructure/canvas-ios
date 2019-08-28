@@ -112,7 +112,7 @@ public class CanvadocView: UIView {
         openInButton.addTarget(self, action: #selector(openInButtonTapped), for: .touchUpInside)
 
         if let session = AppEnvironment.shared.currentSession {
-            sessionAPI = URLSessionAPI(session: session, urlSession: URLSessionAPI.noFollowRedirectURLSession)
+            sessionAPI = URLSessionAPI(loginSession: session, urlSession: URLSessionAPI.noFollowRedirectURLSession)
         }
     }
     required public init?(coder aDecoder: NSCoder) { fatalError("nope") }

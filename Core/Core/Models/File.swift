@@ -23,12 +23,12 @@ final public class File: NSManagedObject {
     struct User: Codable {
         let id: String
         let baseURL: URL
-        let actAsUserID: String?
+        let masquerader: URL?
 
         static func == (lhs: User, rhs: LoginSession) -> Bool {
             return lhs.baseURL == rhs.baseURL &&
                 lhs.id == rhs.userID &&
-                lhs.actAsUserID == rhs.actAsUserID
+                lhs.masquerader == rhs.masquerader
         }
     }
 
@@ -136,7 +136,7 @@ final public class File: NSManagedObject {
     }
 
     func setUser(session: LoginSession) {
-        self.user = File.User(id: session.userID, baseURL: session.baseURL, actAsUserID: session.actAsUserID)
+        self.user = File.User(id: session.userID, baseURL: session.baseURL, masquerader: session.masquerader)
     }
 }
 

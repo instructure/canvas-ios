@@ -135,7 +135,6 @@ extension Session {
                 observer.sendCompleted()
             }
             disposable.observeEnded { task?.cancel() }
-            task?.resume()
         }
     }
 

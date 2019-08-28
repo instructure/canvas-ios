@@ -212,7 +212,7 @@ extension URLRequest: APIRequestable {
         guard let url = url else { throw NSError.internalError() }
         var request = self
         if let token = accessToken {
-            request.addValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
+            request.setValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
         }
         if let actAsUserID = actAsUserID {
             request.url = url.appendingQueryItems(URLQueryItem(name: "as_user_id", value: actAsUserID))
