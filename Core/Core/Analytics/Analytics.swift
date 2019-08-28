@@ -22,10 +22,12 @@ public protocol AnalyticsHandler: class {
     func handleEvent(_ name: String, parameters: [String: Any]?)
 }
 
-public class Analytics {
-    public static var shared: Analytics = Analytics()
+@objc(Analytics)
+public class Analytics: NSObject {
+    @objc public static var shared: Analytics = Analytics()
     public weak var handler: AnalyticsHandler?
 
+    @objc
     public func logEvent(_ name: String, parameters: [String: Any]? = nil) {
         handler?.handleEvent(name, parameters: parameters)
     }

@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if hasFirebase {
             FirebaseApp.configure()
         }
-        CanvasAnalytics.setHandler(self)
+        Core.Analytics.shared.handler = self
         DocViewerViewController.setup(.teacherPSPDFKitLicense)
         prepareReactNative()
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
@@ -194,7 +194,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 }
 
-extension AppDelegate: CanvasAnalyticsHandler {
+extension AppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         if hasFirebase {
             Analytics.logEvent(name, parameters: parameters)

@@ -18,6 +18,7 @@
 
 import UIKit
 import CanvasCore
+import Core
 
 class CanvasTabBarController: UITabBarController {
     fileprivate var previousSelectedIndex = 0
@@ -42,7 +43,7 @@ class CanvasTabBarController: UITabBarController {
         if let index = viewControllers?.firstIndex(of: viewController),
             selectedViewController != viewController {
             let event = map[index]
-            CanvasAnalytics.logEvent(event)
+            Analytics.shared.logEvent(event)
         }
     }
 }

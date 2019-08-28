@@ -64,7 +64,7 @@ public class ExternalToolManager: NSObject {
     */
     @objc
     public func launch(_ launchURL: URL, in session: Session, from viewController: UIViewController, fallbackURL: URL?, completionHandler: (() -> Void)? = nil) {
-        CanvasAnalytics.logEvent("external_tool_launched", parameters: ["launchUrl": launchURL])
+        Analytics.shared.logEvent("external_tool_launched", parameters: ["launchUrl": launchURL])
         getSessionlessLaunchURL(forLaunchURL: launchURL.ensureHTTPS(), in: session) { [weak self, weak viewController] url, pageViewPath, error in
             guard let me = self, let vc = viewController else { return }
             if let url = url {
