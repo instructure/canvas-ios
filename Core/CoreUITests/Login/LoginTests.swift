@@ -102,7 +102,7 @@ class LoginTests: CoreUITestCase {
         TabBar.dashboardTab.waitToExist()
     }
 
-    func testMDMHost() {
+    func xtestMDMHost() {
         let user = UITestUser.readStudent1
         launch { app in
             app.launchArguments.append(contentsOf: [
