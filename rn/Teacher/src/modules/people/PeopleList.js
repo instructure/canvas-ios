@@ -38,6 +38,7 @@ import { httpClient, isAbort } from '../../canvas-api'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import { isRegularDisplayMode } from '../../routing/utils'
 import type { TraitCollection } from '../../routing/Navigator'
+import { isTeacher } from '../app'
 
 export type Props = NavigationProps & {
   onSelect: (selected: AddressBookResult[]) => void,
@@ -193,7 +194,7 @@ export class PeopleList extends Component<Props, any> {
     search: query,
     per_page: 15,
     type: 'user',
-    skip_visibility_checks: 1,
+    skip_visibility_checks: isTeacher() ? 1 : 0,
   })
 
   _onSelectItem = (item: AddressBookResult) => {

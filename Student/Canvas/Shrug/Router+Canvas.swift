@@ -439,6 +439,11 @@ extension TechDebt.Router {
             let props = ["userID": userID, "courseID": contextID.id]
             return HelmViewController(moduleName: "/courses/:courseID/users/:userID", props: props)
         }
+
+        addContextRoute([.course, .group], subPath: "users") { (contextID, parameters) -> UIViewController? in
+            let props = ["courseID": contextID.id]
+            return HelmViewController(moduleName: "/courses/:courseID/users", props: props)
+        }
         
         CBIConversationStarter.setConversationStarter { recipients, context in
             guard

@@ -142,10 +142,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     };
     
     [self addRoutesWithDictionary:@{
-        @"/courses/:contextID/people" : [self usersBlockForClass:[CKICourse class]],
-        @"/courses/:contextID/users" : [self usersBlockForClass:[CKICourse class]],
-        @"/groups/:contextID/people" : [self usersBlockForClass:[CKIGroup class]],
-        @"/groups/:contextID/users" : [self usersBlockForClass:[CKIGroup class]],
         @"/courses/:contextID/users/:userID" : [self usersDetailBlockForClass:[CKICourse class]],
         @"/groups/:contextID/users/:userID" : [self usersDetailBlockForClass:[CKIGroup class]],
         @"/courses/:contextID/settings" : ^(NSDictionary *params, CBIViewModel *viewModel) {
