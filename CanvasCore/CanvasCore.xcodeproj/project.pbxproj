@@ -360,7 +360,6 @@
 		49CE96971F8FF41B00121A43 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96511F8FF41A00121A43 /* Quiz.swift */; };
 		49CE96981F8FF41B00121A43 /* SubmissionAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96521F8FF41A00121A43 /* SubmissionAnswer.swift */; };
 		49CE96991F8FF41B00121A43 /* NSError+QuizKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96541F8FF41A00121A43 /* NSError+QuizKit.swift */; };
-		49CE969A1F8FF41B00121A43 /* UIWebView+Quizzes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96551F8FF41A00121A43 /* UIWebView+Quizzes.swift */; };
 		49CE96A11F8FF4A700121A43 /* ProgressDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE969D1F8FF4A700121A43 /* ProgressDispatcher.swift */; };
 		49CE96A21F8FF4A700121A43 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE969E1F8FF4A700121A43 /* Dispatcher.swift */; };
 		49CE96A31F8FF4A700121A43 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE969F1F8FF4A700121A43 /* Progress.swift */; };
@@ -882,7 +881,6 @@
 		49CE96511F8FF41A00121A43 /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		49CE96521F8FF41A00121A43 /* SubmissionAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionAnswer.swift; sourceTree = "<group>"; };
 		49CE96541F8FF41A00121A43 /* NSError+QuizKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+QuizKit.swift"; sourceTree = "<group>"; };
-		49CE96551F8FF41A00121A43 /* UIWebView+Quizzes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+Quizzes.swift"; sourceTree = "<group>"; };
 		49CE969D1F8FF4A700121A43 /* ProgressDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressDispatcher.swift; sourceTree = "<group>"; };
 		49CE969E1F8FF4A700121A43 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		49CE969F1F8FF4A700121A43 /* Progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
@@ -2311,7 +2309,6 @@
 			isa = PBXGroup;
 			children = (
 				49CE96541F8FF41A00121A43 /* NSError+QuizKit.swift */,
-				49CE96551F8FF41A00121A43 /* UIWebView+Quizzes.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3043,7 +3040,6 @@
 				3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */,
 				2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */,
 				4961F67D1F8FB9620093EC86 /* File+Details.swift in Sources */,
-				49CE969A1F8FF41B00121A43 /* UIWebView+Quizzes.swift in Sources */,
 				49CE97A11F900D0000121A43 /* PandatarBuilderViewController.swift in Sources */,
 				B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */,
 				4961F53C1F8FAD9A0093EC86 /* WhizzyTextInputCell.swift in Sources */,
