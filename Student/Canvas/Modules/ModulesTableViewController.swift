@@ -60,7 +60,7 @@ class ModulesTableViewController: FetchedTableViewController<Module>, PageViewEv
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        CanvasAnalytics.logEvent("module_item_selected")
+        Analytics.shared.logEvent("module_item_selected")
         let module = collection[indexPath]
         if let viewController = try? ModuleDetailsViewController(session: session, courseID: courseID, moduleID: module.id, route: route) {
             show(viewController, sender: self)

@@ -52,7 +52,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             FirebaseApp.configure()
         }
         setupDefaultErrorHandling()
-        CanvasAnalytics.setHandler(self)
+        Core.Analytics.shared.handler = self
         UNUserNotificationCenter.current().delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
@@ -258,7 +258,7 @@ extension ParentAppDelegate {
     }
 }
 
-extension ParentAppDelegate: CanvasAnalyticsHandler {
+extension ParentAppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String : Any]?) {
         if hasFirebase {
             Analytics.logEvent(name, parameters: parameters)

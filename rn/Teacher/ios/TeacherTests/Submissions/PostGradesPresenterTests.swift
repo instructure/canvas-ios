@@ -27,12 +27,14 @@ class PostGradesPresenterTests: TeacherTestCase {
     var didUpdatePostGradesExpectation = XCTestExpectation(description: "expectation")
     var didHideGradesExpectation = XCTestExpectation(description: "expectation")
     var errorExpectation = XCTestExpectation(description: "expectation")
+    var colorExpectation = XCTestExpectation(description: "expectation")
     let courseID = "1"
     let assignmentID = "1"
     var didUpdatePostGrades = false
     var didUpdateHideGrades = false
     var errorMessage: String?
     var viewModel: APIPostPolicyInfo?
+    var resultingColor: UIColor?
 
     override func setUp() {
         super.setUp()
@@ -41,6 +43,7 @@ class PostGradesPresenterTests: TeacherTestCase {
         didUpdatePostGrades = false
         didUpdateHideGrades = false
         didHideGradesExpectation = XCTestExpectation(description: "expectation")
+        colorExpectation = XCTestExpectation(description: "expectation")
         errorExpectation = XCTestExpectation(description: "expectation")
         updateExpectation = XCTestExpectation(description: "expectation")
         didUpdatePostGradesExpectation = XCTestExpectation(description: "expectation")
@@ -140,9 +143,24 @@ class PostGradesPresenterTests: TeacherTestCase {
         wait(for: [errorExpectation], timeout: 0.5)
         XCTAssertEqual(errorMessage, "Internal Error")
     }
+
+    func testColor() {
+        _ = Course.make()
+        let expectedColor = Color.make()
+
+        presenter.viewIsReady()
+        wait(for: [colorExpectation], timeout: 0.5)
+
+        XCTAssertEqual(resultingColor, expectedColor.color)
+    }
 }
 
 extension PostGradesPresenterTests: PostGradesViewProtocol {
+    func updateCourseColor(_ color: UIColor) {
+        resultingColor = color
+        colorExpectation.fulfill()
+    }
+
     func update(_ viewModel: APIPostPolicyInfo) {
         self.viewModel = viewModel
         updateExpectation.fulfill()

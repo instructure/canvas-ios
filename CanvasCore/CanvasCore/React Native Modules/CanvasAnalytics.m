@@ -17,28 +17,23 @@
 //
 
 #import "CanvasAnalytics.h"
-
-static id<CanvasAnalyticsHandler> _handler = nil;
+@import Core;
 
 @implementation CanvasAnalytics
 
 RCT_EXPORT_MODULE();
 
-+ (void)setHandler:(id<CanvasAnalyticsHandler>)handler {
-    _handler = handler;
-}
-
 + (void)logEvent:(NSString *)name {
-    [self logEvent:name parameters:nil];
+    [Analytics.shared logEvent: name parameters: nil];
 }
 
 + (void)logEvent:(NSString *)name parameters:(nullable NSDictionary<NSString *, id>*)parameters {
-    [_handler handleEvent:name parameters:parameters];
+    [Analytics.shared logEvent: name parameters: parameters];
 }
 
 RCT_EXPORT_METHOD(logEvent:(NSString *)name parameters:(nullable NSDictionary<NSString *, id>*)parameters)
 {
-    [_handler handleEvent:name parameters:parameters];
+    [Analytics.shared logEvent: name parameters: parameters];
 }
 
 @end

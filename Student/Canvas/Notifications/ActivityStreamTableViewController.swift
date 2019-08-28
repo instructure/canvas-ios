@@ -20,6 +20,7 @@ import Foundation
 import ReactiveCocoa
 import ReactiveSwift
 import CanvasCore
+import Core
 
 extension Activity {
     @objc var icon: UIImage? {
@@ -86,7 +87,7 @@ class ActivityStreamTableViewController: FetchedTableViewController<Activity> {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        CanvasAnalytics.logEvent("notification_selected")
+        Analytics.shared.logEvent("notification_selected")
         let activity = collection[indexPath]
         route(self, activity.url)
     }
