@@ -109,7 +109,7 @@ extension Quiz: DueViewable, GradeViewable, LockStatusViewable {
     public var takeInWebOnly: Bool {
         return (
             questionTypes.isEmpty ||
-            questionTypes.contains(.calculated_question) ||
+            questionTypes.contains(.calculated_question) || questionTypes.contains(.fill_in_multiple_blanks_question) ||
             hasAccessCode ||
             ipFilter != nil ||
             oneQuestionAtATime ||
