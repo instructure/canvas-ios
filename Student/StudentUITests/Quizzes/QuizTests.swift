@@ -49,18 +49,7 @@ class QuizTests: CoreUITestCase {
 
         app.find(labelContaining: "Web Quiz").tap()
         Quiz.resumeButton.tap()
-        app.find(label: "Resume Quiz").tap() // in web view
-
-        Quiz.text(string: "Question 1").waitToExist()
-        Quiz.text(string: "Question 2").waitToExist()
-        let textFields = app.textFields.allElementsBoundByIndex
-        for textField in textFields {
-            if let value = textField.value as? String {
-                XCTAssert(value == "Fox" || value == "Dog" || value == "6.4")
-            } else {
-                XCTAssert(false, "text field did not have a value")
-            }
-        }
+        app.find(label: "This quiz is for testing web view question types.").waitToExist()
     }
 
     func testQuizzesShowEmptyState() {
