@@ -608,7 +608,7 @@ export class DiscussionDetails extends Component<Props, any> {
           one {# pt}
           other {# pts}
         }`
-          , { count: discussion.assignment.points_possible })
+        , { count: discussion.assignment.points_possible })
       return pointsPossible
     }
   }

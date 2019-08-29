@@ -17,7 +17,7 @@
 //
 
 // @flow
-/* global FormData:true, Blob:true */
+/* global Blob:true */
 
 import AsyncStorage from '@react-native-community/async-storage'
 import httpClient, { isAbort, httpCache, inFlight } from '../httpClient'
@@ -48,8 +48,8 @@ describe('httpClient', () => {
     }
     global.XMLHttpRequest = function () { return request }
     console.warn = jest.fn()
-    Blob = function Blob () {}
-    FormData = function FormData () {}
+    global.Blob = function Blob () {}
+    global.FormData = function FormData () {}
   })
 
   afterEach(() => {
