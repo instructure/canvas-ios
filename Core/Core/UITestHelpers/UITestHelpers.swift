@@ -29,9 +29,10 @@ public class UITestHelpers {
         case mockData(MockDataMessage)
         case mockDownload(MockDownloadMessage)
         case tearDown
+        case currentSession
 
         private enum Tag: String, Codable {
-            case reset, login, show, mockData, mockDownload, tearDown
+            case reset, login, show, mockData, mockDownload, tearDown, currentSession
         }
         private enum CodingKeys: String, CodingKey { case tag, param }
         public init(from decoder: Decoder) throws {
@@ -49,6 +50,8 @@ public class UITestHelpers {
                 self = .mockDownload(try container.decode(MockDownloadMessage.self, forKey: .param))
             case .tearDown:
                 self = .tearDown
+            case .currentSession:
+                self = .currentSession
             }
         }
         public func encode(to encoder: Encoder) throws {
@@ -70,6 +73,8 @@ public class UITestHelpers {
                 try container.encode(message, forKey: .param)
             case .tearDown:
                 try container.encode(Tag.tearDown, forKey: .tag)
+            case .currentSession:
+                try container.encode(Tag.currentSession, forKey: .tag)
             }
         }
     }
@@ -95,23 +100,13 @@ public class UITestHelpers {
         CacheManager.clear()
         UserDefaults.standard.set(true, forKey: "IS_UI_TEST")
         ExperimentalFeature.allEnabled = true
+        _ = IPCAppServer()
 
-        let button = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 1, y: 44, width: 1, height: 1))
-        button.accessibilityIdentifier = "ui-test-helper"
-        button.accessibilityLabel = "ui-test-helper"
-        button.addTarget(self, action: #selector(checkPasteboard), for: .primaryActionTriggered)
-        window?.addSubview(button)
-        window?.uiTestHelper = button
         window?.layer.speed = 100
         UIView.setAnimationsEnabled(false)
     }
 
-    @objc func checkPasteboard() {
-        guard
-            let data = UIPasteboard.general.data(forPasteboardType: pasteboardType),
-            let helper = try? decoder.decode(Helper.self, from: data)
-        else { return }
-        UIPasteboard.general.items.removeAll()
+    func doHelper(_ helper: Helper) -> Data? {
         print("Running UI Test Helper \(helper)")
         switch helper {
         case .reset:
@@ -126,7 +121,10 @@ public class UITestHelpers {
             MockDistantURLSession.mockDownload(message)
         case .tearDown:
             tearDown()
+        case .currentSession:
+            return try? encoder.encode(AppEnvironment.shared.currentSession)
         }
+        return nil
     }
 
     func reset() {

@@ -66,9 +66,9 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open override func tearDown() {
-        super.tearDown()
-        LoginSession.clearAll()
         send(.tearDown)
+        LoginSession.clearAll()
+        super.tearDown()
     }
 
     open func launch(_ block: ((XCUIApplication) -> Void)? = nil) {
@@ -80,11 +80,13 @@ open class CoreUITestCase: XCTestCase {
         app.find(labelContaining: "Loading").waitToVanish(120)
     }
 
+    lazy var ipcClient = IPCClient(serverPortName: IPCAppServer.staticMachPortName)
+
     func send(_ helper: UITestHelpers.Helper) {
-        let data = try! encoder.encode(helper)
-        UIPasteboard.general.items.removeAll()
-        UIPasteboard.general.setData(data, forPasteboardType: pasteboardType)
-        app.find(id: "ui-test-helper").tap()
+        if let response = ipcClient.requestRemote(helper),
+            !response.isEmpty {
+            fatalError("Unexpected IPC response")
+        }
     }
 
     open func reset(file: StaticString = #file, line: UInt = #line) {
@@ -129,7 +131,14 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func currentSession() -> LoginSession? {
-        fatalError("TODO")
+        guard let data = ipcClient.requestRemote(UITestHelpers.Helper.currentSession) else {
+            fatalError("Bad IPC response")
+        }
+        if data.isEmpty {
+            return nil
+        } else {
+            return (try? JSONDecoder().decode(LoginSession?.self, from: data))!
+        }
     }
 
     open func show(_ route: String) {
