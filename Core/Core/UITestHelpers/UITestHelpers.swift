@@ -22,12 +22,56 @@ import Foundation
 import UIKit
 
 public class UITestHelpers {
-    public enum HelperType: String, Codable, Equatable {
-        case reset, login, show, mockData, mockDownload, tearDown, currentSession
-    }
-    public struct Helper: Codable {
-        let type: HelperType
-        let data: Data?
+    public enum Helper: Codable {
+        case reset
+        case login(LoginSession)
+        case show(String)
+        case mockData(MockDataMessage)
+        case mockDownload(MockDownloadMessage)
+        case tearDown
+
+        private enum Tag: String, Codable {
+            case reset, login, show, mockData, mockDownload, tearDown
+        }
+        private enum CodingKeys: String, CodingKey { case tag, param }
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            switch try container.decode(Tag.self, forKey: .tag) {
+            case .reset:
+                self = .reset
+            case .login:
+                self = .login(try container.decode(LoginSession.self, forKey: .param))
+            case .show:
+                self = .show(try container.decode(String.self, forKey: .param))
+            case .mockData:
+                self = .mockData(try container.decode(MockDataMessage.self, forKey: .param))
+            case .mockDownload:
+                self = .mockDownload(try container.decode(MockDownloadMessage.self, forKey: .param))
+            case .tearDown:
+                self = .tearDown
+            }
+        }
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            switch self {
+            case .reset:
+                try container.encode(Tag.reset, forKey: .tag)
+            case .login(let session):
+                try container.encode(Tag.login, forKey: .tag)
+                try container.encode(session, forKey: .param)
+            case .show(let route):
+                try container.encode(Tag.show, forKey: .tag)
+                try container.encode(route, forKey: .param)
+            case .mockData(let message):
+                try container.encode(Tag.mockData, forKey: .tag)
+                try container.encode(message, forKey: .param)
+            case .mockDownload(let message):
+                try container.encode(Tag.mockDownload, forKey: .tag)
+                try container.encode(message, forKey: .param)
+            case .tearDown:
+                try container.encode(Tag.tearDown, forKey: .tag)
+            }
+        }
     }
 
     static var shared: UITestHelpers?
@@ -68,28 +112,18 @@ public class UITestHelpers {
             let helper = try? decoder.decode(Helper.self, from: data)
         else { return }
         UIPasteboard.general.items.removeAll()
-        print("Running UI Test Helper \(helper.type.rawValue)")
-        switch helper.type {
+        print("Running UI Test Helper \(helper)")
+        switch helper {
         case .reset:
             reset()
-        case .login:
-            guard let data = helper.data, let entry = try? decoder.decode(LoginSession.self, from: data) else { return }
+        case .login(let entry):
             logIn(entry)
-        case .currentSession:
-            guard
-                let entry = AppEnvironment.shared.currentSession,
-                let data = try? encoder.encode(Helper(type: .currentSession, data: encoder.encode(entry)))
-            else { return }
-            UIPasteboard.general.setData(data, forPasteboardType: pasteboardType)
-        case .show:
-            guard let data = helper.data, let params = try? decoder.decode([String].self, from: data) else { return }
-            show(params[0])
-        case .mockData:
-            guard let data = helper.data else { return }
-            MockDistantURLSession.mockData(data)
-        case .mockDownload:
-            guard let data = helper.data else { return }
-            MockDistantURLSession.mockDownload(data)
+        case .show(let route):
+            show(route)
+        case .mockData(let message):
+            MockDistantURLSession.mockData(message)
+        case .mockDownload(let message):
+            MockDistantURLSession.mockDownload(message)
         case .tearDown:
             tearDown()
         }

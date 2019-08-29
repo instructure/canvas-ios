@@ -80,12 +80,8 @@ open class CoreUITestCase: XCTestCase {
         app.find(labelContaining: "Loading").waitToVanish(120)
     }
 
-    func send<T: Encodable>(_ type: UITestHelpers.HelperType, _ data: T) {
-        send(type, data: try! encoder.encode(data))
-    }
-
-    func send(_ type: UITestHelpers.HelperType, data: Data? = nil) {
-        let data = try! encoder.encode(UITestHelpers.Helper(type: type, data: data))
+    func send(_ helper: UITestHelpers.Helper) {
+        let data = try! encoder.encode(helper)
         UIPasteboard.general.items.removeAll()
         UIPasteboard.general.setData(data, forPasteboardType: pasteboardType)
         app.find(id: "ui-test-helper").tap()
@@ -110,7 +106,7 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func logInEntry(_ session: LoginSession, file: StaticString = #file, line: UInt = #line) {
-        send(.login, session)
+        send(.login(session))
         homeScreen.waitToExist(file: file, line: line)
     }
 
@@ -133,17 +129,11 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func currentSession() -> LoginSession? {
-        send(.currentSession)
-        guard
-            let data = UIPasteboard.general.data(forPasteboardType: pasteboardType),
-            let helper = try? decoder.decode(UITestHelpers.Helper.self, from: data),
-            helper.type == .currentSession, let entryData = helper.data
-        else { return nil }
-        return try? decoder.decode(LoginSession.self, from: entryData)
+        fatalError("TODO")
     }
 
     open func show(_ route: String) {
-        send(.show, [ route ])
+        send(.show(route))
     }
 
     open func mockData<R: APIRequestable>(
@@ -193,13 +183,13 @@ open class CoreUITestCase: XCTestCase {
         error: String? = nil,
         noCallback: Bool = false
     ) {
-        send(.mockData, MockDataMessage(
+        send(.mockData(MockDataMessage(
             data: data,
             error: error,
             request: request,
             response: response.flatMap { MockResponse(http: $0) },
             noCallback: noCallback
-        ))
+        )))
     }
 
     open func mockDownload(
@@ -208,12 +198,12 @@ open class CoreUITestCase: XCTestCase {
         response: HTTPURLResponse? = nil,
         error: String? = nil
     ) {
-        send(.mockDownload, MockDownloadMessage(
+        send(.mockDownload(MockDownloadMessage(
             data: data.flatMap { try! Data(contentsOf: $0) },
             error: error,
             response: response.flatMap { MockResponse(http: $0) },
             url: url
-        ))
+        )))
     }
 
     open func mockBaseRequests() {

@@ -75,11 +75,8 @@ public class MockDistantURLSession: URLSession {
         let noCallback: Bool
     }
     static var dataMocks: [URL: MockData] = [:]
-    static func mockData(_ data: Data) {
+    static func mockData(_ message: MockDataMessage) {
         setup()
-        guard let message = try? JSONDecoder().decode(MockDataMessage.self, from: data) else {
-            fatalError("Could not decode mocking request")
-        }
         var response = message.response?.http
         if response == nil, message.data != nil {
             response = HTTPURLResponse(url: message.request.url!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: [
@@ -161,11 +158,8 @@ public class MockDistantURLSession: URLSession {
         let error: Error?
     }
     static var downloadMocks: [URL: MockDownload] = [:]
-    static func mockDownload(_ data: Data) {
+    static func mockDownload(_ message: MockDownloadMessage) {
         setup()
-        guard let message = try? JSONDecoder().decode(MockDownloadMessage.self, from: data) else {
-            fatalError("Could not decode mocking request")
-        }
         var url: URL?
         if let data = message.data {
             url = URL.temporaryDirectory.appendingPathComponent(UUID.string)
