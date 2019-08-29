@@ -17,7 +17,7 @@
 //
 
 // @flow
-/* global FormData:true, Blob:true */
+/* global Blob:true */
 
 import AsyncStorage from '@react-native-community/async-storage'
 import httpClient, { isAbort, httpCache, inFlight } from '../httpClient'

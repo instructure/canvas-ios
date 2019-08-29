@@ -50,6 +50,8 @@ export default gql`query StudentContextCard($courseID: ID!, $userID: ID!, $limit
                 current_score: currentScore
                 override_grade: overrideGrade
                 override_score: overrideScore
+                unposted_current_grade: unpostedCurrentGrade
+                unposted_current_score: unpostedCurrentScore
               }
             }
             analytics: summaryAnalytics(courseId: $courseID) {
@@ -67,6 +69,7 @@ export default gql`query StudentContextCard($courseID: ID!, $userID: ID!, $limit
                 late
                 missing
                 onTime
+                total
               }
             }
           }
