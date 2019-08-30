@@ -55,6 +55,7 @@ import { Title } from '../../common/text'
 import CommentInput from './comments/CommentInput'
 import { isAssignmentAnonymous } from '../../common/anonymous-grading'
 import A11yGroup from '../../common/components/A11yGroup'
+import { getEnabledFeatureFlags } from '../../canvas-api'
 
 const { NativeAccessibility } = NativeModules
 
@@ -81,6 +82,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   static defaultProps = {
     onDismiss: () => {},
     drawerPosition: 0,
+    getEnabledFeatureFlags
   }
 
   constructor (props: SpeedGraderProps) {
@@ -99,14 +101,23 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
       hasScrolledToInitialSubmission: false,
       hasSetInitialDrawerPosition: false,
       scrollEnabled: true,
+      flags: props.flags || [],
     }
   }
 
-  componentDidMount () {
+  async componentDidMount () {
     this.setSubmissions(this.props)
     SpeedGrader.drawerState.registerDrawer(this)
     if (this.props.hasAssignment) {
       this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, this.props.groupAssignment != null)
+    }
+
+    if (this.state.flags.length === 0) {
+      try {
+        let flags = await this.props.getEnabledFeatureFlags('courses', this.props.courseID)
+        this.setState({ flags: flags.data })
+      } catch (e) {
+      }
     }
   }
 
@@ -226,6 +237,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         setScrollEnabled={(value) => {
           this.scrollView.setNativeProps({ scrollEnabled: value })
         }}
+        newGradebookEnabled={this.state.flags.includes('new_gradebook')}
       />
     </A11yGroup>
   }

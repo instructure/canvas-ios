@@ -302,16 +302,25 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
       <View style={styles.gradeCellContainer}>
         <View style={cellStyles}>
           <Heading1 style={headingStyles}>{i18n('Grade')}</Heading1>
-          <TouchableOpacity
-            testID='grade-picker.button'
-            style={styles.gradeButton}
-            onPress={gradeButtonAction}
-            accessibilityTraits='button'
-            accessibilityLabel={this.getGradeCellAccessibilityLabel()}
-            activeOpacity={disabled ? 1 : 0.2}
-          >
-            {this.renderField()}
-          </TouchableOpacity>
+          <View style={styles.gradePolicyWrapper}>
+            <TouchableOpacity
+              testID='grade-picker.button'
+              style={styles.gradeButton}
+              onPress={gradeButtonAction}
+              accessibilityTraits='button'
+              accessibilityLabel={this.getGradeCellAccessibilityLabel()}
+              activeOpacity={disabled ? 1 : 0.2}
+            >
+              {this.renderField()}
+            </TouchableOpacity>
+            {this.props.newGradebookEnabled && !!this.props.grade && this.props.postedAt == null &&
+              <Image
+                source={Images.off}
+                style={styles.eyeball}
+                testID='GradePicker.postedEye'
+              />
+            }
+          </View>
         </View>
         {this.renderLatePolicy()}
         {this.props.gradingType === POINTS && !this.props.useRubricForGrading &&
@@ -413,6 +422,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#FC5E13',
   },
+  gradePolicyWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  eyeball: {
+    width: 20,
+    height: 20,
+    tintColor: colors.destructiveButtonColor,
+    marginLeft: 10,
+  },
 })
 
 export function mapStateToProps (state: AppState, ownProps: GradePickerOwnProps): GradePickerDataProps {
@@ -440,6 +459,7 @@ export function mapStateToProps (state: AppState, ownProps: GradePickerOwnProps)
     pointsDeducted: submission.points_deducted,
     enteredGrade: submission.entered_grade,
     enteredScore: submission.entered_score,
+    postedAt: submission.posted_at,
   }
 }
 
