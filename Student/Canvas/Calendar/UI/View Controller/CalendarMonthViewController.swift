@@ -208,7 +208,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     }
 
     @objc open func calendarViewDidSelectDate(_ calendarView: CalendarView, date: Date) {
-        CanvasAnalytics.logEvent("calendar_day_selected")
+        Analytics.shared.logEvent("calendar_day_selected")
         dateSelected(date)
     }
 

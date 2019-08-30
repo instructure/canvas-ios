@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         setupPageViewLogging()
         UIApplication.shared.reactive.applicationIconBadgeNumber
             <~ TabBarBadgeCounts.applicationIconBadgeNumber
-        CanvasAnalytics.setHandler(self)
+        Core.Analytics.shared.handler = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
         if let session = LoginSession.mostRecent {
@@ -204,7 +204,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
-extension AppDelegate: CanvasAnalyticsHandler {
+extension AppDelegate: Core.AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         if hasFirebase {
             Analytics.logEvent(name, parameters: parameters)

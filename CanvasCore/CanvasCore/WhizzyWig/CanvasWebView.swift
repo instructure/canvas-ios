@@ -146,11 +146,9 @@ public class CanvasWebView: WKWebView {
     }
     
     @objc public init(config: WKWebViewConfiguration) {
-        // Make the user agent look like Safari as best we can to work around Google OAuth restrictions.
-        // Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.3 Mobile/15E217 Safari/605.1
-        config.applicationNameForUserAgent = "Version/\(UIDevice.current.systemVersion) Mobile/15E217 Safari/605.1"
         config.processPool = CoreWebView.processPool
         super.init(frame: .zero, configuration: config)
+        customUserAgent = UserAgent.safari.description
         translatesAutoresizingMaskIntoConstraints = false
         navigationDelegate = self
         uiDelegate = self

@@ -307,31 +307,25 @@ export class DiscussionDetails extends Component<Props, any> {
             </View>
           </View>
 
-          { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
-            <View>
-              { Boolean(discussion.message) &&
-                <CanvasWebView
-                  style={{ flex: 1, marginHorizontal: -global.style.defaultPadding }}
-                  automaticallySetHeight html={discussion.message}
-                  navigator={this.props.navigator}
-                />
-              }
-              { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
-                // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
-                <TouchableOpacity
-                  testID='DiscussionDetails.attachmentButton'
-                  accessibilityTraits={['button']}
-                  onPress={this.showAttachment}
-                >
-                  <View style={style.attachment}>
-                    <Image source={Images.paperclip} style={style.attachmentIcon} />
-                    <Text style={style.attachmentText}>
-                      {discussion.attachments[0].display_name}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              }
-            </View>
+          <CanvasWebView
+            style={{ flex: 1, marginHorizontal: -global.style.defaultPadding, minHeight: global.style.defaultPadding }}
+            automaticallySetHeight html={discussion.message || ''}
+            navigator={this.props.navigator}
+          />
+          { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
+            // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
+            <TouchableOpacity
+              testID='DiscussionDetails.attachmentButton'
+              accessibilityTraits={['button']}
+              onPress={this.showAttachment}
+            >
+              <View style={style.attachment}>
+                <Image source={Images.paperclip} style={style.attachmentIcon} />
+                <Text style={style.attachmentText}>
+                  {discussion.attachments[0].display_name}
+                </Text>
+              </View>
+            </TouchableOpacity>
           }
 
           {!discussion.locked_for_user && this.props.permissions.post_to_forum &&
@@ -765,6 +759,7 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: global.style.defaultPadding,
   },
   attachmentIcon: {
     tintColor: colors.link,

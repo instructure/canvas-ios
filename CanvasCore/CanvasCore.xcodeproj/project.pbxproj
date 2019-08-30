@@ -27,8 +27,6 @@
 		2CD6B5701FD20A9800C7DE15 /* WindowTraitsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */; };
 		2CD6B5711FD20A9800C7DE15 /* WindowTraitsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */; };
 		2CD7769C200977EC00589D4F /* UIApplicationDelegate+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */; };
-		2CE2059120EAC5BD002A6A64 /* CanvasAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CE2058F20EAC5BD002A6A64 /* CanvasAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CE2059220EAC5BD002A6A64 /* CanvasAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2059020EAC5BD002A6A64 /* CanvasAnalytics.m */; };
 		2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */; };
 		2CE40C9B1F87D36E00ECEACB /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B01F843B58001A8F31 /* CanvadocView.swift */; };
 		2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B11F843B58001A8F31 /* PSPDFView.swift */; };
@@ -40,6 +38,8 @@
 		3B158CAC22E14B900039A568 /* PageViewEventLoggerLegacySupportProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CAB22E14B900039A568 /* PageViewEventLoggerLegacySupportProtocol.swift */; };
 		3BA0F9B620069CEB00E64448 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA0F9B520069CEB00E64448 /* UIView+AutoLayout.swift */; };
 		3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA8BE9D1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib */; };
+		3BC3E0212315BC8A00E15C6D /* CanvasAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CE2058F20EAC5BD002A6A64 /* CanvasAnalytics.h */; };
+		3BC3E0222315BC8F00E15C6D /* CanvasAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2059020EAC5BD002A6A64 /* CanvasAnalytics.m */; };
 		3BC7CEC620113F5B001DFF8C /* CKIClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7CEC520113F5B001DFF8C /* CKIClient+Extensions.swift */; };
 		3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */; };
 		3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */; };
@@ -360,7 +360,6 @@
 		49CE96971F8FF41B00121A43 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96511F8FF41A00121A43 /* Quiz.swift */; };
 		49CE96981F8FF41B00121A43 /* SubmissionAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96521F8FF41A00121A43 /* SubmissionAnswer.swift */; };
 		49CE96991F8FF41B00121A43 /* NSError+QuizKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96541F8FF41A00121A43 /* NSError+QuizKit.swift */; };
-		49CE969A1F8FF41B00121A43 /* UIWebView+Quizzes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96551F8FF41A00121A43 /* UIWebView+Quizzes.swift */; };
 		49CE96A11F8FF4A700121A43 /* ProgressDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE969D1F8FF4A700121A43 /* ProgressDispatcher.swift */; };
 		49CE96A21F8FF4A700121A43 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE969E1F8FF4A700121A43 /* Dispatcher.swift */; };
 		49CE96A31F8FF4A700121A43 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE969F1F8FF4A700121A43 /* Progress.swift */; };
@@ -882,7 +881,6 @@
 		49CE96511F8FF41A00121A43 /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		49CE96521F8FF41A00121A43 /* SubmissionAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionAnswer.swift; sourceTree = "<group>"; };
 		49CE96541F8FF41A00121A43 /* NSError+QuizKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+QuizKit.swift"; sourceTree = "<group>"; };
-		49CE96551F8FF41A00121A43 /* UIWebView+Quizzes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+Quizzes.swift"; sourceTree = "<group>"; };
 		49CE969D1F8FF4A700121A43 /* ProgressDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressDispatcher.swift; sourceTree = "<group>"; };
 		49CE969E1F8FF4A700121A43 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		49CE969F1F8FF4A700121A43 /* Progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
@@ -2311,7 +2309,6 @@
 			isa = PBXGroup;
 			children = (
 				49CE96541F8FF41A00121A43 /* NSError+QuizKit.swift */,
-				49CE96551F8FF41A00121A43 /* UIWebView+Quizzes.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2640,7 +2637,7 @@
 				494AE0A31F843A09001A8F31 /* WebViewHacker.h in Headers */,
 				494AE09D1F843A09001A8F31 /* NativeAccessibility.h in Headers */,
 				494AE0A11F843A09001A8F31 /* ScrollViewDisablerManager.h in Headers */,
-				2CE2059120EAC5BD002A6A64 /* CanvasAnalytics.h in Headers */,
+				3BC3E0212315BC8A00E15C6D /* CanvasAnalytics.h in Headers */,
 				493020151F901CF5006BD777 /* UITextView+Placeholder.h in Headers */,
 				78C610CE21CA022C00913B93 /* CanvasCrashlytics.h in Headers */,
 				2CD3B49C206AB38E006339D8 /* APIBridge.h in Headers */,
@@ -2938,6 +2935,7 @@
 				4961F5EC1F8FB4070093EC86 /* TableViewController.swift in Sources */,
 				49CE965B1F8FF41B00121A43 /* QuizIntroViewController+Objective-C.swift in Sources */,
 				4961F5DB1F8FB3EF0093EC86 /* ManagedObjectObserver.swift in Sources */,
+				3BC3E0222315BC8F00E15C6D /* CanvasAnalytics.m in Sources */,
 				49CE97981F900D0000121A43 /* User+Collections.swift in Sources */,
 				49CE96EA1F8FFC4400121A43 /* Module.swift in Sources */,
 				49CE96621F8FF41B00121A43 /* QuizTakeabilityController.swift in Sources */,
@@ -3042,7 +3040,6 @@
 				3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */,
 				2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */,
 				4961F67D1F8FB9620093EC86 /* File+Details.swift in Sources */,
-				49CE969A1F8FF41B00121A43 /* UIWebView+Quizzes.swift in Sources */,
 				49CE97A11F900D0000121A43 /* PandatarBuilderViewController.swift in Sources */,
 				B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */,
 				4961F53C1F8FAD9A0093EC86 /* WhizzyTextInputCell.swift in Sources */,
@@ -3083,7 +3080,6 @@
 				7D52D87922FCC73100684932 /* AssignmentAPI.swift in Sources */,
 				49CE966A1F8FF41B00121A43 /* QuizPresentingViewController.swift in Sources */,
 				49CE965C1F8FF41B00121A43 /* QuizIntroViewController.swift in Sources */,
-				2CE2059220EAC5BD002A6A64 /* CanvasAnalytics.m in Sources */,
 				49CE968C1F8FF41B00121A43 /* CanvasQuizSubmissionService.swift in Sources */,
 				4961F5A41F8FB2A10093EC86 /* TokenLabelView.swift in Sources */,
 				497CA7781F82D19A00501613 /* HelmSplitViewControllerExtensions.swift in Sources */,

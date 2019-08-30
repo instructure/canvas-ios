@@ -19,6 +19,8 @@
 import UIKit
 import ReactiveSwift
 import CanvasCore
+import class CanvasCore.Course
+import Core
 
 open class CalendarDayListViewController: UITableViewController {
     // ---------------------------------------------
@@ -225,8 +227,7 @@ open class CalendarDayListViewController: UITableViewController {
     // ---------------------------------------------
     open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
-        CanvasAnalytics.logEvent("calendar_event_selected")
+        Analytics.shared.logEvent("calendar_event_selected")
         if let calEvent = eventsCollection?[indexPath], let routeToURL = routeToURL, let url = calEvent.routingURL {
             routeToURL(url)
         }

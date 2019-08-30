@@ -31,5 +31,4 @@ FOUNDATION_EXPORT const unsigned char CanvasCoreVersionString[];
 #import <CanvasCore/NativeNotificationCenter.h>
 #import <CanvasCore/PushNotifications.h>
 #import <CanvasCore/APIBridge.h>
-#import <CanvasCore/CanvasAnalytics.h>
 #import <CanvasCore/CanvasCrashlytics.h>
