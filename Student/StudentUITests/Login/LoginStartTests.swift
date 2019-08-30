@@ -41,4 +41,9 @@ class LoginStartTests: StudentUITestCase {
 
         LoginWeb.webView.waitToExist()
     }
+
+    // HACK: relaunch to avoid a double-view bug
+    func testZzz() {
+        launch()
+    }
 }

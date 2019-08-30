@@ -74,10 +74,18 @@ class IPCAppServer: IPCServer {
 }
 
 struct IPCClient {
-    let messagePort: CFMessagePort
+    var messagePort: CFMessagePort!
+    var serverPortName: String
+    var openTimeout: TimeInterval
 
     init(serverPortName: String, timeout: TimeInterval = 60.0) {
-        let deadline = Date().addingTimeInterval(timeout)
+        self.serverPortName = serverPortName
+        self.openTimeout = timeout
+        openMessagePort()
+    }
+
+    mutating func openMessagePort() {
+        let deadline = Date().addingTimeInterval(openTimeout)
         repeat {
             if let port = CFMessagePortCreateRemote(kCFAllocatorDefault, serverPortName as CFString) {
                 messagePort = port
@@ -88,7 +96,11 @@ struct IPCClient {
         fatalError("client couldn't connect to server port \(serverPortName)")
     }
 
-    func requestRemote<R: Codable>(_ request: R) -> Data? {
+    mutating func requestRemote<R: Codable>(_ request: R) -> Data? {
+        if (!CFMessagePortIsValid(messagePort)) {
+            openMessagePort()
+        }
+
         var responseData: Unmanaged<CFData>?
         let requestData = (try? JSONEncoder().encode(request))!
         let status = CFMessagePortSendRequest(messagePort, 0, requestData as CFData, 1000, 1000, CFRunLoopMode.defaultMode.rawValue, &responseData)
