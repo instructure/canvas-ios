@@ -126,6 +126,7 @@ const images = {
   relax: require('./relax.png'),
   hamburger: require('./hamburger.png'),
   invisible: require('./invisible.png'),
+  off: require('./off.png')
 }
 
 export default (images: *)
