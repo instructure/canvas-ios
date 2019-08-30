@@ -28,10 +28,13 @@ class PostGradesPresenterTests: TeacherTestCase {
     var didHideGradesExpectation = XCTestExpectation(description: "expectation")
     var errorExpectation = XCTestExpectation(description: "expectation")
     var colorExpectation = XCTestExpectation(description: "expectation")
+    var hiddenStateExpectation = XCTestExpectation(description: "expectation")
     let courseID = "1"
     let assignmentID = "1"
     var didUpdatePostGrades = false
     var didUpdateHideGrades = false
+    var didShowAllHidden = false
+    var didShowAllPosted = false
     var errorMessage: String?
     var viewModel: APIPostPolicyInfo?
     var resultingColor: UIColor?
@@ -42,11 +45,14 @@ class PostGradesPresenterTests: TeacherTestCase {
         errorMessage = nil
         didUpdatePostGrades = false
         didUpdateHideGrades = false
+        didShowAllHidden = false
+        didShowAllPosted = false
         didHideGradesExpectation = XCTestExpectation(description: "expectation")
         colorExpectation = XCTestExpectation(description: "expectation")
         errorExpectation = XCTestExpectation(description: "expectation")
         updateExpectation = XCTestExpectation(description: "expectation")
         didUpdatePostGradesExpectation = XCTestExpectation(description: "expectation")
+        hiddenStateExpectation = XCTestExpectation(description: "expectation")
         presenter = PostGradesPresenter(courseID: courseID, assignmentID: assignmentID, view: self, env: environment)
     }
 
@@ -121,6 +127,12 @@ class PostGradesPresenterTests: TeacherTestCase {
                             "excused": false,
                             "state": "graded",
                             "postedAt": null
+                        },
+                        {
+                            "score": 0.6,
+                            "excused": false,
+                            "state": "graded",
+                            "postedAt": "2019-08-22T07:28:44-06:00"
                         }]
                     }
                 }
@@ -153,6 +165,72 @@ class PostGradesPresenterTests: TeacherTestCase {
 
         XCTAssertEqual(resultingColor, expectedColor.color)
     }
+
+    func testAllGradesPosted() {
+        let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
+        let str = """
+        {
+            "data": {
+                "course": {
+                    "sections": {
+                        "nodes": [{
+                            "id": "1",
+                            "name": "section a"
+                        }]
+                    }
+                },
+                "assignment": {
+                    "submissions": {
+                        "nodes": [{
+                            "score": 0.5,
+                            "excused": false,
+                            "state": "graded",
+                            "postedAt": "2019-08-22T07:28:44-06:00"
+                        }]
+                    }
+                }
+            }
+        }
+        """
+        api.mock(req, data: str.data(using: .utf8)!, response: nil, error: nil)
+        presenter.viewIsReady()
+
+        wait(for: [hiddenStateExpectation], timeout: 0.5)
+        XCTAssertTrue(didShowAllPosted)
+    }
+
+    func testAllGradesHidden() {
+        let req = GetAssignmentPostPolicyInfoRequest(courseID: courseID, assignmentID: assignmentID)
+        let str = """
+        {
+            "data": {
+                "course": {
+                    "sections": {
+                        "nodes": [{
+                            "id": "1",
+                            "name": "section a"
+                        }]
+                    }
+                },
+                "assignment": {
+                    "submissions": {
+                        "nodes": [{
+                            "score": 0.5,
+                            "excused": false,
+                            "state": "graded",
+                            "postedAt": null
+                        }]
+                    }
+                }
+            }
+        }
+        """
+        api.mock(req, data: str.data(using: .utf8)!, response: nil, error: nil)
+        presenter.viewIsReady()
+
+        wait(for: [hiddenStateExpectation], timeout: 0.5)
+        XCTAssertTrue(didShowAllHidden)
+    }
 }
 
 extension PostGradesPresenterTests: PostGradesViewProtocol {
@@ -174,6 +252,16 @@ extension PostGradesPresenterTests: PostGradesViewProtocol {
     func didHideGrades() {
         didUpdateHideGrades = true
         didHideGradesExpectation.fulfill()
+    }
+
+    func showAllPostedView() {
+        didShowAllPosted = true
+        hiddenStateExpectation.fulfill()
+    }
+
+    func showAllHiddenView() {
+        didShowAllHidden = true
+        hiddenStateExpectation.fulfill()
     }
 
     var navigationController: UINavigationController? {

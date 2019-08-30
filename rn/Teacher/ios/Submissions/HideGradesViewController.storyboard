@@ -45,7 +45,7 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNE-2B-Mg6">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="61v-qe-CCM">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="allGradesHidden" translatesAutoresizingMaskIntoConstraints="NO" id="61v-qe-CCM">
                                         <rect key="frame" x="87" y="248.5" width="240" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="UD1-50-V35"/>
@@ -74,6 +74,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PostPolicy.allGradesHidden"/>
                                 <constraints>
                                     <constraint firstItem="Pad-Q2-QIM" firstAttribute="leading" secondItem="cNE-2B-Mg6" secondAttribute="leading" constant="16" id="CMQ-uW-qQz"/>
                                     <constraint firstItem="61v-qe-CCM" firstAttribute="centerY" secondItem="cNE-2B-Mg6" secondAttribute="centerY" multiplier="0.85" constant="1" id="GIB-vq-iGu"/>
@@ -115,4 +116,7 @@
             <point key="canvasLocation" x="-268.1159420289855" y="-117.1875"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="allGradesHidden" width="120" height="155"/>
+    </resources>
 </document>
