@@ -23,11 +23,10 @@ import React from 'react'
 import SubmissionRow from '../SubmissionRow'
 import type {
   SubmissionDataProps,
-  GradeProp,
 } from '../submission-prop-types'
 import explore from '../../../../../test/helpers/explore'
 import renderer from 'react-test-renderer'
-import * as templates from '../../../../__templates__';
+import * as templates from '../../../../__templates__'
 
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
@@ -43,7 +42,7 @@ const mockSubmission = (overrides): SubmissionDataProps => {
     submissionID: '32',
     submission: templates.submission({ grade: null, score: null }),
     anonymous: false,
-    ...overrides
+    ...overrides,
   }
 }
 
@@ -53,7 +52,7 @@ let defaultProps = {
   anonymouse: false,
   gradingType: 'points',
   newGradebookEnabled: false,
-  ...mockSubmission()
+  ...mockSubmission(),
 }
 
 test('unsubmitted ungraded row renders correctly', () => {
@@ -90,7 +89,7 @@ test('submitted ungraded row renders correctly', () => {
 test('submitted not_graded row renders correctly', () => {
   const submission = mockSubmission({ status: 'submitted', grade: 'ungraded' })
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} {...submission}  gradingType='not_graded' />
+    <SubmissionRow {...defaultProps} {...submission} gradingType='not_graded' />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
@@ -133,7 +132,7 @@ test('shows the eyeball when grades are not posted', () => {
   let submission = mockSubmission({
     status: 'submitted',
     grade: '20%',
-    submission: templates.submission({ posted_at: null })
+    submission: templates.submission({ posted_at: null }),
   })
   let tree = renderer.create(
     <SubmissionRow
@@ -150,7 +149,7 @@ test('does not show the eyeball when grade is posted', () => {
   let submission = mockSubmission({
     status: 'submitted',
     grade: '20%',
-    submission: templates.submission({ posted_at: '2019-08-29T00:00:00.000Z' })
+    submission: templates.submission({ posted_at: '2019-08-29T00:00:00.000Z' }),
   })
   let tree = renderer.create(
     <SubmissionRow

@@ -36,7 +36,7 @@ import { Text } from '../../../common/text'
 import SubmissionStatusLabel from './SubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
 import { formatGradeText } from '../../../common/formatters'
-import images from '../../../images';
+import images from '../../../images'
 
 type RowProps = {
   testID: string,
@@ -107,7 +107,7 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
   }
 
   render () {
-    let { userID, avatarURL, name, status, grade, gradingType, disclosure, submission } = this.props
+    let { userID, avatarURL, name, status, grade, gradingType, submission } = this.props
     if (this.props.anonymous) {
       name = (this.props.groupID ? i18n('Group') : i18n('Student'))
       avatarURL = null
@@ -142,7 +142,7 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
           <Image
             source={images.off}
             testID='SubmissionRow.hiddenIcon'
-            style={{ tintColor: colors.destructiveButtonColor, height: 20, width: 20, marginLeft: 10 }} 
+            style={{ tintColor: colors.destructiveButtonColor, height: 20, width: 20, marginLeft: 10 }}
           />
         }
       </Row>
