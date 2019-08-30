@@ -31,50 +31,47 @@ public class UITestHelpers {
         case tearDown
         case currentSession
 
-        private enum Tag: String, Codable {
+        private enum CodingKeys: String, CodingKey {
             case reset, login, show, mockData, mockDownload, tearDown, currentSession
         }
-        private enum CodingKeys: String, CodingKey { case tag, param }
+
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            switch try container.decode(Tag.self, forKey: .tag) {
-            case .reset:
+            if container.contains(.reset) {
                 self = .reset
-            case .login:
-                self = .login(try container.decode(LoginSession.self, forKey: .param))
-            case .show:
-                self = .show(try container.decode(String.self, forKey: .param))
-            case .mockData:
-                self = .mockData(try container.decode(MockDataMessage.self, forKey: .param))
-            case .mockDownload:
-                self = .mockDownload(try container.decode(MockDownloadMessage.self, forKey: .param))
-            case .tearDown:
+            } else if let session = try container.decodeIfPresent(LoginSession.self, forKey: .login) {
+                self = .login(session)
+            } else if let route = try container.decodeIfPresent(String.self, forKey: .show) {
+                self = .show(route)
+            } else if let message = try container.decodeIfPresent(MockDataMessage.self, forKey: .mockData) {
+                self = .mockData(message)
+            } else if let message = try container.decodeIfPresent(MockDownloadMessage.self, forKey: .mockDownload) {
+                self = .mockDownload(message)
+            } else if container.contains(.tearDown) {
                 self = .tearDown
-            case .currentSession:
+            } else if container.contains(.currentSession) {
                 self = .currentSession
+            } else {
+                throw DecodingError.typeMismatch(Helper.self, .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(Helper.self)"))
             }
         }
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             switch self {
             case .reset:
-                try container.encode(Tag.reset, forKey: .tag)
+                try container.encode(nil as Int?, forKey: .reset)
             case .login(let session):
-                try container.encode(Tag.login, forKey: .tag)
-                try container.encode(session, forKey: .param)
+                try container.encode(session, forKey: .login)
             case .show(let route):
-                try container.encode(Tag.show, forKey: .tag)
-                try container.encode(route, forKey: .param)
+                try container.encode(route, forKey: .show)
             case .mockData(let message):
-                try container.encode(Tag.mockData, forKey: .tag)
-                try container.encode(message, forKey: .param)
+                try container.encode(message, forKey: .mockData)
             case .mockDownload(let message):
-                try container.encode(Tag.mockDownload, forKey: .tag)
-                try container.encode(message, forKey: .param)
+                try container.encode(message, forKey: .mockDownload)
             case .tearDown:
-                try container.encode(Tag.tearDown, forKey: .tag)
+                try container.encode(nil as Int?, forKey: .tearDown)
             case .currentSession:
-                try container.encode(Tag.currentSession, forKey: .tag)
+                try container.encode(nil as Int?, forKey: .currentSession)
             }
         }
     }
