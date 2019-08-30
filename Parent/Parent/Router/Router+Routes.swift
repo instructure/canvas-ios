@@ -402,7 +402,7 @@ let router = Core.Router(routes: [
         return vc
     },
     Core.RouteHandler(.sendSupport(forType: ":type"), name: "support") { _, params in
-        guard let type = props["type"] as? String else { return nil }
+        guard let type = params["type"] else { return nil }
         return ErrorReportViewController.create(type: ErrorReportType(rawValue: type) ?? .problem)
     },
     Core.RouteHandler(.termsOfService(forAccount: ":accountID"), name: "terms_of_service") { _, params in

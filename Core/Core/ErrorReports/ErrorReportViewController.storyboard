@@ -32,7 +32,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGq-8K-lmX" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="12" width="79.5" height="25"/>
+                                                                <rect key="frame" x="16" y="12" width="80" height="25"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -41,8 +41,8 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name@example.com" textAlignment="right" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="rpO-f1-KL1" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="103.5" y="0.0" width="255.5" height="49"/>
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name@example.com" textAlignment="right" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="rpO-f1-KL1" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
+                                                                <rect key="frame" x="104" y="0.0" width="255" height="49"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
@@ -83,7 +83,7 @@
                                                         <rect key="frame" x="0.0" y="50" width="375" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s54-29-xBj" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="12" width="58" height="25"/>
+                                                                <rect key="frame" x="16" y="12" width="58.5" height="25"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -92,8 +92,8 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Something is Wrong" textAlignment="right" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="GIZ-4M-tPb" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="82" y="0.0" width="277" height="49"/>
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Something is Wrong" textAlignment="right" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="GIZ-4M-tPb" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
+                                                                <rect key="frame" x="82.5" y="0.0" width="276.5" height="49"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -134,7 +134,7 @@
                                                         <rect key="frame" x="0.0" y="100" width="375" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Impact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rw6-Vh-7hy" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="12" width="52.5" height="25"/>
+                                                                <rect key="frame" x="16" y="12" width="53" height="25"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -197,7 +197,7 @@
                                                         <rect key="frame" x="0.0" y="150" width="375" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Describe the problem" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsP-Ma-rdc" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="12" width="156.5" height="19.5"/>
+                                                                <rect key="frame" x="16" y="12" width="165" height="20.5"/>
                                                                 <accessibility key="accessibilityConfiguration">
                                                                     <bool key="isElement" value="NO"/>
                                                                 </accessibility>
