@@ -41,6 +41,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
       >
         <Avatar
           avatarURL={null}
+          onPress={[Function]}
           userName="Student"
         />
       </View>
@@ -106,29 +107,34 @@ exports[`anonymous grading doesnt show users names 1`] = `
           Not Submitted
         </Text>
       </View>
-      <View
+      <Text
         style={
           Array [
             Object {
-              "alignSelf": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#c7c7cc",
-              "borderRightWidth": 2,
-              "borderTopWidth": 2,
-              "height": 10,
-              "marginLeft": 7,
-              "width": 10,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "transform": Array [
-                Object {
-                  "rotate": "45deg",
-                },
-              ],
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#374A59",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "alignSelf": "center",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
             },
           ]
         }
-      />
+      >
+        --
+      </Text>
     </View>
   </TouchableHighlight>
 </View>
@@ -175,6 +181,7 @@ exports[`excused row renders correctly 1`] = `
       >
         <Avatar
           avatarURL="https://cats.pajamas/"
+          onPress={[Function]}
           userName="Green Latern"
         />
       </View>
@@ -268,29 +275,6 @@ exports[`excused row renders correctly 1`] = `
       >
         Excused
       </Text>
-      <View
-        style={
-          Array [
-            Object {
-              "alignSelf": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#c7c7cc",
-              "borderRightWidth": 2,
-              "borderTopWidth": 2,
-              "height": 10,
-              "marginLeft": 7,
-              "width": 10,
-            },
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "45deg",
-                },
-              ],
-            },
-          ]
-        }
-      />
     </View>
   </TouchableHighlight>
 </View>
@@ -337,6 +321,7 @@ exports[`late graded row renders correctly 1`] = `
       >
         <Avatar
           avatarURL="https://cats.pajamas/"
+          onPress={[Function]}
           userName="Green Latern"
         />
       </View>
@@ -430,29 +415,6 @@ exports[`late graded row renders correctly 1`] = `
       >
         B-
       </Text>
-      <View
-        style={
-          Array [
-            Object {
-              "alignSelf": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#c7c7cc",
-              "borderRightWidth": 2,
-              "borderTopWidth": 2,
-              "height": 10,
-              "marginLeft": 7,
-              "width": 10,
-            },
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "45deg",
-                },
-              ],
-            },
-          ]
-        }
-      />
     </View>
   </TouchableHighlight>
 </View>
@@ -499,6 +461,7 @@ exports[`missing ungraded row renders correctly 1`] = `
       >
         <Avatar
           avatarURL="https://cats.pajamas/"
+          onPress={[Function]}
           userName="Green Latern"
         />
       </View>
@@ -564,29 +527,34 @@ exports[`missing ungraded row renders correctly 1`] = `
           Missing
         </Text>
       </View>
-      <View
+      <Text
         style={
           Array [
             Object {
-              "alignSelf": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#c7c7cc",
-              "borderRightWidth": 2,
-              "borderTopWidth": 2,
-              "height": 10,
-              "marginLeft": 7,
-              "width": 10,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "transform": Array [
-                Object {
-                  "rotate": "45deg",
-                },
-              ],
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#374A59",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "alignSelf": "center",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
             },
           ]
         }
-      />
+      >
+        --
+      </Text>
     </View>
   </TouchableHighlight>
 </View>
@@ -633,6 +601,7 @@ exports[`submitted not_graded row renders correctly 1`] = `
       >
         <Avatar
           avatarURL="https://cats.pajamas/"
+          onPress={[Function]}
           userName="Green Latern"
         />
       </View>
@@ -670,29 +639,34 @@ exports[`submitted not_graded row renders correctly 1`] = `
           Green Latern
         </Text>
       </View>
-      <View
+      <Text
         style={
           Array [
             Object {
-              "alignSelf": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#c7c7cc",
-              "borderRightWidth": 2,
-              "borderTopWidth": 2,
-              "height": 10,
-              "marginLeft": 7,
-              "width": 10,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "transform": Array [
-                Object {
-                  "rotate": "45deg",
-                },
-              ],
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#374A59",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "alignSelf": "center",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
             },
           ]
         }
-      />
+      >
+        --
+      </Text>
     </View>
   </TouchableHighlight>
 </View>
@@ -739,6 +713,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
       >
         <Avatar
           avatarURL="https://cats.pajamas/"
+          onPress={[Function]}
           userName="Green Latern"
         />
       </View>
@@ -846,29 +821,34 @@ exports[`submitted ungraded row renders correctly 1`] = `
           NEEDS GRADING
         </Text>
       </View>
-      <View
+      <Text
         style={
           Array [
             Object {
-              "alignSelf": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#c7c7cc",
-              "borderRightWidth": 2,
-              "borderTopWidth": 2,
-              "height": 10,
-              "marginLeft": 7,
-              "width": 10,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "transform": Array [
-                Object {
-                  "rotate": "45deg",
-                },
-              ],
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#374A59",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "alignSelf": "center",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
             },
           ]
         }
-      />
+      >
+        --
+      </Text>
     </View>
   </TouchableHighlight>
 </View>
@@ -915,6 +895,7 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
       >
         <Avatar
           avatarURL="https://cats.pajamas/"
+          onPress={[Function]}
           userName="Green Latern"
         />
       </View>
@@ -980,29 +961,34 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
           Not Submitted
         </Text>
       </View>
-      <View
+      <Text
         style={
           Array [
             Object {
-              "alignSelf": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#c7c7cc",
-              "borderRightWidth": 2,
-              "borderTopWidth": 2,
-              "height": 10,
-              "marginLeft": 7,
-              "width": 10,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "transform": Array [
-                Object {
-                  "rotate": "45deg",
-                },
-              ],
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#374A59",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "alignSelf": "center",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
             },
           ]
         }
-      />
+      >
+        --
+      </Text>
     </View>
   </TouchableHighlight>
 </View>
