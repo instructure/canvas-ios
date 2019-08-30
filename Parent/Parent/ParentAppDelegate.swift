@@ -154,7 +154,7 @@ extension ParentAppDelegate: LoginDelegate {
     func openSupportTicket() {
         guard let presentFrom = topMostViewController() else { return }
         let subject = String.localizedStringWithFormat("[Parent Login Issue] %@", NSLocalizedString("Trouble logging in", comment: ""))
-        SupportTicketViewController.present(from: presentFrom, supportTicketType: SupportTicketTypeProblem, defaultSubject: subject)
+        presentFrom.present(UINavigationController(rootViewController: ErrorReportViewController.create(subject: subject)))
     }
 
     func changeUser() {
@@ -218,9 +218,7 @@ extension ParentAppDelegate {
         
         DispatchQueue.main.async {
             let alertDetails = error.alertDetails(reportAction: {
-                // TODO
-                //let support = SupportTicketViewController.present(from: presentingViewController, supportTicketType: SupportTicketTypeProblem)
-                //support?.reportedError = error
+                presentFrom.present(UINavigationController(rootViewController: ErrorReportViewController.create(error: error)), animated: true)
             })
             
             if let deets = alertDetails {

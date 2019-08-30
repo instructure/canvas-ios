@@ -220,8 +220,7 @@ extension AppDelegate {
 
         DispatchQueue.main.async {
             let alertDetails = error.alertDetails(reportAction: {
-                let support = SupportTicketViewController.present(from: presentFrom, supportTicketType: SupportTicketTypeProblem, defaultSubject: nil)
-                support.reportedError = error
+                presentFrom.present(UINavigationController(rootViewController: ErrorReportViewController.create(error: error)), animated: true)
             })
 
             if let deets = alertDetails {

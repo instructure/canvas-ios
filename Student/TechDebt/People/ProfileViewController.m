@@ -26,7 +26,6 @@
 #import "UIImage+ImageEffects.h"
 #import "AFHTTPAvatarImageResponseSerializer.h"
 
-#import <CanvasKeymaster/SupportTicketViewController.h>
 #import "CKIClient+CBIClient.h"
 #import "CKIUser+SwiftCompatibility.h"
 #import "CKCanvasAPI+CurrentAPI.h"
