@@ -19,35 +19,11 @@
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%2$g out of %3$@)";
 
-/* Gigabytes */
-"%0.2f GB" = "%0.2f GB";
-
-/* Kilobytes */
-"%0.2f KB" = "%0.2f KB";
-
-/* Megabytes */
-"%0.2f MB" = "%0.2f MB";
-
 /* 88 out of 100 points */
 "%g out of %@" = "%1$g out of %2$@";
 
-/* As in, '15 bytes' */
-"%qu bytes" = "%qu bytes";
-
-/* Media type is audio */
-"Audio" = "Audio";
-
-/* No comment provided by engineer. */
-"Audio input hardware not available" = "Audio input hardware not available";
-
 /* Assignment grade: Complete */
 "Complete" = "Complete";
-
-/* A custom grade not specified by the rubric. */
-"Custom Grade" = "Custom Grade";
-
-/* No comment provided by engineer. */
-"Done" = "Done";
 
 /* No comment provided by engineer. */
 "Excused" = "Excused";
@@ -64,17 +40,11 @@
 /* Assignment grade: Incomplete */
 "Incomplete" = "Incomplete";
 
-/* No comment provided by engineer. */
-"Me" = "Me";
-
 /* The name for a video or audio response to something */
 "Media comment" = "Media comment";
 
 /* No comment provided by engineer. */
 "Media Comment" = "Media Comment";
-
-/* A slider to choose between media types */
-"Media type selector. %@" = "Media type selector. %@";
 
 /* Pass/fail assignment is not complete */
 "Not Complete" = "Not Complete";
@@ -85,9 +55,6 @@
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Not graded (0 out of %@)";
 
-/* No comment provided by engineer. */
-"Note: Media files are not immediately available for playback while they are processed on the server." = "Note: Media files are not immediately available for playback while they are processed on the server.";
-
 /* Short name for observer enrollment */
 "Observer" = "Observer";
 
@@ -97,59 +64,14 @@
 /* The assignment is out of 100 points */
 "out of %@" = "out of %@";
 
-/* No comment provided by engineer. */
-"out of %@ points" = "out of %@ points";
-
-/* A button that plays */
-"Play" = "Play";
-
-/* No comment provided by engineer. */
-"Post Comment" = "Post Comment";
-
-/* No comment provided by engineer. */
-"Posts your comment" = "Posts your comment";
-
-/* A button that records */
-"Record" = "Record";
-
-/* No comment provided by engineer. */
-"Score" = "Score";
-
-/* Hint about the play button */
-"Starts playing your recording" = "Starts playing your recording";
-
-/* Hint about the record button */
-"Starts recording a media comment" = "Starts recording a media comment";
-
-/* A button that stops */
-"Stop" = "Stop";
-
-/* Hint about the play button */
-"Stops playing your recording" = "Stops playing your recording";
-
-/* Hint about the record button */
-"Stops recording a media comment" = "Stops recording a media comment";
-
 /* Short name for student enrollment */
 "Student" = "Student";
-
-/* Hint about media input selection */
-"Switches media input between audio and video. Currently set to %@" = "Switches media input between audio and video. Currently set to %@";
-
-/* No comment provided by engineer. */
-"Switches to media comment mode" = "Switches to media comment mode";
-
-/* No comment provided by engineer. */
-"Switches to text comment mode" = "Switches to text comment mode";
 
 /* Short name for TA enrollment */
 "TA" = "Tutor";
 
 /* Short name for teacher enrollment */
 "Teacher" = "Instructor";
-
-/* No comment provided by engineer. */
-"Text Comment" = "Text Comment";
 
 /* Generic name for a submission entered online. */
 "Text Submission" = "Text Submission";
@@ -159,13 +81,4 @@
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "unknown";
-
-/* Media type is video */
-"Video" = "Video";
-
-/* No comment provided by engineer. */
-"Video Error" = "Video Error";
-
-/* No comment provided by engineer. */
-"Warning" = "Warning";
 

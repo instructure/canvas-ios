@@ -19,35 +19,11 @@
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%2$g sou %3$@)";
 
-/* Gigabytes */
-"%0.2f GB" = "%0.2f GB";
-
-/* Kilobytes */
-"%0.2f KB" = "%0.2f KB";
-
-/* Megabytes */
-"%0.2f MB" = "%0.2f MB";
-
 /* 88 out of 100 points */
 "%g out of %@" = "%1$g sou %2$@";
 
-/* As in, '15 bytes' */
-"%qu bytes" = "%qu bytes";
-
-/* Media type is audio */
-"Audio" = "Odyo";
-
-/* No comment provided by engineer. */
-"Audio input hardware not available" = "Hardware antre odyo pa disponib";
-
 /* Assignment grade: Complete */
 "Complete" = "Fini";
-
-/* A custom grade not specified by the rubric. */
-"Custom Grade" = "Klas Pèsonalize";
-
-/* No comment provided by engineer. */
-"Done" = "Fini";
 
 /* No comment provided by engineer. */
 "Excused" = "Egzante";
@@ -64,17 +40,11 @@
 /* Assignment grade: Incomplete */
 "Incomplete" = "Enkonplè";
 
-/* No comment provided by engineer. */
-"Me" = "Mwen";
-
 /* The name for a video or audio response to something */
 "Media comment" = "Kòmantè medya";
 
 /* No comment provided by engineer. */
 "Media Comment" = "Kòmantè Medya";
-
-/* A slider to choose between media types */
-"Media type selector. %@" = "Selektè tip medya. %@";
 
 /* Pass/fail assignment is not complete */
 "Not Complete" = "Pa Konplè";
@@ -85,9 +55,6 @@
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Pa klase (0 sou %@)";
 
-/* No comment provided by engineer. */
-"Note: Media files are not immediately available for playback while they are processed on the server." = "Nòt: Fichye miltimedya yo pa disponib menm kote a pou lekti lè se sou sèvè a yo trete.";
-
 /* Short name for observer enrollment */
 "Observer" = "Obsèvatè";
 
@@ -97,59 +64,14 @@
 /* The assignment is out of 100 points */
 "out of %@" = "sou %@";
 
-/* No comment provided by engineer. */
-"out of %@ points" = "sou %@ pwen";
-
-/* A button that plays */
-"Play" = "Jwe";
-
-/* No comment provided by engineer. */
-"Post Comment" = "Poste yon Kòmantè";
-
-/* No comment provided by engineer. */
-"Posts your comment" = "Poste Kòmantè ou a";
-
-/* A button that records */
-"Record" = "Anrejistre";
-
-/* No comment provided by engineer. */
-"Score" = "Nòt";
-
-/* Hint about the play button */
-"Starts playing your recording" = "Komanse jwe anrejistreman ou an";
-
-/* Hint about the record button */
-"Starts recording a media comment" = "Kòmanse anrejistre yon kòmantè medya";
-
-/* A button that stops */
-"Stop" = "Kanpe";
-
-/* Hint about the play button */
-"Stops playing your recording" = "Kanpe anrejistreman ou an k ap jwe a";
-
-/* Hint about the record button */
-"Stops recording a media comment" = "Kanpe anrejistreman yon kòmantè medya";
-
 /* Short name for student enrollment */
 "Student" = "Elèv";
-
-/* Hint about media input selection */
-"Switches media input between audio and video. Currently set to %@" = "Chanje antre medya ant odyo e videyo. Kounye a regle sou %@";
-
-/* No comment provided by engineer. */
-"Switches to media comment mode" = "Chanje sou mòd kòmantè medya";
-
-/* No comment provided by engineer. */
-"Switches to text comment mode" = "Chanje sou mòd kòmantè tèks";
 
 /* Short name for TA enrollment */
 "TA" = "TA";
 
 /* Short name for teacher enrollment */
 "Teacher" = "Pwofesè";
-
-/* No comment provided by engineer. */
-"Text Comment" = "Kòmantè Tèks";
 
 /* Generic name for a submission entered online. */
 "Text Submission" = "Soumisyon Tèks";
@@ -159,13 +81,4 @@
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "enkoni";
-
-/* Media type is video */
-"Video" = "Videyo";
-
-/* No comment provided by engineer. */
-"Video Error" = "Erè Videyo";
-
-/* No comment provided by engineer. */
-"Warning" = "Avètisman";
 

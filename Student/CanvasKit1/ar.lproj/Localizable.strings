@@ -19,35 +19,11 @@
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%2$g من إجمالي %3$@)";
 
-/* Gigabytes */
-"%0.2f GB" = "%0.2f جيجابايت";
-
-/* Kilobytes */
-"%0.2f KB" = "%0.2f كيلوبايت";
-
-/* Megabytes */
-"%0.2f MB" = "%0.2f ميجابايت";
-
 /* 88 out of 100 points */
 "%g out of %@" = "%1$g من إجمالي %2$@";
 
-/* As in, '15 bytes' */
-"%qu bytes" = "%qu بايت";
-
-/* Media type is audio */
-"Audio" = "صوت";
-
-/* No comment provided by engineer. */
-"Audio input hardware not available" = "جهاز إدخال الصوت غير متوفر";
-
 /* Assignment grade: Complete */
 "Complete" = "مكتمل";
-
-/* A custom grade not specified by the rubric. */
-"Custom Grade" = "درجة مخصصة";
-
-/* No comment provided by engineer. */
-"Done" = "تم";
 
 /* No comment provided by engineer. */
 "Excused" = "معفى";
@@ -64,17 +40,11 @@
 /* Assignment grade: Incomplete */
 "Incomplete" = "غير مكتمل";
 
-/* No comment provided by engineer. */
-"Me" = "أنا";
-
 /* The name for a video or audio response to something */
 "Media comment" = "تعليق الوسائط";
 
 /* No comment provided by engineer. */
 "Media Comment" = "تعليق الوسائط";
-
-/* A slider to choose between media types */
-"Media type selector. %@" = "أداة تحديد نوع الوسائط. %@";
 
 /* Pass/fail assignment is not complete */
 "Not Complete" = "غير مكتمل";
@@ -85,9 +55,6 @@
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "لم يتم تقييم الدرجة (0 من إجمالي %@)";
 
-/* No comment provided by engineer. */
-"Note: Media files are not immediately available for playback while they are processed on the server." = "ملاحظة: لا يمكن تشغيل ملفات الوسائط بشكل فوري أثناء معالجتها على الخادم.";
-
 /* Short name for observer enrollment */
 "Observer" = "المراقب";
 
@@ -97,59 +64,14 @@
 /* The assignment is out of 100 points */
 "out of %@" = "من إجمالي %@";
 
-/* No comment provided by engineer. */
-"out of %@ points" = "من إجمالي %@ من النقاط";
-
-/* A button that plays */
-"Play" = "تشغيل";
-
-/* No comment provided by engineer. */
-"Post Comment" = "نشر التعليق";
-
-/* No comment provided by engineer. */
-"Posts your comment" = "ينشر تعليقك";
-
-/* A button that records */
-"Record" = "تسجيل";
-
-/* No comment provided by engineer. */
-"Score" = "الدرجة";
-
-/* Hint about the play button */
-"Starts playing your recording" = "بدء تشغيل تسجيلك";
-
-/* Hint about the record button */
-"Starts recording a media comment" = "بدء تسجيل تعليق الوسائط";
-
-/* A button that stops */
-"Stop" = "إيقاف";
-
-/* Hint about the play button */
-"Stops playing your recording" = "إيقاف تشغيل تسجيلك";
-
-/* Hint about the record button */
-"Stops recording a media comment" = "إيقاف تسجيل تعليق الوسائط";
-
 /* Short name for student enrollment */
 "Student" = "الطالب";
-
-/* Hint about media input selection */
-"Switches media input between audio and video. Currently set to %@" = "تغيير إدخال الوسائط بين الصوت والفيديو. تم التعيين حاليًا إلى %@";
-
-/* No comment provided by engineer. */
-"Switches to media comment mode" = "التغيير إلى وضع تعليق الوسائط";
-
-/* No comment provided by engineer. */
-"Switches to text comment mode" = "التغيير إلى وضع تعليق النص";
 
 /* Short name for TA enrollment */
 "TA" = "مساعد المعلم";
 
 /* Short name for teacher enrollment */
 "Teacher" = "المعلم";
-
-/* No comment provided by engineer. */
-"Text Comment" = "تعليق النص";
 
 /* Generic name for a submission entered online. */
 "Text Submission" = "إرسال النص";
@@ -159,13 +81,4 @@
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "غير معروف";
-
-/* Media type is video */
-"Video" = "فيديو";
-
-/* No comment provided by engineer. */
-"Video Error" = "خطأ بالفيديو";
-
-/* No comment provided by engineer. */
-"Warning" = "تحذير";
 

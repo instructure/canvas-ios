@@ -112,6 +112,9 @@
 /* No comment provided by engineer. */
 "Excused" = "Wedi esgusodi";
 
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Wedi methu llwytho (discussionKitModelName) NSManagedObjectModel";
+
 /* No comment provided by engineer. */
 "Help" = "Help";
 
@@ -252,6 +255,9 @@
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "Problem wrth lwytho’r gronfa ddata.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata DiscussionKit.";
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Gwall wrth lwytho’ch cynnwys. Os ydych chi'n llwytho sain neu fideo i fyny, gall fod wrthi'n prosesu o hyd.";

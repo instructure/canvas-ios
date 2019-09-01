@@ -16,9 +16,6 @@
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ bo kmalu na voljo.";
 
-/* local notification countdown alert */
-"%@ is due in %@" = "%1$@ ima rok %2$@";
-
 /* explanation for locked item */
 "%@ is locked" = "%@ je zaklenjeno.";
 
@@ -182,7 +179,7 @@
 "Access Denied" = "Dostop je zavrnjen.";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
-"Access denied. Please check your permissions for the action you're trying to complete." = "Dostop je zavrnjen. Preverite svoja dovoljenja za dejanje, ki ga skušate zaključiti.";
+"Access denied. Please check your permissions for the action you're trying to complete." = "Dostop je zavrnjen. Preverite svoja dovoljenja za dejanje, ki ga poskušate zaključiti.";
 
 /* No comment provided by engineer. */
 "Add a folder" = "Dodaj mapo";
@@ -225,9 +222,6 @@
    Title for the announcements view controller */
 "Announcements" = "Obvestila";
 
-/* Assignment submission type for selecting an Arc video */
-"Arc" = "Arc";
-
 /* Archive selected messages button
    mark a message as archived */
 "Archive" = "Arhiviraj";
@@ -243,9 +237,6 @@
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Ali ste pripravljeni na odjavo?";
-
-/* Confirmation alert text for submitting an Arc video for an assignment */
-"Are you sure you want to submit this Arc video for this assignment?" = "Ali ste prepričani, da želite poslati ta videoposnetek Arc za to nalogo?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Vprašaj me pozneje.";
@@ -271,7 +262,7 @@
 /* Label for a discussion */
 "Attendance" = "Prisotnost";
 
-/* Audio file type */
+/* Media type is audio */
 "Audio" = "Zvok";
 
 /* No comment provided by engineer. */
@@ -280,7 +271,7 @@
 /* No comment provided by engineer. */
 "Augment Reality" = "Obogatena resničnost";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Authentication error" = "Napaka overitve";
 
 /* Link to building panda avatar */
@@ -298,11 +289,10 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Medijev ni mogoče poslati.";
 
-/* Cancel button title
-   Cancel button title to cancel submitting an Arc video as an assignment submission */
+/* Cancel button title */
 "Cancel" = "Prekliči";
 
-/* Cancel button title */
+/* Cancel adding a comment button */
 "Cancel Message" = "Prekliči sporočilo";
 
 /* No comment provided by engineer. */
@@ -310,9 +300,6 @@
 
 /* detail text for recipient fetch error message */
 "Canvas failed to find recipients for your current search. Please try again later." = "Iskanje prejemnikov v sistemu Canvas za vaše trenutno iskanje ni uspelo. Poskusite znova pozneje.";
-
-/* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Pri kvizih sistema Canvas je podprtih več različnih slogov ocenjevanja. Večina teh slogov je na mobilnih napravah podprta, nekateri pa niso. Če poskušate opravljati enega od teh nepodprtih kvizov na svojem telefonu, kviza morda ne boste mogli v celoti zaključiti, zato boste v slabšem položaju.\n\nNepodprte vrste vprašanj so tiste, ki vključujejo vprašanja z vsebino Adobe Flash™ in druga.\n\nČe menite, da kviz vsebuje nepodprto vsebino, si ga prenesite na namizni ali prenosni računalnik. Če veste, da kviz vsebuje samo podprto vsebino, ga lahko opravljate na mobilni napravi.";
 
 /* mobile quze warning info */
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Pri kvizih sistema Canvas je podprtih več različnih slogov ocenjevanja. Večina teh slogov je na mobilnih napravah podprta, nekateri pa niso. Če poskušate opravljati enega od teh nepodprtih kvizov na svojem telefonu, kviza morda ne boste mogli v celoti zaključiti, zato boste v slabšem položaju.\n\nNepodprte vrste vprašanj so tiste, ki vključujejo vprašanja z vsebino in naloženimi datotekami Adobe Flash™ ter druga.\n\nČe menite, da kviz vsebuje nepodprto vsebino, si ga prenesite na namizni ali prenosni računalnik. Če veste, da kviz vsebuje samo podprto vsebino, ga lahko opravljate na mobilni napravi.";
@@ -387,9 +374,6 @@
 /* Alert title */
 "Confirm deletion" = "Potrdi odstranjevanje";
 
-/* Confirm an arc video submission for an assignment */
-"Confirm Submission" = "Potrdi oddajo";
-
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
 "Continue" = "Nadaljuj";
 
@@ -408,7 +392,7 @@
 /* Courses page title */
 "Courses" = "Predmeti";
 
-/* Cancel button title */
+/* cancel folder creation */
 "Create Folder" = "Ustvari mapo";
 
 /* Header for a section showing submitted filenames */
@@ -424,16 +408,13 @@
 "Customize" = "Prilagodi po meri";
 
 /* Default delete button MLVC */
-"Delete" = "Izbriši";
+"Delete" = "Odstrani";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
 "Delete (%d)" = "Izbriši (%d)";
 
 /* Alert message */
 "Delete this reply?" = "Ali želite odstraniti ta odgovor?";
-
-/* delete file confirmation alert */
-"Deleted file: \"%@\"" = "Odstranjena datoteka: »%@«";
 
 /* delete file confirmation alert */
 "Deleted file: &quot;%@&quot;" = "Odstranjena datoteka: &quot;%@&quot;";
@@ -494,9 +475,6 @@
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Rok:";
 
-/* Due date label indicating when an assignment is due */
-"Due: %@" = "Rok: %@";
-
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Rok: %1$@ ob %2$@";
 
@@ -523,9 +501,6 @@
 /* Prompt asking user to enable push notifications */
 "Enable Push Notifications" = "Omogoči poslana obvestila";
 
-/* No comment provided by engineer. */
-"Enter folder name" = "Vnesite ime mape.";
-
 /* Submission input view placeholder text */
 "Enter submission" = "Vnos oddaje";
 
@@ -535,14 +510,11 @@
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "Vnos je objavljen.";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Error" = "Napaka";
 
 /* Title of an alert popup */
 "Error adding recipeints" = "Napaka pri dodajanju prejemnikov";
-
-/* Error deleting file alert view title */
-"Error deleting file \"%@\"" = "Napaka pri odstranjevanju datoteke »%@«";
 
 /* Error deleting file alert view title */
 "Error deleting file &quot;%@&quot;" = "Napaka pri odstranjevanju datoteke &quot;%@&quot;";
@@ -589,11 +561,11 @@
 /* File upload failed. */
 "File upload failed." = "Nalaganje datoteke ni uspelo.";
 
-/* Title for the files screen */
+/* Files view
+   Name of a tab displaying files in a course
+   title for files view
+   Title for the Files View Controller */
 "Files" = "Datoteke";
-
-/* No comment provided by engineer. */
-"Final Grade" = "Končna ocena";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Prenos je dokončan.";
@@ -693,9 +665,6 @@
 "Item %1$d of %2$d" = "Element %1$d od %2$d";
 
 /* No comment provided by engineer. */
-"Item %d of %d" = "Element %1$d od %2$d";
-
-/* No comment provided by engineer. */
 "Jumps to current day on calendar" = "Preskok na trenutni dan na koledarju";
 
 /* No comment provided by engineer. */
@@ -706,9 +675,6 @@
 
 /* Title for an alert popup */
 "Large file" = "Velika datoteka";
-
-/* No comment provided by engineer. */
-"Late Penalty" = "Kazen za zamudo";
 
 /* Button in an alert */
 "Later" = "Pozneje";
@@ -741,9 +707,6 @@
 
 /* No comment provided by engineer. */
 "Love it!" = "Krasno!";
-
-/* Title for an LTI launch submitted as an assignment */
-"LTI Tool" = "Orodje LTI";
 
 /* Button title for mark as done */
 "Mark as Done" = "Označi kot dokončano";
@@ -844,10 +807,9 @@
 "No audio was recorded." = "Posnet ni bil noben zvok.";
 
 /* No comment provided by engineer. */
-"No Date" = "Ni datuma.";
+"No Date" = "Brez datuma";
 
-/* Indicates an assignment does not have a due date
-   String for when assignment has no due date */
+/* String for when assignment has no due date */
 "No due date" = "Ni roka.";
 
 /* Label shown for a to do that doesn't have a due date */
@@ -866,7 +828,7 @@
 "No results found" = "Ni najdenih rezultatov.";
 
 /* No Submission groupong */
-"No Submission" = "Ni oddaj.";
+"No Submission" = "Ni oddaje.";
 
 /* No comment provided by engineer. */
 "No Thanks" = "Ne, hvala.";
@@ -902,7 +864,7 @@
 "Notification Preferences" = "Prednostne nastavitve sporočil";
 
 /* Notifications tab title */
-"Notifications" = "Sporočila";
+"Notifications" = "Obvestila";
 
 /* Short name for observer enrollment */
 "Observer" = "Skriti bralec";
@@ -999,7 +961,8 @@
 /* Title for profile screen */
 "Profile" = "Profil";
 
-/* A short test taken by students */
+/* Label for a quiz
+   Title for a quiz submission cell */
 "Quiz" = "Kviz";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -1036,7 +999,7 @@
 "Record video" = "Posnemi video";
 
 /* Record video submission comment option */
-"Record Video" = "Posnemi video";
+"Record Video" = "Posnemi videoposnetek";
 
 /* No comment provided by engineer. */
 "Refresh Button" = "Gumb »Osveži«";
@@ -1132,7 +1095,7 @@
 "Stop" = "Zaustavi";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
-"Stop Masquerading" = "Konec prevzemanja vlog";
+"Stop Masquerading" = "Konec prevzemanja vloge";
 
 /* Hint about the play button */
 "Stops playing your recording" = "Preneha predvajati posnetek.";
@@ -1155,11 +1118,8 @@
 /* Title for file submission error */
 "Submission Error" = "Napaka pri oddaji";
 
-/* Submit Arc video as assignment button */
+/* Submit an assignment */
 "Submit" = "Pošlji";
-
-/* Button to submit files to an assignment */
-"Submit (%d)" = "Pošlji (%d)";
 
 /* Submitted grouping */
 "Submitted" = "Poslano";
@@ -1231,7 +1191,7 @@
 /* Text entry submission type */
 "Text entry" = "Vnos besedila";
 
-/* Title for a text submission cell */
+/* Generic name for a submission entered online. */
 "Text Submission" = "Oddaja besedila";
 
 /* Text explaining the error */
@@ -1244,7 +1204,7 @@
 "The server you entered is not authorized for this app." = "Strežnik, ki ste ga vnesli, nima pooblastila za to aplikacijo.";
 
 /* No comment provided by engineer. */
-"The user agent for this app is unauthorized." = "Agent uporabnika za to aplikacijo nima pooblastila.";
+"The user agent for this app is unauthorized." = "Zastopnik uporabnika za to aplikacijo nima pooblastila.";
 
 /* Error message */
 "There are no actions for this item" = "Pri tem elementu ni dejanj.";
@@ -1299,9 +1259,6 @@
 
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "To je odlična priložnost za pridobitev nekaj dodatnih točk.";
-
-/* No comment provided by engineer. */
-"To add a file from another app, open the file in that app and tap the Share icon. Then select the Copy to Student option. To add an attachment from the Mail app, tap and hold the attachment, then tap the Canvas icon." = "Če želite dodati datoteko iz druge aplikacije, jo odprite v tej aplikaciji in tapnite ikono skupne rabe. Nato izberite Kopiraj učencu. Če želite dodati prilogo iz e-poštne aplikacije, tapnite in pridržite prilogo, nato pa tapnite ikono Canvas.";
 
 /* Title of to do screen
    To Do page title */
@@ -1383,9 +1340,6 @@
 "Upload file" = "Naloži datoteko";
 
 /* Error message */
-"Upload to assignment \"%@\" failed" = "Nalaganje v nalogo »%@« ni uspelo.";
-
-/* Error message */
 "Upload to assignment &quot;%@&quot; failed" = "Nalaganje v nalogo &quot;%@&quot; ni uspelo.";
 
 /* Error message */
@@ -1400,7 +1354,7 @@
 /* Title for User Info section on the about page */
 "User Info" = "Informacije o uporabniku";
 
-/* Video file type */
+/* Media type is video */
 "Video" = "Videoposnetek";
 
 /* No comment provided by engineer. */
