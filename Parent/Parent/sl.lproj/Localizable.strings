@@ -112,6 +112,9 @@
 /* No comment provided by engineer. */
 "Excused" = "Opravičeno";
 
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Nalaganje (discussionKitModelName) NSManagedObjectModel ni uspelo";
+
 /* No comment provided by engineer. */
 "Help" = "Pomoč";
 
@@ -252,6 +255,9 @@
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "Prišlo je do težav pri nalaganju zbirke podatkov.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov DiscussionKit.";
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Pri nalaganju vsebine je prišlo do napake. Če gre za nalaganje zvočnega posnetka ali videoposnetka, obdelava morda še poteka.";

@@ -19,35 +19,11 @@
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%2$g/%3$@)";
 
-/* Gigabytes */
-"%0.2f GB" = "%0.2f GB";
-
-/* Kilobytes */
-"%0.2f KB" = "%0.2f KB";
-
-/* Megabytes */
-"%0.2f MB" = "%0.2f MB";
-
 /* 88 out of 100 points */
 "%g out of %@" = "%1$g / %2$@";
 
-/* As in, '15 bytes' */
-"%qu bytes" = "%qu tavua";
-
-/* Media type is audio */
-"Audio" = "Ääni";
-
-/* No comment provided by engineer. */
-"Audio input hardware not available" = "Äänitulon laitteisto ei saatavissa";
-
 /* Assignment grade: Complete */
 "Complete" = "Valmis";
-
-/* A custom grade not specified by the rubric. */
-"Custom Grade" = "Mukautettu arvosana";
-
-/* No comment provided by engineer. */
-"Done" = "Valmis";
 
 /* No comment provided by engineer. */
 "Excused" = "Annettu anteeksi";
@@ -64,17 +40,11 @@
 /* Assignment grade: Incomplete */
 "Incomplete" = "Keskeneräinen";
 
-/* No comment provided by engineer. */
-"Me" = "Minä";
-
 /* The name for a video or audio response to something */
 "Media comment" = "Mediakommentti";
 
 /* No comment provided by engineer. */
 "Media Comment" = "Mediakommentti";
-
-/* A slider to choose between media types */
-"Media type selector. %@" = "Mediatyypin valitsin. %@";
 
 /* Pass/fail assignment is not complete */
 "Not Complete" = "Ei valmis";
@@ -85,9 +55,6 @@
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Ei arvosteltu (0/%@)";
 
-/* No comment provided by engineer. */
-"Note: Media files are not immediately available for playback while they are processed on the server." = "Huomautus: Mediatiedostot eivät ole välittömästi saatavissa toistettaviksi, kun niitä käsitellään palvelimella.";
-
 /* Short name for observer enrollment */
 "Observer" = "Havainnoija";
 
@@ -97,59 +64,14 @@
 /* The assignment is out of 100 points */
 "out of %@" = "/ %@";
 
-/* No comment provided by engineer. */
-"out of %@ points" = "/%@ pisteestä";
-
-/* A button that plays */
-"Play" = "Toista";
-
-/* No comment provided by engineer. */
-"Post Comment" = "Lähetä kommentti";
-
-/* No comment provided by engineer. */
-"Posts your comment" = "Lähettää kommenttisi";
-
-/* A button that records */
-"Record" = "Nauhoita";
-
-/* No comment provided by engineer. */
-"Score" = "Pistemäärä";
-
-/* Hint about the play button */
-"Starts playing your recording" = "Aloittaa nauhoituksesi toistamisen";
-
-/* Hint about the record button */
-"Starts recording a media comment" = "Aloittaa mediakommentin nauhoittamisen";
-
-/* A button that stops */
-"Stop" = "Lopeta";
-
-/* Hint about the play button */
-"Stops playing your recording" = "Lopettaa nauhoituksesi toiston";
-
-/* Hint about the record button */
-"Stops recording a media comment" = "Keskeytä mediakommentin nauhoittaminen";
-
 /* Short name for student enrollment */
 "Student" = "Opiskelija";
-
-/* Hint about media input selection */
-"Switches media input between audio and video. Currently set to %@" = "Vaihtaa median tuloa äänen ja videon välillä. Parhaillaan määritetty kohteeseen %@";
-
-/* No comment provided by engineer. */
-"Switches to media comment mode" = "Vaihtaa median kommenttitilaan";
-
-/* No comment provided by engineer. */
-"Switches to text comment mode" = "Vaihtaa tekstin kommenttitilaan";
 
 /* Short name for TA enrollment */
 "TA" = "Apuopettaja";
 
 /* Short name for teacher enrollment */
 "Teacher" = "Opettaja";
-
-/* No comment provided by engineer. */
-"Text Comment" = "Tekstikommentti";
 
 /* Generic name for a submission entered online. */
 "Text Submission" = "Tekstin lähetys";
@@ -159,13 +81,4 @@
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "tuntematon";
-
-/* Media type is video */
-"Video" = "Video";
-
-/* No comment provided by engineer. */
-"Video Error" = "Videon virhe";
-
-/* No comment provided by engineer. */
-"Warning" = "Varoitus";
 

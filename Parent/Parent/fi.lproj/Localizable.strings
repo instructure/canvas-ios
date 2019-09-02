@@ -112,6 +112,9 @@
 /* No comment provided by engineer. */
 "Excused" = "Annettu anteeksi";
 
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NS:n lataus epäonnistuiManagedObjectModel";
+
 /* No comment provided by engineer. */
 "Help" = "Ohje";
 
@@ -252,6 +255,9 @@
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "Tietokantatiedoston latauksessa tapahtui virhe.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "Tietokantatiedoston DiscussionKit latauksessa tapahtui virhe.";
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Sisältösi latauksessa ilmeni virhe. Jos se on äänen tai videon lataus, sitä saatetaan yhä käsitellä.";

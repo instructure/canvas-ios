@@ -8,7 +8,7 @@
 "NSLocationWhenInUseUsageDescription" = "あなたの近くの学校を見つけられるよう手を貸してください。";
 
 /* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "オーディオ録音をメッセージやディスカッションポストに添付するか、課題の提出に入れます。";
+"NSMicrophoneUsageDescription" = "オーディオ録音をメッセージやディスカッションの投稿に添付するか、課題の提出に入れます。";
 
 /* Privacy - Photo Library Additions Usage Description */
 "NSPhotoLibraryAddUsageDescription" = "写真やビデオをメッセージやディスカッションの投稿に添付するか、課題の提出に入れます。";

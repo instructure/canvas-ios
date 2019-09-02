@@ -278,6 +278,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"Pages" = "Páginas";
+
+/* No comment provided by engineer. */
 "Pause" = "Pausar";
 
 /* No comment provided by engineer. */
@@ -390,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "La aplicación se debe reiniciar para usar las nuevas configuraciones de idioma. Vuelva a iniciar la aplicación.";
+
+/* No comment provided by engineer. */
+"There are no pages to display." = "No hay páginas que mostrar.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Hubo un problema al intentar acceder a los Términos de uso.";
