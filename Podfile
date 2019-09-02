@@ -104,10 +104,6 @@ abstract_target 'defaults' do
     project 'Frameworks/CanvasKit/CanvasKit.xcodeproj'
   end
 
-  target 'CanvasKeymaster' do
-    project 'Frameworks/CanvasKeymaster/CanvasKeymaster.xcodeproj'
-  end
-
 end
 
 post_install do |installer|

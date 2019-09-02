@@ -61,8 +61,6 @@
 		497C48EB1F9153D100A3BC06 /* CalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48DA1F9153D000A3BC06 /* CalendarEvents.swift */; };
 		497C48EC1F9153D100A3BC06 /* Discussions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48DB1F9153D000A3BC06 /* Discussions.swift */; };
 		497C48ED1F9153D100A3BC06 /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48DC1F9153D000A3BC06 /* Courses.swift */; };
-		49A36ECF1FA90BEF005F5905 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A36ECC1FA90BD0005F5905 /* CanvasKeymaster.framework */; };
-		49A36ED01FA90BEF005F5905 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49A36ECC1FA90BD0005F5905 /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49A36ED11FA90BEF005F5905 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A36ECB1FA90BD0005F5905 /* CanvasKit.framework */; };
 		49A36ED21FA90BEF005F5905 /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49A36ECB1FA90BD0005F5905 /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49DB0AE61E4E27030036D96E /* Student+AccessRemoved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DB0AE51E4E27030036D96E /* Student+AccessRemoved.swift */; };
@@ -152,7 +150,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4948BE6B1F915F4B0035BAFD /* CanvasCore.framework in Embed Frameworks */,
-				49A36ED01FA90BEF005F5905 /* CanvasKeymaster.framework in Embed Frameworks */,
 				49A36ED21FA90BEF005F5905 /* CanvasKit.framework in Embed Frameworks */,
 				7864D52A21C3FD230075D955 /* Core.framework in Embed Frameworks */,
 			);
@@ -578,7 +575,6 @@
 		497C48DC1F9153D000A3BC06 /* Courses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
 		49952C3B1F7477C300A11404 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A36ECB1FA90BD0005F5905 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49A36ECC1FA90BD0005F5905 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DB0AE51E4E27030036D96E /* Student+AccessRemoved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+AccessRemoved.swift"; sourceTree = "<group>"; };
 		49ED5A4C1DBFD02E009E2896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B1D4EFF22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -889,7 +885,6 @@
 				2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */,
 				2C75AB9D1DDF62E000650856 /* AVFoundation.framework in Frameworks */,
 				4948BE6A1F915F4B0035BAFD /* CanvasCore.framework in Frameworks */,
-				49A36ECF1FA90BEF005F5905 /* CanvasKeymaster.framework in Frameworks */,
 				49A36ED11FA90BEF005F5905 /* CanvasKit.framework in Frameworks */,
 				7D0215A521BAE863009A8E69 /* Core.framework in Frameworks */,
 				5E75B6001C4D4A8E00A44160 /* CoreData.framework in Frameworks */,
@@ -1195,7 +1190,6 @@
 				2C75AB941DDF62CA00650856 /* AssetsLibrary.framework */,
 				2C75AB9C1DDF62E000650856 /* AVFoundation.framework */,
 				49952C3B1F7477C300A11404 /* CanvasCore.framework */,
-				49A36ECC1FA90BD0005F5905 /* CanvasKeymaster.framework */,
 				49A36ECB1FA90BD0005F5905 /* CanvasKit.framework */,
 				7D0215A421BAE863009A8E69 /* Core.framework */,
 				5EEB551C1C483E7200953B20 /* CoreData.framework */,

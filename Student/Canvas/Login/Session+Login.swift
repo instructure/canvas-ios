@@ -17,12 +17,10 @@
 //
 
 import Foundation
-import CanvasKeymaster
+import CanvasKit
 import ReactiveSwift
 import ReactiveObjCBridge
 import CanvasCore
-
-let TheKeymaster = CanvasKeymaster.the()
 
 extension CKIUser {
     fileprivate var sessionUser: SessionUser {

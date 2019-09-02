@@ -33,7 +33,6 @@
 
 @import CanvasCore;
 @import CanvasKit;
-@import CanvasKeymaster;
 
 #ifdef __APPLE__
 #import "TargetConditionals.h"
@@ -118,7 +117,7 @@ CGFloat square(CGFloat x){return x*x;}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    Session *session = TheKeymaster.currentClient.authSession;
+    Session *session = CKIClient.currentClient.authSession;
     
     [session updateBackdropFileFromServer:^(BOOL success) {
         [session backdropPhoto:^(UIImage *backdropPhoto) {
@@ -179,7 +178,7 @@ CGFloat square(CGFloat x){return x*x;}
 
 -(void)chooseCoverPhoto {
     @weakify(self);
-    BackdropPickerViewController *backdropPicker = [[BackdropPickerViewController alloc] initWithSession:TheKeymaster.currentClient.authSession imageSelected:^(UIImage *selectedImage) {
+    BackdropPickerViewController *backdropPicker = [[BackdropPickerViewController alloc] initWithSession:CKIClient.currentClient.authSession imageSelected:^(UIImage *selectedImage) {
         @strongify(self);
         self.headerImageView.image = selectedImage;
     }];

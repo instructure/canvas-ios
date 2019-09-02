@@ -19,14 +19,13 @@
 import AVKit
 import UIKit
 import CanvasCore
-import CanvasKeymaster
+import CanvasKit
 import Fabric
 import Crashlytics
 import Firebase
 import UserNotifications
 import Core
 
-let TheKeymaster = CanvasKeymaster.the()
 let ParentAppRefresherTTL: TimeInterval = 5.minutes
 
 @UIApplicationMain
@@ -106,14 +105,14 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
         }
-        // Legacy CanvasKeymaster support
+        // Legacy CanvasKit support
         let legacyClient = CKIClient(baseURL: session.baseURL, token: session.accessToken)!
         legacyClient.actAsUserID = session.actAsUserID
         legacyClient.originalIDOfMasqueradingUser = session.originalUserID
         legacyClient.originalBaseURL = session.originalBaseURL
         legacyClient.fetchCurrentUser().subscribeNext({ user in
             legacyClient.setValue(user, forKey: "currentUser")
-            CanvasKeymaster.the().setup(with: legacyClient)
+            CKIClient.current = legacyClient
             self.legacySession = legacyClient.authSession
             Router.sharedInstance.session = legacyClient.authSession
             NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: legacyClient.authSession])

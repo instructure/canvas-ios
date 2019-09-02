@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import CanvasKit
 
 extension String {
     init(deviceToken: Data) {
@@ -63,7 +64,7 @@ open class NotificationKitController {
             guard settings.authorizationStatus == .authorized else {
                 return
             }
-            if let client = CanvasKeymaster.the().currentClient {
+            if let client = CKIClient.current {
                 let session = client.authSession
                 let controller = NotificationKitController(session: session)
                 let userToken = UserDeviceToken(session: session, token: deviceToken)

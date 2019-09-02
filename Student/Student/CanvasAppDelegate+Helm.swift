@@ -180,7 +180,7 @@ func moduleItemDetailViewController(routerParameters parameters: [String: Any]) 
 }
 
 func moduleItemDetailViewController(courseID: String, moduleItemID: String) -> ModuleItemDetailViewController? {
-    guard let session = CanvasKeymaster.the().currentClient?.authSession else {
+    guard let session = CKIClient.current?.authSession else {
         return nil
     }
     do {

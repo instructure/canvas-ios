@@ -18,7 +18,7 @@
 
 import AVKit
 import UIKit
-import CanvasKeymaster
+import CanvasKit
 import ReactiveSwift
 import UserNotifications
 import PSPDFKit
@@ -81,14 +81,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
         }
-        // Legacy CanvasKeymaster support
+        // Legacy CanvasKit support
         let legacyClient = CKIClient(baseURL: session.baseURL, token: session.accessToken)!
         legacyClient.actAsUserID = session.actAsUserID
         legacyClient.originalIDOfMasqueradingUser = session.originalUserID
         legacyClient.originalBaseURL = session.originalBaseURL
         legacyClient.fetchCurrentUser().subscribeNext({ user in
             legacyClient.setValue(user, forKey: "currentUser")
-            CanvasKeymaster.the().setup(with: legacyClient)
+            CKIClient.current = legacyClient
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
                 NativeLoginManager.login(as: session, wasReload: wasReload)

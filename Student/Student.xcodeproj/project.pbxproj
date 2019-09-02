@@ -105,11 +105,8 @@
 		495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */; };
 		49642BC01CF4C44A00238B3F /* EXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 49642BBE1CF4C44A00238B3F /* EXTScope.h */; };
 		49642BC11CF4C44A00238B3F /* metamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 49642BBF1CF4C44A00238B3F /* metamacros.h */; };
-		49642BC41CF4C4DC00238B3F /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */; };
-		49642BC51CF4C4DC00238B3F /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; };
 		49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49642BC81CF4C4DF00238B3F /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */; };
 		49642BC91CF4C4DF00238B3F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; };
 		496D31261CF752C600A3B11E /* LegacyModuleProgressShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */; };
 		496D312A1CF7550A00A3B11E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31291CF7550A00A3B11E /* NetworkMonitor.swift */; };
@@ -639,7 +636,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */,
-				49642BC51CF4C4DC00238B3F /* CanvasKeymaster.framework in Embed Frameworks */,
 				49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */,
 				49AA291F1CF4D1880055862D /* CanvasKit1.framework in Embed Frameworks */,
 				7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */,
@@ -791,7 +787,6 @@
 		495D8BBA1CFE17D700D41098 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49642BBE1CF4C44A00238B3F /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		49642BBF1CF4C44A00238B3F /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
-		49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49642BC31CF4C4CD00238B3F /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49642BCA1CF4C66200238B3F /* Student.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Student.entitlements; sourceTree = "<group>"; };
 		496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyModuleProgressShim.swift; sourceTree = "<group>"; };
@@ -1614,7 +1609,6 @@
 				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
 				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
 				7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */,
-				49642BC41CF4C4DC00238B3F /* CanvasKeymaster.framework in Frameworks */,
 				49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */,
 				49AA291E1CF4D1880055862D /* CanvasKit1.framework in Frameworks */,
 				7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */,
@@ -1639,7 +1633,6 @@
 				B1F405EC22E23C51008FAFE6 /* ReactiveObjC.framework in Frameworks */,
 				2C6049611F72BB6900252BC5 /* CanvasCore.framework in Frameworks */,
 				B1F405EB22E23C4F008FAFE6 /* ReactiveMapKit.framework in Frameworks */,
-				49642BC81CF4C4DF00238B3F /* CanvasKeymaster.framework in Frameworks */,
 				49642BC91CF4C4DF00238B3F /* CanvasKit.framework in Frameworks */,
 				B1F405EE22E23C5B008FAFE6 /* ReactiveSwift.framework in Frameworks */,
 				49A04E4E1CF6420C0051E1E7 /* CanvasKit1.framework in Frameworks */,
@@ -2409,7 +2402,6 @@
 				2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */,
 				61F438E21DD4E60B00552D14 /* AVFoundation.framework */,
 				2C6049621F72BB6900252BC5 /* CanvasCore.framework */,
-				49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */,
 				49642BC31CF4C4CD00238B3F /* CanvasKit.framework */,
 				7D1D7E04213743D300F7CCFE /* Core.framework */,
 				2C67B0CB1E01F06800DDD191 /* CoreMedia.framework */,

@@ -5,9 +5,6 @@
       location = "group:CanvasCore/CanvasCore.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Frameworks/CanvasKeymaster/CanvasKeymaster.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Frameworks/CanvasKit/CanvasKit.xcodeproj">
    </FileRef>
    <FileRef

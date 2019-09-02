@@ -21,7 +21,7 @@ import UIKit
 import CanvasCore
 import CanvasKit1
 import TechDebt
-import CanvasKeymaster
+import CanvasKit
 import UserNotifications
 import Kingfisher
 import Core
@@ -118,7 +118,7 @@ extension SettingsViewController {
     
     fileprivate func data() -> [SettingsRow] {
         let profile = TextSettingsRow(title: NSLocalizedString("Profile", comment: "")) { () -> () in
-            if let session = CanvasKeymaster.the().currentClient?.authSession {
+            if let session = CKIClient.current?.authSession {
                 let profile = TechDebt.ProfileViewController()
                 profile.canvasAPI = CKCanvasAPI.current()
                 profile.user = profile.canvasAPI.user
@@ -142,14 +142,14 @@ extension SettingsViewController {
         }
         
         let landingPage = TextSettingsRow(title: NSLocalizedString("Landing Page", comment: "Settings entry title for Choosing a Landing Page"), action: {
-            let currentUserID = CanvasKeymaster.the().currentClient?.currentUser.id
+            let currentUserID = CKIClient.current?.currentUser.id
             
             let viewController = LandingPageViewController(currentUserID: currentUserID!)
             self.navigationController?.pushViewController(viewController, animated: true)
         })
         
         let notificationPreferences = TextSettingsRow(title: NSLocalizedString("Notification Preferences", comment: "Settings entry title for Notification Preferences")) { () -> () in
-            if let session = CanvasKeymaster.the().currentClient?.authSession {
+            if let session = CKIClient.current?.authSession {
                 let notificationDataController = NotificationKitController(session: session)
                 
                 let viewController = CommunicationChannelsViewController.new(notificationDataController)

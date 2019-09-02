@@ -23,7 +23,6 @@ import CanvasCore
 import Core
 import Marshal
 import SafariServices
-import CanvasKeymaster
 
 let LoggedInNotificationContentsSession = "LoggedInNotificationContentsSession"
 
