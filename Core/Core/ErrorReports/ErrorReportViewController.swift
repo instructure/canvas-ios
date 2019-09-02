@@ -24,6 +24,7 @@ public enum ErrorReportType: String {
 
 public class ErrorReportViewController: UIViewController {
     @IBOutlet weak var commentsField: UITextView?
+    weak var commentsMinHeight: NSLayoutConstraint?
     @IBOutlet weak var commentsPlaceholder: UILabel?
     @IBOutlet weak var emailField: UITextField?
     @IBOutlet weak var emailLabel: UILabel?
@@ -109,13 +110,18 @@ public class ErrorReportViewController: UIViewController {
         commentsField?.textColor = .named(.textDarkest)
         commentsField?.textContainerInset = UIEdgeInsets(top: 11.5, left: 11, bottom: 11, right: 11)
 
-        let otherFieldsHeight: CGFloat = emailView?.isHidden == true ? 100 : 150
-        commentsField?.heightAnchor.constraint(greaterThanOrEqualTo: scrollView!.heightAnchor, constant: -otherFieldsHeight).isActive = true
+        commentsMinHeight = commentsField?.heightAnchor.constraint(greaterThanOrEqualTo: scrollView!.heightAnchor)
+        commentsMinHeight?.isActive = true
     }
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
+    }
+
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        commentsMinHeight?.constant = -(commentsField?.superview?.frame.minY ?? 100)
     }
 
     @objc func send() {

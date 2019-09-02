@@ -13,7 +13,6 @@
         <!--Report a Problem-->
         <scene sceneID="MvS-8Y-NV8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5sS-3V-kid" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ErrorReportViewController" title="Report a Problem" modalPresentationStyle="formSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PvC-F6-8XD" customClass="ErrorReportViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="07N-bz-ibZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
@@ -252,6 +251,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="D7T-zY-mIK" firstAttribute="leading" secondItem="4eN-vB-wr0" secondAttribute="leading" id="Hh8-aM-dPu"/>
                             <constraint firstItem="D7T-zY-mIK" firstAttribute="top" secondItem="4eN-vB-wr0" secondAttribute="top" id="MJ3-f5-QZJ"/>
@@ -278,6 +278,7 @@
                         <outlet property="subjectLabel" destination="s54-29-xBj" id="9lu-6x-xIU"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5sS-3V-kid" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="18.399999999999999" y="19.340329835082461"/>
         </scene>
