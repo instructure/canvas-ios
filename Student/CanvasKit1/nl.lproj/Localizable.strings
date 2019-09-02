@@ -2,7 +2,7 @@
 " Rating for %@, Score: %g" = " Beoordeling voor %1$@, score: %2$g";
 
 /* B- (83 out of 100 points */
-"%@ (%g out of %@)" = "%1$@ (%2$g vanuit %3$@)";
+"%@ (%g out of %@)" = "%1$@ (%2$g van %3$@)";
 
 /* something at something */
 "%@ at %@" = "%1$@ om %2$@";
@@ -19,35 +19,11 @@
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%2$g van %3$@)";
 
-/* Gigabytes */
-"%0.2f GB" = "%0.2f GB";
-
-/* Kilobytes */
-"%0.2f KB" = "%0.2f KB";
-
-/* Megabytes */
-"%0.2f MB" = "%0.2f MB";
-
 /* 88 out of 100 points */
 "%g out of %@" = "%1$g van %2$@";
 
-/* As in, '15 bytes' */
-"%qu bytes" = "%qu bytes";
-
-/* Media type is audio */
-"Audio" = "Audio";
-
-/* No comment provided by engineer. */
-"Audio input hardware not available" = "Audio input hardware niet beschikbaar";
-
 /* Assignment grade: Complete */
 "Complete" = "Voltooid";
-
-/* A custom grade not specified by the rubric. */
-"Custom Grade" = "Aangepast cijfer";
-
-/* No comment provided by engineer. */
-"Done" = "Gereed";
 
 /* No comment provided by engineer. */
 "Excused" = "Vrijgesteld";
@@ -64,17 +40,11 @@
 /* Assignment grade: Incomplete */
 "Incomplete" = "Incompleet";
 
-/* No comment provided by engineer. */
-"Me" = "Mij";
-
 /* The name for a video or audio response to something */
 "Media comment" = "Media opmerking";
 
 /* No comment provided by engineer. */
 "Media Comment" = "Opmerking op media";
-
-/* A slider to choose between media types */
-"Media type selector. %@" = "Mediatypekiezer. %@";
 
 /* Pass/fail assignment is not complete */
 "Not Complete" = "Niet volledig";
@@ -85,9 +55,6 @@
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Niet beoordeeld (0 van %@)";
 
-/* No comment provided by engineer. */
-"Note: Media files are not immediately available for playback while they are processed on the server." = "Opmerking: Mediabestanden zijn niet direct beschikbaar om af te spelen terwijl ze nog op de server bewerkt worden.";
-
 /* Short name for observer enrollment */
 "Observer" = "Waarnemer";
 
@@ -97,59 +64,14 @@
 /* The assignment is out of 100 points */
 "out of %@" = "van %@";
 
-/* No comment provided by engineer. */
-"out of %@ points" = "van %@ punten";
-
-/* A button that plays */
-"Play" = "Afspelen";
-
-/* No comment provided by engineer. */
-"Post Comment" = "Opmerking plaatsen";
-
-/* No comment provided by engineer. */
-"Posts your comment" = "Plaatst je opmerking";
-
-/* A button that records */
-"Record" = "Opnemen";
-
-/* No comment provided by engineer. */
-"Score" = "Score";
-
-/* Hint about the play button */
-"Starts playing your recording" = "Je opname begint af te spelen";
-
-/* Hint about the record button */
-"Starts recording a media comment" = "Een media opmerking wordt opgenomen";
-
-/* A button that stops */
-"Stop" = "Stoppen";
-
-/* Hint about the play button */
-"Stops playing your recording" = "Afspelen van je opname stopt.";
-
-/* Hint about the record button */
-"Stops recording a media comment" = "Opnemen media opmerking stopt";
-
 /* Short name for student enrollment */
 "Student" = "Cursist";
-
-/* Hint about media input selection */
-"Switches media input between audio and video. Currently set to %@" = "Schakelt media-invoer tussen audio en video. Momenteel ingesteld op %@";
-
-/* No comment provided by engineer. */
-"Switches to media comment mode" = "Schakelt om naar media opmerking modus";
-
-/* No comment provided by engineer. */
-"Switches to text comment mode" = "Schakelt om naar tekst opmerking modus";
 
 /* Short name for TA enrollment */
 "TA" = "Onderwijsassistent";
 
 /* Short name for teacher enrollment */
 "Teacher" = "Cursusleider";
-
-/* No comment provided by engineer. */
-"Text Comment" = "Tekst opmerking";
 
 /* Generic name for a submission entered online. */
 "Text Submission" = "Tekstinzending";
@@ -159,13 +81,4 @@
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "onbekend";
-
-/* Media type is video */
-"Video" = "Video";
-
-/* No comment provided by engineer. */
-"Video Error" = "Fout in video";
-
-/* No comment provided by engineer. */
-"Warning" = "Waarschuwing";
 

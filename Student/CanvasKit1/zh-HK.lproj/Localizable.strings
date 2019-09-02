@@ -19,35 +19,11 @@
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%%（%2$g 分，滿分為 %3$@）";
 
-/* Gigabytes */
-"%0.2f GB" = "%0.2f GB";
-
-/* Kilobytes */
-"%0.2f KB" = "%0.2f KB";
-
-/* Megabytes */
-"%0.2f MB" = "%0.2f MB";
-
 /* 88 out of 100 points */
 "%g out of %@" = "%1$g滿分為%2$@";
 
-/* As in, '15 bytes' */
-"%qu bytes" = "%qu 位元組";
-
-/* Media type is audio */
-"Audio" = "音頻";
-
-/* No comment provided by engineer. */
-"Audio input hardware not available" = "音頻輸入硬體不可用";
-
 /* Assignment grade: Complete */
 "Complete" = "完成";
-
-/* A custom grade not specified by the rubric. */
-"Custom Grade" = "自定義評分";
-
-/* No comment provided by engineer. */
-"Done" = "已完成";
 
 /* No comment provided by engineer. */
 "Excused" = "已免除";
@@ -59,22 +35,16 @@
 "File extension(s) permitted for this assignment: " = "檔案擴展名可用於該作業：";
 
 /* File upload failed. */
-"File upload failed." = "檔案上載失敗。";
+"File upload failed." = "檔案上傳失敗。";
 
 /* Assignment grade: Incomplete */
 "Incomplete" = "未完成";
-
-/* No comment provided by engineer. */
-"Me" = "我";
 
 /* The name for a video or audio response to something */
 "Media comment" = "媒體評論";
 
 /* No comment provided by engineer. */
 "Media Comment" = "媒體評論";
-
-/* A slider to choose between media types */
-"Media type selector. %@" = "媒體類型選擇器。%@";
 
 /* Pass/fail assignment is not complete */
 "Not Complete" = "未完成";
@@ -85,9 +55,6 @@
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "未評分（0 分，滿分為 %@）";
 
-/* No comment provided by engineer. */
-"Note: Media files are not immediately available for playback while they are processed on the server." = "注：媒體檔案目前正在伺服器上進行處理中，暫時無法提供播放。";
-
 /* Short name for observer enrollment */
 "Observer" = "觀察者";
 
@@ -97,50 +64,8 @@
 /* The assignment is out of 100 points */
 "out of %@" = "滿分為%@";
 
-/* No comment provided by engineer. */
-"out of %@ points" = "滿分為 %@ 分";
-
-/* A button that plays */
-"Play" = "播放";
-
-/* No comment provided by engineer. */
-"Post Comment" = "發佈評論";
-
-/* No comment provided by engineer. */
-"Posts your comment" = "發布您的評論";
-
-/* A button that records */
-"Record" = "錄製";
-
-/* No comment provided by engineer. */
-"Score" = "分數";
-
-/* Hint about the play button */
-"Starts playing your recording" = "開始播放您錄製的內容";
-
-/* Hint about the record button */
-"Starts recording a media comment" = "開始錄製媒體評論";
-
-/* A button that stops */
-"Stop" = "停止";
-
-/* Hint about the play button */
-"Stops playing your recording" = "停止播放您錄製的內容";
-
-/* Hint about the record button */
-"Stops recording a media comment" = "停止錄製媒體評論";
-
 /* Short name for student enrollment */
 "Student" = "學生";
-
-/* Hint about media input selection */
-"Switches media input between audio and video. Currently set to %@" = "在音頻和視頻之間切換媒體輸入源。目前設定為%@";
-
-/* No comment provided by engineer. */
-"Switches to media comment mode" = "切換到媒體評論模式";
-
-/* No comment provided by engineer. */
-"Switches to text comment mode" = "切換到文字評論模式";
 
 /* Short name for TA enrollment */
 "TA" = "助教";
@@ -148,24 +73,12 @@
 /* Short name for teacher enrollment */
 "Teacher" = "教師";
 
-/* No comment provided by engineer. */
-"Text Comment" = "文字評論";
-
 /* Generic name for a submission entered online. */
 "Text Submission" = "文字提交項目";
 
 /* Error description when a user tries to upload a file that's too big */
-"The file you are trying to uploading is %@, but the maximum size is %@." = "您正嘗試上載的檔案大小為 %1$@，但最大大小為 %2$@。";
+"The file you are trying to uploading is %@, but the maximum size is %@." = "您正嘗試上傳的檔案大小為 %1$@，但最大大小為 %2$@。";
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "未知";
-
-/* Media type is video */
-"Video" = "視頻";
-
-/* No comment provided by engineer. */
-"Video Error" = "視頻錯誤";
-
-/* No comment provided by engineer. */
-"Warning" = "警告";
 

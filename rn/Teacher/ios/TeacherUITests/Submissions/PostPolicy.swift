@@ -26,6 +26,8 @@ enum PostPolicy: String, CaseIterable, ElementWrapper {
     case postGradesButton
     case hideGradesButton
     case toggleHideGradeSections
+    case allGradesPosted
+    case allGradesHidden
 
     static func postToSectionToggle(id: String) -> Element {
         return app.find(id: "PostPolicy.post.section.toggle.\(id)")

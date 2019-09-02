@@ -112,6 +112,9 @@
 /* No comment provided by engineer. */
 "Excused" = "Usprawiedliwiony";
 
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Nie udało się wczytać (discussionKitModelName) NSManagedObjectModel";
+
 /* No comment provided by engineer. */
 "Help" = "Pomoc";
 
@@ -252,6 +255,9 @@
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "Wystąpił problem z wczytaniem bazy danych.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "Wystąpił problem z wczytaniem pliku bazy danych DiscussionKit.";
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Wystąpił błąd podczas ładowania Twojej zawartości. Jeżeli jest to nagranie dźwiękowe lub wideo możliwe, że jest wciąż przetwarzane.";

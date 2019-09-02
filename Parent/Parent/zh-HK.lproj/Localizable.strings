@@ -112,6 +112,9 @@
 /* No comment provided by engineer. */
 "Excused" = "已豁免";
 
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "無法載入 (discussionKitModelName) NSManagedObjectModel";
+
 /* No comment provided by engineer. */
 "Help" = "支援";
 
@@ -252,6 +255,9 @@
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "載入資料庫時出現問題。";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "載入 DiscussionKit 資料庫檔案時出現問題。";
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "載入您的內容時出錯。如果內容是音頻或視頻資料，可能依然正在上載中。";

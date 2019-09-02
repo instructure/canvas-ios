@@ -278,6 +278,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"Pages" = "頁面";
+
+/* No comment provided by engineer. */
 "Pause" = "暫停";
 
 /* No comment provided by engineer. */
@@ -390,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "若要使用新的語言設定，需要重新啟動應用程式。請重新啟動應用程式。";
+
+/* No comment provided by engineer. */
+"There are no pages to display." = "沒有可顯示的頁面。";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "取得使用條款時出現問題。";

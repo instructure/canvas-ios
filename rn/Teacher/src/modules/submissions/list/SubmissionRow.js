@@ -21,6 +21,7 @@
 import React, { Component } from 'react'
 import {
   View,
+  Image,
   StyleSheet,
   TouchableHighlight,
 } from 'react-native'
@@ -35,6 +36,7 @@ import { Text } from '../../../common/text'
 import SubmissionStatusLabel from './SubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
 import { formatGradeText } from '../../../common/formatters'
+import images from '../../../images'
 
 type RowProps = {
   testID: string,
@@ -79,12 +81,11 @@ class Row extends Component<RowProps, any> {
 }
 
 export const Grade = ({ grade, gradingType }: {grade: ?GradeProp, gradingType: GradingType}) => {
-  if (!grade || grade === 'not_submitted' || grade === 'ungraded' || gradingType === 'not_graded') {
-    return null
-  }
-
   let gradeText = grade
-  if (grade === 'excused') {
+
+  if (!grade || grade === 'not_submitted' || grade === 'ungraded' || gradingType === 'not_graded') {
+    gradeText = '--'
+  } else if (grade === 'excused') {
     gradeText = i18n('Excused')
   } else {
     gradeText = formatGradeText(grade, gradingType)
@@ -106,16 +107,14 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
   }
 
   render () {
-    let { userID, avatarURL, name, status, grade, gradingType, disclosure } = this.props
-    if (disclosure === undefined) {
-      disclosure = true
-    }
+    let { userID, avatarURL, name, status, grade, gradingType, submission } = this.props
     if (this.props.anonymous) {
       name = (this.props.groupID ? i18n('Group') : i18n('Student'))
       avatarURL = null
     }
+
     return (
-      <Row disclosure={disclosure} testID={`submission-${userID}`} onPress={this.onPress}>
+      <Row testID={`submission-${userID}`} onPress={this.onPress}>
         <View style={styles.avatar}>
           <Avatar
             key={userID}
@@ -139,6 +138,13 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
           }
         </View>
         <Grade grade={grade} gradingType={gradingType} />
+        {this.props.newGradebookEnabled && submission.grade != null && submission.posted_at == null &&
+          <Image
+            source={images.off}
+            testID='SubmissionRow.hiddenIcon'
+            style={{ tintColor: colors.destructiveButtonColor, height: 20, width: 20, marginLeft: 10 }}
+          />
+        }
       </Row>
     )
   }

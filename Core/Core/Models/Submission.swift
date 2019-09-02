@@ -146,7 +146,7 @@ extension Submission: WriteableModel {
                 SubmissionComment.save(comment, forSubmission: item.id.value, in: client)
             }
         }
-        if item.submission_type != nil, item.submission_type != .none, item.submission_type != .not_graded, item.submission_type != .on_paper {
+        if item.submission_type != nil, item.submission_type != SubmissionType.none, item.submission_type != .not_graded, item.submission_type != .on_paper {
             SubmissionComment.save(item, in: client)
         }
 

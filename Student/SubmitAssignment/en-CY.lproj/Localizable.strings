@@ -11,5 +11,8 @@
 "Course" = "Module";
 
 /* No comment provided by engineer. */
-"Courses" = "Modules";
+"Courses" = "Courses";
+
+/* No comment provided by engineer. */
+"Submit" = "Submit";
 

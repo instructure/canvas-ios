@@ -2,40 +2,37 @@
 "\n\nYou must first complete:" = "\n\n您必須首先完成：";
 
 /* when locked item will become unlocked */
-" until %@" = " 直至 %@";
+" until %@" = "直到%@";
 
 /* %@ will be replaced by the filename */
-"'%@' is now ready to submit to assignments" = "'%@' 現在準備好提交作業件";
+"'%@' is now ready to submit to assignments" = "'%@' 現在準備好提交作業列表";
 
 /* explanation for locked module item */
-"\"%@\" is locked as part of \"%@\"" = "\"%1$@\" 已被鎖定為 \"%2$@\" 的組成部分";
+"\"%@\" is locked as part of \"%@\"" = "\"%1$@” 被鎖定為 \"%2$@” 的一部分";
 
 /* explanation for locked module item */
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; 已被鎖定為&quot;%2$@&quot;的一部份";
 
 /* Message for unsupported tab coming soon */
-"%@ is coming soon!" = "%@ 即將推出!";
-
-/* local notification countdown alert */
-"%@ is due in %@" = "%1$@ 將在 %2$@ 後到期";
+"%@ is coming soon!" = "%@即將推出！";
 
 /* explanation for locked item */
-"%@ is locked" = "%@ 被鎖定";
+"%@ is locked" = "%@已鎖定";
 
 /* %@ is the token where the host name goes. Error message that the host doesn't exist. */
-"%@ is not a valid host" = "%@ 不是有效的伺服器";
+"%@ is not a valid host" = "%@是無效的主機";
 
 /* No comment provided by engineer. */
-"%@ is not a valid URL" = "%@ 不是有效的 URL";
+"%@ is not a valid URL" = "%@是一個無效的 URL";
 
 /* Message for unsupported tab */
-"%@ is not currently supported." = "%@ 目前不被支持。";
+"%@ is not currently supported." = "%@目前不受支援。";
 
 /* Description for how many times a specific discussion has been liked by other users */
-"%@ likes" = "%@ 個讚";
+"%@ likes" = "%@贊";
 
 /* Label indicating multiple submissions need grading */
-"%@ need grading" = "%@ 需要評分";
+"%@ need grading" = "%@需要評分";
 
 /* Word and ellipses */
 "%@..." = "%@...";
@@ -50,7 +47,7 @@
 "%0.2f MB" = "%0.2f MB";
 
 /* Button to submit files to an assignment */
-"%1$@ (%2$d)" = "%1$@ (%2$d)";
+"%1$@ (%2$d)" = "%1$@(%2$d)";
 
 /* B- (83 out of 100 points */
 "%1$@ (%2$g out of %3$@)" = "%1$@（%2$g 分，滿分為 %3$@）";
@@ -59,55 +56,55 @@
 "%1$@ at %2$@" = "%1$@於%2$@";
 
 /* local notification countdown alert */
-"%1$@ is due in %2$@" = "%1$@ 將在 %2$@ 後到期";
+"%1$@ is due in %2$@" = "%1$@內到期%2$@";
 
 /* 88 out of 100 points */
 "%1$@ out of %2$@" = "%1$@滿分為%2$@";
 
 /* String to be read for the blind users. Name of item in module, then type of thing. */
-"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@。 類型： %3$@.";
+"%1$@. %2$@. Type: %3$@." = "%1$@。%2$@. 類型：%3$@。";
 
 /* String to be read for the blind users. Name of item in module, then type of thing, then status. */
-"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@。 類型： %3$@。 狀態： %4$@";
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@。%2$@. 類型：%3$@. 狀態：%4$@";
 
 /* 83% (83 out of 100 points */
 "%1$@%% (%2$g out of %3$@)" = "%1$@%%（%2$g 分，滿分為 %3$@）";
 
 /* A number and a collective noun, like '5 pigs' */
-"%1$d %2$@" = "%1$d %2$@";
+"%1$d %2$@" = "%1$d%2$@";
 
 /* 88 out of 100 points */
 "%1$g out of %2$@" = "%1$g滿分為%2$@";
 
 /* A number and a collective noun, like '5 pigs' */
-"%d %@" = "%1$d %2$@";
+"%d %@" = "%1$d%2$@";
 
 /* time since creation (2 or more days) */
-"%d days ago" = "%d 天前";
+"%d days ago" = "%d天前";
 
 /* time since creation (2 or more hours) */
-"%d hours ago" = "%d 小時前";
+"%d hours ago" = "%d小時前";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
-"%d items" = "%d 個項目";
+"%d items" = "%d項目";
 
 /* time since creation (2 or more minutes) */
-"%d minutes ago" = "%d 分鐘前";
+"%d minutes ago" = "%d分鐘前";
 
 /* time since creation (2 or more months) */
-"%d months ago" = "%d 個月前";
+"%d months ago" = "%d個月前";
 
 /* In the context 'Joe, Fred, ((25 more))' */
-"%d more" = "%d 更多";
+"%d more" = "%d更多";
 
 /* Something like '5 replies' */
-"%d replies" = "%d 個回覆";
+"%d replies" = "%d回覆";
 
 /* Something like '3 unread'. Refers to unread replies in a discsusion. */
-"%d unread" = "%d 未讀";
+"%d unread" = "%d未讀";
 
 /* time since creation (2 or more years) */
-"%d years ago" = "%d 年前";
+"%d years ago" = "%d年前";
 
 /* As in, '15 bytes' */
 "%qu bytes" = "%qu 位元組";
@@ -131,10 +128,10 @@
 "%tu minutes" = "%tu 分鐘";
 
 /* No comment provided by engineer. */
-"%u Attachments" = "%u 附件";
+"%u Attachments" = "%u附件";
 
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
-"%u files" = "%u 資料夾";
+"%u files" = "%u個檔案";
 
 /* No comment provided by engineer. */
 "1 Attachment" = "1 附件";
@@ -143,7 +140,7 @@
 "1 day" = "1 天";
 
 /* time since creation */
-"1 day ago" = "1 天前";
+"1 day ago" = "1 天以前";
 
 /* one hour */
 "1 hour" = "1 小時";
@@ -179,10 +176,10 @@
 "About" = "關於";
 
 /* Access Denied from the server */
-"Access Denied" = "存取被拒絕";
+"Access Denied" = "存取遭拒";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
-"Access denied. Please check your permissions for the action you're trying to complete." = "存取被拒絕。請核對您是否擁有正在採取的行動的權限。";
+"Access denied. Please check your permissions for the action you're trying to complete." = "存取遭拒。請檢查您是否擁有正在嘗試採取的行動的權限。";
 
 /* No comment provided by engineer. */
 "Add a folder" = "添加一個資料夾";
@@ -210,7 +207,7 @@
 "Add inline media" = "添加線上媒體";
 
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
-"Add recipients" = "添加收信人";
+"Add recipients" = "添加收件人";
 
 /* Button to select all members of a group */
 "All members" = "所有成員";
@@ -219,33 +216,27 @@
 "An unknown error occurred" = "出現未知錯誤";
 
 /* Title of the new announcement view */
-"Announcement" = "宣告";
+"Announcement" = "通告";
 
 /* Announcements title
    Title for the announcements view controller */
-"Announcements" = "宣告";
-
-/* Assignment submission type for selecting an Arc video */
-"Arc" = "Arc";
+"Announcements" = "通告";
 
 /* Archive selected messages button
    mark a message as archived */
-"Archive" = "歷史檔";
+"Archive" = "存檔";
 
 /* hint to archive selected messages */
-"Archive all selected messages" = "將所有選中郵件存入歷史檔";
+"Archive all selected messages" = "將所有選中訊息存檔";
 
 /* archive selected messages */
-"Archive Selected Messages Button" = "將選中郵件存入歷史檔的按鈕";
+"Archive Selected Messages Button" = "將選中訊息存檔的按鈕";
 
 /* No comment provided by engineer. */
 "Archived" = "已存檔";
 
 /* Action sheet title verifying that a user wants to logout. */
-"Are you ready to logout?" = "你是否要登出？";
-
-/* Confirmation alert text for submitting an Arc video for an assignment */
-"Are you sure you want to submit this Arc video for this assignment?" = "您確定要用這段 Arc 影片來提交作業嗎？";
+"Are you ready to logout?" = "您是否要登出？";
 
 /* No comment provided by engineer. */
 "Ask me later" = "稍後再問我";
@@ -260,27 +251,27 @@
 "Attachment" = "附件";
 
 /* label for an attachment */
-"Attachment %d" = "附件 %d";
+"Attachment %d" = "附件%d";
 
 /* An item for attaching to a conversation */
-"Attachment %i" = "附件 %i";
+"Attachment %i" = "附件%i";
 
 /* Table View Controller for Attachments */
 "Attachments" = "附件";
 
 /* Label for a discussion */
-"Attendance" = "出勤";
+"Attendance" = "出席紀錄";
 
-/* Audio file type */
-"Audio" = "音頻";
+/* Media type is audio */
+"Audio" = "音訊";
 
 /* No comment provided by engineer. */
-"Audio input hardware not available" = "音頻輸入硬體不可用";
+"Audio input hardware not available" = "音訊輸入硬體不可用";
 
 /* No comment provided by engineer. */
 "Augment Reality" = "擴增實境";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Authentication error" = "認證錯誤";
 
 /* Link to building panda avatar */
@@ -290,7 +281,7 @@
 "Cache cleared" = "緩存已清空";
 
 /* Calendar page title */
-"Calendar" = "月曆";
+"Calendar" = "行事曆";
 
 /* Invalid LTI tool error title */
 "Can't load tool" = "無法載入工具";
@@ -298,39 +289,35 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "無法提交媒體";
 
-/* Cancel button title
-   Cancel button title to cancel submitting an Arc video as an assignment submission */
+/* Cancel button title */
 "Cancel" = "取消";
 
-/* Cancel button title */
-"Cancel Message" = "取消郵件";
+/* Cancel adding a comment button */
+"Cancel Message" = "取消訊息";
 
 /* No comment provided by engineer. */
-"Canvas appears to be unavailable. Please try again later." = "Canvas 似乎不可用。請稍後再試。";
+"Canvas appears to be unavailable. Please try again later." = "Canvas 似乎無法使用。請稍後重試。";
 
 /* detail text for recipient fetch error message */
-"Canvas failed to find recipients for your current search. Please try again later." = "Canvas 未能根據您當前的搜尋項找到收件人.請稍後再試。";
-
-/* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas 測驗支援不同評估類型。手機支援大部份評估類型，但有的例外。如果該測驗未經手機支援，您有可能未能完成整個測驗，這將為您帶來不利。\n\n未經手機支援的問題類型包括：含有 Adobe Flash™ 內容和其他。\n\n如測驗含有未經支援的內容，請在桌面或筆記本電腦上完成測驗。如果測驗只含受支援的內容，請放心在手機上完成測驗。";
+"Canvas failed to find recipients for your current search. Please try again later." = "Canvas 無法找到您目前搜尋的收件人。請稍後重試。";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas 測驗支持多種評估風格。大部分風格在移動設備上可獲支持；但仍有部分例外。如果您試圖在您的行動電話上進行上述未獲支持的測驗，您或許無法完成完整的測試，導致對您不利。\n\n未獲支持的問題類型包括包含有 Adobe Flash™ 內容的問題，資料夾上載和其他內容。\n\n如果您認為測驗包含有未經支持的內容，請選用桌面電腦或膝上式電腦。如果您確定測驗僅包含已獲支持的內容，您可放心選用移動設備接受測驗。";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas 測驗支援不同評估類型。手機支援大部份評估類型，但有的例外。如果您嘗試在您的手機接受這些不受支援的測驗之一，您有可能無法完成整個測驗，這將為您帶來不利。\n\n不受支援的問題類型包括包含 Adobe Flash™ 內容、檔案上傳和其他的問題。\n\n如測驗含有未經支援的內容，請在桌面或筆記本電腦上完成測驗。如果測驗只含受支援的內容，請放心在手機上完成測驗。";
 
 /* button to change user's profile image */
-"Change Profile Image" = "更改檔案圖片";
+"Change Profile Image" = "更改個人檔案圖片";
 
 /* No comment provided by engineer. */
 "Change User" = "變更使用者";
 
 /* No comment provided by engineer. */
-"Choose a name for the new folder" = "為新資料夾選擇一個名字";
+"Choose a name for the new folder" = "為新資料夾選擇一個名稱";
 
 /* Content of an alert popup */
-"Choose a name for the new folder." = "為新資料夾選擇一個名字。";
+"Choose a name for the new folder." = "為新資料夾選擇一個名稱。";
 
 /* No comment provided by engineer. */
-"Choose a submission type" = "選擇提交件類型";
+"Choose a submission type" = "選擇提交項目類型";
 
 /* Choose an existing picture or video to use in a comment. */
 "Choose from Library..." = "從庫中選擇...";
@@ -339,19 +326,19 @@
 "Choose Photo" = "選擇照片";
 
 /* No comment provided by engineer. */
-"Choose Profile Picture" = "選擇檔案照片";
+"Choose Profile Picture" = "選擇個人檔案照片";
 
 /* action sheet text for picking video from library */
-"Choose video" = "選擇視頻";
+"Choose video" = "選擇視訊";
 
 /* Choose a video to send as a comment */
-"Choose Video" = "選擇視頻";
+"Choose Video" = "選擇視訊";
 
 /* Close the window */
 "Close" = "關閉";
 
 /* No comment provided by engineer. */
-"Closed for Comments" = "已關閉評論";
+"Closed for Comments" = "已關閉以徵求評論";
 
 /* Title for Collaborations tab */
 "Collaborations" = "協作";
@@ -376,19 +363,16 @@
 "Completed" = "已完成";
 
 /* hint for button to compose a message */
-"Compose a message" = "編輯一封郵件";
+"Compose a message" = "撰寫一條訊息";
 
 /* button to compose a message */
-"Compose Message Button" = "編輯郵件按鈕";
+"Compose Message Button" = "撰寫訊息按鈕";
 
 /* Title for Conferences tab */
 "Conferences" = "會議";
 
 /* Alert title */
 "Confirm deletion" = "確認刪除";
-
-/* Confirm an arc video submission for an assignment */
-"Confirm Submission" = "確定提交";
 
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
 "Continue" = "繼續";
@@ -400,7 +384,7 @@
 "Couldn't find recipients" = "無法找到收件人";
 
 /* error title for failure to load a file submission */
-"Couldn't Load Submission" = "無法載入提交件";
+"Couldn't Load Submission" = "無法載入提交項目";
 
 /* Title for Course Syllabus view controller */
 "Course Syllabus" = "課程大綱";
@@ -408,14 +392,14 @@
 /* Courses page title */
 "Courses" = "課程";
 
-/* Cancel button title */
+/* cancel folder creation */
 "Create Folder" = "創建資料夾";
 
 /* Header for a section showing submitted filenames */
-"Current Submission" = "當前的提交件";
+"Current Submission" = "當前的提交項目";
 
 /* Message telling users that quiz support on mobile is limited */
-"Currently there is limited quiz support on mobile" = "當前移動設備僅支持有限的測驗";
+"Currently there is limited quiz support on mobile" = "當前移動設備僅支援有限的測驗";
 
 /* A custom grade not specified by the rubric. */
 "Custom Grade" = "自定義評分";
@@ -430,25 +414,22 @@
 "Delete (%d)" = "刪除 (%d)";
 
 /* Alert message */
-"Delete this reply?" = "確定刪除這個回覆？";
+"Delete this reply?" = "確定刪除此回覆？";
 
 /* delete file confirmation alert */
-"Deleted file: \"%@\"" = "已刪除資料夾: \"%@\"";
-
-/* delete file confirmation alert */
-"Deleted file: &quot;%@&quot;" = "已刪除的文檔：&quot;%@&quot;";
+"Deleted file: &quot;%@&quot;" = "已刪除的檔案：&quot;%@&quot;";
 
 /* No comment provided by engineer. */
-"Detail" = "詳情";
+"Detail" = "詳細資料";
 
 /* Placeholder text for discussion details field */
-"Details" = "詳情";
+"Details" = "詳細資料";
 
 /* No comment provided by engineer. */
 "Discard" = "丟棄";
 
 /* No comment provided by engineer. */
-"Discard this entry?" = "丟棄這條輸入？";
+"Discard this entry?" = "丟棄這條條目？";
 
 /* Title of the new discussion view */
 "Discussion" = "討論";
@@ -457,18 +438,18 @@
 "Discussion Entry" = "討論條目";
 
 /* Title for Discussion Topics view controller */
-"Discussion Topics" = "討論話題";
+"Discussion Topics" = "討論主題";
 
 /* Discussions title
    Title for Discussions view controller */
-"Discussions" = "討論";
+"Discussions" = "討論區";
 
 /* Dismiss button title
    uialertaction button name for dismissing the failed refresh error message */
-"Dismiss" = "取消";
+"Dismiss" = "忽略";
 
 /* Alert title asking if you want to masquerade */
-"Do you want to masquerade as this user?" = "您確定要冒用這個使用者的身份？";
+"Do you want to masquerade as this user?" = "您確定要冒用此使用者的身份？";
 
 /* The domain for the institution/school that the user is currently using */
 "Domain" = "網域";
@@ -492,13 +473,10 @@
 "due on %1$@ at %2$@" = "截止於 %1$@ 的%2$@";
 
 /* This string is prepended to the due date for an assignment */
-"Due:" = "到期日：";
-
-/* Due date label indicating when an assignment is due */
-"Due: %@" = "截止日期：%@";
+"Due:" = "截止日期：";
 
 /* Due date label for to do items, first placeholder is date, second is time */
-"Due: %1$@ at %2$@" = "截至: %1$@ 於 %2$@";
+"Due: %1$@ at %2$@" = "截止日期：%1$@於%2$@";
 
 /* Button to edit a discussion entry */
 "Edit" = "編輯";
@@ -515,37 +493,31 @@
 "Edit items" = "編輯項目";
 
 /* Header when editing a discussion entry with name and timestamp */
-"Editing reply by %1$@, %2$@" = "編輯回覆，依照順序 %1$@, %2$@";
+"Editing reply by %1$@, %2$@" = "依 %1$@ 編輯回覆，%2$@";
 
 /* the users email */
-"Email" = "電子郵件";
+"Email" = "電郵";
 
 /* Prompt asking user to enable push notifications */
 "Enable Push Notifications" = "啟用推送通知";
 
-/* No comment provided by engineer. */
-"Enter folder name" = "輸入資料夾名字";
-
 /* Submission input view placeholder text */
-"Enter submission" = "鍵入提交件";
+"Enter submission" = "輸入提交項目";
 
 /* masquerade prompt */
-"Enter User ID and Domain." = "輸入使用者ID和網域名";
+"Enter User ID and Domain." = "輸入使用者 ID 和網域名。";
 
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "條目已發布";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Error" = "錯誤";
 
 /* Title of an alert popup */
-"Error adding recipeints" = "添加收信人錯誤";
+"Error adding recipeints" = "添加收件人時出錯";
 
 /* Error deleting file alert view title */
-"Error deleting file \"%@\"" = "刪除 \"%@\" 時出錯";
-
-/* Error deleting file alert view title */
-"Error deleting file &quot;%@&quot;" = "錯誤刪除文檔　&quot;%@&quot;";
+"Error deleting file &quot;%@&quot;" = "刪除檔案 &quot;%@&quot; 時出錯";
 
 /* Error deleting folder alert view title */
 "Error deleting folder" = "刪除資料夾時出錯";
@@ -554,7 +526,7 @@
 "EULA" = "EULA";
 
 /* Label for a calendar event */
-"Event" = "事件";
+"Event" = "活動";
 
 /* No comment provided by engineer. */
 "Existing Attachments..." = "現存的附件...";
@@ -569,37 +541,37 @@
 "Failed to load" = "載入失敗";
 
 /* No comment provided by engineer. */
-"File" = "資料夾";
+"File" = "檔案";
 
 /* The file extension for a submission is not acceptable */
 "File extension not allowed: %@" = "檔案擴展名不受許可：%@";
 
 /* Comes before a list of file extensions allowed for an assinment submission */
-"File extension(s) permitted for this assignment:" = "文檔擴展名可用於該作業：";
+"File extension(s) permitted for this assignment:" = "檔案擴展名可用於該作業：";
 
 /* No comment provided by engineer. */
-"File received" = "收到的資料夾";
+"File received" = "收到的檔案";
 
 /* Title for an alert popup */
-"File unavailable" = "資料夾不可用";
+"File unavailable" = "檔案不可用";
 
 /* File upload submission type */
-"File upload" = "資料夾上載";
+"File upload" = "檔案上傳";
 
 /* File upload failed. */
-"File upload failed." = "檔案上載失敗。";
+"File upload failed." = "檔案上傳失敗。";
 
-/* Title for the files screen */
-"Files" = "資料夾";
-
-/* No comment provided by engineer. */
-"Final Grade" = "最終評分";
+/* Files view
+   Name of a tab displaying files in a course
+   title for files view
+   Title for the Files View Controller */
+"Files" = "檔案";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "完成的下載";
 
 /* badge indicating front page */
-"Front Page" = "首頁";
+"Front Page" = "標題頁";
 
 /* No comment provided by engineer. */
 "Future" = "未來";
@@ -608,28 +580,28 @@
 "Go to App Store" = "前往 App 商店";
 
 /* No comment provided by engineer. */
-"Go to discussion" = "前往討論";
+"Go to discussion" = "前往討論區";
 
 /* title for discussion assignment submission button */
-"Go To Discussion" = "前往討論";
+"Go To Discussion" = "前往討論區";
 
 /* text for the \"go to quiz\" button */
-"Go to Quiz" = "前往考試";
+"Go to Quiz" = "前往測驗";
 
 /* No comment provided by engineer. */
 "Grade" = "評分";
 
 /* Tells the user to grade an assignment called something like 'Biology Assignment' */
-"Grade %@" = "評分 %@";
+"Grade %@" = "評分%@";
 
 /* Launch the SpeedGrader app */
-"Grade in SpeedGrader" = "在 SpeedGrader 中評分";
+"Grade in SpeedGrader" = "評分 SpeedGrader";
 
 /* No comment provided by engineer. */
-"Grade: %@" = "評分: %@";
+"Grade: %@" = "成績：%@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "評分: %1$i / %2$g";
+"Grade: %1$i / %2$g" = "成績：%1$i/%2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "已評分的討論";
@@ -638,10 +610,10 @@
 "Graded discussion." = "已評分的討論。";
 
 /* Graded discussion. 25 points possible */
-"Graded discussion. %g points possible." = "已評分的討論。可得點為 %g。";
+"Graded discussion. %g points possible." = "已評分的討論。%g可能的分數。";
 
 /* Title for Grades view controller */
-"Grades" = "評分";
+"Grades" = "成績";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "群組會議";
@@ -650,19 +622,19 @@
 "Groups" = "群組";
 
 /* help button */
-"Help" = "幫助";
+"Help" = "支援";
 
 /* Accessibility label for toggling grades to hidden */
-"Hide Grades" = "隱藏評分";
+"Hide Grades" = "隱藏成績";
 
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "您對 Canvas 評價如何？";
 
 /* I give you back your time, use it wisely. */
-"I give you back your time, use it wisely." = "我將你的時間歸還於你，請善加使用。";
+"I give you back your time, use it wisely." = "我將您的時間歸還於您，請善加使用。";
 
 /* Image file type */
-"Image" = "圖片";
+"Image" = "圖像";
 
 /* No comment provided by engineer. */
 "Import from camera" = "從相機匯入";
@@ -671,32 +643,29 @@
 "Import from Dropbox" = "從 Dropbox 匯入";
 
 /* No comment provided by engineer. */
-"Inbox" = "收件夾";
+"Inbox" = "收件匣";
 
 /* Assignment grade: Incomplete
    Pass/fail assignment is incomplete */
 "Incomplete" = "未完成";
 
 /* Button title for sending a direct message; a private conversation */
-"Individual messages" = "單個郵件";
+"Individual messages" = "單個訊息";
 
 /* No comment provided by engineer. */
-"Invalid URL" = "無效 URL";
+"Invalid URL" = "無效的 URL";
 
 /* No comment provided by engineer. */
 "It has problems" = "它出問題了";
 
 /* It’s empty, what are you still doing here. */
-"It’s empty, what are you still doing here." = "這裡是空的，你還在這裡做什麼呢？";
+"It’s empty, what are you still doing here." = "這裡是空的，您還在這裡做什麼呢？";
 
 /* No comment provided by engineer. */
-"Item %1$d of %2$d" = "項目 %1$d 來自 %2$d";
+"Item %1$d of %2$d" = "的項目 %1$d%2$d";
 
 /* No comment provided by engineer. */
-"Item %d of %d" = "項目 %1$d 來自 %2$d";
-
-/* No comment provided by engineer. */
-"Jumps to current day on calendar" = "在月曆上跳轉至當前日期";
+"Jumps to current day on calendar" = "在行事曆上跳轉至當前日期";
 
 /* No comment provided by engineer. */
 "Keep" = "保存";
@@ -705,10 +674,7 @@
 "Landing Page" = "登入頁面";
 
 /* Title for an alert popup */
-"Large file" = "大資料夾";
-
-/* No comment provided by engineer. */
-"Late Penalty" = "逾期懲罰";
+"Large file" = "大檔案";
 
 /* Button in an alert */
 "Later" = "以後再說";
@@ -721,13 +687,13 @@
 
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
-"Loading..." = "正在載入...";
+"Loading..." = "正在載入……";
 
 /* No comment provided by engineer. */
 "Locked" = "已鎖定";
 
 /* No comment provided by engineer. */
-"Locked until %@" = "已鎖定直至 %@";
+"Locked until %@" = "鎖定直至%@";
 
 /* Typically the email address correlated to the user */
 "Login ID" = "登入 ID";
@@ -742,14 +708,11 @@
 /* No comment provided by engineer. */
 "Love it!" = "喜歡它！";
 
-/* Title for an LTI launch submitted as an assignment */
-"LTI Tool" = "LTI 工具";
-
 /* Button title for mark as done */
 "Mark as Done" = "標記為完成";
 
 /* Button title for beginning masquerading */
-"Masquerade" = "偽裝身份";
+"Masquerade" = "以其他身份檢視";
 
 /* No comment provided by engineer. */
 "Me" = "我";
@@ -761,33 +724,33 @@
 "Media Comment" = "媒體評論";
 
 /* Media recording submission type */
-"Media recording" = "媒體錄音";
+"Media recording" = "媒體錄製";
 
 /* Title for a media submission */
-"Media Submission" = "媒體提交";
+"Media Submission" = "媒體提交項目";
 
 /* A slider to choose between media types */
 "Media type selector. %@" = "媒體類型選擇器。%@";
 
 /* No comment provided by engineer. */
-"Message everyone separately, or add everyone to a group conversation?" = "分別給所有人發郵件，或者將所有人加入一個群組討論中？";
+"Message everyone separately, or add everyone to a group conversation?" = "分別給所有人發訊息，或者將所有人加入一個群組交談中？";
 
 /* Add message button */
-"Message Instructor" = "給指導教師發郵件";
+"Message Instructor" = "給導師發訊息";
 
 /* notification that a message has been sent succesfully */
-"Message Sent." = "郵件已發送。";
+"Message Sent." = "訊息已發送。";
 
 /* Messages tab title
    messages title
    The name of the messages tab */
-"Messages" = "郵件";
+"Messages" = "訊息";
 
 /* Warnging for taking quizzes on a mobile device */
-"Mobile Quiz Warning" = "移動端考試提示";
+"Mobile Quiz Warning" = "移動端測驗提示";
 
 /* title for the modules tab */
-"Modules" = "模組";
+"Modules" = "單元";
 
 /* time since creation (less than 1 minute) */
 "moments ago" = "不久前";
@@ -796,7 +759,7 @@
 "More Info" = "更多資訊";
 
 /* Title of a link to show additional due dates customized for sections or groups. */
-"Multiple Due Dates" = "多個到期日";
+"Multiple Due Dates" = "多個截止日期";
 
 /* user must contribute to complete requirement */
 "Must contribute" = "必須提供";
@@ -805,7 +768,7 @@
 "Must mark as done" = "必須標記為已完成";
 
 /* format string saying what the minimum score must be */
-"Must score %@ or higher" = "必須得分不低於 %@ ";
+"Must score %@ or higher" = "必須得分 %@ 或高於";
 
 /* user must submit something to complete requirement */
 "Must submit" = "必須提交";
@@ -814,22 +777,22 @@
 "Must view" = "必須檢視";
 
 /* files button */
-"My Files" = "我的資料夾";
+"My Files" = "我的檔案";
 
 /* the users name */
 "Name" = "名稱";
 
 /* Title notifying user that SpeedGrader is available for iPad */
-"Need SpeedGrader for iPad" = "需要 iPad 版本的 SpeedGrader";
+"Need SpeedGrader for iPad" = "需要用於 iPad 的 SpeedGrader";
 
 /* Network error title */
 "Network Error" = "網路錯誤";
 
 /* Title for an alert popup, where the user will be asked to provide a name for the new folder */
-"New Folder" = "新建資料夾";
+"New Folder" = "新資料夾";
 
 /* No comment provided by engineer. */
-"Next 7 Days" = "隨後7天";
+"Next 7 Days" = "隨後 7 天";
 
 /* No comment provided by engineer. */
 "Next item" = "下一個項目";
@@ -838,41 +801,40 @@
 "No" = "否";
 
 /* Text of alert when attempting to select a file that can't be printed or passed to any other app */
-"No actions available for this file" = "無法對這個資料夾採取操作";
+"No actions available for this file" = "無法對此檔案進行操作";
 
 /* Message for attempting submission without a comment */
-"No audio was recorded." = "無已錄製的音頻。";
+"No audio was recorded." = "無已錄製的音訊。";
 
 /* No comment provided by engineer. */
 "No Date" = "無日期";
 
-/* Indicates an assignment does not have a due date
-   String for when assignment has no due date */
-"No due date" = "無到期日期";
+/* String for when assignment has no due date */
+"No due date" = "無截止日期";
 
 /* Label shown for a to do that doesn't have a due date */
 "No Due Date" = "無截止日期";
 
 /* Error message */
-"No installed apps support opening this file" = "已安裝的app中，無法支持打開這個資料夾";
+"No installed apps support opening this file" = "已安裝的 app 中，無法支援開啟此檔案";
 
 /* No comment provided by engineer. */
-"No recipients" = "無收信人";
+"No recipients" = "無收件人";
 
 /* Title for attempting submission without a comment */
-"No Recorded Audio" = "無已錄製音頻";
+"No Recorded Audio" = "無已錄製音訊";
 
 /* Indicates a search found no results */
-"No results found" = "無搜尋的結果";
+"No results found" = "找不到結果";
 
 /* No Submission groupong */
-"No Submission" = "無提交件";
+"No Submission" = "無提交項目";
 
 /* No comment provided by engineer. */
 "No Thanks" = "無感謝";
 
 /* error message for a 401 response. */
-"Not Authorized" = "未經授權";
+"Not Authorized" = "未授權";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
 "Not available" = "不可用";
@@ -887,10 +849,10 @@
 "Not graded (0 out of %@)" = "未評分（0 分，滿分為 %@）";
 
 /* No comment provided by engineer. */
-"Note: Media files are not immediately available for playback while they are processed on the server." = "注：媒體檔案目前正在伺服器上進行處理中，暫時無法提供播放。";
+"Note: Media files are not immediately available for playback while they are processed on the server." = "注意：媒體檔案目前正在伺服器上進行處理中，暫時無法提供播放。";
 
 /* Nothing to do, go play outside! */
-"Nothing to do, go play outside!" = "沒有課業，出去玩吧！";
+"Nothing to do, go play outside!" = "沒有待辦事項，出去玩吧！";
 
 /* Nothing to see here. */
 "Nothing to see here." = "這裡沒有內容供瀏覽。";
@@ -908,10 +870,10 @@
 "Observer" = "觀察者";
 
 /* No comment provided by engineer. */
-"Ok" = "是";
+"Ok" = "確定";
 
 /* No comment provided by engineer. */
-"OK" = "是";
+"OK" = "確定";
 
 /* Online URL submission type */
 "Online URL" = "線上 URL";
@@ -922,22 +884,22 @@
 "Oops!" = "抱歉！";
 
 /* Open a document in the application Safari */
-"Open in Safari" = "在 Safari 中打開";
+"Open in Safari" = "在 Safari 中開啟";
 
 /* Link to open assignment in SpeedGrader */
-"Open in SpeedGrader" = "在 SpeedGrader 中打開";
+"Open in SpeedGrader" = "開啟方式SpeedGrader";
 
 /* Open file in another application */
-"Open in..." = "打開方式...";
+"Open in..." = "開啟方式...";
 
 /* Link to Open Source Components */
-"Open Source Components" = "打開來源組件";
+"Open Source Components" = "開啟來源組件";
 
 /* No comment provided by engineer. */
 "Other" = "其他";
 
 /* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
-"Other replies hidden until you reply" = "在你回覆前，其他回覆不可見";
+"Other replies hidden until you reply" = "在您回覆前，其他回覆不可見";
 
 /* Accessibility label for out or grading style */
 "out of" = "滿分為";
@@ -949,16 +911,16 @@
 "out of %@ points" = "滿分為 %@ 分";
 
 /* Title for Outcomes tab */
-"Outcomes" = "結果";
+"Outcomes" = "學習成果";
 
 /* No comment provided by engineer. */
 "Page" = "頁面";
 
 /* No comment provided by engineer. */
-"Past" = "過去的";
+"Past" = "歷史";
 
 /* Title for the people view */
-"People" = "人";
+"People" = "成員";
 
 /* No comment provided by engineer. */
 "Permission Denied" = "權限遭拒";
@@ -967,16 +929,16 @@
 "photo" = "照片";
 
 /* No comment provided by engineer. */
-"Pinned Discussions" = "固定的討論";
+"Pinned Discussions" = "已釘選的討論區";
 
 /* A button that plays */
 "Play" = "播放";
 
 /* Network error message */
-"Please check your network connection and try again." = "請檢查您的網路連接然後重試。";
+"Please check your network connection and try again." = "請檢查您的網路連線，然後重試。";
 
 /* Button to post new discussion topic */
-"Post" = "發布";
+"Post" = "發佈";
 
 /* No comment provided by engineer. */
 "Post comment" = "發布評論";
@@ -999,14 +961,15 @@
 /* Title for profile screen */
 "Profile" = "個人檔案";
 
-/* A short test taken by students */
-"Quiz" = "考試";
+/* Label for a quiz
+   Title for a quiz submission cell */
+"Quiz" = "測驗";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
-"Quiz Alert" = "考試提醒";
+"Quiz Alert" = "測驗提醒";
 
 /* The title for the list of quizzes for a course */
-"Quizzes" = "考試";
+"Quizzes" = "測驗";
 
 /* No comment provided by engineer. */
 "Rate on App Store" = "在 App 商店中評分";
@@ -1018,40 +981,40 @@
 "Re-submit Assignment" = "重新提交作業";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
-"Recipients" = "收信人";
+"Recipients" = "收件人";
 
 /* A button that records */
 "Record" = "錄製";
 
 /* No comment provided by engineer. */
-"Record audio" = "錄製音頻";
+"Record audio" = "錄製音訊";
 
 /* Record audio submission comment */
-"Record Audio" = "錄製音頻";
+"Record Audio" = "錄製音訊";
 
 /* Record audio to use in a comment. */
-"Record Audio..." = "錄製音頻...";
+"Record Audio..." = "錄製音訊...";
 
 /* No comment provided by engineer. */
-"Record video" = "錄製視頻";
+"Record video" = "錄製視訊";
 
 /* Record video submission comment option */
-"Record Video" = "錄製視頻";
+"Record Video" = "錄製視訊";
 
 /* No comment provided by engineer. */
-"Refresh Button" = "刷新按鍵";
+"Refresh Button" = "重新整理按鈕";
 
 /* No comment provided by engineer. */
-"Refreshes the calendar content" = "刷新月曆內容";
+"Refreshes the calendar content" = "重新整理行事曆內容";
 
 /* Refreshing Calendar Events */
-"Refreshing Calendar Events" = "刷新月曆事件";
+"Refreshing Calendar Events" = "重新整理行事曆活動";
 
 /* Confirmation for removing a file */
 "Remove" = "移除";
 
 /* Button title for confirming a file deletion */
-"Remove this file?" = "確定移除這個文檔？";
+"Remove this file?" = "確定移除此檔案？";
 
 /* option to report a problem */
 "Report a problem" = "報告問題";
@@ -1060,19 +1023,19 @@
 "Request a feature" = "請求一項功能";
 
 /* View grading rubric */
-"Rubric" = "專欄";
+"Rubric" = "評分標準";
 
 /* No comment provided by engineer. */
-"Save" = "保存";
+"Save" = "儲存";
 
 /* Title for Assignment Notifications Sheet */
 "Schedule Notification" = "計劃通知";
 
 /* Placeholder text in a search bar used to find conversation recipients */
-"Search for recipients" = "搜尋收信人";
+"Search for recipients" = "搜尋收件人";
 
 /* Title for a file picker window */
-"Select file(s)" = "選擇文檔(s)";
+"Select file(s)" = "選擇檔案";
 
 /* No comment provided by engineer. */
 "Select or deselect" = "選擇或反選";
@@ -1084,10 +1047,10 @@
 "Send" = "發送";
 
 /* Action sheet button title for sending a new message to a user. %@ will be replaced with the user's name */
-"Send %@ a message" = "發送 %@ 一封郵件";
+"Send %@ a message" = "發送訊息給 %@";
 
 /* No comment provided by engineer. */
-"Send Message" = "發送郵件";
+"Send Message" = "發送訊息";
 
 /* No comment provided by engineer. */
 "Sent" = "已發送";
@@ -1096,16 +1059,16 @@
 "Settings" = "設定";
 
 /* Title for button confirming showing a file */
-"Show file" = "顯示資料夾";
+"Show file" = "顯示檔案";
 
 /* Accessibility label for toggling grades to visible */
-"Show Grades" = "顯示等級";
+"Show Grades" = "顯示成績";
 
 /* title for quiz assignment submission button */
-"Show Quiz" = "顯示考試";
+"Show Quiz" = "顯示測驗";
 
 /* VoiceOver text for a button that lets you show recipients */
-"Show recipients" = "顯示收信人";
+"Show recipients" = "顯示收件人";
 
 /* Message for an error popup */
 "Some items could not be deleted" = "有些項目無法被刪除";
@@ -1114,10 +1077,10 @@
 "Some selected folders are not empty. Are you sure you want to delete them?" = "有些選中的資料夾不是空的。您確定要刪除它們？";
 
 /* No comment provided by engineer. */
-"Something went wrong. Please try again." = "似乎出問題了。請重試。";
+"Something went wrong. Please try again." = "出現問題。請重試。";
 
 /* 404 Error for missing assignment */
-"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "抱歉，我們無法找到該作業。作業可能已被刪除。";
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "抱歉，我們找不到作業。此作業可能已刪除。";
 
 /* Hint about the play button */
 "Starts playing your recording" = "開始播放您錄製的內容";
@@ -1132,7 +1095,7 @@
 "Stop" = "停止";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
-"Stop Masquerading" = "停止偽裝身份";
+"Stop Masquerading" = "停止以其他身份檢視";
 
 /* Hint about the play button */
 "Stops playing your recording" = "停止播放您錄製的內容";
@@ -1147,19 +1110,16 @@
 "Sub Header" = "子表頭";
 
 /* View previously submitted assignment */
-"Submission" = "提交";
+"Submission" = "提交項目";
 
 /* No comment provided by engineer. */
-"Submission complete" = "提交完成";
+"Submission complete" = "提交項目完成";
 
 /* Title for file submission error */
-"Submission Error" = "提交錯誤";
+"Submission Error" = "提交項目錯誤";
 
-/* Submit Arc video as assignment button */
+/* Submit an assignment */
 "Submit" = "提交";
-
-/* Button to submit files to an assignment */
-"Submit (%d)" = "提交（%d）";
 
 /* Submitted grouping */
 "Submitted" = "已提交";
@@ -1168,7 +1128,7 @@
 "Submitting..." = "正在提交...";
 
 /* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
-"Subscribe to calendar feed" = "訂閱月曆推送";
+"Subscribe to calendar feed" = "訂閱行事曆摘要";
 
 /* Masquerade success title */
 "Success!" = "成功！";
@@ -1177,7 +1137,7 @@
 "Sure!" = "確定！";
 
 /* Hint about media input selection */
-"Switches media input between audio and video. Currently set to %@" = "在音頻和視頻之間切換媒體輸入源。目前設定為%@";
+"Switches media input between audio and video. Currently set to %@" = "在音訊和視訊之間切換媒體輸入源。目前設定為%@";
 
 /* No comment provided by engineer. */
 "Switches to media comment mode" = "切換到媒體評論模式";
@@ -1196,16 +1156,16 @@
 "Take a Photo..." = "拍攝照片...";
 
 /* Take a video to use in a comment. */
-"Take a Video..." = "拍攝視頻...";
+"Take a Video..." = "拍攝視訊...";
 
 /* Button label for taking a photo */
 "Take Photo" = "拍攝照片";
 
 /* Take a picture or video to use in a comment. */
-"Take Photo or Video..." = "拍攝照片或視頻...";
+"Take Photo or Video..." = "拍攝照片或視訊...";
 
 /* Displayed in a row when an error occurs loading more items */
-"Tap to try again" = "輕點以重試";
+"Tap to try again" = "點選以重試";
 
 /* No comment provided by engineer. */
 "Tap to view previous version" = "點按以查看上一個版本";
@@ -1217,7 +1177,7 @@
 "Teacher" = "教師";
 
 /* No comment provided by engineer. */
-"Teachers" = "老師";
+"Teachers" = "教師";
 
 /* No comment provided by engineer. */
 "Tell us what's wrong" = "向我們報告問題";
@@ -1231,32 +1191,32 @@
 /* Text entry submission type */
 "Text entry" = "文字條目";
 
-/* Title for a text submission cell */
+/* Generic name for a submission entered online. */
 "Text Submission" = "文字提交項目";
 
 /* Text explaining the error */
-"The recipients could not be added. Please try again. (%@)" = "收信人無法被添加。請重試。(%@)";
+"The recipients could not be added. Please try again. (%@)" = "無法添加收件人。請重試。(%@)";
 
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "伺服器無法連結";
 
 /* No comment provided by engineer. */
-"The server you entered is not authorized for this app." = "您輸入的伺服器未獲得使用該 app 程式的權限。";
+"The server you entered is not authorized for this app." = "您輸入的伺服器未獲得使用該應用程式的授權。";
 
 /* No comment provided by engineer. */
-"The user agent for this app is unauthorized." = "該 app 程式的使用者代理未獲得權限。";
+"The user agent for this app is unauthorized." = "該應用程式的使用者代理未獲得授權。";
 
 /* Error message */
 "There are no actions for this item" = "無法對此項目進行操作";
 
 /* No comment provided by engineer. */
-"There are no items to display" = "沒有要展示的項目";
+"There are no items to display" = "沒有要顯示的項目";
 
 /* message for media comment upload failure */
 "There was a network error posting your comment." = "發布您的評論時出現網路錯誤。";
 
 /* message for failed submission upload */
-"There was a network problem while attempting to upload your submission" = "試圖上傳您的提交件時出現網路錯誤。";
+"There was a network problem while attempting to upload your submission" = "嘗試上傳您的提交項目時出現網路問題。";
 
 /* Error message when fetching a file fails */
 "There was a problem accessing the requested file.\n\nError: %@" = "存取所請求檔案時出現問題。\n\n錯誤：%@";
@@ -1265,10 +1225,10 @@
 "There was a problem launching Safari" = "啟動 Safari 時出錯";
 
 /* Web browser error handling message */
-"There was an error loading the document." = "載入文檔時出錯。";
+"There was an error loading the document." = "載入文件時發生錯誤。";
 
 /* No comment provided by engineer. */
-"There was an error loading your content. If it is an audio or video upload it may still be processing." = "載入您的內容時出錯。如果內容是音頻或視頻資料，可能依然正在上載中。";
+"There was an error loading your content. If it is an audio or video upload it may still be processing." = "載入您的內容時發生錯誤。如果內容是音訊或視訊資料，可能仍然正在上傳中。";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "該 app 程式未獲得使用權限。";
@@ -1286,26 +1246,23 @@
 "This entry has been deleted" = "此條目已經被刪除";
 
 /* Text indicating a file cannot be previewed */
-"This file cannot be displayed on this device." = "此文檔無法在此設備上顯示";
+"This file cannot be displayed on this device." = "此檔案無法在此設備上顯示。";
 
 /* Text indicating that a file cannot be opened */
-"This file is locked" = "此資料夾已被鎖定";
+"This file is locked" = "此檔案已被鎖定";
 
 /* Text indicating that a folder cannot be opened */
 "This folder is locked" = "此資料夾已被鎖定";
 
 /* No comment provided by engineer. */
-"This is a media message." = "這是一條媒體郵件。";
+"This is a media message." = "這是一條媒體訊息。";
 
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "現在很適合再修幾個學分。";
 
-/* No comment provided by engineer. */
-"To add a file from another app, open the file in that app and tap the Share icon. Then select the Copy to Student option. To add an attachment from the Mail app, tap and hold the attachment, then tap the Canvas icon." = "要添加來自其他應用程式的檔案，請在該應用程式內開啟檔案，然後點按「分享」圖示。然後選取「複製至學生」選項。要添加來自電郵應用程式的附件，請按住附件，然後點按 Canvas 圖示。";
-
 /* Title of to do screen
    To Do page title */
-"To Do" = "待辦";
+"To Do" = "待辦事項";
 
 /* No comment provided by engineer. */
 "To:" = "發送給：";
@@ -1326,13 +1283,13 @@
 "Turn In" = "提交";
 
 /* Tells the user to turn in an assignment called something like 'Biology Assignment' */
-"Turn in %@" = "提交 %@";
+"Turn in %@" = "提交%@";
 
 /* title for re-submitting an assignment */
 "Turn In Again" = "再次提交";
 
 /* Notification over status bar that displays when not connected to the internet. */
-"Uh-oh! No Internet Connection" = "抱歉！沒有網際網路連結";
+"Uh-oh! No Internet Connection" = "噢！沒有網絡連線";
 
 /* Error title */
 "Unable to load" = "無法載入";
@@ -1341,7 +1298,7 @@
 "Unable to post. Please try again later" = "無法發布。請稍後重試";
 
 /* message saying that avatar couldn't be loaded to server */
-"Unable to upload to server" = "無法上載至伺服器";
+"Unable to upload to server" = "無法上傳至伺服器";
 
 /* Error message for refresh failing on an MLVC tableview controller */
 "Unauthorized" = "未授權";
@@ -1368,28 +1325,25 @@
 "until %@" = "直到%@";
 
 /* Button title for uploading a file */
-"Upload" = "上載";
+"Upload" = "上傳";
 
 /* No comment provided by engineer. */
-"Upload a file" = "上載一個資料夾";
+"Upload a file" = "上傳一個檔案";
 
 /* title for upload error alert */
-"Upload Error" = "上載錯誤";
+"Upload Error" = "上傳錯誤";
 
 /* explanation of upload failure */
-"Upload failed. Reason: (%@)" = "上載失敗。原因： (%@)";
+"Upload failed. Reason: (%@)" = "上傳失敗。原因：(%@)";
 
 /* Button title for adding a file to a folder */
-"Upload file" = "上載資料夾";
+"Upload file" = "上傳檔案";
 
 /* Error message */
-"Upload to assignment \"%@\" failed" = "上載至作業 \"%@\" 失敗";
+"Upload to assignment &quot;%@&quot; failed" = "上傳至作業 &quot;%@&quot; 失敗";
 
 /* Error message */
-"Upload to assignment &quot;%@&quot; failed" = "上載至作業 &quot;%@&quot; 失敗";
-
-/* Error message */
-"Upload to folder &quot;%@&quot; failed" = "上載至文件夾 &quot;%@&quot; 失敗";
+"Upload to folder &quot;%@&quot; failed" = "上傳至資料夾 &quot;%@&quot; 失敗";
 
 /* button for using the recorded audio */
 "Use" = "使用";
@@ -1400,11 +1354,11 @@
 /* Title for User Info section on the about page */
 "User Info" = "使用者資訊";
 
-/* Video file type */
-"Video" = "視頻";
+/* Media type is video */
+"Video" = "視訊";
 
 /* No comment provided by engineer. */
-"Video error" = "視頻錯誤";
+"Video error" = "視訊錯誤";
 
 /* No comment provided by engineer. */
 "View" = "檢視";
@@ -1422,13 +1376,13 @@
 "We were unable to verify the server for use with this app." = "無法確認此應用程式使用的伺服器。";
 
 /* Error Title */
-"Whoops!" = "抱歉！";
+"Whoops!" = "糟糕！";
 
 /* unlock date for discussion/announcement */
 "Will unlock %@." = "將解除鎖定 %@。";
 
 /* Title for action sheet giving the user an option to create a new message for a user. */
-"Would you like to create a new message?" = "您是否要創建一個新訊息？";
+"Would you like to create a new message?" = "您是否要創建一條新訊息？";
 
 /* No comment provided by engineer. */
 "Would you mind giving us a rating on the app store?" = "您是否希望在應用程式商店中對我們做出評級？";
@@ -1455,7 +1409,7 @@
 "You do not have access to this content. The Course or Group may not have started, or may have been concluded." = "您無權存取此內容。此課程或群組或許尚未開始，或已經結束。";
 
 /* Error message */
-"You do not have permission to delete this reply" = "您沒有獲得刪除這條回覆的權限。";
+"You do not have permission to delete this reply" = "您沒有獲得刪除此回覆的權限。";
 
 /* Message in an alert */
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "您並無 iPad 的 SpeedGrader。您可以從應用程式商店免費下載。";

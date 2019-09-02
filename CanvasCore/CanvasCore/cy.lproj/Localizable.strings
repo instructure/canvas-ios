@@ -89,6 +89,9 @@
 /* Blue course color button */
 "Blue" = "Glas";
 
+/* No comment provided by engineer. */
+"Browse" = "Pori";
+
 /* Title for screen to build a panda avatar */
 "Build Your Panda!" = "Creu eich Panda!";
 
@@ -556,6 +559,9 @@
 
 /* Text for a button that toggles to show a timer for a timed quiz */
 "Show Timer" = "Dangos yr Amserydd";
+
+/* Description for Slack communication channel */
+"Slack" = "Slack";
 
 /* Description for SMS communication channel */
 "SMS" = "SMS";

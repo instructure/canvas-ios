@@ -900,29 +900,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
               >
                 8
               </Text>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
             </View>
           </View>
         </View>

@@ -48,8 +48,8 @@ describe('httpClient', () => {
     }
     global.XMLHttpRequest = function () { return request }
     console.warn = jest.fn()
-    Blob = function Blob () {}
-    FormData = function FormData () {}
+    global.Blob = function Blob () {}
+    global.FormData = function FormData () {}
   })
 
   afterEach(() => {

@@ -129,6 +129,7 @@ export class Dashboard extends React.Component<Props, State> {
         !newProps.pending &&
         !newProps.error &&
         !newProps.totalCourseCount &&
+        !newProps.canActAsUser &&
         !this.state.showingModal &&
         isTeacher() &&
         getSessionUnsafe()) {
@@ -597,7 +598,11 @@ export function mapStateToProps (isFullDashboard: boolean) {
       if (userHasFavoriteGroups) { groups = groups.filter((g) => groupFavorites.includes(g.id)) }
     }
 
-    const pending = state.favoriteCourses.pending + accountNotifications.pending
+    const pending = (
+      state.favoriteCourses.pending +
+      accountNotifications.pending +
+      (state.asyncActions['userInfo.canActAsUser']?.pending ?? 0)
+    )
     const error = state.favoriteCourses.error || accountNotifications.error
     const showGrades = state.userInfo.showsGradesOnCourseCards
     return {
@@ -614,6 +619,7 @@ export function mapStateToProps (isFullDashboard: boolean) {
       sections,
       enrollments,
       hideOverlays: state.userInfo.userSettings.hide_dashcard_color_overlays || false,
+      canActAsUser: state.userInfo.canActAsUser,
     }
   }
 }
@@ -626,6 +632,7 @@ const Refreshed = refresh(
     props.refreshGroupFavorites()
     props.getDashboardCards()
     props.getUserSettings()
+    props.refreshCanActAsUser()
 
     if (isStudent()) {
       props.refreshUsersGroups()

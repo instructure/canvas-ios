@@ -197,6 +197,10 @@ extension PostGradesViewController: PostGradesViewProtocol {
         self.color = color
         tableView.reloadData()
     }
+
+    func showAllPostedView() {
+        allGradesPostedView.isHidden = false
+    }
 }
 
 extension PostGradePolicy {

@@ -689,8 +689,23 @@
   "grade_9c6f076d": {
     "message": "Grade"
   },
-  "grade_grade_990eb477": {
-    "message": "Grade { grade }"
+  "grade_after_posting_51718245": {
+    "message": "Grade after posting"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "Grade after posting { grade }"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "Grade before posting"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "Grade before posting { grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "Grade Override"
+  },
+  "grade_override_grade_4788faec": {
+    "message": "Grade Override { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "Grade post policy"
@@ -1093,12 +1108,6 @@
   },
   "out_of_points_number_42209979": {
     "message": "Out of { points, number }"
-  },
-  "override_3de65b2c": {
-    "message": "Override"
-  },
-  "override_grade_grade_f33671d4": {
-    "message": "Override Grade { grade }"
   },
   "page_details_847e35e6": {
     "message": "Page Details"
@@ -1660,6 +1669,9 @@
   },
   "total_grade_568e719f": {
     "message": "Total Grade:"
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "Total Submissions { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "Un-starred"
