@@ -44,37 +44,46 @@ exports[`GradePicker disables the button and has correct text for not graded ass
       >
         Grade
       </Text>
-      <TouchableOpacity
-        accessibilityLabel="Not Graded"
-        accessibilityTraits="button"
-        activeOpacity={1}
-        onPress={null}
+      <View
         style={
           Object {
-            "minHeight": 20,
+            "alignItems": "center",
+            "flexDirection": "row",
           }
         }
-        testID="grade-picker.button"
       >
-        <Text
-          accessibilityRole="header"
+        <TouchableOpacity
+          accessibilityLabel="Not Graded"
+          accessibilityTraits="button"
+          activeOpacity={1}
+          onPress={null}
           style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
-                "fontSize": 24,
-              },
-              undefined,
-            ]
+            Object {
+              "minHeight": 20,
+            }
           }
+          testID="grade-picker.button"
         >
-          Not Graded
-        </Text>
-      </TouchableOpacity>
+          <Text
+            accessibilityRole="header"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
+                },
+                undefined,
+              ]
+            }
+          >
+            Not Graded
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   </View>
 </View>
@@ -127,31 +136,40 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
       >
         Grade
       </Text>
-      <TouchableOpacity
-        accessibilityLabel="Customize Grade"
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onPress={[Function]}
+      <View
         style={
           Object {
-            "minHeight": 20,
+            "alignItems": "center",
+            "flexDirection": "row",
           }
         }
-        testID="grade-picker.button"
       >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/Add.png",
-            }
-          }
+        <TouchableOpacity
+          accessibilityLabel="Customize Grade"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onPress={[Function]}
           style={
             Object {
-              "tintColor": "#368BD8",
+              "minHeight": 20,
             }
           }
-        />
-      </TouchableOpacity>
+          testID="grade-picker.button"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/Add.png",
+              }
+            }
+            style={
+              Object {
+                "tintColor": "#368BD8",
+              }
+            }
+          />
+        </TouchableOpacity>
+      </View>
     </View>
     <View
       style={
@@ -376,39 +394,48 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
       >
         Grade
       </Text>
-      <TouchableOpacity
-        accessibilityLabel="9 out of 10 points possible. "
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onPress={[Function]}
+      <View
         style={
           Object {
-            "minHeight": 20,
+            "alignItems": "center",
+            "flexDirection": "row",
           }
         }
-        testID="grade-picker.button"
       >
-        <Text
-          accessibilityRole="header"
+        <TouchableOpacity
+          accessibilityLabel="9 out of 10 points possible. "
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onPress={[Function]}
           style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
-                "fontSize": 24,
-              },
-              Object {
-                "color": "#7F91A7",
-              },
-            ]
+            Object {
+              "minHeight": 20,
+            }
           }
+          testID="grade-picker.button"
         >
-          9/10
-        </Text>
-      </TouchableOpacity>
+          <Text
+            accessibilityRole="header"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
+                },
+                Object {
+                  "color": "#7F91A7",
+                },
+              ]
+            }
+          >
+            9/10
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
     <View
       style={
@@ -737,39 +764,48 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
       >
         Grade
       </Text>
-      <TouchableOpacity
-        accessibilityLabel="9 out of 10 points possible. "
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onPress={[Function]}
+      <View
         style={
           Object {
-            "minHeight": 20,
+            "alignItems": "center",
+            "flexDirection": "row",
           }
         }
-        testID="grade-picker.button"
       >
-        <Text
-          accessibilityRole="header"
+        <TouchableOpacity
+          accessibilityLabel="9 out of 10 points possible. "
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onPress={[Function]}
           style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
-                "fontSize": 24,
-              },
-              Object {
-                "color": "#7F91A7",
-              },
-            ]
+            Object {
+              "minHeight": 20,
+            }
           }
+          testID="grade-picker.button"
         >
-          9/10
-        </Text>
-      </TouchableOpacity>
+          <Text
+            accessibilityRole="header"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
+                },
+                Object {
+                  "color": "#7F91A7",
+                },
+              ]
+            }
+          >
+            9/10
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
     <View
       style={
@@ -1095,37 +1131,46 @@ exports[`GradePicker renders points based grades 1`] = `
       >
         Grade
       </Text>
-      <TouchableOpacity
-        accessibilityLabel="5 out of 10 points possible. "
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onPress={[Function]}
+      <View
         style={
           Object {
-            "minHeight": 20,
+            "alignItems": "center",
+            "flexDirection": "row",
           }
         }
-        testID="grade-picker.button"
       >
-        <Text
-          accessibilityRole="header"
+        <TouchableOpacity
+          accessibilityLabel="5 out of 10 points possible. "
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onPress={[Function]}
           style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
-                "fontSize": 24,
-              },
-              undefined,
-            ]
+            Object {
+              "minHeight": 20,
+            }
           }
+          testID="grade-picker.button"
         >
-          5/10
-        </Text>
-      </TouchableOpacity>
+          <Text
+            accessibilityRole="header"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
+                },
+                undefined,
+              ]
+            }
+          >
+            5/10
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
     <View
       style={
@@ -1347,25 +1392,34 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
       >
         Grade
       </Text>
-      <TouchableOpacity
-        accessibilityLabel="Loading"
-        accessibilityTraits="button"
-        activeOpacity={1}
-        onPress={null}
+      <View
         style={
           Object {
-            "minHeight": 20,
+            "alignItems": "center",
+            "flexDirection": "row",
           }
         }
-        testID="grade-picker.button"
       >
-        <ActivityIndicator
-          animating={true}
-          color="#999999"
-          hidesWhenStopped={true}
-          size="small"
-        />
-      </TouchableOpacity>
+        <TouchableOpacity
+          accessibilityLabel="Loading"
+          accessibilityTraits="button"
+          activeOpacity={1}
+          onPress={null}
+          style={
+            Object {
+              "minHeight": 20,
+            }
+          }
+          testID="grade-picker.button"
+        >
+          <ActivityIndicator
+            animating={true}
+            color="#999999"
+            hidesWhenStopped={true}
+            size="small"
+          />
+        </TouchableOpacity>
+      </View>
     </View>
     <View
       style={
@@ -1587,31 +1641,40 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
       >
         Grade
       </Text>
-      <TouchableOpacity
-        accessibilityLabel="Customize Grade"
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onPress={[Function]}
+      <View
         style={
           Object {
-            "minHeight": 20,
+            "alignItems": "center",
+            "flexDirection": "row",
           }
         }
-        testID="grade-picker.button"
       >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/Add.png",
-            }
-          }
+        <TouchableOpacity
+          accessibilityLabel="Customize Grade"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onPress={[Function]}
           style={
             Object {
-              "tintColor": "#368BD8",
+              "minHeight": 20,
             }
           }
-        />
-      </TouchableOpacity>
+          testID="grade-picker.button"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/Add.png",
+              }
+            }
+            style={
+              Object {
+                "tintColor": "#368BD8",
+              }
+            }
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   </View>
   <View
@@ -1691,37 +1754,46 @@ exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
       >
         Grade
       </Text>
-      <TouchableOpacity
-        accessibilityLabel="22 out of 10 points possible. "
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onPress={[Function]}
+      <View
         style={
           Object {
-            "minHeight": 20,
+            "alignItems": "center",
+            "flexDirection": "row",
           }
         }
-        testID="grade-picker.button"
       >
-        <Text
-          accessibilityRole="header"
+        <TouchableOpacity
+          accessibilityLabel="22 out of 10 points possible. "
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onPress={[Function]}
           style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
-                "fontSize": 24,
-              },
-              undefined,
-            ]
+            Object {
+              "minHeight": 20,
+            }
           }
+          testID="grade-picker.button"
         >
-          22/10
-        </Text>
-      </TouchableOpacity>
+          <Text
+            accessibilityRole="header"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
+                },
+                undefined,
+              ]
+            }
+          >
+            22/10
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   </View>
 </View>
@@ -1771,37 +1843,46 @@ exports[`GradePicker renders with excused 1`] = `
       >
         Grade
       </Text>
-      <TouchableOpacity
-        accessibilityLabel="Excused"
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onPress={[Function]}
+      <View
         style={
           Object {
-            "minHeight": 20,
+            "alignItems": "center",
+            "flexDirection": "row",
           }
         }
-        testID="grade-picker.button"
       >
-        <Text
-          accessibilityRole="header"
+        <TouchableOpacity
+          accessibilityLabel="Excused"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onPress={[Function]}
           style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
-                "fontSize": 24,
-              },
-              undefined,
-            ]
+            Object {
+              "minHeight": 20,
+            }
           }
+          testID="grade-picker.button"
         >
-          Excused
-        </Text>
-      </TouchableOpacity>
+          <Text
+            accessibilityRole="header"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
+                },
+                undefined,
+              ]
+            }
+          >
+            Excused
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
     <View
       style={
@@ -2023,31 +2104,40 @@ exports[`GradePicker renders with no grade 1`] = `
       >
         Grade
       </Text>
-      <TouchableOpacity
-        accessibilityLabel="Customize Grade"
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onPress={[Function]}
+      <View
         style={
           Object {
-            "minHeight": 20,
+            "alignItems": "center",
+            "flexDirection": "row",
           }
         }
-        testID="grade-picker.button"
       >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/Add.png",
-            }
-          }
+        <TouchableOpacity
+          accessibilityLabel="Customize Grade"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onPress={[Function]}
           style={
             Object {
-              "tintColor": "#368BD8",
+              "minHeight": 20,
             }
           }
-        />
-      </TouchableOpacity>
+          testID="grade-picker.button"
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/Add.png",
+              }
+            }
+            style={
+              Object {
+                "tintColor": "#368BD8",
+              }
+            }
+          />
+        </TouchableOpacity>
+      </View>
     </View>
     <View
       style={
@@ -2269,37 +2359,46 @@ exports[`GradePicker updates the visible rubric score when useRubricForGrading a
       >
         Grade
       </Text>
-      <TouchableOpacity
-        accessibilityLabel="22 out of 10 points possible. "
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onPress={[Function]}
+      <View
         style={
           Object {
-            "minHeight": 20,
+            "alignItems": "center",
+            "flexDirection": "row",
           }
         }
-        testID="grade-picker.button"
       >
-        <Text
-          accessibilityRole="header"
+        <TouchableOpacity
+          accessibilityLabel="22 out of 10 points possible. "
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onPress={[Function]}
           style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
-                "fontSize": 24,
-              },
-              undefined,
-            ]
+            Object {
+              "minHeight": 20,
+            }
           }
+          testID="grade-picker.button"
         >
-          22/10
-        </Text>
-      </TouchableOpacity>
+          <Text
+            accessibilityRole="header"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-heavy",
+                  "fontSize": 24,
+                },
+                undefined,
+              ]
+            }
+          >
+            22/10
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   </View>
 </View>

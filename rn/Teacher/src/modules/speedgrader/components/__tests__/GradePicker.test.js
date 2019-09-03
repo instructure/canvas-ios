@@ -64,6 +64,8 @@ let defaultProps = {
   pending: false,
   gradingType: 'points',
   isModeratedGrading: false,
+  newGradebookEnabled: false,
+  postedAt: null,
 }
 
 describe('GradePicker', () => {
@@ -461,6 +463,43 @@ describe('GradePicker', () => {
 
     expect(Alert.prompt.mock.calls[0][4]).toEqual('90%')
   })
+
+  it('doesnt show the eye on non graded submissions', () => {
+    let tree = shallow(
+      <GradePicker
+        {...defaultProps}
+        newGradebookEnabled
+        grade={''}
+        postedAt={null}
+      />
+    )
+
+    expect(tree.exists('[testID="GradePicker.postedEye"]')).toBe(false)
+  })
+
+  it('doesnt show the eye on graded, posted submissions', () => {
+    let tree = shallow(
+      <GradePicker
+        {...defaultProps}
+        newGradebookEnabled
+        grade={'B+'}
+        postedAt='2019-08-29T00:00:00.000Z'
+      />
+    )
+    expect(tree.exists('[testID="GradePicker.postedEye"]')).toBe(false)
+  })
+
+  it('shows the eye on graded, not posted submissions', () => {
+    let tree = shallow(
+      <GradePicker
+        {...defaultProps}
+        newGradebookEnabled
+        grade={'B+'}
+        postedAt={null}
+      />
+    )
+    expect(tree.exists('[testID="GradePicker.postedEye"]')).toBe(true)
+  })
 })
 
 describe('mapStateToProps', () => {
@@ -494,7 +533,13 @@ describe('mapStateToProps', () => {
 
   it('returns the correct data when there is a submission', () => {
     let assignment = templates.assignment({ id: '2' })
-    let submission = templates.submissionHistory([{ id: '1', grade: 'yo', score: 10, excused: true }])
+    let submission = templates.submissionHistory([{
+      id: '1',
+      grade: 'yo',
+      score: 10,
+      excused: true,
+      posted_at: '2019-08-29T00:00:00.000Z',
+    }])
     let state = templates.appState({
       entities: {
         assignments: {
@@ -523,6 +568,7 @@ describe('mapStateToProps', () => {
       score: 10,
       pointsPossible: assignment.points_possible,
       gradingType: assignment.grading_type,
+      postedAt: submission.posted_at,
     })
   })
 })
