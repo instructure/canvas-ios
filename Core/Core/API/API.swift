@@ -144,6 +144,9 @@ public class URLSessionAPI: API {
             if let response = response, error == nil {
                 let session = loginSession.refresh(accessToken: response.access_token)
                 LoginSession.add(session)
+                if loginSession == AppEnvironment.shared.currentSession {
+                    AppEnvironment.shared.currentSession = session
+                }
                 self?.loginSession = session
             }
             callback()
