@@ -20,7 +20,6 @@
 #import "UIAlertController+TechDebt.h"
 
 @import CanvasKit;
-@import CanvasKeymaster;
 @import CanvasCore;
 
 @interface UnsupportedViewController ()

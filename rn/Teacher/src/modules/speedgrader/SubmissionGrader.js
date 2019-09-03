@@ -175,6 +175,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
           showToolTip={showToolTip}
           dismissToolTip={dismissToolTip}
           updateUnsavedChanges={this.updateUnsavedChanges}
+          newGradebookEnabled={this.props.newGradebookEnabled}
         />
     }
   }

@@ -112,7 +112,7 @@ export class SubmissionList extends Component<Props, State> {
     this.props.navigator.show(
       path,
       { modal: true, modalPresentationStyle: 'fullscreen' },
-      { filter: this.state.filter, studentIndex: index }
+      { filter: this.state.filter, studentIndex: index, flags: this.state.flags }
     )
   }
 

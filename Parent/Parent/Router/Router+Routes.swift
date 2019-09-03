@@ -23,7 +23,6 @@ import CanvasCore
 import Core
 import Marshal
 import SafariServices
-import CanvasKeymaster
 
 let LoggedInNotificationContentsSession = "LoggedInNotificationContentsSession"
 
@@ -402,18 +401,8 @@ let router = Core.Router(routes: [
         return vc
     },
     Core.RouteHandler(.sendSupport(forType: ":type"), name: "support") { _, params in
-        guard let type = params["type"] else {
-            return nil
-        }
-
-        let storyboard = UIStoryboard(name: "SupportTicket", bundle: Bundle(for: SupportTicketViewController.self))
-        let controller = storyboard.instantiateInitialViewController()!.children[0] as! SupportTicketViewController
-        if type == "feature" {
-            controller.ticketType = SupportTicketTypeFeatureRequest
-        } else {
-            controller.ticketType = SupportTicketTypeProblem
-        }
-        return UINavigationController(rootViewController: controller)
+        guard let type = params["type"] else { return nil }
+        return ErrorReportViewController.create(type: ErrorReportType(rawValue: type) ?? .problem)
     },
     Core.RouteHandler(.termsOfService(forAccount: ":accountID"), name: "terms_of_service") { _, params in
         guard let accountID = params["accountID"] else {

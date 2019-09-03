@@ -18,7 +18,6 @@
 
 import Foundation
 import Core
-import CanvasKeymaster
 
 public class ProfilePresenter: ProfilePresenterProtocol {
     let env: AppEnvironment

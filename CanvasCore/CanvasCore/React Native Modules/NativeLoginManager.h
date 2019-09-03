@@ -19,7 +19,6 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
-@import CanvasKeymaster;
 
 NS_ASSUME_NONNULL_BEGIN
 

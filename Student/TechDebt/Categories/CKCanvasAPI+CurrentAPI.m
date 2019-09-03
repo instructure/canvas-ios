@@ -17,7 +17,7 @@
 //
 
 #import "CKCanvasAPI+CurrentAPI.h"
-@import CanvasKeymaster;
+@import CanvasKit;
 
 static CKCanvasAPI *_currentAPI;
 

@@ -20,7 +20,7 @@ import AVKit
 import UIKit
 import TechDebt
 import PSPDFKit
-import CanvasKeymaster
+import CanvasKit
 import Fabric
 import Crashlytics
 import CanvasCore
@@ -90,14 +90,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
         }
 
-        // Legacy CanvasKeymaster support
+        // Legacy CanvasKit support
         let legacyClient = CKIClient(baseURL: session.baseURL, token: session.accessToken)!
         legacyClient.actAsUserID = session.actAsUserID
         legacyClient.originalIDOfMasqueradingUser = session.originalUserID
         legacyClient.originalBaseURL = session.originalBaseURL
         legacyClient.fetchCurrentUser().subscribeNext({ user in
             legacyClient.setValue(user, forKey: "currentUser")
-            CanvasKeymaster.the().setup(with: legacyClient)
+            CKIClient.current = legacyClient
             self.session = legacyClient.authSession
             PageViewEventController.instance.userDidChange()
             LegacyModuleProgressShim.observeProgress(legacyClient.authSession)
@@ -220,8 +220,7 @@ extension AppDelegate {
 
         DispatchQueue.main.async {
             let alertDetails = error.alertDetails(reportAction: {
-                let support = SupportTicketViewController.present(from: presentFrom, supportTicketType: SupportTicketTypeProblem, defaultSubject: nil)
-                support.reportedError = error
+                presentFrom.present(UINavigationController(rootViewController: ErrorReportViewController.create(error: error)), animated: true)
             })
 
             if let deets = alertDetails {

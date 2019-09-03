@@ -19,14 +19,13 @@
 import AVKit
 import UIKit
 import CanvasCore
-import CanvasKeymaster
+import CanvasKit
 import Fabric
 import Crashlytics
 import Firebase
 import UserNotifications
 import Core
 
-let TheKeymaster = CanvasKeymaster.the()
 let ParentAppRefresherTTL: TimeInterval = 5.minutes
 
 @UIApplicationMain
@@ -106,14 +105,14 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
         }
-        // Legacy CanvasKeymaster support
+        // Legacy CanvasKit support
         let legacyClient = CKIClient(baseURL: session.baseURL, token: session.accessToken)!
         legacyClient.actAsUserID = session.actAsUserID
         legacyClient.originalIDOfMasqueradingUser = session.originalUserID
         legacyClient.originalBaseURL = session.originalBaseURL
         legacyClient.fetchCurrentUser().subscribeNext({ user in
             legacyClient.setValue(user, forKey: "currentUser")
-            CanvasKeymaster.the().setup(with: legacyClient)
+            CKIClient.current = legacyClient
             self.legacySession = legacyClient.authSession
             Router.sharedInstance.session = legacyClient.authSession
             NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: legacyClient.authSession])
@@ -154,7 +153,7 @@ extension ParentAppDelegate: LoginDelegate {
     func openSupportTicket() {
         guard let presentFrom = topMostViewController() else { return }
         let subject = String.localizedStringWithFormat("[Parent Login Issue] %@", NSLocalizedString("Trouble logging in", comment: ""))
-        SupportTicketViewController.present(from: presentFrom, supportTicketType: SupportTicketTypeProblem, defaultSubject: subject)
+        presentFrom.present(UINavigationController(rootViewController: ErrorReportViewController.create(subject: subject)), animated: true)
     }
 
     func changeUser() {
@@ -218,9 +217,7 @@ extension ParentAppDelegate {
         
         DispatchQueue.main.async {
             let alertDetails = error.alertDetails(reportAction: {
-                // TODO
-                //let support = SupportTicketViewController.present(from: presentingViewController, supportTicketType: SupportTicketTypeProblem)
-                //support?.reportedError = error
+                presentFrom.present(UINavigationController(rootViewController: ErrorReportViewController.create(error: error)), animated: true)
             })
             
             if let deets = alertDetails {
