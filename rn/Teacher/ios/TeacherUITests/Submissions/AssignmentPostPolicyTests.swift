@@ -21,7 +21,8 @@ import TestsFoundation
 @testable import Core
 
 class AssignmentPostPolicyTests: TeacherUITestCase {
-    func testPostPolicySettings() {
+    // https://instructure.atlassian.net/browse/MBL-13155
+    func xtestPostPolicySettings() {
         let courseID = "263"
         let assignmentID = "5431"
 
