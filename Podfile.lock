@@ -163,7 +163,6 @@ PODS:
     - RNSound/Core (= 0.10.12)
   - RNSound/Core (0.10.12):
     - React/Core
-  - SVProgressHUD (2.2.5)
   - TBBModal (1.0.2)
   - yoga (0.59.9.React)
 
@@ -206,7 +205,6 @@ DEPENDENCIES:
   - RNDeviceInfo (from `./rn/Teacher/node_modules/react-native-device-info`)
   - RNFS (from `./rn/Teacher/node_modules/react-native-fs`)
   - RNSound (from `./rn/Teacher/node_modules/react-native-sound`)
-  - SVProgressHUD (~> 2.0)
   - TBBModal (~> 1.0)
   - yoga (from `./rn/Teacher/node_modules/react-native/ReactCommon/yoga`)
 
@@ -228,7 +226,6 @@ SPEC REPOS:
     - Mantle
     - Marshal
     - nanopb
-    - SVProgressHUD
     - TBBModal
 
 EXTERNAL SOURCES:
@@ -297,10 +294,9 @@ SPEC CHECKSUMS:
   RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
   RNFS: a8fbe7060fa49157d819466404794ad9c58e58cf
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
-  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
   yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
 
-PODFILE CHECKSUM: 9bc6718fc767c7ca323651e2f2ac72477d3d1aa0
+PODFILE CHECKSUM: d074f3f1155ec7add6bbafefb68b05603493e804
 
 COCOAPODS: 1.7.1
