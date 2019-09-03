@@ -109,7 +109,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         // Legacy CanvasKeymaster support
         let legacyClient = CKIClient(
             baseURL: session.baseURL,
-            token: session.accessToken,
+            token: session.accessToken ?? "",
             refreshToken: session.refreshToken,
             clientID: session.clientID,
             clientSecret: session.clientSecret

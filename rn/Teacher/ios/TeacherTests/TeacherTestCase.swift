@@ -37,14 +37,13 @@ class TeacherTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
-
+        MockURLSession.reset()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
-        environment.api = api
+        environment.api = URLSessionAPI()
         environment.database = singleSharedTestDatabase
         environment.globalDatabase = singleSharedTestDatabase
         environment.router = router
         environment.logger = logger
         environment.currentSession = LoginSession.make()
-        MockURLSession.reset()
     }
 }

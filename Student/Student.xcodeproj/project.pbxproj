@@ -498,7 +498,6 @@
 		7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */; };
 		7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */; };
 		7DE1161B22F8AB5C005BFE98 /* TestEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2322F8A096000AACCE /* TestEnvironment.swift */; };
-		7DE1161C22F8AB5C005BFE98 /* BlockExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2422F8A096000AACCE /* BlockExpectation.swift */; };
 		7DE1161D22F8AB5C005BFE98 /* ArcSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2622F8A096000AACCE /* ArcSubmissionPresenterTests.swift */; };
 		7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2822F8A096000AACCE /* SubmissionButtonPresenterTests.swift */; };
 		7DE1161F22F8AB5C005BFE98 /* RubricPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2A22F8A096000AACCE /* RubricPresenterTests.swift */; };
@@ -1317,7 +1316,6 @@
 		7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageStudentExtensionTests.swift; sourceTree = "<group>"; };
 		7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		7DCF0F2322F8A096000AACCE /* TestEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestEnvironment.swift; sourceTree = "<group>"; };
-		7DCF0F2422F8A096000AACCE /* BlockExpectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockExpectation.swift; sourceTree = "<group>"; };
 		7DCF0F2622F8A096000AACCE /* ArcSubmissionPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcSubmissionPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2822F8A096000AACCE /* SubmissionButtonPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionButtonPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2A22F8A096000AACCE /* RubricPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricPresenterTests.swift; sourceTree = "<group>"; };
@@ -2966,7 +2964,6 @@
 			isa = PBXGroup;
 			children = (
 				7DCF0F2322F8A096000AACCE /* TestEnvironment.swift */,
-				7DCF0F2422F8A096000AACCE /* BlockExpectation.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -4443,7 +4440,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DE1162522F8AB5C005BFE98 /* PersistenceTestCase.swift in Sources */,
-				7DE1161C22F8AB5C005BFE98 /* BlockExpectation.swift in Sources */,
 				7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */,
 				7D92447222FB7825002BC7CA /* UserPreferencesTests.swift in Sources */,
 				7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */,
