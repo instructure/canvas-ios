@@ -202,6 +202,23 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual(assignment.position, 0)
     }
 
+    func testGetSubmittableAssignments() {
+        let apiAssignments = [
+            APIAssignment.make(id: "1"),
+            APIAssignment.make(id: "2", lock_at: Date.distantFuture),
+            APIAssignment.make(id: "3", unlock_at: Date.distantPast),
+
+            APIAssignment.make(id: "4", lock_at: Date.distantPast),
+            APIAssignment.make(id: "5", unlock_at: Date.distantFuture),
+            APIAssignment.make(id: "6", locked_for_user: true),
+        ]
+        let getAssignments = GetSubmittableAssignments(courseID: "1")
+        getAssignments.write(response: apiAssignments, urlResponse: nil, to: databaseClient)
+
+        let assignments: [Assignment] = databaseClient.fetch(getAssignments.scope.predicate, sortDescriptors: getAssignments.scope.order)
+        XCTAssertEqual(assignments.count, 3)
+    }
+
     func testSortOrderByDueDate2() {
         let dateC = Date().addDays(2)
         let dateD = Date().addDays(3)
