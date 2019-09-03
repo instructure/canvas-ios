@@ -30,7 +30,7 @@ import {
 } from '../SpeedGrader'
 import shuffle from 'knuth-shuffle-seeded'
 import * as modelTemplates from '../../../__templates__'
-import DrawerState from '../utils/drawer-state';
+import DrawerState from '../utils/drawer-state'
 
 jest.mock('../components/GradePicker')
 jest.mock('../components/Header')

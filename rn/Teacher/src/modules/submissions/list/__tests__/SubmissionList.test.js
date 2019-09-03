@@ -349,7 +349,7 @@ test('should navigate to a submission', () => {
   expect(navigator.show).toHaveBeenCalledWith(
     '/courses/12/assignments/32/submissions/1',
     { modal: true, modalPresentationStyle: 'fullscreen' },
-    { filter: instance.state.filter, studentIndex: 1 }
+    { filter: instance.state.filter, studentIndex: 1, flags: [], }
   )
 })
 

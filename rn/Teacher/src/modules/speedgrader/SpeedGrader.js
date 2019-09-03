@@ -82,7 +82,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   static defaultProps = {
     onDismiss: () => {},
     drawerPosition: 0,
-    getEnabledFeatureFlags
+    getEnabledFeatureFlags,
   }
 
   constructor (props: SpeedGraderProps) {
