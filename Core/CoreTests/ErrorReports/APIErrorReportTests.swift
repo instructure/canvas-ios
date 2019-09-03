@@ -49,7 +49,7 @@ class APIErroReportTests: CoreTestCase {
         XCTAssertNil(min.message)
         XCTAssertEqual(min.subject, "s [https://canvas.instructure.com]")
         XCTAssertEqual(min.url, currentSession.baseURL)
-        XCTAssertEqual(min.user_percieved_severity, .just_a_comment)
+        XCTAssertEqual(min.user_perceived_severity, .just_a_comment)
     }
 
     func testMaximalPostErrorReportRequest() {
@@ -87,6 +87,6 @@ class APIErroReportTests: CoreTestCase {
         XCTAssertEqual(max.message, "Oops")
         XCTAssertEqual(max.subject, "s [https://canvas.instructure.com]")
         XCTAssertEqual(max.url, currentSession.baseURL)
-        XCTAssertEqual(max.user_percieved_severity, .extreme_critical_emergency)
+        XCTAssertEqual(max.user_perceived_severity, .extreme_critical_emergency)
     }
 }

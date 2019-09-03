@@ -35,7 +35,7 @@ struct PostErrorReportRequest: APIRequestable {
         let message: String?
         let subject: String
         let url: URL?
-        let user_percieved_severity: Severity?
+        let user_perceived_severity: Severity?
     }
     enum Severity: String, CaseIterable, Equatable, Encodable {
         case just_a_comment, not_urgent, workaround_possible, blocks_what_i_need_to_do, extreme_critical_emergency
@@ -93,7 +93,7 @@ struct PostErrorReportRequest: APIRequestable {
             message: error?.localizedFailureReason ?? error?.localizedDescription,
             subject: subject,
             url: AppEnvironment.shared.currentSession?.baseURL,
-            user_percieved_severity: impact >= 0 && impact < Severity.allCases.count
+            user_perceived_severity: impact >= 0 && impact < Severity.allCases.count
                 ? Severity.allCases[impact]
                 : .just_a_comment
         ))
