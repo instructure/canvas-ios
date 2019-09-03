@@ -18,6 +18,7 @@
 
 import UIKit
 import Cartography
+import CanvasKit
 import Core
 
 open class QuizIntroViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
@@ -337,7 +338,7 @@ extension QuizIntroViewController: UIPageViewControllerDelegate {
 extension QuizIntroViewController {
     // This should only be routed to from assignment details that already checked takability & stored the quiz in CoreData
     public static func takeController(contextID: ContextID, quizID: String) -> UIViewController {
-        let legacySession = CanvasKeymaster.the().currentClient!.authSession
+        let legacySession = CKIClient.current!.authSession
         let service = CanvasQuizService(session: legacySession, context: contextID, quizID: quizID)
         guard let model: Core.Quiz = AppEnvironment.shared.database.viewContext.first(where: #keyPath(Core.Quiz.id), equals: quizID) else {
             return QuizIntroViewController(quizController: QuizController(service: service, quiz: nil))

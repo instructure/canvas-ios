@@ -17,7 +17,7 @@
 //
 
 import Foundation
-import CanvasKeymaster
+import CanvasKit
 import CanvasCore
 
 class TeacherAttendanceViewController: AttendanceViewController {
@@ -26,7 +26,7 @@ class TeacherAttendanceViewController: AttendanceViewController {
 
     @objc init(courseName: String, courseColor: UIColor, launchURL: URL, courseID: String, date: Date) throws {
         self.courseColor = courseColor
-        guard let client = CanvasKeymaster.the().currentClient else { throw NSError(subdomain: "com.instructure.Teacher", description: "Keymaster client is nil") }
+        guard let client = CKIClient.current else { throw NSError(subdomain: "com.instructure.Teacher", description: "CKIClient client is nil") }
         super.init(client: client, launchURL: launchURL, courseID: courseID, date: Date())
     }
 

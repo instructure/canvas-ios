@@ -31,7 +31,7 @@
 
 @import PSPDFKit;
 @import PSPDFKitUI;
-@import CanvasKeymaster;
+@import CanvasKit;
 @import QuickLook;
 
 @interface FileViewController () <UIDocumentInteractionControllerDelegate, QLPreviewControllerDelegate, QLPreviewControllerDataSource>
@@ -241,7 +241,7 @@
     // Store the file in a directory unique to this file as well as the current user
     // Structuring this way prevents overriding files across users and folders
     // example: /canvas.instructure.com-:userID/:fileID/:fileName
-    NSString *sessionID = TheKeymaster.currentClient.authSession.sessionID;
+    NSString *sessionID = CKIClient.currentClient.authSession.sessionID;
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     NSURL *userDirectory = [[NSURL URLWithString:documentsPath] URLByAppendingPathComponent:sessionID isDirectory:YES];
     NSURL *fileDirectory = [userDirectory URLByAppendingPathComponent:[NSString stringWithFormat:@"%llu", file.ident] isDirectory:YES];
@@ -252,7 +252,7 @@
 
 - (NSString *)legacyPathForPersistedFile:(CKAttachment *)file {
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *path = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%llu_%@", TheKeymaster.currentClient.authSession.user.id, file.ident, file.filename]];
+    NSString *path = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%llu_%@", CKIClient.currentClient.authSession.user.id, file.ident, file.filename]];
     return path;
 }
 
@@ -341,7 +341,7 @@
 }
 
 - (NSURL *)getHTMLFilePreviewURL {
-    NSURL *previewURL = TheKeymaster.currentClient.authSession.baseURL;
+    NSURL *previewURL = CKIClient.currentClient.authSession.baseURL;
 
     if (self.courseID) {
         previewURL = [previewURL URLByAppendingPathComponent:@"courses"];
@@ -361,7 +361,7 @@
     if ([_file.contentType isEqualToString:@"application/pdf"]) {
         NSString * _Nullable courseID = [self hackishlyGetDefaultCourseIfPossible];
         NSString * _Nullable assignmentID = [self hackishlyGetDefaultAssignmentIfPossible];
-        Session *session = TheKeymaster.currentClient.authSession;
+        Session *session = CKIClient.currentClient.authSession;
         pdfDocPresenter = [[PreSubmissionPDFDocumentPresenter alloc] initWithDocumentURL:url session:session defaultCourseID:courseID defaultAssignmentID:assignmentID];
         @weakify(self);
         pdfDocPresenter.didSubmitAssignment = ^{

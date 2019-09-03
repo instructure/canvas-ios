@@ -36,8 +36,7 @@
 #import <SafariServices/SafariServices.h>
 
 @import CanvasCore;
-@import CanvasKeymaster;
-@import CanvasCore;
+@import CanvasKit;
 
 typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id viewModel);
 
@@ -113,9 +112,9 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     UIColor *tintColor;
     NSString *contextIDString = [contextID description];
     if([contextClass isSubclassOfClass:[CKIGroup class]]){
-        tintColor = [TheKeymaster.currentClient.authSession colorForGroup:contextIDString];
+        tintColor = [CKIClient.currentClient.authSession colorForGroup:contextIDString];
     } else {
-        tintColor = [TheKeymaster.currentClient.authSession colorForCourse:contextIDString];
+        tintColor = [CKIClient.currentClient.authSession colorForCourse:contextIDString];
     }
     return tintColor;
 }
@@ -136,7 +135,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             return;
         }
 
-        Session *session = TheKeymaster.currentClient.authSession;
+        Session *session = CKIClient.currentClient.authSession;
         if (!session) { return; }
         [[ExternalToolManager shared] showAuthenticatedURL:url in:session from:sender completionHandler:nil];
     };
@@ -157,7 +156,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         @"/courses/:contextID/conferences" : ^(NSDictionary *params, CBIViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedStringFromTableInBundle(@"Conferences", nil, bundle, @"Title for Conferences tab");
-            NSURL *baseURL = TheKeymaster.currentClient.baseURL;
+            NSURL *baseURL = CKIClient.currentClient.baseURL;
             NSString *path = [NSString stringWithFormat:@"courses/%@/conferences", params[@"contextID"]];
             NSURL *fullURL = [baseURL URLByAppendingPathComponent: path];
             unsupportedVC.canvasURL = fullURL;
@@ -166,7 +165,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         @"/courses/:contextID/collaborations" : ^(NSDictionary *params, CBIViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedStringFromTableInBundle(@"Collaborations", nil, bundle, @"Title for Collaborations tab");
-            NSURL *baseURL = TheKeymaster.currentClient.baseURL;
+            NSURL *baseURL = CKIClient.currentClient.baseURL;
             NSString *path = [NSString stringWithFormat:@"courses/%@/collaborations", params[@"contextID"]];
             NSURL *fullURL = [baseURL URLByAppendingPathComponent: path];
             unsupportedVC.canvasURL = fullURL;
@@ -175,7 +174,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         @"/courses/:contextID/outcomes" : ^(NSDictionary *params, CBIViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedStringFromTableInBundle(@"Outcomes", nil, bundle, @"Title for Outcomes tab");
-            NSURL *baseURL = TheKeymaster.currentClient.baseURL;
+            NSURL *baseURL = CKIClient.currentClient.baseURL;
             NSString *path = [NSString stringWithFormat:@"courses/%@/outcomes", params[@"contextID"]];
             NSURL *fullURL = [baseURL URLByAppendingPathComponent: path];
             unsupportedVC.canvasURL = fullURL;
@@ -184,7 +183,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         @"/groups/:contextID/conferences" : ^(NSDictionary *params, CBIViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedStringFromTableInBundle(@"Conferences", nil, bundle, @"Title for Conferences tab");
-            NSURL *baseURL = TheKeymaster.currentClient.baseURL;
+            NSURL *baseURL = CKIClient.currentClient.baseURL;
             NSString *path = [NSString stringWithFormat:@"groups/%@/conferences", params[@"contextID"]];
             NSURL *fullURL = [baseURL URLByAppendingPathComponent: path];
             unsupportedVC.canvasURL = fullURL;
@@ -193,7 +192,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         @"/groups/:contextID/collaborations" : ^(NSDictionary *params, CBIViewModel *viewModel) {
             UnsupportedViewController *unsupportedVC = [UnsupportedViewController new];
             unsupportedVC.tabName = NSLocalizedStringFromTableInBundle(@"Collaborations", nil, bundle, @"Title for Collaborations tab");
-            NSURL *baseURL = TheKeymaster.currentClient.baseURL;
+            NSURL *baseURL = CKIClient.currentClient.baseURL;
             NSString *path = [NSString stringWithFormat:@"groups/%@/collaborations", params[@"contextID"]];
             NSURL *fullURL = [baseURL URLByAppendingPathComponent: path];
             unsupportedVC.canvasURL = fullURL;
@@ -204,7 +203,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
                 return [self moduleItemControllerForParams:params forClass:[CKICourse class]];
             }
 
-            Session *session = TheKeymaster.currentClient.authSession;
+            Session *session = CKIClient.currentClient.authSession;
             QuizIntroViewController *intro = [[QuizIntroViewController alloc] initWithSession:session courseID:[params[@"courseID"] description] quizID:[params[@"quizID"] description]];
             return intro;
         }

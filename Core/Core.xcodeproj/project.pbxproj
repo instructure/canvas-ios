@@ -261,6 +261,9 @@
 		7DAC286B22B1701B00C0B692 /* QuizHideResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAC286A22B1701B00C0B692 /* QuizHideResults.swift */; };
 		7DAFB46321A361C400311275 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB46221A361C400311275 /* LocalizationManager.swift */; };
 		7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */; };
+		7DAFBE702318588000E9A37D /* ErrorReportViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DAFBE6F2318588000E9A37D /* ErrorReportViewController.storyboard */; };
+		7DAFBE72231858E300E9A37D /* ErrorReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFBE71231858E300E9A37D /* ErrorReportViewController.swift */; };
+		7DAFBE74231871F500E9A37D /* ItemPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFBE73231871F500E9A37D /* ItemPickerViewController.swift */; };
 		7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */; };
 		7DB0A1B821BF175E009ABB40 /* LoginFindSchoolPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B721BF175E009ABB40 /* LoginFindSchoolPresenterTests.swift */; };
 		7DB0A1BA21BF1904009ABB40 /* LoginStartPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B921BF1904009ABB40 /* LoginStartPresenterTests.swift */; };
@@ -332,6 +335,9 @@
 		7DDC81462242E2C7000DD25A /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC81452242E2C7000DD25A /* AudioRecorderViewController.swift */; };
 		7DE3D11F225E7058000CAE7C /* RichContentToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE3D11E225E7058000CAE7C /* RichContentToolbarView.xib */; };
 		7DE3D121225E7074000CAE7C /* RichContentToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE3D120225E7074000CAE7C /* RichContentToolbarView.swift */; };
+		7DE6A7042319921A00A5B796 /* ItemPickerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DE6A7032319921A00A5B796 /* ItemPickerViewController.storyboard */; };
+		7DE6A7062319973700A5B796 /* APIErrorReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE6A7052319973700A5B796 /* APIErrorReport.swift */; };
+		7DE6A7092319B05700A5B796 /* APIErrorReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE6A7082319B05700A5B796 /* APIErrorReportTests.swift */; };
 		7DEAD08E2272387F0030C28A /* RichContentEditorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAD08D2272387F0030C28A /* RichContentEditorPresenter.swift */; };
 		7DEAD09822789E8A0030C28A /* RichContentEditor.css in Resources */ = {isa = PBXBuildFile; fileRef = 7DEAD09722789E8A0030C28A /* RichContentEditor.css */; };
 		7DEAD09E22790B720030C28A /* RichContentEditorPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAD09D22790B720030C28A /* RichContentEditorPresenterTests.swift */; };
@@ -1032,6 +1038,9 @@
 		7DAC286A22B1701B00C0B692 /* QuizHideResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizHideResults.swift; sourceTree = "<group>"; };
 		7DAFB46221A361C400311275 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManagerTests.swift; sourceTree = "<group>"; };
+		7DAFBE6F2318588000E9A37D /* ErrorReportViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ErrorReportViewController.storyboard; sourceTree = "<group>"; };
+		7DAFBE71231858E300E9A37D /* ErrorReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReportViewController.swift; sourceTree = "<group>"; };
+		7DAFBE73231871F500E9A37D /* ItemPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPickerViewController.swift; sourceTree = "<group>"; };
 		7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegateTests.swift; sourceTree = "<group>"; };
 		7DB0A1B721BF175E009ABB40 /* LoginFindSchoolPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolPresenterTests.swift; sourceTree = "<group>"; };
 		7DB0A1B921BF1904009ABB40 /* LoginStartPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartPresenterTests.swift; sourceTree = "<group>"; };
@@ -1101,6 +1110,9 @@
 		7DDC81452242E2C7000DD25A /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
 		7DE3D11E225E7058000CAE7C /* RichContentToolbarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RichContentToolbarView.xib; sourceTree = "<group>"; };
 		7DE3D120225E7074000CAE7C /* RichContentToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentToolbarView.swift; sourceTree = "<group>"; };
+		7DE6A7032319921A00A5B796 /* ItemPickerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ItemPickerViewController.storyboard; sourceTree = "<group>"; };
+		7DE6A7052319973700A5B796 /* APIErrorReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorReport.swift; sourceTree = "<group>"; };
+		7DE6A7082319B05700A5B796 /* APIErrorReportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorReportTests.swift; sourceTree = "<group>"; };
 		7DEAD08D2272387F0030C28A /* RichContentEditorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorPresenter.swift; sourceTree = "<group>"; };
 		7DEAD09722789E8A0030C28A /* RichContentEditor.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = RichContentEditor.css; sourceTree = "<group>"; };
 		7DEAD09D22790B720030C28A /* RichContentEditorPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorPresenterTests.swift; sourceTree = "<group>"; };
@@ -1418,6 +1430,7 @@
 				7D14863C230B43AE003944A2 /* Dashboard */,
 				9FBE5354223AD16F001EC40C /* DeveloperMenu */,
 				7D29D2F5218A29B10036437C /* DocViewer */,
+				7DAFBE6E2318567300E9A37D /* ErrorReports */,
 				7D80AC06212B46D500C40ECE /* Extensions */,
 				7D2E82832270BB7600735854 /* FilePicker */,
 				3B47227E2137972200BF6FF3 /* Frameworks */,
@@ -1459,6 +1472,7 @@
 				7D148642230B48E7003944A2 /* Dashboard */,
 				B1EA5AF9212E6E4800DABC5F /* Database */,
 				7D7472D7218CD73D00CE1430 /* DocViewer */,
+				7DE6A7072319B03600A5B796 /* ErrorReports */,
 				7D80AC59212DB09300C40ECE /* Extensions */,
 				B1B42C1422403AE90087399A /* FilePicker */,
 				3B34675F2130554C00F9BC2E /* Helpers */,
@@ -1842,6 +1856,8 @@
 				B18359A722244E230005A918 /* AccessIconView.swift */,
 				B18359A9222450DE0005A918 /* AccessIconView.xib */,
 				7D005F762239CCEF0040CBD7 /* AvatarView.swift */,
+				3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */,
+				3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */,
 				7D8B78FC21627887005E08F1 /* CoreWebView.swift */,
 				7D364F2321AE04B20028E3EA /* CoreWebViewController.swift */,
 				7D765023215AEDDD00BB4F38 /* DividerView.swift */,
@@ -1850,11 +1866,15 @@
 				3BE2ADCA21B704F1008D91AB /* DynamicTextField.swift */,
 				B1B4C1CA219631B700FA9E0E /* EmptyView.swift */,
 				B1B4C1C8219631AC00FA9E0E /* EmptyView.xib */,
+				9FCF1541227B6DB6009D35F6 /* GradeCircleView.swift */,
+				9FCF153F227B6BC1009D35F6 /* GradeCircleView.xib */,
 				3BBCF840224C193B004B519D /* HorizontalMenuView.swift */,
 				3BBCF83F224C193B004B519D /* HorizontalMenuView.xib */,
 				3BBCF841224C193B004B519D /* HorizontalMenuViewCell.swift */,
 				3BBCF842224C193B004B519D /* HorizontalMenuViewCell.xib */,
 				7DA057512193A30E00A3CFBB /* IconView.swift */,
+				7DE6A7032319921A00A5B796 /* ItemPickerViewController.storyboard */,
+				7DAFBE73231871F500E9A37D /* ItemPickerViewController.swift */,
 				7D1219232243340200D3BF5C /* KeyboardTransitioning.swift */,
 				7D1758C0215A8F5600F88613 /* ListFormatter.swift */,
 				7DD6CC6C21BD6DCD004C4BB6 /* LoadingViewController.storyboard */,
@@ -1864,10 +1884,6 @@
 				7D85D8EE226E6901002DBF63 /* SectionHeaderView.xib */,
 				7D1758B32159898C00F88613 /* TitleSubtitleView.swift */,
 				7D1758B521598CA400F88613 /* TitleSubtitleView.xib */,
-				3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */,
-				3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */,
-				9FCF153F227B6BC1009D35F6 /* GradeCircleView.xib */,
-				9FCF1541227B6DB6009D35F6 /* GradeCircleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2206,6 +2222,16 @@
 			path = AppEnvironment;
 			sourceTree = "<group>";
 		};
+		7DAFBE6E2318567300E9A37D /* ErrorReports */ = {
+			isa = PBXGroup;
+			children = (
+				7DE6A7052319973700A5B796 /* APIErrorReport.swift */,
+				7DAFBE6F2318588000E9A37D /* ErrorReportViewController.storyboard */,
+				7DAFBE71231858E300E9A37D /* ErrorReportViewController.swift */,
+			);
+			path = ErrorReports;
+			sourceTree = "<group>";
+		};
 		7DCF1EC3216BE0C3003AF358 /* Viewable */ = {
 			isa = PBXGroup;
 			children = (
@@ -2239,6 +2265,14 @@
 				7DDC81452242E2C7000DD25A /* AudioRecorderViewController.swift */,
 			);
 			path = AudioVideo;
+			sourceTree = "<group>";
+		};
+		7DE6A7072319B03600A5B796 /* ErrorReports */ = {
+			isa = PBXGroup;
+			children = (
+				7DE6A7082319B05700A5B796 /* APIErrorReportTests.swift */,
+			);
+			path = ErrorReports;
 			sourceTree = "<group>";
 		};
 		7DEAD09C22790B1E0030C28A /* RichContentEditor */ = {
@@ -2907,6 +2941,7 @@
 				B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */,
 				EE584C7E22F2048D00D1E201 /* PageListViewController.storyboard in Resources */,
 				3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */,
+				7DE6A7042319921A00A5B796 /* ItemPickerViewController.storyboard in Resources */,
 				7D86286B224D493C003A37DC /* AudioPlayerViewController.storyboard in Resources */,
 				7D2E82882270BB9B00735854 /* FilePickerViewController.storyboard in Resources */,
 				7D1758B621598CA400F88613 /* TitleSubtitleView.xib in Resources */,
@@ -2915,6 +2950,7 @@
 				9F8C3291223ACBA500D53F84 /* ProfileViewController.xib in Resources */,
 				9FCF1540227B6BC1009D35F6 /* GradeCircleView.xib in Resources */,
 				7DD752A321BEFA8F00E26260 /* LoginManualOAuthViewController.storyboard in Resources */,
+				7DAFBE702318588000E9A37D /* ErrorReportViewController.storyboard in Resources */,
 				9FBE5356223AD1A4001EC40C /* DeveloperMenuViewController.storyboard in Resources */,
 				7D101949215E8E5F0058FDD1 /* Assets.xcassets in Resources */,
 				7DD6CC6D21BD6DCD004C4BB6 /* LoadingViewController.storyboard in Resources */,
@@ -3009,6 +3045,7 @@
 				78151DCB21AE75D400692862 /* APIDiscussion.swift in Sources */,
 				7D92D653224A8D9B0015B368 /* APIMediaCommentRequestable.swift in Sources */,
 				3BE2ADCB21B704F1008D91AB /* DynamicTextField.swift in Sources */,
+				7DE6A7062319973700A5B796 /* APIErrorReport.swift in Sources */,
 				B1C783ED2241E39B00DD89A9 /* UUID.swift in Sources */,
 				7DD6CC6521BCC101004C4BB6 /* LoginNavigationController.swift in Sources */,
 				B1911CF121C851AD00F42F91 /* ProcessInfoExtensions.swift in Sources */,
@@ -3147,6 +3184,7 @@
 				7DAC286B22B1701B00C0B692 /* QuizHideResults.swift in Sources */,
 				EE584C7F22F2048D00D1E201 /* PageListPresenter.swift in Sources */,
 				7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */,
+				7DAFBE72231858E300E9A37D /* ErrorReportViewController.swift in Sources */,
 				3BE2C760218CB50B004B8E5E /* ColoredNavViewProtocol.swift in Sources */,
 				7DD694872195F76C00BA4984 /* DocViewerViewController.swift in Sources */,
 				B1999AAF2305AAC300DA97A4 /* APIFeatureFlagsRequestable.swift in Sources */,
@@ -3263,6 +3301,7 @@
 				2C96485E211E3723002C3255 /* AppEnvironment.swift in Sources */,
 				B1AE17AE21877C37002995E6 /* APIEnrollmentRequestable.swift in Sources */,
 				3B35F06B230EEAA800674FF5 /* APIGraphQLRequestable.swift in Sources */,
+				7DAFBE74231871F500E9A37D /* ItemPickerViewController.swift in Sources */,
 				EE584C8022F2048D00D1E201 /* PageListCell.swift in Sources */,
 				B1A6BC7E218A317A000515E3 /* APIAssignmentOverride.swift in Sources */,
 				B1EA5AEB212E641900DABC5F /* GetCourses.swift in Sources */,
@@ -3335,6 +3374,7 @@
 				7D80AC15212B67E100C40ECE /* APIUserRequestableTests.swift in Sources */,
 				7D7472D6218CC4B200CE1430 /* APIDocViewerRequestableTests.swift in Sources */,
 				B19792F9217699B70000369C /* CourseTests.swift in Sources */,
+				7DE6A7092319B05700A5B796 /* APIErrorReportTests.swift in Sources */,
 				9FD504EA2180BE2900B395BA /* APIFileRequestableTests.swift in Sources */,
 				3BD364AF225E36FC006CEBD8 /* CalendarEventItemTests.swift in Sources */,
 				7DCF1EAC216BC360003AF358 /* CourseDefaultViewTests.swift in Sources */,

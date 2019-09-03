@@ -41,6 +41,8 @@ extern NSString * _Nonnull const CKIClientAccessTokenExpiredNotification;
  */
 @interface CKIClient : AFHTTPSessionManager <NSCopying>
 
+@property (class) CKIClient * _Nullable currentClient;
+
 @property (nonatomic, strong, nonnull) CKIMediaServer *mediaServer;
 
 /**

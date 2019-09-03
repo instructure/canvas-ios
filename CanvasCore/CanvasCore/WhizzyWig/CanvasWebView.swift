@@ -17,7 +17,6 @@
 //
 
 import WebKit
-import CanvasKeymaster
 import CanvasKit
 import ReactiveSwift
 import Core
@@ -234,7 +233,7 @@ public class CanvasWebView: WKWebView {
 
     /// Reloads `self` with an authenticated url for `src`
     @objc func loadFrame(src: String) {
-        guard let session = CanvasKeymaster.the().currentClient?.authSession, let url = URL(string: src) else {
+        guard let session = CKIClient.current?.authSession, let url = URL(string: src) else {
             return
         }
 
@@ -261,7 +260,7 @@ extension CanvasWebView: WKNavigationDelegate {
         }
 
         if action.navigationType == .linkActivated, let url = request.url, LTITools(link: url) != nil,
-            let from = presentingViewController, let session = CanvasKeymaster.the().currentClient?.authSession {
+            let from = presentingViewController, let session = CKIClient.current?.authSession {
             ExternalToolManager.shared.launch(url, in: session, from: from)
             return decisionHandler(.cancel)
         }
