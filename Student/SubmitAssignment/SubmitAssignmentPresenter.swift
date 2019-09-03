@@ -69,7 +69,7 @@ class SubmitAssignmentPresenter {
         self.course = course
         if autoSelectAssignment {
             assignment = nil
-            assignments = env.subscribe(GetAssignments(courseID: course.id)) { [weak self] in
+            assignments = env.subscribe(GetSubmittableAssignments(courseID: course.id)) { [weak self] in
                 self?.assignment = self?.assignment ?? self?.assignments?.first
             }
             assignments?.refresh()

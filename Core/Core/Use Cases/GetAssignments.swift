@@ -56,7 +56,7 @@ public class GetAssignments: CollectionUseCase {
             let b = NSSortDescriptor(key: #keyPath(Assignment.dueAt), ascending: true)
             let c = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
             let predicate = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.courseID), courseID])
-            return Scope.init(predicate: predicate, order: [a, b, c])
+            return Scope(predicate: predicate, order: [a, b, c])
         case .position:
             return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.position))
         case .name:
@@ -70,9 +70,25 @@ public class GetAssignments: CollectionUseCase {
         }
 
         for item in response {
-            let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.htmlURL), item.html_url as CVarArg)
+            let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), item.id.value)
             let model: Assignment = client.fetch(predicate).first ?? client.insert()
             model.update(fromApiModel: item, in: client, updateSubmission: false)
         }
+    }
+}
+
+public class GetSubmittableAssignments: GetAssignments {
+    public init(courseID: String) {
+        super.init(courseID: courseID, sort: .name)
+    }
+
+    public override var scope: Scope {
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), courseID),
+            NSPredicate(format: "%K == FALSE", #keyPath(Assignment.lockedForUser)),
+            NSPredicate(format: "%K == NIL OR %K > %@", #keyPath(Assignment.lockAt), #keyPath(Assignment.lockAt), NSDate()),
+            NSPredicate(format: "%K == NIL OR %K <= %@", #keyPath(Assignment.unlockAt), #keyPath(Assignment.unlockAt), NSDate()),
+        ])
+        return Scope(predicate: predicate, orderBy: #keyPath(Assignment.name))
     }
 }
