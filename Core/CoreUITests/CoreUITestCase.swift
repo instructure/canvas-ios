@@ -165,7 +165,7 @@ open class CoreUITestCase: XCTestCase {
         noCallback: Bool = false
     ) {
         let api = URLSessionAPI()
-        let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.accessToken, actAsUserID: api.actAsUserID)
+        let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.loginSession?.accessToken, actAsUserID: api.loginSession?.actAsUserID)
         return mockDataRequest(request, data: data, response: response, error: error, noCallback: noCallback)
     }
 

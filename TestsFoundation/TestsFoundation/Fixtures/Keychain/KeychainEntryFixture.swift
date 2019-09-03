@@ -29,7 +29,9 @@ extension LoginSession {
         refreshToken: String? = nil,
         userAvatarURL: URL? = nil,
         userID: String = "1",
-        userName: String = "Eve"
+        userName: String = "Eve",
+        clientID: String? = nil,
+        clientSecret: String? = nil
     ) -> LoginSession {
         return LoginSession(
             accessToken: accessToken,
@@ -41,7 +43,9 @@ extension LoginSession {
             refreshToken: refreshToken,
             userAvatarURL: userAvatarURL,
             userID: userID,
-            userName: userName
+            userName: userName,
+            clientID: clientID,
+            clientSecret: clientSecret
         )
     }
 }

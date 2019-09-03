@@ -140,10 +140,8 @@ public class URLSessionAPI: API {
         }
         let client = APIVerifyClient(authorized: true, base_url: baseURL, client_id: clientID, client_secret: clientSecret)
         let request = PostLoginOAuthRequest(client: client, refreshToken: refreshToken)
-        print("old access token", loginSession.accessToken!)
         makeRequest(request, refreshToken: false) { [weak self] response, _, error in
             if let response = response, error == nil {
-                print("got a new access token baby!", response.access_token)
                 let session = loginSession.refresh(accessToken: response.access_token)
                 LoginSession.add(session)
                 self?.loginSession = session

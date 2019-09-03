@@ -58,7 +58,7 @@ class UrlSubmissionPresenterTests: XCTestCase {
 
     func testSubmitSuccess() {
         let url = URL(string: "https://instructure.com")
-        MockURLSession?.mock(submissionRequest(for: url), value: APISubmission.make(), response: nil, error: nil)
+        MockURLSession.mock(submissionRequest(for: url), value: APISubmission.make(), response: nil, error: nil)
         presenter.submit(url?.absoluteString)
         let expectation = BlockExpectation(description: "dismissed") { self.dismissed }
         wait(for: [expectation], timeout: 10)

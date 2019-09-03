@@ -200,4 +200,79 @@ class APITests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
 
+    func testRefreshToken() {
+        let session = LoginSession.make(
+            accessToken: "expired-token",
+            refreshToken: "refresh-token",
+            clientID: "client-id",
+            clientSecret: "client-secret"
+        )
+        let api = URLSessionAPI(loginSession: session, urlSession: MockURLSession())
+        let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
+        let request = URLRequest(url: url)
+        let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
+        MockURLSession.mock(
+            request, value: nil,
+            response: response,
+            accessToken: session.accessToken
+        )
+        MockURLSession.mock(
+            PostLoginOAuthRequest(
+                client: APIVerifyClient(
+                    authorized: true,
+                    base_url: api.baseURL,
+                    client_id: "client-id",
+                    client_secret: "client-secret"
+                ),
+                refreshToken: "refresh-token"
+            ),
+            value: APIOAuthToken.make(accessToken: "new-token"),
+            accessToken: session.accessToken
+        )
+        let expectation = XCTestExpectation(description: "request callback was called")
+        api.makeRequest(request) { _, _, error in
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        XCTAssertEqual(api.loginSession?.accessToken, "new-token")
+    }
+
+    func testRefreshTokenError() {
+        let session = LoginSession.make(
+            accessToken: "expired-token",
+            refreshToken: "refresh-token",
+            clientID: "client-id",
+            clientSecret: "client-secret"
+        )
+        let api = URLSessionAPI(loginSession: session, urlSession: MockURLSession())
+        let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
+        let request = URLRequest(url: url)
+        let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
+        MockURLSession.mock(
+            request, value: nil,
+            response: response,
+            error: NSError.internalError(),
+            accessToken: session.accessToken
+        )
+        MockURLSession.mock(
+            PostLoginOAuthRequest(
+                client: APIVerifyClient(
+                    authorized: true,
+                    base_url: api.baseURL,
+                    client_id: "client-id",
+                    client_secret: "client-secret"
+                ),
+                refreshToken: "refresh-token"
+            ),
+            error: NSError.internalError(),
+            accessToken: session.accessToken
+        )
+        let expectation = XCTestExpectation(description: "request callback was called")
+        api.makeRequest(request) { _, _, error in
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        XCTAssertEqual(api.loginSession?.accessToken, "expired-token")
+    }
+
 }

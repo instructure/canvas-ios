@@ -36,7 +36,7 @@ class SubmitAssignmentTests: XCTestCase {
         MockURLSession.reset()
         UploadManager.shared = uploadManager
         env.database = database
-        env.api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
+        env.api = URLSessionAPI()
     }
 
     override func tearDown() {

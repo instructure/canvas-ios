@@ -40,17 +40,17 @@ class PersistenceTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        MockURLSession.reset()
         queue = OperationQueue()
         router = TestRouter()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         env = testEnvironment()
-        env.api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
+        env.api = URLSessionAPI()
         env.database = database
         env.globalDatabase = database
         env.router = router
         env.logger = logger
         env.currentSession = currentSession
-        MockURLSession.reset()
         UploadManager.shared = uploadManager
         MockUploadManager.reset()
     }
