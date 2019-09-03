@@ -288,6 +288,36 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
         </View>
       </item>
     </list>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#2D3B45",
+          "bottom": 0,
+          "left": 0,
+          "paddingHorizontal": 16,
+          "paddingVertical": 16,
+          "position": "absolute",
+          "right": 0,
+          "transform": Array [
+            Object {
+              "translateY": 100,
+            },
+          ],
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 14,
+            "fontWeight": "400",
+          }
+        }
+      >
+        Practice quizzes & surveys do not have detail views.
+      </Text>
+    </View>
   </View>
 </RCTSafeAreaView>
 `;
@@ -613,6 +643,36 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
         </View>
       </item>
     </list>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#2D3B45",
+          "bottom": 0,
+          "left": 0,
+          "paddingHorizontal": 16,
+          "paddingVertical": 16,
+          "position": "absolute",
+          "right": 0,
+          "transform": Array [
+            Object {
+              "translateY": 100,
+            },
+          ],
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 14,
+            "fontWeight": "400",
+          }
+        }
+      >
+        Practice quizzes & surveys do not have detail views.
+      </Text>
+    </View>
   </View>
 </RCTSafeAreaView>
 `;
@@ -905,6 +965,36 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
         </View>
       </item>
     </list>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#2D3B45",
+          "bottom": 0,
+          "left": 0,
+          "paddingHorizontal": 16,
+          "paddingVertical": 16,
+          "position": "absolute",
+          "right": 0,
+          "transform": Array [
+            Object {
+              "translateY": 100,
+            },
+          ],
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 14,
+            "fontWeight": "400",
+          }
+        }
+      >
+        Practice quizzes & surveys do not have detail views.
+      </Text>
+    </View>
   </View>
 </RCTSafeAreaView>
 `;
