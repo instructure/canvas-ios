@@ -246,7 +246,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             guard let file = self.file(taskID: task.taskIdentifier) else {
                 return
             }
-            guard error != nil else {
+            guard error == nil else {
                 complete(file: file, error: error)
                 return
             }
@@ -317,7 +317,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             else {
                 return
             }
-            if error != nil {
+            guard error == nil else {
                 complete(file: file, error: error)
                 return
             }

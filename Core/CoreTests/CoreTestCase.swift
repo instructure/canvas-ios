@@ -65,6 +65,7 @@ class CoreTestCase: XCTestCase {
 
     override func tearDown() {
         LoginSession.sessions = entriesBackup
+        super.tearDown()
     }
 
     func waitForMainAsync() {

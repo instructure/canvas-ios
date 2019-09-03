@@ -43,6 +43,7 @@ class UploadManagerTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         manager.notificationManager = notificationManager
+        LoginSession.clearAll()
     }
 
     func testUploadURLDefault() throws {
@@ -136,7 +137,7 @@ class UploadManagerTests: CoreTestCase {
         let url = URL(string: "data:text/plain,abcde")!
         let target = FileUploadTarget.make()
         MockURLSession.mock(
-            PostFileUploadRequest( fileURL: url, target: target),
+            PostFileUploadRequest(fileURL: url, target: target),
             value: APIFile.make(),
             baseURL: target.upload_url,
             accessToken: nil,
@@ -297,6 +298,151 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertFalse(fileManager.fileExists(atPath: twoURL.path))
     }
 
+    func testSessionTaskDidCompleteGetTargetUnauthorized() throws {
+        let loginSession = LoginSession.make(
+            accessToken: "expired-token",
+            refreshToken: "refresh-token",
+            clientID: "client-id",
+            clientSecret: "client-secret"
+        )
+        LoginSession.add(loginSession)
+        let url = URL(string: "data:text/plain,abcde")!
+        MockURLSession.mock(
+            PostLoginOAuthRequest(
+                client: APIVerifyClient(
+                    authorized: true,
+                    base_url: loginSession.baseURL,
+                    client_id: loginSession.clientID,
+                    client_secret: loginSession.clientSecret
+                ),
+                refreshToken: "refresh-token"
+            ),
+            value: APIOAuthToken.make(),
+            baseURL: loginSession.baseURL,
+            taskID: 1
+        )
+        let file = context.insert() as File
+        file.localFileURL = url
+        file.taskID = 0
+        file.setUser(session: loginSession)
+        try context.save()
+        let task = MockURLSession.MockDataTask()
+        task.uploadStep = .target
+        task.taskIdentifier = 0
+        let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
+        task.mock = MockURLSession.MockData(data: nil, response: response, error: NSError.internalError())
+        manager.urlSession(backgroundSession, task: task, didCompleteWithError: NSError.internalError())
+        context.refresh(file, mergeChanges: false)
+        XCTAssertEqual(file.taskID, 1)
+        let refreshTask = MockURLSession.dataMocks.first { $0.value.taskIdentifier == 1 }?.value
+        XCTAssertNotNil(refreshTask)
+        XCTAssertEqual(refreshTask?.resumed, true)
+        XCTAssertEqual(refreshTask?.uploadStep, .refreshTarget)
+    }
+
+    func testSessionTaskDidCompleteSubmitUnauthorized() throws {
+        let loginSession = LoginSession.make(
+            accessToken: "expired-token",
+            refreshToken: "refresh-token",
+            clientID: "client-id",
+            clientSecret: "client-secret"
+        )
+        LoginSession.add(loginSession)
+        let url = URL(string: "data:text/plain,abcde")!
+        MockURLSession.mock(
+            PostLoginOAuthRequest(
+                client: APIVerifyClient(
+                    authorized: true,
+                    base_url: loginSession.baseURL,
+                    client_id: loginSession.clientID,
+                    client_secret: loginSession.clientSecret
+                ),
+                refreshToken: "refresh-token"
+            ),
+            value: APIOAuthToken.make(),
+            baseURL: loginSession.baseURL,
+            taskID: 1
+        )
+        let file = context.insert() as File
+        file.localFileURL = url
+        file.taskID = 0
+        file.setUser(session: loginSession)
+        try context.save()
+        let task = MockURLSession.MockDataTask()
+        task.uploadStep = .submit
+        task.taskIdentifier = 0
+        let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
+        task.mock = MockURLSession.MockData(data: nil, response: response, error: NSError.internalError())
+        manager.urlSession(backgroundSession, task: task, didCompleteWithError: NSError.internalError())
+        context.refresh(file, mergeChanges: false)
+        XCTAssertEqual(file.taskID, 1)
+        let refreshTask = MockURLSession.dataMocks.first { $0.value.taskIdentifier == 1 }?.value
+        XCTAssertNotNil(refreshTask)
+        XCTAssertEqual(refreshTask?.resumed, true)
+        XCTAssertEqual(refreshTask?.uploadStep, .refreshSubmit)
+    }
+
+    func testSessionTaskDidCompleteRefreshTarget() throws {
+        let loginSession = LoginSession.make(
+            accessToken: "expired-token",
+            refreshToken: "refresh-token",
+            clientID: "client-id",
+            clientSecret: "client-secret"
+        )
+        LoginSession.add(loginSession)
+        let file = context.insert() as File
+        file.localFileURL = url
+        file.taskID = 0
+        file.setUser(session: loginSession)
+        file.refreshData = try encoder.encode(APIOAuthToken.make(accessToken: "new-token"))
+        file.context = .course("1")
+        try context.save()
+        let task = MockURLSession.MockDataTask()
+        task.uploadStep = .refreshTarget
+        task.taskIdentifier = 0
+        mockTarget(name: url.lastPathComponent, size: 0, context: uploadContext, taskID: 1, accessToken: "new-token")
+        manager.urlSession(backgroundSession, task: task, didCompleteWithError: nil)
+        context.refresh(file, mergeChanges: false)
+        XCTAssertEqual(file.taskID, 1)
+        let targetTask = MockURLSession.dataMocks.first { $0.value.taskIdentifier == 1 }?.value
+        XCTAssertNotNil(targetTask)
+        XCTAssertEqual(targetTask?.resumed, true)
+        XCTAssertEqual(targetTask?.uploadStep, .target)
+        let refreshedSession = LoginSession.sessions.first { $0.accessToken == "new-token" }
+        XCTAssertNotNil(refreshedSession)
+    }
+
+    func testSessionTaskDidCompleteRefreshSubmit() throws {
+        let loginSession = LoginSession.make(
+            accessToken: "expired-token",
+            refreshToken: "refresh-token",
+            clientID: "client-id",
+            clientSecret: "client-secret"
+        )
+        LoginSession.add(loginSession)
+        let file = context.insert() as File
+        file.localFileURL = url
+        file.taskID = 0
+        file.id = "3"
+        file.setUser(session: loginSession)
+        file.refreshData = try encoder.encode(APIOAuthToken.make(accessToken: "new-token"))
+        file.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
+        try context.save()
+        let task = MockURLSession.MockDataTask()
+        task.uploadStep = .refreshSubmit
+        task.taskIdentifier = 0
+        mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["3"], taskID: 1, accessToken: "new-token")
+        manager.urlSession(backgroundSession, task: task, didCompleteWithError: nil)
+        context.refresh(file, mergeChanges: false)
+        XCTAssertEqual(file.taskID, 1)
+        let submitTask = MockURLSession.dataMocks.first { $0.value.taskIdentifier == 1 }?.value
+        XCTAssertNotNil(submitTask)
+        XCTAssertEqual(submitTask?.resumed, true)
+        XCTAssertEqual(submitTask?.uploadStep, .submit)
+        let refreshedSession = LoginSession.sessions.first { $0.accessToken == "new-token" }
+        XCTAssertNotNil(refreshedSession)
+    }
+
     func testSessionDataTaskDidReceiveData() throws {
         let file = context.insert() as File
         file.targetData = nil
@@ -323,6 +469,17 @@ class UploadManagerTests: CoreTestCase {
         manager.urlSession(backgroundSession, dataTask: task, didReceive: data)
         context.refresh(file, mergeChanges: false)
         XCTAssertNotNil(file.submitData)
+
+        task.uploadStep = .refreshTarget
+        manager.urlSession(backgroundSession, dataTask: task, didReceive: data)
+        context.refresh(file, mergeChanges: false)
+        XCTAssertNotNil(file.refreshData)
+
+        file.refreshData = nil
+        task.uploadStep = .refreshSubmit
+        manager.urlSession(backgroundSession, dataTask: task, didReceive: data)
+        context.refresh(file, mergeChanges: false)
+        XCTAssertNotNil(file.refreshData)
     }
 
     func testFailedSubmissionNotification() throws {
@@ -391,7 +548,7 @@ class UploadManagerTests: CoreTestCase {
         wait(for: [expectation], timeout: 1)
     }
 
-    private func mockSubmission(courseID: String, assignmentID: String, fileIDs: [String], comment: String? = nil, taskID: Int) {
+    private func mockSubmission(courseID: String, assignmentID: String, fileIDs: [String], comment: String? = nil, taskID: Int, accessToken: String? = nil) {
         let submission = CreateSubmissionRequest.Body.Submission(
             text_comment: comment,
             submission_type: .online_upload,
@@ -410,19 +567,19 @@ class UploadManagerTests: CoreTestCase {
             submissionRequest,
             value: APISubmission.make(),
             baseURL: currentSession.baseURL,
-            accessToken: currentSession.accessToken,
+            accessToken: accessToken ?? currentSession.accessToken,
             taskID: taskID
         )
     }
 
-    private func mockTarget(name: String, size: Int, context: FileUploadContext, taskID: Int = 0) {
+    private func mockTarget(name: String, size: Int, context: FileUploadContext, taskID: Int = 0, accessToken: String? = AppEnvironment.shared.currentSession?.accessToken) {
         let body = PostFileUploadTargetRequest.Body(name: name, on_duplicate: .rename, parent_folder_id: nil, size: size)
         let requestable = PostFileUploadTargetRequest(context: context, body: body)
         MockURLSession.mock(
             requestable,
             value: FileUploadTarget.make(),
             baseURL: AppEnvironment.shared.api.baseURL,
-            accessToken: AppEnvironment.shared.currentSession?.accessToken,
+            accessToken: accessToken,
             taskID: taskID
         )
     }
