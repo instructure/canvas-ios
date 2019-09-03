@@ -22,11 +22,13 @@ import TestsFoundation
 import XCTest
 
 class SubmissionButtonTests: StudentUITestCase {
-    lazy var course: APICourse = {
-        let course = APICourse.make()
+    var course: APICourse!
+
+    override func setUp() {
+        super.setUp()
+        course = APICourse.make()
         mockData(GetCourseRequest(courseID: course.id), value: course)
-        return course
-    }()
+    }
 
     func mockAssignment(_ assignment: APIAssignment) -> APIAssignment {
         mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
@@ -94,6 +96,7 @@ class SubmissionButtonTests: StudentUITestCase {
             launchType: .assessment
         ), value: APIGetSessionlessLaunchResponse(url: URL(string: "https://canvas.instructure.com")!))
 
+        logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
         app.find(label: "Done").tap()
@@ -137,8 +140,7 @@ class SubmissionButtonTests: StudentUITestCase {
         logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
-        DiscussionDetails.titleLabel.waitToExist()
-        XCTAssertEqual(DiscussionDetails.titleLabel.label, topic.title)
+        XCTAssertEqual(DiscussionDetails.titleLabel.label(), topic.title)
         NavBar.backButton.tap()
     }
 
