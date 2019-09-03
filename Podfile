@@ -51,7 +51,6 @@ abstract_target 'defaults' do
   pod 'Marshal', '~> 1.2.7'
   pod 'Cartography', '~> 3.1'
   pod 'Kingfisher', '~> 4.10'
-  pod 'SVProgressHUD', '~> 2.0'
   pod 'TBBModal', '~> 1.0'
   pod 'AFNetworking', '~> 3.0'
   pod 'Mantle', '~> 1.5.5'
@@ -112,7 +111,6 @@ post_install do |installer|
       config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
     end
     usesNonAppExAPI = %w[
-      SVProgressHUD
       react-native-camera
       React
       react-native-document-picker
