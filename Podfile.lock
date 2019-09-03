@@ -21,7 +21,6 @@ PODS:
   - Crashlytics (3.10.9):
     - Fabric (~> 1.7.13)
   - DoubleConversion (1.1.6)
-  - Eureka (5.0.0)
   - Fabric (1.7.13)
   - Firebase/Core (5.20.2):
     - Firebase/CoreOnly
@@ -172,7 +171,6 @@ DEPENDENCIES:
   - Cartography (~> 3.1)
   - Crashlytics (~> 3.10.2)
   - DoubleConversion (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
-  - Eureka (~> 5.0)
   - Fabric (~> 1.7.7)
   - Firebase/Core (~> 5.20)
   - Folly (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/Folly.podspec`)
@@ -214,7 +212,6 @@ SPEC REPOS:
     - boost-for-react-native
     - Cartography
     - Crashlytics
-    - Eureka
     - Fabric
     - Firebase
     - FirebaseAnalytics
@@ -269,7 +266,6 @@ SPEC CHECKSUMS:
   Cartography: 1988b7578871a56c036e7af17195cb2190edf18c
   Crashlytics: 55e24fc23989680285a21cb1146578d9d18e432c
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
-  Eureka: 0f64f477ec8ef6201c6fec143d60ff5c201cf654
   Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
   Firebase: 0c8cf33f266410c61ab3e2265cfa412200351d9c
   FirebaseAnalytics: ece1aa57a4f43c64d53a648b5a5e05151aae947b
@@ -297,6 +293,6 @@ SPEC CHECKSUMS:
   TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
   yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
 
-PODFILE CHECKSUM: d074f3f1155ec7add6bbafefb68b05603493e804
+PODFILE CHECKSUM: 381bfac438b443192f9e70d97332446a24dea6f7
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.7.5
