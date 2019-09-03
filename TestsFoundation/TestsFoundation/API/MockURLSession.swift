@@ -20,13 +20,17 @@ import Core
 
 public class MockURLSession: URLSession {
     public static var dataMocks: [URLRequest: MockDataTask] = [:]
+    public static var downloadMocks: [URLRequest: MockDownloadTask] = [:]
 
-    public struct MockData {
-        public let data: Data?
+    public typealias MockData = MockResponse<Data>
+    public typealias MockDownload = MockResponse<URL>
+
+    public struct MockResponse<T> {
+        public let data: T?
         public let response: URLResponse?
         public let error: Error?
 
-        public init(data: Data?, response: URLResponse?, error: Error?) {
+        public init(data: T?, response: URLResponse?, error: Error?) {
             self.data = data
             self.response = response
             self.error = error
@@ -67,19 +71,46 @@ public class MockURLSession: URLSession {
         }
     }
 
-    static let isSetup: Bool = {
+    public class MockDownloadTask: URLSessionDownloadTask {
+        public var callback: ((URL?, URLResponse?, Error?) -> Void)?
+
+        private var id: Int = 0
+        public override var taskIdentifier: Int {
+            get { return id }
+            set { id = newValue }
+        }
+
+        private var desc: String?
+        public override var taskDescription: String? {
+            get { return desc }
+            set { desc = newValue }
+        }
+
+        public override var response: URLResponse? {
+            return mock?.response
+        }
+
+        public var mock: MockDownload?
+        public var resumed = false
+        public var canceled = false
+
+        public override func resume() {
+            callback?(mock?.data, mock?.response, mock?.error)
+            resumed = true
+        }
+
+        public override func cancel() {
+            callback = nil
+            canceled = true
+        }
+    }
+
+    public static func reset() {
         URLSessionAPI.defaultURLSession = MockURLSession()
         URLSessionAPI.cachingURLSession = MockURLSession()
         URLSessionAPI.delegateURLSession = { _, _, _ in MockURLSession() }
-        NoFollowRedirect.session = MockURLSession()
-        AppEnvironment.shared.api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
-        return true
-    }()
-
-    public static func reset() {
-        guard isSetup else {
-            fatalError("MockURLSession failed to setup correctly")
-        }
+        URLSessionAPI.noFollowRedirectURLSession = MockURLSession()
+        AppEnvironment.shared.api = URLSessionAPI(loginSession: nil, urlSession: MockURLSession())
         dataMocks = [:]
     }
 
@@ -103,6 +134,17 @@ public class MockURLSession: URLSession {
 
     public static func mock<R: APIRequestable>(
         _ requestable: R,
+        response: URLResponse? = nil,
+        error: Error?,
+        baseURL: URL = URL(string: "https://canvas.instructure.com")!,
+        accessToken: String? = nil,
+        taskID: Int = 0
+    ) {
+        mock(requestable, value: nil, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
+    }
+
+    public static func mock<R: APIRequestable>(
+        _ requestable: R,
         data: Data? = nil,
         response: URLResponse? = nil,
         error: Error? = nil,
@@ -117,6 +159,7 @@ public class MockURLSession: URLSession {
     @discardableResult
     public static func mock(_ request: URLRequest, data: Data? = nil, response: URLResponse? = nil, error: Error? = nil, taskID: Int = 0) -> MockDataTask {
         let task = MockDataTask()
+        print("mocking: \(request)")
         task.mock = MockData(data: data, response: response, error: error)
         task.taskIdentifier = taskID
         MockURLSession.dataMocks[request] = task
@@ -130,6 +173,15 @@ public class MockURLSession: URLSession {
     ) -> MockDataTask? {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
         return dataMocks[request]
+    }
+
+    @discardableResult
+    public static func mockDownload(_ url: URL, value: URL? = nil, response: URLResponse? = nil, error: Error? = nil) -> MockDownloadTask {
+        let request = URLRequest(url: url)
+        let task = MockDownloadTask()
+        task.mock = MockDownload(data: value, response: response, error: error)
+        MockURLSession.downloadMocks[request] = task
+        return task
     }
 
     public override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
@@ -154,6 +206,15 @@ public class MockURLSession: URLSession {
         if task.mock == nil {
             print("⚠️ mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
         }
+        return task
+    }
+
+    public override func downloadTask(with request: URLRequest, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask {
+        let task = MockURLSession.downloadMocks[request] ?? MockDownloadTask()
+        if task.mock == nil {
+            print("⚠️ download mock not found for url: \(request.url?.absoluteString ?? "<n/a>")")
+        }
+        task.callback = completionHandler
         return task
     }
 

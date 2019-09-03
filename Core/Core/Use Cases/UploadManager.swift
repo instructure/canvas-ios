@@ -28,6 +28,7 @@ enum FileUploaderError: Error {
 
 enum UploadStep: String {
     case target, upload, submit
+    case refreshTarget, refreshSubmit
 }
 
 extension URLSessionTask {
@@ -144,31 +145,42 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     /// Use `UploadManager.shared.uploadURL(_:)` as the file's `localFileURL`
     /// Or (preferably) use `UploadManager.shared.upload(url:)`
     open func upload(environment: AppEnvironment = .shared, file: File, to uploadContext: FileUploadContext) {
+        guard let session = environment.currentSession else {
+            assertionFailure("Expected a currentSession")
+            return
+        }
         let objectID = file.objectID
         context.performAndWait {
-            guard let file = try? context.existingObject(with: objectID) as? File, let url = file.localFileURL else { return }
-            do {
-                let api = environment.api
-                let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil, size: file.size)
-                let requestable = PostFileUploadTargetRequest(context: uploadContext, body: body)
-                let request = try requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.loginSession?.accessToken, actAsUserID: api.loginSession?.actAsUserID)
-                let task = backgroundSession.dataTask(with: request)
-                file.localFileURL = url
-                task.uploadStep = .target
-                file.taskID = task.taskIdentifier
-                file.context = uploadContext
-                file.uploadError = nil
-                file.id = nil
-                file.target = nil
-                file.bytesSent = 0
-                file.submitData = nil
-                file.targetData = nil
-                file.uploadData = nil
-                try context.save()
-                task.resume()
-            } catch {
-                complete(file: file, error: error)
-            }
+            guard let file = try? context.existingObject(with: objectID) as? File else { return }
+            getTarget(file: file, session: session, uploadContext: uploadContext)
+        }
+    }
+
+    private func getTarget(file: File, session: LoginSession, uploadContext: FileUploadContext) {
+        guard let url = file.localFileURL else {
+            assertionFailure("File should have  localFileURL")
+            return
+        }
+        do {
+            let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_id: nil, size: file.size)
+            let requestable = PostFileUploadTargetRequest(context: uploadContext, body: body)
+            let request = try requestable.urlRequest(relativeTo: session.baseURL, accessToken: session.accessToken, actAsUserID: session.actAsUserID)
+            let task = backgroundSession.dataTask(with: request)
+            file.localFileURL = url
+            task.uploadStep = .target
+            file.taskID = task.taskIdentifier
+            file.context = uploadContext
+            file.uploadError = nil
+            file.id = nil
+            file.target = nil
+            file.bytesSent = 0
+            file.submitData = nil
+            file.targetData = nil
+            file.uploadData = nil
+            try context.save()
+            task.resume()
+        } catch {
+            complete(file: file, error: error)
         }
     }
 
@@ -186,6 +198,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                     file.uploadData = (file.uploadData ?? Data()) + data
                 case .submit:
                     file.submitData = (file.submitData ?? Data()) + data
+                case .refreshTarget, .refreshSubmit:
+                    file.refreshData = (file.refreshData ?? Data()) + data
                 }
                 try context.save()
             } catch {
@@ -210,6 +224,10 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         context.performAndWait {
             guard let step = task.uploadStep else { return }
+            if error != nil, (task.response as? HTTPURLResponse)?.statusCode == 401 && step != .refreshTarget && step != .refreshSubmit {
+                refreshToken(task: task, error: error)
+                return
+            }
             switch step {
             case .target:
                 completeTarget(task: task, error: error)
@@ -217,7 +235,109 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 completeUpload(task: task, error: error)
             case .submit:
                 completeSubmit(task: task, error: error)
+            case .refreshTarget, .refreshSubmit:
+                completeRefresh(task: task, error: error)
             }
+        }
+    }
+
+    func completeRefresh(task: URLSessionTask, error: Error?) {
+        context.performAndWait {
+            guard let file = self.file(taskID: task.taskIdentifier) else {
+                return
+            }
+            guard error != nil else {
+                complete(file: file, error: error)
+                return
+            }
+            guard
+                let user = file.user,
+                let session = LoginSession.sessions.first(where: { user == $0 }),
+                let data = file.refreshData,
+                let token = try? decoder.decode(APIOAuthToken.self, from: data)
+            else {
+                return
+            }
+            LoginSession.add(session.refresh(accessToken: token.access_token))
+            switch task.uploadStep {
+            case .refreshTarget?:
+                retryTarget(task: task, error: error)
+            case .refreshSubmit?:
+                retrySubmit(task: task, error: error)
+            default: break
+            }
+        }
+    }
+
+    func refreshToken(task: URLSessionTask, error: Error?) {
+        context.performAndWait {
+            guard let file = self.file(taskID: task.taskIdentifier) else {
+                return
+            }
+            guard
+                let step = task.uploadStep,
+                let user = file.user,
+                let session = LoginSession.sessions.first(where: { user == $0 }),
+                let refreshToken = session.refreshToken,
+                let clientID = session.clientID,
+                let clientSecret = session.clientSecret
+            else {
+                complete(file: file, error: error)
+                return
+            }
+            do {
+                let client = APIVerifyClient(authorized: true, base_url: session.baseURL, client_id: clientID, client_secret: clientSecret)
+                let requestable = PostLoginOAuthRequest(client: client, refreshToken: refreshToken)
+                let request = try requestable.urlRequest(relativeTo: user.baseURL, accessToken: session.accessToken, actAsUserID: session.actAsUserID)
+                let task = backgroundSession.dataTask(with: request)
+                switch step {
+                case .target:
+                    task.uploadStep = .refreshTarget
+                case .submit:
+                    task.uploadStep = .refreshSubmit
+                case .refreshSubmit, .refreshTarget, .upload:
+                    break
+                }
+                file.taskID = task.taskIdentifier
+                try context.save()
+                task.resume()
+            } catch {
+                complete(file: file, error: error)
+            }
+        }
+    }
+
+    func retryTarget(task: URLSessionTask, error: Error?) {
+        context.performAndWait {
+            guard
+                let file = self.file(taskID: task.taskIdentifier),
+                let uploadContext = file.context,
+                let user = file.user,
+                let session = LoginSession.sessions.first(where: { user == $0 })
+            else {
+                return
+            }
+            if error != nil {
+                complete(file: file, error: error)
+                return
+            }
+            getTarget(file: file, session: session, uploadContext: uploadContext)
+        }
+    }
+
+    func retrySubmit(task: URLSessionTask, error: Error?) {
+        context.performAndWait {
+            guard
+                let file = self.file(taskID: task.taskIdentifier),
+                case let .submission(courseID, assignmentID, comment)? = file.context
+            else {
+                return
+            }
+            if error != nil {
+                complete(file: file, error: error)
+                return
+            }
+            submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
         }
     }
 
@@ -272,6 +392,10 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         context.performAndWait {
             guard let file = self.file(taskID: task.taskIdentifier) else { return }
             guard let data = file.targetData, let url = file.localFileURL else { return }
+            guard error == nil else {
+                complete(file: file, error: error)
+                return
+            }
             do {
                 let target = try decoder.decode(FileUploadTarget.self, from: data)
                 let request = PostFileUploadRequest(fileURL: url, target: target)

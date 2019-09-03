@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import Core
+import TestsFoundation
 
 let accountResultsUrl = Bundle(for: APITests.self).url(forResource: "APIAccountResults", withExtension: "json")!
 
@@ -73,6 +74,15 @@ class APITests: XCTestCase {
         func encode(_ body: URL) throws -> Data {
             return body.path.data(using: .utf8)!
         }
+    }
+
+    override func setUp() {
+        super.setUp()
+        URLSessionAPI.defaultURLSession = {
+            let configuration = URLSessionConfiguration.ephemeral
+            configuration.urlCache = nil
+            return URLSession(configuration: configuration)
+        }()
     }
 
     func testIdentifier() {
@@ -174,4 +184,20 @@ class APITests: XCTestCase {
         let value = try? String(contentsOf: file, encoding: .utf8)
         XCTAssertEqual(value, "/file.png")
     }
+
+    func testNoFollowRedirect() {
+        let expectation = XCTestExpectation(description: "handler called")
+        let url = URL(string: "/")!
+        NoFollowRedirect().urlSession(
+            URLSessionAPI.noFollowRedirectURLSession,
+            task: MockURLSession.MockDataTask(),
+            willPerformHTTPRedirection: HTTPURLResponse(url: url, mimeType: nil, expectedContentLength: 0, textEncodingName: nil),
+            newRequest: URLRequest(url: url)
+        ) { request in
+            XCTAssertNil(request)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+
 }

@@ -69,9 +69,8 @@ class PageViewEventRequestManagerTests: CoreTestCase {
 
         // mock the send events req
         let batchReq = PostPandataEventsRequest(token: tokenResponse, events: pandataEvents)
-        let batchUrlReq = try! batchReq.urlRequest(relativeTo: api.baseURL, accessToken: api.accessToken, actAsUserID: nil)
-        api.mocks[batchUrlReq] = ("\"ok\"".data(using: .utf8), nil, nil)
-        print(api.mocks.keys)
+        let batchUrlReq = try! batchReq.urlRequest(relativeTo: environment.api.baseURL, accessToken: environment.api.loginSession?.accessToken, actAsUserID: nil)
+        api.mock(batchUrlReq, data: "\"ok\"".data(using: .utf8))
 
         wait(for: [writeWait1], timeout: 5)
         XCTAssertEqual(p.queueCount, 2)

@@ -34,7 +34,7 @@ class LTIToolsTests: CoreTestCase {
         XCTAssertNil(LTITools(link: nil))
         XCTAssertNil(LTITools(link: URL(string: "/")))
         XCTAssertNil(LTITools(link: URL(string: "https://else.where/external_tools/retrieve?url=/")))
-        XCTAssertEqual(LTITools(link: URL(string: "/external_tools/retrieve?url=/", relativeTo: api.baseURL))?.url, URL(string: "/"))
+        XCTAssertEqual(LTITools(link: URL(string: "/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))?.url, URL(string: "/"))
     }
 
     func testGetSessionlessLaunchURL() {
@@ -50,7 +50,7 @@ class LTIToolsTests: CoreTestCase {
         let request = GetSessionlessLaunchURLRequest(context: ContextModel(.course, id: "1"), id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
         let actualURL = URL(string: "/someplace")!
 
-        api.mock(request)
+        api.mock(request, value: nil)
         var url: URL?
         let doneNil = expectation(description: "callback completed")
         tools.getSessionlessLaunchURL { result in
@@ -60,7 +60,7 @@ class LTIToolsTests: CoreTestCase {
         wait(for: [doneNil], timeout: 1)
         XCTAssertNil(url)
 
-        api.mock(request, error: APIRequestableError.invalidPath(""))
+        api.mock(request, value: nil, error: APIRequestableError.invalidPath(""))
         let doneError = expectation(description: "callback completed")
         tools.getSessionlessLaunchURL { result in
             url = result
@@ -92,7 +92,7 @@ class LTIToolsTests: CoreTestCase {
         let request = GetSessionlessLaunchURLRequest(context: ContextModel(.course, id: "1"), id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
         let actualURL = URL(string: "https://canvas.instructure.com")!
 
-        api.mock(request)
+        api.mock(request, value: nil)
         var success = false
         let doneNil = expectation(description: "callback completed")
         tools.presentToolInSFSafariViewController(from: mockView, animated: false) { result in
@@ -103,7 +103,7 @@ class LTIToolsTests: CoreTestCase {
         XCTAssertFalse(success)
         XCTAssertNil(mockView.presented)
 
-        api.mock(request, error: APIRequestableError.invalidPath(""))
+        api.mock(request, value: nil, error: APIRequestableError.invalidPath(""))
         let doneError = expectation(description: "callback completed")
         tools.presentToolInSFSafariViewController(from: mockView, animated: false) { result in
             success = result

@@ -21,73 +21,32 @@ import XCTest
 import TestsFoundation
 
 class DocViewerSessionTests: CoreTestCase {
-    class MockTask: URLSessionDataTask {
-        var cancelled = false
-        override func cancel() { cancelled = true }
-        override func resume() {}
-    }
-    class MockURLSession: URLSession {
-        var handler: ((Data?, URLResponse?, Error?) -> Void)?
-        override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-            handler = completionHandler
-            return MockTask()
-        }
-        override func invalidateAndCancel() {}
-    }
-
-    let noFollowSession = NoFollowRedirect.session
-    override func tearDown() {
-        super.tearDown()
-        NoFollowRedirect.session = noFollowSession
-    }
-
-    func testRedirect() {
-        let expectation = XCTestExpectation(description: "handler called")
-        let url = URL(string: "/")!
-        (NoFollowRedirect.session.delegate as? NoFollowRedirect)?.urlSession(
-            NoFollowRedirect.session,
-            task: MockTask(),
-            willPerformHTTPRedirection: HTTPURLResponse(url: url, mimeType: nil, expectedContentLength: 0, textEncodingName: nil),
-            newRequest: URLRequest(url: url)
-        ) { request in
-            XCTAssertNil(request)
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 0.01)
-    }
-
     func testCancel() {
         let session = DocViewerSession {}
-        let mockTask = MockTask()
+        let mockTask = MockURLSession.MockDataTask()
         session.task = mockTask
         session.cancel()
-        XCTAssertTrue(mockTask.cancelled)
+        XCTAssertTrue(mockTask.canceled)
     }
 
     func testLoad() {
         let session = DocViewerSession {}
-        let networkMock = MockURLSession()
-        session.api = api
-        NoFollowRedirect.session = networkMock
-        session.load(url: URL(string: "/")!, accessToken: "a")
-        XCTAssertNotNil(networkMock.handler)
-
+        let url = URL(string: "/")!
         let response = HTTPURLResponse(url: URL(string: "/")!, statusCode: 301, httpVersion: nil, headerFields: [
             "Location": "https://doc.viewer/1/session1/view?query",
         ])
-        networkMock.handler?(nil, response, nil)
+        let loginSession = LoginSession.make()
+        MockURLSession.mock(URLRequest(url: url), value: nil, response: response, accessToken: loginSession.accessToken)
+        session.load(url: url, session: loginSession)
         XCTAssertEqual(session.sessionURL, URL(string: "https://doc.viewer/1/session1"))
     }
 
     func testLoadFailure() {
         let session = DocViewerSession {}
-        let networkMock = MockURLSession()
-        NoFollowRedirect.session = networkMock
-        session.load(url: URL(string: "/")!, accessToken: "a")
-        XCTAssertNotNil(networkMock.handler)
-
-        let error = APIDocViewerError.noData
-        networkMock.handler?(nil, nil, error)
+        let url = URL(string: "/")!
+        let loginSession = LoginSession.make()
+        MockURLSession.mock(URLRequest(url: url), error: APIDocViewerError.noData, accessToken: loginSession.accessToken)
+        session.load(url: URL(string: "/")!, session: loginSession)
         XCTAssertNotNil(session.error)
         XCTAssertNil(session.sessionURL)
     }
@@ -97,8 +56,7 @@ class DocViewerSessionTests: CoreTestCase {
         let sessionURL = URL(string: "https://doc.viewer/1/session1")!
         let metadata = APIDocViewerMetadata.make()
         let session = DocViewerSession { notified.fulfill() }
-        session.api = api
-        api.mock(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), response: HTTPURLResponse(url: sessionURL, statusCode: 202, httpVersion: nil, headerFields: nil))
+        api.mock(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: nil, response: HTTPURLResponse(url: sessionURL, statusCode: 202, httpVersion: nil, headerFields: nil))
         session.loadMetadata(sessionURL: sessionURL)
 
         api.mock(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: metadata)
@@ -113,8 +71,7 @@ class DocViewerSessionTests: CoreTestCase {
         let notified = expectation(description: "notified")
         let sessionURL = URL(string: "https://doc.viewer/1/session1")!
         let session = DocViewerSession { notified.fulfill() }
-        session.api = api
-        api.mock(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), error: APIDocViewerError.noData)
+        api.mock(GetDocViewerMetadataRequest(path: sessionURL.absoluteString), value: nil, error: APIDocViewerError.noData)
         session.loadMetadata(sessionURL: sessionURL)
         wait(for: [notified], timeout: 1)
         XCTAssertNotNil(session.error)
@@ -124,7 +81,6 @@ class DocViewerSessionTests: CoreTestCase {
 
     func testLoadAnnotations() {
         let session = DocViewerSession { XCTFail("Must not notify") }
-        session.api = api
         session.metadata = .make()
         api.mock(GetDocViewerAnnotationsRequest(sessionID: ""), value: APIDocViewerAnnotations(data: [.make()]))
         session.loadAnnotations()
@@ -134,7 +90,6 @@ class DocViewerSessionTests: CoreTestCase {
     func testLoadAnnotationsAfterDoc() {
         let notified = expectation(description: "notified")
         let session = DocViewerSession { notified.fulfill() }
-        session.api = api
         session.metadata = .make()
         session.localURL = URL(string: "download")
         session.loadAnnotations()
@@ -145,7 +100,6 @@ class DocViewerSessionTests: CoreTestCase {
     func testLoadAnnotationsAfterError() {
         let notified = expectation(description: "notified")
         let session = DocViewerSession { notified.fulfill() }
-        session.api = api
         session.metadata = .make()
         session.error = APIDocViewerError.noData
         session.loadAnnotations()
@@ -165,7 +119,6 @@ class DocViewerSessionTests: CoreTestCase {
         let notified = expectation(description: "notified")
         let session = DocViewerSession { notified.fulfill() }
         session.annotations = []
-        session.api = api
         api.mockDownload(downloadURL, value: tempURL)
         session.loadDocument(downloadURL: downloadURL)
         XCTAssertEqual(session.remoteURL, downloadURL)
@@ -176,7 +129,6 @@ class DocViewerSessionTests: CoreTestCase {
     func testLoadDocumentFailure() {
         let downloadURL = URL(string: "download")!
         let session = DocViewerSession { XCTFail("Must not notify without annotations set") }
-        session.api = api
         api.mockDownload(downloadURL, error: APIDocViewerError.noData)
         session.loadDocument(downloadURL: downloadURL)
         XCTAssertEqual(session.remoteURL, downloadURL)

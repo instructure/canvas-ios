@@ -65,7 +65,6 @@
 		B16F0371215BD5F10011E952 /* TestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F0370215BD5F10011E952 /* TestRouter.swift */; };
 		B16F0375215C2B340011E952 /* AssignmentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F0374215C2B340011E952 /* AssignmentFixture.swift */; };
 		B16F0377215C2CEF0011E952 /* SubmissionFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F0376215C2CEF0011E952 /* SubmissionFixture.swift */; };
-		B171A10921B9E51F000325D3 /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B171A10821B9E51F000325D3 /* MockAPI.swift */; };
 		B1911CEF21C84B1000F42F91 /* MockNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CEE21C84B1000F42F91 /* MockNotificationManager.swift */; };
 		B19792EF21751FBC0000369C /* TestPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792EE21751FBC0000369C /* TestPersistence.swift */; };
 		B19792F521767B830000369C /* ColorFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792F421767B830000369C /* ColorFixture.swift */; };
@@ -144,7 +143,6 @@
 		B16F0370215BD5F10011E952 /* TestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRouter.swift; sourceTree = "<group>"; };
 		B16F0374215C2B340011E952 /* AssignmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentFixture.swift; sourceTree = "<group>"; };
 		B16F0376215C2CEF0011E952 /* SubmissionFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFixture.swift; sourceTree = "<group>"; };
-		B171A10821B9E51F000325D3 /* MockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPI.swift; sourceTree = "<group>"; };
 		B1911CEE21C84B1000F42F91 /* MockNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationManager.swift; sourceTree = "<group>"; };
 		B19792EE21751FBC0000369C /* TestPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPersistence.swift; sourceTree = "<group>"; };
 		B19792F421767B830000369C /* ColorFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFixture.swift; sourceTree = "<group>"; };
@@ -321,7 +319,6 @@
 			children = (
 				7D47769921AF396500B441CE /* APIQuiz.swift */,
 				7D47769721AF356200B441CE /* APIQuizRequestable.swift */,
-				B171A10821B9E51F000325D3 /* MockAPI.swift */,
 				B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */,
 			);
 			path = API;
@@ -522,7 +519,6 @@
 				7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */,
 				B1F428DC228B5C3C00EC8C37 /* MockURLSession.swift in Sources */,
 				3BAA4177218A361100701E03 /* EnrollmentFixture.swift in Sources */,
-				B171A10921B9E51F000325D3 /* MockAPI.swift in Sources */,
 				3B0CEB732150406400D07CFA /* GroupFixture.swift in Sources */,
 				3B0CEBA421504C2500D07CFA /* APIGroupFixture.swift in Sources */,
 				7D148647230B49DC003944A2 /* APIAccountNotificationFixture.swift in Sources */,

@@ -49,9 +49,8 @@ class UrlSubmissionPresenterTests: XCTestCase {
 
     func testSubmitError() {
         let url = URL(string: "https://instructure.com")
-        let api = presenter.env.api as? MockAPI
         let error = NSError(domain: "test", code: 5, userInfo: nil)
-        api?.mock(submissionRequest(for: url), value: nil, response: nil, error: error)
+        MockURLSession.mock(submissionRequest(for: url), value: nil, response: nil, error: error)
         presenter.submit(url?.absoluteString)
         let expectation = BlockExpectation(description: "got an error") { self.resultingError != nil }
         wait(for: [expectation], timeout: 10)
@@ -59,8 +58,7 @@ class UrlSubmissionPresenterTests: XCTestCase {
 
     func testSubmitSuccess() {
         let url = URL(string: "https://instructure.com")
-        let api = presenter.env.api as? MockAPI
-        api?.mock(submissionRequest(for: url), value: APISubmission.make(), response: nil, error: nil)
+        MockURLSession?.mock(submissionRequest(for: url), value: APISubmission.make(), response: nil, error: nil)
         presenter.submit(url?.absoluteString)
         let expectation = BlockExpectation(description: "dismissed") { self.dismissed }
         wait(for: [expectation], timeout: 10)

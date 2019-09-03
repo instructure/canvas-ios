@@ -42,10 +42,7 @@ class UploadManagerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-
         manager.notificationManager = notificationManager
-        URLSessionAPI.delegateURLSession = { _, _, _ in self.backgroundSession }
-        MockURLSession.reset()
     }
 
     func testUploadURLDefault() throws {
@@ -65,7 +62,10 @@ class UploadManagerTests: CoreTestCase {
             .appendingPathComponent(url.lastPathComponent)
         let config = URLSessionConfiguration.background(withIdentifier: "doesnt matter")
         config.sharedContainerIdentifier = "group.com.instructure.icanvas"
-        backgroundSession.config = config
+        URLSessionAPI.delegateURLSession = { (configuration: URLSessionConfiguration, delegate: URLSessionDelegate?, delegateQueue: OperationQueue?) -> URLSession in
+            return URLSession(configuration: config, delegate: delegate, delegateQueue: delegateQueue)
+        }
+        let manager = UploadManager()
         XCTAssertEqual(try manager.uploadURL(url), expected)
     }
 
@@ -91,7 +91,7 @@ class UploadManagerTests: CoreTestCase {
         badBatch.user = good.user
         let badUser = context.insert() as File
         badUser.batchID = good.batchID
-        badUser.user = File.User(id: "bad", baseURL: currentSession.baseURL, actAsUserID: currentSession.actAsUserID)
+        badUser.user = File.User(id: "bad", baseURL: currentSession.baseURL, masquerader: nil)
         try! context.save()
         let store = manager.subscribe(batchID: good.batchID!) {}
         XCTAssertEqual(store.count, 1)
@@ -128,7 +128,7 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertEqual(task?.uploadStep, .target)
         XCTAssertEqual(task?.resumed, true)
         context.refresh(file, mergeChanges: false)
-        XCTAssertEqual(file.taskID, task?.taskIdentifier)
+        XCTAssertEqual(file.taskID, 0)
     }
 
     func testSessionTaskDidCompleteWithTarget() throws {
@@ -246,7 +246,7 @@ class UploadManagerTests: CoreTestCase {
         task.uploadStep = .upload
         task.taskIdentifier = 1
         var request = URLRequest(url: URL(string: location)!)
-        request.setValue("Bearer \(currentSession.accessToken)", forHTTPHeaderField: HttpHeader.authorization)
+        request.setValue("Bearer \(currentSession.accessToken!)", forHTTPHeaderField: HttpHeader.authorization)
         request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
         let locationTask = MockURLSession.mock(request, taskID: 2)
 
@@ -422,7 +422,7 @@ class UploadManagerTests: CoreTestCase {
             requestable,
             value: FileUploadTarget.make(),
             baseURL: AppEnvironment.shared.api.baseURL,
-            accessToken: AppEnvironment.shared.api.accessToken,
+            accessToken: AppEnvironment.shared.currentSession?.accessToken,
             taskID: taskID
         )
     }

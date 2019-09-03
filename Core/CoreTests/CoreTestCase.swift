@@ -29,7 +29,7 @@ class CoreTestCase: XCTestCase {
     var databaseClient: NSManagedObjectContext {
         return database.viewContext
     }
-    var api = MockAPI()
+    var api = MockURLSession.self
     var router = TestRouter()
     var logger = TestLogger()
     var environment: AppEnvironment!
@@ -46,19 +46,18 @@ class CoreTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        api = MockAPI()
+        MockURLSession.reset()
         router = TestRouter()
         logger = TestLogger()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         environment = AppEnvironment.shared
-        environment.api = api
+        environment.api = URLSessionAPI(urlSession: MockURLSession())
         environment.globalDatabase = database
         environment.database = database
         environment.router = router
         environment.logger = logger
         environment.currentSession = currentSession
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)
-        URLSessionAPI.delegateURLSession = { _, _, _ in MockURLSession() }
         UploadManager.shared = MockUploadManager()
         MockUploadManager.reset()
         UUID.reset()

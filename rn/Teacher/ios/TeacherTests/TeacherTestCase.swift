@@ -29,7 +29,7 @@ class TeacherTestCase: XCTestCase {
         return database.viewContext
     }
 
-    var api = MockAPI()
+    var api = MockURLSession.self
     var environment = AppEnvironment.shared
     var queue = OperationQueue()
     var router = TestRouter()
@@ -45,5 +45,6 @@ class TeacherTestCase: XCTestCase {
         environment.router = router
         environment.logger = logger
         environment.currentSession = LoginSession.make()
+        MockURLSession.reset()
     }
 }

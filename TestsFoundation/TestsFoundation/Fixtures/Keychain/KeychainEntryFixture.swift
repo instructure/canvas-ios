@@ -20,7 +20,7 @@ import Core
 
 extension LoginSession {
     public static func make(
-        accessToken: String = "token",
+        accessToken: String? = "token",
         baseURL: URL = URL(string: "https://canvas.instructure.com")!,
         expiresAt: Date? = nil,
         lastUsedAt: Date = Date(),

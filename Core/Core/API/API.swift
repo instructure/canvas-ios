@@ -36,8 +36,8 @@ public protocol API {
 
 extension API {
     @discardableResult
-    public func makeRequest<R: APIRequestable>(_ requestable: R, refreshToken: Bool = true, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
-        return makeRequest(requestable, refreshToken: refreshToken, callback: callback)
+    public func makeRequest<R: APIRequestable>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
+        return makeRequest(requestable, refreshToken: true, callback: callback)
     }
 }
 
