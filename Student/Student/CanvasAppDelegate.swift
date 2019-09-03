@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
         }
 
-        // Legacy CanvasKeymaster support
+        // Legacy CanvasKit support
         let legacyClient = CKIClient(
             baseURL: session.baseURL,
             token: session.accessToken ?? "",

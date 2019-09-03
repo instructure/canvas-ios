@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
         }
-        // Legacy CanvasKeymaster support
+        // Legacy CanvasKit support
         let legacyClient = CKIClient(
             baseURL: session.baseURL,
             token: session.accessToken ?? "",
