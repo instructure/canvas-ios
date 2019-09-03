@@ -22,6 +22,7 @@ import React from 'react'
 import { QuizSubmissionList, refreshQuizSubmissionData } from '../QuizSubmissionList'
 import renderer from 'react-test-renderer'
 import cloneDeep from 'lodash/cloneDeep'
+import { shallow } from 'enzyme'
 
 const template = {
   ...require('../../../../__templates__/helm'),
@@ -109,6 +110,23 @@ describe('QuizSubmissionList', () => {
       { modal: true, modalPresentationStyle: 'fullscreen' },
       { filter: instance.state.filter, studentIndex: 33 }
     )
+  })
+
+  test('shows the practice quiz snackbar message when row is pressed', () => {
+    let tree = shallow(
+      <QuizSubmissionList {...props} />
+    )
+
+    let showSnackbar = jest.fn()
+    tree.instance().showSnackbar = showSnackbar
+
+    let row = shallow(
+      tree.instance().renderRow({ item: props.rows[0], index: 0 })
+    )
+
+    row.simulate('press')
+
+    expect(showSnackbar).toHaveBeenCalled()
   })
 
   test('navigate to submission settings', () => {
