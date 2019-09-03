@@ -79,6 +79,9 @@ class LoginFindSchoolViewController: UIViewController, LoginFindSchoolViewProtoc
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
+        if !UIAccessibility.isSwitchControlRunning, !UIAccessibility.isVoiceOverRunning {
+            searchField?.becomeFirstResponder()
+        }
     }
 
     func update(results: [APIAccountResult]) {
