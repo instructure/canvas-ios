@@ -132,7 +132,8 @@ open class StudentSettingsViewController : FormViewController {
             let row = IntRow(type.rawValue) {
                 $0.title = self.descriptionForType(type)
                 $0.placeholder = percentagePlaceholder
-                $0.textFieldPercentage = 0.20
+                $0.titlePercentage = 0.70
+                $0.cell?.textField.accessibilityLabel = $0.title
                 if let threshold = thresholdForType(type), let value = threshold.threshold {
                     $0.value = formatter.number(from: value)?.intValue
                 }
