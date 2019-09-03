@@ -79,8 +79,6 @@ class LoginTests: CoreUITestCase {
         Dashboard.courseCard(id: "247").waitToExist()
         TabBar.dashboardTab.waitToExist()
 
-        launch()
-
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
         TabBar.dashboardTab.waitToExist()
@@ -100,6 +98,8 @@ class LoginTests: CoreUITestCase {
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
         TabBar.dashboardTab.waitToExist()
+
+        launch()
     }
 
     func xtestMDMHost() {
@@ -127,5 +127,7 @@ class LoginTests: CoreUITestCase {
         LoginWeb.logInButton.tap()
 
         homeScreen.waitToExist()
+
+        launch()
     }
 }
