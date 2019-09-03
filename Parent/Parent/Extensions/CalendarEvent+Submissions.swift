@@ -46,7 +46,7 @@ private struct Submission {
     let pointsPossible: NSNumber?
     let pastEndDate: Bool
     let type: SubmissionTypes
-    let muted: Bool
+    let gradePostedAt: Date?
 
     var onPaper: Bool {
         return type.contains(.onPaper)
@@ -61,7 +61,7 @@ private struct Submission {
             return NSLocalizedString("Excused", comment: "")
         }
 
-        if status.contains(.Graded) && !muted {
+        if status.contains(.Graded), let postedAt = gradePostedAt, postedAt < Date() {
             guard let currentScore = currentScore else {
                 if status.contains(.Late) {
                     return NSLocalizedString("Late", comment: "")
@@ -101,7 +101,7 @@ private struct Submission {
     }
 
     var displayVerboseText: String {
-        if status.contains(.Graded) && !muted {
+        if status.contains(.Graded), let postedAt = gradePostedAt, postedAt < Date() {
             guard let pointsPossible = pointsPossible, let score = currentScore else { return self.displayText }
             let percentage = pointsPossible != 0 ? Submission.percentFormatter.string(from: NSNumber(value: score.doubleValue/pointsPossible.doubleValue)) : ""
             
@@ -171,7 +171,7 @@ extension CalendarEvent {
                           pointsPossible: pointsPossible,
                           pastEndDate: pastEndDate,
                           type: submissionTypes,
-                          muted: muted)
+                          gradePostedAt: gradePostedAt)
     }
 
     @objc var submittedText: String {
@@ -208,7 +208,7 @@ extension Assignment {
                           pointsPossible: NSNumber(value: pointsPossible),
                           pastEndDate: overdue,
                           type: submissionTypes,
-                          muted: muted)
+                          gradePostedAt: gradePostedAt)
     }
 
     @objc var submittedText: String {
