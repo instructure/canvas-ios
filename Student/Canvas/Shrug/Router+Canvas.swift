@@ -20,11 +20,11 @@ import Foundation
 import TechDebt
 import CanvasCore
 import Marshal
-import CanvasKeymaster
+import CanvasKit
 import Core
 
 var currentSession: Session? {
-    return CanvasKeymaster.the().currentClient?.authSession
+    return CKIClient.current?.authSession
 }
 
 extension TechDebt.Router {

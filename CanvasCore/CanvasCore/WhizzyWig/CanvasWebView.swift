@@ -17,6 +17,10 @@
 //
 
 import WebKit
+<<<<<<< HEAD
+=======
+import CanvasKit
+>>>>>>> master
 import ReactiveSwift
 import Core
 
@@ -144,11 +148,9 @@ public class CanvasWebView: WKWebView {
     }
     
     @objc public init(config: WKWebViewConfiguration) {
-        // Make the user agent look like Safari as best we can to work around Google OAuth restrictions.
-        // Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.3 Mobile/15E217 Safari/605.1
-        config.applicationNameForUserAgent = "Version/\(UIDevice.current.systemVersion) Mobile/15E217 Safari/605.1"
         config.processPool = CoreWebView.processPool
         super.init(frame: .zero, configuration: config)
+        customUserAgent = UserAgent.safari.description
         translatesAutoresizingMaskIntoConstraints = false
         navigationDelegate = self
         uiDelegate = self
@@ -236,11 +238,13 @@ public class CanvasWebView: WKWebView {
     @objc func loadFrame(src: String) {
         let request = GetWebSessionRequest(to: url)
         AppEnvironment.shared.api.makeRequest(request) { [weak self] response, urlResponse, error in
-            guard let response = response, error != nil else {
-                self?.onError?(error ?? NSError.internalError())
-                return
+            DispatchQueue.main.async {
+                guard let response = response, error != nil else {
+                    self?.onError?(error ?? NSError.internalError())
+                    return
+                }
+                self?.load(URLRequest(url: response.session_url))
             }
-            self?.load(URLRequest(url: response.session_url))
         }
     }
 }
@@ -255,7 +259,7 @@ extension CanvasWebView: WKNavigationDelegate {
         }
 
         if action.navigationType == .linkActivated, let url = request.url, LTITools(link: url) != nil,
-            let from = presentingViewController, let session = CanvasKeymaster.the().currentClient?.authSession {
+            let from = presentingViewController, let session = CKIClient.current?.authSession {
             ExternalToolManager.shared.launch(url, in: session, from: from)
             return decisionHandler(.cancel)
         }

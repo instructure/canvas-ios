@@ -20,7 +20,7 @@ import UIKit
 import PSPDFKit
 import PSPDFKitUI
 import React
-import CanvasKeymaster
+import CanvasKit
 import AFNetworking
 import Core
 

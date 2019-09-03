@@ -18,7 +18,6 @@
 
 import Foundation
 import CanvasCore
-import CanvasKeymaster
 import Core
 
 extension AppDelegate {

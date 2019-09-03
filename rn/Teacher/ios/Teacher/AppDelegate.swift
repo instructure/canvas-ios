@@ -18,7 +18,7 @@
 
 import AVKit
 import UIKit
-import CanvasKeymaster
+import CanvasKit
 import ReactiveSwift
 import UserNotifications
 import PSPDFKit
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if hasFirebase {
             FirebaseApp.configure()
         }
-        CanvasAnalytics.setHandler(self)
+        Core.Analytics.shared.handler = self
         DocViewerViewController.setup(.teacherPSPDFKitLicense)
         prepareReactNative()
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         legacyClient.originalBaseURL = session.originalBaseURL
         legacyClient.fetchCurrentUser().subscribeNext({ user in
             legacyClient.setValue(user, forKey: "currentUser")
-            CanvasKeymaster.the().setup(with: legacyClient)
+            CKIClient.current = legacyClient
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
                 NativeLoginManager.login(as: session, wasReload: wasReload)
@@ -200,7 +200,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 }
 
-extension AppDelegate: CanvasAnalyticsHandler {
+extension AppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         if hasFirebase {
             Analytics.logEvent(name, parameters: parameters)

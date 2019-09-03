@@ -48,11 +48,14 @@ class PostSettingsViewController: UIViewController {
         configurePost()
         configureHide()
         scrollView.delegate = self
+        navigationController?.navigationBar.barTintColor = UIColor.white
+
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
     }
 
     func configureMenu() {
         menu.delegate = self
-        menuHeight.constant = 1.0 / UIScreen.main.scale
+        menuHeight.constant = 1
     }
 
     func configurePost() {
@@ -104,7 +107,7 @@ extension PostSettingsViewController: HorizontalMenuDelegate {
     }
 
     var selectedColor: UIColor? {
-        return .named(.electric)
+        return Brand.shared.buttonPrimaryBackground
     }
 
     var maxItemWidth: CGFloat {
@@ -112,7 +115,7 @@ extension PostSettingsViewController: HorizontalMenuDelegate {
     }
 
     var measurementFont: UIFont {
-        return .scaledNamedFont(.semibold16)
+        return .scaledNamedFont(.semibold14)
     }
 
     func menuItemCount() -> Int {

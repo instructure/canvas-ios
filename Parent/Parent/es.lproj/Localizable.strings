@@ -89,7 +89,7 @@
 "Courses" = "Cursos";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "AñAlumno actual: %@, toque para cambiar entre alumnos";
+"Current student: %@, tap to switch students" = "Alumno actual: %@, toque para cambiar entre alumnos";
 
 /* No comment provided by engineer. */
 "Developer Menu" = "Menú del desarrollador";
@@ -111,6 +111,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Excusado";
+
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "No se pudo cargar (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
 "Help" = "Ayuda";
@@ -252,6 +255,9 @@
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "Hubo un problema al cargar la base de datos.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "Hubo un problema al cargar el DiscussionKit archivo de la base de datos.";
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Hubo un error al cargar su contenido. Si se trata de un proceso de carga de audio o video puede que aún se esté procesando.";

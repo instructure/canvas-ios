@@ -19,7 +19,7 @@
 #import <CanvasKit/CKIEnrollment.h>
 #import "CBIPeopleTabViewModel.h"
 #import "CBIPeopleViewModel.h"
-@import CanvasKeymaster;
+@import CanvasKit;
 
 typedef NS_ENUM(NSInteger, CBIPeopleTabSection) {
     CBIPeopleTabSectionTeacher,

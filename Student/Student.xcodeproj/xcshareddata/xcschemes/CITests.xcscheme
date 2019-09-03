@@ -95,13 +95,6 @@
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B1FC3AF21C98B4E500A8001F"
-            BuildableName = "CanvasKeymaster.framework"
-            BlueprintName = "CanvasKeymaster"
-            ReferencedContainer = "container:../Frameworks/CanvasKeymaster/CanvasKeymaster.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
             BlueprintIdentifier = "499D18861C8643E6005A86D2"
             BuildableName = "CanvasKit.framework"
             BlueprintName = "CanvasKit"
@@ -212,16 +205,6 @@
                BlueprintIdentifier = "7DC5716F22F8B16200F2E9BB"
                BuildableName = "StudentUITests.xctest"
                BlueprintName = "StudentUITests"
-               ReferencedContainer = "container:Student.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9F5D743422A99E91002FCCCE"
-               BuildableName = "CanvasUITests.xctest"
-               BlueprintName = "CanvasUITests"
                ReferencedContainer = "container:Student.xcodeproj">
             </BuildableReference>
          </TestableReference>

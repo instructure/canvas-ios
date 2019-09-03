@@ -141,4 +141,29 @@ class SubmissionButtonTests: StudentUITestCase {
         XCTAssertEqual(DiscussionDetails.titleLabel.label, topic.title)
         NavBar.backButton.tap()
     }
+
+    // TODO: fix on bitrise
+    func xtestMediaRecording() {
+        mockBaseRequests()
+        let assignment = mockAssignment(APIAssignment.make(
+            submission_types: [ .media_recording ]
+        ))
+        mockData(GetMediaServiceRequest(), value: APIMediaService(domain: "canvas.instructure.com"))
+        mockData(PostMediaSessionRequest(), value: APIMediaSession(ks: "k"))
+        mockEncodedData(PostMediaUploadTokenRequest(body: .init(ks: "k")), data: "<id>t</id>".data(using: .utf8))
+        mockData(PostMediaUploadRequest(fileURL: URL(string: "data:text/plain,")!, type: .audio, ks: "k", token: "t"))
+        mockEncodedData(PostMediaIDRequest(ks: "k", token: "t", type: .audio), data: "<id>2</id>".data(using: .utf8))
+        mockData(CreateSubmissionRequest(context: ContextModel(.course, id: "1"), assignmentID: "1", body: nil))
+
+        logIn()
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.submitAssignmentButton.tap()
+        allowAccessToMicrophone {
+            app.find(label: "Record Audio").tap()
+        }
+        AudioRecorder.recordButton.tap() // Doesn't start recording on bitrise. :( It works locally.
+        AudioRecorder.stopButton.tap()
+        AudioRecorder.sendButton.tap()
+        app.find(label: "Successfully submitted!").waitToExist()
+    }
 }

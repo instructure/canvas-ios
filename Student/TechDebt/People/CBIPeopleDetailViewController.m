@@ -24,7 +24,7 @@
 #import "CBIConversationStarter.h"
 #import "Router.h"
 #import "UIView+Circular.h"
-@import CanvasKeymaster;
+@import CanvasKit;
 @import CanvasCore;
 
 @interface CBIPeopleDetailViewController () <UIGestureRecognizerDelegate>

@@ -30,6 +30,7 @@ import {
 } from '../SpeedGrader'
 import shuffle from 'knuth-shuffle-seeded'
 import * as modelTemplates from '../../../__templates__'
+import DrawerState from '../utils/drawer-state'
 
 jest.mock('../components/GradePicker')
 jest.mock('../components/Header')
@@ -83,11 +84,13 @@ let defaultProps = {
   assignmentSubmissionTypes: ['none'],
   gradeSubmissionWithRubric: jest.fn(),
   getCourseEnabledFeatures: jest.fn(),
+  getEnabledFeatureFlags: jest.fn(() => Promise.resolve({ data: [] })),
 }
 
 describe('SpeedGrader', () => {
   beforeEach(() => {
     jest.clearAllMocks()
+    SpeedGrader.drawerState = new DrawerState()
   })
 
   it('renders', () => {
@@ -96,6 +99,28 @@ describe('SpeedGrader', () => {
     )
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('fetchs feature flags on mount', async () => {
+    let flagsPromise = Promise.resolve({ data: ['new_gradebook'] })
+    let getEnabledFeatureFlags = jest.fn()
+    getEnabledFeatureFlags.mockReturnValueOnce(flagsPromise)
+    let tree = shallow(
+      <SpeedGrader {...defaultProps} getEnabledFeatureFlags={getEnabledFeatureFlags} />
+    )
+
+    await flagsPromise
+    expect(getEnabledFeatureFlags).toHaveBeenCalled()
+    expect(tree.state().flags).toEqual(['new_gradebook'])
+  })
+
+  it('does not fetch feature flags if they were passed in on mount', () => {
+    let tree = shallow(
+      <SpeedGrader {...defaultProps} flags={['new_gradebook']} />
+    )
+
+    expect(defaultProps.getEnabledFeatureFlags).not.toHaveBeenCalled()
+    expect(tree.state().flags).toEqual(['new_gradebook'])
   })
 
   it('calls refreshSubmissions on mount if hasAssignment is true', () => {

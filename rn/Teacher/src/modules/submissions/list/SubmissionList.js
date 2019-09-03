@@ -112,7 +112,7 @@ export class SubmissionList extends Component<Props, State> {
     this.props.navigator.show(
       path,
       { modal: true, modalPresentationStyle: 'fullscreen' },
-      { filter: this.state.filter, studentIndex: index }
+      { filter: this.state.filter, studentIndex: index, flags: this.state.flags }
     )
   }
 
@@ -131,6 +131,7 @@ export class SubmissionList extends Component<Props, State> {
         onPress={this.navigateToSubmission(index)}
         anonymous={this.props.anonymous}
         gradingType={this.props.gradingType}
+        newGradebookEnabled={this.state.flags.includes('new_gradebook')}
       />
     )
   }

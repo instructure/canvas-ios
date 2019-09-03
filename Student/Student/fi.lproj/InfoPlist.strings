@@ -5,7 +5,7 @@
 "NSCameraUsageDescription" = "Liitä valokuvia ja videoita viesteihin ja keskustelua koskeviin lähetyksiin tai luovuta ne tehtävän lähetyksissä.";
 
 /* Privacy - Location When In Use Usage Description */
-"NSLocationWhenInUseUsageDescription" = "Auttaa löytämään koulut lähelläsi.";
+"NSLocationWhenInUseUsageDescription" = "Auttaa löytämään koulut lähelläso.";
 
 /* Privacy - Microphone Usage Description */
 "NSMicrophoneUsageDescription" = "Liitä ääninauhoituksia viesteihin ja keskustelua koskeviin lähetyksiin tai luovuta ne tehtävän lähetyksissä.";

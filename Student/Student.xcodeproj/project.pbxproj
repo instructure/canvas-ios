@@ -61,8 +61,6 @@
 		492705D31CF4B73300C631C6 /* UIView+FloatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705911CF4B73200C631C6 /* UIView+FloatingView.m */; };
 		492705D41CF4B73300C631C6 /* UIView_render_IN.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705921CF4B73200C631C6 /* UIView_render_IN.h */; };
 		492705D51CF4B73300C631C6 /* UIView_render_IN.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705931CF4B73200C631C6 /* UIView_render_IN.m */; };
-		492705DA1CF4B73300C631C6 /* UIWebView+iCanvas.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705981CF4B73200C631C6 /* UIWebView+iCanvas.h */; };
-		492705DB1CF4B73300C631C6 /* UIWebView+iCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705991CF4B73200C631C6 /* UIWebView+iCanvas.m */; };
 		492705E01CF4B73300C631C6 /* UIWebView+SafeAPIURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */; };
 		492705E11CF4B73300C631C6 /* UIWebView+SafeAPIURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927059F1CF4B73200C631C6 /* UIWebView+SafeAPIURL.m */; };
 		492705E41CF4B73900C631C6 /* CBIViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705E21CF4B73900C631C6 /* CBIViewModel.h */; };
@@ -107,11 +105,8 @@
 		495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */; };
 		49642BC01CF4C44A00238B3F /* EXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 49642BBE1CF4C44A00238B3F /* EXTScope.h */; };
 		49642BC11CF4C44A00238B3F /* metamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 49642BBF1CF4C44A00238B3F /* metamacros.h */; };
-		49642BC41CF4C4DC00238B3F /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */; };
-		49642BC51CF4C4DC00238B3F /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; };
 		49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49642BC81CF4C4DF00238B3F /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */; };
 		49642BC91CF4C4DF00238B3F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; };
 		496D31261CF752C600A3B11E /* LegacyModuleProgressShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */; };
 		496D312A1CF7550A00A3B11E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31291CF7550A00A3B11E /* NetworkMonitor.swift */; };
@@ -640,7 +635,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */,
-				49642BC51CF4C4DC00238B3F /* CanvasKeymaster.framework in Embed Frameworks */,
 				49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */,
 				49AA291F1CF4D1880055862D /* CanvasKit1.framework in Embed Frameworks */,
 				7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */,
@@ -748,8 +742,6 @@
 		492705911CF4B73200C631C6 /* UIView+FloatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FloatingView.m"; sourceTree = "<group>"; };
 		492705921CF4B73200C631C6 /* UIView_render_IN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView_render_IN.h; sourceTree = "<group>"; };
 		492705931CF4B73200C631C6 /* UIView_render_IN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView_render_IN.m; sourceTree = "<group>"; };
-		492705981CF4B73200C631C6 /* UIWebView+iCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+iCanvas.h"; sourceTree = "<group>"; };
-		492705991CF4B73200C631C6 /* UIWebView+iCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+iCanvas.m"; sourceTree = "<group>"; };
 		4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+SafeAPIURL.h"; sourceTree = "<group>"; };
 		4927059F1CF4B73200C631C6 /* UIWebView+SafeAPIURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+SafeAPIURL.m"; sourceTree = "<group>"; };
 		492705E21CF4B73900C631C6 /* CBIViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIViewModel.h; sourceTree = "<group>"; };
@@ -794,7 +786,6 @@
 		495D8BBA1CFE17D700D41098 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49642BBE1CF4C44A00238B3F /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		49642BBF1CF4C44A00238B3F /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
-		49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49642BC31CF4C4CD00238B3F /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49642BCA1CF4C66200238B3F /* Student.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Student.entitlements; sourceTree = "<group>"; };
 		496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyModuleProgressShim.swift; sourceTree = "<group>"; };
@@ -1616,7 +1607,6 @@
 				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
 				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
 				7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */,
-				49642BC41CF4C4DC00238B3F /* CanvasKeymaster.framework in Frameworks */,
 				49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */,
 				49AA291E1CF4D1880055862D /* CanvasKit1.framework in Frameworks */,
 				7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */,
@@ -1641,7 +1631,6 @@
 				B1F405EC22E23C51008FAFE6 /* ReactiveObjC.framework in Frameworks */,
 				2C6049611F72BB6900252BC5 /* CanvasCore.framework in Frameworks */,
 				B1F405EB22E23C4F008FAFE6 /* ReactiveMapKit.framework in Frameworks */,
-				49642BC81CF4C4DF00238B3F /* CanvasKeymaster.framework in Frameworks */,
 				49642BC91CF4C4DF00238B3F /* CanvasKit.framework in Frameworks */,
 				B1F405EE22E23C5B008FAFE6 /* ReactiveSwift.framework in Frameworks */,
 				49A04E4E1CF6420C0051E1E7 /* CanvasKit1.framework in Frameworks */,
@@ -1879,8 +1868,6 @@
 				492705911CF4B73200C631C6 /* UIView+FloatingView.m */,
 				492705921CF4B73200C631C6 /* UIView_render_IN.h */,
 				492705931CF4B73200C631C6 /* UIView_render_IN.m */,
-				492705981CF4B73200C631C6 /* UIWebView+iCanvas.h */,
-				492705991CF4B73200C631C6 /* UIWebView+iCanvas.m */,
 				4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */,
 				4927059F1CF4B73200C631C6 /* UIWebView+SafeAPIURL.m */,
 				49A04E251CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h */,
@@ -2413,7 +2400,6 @@
 				2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */,
 				61F438E21DD4E60B00552D14 /* AVFoundation.framework */,
 				2C6049621F72BB6900252BC5 /* CanvasCore.framework */,
-				49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */,
 				49642BC31CF4C4CD00238B3F /* CanvasKit.framework */,
 				7D1D7E04213743D300F7CCFE /* Core.framework */,
 				2C67B0CB1E01F06800DDD191 /* CoreMedia.framework */,
@@ -3399,7 +3385,6 @@
 				492707FB1CF4BC1000C631C6 /* UnsupportedViewController.h in Headers */,
 				49CE97721F900B4700121A43 /* MLVCCollectionController.h in Headers */,
 				49DE1DA31F8808F30055D74A /* CBIConversationStarter.h in Headers */,
-				492705DA1CF4B73300C631C6 /* UIWebView+iCanvas.h in Headers */,
 				49CE976B1F900B4700121A43 /* MLVCCollectionViewController.h in Headers */,
 				492705C21CF4B73200C631C6 /* UIImage+ImageEffects.h in Headers */,
 				49CE976C1F900B4700121A43 /* MLVCViewModel.h in Headers */,
@@ -4284,7 +4269,6 @@
 				49DE1DA41F8808F30055D74A /* CBIConversationStarter.m in Sources */,
 				49F9FA5B1CF8CDC400654758 /* UIImage+TechDebt.m in Sources */,
 				49AA2D301CF4DC540055862D /* CBIPeopleViewModel.m in Sources */,
-				492705DB1CF4B73300C631C6 /* UIWebView+iCanvas.m in Sources */,
 				492705BB1CF4B73200C631C6 /* NSString_stripHTML.m in Sources */,
 				492705F11CF4B76A00C631C6 /* CBIColorfulCell.m in Sources */,
 				49CE976F1F900B4700121A43 /* MLVCCollectionViewController.m in Sources */,

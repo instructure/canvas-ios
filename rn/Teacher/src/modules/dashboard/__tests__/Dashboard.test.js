@@ -144,6 +144,7 @@ let defaultProps = {
   isFullDashboard: true,
   closeNotification () {},
   groups,
+  canActAsUser: false,
 }
 
 beforeAll(() => App.setCurrentApp('student'))
@@ -312,6 +313,43 @@ describe('Dashboard', () => {
     )
     tree.getInstance().showGroup('1')
     expect(navigator.show).toHaveBeenCalledWith('/groups/1')
+  })
+
+  it('calls navigator.show to navigate to /wrong-app', () => {
+    let navigator = template.navigator({
+      show: jest.fn(),
+    })
+    let props = {
+      ...defaultProps,
+      totalCourseCount: 0,
+      navigator,
+    }
+    let tree = renderAndLayout(
+      <Dashboard {...props} />
+    )
+
+    tree.getInstance().componentWillReceiveProps(props)
+    expect(navigator.show).toHaveBeenCalledWith('/wrong-app', { modal: true })
+  })
+
+  it('does not call navigator.show to navigate to /wrong-app when canActAsUser', () => {
+    let navigator = template.navigator({
+      show: jest.fn(),
+    })
+
+    let props = {
+      ...defaultProps,
+      canActAsUser: true,
+      totalCourseCount: 0,
+      navigator,
+    }
+
+    let tree = renderAndLayout(
+      <Dashboard {...props} />
+    )
+
+    tree.getInstance().componentWillReceiveProps(props)
+    expect(navigator.show).not.toHaveBeenCalled()
   })
 
   it('only calls navigator.show to navigate to /wrong-app when in teacher app', () => {

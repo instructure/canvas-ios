@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import CanvasKit
 
 private var sessionAssociationKey: UInt8 = 0
 

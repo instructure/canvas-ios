@@ -21,13 +21,18 @@ import Core
 
 protocol PostGradesViewProtocol: ErrorViewController {
     func update(_ viewModel: APIPostPolicyInfo)
+    func updateCourseColor(_ color: UIColor)
     func didHideGrades()
     func didPostGrades()
+    func showAllPostedView()
+    func showAllHiddenView()
 }
 
 extension PostGradesViewProtocol {
     func didPostGrades() {}
     func didHideGrades() {}
+    func showAllPostedView() {}
+    func showAllHiddenView() {}
 }
 
 class PostGradesPresenter {
@@ -35,6 +40,14 @@ class PostGradesPresenter {
     let env: AppEnvironment
     let courseID: String
     let assignmentID: String
+
+    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.updateColor()
+    }
+
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID), { [weak self] in
+        self?.updateColor()
+    })
 
     init(courseID: String, assignmentID: String, view: PostGradesViewProtocol, env: AppEnvironment = .shared) {
         self.courseID = courseID
@@ -44,7 +57,16 @@ class PostGradesPresenter {
     }
 
     func viewIsReady() {
+        colors.refresh()
         refresh()
+    }
+
+    func updateColor() {
+        if colors.pending == false {
+            if let course = courses.first {
+                view?.updateCourseColor(course.color)
+            }
+        }
     }
 
     func refresh() {
@@ -54,10 +76,20 @@ class PostGradesPresenter {
                 if let error = error {
                     self?.view?.showError(APIError.from(data: nil, response: nil, error: error))
                 } else if let data = data {
-                    self?.view?.update(data)
+                    self?.updateView(data: data)
                 }
             }
         })
+    }
+
+    func updateView(data: APIPostPolicyInfo) {
+        if data.submissions.count == data.submissions.hiddenCount {
+            view?.showAllHiddenView()
+        } else if data.submissions.count == data.submissions.postedCount {
+            view?.showAllPostedView()
+        }
+
+        view?.update(data)
     }
 
     func postGrades(postPolicy: PostGradePolicy, sectionIDs: [String]) {

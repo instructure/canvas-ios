@@ -278,6 +278,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"Pages" = "Strani";
+
+/* No comment provided by engineer. */
 "Pause" = "Začasna zaustavitev";
 
 /* No comment provided by engineer. */
@@ -390,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikacija se mora znova zagnati, da lahko uporabi nove jezikovne nastavitve. Ponovno zaženite aplikacijo.";
+
+/* No comment provided by engineer. */
+"There are no pages to display." = "Ni nobenih strani za prikaz.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Prišlo je do težav pri pridobivanju pogojev uporabe.";

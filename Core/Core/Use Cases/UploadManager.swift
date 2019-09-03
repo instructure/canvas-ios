@@ -426,8 +426,12 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                     )
                 }
                 delete(userID: userID, batchID: batchID)
+                Analytics.shared.logEvent("submit_fileupload_succeeded")
             } else {
                 sendFailedNotification(courseID: courseID, assignmentID: assignmentID)
+                Analytics.shared.logEvent("submit_fileupload_failed", parameters: [
+                    "error": error?.localizedDescription ?? "unknown",
+                ])
             }
         }
     }

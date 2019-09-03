@@ -214,31 +214,30 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                 </Text>
               </View>
             </View>
-            <View>
-              <CanvasWebView
-                automaticallySetHeight={true}
-                html="<p>And why?</p>"
-                navigator={
-                  Object {
-                    "dismiss": [MockFunction],
-                    "dismissAllModals": [MockFunction],
-                    "isModal": false,
-                    "pop": [MockFunction],
-                    "replace": [MockFunction],
-                    "show": [MockFunction],
-                    "showWebView": [MockFunction],
-                    "traitCollection": [MockFunction],
-                  }
+            <CanvasWebView
+              automaticallySetHeight={true}
+              html="<p>And why?</p>"
+              navigator={
+                Object {
+                  "dismiss": [MockFunction],
+                  "dismissAllModals": [MockFunction],
+                  "isModal": false,
+                  "pop": [MockFunction],
+                  "replace": [MockFunction],
+                  "show": [MockFunction],
+                  "showWebView": [MockFunction],
+                  "traitCollection": [MockFunction],
                 }
-                scrollEnabled={true}
-                style={
-                  Object {
-                    "flex": 1,
-                    "marginHorizontal": -16,
-                  }
+              }
+              scrollEnabled={true}
+              style={
+                Object {
+                  "flex": 1,
+                  "marginHorizontal": -16,
+                  "minHeight": 16,
                 }
-              />
-            </View>
+              }
+            />
           </View>
           <AssignmentSection
             style={
@@ -1061,51 +1060,50 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                   </Text>
                 </View>
               </View>
-              <View>
-                <View
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "marginHorizontal": -16,
+                    "minHeight": 16,
+                  }
+                }
+                testID="web-container.view"
+              >
+                <CanvasWebView
+                  automaticallySetHeight={true}
+                  bounces={false}
+                  html="<p>And why?</p>"
+                  navigator={
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "showWebView": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
+                  }
+                  onError={[Function]}
+                  onFinishedLoading={[Function]}
+                  onHeightChange={[Function]}
+                  onMessage={[Function]}
+                  onNavigation={[Function]}
+                  scrollEnabled={true}
+                  source={
+                    Object {
+                      "baseURL": "http://mobiledev.instructure.com/",
+                      "html": "<p>And why?</p>",
+                    }
+                  }
                   style={
                     Object {
                       "flex": 1,
-                      "marginHorizontal": -16,
                     }
                   }
-                  testID="web-container.view"
-                >
-                  <CanvasWebView
-                    automaticallySetHeight={true}
-                    bounces={false}
-                    html="<p>And why?</p>"
-                    navigator={
-                      Object {
-                        "dismiss": [MockFunction],
-                        "dismissAllModals": [MockFunction],
-                        "isModal": false,
-                        "pop": [MockFunction],
-                        "replace": [MockFunction],
-                        "show": [MockFunction],
-                        "showWebView": [MockFunction],
-                        "traitCollection": [MockFunction],
-                      }
-                    }
-                    onError={[Function]}
-                    onFinishedLoading={[Function]}
-                    onHeightChange={[Function]}
-                    onMessage={[Function]}
-                    onNavigation={[Function]}
-                    scrollEnabled={true}
-                    source={
-                      Object {
-                        "baseURL": "http://mobiledev.instructure.com/",
-                        "html": "<p>And why?</p>",
-                      }
-                    }
-                    style={
-                      Object {
-                        "flex": 1,
-                      }
-                    }
-                  />
-                </View>
+                />
               </View>
             </View>
             <View>
@@ -1559,31 +1557,30 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 </Text>
               </View>
             </View>
-            <View>
-              <CanvasWebView
-                automaticallySetHeight={true}
-                html="<p>And why?</p>"
-                navigator={
-                  Object {
-                    "dismiss": [MockFunction],
-                    "dismissAllModals": [MockFunction],
-                    "isModal": false,
-                    "pop": [MockFunction],
-                    "replace": [MockFunction],
-                    "show": [MockFunction],
-                    "showWebView": [MockFunction],
-                    "traitCollection": [MockFunction],
-                  }
+            <CanvasWebView
+              automaticallySetHeight={true}
+              html="<p>And why?</p>"
+              navigator={
+                Object {
+                  "dismiss": [MockFunction],
+                  "dismissAllModals": [MockFunction],
+                  "isModal": false,
+                  "pop": [MockFunction],
+                  "replace": [MockFunction],
+                  "show": [MockFunction],
+                  "showWebView": [MockFunction],
+                  "traitCollection": [MockFunction],
                 }
-                scrollEnabled={true}
-                style={
-                  Object {
-                    "flex": 1,
-                    "marginHorizontal": -16,
-                  }
+              }
+              scrollEnabled={true}
+              style={
+                Object {
+                  "flex": 1,
+                  "marginHorizontal": -16,
+                  "minHeight": 16,
                 }
-              />
-            </View>
+              }
+            />
             <View
               style={
                 Object {
@@ -2451,51 +2448,50 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   </Text>
                 </View>
               </View>
-              <View>
-                <View
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "marginHorizontal": -16,
+                    "minHeight": 16,
+                  }
+                }
+                testID="web-container.view"
+              >
+                <CanvasWebView
+                  automaticallySetHeight={true}
+                  bounces={false}
+                  html="<p>And why?</p>"
+                  navigator={
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "showWebView": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
+                  }
+                  onError={[Function]}
+                  onFinishedLoading={[Function]}
+                  onHeightChange={[Function]}
+                  onMessage={[Function]}
+                  onNavigation={[Function]}
+                  scrollEnabled={true}
+                  source={
+                    Object {
+                      "baseURL": "http://mobiledev.instructure.com/",
+                      "html": "<p>And why?</p>",
+                    }
+                  }
                   style={
                     Object {
                       "flex": 1,
-                      "marginHorizontal": -16,
                     }
                   }
-                  testID="web-container.view"
-                >
-                  <CanvasWebView
-                    automaticallySetHeight={true}
-                    bounces={false}
-                    html="<p>And why?</p>"
-                    navigator={
-                      Object {
-                        "dismiss": [MockFunction],
-                        "dismissAllModals": [MockFunction],
-                        "isModal": false,
-                        "pop": [MockFunction],
-                        "replace": [MockFunction],
-                        "show": [MockFunction],
-                        "showWebView": [MockFunction],
-                        "traitCollection": [MockFunction],
-                      }
-                    }
-                    onError={[Function]}
-                    onFinishedLoading={[Function]}
-                    onHeightChange={[Function]}
-                    onMessage={[Function]}
-                    onNavigation={[Function]}
-                    scrollEnabled={true}
-                    source={
-                      Object {
-                        "baseURL": "http://mobiledev.instructure.com/",
-                        "html": "<p>And why?</p>",
-                      }
-                    }
-                    style={
-                      Object {
-                        "flex": 1,
-                      }
-                    }
-                  />
-                </View>
+                />
               </View>
               <View
                 style={
@@ -3110,31 +3106,30 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                 </Text>
               </View>
             </View>
-            <View>
-              <CanvasWebView
-                automaticallySetHeight={true}
-                html="<p>And why?</p>"
-                navigator={
-                  Object {
-                    "dismiss": [MockFunction],
-                    "dismissAllModals": [MockFunction],
-                    "isModal": false,
-                    "pop": [MockFunction],
-                    "replace": [MockFunction],
-                    "show": [MockFunction],
-                    "showWebView": [MockFunction],
-                    "traitCollection": [MockFunction],
-                  }
+            <CanvasWebView
+              automaticallySetHeight={true}
+              html="<p>And why?</p>"
+              navigator={
+                Object {
+                  "dismiss": [MockFunction],
+                  "dismissAllModals": [MockFunction],
+                  "isModal": false,
+                  "pop": [MockFunction],
+                  "replace": [MockFunction],
+                  "show": [MockFunction],
+                  "showWebView": [MockFunction],
+                  "traitCollection": [MockFunction],
                 }
-                scrollEnabled={true}
-                style={
-                  Object {
-                    "flex": 1,
-                    "marginHorizontal": -16,
-                  }
+              }
+              scrollEnabled={true}
+              style={
+                Object {
+                  "flex": 1,
+                  "marginHorizontal": -16,
+                  "minHeight": 16,
                 }
-              />
-            </View>
+              }
+            />
           </View>
           <AssignmentSection
             style={
@@ -3424,51 +3419,50 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                   </Text>
                 </View>
               </View>
-              <View>
-                <View
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "marginHorizontal": -16,
+                    "minHeight": 16,
+                  }
+                }
+                testID="web-container.view"
+              >
+                <CanvasWebView
+                  automaticallySetHeight={true}
+                  bounces={false}
+                  html="<p>And why?</p>"
+                  navigator={
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "showWebView": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
+                  }
+                  onError={[Function]}
+                  onFinishedLoading={[Function]}
+                  onHeightChange={[Function]}
+                  onMessage={[Function]}
+                  onNavigation={[Function]}
+                  scrollEnabled={true}
+                  source={
+                    Object {
+                      "baseURL": "http://mobiledev.instructure.com/",
+                      "html": "<p>And why?</p>",
+                    }
+                  }
                   style={
                     Object {
                       "flex": 1,
-                      "marginHorizontal": -16,
                     }
                   }
-                  testID="web-container.view"
-                >
-                  <CanvasWebView
-                    automaticallySetHeight={true}
-                    bounces={false}
-                    html="<p>And why?</p>"
-                    navigator={
-                      Object {
-                        "dismiss": [MockFunction],
-                        "dismissAllModals": [MockFunction],
-                        "isModal": false,
-                        "pop": [MockFunction],
-                        "replace": [MockFunction],
-                        "show": [MockFunction],
-                        "showWebView": [MockFunction],
-                        "traitCollection": [MockFunction],
-                      }
-                    }
-                    onError={[Function]}
-                    onFinishedLoading={[Function]}
-                    onHeightChange={[Function]}
-                    onMessage={[Function]}
-                    onNavigation={[Function]}
-                    scrollEnabled={true}
-                    source={
-                      Object {
-                        "baseURL": "http://mobiledev.instructure.com/",
-                        "html": "<p>And why?</p>",
-                      }
-                    }
-                    style={
-                      Object {
-                        "flex": 1,
-                      }
-                    }
-                  />
-                </View>
+                />
               </View>
             </View>
             <View>
@@ -3835,31 +3829,30 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 </Text>
               </View>
             </View>
-            <View>
-              <CanvasWebView
-                automaticallySetHeight={true}
-                html="<p>And why?</p>"
-                navigator={
-                  Object {
-                    "dismiss": [MockFunction],
-                    "dismissAllModals": [MockFunction],
-                    "isModal": false,
-                    "pop": [MockFunction],
-                    "replace": [MockFunction],
-                    "show": [MockFunction],
-                    "showWebView": [MockFunction],
-                    "traitCollection": [MockFunction],
-                  }
+            <CanvasWebView
+              automaticallySetHeight={true}
+              html="<p>And why?</p>"
+              navigator={
+                Object {
+                  "dismiss": [MockFunction],
+                  "dismissAllModals": [MockFunction],
+                  "isModal": false,
+                  "pop": [MockFunction],
+                  "replace": [MockFunction],
+                  "show": [MockFunction],
+                  "showWebView": [MockFunction],
+                  "traitCollection": [MockFunction],
                 }
-                scrollEnabled={true}
-                style={
-                  Object {
-                    "flex": 1,
-                    "marginHorizontal": -16,
-                  }
+              }
+              scrollEnabled={true}
+              style={
+                Object {
+                  "flex": 1,
+                  "marginHorizontal": -16,
+                  "minHeight": 16,
                 }
-              />
-            </View>
+              }
+            />
             <View
               style={
                 Object {
@@ -4217,51 +4210,50 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   </Text>
                 </View>
               </View>
-              <View>
-                <View
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "marginHorizontal": -16,
+                    "minHeight": 16,
+                  }
+                }
+                testID="web-container.view"
+              >
+                <CanvasWebView
+                  automaticallySetHeight={true}
+                  bounces={false}
+                  html="<p>And why?</p>"
+                  navigator={
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "showWebView": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
+                  }
+                  onError={[Function]}
+                  onFinishedLoading={[Function]}
+                  onHeightChange={[Function]}
+                  onMessage={[Function]}
+                  onNavigation={[Function]}
+                  scrollEnabled={true}
+                  source={
+                    Object {
+                      "baseURL": "http://mobiledev.instructure.com/",
+                      "html": "<p>And why?</p>",
+                    }
+                  }
                   style={
                     Object {
                       "flex": 1,
-                      "marginHorizontal": -16,
                     }
                   }
-                  testID="web-container.view"
-                >
-                  <CanvasWebView
-                    automaticallySetHeight={true}
-                    bounces={false}
-                    html="<p>And why?</p>"
-                    navigator={
-                      Object {
-                        "dismiss": [MockFunction],
-                        "dismissAllModals": [MockFunction],
-                        "isModal": false,
-                        "pop": [MockFunction],
-                        "replace": [MockFunction],
-                        "show": [MockFunction],
-                        "showWebView": [MockFunction],
-                        "traitCollection": [MockFunction],
-                      }
-                    }
-                    onError={[Function]}
-                    onFinishedLoading={[Function]}
-                    onHeightChange={[Function]}
-                    onMessage={[Function]}
-                    onNavigation={[Function]}
-                    scrollEnabled={true}
-                    source={
-                      Object {
-                        "baseURL": "http://mobiledev.instructure.com/",
-                        "html": "<p>And why?</p>",
-                      }
-                    }
-                    style={
-                      Object {
-                        "flex": 1,
-                      }
-                    }
-                  />
-                </View>
+                />
               </View>
               <View
                 style={
@@ -4871,31 +4863,30 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 </Text>
               </View>
             </View>
-            <View>
-              <CanvasWebView
-                automaticallySetHeight={true}
-                html="<p>And why?</p>"
-                navigator={
-                  Object {
-                    "dismiss": [MockFunction],
-                    "dismissAllModals": [MockFunction],
-                    "isModal": false,
-                    "pop": [MockFunction],
-                    "replace": [MockFunction],
-                    "show": [MockFunction],
-                    "showWebView": [MockFunction],
-                    "traitCollection": [MockFunction],
-                  }
+            <CanvasWebView
+              automaticallySetHeight={true}
+              html="<p>And why?</p>"
+              navigator={
+                Object {
+                  "dismiss": [MockFunction],
+                  "dismissAllModals": [MockFunction],
+                  "isModal": false,
+                  "pop": [MockFunction],
+                  "replace": [MockFunction],
+                  "show": [MockFunction],
+                  "showWebView": [MockFunction],
+                  "traitCollection": [MockFunction],
                 }
-                scrollEnabled={true}
-                style={
-                  Object {
-                    "flex": 1,
-                    "marginHorizontal": -16,
-                  }
+              }
+              scrollEnabled={true}
+              style={
+                Object {
+                  "flex": 1,
+                  "marginHorizontal": -16,
+                  "minHeight": 16,
                 }
-              />
-            </View>
+              }
+            />
             <View
               style={
                 Object {
@@ -5754,51 +5745,50 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   </Text>
                 </View>
               </View>
-              <View>
-                <View
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "marginHorizontal": -16,
+                    "minHeight": 16,
+                  }
+                }
+                testID="web-container.view"
+              >
+                <CanvasWebView
+                  automaticallySetHeight={true}
+                  bounces={false}
+                  html="<p>And why?</p>"
+                  navigator={
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "showWebView": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
+                  }
+                  onError={[Function]}
+                  onFinishedLoading={[Function]}
+                  onHeightChange={[Function]}
+                  onMessage={[Function]}
+                  onNavigation={[Function]}
+                  scrollEnabled={true}
+                  source={
+                    Object {
+                      "baseURL": "http://mobiledev.instructure.com/",
+                      "html": "<p>And why?</p>",
+                    }
+                  }
                   style={
                     Object {
                       "flex": 1,
-                      "marginHorizontal": -16,
                     }
                   }
-                  testID="web-container.view"
-                >
-                  <CanvasWebView
-                    automaticallySetHeight={true}
-                    bounces={false}
-                    html="<p>And why?</p>"
-                    navigator={
-                      Object {
-                        "dismiss": [MockFunction],
-                        "dismissAllModals": [MockFunction],
-                        "isModal": false,
-                        "pop": [MockFunction],
-                        "replace": [MockFunction],
-                        "show": [MockFunction],
-                        "showWebView": [MockFunction],
-                        "traitCollection": [MockFunction],
-                      }
-                    }
-                    onError={[Function]}
-                    onFinishedLoading={[Function]}
-                    onHeightChange={[Function]}
-                    onMessage={[Function]}
-                    onNavigation={[Function]}
-                    scrollEnabled={true}
-                    source={
-                      Object {
-                        "baseURL": "http://mobiledev.instructure.com/",
-                        "html": "<p>And why?</p>",
-                      }
-                    }
-                    style={
-                      Object {
-                        "flex": 1,
-                      }
-                    }
-                  />
-                </View>
+                />
               </View>
               <View
                 style={
@@ -6103,31 +6093,30 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                 </Text>
               </View>
             </View>
-            <View>
-              <CanvasWebView
-                automaticallySetHeight={true}
-                html="<p>And why?</p>"
-                navigator={
-                  Object {
-                    "dismiss": [MockFunction],
-                    "dismissAllModals": [MockFunction],
-                    "isModal": false,
-                    "pop": [MockFunction],
-                    "replace": [MockFunction],
-                    "show": [MockFunction],
-                    "showWebView": [MockFunction],
-                    "traitCollection": [MockFunction],
-                  }
+            <CanvasWebView
+              automaticallySetHeight={true}
+              html="<p>And why?</p>"
+              navigator={
+                Object {
+                  "dismiss": [MockFunction],
+                  "dismissAllModals": [MockFunction],
+                  "isModal": false,
+                  "pop": [MockFunction],
+                  "replace": [MockFunction],
+                  "show": [MockFunction],
+                  "showWebView": [MockFunction],
+                  "traitCollection": [MockFunction],
                 }
-                scrollEnabled={true}
-                style={
-                  Object {
-                    "flex": 1,
-                    "marginHorizontal": -16,
-                  }
+              }
+              scrollEnabled={true}
+              style={
+                Object {
+                  "flex": 1,
+                  "marginHorizontal": -16,
+                  "minHeight": 16,
                 }
-              />
-            </View>
+              }
+            />
             <View
               style={
                 Object {
@@ -7018,51 +7007,50 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                   </Text>
                 </View>
               </View>
-              <View>
-                <View
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "marginHorizontal": -16,
+                    "minHeight": 16,
+                  }
+                }
+                testID="web-container.view"
+              >
+                <CanvasWebView
+                  automaticallySetHeight={true}
+                  bounces={false}
+                  html="<p>And why?</p>"
+                  navigator={
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "showWebView": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
+                  }
+                  onError={[Function]}
+                  onFinishedLoading={[Function]}
+                  onHeightChange={[Function]}
+                  onMessage={[Function]}
+                  onNavigation={[Function]}
+                  scrollEnabled={true}
+                  source={
+                    Object {
+                      "baseURL": "http://mobiledev.instructure.com/",
+                      "html": "<p>And why?</p>",
+                    }
+                  }
                   style={
                     Object {
                       "flex": 1,
-                      "marginHorizontal": -16,
                     }
                   }
-                  testID="web-container.view"
-                >
-                  <CanvasWebView
-                    automaticallySetHeight={true}
-                    bounces={false}
-                    html="<p>And why?</p>"
-                    navigator={
-                      Object {
-                        "dismiss": [MockFunction],
-                        "dismissAllModals": [MockFunction],
-                        "isModal": false,
-                        "pop": [MockFunction],
-                        "replace": [MockFunction],
-                        "show": [MockFunction],
-                        "showWebView": [MockFunction],
-                        "traitCollection": [MockFunction],
-                      }
-                    }
-                    onError={[Function]}
-                    onFinishedLoading={[Function]}
-                    onHeightChange={[Function]}
-                    onMessage={[Function]}
-                    onNavigation={[Function]}
-                    scrollEnabled={true}
-                    source={
-                      Object {
-                        "baseURL": "http://mobiledev.instructure.com/",
-                        "html": "<p>And why?</p>",
-                      }
-                    }
-                    style={
-                      Object {
-                        "flex": 1,
-                      }
-                    }
-                  />
-                </View>
+                />
               </View>
               <View
                 style={
@@ -7760,31 +7748,30 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 </Text>
               </View>
             </View>
-            <View>
-              <CanvasWebView
-                automaticallySetHeight={true}
-                html="<p>And why?</p>"
-                navigator={
-                  Object {
-                    "dismiss": [MockFunction],
-                    "dismissAllModals": [MockFunction],
-                    "isModal": false,
-                    "pop": [MockFunction],
-                    "replace": [MockFunction],
-                    "show": [MockFunction],
-                    "showWebView": [MockFunction],
-                    "traitCollection": [MockFunction],
-                  }
+            <CanvasWebView
+              automaticallySetHeight={true}
+              html="<p>And why?</p>"
+              navigator={
+                Object {
+                  "dismiss": [MockFunction],
+                  "dismissAllModals": [MockFunction],
+                  "isModal": false,
+                  "pop": [MockFunction],
+                  "replace": [MockFunction],
+                  "show": [MockFunction],
+                  "showWebView": [MockFunction],
+                  "traitCollection": [MockFunction],
                 }
-                scrollEnabled={true}
-                style={
-                  Object {
-                    "flex": 1,
-                    "marginHorizontal": -16,
-                  }
+              }
+              scrollEnabled={true}
+              style={
+                Object {
+                  "flex": 1,
+                  "marginHorizontal": -16,
+                  "minHeight": 16,
                 }
-              />
-            </View>
+              }
+            />
             <View
               style={
                 Object {
@@ -8747,51 +8734,50 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   </Text>
                 </View>
               </View>
-              <View>
-                <View
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "marginHorizontal": -16,
+                    "minHeight": 16,
+                  }
+                }
+                testID="web-container.view"
+              >
+                <CanvasWebView
+                  automaticallySetHeight={true}
+                  bounces={false}
+                  html="<p>And why?</p>"
+                  navigator={
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "showWebView": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
+                  }
+                  onError={[Function]}
+                  onFinishedLoading={[Function]}
+                  onHeightChange={[Function]}
+                  onMessage={[Function]}
+                  onNavigation={[Function]}
+                  scrollEnabled={true}
+                  source={
+                    Object {
+                      "baseURL": "http://mobiledev.instructure.com/",
+                      "html": "<p>And why?</p>",
+                    }
+                  }
                   style={
                     Object {
                       "flex": 1,
-                      "marginHorizontal": -16,
                     }
                   }
-                  testID="web-container.view"
-                >
-                  <CanvasWebView
-                    automaticallySetHeight={true}
-                    bounces={false}
-                    html="<p>And why?</p>"
-                    navigator={
-                      Object {
-                        "dismiss": [MockFunction],
-                        "dismissAllModals": [MockFunction],
-                        "isModal": false,
-                        "pop": [MockFunction],
-                        "replace": [MockFunction],
-                        "show": [MockFunction],
-                        "showWebView": [MockFunction],
-                        "traitCollection": [MockFunction],
-                      }
-                    }
-                    onError={[Function]}
-                    onFinishedLoading={[Function]}
-                    onHeightChange={[Function]}
-                    onMessage={[Function]}
-                    onNavigation={[Function]}
-                    scrollEnabled={true}
-                    source={
-                      Object {
-                        "baseURL": "http://mobiledev.instructure.com/",
-                        "html": "<p>And why?</p>",
-                      }
-                    }
-                    style={
-                      Object {
-                        "flex": 1,
-                      }
-                    }
-                  />
-                </View>
+                />
               </View>
               <View
                 style={
@@ -9944,31 +9930,30 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 </Text>
               </View>
             </View>
-            <View>
-              <CanvasWebView
-                automaticallySetHeight={true}
-                html="<p>And why?</p>"
-                navigator={
-                  Object {
-                    "dismiss": [MockFunction],
-                    "dismissAllModals": [MockFunction],
-                    "isModal": false,
-                    "pop": [MockFunction],
-                    "replace": [MockFunction],
-                    "show": [MockFunction],
-                    "showWebView": [MockFunction],
-                    "traitCollection": [MockFunction],
-                  }
+            <CanvasWebView
+              automaticallySetHeight={true}
+              html="<p>And why?</p>"
+              navigator={
+                Object {
+                  "dismiss": [MockFunction],
+                  "dismissAllModals": [MockFunction],
+                  "isModal": false,
+                  "pop": [MockFunction],
+                  "replace": [MockFunction],
+                  "show": [MockFunction],
+                  "showWebView": [MockFunction],
+                  "traitCollection": [MockFunction],
                 }
-                scrollEnabled={true}
-                style={
-                  Object {
-                    "flex": 1,
-                    "marginHorizontal": -16,
-                  }
+              }
+              scrollEnabled={true}
+              style={
+                Object {
+                  "flex": 1,
+                  "marginHorizontal": -16,
+                  "minHeight": 16,
                 }
-              />
-            </View>
+              }
+            />
             <View
               style={
                 Object {
@@ -10859,51 +10844,50 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   </Text>
                 </View>
               </View>
-              <View>
-                <View
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "marginHorizontal": -16,
+                    "minHeight": 16,
+                  }
+                }
+                testID="web-container.view"
+              >
+                <CanvasWebView
+                  automaticallySetHeight={true}
+                  bounces={false}
+                  html="<p>And why?</p>"
+                  navigator={
+                    Object {
+                      "dismiss": [MockFunction],
+                      "dismissAllModals": [MockFunction],
+                      "isModal": false,
+                      "pop": [MockFunction],
+                      "replace": [MockFunction],
+                      "show": [MockFunction],
+                      "showWebView": [MockFunction],
+                      "traitCollection": [MockFunction],
+                    }
+                  }
+                  onError={[Function]}
+                  onFinishedLoading={[Function]}
+                  onHeightChange={[Function]}
+                  onMessage={[Function]}
+                  onNavigation={[Function]}
+                  scrollEnabled={true}
+                  source={
+                    Object {
+                      "baseURL": "http://mobiledev.instructure.com/",
+                      "html": "<p>And why?</p>",
+                    }
+                  }
                   style={
                     Object {
                       "flex": 1,
-                      "marginHorizontal": -16,
                     }
                   }
-                  testID="web-container.view"
-                >
-                  <CanvasWebView
-                    automaticallySetHeight={true}
-                    bounces={false}
-                    html="<p>And why?</p>"
-                    navigator={
-                      Object {
-                        "dismiss": [MockFunction],
-                        "dismissAllModals": [MockFunction],
-                        "isModal": false,
-                        "pop": [MockFunction],
-                        "replace": [MockFunction],
-                        "show": [MockFunction],
-                        "showWebView": [MockFunction],
-                        "traitCollection": [MockFunction],
-                      }
-                    }
-                    onError={[Function]}
-                    onFinishedLoading={[Function]}
-                    onHeightChange={[Function]}
-                    onMessage={[Function]}
-                    onNavigation={[Function]}
-                    scrollEnabled={true}
-                    source={
-                      Object {
-                        "baseURL": "http://mobiledev.instructure.com/",
-                        "html": "<p>And why?</p>",
-                      }
-                    }
-                    style={
-                      Object {
-                        "flex": 1,
-                      }
-                    }
-                  />
-                </View>
+                />
               </View>
               <View
                 style={

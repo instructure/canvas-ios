@@ -112,6 +112,9 @@
 /* No comment provided by engineer. */
 "Excused" = "Whakawātea";
 
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "I rahua te uta (discussionKitModelName) NSManagedObjectModel";
+
 /* No comment provided by engineer. */
 "Help" = "Āwhina";
 
@@ -252,6 +255,9 @@
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "He raruraru i te wā e uta ana i te pātengi raraunga.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "He raruraru i te wā e uta ana i te DiscussionKit kōnae pātengi rarunga.";
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "He hapa i te wā e uta ana i tō ihirangi. Ki te mea he ororongo ataata rānei tukuake ai tonu te tukatuka ";

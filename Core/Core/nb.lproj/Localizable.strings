@@ -278,6 +278,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"Pages" = "Sider";
+
+/* No comment provided by engineer. */
 "Pause" = "Pause";
 
 /* No comment provided by engineer. */
@@ -390,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen må startes på nytt for å bruke de nye språkinnstillingene. Relansere appen.";
+
+/* No comment provided by engineer. */
+"There are no pages to display." = "Det er ingen sider å vise.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Det oppsto et problem under hentingen av bruksvilkårene.";
