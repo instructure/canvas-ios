@@ -26,6 +26,5 @@
 
 - (RACSignal *)fetchAssignmentsForContext:(id<CKIContext>)context;
 - (RACSignal *)fetchAssignmentsForContext:(id<CKIContext>)context includeSubmissions:(BOOL)includeSubmissions;
-- (RACSignal *)updateMutedForAssignment:(CKIAssignment *)assignment;
 
 @end

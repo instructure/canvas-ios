@@ -23,7 +23,6 @@
 #import "CKICourse.h"
 
 static const NSString *CKIAssignmentPutParameter = @"assignment";
-static const NSString *CKIAssignmentMutedParameter = @"muted";
 
 @implementation CKIClient (CKIAssignment)
 
@@ -43,14 +42,6 @@ static const NSString *CKIAssignmentMutedParameter = @"muted";
     }
     
     return [self fetchResponseAtPath:path parameters:params modelClass:[CKIAssignment class] context:context];
-}
-
-- (RACSignal *)updateMutedForAssignment:(CKIAssignment *)assignment
-{
-    NSMutableDictionary *parameters = [NSMutableDictionary new];
-    parameters[CKIAssignmentPutParameter] = @{CKIAssignmentMutedParameter:@(assignment.muted)};
-    
-    return [self updateModel:assignment parameters:parameters];
 }
 
 @end

@@ -100,13 +100,13 @@ public final class CalendarEvent: NSManagedObject {
     @NSManaged internal (set) public var courseID: String?
     @NSManaged internal (set) public var currentGrade: String?
     @NSManaged internal (set) public var currentScore: NSNumber?
+    @NSManaged internal (set) public var gradePostedAt: Date?
     @NSManaged internal (set) public var pointsPossible: NSNumber?
     @NSManaged internal (set) public var submissionLate: Bool
     @NSManaged internal (set) public var submittedAt: Date?
     @NSManaged internal (set) public var submissionExcused: Bool
     @NSManaged internal (set) public var gradedAt: Date?
     @NSManaged internal (set) public var rawStatus: Int64
-    @NSManaged internal (set) public var muted: Bool
 
     var workflowState: EventWorkflowState {
         return EventWorkflowState(rawValue: rawWorkflowState)!
@@ -239,7 +239,6 @@ extension CalendarEvent: SynchronizedModel {
             quizID              = try assignmentJSON.stringID("quiz_id")
             let types: [String] = try assignmentJSON <| "submission_types"
             submissionTypes     = SubmissionTypes.fromStrings(types)
-            muted               = (try assignmentJSON <| "muted") ?? false
 
             if let submissionJSON: JSONObject = try assignmentJSON <| "submission" {
                 let attempt: Int = (try submissionJSON <| "attempt") ?? 0
@@ -257,6 +256,7 @@ extension CalendarEvent: SynchronizedModel {
                 submittedAt         = try submissionJSON <| "submitted_at"
                 submissionExcused   = (try submissionJSON <| "excused") ?? false
                 gradedAt            = try submissionJSON <| "graded_at"
+                gradePostedAt       = try submissionJSON <| "posted_at"
                 submissionState  = try submissionJSON <| "workflow_state"
 
                 // The API can give us ghost "graded" states if the teacher taps in SpeedGrader in the grade box...
