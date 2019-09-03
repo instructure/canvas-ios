@@ -26,6 +26,7 @@ class LoginFindSchoolViewController: UIViewController, LoginFindSchoolViewProtoc
     @IBOutlet weak var searchField: UITextField?
 
     var accounts = [APIAccountResult]()
+    var keyboard: KeyboardTransitioning?
     let logoView = UIImageView()
     var presenter: LoginFindSchoolPresenter?
 
@@ -77,13 +78,10 @@ class LoginFindSchoolViewController: UIViewController, LoginFindSchoolViewProtoc
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        searchField?.becomeFirstResponder()
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+        keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
+        if !UIAccessibility.isSwitchControlRunning, !UIAccessibility.isVoiceOverRunning {
+            searchField?.becomeFirstResponder()
+        }
     }
 
     func update(results: [APIAccountResult]) {
@@ -135,34 +133,5 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
             let account = accounts[indexPath.row]
             presenter?.showLoginForHost(account.domain, authenticationProvider: account.authentication_provider)
         }
-    }
-}
-
-extension LoginFindSchoolViewController {
-    @objc func keyboardWillShow(_ notification: Notification) {
-        guard
-            let info = notification.userInfo as? [String: Any],
-            let keyboardHeight = (info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height,
-            let animationCurve = info[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,
-            let animationDuration = info[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval
-        else { return }
-
-        UIView.animate(withDuration: animationDuration, delay: 0, options: .init(rawValue: animationCurve), animations: {
-            self.keyboardSpace?.constant = keyboardHeight
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
-
-    @objc func keyboardWillHide(_ notification: Notification) {
-        guard
-            let info = notification.userInfo as? [String: Any],
-            let animationCurve = info[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,
-            let animationDuration = info[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval
-        else { return }
-
-        UIView.animate(withDuration: animationDuration, delay: 0, options: .init(rawValue: animationCurve), animations: {
-            self.keyboardSpace?.constant = 0
-            self.view.layoutIfNeeded()
-        }, completion: nil)
     }
 }
