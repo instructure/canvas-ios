@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import Eureka
 import ReactiveSwift
 import CanvasCore
 
@@ -25,26 +24,32 @@ private enum SupportTicketCellTag: String {
     case Email, Subject, Impact, Comment
 }
 
-open class StudentSettingsViewController : FormViewController {
+class StudentSettingsViewController : UIViewController {
 
-    @objc let activityIndicator = UIActivityIndicatorView(style: .white)
-    
-    // Injected Vars
-    fileprivate var session: Session!
-    fileprivate var studentID: String = ""
+    @IBOutlet weak var tableView: UITableView!
+    let activityIndicator = UIActivityIndicatorView(style: .white)
+    private var session: Session!
+    private var studentID: String = ""
 
-    // Data Vars
     var studentObserver: ManagedObjectObserver<Student>?
     fileprivate var collection: FetchedCollection<AlertThreshold>?
     var thresholdsRefresher: Refresher?
     fileprivate var observeUpdatesDisposable: Disposable?
 
+    private let formatter: NumberFormatter = {
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        return nf
+    }()
+    private let settingsSection = 1
+    private var currentlySelectedIndexPath: IndexPath?
+
     // ---------------------------------------------
     // MARK: - Initializers
     // ---------------------------------------------
-    fileprivate static let defaultStoryboardName = "ThresholdsListViewController"
-    @objc static func new(_ session: Session, studentID: String) -> StudentSettingsViewController {
-        let controller = StudentSettingsViewController()
+
+    static func create(_ session: Session, studentID: String) -> StudentSettingsViewController {
+        let controller = StudentSettingsViewController.loadFromStoryboard()
         controller.session = session
         controller.studentID = studentID
         controller.thresholdsRefresher = try! AlertThreshold.refresher(session, studentID: studentID)
@@ -60,7 +65,7 @@ open class StudentSettingsViewController : FormViewController {
         controller.observeUpdatesDisposable = controller.collection?.collectionUpdates
             .observe(on: UIScheduler())
             .observeValues { updates in
-                controller.updateValues()
+                controller.reload()
             }.map(ScopedDisposable.init)
 
         return controller
@@ -69,9 +74,9 @@ open class StudentSettingsViewController : FormViewController {
     // ---------------------------------------------
     // MARK: - UIViewController LifeCycle
     // ---------------------------------------------
-    open override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupTableView()
         setupNavigationBar()
 
         if let refreshControl = thresholdsRefresher?.refreshControl {
@@ -92,121 +97,90 @@ open class StudentSettingsViewController : FormViewController {
             }
         }
 
-        let sectionTitle = NSLocalizedString("Alert me when:", comment: "Alert Section Header")
-        form +++
-            Section() {
-                $0.header = self.studentSectionHeaderView()
-            }
-            +++ Section(sectionTitle)
-            <<< rowForThresholdType(.courseGradeHigh)
-            <<< rowForThresholdType(.courseGradeLow)
-            <<< rowForThresholdType(.assignmentMissing)
-            <<< rowForThresholdType(.assignmentGradeHigh)
-            <<< rowForThresholdType(.assignmentGradeLow)
-            <<< rowForThresholdType(.courseAnnouncement)
-            <<< rowForThresholdType(.institutionAnnouncement)
-
         self.refresh(nil)
     }
 
-    func rowForThresholdType(_ type: AlertThresholdType) -> BaseRow {
-        let percentagePlaceholder = NSLocalizedString("1-100%", comment: "Percentage field placeholder")
+    func setupTableView() {
+        tableView.keyboardDismissMode = .onDrag
+        let nib = UINib(nibName: String(describing: StudentSettingsHeaderView.self), bundle: nil)
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: String(describing: StudentSettingsHeaderView.self))
+        tableView.registerCell(UITableViewCell.self)
 
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        switch type {
-        case .courseAnnouncement, .assignmentMissing, .institutionAnnouncement:
-            let row = SwitchRow(type.rawValue) {
-                $0.cellSetup { c, _ in
-                    c.isAccessibilityElement = true
-                }
-                $0.title = self.descriptionForType(type)
-                if let _ = thresholdForType(type) {
-                    $0.value = true
-                }
-                }.onChange { [weak self] _ in
-                    self?.updateThreshold(type)
+        for (i, alert) in AlertThresholdType.validThresholdTypes.enumerated() {
+            switch alert {
+            case .courseAnnouncement, .assignmentMissing, .institutionAnnouncement:
+                tableView.register(SwitchCell.self, forCellReuseIdentifier: "cell_\(i)")
+            default:
+                tableView.register(IntCell.self, forCellReuseIdentifier: "cell_\(i)")
             }
-            return row
-        default:
-            let row = IntRow(type.rawValue) {
-                $0.title = self.descriptionForType(type)
-                $0.placeholder = percentagePlaceholder
-                $0.titlePercentage = 0.70
-                $0.cell?.textField.accessibilityLabel = $0.title
-                if let threshold = thresholdForType(type), let value = threshold.threshold {
-                    $0.value = formatter.number(from: value)?.intValue
-                }
-                }.onCellHighlightChanged { [weak self] (_, _) in
-                    self?.validateValueForRow(type)
-                    self?.updateThreshold(type)
-                }
-            return row
         }
     }
 
-    func validateValueForRow(_ type: AlertThresholdType) {
-        guard let row = form.rowBy(tag: type.rawValue) as? IntRow else { fatalError("Could not find CourseGradeLow to compare.") }
-        
-        let value = row.value ?? 0
+    func reload() {
+        tableView.reloadData()
+    }
 
-        if value > 100 {
-            row.value = 100
+    func validateValueForRow(_ type: AlertThresholdType) -> Bool {
+        guard let row = cellForType(type) as? IntCell else { fatalError("Could not find CourseGradeLow to compare.") }
+
+        let value: Int? = row.value
+
+        if let value = value, value > 100 {
             notifyUserOfInvalidInput(NSLocalizedString("Cannot use percent that is higher than 100", comment: "Percent value is over 100"))
-            return
+            return false
         }
-        if value < 0 && row.value != nil {
-            row.value = 0
+        if let value = value, value < 0 {
             notifyUserOfInvalidInput(NSLocalizedString("Cannot use percent that is less than 0", comment: "Percent value is under 0"))
-            return
+            return false
         }
 
         switch type {
         case .courseAnnouncement, .assignmentMissing:
             fatalError("IntRow should never be used for this Alert Threshold Type")
         case .courseGradeHigh:
-            guard let comparisonRow = form.rowBy(tag: AlertThresholdType.courseGradeLow.rawValue) as? IntRow else {
+            guard let comparisonRow = cellForType(.courseGradeLow) as? IntCell else {
                 fatalError("Could not find CourseGradeLow to compare.")
             }
 
-            if let value = row.value, let comparisonValue = comparisonRow.value, value < comparisonValue {
-                row.value = comparisonRow.value
-                row.updateCell()
+            if let comparisonValue = comparisonRow.value, let value = value, value < comparisonValue {
+                row.valueTextField.text = "\(comparisonValue)"
                 notifyUserOfInvalidInput(NSLocalizedString("High course grade cannot be lower than low course grade", comment: "High Course Grade too Low"))
+                return false
             }
         case .courseGradeLow:
-            guard let comparisonRow = form.rowBy(tag: AlertThresholdType.courseGradeHigh.rawValue) as? IntRow else {
-                fatalError("Could not find CourseGradeLow to compare.")
+            guard let comparisonRow = cellForType(.courseGradeHigh) as? IntCell else {
+                fatalError("Could not find CourseGradeHigh to compare.")
             }
 
-            if let value = row.value, let comparisonValue = comparisonRow.value, value > comparisonValue {
-                row.value = comparisonRow.value
-                row.updateCell()
+            if let comparisonValue = comparisonRow.value, let value = value, value > comparisonValue {
+                row.valueTextField.text = "\(comparisonValue)"
                 notifyUserOfInvalidInput(NSLocalizedString("Low course grade cannot be higher than high course grade", comment: "Low Course Grade too High"))
+                return false
             }
         case .assignmentGradeHigh:
-            guard let comparisonRow = form.rowBy(tag: AlertThresholdType.assignmentGradeLow.rawValue) as? IntRow else {
+            guard let comparisonRow = cellForType(.assignmentGradeLow) as? IntCell else {
                 fatalError("Could not find CourseGradeLow to compare.")
             }
 
-            if let value = row.value, let comparisonValue = comparisonRow.value, value < comparisonValue {
-                row.value = comparisonRow.value
-                row.updateCell()
+            if let comparisonValue = comparisonRow.value, let value = value, value < comparisonValue {
+                row.valueTextField.text = "\(comparisonValue)"
                 notifyUserOfInvalidInput(NSLocalizedString("High assignment grade cannot be lower than low assignment grade", comment: "High Assignment Grade too Low"))
+                return false
             }
         case .assignmentGradeLow:
-            guard let comparisonRow = form.rowBy(tag: AlertThresholdType.assignmentGradeHigh.rawValue) as? IntRow else {
+            guard let comparisonRow = cellForType(.assignmentGradeHigh) as? IntCell else {
                 fatalError("Could not find CourseGradeLow to compare.")
             }
 
-            if let value = row.value, let comparisonValue = comparisonRow.value, value > comparisonValue {
-                row.value = comparisonRow.value
-                row.updateCell()
+            if let comparisonValue = comparisonRow.value, let value = value, value > comparisonValue {
+                row.valueTextField.text = "\(comparisonValue)"
                 notifyUserOfInvalidInput(NSLocalizedString("Low assignment grade cannot be higher than high assignment grade", comment: "Low Assignment Grade too High"))
+                return false
             }
         default:
             fatalError("IntRow should never be used for this Alert Threshold Type")
         }
+        return true
     }
 
     @objc func notifyUserOfInvalidInput(_ message: String) {
@@ -218,24 +192,6 @@ open class StudentSettingsViewController : FormViewController {
         }))
 
         present(alert, animated: true, completion: nil)
-    }
-
-    func studentSectionHeaderView() -> HeaderFooterView<StudentSettingsHeaderView> {
-        var header = HeaderFooterView<StudentSettingsHeaderView>(HeaderFooterProvider.nibFile(name: "StudentSettingsHeaderView", bundle: nil))
-        header.onSetupView = { [weak self] view, section in
-            guard let me = self, let student = me.studentObserver?.object else {
-                view.nameLabel.text = ""
-                view.imageView.image = UIImage(named: "icon_user")
-                return
-            }
-
-            view.nameLabel.text = student.name
-            if let url = student.avatarURL {
-                view.imageView.kf.setImage(with: url, placeholder: DefaultAvatarCoordinator.defaultAvatarForStudentID(me.studentID))
-            }
-        }
-
-        return header
     }
 
     @objc func refresh(_ refreshControl: UIRefreshControl?) {
@@ -252,119 +208,6 @@ open class StudentSettingsViewController : FormViewController {
         navBar.backgroundColor = scheme.mainColor
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         activityIndicator.hidesWhenStopped = true
-    }
-
-    func updateThreshold(_ type: AlertThresholdType) {
-        guard let row = form.rowBy(tag: type.rawValue) else { return }
-        
-        let onComplete = { (event: ReactiveSwift.Signal<Bool, NSError>.Event) -> Void in
-            switch(event) {
-            case .failed(let error):
-                self.displayError(error: error)
-                self.activityIndicator.stopAnimating()
-                break
-            default:
-                self.activityIndicator.stopAnimating()
-            }
-        }
-
-        activityIndicator.startAnimating()
-        
-        switch type {
-        case .courseAnnouncement, .assignmentMissing, .institutionAnnouncement:
-            guard let switchRow = row as? SwitchRow else {
-                fatalError("Row for these types should always be a switch row")
-            }
-
-            switchRow.disabled = true
-            switchRow.evaluateDisabled()
-
-            guard let threshold = thresholdForType(type) else {
-                AlertThreshold.createThreshold(session, type: type, observerID: session.user.id, observeeID: studentID).observe(on: UIScheduler()).start { event in
-                    onComplete(event)
-                    switch event {
-                    case .completed, .failed:
-                        switchRow.disabled = false
-                        switchRow.evaluateDisabled()
-                    default:
-                        break
-                    }
-                }
-                return
-            }
-
-            threshold.remove(session).observe(on: UIScheduler()).start { event in
-                onComplete(event)
-                switch event {
-                case .completed, .failed:
-                    switchRow.disabled = false
-                    switchRow.evaluateDisabled()
-                default:
-                    break
-                }
-            }
-        default:
-            guard let intRow = row as? IntRow else {
-                fatalError("Row for these types should always be a int row")
-            }
-
-            var thresholdValue: String? = nil
-            if let value = intRow.value {
-                thresholdValue = "\(value)"
-            }
-
-            guard let threshold = thresholdForType(type) else {
-                if let value = thresholdValue {
-                    AlertThreshold.createThreshold(session, type: type, observerID: session.user.id, observeeID: studentID, threshold: value).start(onComplete)
-                } else {
-                    activityIndicator.stopAnimating()
-                }
-                return
-            }
-            
-            let signal: SignalProducer<Bool, NSError>
-            if let value = thresholdValue {
-                signal = threshold.update(session, newThreshold: value)
-            } else {
-                signal = threshold.remove(session)
-            }
-            
-            signal.start(onComplete)
-        }
-    }
-
-    @objc func updateValues() {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        for type in AlertThresholdType.validThresholdTypes {
-            guard let row = form.rowBy(tag: type.rawValue) else { continue }
-            switch type {
-            case .courseAnnouncement, .assignmentMissing, .institutionAnnouncement:
-                guard let boolRow = row as? SwitchRow else {
-                    fatalError("Row for these types should always be a switch row")
-                }
-
-                boolRow.onChange { _ in }
-                boolRow.value = thresholdForType(type) != nil
-                boolRow.updateCell()
-                boolRow.onChange { [weak self] _ in
-                    self?.updateThreshold(type)
-                }
-            default:
-                guard let intRow = row as? IntRow else {
-                    fatalError("Row for these types should always be a int row")
-                }
-
-                guard let threshold = thresholdForType(type), let value = threshold.threshold else {
-                    intRow.value = nil
-                    intRow.updateCell()
-                    continue
-                }
-
-                intRow.value = formatter.number(from: value)?.intValue
-                intRow.updateCell()
-            }
-        }
     }
 
     func thresholdForType(_ type: AlertThresholdType) -> AlertThreshold? {
@@ -400,6 +243,265 @@ open class StudentSettingsViewController : FormViewController {
         let title = NSLocalizedString("An Error Occurred", comment: "")
         let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-        present(alert, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.present(alert, animated: true)
+        }
     }
 }
+
+
+extension StudentSettingsViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == settingsSection {
+            return AlertThresholdType.validThresholdTypes.count
+        }
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let identifier = "cell_\(indexPath.row)"
+        let alert = AlertThresholdType.validThresholdTypes[indexPath.row]
+
+        switch alert {
+        case .courseAnnouncement, .assignmentMissing, .institutionAnnouncement:
+            guard let cell: SwitchCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? SwitchCell else { fatalError("invalid cell") }
+            cell.selectionStyle = .none
+            cell.textLabel?.text = descriptionForType(alert)
+            if let _ = thresholdForType(alert) {
+                cell.toggle.isOn = true
+            }
+            cell.type = alert
+            cell.toggle.tag = indexPath.row
+            cell.toggle.addTarget(self, action: #selector(switchCellDidToggleValue(_:)), for: UIControl.Event.valueChanged)
+            return cell
+        default:
+            guard let cell: IntCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? IntCell else { fatalError("invalid cell") }
+            cell.type = alert
+            cell.selectionStyle = .none
+            cell.valueTextField.delegate = self
+            cell.valueTextField.tag = indexPath.row
+            cell.textLabel?.text = descriptionForType(alert)
+            cell.textLabel?.accessibilityLabel = descriptionForType(alert)
+            cell.valueTextField.accessibilityLabel = descriptionForType(alert)
+            cell.valueTextField.placeholder = NSLocalizedString("1-100%", comment: "Percentage field placeholder")
+            if let threshold = thresholdForType(alert), let value = threshold.threshold, let formattedValue = formatter.number(from: value)?.intValue {
+                cell.valueTextField.text = "\(formattedValue)"
+            }
+            cell.valueTextField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: UIControl.Event.editingDidEnd)
+            if indexPath == currentlySelectedIndexPath {
+                cell.textLabel?.textColor = .named(.electric)
+            }
+            else {
+                cell.textLabel?.textColor = .named(.textDarkest)
+            }
+            return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == settingsSection {
+            return NSLocalizedString("Alert me when:", comment: "Alert Section Header")
+        }
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: StudentSettingsHeaderView.self)) as? StudentSettingsHeaderView
+            header?.nameLabel.text = ""
+            header?.imageView.image = UIImage(named: "icon_user")
+            let student = studentObserver?.object
+            header?.nameLabel.text = student?.name
+            if let url = student?.avatarURL {
+                header?.imageView.kf.setImage(with: url, placeholder: DefaultAvatarCoordinator.defaultAvatarForStudentID(studentID))
+            }
+            return header
+        }
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 75
+        }
+        return 40
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        deselectCurrentlySelected()
+
+        let cell = tableView.cellForRow(at: indexPath)
+        if let valueCell = cell as? IntCell {
+            currentlySelectedIndexPath = indexPath
+            cell?.textLabel?.textColor = .named(.electric)
+            valueCell.valueTextField.becomeFirstResponder()
+        }
+    }
+
+    func cellForTag<T: UITableViewCell>(_ tag: Int) -> T? {
+        return tableView.cellForRow(at: IndexPath(row: tag, section: settingsSection)) as? T
+    }
+
+    func cellForType<T: UITableViewCell>(_ type: AlertThresholdType) -> T? {
+        if let index = AlertThresholdType.validThresholdTypes.firstIndex(of: type) {
+            return cellForTag(index)
+        }
+        return nil
+    }
+
+    @objc func switchCellDidToggleValue(_ sender: UISwitch) {
+        guard let cell = tableView.cellForRow(at: IndexPath(row: sender.tag, section: settingsSection)) as? SwitchCell, let type = cell.type else { return }
+
+        let onComplete = { (event: ReactiveSwift.Signal<Bool, NSError>.Event) -> Void in
+            switch(event) {
+            case .failed(let error):
+                self.displayError(error: error)
+                self.activityIndicator.stopAnimating()
+                break
+            default:
+                self.activityIndicator.stopAnimating()
+            }
+        }
+
+        activityIndicator.startAnimating()
+        sender.isEnabled = false
+
+
+        guard let threshold = thresholdForType(type) else {
+            AlertThreshold.createThreshold(session, type: type, observerID: session.user.id, observeeID: studentID).observe(on: UIScheduler()).start { event in
+                onComplete(event)
+                switch event {
+                case .completed, .failed:
+                    sender.isEnabled = true
+                default:
+                    break
+                }
+            }
+            return
+        }
+
+        threshold.remove(session).observe(on: UIScheduler()).start { event in
+            onComplete(event)
+            switch event {
+            case .completed, .failed:
+                sender.isEnabled = true
+            default:
+                break
+            }
+        }
+
+    }
+
+    func didUpdateValueOnTextField(_ type: AlertThresholdType, thresholdValue: String?) {
+        if let threshold = thresholdForType(type), threshold.threshold == thresholdValue {
+            return
+        }
+
+        let onComplete = { [weak self] (event: ReactiveSwift.Signal<Bool, NSError>.Event) -> Void in
+            switch(event) {
+            case .failed(let error):
+                self?.displayError(error: error)
+                self?.activityIndicator.stopAnimating()
+                break
+            default:
+                self?.activityIndicator.stopAnimating()
+                self?.deselectCurrentlySelected()
+            }
+        }
+
+        activityIndicator.startAnimating()
+
+        guard let threshold = thresholdForType(type) else {
+            if let value = thresholdValue, !value.isEmpty {
+                AlertThreshold.createThreshold(session, type: type, observerID: session.user.id, observeeID: studentID, threshold: value).observe(on: UIScheduler()).start(onComplete)
+            } else {
+                activityIndicator.stopAnimating()
+            }
+            return
+        }
+
+        let signal: SignalProducer<Bool, NSError>
+        if let value = thresholdValue, !value.isEmpty {
+            signal = threshold.update(session, newThreshold: value)
+        } else {
+            signal = threshold.remove(session)
+        }
+
+        signal.start(onComplete)
+    }
+
+    func deselectCurrentlySelected() {
+        view.endEditing(true)
+        if let current = currentlySelectedIndexPath {
+            let cell = tableView.cellForRow(at: current)
+            cell?.textLabel?.textColor = .named(.textDarkest)
+            currentlySelectedIndexPath = nil
+        }
+    }
+
+    class IntCell: UITableViewCell {
+        var valueTextField: UITextField
+        var value: Int? {
+            if let text = valueTextField.text, let val = Int(text) {
+                return val
+            }
+            return nil
+        }
+        var type: AlertThresholdType?
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            valueTextField = UITextField(frame: CGRect(x: 0, y: 0, width: 76, height: 21))
+            valueTextField.keyboardType = .numberPad
+            super.init(style: UITableViewCell.CellStyle.value1, reuseIdentifier: reuseIdentifier)
+            accessoryView = valueTextField
+            valueTextField.textAlignment = .right
+        }
+
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+
+    class SwitchCell: UITableViewCell {
+        var toggle: UISwitch
+        var type: AlertThresholdType?
+
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            toggle = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+            super.init(style: style, reuseIdentifier: reuseIdentifier)
+            accessoryView = toggle
+        }
+
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+}
+
+extension StudentSettingsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        guard let cell = tableView.cellForRow(at: IndexPath(row: textField.tag, section: settingsSection)) as? IntCell, let type = cell.type else { return true }
+        let isValid = validateValueForRow(type)
+        return isValid
+    }
+
+    func textFieldDidEndEditing(_ sender: UITextField) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(persistChangesToTextField(_:)), object: sender)
+        perform(#selector(persistChangesToTextField(_:)), with: sender, afterDelay: 0.6)
+    }
+
+    @objc func persistChangesToTextField(_ textField: UITextField) {
+        guard let cell = tableView.cellForRow(at: IndexPath(row: textField.tag, section: settingsSection)) as? IntCell, let type = cell.type else { return }
+        didUpdateValueOnTextField(type, thresholdValue: textField.text)
+    }
+}
+
+

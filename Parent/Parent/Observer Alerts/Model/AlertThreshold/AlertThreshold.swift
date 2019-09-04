@@ -23,7 +23,7 @@ import CoreData
 import Marshal
 import CanvasCore
 
-public enum AlertThresholdType: String {
+public enum AlertThresholdType: String, CaseIterable {
     case courseAnnouncement = "course_announcement"
     case institutionAnnouncement = "institution_announcement"
     case assignmentGradeHigh = "assignment_grade_high"
@@ -35,12 +35,12 @@ public enum AlertThresholdType: String {
 
     public static var validThresholdTypes: [AlertThresholdType] {
         return [
-            .courseAnnouncement,
-            .assignmentGradeHigh,
-            .assignmentGradeLow,
-            .assignmentMissing,
             .courseGradeHigh,
             .courseGradeLow,
+            .assignmentMissing,
+            .assignmentGradeHigh,
+            .assignmentGradeLow,
+            .courseAnnouncement,
             .institutionAnnouncement,
         ]
     }
