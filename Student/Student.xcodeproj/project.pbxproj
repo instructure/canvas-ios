@@ -97,10 +97,6 @@
 		492707FC1CF4BC1000C631C6 /* UnsupportedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707DE1CF4BC1000C631C6 /* UnsupportedViewController.m */; };
 		4927084A1CF4BC3200C631C6 /* UIViewController+Transitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 492708231CF4BC3200C631C6 /* UIViewController+Transitions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4927084B1CF4BC3200C631C6 /* UIViewController+Transitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 492708241CF4BC3200C631C6 /* UIViewController+Transitions.m */; };
-		492708521CF4BC3200C631C6 /* Storyboard-WebBrowser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4927082D1CF4BC3200C631C6 /* Storyboard-WebBrowser.storyboard */; };
-		492708531CF4BC3200C631C6 /* WebBrowserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927082E1CF4BC3200C631C6 /* WebBrowserViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		492708541CF4BC3200C631C6 /* WebBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927082F1CF4BC3200C631C6 /* WebBrowserViewController.m */; };
-		492708551CF4BC3200C631C6 /* WebBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 492708301CF4BC3200C631C6 /* WebBrowserViewController.xib */; };
 		49383CE21F848353009C8F8E /* Session+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CE11F84834A009C8F8E /* Session+Login.swift */; };
 		495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */; };
 		49642BC01CF4C44A00238B3F /* EXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 49642BBE1CF4C44A00238B3F /* EXTScope.h */; };
@@ -779,10 +775,6 @@
 		492707DE1CF4BC1000C631C6 /* UnsupportedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnsupportedViewController.m; sourceTree = "<group>"; };
 		492708231CF4BC3200C631C6 /* UIViewController+Transitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Transitions.h"; sourceTree = "<group>"; };
 		492708241CF4BC3200C631C6 /* UIViewController+Transitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Transitions.m"; sourceTree = "<group>"; };
-		4927082D1CF4BC3200C631C6 /* Storyboard-WebBrowser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Storyboard-WebBrowser.storyboard"; sourceTree = "<group>"; };
-		4927082E1CF4BC3200C631C6 /* WebBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBrowserViewController.h; sourceTree = "<group>"; };
-		4927082F1CF4BC3200C631C6 /* WebBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBrowserViewController.m; sourceTree = "<group>"; };
-		492708301CF4BC3200C631C6 /* WebBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebBrowserViewController.xib; sourceTree = "<group>"; };
 		49383CE11F84834A009C8F8E /* Session+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Login.swift"; sourceTree = "<group>"; };
 		495D8BBA1CFE17D700D41098 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49642BBE1CF4C44A00238B3F /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
@@ -1833,7 +1825,6 @@
 				49AA2D121CF4DC3F0055862D /* People */,
 				492707D91CF4BC1000C631C6 /* Sad Panda */,
 				4927081C1CF4BC3200C631C6 /* Transitioning */,
-				4927082C1CF4BC3200C631C6 /* Web Browser */,
 			);
 			path = TechDebt;
 			sourceTree = "<group>";
@@ -1990,17 +1981,6 @@
 				492708241CF4BC3200C631C6 /* UIViewController+Transitions.m */,
 			);
 			path = Transitioning;
-			sourceTree = "<group>";
-		};
-		4927082C1CF4BC3200C631C6 /* Web Browser */ = {
-			isa = PBXGroup;
-			children = (
-				4927082D1CF4BC3200C631C6 /* Storyboard-WebBrowser.storyboard */,
-				4927082E1CF4BC3200C631C6 /* WebBrowserViewController.h */,
-				4927082F1CF4BC3200C631C6 /* WebBrowserViewController.m */,
-				492708301CF4BC3200C631C6 /* WebBrowserViewController.xib */,
-			);
-			path = "Web Browser";
 			sourceTree = "<group>";
 		};
 		49383CE01F84834A009C8F8E /* Login */ = {
@@ -3382,7 +3362,6 @@
 				4927084A1CF4BC3200C631C6 /* UIViewController+Transitions.h in Headers */,
 				61F438E61DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h in Headers */,
 				492705A21CF4B73200C631C6 /* CKIUser+SwiftCompatibility.h in Headers */,
-				492708531CF4BC3200C631C6 /* WebBrowserViewController.h in Headers */,
 				49CE976E1F900B4700121A43 /* EXTScope.h in Headers */,
 				492704AE1CF4B6D700C631C6 /* TechDebt.h in Headers */,
 				492707FB1CF4BC1000C631C6 /* UnsupportedViewController.h in Headers */,
@@ -3858,13 +3837,11 @@
 				492706D51CF4BA7B00C631C6 /* ContentLockViewController.storyboard in Resources */,
 				49F9FA471CF7B6F600654758 /* TechDebt.xcassets in Resources */,
 				492705F31CF4B76A00C631C6 /* CBIColorfulRightDetailCell.xib in Resources */,
-				492708551CF4BC3200C631C6 /* WebBrowserViewController.xib in Resources */,
 				49AA2D291CF4DC540055862D /* CBIPeopleAvatarCell.xib in Resources */,
 				2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */,
 				49AA2D2A1CF4DC540055862D /* CBIPeopleDetail.storyboard in Resources */,
 				49AA2D311CF4DC540055862D /* Profile.storyboard in Resources */,
 				492705F21CF4B76A00C631C6 /* CBIColorfulCell.xib in Resources */,
-				492708521CF4BC3200C631C6 /* Storyboard-WebBrowser.storyboard in Resources */,
 				492707FA1CF4BC1000C631C6 /* UnsupportedView.storyboard in Resources */,
 				492705F41CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib in Resources */,
 			);
@@ -4290,7 +4267,6 @@
 				787BAAE0215445BB002D0381 /* UserInfoTableViewCell.swift in Sources */,
 				49CE97691F900B4700121A43 /* MLVCCollectionController.m in Sources */,
 				49A04E281CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.m in Sources */,
-				492708541CF4BC3200C631C6 /* WebBrowserViewController.m in Sources */,
 				2C7041AF203CDDB700745253 /* UIAlertController+TechDebt.m in Sources */,
 				492706941CF4B88600C631C6 /* FileViewController.m in Sources */,
 				49CE97701F900B4700121A43 /* UICollectionView+MyLittleViewController.m in Sources */,
