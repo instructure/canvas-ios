@@ -295,7 +295,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             submission: .make(excused: true)
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertTrue(AssignmentDetails.gradeCell.isVisible)
+        XCTAssertTrue(AssignmentDetails.gradeCell.waitToExist().isVisible)
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "Excused")
         XCTAssertEqual(AssignmentDetails.gradeCircleOutOf.label(), "Out of 100 pts")
     }

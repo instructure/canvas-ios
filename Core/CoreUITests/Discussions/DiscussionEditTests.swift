@@ -84,6 +84,9 @@ class DiscussionEditTests: CoreUITestCase {
     }
 
     func testCreateDiscussionWithAttachment() {
+        // TODO: fix flakiness
+        launch()
+
         mockBaseRequests()
         mockData(GetCoursesRequest(), value: [course2])
         mockData(GetCourseRequest(courseID: "2"), value: course2)
@@ -97,7 +100,6 @@ class DiscussionEditTests: CoreUITestCase {
         mockEncodableRequest(targetUrl, value: ["id": "1"])
         mockEncodableRequest("files/1", value: APIFile.make())
 
-        logIn()
         // TODO: why does course 1 break here?
         show("/courses/2/discussion_topics")
         DiscussionList.newButton.tap()
