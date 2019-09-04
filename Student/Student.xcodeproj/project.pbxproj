@@ -109,7 +109,6 @@
 		49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49642BC91CF4C4DF00238B3F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; };
 		496D31261CF752C600A3B11E /* LegacyModuleProgressShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */; };
-		496D312A1CF7550A00A3B11E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31291CF7550A00A3B11E /* NetworkMonitor.swift */; };
 		4976C2001FBB84B900160EE4 /* CalendarEventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4976C1FF1FBB84B900160EE4 /* CalendarEventDetailViewController.swift */; };
 		49A04DA81CF4F5E40051E1E7 /* ISO8601DateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A04DA41CF4F5E40051E1E7 /* ISO8601DateFormatter.h */; };
 		49A04DA91CF4F5E40051E1E7 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04DA51CF4F5E40051E1E7 /* ISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -789,7 +788,6 @@
 		49642BC31CF4C4CD00238B3F /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49642BCA1CF4C66200238B3F /* Student.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Student.entitlements; sourceTree = "<group>"; };
 		496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyModuleProgressShim.swift; sourceTree = "<group>"; };
-		496D31291CF7550A00A3B11E /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		4976C1FF1FBB84B900160EE4 /* CalendarEventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailViewController.swift; sourceTree = "<group>"; };
 		49A04DA41CF4F5E40051E1E7 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
 		49A04DA51CF4F5E40051E1E7 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
@@ -2022,7 +2020,6 @@
 			isa = PBXGroup;
 			children = (
 				496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */,
-				496D31291CF7550A00A3B11E /* NetworkMonitor.swift */,
 				49F9FA4C1CF89F8600654758 /* Router+Canvas.swift */,
 			);
 			path = Shrug;
@@ -4137,7 +4134,6 @@
 				7DCF0F7F22F8A820000AACCE /* DashboardGroupCell.swift in Sources */,
 				49F9FA4D1CF89F8600654758 /* Router+Canvas.swift in Sources */,
 				7DCF0FAC22F8A8D7000AACCE /* RubricViewController.swift in Sources */,
-				496D312A1CF7550A00A3B11E /* NetworkMonitor.swift in Sources */,
 				7DCF0FCB22F8A8D7000AACCE /* SubmissionFilesViewController.swift in Sources */,
 				5EB46DF41D21A75C00C859A4 /* CalendarDayListCell.swift in Sources */,
 				7DCF0F8B22F8A84D000AACCE /* SyllabusActionableItemsViewController.swift in Sources */,

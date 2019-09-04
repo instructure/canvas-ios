@@ -39,7 +39,7 @@ import logoutAction from './src/redux/logout-action'
 import loginVerify from './src/common/login-verify'
 import { hydrateStoreFromPersistedState } from './src/redux/middleware/persist'
 import hydrate from './src/redux/hydrate-action'
-import { beginUpdatingBadgeCounts, stopUpdatingBadgeCounts, updateBadgeCounts } from './src/modules/tabbar/badge-counts'
+import { beginUpdatingBadgeCounts, stopUpdatingBadgeCounts } from './src/modules/tabbar/badge-counts'
 import App, { type AppId } from './src/modules/app'
 import Navigator from './src/routing/Navigator'
 import APIBridge from './src/canvas-api/APIBridge'
@@ -158,7 +158,9 @@ AppState.addEventListener('change', (nextAppState) => {
   let session = getSessionUnsafe()
   if (session && nextAppState === 'active') {
     loginVerify()
-    updateBadgeCounts()
+    beginUpdatingBadgeCounts()
+  } else if (nextAppState.match(/inactive|background/)) {
+    stopUpdatingBadgeCounts()
   }
 })
 

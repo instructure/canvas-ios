@@ -92,3 +92,19 @@ public struct GetUserSettingsRequest: APIRequestable {
         return "users/\(userID)/settings"
     }
 }
+
+// https://canvas.instructure.com/doc/api/users.html#method.profile.settings
+public struct GetUserProfileRequest: APIRequestable {
+    public typealias Response = APIProfile
+
+    public let userID: String
+
+    public var path: String {
+        let context = ContextModel(.user, id: userID)
+        return "\(context.pathComponent)/profile"
+    }
+
+    public init(userID: String) {
+        self.userID = userID
+    }
+}

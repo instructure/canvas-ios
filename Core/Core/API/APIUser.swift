@@ -55,3 +55,17 @@ public struct APIUserSettings: Codable, Equatable {
     let collapse_global_nav: Bool
     let hide_dashcard_color_overlays: Bool
 }
+
+// https://canvas.instructure.com/doc/api/users.html#Profile
+public struct APIProfile: Codable, Equatable {
+    public struct APICalendar: Codable, Equatable {
+        public let ics: URL?
+    }
+
+    public let id: ID
+    public let name: String
+    public let primary_email: String?
+    public let login_id: String?
+    public let avatar_url: URL?
+    public let calendar: APICalendar?
+}

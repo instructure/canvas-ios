@@ -84,7 +84,7 @@ public class URLSessionAPI: API {
         do {
             let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
             let task = urlSession.dataTask(with: request) { [weak self] data, response, error in
-                if (response as? HTTPURLResponse)?.statusCode == 401, refreshToken {
+                if response?.unauthorized == true, refreshToken {
                     self?.refreshToken { self?.makeRequest(requestable, refreshToken: false, callback: callback) }
                     return
                 }

@@ -124,7 +124,7 @@ RCT_EXPORT_METHOD(stopObserving)
 
 - (void)logout {
     [[HelmManager shared] cleanupWithCallback:^{
-        [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:nil];
+        [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:@{}];
     }];
 }
 
