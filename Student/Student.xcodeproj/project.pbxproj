@@ -154,10 +154,6 @@
 		49AA291A1CF4D1880055862D /* CanvasKit1.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA29191CF4D1880055862D /* CanvasKit1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA291E1CF4D1880055862D /* CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; };
 		49AA291F1CF4D1880055862D /* CanvasKit1.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49AA2B8D1CF4D51B0055862D /* CKAPICredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2ABF1CF4D51B0055862D /* CKAPICredentials.h */; };
-		49AA2B8E1CF4D51B0055862D /* CKAPICredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AC01CF4D51B0055862D /* CKAPICredentials.m */; };
-		49AA2B911CF4D51B0055862D /* CKCanvasAPI+Conversations.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AC31CF4D51B0055862D /* CKCanvasAPI+Conversations.h */; };
-		49AA2B921CF4D51B0055862D /* CKCanvasAPI+Conversations.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AC41CF4D51B0055862D /* CKCanvasAPI+Conversations.m */; };
 		49AA2B971CF4D51B0055862D /* CKCanvasAPI+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AC91CF4D51B0055862D /* CKCanvasAPI+Private.h */; };
 		49AA2B9C1CF4D51B0055862D /* CKCanvasAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2ACE1CF4D51B0055862D /* CKCanvasAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2B9D1CF4D51B0055862D /* CKCanvasAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2ACF1CF4D51B0055862D /* CKCanvasAPI.m */; };
@@ -171,10 +167,6 @@
 		49AA2BA51CF4D51B0055862D /* CKTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AD71CF4D51B0055862D /* CKTerm.m */; };
 		49AA2BA81CF4D51B0055862D /* CKCommonTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2ADB1CF4D51B0055862D /* CKCommonTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2BA91CF4D51B0055862D /* CKCommonTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2ADC1CF4D51B0055862D /* CKCommonTypes.m */; };
-		49AA2BAA1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2ADD1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.h */; };
-		49AA2BAB1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2ADE1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m */; };
-		49AA2BAC1CF4D51B0055862D /* NSArray+CKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2ADF1CF4D51B0055862D /* NSArray+CKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49AA2BAD1CF4D51B0055862D /* NSArray+CKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AE01CF4D51B0055862D /* NSArray+CKAdditions.m */; };
 		49AA2BB01CF4D51B0055862D /* NSDictionary+CKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AE31CF4D51B0055862D /* NSDictionary+CKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2BB11CF4D51B0055862D /* NSDictionary+CKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AE41CF4D51B0055862D /* NSDictionary+CKAdditions.m */; };
 		49AA2BB21CF4D51B0055862D /* NSFileManager+CKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AE51CF4D51B0055862D /* NSFileManager+CKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -189,8 +181,6 @@
 		49AA2BBB1CF4D51B0055862D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AEE1CF4D51B0055862D /* UIImage+Resize.m */; };
 		49AA2BBC1CF4D51B0055862D /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AEF1CF4D51B0055862D /* UIImage+RoundedCorner.h */; };
 		49AA2BBD1CF4D51B0055862D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AF01CF4D51B0055862D /* UIImage+RoundedCorner.m */; };
-		49AA2BBE1CF4D51B0055862D /* UITableView+in_fix10550644.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AF11CF4D51B0055862D /* UITableView+in_fix10550644.h */; };
-		49AA2BBF1CF4D51B0055862D /* UITableView+in_fix10550644.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AF21CF4D51B0055862D /* UITableView+in_fix10550644.m */; };
 		49AA2BC01CF4D51B0055862D /* UIWebView+AccessoryHiding.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AF31CF4D51B0055862D /* UIWebView+AccessoryHiding.h */; };
 		49AA2BC11CF4D51B0055862D /* UIWebView+AccessoryHiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AF41CF4D51B0055862D /* UIWebView+AccessoryHiding.m */; };
 		49AA2BC61CF4D51B0055862D /* CKAssignment.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AFA1CF4D51B0055862D /* CKAssignment.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -215,8 +205,6 @@
 		49AA2BE71CF4D51B0055862D /* CKDiscussionEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B1B1CF4D51B0055862D /* CKDiscussionEntry.m */; };
 		49AA2BE81CF4D51B0055862D /* CKDiscussionTopic.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B1C1CF4D51B0055862D /* CKDiscussionTopic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2BE91CF4D51B0055862D /* CKDiscussionTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B1D1CF4D51B0055862D /* CKDiscussionTopic.m */; };
-		49AA2BEA1CF4D51B0055862D /* CKEmbeddedMediaAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B1E1CF4D51B0055862D /* CKEmbeddedMediaAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49AA2BEB1CF4D51B0055862D /* CKEmbeddedMediaAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B1F1CF4D51B0055862D /* CKEmbeddedMediaAttachment.m */; };
 		49AA2BEC1CF4D51B0055862D /* CKEnrollment.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B201CF4D51B0055862D /* CKEnrollment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2BED1CF4D51B0055862D /* CKEnrollment.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B211CF4D51B0055862D /* CKEnrollment.m */; };
 		49AA2BF01CF4D51B0055862D /* CKFakeAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B241CF4D51B0055862D /* CKFakeAttachment.h */; };
@@ -337,8 +325,6 @@
 		5EB46E071D21A75C00C859A4 /* CalendarWeekDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DE31D21A75C00C859A4 /* CalendarWeekDayViewController.swift */; };
 		5EB46E081D21A75C00C859A4 /* CalendarWeekPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DE41D21A75C00C859A4 /* CalendarWeekPageViewController.swift */; };
 		61074F051DB7E88100DEEE63 /* MasteryPathSelectOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D7185C1DB7CA070081D56A /* MasteryPathSelectOptionViewController.swift */; };
-		613729511D54E91800C020A0 /* UIImage+CanvasKit1.h in Headers */ = {isa = PBXBuildFile; fileRef = 6137294F1D54E91800C020A0 /* UIImage+CanvasKit1.h */; };
-		613729521D54E91800C020A0 /* UIImage+CanvasKit1.m in Sources */ = {isa = PBXBuildFile; fileRef = 613729501D54E91800C020A0 /* UIImage+CanvasKit1.m */; };
 		61592F771DA7F0A200552B44 /* ModuleDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61592F761DA7F0A200552B44 /* ModuleDetailDataSource.swift */; };
 		61592F791DA83C4900552B44 /* ModuleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61592F781DA83C4900552B44 /* ModuleDetailsViewController.swift */; };
 		6181F12F1DFF41AD00B94488 /* ToDoTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6181F12E1DFF41AD00B94488 /* ToDoTab.swift */; };
@@ -834,10 +820,6 @@
 		49AA29171CF4D1880055862D /* CanvasKit1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AA29191CF4D1880055862D /* CanvasKit1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasKit1.h; sourceTree = "<group>"; };
 		49AA291B1CF4D1880055862D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		49AA2ABF1CF4D51B0055862D /* CKAPICredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAPICredentials.h; sourceTree = "<group>"; };
-		49AA2AC01CF4D51B0055862D /* CKAPICredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKAPICredentials.m; sourceTree = "<group>"; };
-		49AA2AC31CF4D51B0055862D /* CKCanvasAPI+Conversations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKCanvasAPI+Conversations.h"; sourceTree = "<group>"; };
-		49AA2AC41CF4D51B0055862D /* CKCanvasAPI+Conversations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKCanvasAPI+Conversations.m"; sourceTree = "<group>"; };
 		49AA2AC91CF4D51B0055862D /* CKCanvasAPI+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKCanvasAPI+Private.h"; sourceTree = "<group>"; };
 		49AA2ACE1CF4D51B0055862D /* CKCanvasAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKCanvasAPI.h; sourceTree = "<group>"; };
 		49AA2ACF1CF4D51B0055862D /* CKCanvasAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCanvasAPI.m; sourceTree = "<group>"; };
@@ -851,10 +833,6 @@
 		49AA2AD71CF4D51B0055862D /* CKTerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKTerm.m; sourceTree = "<group>"; };
 		49AA2ADB1CF4D51B0055862D /* CKCommonTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKCommonTypes.h; sourceTree = "<group>"; };
 		49AA2ADC1CF4D51B0055862D /* CKCommonTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCommonTypes.m; sourceTree = "<group>"; };
-		49AA2ADD1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISO8601DateFormatter+CKAdditions.h"; sourceTree = "<group>"; };
-		49AA2ADE1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISO8601DateFormatter+CKAdditions.m"; sourceTree = "<group>"; };
-		49AA2ADF1CF4D51B0055862D /* NSArray+CKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CKAdditions.h"; sourceTree = "<group>"; };
-		49AA2AE01CF4D51B0055862D /* NSArray+CKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CKAdditions.m"; sourceTree = "<group>"; };
 		49AA2AE31CF4D51B0055862D /* NSDictionary+CKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CKAdditions.h"; sourceTree = "<group>"; };
 		49AA2AE41CF4D51B0055862D /* NSDictionary+CKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CKAdditions.m"; sourceTree = "<group>"; };
 		49AA2AE51CF4D51B0055862D /* NSFileManager+CKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+CKAdditions.h"; sourceTree = "<group>"; };
@@ -869,8 +847,6 @@
 		49AA2AEE1CF4D51B0055862D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		49AA2AEF1CF4D51B0055862D /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		49AA2AF01CF4D51B0055862D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
-		49AA2AF11CF4D51B0055862D /* UITableView+in_fix10550644.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+in_fix10550644.h"; sourceTree = "<group>"; };
-		49AA2AF21CF4D51B0055862D /* UITableView+in_fix10550644.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+in_fix10550644.m"; sourceTree = "<group>"; };
 		49AA2AF31CF4D51B0055862D /* UIWebView+AccessoryHiding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AccessoryHiding.h"; sourceTree = "<group>"; };
 		49AA2AF41CF4D51B0055862D /* UIWebView+AccessoryHiding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AccessoryHiding.m"; sourceTree = "<group>"; };
 		49AA2AFA1CF4D51B0055862D /* CKAssignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAssignment.h; sourceTree = "<group>"; };
@@ -895,8 +871,6 @@
 		49AA2B1B1CF4D51B0055862D /* CKDiscussionEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKDiscussionEntry.m; sourceTree = "<group>"; };
 		49AA2B1C1CF4D51B0055862D /* CKDiscussionTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKDiscussionTopic.h; sourceTree = "<group>"; };
 		49AA2B1D1CF4D51B0055862D /* CKDiscussionTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKDiscussionTopic.m; sourceTree = "<group>"; };
-		49AA2B1E1CF4D51B0055862D /* CKEmbeddedMediaAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKEmbeddedMediaAttachment.h; sourceTree = "<group>"; };
-		49AA2B1F1CF4D51B0055862D /* CKEmbeddedMediaAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKEmbeddedMediaAttachment.m; sourceTree = "<group>"; };
 		49AA2B201CF4D51B0055862D /* CKEnrollment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKEnrollment.h; sourceTree = "<group>"; };
 		49AA2B211CF4D51B0055862D /* CKEnrollment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKEnrollment.m; sourceTree = "<group>"; };
 		49AA2B241CF4D51B0055862D /* CKFakeAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKFakeAttachment.h; sourceTree = "<group>"; };
@@ -1104,8 +1078,6 @@
 		5EB46DE31D21A75C00C859A4 /* CalendarWeekDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarWeekDayViewController.swift; sourceTree = "<group>"; };
 		5EB46DE41D21A75C00C859A4 /* CalendarWeekPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarWeekPageViewController.swift; sourceTree = "<group>"; };
 		60DEFAEF2C9B9DFE5512CC77 /* Pods_defaults_StudentUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_StudentUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6137294F1D54E91800C020A0 /* UIImage+CanvasKit1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CanvasKit1.h"; sourceTree = "<group>"; };
-		613729501D54E91800C020A0 /* UIImage+CanvasKit1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CanvasKit1.m"; sourceTree = "<group>"; };
 		61592F761DA7F0A200552B44 /* ModuleDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleDetailDataSource.swift; sourceTree = "<group>"; };
 		61592F781DA83C4900552B44 /* ModuleDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModuleDetailsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6181E615D15EF2EA5E2642B7 /* Pods-defaults-common_tests-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2173,10 +2145,6 @@
 		49AA2ABD1CF4D51B0055862D /* API Classes */ = {
 			isa = PBXGroup;
 			children = (
-				49AA2ABF1CF4D51B0055862D /* CKAPICredentials.h */,
-				49AA2AC01CF4D51B0055862D /* CKAPICredentials.m */,
-				49AA2AC31CF4D51B0055862D /* CKCanvasAPI+Conversations.h */,
-				49AA2AC41CF4D51B0055862D /* CKCanvasAPI+Conversations.m */,
 				49AA2AC91CF4D51B0055862D /* CKCanvasAPI+Private.h */,
 				49AA2ACE1CF4D51B0055862D /* CKCanvasAPI.h */,
 				49AA2ACF1CF4D51B0055862D /* CKCanvasAPI.m */,
@@ -2197,10 +2165,6 @@
 			children = (
 				49AA2ADB1CF4D51B0055862D /* CKCommonTypes.h */,
 				49AA2ADC1CF4D51B0055862D /* CKCommonTypes.m */,
-				49AA2ADD1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.h */,
-				49AA2ADE1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m */,
-				49AA2ADF1CF4D51B0055862D /* NSArray+CKAdditions.h */,
-				49AA2AE01CF4D51B0055862D /* NSArray+CKAdditions.m */,
 				49AA2AE31CF4D51B0055862D /* NSDictionary+CKAdditions.h */,
 				49AA2AE41CF4D51B0055862D /* NSDictionary+CKAdditions.m */,
 				49AA2AE51CF4D51B0055862D /* NSFileManager+CKAdditions.h */,
@@ -2215,12 +2179,8 @@
 				49AA2AEE1CF4D51B0055862D /* UIImage+Resize.m */,
 				49AA2AEF1CF4D51B0055862D /* UIImage+RoundedCorner.h */,
 				49AA2AF01CF4D51B0055862D /* UIImage+RoundedCorner.m */,
-				49AA2AF11CF4D51B0055862D /* UITableView+in_fix10550644.h */,
-				49AA2AF21CF4D51B0055862D /* UITableView+in_fix10550644.m */,
 				49AA2AF31CF4D51B0055862D /* UIWebView+AccessoryHiding.h */,
 				49AA2AF41CF4D51B0055862D /* UIWebView+AccessoryHiding.m */,
-				6137294F1D54E91800C020A0 /* UIImage+CanvasKit1.h */,
-				613729501D54E91800C020A0 /* UIImage+CanvasKit1.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -2250,8 +2210,6 @@
 				49AA2B1B1CF4D51B0055862D /* CKDiscussionEntry.m */,
 				49AA2B1C1CF4D51B0055862D /* CKDiscussionTopic.h */,
 				49AA2B1D1CF4D51B0055862D /* CKDiscussionTopic.m */,
-				49AA2B1E1CF4D51B0055862D /* CKEmbeddedMediaAttachment.h */,
-				49AA2B1F1CF4D51B0055862D /* CKEmbeddedMediaAttachment.m */,
 				49AA2B201CF4D51B0055862D /* CKEnrollment.h */,
 				49AA2B211CF4D51B0055862D /* CKEnrollment.m */,
 				49AA2B241CF4D51B0055862D /* CKFakeAttachment.h */,
@@ -3402,17 +3360,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49AA2BAA1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.h in Headers */,
 				49AA2BA21CF4D51B0055862D /* CKPaginationInfo.h in Headers */,
 				49AA2C1E1CF4D51B0055862D /* CKSubmission.h in Headers */,
 				49AA2C081CF4D51B0055862D /* CKRubric.h in Headers */,
 				49A04E001CF4F8620051E1E7 /* CXMLDocument_CreationExtensions.h in Headers */,
-				613729511D54E91800C020A0 /* UIImage+CanvasKit1.h in Headers */,
 				49A04E041CF4F8620051E1E7 /* CXHTMLDocument.h in Headers */,
 				49AA2BF41CF4D51B0055862D /* CKGroup.h in Headers */,
 				49AA2BCA1CF4D51B0055862D /* CKAssignmentOverride.h in Headers */,
-				49AA2BAC1CF4D51B0055862D /* NSArray+CKAdditions.h in Headers */,
-				49AA2BBE1CF4D51B0055862D /* UITableView+in_fix10550644.h in Headers */,
 				49A04E0A1CF4F8620051E1E7 /* CXMLElement_CreationExtensions.h in Headers */,
 				49AA2BB01CF4D51B0055862D /* NSDictionary+CKAdditions.h in Headers */,
 				49AA2C2A1CF4D51B0055862D /* CKUser.h in Headers */,
@@ -3435,12 +3389,10 @@
 				49AA2BC61CF4D51B0055862D /* CKAssignment.h in Headers */,
 				49AA2BA81CF4D51B0055862D /* CKCommonTypes.h in Headers */,
 				49AA2BE41CF4D51B0055862D /* CKCourse.h in Headers */,
-				49AA2BEA1CF4D51B0055862D /* CKEmbeddedMediaAttachment.h in Headers */,
 				49AA2BA01CF4D51B0055862D /* CKCanvasURLConnection.h in Headers */,
 				49AA2BE81CF4D51B0055862D /* CKDiscussionTopic.h in Headers */,
 				49AA2C2E1CF4D51B0055862D /* CKActionSheetWithBlocks.h in Headers */,
 				49A04DA81CF4F5E40051E1E7 /* ISO8601DateFormatter.h in Headers */,
-				49AA2B8D1CF4D51B0055862D /* CKAPICredentials.h in Headers */,
 				49A04E021CF4F8620051E1E7 /* CXMLNode_CreationExtensions.h in Headers */,
 				49A04E121CF4F8620051E1E7 /* CXMLNode_PrivateExtensions.h in Headers */,
 				49A04E1A1CF4F8620051E1E7 /* TouchXML.h in Headers */,
@@ -3450,7 +3402,6 @@
 				49AA2BBA1CF4D51B0055862D /* UIImage+Resize.h in Headers */,
 				49AA2BFA1CF4D51B0055862D /* CKMediaServer.h in Headers */,
 				49AA291A1CF4D1880055862D /* CanvasKit1.h in Headers */,
-				49AA2B911CF4D51B0055862D /* CKCanvasAPI+Conversations.h in Headers */,
 				49AA2BB81CF4D51B0055862D /* UIImage+Alpha.h in Headers */,
 				49AA2C241CF4D51B0055862D /* CKSubmissionType.h in Headers */,
 				49A04E141CF4F8620051E1E7 /* CXMLNode_XPathExtensions.h in Headers */,
@@ -4317,33 +4268,26 @@
 				49AA2BCD1CF4D51B0055862D /* CKAttachment.m in Sources */,
 				49AA2BF31CF4D51B0055862D /* CKFolder.m in Sources */,
 				49AA2BBB1CF4D51B0055862D /* UIImage+Resize.m in Sources */,
-				49AA2BAB1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m in Sources */,
 				49AA2C2B1CF4D51B0055862D /* CKUser.m in Sources */,
 				49AA2BA31CF4D51B0055862D /* CKPaginationInfo.m in Sources */,
 				49AA2C0F1CF4D51B0055862D /* CKRubricCriterionRating.m in Sources */,
 				49AA2BA51CF4D51B0055862D /* CKTerm.m in Sources */,
 				49AA2C0B1CF4D51B0055862D /* CKRubricAssessment.m in Sources */,
 				49AA2C211CF4D51B0055862D /* CKSubmissionAttempt.m in Sources */,
-				49AA2BBF1CF4D51B0055862D /* UITableView+in_fix10550644.m in Sources */,
 				49AA2BA91CF4D51B0055862D /* CKCommonTypes.m in Sources */,
 				49AA2C0D1CF4D51B0055862D /* CKRubricCriterion.m in Sources */,
 				49AA2BFD1CF4D51B0055862D /* CKModelObject.m in Sources */,
 				49A04E071CF4F8620051E1E7 /* CXMLDocument_PrivateExtensions.m in Sources */,
 				49A04E131CF4F8620051E1E7 /* CXMLNode_PrivateExtensions.m in Sources */,
-				49AA2B8E1CF4D51B0055862D /* CKAPICredentials.m in Sources */,
-				49AA2BAD1CF4D51B0055862D /* NSArray+CKAdditions.m in Sources */,
-				49AA2B921CF4D51B0055862D /* CKCanvasAPI+Conversations.m in Sources */,
 				49A04E191CF4F8620051E1E7 /* CTidy.m in Sources */,
 				49AA2C4D1CF4D51B0055862D /* CKUploadProgressToolbar.m in Sources */,
 				49AA2C1F1CF4D51B0055862D /* CKSubmission.m in Sources */,
 				49AA2C251CF4D51B0055862D /* CKSubmissionType.m in Sources */,
 				49AA2B9D1CF4D51B0055862D /* CKCanvasAPI.m in Sources */,
 				49AA2BF51CF4D51B0055862D /* CKGroup.m in Sources */,
-				613729521D54E91800C020A0 /* UIImage+CanvasKit1.m in Sources */,
 				49A04E011CF4F8620051E1E7 /* CXMLDocument_CreationExtensions.m in Sources */,
 				49AA2BB71CF4D51B0055862D /* NSString+CKAdditions.m in Sources */,
 				49AA2BD91CF4D51B0055862D /* CKContextInfo.m in Sources */,
-				49AA2BEB1CF4D51B0055862D /* CKEmbeddedMediaAttachment.m in Sources */,
 				49A04DA91CF4F5E40051E1E7 /* ISO8601DateFormatter.m in Sources */,
 				49AA2BB51CF4D51B0055862D /* NSHTTPURLResponse+CKAdditions.m in Sources */,
 				49AA2BBD1CF4D51B0055862D /* UIImage+RoundedCorner.m in Sources */,

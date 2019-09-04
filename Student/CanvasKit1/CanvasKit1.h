@@ -41,14 +41,12 @@ FOUNDATION_EXPORT const unsigned char CanvasKit1VersionString[];
 #import <CanvasKit1/CKSubmissionAttempt.h>
 #import <CanvasKit1/CKContentLock.h>
 #import <CanvasKit1/CKModelObject.h>
-#import <CanvasKit1/NSArray+CKAdditions.h>
 #import <CanvasKit1/CKUploadProgressToolbar.h>
 #import <CanvasKit1/CKSubmissionComment.h>
 #import <CanvasKit1/CKMediaComment.h>
 #import <CanvasKit1/CKAttachment.h>
 #import <CanvasKit1/CKPaginationInfo.h>
 #import <CanvasKit1/CKCommonTypes.h>
-#import <CanvasKit1/CKEmbeddedMediaAttachment.h>
 #import <CanvasKit1/CKGroup.h>
 #import <CanvasKit1/NSDictionary+CKAdditions.h>
 #import <CanvasKit1/CKSubmission.h>
