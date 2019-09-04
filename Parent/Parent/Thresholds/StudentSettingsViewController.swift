@@ -101,6 +101,7 @@ class StudentSettingsViewController : UIViewController {
     }
 
     func setupTableView() {
+        tableView.keyboardDismissMode = .onDrag
         let nib = UINib(nibName: String(describing: StudentSettingsHeaderView.self), bundle: nil)
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: String(describing: StudentSettingsHeaderView.self))
         tableView.registerCell(UITableViewCell.self)
@@ -285,6 +286,7 @@ extension StudentSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.valueTextField.tag = indexPath.row
             cell.textLabel?.text = descriptionForType(alert)
             cell.textLabel?.accessibilityLabel = descriptionForType(alert)
+            cell.valueTextField.accessibilityLabel = descriptionForType(alert)
             cell.valueTextField.placeholder = NSLocalizedString("1-100%", comment: "Percentage field placeholder")
             if let threshold = thresholdForType(alert), let value = threshold.threshold, let formattedValue = formatter.number(from: value)?.intValue {
                 cell.valueTextField.text = "\(formattedValue)"
@@ -395,6 +397,10 @@ extension StudentSettingsViewController: UITableViewDataSource, UITableViewDeleg
     }
 
     func didUpdateValueOnTextField(_ type: AlertThresholdType, thresholdValue: String?) {
+        if let threshold = thresholdForType(type), threshold.threshold == thresholdValue {
+            return
+        }
+
         let onComplete = { [weak self] (event: ReactiveSwift.Signal<Bool, NSError>.Event) -> Void in
             switch(event) {
             case .failed(let error):
@@ -448,6 +454,7 @@ extension StudentSettingsViewController: UITableViewDataSource, UITableViewDeleg
         var type: AlertThresholdType?
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             valueTextField = UITextField(frame: CGRect(x: 0, y: 0, width: 76, height: 21))
+            valueTextField.keyboardType = .numberPad
             super.init(style: UITableViewCell.CellStyle.value1, reuseIdentifier: reuseIdentifier)
             accessoryView = valueTextField
             valueTextField.textAlignment = .right
