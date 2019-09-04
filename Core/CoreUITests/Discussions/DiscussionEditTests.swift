@@ -131,7 +131,7 @@ class DiscussionEditTests: CoreUITestCase {
 
         Attachments.dismissButton.tap()
 
-        XCTAssertEqual(DiscussionEdit.attachmentButton.waitToExist().label, "Edit attachment (1)")
+        XCTAssertEqual(DiscussionEdit.attachmentButton.label(), "Edit attachment (1)")
 
         DiscussionEdit.attachmentButton.tap()
     }

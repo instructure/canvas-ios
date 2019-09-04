@@ -24,7 +24,7 @@ class LoginTests: CoreUITestCase {
     override var user: UITestUser? { return nil }
 
     func testFindSchool() {
-        XCTAssertEqual(LoginStart.findSchoolButton.label, "Find my school")
+        XCTAssertEqual(LoginStart.findSchoolButton.label(), "Find my school")
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("mtech")
         LoginFindAccountResult.item(host: "mtec.instructure.com").waitToExist()
@@ -118,7 +118,7 @@ class LoginTests: CoreUITestCase {
         }
 
         LoginStart.findSchoolButton.waitToExist()
-        XCTAssertEqual(LoginStart.findSchoolButton.label, "Log In")
+        XCTAssertEqual(LoginStart.findSchoolButton.label(), "Log In")
         XCTAssertFalse(LoginStart.canvasNetworkButton.isVisible)
         LoginStart.findSchoolButton.tap()
 

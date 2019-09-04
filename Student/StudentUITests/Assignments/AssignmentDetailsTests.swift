@@ -55,19 +55,19 @@ class AssignmentDetailsTests: StudentUITestCase {
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.allowedExtensions.waitToExist()
-        XCTAssertEqual(NavBar.title.label, "Assignment Details")
-        XCTAssertEqual(NavBar.subtitle.label, course.name!)
+        XCTAssertEqual(NavBar.title.label(), "Assignment Details")
+        XCTAssertEqual(NavBar.subtitle.label(), course.name!)
         XCTAssertEqual(navBarColorHex(), "#123456")
 
-        XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
-        XCTAssertEqual(AssignmentDetails.points.label, "12.3 pts")
-        XCTAssertEqual(AssignmentDetails.status.label, "Not Submitted")
-        XCTAssertEqual(AssignmentDetails.due.label, "Jan 1, 2035 at 8:00 AM")
-        XCTAssertEqual(AssignmentDetails.submissionTypes.label, "File Upload")
-        XCTAssertEqual(AssignmentDetails.allowedExtensions.label, "doc, docx, or pdf")
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
+        XCTAssertEqual(AssignmentDetails.points.label(), "12.3 pts")
+        XCTAssertEqual(AssignmentDetails.status.label(), "Not Submitted")
+        XCTAssertEqual(AssignmentDetails.due.label(), "Jan 1, 2035 at 8:00 AM")
+        XCTAssertEqual(AssignmentDetails.submissionTypes.label(), "File Upload")
+        XCTAssertEqual(AssignmentDetails.allowedExtensions.label(), "doc, docx, or pdf")
         XCTAssertFalse(AssignmentDetails.submittedText.isVisible)
         XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Submit Assignment")
 
         let description = app.webViews.staticTexts.firstMatch.label
         XCTAssertEqual(description, assignment.description)
@@ -87,15 +87,15 @@ class AssignmentDetailsTests: StudentUITestCase {
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submissionTypes.waitToExist()
-        XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
-        XCTAssertEqual(AssignmentDetails.points.label, "15.1 pts")
-        XCTAssertEqual(AssignmentDetails.status.label, "Not Submitted")
-        XCTAssertEqual(AssignmentDetails.due.label, "Jan 1, 2035 at 8:00 AM")
-        XCTAssertEqual(AssignmentDetails.submissionTypes.label, "Discussion Comment")
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
+        XCTAssertEqual(AssignmentDetails.points.label(), "15.1 pts")
+        XCTAssertEqual(AssignmentDetails.status.label(), "Not Submitted")
+        XCTAssertEqual(AssignmentDetails.due.label(), "Jan 1, 2035 at 8:00 AM")
+        XCTAssertEqual(AssignmentDetails.submissionTypes.label(), "Discussion Comment")
         XCTAssertFalse(AssignmentDetails.allowedExtensions.isVisible)
         XCTAssertFalse(AssignmentDetails.submittedText.isVisible)
         XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "View Discussion")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "View Discussion")
 
         let authorAvatar = app.webViews.staticTexts.element(boundBy: 0).label
         let authorName = app.webViews.staticTexts.element(boundBy: 1).label
@@ -115,10 +115,10 @@ class AssignmentDetailsTests: StudentUITestCase {
             submission_types: [ .discussion_topic ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
         XCTAssertTrue(AssignmentDetails.submittedText.isVisible)
         XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "View Discussion")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "View Discussion")
     }
 
     func testResubmitAssignmentButton() {
@@ -127,7 +127,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             submission_types: [ .online_upload ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Resubmit Assignment")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Resubmit Assignment")
     }
 
     func testSubmitAssignmentButton() {
@@ -135,7 +135,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             submission_types: [ .online_upload ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Submit Assignment")
     }
 
     func testNoSubmitAssignmentButtonShows() {
@@ -168,7 +168,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             submission_types: [ .online_upload ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Submit Assignment")
         XCTAssertFalse(AssignmentDetails.lockIcon.isVisible)
         XCTAssertFalse(AssignmentDetails.lockSection.isVisible)
     }
@@ -244,7 +244,7 @@ class AssignmentDetailsTests: StudentUITestCase {
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         XCTAssertTrue(AssignmentDetails.submittedText.isVisible)
-        XCTAssertEqual(AssignmentDetails.submittedText.label, "Successfully submitted!")
+        XCTAssertEqual(AssignmentDetails.submittedText.label(), "Successfully submitted!")
     }
 
     func testGradeCellShowsDialWhenGraded() {
@@ -256,7 +256,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             )
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.gradeCircle.label, "Scored 90 out of 100 points possible")
+        XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 90 out of 100 points possible")
     }
 
     func testDisplayGradeAs() {
@@ -269,8 +269,8 @@ class AssignmentDetailsTests: StudentUITestCase {
             grading_type: .percent
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.gradeCircle.label, "Scored 8 out of 10 points possible")
-        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label, "80%")
+        XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 8 out of 10 points possible")
+        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "80%")
     }
 
     func testGradeCellShowsLatePenalty() {
@@ -286,7 +286,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             )
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.gradeLatePenalty.label, "Late penalty (-5 pts)")
+        XCTAssertEqual(AssignmentDetails.gradeLatePenalty.label(), "Late penalty (-5 pts)")
     }
 
     func testGradeCellShowsExcused() {
@@ -296,8 +296,8 @@ class AssignmentDetailsTests: StudentUITestCase {
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         XCTAssertTrue(AssignmentDetails.gradeCell.isVisible)
-        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label, "Excused")
-        XCTAssertEqual(AssignmentDetails.gradeCircleOutOf.label, "Out of 100 pts")
+        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "Excused")
+        XCTAssertEqual(AssignmentDetails.gradeCircleOutOf.label(), "Out of 100 pts")
     }
 
     func testViewSubmissionButtonWorksWithNoSubmission() {
@@ -339,8 +339,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             submission_types: [ .online_url ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        AssignmentDetails.submitAssignmentButton.waitToExist()
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Submit Assignment")
         AssignmentDetails.submitAssignmentButton.tap()
         AssignmentDetails.submitAssignmentButton.waitToVanish()
     }

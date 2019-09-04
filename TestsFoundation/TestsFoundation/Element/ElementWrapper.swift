@@ -64,11 +64,11 @@ public extension ElementWrapper {
     var isVisible: Bool {
         return element.isVisible
     }
-    var label: String {
-        return element.label
+    func label(file: StaticString = #file, line: UInt = #line) -> String {
+        return element.label(file: file, line: line)
     }
-    var value: String {
-        return element.value
+    func value(file: StaticString = #file, line: UInt = #line) -> String? {
+        return element.value(file: file, line: line)
     }
 
     @discardableResult

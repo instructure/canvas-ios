@@ -42,8 +42,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        SubmissionDetails.emptyAssignmentDueBy.waitToExist(5)
-        XCTAssertEqual(SubmissionDetails.emptyAssignmentDueBy.label, "This assignment was due by October 31, 2018 at 10:00 PM")
+        XCTAssertEqual(SubmissionDetails.emptyAssignmentDueBy.label(), "This assignment was due by October 31, 2018 at 10:00 PM")
         XCTAssertTrue(SubmissionDetails.emptySubmitButton.isVisible)
     }
 
@@ -63,7 +62,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         XCTAssertFalse(SubmissionDetails.attemptPicker.isVisible)
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
         XCTAssertFalse(SubmissionDetails.attemptPickerToggle.isEnabled)
-        XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
+        XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label(), DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
         XCTAssertTrue(SubmissionDetails.onlineTextEntryWebView.isVisible)
         let body = app.webViews.staticTexts.firstMatch.label
         XCTAssertEqual(body, "hi")
@@ -100,12 +99,12 @@ class SubmissionDetailsTests: StudentUITestCase {
         XCTAssertFalse(SubmissionDetails.attemptPicker.isVisible)
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isEnabled)
-        XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, date2)
+        XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label(), date2)
 
         SubmissionDetails.attemptPickerToggle.tap()
         XCTAssertTrue(SubmissionDetails.attemptPicker.isVisible)
         SubmissionDetails.attemptPicker.pick(column: 0, value: date1)
-        XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, date1)
+        XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label(), date1)
     }
 
     func testNotGraded() {
@@ -255,7 +254,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         XCTAssertFalse(SubmissionDetails.attemptPicker.isVisible)
         XCTAssertTrue(SubmissionDetails.attemptPickerToggle.isVisible)
         XCTAssertFalse(SubmissionDetails.attemptPickerToggle.isEnabled)
-        XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label, DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
+        XCTAssertEqual(SubmissionDetails.attemptPickerToggle.label(), DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short))
         XCTAssertTrue(SubmissionDetails.discussionWebView.isVisible)
     }
 
@@ -290,7 +289,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         XCTAssertTrue(SubmissionDetails.urlButton.isVisible)
 
         XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
-        XCTAssertEqual(SubmissionDetails.urlSubmissionBlurb.label, "This submission is a URL to an external page. We've included a snapshot of a what the page looked like when it was submitted.")
+        XCTAssertEqual(SubmissionDetails.urlSubmissionBlurb.label(), "This submission is a URL to an external page. We've included a snapshot of a what the page looked like when it was submitted.")
     }
 
     func testExternalToolSubmission() {
@@ -347,8 +346,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         XCTAssertFalse(SubmissionDetails.rubricEmptyLabel.isVisible)
 
         let cell1TitleLabel = SubmissionDetails.rubricCellTitle(id: id)
-        cell1TitleLabel.waitToExist()
-        XCTAssertEqual(cell1TitleLabel.label, rubric.description)
+        XCTAssertEqual(cell1TitleLabel.label(), rubric.description)
         XCTAssertTrue(SubmissionDetails.rubricCellDescButton(id: id).isVisible)
 
         let button1 = SubmissionDetails.rubricCellRatingButton(rubricID: id, points: ratings[0].points!)
@@ -364,21 +362,21 @@ class SubmissionDetailsTests: StudentUITestCase {
         let ratingDescLabel = SubmissionDetails.rubricCellRatingDesc(id: id)
         ratingTitleLabel.waitToExist()
 
-        XCTAssertEqual(ratingTitleLabel.label, ratings[0].description)
-        XCTAssertEqual(ratingDescLabel.label, ratings[0].long_description)
+        XCTAssertEqual(ratingTitleLabel.label(), ratings[0].description)
+        XCTAssertEqual(ratingDescLabel.label(), ratings[0].long_description)
 
         button2.tap()
 
-        XCTAssertEqual(ratingTitleLabel.label, ratings[1].description)
-        XCTAssertEqual(ratingDescLabel.label, ratings[1].long_description)
+        XCTAssertEqual(ratingTitleLabel.label(), ratings[1].description)
+        XCTAssertEqual(ratingDescLabel.label(), ratings[1].long_description)
 
         button3.tap()
 
-        XCTAssertEqual(ratingTitleLabel.label, ratings[2].description)
-        XCTAssertEqual(ratingDescLabel.label, ratings[2].long_description)
+        XCTAssertEqual(ratingTitleLabel.label(), ratings[2].description)
+        XCTAssertEqual(ratingDescLabel.label(), ratings[2].long_description)
 
         button3.tap()
-        XCTAssertEqual(ratingTitleLabel.label, ratings[0].description)
-        XCTAssertEqual(ratingDescLabel.label, ratings[0].long_description)
+        XCTAssertEqual(ratingTitleLabel.label(), ratings[0].description)
+        XCTAssertEqual(ratingDescLabel.label(), ratings[0].long_description)
     }
 }

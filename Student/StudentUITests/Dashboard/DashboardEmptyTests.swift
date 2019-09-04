@@ -25,8 +25,7 @@ class DashboardEmptyTests: CoreUITestCase {
     override var user: UITestUser { return .notEnrolled }
 
     func testEmptyCanAddCourses() {
-        Dashboard.emptyTitleLabel.waitToExist()
-        XCTAssertEqual(Dashboard.emptyTitleLabel.label, "Welcome!")
+        XCTAssertEqual(Dashboard.emptyTitleLabel.label(), "Welcome!")
         Dashboard.addCoursesButton.tap()
         app.find(label: "Edit Dashboard").waitToExist()
     }
