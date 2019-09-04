@@ -40,7 +40,10 @@ open class CoreUITestCase: XCTestCase {
     open var abstractTestClass: CoreUITestCase.Type { return CoreUITestCase.self }
 
     open override func perform(_ run: XCTestRun) {
-        if type(of: self) != abstractTestClass {
+        guard type(of: self) != abstractTestClass else { return }
+        if ProcessInfo.processInfo.environment["LIST_TESTS_ONLY"] == "YES" {
+            print("UI_TEST: \(name)")
+        } else {
             super.perform(run)
         }
     }
