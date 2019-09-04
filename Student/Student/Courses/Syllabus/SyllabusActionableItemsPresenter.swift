@@ -81,7 +81,7 @@ class SyllabusActionableItemsPresenter {
         calendarEventUpdateCount += 1
         calendarViewModels = calendarEvents.map {
             SyllabusActionableItemsViewController.ViewModel(id: $0.id, htmlUrl: $0.routingURL,
-                                                           title: $0.title, dueDate: $0.endAt, formattedDate: formattedDueDate($0.endAt), image: .icon(.calendarMonth, .line))
+                                                           title: $0.title, dueDate: $0.endAt, formattedDate: formattedDueDate($0.startAt), image: .icon(.calendarMonth, .line))
         }
         signalUpdate()
     }
