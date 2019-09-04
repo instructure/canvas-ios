@@ -100,6 +100,7 @@ extension LoginFindSchoolViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard var host = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty else { return false }
+        host = host.lowercased()
         if !host.contains(".") {
             host = "\(host).instructure.com"
         }
