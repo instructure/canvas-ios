@@ -34,13 +34,13 @@ function packages () {
 }
 
 function commitMessage () {
-  const message = danger.github.pr.comments[0]
+  const message = danger.github.pr.body
   if (!message) {
-    return fail('Please add a comment for Danger.')
+    return fail('Please add a description for Danger.')
   }
 
   if (!message.trim()) {
-    fail('Please add a comment for Danger.')
+    fail('Please add a description for Danger.')
   }
 
   // There are a few cases where linting commits is not required
