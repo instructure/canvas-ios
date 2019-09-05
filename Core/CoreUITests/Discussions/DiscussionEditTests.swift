@@ -83,7 +83,7 @@ class DiscussionEditTests: CoreUITestCase {
         DiscussionEdit.titleField.waitToVanish()
     }
 
-    func testCreateDiscussionWithAttachment() {
+    func xtestCreateDiscussionWithAttachment() {
         mockBaseRequests()
         mockData(GetCoursesRequest(), value: [course2])
         mockData(GetCourseRequest(courseID: "2"), value: course2)

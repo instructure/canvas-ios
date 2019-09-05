@@ -23,7 +23,7 @@ import TestsFoundation
 import XCTest
 
 class TextSubmissionTests: StudentUITestCase {
-    func testTextSubmission() {
+    func xtestTextSubmission() {
         show("/courses/1/assignments/1/submissions/1/online_text_entry")
         TextSubmission.submitButton.waitToExist()
         XCTAssertFalse(TextSubmission.submitButton.isEnabled)
