@@ -23,7 +23,7 @@ class LoginWebPresenterTests: XCTestCase {
     lazy var presenter: LoginWebPresenter = {
         return LoginWebPresenter(authenticationProvider: nil, host: "localhost", loginDelegate: self, method: .normalLogin, view: self)
     }()
-    var resultingAuthToken: String?
+    var resultingSession: LoginSession?
     var expectation: XCTestExpectation!
     var resultingError: Error?
     var resultingRequest: URLRequest?
@@ -36,13 +36,13 @@ class LoginWebPresenterTests: XCTestCase {
         presenter.session = URLSession.mockSession()
         presenter.mobileVerifyModel = APIVerifyClient(authorized: true, base_url: URL(string: "https://localhost"), client_id: "1", client_secret: "secret")
         MockURLProtocolSupport.responses.removeAll()
-        resultingAuthToken = nil
+        resultingSession = nil
         resultingError = nil
         resultingRequest = nil
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        Clock.reset()
         super.tearDown()
     }
 
@@ -95,7 +95,7 @@ class LoginWebPresenterTests: XCTestCase {
 
         //  then
         XCTAssertEqual(result, .cancel)
-        XCTAssertEqual(resultingAuthToken, expectedToken)
+        XCTAssertEqual(resultingSession?.accessToken, expectedToken)
     }
 
     func testNavigationActionAuthCodeWhenCodeIsNotFirst() {
@@ -122,6 +122,8 @@ class LoginWebPresenterTests: XCTestCase {
     }
 
     func testFetchClientIDAndFetchAuthToken() {
+        let now = Date()
+        Clock.mockNow(now)
         presenter.mobileVerifyModel = nil
         let expectedRequest = defaultRequest()
         let expectedClientID = "1"
@@ -156,7 +158,7 @@ class LoginWebPresenterTests: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
         XCTAssertEqual(resultingRequest?.url, expectedRequest.url)
 
-        resultingAuthToken = nil
+        resultingSession = nil
         resultingError = nil
 
         expectation = XCTestExpectation(description: "expectation")
@@ -164,7 +166,8 @@ class LoginWebPresenterTests: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
 
         XCTAssertEqual(action, .cancel)
-        XCTAssertEqual(resultingAuthToken, expectedToken)
+        XCTAssertEqual(resultingSession?.accessToken, expectedToken)
+        XCTAssertEqual(resultingSession?.expiresAt, now + 10)
     }
 
     func testManualOAuthFlow() {
@@ -207,7 +210,7 @@ extension LoginWebPresenterTests: LoginWebViewProtocol, LoginDelegate {
     func openExternalURL(_ url: URL) {}
 
     func userDidLogin(session: LoginSession) {
-        resultingAuthToken = session.accessToken
+        resultingSession = session
         expectation.fulfill()
     }
 

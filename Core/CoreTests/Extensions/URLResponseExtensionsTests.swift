@@ -41,8 +41,8 @@ class URLResponseExtensionsTests: XCTestCase {
     }
 
     func testUnauthenticated() {
-        XCTAssertTrue(HTTPURLResponse(url: URL(string: "/")!, statusCode: 401, httpVersion: nil, headerFields: nil)!.unauthorized)
-        XCTAssertFalse(HTTPURLResponse(url: URL(string: "/")!, statusCode: 201, httpVersion: nil, headerFields: nil)!.unauthorized)
-        XCTAssertFalse(URLResponse(url: URL(string: "/")!, mimeType: nil, expectedContentLength: 0, textEncodingName: nil).unauthorized)
+        XCTAssertTrue(HTTPURLResponse(url: URL(string: "/")!, statusCode: 401, httpVersion: nil, headerFields: nil)!.isUnauthorized)
+        XCTAssertFalse(HTTPURLResponse(url: URL(string: "/")!, statusCode: 201, httpVersion: nil, headerFields: nil)!.isUnauthorized)
+        XCTAssertFalse(URLResponse(url: URL(string: "/")!, mimeType: nil, expectedContentLength: 0, textEncodingName: nil).isUnauthorized)
     }
 }

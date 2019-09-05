@@ -125,6 +125,7 @@ class LoginWebPresenter {
                     let session = LoginSession(
                         accessToken: token.access_token,
                         baseURL: baseURL,
+                        expiresAt: token.expires_in.flatMap { Clock.now + $0 },
                         refreshToken: token.refresh_token,
                         userID: token.user.id.value,
                         userName: token.user.name,

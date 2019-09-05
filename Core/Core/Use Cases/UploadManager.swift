@@ -224,7 +224,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         context.performAndWait {
             guard let step = task.uploadStep else { return }
-            if error != nil, task.response?.unauthorized == true, step != .refreshTarget, step != .refreshSubmit {
+            if error != nil, task.response?.isUnauthorized == true, step != .refreshTarget, step != .refreshSubmit {
                 refreshToken(task: task, error: error)
                 return
             }
