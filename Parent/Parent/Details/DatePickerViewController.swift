@@ -47,8 +47,8 @@ class DatePickerViewController: UIViewController {
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.accessibilityIdentifier = "assignment_date_picker"
 
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[picker]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["picker": datePicker]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[top][picker(216)]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["top": self.topLayoutGuide, "picker": datePicker]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[picker]|", metrics: nil, views: ["picker": datePicker]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[picker(216)]|", metrics: nil, views: ["picker": datePicker]))
 
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(DatePickerViewController.cancel(_:)))
         cancelButton.accessibilityIdentifier = "date_picker_cancel_button"

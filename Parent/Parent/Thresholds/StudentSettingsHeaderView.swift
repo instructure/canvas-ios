@@ -18,14 +18,16 @@
 
 import UIKit
 
-open class StudentSettingsHeaderView: UIView {
+open class StudentSettingsHeaderView: UITableViewHeaderFooterView {
 
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
 
     open override func awakeFromNib() {
         super.awakeFromNib()
-
+        let bgview = UIView()
+        bgview.backgroundColor = .white
+        backgroundView = bgview
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 2.0

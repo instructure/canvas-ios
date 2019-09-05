@@ -203,7 +203,7 @@ extension Router {
                 return nil
             }
 
-            return StudentSettingsViewController.new(session, studentID: studentID)
+            return StudentSettingsViewController.create(session, studentID: studentID)
         }
     }
 

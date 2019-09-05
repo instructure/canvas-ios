@@ -36,7 +36,6 @@ FOUNDATION_EXPORT const unsigned char TechDebtVersionString[];
 #import <TechDebt/UIImage+TechDebt.h>
 #import <TechDebt/UIViewController+Transitions.h>
 #import <TechDebt/AboutViewController.h>
-#import <TechDebt/WebBrowserViewController.h>
 #import <TechDebt/MyLittleViewController.h>
 #import <TechDebt/FileViewController.h>
 #import <TechDebt/InsetTableViewCell.h>
