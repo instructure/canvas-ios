@@ -63,14 +63,14 @@
 		492705D51CF4B73300C631C6 /* UIView_render_IN.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705931CF4B73200C631C6 /* UIView_render_IN.m */; };
 		492705E01CF4B73300C631C6 /* UIWebView+SafeAPIURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */; };
 		492705E11CF4B73300C631C6 /* UIWebView+SafeAPIURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927059F1CF4B73200C631C6 /* UIWebView+SafeAPIURL.m */; };
-		492705E41CF4B73900C631C6 /* CBIViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705E21CF4B73900C631C6 /* CBIViewModel.h */; };
+		492705E41CF4B73900C631C6 /* CBIViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705E21CF4B73900C631C6 /* CBIViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492705E51CF4B73900C631C6 /* CBIViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705E31CF4B73900C631C6 /* CBIViewModel.m */; };
 		492705F01CF4B76A00C631C6 /* CBIColorfulCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705E71CF4B76A00C631C6 /* CBIColorfulCell.h */; };
 		492705F11CF4B76A00C631C6 /* CBIColorfulCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705E81CF4B76A00C631C6 /* CBIColorfulCell.m */; };
 		492705F21CF4B76A00C631C6 /* CBIColorfulCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 492705E91CF4B76A00C631C6 /* CBIColorfulCell.xib */; };
 		492705F31CF4B76A00C631C6 /* CBIColorfulRightDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 492705EA1CF4B76A00C631C6 /* CBIColorfulRightDetailCell.xib */; };
 		492705F41CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 492705EB1CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib */; };
-		492705F51CF4B76A00C631C6 /* CBIColorfulViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705EC1CF4B76A00C631C6 /* CBIColorfulViewModel.h */; };
+		492705F51CF4B76A00C631C6 /* CBIColorfulViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705EC1CF4B76A00C631C6 /* CBIColorfulViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492705F61CF4B76A00C631C6 /* CBIColorfulViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705ED1CF4B76A00C631C6 /* CBIColorfulViewModel.m */; };
 		492705F71CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705EE1CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.h */; };
 		492705F81CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705EF1CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.m */; };
@@ -83,17 +83,13 @@
 		492706A11CF4B93F00C631C6 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492706A01CF4B93F00C631C6 /* RootViewController.swift */; };
 		492706A91CF4B98900C631C6 /* iCanvasConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706A51CF4B98900C631C6 /* iCanvasConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492706AA1CF4B98900C631C6 /* iCanvasConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706A61CF4B98900C631C6 /* iCanvasConstants.m */; };
-		492706B11CF4B99700C631C6 /* Router.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706AD1CF4B99700C631C6 /* Router.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		492706B21CF4B99700C631C6 /* Router.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706AE1CF4B99700C631C6 /* Router.m */; };
-		492706B31CF4B99700C631C6 /* Router+Routes.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706AF1CF4B99700C631C6 /* Router+Routes.h */; };
-		492706B41CF4B99700C631C6 /* Router+Routes.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706B01CF4B99700C631C6 /* Router+Routes.m */; };
 		492706D31CF4BA7B00C631C6 /* ContentLockViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706CC1CF4BA7B00C631C6 /* ContentLockViewController.h */; };
 		492706D41CF4BA7B00C631C6 /* ContentLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706CD1CF4BA7B00C631C6 /* ContentLockViewController.m */; };
 		492706D51CF4BA7B00C631C6 /* ContentLockViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492706CE1CF4BA7B00C631C6 /* ContentLockViewController.storyboard */; };
 		4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707691CF4BB2100C631C6 /* CBIModuleProgressNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4927077D1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927076A1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m */; };
 		492707FA1CF4BC1000C631C6 /* UnsupportedView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492707DC1CF4BC1000C631C6 /* UnsupportedView.storyboard */; };
-		492707FB1CF4BC1000C631C6 /* UnsupportedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707DD1CF4BC1000C631C6 /* UnsupportedViewController.h */; };
+		492707FB1CF4BC1000C631C6 /* UnsupportedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707DD1CF4BC1000C631C6 /* UnsupportedViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492707FC1CF4BC1000C631C6 /* UnsupportedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707DE1CF4BC1000C631C6 /* UnsupportedViewController.m */; };
 		4927084A1CF4BC3200C631C6 /* UIViewController+Transitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 492708231CF4BC3200C631C6 /* UIViewController+Transitions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4927084B1CF4BC3200C631C6 /* UIViewController+Transitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 492708241CF4BC3200C631C6 /* UIViewController+Transitions.m */; };
@@ -247,11 +243,11 @@
 		49AA2D281CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D161CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m */; };
 		49AA2D291CF4DC540055862D /* CBIPeopleAvatarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49AA2D171CF4DC540055862D /* CBIPeopleAvatarCell.xib */; };
 		49AA2D2A1CF4DC540055862D /* CBIPeopleDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AA2D181CF4DC540055862D /* CBIPeopleDetail.storyboard */; };
-		49AA2D2B1CF4DC540055862D /* CBIPeopleDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D191CF4DC540055862D /* CBIPeopleDetailViewController.h */; };
+		49AA2D2B1CF4DC540055862D /* CBIPeopleDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D191CF4DC540055862D /* CBIPeopleDetailViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2D2C1CF4DC540055862D /* CBIPeopleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D1A1CF4DC540055862D /* CBIPeopleDetailViewController.m */; };
-		49AA2D2D1CF4DC540055862D /* CBIPeopleTabViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D1B1CF4DC540055862D /* CBIPeopleTabViewModel.h */; };
+		49AA2D2D1CF4DC540055862D /* CBIPeopleTabViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D1B1CF4DC540055862D /* CBIPeopleTabViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2D2E1CF4DC540055862D /* CBIPeopleTabViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D1C1CF4DC540055862D /* CBIPeopleTabViewModel.m */; };
-		49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D1D1CF4DC540055862D /* CBIPeopleViewModel.h */; };
+		49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D1D1CF4DC540055862D /* CBIPeopleViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2D301CF4DC540055862D /* CBIPeopleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D1E1CF4DC540055862D /* CBIPeopleViewModel.m */; };
 		49AA2D311CF4DC540055862D /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AA2D1F1CF4DC540055862D /* Profile.storyboard */; };
 		49AA2D321CF4DC540055862D /* ProfileViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D201CF4DC540055862D /* ProfileViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -282,7 +278,6 @@
 		49E1F9101F9517FF0003C91C /* MyLittleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E1F90F1F9517FF0003C91C /* MyLittleViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49F9FA471CF7B6F600654758 /* TechDebt.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F9FA461CF7B6F600654758 /* TechDebt.xcassets */; };
 		49F9FA4B1CF7B73100654758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F9FA4A1CF7B73100654758 /* Assets.xcassets */; };
-		49F9FA4D1CF89F8600654758 /* Router+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA4C1CF89F8600654758 /* Router+Canvas.swift */; };
 		49F9FA5A1CF8CDC400654758 /* UIImage+TechDebt.h in Headers */ = {isa = PBXBuildFile; fileRef = 49F9FA581CF8CDC400654758 /* UIImage+TechDebt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49F9FA5B1CF8CDC400654758 /* UIImage+TechDebt.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA591CF8CDC400654758 /* UIImage+TechDebt.m */; };
 		49F9FA6F1CF8FC8500654758 /* AppDelegate+Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */; };
@@ -342,6 +337,8 @@
 		7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D52D8A922FCD4F500684932 /* CKUploadProgressToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D52D8A822FCD4F500684932 /* CKUploadProgressToolbar.xib */; };
 		7D903C2122C27907009D9E9E /* GradesWidgetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D903C2022C27907009D9E9E /* GradesWidgetViewController.storyboard */; };
+		7D91D65C23217FA000C2F585 /* Routing.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D91D65B23217FA000C2F585 /* Routing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D91D660232180FE00C2F585 /* Routing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D91D65F232180FE00C2F585 /* Routing.m */; };
 		7D92447222FB7825002BC7CA /* UserPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92447122FB7825002BC7CA /* UserPreferencesTests.swift */; };
 		7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */; };
 		7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
@@ -747,10 +744,6 @@
 		492706A01CF4B93F00C631C6 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		492706A51CF4B98900C631C6 /* iCanvasConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCanvasConstants.h; sourceTree = "<group>"; };
 		492706A61CF4B98900C631C6 /* iCanvasConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCanvasConstants.m; sourceTree = "<group>"; };
-		492706AD1CF4B99700C631C6 /* Router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Router.h; sourceTree = "<group>"; };
-		492706AE1CF4B99700C631C6 /* Router.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Router.m; sourceTree = "<group>"; };
-		492706AF1CF4B99700C631C6 /* Router+Routes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Router+Routes.h"; sourceTree = "<group>"; };
-		492706B01CF4B99700C631C6 /* Router+Routes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Router+Routes.m"; sourceTree = "<group>"; };
 		492706CC1CF4BA7B00C631C6 /* ContentLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentLockViewController.h; sourceTree = "<group>"; };
 		492706CD1CF4BA7B00C631C6 /* ContentLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ContentLockViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		492706CE1CF4BA7B00C631C6 /* ContentLockViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContentLockViewController.storyboard; sourceTree = "<group>"; };
@@ -944,7 +937,6 @@
 		49E1F90F1F9517FF0003C91C /* MyLittleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLittleViewController.h; sourceTree = "<group>"; };
 		49F9FA461CF7B6F600654758 /* TechDebt.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TechDebt.xcassets; sourceTree = "<group>"; };
 		49F9FA4A1CF7B73100654758 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		49F9FA4C1CF89F8600654758 /* Router+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Router+Canvas.swift"; sourceTree = "<group>"; };
 		49F9FA581CF8CDC400654758 /* UIImage+TechDebt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TechDebt.h"; sourceTree = "<group>"; };
 		49F9FA591CF8CDC400654758 /* UIImage+TechDebt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TechDebt.m"; sourceTree = "<group>"; };
 		49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Push.swift"; sourceTree = "<group>"; };
@@ -1166,6 +1158,8 @@
 		7D8F1D3A1FE1CCF000C27B42 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7D8F1D3B1FE1CCF100C27B42 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7D903C2022C27907009D9E9E /* GradesWidgetViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GradesWidgetViewController.storyboard; sourceTree = "<group>"; };
+		7D91D65B23217FA000C2F585 /* Routing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Routing.h; sourceTree = "<group>"; };
+		7D91D65F232180FE00C2F585 /* Routing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Routing.m; sourceTree = "<group>"; };
 		7D92447122FB7825002BC7CA /* UserPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesTests.swift; sourceTree = "<group>"; };
 		7DABA7451FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DABA7471FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1909,10 +1903,8 @@
 			children = (
 				492706A51CF4B98900C631C6 /* iCanvasConstants.h */,
 				492706A61CF4B98900C631C6 /* iCanvasConstants.m */,
-				492706AD1CF4B99700C631C6 /* Router.h */,
-				492706AE1CF4B99700C631C6 /* Router.m */,
-				492706AF1CF4B99700C631C6 /* Router+Routes.h */,
-				492706B01CF4B99700C631C6 /* Router+Routes.m */,
+				7D91D65B23217FA000C2F585 /* Routing.h */,
+				7D91D65F232180FE00C2F585 /* Routing.m */,
 			);
 			path = iCanvas;
 			sourceTree = "<group>";
@@ -1977,7 +1969,6 @@
 			children = (
 				496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */,
 				496D31291CF7550A00A3B11E /* NetworkMonitor.swift */,
-				49F9FA4C1CF89F8600654758 /* Router+Canvas.swift */,
 			);
 			path = Shrug;
 			sourceTree = "<group>";
@@ -3280,7 +3271,6 @@
 				4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */,
 				492705CA1CF4B73200C631C6 /* UITableView+in_updateInBlocks.h in Headers */,
 				49AA2D2B1CF4DC540055862D /* CBIPeopleDetailViewController.h in Headers */,
-				492706B31CF4B99700C631C6 /* Router+Routes.h in Headers */,
 				492705CE1CF4B73300C631C6 /* UIView+Circular.h in Headers */,
 				492705A61CF4B73200C631C6 /* CKIClient+CBIClient.h in Headers */,
 				492705BC1CF4B73200C631C6 /* UIFont+Canvas.h in Headers */,
@@ -3298,12 +3288,12 @@
 				492706971CF4B88600C631C6 /* NoPreviewAvailableController.h in Headers */,
 				492705F01CF4B76A00C631C6 /* CBIColorfulCell.h in Headers */,
 				2C7041AE203CDDB700745253 /* UIAlertController+TechDebt.h in Headers */,
+				7D91D65C23217FA000C2F585 /* Routing.h in Headers */,
 				49CE976D1F900B4700121A43 /* metamacros.h in Headers */,
 				492705B21CF4B73200C631C6 /* NSURL+TechDebt.h in Headers */,
 				49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */,
 				49CE97711F900B4700121A43 /* MLVCCollectionViewCellViewModel.h in Headers */,
 				49CE97731F900B4700121A43 /* MLVCTableViewCellViewModel.h in Headers */,
-				492706B11CF4B99700C631C6 /* Router.h in Headers */,
 				49AA2D271CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.h in Headers */,
 				492706A91CF4B98900C631C6 /* iCanvasConstants.h in Headers */,
 				49CE97661F900B4700121A43 /* UICollectionView+MyLittleViewController.h in Headers */,
@@ -3907,7 +3897,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\nexit 0\nfi\n\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\nif nc -w 5 -z localhost 8081 ; then\nif ! curl -s \"http://localhost:8081/status\" | grep -q \"packager-status:running\" ; then\necho \"Port 8081 already in use, packager is either not running or not running correctly\"\nexit 2\nfi\nelse\npwd\nopen \"$SRCROOT/../rn/Teacher/launchPackager.command\" || echo \"Can't start packager automatically\"\nfi\nfi";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\nexit 0\nfi\n\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\nif nc -w 5 -z localhost 8081 ; then\nif ! curl -s \"http://localhost:8081/status\" | grep -q \"packager-status:running\" ; then\necho \"Port 8081 already in use, packager is either not running or not running correctly\"\nexit 2\nfi\nelse\npwd\nopen \"$SRCROOT/../rn/Teacher/launchPackager.command\" || echo \"Can't start packager automatically\"\nfi\nfi\n";
 		};
 		49383CF11F848FCD009C8F8E /* Bundle React Native Code and Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4066,7 +4056,6 @@
 				4976C2001FBB84B900160EE4 /* CalendarEventDetailViewController.swift in Sources */,
 				5EB46DED1D21A75C00C859A4 /* UIView+Nib.swift in Sources */,
 				7DCF0F7F22F8A820000AACCE /* DashboardGroupCell.swift in Sources */,
-				49F9FA4D1CF89F8600654758 /* Router+Canvas.swift in Sources */,
 				7DCF0FAC22F8A8D7000AACCE /* RubricViewController.swift in Sources */,
 				496D312A1CF7550A00A3B11E /* NetworkMonitor.swift in Sources */,
 				7DCF0FCB22F8A8D7000AACCE /* SubmissionFilesViewController.swift in Sources */,
@@ -4185,7 +4174,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				492706B41CF4B99700C631C6 /* Router+Routes.m in Sources */,
 				492705B31CF4B73200C631C6 /* NSURL+TechDebt.m in Sources */,
 				49AA2D351CF4DC540055862D /* RoundedButton.m in Sources */,
 				492705B71CF4B73200C631C6 /* NSCache+AvatarCache.m in Sources */,
@@ -4214,6 +4202,7 @@
 				492705BD1CF4B73200C631C6 /* UIFont+Canvas.m in Sources */,
 				492706981CF4B88600C631C6 /* NoPreviewAvailableController.m in Sources */,
 				49CE97761F900B4700121A43 /* MLVCViewController.m in Sources */,
+				7D91D660232180FE00C2F585 /* Routing.m in Sources */,
 				492705D31CF4B73300C631C6 /* UIView+FloatingView.m in Sources */,
 				787BAAE0215445BB002D0381 /* UserInfoTableViewCell.swift in Sources */,
 				49CE97691F900B4700121A43 /* MLVCCollectionController.m in Sources */,
@@ -4232,7 +4221,6 @@
 				492705E11CF4B73300C631C6 /* UIWebView+SafeAPIURL.m in Sources */,
 				492705A71CF4B73200C631C6 /* CKIClient+CBIClient.m in Sources */,
 				49CE97671F900B4700121A43 /* MLVCTableViewController.m in Sources */,
-				492706B21CF4B99700C631C6 /* Router.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

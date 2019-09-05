@@ -17,17 +17,14 @@
 //
 
 import XCTest
-import Core
+@testable import Core
+@testable import CanvasCore
 @testable import Student
 import TestsFoundation
 
 class RoutesTests: XCTestCase {
-    func testLogin() {
-        XCTAssert(router.match(Route.login.url) is LoginNavigationController)
-    }
-
     func testCourses() {
-        XCTAssert(router.match(Route.courses.url) is CourseListViewController)
+        XCTAssert(router.match(Route.courses.url) is HelmViewController)
     }
 
     func testCourseAssignment() {
@@ -35,7 +32,8 @@ class RoutesTests: XCTestCase {
     }
 
     func testGroup() {
-        XCTAssert(router.match(Route.group("7").url) is GroupNavigationViewController)
+        // Requires current Session
+        // XCTAssert(router.match(Route.group("7").url) is TabsTableViewController)
     }
 
     func testQuizzes() {
@@ -43,19 +41,15 @@ class RoutesTests: XCTestCase {
     }
 
     func testAssignmentList() {
-        XCTAssert(router.match(Route.assignments(forCourse: "1").url) is AssignmentListViewController)
+        XCTAssert(router.match(Route.assignments(forCourse: "1").url) is HelmViewController)
     }
 
     func testCourseNavTab() {
-        XCTAssert(router.match(Route.course("1").url) is CourseNavigationViewController)
+        XCTAssert(router.match(Route.course("1").url) is HelmViewController)
     }
 
     func testSubmission() {
         XCTAssert(router.match(Route.submission(forCourse: "1", assignment: "1", user: ":userID").url) is SubmissionDetailsViewController)
-    }
-
-    func testAssignmentUrlSubmission() {
-        XCTAssert(router.match(Route.assignmentUrlSubmission(courseID: "1", assignmentID: "1", userID: "1").url) is UrlSubmissionViewController)
     }
 
     func testLogs() {

@@ -23,7 +23,7 @@ import CoreData
 struct SubmissionAction: Equatable {
     let title: String
     let route: Route
-    let options: Router.RouteOptions
+    let options: RouteOptions
 }
 
 enum OnlineUploadState {

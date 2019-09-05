@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
-        env.router = Router.shared()
+        env.router = router
         return env
     }()
 
@@ -56,7 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         DocViewerViewController.setup(.studentPSPDFKitLicense)
         prepareReactNative()
         NetworkMonitor.engage()
-        Router.shared().addCanvasRoutes(handleError)
         setupDefaultErrorHandling()
         setupPageViewLogging()
         UIApplication.shared.reactive.applicationIconBadgeNumber
@@ -324,8 +323,8 @@ extension AppDelegate {
                 } else {
                     finish()
                 }
-            } else {
-                Router.shared().openCanvasURL(url, withOptions: ["modal": true])
+            } else if let from = self.topViewController {
+                AppEnvironment.shared.router.route(to: url, from: from, options: .modal)
             }
         }
         return true

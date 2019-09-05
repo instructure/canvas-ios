@@ -36,19 +36,19 @@ class RouterTests: XCTestCase {
 
     func testRouter() {
         let router = Router(routes: [
-            RouteHandler("/courses", name: "courses") { _, _ in
+            RouteHandler("/courses") { _, _ in
                 return UIViewController()
             },
-            RouteHandler("/inbox", name: "inbox") { _, _ in
+            RouteHandler("/inbox") { _, _ in
                 return UIViewController()
             },
-        ])
+        ]) { _, _, _ in }
         XCTAssert(router.count == 2)
     }
 
     func testRouteNoMatch() {
         let mockView = MockViewController()
-        let router = Router(routes: [])
+        let router = Router(routes: []) { _, _, _ in }
         router.route(to: URLComponents(string: "/")!, from: mockView, options: .modal)
         XCTAssertNil(mockView.presented)
     }
@@ -56,10 +56,10 @@ class RouterTests: XCTestCase {
     func testRouteModal() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/modal", name: "modal") { _, _ in
+            RouteHandler("/modal") { _, _ in
                 return UIViewController()
             },
-        ])
+        ]) { _, _, _ in }
         router.route(to: URLComponents(string: "/modal")!, from: mockView, options: .modal)
         XCTAssertNotNil(mockView.presented)
         XCTAssert(mockView.presented?.isKind(of: UINavigationController.self) == false)
@@ -68,10 +68,10 @@ class RouterTests: XCTestCase {
     func testRouteFormSheet() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/formSheet", name: "formSheet") { _, _ in
+            RouteHandler("/formSheet") { _, _ in
                 return UIViewController()
             },
-        ])
+        ]) { _, _, _ in }
         router.route(to: URLComponents(string: "/formSheet")!, from: mockView, options: [.modal, .formSheet])
         XCTAssertNotNil(mockView.presented)
         XCTAssertEqual(mockView.presented?.modalPresentationStyle, .formSheet)
@@ -80,10 +80,10 @@ class RouterTests: XCTestCase {
     func testRouteModalEmbeddedInNav() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/modalEmbed", name: "modal_embed") { _, _ in
+            RouteHandler("/modalEmbed") { _, _ in
                 return UIViewController()
             },
-        ])
+        ]) { _, _, _ in }
         router.route(to: URLComponents(string: "/modalEmbed")!, from: mockView, options: [.modal, .embedInNav])
         XCTAssertNotNil(mockView.presented)
         XCTAssert(mockView.presented?.isKind(of: UINavigationController.self) == true)
@@ -92,10 +92,10 @@ class RouterTests: XCTestCase {
     func testRouteMatch() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/somewhere", name: "somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _ in
                 return UIViewController()
             },
-        ])
+        ]) { _, _, _ in }
         router.route(to: URLComponents(string: "/somewhere")!, from: mockView)
         XCTAssertNotNil(mockView.shown)
     }
@@ -103,10 +103,10 @@ class RouterTests: XCTestCase {
     func testRouteString() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/somewhere", name: "somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _ in
                 return UIViewController()
             },
-        ])
+        ]) { _, _, _ in }
         router.route(to: "/somewhere", from: mockView)
         XCTAssertNotNil(mockView.shown)
     }
@@ -114,10 +114,10 @@ class RouterTests: XCTestCase {
     func testRouteURL() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/somewhere", name: "somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _ in
                 return UIViewController()
             },
-        ])
+        ]) { _, _, _ in }
         router.route(to: URL(string: "https://canvas.instructure.com/somewhere")!, from: mockView)
         XCTAssertNotNil(mockView.shown)
     }
@@ -125,43 +125,43 @@ class RouterTests: XCTestCase {
     func testRouteRoute() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler(.login, name: "login") { _, _ in
+            RouteHandler(.courses) { _, _ in
                 return UIViewController()
             },
-        ])
-        router.route(to: .login, from: mockView)
+        ]) { _, _, _ in }
+        router.route(to: .courses, from: mockView)
         XCTAssertNotNil(mockView.shown)
     }
 
     func testRouteApiV1() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/somewhere", name: "somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _ in
                 return UIViewController()
             },
-        ])
+        ]) { _, _, _ in }
         router.route(to: "/api/v1/somewhere", from: mockView)
         XCTAssertNotNil(mockView.shown)
     }
 
-    func testMatchFallback() {
+    func testMatchNoFallback() {
         let router = Router(routes: [
-            RouteHandler("/somewhere", name: "somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _ in
                 return nil
             },
-            RouteHandler("*path", name: "path") { _, _ in
+            RouteHandler("*path") { _, _ in
                 return UIViewController()
             },
-        ])
-        XCTAssertNotNil(router.match(URLComponents(string: "/somewhere")!))
+        ]) { _, _, _ in }
+        XCTAssertNil(router.match(URLComponents(string: "/somewhere")!))
     }
 
     func testMatch() {
         let router = Router(routes: [
-            RouteHandler("/somewhere", name: "somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _ in
                 return UIViewController()
             },
-        ])
+        ]) { _, _, _ in }
         var components = URLComponents()
         components.path = "/somewhere"
         XCTAssertNotNil(router.match(components))
@@ -169,10 +169,10 @@ class RouterTests: XCTestCase {
 
     func testMatchAbsolute() {
         let router = Router(routes: [
-            RouteHandler("/somewhere", name: "somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _ in
                 return UIViewController()
             },
-        ])
+        ]) { _, _, _ in }
         let components = URLComponents(string: "https://canvas.instructure.com/somewhere")!
         XCTAssertNotNil(router.match(components))
     }
