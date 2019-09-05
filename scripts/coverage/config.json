@@ -6,6 +6,7 @@
     "Transitioning.\\w+$",
     "View.\\w+$",
     "Window.\\w+$",
+    "TabBar.\\w+$",
     "\\/Views\\/",
     "CanvasCore\/",
     "CanvasKit1\/",
