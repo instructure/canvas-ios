@@ -50,6 +50,9 @@ public class ActAsUserWindow: UIWindow {
 
     public override var rootViewController: UIViewController? {
         didSet {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [view = oldValue?.viewIfLoaded] in
+                view.map { print("⚠️: found view from dead rootViewController view: \($0)") }
+            }
             isActing = (
                 !(rootViewController is LoadingViewController) &&
                 !(rootViewController is LoginNavigationController) &&
