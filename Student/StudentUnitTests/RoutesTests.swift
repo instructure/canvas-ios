@@ -17,14 +17,48 @@
 //
 
 import XCTest
-@testable import Core
 @testable import CanvasCore
+@testable import CanvasKit
+@testable import Core
+@testable import TechDebt
 @testable import Student
 import TestsFoundation
 
 class RoutesTests: XCTestCase {
+    override func setUp() {
+        super.setUp()
+        let user = CKIUser(id: "1")!
+        user.name = "Bob"
+        CKIClient.current = CKIClient(baseURL: URL(string: "https://canvas.instructure.com")!, token: "t")
+        CKIClient.current?.setValue(user, forKey: "currentUser")
+    }
+
+    override func tearDown() {
+        super.tearDown()
+        CKIClient.current = nil
+    }
+
+    func testActAsUser() {
+        XCTAssert(router.match(Route.actAsUser.url) is ActAsUserViewController)
+    }
+
+    func testActAsUserID() {
+        XCTAssertEqual((router.match(Route.actAsUserID("3").url) as? ActAsUserViewController)?.initialUserID, "3")
+    }
+
+    func testCalendarEvents() {
+        // XCTAssert(router.match(.parse("/calendar_events/7")) is CalendarEventDetailViewController)
+        XCTAssertNotNil(router.match(.parse("/calendar_events/7")))
+        CKIClient.current = nil
+        XCTAssertNil(router.match(.parse("/calendar_events/7")))
+    }
+
+    func testConversation() {
+        XCTAssertEqual((router.match(.parse("/conversations/1")) as? HelmViewController)?.moduleName, "/conversations/:conversationID")
+    }
+
     func testCourses() {
-        XCTAssert(router.match(Route.courses.url) is HelmViewController)
+        XCTAssertEqual((router.match(Route.courses.url) as? HelmViewController)?.moduleName, "/courses")
     }
 
     func testCourseAssignment() {
@@ -32,8 +66,9 @@ class RoutesTests: XCTestCase {
     }
 
     func testGroup() {
-        // Requires current Session
-        // XCTAssert(router.match(Route.group("7").url) is TabsTableViewController)
+        XCTAssert(router.match(Route.group("7").url) is TabsTableViewController)
+        CKIClient.current = nil
+        XCTAssertNil(router.match(Route.group("7").url))
     }
 
     func testQuizzes() {
@@ -41,11 +76,11 @@ class RoutesTests: XCTestCase {
     }
 
     func testAssignmentList() {
-        XCTAssert(router.match(Route.assignments(forCourse: "1").url) is HelmViewController)
+        XCTAssertEqual((router.match(Route.assignments(forCourse: "1").url) as? HelmViewController)?.moduleName, "/courses/:courseID/assignments")
     }
 
     func testCourseNavTab() {
-        XCTAssert(router.match(Route.course("1").url) is HelmViewController)
+        XCTAssertEqual((router.match(Route.course("1").url) as? HelmViewController)?.moduleName, "/courses/:courseID")
     }
 
     func testSubmission() {
@@ -54,13 +89,5 @@ class RoutesTests: XCTestCase {
 
     func testLogs() {
         XCTAssert(router.match(Route.logs.url) is LogEventListViewController)
-    }
-
-    func testActAsUser() {
-        XCTAssert(router.match(Route.actAsUser.url) is ActAsUserViewController)
-    }
-
-    func testActAsUserID() {
-        XCTAssert(router.match(Route.actAsUserID("3").url) is ActAsUserViewController)
     }
 }

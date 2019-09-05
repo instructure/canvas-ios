@@ -104,7 +104,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/settings', wrap(CourseSettings), store)
   registerScreen('/courses/:courseID/user_preferences', wrap(UserCoursePreferences), store)
   registerScreen('/courses/:courseID/assignments', wrap(AssignmentList), store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/courses/:courseID/assignments/syllabus', null, store, { showInWebView: isTeacher(), deepLink: true })
   registerScreen('/courses/:courseID/collaborations', null, store, { showInWebView: true, deepLink: true })
   registerScreen('/courses/:courseID/lti_collaborations', null, store, { showInWebView: true, deepLink: true })
   registerScreen('/:context/:contextID/discussions', wrap(DiscussionsList), store, { canBecomeMaster: true, deepLink: true })
@@ -167,6 +166,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/:context/:contextID/files/:fileID', wrap(ViewFile), store, { deepLink: true })
     registerScreen('/:context/:contextID/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })
 
+    registerScreen('/courses/:courseID/assignments/syllabus', null, store, { showInWebView: true, deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID', wrap(AssignmentDetails), store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID/edit', wrap(AssignmentDetailsEdit), store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', wrap(AssignmentDueDates), store)

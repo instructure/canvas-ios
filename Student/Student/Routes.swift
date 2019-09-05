@@ -214,6 +214,12 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         return try? ModuleDetailsViewController(session: session, courseID: courseID, moduleID: moduleID, route: route)
     },
 
+    "/courses/:courseID/modules/items/:itemID": { _, params in
+        guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
+        guard let session = CKIClient.current?.authSession else { return nil }
+        return try? ModuleItemDetailViewController(session: session, courseID: courseID, moduleItemID: itemID, route: route)
+    },
+
     "/courses/:courseID/modules/:moduleID/items/:itemID": { _, params in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
         guard let session = CKIClient.current?.authSession else { return nil }
