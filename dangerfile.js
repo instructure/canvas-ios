@@ -35,7 +35,7 @@ function packages () {
 
 function commitMessage () {
   const message = danger.github.pr.comments[0]
-  if (!commit) {
+  if (!message) {
     return fail('Please add a comment for Danger.')
   }
 
