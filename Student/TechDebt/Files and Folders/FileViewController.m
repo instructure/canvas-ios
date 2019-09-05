@@ -328,8 +328,6 @@
 - (UIViewController *)childControllerForContentAtURL:(NSURL *)url {
     UIViewController *controller = nil;
     if ([_file.contentType isEqualToString:@"application/pdf"]) {
-        // NSString * _Nullable courseID = self.courseID;
-        //NSString * _Nullable assignmentID = self.assignmentID;
         Session *session = CKIClient.currentClient.authSession;
         pdfDocPresenter = [[PreSubmissionPDFDocumentPresenter alloc] initWithDocumentURL:url session:session defaultCourseID:self.courseID defaultAssignmentID:self.assignmentID];
         @weakify(self);

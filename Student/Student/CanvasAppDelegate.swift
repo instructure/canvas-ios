@@ -324,7 +324,7 @@ extension AppDelegate {
                     finish()
                 }
             } else if let from = self.topViewController {
-                AppEnvironment.shared.router.route(to: url, from: from, options: .modal)
+                AppEnvironment.shared.router.route(to: url, from: from, options: [.modal, .embedInNav])
             }
         }
         return true

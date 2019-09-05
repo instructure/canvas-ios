@@ -33,7 +33,7 @@
 // These can be passed via routing param or query param
 @property (nullable, nonatomic, strong) NSString* courseID;
 @property (nullable, nonatomic, strong) NSString* assignmentID;
-@property (nonatomic,assign) BOOL showingOldVersion;
+@property (nonatomic, assign) BOOL showingOldVersion;
 
 @property (nonatomic) float downloadProgress;
 @property (nonatomic, copy, nullable) NSURL *url;

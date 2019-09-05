@@ -430,7 +430,7 @@ let router = Core.Router(routes: [
         safari.transitioningDelegate = ResetTransitionDelegate.shared
         return safari
     }
-])
+]) { _, _, _ in }
 
 public class ResetTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
     public static let shared = ResetTransitionDelegate()
