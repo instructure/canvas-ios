@@ -48,23 +48,27 @@ open class CoreUITestCase: XCTestCase {
         }
     }
 
-    var needsRetry = false
-    var retries = 2
-    open override func recordFailure(withDescription description: String, inFile filePath: String, atLine lineNumber: Int, expected: Bool) {
-        if needsRetry { return }
-        if retries > 0 {
-            retries -= 1
-            print("WARN: \(description) at \(filePath):\(lineNumber), will retry with clean launch...")
-            needsRetry = true
-        } else {
-            super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
+    open class CoreUITestRun: XCTestCaseRun {
+        var needsRetry = false
+        var retries = 2
+        override open func recordFailure(withDescription description: String, inFile filePath: String?, atLine lineNumber: Int, expected: Bool) {
+            if needsRetry { return }
+            if retries > 0 {
+                retries -= 1
+                // TODO: collect this information across builds
+                print("WARN: \(description) at \(filePath ?? "<unknown>"):\(lineNumber), will retry with clean launch...")
+                needsRetry = true
+            } else {
+                super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
+            }
         }
-    }
+   }
+    override open var testRunClass: AnyClass? { return CoreUITestRun.self }
 
     open override func invokeTest() {
         super.invokeTest()
-        if needsRetry {
-            needsRetry = false
+        if let run = testRun as? CoreUITestRun, run.needsRetry {
+            run.needsRetry = false
             app.terminate()
             invokeTest()
         }

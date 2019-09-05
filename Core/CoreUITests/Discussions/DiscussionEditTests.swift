@@ -92,7 +92,7 @@ class DiscussionEditTests: CoreUITestCase {
         mockEncodableRequest("files/1", value: APIFile.make())
 
         show("/courses/1/discussion_topics")
-        DiscussionList.newButton.tap()
+        DiscussionList.newButton.waitToExist(10).tap()
         DiscussionEdit.attachmentButton.tap()
         Attachments.addButton.tap()
         allowAccessToPhotos {
