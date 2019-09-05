@@ -151,10 +151,10 @@ extension ModuleListViewController: UITableViewDataSource {
 
 extension ModuleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let item = presenter?.modules[indexPath.section]?.items[indexPath.row] else { return }
+        guard let item = presenter?.modules[indexPath.section]?.items[indexPath.row], let courseID = presenter?.courseID else { return }
         switch item.type {
         case .externalTool(let id, _)?:
-            LTITools(id: id).presentToolInSFSafariViewController(from: self, animated: true) { [weak tableView] _ in
+            LTITools(context: ContextModel(.course, id: courseID), id: id).presentToolInSFSafariViewController(from: self, animated: true) { [weak tableView] _ in
                 tableView?.deselectRow(at: indexPath, animated: true)
             }
         case .externalURL(let url)?:
