@@ -48,8 +48,29 @@ open class CoreUITestCase: XCTestCase {
         }
     }
 
-    private static var firstRun = true
+    var needsRetry = false
+    var retries = 2
+    open override func recordFailure(withDescription description: String, inFile filePath: String, atLine lineNumber: Int, expected: Bool) {
+        if needsRetry { return }
+        if retries > 0 {
+            retries -= 1
+            print("WARN: \(description) at \(filePath):\(lineNumber), will retry with clean launch...")
+            needsRetry = true
+        } else {
+            super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
+        }
+    }
 
+    open override func invokeTest() {
+        super.invokeTest()
+        if needsRetry {
+            needsRetry = false
+            app.terminate()
+            invokeTest()
+        }
+    }
+
+    private static var firstRun = true
     open override func setUp() {
         super.setUp()
         LoginSession.useTestKeychain()
@@ -145,6 +166,9 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func show(_ route: String) {
+        if currentSession() == nil {
+            logIn()
+        }
         send(.show(route))
     }
 

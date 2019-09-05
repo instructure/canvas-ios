@@ -47,7 +47,6 @@ class DiscussionEditTests: CoreUITestCase {
         mockData(GetCourseRequest(courseID: "1"), value: noPermissionCourse)
         mockEncodableRequest("courses/1/discussion_topics?per_page=99&include[]=sections", value: [String]())
 
-        logIn()
         show("/courses/1/discussion_topics")
         app.find(label: "There are no discussions to display.").waitToExist()
         XCTAssertFalse(DiscussionList.newButton.isVisible)
@@ -66,7 +65,6 @@ class DiscussionEditTests: CoreUITestCase {
         mockEncodableRequest("courses/1/settings", value: ["allow_student_forum_attachments": false])
         mockEncodableRequest("courses/1/features/enabled", value: [String: String]())
 
-        logIn()
         show("/courses/1/discussion_topics")
         DiscussionList.newButton.tap()
 
@@ -84,9 +82,6 @@ class DiscussionEditTests: CoreUITestCase {
     }
 
     func testCreateDiscussionWithAttachment() {
-        // TODO: fix flakiness
-        launch()
-
         mockBaseRequests()
         mockData(GetCoursesRequest(), value: [course2])
         mockData(GetCourseRequest(courseID: "2"), value: course2)
@@ -100,7 +95,6 @@ class DiscussionEditTests: CoreUITestCase {
         mockEncodableRequest(targetUrl, value: ["id": "1"])
         mockEncodableRequest("files/1", value: APIFile.make())
 
-        // TODO: why does course 1 break here?
         show("/courses/2/discussion_topics")
         DiscussionList.newButton.tap()
         DiscussionEdit.attachmentButton.tap()
