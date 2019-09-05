@@ -141,8 +141,8 @@ describe('httpClient', () => {
   })
 
   it('dedupes get requests', () => {
-    const a = httpClient.get('/courses/22')
-    const b = httpClient.get('/courses/22')
+    httpClient.get('/courses/22')
+    httpClient.get('/courses/22')
     expect(request.open).toHaveBeenCalledTimes(1)
   })
 
@@ -272,7 +272,8 @@ describe('httpClient', () => {
     const handler = request.addEventListener.mock.calls[0][1]
     request.addEventListener = jest.fn((name, handler) => {
       if (name === 'load') {
-        handler.handleEvent({ type: 'load' }) }
+        handler.handleEvent({ type: 'load' })
+      }
     })
     handler.handleEvent({ type: 'load' })
     const result = await fetching
@@ -296,7 +297,8 @@ describe('httpClient', () => {
     const handler = request.addEventListener.mock.calls[0][1]
     request.addEventListener = jest.fn((name, handler) => {
       if (name === 'load') {
-        handler.handleEvent({ type: 'load' }) }
+        handler.handleEvent({ type: 'load' })
+      }
     })
     handler.handleEvent({ type: 'load' })
     const error = await fetching.catch(error => error)

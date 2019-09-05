@@ -170,10 +170,10 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
       clientSecret,
     } = getSession()
     if (
-      request.status === 401 && 
-      config.refreshToken !== false && 
-      refreshToken != null && 
-      clientID != null && 
+      request.status === 401 &&
+      config.refreshToken !== false &&
+      refreshToken != null &&
+      clientID != null &&
       clientSecret != null
     ) {
       return refreshAuthToken(refreshToken, clientID, clientSecret)
