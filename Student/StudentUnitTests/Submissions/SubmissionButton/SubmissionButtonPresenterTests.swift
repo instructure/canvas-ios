@@ -113,8 +113,9 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         quiz.submission = QuizSubmission.make(from: .make(attempts_left: 0))
         XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil))
         quiz.submission = nil
+        a.submission?.submittedAt = Date()
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil), "Retake Quiz")
-        a.submission?.workflowState = .unsubmitted
+        a.submission?.submittedAt = nil
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil), "Take Quiz")
 
         a.submissionTypes = [ .online_upload ]
