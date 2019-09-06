@@ -44,8 +44,9 @@ class SubmitAssignmentViewController: SLComposeServiceViewController, SubmitAssi
     }
 
     override func didSelectPost() {
-        presenter?.submit(comment: contentText)
-        extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+        presenter?.submit(comment: contentText) { [weak self] in
+            self?.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+        }
     }
 
     override func configurationItems() -> [Any]! {

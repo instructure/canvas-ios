@@ -41,6 +41,12 @@ class FilePickerPresenter {
     }
 
     func add(url: URL) {
-        UploadManager.shared.add(url: url, batchID: batchID)
+        UploadManager.shared.viewContext.perform {
+            do {
+                try UploadManager.shared.add(url: url, batchID: self.batchID)
+            } catch {
+                self.view?.showError(error)
+            }
+        }
     }
 }
