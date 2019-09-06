@@ -16,30 +16,31 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+@testable import Core
 import TestsFoundation
 import XCTest
 import CoreData
 
 class SubmitAssignmentTests: XCTestCase {
     let env = AppEnvironment.shared
+    let api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
     var database: NSPersistentContainer {
         return TestsFoundation.singleSharedTestDatabase
     }
     let uploadManager = MockUploadManager()
-    let sessionsBackup = LoginSession.sessions
 
     override func setUp() {
         super.setUp()
-
+        LoginSession.useTestKeychain()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         MockURLSession.reset()
         UploadManager.shared = uploadManager
+        env.api = api
         env.database = database
-        env.api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
     }
 
     override func tearDown() {
-        LoginSession.sessions = sessionsBackup
+        super.tearDown()
+        LoginSession.clearAll()
     }
 }

@@ -20,11 +20,6 @@ import XCTest
 @testable import Core
 
 class LoginSessionTests: CoreTestCase {
-    override func setUp() {
-        super.setUp()
-        LoginSession.clearAll()
-    }
-
     func testAddEntry() {
         let entry = LoginSession.make()
         LoginSession.add(entry)

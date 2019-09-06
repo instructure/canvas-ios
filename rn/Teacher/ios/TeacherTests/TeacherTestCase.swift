@@ -17,7 +17,7 @@
 //
 
 import XCTest
-import Core
+@testable import Core
 import TestsFoundation
 import CoreData
 
@@ -38,6 +38,7 @@ class TeacherTestCase: XCTestCase {
     override func setUp() {
         super.setUp()
 
+        LoginSession.useTestKeychain()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         environment.api = api
         environment.database = singleSharedTestDatabase
@@ -45,5 +46,10 @@ class TeacherTestCase: XCTestCase {
         environment.router = router
         environment.logger = logger
         environment.currentSession = LoginSession.make()
+    }
+
+    override func tearDown() {
+        super.tearDown()
+        LoginSession.clearAll()
     }
 }
