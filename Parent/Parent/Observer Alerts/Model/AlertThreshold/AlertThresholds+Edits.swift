@@ -19,6 +19,7 @@
 import Foundation
 import ReactiveSwift
 import CanvasCore
+import Core
 
 extension AlertThreshold {
     public func remove(_ session: Session) -> SignalProducer<Bool, NSError> {

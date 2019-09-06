@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="19A546d" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AlertThreshold" representedClassName="Core.AlertThreshold" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="observerID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="studentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="threshold" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeRaw" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
         <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="courseID" attributeType="String" syncable="YES"/>
@@ -409,6 +416,7 @@
         <attribute name="manualMarkAsRead" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
+        <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="420"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>

@@ -21,6 +21,7 @@ import CoreData
 
 import Marshal
 import CanvasCore
+import Core
 
 public final class Alert: NSManagedObject {
     enum WorkflowState: String {

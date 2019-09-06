@@ -19,53 +19,53 @@
 import Foundation
 
 import CoreData
-
+import Core
 import Marshal
 import CanvasCore
 
-public enum AlertThresholdType: String, CaseIterable {
-    case courseAnnouncement = "course_announcement"
-    case institutionAnnouncement = "institution_announcement"
-    case assignmentGradeHigh = "assignment_grade_high"
-    case assignmentGradeLow = "assignment_grade_low"
-    case assignmentMissing = "assignment_missing"
-    case courseGradeHigh = "course_grade_high"
-    case courseGradeLow = "course_grade_low"
-    case unknown = "unknown"
-
-    public static var validThresholdTypes: [AlertThresholdType] {
-        return [
-            .courseGradeHigh,
-            .courseGradeLow,
-            .assignmentMissing,
-            .assignmentGradeHigh,
-            .assignmentGradeLow,
-            .courseAnnouncement,
-            .institutionAnnouncement,
-        ]
-    }
-
-    public var allowsThresholdValue: Bool {
-        switch self {
-        case .courseGradeLow:
-            return true
-        case .courseGradeHigh:
-            return true
-        case .assignmentMissing:
-            return false
-        case .assignmentGradeLow:
-            return true
-        case .assignmentGradeHigh:
-            return true
-        case .institutionAnnouncement:
-            return false
-        case .courseAnnouncement:
-            return false
-        case .unknown:
-            return false
-        }
-    }
-}
+//public enum AlertThresholdType: String, CaseIterable {
+//    case courseAnnouncement = "course_announcement"
+//    case institutionAnnouncement = "institution_announcement"
+//    case assignmentGradeHigh = "assignment_grade_high"
+//    case assignmentGradeLow = "assignment_grade_low"
+//    case assignmentMissing = "assignment_missing"
+//    case courseGradeHigh = "course_grade_high"
+//    case courseGradeLow = "course_grade_low"
+//    case unknown = "unknown"
+//
+//    public static var validThresholdTypes: [AlertThresholdType] {
+//        return [
+//            .courseGradeHigh,
+//            .courseGradeLow,
+//            .assignmentMissing,
+//            .assignmentGradeHigh,
+//            .assignmentGradeLow,
+//            .courseAnnouncement,
+//            .institutionAnnouncement,
+//        ]
+//    }
+//
+//    public var allowsThresholdValue: Bool {
+//        switch self {
+//        case .courseGradeLow:
+//            return true
+//        case .courseGradeHigh:
+//            return true
+//        case .assignmentMissing:
+//            return false
+//        case .assignmentGradeLow:
+//            return true
+//        case .assignmentGradeHigh:
+//            return true
+//        case .institutionAnnouncement:
+//            return false
+//        case .courseAnnouncement:
+//            return false
+//        case .unknown:
+//            return false
+//        }
+//    }
+//}
 
 public final class AlertThreshold: NSManagedObject {
 
