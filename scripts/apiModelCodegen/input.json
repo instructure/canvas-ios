@@ -1,0 +1,21 @@
+{
+    "entity": "AlertThreshold",
+    "properties": [
+        {
+            "name": "id",
+            "type": "String"
+        },
+        {
+            "name": "user_id",
+            "type": "String"
+        },
+        {
+            "name": "studentID",
+            "type": "String"
+        },
+        {
+            "name": "threshold",
+            "type": "String?"
+        }
+    ]
+}

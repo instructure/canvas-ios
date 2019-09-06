@@ -1,0 +1,23 @@
+class Get{{entity}}UseCaseTests: XCTestCase {
+
+    var useCase: Get{{entity}}!
+    let studentID: String = "1"
+
+    override func setUp() {
+        super.setUp()
+        useCase = Get{{entity}}(studentID: studentID)
+    }
+
+    func testCacheKey() {
+        XCTAssertEqual(useCase.cacheKey, "get-{{entity}}-\(studentID)")
+
+    }
+
+    func testScope() {
+        XCTAssertEqual(useCase.scope, Scope.where(#keyPath({{entity}}.id), equals: studentID))
+    }
+
+    func testRequest() {
+        XCTAssertEqual(useCase.request.studentID, studentID)
+    }
+}
