@@ -21,7 +21,7 @@
 #import <CanvasKit1/CKActionSheetWithBlocks.h>
 #import "UIAlertController+TechDebt.h"
 #import "AboutViewController.h"
-#import "WebBrowserViewController.h"
+@import SafariServices;
 @import CanvasCore;
 
 typedef NS_ENUM(NSInteger, AboutSections) {
@@ -265,10 +265,7 @@ typedef NS_ENUM(NSInteger, LegalRows) {
         }
         
         NSURL *url = [NSURL URLWithString:urlAddress];
-        
-        UINavigationController *controller = (UINavigationController *)[[UIStoryboard storyboardWithName:@"Storyboard-WebBrowser" bundle:[NSBundle bundleForClass:[self class]]] instantiateInitialViewController];
-        WebBrowserViewController *browser = controller.viewControllers[0];
-        [browser setUrl:url];
+        SFSafariViewController *controller = [[SFSafariViewController alloc] initWithURL:url];
         [controller setModalPresentationStyle:UIModalPresentationFullScreen];
         [self presentViewController:controller animated:YES completion:nil];
     }

@@ -23,7 +23,7 @@ clear
 THIS_DIR=$(dirname "$0")
 
 cd $THIS_DIR
-yarn start-reset
+yarn start
 
 echo "Process terminated. Press <enter> to close the window"
 read

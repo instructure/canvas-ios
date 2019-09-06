@@ -58,7 +58,6 @@ abstract_target 'defaults' do
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
-    pod 'Eureka', '~> 5.0'
     pod 'Firebase/Core', '~> 5.20'
   end
 

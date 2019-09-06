@@ -34,6 +34,7 @@
 		2CB69C191D92C5860059C5A5 /* DetailsAttachmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69C1B1D92C5860059C5A5 /* DetailsAttachmentCell.xib */; };
 		2CCDE2951DA7E3AB00B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2971DA7E3AB00B46D87 /* InfoPlist.strings */; };
 		3B86FA3622DD24FA0018C012 /* SettingsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B86FA3522DD24FA0018C012 /* SettingsAPIClient.swift */; };
+		3B92109C231F02D500820CC3 /* StudentSettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B92109B231F02D500820CC3 /* StudentSettingsViewController.storyboard */; };
 		4948BE691F915D330035BAFD /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4948BE681F915D330035BAFD /* BundleExtensions.swift */; };
 		4948BE6A1F915F4B0035BAFD /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49952C3B1F7477C300A11404 /* CanvasCore.framework */; };
 		4948BE6B1F915F4B0035BAFD /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49952C3B1F7477C300A11404 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -547,6 +548,7 @@
 		2CCDE2A91DA7E5D000B46D87 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3029A40C0EE636CB00AF751E /* Pods_ParentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B86FA3522DD24FA0018C012 /* SettingsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAPIClient.swift; sourceTree = "<group>"; };
+		3B92109B231F02D500820CC3 /* StudentSettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StudentSettingsViewController.storyboard; sourceTree = "<group>"; };
 		4948BE681F915D330035BAFD /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		4968E29E1DB977CF00A39703 /* Parent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Parent.entitlements; sourceTree = "<group>"; };
 		497C48A71F912BD100A3BC06 /* AlertAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAPI.swift; sourceTree = "<group>"; };
@@ -1101,6 +1103,7 @@
 		5E4E20561C928F6C00E7D709 /* StudentSettings */ = {
 			isa = PBXGroup;
 			children = (
+				3B92109B231F02D500820CC3 /* StudentSettingsViewController.storyboard */,
 				5EE9A5181D1449F900EFCDAE /* StudentSettingsViewController.swift */,
 				5EE9A51B1D14717300EFCDAE /* StudentSettingsHeaderView.swift */,
 				2CB69BC81D91CE180059C5A5 /* StudentSettingsHeaderView.xib */,
@@ -1448,6 +1451,7 @@
 				2CB69BD21D91CE4D0059C5A5 /* CalendarEventWeekPageViewController.storyboard in Resources */,
 				2CB69BCC1D91CE460059C5A5 /* SettingsViewController.storyboard in Resources */,
 				785AC17F20CEDAD300C28E46 /* Settings.bundle in Resources */,
+				3B92109C231F02D500820CC3 /* StudentSettingsViewController.storyboard in Resources */,
 				2CB69BA81D91CDE00059C5A5 /* CourseCell.xib in Resources */,
 				2CB69BBD1D91CDFB0059C5A5 /* DetailsLocationCell.xib in Resources */,
 			);
