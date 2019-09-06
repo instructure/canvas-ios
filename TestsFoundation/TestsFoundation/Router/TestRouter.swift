@@ -21,15 +21,19 @@ import Core
 
 public class TestRouter: RouterProtocol {
     public init() {}
-    public var calls = [(URLComponents, UIViewController, Router.RouteOptions?)]()
-    public var viewControllerCalls = [(UIViewController, UIViewController, Router.RouteOptions?)]()
+    public var calls = [(URLComponents, UIViewController, RouteOptions?)]()
+    public var viewControllerCalls = [(UIViewController, UIViewController, RouteOptions?)]()
 
-    public func route(to url: URLComponents, from: UIViewController, options: Router.RouteOptions? = nil) {
+    public func match(_ url: URLComponents) -> UIViewController? {
+        return nil
+    }
+
+    public func route(to url: URLComponents, from: UIViewController, options: RouteOptions? = nil) {
         calls.append((url, from, options))
     }
 
-    public func route(to viewController: UIViewController, from: UIViewController, options: Router.RouteOptions?) {
-        viewControllerCalls.append((viewController, from, options))
+    public func show(_ view: UIViewController, from: UIViewController, options: RouteOptions?) {
+        viewControllerCalls.append((view, from, options))
     }
 
     public func lastRoutedTo(_ route: Route) -> Bool {
@@ -44,7 +48,7 @@ public class TestRouter: RouterProtocol {
         return calls.last?.0 == url
     }
 
-    public func lastRoutedTo(_ url: URL, withOptions options: Router.RouteOptions?) -> Bool {
+    public func lastRoutedTo(_ url: URL, withOptions options: RouteOptions?) -> Bool {
         return lastRoutedTo(url) && calls.last?.2 == options
     }
 }

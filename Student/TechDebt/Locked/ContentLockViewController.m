@@ -19,7 +19,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CanvasKit1/CanvasKit1.h>
 #import "ContentLockViewController.h"
-#import "Router.h"
+#import "Routing.h"
 
 @interface ContentLockViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *explanationLabel;
@@ -118,8 +118,7 @@
 - (IBAction)viewModulesPressed:(id)sender {
     CKCourse *course = [[CKCourse alloc] initWithID:self.contextInfo.ident];
     NSURL *modulesURL = [course modulesURL];
-    Router *router = [Router sharedRouter];
-    [router routeFromController:self toURL:modulesURL];
+    Routing.routeToURL(modulesURL, self);
 }
 
 #pragma mark - Presentation

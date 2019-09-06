@@ -396,33 +396,33 @@ extension Router {
 }
 
 let router = Core.Router(routes: [
-    Core.RouteHandler(.profileObservees, name: "profile_observees") { _, _ in
+    Core.RouteHandler(.profileObservees) { _, _ in
         let vc = Parent.Router.sharedInstance.matchURL(Router.sharedInstance.settingsRoute())
         return vc
     },
-    Core.RouteHandler(.sendSupport(forType: ":type"), name: "support") { _, params in
+    Core.RouteHandler(.errorReport(for: ":type")) { _, params in
         guard let type = params["type"] else { return nil }
         return ErrorReportViewController.create(type: ErrorReportType(rawValue: type) ?? .problem)
     },
-    Core.RouteHandler(.termsOfService(forAccount: ":accountID"), name: "terms_of_service") { _, params in
+    Core.RouteHandler(.termsOfService(forAccount: ":accountID")) { _, params in
         guard let accountID = params["accountID"] else {
             return nil
         }
         let vc = TermsOfServiceViewController(AppEnvironment.shared)
         return vc
     },
-    Core.RouteHandler(.actAsUser, name: "act_as_user") { _, _ in
+    Core.RouteHandler(.actAsUser) { _, _ in
         guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
         return ActAsUserViewController.create(loginDelegate: loginDelegate)
     },
-    Core.RouteHandler(.wrongApp, name: "wrongApp") { _, _ in
+    Core.RouteHandler(.wrongApp) { _, _ in
         guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
         return WrongAppViewController.create(delegate: loginDelegate)
     },
-    Core.RouteHandler(.developerMenu, name: "dev_menu") { _, _ in
+    Core.RouteHandler(.developerMenu) { _, _ in
         return DeveloperMenuViewController.create()
     },
-    Core.RouteHandler(.anythingElse, name: "anything_else") { url, _ in
+    Core.RouteHandler(.anythingElse) { url, _ in
         guard url.host != nil, let url = url.url else {
             return nil
         }
@@ -430,7 +430,7 @@ let router = Core.Router(routes: [
         safari.transitioningDelegate = ResetTransitionDelegate.shared
         return safari
     }
-])
+]) { _, _, _ in }
 
 public class ResetTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
     public static let shared = ResetTransitionDelegate()

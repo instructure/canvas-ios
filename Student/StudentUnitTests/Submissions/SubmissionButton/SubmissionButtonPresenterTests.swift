@@ -131,7 +131,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
 
         a.submissionTypes = [ .online_text_entry ]
         presenter.submitAssignment(a, button: button)
-        XCTAssert(router.lastRoutedTo(Route.assignmentTextSubmission(courseID: "1", assignmentID: "1", userID: "1")))
+        XCTAssert(router.viewControllerCalls.last?.0 is TextSubmissionViewController)
     }
 
     func testSubmitAssignmentChoose() {
@@ -196,7 +196,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     func testSubmitTypeText() {
         let a = Assignment.make()
         presenter.submitType(.online_text_entry, for: a, button: UIView())
-        XCTAssert(router.lastRoutedTo(Route.assignmentTextSubmission(courseID: "1", assignmentID: "1", userID: "1")))
+        XCTAssert(router.viewControllerCalls.last?.0 is TextSubmissionViewController)
     }
 
     func testSubmitTypeQuiz() {
@@ -217,7 +217,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     func testSubmitTypeURL() {
         let a = Assignment.make()
         presenter.submitType(.online_url, for: a, button: UIView())
-        XCTAssert(router.lastRoutedTo(Route.assignmentUrlSubmission(courseID: "1", assignmentID: "1", userID: "1")))
+        XCTAssert(router.viewControllerCalls.last?.0 is UrlSubmissionViewController)
     }
 
     func testSubmitArc() {

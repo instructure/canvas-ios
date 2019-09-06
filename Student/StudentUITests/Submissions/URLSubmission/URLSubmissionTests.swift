@@ -26,10 +26,11 @@ class URLSubmissionTests: StudentUITestCase {
         let course = APICourse.make()
         mockData(GetCourseRequest(courseID: course.id), value: course)
         let assignment = APIAssignment.make(submission_types: [ .online_url ])
-        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
+        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
         mockData(CreateSubmissionRequest(context: course, assignmentID: assignment.id.value, body: nil), noCallback: true)
 
-        show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1/urlsubmission")
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.submitAssignmentButton.tap()
         XCTAssertTrue(URLSubmission.url.isVisible)
         XCTAssertTrue(URLSubmission.url.isVisible)
         XCTAssertTrue(URLSubmission.preview.isVisible)

@@ -18,28 +18,43 @@
 
 import UIKit
 
+public struct RouteOptions: OptionSet {
+    public let rawValue: Int
+
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+
+    public static let modal = RouteOptions(rawValue: 1)
+    public static let embedInNav = RouteOptions(rawValue: 2)
+    public static let addDoneButton = RouteOptions(rawValue: 4)
+    public static let formSheet = RouteOptions(rawValue: 8)
+}
+
 public protocol RouterProtocol {
-    func route(to: Route, from: UIViewController, options: Router.RouteOptions?)
-    func route(to url: URL, from: UIViewController, options: Router.RouteOptions?)
-    func route(to url: String, from: UIViewController, options: Router.RouteOptions?)
-    func route(to url: URLComponents, from: UIViewController, options: Router.RouteOptions?)
-    func route(to view: UIViewController, from: UIViewController, options: Router.RouteOptions?)
+    func match(_ url: URLComponents) -> UIViewController?
+    func route(to: Route, from: UIViewController, options: RouteOptions?)
+    func route(to url: URL, from: UIViewController, options: RouteOptions?)
+    func route(to url: String, from: UIViewController, options: RouteOptions?)
+    func route(to url: URLComponents, from: UIViewController, options: RouteOptions?)
+    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions?)
 }
 
 public extension RouterProtocol {
-    func route(to: Route, from: UIViewController, options: Router.RouteOptions? = nil) {
+    func route(to: Route, from: UIViewController, options: RouteOptions? = nil) {
         return route(to: to.url, from: from, options: options)
     }
 
-    func route(to url: URL, from: UIViewController, options: Router.RouteOptions? = nil) {
+    func route(to url: URL, from: UIViewController, options: RouteOptions? = nil) {
         return route(to: .parse(url), from: from, options: options)
     }
 
-    func route(to url: String, from: UIViewController, options: Router.RouteOptions? = nil) {
+    func route(to url: String, from: UIViewController, options: RouteOptions? = nil) {
         return route(to: .parse(url), from: from, options: options)
     }
 
-    func route(to view: UIViewController, from: UIViewController, options: Router.RouteOptions? = nil) {
+    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions? = nil) {
+        if view is UIAlertController { return from.present(view, animated: true) }
         if options?.contains(.modal) == true {
             if options?.contains(.embedInNav) == true {
                 if options?.contains(.addDoneButton) == true {
@@ -49,12 +64,12 @@ public extension RouterProtocol {
                 if options?.contains(.formSheet) == true {
                     nav.modalPresentationStyle = .formSheet
                 }
-                from.present(nav, animated: true, completion: nil)
+                from.present(nav, animated: true)
             } else {
                 if options?.contains(.formSheet) == true {
                     view.modalPresentationStyle = .formSheet
                 }
-                from.present(view, animated: true, completion: nil)
+                from.present(view, animated: true)
             }
         } else {
             from.show(view, sender: nil)
@@ -64,40 +79,47 @@ public extension RouterProtocol {
 
 // The Router stores all routes that can be routed to in the app
 public class Router: RouterProtocol {
-    public struct RouteOptions: OptionSet {
-        public let rawValue: Int
-
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
-
-        public static let modal = RouteOptions(rawValue: 1)
-        public static let embedInNav = RouteOptions(rawValue: 2)
-        public static let addDoneButton = RouteOptions(rawValue: 4)
-        public static let formSheet = RouteOptions(rawValue: 8)
-    }
+    public typealias FallbackHandler = (URLComponents, UIViewController, RouteOptions?) -> Void
 
     private let handlers: [RouteHandler]
+    private let fallback: FallbackHandler
 
-    public init(routes: [RouteHandler]) {
+    public init(routes: [RouteHandler], fallback: @escaping FallbackHandler) {
         self.handlers = routes
+        self.fallback = fallback
     }
 
     public var count: Int {
         return handlers.count
     }
 
+    private func cleanURL(_ url: URLComponents) -> URLComponents {
+        // URLComponents does all the encoding we care about except we often have + meaning space in query
+        var url = url
+        url.query = url.query?.replacingOccurrences(of: "+", with: " ")
+        return url
+    }
+
     public func match(_ url: URLComponents) -> UIViewController? {
+        let url = cleanURL(url)
         for route in handlers {
-            if let view = route.match(url) {
-                return view
+            if let params = route.match(url) {
+                return route.factory(url, params)
             }
         }
         return nil
     }
 
     public func route(to url: URLComponents, from: UIViewController, options: RouteOptions? = nil) {
-        guard let view = match(url) else { return }
-        route(to: view, from: from, options: options)
+        let url = cleanURL(url)
+        for route in handlers {
+            if let params = route.match(url) {
+                if let view = route.factory(url, params) {
+                    show(view, from: from, options: options)
+                }
+                return // don't fall back if a matched route returns no view
+            }
+        }
+        fallback(url, from, options)
     }
 }

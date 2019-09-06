@@ -61,7 +61,7 @@ class RouteTests: XCTestCase {
     }
 
     func testSendSupport() {
-        XCTAssertEqual(Route.sendSupport(forType: "type").url.path, "/support/type")
+        XCTAssertEqual(Route.errorReport(for: "type").url.path, "/support/type")
     }
 
     func testTermsOfService() {

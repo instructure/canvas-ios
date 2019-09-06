@@ -16,9 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#import <CanvasKit1/NSString+CKAdditions.h>
 #import "CBIColorfulViewModel+CellViewModel.h"
 #import "CBIColorfulCell.h"
-#import "Router.h"
+#import "Routing.h"
 
 @implementation CBIColorfulViewModel (CellViewModel)
 
@@ -33,7 +34,8 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         controller.tableView.userInteractionEnabled = NO;
     }
-    [[Router sharedRouter] routeFromController:controller toViewModel:self];
+    NSURL *url = [NSURL URLWithString:[self.model.path realURLEncodedString]];
+    Routing.routeToURL(url, controller);
 }
 
 @end
