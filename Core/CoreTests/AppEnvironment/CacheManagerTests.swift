@@ -29,16 +29,11 @@ class CacheManagerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        backupEntries = LoginSession.sessions
         backupManifest = try? Data(contentsOf: rnManifestURL)
     }
 
     override func tearDown() {
         super.tearDown()
-        LoginSession.clearAll()
-        for entry in backupEntries {
-            LoginSession.add(entry)
-        }
         try? backupManifest?.write(to: rnManifestURL, options: .atomic)
     }
 
