@@ -90,4 +90,12 @@ class RoutesTests: XCTestCase {
     func testLogs() {
         XCTAssert(router.match(Route.logs.url) is LogEventListViewController)
     }
+
+    func testPeopleListCourse() {
+        XCTAssert(router.match(Route.people(forCourse: "1").url) is PeopleListViewController)
+    }
+
+    func testPeopleListGroup() {
+        XCTAssert(router.match(Route.people(forGroup: "1").url) is PeopleListViewController)
+    }
 }
