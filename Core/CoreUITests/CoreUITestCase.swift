@@ -50,7 +50,10 @@ open class CoreUITestCase: XCTestCase {
 
     open class CoreUITestRun: XCTestCaseRun {
         var needsRetry = false
-        var retries = 2
+
+        // Don't set this above 1!
+        // There seems to be a bug in how this interacts with XCTest causing too many retries to look like success (!!)
+        var retries = 1
         override open func recordFailure(withDescription description: String, inFile filePath: String?, atLine lineNumber: Int, expected: Bool) {
             if needsRetry { return }
             if retries > 0 {
@@ -62,7 +65,12 @@ open class CoreUITestCase: XCTestCase {
                 super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
             }
         }
-   }
+    }
+
+    @objc var shouldHaltWhenReceivesControl: Bool {
+        return (testRun as? CoreUITestRun)?.needsRetry ?? false
+    }
+
     override open var testRunClass: AnyClass? { return CoreUITestRun.self }
 
     open override func invokeTest() {
