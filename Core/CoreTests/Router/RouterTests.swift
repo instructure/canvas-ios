@@ -176,4 +176,12 @@ class RouterTests: XCTestCase {
         let components = URLComponents(string: "https://canvas.instructure.com/somewhere")!
         XCTAssertNotNil(router.match(components))
     }
+
+    func testShowAlertController() {
+        let mockView = MockViewController()
+        let router = Router(routes: []) { _, _, _ in }
+        router.show(UIAlertController(title: nil, message: nil, preferredStyle: .alert), from: mockView, options: nil)
+        XCTAssertNil(mockView.shown)
+        XCTAssert(mockView.presented is UIAlertController)
+    }
 }

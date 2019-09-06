@@ -54,6 +54,7 @@ public extension RouterProtocol {
     }
 
     func show(_ view: UIViewController, from: UIViewController, options: RouteOptions? = nil) {
+        if view is UIAlertController { return from.present(view, animated: true) }
         if options?.contains(.modal) == true {
             if options?.contains(.embedInNav) == true {
                 if options?.contains(.addDoneButton) == true {
@@ -63,12 +64,12 @@ public extension RouterProtocol {
                 if options?.contains(.formSheet) == true {
                     nav.modalPresentationStyle = .formSheet
                 }
-                from.present(nav, animated: true, completion: nil)
+                from.present(nav, animated: true)
             } else {
                 if options?.contains(.formSheet) == true {
                     view.modalPresentationStyle = .formSheet
                 }
-                from.present(view, animated: true, completion: nil)
+                from.present(view, animated: true)
             }
         } else {
             from.show(view, sender: nil)
