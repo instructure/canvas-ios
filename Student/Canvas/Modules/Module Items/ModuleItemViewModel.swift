@@ -78,7 +78,7 @@ class ModuleItemViewModel: NSObject {
                 }
             }
             if let url = url {
-                let controller = Router.shared().controller(forHandling: url)
+                let controller = AppEnvironment.shared.router.match(.parse(url))
                 return controller
             }
             return nil

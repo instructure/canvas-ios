@@ -113,8 +113,9 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         quiz.submission = QuizSubmission.make(from: .make(attempts_left: 0))
         XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil))
         quiz.submission = nil
+        a.submission?.submittedAt = Date()
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil), "Retake Quiz")
-        a.submission?.workflowState = .unsubmitted
+        a.submission?.submittedAt = nil
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil), "Take Quiz")
 
         a.submissionTypes = [ .online_upload ]
@@ -130,7 +131,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
 
         a.submissionTypes = [ .online_text_entry ]
         presenter.submitAssignment(a, button: button)
-        XCTAssert(router.lastRoutedTo(Route.assignmentTextSubmission(courseID: "1", assignmentID: "1", userID: "1")))
+        XCTAssert(router.viewControllerCalls.last?.0 is TextSubmissionViewController)
     }
 
     func testSubmitAssignmentChoose() {
@@ -195,7 +196,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     func testSubmitTypeText() {
         let a = Assignment.make()
         presenter.submitType(.online_text_entry, for: a, button: UIView())
-        XCTAssert(router.lastRoutedTo(Route.assignmentTextSubmission(courseID: "1", assignmentID: "1", userID: "1")))
+        XCTAssert(router.viewControllerCalls.last?.0 is TextSubmissionViewController)
     }
 
     func testSubmitTypeQuiz() {
@@ -216,7 +217,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     func testSubmitTypeURL() {
         let a = Assignment.make()
         presenter.submitType(.online_url, for: a, button: UIView())
-        XCTAssert(router.lastRoutedTo(Route.assignmentUrlSubmission(courseID: "1", assignmentID: "1", userID: "1")))
+        XCTAssert(router.viewControllerCalls.last?.0 is UrlSubmissionViewController)
     }
 
     func testSubmitArc() {

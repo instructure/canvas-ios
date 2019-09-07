@@ -25,8 +25,6 @@ public struct Route: Equatable {
         url = .parse(path)
     }
 
-    public static let login = Route("/login")
-
     public static let courses = Route("/courses")
 
     public static func course(_ courseID: String) -> Route {
@@ -47,14 +45,6 @@ public struct Route: Equatable {
 
     public static func submission(forCourse courseID: String, assignment assignmentID: String, user userID: String) -> Route {
         return Route("/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(userID)")
-    }
-
-    public static func assignmentTextSubmission(courseID: String, assignmentID: String, userID: String) -> Route {
-        return Route("/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(userID)/online_text_entry")
-    }
-
-    public static func assignmentUrlSubmission(courseID: String, assignmentID: String, userID: String) -> Route {
-        return Route("/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(userID)/urlsubmission")
     }
 
     public static func syllabus(courseID: String, includeAssignmentPath: Bool = true) -> Route {
@@ -99,7 +89,11 @@ public struct Route: Equatable {
         return Route("/courses/\(courseID)/modules/\(moduleID)")
     }
 
-    public static func sendSupport(forType type: String) -> Route {
+    public static func moduleItem(forCourse courseID: String, moduleID: String, itemID: String) -> Route {
+        return Route("/courses/\(courseID)/modules/\(moduleID)/items/\(itemID)")
+    }
+
+    public static func errorReport(for type: String) -> Route {
         return Route("/support/\(type)")
     }
 

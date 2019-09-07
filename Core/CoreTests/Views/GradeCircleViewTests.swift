@@ -53,20 +53,15 @@ class GradeCircleViewTests: XCTestCase {
     func testItShowsCorrectViewsForPassFail() {
         let a = Assignment.make(from: .make(grading_type: .pass_fail))
         a.submission = Submission.make(from: .make(
-            grade: "Complete",
-            score: nil,
+            grade: "complete",
             workflow_state: .graded
         ))
         view.update(a)
         XCTAssertTrue(view.circlePoints.isHidden)
         XCTAssertTrue(view.circleLabel.isHidden)
-        XCTAssertTrue(view.circleComplete.isHidden)
-
-        a.submission?.score = 10
-        view.update(a)
         XCTAssertFalse(view.circleComplete.isHidden)
 
-        a.submission?.score = 0
+        a.submission?.grade = "incomplete"
         view.update(a)
         XCTAssertTrue(view.circleComplete.isHidden)
     }

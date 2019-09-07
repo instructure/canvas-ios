@@ -72,7 +72,7 @@ class SubmissionButtonPresenter: NSObject {
         }
         if quiz?.submission?.attemptsLeft == 0 { return nil }
         if assignment.quizID != nil {
-            return assignment.submission?.workflowState == .unsubmitted
+            return assignment.submission?.submittedAt == nil
                 ? NSLocalizedString("Take Quiz", bundle: .student, comment: "")
                 : NSLocalizedString("Retake Quiz", bundle: .student, comment: "")
         }
@@ -109,7 +109,7 @@ class SubmissionButtonPresenter: NSObject {
             ).getSessionlessLaunchURL { [weak self] url in
                 guard let url = url else { return }
                 let safari = SFSafariViewController(url: url)
-                self?.env.router.route(to: safari, from: view, options: .modal)
+                self?.env.router.show(safari, from: view, options: .modal)
             }
         case .discussion_topic:
             Analytics.shared.logEvent("assignment_detail_discussionlaunch")
@@ -120,8 +120,11 @@ class SubmissionButtonPresenter: NSObject {
             pickMediaRecordingType(button: button)
         case .online_text_entry:
             Analytics.shared.logEvent("submit_textentry_selected")
-            let route = Route.assignmentTextSubmission(courseID: courseID, assignmentID: assignment.id, userID: userID)
-            env.router.route(to: route, from: view, options: [.modal, .embedInNav])
+            env.router.show(TextSubmissionViewController.create(
+                courseID: courseID,
+                assignmentID: assignment.id,
+                userID: userID
+            ), from: view, options: [.modal, .embedInNav])
         case .online_quiz:
             Analytics.shared.logEvent("assignment_detail_quizlaunch")
             guard let quizID = assignment.quizID else { return }
@@ -131,8 +134,11 @@ class SubmissionButtonPresenter: NSObject {
             pickFiles(for: assignment)
         case .online_url:
             Analytics.shared.logEvent("submit_url_selected")
-            let route = Route.assignmentUrlSubmission(courseID: courseID, assignmentID: assignment.id, userID: userID)
-            env.router.route(to: route, from: view, options: [.modal, .embedInNav, .formSheet])
+            env.router.show(UrlSubmissionViewController.create(
+                courseID: courseID,
+                assignmentID: assignment.id,
+                userID: userID
+            ), from: view, options: [.modal, .embedInNav, .formSheet])
         case .none, .not_graded, .on_paper:
             break
         }

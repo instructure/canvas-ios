@@ -21,9 +21,9 @@ import Core
 
 struct DebugRoute {
     let path: String
-    let options: Router.RouteOptions?
+    let options: RouteOptions?
 
-    init(_ path: String, _ options: Router.RouteOptions? = nil) {
+    init(_ path: String, _ options: RouteOptions? = nil) {
         self.path = path
         self.options = options
     }

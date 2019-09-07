@@ -243,10 +243,10 @@ class AssignmentTests: CoreTestCase {
         let a = Assignment.make()
         a.gradingType = .pass_fail
         let s = Submission.make()
-        s.score = 0
+        s.grade = "incomplete"
         a.submission = s
         XCTAssertEqual(a.gradeText, "Incomplete")
-        s.score = 1
+        s.grade = "complete"
         XCTAssertEqual(a.gradeText, "Complete")
     }
 

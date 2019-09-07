@@ -40,7 +40,7 @@ extension SubmissionViewable {
     }
 
     public var isSubmitted: Bool {
-        return submission != nil && submission?.workflowState != .unsubmitted
+        return submission != nil && submission?.submittedAt != nil
     }
 
     public var submissionStatusIsHidden: Bool {

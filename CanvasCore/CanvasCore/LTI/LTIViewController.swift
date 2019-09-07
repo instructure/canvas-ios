@@ -54,14 +54,20 @@ public class LTIViewController: UIViewController {
         button.setTitleColor(Brand.current.primaryButtonTextColor, for: .normal)
         button.backgroundColor = Brand.current.primaryButtonColor
         button.setTitle(NSLocalizedString("Launch External Tool", comment: ""), for: .normal)
+        button.titleLabel?.font = .scaledNamedFont(.semibold16)
         button.addTarget(self, action: #selector(launch), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
+        button.layer.cornerRadius = 4
         button.sizeToFit()
         view.addSubview(button)
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            button.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
+            button.widthAnchor.constraint(lessThanOrEqualToConstant: 285),
+            button.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 45),
+            button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -45),
         ])
 
         spinner = UIActivityIndicatorView(style: .gray)

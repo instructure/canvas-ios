@@ -17,49 +17,25 @@
 //
 
 import XCTest
-import Core
+@testable import CanvasCore
+@testable import CanvasKit
+@testable import Core
+@testable import TechDebt
 @testable import Student
 import TestsFoundation
 
 class RoutesTests: XCTestCase {
-    func testLogin() {
-        XCTAssert(router.match(Route.login.url) is LoginNavigationController)
+    override func setUp() {
+        super.setUp()
+        let user = CKIUser(id: "1")!
+        user.name = "Bob"
+        CKIClient.current = CKIClient(baseURL: URL(string: "https://canvas.instructure.com")!, token: "t")
+        CKIClient.current?.setValue(user, forKey: "currentUser")
     }
 
-    func testCourses() {
-        XCTAssert(router.match(Route.courses.url) is CourseListViewController)
-    }
-
-    func testCourseAssignment() {
-        XCTAssert(router.match(Route.course("2", assignment: "3").url) is AssignmentDetailsViewController)
-    }
-
-    func testGroup() {
-        XCTAssert(router.match(Route.group("7").url) is GroupNavigationViewController)
-    }
-
-    func testQuizzes() {
-        XCTAssert(router.match(Route.quizzes(forCourse: "3").url) is QuizListViewController)
-    }
-
-    func testAssignmentList() {
-        XCTAssert(router.match(Route.assignments(forCourse: "1").url) is AssignmentListViewController)
-    }
-
-    func testCourseNavTab() {
-        XCTAssert(router.match(Route.course("1").url) is CourseNavigationViewController)
-    }
-
-    func testSubmission() {
-        XCTAssert(router.match(Route.submission(forCourse: "1", assignment: "1", user: ":userID").url) is SubmissionDetailsViewController)
-    }
-
-    func testAssignmentUrlSubmission() {
-        XCTAssert(router.match(Route.assignmentUrlSubmission(courseID: "1", assignmentID: "1", userID: "1").url) is UrlSubmissionViewController)
-    }
-
-    func testLogs() {
-        XCTAssert(router.match(Route.logs.url) is LogEventListViewController)
+    override func tearDown() {
+        super.tearDown()
+        CKIClient.current = nil
     }
 
     func testActAsUser() {
@@ -67,6 +43,51 @@ class RoutesTests: XCTestCase {
     }
 
     func testActAsUserID() {
-        XCTAssert(router.match(Route.actAsUserID("3").url) is ActAsUserViewController)
+        XCTAssertEqual((router.match(Route.actAsUserID("3").url) as? ActAsUserViewController)?.initialUserID, "3")
+    }
+
+    func testCalendarEvents() {
+        // XCTAssert(router.match(.parse("/calendar_events/7")) is CalendarEventDetailViewController)
+        XCTAssertNotNil(router.match(.parse("/calendar_events/7")))
+        CKIClient.current = nil
+        XCTAssertNil(router.match(.parse("/calendar_events/7")))
+    }
+
+    func testConversation() {
+        XCTAssertEqual((router.match(.parse("/conversations/1")) as? HelmViewController)?.moduleName, "/conversations/:conversationID")
+    }
+
+    func testCourses() {
+        XCTAssertEqual((router.match(Route.courses.url) as? HelmViewController)?.moduleName, "/courses")
+    }
+
+    func testCourseAssignment() {
+        XCTAssert(router.match(Route.course("2", assignment: "3").url) is AssignmentDetailsViewController)
+    }
+
+    func testGroup() {
+        XCTAssert(router.match(Route.group("7").url) is TabsTableViewController)
+        CKIClient.current = nil
+        XCTAssertNil(router.match(Route.group("7").url))
+    }
+
+    func testQuizzes() {
+        XCTAssert(router.match(Route.quizzes(forCourse: "3").url) is QuizListViewController)
+    }
+
+    func testAssignmentList() {
+        XCTAssertEqual((router.match(Route.assignments(forCourse: "1").url) as? HelmViewController)?.moduleName, "/courses/:courseID/assignments")
+    }
+
+    func testCourseNavTab() {
+        XCTAssertEqual((router.match(Route.course("1").url) as? HelmViewController)?.moduleName, "/courses/:courseID")
+    }
+
+    func testSubmission() {
+        XCTAssert(router.match(Route.submission(forCourse: "1", assignment: "1", user: ":userID").url) is SubmissionDetailsViewController)
+    }
+
+    func testLogs() {
+        XCTAssert(router.match(Route.logs.url) is LogEventListViewController)
     }
 }

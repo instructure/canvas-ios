@@ -41,13 +41,13 @@ public class UITestHelpers {
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
     let pasteboardType = "com.instructure.ui-test-helper"
-    let sessionBackup = LoginSession.sessions
     let window: ActAsUserWindow?
 
     init(_ appDelegate: UIApplicationDelegate) {
         self.appDelegate = appDelegate
         self.window = appDelegate.window as? ActAsUserWindow
 
+        LoginSession.keychain = Keychain(serviceName: "com.instructure.shared-credentials.tests")
         CacheManager.clear()
         UserDefaults.standard.set(true, forKey: "IS_UI_TEST")
         ExperimentalFeature.allEnabled = true
@@ -135,7 +135,6 @@ public class UITestHelpers {
     func tearDown() {
         resetNavigationStack()
         LoginSession.clearAll()
-        LoginSession.sessions = sessionBackup
     }
 }
 

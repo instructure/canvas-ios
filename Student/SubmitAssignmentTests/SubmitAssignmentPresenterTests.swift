@@ -49,12 +49,14 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
     var presenter: SubmitAssignmentPresenter!
 
     override func setUp() {
-        LoginSession.clearAll()
+        super.setUp()
         LoginSession.add(.make())
-        env.userDefaults?.reset()
         presenter = SubmitAssignmentPresenter()
         presenter.view = self
-        super.setUp()
+        // SubmitAssignmentPresenter calls env.userDidLogin, so need to reset after
+        env.api = api
+        env.database = database
+        env.userDefaults?.reset()
     }
 
     func testInitNilWithoutRecentSession() {

@@ -49,6 +49,7 @@ open class CoreUITestCase: XCTestCase {
 
     open override func setUp() {
         super.setUp()
+        LoginSession.useTestKeychain()
         continueAfterFailure = false
         if CoreUITestCase.firstRun || app.state != .runningForeground {
             CoreUITestCase.firstRun = false
@@ -66,6 +67,7 @@ open class CoreUITestCase: XCTestCase {
 
     open override func tearDown() {
         super.tearDown()
+        LoginSession.clearAll()
         send(.tearDown)
     }
 
