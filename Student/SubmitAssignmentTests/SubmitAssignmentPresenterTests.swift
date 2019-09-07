@@ -154,7 +154,9 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
         let item = TestExtensionItem(mockAttachments: [attachment])
         presenter.load(items: [item])
         wait(for: [expectation], timeout: 0.5)
-        presenter.submit(comment: nil)
+        let callback = XCTestExpectation(description: "callback was called")
+        presenter.submit(comment: nil) { callback.fulfill() }
+        wait(for: [callback], timeout: 1)
         XCTAssertTrue(uploadManager.cancelWasCalled)
         XCTAssertTrue(uploadManager.uploadWasCalled)
     }
