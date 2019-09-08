@@ -112,6 +112,9 @@
 /* No comment provided by engineer. */
 "Excused" = "Undskyldt";
 
+/* Error Message when the app can't load an object model from the database */
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Kunne ikke indlæse (discussionKitModelName) NSManagedObjectModel";
+
 /* No comment provided by engineer. */
 "Help" = "Hjælp";
 
@@ -252,6 +255,9 @@
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "Der opstod et problem ved indlæsning af databasen.";
+
+/* DiscussionKit Database Load Failure Message */
+"There was a problem loading the DiscussionKit database file." = "Der opstod et problem ved indlæsning af DiscussionKit database-fil.";
 
 /* No comment provided by engineer. */
 "There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Der opstod en fejl under indlæsning af dit indhold. Hvis det er en audio eller video upload, behandles det muligvis stadig.";

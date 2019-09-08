@@ -43,9 +43,6 @@
 /* The name for a video or audio response to something */
 "Media comment" = "Komentar v obliki medija";
 
-/* No comment provided by engineer. */
-"Media Comment" = "Komentar v obliki medija";
-
 /* Pass/fail assignment is not complete */
 "Not Complete" = "Ni zaključeno.";
 
