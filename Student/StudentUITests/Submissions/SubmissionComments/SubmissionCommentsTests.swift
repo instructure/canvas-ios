@@ -105,8 +105,10 @@ class SubmissionCommentsTests: StudentUITestCase {
     }
 
     func testCreateTextComment() {
+        mockBaseRequests()
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
 
+        logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.drawerGripper.tap()
         SubmissionDetails.drawerGripper.tap() // Make it full height.
