@@ -138,11 +138,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         Logger.shared.log()
-        UploadManager.shared.completionHandler = {
+        let manager = UploadManager.shared
+        manager.completionHandler = {
             DispatchQueue.main.async {
                 completionHandler()
             }
         }
+        manager.createSession()
     }
 }
 

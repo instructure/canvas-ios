@@ -435,8 +435,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         let assignment = Assignment.make()
         let url = URL.temporaryDirectory.appendingPathComponent("assignment-details.txt")
         FileManager.default.createFile(atPath: url.path, contents: "test".data(using: .utf8), attributes: nil)
-        let fileID = UploadManager.shared.add(environment: env, url: url, batchID: "assignment-\(assignment.id)")
-        let file = UploadManager.shared.viewContext.object(with: fileID!) as! File
+        let file = try UploadManager.shared.add(environment: env, url: url, batchID: "assignment-\(assignment.id)")
         presenter.viewIsReady()
         let expectation = XCTestExpectation(description: "update was called after online upload updated")
         expectation.expectedFulfillmentCount = 1

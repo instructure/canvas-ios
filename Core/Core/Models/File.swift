@@ -69,12 +69,6 @@ final public class File: NSManagedObject {
     @NSManaged public private(set) var userID: String?
     @NSManaged public var contextRaw: Data?
     @NSManaged public var userRaw: Data?
-    @NSManaged public var targetRaw: Data?
-
-    // Upload data
-    @NSManaged public var targetData: Data?
-    @NSManaged public var uploadData: Data?
-    @NSManaged public var submitData: Data?
 
     /// Used to group together files being attached to the same content
     @NSManaged public var batchID: String?
@@ -99,11 +93,6 @@ final public class File: NSManagedObject {
     public var context: FileUploadContext? {
         get { return contextRaw.flatMap { try? JSONDecoder().decode(FileUploadContext.self, from: $0) } }
         set { contextRaw = newValue.flatMap { try? JSONEncoder().encode($0) } }
-    }
-
-    public var target: FileUploadTarget? {
-        get { return targetRaw.flatMap { try? JSONDecoder().decode(FileUploadTarget.self, from: $0) } }
-        set { targetRaw = newValue.flatMap { try? JSONEncoder().encode($0) } }
     }
 
     var user: User? {

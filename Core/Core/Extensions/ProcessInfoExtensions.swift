@@ -18,6 +18,11 @@
 
 import Foundation
 
+public protocol ProcessManager {
+    func performExpiringActivity(withReason reason: String, using block: @escaping (Bool) -> Void)
+}
+
+extension ProcessInfo: ProcessManager {}
 extension ProcessInfo {
     public static var isUITest: Bool {
         return processInfo.environment["IS_UI_TEST"] != nil
