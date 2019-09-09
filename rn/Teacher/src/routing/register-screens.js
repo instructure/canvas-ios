@@ -58,6 +58,7 @@ import AttachmentView from '../common/components/AttachmentView'
 import GroupList from '../modules/groups/GroupList'
 import Attachments from '../modules/attachments/Attachments'
 import ContextCard from '../modules/users/ContextCard'
+import StudentContextCard from '../modules/users/StudentContextCard'
 import PeopleList from '../modules/people/PeopleList'
 import Filter from '../modules/filter/Filter'
 import ToDoList from '../modules/to-do/list/ToDoList'
@@ -141,7 +142,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/:context/:contextID/announcements/:announcementID/edit', wrap(AnnouncementEdit), store)
   registerScreen('/courses/:courseID/section-selector', wrap(SectionSelector), store)
   registerScreen('/wrong-app', null, store)
-  registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store, { deepLink: true })
   registerScreen('/attendance')
   registerScreen('/filter', wrap(Filter), store)
   registerScreen('/to-do', wrap(ToDoList), store, { canBecomeMaster: true, deepLink: true })
@@ -187,6 +187,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store, { deepLink: true })
     registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store, { deepLink: true })
     registerScreen('/courses/:courseID/pages', null, store, { canBecomeMaster: true, deepLink: true })
+    registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store, { deepLink: true })
 
     registerScreen('/courses/:courseID/modules', null, null, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/modules/:moduleID', null, null, { canBecomeMaster: true, deepLink: true })
@@ -218,6 +219,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/groups/:groupID/tabs', null, store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/groups/:groupID/users', wrap(GroupList), store)
     registerScreen('/courses/:courseID/grades', wrap(GradesList), store, { canBecomeMaster: true, deepLink: true })
+    registerScreen('/courses/:courseID/users/:userID', wrap(StudentContextCard), store, { deepLink: true })
 
     // Calls the old routing method
     registerScreen('/native-route/*route')
