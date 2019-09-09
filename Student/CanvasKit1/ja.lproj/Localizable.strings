@@ -43,9 +43,6 @@
 /* The name for a video or audio response to something */
 "Media comment" = "メディアのコメント";
 
-/* No comment provided by engineer. */
-"Media Comment" = "メディアのコメント";
-
 /* Pass/fail assignment is not complete */
 "Not Complete" = "未完了";
 

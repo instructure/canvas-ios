@@ -334,7 +334,7 @@
 /* Choose a video to send as a comment */
 "Choose Video" = "Choose Video";
 
-/* Close the window */
+/* No comment provided by engineer. */
 "Close" = "Close";
 
 /* No comment provided by engineer. */
@@ -1055,7 +1055,8 @@
 /* No comment provided by engineer. */
 "Sent" = "Sent";
 
-/* Title for Settings */
+/* settings button
+   Title for Settings tab */
 "Settings" = "Settings";
 
 /* Title for button confirming showing a file */
@@ -1091,7 +1092,7 @@
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Stay Logged In";
 
-/* Stop loading button for webview */
+/* A button that stops */
 "Stop" = "Stop";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
