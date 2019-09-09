@@ -20,6 +20,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 public class UITestHelpers {
     public enum HelperType: String, Codable, Equatable {
@@ -120,6 +121,7 @@ public class UITestHelpers {
     func resetDatabase() {
         try? AppEnvironment.shared.globalDatabase.clearAllRecords()
         try? AppEnvironment.shared.database.clearAllRecords()
+        try? NSPersistentContainer.shared.clearAllRecords()
     }
 
     func logIn(_ entry: LoginSession) {

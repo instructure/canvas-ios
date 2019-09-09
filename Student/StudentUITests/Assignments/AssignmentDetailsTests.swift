@@ -49,6 +49,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             description: "A description",
             points_possible: 12.3,
             due_at: DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
+            submission: .make(submitted_at: nil, workflow_state: .unsubmitted),
             submission_types: [ .online_upload ],
             allowed_extensions: [ "doc", "docx", "pdf" ]
         ))
@@ -79,6 +80,7 @@ class AssignmentDetailsTests: StudentUITestCase {
             description: "Say it like you mean it",
             points_possible: 15.1,
             due_at: DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
+            submission: .make(submitted_at: nil, workflow_state: .unsubmitted),
             submission_types: [ .discussion_topic ],
             discussion_topic: APIDiscussionTopic.make(
                 message: "Say something I'm giving up on you."
