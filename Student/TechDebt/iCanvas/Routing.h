@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-public protocol ProcessManager {
-    func performExpiringActivity(withReason reason: String, using block: @escaping (Bool) -> Void)
-}
+typedef void (^RouteToURLBlock)(NSURL * _Nonnull url, UIViewController * _Nonnull from);
 
-extension ProcessInfo: ProcessManager {}
-extension ProcessInfo {
-    public static var isUITest: Bool {
-        return processInfo.environment["IS_UI_TEST"] != nil
-    }
-}
+@interface Routing: NSObject
+@property (class, copy) RouteToURLBlock _Nullable routeToURL;
+@end

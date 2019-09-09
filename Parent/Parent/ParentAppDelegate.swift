@@ -19,7 +19,6 @@
 import AVKit
 import UIKit
 import CanvasCore
-import CanvasKit
 import Fabric
 import Crashlytics
 import Firebase
@@ -105,27 +104,23 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
         }
-        // Legacy CanvasKit support
-        let legacyClient = CKIClient(
+        // Legacy Session support
+        legacySession = Session(
             baseURL: session.baseURL,
-            token: session.accessToken ?? "",
-            refreshToken: session.refreshToken,
-            clientID: session.clientID,
-            clientSecret: session.clientSecret
-        )!
-        legacyClient.actAsUserID = session.actAsUserID
-        legacyClient.originalIDOfMasqueradingUser = session.originalUserID
-        legacyClient.originalBaseURL = session.originalBaseURL
-        legacyClient.fetchCurrentUser().subscribeNext({ user in
-            legacyClient.setValue(user, forKey: "currentUser")
-            CKIClient.current = legacyClient
-            self.legacySession = legacyClient.authSession
-            Router.sharedInstance.session = legacyClient.authSession
-            NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: legacyClient.authSession])
-            self.showRootView()
-        }, error: { _ in DispatchQueue.main.async {
-            self.userDidLogout(session: session)
-        } })
+            user: SessionUser(
+                id: session.userID,
+                name: session.userName,
+                loginID: nil,
+                sortableName: nil,
+                email: session.userEmail,
+                avatarURL: session.userAvatarURL
+            ),
+            token: session.accessToken,
+            masqueradeAsUserID: session.actAsUserID
+        )
+        Router.sharedInstance.session = legacySession
+        NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: legacySession as Any])
+        showRootView()
     }
 
     func showRootView() {

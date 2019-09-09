@@ -34,7 +34,6 @@ class CoreTestCase: XCTestCase {
     var logger = TestLogger()
     var environment: AppEnvironment!
     var currentSession = LoginSession.make()
-    let entriesBackup = LoginSession.sessions
 
     let notificationCenter = MockUserNotificationCenter()
     var notificationManager: NotificationManager!
@@ -47,6 +46,7 @@ class CoreTestCase: XCTestCase {
     override func setUp() {
         super.setUp()
         MockURLSession.reset()
+        LoginSession.useTestKeychain()
         router = TestRouter()
         logger = TestLogger()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
@@ -64,8 +64,8 @@ class CoreTestCase: XCTestCase {
     }
 
     override func tearDown() {
-        LoginSession.sessions = entriesBackup
         super.tearDown()
+        LoginSession.clearAll()
     }
 
     func waitForMainAsync() {

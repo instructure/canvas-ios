@@ -158,7 +158,6 @@ public class MockURLSession: URLSession {
 
     @discardableResult
     public static func mock(_ request: URLRequest, data: Data? = nil, response: URLResponse? = nil, error: Error? = nil, taskID: Int = 0) -> MockDataTask {
-        print("mocking: \(request)")
         let task = MockDataTask()
         task.mock = MockData(data: data, response: response, error: error)
         task.taskIdentifier = taskID

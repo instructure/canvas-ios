@@ -21,7 +21,11 @@ import Core
 import CanvasCore
 
 class Router: RouterProtocol {
-    func route(to url: URLComponents, from: UIViewController, options: Core.Router.RouteOptions?) {
+    func match(_ url: URLComponents) -> UIViewController? {
+        return nil
+    }
+
+    func route(to url: URLComponents, from: UIViewController, options: RouteOptions?) {
         guard let url = url.url else { return }
         let name = NSNotification.Name("route")
         let userInfo: [AnyHashable: Any] = [

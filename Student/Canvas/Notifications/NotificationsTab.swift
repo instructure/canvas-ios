@@ -25,7 +25,7 @@ import Core
 func NotificationsTab(session: Session) throws -> UIViewController {
     let title = NSLocalizedString("Notifications", comment: "Notifications tab title")
     let activityStream = try ActivityStreamTableViewController(session: session, route: { viewController, url in
-        Router.shared().route(from: viewController, to: url)
+        AppEnvironment.shared.router.route(to: url, from: viewController)
     })
     activityStream.title = title
     

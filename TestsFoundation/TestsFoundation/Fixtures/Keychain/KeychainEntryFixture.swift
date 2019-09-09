@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+@testable import Core
 
 extension LoginSession {
     public static func make(
@@ -47,5 +47,10 @@ extension LoginSession {
             clientID: clientID,
             clientSecret: clientSecret
         )
+    }
+
+    public static func useTestKeychain() {
+        keychain = Keychain(serviceName: "com.instructure.shared-credentials.tests")
+        clearAll()
     }
 }

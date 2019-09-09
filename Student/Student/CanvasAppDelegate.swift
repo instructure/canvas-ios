@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
-        env.router = Router.shared()
+        env.router = router
         return env
     }()
 
@@ -55,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         }
         DocViewerViewController.setup(.studentPSPDFKitLicense)
         prepareReactNative()
-        Router.shared().addCanvasRoutes(handleError)
         setupDefaultErrorHandling()
         setupPageViewLogging()
         UIApplication.shared.reactive.applicationIconBadgeNumber
@@ -161,11 +160,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         Logger.shared.log()
-        UploadManager.shared.completionHandler = {
+        let manager = UploadManager.shared
+        manager.completionHandler = {
             DispatchQueue.main.async {
                 completionHandler()
             }
         }
+        manager.createSession()
     }
 }
 
@@ -346,8 +347,8 @@ extension AppDelegate {
                 } else {
                     finish()
                 }
-            } else {
-                Router.shared().openCanvasURL(url, withOptions: ["modal": true])
+            } else if let from = self.topViewController {
+                AppEnvironment.shared.router.route(to: url, from: from, options: [.modal, .embedInNav, .addDoneButton])
             }
         }
         return true

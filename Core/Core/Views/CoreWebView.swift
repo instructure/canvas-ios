@@ -130,6 +130,7 @@ open class CoreWebView: WKWebView {
                 background-color: \(buttonBack.hexString);
                 border-radius: 4px;
                 color: \(buttonFore.hexString);
+                font-weight: 600;
                 text-decoration: none;
                 text-align: center;
             }

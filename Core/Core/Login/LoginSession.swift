@@ -139,7 +139,7 @@ public struct LoginSession: Codable, Hashable {
     // MARK: Persistence into keychain
 
     private static let key = "CanvasUsers"
-    private static let keychain = Keychain(serviceName: "com.instructure.shared-credentials", accessGroup: Bundle.main.appGroupID())
+    static var keychain = Keychain(serviceName: "com.instructure.shared-credentials", accessGroup: Bundle.main.appGroupID())
 
     public static var sessions: Set<LoginSession> {
         get { return keychain.getJSON(for: key) ?? [] }

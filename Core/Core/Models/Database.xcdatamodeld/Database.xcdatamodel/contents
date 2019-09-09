@@ -133,14 +133,10 @@
         <attribute name="previewURL" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="refreshData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="size" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="submitData" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="targetData" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="targetRaw" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="taskIDRaw" optional="YES" attributeType="Integer 64" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="thumbnailURL" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="uploadData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="uploadError" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>

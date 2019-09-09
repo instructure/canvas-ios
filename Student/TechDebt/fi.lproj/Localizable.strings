@@ -334,7 +334,7 @@
 /* Choose a video to send as a comment */
 "Choose Video" = "Valitse video";
 
-/* Close the window */
+/* No comment provided by engineer. */
 "Close" = "Sulje";
 
 /* No comment provided by engineer. */
@@ -1055,7 +1055,8 @@
 /* No comment provided by engineer. */
 "Sent" = "Lähetetty";
 
-/* Title for Settings */
+/* settings button
+   Title for Settings tab */
 "Settings" = "Asetukset";
 
 /* Title for button confirming showing a file */
@@ -1091,7 +1092,7 @@
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Pysy sisäänkirjautuneena";
 
-/* Stop loading button for webview */
+/* A button that stops */
 "Stop" = "Lopeta";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */

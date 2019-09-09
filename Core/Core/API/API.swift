@@ -121,7 +121,7 @@ public class URLSessionAPI: API {
         let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
         let directory = urlSession.configuration.sharedContainerIdentifier.flatMap(URL.sharedContainer) ?? URL.temporaryDirectory
         let url = directory.appendingPathComponent(UUID.string)
-        try request.httpBody?.write(to: url)
+        try request.httpBody?.write(to: url) // TODO: delete this file after upload completes
         #if DEBUG
         print("uploading", url)
         print("to", request.url ?? "")

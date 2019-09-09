@@ -82,7 +82,7 @@ public class GradeCircleView: UIView {
         let isPassFail = assignment.gradingType == .pass_fail
         circlePoints.isHidden = isPassFail
         circleLabel.isHidden = isPassFail
-        circleComplete.isHidden = isPassFail ? (submission.score == nil || submission.score == 0) : true
+        circleComplete.isHidden = isPassFail ? submission.grade == "incomplete" : true
 
         // Update grade circle
         if let score = submission.score, let pointsPossible = assignment.pointsPossible {

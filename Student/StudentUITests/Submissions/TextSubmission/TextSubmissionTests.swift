@@ -24,7 +24,13 @@ import XCTest
 
 class TextSubmissionTests: StudentUITestCase {
     func testTextSubmission() {
-        show("/courses/1/assignments/1/submissions/1/online_text_entry")
+        let course = APICourse.make()
+        mockData(GetCourseRequest(courseID: course.id), value: course)
+        let assignment = APIAssignment.make(submission_types: [ .online_text_entry ])
+        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
+
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.submitAssignmentButton.tap()
         TextSubmission.submitButton.waitToExist()
         XCTAssertFalse(TextSubmission.submitButton.isEnabled)
 
