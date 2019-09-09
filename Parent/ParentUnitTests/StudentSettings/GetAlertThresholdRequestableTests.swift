@@ -93,7 +93,7 @@ class PostAlertThresholdRequestTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        req = PostAlertThresholdRequest(userID: userID, alertType: alertType)
+        req = PostAlertThresholdRequest(userID: userID, alertType: alertType, value: "100")
     }
 
     func testPath() {
@@ -101,7 +101,7 @@ class PostAlertThresholdRequestTests: XCTestCase {
     }
 
     func testBody() {
-        let body = PostAlertThresholdRequest.Body(observer_alert_threshold: PostAlertThresholdRequest.AlertBody(user_id: userID, alert_type: alertType.rawValue))
+        let body = PostAlertThresholdRequest.Body(observer_alert_threshold: PostAlertThresholdRequest.AlertBody(user_id: userID, alert_type: alertType.rawValue, threshold: "100"))
         XCTAssertEqual(req.body, body)
     }
 }

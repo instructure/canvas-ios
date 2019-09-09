@@ -39,7 +39,6 @@
 		3B36A2E22322C26B00599A1E /* ParentUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2E12322C26B00599A1E /* ParentUnitTests.swift */; };
 		3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2EC2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift */; };
 		3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2F02322C56F00599A1E /* APIAlertThresholdFixture.swift */; };
-		3B54E3552326F87D00D8D1D2 /* StudentSettingsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54E3542326F87D00D8D1D2 /* StudentSettingsPresenterTests.swift */; };
 		3B54E3572326F93300D8D1D2 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B54E3562326F93300D8D1D2 /* TestsFoundation.framework */; };
 		3B54E3592326F9B000D8D1D2 /* PersistenceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54E3582326F9B000D8D1D2 /* PersistenceTestCase.swift */; };
 		3B801BFD2322FFB400D143F0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B11F912BD100A3BC06 /* Alert.swift */; };
@@ -50,12 +49,7 @@
 		4948BE6A1F915F4B0035BAFD /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49952C3B1F7477C300A11404 /* CanvasCore.framework */; };
 		4948BE6B1F915F4B0035BAFD /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49952C3B1F7477C300A11404 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		497C48B81F912BD100A3BC06 /* AlertAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48A71F912BD100A3BC06 /* AlertAPI.swift */; };
-		497C48B91F912BD100A3BC06 /* AlertThresholdAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48A81F912BD100A3BC06 /* AlertThresholdAPI.swift */; };
 		497C48BA1F912BD100A3BC06 /* Session+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48A91F912BD100A3BC06 /* Session+Alert.swift */; };
-		497C48BB1F912BD100A3BC06 /* AlertThreshold+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48AC1F912BD100A3BC06 /* AlertThreshold+Collections.swift */; };
-		497C48BC1F912BD100A3BC06 /* AlertThreshold+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48AD1F912BD100A3BC06 /* AlertThreshold+Network.swift */; };
-		497C48BD1F912BD100A3BC06 /* AlertThresholds+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48AE1F912BD100A3BC06 /* AlertThresholds+Edits.swift */; };
-		497C48BE1F912BD100A3BC06 /* AlertThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48AF1F912BD100A3BC06 /* AlertThreshold.swift */; };
 		497C48C01F912BD100A3BC06 /* Alert+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B21F912BD100A3BC06 /* Alert+Edits.swift */; };
 		497C48C11F912BD100A3BC06 /* Alert+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B31F912BD100A3BC06 /* Alert+Collections.swift */; };
 		497C48C21F912BD100A3BC06 /* Alert+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B41F912BD100A3BC06 /* Alert+Network.swift */; };
@@ -580,12 +574,7 @@
 		4948BE681F915D330035BAFD /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		4968E29E1DB977CF00A39703 /* Parent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Parent.entitlements; sourceTree = "<group>"; };
 		497C48A71F912BD100A3BC06 /* AlertAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAPI.swift; sourceTree = "<group>"; };
-		497C48A81F912BD100A3BC06 /* AlertThresholdAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertThresholdAPI.swift; sourceTree = "<group>"; };
 		497C48A91F912BD100A3BC06 /* Session+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Alert.swift"; sourceTree = "<group>"; };
-		497C48AC1F912BD100A3BC06 /* AlertThreshold+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertThreshold+Collections.swift"; sourceTree = "<group>"; };
-		497C48AD1F912BD100A3BC06 /* AlertThreshold+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertThreshold+Network.swift"; sourceTree = "<group>"; };
-		497C48AE1F912BD100A3BC06 /* AlertThresholds+Edits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertThresholds+Edits.swift"; sourceTree = "<group>"; };
-		497C48AF1F912BD100A3BC06 /* AlertThreshold.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertThreshold.swift; sourceTree = "<group>"; };
 		497C48B11F912BD100A3BC06 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		497C48B21F912BD100A3BC06 /* Alert+Edits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+Edits.swift"; sourceTree = "<group>"; };
 		497C48B31F912BD100A3BC06 /* Alert+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+Collections.swift"; sourceTree = "<group>"; };
@@ -994,7 +983,6 @@
 			isa = PBXGroup;
 			children = (
 				497C48A71F912BD100A3BC06 /* AlertAPI.swift */,
-				497C48A81F912BD100A3BC06 /* AlertThresholdAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1002,23 +990,11 @@
 		497C48AA1F912BD100A3BC06 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				497C48AB1F912BD100A3BC06 /* AlertThreshold */,
 				497C48B01F912BD100A3BC06 /* Alert */,
 				497C48B51F912BD100A3BC06 /* ObserverAlertKit.xcdatamodeld */,
 				497C48B71F912BD100A3BC06 /* AlertCountCoordinator.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		497C48AB1F912BD100A3BC06 /* AlertThreshold */ = {
-			isa = PBXGroup;
-			children = (
-				497C48AC1F912BD100A3BC06 /* AlertThreshold+Collections.swift */,
-				497C48AD1F912BD100A3BC06 /* AlertThreshold+Network.swift */,
-				497C48AE1F912BD100A3BC06 /* AlertThresholds+Edits.swift */,
-				497C48AF1F912BD100A3BC06 /* AlertThreshold.swift */,
-			);
-			path = AlertThreshold;
 			sourceTree = "<group>";
 		};
 		497C48B01F912BD100A3BC06 /* Alert */ = {
@@ -1691,7 +1667,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */,
-				3B54E3552326F87D00D8D1D2 /* StudentSettingsPresenterTests.swift in Sources */,
 				3B36A2E22322C26B00599A1E /* ParentUnitTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* PersistenceTestCase.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
@@ -1718,7 +1693,6 @@
 				5E4104891C99E06D0021567C /* UIColor+Parent.swift in Sources */,
 				6132D74F1D81FB9C0001FADA /* DetailsLocationCell.swift in Sources */,
 				61E94C611C873C1A00777B95 /* DetailsDescriptionCell.swift in Sources */,
-				497C48BE1F912BD100A3BC06 /* AlertThreshold.swift in Sources */,
 				5EA8B06A1CB7078500C8A9F1 /* DefaultAvatarCoordinator.swift in Sources */,
 				78A84A0E209BB7A000921C9B /* ParentAppDelegate.swift in Sources */,
 				7D52D8A322FCC89F00684932 /* DiscussionTopic+Details.swift in Sources */,
@@ -1728,7 +1702,6 @@
 				5E0F9A6A1C739E6A00BB7707 /* CalendarEventCell.swift in Sources */,
 				612D64431C8794480045E03B /* DetailsInfoCell.swift in Sources */,
 				497C48BA1F912BD100A3BC06 /* Session+Alert.swift in Sources */,
-				497C48B91F912BD100A3BC06 /* AlertThresholdAPI.swift in Sources */,
 				61B536F51C99E58B0052B8CB /* DatePickerViewController.swift in Sources */,
 				5E0F9A671C739E6A00BB7707 /* AlertCell.swift in Sources */,
 				5E0F9A6D1C739E6A00BB7707 /* CourseCell.swift in Sources */,
@@ -1745,7 +1718,6 @@
 				5E4E20511C927EB100E7D709 /* ColorCoordinator.swift in Sources */,
 				613E90E61D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift in Sources */,
 				497C48E91F9153D100A3BC06 /* AirwolfAPI.swift in Sources */,
-				497C48BB1F912BD100A3BC06 /* AlertThreshold+Collections.swift in Sources */,
 				6153000E1C863F0F002529CF /* DetailsReminderCell.swift in Sources */,
 				497C48B81F912BD100A3BC06 /* AlertAPI.swift in Sources */,
 				B11A2CF720E42D9500A2DBDD /* AccountNotificationViewController.swift in Sources */,
@@ -1768,12 +1740,10 @@
 				5E0F9A761C739E6A00BB7707 /* SettingsObserveeCellViewModel.swift in Sources */,
 				5E0F9A691C739E6A00BB7707 /* AlertCellViewModel.swift in Sources */,
 				3B86FA3622DD24FA0018C012 /* SettingsAPIClient.swift in Sources */,
-				497C48BD1F912BD100A3BC06 /* AlertThresholds+Edits.swift in Sources */,
 				497C48E61F9153D100A3BC06 /* Student+Network.swift in Sources */,
 				497C48E31F9153D100A3BC06 /* Student+Collections.swift in Sources */,
 				6127F6691C7F570D00AF1ECC /* BadgeView.swift in Sources */,
 				5EB4B5BB1C9749CD00CD8885 /* CalendarEventWeekPageViewController.swift in Sources */,
-				497C48BC1F912BD100A3BC06 /* AlertThreshold+Network.swift in Sources */,
 				3B36A2D82322C15200599A1E /* APIAlertThreshold.swift in Sources */,
 				5E0F9A731C739E6A00BB7707 /* DashboardViewController.swift in Sources */,
 				497C48EB1F9153D100A3BC06 /* CalendarEvents.swift in Sources */,
