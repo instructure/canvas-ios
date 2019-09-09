@@ -19,35 +19,11 @@
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%2$g av %3$@)";
 
-/* Gigabytes */
-"%0.2f GB" = "%0.2f Gb";
-
-/* Kilobytes */
-"%0.2f KB" = "%0.2f Kb";
-
-/* Megabytes */
-"%0.2f MB" = "%0.2f Mb";
-
 /* 88 out of 100 points */
 "%g out of %@" = "%1$g av %2$@";
 
-/* As in, '15 bytes' */
-"%qu bytes" = "%qu byte";
-
-/* Media type is audio */
-"Audio" = "Ljud";
-
-/* No comment provided by engineer. */
-"Audio input hardware not available" = "Ljudingång på hårdvaran är inte tillgänglig";
-
 /* Assignment grade: Complete */
-"Complete" = "Fullgjord";
-
-/* A custom grade not specified by the rubric. */
-"Custom Grade" = "Anpassad bedömning";
-
-/* No comment provided by engineer. */
-"Done" = "Färdiggjord";
+"Complete" = "Slutför";
 
 /* No comment provided by engineer. */
 "Excused" = "Slipper göra";
@@ -62,19 +38,10 @@
 "File upload failed." = "Filuppladdning misslyckades.";
 
 /* Assignment grade: Incomplete */
-"Incomplete" = "Ej fullständig";
-
-/* No comment provided by engineer. */
-"Me" = "Jag";
+"Incomplete" = "Ofullständig";
 
 /* The name for a video or audio response to something */
 "Media comment" = "Mediakommentar";
-
-/* No comment provided by engineer. */
-"Media Comment" = "Mediakommentar";
-
-/* A slider to choose between media types */
-"Media type selector. %@" = "Väljare av medietyp. %@";
 
 /* Pass/fail assignment is not complete */
 "Not Complete" = "Ej färdig";
@@ -85,9 +52,6 @@
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Ej bedömd (0 av %@)";
 
-/* No comment provided by engineer. */
-"Note: Media files are not immediately available for playback while they are processed on the server." = "Notera: mediafiler är inte tillgängliga för uppspelning omedelbart medan de bearbetas på servern.";
-
 /* Short name for observer enrollment */
 "Observer" = "Observatör";
 
@@ -97,59 +61,14 @@
 /* The assignment is out of 100 points */
 "out of %@" = "av %@";
 
-/* No comment provided by engineer. */
-"out of %@ points" = "av %@ poäng";
-
-/* A button that plays */
-"Play" = "Spela upp";
-
-/* No comment provided by engineer. */
-"Post Comment" = "Lämna kommentar";
-
-/* No comment provided by engineer. */
-"Posts your comment" = "Posta din kommentar";
-
-/* A button that records */
-"Record" = "Spela in";
-
-/* No comment provided by engineer. */
-"Score" = "Resultat";
-
-/* Hint about the play button */
-"Starts playing your recording" = "Spelar upp din inspelning";
-
-/* Hint about the record button */
-"Starts recording a media comment" = "Spelar in en mediakommentar";
-
-/* A button that stops */
-"Stop" = "Stopp";
-
-/* Hint about the play button */
-"Stops playing your recording" = "Avslutar din inspelning";
-
-/* Hint about the record button */
-"Stops recording a media comment" = "Avslutar inspelningen av en mediakommentar";
-
 /* Short name for student enrollment */
 "Student" = "Elev";
-
-/* Hint about media input selection */
-"Switches media input between audio and video. Currently set to %@" = "Växlar medieindata mellan ljud och video. För närvarande inställt på %@";
-
-/* No comment provided by engineer. */
-"Switches to media comment mode" = "Växlar till läge för mediakommentar";
-
-/* No comment provided by engineer. */
-"Switches to text comment mode" = "Växlar till läge för textkommentar";
 
 /* Short name for TA enrollment */
 "TA" = "Lärarassistent";
 
 /* Short name for teacher enrollment */
 "Teacher" = "Lärare";
-
-/* No comment provided by engineer. */
-"Text Comment" = "Textkommentar";
 
 /* Generic name for a submission entered online. */
 "Text Submission" = "Textinlämning";
@@ -159,13 +78,4 @@
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "okänd";
-
-/* Media type is video */
-"Video" = "Video";
-
-/* No comment provided by engineer. */
-"Video Error" = "Videofel";
-
-/* No comment provided by engineer. */
-"Warning" = "Varning";
 
