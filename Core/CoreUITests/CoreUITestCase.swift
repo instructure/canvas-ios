@@ -226,11 +226,11 @@ open class CoreUITestCase: XCTestCase {
     // MARK: mock (convenience)
 
     open func mockData<R: APIRequestable>(
-            _ requestable: R,
-            value: R.Response? = nil,
-            response: HTTPURLResponse? = nil,
-            error: String? = nil,
-            noCallback: Bool = false
+        _ requestable: R,
+        value: R.Response? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        noCallback: Bool = false
     ) {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
@@ -239,11 +239,11 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func mockEncodedData<R: APIRequestable>(
-            _ requestable: R,
-            data: Data? = nil,
-            response: HTTPURLResponse? = nil,
-            error: String? = nil,
-            noCallback: Bool = false
+        _ requestable: R,
+        data: Data? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        noCallback: Bool = false
     ) {
         let api = URLSessionAPI()
         let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.accessToken, actAsUserID: api.actAsUserID)
@@ -251,11 +251,11 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func mockEncodableRequest<D: Codable>(
-            _ path: String,
-            value: D? = nil,
-            response: HTTPURLResponse? = nil,
-            error: String? = nil,
-            noCallback: Bool = false
+        _ path: String,
+        value: D? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        noCallback: Bool = false
     ) {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
@@ -283,17 +283,17 @@ open class CoreUITestCase: XCTestCase {
     open func mockBaseRequests() {
         mockData(GetUserRequest(userID: "self"), value: APIUser.make())
         mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!),
-                data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8)) // CKIClient.fetchCurrentUser
+                        data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8)) // CKIClient.fetchCurrentUser
         mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile")!),
-                data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8))
+                        data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8))
         mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self"))) // cookie keepalive
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
         mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
         mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
         mockData(GetAccountNotificationsRequest(), value: [])
         let enrollment = APIEnrollment.make(
-                type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
-                role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
+            type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
+            role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
         )
         var state: [GetCoursesRequest.State] = [.available, .completed]
         if Bundle.main.isTeacherApp {
@@ -312,34 +312,34 @@ open class CoreUITestCase: XCTestCase {
     // MARK: mock (primitive)
 
     open func mockDataRequest(
-            _ request: URLRequest,
-            data: Data? = nil,
-            response: HTTPURLResponse? = nil,
-            error: String? = nil,
-            noCallback: Bool = false
+        _ request: URLRequest,
+        data: Data? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        noCallback: Bool = false
     ) {
         let message = MockDataMessage(
-                data: data,
-                error: error,
-                request: request,
-                response: response.flatMap { MockResponse(http: $0) },
-                noCallback: noCallback
+            data: data,
+            error: error,
+            request: request,
+            response: response.flatMap { MockResponse(http: $0) },
+            noCallback: noCallback
         )
         dataMocks.append(message)
         send(.mockData(message))
     }
 
     open func mockDownload(
-            _ url: URL,
-            data: URL? = nil,
-            response: HTTPURLResponse? = nil,
-            error: String? = nil
+        _ url: URL,
+        data: URL? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil
     ) {
         let message = MockDownloadMessage(
-                data: data.flatMap { try! Data(contentsOf: $0) },
-                error: error,
-                response: response.flatMap { MockResponse(http: $0) },
-                url: url
+            data: data.flatMap { try! Data(contentsOf: $0) },
+            error: error,
+            response: response.flatMap { MockResponse(http: $0) },
+            url: url
         )
         downloadMocks.append(message)
         send(.mockDownload(message))
