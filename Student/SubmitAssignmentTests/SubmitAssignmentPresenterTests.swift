@@ -53,6 +53,7 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
         LoginSession.add(.make())
         presenter = SubmitAssignmentPresenter()
         presenter.view = self
+        presenter.uploadManager = uploadManager
         // SubmitAssignmentPresenter calls env.userDidLogin, so need to reset after
         env.api = api
         env.database = database

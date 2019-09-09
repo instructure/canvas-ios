@@ -30,8 +30,9 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public static let AssignmentSubmittedNotification = NSNotification.Name(rawValue: "com.instructure.core.assignment-submitted")
     public typealias Store = Core.Store<LocalUseCase<File>>
 
-    public static var shared = UploadManager()
+    public static var shared = UploadManager(identifier: "com.instructure.core.file-uploads")
 
+    public let identifier: String
     var notificationManager: NotificationManager = .shared
     var process: ProcessManager = ProcessInfo.processInfo
     private var validSession: URLSession?
@@ -60,9 +61,14 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return decoder
     }()
 
+    public init(identifier: String) {
+        self.identifier = identifier
+        super.init()
+    }
+
     @discardableResult
     public func createSession() -> URLSession {
-        let configuration = URLSessionConfiguration.background(withIdentifier: "com.instructure.core.file-uploads")
+        let configuration = URLSessionConfiguration.background(withIdentifier: identifier)
         configuration.sharedContainerIdentifier = Bundle.main.appGroupID()
         return URLSessionAPI.delegateURLSession(configuration, self, nil)
     }
