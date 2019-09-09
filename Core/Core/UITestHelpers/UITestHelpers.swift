@@ -89,6 +89,9 @@ public class UITestHelpers {
     let pasteboardType = "com.instructure.ui-test-helper"
     let window: ActAsUserWindow?
 
+    var ipcAppServer: IPCAppServer?
+    var ipcDriverClient: IPCClient?
+
     init(_ appDelegate: UIApplicationDelegate) {
         self.appDelegate = appDelegate
         self.window = appDelegate.window as? ActAsUserWindow
@@ -97,13 +100,18 @@ public class UITestHelpers {
         CacheManager.clear()
         UserDefaults.standard.set(true, forKey: "IS_UI_TEST")
         ExperimentalFeature.allEnabled = true
-        _ = IPCAppServer()
+        if let portName = ProcessInfo.processInfo.environment["APP_IPC_PORT_NAME"] {
+            ipcAppServer = IPCAppServer(machPortName: portName)
+        }
+        if let portName = ProcessInfo.processInfo.environment["DRIVER_IPC_PORT_NAME"] {
+            ipcDriverClient = IPCClient(serverPortName: portName)
+        }
 
         window?.layer.speed = 100
         UIView.setAnimationsEnabled(false)
     }
 
-    func doHelper(_ helper: Helper) -> Data? {
+    func run(_ helper: Helper) -> Data? {
         print("Running UI Test Helper \(helper)")
         switch helper {
         case .reset:

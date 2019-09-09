@@ -23,16 +23,7 @@ import XCTest
 
 class SyllabusTests: StudentUITestCase {
     let html = "hello world"
-    lazy var course: APICourse = {
-        let course = APICourse.make(course_code: "abc", syllabus_body: html)
-        mockData(GetCourseRequest(courseID: course.id), value: course)
-        return course
-    }()
-
-    func mockAssignments(_ assignments: [APIAssignment]) -> [APIAssignment] {
-        mockData(GetAssignmentsRequest(courseID: course.id), value: assignments)
-        return assignments
-    }
+    lazy var course = mock(course: .make(course_code: "abc", syllabus_body: html))
 
     func testSyllabusLoad() {
         let assignmentName = "Foobar"
@@ -40,7 +31,9 @@ class SyllabusTests: StudentUITestCase {
             course.canvasContextID: "#123456",
             ]))
 
-        _ = mockAssignments([APIAssignment.make(name: assignmentName, description: "hello world", submission: APISubmission.make())])
+        mockData(GetAssignmentsRequest(courseID: course.id), value: [
+            APIAssignment.make(name: assignmentName, description: "hello world", submission: APISubmission.make()),
+        ])
 
         show("/courses/\(course.id)/assignments/syllabus")
 

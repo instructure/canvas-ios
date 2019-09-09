@@ -83,7 +83,7 @@ public class MockDistantURLSession: URLSession {
                 HttpHeader.contentType: "application/json",
             ])
         }
-        dataMocks[message.request.url!] = MockData(
+        dataMocks[message.request.url!.withCanonicalQueryParams!] = MockData(
             data: message.data,
             response: response,
             error: message.error.flatMap { NSError.instructureError($0) },
@@ -98,7 +98,7 @@ public class MockDistantURLSession: URLSession {
         init(url: URL, session: MockDistantURLSession?, completionHandler: DataHandler?) {
             self.completionHandler = completionHandler
             self.session = session
-            self.url = url
+            self.url = url.withCanonicalQueryParams!
         }
 
         var _taskDescription: String?
@@ -165,7 +165,7 @@ public class MockDistantURLSession: URLSession {
             url = URL.temporaryDirectory.appendingPathComponent(UUID.string)
             try? data.write(to: url!)
         }
-        downloadMocks[message.url] = MockDownload(
+        downloadMocks[message.url.withCanonicalQueryParams!] = MockDownload(
             url: url,
             response: message.response?.http,
             error: message.error.flatMap { NSError.instructureError($0) }
@@ -179,7 +179,7 @@ public class MockDistantURLSession: URLSession {
         init(url: URL, session: MockDistantURLSession?, completionHandler: URLHandler?) {
             self.completionHandler = completionHandler
             self.session = session
-            self.url = url
+            self.url = url.withCanonicalQueryParams!
         }
 
         var _taskDescription: String?

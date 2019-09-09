@@ -63,4 +63,8 @@ extension URL {
         }
         try manager.moveItem(at: self, to: destination)
     }
+
+    public var withCanonicalQueryParams: URL? {
+        return URLComponents(url: self, resolvingAgainstBaseURL: false)?.withCanonicalQueryParams.url
+    }
 }

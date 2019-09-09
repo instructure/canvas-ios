@@ -49,9 +49,6 @@ public extension ElementWrapper {
     var exists: Bool {
         return element.exists
     }
-    var frame: CGRect {
-        return element.frame
-    }
     var id: String {
         return element.id
     }
@@ -63,6 +60,9 @@ public extension ElementWrapper {
     }
     var isVisible: Bool {
         return element.isVisible
+    }
+    func frame(file: StaticString = #file, line: UInt = #line) -> CGRect {
+        return element.frame(file: file, line: line)
     }
     func label(file: StaticString = #file, line: UInt = #line) -> String {
         return element.label(file: file, line: line)

@@ -51,7 +51,9 @@ public class ActAsUserWindow: UIWindow {
     public override var rootViewController: UIViewController? {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [view = oldValue?.viewIfLoaded] in
-                view.map { print("⚠️: found view from dead rootViewController view: \($0)") }
+                if let view = view, view.window != nil {
+                    print("⚠️: found view from dead rootViewController view: \(view)")
+                }
             }
             isActing = (
                 !(rootViewController is LoadingViewController) &&

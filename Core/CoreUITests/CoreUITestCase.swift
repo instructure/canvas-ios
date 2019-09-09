@@ -23,8 +23,10 @@ import TestsFoundation
 open class CoreUITestCase: XCTestCase {
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
-    let pasteboardType = "com.instructure.ui-test-helper"
     open var homeScreen: Element { return TabBar.dashboardTab }
+
+    open var dataMocks = [MockDataMessage]()
+    open var downloadMocks = [MockDownloadMessage]()
 
     open var user: UITestUser? {
         if Bundle.main.isStudentUITestsRunner {
@@ -99,6 +101,13 @@ open class CoreUITestCase: XCTestCase {
             logInUser(user)
             homeScreen.waitToExist()
         }
+        // If this is a retry, re-install the old mocks
+        for message in dataMocks {
+            send(.mockData(message))
+        }
+        for message in downloadMocks {
+            send(.mockDownload(message))
+        }
     }
 
     open override func tearDown() {
@@ -107,19 +116,22 @@ open class CoreUITestCase: XCTestCase {
         super.tearDown()
     }
 
+    let ipcAppClient = IPCClient(serverPortName: IPCAppServer.portName(id: "\(ProcessInfo.processInfo.processIdentifier)"))
+    let ipcDriverServer = IPCDriverServer(machPortName: IPCDriverServer.portName(id: "\(ProcessInfo.processInfo.processIdentifier)"))
+
     open func launch(_ block: ((XCUIApplication) -> Void)? = nil) {
         let app = XCUIApplication()
         app.launchEnvironment["IS_UI_TEST"] = "TRUE"
+        app.launchEnvironment["APP_IPC_PORT_NAME"] = ipcAppClient.serverPortName
+        app.launchEnvironment["DRIVER_IPC_PORT_NAME"] = ipcDriverServer.machPortName
         block?(app)
         app.launch()
         // Wait for RN to finish loading
         app.find(labelContaining: "Loading").waitToVanish(120)
     }
 
-    lazy var ipcClient = IPCClient(serverPortName: IPCAppServer.staticMachPortName)
-
     func send(_ helper: UITestHelpers.Helper) {
-        if let response = ipcClient.requestRemote(helper),
+        if let response = ipcAppClient.requestRemote(helper),
             !response.isEmpty {
             fatalError("Unexpected IPC response")
         }
@@ -167,8 +179,8 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func currentSession() -> LoginSession? {
-        guard let data = ipcClient.requestRemote(UITestHelpers.Helper.currentSession) else {
-            fatalError("Bad IPC response")
+        guard let data = ipcAppClient.requestRemote(UITestHelpers.Helper.currentSession) else {
+            fatalError("Bad IPC response (no data returned)")
         }
         if data.isEmpty {
             return nil
@@ -182,108 +194,6 @@ open class CoreUITestCase: XCTestCase {
             logIn()
         }
         send(.show(route))
-    }
-
-    open func mockData<R: APIRequestable>(
-        _ requestable: R,
-        value: R.Response? = nil,
-        response: HTTPURLResponse? = nil,
-        error: String? = nil,
-        noCallback: Bool = false
-    ) {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        let data = value.flatMap { try! encoder.encode($0) }
-        return mockEncodedData(requestable, data: data, response: response, error: error, noCallback: noCallback)
-    }
-
-    open func mockEncodedData<R: APIRequestable>(
-        _ requestable: R,
-        data: Data? = nil,
-        response: HTTPURLResponse? = nil,
-        error: String? = nil,
-        noCallback: Bool = false
-    ) {
-        let api = URLSessionAPI()
-        let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.accessToken, actAsUserID: api.actAsUserID)
-        return mockDataRequest(request, data: data, response: response, error: error, noCallback: noCallback)
-    }
-
-    open func mockEncodableRequest<D: Codable>(
-        _ path: String,
-        value: D? = nil,
-        response: HTTPURLResponse? = nil,
-        error: String? = nil,
-        noCallback: Bool = false
-    ) {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        let data = value.flatMap { try! encoder.encode($0) }
-        let api = URLSessionAPI()
-        let url = URL(string: path, relativeTo: api.baseURL.appendingPathComponent("api/v1/"))!
-        mockDataRequest(URLRequest(url: url), data: data, response: response, error: error, noCallback: noCallback)
-    }
-
-    open func mockDataRequest(
-        _ request: URLRequest,
-        data: Data? = nil,
-        response: HTTPURLResponse? = nil,
-        error: String? = nil,
-        noCallback: Bool = false
-    ) {
-        send(.mockData(MockDataMessage(
-            data: data,
-            error: error,
-            request: request,
-            response: response.flatMap { MockResponse(http: $0) },
-            noCallback: noCallback
-        )))
-    }
-
-    open func mockDownload(
-        _ url: URL,
-        data: URL? = nil,
-        response: HTTPURLResponse? = nil,
-        error: String? = nil
-    ) {
-        send(.mockDownload(MockDownloadMessage(
-            data: data.flatMap { try! Data(contentsOf: $0) },
-            error: error,
-            response: response.flatMap { MockResponse(http: $0) },
-            url: url
-        )))
-    }
-
-    open func mockBaseRequests() {
-        mockData(GetUserRequest(userID: "self"), value: APIUser.make())
-        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!), data: """
-        {"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}
-        """.data(using: .utf8)) // CKIClient.fetchCurrentUser
-        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile")!), data: """
-        {"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}
-        """.data(using: .utf8))
-        mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self"))) // cookie keepalive
-        mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
-        mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
-        mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
-        mockData(GetAccountNotificationsRequest(), value: [])
-        let enrollment = APIEnrollment.make(
-            type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
-            role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
-        )
-        var state: [GetCoursesRequest.State] = [.available, .completed]
-        if Bundle.main.isTeacherApp {
-            state.append(.unpublished)
-        }
-        mockData(GetCoursesRequest(state: state), value: [ .make(id: "1", enrollments: [ enrollment ]) ])
-        mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: "1")), value: [ "rce_enhancements" ])
-        mockEncodableRequest("courses/1/external_tools?per_page=99&include_parents=true", value: [String]())
-        mockEncodableRequest("users/self/custom_data/favorites/groups?ns=com.canvas.canvas-app", value: [String: String]())
-        mockEncodableRequest("users/self/enrollments?include[]=avatar_url", value: [enrollment])
-        mockEncodableRequest("users/self/groups", value: [String]())
-        mockEncodableRequest("users/self/todo", value: [String]())
-        mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
-        mockEncodableRequest("dashboard/dashboard_cards", value: [String]())
     }
 
     open func pullToRefresh() {
@@ -312,4 +222,127 @@ open class CoreUITestCase: XCTestCase {
         app.swipeUp()
         removeUIInterruptionMonitor(alertHandler)
     }
+
+    // MARK: mock (convenience)
+
+    open func mockData<R: APIRequestable>(
+            _ requestable: R,
+            value: R.Response? = nil,
+            response: HTTPURLResponse? = nil,
+            error: String? = nil,
+            noCallback: Bool = false
+    ) {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let data = value.flatMap { try! encoder.encode($0) }
+        return mockEncodedData(requestable, data: data, response: response, error: error, noCallback: noCallback)
+    }
+
+    open func mockEncodedData<R: APIRequestable>(
+            _ requestable: R,
+            data: Data? = nil,
+            response: HTTPURLResponse? = nil,
+            error: String? = nil,
+            noCallback: Bool = false
+    ) {
+        let api = URLSessionAPI()
+        let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.accessToken, actAsUserID: api.actAsUserID)
+        return mockDataRequest(request, data: data, response: response, error: error, noCallback: noCallback)
+    }
+
+    open func mockEncodableRequest<D: Codable>(
+            _ path: String,
+            value: D? = nil,
+            response: HTTPURLResponse? = nil,
+            error: String? = nil,
+            noCallback: Bool = false
+    ) {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let data = value.flatMap { try! encoder.encode($0) }
+        let api = URLSessionAPI()
+        let url = URL(string: path, relativeTo: api.baseURL.appendingPathComponent("api/v1/"))!
+        mockDataRequest(URLRequest(url: url), data: data, response: response, error: error, noCallback: noCallback)
+    }
+
+    @discardableResult
+    open func mock(course: APICourse) -> APICourse {
+        mockData(GetCourseRequest(courseID: course.id), value: course)
+        mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: course.id)), value: ["rce_enhancements"])
+        mockEncodableRequest("courses/\(course.id)/external_tools?per_page=99&include_parents=true", value: [String]())
+        return course
+    }
+
+    @discardableResult
+    open func mock(assignment: APIAssignment) -> APIAssignment {
+        mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: [ .submission ]), value: assignment)
+        mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: []), value: assignment)
+        return assignment
+    }
+
+    open func mockBaseRequests() {
+        mockData(GetUserRequest(userID: "self"), value: APIUser.make())
+        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!),
+                data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8)) // CKIClient.fetchCurrentUser
+        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile")!),
+                data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8))
+        mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self"))) // cookie keepalive
+        mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
+        mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
+        mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
+        mockData(GetAccountNotificationsRequest(), value: [])
+        let enrollment = APIEnrollment.make(
+                type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
+                role: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
+        )
+        var state: [GetCoursesRequest.State] = [.available, .completed]
+        if Bundle.main.isTeacherApp {
+            state.append(.unpublished)
+        }
+        let course = mock(course: .make(enrollments: [ enrollment ]))
+        mockData(GetCoursesRequest(enrollmentState: nil, state: state), value: [ course ])
+        mockEncodableRequest("users/self/custom_data/favorites/groups?ns=com.canvas.canvas-app", value: [String: String]())
+        mockEncodableRequest("users/self/enrollments?include[]=avatar_url", value: [enrollment])
+        mockEncodableRequest("users/self/groups", value: [String]())
+        mockEncodableRequest("users/self/todo", value: [String]())
+        mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
+        mockEncodableRequest("dashboard/dashboard_cards", value: [String]())
+    }
+
+    // MARK: mock (primitive)
+
+    open func mockDataRequest(
+            _ request: URLRequest,
+            data: Data? = nil,
+            response: HTTPURLResponse? = nil,
+            error: String? = nil,
+            noCallback: Bool = false
+    ) {
+        let message = MockDataMessage(
+                data: data,
+                error: error,
+                request: request,
+                response: response.flatMap { MockResponse(http: $0) },
+                noCallback: noCallback
+        )
+        dataMocks.append(message)
+        send(.mockData(message))
+    }
+
+    open func mockDownload(
+            _ url: URL,
+            data: URL? = nil,
+            response: HTTPURLResponse? = nil,
+            error: String? = nil
+    ) {
+        let message = MockDownloadMessage(
+                data: data.flatMap { try! Data(contentsOf: $0) },
+                error: error,
+                response: response.flatMap { MockResponse(http: $0) },
+                url: url
+        )
+        downloadMocks.append(message)
+        send(.mockDownload(message))
+    }
+
 }

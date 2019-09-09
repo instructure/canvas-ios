@@ -20,71 +20,71 @@
 
 import Foundation
 
-protocol IPCServer {
-    var machPortName: String { get }
-    var messagePort: CFMessagePort { get }
-    var queue: DispatchQueue { get }
+class IPCServer {
+    let machPortName: String
+    let messagePort: CFMessagePort
 
-    func handler(msgid: Int32, data: Data?) -> Data?
-}
+    func handler(msgid: Int32, data: Data?) -> Data? {
+        fatalError("handler(msgid:data:) must be overridden")
+    }
 
-private var knownIPCServers = [CFMessagePort: IPCServer]()
-extension IPCServer {
-    func makePort() -> CFMessagePort {
+    static var knownIPCServers = [CFMessagePort: IPCServer]()
+
+    init(machPortName: String, queue: DispatchQueue) {
+        self.machPortName = machPortName
         let handlerWrapper: CFMessagePortCallBack = { port, msgid, data, _ in
-            knownIPCServers[port!]!.handler(msgid: msgid, data: data as Data?).map { Unmanaged.passRetained($0 as CFData) }
+            IPCServer.knownIPCServers[port!]!.handler(msgid: msgid, data: data as Data?).map { Unmanaged.passRetained($0 as CFData) }
         }
-        guard let port = CFMessagePortCreateLocal(kCFAllocatorDefault, machPortName as CFString, handlerWrapper, nil, nil) else {
+        guard let port = CFMessagePortCreateLocal(kCFAllocatorDefault, self.machPortName as CFString, handlerWrapper, nil, nil) else {
             fatalError("Couldn't create mach port \(machPortName)")
         }
-        knownIPCServers[port] = self
+        messagePort = port
+        IPCServer.knownIPCServers[port] = self
         CFMessagePortSetDispatchQueue(port, queue)
-        return port
     }
 }
 
-//class IPCTestDriverServer: IPCServer {
-//    let machPortName = "com.instructure.icanvas.ui-test-driver"
-//    lazy var messagePort: CFMessagePort = makePort()
-//    lazy var queue: DispatchQueue = DispatchQueue(label: machPortName)
-//
-//    func handler(msgid: Int32, data: Data?) -> Data? { fatalError("handler(msgid:data:) has not been implemented") }
-//}
-//
-
 class IPCAppServer: IPCServer {
-    static let staticMachPortName = "com.instructure.icanvas.ui-test-app"
-    let machPortName = staticMachPortName
-    lazy var messagePort: CFMessagePort = makePort()
-    let queue: DispatchQueue = DispatchQueue.main
+    static func portName(id: String) -> String {
+        return "com.instructure.icanvas.ui-test-app-\(id)"
+    }
 
-    func handler(msgid: Int32, data: Data?) -> Data? {
+    override func handler(msgid: Int32, data: Data?) -> Data? {
         guard
             let data = data,
             let helper = try? JSONDecoder().decode(UITestHelpers.Helper.self, from: data)
         else {
             fatalError("bad IPC request")
         }
-        return UITestHelpers.shared?.doHelper(helper)
+        return UITestHelpers.shared?.run(helper)
     }
 
-    init() {
-        _ = messagePort
+    init(machPortName: String) {
+        super.init(machPortName: machPortName, queue: .main)
     }
 }
 
-struct IPCClient {
-    var messagePort: CFMessagePort!
+class IPCDriverServer: IPCServer {
+    static func portName(id: String) -> String {
+        return "com.instructure.icanvas.ui-test-driver-\(id)"
+    }
+
+    init (machPortName: String) {
+        super.init(machPortName: machPortName, queue: .global())
+    }
+}
+
+class IPCClient {
+    var messagePort: CFMessagePort?
     var serverPortName: String
     var openTimeout: TimeInterval
 
     init(serverPortName: String, timeout: TimeInterval = 60.0) {
         self.serverPortName = serverPortName
         self.openTimeout = timeout
-        openMessagePort()
     }
 
-    mutating func openMessagePort() {
+    func openMessagePort() {
         let deadline = Date().addingTimeInterval(openTimeout)
         repeat {
             if let port = CFMessagePortCreateRemote(kCFAllocatorDefault, serverPortName as CFString) {
@@ -96,8 +96,8 @@ struct IPCClient {
         fatalError("client couldn't connect to server port \(serverPortName)")
     }
 
-    mutating func requestRemote<R: Codable>(_ request: R) -> Data? {
-        if (!CFMessagePortIsValid(messagePort)) {
+    func requestRemote<R: Codable>(_ request: R) -> Data? {
+        if messagePort == nil || !CFMessagePortIsValid(messagePort) {
             openMessagePort()
         }
 
