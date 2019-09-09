@@ -37,6 +37,7 @@ class SubmitAssignmentTests: XCTestCase {
         UploadManager.shared = uploadManager
         env.api = api
         env.database = database
+        MockUploadManager.reset()
     }
 
     override func tearDown() {

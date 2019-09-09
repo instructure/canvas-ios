@@ -334,7 +334,7 @@
 /* Choose a video to send as a comment */
 "Choose Video" = "Velg video";
 
-/* Close the window */
+/* No comment provided by engineer. */
 "Close" = "Lukk";
 
 /* No comment provided by engineer. */
@@ -1055,7 +1055,8 @@
 /* No comment provided by engineer. */
 "Sent" = "Sendt";
 
-/* Title for Settings */
+/* settings button
+   Title for Settings tab */
 "Settings" = "Innstillinger";
 
 /* Title for button confirming showing a file */
@@ -1091,7 +1092,7 @@
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Forbli innlogget";
 
-/* Stop loading button for webview */
+/* A button that stops */
 "Stop" = "Stopp";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */

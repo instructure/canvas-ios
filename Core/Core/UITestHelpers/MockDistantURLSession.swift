@@ -113,6 +113,10 @@ public class MockDistantURLSession: URLSession {
             set { _taskIdentifier = newValue }
         }
 
+        public override var response: URLResponse? {
+            return MockDistantURLSession.dataMocks[url]?.response
+        }
+
         override func resume() {
             guard let session = session else { return }
             self.session = nil
@@ -194,6 +198,10 @@ public class MockDistantURLSession: URLSession {
             set { _taskIdentifier = newValue }
         }
 
+        public override var response: URLResponse? {
+            return MockDistantURLSession.downloadMocks[url]?.response
+        }
+
         override func resume() {
             guard let session = session else { return }
             self.session = nil
@@ -257,6 +265,10 @@ public class MockDistantURLSession: URLSession {
         override var taskIdentifier: Int {
             get { return _taskIdentifier }
             set { _taskIdentifier = newValue }
+        }
+
+        public override var response: URLResponse? {
+            return MockDistantURLSession.dataMocks[request.url!]?.response
         }
 
         override func resume() {

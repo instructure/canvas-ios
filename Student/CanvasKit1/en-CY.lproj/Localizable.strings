@@ -43,9 +43,6 @@
 /* The name for a video or audio response to something */
 "Media comment" = "Media comment";
 
-/* No comment provided by engineer. */
-"Media Comment" = "Media comment";
-
 /* Pass/fail assignment is not complete */
 "Not Complete" = "Not complete";
 

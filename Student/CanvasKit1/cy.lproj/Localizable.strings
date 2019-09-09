@@ -43,9 +43,6 @@
 /* The name for a video or audio response to something */
 "Media comment" = "Sylw ar gyfryngau";
 
-/* No comment provided by engineer. */
-"Media Comment" = "Sylw ar Gyfryngau";
-
 /* Pass/fail assignment is not complete */
 "Not Complete" = "Heb Gwblhau";
 
