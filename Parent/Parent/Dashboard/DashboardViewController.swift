@@ -22,10 +22,10 @@ import ReactiveSwift
 import CanvasCore
 import Core
 
-typealias DashboardSettingsAction = (_ session: Session)->Void
-typealias DashboardSelectCalendarEventAction = (_ session: Session, _ observeeID: String, _ calendarEvent: CalendarEvent)->Void
-typealias DashboardSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: CanvasCore.Course)->Void
-typealias DashboardSelectAlertAction = (_ session: Session, _ observeeID: String, _ alert: Alert)->Void
+typealias DashboardSettingsAction = (_ session: Session) -> Void
+typealias DashboardSelectCalendarEventAction = (_ session: Session, _ observeeID: String, _ calendarEvent: CalendarEvent) -> Void
+typealias DashboardSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: CanvasCore.Course) -> Void
+typealias DashboardSelectAlertAction = (_ session: Session, _ observeeID: String, _ alert: Alert) -> Void
 
 struct DashboardViewState {
     var studentCount = 0
@@ -36,8 +36,7 @@ struct DashboardViewState {
 class DashboardViewController: UIViewController {
     var studentCollection: FetchedCollection<Student>!
     var studentSyncProducer: Student.ModelPageSignalProducer!
-    
-    
+
     // Views created from storyboard
     @IBOutlet weak var headerContainerView: UIView!
     @IBOutlet weak var studentInfoContainer: UIView!
@@ -45,12 +44,12 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var studentInfoAvatar: UIImageView!
     @IBOutlet weak var studentInfoName: UILabel!
     @IBOutlet weak var studentInfoDownArrow: UIImageView!
-    
+
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var coursesTabItem: UITabBarItem!
     @IBOutlet weak var calendarTabItem: UITabBarItem!
     @IBOutlet weak var alertsTabItem: UITabBarItem!
-    
+
     // Views hooked up
     @objc var pageViewController: UIPageViewController!
     @objc var context: NSManagedObjectContext!
@@ -61,13 +60,13 @@ class DashboardViewController: UIViewController {
 
     @objc var session: Session!
     var presenter: DashboardPresenter?
-    
-    @objc var selectCourseAction: DashboardSelectCourseAction? = nil
-    @objc var selectCalendarEventAction: DashboardSelectCalendarEventAction? = nil
-    @objc var selectAlertAction: DashboardSelectAlertAction? = nil
 
-    @objc var logoutAction: (()->Void)? = nil
-    @objc var addStudentAction: (()->Void)? = nil
+    @objc var selectCourseAction: DashboardSelectCourseAction?
+    @objc var selectCalendarEventAction: DashboardSelectCalendarEventAction?
+    @objc var selectAlertAction: DashboardSelectAlertAction?
+
+    @objc var logoutAction: (() -> Void)?
+    @objc var addStudentAction: (() -> Void)?
 
     @objc var currentStudent: Student? {
         didSet {
@@ -93,7 +92,7 @@ class DashboardViewController: UIViewController {
     @objc var adminViewController: AdminViewController!
     var viewState = DashboardViewState()
     var shownNotAParent = false
-    
+
     // ---------------------------------------------
     // MARK: - Initializers
     // ---------------------------------------------
@@ -104,7 +103,7 @@ class DashboardViewController: UIViewController {
         }
         controller.session = session
         controller.presenter = DashboardPresenter(view: controller)
-        
+
         return controller
     }
 
@@ -114,38 +113,38 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        
+
         // Remove the testing background colors
         studentInfoContainer.backgroundColor = .clear
         studentInfoName.backgroundColor = .clear
-        
+
         studentInfoDownArrow.image = UIImage.icon(.dropdown)
-        
+
         // Decorate the avatar to be circular
         studentInfoAvatar.layer.cornerRadius = studentInfoAvatar.frame.width / 2
         studentInfoAvatar.layer.borderWidth = 1
         studentInfoAvatar.layer.borderColor = UIColor.white.cgColor
         studentInfoAvatar.clipsToBounds = true
-        
+
         // Add the gesture recognizer that will open the action sheet to select a student
         let tap = UITapGestureRecognizer(target: self, action: #selector(studentInfoTapped))
         studentInfoContainer.addGestureRecognizer(tap)
-        
+
         // Set the tab navigation background and the base view to be the same
         // This will make color below the safe area to be the same as the tab nav
         tabBar.barTintColor = UIColor.init(r: 254, g: 254, b: 254)
         view.backgroundColor = tabBar.barTintColor
-        
+
         if !UIAccessibility.isReduceTransparencyEnabled {
             let colorScheme = ColorCoordinator.colorSchemeForParent()
             headerContainerView.backgroundColor = colorScheme.mainColor
             tabBar.tintColor = colorScheme.mainColor
         }
-        
+
         self.studentInfoContainer.isHidden = true
         presenter?.viewIsReady()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -165,23 +164,23 @@ class DashboardViewController: UIViewController {
             print(error)
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embed_page_view_controller" {
             guard let pageViewController = segue.destination as? UIPageViewController else {
                 fatalError("PageViewController is not of type UIPageViewController")
             }
-            
+
             self.pageViewController = pageViewController
             self.pageViewController?.delegate = self
             self.pageViewController?.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
         }
     }
-    
+
     // ---------------------------------------------
     // MARK: - View Setup
     // ---------------------------------------------
-    override var preferredStatusBarStyle : UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         if UIAccessibility.isReduceTransparencyEnabled {
             return .default
         } else {
@@ -193,20 +192,19 @@ class DashboardViewController: UIViewController {
         viewState.isSiteAdmin = session.isSiteAdmin
         studentCollection = try Student.observedStudentsCollection(session)
         studentCountObserver = try Student.countOfObservedStudentsObserver(session) { [weak self] count in
-            
+
             // Check to see if all students were all removed during
             // the current user session
             var noMoreLinkedStudents = false
             if count == 0,
                let state = self?.viewState,
                state.studentCount > 0,
-               state.isValidObserver
-            {
+               state.isValidObserver {
                 noMoreLinkedStudents = true
             }
-            
+
             self?.viewState.studentCount = count
-            
+
             if (noMoreLinkedStudents) {
                 DispatchQueue.main.async {
                     self?.updateMainView()
@@ -216,7 +214,7 @@ class DashboardViewController: UIViewController {
 
         try retrieveStudents()
     }
-    
+
     @objc func retrieveStudents() throws {
         studentSyncProducer = try Student.observedStudentsSyncProducer(session)
         studentSyncProducer.startWithSignal { [weak self] (signal, disposable) in
@@ -229,7 +227,7 @@ class DashboardViewController: UIViewController {
             })
         }
     }
-    
+
     @objc public func updateMainView() {
         if (!viewState.isValidObserver &&
             !viewState.isSiteAdmin &&
@@ -248,61 +246,61 @@ class DashboardViewController: UIViewController {
         if (viewState.isSiteAdmin || presenter?.permissions.first?.becomeUser == true) && viewState.studentCount == 0 {
             showSiteAdminViews()
         }
-        
+
         displayDefaultStudent()
     }
-    
+
     @objc func studentAtIndex(_ index: Int) -> Student? {
         guard index >= 0 else { return nil }
         guard let collection = studentCollection else { return nil }
         guard collection.numberOfItemsInSection(0) > index else { return nil }
         return collection[IndexPath(row: index, section: 0)]
     }
-    
+
     @objc func setupTabs() {
         tabBar.delegate = self
-        
+
         let coursesTitle = NSLocalizedString("Courses", comment: "Courses Tab")
         let tabViewFormatString = NSLocalizedString("%@ %d of %d", comment: "<String> <Int> of <Int>")
-        
+
         coursesTabItem.title = coursesTitle
         coursesTabItem.image = UIImage.icon(.courses)
         coursesTabItem.selectedImage = UIImage.icon(.courses)
         coursesTabItem.accessibilityLabel = String.localizedStringWithFormat(tabViewFormatString, coursesTitle, 1, 3)
-        
+
         let calendarTitle = NSLocalizedString("Week", comment: "Calendar Tab")
         calendarTabItem.title = calendarTitle
         calendarTabItem.image = UIImage.icon(.calendar)
         calendarTabItem.selectedImage = UIImage.icon(.calendar)
         calendarTabItem.accessibilityLabel = String.localizedStringWithFormat(tabViewFormatString, calendarTitle, 2, 3)
-        
+
         let alertsTitle = NSLocalizedString("Alerts", comment: "Alerts Tab")
         alertsTabItem.title = alertsTitle
         alertsTabItem.image = UIImage.icon(.notification)
         alertsTabItem.selectedImage = UIImage.icon(.notification)
         alertsTabItem.accessibilityLabel = String.localizedStringWithFormat(tabViewFormatString, alertsTitle, 3, 3)
-        
+
         selectCoursesTab()
     }
-    
+
     @objc func showSiteAdminViews() {
         studentInfoName.text = NSLocalizedString("Admin", comment: "Label displayed when logged in as an admin")
         studentInfoContainer.accessibilityLabel = studentInfoName.text
         studentInfoAvatar.isHidden = true
         let storyboard = UIStoryboard(name: "AdminViewController", bundle: nil)
         adminViewController = storyboard.instantiateViewController(withIdentifier: "vc") as? AdminViewController
-        
+
         adminViewController.actAsUserHandler = { [weak self] in
             self?.presenter?.showActAsUserScreen()
         }
-        
+
         pageViewController?.setViewControllers([adminViewController], direction: .reverse, animated: false, completion: { _ in })
     }
-    
+
     @objc func showNotAParentView() {
         presenter?.showWrongAppScreen()
     }
-    
+
     // ---------------------------------------------
     // MARK: - Data Methods
     // ---------------------------------------------
@@ -311,7 +309,7 @@ class DashboardViewController: UIViewController {
         if let calendarVC = calendarViewController as? CalendarEventWeekPageViewController, let currentStart = calendarVC.currentStartDate {
             calendarStartDate = currentStart
         }
-        
+
         coursesViewController = coursesViewController(session)
         coursesViewController?.refresher?.refresh(false)
         calendarViewController = calendarViewController(session, startDate: calendarStartDate)
@@ -320,9 +318,9 @@ class DashboardViewController: UIViewController {
         guard let coursesViewController = coursesViewController, let calendarViewController = calendarViewController, let alertsViewController = alertsViewController else {
             return
         }
-        
+
         viewControllers = [coursesViewController, calendarViewController, alertsViewController]
-        
+
         // MBL-10849: Re-select the same view when switching between students
         if let selected = tabBar.selectedItem {
             if selected == calendarTabItem {
@@ -347,26 +345,27 @@ class DashboardViewController: UIViewController {
             alertsTabItem.badgeValue = nil
         }
     }
-    
+
     // ---------------------------------------------
     // MARK: - ChildViewControllers
     // ---------------------------------------------
     @objc func initialViewController() -> UIViewController? {
         return coursesViewController
     }
-    
+
     func coursesViewController(_ session: Session) -> CourseListViewController? {
         guard let currentStudent = currentStudent else {
             return nil
         }
 
+        //  swiftlint:disable:next force_try
         let coursesViewController = try! CourseListViewController(session: session, studentID: currentStudent.id)
         coursesViewController.selectCourseAction = { [weak self] in
             self?.selectCourseAction?($0, $1, $2)
         }
         return coursesViewController
     }
-    
+
     @objc func calendarViewController(_ session: Session, startDate: Date = Date()) -> UIViewController? {
         guard let currentStudent = currentStudent else {
             return nil
@@ -382,51 +381,52 @@ class DashboardViewController: UIViewController {
 
     @objc func alertsViewController(_ session: Session) -> UIViewController? {
         guard let currentStudent = currentStudent else { return nil }
+        //  swiftlint:disable:next force_try
         return try! AlertsListViewController(session: session, observeeID: currentStudent.id)
     }
-    
+
     @objc func studentInfoTapped(gesture: UITapGestureRecognizer) {
         guard let collection = studentCollection else { return }
         guard collection.numberOfItemsInSection(0) > 0 else { return }
-        
+
         let alertControllerTitle = NSLocalizedString("Choose a student", comment: "")
         let alertController = UIAlertController(title: alertControllerTitle, message: nil, preferredStyle: .actionSheet)
         if let popover = alertController.popoverPresentationController {
             popover.permittedArrowDirections = [.up]
             popover.sourceView = view
-            
+
             // position the alert to be below the student name and in the center of it
             let frame = view.convert(studentInfoName.frame, from: studentInfoStackView)
             popover.sourceRect = CGRect(x: frame.midX, y: frame.maxY + 3, width: 0, height: 0)
         }
-        
+
         collection.forEach { student in
-            alertController.addAction(UIAlertAction(title: student.name, style: .default) { [weak self] action in
+            alertController.addAction(UIAlertAction(title: student.name, style: .default) { [weak self] _ in
                 self?.currentStudent = student
             })
         }
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-        
+
         present(alertController, animated: true, completion: nil)
     }
 
     @objc func selectCoursesTab() {
         tabBar.selectedItem = coursesTabItem
-        
+
         guard let coursesViewController = coursesViewController else {
             return
         }
-        
+
         self.pageViewController?.setViewControllers([coursesViewController], direction: .reverse, animated: false, completion: { _ in })
     }
-    
+
     @objc func selectCalendarTab() {
         tabBar.selectedItem = calendarTabItem
-        
+
         guard let calendarViewController = calendarViewController else {
             return
         }
-        
+
         // Because we're in the middle we have to figure out which direction to go
         let viewController = self.pageViewController?.viewControllers?[0]
         var direction = UIPageViewController.NavigationDirection.forward
@@ -435,31 +435,31 @@ class DashboardViewController: UIViewController {
         }
         self.pageViewController?.setViewControllers([calendarViewController], direction: direction, animated: false, completion: { _ in })
     }
-    
+
     @objc func selectAlertsTab() {
         tabBar.selectedItem = alertsTabItem
-        
+
         guard let alertsViewController = alertsViewController else {
             return
         }
-        
+
         self.pageViewController?.setViewControllers([alertsViewController], direction: .forward, animated: false, completion: { _ in })
     }
-    
+
     @IBAction func drawerDashboardButtonPreseed(_ sender: UIButton) {
         Router.sharedInstance.route(self, toURL: Router.sharedInstance.profileRoute(), modal: true)
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         // TODO
         // reload user dropdown?
     }
-    
+
     @objc func displayDefaultStudent() {
         currentStudent = studentAtIndex(0)
     }
-    
+
     @objc func updateStudentInfoView() {
         studentInfoName.text = currentStudent?.name
         studentInfoAvatar.isHidden = currentStudent == nil
@@ -477,7 +477,7 @@ class DashboardViewController: UIViewController {
     }
 }
 
-extension DashboardViewController : UITabBarDelegate {
+extension DashboardViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item == calendarTabItem {
             selectCalendarTab()
@@ -489,23 +489,23 @@ extension DashboardViewController : UITabBarDelegate {
     }
 }
 
-extension DashboardViewController : UIPageViewControllerDelegate {
-    
+extension DashboardViewController: UIPageViewControllerDelegate {
+
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         let viewController = pageViewController.viewControllers?[0]
-        
+
         if viewController == coursesViewController {
             tabBar.selectedItem = coursesTabItem
-        }else if viewController == calendarViewController {
+        } else if viewController == calendarViewController {
             tabBar.selectedItem = calendarTabItem
-        }else if viewController == alertsViewController {
+        } else if viewController == alertsViewController {
             tabBar.selectedItem = alertsTabItem
         }
     }
-    
+
 }
 
 // Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIBackgroundTaskIdentifier(_ input: Int) -> UIBackgroundTaskIdentifier {
+private func convertToUIBackgroundTaskIdentifier(_ input: Int) -> UIBackgroundTaskIdentifier {
 	return UIBackgroundTaskIdentifier(rawValue: input)
 }

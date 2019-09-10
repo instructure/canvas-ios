@@ -19,32 +19,32 @@
 import UIKit
 import CanvasCore
 
-typealias RouteHandler = (_ params: [String : Any]?) -> UIViewController?
+typealias RouteHandler = (_ params: [String: Any]?) -> UIViewController?
 typealias FallbackHandler = (_ url: URL?) -> UIViewController?
 
 class Router {
-    
+
     var session: Session?
     var window: UIWindow?
-    
+
     static let sharedInstance = Router()
-    
-    fileprivate var fallbackHandler : FallbackHandler = { url in    // Private for now.  No need to open this up until it's needed
+
+    fileprivate var fallbackHandler: FallbackHandler = { url in    // Private for now.  No need to open this up until it's needed
         guard let url = url else {
             return UIViewController()
         }
-        
+
         if url.scheme == "parent-courses" {
             return nil
         }
-        
+
         // TODO: Setup a SafariViewController here
         return UIViewController()
     }
-    
-    fileprivate var routes = [String : RouteHandler]()
+
+    fileprivate var routes = [String: RouteHandler]()
     fileprivate var numberFormatter = NumberFormatter()
-    
+
     // ---------------------------------------------
     // MARK: - Adding Routes
     // ---------------------------------------------
@@ -63,7 +63,7 @@ class Router {
     func addRoute(_ route: String, handler: @escaping RouteHandler) {
         routes[route] = handler
     }
-    
+
     /**
      Adds multple routes to the route map
      
@@ -72,12 +72,12 @@ class Router {
      - Parameters
         - newRoutes: mapping similar to our map that key a Route Handler to a Route Template
     */
-    func addRoutesWithDictionary(_ newRoutes: [String : RouteHandler]) {
+    func addRoutesWithDictionary(_ newRoutes: [String: RouteHandler]) {
         for route in newRoutes.keys {
             routes[route] = newRoutes[route]
         }
     }
-    
+
     // ---------------------------------------------
     // MARK: - Dispatching
     // ---------------------------------------------
@@ -90,11 +90,10 @@ class Router {
     */
     func viewControllerForURL(_ url: URL?) -> UIViewController? {
         guard let url = url else { return nil }
-        
+
         return matchURL(url)
     }
-    
-    
+
     /**
      Routes from a specific view controller to the URL provided.
      
@@ -113,11 +112,11 @@ class Router {
             // Return Fallback View Controller
             return UIViewController()
         }
-        
+
         fromController.transitionToViewController(viewController, animated: animated, modal: modal)
         return viewController
     }
-    
+
     /**
      Routes from a specific view controller to the URL provided.
      
@@ -134,40 +133,41 @@ class Router {
             window.rootViewController = navController
             }, completion: nil)
     }
-    
-    
+
     // ---------------------------------------------
     // MARK: - URL Parsing
     // ---------------------------------------------
     /**
-     Matches a URL to the existing Route Templates in our route mapping.  It then executes the handler with the parameters provided.  Additionally it adds a session if one is available in the "session" variable of the parameters to be handled by the view controller.
+     Matches a URL to the existing Route Templates in our route mapping.  It then executes the
+     handler with the parameters provided.  Additionally it adds a session if one is available
+     in the "session" variable of the parameters to be handled by the view controller.
     
      Parameter url: url that hopefully matches a Route Template in the mapping.
     
      Returns: A View Controller created from the handler if possible, if not it returns nil
     */
     func matchURL(_ matchURL: URL) -> UIViewController? {
-        
+
         // Without a path, how can we route anywhere
         var urlComponents: [String] = []
         let realPath = matchURL.path.replacingOccurrences(of: "api/v1/", with: "")
         urlComponents = URL(fileURLWithPath: realPath).pathComponents.filter { $0 != "/" }
 
         guard urlComponents.count > 0 else { return nil }
-        
-        var matchingRoute : String? = nil
+
+        var matchingRoute: String?
         var params = [String: Any]()
         for route in routes.keys {
             // Verify that an invalid route wasn't passed in
             guard let routePathComponents = URL(string: route)?.pathComponents, routePathComponents.count > 0 else {
                 continue
             }
-            
+
             // Can't match if the size is different
             guard routePathComponents.count == urlComponents.count else {
                 continue
             }
-            
+
             var componentsMatch = true
             for (index, component) in routePathComponents.enumerated() {
                 if component.hasPrefix(":") {
@@ -184,11 +184,11 @@ class Router {
                     break
                 }
             }
-            
+
             guard componentsMatch == true else {
                 continue
             }
-            
+
             matchingRoute = route
 
             params["route"] = route
@@ -200,14 +200,14 @@ class Router {
                 params[queryItem.name] = queryItem.value
             }
         }
-        
+
         if let route = matchingRoute, let handler = routes[route] {
             return handler(params)
         }
-        
+
         return nil
     }
-    
+
 }
 
 // ---------------------------------------------

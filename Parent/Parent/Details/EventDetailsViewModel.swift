@@ -18,7 +18,6 @@
 
 import UIKit
 
-
 import CanvasCore
 
 private let TitleCellReuseIdentifier = "TitleCell"
@@ -197,7 +196,7 @@ enum EventDetailsViewModel: TableViewCellViewModel {
 }
 
 extension EventDetailsViewModel: Equatable { }
-func ==(lhs: EventDetailsViewModel, rhs: EventDetailsViewModel) -> Bool {
+func == (lhs: EventDetailsViewModel, rhs: EventDetailsViewModel) -> Bool {
     switch(lhs, rhs) {
     case let (.info(leftName, leftSubmissionInfo, _), .info(rightName, rightSubmissionInfo, _)):
         return leftName == rightName && leftSubmissionInfo == rightSubmissionInfo

@@ -22,20 +22,20 @@ import CanvasCore
 class SettingsViewModel {
     var objects: [SessionUser] = []
     let session: Session
-    
+
     init(session: Session) {
         self.session = session
     }
-    
+
     // ---------------------------------------------
     // MARK: - Header Fields
     // ---------------------------------------------
     func nameText() -> String {
         return session.user.name
     }
-    
+
     func emailText() -> String {
         return session.user.email ?? ""
     }
-    
+
 }

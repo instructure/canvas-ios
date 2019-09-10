@@ -24,8 +24,8 @@ class DatePickerViewController: UIViewController {
     @objc let datePicker: UIDatePicker = UIDatePicker()
     @objc let datePickerHeight: CGFloat = 216.0
 
-    @objc var cancelAction: ()->() = { }
-    @objc var doneAction: (Date)->() = { _ in }
+    @objc var cancelAction: () -> Void = { }
+    @objc var doneAction: (Date) -> Void = { _ in }
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -60,7 +60,7 @@ class DatePickerViewController: UIViewController {
         navigationItem.rightBarButtonItem = doneButton
     }
 
-    override var preferredStatusBarStyle : UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 

@@ -63,6 +63,7 @@ class ThresholdsListViewController: UITableViewController {
 
         controller.session = session
         controller.studentID = studentID
+        //  swiftlint:disable next force_try
         controller.studentObserver = try! Student.observer(session, studentID: studentID)
         // TODO: is there a better way of syncing just one student without an api call for a single one?
         // This should pull the whole list, then the observer will pick up any changes to that given object
@@ -86,12 +87,12 @@ class ThresholdsListViewController: UITableViewController {
             print(error)
         }
 
-        studentObserver?.signal.observeOn(UIScheduler()).observeNext{ [unowned self] (change, student) in
+        studentObserver?.signal.observeOn(UIScheduler()).observeNext { [unowned self] (change, _) in
             switch change {
             case .Insert, .Update:
                 self.tableView.reloadData()
             case .Delete:
-                if let count = try? Student.countOfObservedStudents(self.session) where count == 0 {
+                if let count = try? Student.countOfObservedStudents(self.session), count == 0 {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
                     self.navigationController?.popViewControllerAnimated(true)
@@ -126,13 +127,22 @@ class ThresholdsListViewController: UITableViewController {
     func setupToolbar() {
         let rightSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         let leftSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        removeButton = UIBarButtonItem(title: NSLocalizedString("Remove", comment: "Remove Observee Button"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ThresholdsListViewController.removeButtonPressed(_:)))
+        removeButton = UIBarButtonItem(title: NSLocalizedString("Remove", comment: "Remove Observee Button"),
+                                       style: UIBarButtonItemStyle.Plain,
+                                       target: self,
+                                       action: #selector(ThresholdsListViewController.removeButtonPressed(_:)))
         removeButton.tintColor = UIColor.redColor()
         removeToolbarItems = [rightSpace, removeButton, leftSpace]
         self.toolbarItems = removeToolbarItems
 
         let activityIndicatorItem = UIBarButtonItem(customView: removeActivityIndicator)
-        activityToolbarItems = [UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil), activityIndicatorItem, UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)]
+        activityToolbarItems = [UIBarButtonItem(barButtonSystemItem: .FlexibleSpace,
+                                                target: nil,
+                                                action: nil),
+                                                activityIndicatorItem,
+                                                UIBarButtonItem(barButtonSystemItem: .FlexibleSpace,
+                                                                       target: nil,
+                                                                       action: nil), ]
 
         doneToolbar = UIToolbar()
         doneToolbar.sizeToFit()
@@ -142,7 +152,7 @@ class ThresholdsListViewController: UITableViewController {
     }
 
     func refresh(refreshContol: UIRefreshControl?) {
-        guard let syncProducer = syncProducer, observeeSyncProducer = studentSyncProducer else { return }
+        guard let syncProducer = syncProducer, let observeeSyncProducer = studentSyncProducer else { return }
 
         syncProducer.start { event in
             switch event {
@@ -176,7 +186,7 @@ class ThresholdsListViewController: UITableViewController {
     // ---------------------------------------------
     // MARK: - UITableView DataSource
     // ---------------------------------------------
-    
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
@@ -189,7 +199,7 @@ class ThresholdsListViewController: UITableViewController {
             return NSLocalizedString("Thresholds Title", value: "Notify me when:", comment: "Thresholds Title")
         }
     }
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case userInfoSection:
@@ -237,7 +247,7 @@ class ThresholdsListViewController: UITableViewController {
         view.text = title
         return view
     }
-    
+
     func configureCell(cell: ChangeThresholdsCell, forRowAtIndexPath indexPath: NSIndexPath) {
         let thresholdType = thresholdTypes[indexPath.row]
 
@@ -271,7 +281,7 @@ class ThresholdsListViewController: UITableViewController {
         cell.nameLabel.text = student.name
 
         let avatarImageView = cell.avatarImageView
-        avatarImageView.layer.cornerRadius = CGRectGetHeight(avatarImageView.frame)/2
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height/2
         avatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
         avatarImageView.layer.borderWidth = 2.0
         avatarImageView.backgroundColor = UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 235.0/255.0, alpha: 1.0)
@@ -293,7 +303,7 @@ class ThresholdsListViewController: UITableViewController {
             .AssignmentGradeLow,
             .AssignmentGradeHigh,
 //            .InstitutionAnnouncement,
-            .CourseAnnouncement
+            .CourseAnnouncement,
         ]
     }
 
@@ -338,7 +348,9 @@ class ThresholdsListViewController: UITableViewController {
     // MARK: - IBActions
     // ---------------------------------------------
     func removeButtonPressed(sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: nil, message: NSLocalizedString("Are you sure you want to remove this observee?", comment: "Remove Observee Confirmation"), preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: nil,
+                                                message: NSLocalizedString("Are you sure you want to remove this observee?", comment: "Remove Observee Confirmation"),
+                                                preferredStyle: .ActionSheet)
 
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Remove Observee Cancel Button"), style: .Cancel) { _ in }
         alertController.addAction(cancelAction)
@@ -357,7 +369,7 @@ class ThresholdsListViewController: UITableViewController {
         self.toolbarItems = activityToolbarItems
         removeActivityIndicator.startAnimating()
         guard let student = studentObserver?.object else { return }
-        student.remove(session) { [unowned self] result in
+        student.remove(session) { [unowned self] _ in
             dispatch_async(dispatch_get_main_queue()) {
                 self.removeActivityIndicator.stopAnimating()
                 self.toolbarItems = self.removeToolbarItems
@@ -427,14 +439,14 @@ extension ThresholdsListViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
         let index = textField.tag
         guard let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: thresholdSection)) as? ChangeThresholdsCell,
-            value = textField.text where
+            let value = textField.text,
             cell.toggle.on else {
             return
         }
 
         // if we don't have a threshold, create one
         let thresholdType = thresholdTypes[index]
-        guard let _ = thresholdForType(thresholdType) else {
+        guard thresholdForType(thresholdType) != nil else {
             createThresholdAtIndex(index, thresholdValue: textField.text)
             return
         }

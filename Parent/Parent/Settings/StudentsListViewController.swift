@@ -19,13 +19,13 @@
 import UIKit
 import CanvasCore
 
-typealias StudentsListSelectStudentAction = (_ session: Session, _ student: Student)->Void
+typealias StudentsListSelectStudentAction = (_ session: Session, _ student: Student) -> Void
 
 class StudentsListViewController: FetchedTableViewController<Student> {
 
     fileprivate let session: Session
 
-    @objc var selectStudentAction: StudentsListSelectStudentAction? = nil
+    @objc var selectStudentAction: StudentsListSelectStudentAction?
 
     @objc init(session: Session) throws {
         self.session = session

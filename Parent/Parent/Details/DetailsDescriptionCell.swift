@@ -44,8 +44,14 @@ class DetailsDescriptionCell: WhizzyWigTableViewCell {
         contentView.addSubview(iconImageView)
 
         let views = ["iconImageView": iconImageView, "whizzyWigView": whizzyWigView]
-        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-padding-[iconImageView(iconHeight)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: ["padding": 10, "iconHeight": 28], views: views)
-        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-padding-[iconImageView(iconWidth)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: ["padding": 12, "iconWidth": 31], views: views)
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-padding-[iconImageView(iconHeight)]",
+                                                                 options: NSLayoutConstraint.FormatOptions(rawValue: 0),
+                                                                 metrics: ["padding": 10, "iconHeight": 28],
+                                                                 views: views)
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-padding-[iconImageView(iconWidth)]",
+                                                                   options: NSLayoutConstraint.FormatOptions(rawValue: 0),
+                                                                   metrics: ["padding": 12, "iconWidth": 31],
+                                                                   views: views)
 
         contentView.addConstraints(verticalConstraints)
         contentView.addConstraints(horizontalConstraints)

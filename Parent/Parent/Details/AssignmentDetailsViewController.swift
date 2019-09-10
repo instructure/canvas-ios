@@ -28,7 +28,11 @@ extension EventDetailsViewModel {
             let remindable = Reminder(id: assignment.id, title: assignment.reminderTitle, body: assignment.reminderBody, date: assignment.defaultReminderDate)
             var deets: [EventDetailsViewModel] = [
                 .info(name: assignment.name, submissionInfo: assignment.submittedVerboseText, submissionColor: assignment.submittedColor),
-                .reminder(remindable: remindable, actionURL: Router.sharedInstance.assignmentDetailsRoute(studentID: observeeID, courseID: assignment.courseID, assignmentID: assignment.id), context: context),
+                .reminder(remindable: remindable,
+                          actionURL: Router.sharedInstance.assignmentDetailsRoute(studentID: observeeID,
+                                                                                  courseID: assignment.courseID,
+                                                                                  assignmentID: assignment.id),
+                          context: context),
             ]
 
             if let dueDate = assignment.due {
@@ -73,4 +77,3 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
         fatalError("init(coder:) has not been implemented")
     }
 }
-

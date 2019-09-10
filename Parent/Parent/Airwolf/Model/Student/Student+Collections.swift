@@ -31,8 +31,10 @@ extension Student {
         return count
     }
 
-    public static func countOfObservedStudentsObserver(_ session: Session, countUpdated: @escaping (Int)->Void) throws -> ManagedObjectCountObserver<Student> {
-        let observer = ManagedObjectCountObserver<Student>(predicate: NSPredicate(format: "%K == %@", "parentID", session.user.id), inContext: try session.airwolfManagedObjectContext(), objectCountUpdated: countUpdated)
+    public static func countOfObservedStudentsObserver(_ session: Session, countUpdated: @escaping (Int) -> Void) throws -> ManagedObjectCountObserver<Student> {
+        let observer = ManagedObjectCountObserver<Student>(predicate: NSPredicate(format: "%K == %@", "parentID", session.user.id),
+                                                           inContext: try session.airwolfManagedObjectContext(),
+                                                           objectCountUpdated: countUpdated)
         return observer
     }
 

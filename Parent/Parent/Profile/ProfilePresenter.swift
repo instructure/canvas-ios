@@ -87,7 +87,7 @@ public class ProfilePresenter: ProfilePresenterProtocol {
                     guard let session = delegate.environment.currentSession else { return }
                     delegate.userDidLogout(session: session)
                 }
-            )
+            ),
         ])
 
         if env.currentSession?.actAsUserID != nil {

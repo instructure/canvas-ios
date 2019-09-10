@@ -18,7 +18,6 @@
 
 import Foundation
 
-
 import CanvasCore
 
 open class AlertAPI {
@@ -37,4 +36,3 @@ open class AlertAPI {
         return try session.PUT(path)
     }
 }
-

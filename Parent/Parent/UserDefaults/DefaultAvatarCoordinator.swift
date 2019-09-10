@@ -42,8 +42,8 @@ class DefaultAvatarCoordinator {
     }
 
     static func defaultAvatarForKey(_ key: String) -> UIImage {
-        guard let colorSchemeIndexDictionary = UserDefaults.standard.object(forKey: DefaultAvatarDictionaryKey) as? [String : Int] else {
-            var colorSchemeIndexDictionary = [String : Int]()
+        guard let colorSchemeIndexDictionary = UserDefaults.standard.object(forKey: DefaultAvatarDictionaryKey) as? [String: Int] else {
+            var colorSchemeIndexDictionary = [String: Int]()
             let nextIndex = nextAvatarIndex()
             colorSchemeIndexDictionary[key] = nextIndex
             UserDefaults.standard.set(colorSchemeIndexDictionary, forKey: DefaultAvatarDictionaryKey)
@@ -72,8 +72,8 @@ class DefaultAvatarCoordinator {
 
         defaults.set(nextIndex, forKey: CurrentAvatarIndexKey)
         defaults.synchronize()
-        
+
         return nextIndex
     }
-    
+
 }
