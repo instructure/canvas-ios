@@ -25,7 +25,7 @@ class DashboardTests: CoreUITestCase {
     func testAnnouncementBelowInvite() {
         CourseInvitation.acceptButton(id: "998").waitToExist()
         AccountNotifications.toggleButton(id: "2").waitToExist()
-        XCTAssertLessThan(CourseInvitation.acceptButton(id: "998").frame.maxY, AccountNotifications.toggleButton(id: "2").frame.minY)
+        XCTAssertLessThan(CourseInvitation.acceptButton(id: "998").frame().maxY, AccountNotifications.toggleButton(id: "2").frame().minY)
     }
 
     func testAnnouncementToggle() {
@@ -56,7 +56,7 @@ class DashboardTests: CoreUITestCase {
 
     func testCourseCardInfo() {
         Dashboard.courseCard(id: "263").waitToExist()
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label, "Assignments")
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label(), "Assignments")
     }
 
     func testSeeAllButtonDisplaysCorrectCourses() {

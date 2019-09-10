@@ -22,11 +22,11 @@ import XCTest
 import TestsFoundation
 
 class SubmissionFilesTests: StudentUITestCase {
-    lazy var course: APICourse = {
-        let course = APICourse.make()
+    let course = APICourse.make()
+
+    override func setUp() {
         mockData(GetCourseRequest(courseID: course.id), value: course)
-        return course
-    }()
+    }
 
     lazy var assignment: APIAssignment = {
         let assignment = APIAssignment.make()

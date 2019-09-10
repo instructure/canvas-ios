@@ -84,7 +84,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       codeCoverageEnabled = "YES"
       onlyGenerateCoverageForSpecifiedTargets = "YES"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "NO">
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -162,62 +162,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2C964836211E2F1A002C3255"
-               BuildableName = "CoreTests.xctest"
-               BlueprintName = "CoreTests"
-               ReferencedContainer = "container:../Core/Core.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7DE1160622F8AAB1005BFE98"
-               BuildableName = "StudentUnitTests.xctest"
-               BlueprintName = "StudentUnitTests"
-               ReferencedContainer = "container:Student.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B1CA092D22C4237C008AA352"
-               BuildableName = "SubmitAssignmentTests.xctest"
-               BlueprintName = "SubmitAssignmentTests"
-               ReferencedContainer = "container:Student.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B15CA25C221DDB820014FB02"
-               BuildableName = "TeacherTests.xctest"
-               BlueprintName = "TeacherTests"
-               ReferencedContainer = "container:../rn/Teacher/ios/Teacher.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "YES"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "7DC5716F22F8B16200F2E9BB"
                BuildableName = "StudentUITests.xctest"
                BlueprintName = "StudentUITests"
                ReferencedContainer = "container:Student.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E8315D3522FC9E60003CD27C"
-               BuildableName = "TeacherUITests.xctest"
-               BlueprintName = "TeacherUITests"
-               ReferencedContainer = "container:../rn/Teacher/ios/Teacher.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -230,6 +178,13 @@
             ReferencedContainer = "container:Student.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "LIST_TESTS_ONLY"
+            value = "YES"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

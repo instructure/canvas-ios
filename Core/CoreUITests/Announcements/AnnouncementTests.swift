@@ -34,10 +34,9 @@ class AnnouncementTests: CoreUITestCase {
         }
         CourseNavigation.announcements.tap()
 
-        AnnouncementList.cell(index: 0).waitToExist()
-        XCTAssert(AnnouncementList.cell(index: 0).label.contains("Announcement Three"))
-        XCTAssert(AnnouncementList.cell(index: 1).label.contains("Announcement Two"))
-        XCTAssert(AnnouncementList.cell(index: 2).label.contains("Announcement One"))
+        XCTAssert(AnnouncementList.cell(index: 0).label().contains("Announcement Three"))
+        XCTAssert(AnnouncementList.cell(index: 1).label().contains("Announcement Two"))
+        XCTAssert(AnnouncementList.cell(index: 2).label().contains("Announcement One"))
     }
 
     func testViewAnnouncement() {

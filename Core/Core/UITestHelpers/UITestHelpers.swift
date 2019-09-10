@@ -23,12 +23,58 @@ import UIKit
 import CoreData
 
 public class UITestHelpers {
-    public enum HelperType: String, Codable, Equatable {
-        case reset, login, show, mockData, mockDownload, tearDown, currentSession
-    }
-    public struct Helper: Codable {
-        let type: HelperType
-        let data: Data?
+    public enum Helper: Codable {
+        case reset
+        case login(LoginSession)
+        case show(String)
+        case mockData(MockDataMessage)
+        case mockDownload(MockDownloadMessage)
+        case tearDown
+        case currentSession
+
+        private enum CodingKeys: String, CodingKey {
+            case reset, login, show, mockData, mockDownload, tearDown, currentSession
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if container.contains(.reset) {
+                self = .reset
+            } else if let session = try container.decodeIfPresent(LoginSession.self, forKey: .login) {
+                self = .login(session)
+            } else if let route = try container.decodeIfPresent(String.self, forKey: .show) {
+                self = .show(route)
+            } else if let message = try container.decodeIfPresent(MockDataMessage.self, forKey: .mockData) {
+                self = .mockData(message)
+            } else if let message = try container.decodeIfPresent(MockDownloadMessage.self, forKey: .mockDownload) {
+                self = .mockDownload(message)
+            } else if container.contains(.tearDown) {
+                self = .tearDown
+            } else if container.contains(.currentSession) {
+                self = .currentSession
+            } else {
+                throw DecodingError.typeMismatch(Helper.self, .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(Helper.self)"))
+            }
+        }
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            switch self {
+            case .reset:
+                try container.encode(nil as Int?, forKey: .reset)
+            case .login(let session):
+                try container.encode(session, forKey: .login)
+            case .show(let route):
+                try container.encode(route, forKey: .show)
+            case .mockData(let message):
+                try container.encode(message, forKey: .mockData)
+            case .mockDownload(let message):
+                try container.encode(message, forKey: .mockDownload)
+            case .tearDown:
+                try container.encode(nil as Int?, forKey: .tearDown)
+            case .currentSession:
+                try container.encode(nil as Int?, forKey: .currentSession)
+            }
+        }
     }
 
     static var shared: UITestHelpers?
@@ -44,6 +90,9 @@ public class UITestHelpers {
     let pasteboardType = "com.instructure.ui-test-helper"
     let window: ActAsUserWindow?
 
+    var ipcAppServer: IPCAppServer?
+    var ipcDriverClient: IPCClient?
+
     init(_ appDelegate: UIApplicationDelegate) {
         self.appDelegate = appDelegate
         self.window = appDelegate.window as? ActAsUserWindow
@@ -52,48 +101,36 @@ public class UITestHelpers {
         CacheManager.clear()
         UserDefaults.standard.set(true, forKey: "IS_UI_TEST")
         ExperimentalFeature.allEnabled = true
+        if let portName = ProcessInfo.processInfo.environment["APP_IPC_PORT_NAME"] {
+            ipcAppServer = IPCAppServer(machPortName: portName)
+        }
+        if let portName = ProcessInfo.processInfo.environment["DRIVER_IPC_PORT_NAME"] {
+            ipcDriverClient = IPCClient(serverPortName: portName)
+        }
 
-        let button = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 1, y: 44, width: 1, height: 1))
-        button.accessibilityIdentifier = "ui-test-helper"
-        button.accessibilityLabel = "ui-test-helper"
-        button.addTarget(self, action: #selector(checkPasteboard), for: .primaryActionTriggered)
-        window?.addSubview(button)
-        window?.uiTestHelper = button
         window?.layer.speed = 100
         UIView.setAnimationsEnabled(false)
     }
 
-    @objc func checkPasteboard() {
-        guard
-            let data = UIPasteboard.general.data(forPasteboardType: pasteboardType),
-            let helper = try? decoder.decode(Helper.self, from: data)
-        else { return }
-        UIPasteboard.general.items.removeAll()
-        print("Running UI Test Helper \(helper.type.rawValue)")
-        switch helper.type {
+    func run(_ helper: Helper) -> Data? {
+        print("Running UI Test Helper \(helper)")
+        switch helper {
         case .reset:
             reset()
-        case .login:
-            guard let data = helper.data, let entry = try? decoder.decode(LoginSession.self, from: data) else { return }
+        case .login(let entry):
             logIn(entry)
-        case .currentSession:
-            guard
-                let entry = AppEnvironment.shared.currentSession,
-                let data = try? encoder.encode(Helper(type: .currentSession, data: encoder.encode(entry)))
-            else { return }
-            UIPasteboard.general.setData(data, forPasteboardType: pasteboardType)
-        case .show:
-            guard let data = helper.data, let params = try? decoder.decode([String].self, from: data) else { return }
-            show(params[0])
-        case .mockData:
-            guard let data = helper.data else { return }
-            MockDistantURLSession.mockData(data)
-        case .mockDownload:
-            guard let data = helper.data else { return }
-            MockDistantURLSession.mockDownload(data)
+        case .show(let route):
+            show(route)
+        case .mockData(let message):
+            MockDistantURLSession.mockData(message)
+        case .mockDownload(let message):
+            MockDistantURLSession.mockDownload(message)
         case .tearDown:
             tearDown()
+        case .currentSession:
+            return try? encoder.encode(AppEnvironment.shared.currentSession)
         }
+        return nil
     }
 
     func reset() {
