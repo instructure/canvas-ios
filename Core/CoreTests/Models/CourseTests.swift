@@ -58,7 +58,7 @@ class CourseTests: CoreTestCase {
     }
 
     func testWidgetDisplayGradeNoStudentEnrollments() {
-        let c = Course.make(from: .make(enrollments: [.make(role: "TeacherEnrollment")]))
+        let c = Course.make(from: .make(enrollments: [.make(type: "TeacherEnrollment")]))
         XCTAssertEqual(c.displayGrade, "")
     }
 
