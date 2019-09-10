@@ -220,6 +220,8 @@ export function registerScreens (store: Store): void {
     registerScreen('/groups/:groupID/users', wrap(GroupList), store)
     registerScreen('/courses/:courseID/grades', wrap(GradesList), store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/users/:userID', wrap(StudentContextCard), store, { deepLink: true })
+    registerScreen('/courses/:courseID/users', null, store)
+    registerScreen('/groups/:groupID/users', null, store)
 
     // Calls the old routing method
     registerScreen('/native-route/*route')
