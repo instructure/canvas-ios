@@ -35,6 +35,6 @@ class PeopleListCell: UITableViewCell {
         }
         name.text = searchRecipient.fullName
         roles.text = searchRecipient.roles
-        roles.isHidden = searchRecipient.roles == ""
+        roles.isHidden = searchRecipient.roles.isEmpty
     }
 }
