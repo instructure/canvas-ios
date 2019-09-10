@@ -22,7 +22,7 @@ import XCTest
 import TestsFoundation
 
 
-class StudentSettingsPresenterTests: PersistenceTestCase {
+class StudentSettingsPresenterTests: ParentTestCase {
     var resultingError: NSError?
     var presenter: StudentSettingsPresenter!
     var expectation = XCTestExpectation(description: "expectation")
@@ -74,7 +74,7 @@ class StudentSettingsPresenterTests: PersistenceTestCase {
         presenter.viewIsReady()
 
         let value = "50"
-        let req1 = PutAlertThresholdRequest(thresholdID: a.id, alertType: a.type, value: value)
+        let req1 = PutAlertThresholdRequest(thresholdID: a.id, alertType: a.type!, value: value)
         let alert = APIAlertThreshold.make(id: "2", observer_id: "5", user_id: userID, alert_type: AlertThresholdType.assignmentGradeHigh.rawValue, threshold: value)
         api.mock(req1, value: alert)
 

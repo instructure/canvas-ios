@@ -22,7 +22,7 @@ import TestsFoundation
 import CoreData
 @testable import Parent
 
-class PersistenceTestCase: XCTestCase {
+class ParentTestCase: XCTestCase {
     var database: NSPersistentContainer {
         return TestsFoundation.singleSharedTestDatabase
     }
