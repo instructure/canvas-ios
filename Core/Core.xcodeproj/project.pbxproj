@@ -406,7 +406,6 @@
 		9FE21AA8226A09DE00A1D9AD /* APIRecentlyGradedRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE21AA7226A09DE00A1D9AD /* APIRecentlyGradedRequestable.swift */; };
 		9FE21AAA226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE21AA9226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift */; };
 		9FE21AAC226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE21AAB226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift */; };
-		9FE6D44C2249541E00EFFF5C /* EnrollmentRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE6D44B2249541E00EFFF5C /* EnrollmentRole.swift */; };
 		9FE84DDA214FE06300B95A68 /* GetGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DD9214FE06300B95A68 /* GetGroup.swift */; };
 		9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */; };
 		9FE84DDE2150281300B95A68 /* GetContextTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDD2150281300B95A68 /* GetContextTabs.swift */; };
@@ -1181,7 +1180,6 @@
 		9FE21AA7226A09DE00A1D9AD /* APIRecentlyGradedRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRecentlyGradedRequestable.swift; sourceTree = "<group>"; };
 		9FE21AA9226A0AC600A1D9AD /* APIRecentlyGradedRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRecentlyGradedRequestableTests.swift; sourceTree = "<group>"; };
 		9FE21AAB226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecentlyGradedSubmissions.swift; sourceTree = "<group>"; };
-		9FE6D44B2249541E00EFFF5C /* EnrollmentRole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentRole.swift; sourceTree = "<group>"; };
 		9FE84DD9214FE06300B95A68 /* GetGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroup.swift; sourceTree = "<group>"; };
 		9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupTest.swift; sourceTree = "<group>"; };
 		9FE84DDD2150281300B95A68 /* GetContextTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabs.swift; sourceTree = "<group>"; };
@@ -1700,7 +1698,6 @@
 				787BD02021AE5C28000C90A1 /* DiscussionEntry.swift */,
 				3B635B28225C13DD001F353D /* DiscussionTopic.swift */,
 				3BE2C763218CB53F004B8E5E /* Enrollment.swift */,
-				9FE6D44B2249541E00EFFF5C /* EnrollmentRole.swift */,
 				7DCF1EAD216BC48F003AF358 /* EnrollmentState.swift */,
 				B150C62C2297814E0096D58C /* ExternalTool.swift */,
 				B1999AB02305AE3300DA97A4 /* FeatureFlag.swift */,
@@ -3099,7 +3096,6 @@
 				7D80AC2B212C77C600C40ECE /* APIOAuth.swift in Sources */,
 				7D20F61921C3166800B77E5E /* UICollectionViewExtensions.swift in Sources */,
 				B1E789B121B199E40087FE4A /* LogEventListPresenter.swift in Sources */,
-				9FE6D44C2249541E00EFFF5C /* EnrollmentRole.swift in Sources */,
 				3B339B6A226FA9AF00D3283D /* ChatBubbleView.swift in Sources */,
 				3B5425FC21B074500009D069 /* UIViewControllerExtensions.swift in Sources */,
 				B1A6BC82218A5066000515E3 /* APILatePolicy.swift in Sources */,

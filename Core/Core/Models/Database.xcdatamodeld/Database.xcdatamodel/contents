@@ -89,11 +89,11 @@
         <attribute name="currentPeriodComputedFinalGrade" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currentPeriodComputedFinalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="multipleGradingPeriodsEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="role" attributeType="String" syncable="YES"/>
         <attribute name="roleID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="roleRaw" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stateRaw" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="totalsForAllGradingPeriodsOption" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="typeRaw" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="enrollments" inverseEntity="Course" syncable="YES"/>
     </entity>

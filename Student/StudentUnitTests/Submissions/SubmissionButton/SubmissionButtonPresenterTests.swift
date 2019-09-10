@@ -84,7 +84,11 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
             submission: .make(workflow_state: .unsubmitted),
             submission_types: [ .online_upload ]
         ))
-        let c = Course.make(from: .make(enrollments: [ .make() ]))
+        let c = Course.make(from: .make(enrollments: [ .make(type: "observer") ]))
+        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil))
+
+        c.enrollments?.first?.type = "student"
+        c.enrollments?.first?.role = "SomethingCustom"
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Submit Assignment")
 
         a.submission?.workflowState = .submitted
