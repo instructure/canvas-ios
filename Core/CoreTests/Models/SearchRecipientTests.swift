@@ -31,7 +31,7 @@ class SearchRecipientTests: CoreTestCase {
             common_courses: [
                 "1": ["Teacher"],
                 "2": ["Student"],
-            ]),
+            ])
         )
 
         let model: SearchRecipient = databaseClient.fetch().first!
@@ -39,7 +39,7 @@ class SearchRecipientTests: CoreTestCase {
         XCTAssertEqual(model.id, "1")
         XCTAssertEqual(model.fullName, "Jane Doe")
         XCTAssertEqual(model.avatarURL?.absoluteString, "https://fillmurray.com/200/200")
-        XCTAssertEqual(model.filter, "course_1")
+        XCTAssertEqual(model.filter, "?context=course_1&search=&per_page=50")
         XCTAssertEqual(model.roles, "Student, Teacher")
     }
 
@@ -47,7 +47,7 @@ class SearchRecipientTests: CoreTestCase {
         SearchRecipient.make()
 
         let item = APISearchRecipient.make(full_name: "Jane Doe")
-        SearchRecipient.save(item, filter: "course_1", in: databaseClient)
+        SearchRecipient.save(item, filter: "?context=course_1&search=&per_page=50", in: databaseClient)
 
         let model: SearchRecipient = databaseClient.fetch().first!
         XCTAssertEqual(model.fullName, "Jane Doe")
