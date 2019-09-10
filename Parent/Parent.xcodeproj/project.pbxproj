@@ -36,7 +36,6 @@
 		2CCDE2951DA7E3AB00B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2971DA7E3AB00B46D87 /* InfoPlist.strings */; };
 		3B36A2D82322C15200599A1E /* APIAlertThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2D52322C15200599A1E /* APIAlertThreshold.swift */; };
 		3B36A2D92322C15200599A1E /* AlertThresholdRequestables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2D62322C15200599A1E /* AlertThresholdRequestables.swift */; };
-		3B36A2E22322C26B00599A1E /* ParentUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2E12322C26B00599A1E /* ParentUnitTests.swift */; };
 		3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2EC2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift */; };
 		3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2F02322C56F00599A1E /* APIAlertThresholdFixture.swift */; };
 		3B54E3572326F93300D8D1D2 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B54E3562326F93300D8D1D2 /* TestsFoundation.framework */; };
@@ -563,7 +562,6 @@
 		3B36A2D52322C15200599A1E /* APIAlertThreshold.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAlertThreshold.swift; sourceTree = "<group>"; };
 		3B36A2D62322C15200599A1E /* AlertThresholdRequestables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertThresholdRequestables.swift; sourceTree = "<group>"; };
 		3B36A2DF2322C26A00599A1E /* ParentUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParentUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B36A2E12322C26B00599A1E /* ParentUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentUnitTests.swift; sourceTree = "<group>"; };
 		3B36A2E32322C26B00599A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B36A2EC2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAlertThresholdRequestableTests.swift; sourceTree = "<group>"; };
 		3B36A2F02322C56F00599A1E /* APIAlertThresholdFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAlertThresholdFixture.swift; sourceTree = "<group>"; };
@@ -942,7 +940,6 @@
 			children = (
 				3B36A2EE2322C54900599A1E /* Fixtures */,
 				3B36A2E92322C27600599A1E /* StudentSettings */,
-				3B36A2E12322C26B00599A1E /* ParentUnitTests.swift */,
 				3B36A2E32322C26B00599A1E /* Info.plist */,
 				3B54E3582326F9B000D8D1D2 /* ParentTestCase.swift */,
 			);
@@ -1674,7 +1671,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */,
-				3B36A2E22322C26B00599A1E /* ParentUnitTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
 				3B8F23CB2327050F00788730 /* StudentSettingsPresenterTests.swift in Sources */,
