@@ -164,26 +164,20 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
   inFlight.set(key, promise)
   return promise.catch((error) => {
     let { config, request } = error
-    const {
-      refreshToken,
-      clientID,
-      clientSecret,
-    } = getSession()
-    if (
-      request.status === 401 &&
-      config.refreshToken !== false &&
-      refreshToken != null &&
-      clientID != null &&
-      clientSecret != null
-    ) {
-      return refreshAuthToken(refreshToken, clientID, clientSecret)
+    if (request.status === 401 && config.refreshToken !== false) {
+      return refreshToken()
         .then(() => xhr(method, url, data, { ...config, refreshToken: false }))
     }
     throw error
   })
 }
 
-function refreshAuthToken (refreshToken, clientID, clientSecret) {
+export function refreshToken () {
+  const {
+    refreshToken,
+    clientID,
+    clientSecret,
+  } = getSession()
   return xhr('POST', 'login/oauth2/token', {
     grant_type: 'refresh_token',
     refresh_token: refreshToken,

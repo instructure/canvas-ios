@@ -28,6 +28,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",
     "apollo-client-preset": "^1.0.8",
+    "apollo-link-error": "^1.1.12",
     "create-react-class": "15.6.2",
     "flux-standard-action": "^1.2.0",
     "format-message": "^6.2.3",

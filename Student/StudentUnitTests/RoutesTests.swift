@@ -29,7 +29,7 @@ class RoutesTests: XCTestCase {
         super.setUp()
         let user = CKIUser(id: "1")!
         user.name = "Bob"
-        CKIClient.current = CKIClient(baseURL: URL(string: "https://canvas.instructure.com")!, token: "t")
+        CKIClient.current = CKIClient(baseURL: URL(string: "https://canvas.instructure.com")!, token: "t", refreshToken: nil, clientID: nil, clientSecret: nil)
         CKIClient.current?.setValue(user, forKey: "currentUser")
     }
 
