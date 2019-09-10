@@ -44,7 +44,11 @@
 		3B801BFD2322FFB400D143F0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B11F912BD100A3BC06 /* Alert.swift */; };
 		3B801BFF2326CBFB00D143F0 /* StudentSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B801BFE2326CBFB00D143F0 /* StudentSettingsPresenter.swift */; };
 		3B86FA3622DD24FA0018C012 /* SettingsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B86FA3522DD24FA0018C012 /* SettingsAPIClient.swift */; };
+		3B8F23CB2327050F00788730 /* StudentSettingsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54E3542326F87D00D8D1D2 /* StudentSettingsPresenterTests.swift */; };
 		3B92109C231F02D500820CC3 /* StudentSettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B92109B231F02D500820CC3 /* StudentSettingsViewController.storyboard */; };
+		3BD0CD732327026400B3341E /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD722327026400B3341E /* Core.framework */; };
+		3BD0CD752327027000B3341E /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD742327027000B3341E /* Core.framework */; };
+		3BD0CD762327027000B3341E /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD742327027000B3341E /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4948BE691F915D330035BAFD /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4948BE681F915D330035BAFD /* BundleExtensions.swift */; };
 		4948BE6A1F915F4B0035BAFD /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49952C3B1F7477C300A11404 /* CanvasCore.framework */; };
 		4948BE6B1F915F4B0035BAFD /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49952C3B1F7477C300A11404 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -120,12 +124,10 @@
 		61D6A84D1C8F84E400370117 /* AlertsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A84C1C8F84E400370117 /* AlertsListViewController.swift */; };
 		61E94C611C873C1A00777B95 /* DetailsDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E94C5F1C873C1A00777B95 /* DetailsDescriptionCell.swift */; };
 		785AC17F20CEDAD300C28E46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 785AC17E20CEDAD300C28E46 /* Settings.bundle */; };
-		7864D52A21C3FD230075D955 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A421BAE863009A8E69 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7893BDD120D1A7A200231DF7 /* AdminViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7893BDD320D1A7A200231DF7 /* AdminViewController.storyboard */; };
 		7893BDFD20D1A83F00231DF7 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */; };
 		78A84A0E209BB7A000921C9B /* ParentAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7835A5E6209B6F4C00C9220B /* ParentAppDelegate.swift */; };
 		78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913221C8184F0075FBCF /* GoogleService-Info.plist */; };
-		7D0215A521BAE863009A8E69 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A421BAE863009A8E69 /* Core.framework */; };
 		7D52D8A122FCC89F00684932 /* DiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D322048745B00F6EDCE /* DiscussionTopic.swift */; };
 		7D52D8A222FCC89F00684932 /* DiscussionTopic+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D332048745B00F6EDCE /* DiscussionTopic+Network.swift */; };
 		7D52D8A322FCC89F00684932 /* DiscussionTopic+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5A3D342048745B00F6EDCE /* DiscussionTopic+Details.swift */; };
@@ -163,7 +165,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4948BE6B1F915F4B0035BAFD /* CanvasCore.framework in Embed Frameworks */,
-				7864D52A21C3FD230075D955 /* Core.framework in Embed Frameworks */,
+				3BD0CD762327027000B3341E /* Core.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,6 +573,8 @@
 		3B801BFE2326CBFB00D143F0 /* StudentSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSettingsPresenter.swift; sourceTree = "<group>"; };
 		3B86FA3522DD24FA0018C012 /* SettingsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAPIClient.swift; sourceTree = "<group>"; };
 		3B92109B231F02D500820CC3 /* StudentSettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StudentSettingsViewController.storyboard; sourceTree = "<group>"; };
+		3BD0CD722327026400B3341E /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BD0CD742327027000B3341E /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4948BE681F915D330035BAFD /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		4968E29E1DB977CF00A39703 /* Parent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Parent.entitlements; sourceTree = "<group>"; };
 		497C48A71F912BD100A3BC06 /* AlertAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAPI.swift; sourceTree = "<group>"; };
@@ -907,15 +911,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BD0CD732327026400B3341E /* Core.framework in Frameworks */,
 				B1F4061522E6393D008FAFE6 /* ReactiveObjC.framework in Frameworks */,
 				B1F4061622E6393D008FAFE6 /* ReactiveMapKit.framework in Frameworks */,
+				3BD0CD752327027000B3341E /* Core.framework in Frameworks */,
 				B1F4061722E6393D008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */,
 				B1F4061822E6393D008FAFE6 /* ReactiveCocoa.framework in Frameworks */,
 				B1F4061922E6393D008FAFE6 /* ReactiveSwift.framework in Frameworks */,
 				2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */,
 				2C75AB9D1DDF62E000650856 /* AVFoundation.framework in Frameworks */,
 				4948BE6A1F915F4B0035BAFD /* CanvasCore.framework in Frameworks */,
-				7D0215A521BAE863009A8E69 /* Core.framework in Frameworks */,
 				5E75B6001C4D4A8E00A44160 /* CoreData.framework in Frameworks */,
 				2C75AB9B1DDF62DA00650856 /* CoreMedia.framework in Frameworks */,
 				2C75AB971DDF62CF00650856 /* CoreTelephony.framework in Frameworks */,
@@ -1169,6 +1174,7 @@
 		5E64417E1C3EE2E0003D7397 = {
 			isa = PBXGroup;
 			children = (
+				3BD0CD742327027000B3341E /* Core.framework */,
 				785AC17E20CEDAD300C28E46 /* Settings.bundle */,
 				5E6441891C3EE2E0003D7397 /* Parent */,
 				3B36A2E02322C26A00599A1E /* ParentUnitTests */,
@@ -1241,6 +1247,7 @@
 		5E7790AF1C46CBA100429BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BD0CD722327026400B3341E /* Core.framework */,
 				3B54E3562326F93300D8D1D2 /* TestsFoundation.framework */,
 				B1F4061322E6393C008FAFE6 /* ReactiveCocoa.framework */,
 				B1F4061122E6393C008FAFE6 /* ReactiveMapKit.framework */,
@@ -1670,6 +1677,7 @@
 				3B36A2E22322C26B00599A1E /* ParentUnitTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* PersistenceTestCase.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
+				3B8F23CB2327050F00788730 /* StudentSettingsPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

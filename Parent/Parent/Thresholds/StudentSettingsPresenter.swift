@@ -33,7 +33,7 @@ class StudentSettingsPresenter {
     private var removeUseCase: Store<RemoveAlertThreshold>?
     private var updateUseCase: Store<UpdateAlertThreshold>?
 
-    private lazy var thresholds = env.subscribe(GetAlertThresholds(studentID: studentID)) { [weak self] in
+    lazy var thresholds = env.subscribe(GetAlertThresholds(studentID: studentID)) { [weak self] in
         self?.update()
     }
 

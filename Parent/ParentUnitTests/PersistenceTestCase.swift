@@ -33,7 +33,7 @@ class PersistenceTestCase: XCTestCase {
     var api = MockURLSession.self
     var queue = OperationQueue()
     var router = TestRouter()
-    var env = testEnvironment()
+    var env = AppEnvironment.shared
     var logger = TestLogger()
     var currentSession = LoginSession.make()
 
@@ -42,7 +42,7 @@ class PersistenceTestCase: XCTestCase {
         queue = OperationQueue()
         router = TestRouter()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
-        env = testEnvironment()
+        env = AppEnvironment.shared
         env.api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
         env.database = database
         env.globalDatabase = database
@@ -52,14 +52,4 @@ class PersistenceTestCase: XCTestCase {
         MockURLSession.reset()
         MockUploadManager.reset()
     }
-}
-
-func testEnvironment() -> AppEnvironment {
-    let env = AppEnvironment.shared
-    env.api = MockAPI()
-    env.database = singleSharedTestDatabase
-    env.globalDatabase = singleSharedTestDatabase
-    env.router = TestRouter()
-    env.logger = TestLogger()
-    return env
 }
