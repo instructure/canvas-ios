@@ -46,13 +46,13 @@ extension Core.AlertThreshold {
         from api: APIAlertThreshold = .make(),
         in context: NSManagedObjectContext = TestsFoundation.singleSharedTestDatabase.viewContext
         ) -> Core.AlertThreshold {
-        let model: Core.AlertThreshold = context.insert()
-        model.id = api.id
-        model.observerID = api.observer_id
-        model.studentID = api.user_id
-        model.threshold = api.threshold
-        model.typeRaw = api.alert_type
-        try! context.save()
-        return model
+            let model: Core.AlertThreshold = context.insert()
+            model.id = api.id
+            model.observerID = api.observer_id
+            model.studentID = api.user_id
+            model.threshold = api.threshold
+            model.typeRaw = api.alert_type
+            try! context.save()
+            return model
     }
 }
