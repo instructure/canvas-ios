@@ -211,8 +211,6 @@ class StudentSettingsViewController : UIViewController {
             return NSLocalizedString("Institution announcements", comment: "Institution Announcement Description")
         case .courseAnnouncement:
             return NSLocalizedString("Course announcements", comment: "Course Announcement Description")
-        case .unknown:
-            return NSLocalizedString("Unknown", comment: "Unknown T`hreshold Description")
         }
     }
     
@@ -467,8 +465,6 @@ extension AlertThresholdType {
         case .institutionAnnouncement:
             return false
         case .courseAnnouncement:
-            return false
-        case .unknown:
             return false
         }
     }

@@ -81,9 +81,6 @@ struct AlertCellViewModel: TableViewCellViewModel {
         case .assignmentGradeHigh, .courseGradeHigh:
             imageName = "icon_favorite_fill"
             color = UIColor.parentBlueColor()
-        case .unknown:
-            imageName = ""
-            color = UIColor.clear
         }
 
         switch alert.type {

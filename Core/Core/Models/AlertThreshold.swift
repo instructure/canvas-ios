@@ -27,7 +27,6 @@ public enum AlertThresholdType: String, CaseIterable {
     case assignmentMissing = "assignment_missing"
     case courseGradeHigh = "course_grade_high"
     case courseGradeLow = "course_grade_low"
-    case unknown = "unknown"
 }
 
 public class AlertThreshold: NSManagedObject {
@@ -35,9 +34,9 @@ public class AlertThreshold: NSManagedObject {
     @NSManaged public var observerID: String
     @NSManaged public var studentID: String
     @NSManaged public var threshold: String?
-    @NSManaged public var typeRaw: String
-    public var type: AlertThresholdType {
-        get { return AlertThresholdType(rawValue: typeRaw) ?? .unknown }
-        set { typeRaw = newValue.rawValue }
+    @NSManaged public var typeRaw: String?
+    public var type: AlertThresholdType? {
+        get { return AlertThresholdType(rawValue: typeRaw ?? "") }
+        set { typeRaw = newValue?.rawValue }
     }
 }
