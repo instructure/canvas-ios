@@ -350,6 +350,10 @@ extension StudentSettingsViewController: UITableViewDataSource, UITableViewDeleg
             return
         }
 
+        if (thresholdValue ?? "").isEmpty && presenter.thresholdForType(type) == nil {
+            return
+        }
+
         activityIndicator.startAnimating()
 
         guard let threshold = presenter.thresholdForType(type) else {

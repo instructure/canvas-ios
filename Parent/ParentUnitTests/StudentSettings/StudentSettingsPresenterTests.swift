@@ -51,8 +51,6 @@ class StudentSettingsPresenterTests: ParentTestCase {
     }
 
     func testCreateAlert() {
-        expectation.expectedFulfillmentCount = 3
-
         let value = "50"
         let req1 = PostAlertThresholdRequest(userID: userID, alertType: .assignmentGradeLow, value: value)
         let alert = APIAlertThreshold.make(id: "2", observer_id: "5", user_id: userID, alert_type: AlertThresholdType.assignmentGradeLow.rawValue, threshold: value)
@@ -105,6 +103,10 @@ class StudentSettingsPresenterTests: ParentTestCase {
 }
 
 extension StudentSettingsPresenterTests: StudentSettingsViewProtocol {
+    var navigationController: UINavigationController? {
+        return nil
+    }
+
     func didUpdateAlert() {
         updateExpectation.fulfill()
     }

@@ -19,7 +19,7 @@
 import Foundation
 import Core
 
-protocol StudentSettingsViewProtocol: class {
+protocol StudentSettingsViewProtocol: ErrorViewController {
     func update()
     func didUpdateAlert()
 }
@@ -28,10 +28,6 @@ class StudentSettingsPresenter {
     weak var view: StudentSettingsViewProtocol?
     var env: AppEnvironment
     var studentID: String
-
-    private var createUseCase: Store<CreateAlertThreshold>?
-    private var removeUseCase: Store<RemoveAlertThreshold>?
-    private var updateUseCase: Store<UpdateAlertThreshold>?
 
     lazy var thresholds = env.subscribe(GetAlertThresholds(studentID: studentID)) { [weak self] in
         self?.update()
@@ -52,29 +48,42 @@ class StudentSettingsPresenter {
     }
 
     func createAlert(value: String?, alertType: AlertThresholdType) {
-        let useCase = CreateAlertThreshold(userID: studentID, value: value, alertType: alertType)
-        createUseCase = env.subscribe(useCase) { [weak self] in
-            self?.update()
-        }
-        createUseCase?.refresh(force: true)
-    }
-
-    func updateAlert(value: String, alertType: AlertThresholdType, thresholdID: String) {
-        updateUseCase = env.subscribe(UpdateAlertThreshold(thresholdID: thresholdID, value: value, alertType: alertType) ) { [weak self] in
-            if self?.updateUseCase?.pending == false {
-                self?.view?.didUpdateAlert()
-            }
-        }
-        updateUseCase?.refresh(force: true)
-    }
-
-    func removeAlert(alertID: String) {
-        removeUseCase = env.subscribe(RemoveAlertThreshold(thresholdID: alertID)) { [weak self] in
-            if self?.removeUseCase?.pending == false {
+        let u = CreateAlertThreshold(userID: studentID, value: value, alertType: alertType)
+        u.fetch(environment: env, force: true) { [weak self] result, _, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self?.view?.showError(error)
+                    return
+                }
                 self?.update()
             }
         }
-        removeUseCase?.refresh(force: true)
+    }
+
+    func updateAlert(value: String, alertType: AlertThresholdType, thresholdID: String) {
+        let u = UpdateAlertThreshold(thresholdID: thresholdID, value: value, alertType: alertType)
+        u.fetch(environment: env, force: true) { [weak self] result, _, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self?.view?.showError(error)
+                    return
+                }
+                self?.view?.didUpdateAlert()
+            }
+        }
+    }
+
+    func removeAlert(alertID: String) {
+        let u = RemoveAlertThreshold(thresholdID: alertID)
+        u.fetch(environment: env, force: true) { [weak self] result, _, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self?.view?.showError(error)
+                    return
+                }
+                self?.update()
+            }
+        }
     }
 
     func thresholdForType(_ type: AlertThresholdType) -> Core.AlertThreshold? {
