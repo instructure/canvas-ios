@@ -28,16 +28,12 @@ class DiscussionEditTests: CoreUITestCase {
         create_announcement: true,
         create_discussion_topic: true
     ))
-    let course2 = APICourse.make(id: "2", enrollments: [ .make(type: "TeacherEnrollment") ], permissions: .init(
-        create_announcement: true,
-        create_discussion_topic: true
-        ))
     let noPermissionCourse = APICourse.make(id: "1", enrollments: [ .make(type: "TeacherEnrollment") ], permissions: .init(
         create_announcement: false,
         create_discussion_topic: false
     ))
 
-    func testCantCreateDiscussion() {
+    func xtestCantCreateDiscussion() {
         mockBaseRequests()
         if Bundle.main.isTeacherApp {
             mockData(GetCoursesRequest(state: [.available, .completed, .unpublished]), value: [ noPermissionCourse ])
@@ -47,13 +43,12 @@ class DiscussionEditTests: CoreUITestCase {
         mockData(GetCourseRequest(courseID: "1"), value: noPermissionCourse)
         mockEncodableRequest("courses/1/discussion_topics?per_page=99&include[]=sections", value: [String]())
 
-        logIn()
         show("/courses/1/discussion_topics")
         app.find(label: "There are no discussions to display.").waitToExist()
         XCTAssertFalse(DiscussionList.newButton.isVisible)
     }
 
-    func testCreateDiscussion() {
+    func xtestCreateDiscussion() {
         mockBaseRequests()
         if Bundle.main.isTeacherApp {
             mockData(GetCoursesRequest(state: [.available, .completed, .unpublished]), value: [ noPermissionCourse ])
@@ -66,7 +61,6 @@ class DiscussionEditTests: CoreUITestCase {
         mockEncodableRequest("courses/1/settings", value: ["allow_student_forum_attachments": false])
         mockEncodableRequest("courses/1/features/enabled", value: [String: String]())
 
-        logIn()
         show("/courses/1/discussion_topics")
         DiscussionList.newButton.tap()
 
@@ -85,22 +79,20 @@ class DiscussionEditTests: CoreUITestCase {
 
     func testCreateDiscussionWithAttachment() {
         mockBaseRequests()
-        mockData(GetCoursesRequest(), value: [course2])
-        mockData(GetCourseRequest(courseID: "2"), value: course2)
-        mockEncodableRequest("courses/2/discussion_topics?per_page=99&include[]=sections", value: [String]())
-        mockEncodableRequest("courses/2/discussion_topics", value: [String: String](), error: "error")
-        mockEncodableRequest("courses/2/settings", value: ["allow_student_forum_attachments": true])
-        mockEncodableRequest("courses/2/features/enabled", value: [String: String]())
+        mockData(GetCoursesRequest(), value: [course1])
+        mockData(GetCourseRequest(courseID: "1"), value: course1)
+        mockEncodableRequest("courses/1/discussion_topics?per_page=99&include[]=sections", value: [String]())
+        mockEncodableRequest("courses/1/discussion_topics", value: [String: String](), error: "error")
+        mockEncodableRequest("courses/1/settings", value: ["allow_student_forum_attachments": true])
+        mockEncodableRequest("courses/1/features/enabled", value: [String: String]())
 
         let targetUrl = "https://canvas.s3.bucket.com/bucket/1"
         mockEncodableRequest("users/self/files", value: FileUploadTarget.make(upload_url: URL(string: targetUrl)!))
         mockEncodableRequest(targetUrl, value: ["id": "1"])
         mockEncodableRequest("files/1", value: APIFile.make())
 
-        logIn()
-        // TODO: why does course 1 break here?
-        show("/courses/2/discussion_topics")
-        DiscussionList.newButton.tap()
+        show("/courses/1/discussion_topics")
+        DiscussionList.newButton.waitToExist(10).tap()
         DiscussionEdit.attachmentButton.tap()
         Attachments.addButton.tap()
         allowAccessToPhotos {
@@ -131,7 +123,7 @@ class DiscussionEditTests: CoreUITestCase {
 
         Attachments.dismissButton.tap()
 
-        XCTAssertEqual(DiscussionEdit.attachmentButton.waitToExist().label, "Edit attachment (1)")
+        XCTAssertEqual(DiscussionEdit.attachmentButton.label(), "Edit attachment (1)")
 
         DiscussionEdit.attachmentButton.tap()
     }

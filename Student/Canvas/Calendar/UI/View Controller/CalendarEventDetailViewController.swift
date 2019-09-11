@@ -65,6 +65,8 @@ class CalendarEventDetailViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let stack = UIStackView()
     private let titleLabel = UILabel()
+    private let locationNameLabel = UILabel()
+    private let locationAddressLabel = UILabel()
     private let courseRow = EventRow(icon: .course)
     private let dateRow = EventRow(icon: .calendar)
     private var details = CanvasWebView()
@@ -128,6 +130,9 @@ class CalendarEventDetailViewController: UIViewController {
         default:
             dateRow.label.text = "--"
         }
+
+        locationNameLabel.text = event?.locationName
+        locationAddressLabel.text = event?.locationAddress
         
         if let description = event?.htmlDescription {
             details.load(html: description, title: event?.title, baseURL: nil) { [weak self] url in
@@ -180,6 +185,7 @@ class CalendarEventDetailViewController: UIViewController {
         stack.axis = .vertical
         stack.alignment = .fill
         stack.distribution = .fillEqually
+        stack.spacing = 16
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = .systemFont(ofSize: 32)
@@ -187,7 +193,16 @@ class CalendarEventDetailViewController: UIViewController {
         stack.addArrangedSubview(titleLabel)
         stack.addArrangedSubview(courseRow)
         stack.addArrangedSubview(dateRow)
-        
+
+        locationNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        locationNameLabel.numberOfLines = 0
+
+        locationAddressLabel.translatesAutoresizingMaskIntoConstraints = false
+        locationAddressLabel.numberOfLines = 0
+
+        stack.addArrangedSubview(locationNameLabel)
+        stack.addArrangedSubview(locationAddressLabel)
+
         scrollView.addSubview(stack)
         
         NSLayoutConstraint.activate([

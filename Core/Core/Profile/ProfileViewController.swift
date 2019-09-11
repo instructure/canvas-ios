@@ -27,8 +27,8 @@ public protocol ProfilePresenterProtocol: class {
 
 public protocol ProfileViewControllerProtocol: class {
     func reload()
-    func show(_ route: Route, options: Core.Router.RouteOptions?)
-    func show(_ route: String, options: Core.Router.RouteOptions?)
+    func show(_ route: Route, options: Core.RouteOptions?)
+    func show(_ route: String, options: Core.RouteOptions?)
     func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?)
 }
 
@@ -89,7 +89,7 @@ public class ProfileViewController: UIViewController, ProfileViewControllerProto
         self.tableView.reloadData()
     }
 
-    public func show(_ route: Route, options: Core.Router.RouteOptions? = nil) {
+    public func show(_ route: Route, options: Core.RouteOptions? = nil) {
         let router = AppEnvironment.shared.router
         let dashboard = presentingViewController ?? self
         dismiss(animated: true) {
@@ -97,7 +97,7 @@ public class ProfileViewController: UIViewController, ProfileViewControllerProto
         }
     }
 
-    public func show(_ route: String, options: Core.Router.RouteOptions? = nil) {
+    public func show(_ route: String, options: Core.RouteOptions? = nil) {
         let router = AppEnvironment.shared.router
         let dashboard = presentingViewController ?? self
         dismiss(animated: true) {

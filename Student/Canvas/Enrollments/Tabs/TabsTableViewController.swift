@@ -69,7 +69,7 @@ class TabsTableViewController: FetchedTableViewController<Tab>, PageViewEventVie
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let tab = collection[indexPath]
-        CanvasAnalytics.logEvent("group_tab_selected", parameters: ["tabId": tab.id])
+        Analytics.shared.logEvent("group_tab_selected", parameters: ["tabId": tab.id])
         if let routingURL = tab.routingURL(session) {
             route(self, routingURL)
         }

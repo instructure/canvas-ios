@@ -61,7 +61,7 @@ class RouteTests: XCTestCase {
     }
 
     func testSendSupport() {
-        XCTAssertEqual(Route.sendSupport(forType: "type").url.path, "/support/type")
+        XCTAssertEqual(Route.errorReport(for: "type").url.path, "/support/type")
     }
 
     func testTermsOfService() {
@@ -70,5 +70,13 @@ class RouteTests: XCTestCase {
 
     func testActAsUserID() {
         XCTAssertEqual(Route.actAsUserID("2").url.path, "/act-as-user/2")
+    }
+
+    func testPeopleListCourse() {
+        XCTAssertEqual(Route.people(forCourse: "1").url.path, "/courses/1/users")
+    }
+
+    func testPeopleListGroup() {
+        XCTAssertEqual(Route.people(forGroup: "1").url.path, "/groups/1/users")
     }
 }

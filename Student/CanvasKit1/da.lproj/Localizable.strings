@@ -19,35 +19,11 @@
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%2$g ud af %3$@)";
 
-/* Gigabytes */
-"%0.2f GB" = "%0.2f GB";
-
-/* Kilobytes */
-"%0.2f KB" = "%0.2f KB";
-
-/* Megabytes */
-"%0.2f MB" = "%0.2f MB";
-
 /* 88 out of 100 points */
 "%g out of %@" = "%1$g ud af %2$@";
 
-/* As in, '15 bytes' */
-"%qu bytes" = "%qu bytes";
-
-/* Media type is audio */
-"Audio" = "Lyd";
-
-/* No comment provided by engineer. */
-"Audio input hardware not available" = "Audio input hardware ikke tilgængelig";
-
 /* Assignment grade: Complete */
 "Complete" = "Fuldført";
-
-/* A custom grade not specified by the rubric. */
-"Custom Grade" = "Brugertilpasset karakter";
-
-/* No comment provided by engineer. */
-"Done" = "Udført";
 
 /* No comment provided by engineer. */
 "Excused" = "Undskyldt";
@@ -64,17 +40,8 @@
 /* Assignment grade: Incomplete */
 "Incomplete" = "Ufuldstændig";
 
-/* No comment provided by engineer. */
-"Me" = "Mig";
-
 /* The name for a video or audio response to something */
 "Media comment" = "Medie kommentar";
-
-/* No comment provided by engineer. */
-"Media Comment" = "Mediekommentar";
-
-/* A slider to choose between media types */
-"Media type selector. %@" = "Medietypevælger. %@";
 
 /* Pass/fail assignment is not complete */
 "Not Complete" = "Ikke fuldført";
@@ -85,9 +52,6 @@
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Ikke vurderet (0 ud af %@)";
 
-/* No comment provided by engineer. */
-"Note: Media files are not immediately available for playback while they are processed on the server." = "Bemærk: Mediefiler er ikke tilgængelige til afspilning, mens de behandles på serveren.";
-
 /* Short name for observer enrollment */
 "Observer" = "Observatør";
 
@@ -97,59 +61,14 @@
 /* The assignment is out of 100 points */
 "out of %@" = "ud af %@";
 
-/* No comment provided by engineer. */
-"out of %@ points" = "ud af %@ point";
-
-/* A button that plays */
-"Play" = "Afspil";
-
-/* No comment provided by engineer. */
-"Post Comment" = "Læg kommentar ud";
-
-/* No comment provided by engineer. */
-"Posts your comment" = "Poster din komentar";
-
-/* A button that records */
-"Record" = "Optag";
-
-/* No comment provided by engineer. */
-"Score" = "Resultat";
-
-/* Hint about the play button */
-"Starts playing your recording" = "Start afspilning af din optagelse";
-
-/* Hint about the record button */
-"Starts recording a media comment" = "Start optagelse af en mediekommentar";
-
-/* A button that stops */
-"Stop" = "Stop";
-
-/* Hint about the play button */
-"Stops playing your recording" = "Stopper afspilning af din optagelse";
-
-/* Hint about the record button */
-"Stops recording a media comment" = "Stop optagelse af mediekommentar";
-
 /* Short name for student enrollment */
 "Student" = "Studerende";
-
-/* Hint about media input selection */
-"Switches media input between audio and video. Currently set to %@" = "Skifter medieindgang mellem lyd og video. I øjeblikket indstillet til %@";
-
-/* No comment provided by engineer. */
-"Switches to media comment mode" = "Skift til mediekommentar tilstand";
-
-/* No comment provided by engineer. */
-"Switches to text comment mode" = "Skift til tekstkommentar tilstand";
 
 /* Short name for TA enrollment */
 "TA" = "Undervisningsassistent";
 
 /* Short name for teacher enrollment */
 "Teacher" = "Lærer";
-
-/* No comment provided by engineer. */
-"Text Comment" = "Tekst kommentar";
 
 /* Generic name for a submission entered online. */
 "Text Submission" = "Aflevering af tekst";
@@ -159,13 +78,4 @@
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "Ukendt";
-
-/* Media type is video */
-"Video" = "Video";
-
-/* No comment provided by engineer. */
-"Video Error" = "Videofejl";
-
-/* No comment provided by engineer. */
-"Warning" = "Advarsel";
 

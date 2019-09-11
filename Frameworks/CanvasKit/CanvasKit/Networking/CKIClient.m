@@ -48,6 +48,21 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
 
 @implementation CKIClient
 
+static CKIClient * _currentClient;
+
++ (instancetype)currentClient
+{
+    return _currentClient;
+}
+
++ (void)setCurrentClient:(CKIClient *)client
+{
+    @synchronized(self) {
+        [_currentClient invalidateSessionCancelingTasks:YES];
+        _currentClient = client;
+    }
+}
+
 - (instancetype)initWithBaseURL:(NSURL *)url
 {
     self = [super initWithBaseURL:url];

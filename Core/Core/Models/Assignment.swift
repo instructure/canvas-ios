@@ -173,8 +173,8 @@ extension Assignment {
             return String.localizedStringWithFormat(format, grade)
 
         case .pass_fail:
-            guard let score = submission.score else { return nil }
-            return score == 0
+            guard let grade = submission.grade else { return nil }
+            return grade == "incomplete"
                 ? NSLocalizedString("Incomplete", bundle: .core, comment: "")
                 : NSLocalizedString("Complete", bundle: .core, comment: "")
 

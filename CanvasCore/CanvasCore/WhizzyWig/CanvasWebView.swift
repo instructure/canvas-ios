@@ -17,7 +17,6 @@
 //
 
 import WebKit
-import CanvasKeymaster
 import CanvasKit
 import ReactiveSwift
 import Core
@@ -146,11 +145,9 @@ public class CanvasWebView: WKWebView {
     }
     
     @objc public init(config: WKWebViewConfiguration) {
-        // Make the user agent look like Safari as best we can to work around Google OAuth restrictions.
-        // Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.3 Mobile/15E217 Safari/605.1
-        config.applicationNameForUserAgent = "Version/\(UIDevice.current.systemVersion) Mobile/15E217 Safari/605.1"
         config.processPool = CoreWebView.processPool
         super.init(frame: .zero, configuration: config)
+        customUserAgent = UserAgent.safari.description
         translatesAutoresizingMaskIntoConstraints = false
         navigationDelegate = self
         uiDelegate = self
@@ -236,7 +233,7 @@ public class CanvasWebView: WKWebView {
 
     /// Reloads `self` with an authenticated url for `src`
     @objc func loadFrame(src: String) {
-        guard let session = CanvasKeymaster.the().currentClient?.authSession, let url = URL(string: src) else {
+        guard let session = CKIClient.current?.authSession, let url = URL(string: src) else {
             return
         }
 
@@ -263,7 +260,7 @@ extension CanvasWebView: WKNavigationDelegate {
         }
 
         if action.navigationType == .linkActivated, let url = request.url, LTITools(link: url) != nil,
-            let from = presentingViewController, let session = CanvasKeymaster.the().currentClient?.authSession {
+            let from = presentingViewController, let session = CKIClient.current?.authSession {
             ExternalToolManager.shared.launch(url, in: session, from: from)
             return decisionHandler(.cancel)
         }

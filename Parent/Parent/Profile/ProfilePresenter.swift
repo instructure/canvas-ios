@@ -18,7 +18,6 @@
 
 import Foundation
 import Core
-import CanvasKeymaster
 
 public class ProfilePresenter: ProfilePresenterProtocol {
     let env: AppEnvironment
@@ -135,11 +134,11 @@ public class ProfilePresenter: ProfilePresenterProtocol {
         })
 
         helpMenu.addAction(UIAlertAction(title: NSLocalizedString("Report a Problem", bundle: .parent, comment: ""), style: .default) { [weak self] _ in
-            self?.view?.show(.sendSupport(forType: "problem"), options: .modal)
+            self?.view?.show(.errorReport(for: "problem"), options: .modal)
         })
 
         helpMenu.addAction(UIAlertAction(title: NSLocalizedString("Request a Feature", bundle: .parent, comment: ""), style: .default) { [weak self] _ in
-            self?.view?.show(.sendSupport(forType: "feature"), options: .modal)
+            self?.view?.show(.errorReport(for: "feature"), options: .modal)
         })
 
         helpMenu.addAction(UIAlertAction(title: NSLocalizedString("Terms of Use", bundle: .parent, comment: ""), style: .default) { [weak self] _ in

@@ -24,7 +24,7 @@ class LoginTests: CoreUITestCase {
     override var user: UITestUser? { return nil }
 
     func testFindSchool() {
-        XCTAssertEqual(LoginStart.findSchoolButton.label, "Find my school")
+        XCTAssertEqual(LoginStart.findSchoolButton.label(), "Find my school")
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("mtech")
         LoginFindAccountResult.item(host: "mtec.instructure.com").waitToExist()
@@ -79,8 +79,6 @@ class LoginTests: CoreUITestCase {
         Dashboard.courseCard(id: "247").waitToExist()
         TabBar.dashboardTab.waitToExist()
 
-        launch()
-
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
         TabBar.dashboardTab.waitToExist()
@@ -100,9 +98,11 @@ class LoginTests: CoreUITestCase {
         Dashboard.coursesLabel.waitToExist()
         Dashboard.courseCard(id: "247").waitToExist()
         TabBar.dashboardTab.waitToExist()
+
+        launch()
     }
 
-    func testMDMHost() {
+    func xtestMDMHost() {
         let user = UITestUser.readStudent1
         launch { app in
             app.launchArguments.append(contentsOf: [
@@ -118,7 +118,7 @@ class LoginTests: CoreUITestCase {
         }
 
         LoginStart.findSchoolButton.waitToExist()
-        XCTAssertEqual(LoginStart.findSchoolButton.label, "Log In")
+        XCTAssertEqual(LoginStart.findSchoolButton.label(), "Log In")
         XCTAssertFalse(LoginStart.canvasNetworkButton.isVisible)
         LoginStart.findSchoolButton.tap()
 
@@ -127,5 +127,7 @@ class LoginTests: CoreUITestCase {
         LoginWeb.logInButton.tap()
 
         homeScreen.waitToExist()
+
+        launch()
     }
 }

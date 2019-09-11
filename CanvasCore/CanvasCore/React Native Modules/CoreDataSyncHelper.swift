@@ -19,6 +19,7 @@
 import Foundation
 import ReactiveSwift
 import Marshal
+import CanvasKit
 
 private enum ActionType: String {
     case refreshCourses = "courses.refresh"
@@ -176,7 +177,7 @@ public class CoreDataSyncHelper: NSObject {
     @objc public static func syncAction(_ info: [String: Any], completion: @escaping () -> Void) {
         guard let action = Action(userInfo: info) else { return completion() }
         guard let asyncAction = AsyncAction(action: action) else { return completion() }
-        guard let session = CanvasKeymaster.the().currentClient?.authSession else { return completion() }
+        guard let session = CKIClient.current?.authSession else { return completion() }
         asyncAction.sync(session, completion: completion)
     }
 }

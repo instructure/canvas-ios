@@ -38,7 +38,6 @@ class PostToVisibilitySelectionViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Post to...", comment: "")
-
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,6 +50,9 @@ class PostToVisibilitySelectionViewController: UITableViewController {
         let row = PostGradePolicy.allCases[indexPath.row]
         cell.detailTextLabel?.numberOfLines = 0
         cell.textLabel?.text = row.title
+        cell.textLabel?.font = UIFont.scaledNamedFont(.semibold16)
+        cell.detailTextLabel?.font = UIFont.scaledNamedFont(.semibold12)
+        cell.detailTextLabel?.textColor = .named(.textDark)
         cell.detailTextLabel?.text = row.subHeader
         cell.accessoryType = row == selectedVisibility ? .checkmark : .none
 

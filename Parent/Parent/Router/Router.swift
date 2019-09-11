@@ -172,7 +172,7 @@ class Router {
             for (index, component) in routePathComponents.enumerated() {
                 if component.hasPrefix(":") {
                     // remove the ":" from the path
-                    let parameterKey = component.substring(from: component.index(component.startIndex, offsetBy: 1))
+                    let parameterKey = String(component.dropFirst())
                     let parameter = urlComponents[index]
                     if let number = self.numberFormatter.number(from: parameter) {
                         params[parameterKey] = number

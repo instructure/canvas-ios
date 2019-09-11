@@ -31,7 +31,7 @@ RCT_EXPORT_MODULE();
 RCT_REMAP_METHOD(launchExternalTool, launchExternalTool:(NSString *)url resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     UIViewController *current = [[HelmManager shared] topMostViewController];
     NSURL *launchURL = [[NSURL alloc] initWithString:url];
-    Session *session = [CanvasKeymaster theKeymaster].currentClient.authSession;
+    Session *session = CKIClient.currentClient.authSession;
     
     [[ExternalToolManager shared] launch:launchURL in:session from:current completionHandler:^{
         resolve(nil);

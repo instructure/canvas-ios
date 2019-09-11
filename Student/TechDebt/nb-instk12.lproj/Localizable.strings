@@ -16,9 +16,6 @@
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ kommer snart!";
 
-/* local notification countdown alert */
-"%@ is due in %@" = "%1$@ har frist den %2$@";
-
 /* explanation for locked item */
 "%@ is locked" = "%@ er låst";
 
@@ -65,10 +62,10 @@
 "%1$@ out of %2$@" = "%1$@ ut av %2$@";
 
 /* String to be read for the blind users. Name of item in module, then type of thing. */
-"%1$@. %2$@. Type: %3$@." = "%1$@, %2$@. Type: %3$@,";
+"%1$@. %2$@. Type: %3$@." = "%1$@. %2$@. Type: %3$@.";
 
 /* String to be read for the blind users. Name of item in module, then type of thing, then status. */
-"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@, %2$@. Type: %3$@. Status: %4$@";
+"%1$@. %2$@. Type: %3$@. Status: %4$@" = "%1$@. %2$@. Type: %3$@. Status: %4$@";
 
 /* 83% (83 out of 100 points */
 "%1$@%% (%2$g out of %3$@)" = "%1$@%% (%2$g ut av %3$@)";
@@ -219,14 +216,11 @@
 "An unknown error occurred" = "Det oppsto en ukjent feil";
 
 /* Title of the new announcement view */
-"Announcement" = "Beskjed";
+"Announcement" = "Beskjeder";
 
 /* Announcements title
    Title for the announcements view controller */
 "Announcements" = "Beskjeder";
-
-/* Assignment submission type for selecting an Arc video */
-"Arc" = "Arc";
 
 /* Archive selected messages button
    mark a message as archived */
@@ -243,9 +237,6 @@
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Er du klar til å logge ut?";
-
-/* Confirmation alert text for submitting an Arc video for an assignment */
-"Are you sure you want to submit this Arc video for this assignment?" = "Er du sikker på at du vil levere denne Arc-videoen for denne oppgaven?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Spør meg senere";
@@ -271,7 +262,7 @@
 /* Label for a discussion */
 "Attendance" = "Oppmøte";
 
-/* Audio file type */
+/* Media type is audio */
 "Audio" = "Lyd";
 
 /* No comment provided by engineer. */
@@ -280,7 +271,7 @@
 /* No comment provided by engineer. */
 "Augment Reality" = "Utvide virkelighet";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Authentication error" = "Autentiseringsfeil";
 
 /* Link to building panda avatar */
@@ -298,11 +289,10 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Kan ikke sende inn media";
 
-/* Cancel button title
-   Cancel button title to cancel submitting an Arc video as an assignment submission */
+/* Cancel button title */
 "Cancel" = "Avbryt";
 
-/* Cancel button title */
+/* Cancel adding a comment button */
 "Cancel Message" = "Avbryt melding";
 
 /* No comment provided by engineer. */
@@ -310,9 +300,6 @@
 
 /* detail text for recipient fetch error message */
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas fant ikke mottakere til søket ditt. Forsøk igjen senere.";
-
-/* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas tester støtter forskjellige vurderingsstiler. De fleste av disse stilene støttes på mobile enheter, men ikke alle. Hvis du forsøker å ta en av disse testene som ikke støttes på telefonen din er du kanskje ikke i stand til å fullføre hele testen, hvilket gir deg en ulempe.\n\nSpørsmålstyper som ikke støttes består av innhold med bl.a. Adobe Flash™.\n\nHvis du mener at en spørrekonkurranse inneholder innhold som ikke støttes, bør du delta i den på en bærbar eller stasjonær PC. Hvis du vet at spørrekonkurransen kun inneholder støttet innhold, kan du delta i den på mobilenheten.";
 
 /* mobile quze warning info */
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas spørrekonkurranser støtter forskjellige vurderingsmetoder. De fleste av disse stilene støttes på mobile enheter, men ikke alle. Hvis du forsøker å ta en av disse testene som ikke støttes på telefonen din er du kanskje ikke i stand til å fullføre hele testen, hvilket gir deg en ulempe.\n\nSpørsmålstyper som ikke støttes inkluderer spørsmål som inneholder Adobe Flash™ innhold, filopplastinger og annet.\n\nHvis du mener at en spørrekonkurranse inneholder innhold som ikke støttes, bør du delta i den på en bærbar eller stasjonær PC. Hvis du vet at spørrekonkurransen kun inneholder støttet innhold, kan du delta i den på mobilenheten.";
@@ -347,7 +334,7 @@
 /* Choose a video to send as a comment */
 "Choose Video" = "Velg video";
 
-/* Close the window */
+/* No comment provided by engineer. */
 "Close" = "Lukk";
 
 /* No comment provided by engineer. */
@@ -387,9 +374,6 @@
 /* Alert title */
 "Confirm deletion" = "Bekreft sletting";
 
-/* Confirm an arc video submission for an assignment */
-"Confirm Submission" = "Bekreft innlevering";
-
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
 "Continue" = "Fortsett";
 
@@ -403,13 +387,13 @@
 "Couldn't Load Submission" = "Kunne ikke laste innlevering";
 
 /* Title for Course Syllabus view controller */
-"Course Syllabus" = "Fagoversikt";
+"Course Syllabus" = "Fag fagoversikt";
 
 /* Courses page title */
 "Courses" = "Fag";
 
-/* Cancel button title */
-"Create Folder" = "Lag mappe";
+/* cancel folder creation */
+"Create Folder" = "Opprett mappe";
 
 /* Header for a section showing submitted filenames */
 "Current Submission" = "Gjeldende innsending";
@@ -431,9 +415,6 @@
 
 /* Alert message */
 "Delete this reply?" = "Slette dette svaret?";
-
-/* delete file confirmation alert */
-"Deleted file: \"%@\"" = "Slettet fil: \"%@\"";
 
 /* delete file confirmation alert */
 "Deleted file: &quot;%@&quot;" = "Slettet fil: &amp;quot;%@&amp;quot;";
@@ -483,7 +464,7 @@
 "Done" = "Ferdig";
 
 /* Shown when we cancel a file download */
-"Download Canceled" = "Nedlasting kansellert";
+"Download Canceled" = "Nedlasting avbrutt";
 
 /* Shown while downloading a file */
 "Downloading..." = "Laster ned ...";
@@ -493,9 +474,6 @@
 
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Frist:";
-
-/* Due date label indicating when an assignment is due */
-"Due: %@" = "Frist: %@";
 
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Frist: %1$@ på %2$@";
@@ -523,9 +501,6 @@
 /* Prompt asking user to enable push notifications */
 "Enable Push Notifications" = "Aktiver push-varsler";
 
-/* No comment provided by engineer. */
-"Enter folder name" = "Skriv inn mappenavn";
-
 /* Submission input view placeholder text */
 "Enter submission" = "Skriv innsending";
 
@@ -535,14 +510,11 @@
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "Innlegg postet";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Error" = "Avvik";
 
 /* Title of an alert popup */
 "Error adding recipeints" = "Fikk ikke lagt til mottakere";
-
-/* Error deleting file alert view title */
-"Error deleting file \"%@\"" = "Feil ved sletting av fil \"%@\"";
 
 /* Error deleting file alert view title */
 "Error deleting file &quot;%@&quot;" = "Feil ved sletting av filen &quot;%@&quot;";
@@ -589,11 +561,11 @@
 /* File upload failed. */
 "File upload failed." = "Filopplasting feilet.";
 
-/* Title for the files screen */
+/* Files view
+   Name of a tab displaying files in a course
+   title for files view
+   Title for the Files View Controller */
 "Files" = "Filer";
-
-/* No comment provided by engineer. */
-"Final Grade" = "Sluttvurdering";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Ferdig nedlastet";
@@ -693,22 +665,16 @@
 "Item %1$d of %2$d" = "Objekt %1$d av %2$d";
 
 /* No comment provided by engineer. */
-"Item %d of %d" = "Objekt %1$d av %2$d";
-
-/* No comment provided by engineer. */
 "Jumps to current day on calendar" = "Går til dagen i dag på kalenderen";
 
 /* No comment provided by engineer. */
 "Keep" = "Behold";
 
 /* Settings entry title for Choosing a Landing Page */
-"Landing Page" = "Landingside";
+"Landing Page" = "Destinasjonsside";
 
 /* Title for an alert popup */
 "Large file" = "Stor fil";
-
-/* No comment provided by engineer. */
-"Late Penalty" = "Forsinkelsesstraff";
 
 /* Button in an alert */
 "Later" = "Senere";
@@ -742,9 +708,6 @@
 /* No comment provided by engineer. */
 "Love it!" = "Elsker det!";
 
-/* Title for an LTI launch submitted as an assignment */
-"LTI Tool" = "LTI-verktøy";
-
 /* Button title for mark as done */
 "Mark as Done" = "Merk som utført";
 
@@ -773,7 +736,7 @@
 "Message everyone separately, or add everyone to a group conversation?" = "Send melding til alle hver for seg, eller legg alle til i en gruppesamtale?";
 
 /* Add message button */
-"Message Instructor" = "Meldingsinstruktør";
+"Message Instructor" = "Melding til instruktør";
 
 /* notification that a message has been sent succesfully */
 "Message Sent." = "Melding sendt.";
@@ -846,8 +809,7 @@
 /* No comment provided by engineer. */
 "No Date" = "Ingen dato";
 
-/* Indicates an assignment does not have a due date
-   String for when assignment has no due date */
+/* String for when assignment has no due date */
 "No due date" = "Ingen forfallsdato";
 
 /* Label shown for a to do that doesn't have a due date */
@@ -887,7 +849,7 @@
 "Not graded (0 out of %@)" = "Ikke vurdert (0 ut av %@)";
 
 /* No comment provided by engineer. */
-"Note: Media files are not immediately available for playback while they are processed on the server." = "Merk: Mediafiler er ikke umiddelbart tilgjengelig for avspilling mens de behandles på serveren.";
+"Note: Media files are not immediately available for playback while they are processed on the server." = "Notat: Mediafiler er ikke umiddelbart tilgjengelig for avspilling mens de behandles på serveren.";
 
 /* Nothing to do, go play outside! */
 "Nothing to do, go play outside!" = "Ingenting å gjøre, gå å lek ute!";
@@ -970,7 +932,7 @@
 "Pinned Discussions" = "Festede diskusjoner";
 
 /* A button that plays */
-"Play" = "Avspille";
+"Play" = "Spill av";
 
 /* Network error message */
 "Please check your network connection and try again." = "Sjekk nettverkstilkoblingen din og forsøk igjen.";
@@ -979,7 +941,7 @@
 "Post" = "Post";
 
 /* No comment provided by engineer. */
-"Post comment" = "Post kommentar";
+"Post comment" = "Poste kommentar";
 
 /* No comment provided by engineer. */
 "Post Comment" = "Post kommentar";
@@ -994,12 +956,13 @@
 "Previous item" = "Forrige artikkel";
 
 /* Link to the privacy policy */
-"Privacy Policy" = "Retningslinjer for personvern";
+"Privacy Policy" = "Personvernregler";
 
 /* Title for profile screen */
 "Profile" = "Profil";
 
-/* A short test taken by students */
+/* Label for a quiz
+   Title for a quiz submission cell */
 "Quiz" = "Test";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -1092,7 +1055,8 @@
 /* No comment provided by engineer. */
 "Sent" = "Sendt";
 
-/* Title for Settings */
+/* settings button
+   Title for Settings tab */
 "Settings" = "Innstillinger";
 
 /* Title for button confirming showing a file */
@@ -1128,7 +1092,7 @@
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Forbli innlogget";
 
-/* Stop loading button for webview */
+/* A button that stops */
 "Stop" = "Stopp";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
@@ -1155,14 +1119,11 @@
 /* Title for file submission error */
 "Submission Error" = "Innsendingsfeil";
 
-/* Submit Arc video as assignment button */
+/* Submit an assignment */
 "Submit" = "Send inn";
 
-/* Button to submit files to an assignment */
-"Submit (%d)" = "Send inn (%d)";
-
 /* Submitted grouping */
-"Submitted" = "Innlevert";
+"Submitted" = "Sendt inn";
 
 /* No comment provided by engineer. */
 "Submitting..." = "Sender inn...";
@@ -1231,7 +1192,7 @@
 /* Text entry submission type */
 "Text entry" = "Tekstinntasting";
 
-/* Title for a text submission cell */
+/* Generic name for a submission entered online. */
 "Text Submission" = "Tekstinnsending";
 
 /* Text explaining the error */
@@ -1241,7 +1202,7 @@
 "The server could not be reached" = "Fikk ikke kontakt med server";
 
 /* No comment provided by engineer. */
-"The server you entered is not authorized for this app." = "Serveren du la inn er ikke autorisert for denne appen";
+"The server you entered is not authorized for this app." = "Serveren du oppga er ikke tillatt for denne appen.";
 
 /* No comment provided by engineer. */
 "The user agent for this app is unauthorized." = "Brukeragenten for denne appen er uautorisert.";
@@ -1300,9 +1261,6 @@
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Dette bør være et flott tidspunkt for å få gjort unna litt ekstra kreditt.";
 
-/* No comment provided by engineer. */
-"To add a file from another app, open the file in that app and tap the Share icon. Then select the Copy to Student option. To add an attachment from the Mail app, tap and hold the attachment, then tap the Canvas icon." = "For å legge til en fil fra en annen app, åpne filen i den appen og trykk på dele-ikonet. Velg deretter kopien til elev-alternativet. For å legge til et vedlegg fra Mail-appen, trykk og hold på vedlegget og deretter trykk på Canvas-ikonet.";
-
 /* Title of to do screen
    To Do page title */
 "To Do" = "Å gjøre";
@@ -1359,7 +1317,7 @@
 "Unknown" = "Ukjent";
 
 /* No comment provided by engineer. */
-"Unread" = "Uleste";
+"Unread" = "Ulest";
 
 /* No comment provided by engineer. */
 "Unsaved Reply" = "Svaret er ikke lagret";
@@ -1383,9 +1341,6 @@
 "Upload file" = "Last opp fil";
 
 /* Error message */
-"Upload to assignment \"%@\" failed" = "Opplasting til oppgave \"%@\" feilet";
-
-/* Error message */
 "Upload to assignment &quot;%@&quot; failed" = "Opplasting til oppgaven &quot;%@&quot; mislyktes";
 
 /* Error message */
@@ -1400,7 +1355,7 @@
 /* Title for User Info section on the about page */
 "User Info" = "Brukerinfo";
 
-/* Video file type */
+/* Media type is video */
 "Video" = "Video";
 
 /* No comment provided by engineer. */
@@ -1461,7 +1416,7 @@
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Du har ikke SpeedGrader til iPad. Du kan laste den ned gratis i App-Store.";
 
 /* Masquerade error message */
-"You don't have permission to masquerade as this user or there is no user with that ID" = "Du har ikke tillatelse til å forkle deg som denne brukeren, eller det er ingen bruker med den IDen";
+"You don't have permission to masquerade as this user or there is no user with that ID" = "Du har ikke tillatelse til å forkle deg som denne brukeren, eller det er ingen bruker med den ID-en";
 
 /* No comment provided by engineer. */
 "You have an unsaved reply. Would you like to discard that reply?" = "Du har et svar som ikke er lagret. Ønsker du å slette det svaret?";

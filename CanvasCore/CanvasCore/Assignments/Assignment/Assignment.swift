@@ -52,12 +52,12 @@ public final class Assignment: NSManagedObject, LockableModel {
     @NSManaged internal (set) public var gradingPeriodID: String?
     @NSManaged internal (set) public var currentGrade: String
     @NSManaged internal (set) public var currentScore: NSNumber?
+    @NSManaged internal (set) public var gradePostedAt: Date?
     @NSManaged internal (set) public var submissionLate: Bool
     @NSManaged internal (set) public var submittedAt: Date?
     @NSManaged internal (set) public var submissionExcused: Bool
     @NSManaged internal (set) public var gradedAt: Date?
     @NSManaged fileprivate (set) public var rawStatus: Int64
-    @NSManaged internal (set) public var muted: Bool
     @NSManaged internal (set) public var groupSetID: String?
     
     @NSManaged internal (set) public var needsGradingCount: Int32
@@ -336,7 +336,6 @@ extension Assignment: SynchronizedModel {
         quizID              = try json.stringID("quiz_id")
         needsGradingCount   = (try json <| "needs_grading_count") ?? 0
         htmlURL             = try json <| "html_url"
-        muted               = (try json <| "muted") ?? false
         assignmentGroupID   = try json.stringID("assignment_group_id")
         groupSetID          = try json.stringID("group_category_id")
         
@@ -372,6 +371,7 @@ extension Assignment: SynchronizedModel {
             submittedAt         = try submissionJSON <| "submitted_at"
             submissionExcused   = (try submissionJSON <| "excused") ?? false
             gradedAt            = try submissionJSON <| "graded_at"
+            gradePostedAt       = try submissionJSON <| "posted_at"
             submissionState     = try submissionJSON <| "workflow_state"
 
             // The API can give us ghost "graded" states if the teacher taps in SpeedGrader in the grade box...

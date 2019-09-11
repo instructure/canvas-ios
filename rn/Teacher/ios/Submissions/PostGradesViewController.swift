@@ -35,6 +35,7 @@ class PostGradesViewController: UIViewController {
     private var postPolicy: PostGradePolicy = .everyone
     var presenter: PostGradesPresenter!
     var viewModel: APIPostPolicyInfo?
+    var color: UIColor = .named(.electric)
 
     static func create(courseID: String, assignmentID: String) -> PostGradesViewController {
         let controller = loadFromStoryboard()
@@ -83,11 +84,14 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             cell = tableView.dequeue(for: indexPath) as SectionCell
         }
 
+        cell.textLabel?.font = UIFont.scaledNamedFont(.semibold16)
+
         if let row = Row(rawValue: indexPath.row) {
             switch row {
             case .postTo:
                 cell.textLabel?.text = NSLocalizedString("Post to...", comment: "")
                 cell.detailTextLabel?.text = postPolicy.title
+                cell.detailTextLabel?.font = UIFont.scaledNamedFont(.semibold16)
                 cell.detailTextLabel?.accessibilityIdentifier = "PostPolicy.postToValue"
                 cell.accessoryType = .disclosureIndicator
                 cell.selectionStyle = .default
@@ -97,6 +101,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.selectionStyle = .none
                 if let cell = cell as? SectionCell {
                     cell.toggle.isOn = showSections
+                    cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
                     cell.toggle.accessibilityIdentifier = "PostPolicy.togglePostToSections"
                     cell.toggle.addTarget(self, action: #selector(actionDidToggleShowSections(sender:)), for: UIControl.Event.valueChanged)
                 }
@@ -108,6 +113,7 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
             if let cell = cell as? SectionCell {
                 cell.toggle.isOn = sectionToggles[index]
                 cell.toggle.tag = index
+                cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
                 cell.toggle.accessibilityIdentifier = "PostPolicy.post.section.toggle.\(viewModel?.sections[index].id ?? "")"
                 cell.toggle.addTarget(self, action: #selector(actionDidToggleSection(toggle:)), for: UIControl.Event.valueChanged)
             }
@@ -185,6 +191,15 @@ extension PostGradesViewController: PostGradesViewProtocol {
 
     func didPostGrades() {
         dismiss(animated: true, completion: nil)
+    }
+
+    func updateCourseColor(_ color: UIColor) {
+        self.color = color
+        tableView.reloadData()
+    }
+
+    func showAllPostedView() {
+        allGradesPostedView.isHidden = false
     }
 }
 

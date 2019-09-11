@@ -2,7 +2,7 @@
 "\n\nYou must first complete:" = "\n\nيجب أن تكمل أولاً:";
 
 /* when locked item will become unlocked */
-" until %@" = "حتى %@";
+" until %@" = " حتى %@";
 
 /* %@ will be replaced by the filename */
 "'%@' is now ready to submit to assignments" = "'%@' جاهز الآن للإرسال إلى المهام";
@@ -14,10 +14,7 @@
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "تم تأمين &quot;%1$@&quot; كجزء من &quot;%2$@&quot;";
 
 /* Message for unsupported tab coming soon */
-"%@ is coming soon!" = "%@ قريبًا!";
-
-/* local notification countdown alert */
-"%@ is due in %@" = "موعد استحقاق %1$@ هو %2$@";
+"%@ is coming soon!" = "%@ يصدر قريبًا!";
 
 /* explanation for locked item */
 "%@ is locked" = "%@ مؤمّن";
@@ -32,10 +29,10 @@
 "%@ is not currently supported." = "%@ غير مدعوم حالياً.";
 
 /* Description for how many times a specific discussion has been liked by other users */
-"%@ likes" = "%@ إعجاب/إعجابات";
+"%@ likes" = "%@ إعجابات";
 
 /* Label indicating multiple submissions need grading */
-"%@ need grading" = "%@ تقييم مطلوب";
+"%@ need grading" = "%@ بحاجة إلى تقييم";
 
 /* Word and ellipses */
 "%@..." = "%@...";
@@ -59,7 +56,7 @@
 "%1$@ at %2$@" = "%1$@ في %2$@";
 
 /* local notification countdown alert */
-"%1$@ is due in %2$@" = "موعد استحقاق %1$@ هو %2$@";
+"%1$@ is due in %2$@" = "%1$@ مستحق في %2$@";
 
 /* 88 out of 100 points */
 "%1$@ out of %2$@" = "%1$@ من إجمالي %2$@";
@@ -83,58 +80,58 @@
 "%d %@" = "%1$d %2$@";
 
 /* time since creation (2 or more days) */
-"%d days ago" = "منذ %d يوم/أيام";
+"%d days ago" = "%d أيام مضت";
 
 /* time since creation (2 or more hours) */
-"%d hours ago" = "منذ %d ساعة/ساعات";
+"%d hours ago" = "%d ساعات مضت";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
-"%d items" = "%d عنصر/عناصر";
+"%d items" = "%d عناصر";
 
 /* time since creation (2 or more minutes) */
-"%d minutes ago" = "منذ %d دقيقة/دقائق";
+"%d minutes ago" = "%d دقائق مضت";
 
 /* time since creation (2 or more months) */
-"%d months ago" = "منذ %d شهر/أشهر";
+"%d months ago" = "%d شهور مضت";
 
 /* In the context 'Joe, Fred, ((25 more))' */
-"%d more" = "%d أكثر";
+"%d more" = "%d المزيد";
 
 /* Something like '5 replies' */
-"%d replies" = "%d رد/ردود";
+"%d replies" = "%d ردود";
 
 /* Something like '3 unread'. Refers to unread replies in a discsusion. */
-"%d unread" = "%d غير مقروءة";
+"%d unread" = "%d غير مقروء";
 
 /* time since creation (2 or more years) */
-"%d years ago" = "منذ %d سنة/سنوات";
+"%d years ago" = "%d أعوام مضت";
 
 /* As in, '15 bytes' */
 "%qu bytes" = "%qu بايت";
 
 /* offset for one day */
-"%tu day" = "يوم %tu";
+"%tu day" = "%tu يوم";
 
 /* offset for number of days */
-"%tu days" = "%tu يوم/أيام";
+"%tu days" = "%tu أيام";
 
 /* offset for an hour */
-"%tu hour" = "ساعة %tu";
+"%tu hour" = "%tu ساعة";
 
 /* offset for number of hours */
-"%tu hours" = "%tu ساعة/ساعات";
+"%tu hours" = "%tu ساعات";
 
 /* offset for less than one minute */
-"%tu minute" = "دقيقة %tu";
+"%tu minute" = "%tu دقيقة";
 
 /* offset for under an hour */
-"%tu minutes" = "%tu دقيقة/دقائق";
+"%tu minutes" = "%tu دقائق";
 
 /* No comment provided by engineer. */
-"%u Attachments" = "%u مرفق/مرفقات";
+"%u Attachments" = "%u المرفقات";
 
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
-"%u files" = "%u ملف/ملفات";
+"%u files" = "%u ملفات";
 
 /* No comment provided by engineer. */
 "1 Attachment" = "مرفق واحد";
@@ -176,13 +173,13 @@
 "5 minutes" = "5 دقائق";
 
 /* Name of a tab displaying Canvas Info including legal info */
-"About" = "نبذة عن";
+"About" = "حول";
 
 /* Access Denied from the server */
 "Access Denied" = "الوصول مرفوض";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
-"Access denied. Please check your permissions for the action you're trying to complete." = "تم رفض الوصول. يرجى التحقق من أذونات العملية التي تحاول القيام بها.";
+"Access denied. Please check your permissions for the action you're trying to complete." = "الوصول مرفوض. يرجى التحقق من أذونات العملية التي تحاول القيام بها.";
 
 /* No comment provided by engineer. */
 "Add a folder" = "إضافة مجلد";
@@ -219,14 +216,11 @@
 "An unknown error occurred" = "حدث خطأ غير معروف";
 
 /* Title of the new announcement view */
-"Announcement" = "إعلان";
+"Announcement" = "الإعلان";
 
 /* Announcements title
    Title for the announcements view controller */
 "Announcements" = "إعلانات";
-
-/* Assignment submission type for selecting an Arc video */
-"Arc" = "Arc";
 
 /* Archive selected messages button
    mark a message as archived */
@@ -239,13 +233,10 @@
 "Archive Selected Messages Button" = "زر أرشفة الرسائل المحددة";
 
 /* No comment provided by engineer. */
-"Archived" = "تمت الأرشفة";
+"Archived" = "مؤرشف";
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "هل أنت مستعد لتسجيل الخروج؟";
-
-/* Confirmation alert text for submitting an Arc video for an assignment */
-"Are you sure you want to submit this Arc video for this assignment?" = "هل تريد إرسال فيديو Arc هذا لهذه المهمة بالفعل؟";
 
 /* No comment provided by engineer. */
 "Ask me later" = "اسألني فيما بعد";
@@ -271,7 +262,7 @@
 /* Label for a discussion */
 "Attendance" = "الحضور";
 
-/* Audio file type */
+/* Media type is audio */
 "Audio" = "صوت";
 
 /* No comment provided by engineer. */
@@ -280,14 +271,14 @@
 /* No comment provided by engineer. */
 "Augment Reality" = "الواقع المعزز";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Authentication error" = "خطأ في المصادقة";
 
 /* Link to building panda avatar */
 "Build Avatar" = "إنشاء أفاتار";
 
 /* No comment provided by engineer. */
-"Cache cleared" = "مُسحت ذاكرة التخزين المؤقت";
+"Cache cleared" = "تم مسح ذاكرة التخزين المؤقت";
 
 /* Calendar page title */
 "Calendar" = "التقويم";
@@ -298,24 +289,20 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "لا يمكن إرسال الوسط";
 
-/* Cancel button title
-   Cancel button title to cancel submitting an Arc video as an assignment submission */
+/* Cancel button title */
 "Cancel" = "إلغاء";
 
-/* Cancel button title */
+/* Cancel adding a comment button */
 "Cancel Message" = "إلغاء رسالة";
 
 /* No comment provided by engineer. */
-"Canvas appears to be unavailable. Please try again later." = "يبدو أن Canvas غير متوفر. يرجى إعادة المحاولة لاحقاً.";
+"Canvas appears to be unavailable. Please try again later." = "Canvas يبدو أنه غير متاح. الرجاء إعادة المحاولة لاحقًا.";
 
 /* detail text for recipient fetch error message */
-"Canvas failed to find recipients for your current search. Please try again later." = "فشل Canvas في العثور على مستلمين لبحثك الحالي. يرجى إعادة المحاولة لاحقاً.";
-
-/* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "تدعم اختبارات Canvas أنماطًا متنوعة للتقييمات. تحظى معظم هذه الأنماط بالدعم على الأجهزة المحمولة، في حين لا يتم دعم بعض الأنماط الأخرى. إذا حاولت تلقي أحد تلك الاختبارات غير المدعومة على هاتفك، فقد لا تتمكن من إكمال الاختبار بأكمله، مما يضعك في موقف غير جيد.\n\nوتتضمن أنواع الأسئلة غير المدعومة الأسئلة التي يوجد بها محتوى Adobe Flash™ وغيرها.\n\nإذا كنت تظن أن اختبارًا ما يوجد به محتوى غير مدعوم، يرجى الإجابة عليه على جهاز كمبيوتر مكتبي أو محمول. إذا كنت تعلم أن الاختبار يحتوي فقط على محتوى مدعوم، فبإمكانك الإجابة عليه على جهازك المحمول.";
+"Canvas failed to find recipients for your current search. Please try again later." = "فشل Canvas في العثور على مستلمين لبحثك الحالي. الرجاء إعادة المحاولة لاحقًا.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "تدعم اختبارات Canvas أنماط تقييم عديدة. معظم هذه الأنماط مدعومة على الأجهزة المحمولة؛ لكن بعض الأجهزة ليست مدعومة بعد. إذا حاولت إجراء أحد الاختبارات غير المدعومة على هاتفك، فقد يستحيل عليك إنهاء الاختبار بأكمله، ما سيضعك في وضع غير موات.\n\nأنواع الأسئلة غير المدعومة يشمل أسئلة تتضمن محتويات Adobe Flash™، تحميلات الملفات وغيرها.\n\nإذا كنت تعتقد أن اختبار ما يتضمن محتويات غير مدعومة، يرجى إجراء الامتحان على كمبيوتر المكتب أو كمبيوتر محمول. إذا كنت تعلم أن الاختبار يحتوي على محتويات مدعومة فقط، لا تترد في إجرائه على جهازك المحمول.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "تدعم اختبارات Canvas أنماطًا متنوعة للتقييمات. تحظى معظم هذه الأنماط بالدعم على الأجهزة المحمولة، في حين لا يتم دعم بعض الأنماط الأخرى. إذا حاولت تلقي أحد تلك الاختبارات غير المدعومة على هاتفك، فقد لا تتمكن من إكمال الاختبار بأكمله، مما يضعك في موقف غير جيد.\n\nوتتضمن أنواع الأسئلة غير المدعومة الأسئلة التي يوجد بها محتوى Adobe Flash™ وتحميلات الملفات وغيرها.\n\nإذا كنت تظن أن اختبارًا ما يوجد به محتوى غير مدعوم، يرجى الإجابة عليه على جهاز كمبيوتر مكتبي أو محمول. إذا كنت تعلم أن الاختبار يحتوي فقط على محتوى مدعوم، فبإمكانك الإجابة عليه على جهازك المحمول.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "تغيير صورة الملف التعريفي";
@@ -347,11 +334,11 @@
 /* Choose a video to send as a comment */
 "Choose Video" = "اختيار فيديو";
 
-/* Close the window */
+/* No comment provided by engineer. */
 "Close" = "إغلاق";
 
 /* No comment provided by engineer. */
-"Closed for Comments" = "التعليقات مغلقة";
+"Closed for Comments" = "مغلق للتعليقات";
 
 /* Title for Collaborations tab */
 "Collaborations" = "الأعمال الجماعية";
@@ -373,7 +360,7 @@
 "Complete" = "مكتمل";
 
 /* No comment provided by engineer. */
-"Completed" = "مكتمل";
+"Completed" = "تم الإكمال";
 
 /* hint for button to compose a message */
 "Compose a message" = "إنشاء رسالة";
@@ -386,9 +373,6 @@
 
 /* Alert title */
 "Confirm deletion" = "تأكيد الحذف";
-
-/* Confirm an arc video submission for an assignment */
-"Confirm Submission" = "تأكيد الإرسال";
 
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
 "Continue" = "متابعة";
@@ -408,7 +392,7 @@
 /* Courses page title */
 "Courses" = "المساقات";
 
-/* Cancel button title */
+/* cancel folder creation */
 "Create Folder" = "إنشاء مجلد";
 
 /* Header for a section showing submitted filenames */
@@ -427,13 +411,10 @@
 "Delete" = "حذف";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
-"Delete (%d)" = "حذف (%d)";
+"Delete (%d)" = "هل تريد حذف (%d)";
 
 /* Alert message */
 "Delete this reply?" = "حذف هذه الإجابة؟";
-
-/* delete file confirmation alert */
-"Deleted file: \"%@\"" = "ملف محذوف: \"%@\"";
 
 /* delete file confirmation alert */
 "Deleted file: &quot;%@&quot;" = "الملف المحذوف: &quot;%@&quot;";
@@ -451,21 +432,21 @@
 "Discard this entry?" = "تجاهل هذا الإدخال؟";
 
 /* Title of the new discussion view */
-"Discussion" = "مناقشة";
+"Discussion" = "النقاش";
 
 /* Title for discussion entry submission */
 "Discussion Entry" = "إدخال المناقشة";
 
 /* Title for Discussion Topics view controller */
-"Discussion Topics" = "مواضيع المناقشة";
+"Discussion Topics" = "موضوعات المناقشة";
 
 /* Discussions title
    Title for Discussions view controller */
-"Discussions" = "مناقشات";
+"Discussions" = "النقاشات";
 
 /* Dismiss button title
    uialertaction button name for dismissing the failed refresh error message */
-"Dismiss" = "رفض";
+"Dismiss" = "تجاهل";
 
 /* Alert title asking if you want to masquerade */
 "Do you want to masquerade as this user?" = "هل تريد التخفي بصفة هذا المستخدم؟";
@@ -492,13 +473,10 @@
 "due on %1$@ at %2$@" = "تاريخ الاستحقاق %1$@ في %2$@";
 
 /* This string is prepended to the due date for an assignment */
-"Due:" = "موعد الاستحقاق:";
-
-/* Due date label indicating when an assignment is due */
-"Due: %@" = "تاريخ الاستحقاق: %@";
+"Due:" = "تاريخ الاستحقاق:";
 
 /* Due date label for to do items, first placeholder is date, second is time */
-"Due: %1$@ at %2$@" = "موعد الاستحقاق: %1$@ على الساعة %2$@";
+"Due: %1$@ at %2$@" = "تاريخ الاستحقاق: %1$@ في %2$@";
 
 /* Button to edit a discussion entry */
 "Edit" = "تحرير";
@@ -515,16 +493,13 @@
 "Edit items" = "تحرير العناصر";
 
 /* Header when editing a discussion entry with name and timestamp */
-"Editing reply by %1$@, %2$@" = "تحرير الأجوبة حسب %1$@ و%2$@";
+"Editing reply by %1$@, %2$@" = "تحرير الرد بواسطة %1$@، %2$@";
 
 /* the users email */
 "Email" = "البريد الإلكتروني";
 
 /* Prompt asking user to enable push notifications */
 "Enable Push Notifications" = "تمكين إرسال الإعلامات";
-
-/* No comment provided by engineer. */
-"Enter folder name" = "أدخل اسم المجلد";
 
 /* Submission input view placeholder text */
 "Enter submission" = "إدخال الإرسال";
@@ -535,14 +510,11 @@
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "تم نشر الإدخال";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Error" = "خطأ";
 
 /* Title of an alert popup */
 "Error adding recipeints" = "حدث خطأ أثناء إضافة المستلمين";
-
-/* Error deleting file alert view title */
-"Error deleting file \"%@\"" = "حدث خطأ أثناء حذف الملف \"%@\"";
 
 /* Error deleting file alert view title */
 "Error deleting file &quot;%@&quot;" = "خطأ أثناء حذف الملف &quot;%@&quot;";
@@ -551,10 +523,10 @@
 "Error deleting folder" = "حدث خطأ أثناء حذف المجلد";
 
 /* Link to the End User License Agreement document */
-"EULA" = "اتفاقية ترخيص المستخدم";
+"EULA" = "اتفاقية ترخيص المستخدم النهائي";
 
 /* Label for a calendar event */
-"Event" = "حدث";
+"Event" = "الحدث";
 
 /* No comment provided by engineer. */
 "Existing Attachments..." = "المرفقات الموجودة...";
@@ -569,7 +541,7 @@
 "Failed to load" = "تعذر تحميل";
 
 /* No comment provided by engineer. */
-"File" = "ملف";
+"File" = "الملف";
 
 /* The file extension for a submission is not acceptable */
 "File extension not allowed: %@" = "ملحق ملف غير مسموح به: %@";
@@ -589,11 +561,11 @@
 /* File upload failed. */
 "File upload failed." = "فشل تحميل الملف.";
 
-/* Title for the files screen */
-"Files" = "ملفات";
-
-/* No comment provided by engineer. */
-"Final Grade" = "الدرجة النهائية";
+/* Files view
+   Name of a tab displaying files in a course
+   title for files view
+   Title for the Files View Controller */
+"Files" = "الملفات";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "انتهى التنزيل";
@@ -611,7 +583,7 @@
 "Go to discussion" = "الذهاب إلى المناقشة";
 
 /* title for discussion assignment submission button */
-"Go To Discussion" = "الذهاب إلى المناقشة";
+"Go To Discussion" = "الانتقال إلى المناقشة";
 
 /* text for the \"go to quiz\" button */
 "Go to Quiz" = "الذهاب إلى الاختبار";
@@ -620,10 +592,10 @@
 "Grade" = "الدرجة";
 
 /* Tells the user to grade an assignment called something like 'Biology Assignment' */
-"Grade %@" = "تقييم %@";
+"Grade %@" = "الدرجة %@";
 
 /* Launch the SpeedGrader app */
-"Grade in SpeedGrader" = "التقييم في SpeedGrader";
+"Grade in SpeedGrader" = "الدرجة في SpeedGrader";
 
 /* No comment provided by engineer. */
 "Grade: %@" = "الدرجة: %@";
@@ -638,7 +610,7 @@
 "Graded discussion." = "مناقشة مقيمة.";
 
 /* Graded discussion. 25 points possible */
-"Graded discussion. %g points possible." = "مناقشة مقيمة. %g نقطة ممكنة.";
+"Graded discussion. %g points possible." = "مناقشة مقيمة. %g نقاط ممكنة.";
 
 /* Title for Grades view controller */
 "Grades" = "الدرجات";
@@ -650,7 +622,7 @@
 "Groups" = "المجموعات";
 
 /* help button */
-"Help" = "مساعدة";
+"Help" = "المساعدة";
 
 /* Accessibility label for toggling grades to hidden */
 "Hide Grades" = "إخفاء الدرجات";
@@ -671,7 +643,7 @@
 "Import from Dropbox" = "استيراد من Dropbox";
 
 /* No comment provided by engineer. */
-"Inbox" = "صندوق الوارد";
+"Inbox" = "علبة الوارد";
 
 /* Assignment grade: Incomplete
    Pass/fail assignment is incomplete */
@@ -681,7 +653,7 @@
 "Individual messages" = "رسائل فردية";
 
 /* No comment provided by engineer. */
-"Invalid URL" = "عنوان URL غير صالح";
+"Invalid URL" = "URL غير صالح";
 
 /* No comment provided by engineer. */
 "It has problems" = "هناك مشاكل";
@@ -690,10 +662,7 @@
 "It’s empty, what are you still doing here." = "هذا فارغ، ماذا تفعل هنا؟";
 
 /* No comment provided by engineer. */
-"Item %1$d of %2$d" = "العنصر %1$d من %2$d";
-
-/* No comment provided by engineer. */
-"Item %d of %d" = "العنصر %1$d من %2$d";
+"Item %1$d of %2$d" = "%1$d عنصر من %2$d";
 
 /* No comment provided by engineer. */
 "Jumps to current day on calendar" = "المرور إلى اليوم الحالي على التقويم";
@@ -707,9 +676,6 @@
 /* Title for an alert popup */
 "Large file" = "ملف كبير الحجم";
 
-/* No comment provided by engineer. */
-"Late Penalty" = "عقوبة التأخير:";
-
 /* Button in an alert */
 "Later" = "فيما بعد";
 
@@ -717,7 +683,7 @@
 "Launch External Tool" = "تشغيل الأداة الخارجية";
 
 /* Title for legal section on the about page */
-"Legal" = "قانونية";
+"Legal" = "قانوني";
 
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
@@ -727,7 +693,7 @@
 "Locked" = "مؤمّن";
 
 /* No comment provided by engineer. */
-"Locked until %@" = "مؤمّن إلى غاية %@";
+"Locked until %@" = "مؤمَّن حتى %@";
 
 /* Typically the email address correlated to the user */
 "Login ID" = "معرف تسجيل الدخول";
@@ -742,14 +708,11 @@
 /* No comment provided by engineer. */
 "Love it!" = "أحب ذلك!";
 
-/* Title for an LTI launch submitted as an assignment */
-"LTI Tool" = "أداة LTI";
-
 /* Button title for mark as done */
 "Mark as Done" = "وضع علامة تم";
 
 /* Button title for beginning masquerading */
-"Masquerade" = "تخفي";
+"Masquerade" = "إخفاء الاسم";
 
 /* No comment provided by engineer. */
 "Me" = "أنا";
@@ -761,10 +724,10 @@
 "Media Comment" = "تعليق الوسائط";
 
 /* Media recording submission type */
-"Media recording" = "تسجيل الوسط";
+"Media recording" = "تسجيل الوسائط";
 
 /* Title for a media submission */
-"Media Submission" = "إرسال الوسط";
+"Media Submission" = "إرسال الوسائط";
 
 /* A slider to choose between media types */
 "Media type selector. %@" = "أداة تحديد نوع الوسائط. %@";
@@ -787,7 +750,7 @@
 "Mobile Quiz Warning" = "تحذير الاختبار على جهاز محمول";
 
 /* title for the modules tab */
-"Modules" = "الوحدات";
+"Modules" = "الوحدات النمطية";
 
 /* time since creation (less than 1 minute) */
 "moments ago" = "منذ لحظات";
@@ -796,16 +759,16 @@
 "More Info" = "مزيد من المعلومات";
 
 /* Title of a link to show additional due dates customized for sections or groups. */
-"Multiple Due Dates" = "مواعيد استحقاق متعددة";
+"Multiple Due Dates" = "تواريخ استحقاق متعددة";
 
 /* user must contribute to complete requirement */
 "Must contribute" = "يجب المساهمة";
 
 /* user must mark item as done to complete requirement */
-"Must mark as done" = "يجب وضع علامة تم";
+"Must mark as done" = "يجب وضع علامة \"تم\"";
 
 /* format string saying what the minimum score must be */
-"Must score %@ or higher" = "يجب الحصول على %@ أو أكثر";
+"Must score %@ or higher" = "يجب الحصول على %@ درجة أو أكثر";
 
 /* user must submit something to complete requirement */
 "Must submit" = "يجب الإرسال";
@@ -820,7 +783,7 @@
 "Name" = "الاسم";
 
 /* Title notifying user that SpeedGrader is available for iPad */
-"Need SpeedGrader for iPad" = "SpeedGrader لجهاز iPad مطلوب";
+"Need SpeedGrader for iPad" = "بحاجة إلى SpeedGrader لـ iPad";
 
 /* Network error title */
 "Network Error" = "خطأ في الشبكة";
@@ -829,7 +792,7 @@
 "New Folder" = "مجلد جديد";
 
 /* No comment provided by engineer. */
-"Next 7 Days" = "الأيام السبع القادمة";
+"Next 7 Days" = "الأيام السبعة القادمة";
 
 /* No comment provided by engineer. */
 "Next item" = "العنصر التالي";
@@ -844,14 +807,13 @@
 "No audio was recorded." = "لم يتم تسجيل أي صوت.";
 
 /* No comment provided by engineer. */
-"No Date" = "لا يوجد أي تاريخ";
+"No Date" = "بلا تاريخ";
 
-/* Indicates an assignment does not have a due date
-   String for when assignment has no due date */
-"No due date" = "لا يوجد موعد استحقاق";
+/* String for when assignment has no due date */
+"No due date" = "بلا تاريخ استحقاق";
 
 /* Label shown for a to do that doesn't have a due date */
-"No Due Date" = "لا يوجد موعد استحقاق";
+"No Due Date" = "لا يوجد تاريخ استحقاق";
 
 /* Error message */
 "No installed apps support opening this file" = "لا يوجد أي تطبيق مثبّت يسمح بفتح هذا الملف";
@@ -863,10 +825,10 @@
 "No Recorded Audio" = "لا يوجد أي تسجيل صوتي";
 
 /* Indicates a search found no results */
-"No results found" = "لم يتم العثور على أي نتيجة";
+"No results found" = "لم يتم العثور على نتائج";
 
 /* No Submission groupong */
-"No Submission" = "لا يوجد أي إرسال";
+"No Submission" = "لا يوجد إرسال";
 
 /* No comment provided by engineer. */
 "No Thanks" = "لا، شكراً";
@@ -890,7 +852,7 @@
 "Note: Media files are not immediately available for playback while they are processed on the server." = "ملاحظة: لا يمكن تشغيل ملفات الوسائط بشكل فوري أثناء معالجتها على الخادم.";
 
 /* Nothing to do, go play outside! */
-"Nothing to do, go play outside!" = "لا يمكن فعل أي شيء، إذهب للعب في الخارج!";
+"Nothing to do, go play outside!" = "لا يمكن فعل أي شيء، اذهب للعب في الخارج!";
 
 /* Nothing to see here. */
 "Nothing to see here." = "لا شيء لرؤيته هنا.";
@@ -899,10 +861,10 @@
 "Notification" = "الإخطار";
 
 /* Settings entry title for Notification Preferences */
-"Notification Preferences" = "تفضيلات الإخطار";
+"Notification Preferences" = "تفضيلات الإخطارات";
 
 /* Notifications tab title */
-"Notifications" = "الإخطارات";
+"Notifications" = "الإعلامات";
 
 /* Short name for observer enrollment */
 "Observer" = "المراقب";
@@ -925,7 +887,7 @@
 "Open in Safari" = "الفتح في Safari";
 
 /* Link to open assignment in SpeedGrader */
-"Open in SpeedGrader" = "الفتح في SpeedGrader";
+"Open in SpeedGrader" = "فتح في SpeedGrader";
 
 /* Open file in another application */
 "Open in..." = "الفتح في...";
@@ -949,16 +911,16 @@
 "out of %@ points" = "من إجمالي %@ من النقاط";
 
 /* Title for Outcomes tab */
-"Outcomes" = "النتائج";
+"Outcomes" = "الحصائل";
 
 /* No comment provided by engineer. */
-"Page" = "الصفحة";
+"Page" = "صفحة";
 
 /* No comment provided by engineer. */
-"Past" = "سابقة";
+"Past" = "الماضي";
 
 /* Title for the people view */
-"People" = "الأشخاص";
+"People" = "أشخاص";
 
 /* No comment provided by engineer. */
 "Permission Denied" = "تم رفض الإذن";
@@ -967,7 +929,7 @@
 "photo" = "صورة";
 
 /* No comment provided by engineer. */
-"Pinned Discussions" = "مناقشات مثبّتة";
+"Pinned Discussions" = "مناقشات مثبتة";
 
 /* A button that plays */
 "Play" = "تشغيل";
@@ -999,26 +961,27 @@
 /* Title for profile screen */
 "Profile" = "ملف التعريف";
 
-/* A short test taken by students */
-"Quiz" = "الاختبار";
+/* Label for a quiz
+   Title for a quiz submission cell */
+"Quiz" = "الاختبار الموجز";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
-"Quiz Alert" = "تنبيه الاختبار";
+"Quiz Alert" = "تنبيه الاختبار الموجز";
 
 /* The title for the list of quizzes for a course */
-"Quizzes" = "اختبارات";
+"Quizzes" = "اختبارات موجزة";
 
 /* No comment provided by engineer. */
 "Rate on App Store" = "التقييم على App Store";
 
 /* Description for rubric criterion rating object */
-"Rating for %1$@, Score: %2$g" = "تصنيف %1$@، الدرجة: %2$g";
+"Rating for %1$@, Score: %2$g" = "تصنيف %1$@، التقدير: %2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
-"Re-submit Assignment" = "إعادة إرسال المهمة";
+"Re-submit Assignment" = "إعادة إرسال التعيين";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
-"Recipients" = "المستلمين";
+"Recipients" = "المتلقون";
 
 /* A button that records */
 "Record" = "تسجيل";
@@ -1060,7 +1023,7 @@
 "Request a feature" = "طلب ميزة";
 
 /* View grading rubric */
-"Rubric" = "جدول الدرجات";
+"Rubric" = "تقييم روبرك";
 
 /* No comment provided by engineer. */
 "Save" = "حفظ";
@@ -1069,7 +1032,7 @@
 "Schedule Notification" = "جدولة إخطار";
 
 /* Placeholder text in a search bar used to find conversation recipients */
-"Search for recipients" = "البحث عن مستلمين";
+"Search for recipients" = "بحث عن مستلمين";
 
 /* Title for a file picker window */
 "Select file(s)" = "تحديد ملف(ملفات)";
@@ -1078,21 +1041,22 @@
 "Select or deselect" = "تحديد أو إلغاء التحديد";
 
 /* No comment provided by engineer. */
-"Selected" = "تم تحديده";
+"Selected" = "تم التحديد";
 
 /* No comment provided by engineer. */
 "Send" = "إرسال";
 
 /* Action sheet button title for sending a new message to a user. %@ will be replaced with the user's name */
-"Send %@ a message" = "إرسال رسالة إلى %@";
+"Send %@ a message" = "أرسل رسالة إلى %@";
 
 /* No comment provided by engineer. */
 "Send Message" = "إرسال رسالة";
 
 /* No comment provided by engineer. */
-"Sent" = "تم الإرسال";
+"Sent" = "مرسَل";
 
-/* Title for Settings */
+/* settings button
+   Title for Settings tab */
 "Settings" = "إعدادات";
 
 /* Title for button confirming showing a file */
@@ -1111,13 +1075,13 @@
 "Some items could not be deleted" = "لا يمكن حذف بعض الملفات";
 
 /* Message for a warning popup */
-"Some selected folders are not empty. Are you sure you want to delete them?" = "بعض الملفات المحددة ليست فارغة. هل تريد حقاً حذفها؟";
+"Some selected folders are not empty. Are you sure you want to delete them?" = "بعض المجلدات المحددة فارغة. هل ترغب بالتأكيد في حذفها؟";
 
 /* No comment provided by engineer. */
 "Something went wrong. Please try again." = "حدث خطأ ما. يرجى إعادة المحاولة.";
 
 /* 404 Error for missing assignment */
-"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "عذرًا، لم نتمكن من العثور على المهمة. ربما تم حذف هذه المهمة.";
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "عذرًا، تعذر علينا العثور على المهمة. تم حذف هذه المهمة.";
 
 /* Hint about the play button */
 "Starts playing your recording" = "بدء تشغيل تسجيلك";
@@ -1128,11 +1092,11 @@
 /* button title for cancelling a logout. */
 "Stay Logged In" = "الاستمرار في الجلسة";
 
-/* Stop loading button for webview */
+/* A button that stops */
 "Stop" = "إيقاف";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
-"Stop Masquerading" = "إيقاف التخفي";
+"Stop Masquerading" = "إيقاف إخفاء الأسماء";
 
 /* Hint about the play button */
 "Stops playing your recording" = "إيقاف تشغيل تسجيلك";
@@ -1155,11 +1119,8 @@
 /* Title for file submission error */
 "Submission Error" = "إرسال";
 
-/* Submit Arc video as assignment button */
+/* Submit an assignment */
 "Submit" = "إرسال";
-
-/* Button to submit files to an assignment */
-"Submit (%d)" = "إرسال (%d)";
 
 /* Submitted grouping */
 "Submitted" = "تم الإرسال";
@@ -1171,7 +1132,7 @@
 "Subscribe to calendar feed" = "الاشتراك في تغذية التقويم";
 
 /* Masquerade success title */
-"Success!" = "بنجاح!";
+"Success!" = "نجاح!";
 
 /* No comment provided by engineer. */
 "Sure!" = "بالتأكيد!";
@@ -1211,13 +1172,13 @@
 "Tap to view previous version" = "اضغط لعرض الإصدار السابق";
 
 /* No comment provided by engineer. */
-"TAs" = "مساعدي المعلمين";
+"TAs" = "مساعدو المعلمين";
 
 /* Short name for teacher enrollment */
 "Teacher" = "المعلم";
 
 /* No comment provided by engineer. */
-"Teachers" = "المعلمين";
+"Teachers" = "المعلمون";
 
 /* No comment provided by engineer. */
 "Tell us what's wrong" = "أخبرنا ما المشكلة";
@@ -1231,11 +1192,11 @@
 /* Text entry submission type */
 "Text entry" = "إدخال النص";
 
-/* Title for a text submission cell */
+/* Generic name for a submission entered online. */
 "Text Submission" = "إرسال النص";
 
 /* Text explaining the error */
-"The recipients could not be added. Please try again. (%@)" = "إضافة المستخدمين غير ممكنة. يرجى إعادة المحاولة. (%@)";
+"The recipients could not be added. Please try again. (%@)" = "تعذر إضافة المستلمين. يرجى إعادة المحاولة. (%@)";
 
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "تعذر الوصول إلى الخادم";
@@ -1244,7 +1205,7 @@
 "The server you entered is not authorized for this app." = "الخادم الذي أدخلته غير مخول لهذا التطبيق.";
 
 /* No comment provided by engineer. */
-"The user agent for this app is unauthorized." = "عميل المستخدم لهذا التطبيق غير مخول.";
+"The user agent for this app is unauthorized." = "وكيل المستخدم لهذا التطبيق غير مخوَّل.";
 
 /* Error message */
 "There are no actions for this item" = "لا توجد أي عملية لهذا العنصر";
@@ -1268,7 +1229,7 @@
 "There was an error loading the document." = "حدث خطأ أثناء تحميل المستند.";
 
 /* No comment provided by engineer. */
-"There was an error loading your content. If it is an audio or video upload it may still be processing." = "حدث خطأ أثناء تحميل محتوياتك. إذا كان ملف صوت أو فيديو فقد يزال قيد المعالجة.";
+"There was an error loading your content. If it is an audio or video upload it may still be processing." = "حدث خطأ أثناء تحميل المحتوى الخاص بك. إذا كان ملف صوت أو فيديو فقد يزال قيد المعالجة.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "هذا التطبيق غير مخول للاستخدام.";
@@ -1300,12 +1261,9 @@
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "قد يكون الوقت مناسبًا للقيام بأعمال إضافية.";
 
-/* No comment provided by engineer. */
-"To add a file from another app, open the file in that app and tap the Share icon. Then select the Copy to Student option. To add an attachment from the Mail app, tap and hold the attachment, then tap the Canvas icon." = "لإضافة ملف من تطبيق آخر، افتح الملف في ذلك التطبيق واضغط على أيقونة مشاركة. ثم حدد خيار النسخ إلى الطالب. لإضافة مرفق من تطبيق البريد، اضغط باستمرار على المرفق ثم اضغط على أيقونة Canvas.";
-
 /* Title of to do screen
    To Do page title */
-"To Do" = "ما يجب القيام به";
+"To Do" = "قائمة مهام";
 
 /* No comment provided by engineer. */
 "To:" = "إلى:";
@@ -1326,19 +1284,19 @@
 "Turn In" = "التسليم";
 
 /* Tells the user to turn in an assignment called something like 'Biology Assignment' */
-"Turn in %@" = "تسليم %@";
+"Turn in %@" = "التسليم %@";
 
 /* title for re-submitting an assignment */
 "Turn In Again" = "التسليم من جديد";
 
 /* Notification over status bar that displays when not connected to the internet. */
-"Uh-oh! No Internet Connection" = "أوه! لا يوجد اتصال بالإنترنت";
+"Uh-oh! No Internet Connection" = "عذرًا! لا يوجد اتصال بالإنترنت";
 
 /* Error title */
 "Unable to load" = "التحميل غير ممكن";
 
 /* Error message */
-"Unable to post. Please try again later" = "النشر غير ممكن. يرجى إعادة المحاولة لاحقاً";
+"Unable to post. Please try again later" = "النشر غير ممكن. الرجاء إعادة المحاولة لاحقًا";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "التحميل على الخادم غير ممكن";
@@ -1350,7 +1308,7 @@
 "Unavailable" = "غير متوفر";
 
 /* Title for grade button when no grade is present */
-"Ungraded" = "دون تقييم";
+"Ungraded" = "لم يتم تقييم الدرجة";
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "غير معروف";
@@ -1383,9 +1341,6 @@
 "Upload file" = "تحميل ملف";
 
 /* Error message */
-"Upload to assignment \"%@\" failed" = "فشل التحميل إلى المهمة \"%@\"";
-
-/* Error message */
 "Upload to assignment &quot;%@&quot; failed" = "تعذر التحميل إلى المهمة &quot;%@&quot;";
 
 /* Error message */
@@ -1400,7 +1355,7 @@
 /* Title for User Info section on the about page */
 "User Info" = "معلومات المستخدم";
 
-/* Video file type */
+/* Media type is video */
 "Video" = "فيديو";
 
 /* No comment provided by engineer. */
@@ -1422,7 +1377,7 @@
 "We were unable to verify the server for use with this app." = "لم نتمكن من التحقق من الخادم لاستخدامه مع هذا التطبيق.";
 
 /* Error Title */
-"Whoops!" = "أوبس!";
+"Whoops!" = "عذرًا!";
 
 /* unlock date for discussion/announcement */
 "Will unlock %@." = "تاريخ إلغاء القفل %@.";

@@ -84,7 +84,11 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
             submission: .make(workflow_state: .unsubmitted),
             submission_types: [ .online_upload ]
         ))
-        let c = Course.make(from: .make(enrollments: [ .make() ]))
+        let c = Course.make(from: .make(enrollments: [ .make(type: "observer") ]))
+        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil))
+
+        c.enrollments?.first?.type = "student"
+        c.enrollments?.first?.role = "SomethingCustom"
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Submit Assignment")
 
         a.submission?.workflowState = .submitted
@@ -113,8 +117,9 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         quiz.submission = QuizSubmission.make(from: .make(attempts_left: 0))
         XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil))
         quiz.submission = nil
+        a.submission?.submittedAt = Date()
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil), "Retake Quiz")
-        a.submission?.workflowState = .unsubmitted
+        a.submission?.submittedAt = nil
         XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil), "Take Quiz")
 
         a.submissionTypes = [ .online_upload ]
@@ -130,7 +135,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
 
         a.submissionTypes = [ .online_text_entry ]
         presenter.submitAssignment(a, button: button)
-        XCTAssert(router.lastRoutedTo(Route.assignmentTextSubmission(courseID: "1", assignmentID: "1", userID: "1")))
+        XCTAssert(router.viewControllerCalls.last?.0 is TextSubmissionViewController)
     }
 
     func testSubmitAssignmentChoose() {
@@ -195,7 +200,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     func testSubmitTypeText() {
         let a = Assignment.make()
         presenter.submitType(.online_text_entry, for: a, button: UIView())
-        XCTAssert(router.lastRoutedTo(Route.assignmentTextSubmission(courseID: "1", assignmentID: "1", userID: "1")))
+        XCTAssert(router.viewControllerCalls.last?.0 is TextSubmissionViewController)
     }
 
     func testSubmitTypeQuiz() {
@@ -216,7 +221,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     func testSubmitTypeURL() {
         let a = Assignment.make()
         presenter.submitType(.online_url, for: a, button: UIView())
-        XCTAssert(router.lastRoutedTo(Route.assignmentUrlSubmission(courseID: "1", assignmentID: "1", userID: "1")))
+        XCTAssert(router.viewControllerCalls.last?.0 is UrlSubmissionViewController)
     }
 
     func testSubmitArc() {
@@ -270,11 +275,11 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         XCTAssertTrue(uploadManager.cancelWasCalled)
     }
 
-    func testCanSubmitFilePicker() {
+    func testCanSubmitFilePicker() throws {
         XCTAssertFalse(presenter.canSubmit(filePicker))
         let url = URL.temporaryDirectory.appendingPathComponent("SubmissionButtonPresenterTests-submit-files.txt")
         FileManager.default.createFile(atPath: url.path, contents: "test".data(using: .utf8), attributes: nil)
-        UploadManager.shared.add(url: url, batchID: presenter.batchID)
+        try UploadManager.shared.add(url: url, batchID: presenter.batchID)
         let filePicker = FilePickerViewController.create(environment: env, batchID: presenter.batchID)
         XCTAssertTrue(presenter.canSubmit(filePicker))
     }

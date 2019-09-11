@@ -20,6 +20,9 @@ import ReactiveSwift
 import ReactiveCocoa
 import CanvasCore
 import TechDebt
+import Core
+import class CanvasCore.ModuleItem
+import class CanvasCore.Module
 
 extension Notification.Name {
     static let moduleItemBecameActive = Notification.Name(rawValue: "ModuleItemBecameActiveNotification")
@@ -75,7 +78,7 @@ class ModuleItemViewModel: NSObject {
                 }
             }
             if let url = url {
-                let controller = Router.shared().controller(forHandling: url)
+                let controller = AppEnvironment.shared.router.match(.parse(url))
                 return controller
             }
             return nil
@@ -125,7 +128,7 @@ class ModuleItemViewModel: NSObject {
         return Action(enabledIf: self.nextModuleItemIsValid) { [weak self] _ in
             attemptProducer {
                 guard let self = self, let next = self.nextModuleItem.value else { return }
-                CanvasAnalytics.logEvent("module_item_content_selected_next")
+                Analytics.shared.logEvent("module_item_content_selected_next")
                 self.observer = try ModuleItem.observer(self.session, moduleItemID: next.id)
             }
         }
@@ -134,7 +137,7 @@ class ModuleItemViewModel: NSObject {
         return Action(enabledIf: self.previousModuleItemIsValid) { [weak self] _ in
             attemptProducer {
                 guard let self = self, let previous = self.previousModuleItem.value else { return }
-                CanvasAnalytics.logEvent("module_item_content_selected_previous")
+                Analytics.shared.logEvent("module_item_content_selected_previous")
                 self.observer = try ModuleItem.observer(self.session, moduleItemID: previous.id)
             }
         }

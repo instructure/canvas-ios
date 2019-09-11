@@ -51,7 +51,6 @@ abstract_target 'defaults' do
   pod 'Marshal', '~> 1.2.7'
   pod 'Cartography', '~> 3.1'
   pod 'Kingfisher', '~> 4.10'
-  pod 'SVProgressHUD', '~> 2.0'
   pod 'TBBModal', '~> 1.0'
   pod 'AFNetworking', '~> 3.0'
   pod 'Mantle', '~> 1.5.5'
@@ -59,7 +58,12 @@ abstract_target 'defaults' do
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'
     pod 'Fabric', '~> 1.7.7'
-    pod 'Eureka', '~> 4.3'
+    pod 'Firebase/Core', '~> 5.20'
+  end
+  
+  target 'ParentUnitTests' do
+    project 'Parent/Parent.xcodeproj'
+    pod 'Fabric', '~> 1.7.7'
     pod 'Firebase/Core', '~> 5.20'
   end
 
@@ -104,10 +108,6 @@ abstract_target 'defaults' do
     project 'Frameworks/CanvasKit/CanvasKit.xcodeproj'
   end
 
-  target 'CanvasKeymaster' do
-    project 'Frameworks/CanvasKeymaster/CanvasKeymaster.xcodeproj'
-  end
-
 end
 
 post_install do |installer|
@@ -116,7 +116,6 @@ post_install do |installer|
       config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
     end
     usesNonAppExAPI = %w[
-      SVProgressHUD
       react-native-camera
       React
       react-native-document-picker

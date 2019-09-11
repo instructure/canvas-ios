@@ -22,9 +22,9 @@
 #import "CBIPeopleDetailViewController.h"
 #import "CBIPeopleViewModel.h"
 #import "CBIConversationStarter.h"
-#import "Router.h"
 #import "UIView+Circular.h"
-@import CanvasKeymaster;
+#import "Routing.h"
+@import CanvasKit;
 @import CanvasCore;
 
 @interface CBIPeopleDetailViewController () <UIGestureRecognizerDelegate>
@@ -141,7 +141,7 @@
     if (masqueradeAs.length > 0) {
         NSString *path = [NSString stringWithFormat:@"/act-as-user/%@", masqueradeAs];
         NSURL *url = [NSURL URLWithString:path];
-        [[Router sharedRouter] routeFromController:self toURL:url];
+        Routing.routeToURL(url, self);
     }
 }
 

@@ -29,13 +29,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol CanvasAnalyticsHandler
-- (void)handleEvent:(NSString *)name parameters:(nullable NSDictionary<NSString *, id> *)parameters;
-@end
-
 @interface CanvasAnalytics : NSObject <RCTBridgeModule>
 
-+ (void)setHandler:(id<CanvasAnalyticsHandler>)handler;
 + (void)logEvent:(NSString *)name parameters:(nullable NSDictionary<NSString *, id>*)parameters;
 + (void)logEvent:(NSString *)name;
 

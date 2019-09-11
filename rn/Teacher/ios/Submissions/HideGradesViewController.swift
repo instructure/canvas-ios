@@ -31,6 +31,7 @@ class HideGradesViewController: UIViewController {
     @IBOutlet weak var allHiddenSubHeader: DynamicLabel!
     var presenter: PostGradesPresenter!
     var viewModel: APIPostPolicyInfo?
+    var color: UIColor = .named(.electric)
 
     static func create(courseID: String, assignmentID: String) -> HideGradesViewController {
         let controller = loadFromStoryboard()
@@ -74,6 +75,8 @@ extension HideGradesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PostGradesViewController.SectionCell = tableView.dequeue(for: indexPath)
+        cell.textLabel?.font = UIFont.scaledNamedFont(.semibold16)
+        cell.toggle.onTintColor = Brand.shared.buttonPrimaryBackground
 
         if indexPath.row == 0 {
             cell.textLabel?.text = NSLocalizedString("Specific Sections", comment: "")
@@ -123,5 +126,13 @@ extension HideGradesViewController: PostGradesViewProtocol {
 
     func didHideGrades() {
         dismiss(animated: true, completion: nil)
+    }
+
+    func updateCourseColor(_ color: UIColor) {
+        self.color = color
+    }
+
+    func showAllHiddenView() {
+        allGradesHiddenView.isHidden = false
     }
 }

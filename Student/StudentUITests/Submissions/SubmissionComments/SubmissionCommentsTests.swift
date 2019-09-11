@@ -105,8 +105,10 @@ class SubmissionCommentsTests: StudentUITestCase {
     }
 
     func testCreateTextComment() {
+        mockBaseRequests()
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
 
+        logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
         SubmissionDetails.drawerGripper.tap()
         SubmissionDetails.drawerGripper.tap() // Make it full height.
@@ -168,8 +170,9 @@ class SubmissionCommentsTests: StudentUITestCase {
         SubmissionComments.audioCellPlayPauseButton(commentID: "2").tap()
     }
 
-    // Skipped since it fails on bitrise right now.
+    // TODO: fix on bitrise
     func xtestAudioRecording() {
+        mockBaseRequests()
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
         mockData(GetMediaServiceRequest(), value: APIMediaService(domain: "canvas.instructure.com"))
         mockData(PostMediaSessionRequest(), value: APIMediaSession(ks: "k"))
@@ -201,7 +204,7 @@ class SubmissionCommentsTests: StudentUITestCase {
         allowAccessToMicrophone {
             app.find(label: "Record Audio").tap()
         }
-        AudioRecorder.recordButton.tap()
+        AudioRecorder.recordButton.tap() // Doesn't start recording on bitrise. :( It works locally.
         AudioRecorder.stopButton.tap()
         XCTAssertTrue(AudioRecorder.currentTimeLabel.isVisible)
         AudioRecorder.clearButton.tap()

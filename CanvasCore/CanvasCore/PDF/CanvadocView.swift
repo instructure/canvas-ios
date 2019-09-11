@@ -20,7 +20,7 @@ import UIKit
 import PSPDFKit
 import PSPDFKitUI
 import React
-import CanvasKeymaster
+import CanvasKit
 import AFNetworking
 
 // CREDIT: https://stackoverflow.com/a/24590678
@@ -187,7 +187,7 @@ public class CanvadocView: UIView {
         
         guard previewPath != "" else { downloadFallback(); return }
         
-        guard let client = CanvasKeymaster.the().currentClient?.copy() as? CKIClient, let accessToken = CanvasKeymaster.the().currentClient?.accessToken else { return }
+        guard let client = CKIClient.current?.copy() as? CKIClient, let accessToken = CKIClient.current?.accessToken else { return }
         client.requestSerializer = AFHTTPRequestSerializer()
         client.responseSerializer = AFHTTPResponseSerializer()
         client.requestSerializer.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")

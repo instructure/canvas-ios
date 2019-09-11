@@ -268,29 +268,34 @@ exports[`SubmissionList loaded 1`] = `
                   Not Submitted
                 </Text>
               </View>
-              <View
+              <Text
                 style={
                   Array [
                     Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
+                      "fontFamily": ".SFUIDisplay",
                     },
                     Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "color": "#374A59",
+                        "fontSize": 14,
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "alignSelf": "center",
+                      },
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
-              />
+              >
+                --
+              </Text>
             </View>
           </View>
         </View>
@@ -472,31 +477,8 @@ exports[`SubmissionList loaded 1`] = `
                   ]
                 }
               >
-                Excused
+                --
               </Text>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
             </View>
           </View>
         </View>
@@ -694,29 +676,34 @@ exports[`SubmissionList loaded 1`] = `
                   NEEDS GRADING
                 </Text>
               </View>
-              <View
+              <Text
                 style={
                   Array [
                     Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
+                      "fontFamily": ".SFUIDisplay",
                     },
                     Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "color": "#374A59",
+                        "fontSize": 14,
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "alignSelf": "center",
+                      },
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
-              />
+              >
+                A-
+              </Text>
             </View>
           </View>
         </View>
@@ -900,29 +887,6 @@ exports[`SubmissionList loaded 1`] = `
               >
                 A-
               </Text>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#c7c7cc",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
             </View>
           </View>
         </View>
@@ -1294,29 +1258,6 @@ exports[`renders a group row properly 1`] = `
       >
         A-
       </Text>
-      <View
-        style={
-          Array [
-            Object {
-              "alignSelf": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#c7c7cc",
-              "borderRightWidth": 2,
-              "borderTopWidth": 2,
-              "height": 10,
-              "marginLeft": 7,
-              "width": 10,
-            },
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "45deg",
-                },
-              ],
-            },
-          ]
-        }
-      />
     </View>
   </View>
 </View>
@@ -1473,29 +1414,34 @@ exports[`renders the row properly 1`] = `
           Not Submitted
         </Text>
       </View>
-      <View
+      <Text
         style={
           Array [
             Object {
-              "alignSelf": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#c7c7cc",
-              "borderRightWidth": 2,
-              "borderTopWidth": 2,
-              "height": 10,
-              "marginLeft": 7,
-              "width": 10,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "transform": Array [
-                Object {
-                  "rotate": "45deg",
-                },
-              ],
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#374A59",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "alignSelf": "center",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
             },
           ]
         }
-      />
+      >
+        --
+      </Text>
     </View>
   </View>
 </View>

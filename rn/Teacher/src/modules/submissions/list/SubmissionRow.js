@@ -21,6 +21,7 @@
 import React, { Component } from 'react'
 import {
   View,
+  Image,
   StyleSheet,
   TouchableHighlight,
 } from 'react-native'
@@ -32,6 +33,7 @@ import { Text } from '../../../common/text'
 import SubmissionStatusLabel from './SubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
 import { formatGradeText } from '../../../common/formatters'
+import images from '../../../images'
 
 type RowProps = {
   testID: string,
@@ -75,13 +77,12 @@ class Row extends Component<RowProps, any> {
   }
 }
 
-export const Grade = ({ submission, gradingType }: {grade: ?GradeProp, gradingType: GradingType}) => {
-  if (!submission || submission.state === 'unsubmitted' || submission.gradingStatus === 'needs_grading') {
-    return null
-  }
+export const Grade = ({ submission, gradingType }) => {
+  let gradeText = submission.grade
 
-  let gradeText = ''
-  if (submission.excused) {
+  if (submission == null || submission.state === 'unsubmitted' || submission.gradingStatus === 'needs_grading') {
+    gradeText = '--'
+  } else if (submission.excused) {
     gradeText = i18n('Excused')
   } else {
     gradeText = formatGradeText(submission.grade, gradingType)
@@ -103,22 +104,22 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
   }
 
   render () {
-    let disclosure = this.props.disclosure
-    if (disclosure === undefined) {
-      disclosure = true
-    }
-    let name = this.props.user.name || this.props.group.name
-    let avatarUrl = this.props.user.avatarUrl
+    let { user, group, submission, gradingType, newGradebookEnabled } = this.props
+    let contextID = user?.id ?? group?.id
+    let name = user?.name ?? group?.name
+    let avatarURL = user.avatarUrl
+
     if (this.props.anonymous) {
-      name = (this.props.groupID ? i18n('Group') : i18n('Student'))
-      avatarUrl = null
+      name = group != null ? i18n('Group') : i18n('Student')
+      avatarURL = null
     }
+
     return (
-      <Row disclosure={disclosure} testID={`submission-${this.props.user.id}`} onPress={this.onPress}>
+      <Row testID={`submission-${contextID}`} onPress={this.onPress}>
         <View style={styles.avatar}>
           <Avatar
-            key={this.props.user.id || this.props.group.id}
-            avatarURL={avatarUrl}
+            key={contextID}
+            avatarURL={avatarURL}
             userName={name}
             onPress={this.props.onAvatarPress && this.onAvatarPress}
           />
@@ -128,16 +129,23 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
             style={styles.title}
             ellipsizeMode='tail'
             numberOfLines={2}>{name}</Text>
-          {this.props.gradingType !== 'not_graded' &&
-            <SubmissionStatusLabel submission={this.props.submission} />
+          {gradingType !== 'not_graded' &&
+            <SubmissionStatusLabel submission={submission} />
           }
-          {this.props.submission && this.props.submission.gradingStatus === 'needs_grading' &&
+          {submission.gradingStatus === 'needs_grading' &&
             <Token style={{ alignSelf: 'flex-start', marginTop: 8 }} color={ colors.primaryButton }>
               {i18n('Needs Grading')}
             </Token>
           }
         </View>
-        <Grade submission={this.props.submission} gradingType={this.props.gradingType} />
+        <Grade submission={submission} gradingType={gradingType} />
+        {newGradebookEnabled && submission.grade != null && submission.postedAt == null &&
+          <Image
+            source={images.off}
+            testID='SubmissionRow.hiddenIcon'
+            style={{ tintColor: colors.destructiveButtonColor, height: 20, width: 20, marginLeft: 10 }}
+          />
+        }
       </Row>
     )
   }

@@ -23,8 +23,10 @@ import TestsFoundation
 open class CoreUITestCase: XCTestCase {
     let decoder = JSONDecoder()
     let encoder = JSONEncoder()
-    let pasteboardType = "com.instructure.ui-test-helper"
     open var homeScreen: Element { return TabBar.dashboardTab }
+
+    open var dataMocks = [MockDataMessage]()
+    open var downloadMocks = [MockDownloadMessage]()
 
     open var user: UITestUser? {
         if Bundle.main.isStudentUITestsRunner {
@@ -40,15 +42,52 @@ open class CoreUITestCase: XCTestCase {
     open var abstractTestClass: CoreUITestCase.Type { return CoreUITestCase.self }
 
     open override func perform(_ run: XCTestRun) {
-        if type(of: self) != abstractTestClass {
+        guard type(of: self) != abstractTestClass else { return }
+        if ProcessInfo.processInfo.environment["LIST_TESTS_ONLY"] == "YES" {
+            print("UI_TEST: \(name)")
+        } else {
             super.perform(run)
         }
     }
 
-    private static var firstRun = true
+    open class CoreUITestRun: XCTestCaseRun {
+        var needsRetry = false
 
+        // Don't set this above 1!
+        // There seems to be a bug in how this interacts with XCTest causing too many retries to look like success (!!)
+        var retries = 1
+        override open func recordFailure(withDescription description: String, inFile filePath: String?, atLine lineNumber: Int, expected: Bool) {
+            if needsRetry { return }
+            if retries > 0 {
+                retries -= 1
+                // TODO: collect this information across builds
+                print("WARN: \(description) at \(filePath ?? "<unknown>"):\(lineNumber), will retry with clean launch...")
+                needsRetry = true
+            } else {
+                super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
+            }
+        }
+    }
+
+    @objc var shouldHaltWhenReceivesControl: Bool {
+        return (testRun as? CoreUITestRun)?.needsRetry ?? false
+    }
+
+    override open var testRunClass: AnyClass? { return CoreUITestRun.self }
+
+    open override func invokeTest() {
+        super.invokeTest()
+        if let run = testRun as? CoreUITestRun, run.needsRetry {
+            run.needsRetry = false
+            app.terminate()
+            invokeTest()
+        }
+    }
+
+    private static var firstRun = true
     open override func setUp() {
         super.setUp()
+        LoginSession.useTestKeychain()
         continueAfterFailure = false
         if CoreUITestCase.firstRun || app.state != .runningForeground {
             CoreUITestCase.firstRun = false
@@ -62,31 +101,40 @@ open class CoreUITestCase: XCTestCase {
             logInUser(user)
             homeScreen.waitToExist()
         }
+        // If this is a retry, re-install the old mocks
+        for message in dataMocks {
+            send(.mockData(message))
+        }
+        for message in downloadMocks {
+            send(.mockDownload(message))
+        }
     }
 
     open override func tearDown() {
-        super.tearDown()
         send(.tearDown)
+        LoginSession.clearAll()
+        super.tearDown()
     }
+
+    let ipcAppClient = IPCClient(serverPortName: IPCAppServer.portName(id: "\(ProcessInfo.processInfo.processIdentifier)"))
+    let ipcDriverServer = IPCDriverServer(machPortName: IPCDriverServer.portName(id: "\(ProcessInfo.processInfo.processIdentifier)"))
 
     open func launch(_ block: ((XCUIApplication) -> Void)? = nil) {
         let app = XCUIApplication()
         app.launchEnvironment["IS_UI_TEST"] = "TRUE"
+        app.launchEnvironment["APP_IPC_PORT_NAME"] = ipcAppClient.serverPortName
+        app.launchEnvironment["DRIVER_IPC_PORT_NAME"] = ipcDriverServer.machPortName
         block?(app)
         app.launch()
         // Wait for RN to finish loading
         app.find(labelContaining: "Loading").waitToVanish(120)
     }
 
-    func send<T: Encodable>(_ type: UITestHelpers.HelperType, _ data: T) {
-        send(type, data: try! encoder.encode(data))
-    }
-
-    func send(_ type: UITestHelpers.HelperType, data: Data? = nil) {
-        let data = try! encoder.encode(UITestHelpers.Helper(type: type, data: data))
-        UIPasteboard.general.items.removeAll()
-        UIPasteboard.general.setData(data, forPasteboardType: pasteboardType)
-        app.find(id: "ui-test-helper").tap()
+    func send(_ helper: UITestHelpers.Helper) {
+        if let response = ipcAppClient.requestRemote(helper),
+            !response.isEmpty {
+            fatalError("Unexpected IPC response")
+        }
     }
 
     open func reset(file: StaticString = #file, line: UInt = #line) {
@@ -108,7 +156,7 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func logInEntry(_ session: LoginSession, file: StaticString = #file, line: UInt = #line) {
-        send(.login, session)
+        send(.login(session))
         homeScreen.waitToExist(file: file, line: line)
     }
 
@@ -131,18 +179,51 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func currentSession() -> LoginSession? {
-        send(.currentSession)
-        guard
-            let data = UIPasteboard.general.data(forPasteboardType: pasteboardType),
-            let helper = try? decoder.decode(UITestHelpers.Helper.self, from: data),
-            helper.type == .currentSession, let entryData = helper.data
-        else { return nil }
-        return try? decoder.decode(LoginSession.self, from: entryData)
+        guard let data = ipcAppClient.requestRemote(UITestHelpers.Helper.currentSession) else {
+            fatalError("Bad IPC response (no data returned)")
+        }
+        if data.isEmpty {
+            return nil
+        } else {
+            return (try? JSONDecoder().decode(LoginSession?.self, from: data))!
+        }
     }
 
     open func show(_ route: String) {
-        send(.show, [ route ])
+        if currentSession() == nil {
+            logIn()
+        }
+        send(.show(route))
     }
+
+    open func pullToRefresh() {
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+            .press(forDuration: 0.05, thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.9)))
+    }
+
+    open func allowAccessToPhotos(block: () -> Void) {
+        let alertHandler = addUIInterruptionMonitor(withDescription: "Photos Access Alert") { (alert) -> Bool in
+            _ = alert.buttons["OK"].waitForExistence(timeout: 3)
+            alert.buttons["OK"].tap()
+            return true
+        }
+        block()
+        app.swipeUp()
+        removeUIInterruptionMonitor(alertHandler)
+    }
+
+    open func allowAccessToMicrophone(block: () -> Void) {
+        let alertHandler = addUIInterruptionMonitor(withDescription: "Permission Alert") { (alert) -> Bool in
+            _ = alert.buttons["OK"].waitForExistence(timeout: 3)
+            alert.buttons["OK"].tap()
+            return true
+        }
+        block()
+        app.swipeUp()
+        removeUIInterruptionMonitor(alertHandler)
+    }
+
+    // MARK: mock (convenience)
 
     open func mockData<R: APIRequestable>(
         _ requestable: R,
@@ -184,44 +265,27 @@ open class CoreUITestCase: XCTestCase {
         mockDataRequest(URLRequest(url: url), data: data, response: response, error: error, noCallback: noCallback)
     }
 
-    open func mockDataRequest(
-        _ request: URLRequest,
-        data: Data? = nil,
-        response: HTTPURLResponse? = nil,
-        error: String? = nil,
-        noCallback: Bool = false
-    ) {
-        send(.mockData, MockDataMessage(
-            data: data,
-            error: error,
-            request: request,
-            response: response.flatMap { MockResponse(http: $0) },
-            noCallback: noCallback
-        ))
+    @discardableResult
+    open func mock(course: APICourse) -> APICourse {
+        mockData(GetCourseRequest(courseID: course.id), value: course)
+        mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: course.id)), value: ["rce_enhancements"])
+        mockEncodableRequest("courses/\(course.id)/external_tools?per_page=99&include_parents=true", value: [String]())
+        return course
     }
 
-    open func mockDownload(
-        _ url: URL,
-        data: URL? = nil,
-        response: HTTPURLResponse? = nil,
-        error: String? = nil
-    ) {
-        send(.mockDownload, MockDownloadMessage(
-            data: data.flatMap { try! Data(contentsOf: $0) },
-            error: error,
-            response: response.flatMap { MockResponse(http: $0) },
-            url: url
-        ))
+    @discardableResult
+    open func mock(assignment: APIAssignment) -> APIAssignment {
+        mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: [ .submission ]), value: assignment)
+        mockData(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: []), value: assignment)
+        return assignment
     }
 
     open func mockBaseRequests() {
         mockData(GetUserRequest(userID: "self"), value: APIUser.make())
-        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!), data: """
-        {"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}
-        """.data(using: .utf8)) // CKIClient.fetchCurrentUser
-        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile")!), data: """
-        {"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}
-        """.data(using: .utf8))
+        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!),
+                        data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8)) // CKIClient.fetchCurrentUser
+        mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile")!),
+                        data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8))
         mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/users/self"))) // cookie keepalive
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
         mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
@@ -235,9 +299,8 @@ open class CoreUITestCase: XCTestCase {
         if Bundle.main.isTeacherApp {
             state.append(.unpublished)
         }
-        mockData(GetCoursesRequest(state: state), value: [ .make(id: "1", enrollments: [ enrollment ]) ])
-        mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: "1")), value: [ "rce_enhancements" ])
-        mockEncodableRequest("courses/1/external_tools?per_page=99&include_parents=true", value: [String]())
+        let course = mock(course: .make(enrollments: [ enrollment ]))
+        mockData(GetCoursesRequest(enrollmentState: nil, state: state), value: [ course ])
         mockEncodableRequest("users/self/custom_data/favorites/groups?ns=com.canvas.canvas-app", value: [String: String]())
         mockEncodableRequest("users/self/enrollments?include[]=avatar_url", value: [enrollment])
         mockEncodableRequest("users/self/groups", value: [String]())
@@ -246,32 +309,40 @@ open class CoreUITestCase: XCTestCase {
         mockEncodableRequest("dashboard/dashboard_cards", value: [String]())
     }
 
-    open func pullToRefresh() {
-        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
-            .press(forDuration: 0.05, thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.9)))
+    // MARK: mock (primitive)
+
+    open func mockDataRequest(
+        _ request: URLRequest,
+        data: Data? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil,
+        noCallback: Bool = false
+    ) {
+        let message = MockDataMessage(
+            data: data,
+            error: error,
+            request: request,
+            response: response.flatMap { MockResponse(http: $0) },
+            noCallback: noCallback
+        )
+        dataMocks.append(message)
+        send(.mockData(message))
     }
 
-    open func allowAccessToPhotos(block: () -> Void) {
-        let alertHandler = addUIInterruptionMonitor(withDescription: "Photos Access Alert") { (alert) -> Bool in
-            _ = alert.buttons["OK"].waitForExistence(timeout: 3)
-            alert.buttons["OK"].tap()
-            return true
-        }
-        block()
-        app.swipeUp()
-        removeUIInterruptionMonitor(alertHandler)
+    open func mockDownload(
+        _ url: URL,
+        data: URL? = nil,
+        response: HTTPURLResponse? = nil,
+        error: String? = nil
+    ) {
+        let message = MockDownloadMessage(
+            data: data.flatMap { try! Data(contentsOf: $0) },
+            error: error,
+            response: response.flatMap { MockResponse(http: $0) },
+            url: url
+        )
+        downloadMocks.append(message)
+        send(.mockDownload(message))
     }
 
-    open func allowAccessToMicrophone(block: () -> Void) {
-        let alertHandler = addUIInterruptionMonitor(withDescription: "Permission Alert") { (alert) -> Bool in
-            if alert.buttons["OK"].exists {
-                alert.buttons["OK"].tap()
-                return true
-            }
-            return false
-        }
-        block()
-        app.swipeUp()
-        removeUIInterruptionMonitor(alertHandler)
-    }
 }

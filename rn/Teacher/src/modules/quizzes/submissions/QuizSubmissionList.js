@@ -26,6 +26,8 @@ import EnrollmentActions from '../../enrollments/actions'
 import CoursesActions from '../../courses/actions'
 import {
   View,
+  Animated,
+  Text,
   StyleSheet,
   FlatList,
 } from 'react-native'
@@ -41,6 +43,7 @@ import ActivityIndicatorView from '../../../common/components/ActivityIndicatorV
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import defaultFilterOptions, { type SubmissionFilterOption, oldCreateFilter as createFilter, joinTitles } from '../../filter/filter-options'
+import colors from '../../../common/colors'
 
 export type QuizSubmissionListNavProps = {
   courseID: string,
@@ -79,6 +82,7 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
     this.state = {
       filterOptions,
       filter,
+      practiceQuizTranslate: new Animated.Value(100),
     }
   }
 
@@ -92,6 +96,28 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
       { modal: true, modalPresentationStyle: 'fullscreen' },
       { filter: this.state.filter, studentIndex: index }
     )
+  }
+
+  showSnackbar = () => {
+    Animated.sequence([
+      Animated.timing(
+        this.state.practiceQuizTranslate,
+        {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: true,
+        }
+      ),
+      Animated.delay(2000),
+      Animated.timing(
+        this.state.practiceQuizTranslate,
+        {
+          toValue: 100,
+          duration: 500,
+          useNativeDriver: true,
+        }
+      ),
+    ]).start()
   }
 
   componentWillReceiveProps = (newProps: QuizSubmissionListProps) => {
@@ -113,16 +139,15 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
   }
 
   renderRow = ({ item, index }: { item: OldSubmissionRowDataProps, index: number }) => {
-    let disclosure = true
-    if (this.props.quiz) {
-      disclosure = !!this.props.quiz.data.assignment_id
-    }
+    let onPress = this.props.quiz?.data.assignment_id == null
+      ? this.showSnackbar
+      : this.navigateToSubmission(index)
+
     return <OldSubmissionRow
       {...item}
-      onPress={this.navigateToSubmission(index)}
-      disclosure={disclosure}
+      onPress={onPress}
       anonymous={this.props.anonymous}
-      disabled={!this.props.quiz.data.assignment_id}
+      disabled={this.props.quiz?.data.assignment_id == null}
     />
   }
 
@@ -205,6 +230,14 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
                 <ListEmptyComponent title={i18n('No results')} />
               }
             />
+            <Animated.View
+              style={{
+                ...styles.practiceQuiz,
+                transform: [{ translateY: this.state.practiceQuizTranslate }],
+              }}
+            >
+              <Text style={styles.practiceQuizText}>{i18n('Practice quizzes & surveys do not have detail views.')}</Text>
+            </Animated.View>
           </View>
         }
       </Screen>
@@ -233,6 +266,20 @@ const styles = StyleSheet.create({
   },
   filterButton: {
     marginBottom: 1,
+  },
+  practiceQuiz: {
+    backgroundColor: colors.darkText,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+  },
+  practiceQuizText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '400',
   },
 })
 

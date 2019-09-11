@@ -25,7 +25,7 @@
 #import "CBIColorfulViewModel+CellViewModel.h"
 #import "CBIColorfulCell.h"
 #import "CKIClient+CBIClient.h"
-@import CanvasKeymaster;
+@import CanvasKit;
 #import "UIImage+TechDebt.h"
 
 @interface CBIPeopleViewModel ()

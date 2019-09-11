@@ -28,18 +28,22 @@ public class MockUploadManager: UploadManager {
     public var addWasCalled = false
     public var cancelWasCalled = false
 
-   public override init() {}
+   public init() {
+        super.init(identifier: "mock")
+    }
 
-    open override func upload(environment: AppEnvironment = .shared, batch batchID: String, to uploadContext: FileUploadContext) {
+    open override func upload(environment: AppEnvironment = .shared, batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
     }
 
-    open override func upload(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil, to uploadContext: FileUploadContext) {
+    open override func upload(environment: AppEnvironment = .shared, url: URL, batchID: String? = nil, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
+        callback?()
     }
 
-    open override func upload(environment: AppEnvironment = .shared, file: File, to uploadContext: FileUploadContext) {
+    open override func upload(environment: AppEnvironment = .shared, file: File, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
+        callback?()
     }
 
     open override func cancel(environment: AppEnvironment = .shared, batchID: String) {

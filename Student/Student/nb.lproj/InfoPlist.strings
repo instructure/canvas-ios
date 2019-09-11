@@ -8,7 +8,7 @@
 "NSLocationWhenInUseUsageDescription" = "Hjelp oss med å finne skoler nær deg.";
 
 /* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "Legg ved lydinnspillinger til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnlevering.";
+"NSMicrophoneUsageDescription" = "Legg ved lydinnspillinger til meldinger eller diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer.";
 
 /* Privacy - Photo Library Additions Usage Description */
 "NSPhotoLibraryAddUsageDescription" = "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer.";

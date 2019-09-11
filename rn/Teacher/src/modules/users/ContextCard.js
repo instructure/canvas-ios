@@ -16,15 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
-
 import React, { Component } from 'react'
 import {
   FlatList,
   View,
   StyleSheet,
 } from 'react-native'
-import { Text, SubTitle } from '../../common/text'
+import { connect } from 'react-redux'
+import { Text } from '../../common/text'
 import Screen from '../../routing/Screen'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 import ErrorView from '../../common/components/ErrorView'
@@ -33,35 +32,11 @@ import colors from '../../common/colors'
 import i18n from 'format-message'
 import Images from '../../images'
 import UserSubmissionRow from './UserSubmissionRow'
-import RowSeparator from '../../common/components/rows/RowSeparator'
 import { graphql } from 'react-apollo'
-import query from '../../canvas-api-v2/queries/ContextCard.js'
-import _ from 'lodash'
+import query from '../../canvas-api-v2/queries/ContextCard'
 import * as app from '../app'
 
-type ContextCardOwnProps = {
-  courseID: string,
-  userID: string,
-  navigator: Navigator,
-}
-
-type ContextCardDataProps = {
-  user: ?User,
-  course: ?Course,
-  enrollment: ?Enrollment,
-  submissions: SubmissionV2[],
-  courseColor: string,
-  loading: boolean,
-  permissions: {
-    sendMessages: boolean,
-    viewAllGrades: boolean,
-    viewAnalytics: boolean,
-  },
-}
-
-type ContextCardProps = ContextCardOwnProps & ContextCardDataProps
-
-export class ContextCard extends Component<ContextCardProps> {
+export class ContextCard extends Component {
   renderHeader () {
     const { course, user, enrollment, isStudent, permissions = {} } = this.props
     let sectionName
@@ -72,101 +47,153 @@ export class ContextCard extends Component<ContextCardProps> {
       }
     }
 
-    let grade: ?string
+    let grade
     if (enrollment && enrollment.grades && (enrollment.grades.current_grade || enrollment.grades.current_score != null)) {
       grade = enrollment.grades.current_grade || i18n.number(enrollment.grades.current_score / 100, 'percent')
     }
 
-    let overrideGrade: ?string
+    let unpostedGrade
+    if (enrollment && enrollment.grades && (enrollment.grades.unposted_current_grade || enrollment.grades.unposted_current_score != null)) {
+      unpostedGrade = enrollment.grades.unposted_current_grade || i18n.number(enrollment.grades.unposted_current_score / 100, 'percent')
+    }
+
+    let overrideGrade
     if (enrollment && enrollment.grades && (enrollment.grades.override_grade || enrollment.grades.override_score != null)) {
       overrideGrade = enrollment.grades.override_grade || i18n.number(enrollment.grades.override_score / 100, 'percent')
     }
 
+    const selectedBox = { backgroundColor: this.props.courseColor }
+    const selectedText = { color: 'white' }
+    const gradeSelected = !unpostedGrade && !overrideGrade
+    const unpostedSelected = Boolean(unpostedGrade && !overrideGrade)
+
     return (
-      <View style={styles.header}>
-        <View style={styles.headerSection}>
-          <View style={styles.user}>
+      <View>
+        <View style={styles.user}>
+          <View style={styles.avatar}>
             <Avatar
               avatarURL={user.avatar_url}
               userName={user.name}
               height={80}
             />
-            <View style={styles.userText}>
-              <Text style={styles.userName}>{user.short_name}</Text>
-              { user.primary_email &&
-                <SubTitle>{user.primary_email}</SubTitle>
-              }
-            </View>
           </View>
-          <View>
-            <Text style={styles.heading}>{course.name}</Text>
-            { sectionName && <Text testID='context-card.section-name' style={{ marginVertical: 4, fontSize: 14 }}>{i18n('Section: {sectionName}', { sectionName })}</Text> }
-            {enrollment && enrollment.last_activity_at && !app.isStudent() &&
-              <SubTitle testID='context-card.last-activity'>
-                {i18n(`Last activity on {lastActivity, date, 'MMMM d'} at {lastActivity, time, short}`, {
-                  lastActivity: new Date(enrollment.last_activity_at),
-                })}
-              </SubTitle>
+          <Text testID='ContextCard.userNameLabel' style={styles.userName}>
+            {user.short_name}
+          </Text>
+          { user.primary_email &&
+            <Text testID='ContextCard.userEmailLabel' style={styles.userEmail}>
+              {user.primary_email}
+            </Text>
+          }
+          { enrollment && enrollment.last_activity_at && !app.isStudent() &&
+            <Text testID='ContextCard.lastActivityLabel' style={styles.lastActivity}>
+              {i18n(`Last activity on {lastActivity, date, 'MMMM d'} at {lastActivity, time, short}`, {
+                lastActivity: new Date(enrollment.last_activity_at),
+              })}
+            </Text>
+          }
+        </View>
+        <View style={styles.course}>
+          <View style={styles.courseLine} />
+          <View style={styles.courseBox}>
+            <Text testID='ContextCard.courseLabel' style={styles.courseName}>
+              {course.name}
+            </Text>
+            { sectionName &&
+              <Text testID='ContextCard.sectionLabel' style={styles.section}
+                accessibilityLabel={i18n('Section: {sectionName}', { sectionName })}
+              >
+                {sectionName}
+              </Text>
             }
           </View>
         </View>
-        {isStudent && ((permissions.viewAnalytics && user.analytics) || (enrollment && enrollment.grades)) &&
-          <View style={styles.headerSection}>
-            <Text style={[styles.heading, { marginBottom: 16 }]}>{i18n('Submissions')}</Text>
-            <View style={styles.line}>
+        { isStudent && Boolean(grade) &&
+          <React.Fragment>
+            <Text style={styles.heading}>{i18n('Grades')}</Text>
+            <View style={styles.boxes}>
               <View
                 accessible={true}
-                style={styles.analyticsGroup}
-                accessibilityLabel={i18n('Grade {grade}', { grade })}
+                style={[styles.box, gradeSelected && selectedBox]}
+                testID='ContextCard.currentGradeLabel'
+                accessibilityLabel={i18n('Grade before posting {grade}', { grade })}
               >
-                <Text testID='context-card.grade' style={styles.largeText}>{grade}</Text>
-                <Text style={styles.label}>{i18n('Grade')}</Text>
+                <Text testID='context-card.grade' style={[styles.largeText, gradeSelected && selectedText]}>{grade}</Text>
+                <Text style={[styles.label, gradeSelected && selectedText]}>{i18n('Grade before posting')}</Text>
               </View>
+              { unpostedGrade &&
+                <View
+                  accessible={true}
+                  style={[styles.box, unpostedSelected && selectedBox]}
+                  testID='ContextCard.unpostedGradeLabel'
+                  accessibilityLabel={i18n('Grade after posting {grade}', { grade: unpostedGrade })}
+                >
+                  <Text testID='context-card.unposted-grade' style={[styles.largeText, unpostedSelected && selectedText]}>{unpostedGrade}</Text>
+                  <Text style={[styles.label, unpostedSelected && selectedText]}>{i18n('Grade after posting')}</Text>
+                </View>
+              }
               { overrideGrade &&
                 <View
                   accessible={true}
-                  style={styles.analyticsGroup}
-                  accessibilityLabel={i18n('Override Grade {grade}', { grade: overrideGrade })}
+                  style={[styles.box, selectedBox]}
+                  testID='ContextCard.overrideGradeLabel'
+                  accessibilityLabel={i18n('Grade Override {grade}', { grade: overrideGrade })}
                 >
-                  <Text testID='context-card.override-grade' style={styles.largeText}>{overrideGrade}</Text>
-                  <Text style={styles.label}>{i18n('Override')}</Text>
-                </View>
-              }
-              { user.analytics &&
-                <View
-                  accessible={true}
-                  style={styles.analyticsGroup}
-                  accessibilityLabel={i18n('Late Submissions {late, number}', {
-                    late: user.analytics.tardinessBreakdown.late,
-                  })}
-                >
-                  <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.late)}</Text>
-                  <Text style={styles.label}>{i18n('Late')}</Text>
-                </View>
-              }
-              { user.analytics &&
-                <View
-                  accessible={true}
-                  style={styles.analyticsGroup}
-                  accessibilityLabel={i18n('Missing Submissions {missing, number}', {
-                    missing: user.analytics.tardinessBreakdown.missing,
-                  })}
-                >
-                  <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.missing)}</Text>
-                  <Text style={styles.label}>{i18n('Missing')}</Text>
+                  <Text testID='context-card.override-grade' style={[styles.largeText, selectedText]}>{overrideGrade}</Text>
+                  <Text style={[styles.label, selectedText]}>{i18n('Grade Override')}</Text>
                 </View>
               }
             </View>
-          </View>
+          </React.Fragment>
+        }
+        { isStudent && Boolean(permissions.viewAnalytics && user.analytics) &&
+          <React.Fragment>
+            <Text style={styles.heading}>{i18n('Submissions')}</Text>
+            <View style={styles.boxes}>
+              <View
+                accessible={true}
+                style={styles.box}
+                testID='ContextCard.submissionsTotalLabel'
+                accessibilityLabel={i18n('Total Submissions {total, number}', {
+                  total: user.analytics.tardinessBreakdown.total,
+                })}
+              >
+                <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.total)}</Text>
+                <Text style={styles.label}>{i18n('Submitted')}</Text>
+              </View>
+              <View
+                accessible={true}
+                style={styles.box}
+                testID='ContextCard.submissionsLateLabel'
+                accessibilityLabel={i18n('Late Submissions {late, number}', {
+                  late: user.analytics.tardinessBreakdown.late,
+                })}
+              >
+                <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.late)}</Text>
+                <Text style={styles.label}>{i18n('Late')}</Text>
+              </View>
+              <View
+                accessible={true}
+                style={styles.box}
+                testID='ContextCard.submissionsMissingLabel'
+                accessibilityLabel={i18n('Missing Submissions {missing, number}', {
+                  missing: user.analytics.tardinessBreakdown.missing,
+                })}
+              >
+                <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.missing)}</Text>
+                <Text style={styles.label}>{i18n('Missing')}</Text>
+              </View>
+            </View>
+          </React.Fragment>
         }
       </View>
     )
   }
 
-  renderItem = ({ item: submission, index }: { item: SubmissionV2, index: number }) => {
+  renderItem = ({ item: submission, index }) => {
     return (
       <UserSubmissionRow
-        tintColor='#00BCD5'
+        tintColor={this.props.courseColor}
         assignment={submission.assignment}
         submission={submission}
         user={this.props.user}
@@ -186,6 +213,7 @@ export class ContextCard extends Component<ContextCardProps> {
         accessibilityLabel: i18n('Send message'),
       }] : [],
       navBarStyle: this.props.navigator.isModal ? undefined : 'dark',
+      navBarColor: this.props.navigator.isModal ? undefined : this.props.courseColor,
     }
 
     if (this.props.loading && !this.props.course) {
@@ -207,7 +235,6 @@ export class ContextCard extends Component<ContextCardProps> {
           data={isStudent && permissions.viewAllGrades ? submissions : []}
           renderItem={this.renderItem}
           keyExtractor={this._keyExtractor}
-          ItemSeparatorComponent={RowSeparator}
         />
       </Screen>
     )
@@ -238,67 +265,126 @@ export class ContextCard extends Component<ContextCardProps> {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    paddingTop: 8,
-  },
-  headerSection: {
-    padding: 16,
-    borderBottomColor: colors.seperatorColor,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
   user: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
+    backgroundColor: 'white',
+    marginTop: 32,
     marginBottom: 24,
   },
-  userText: {
-    marginLeft: 12,
+  avatar: {
+    borderRadius: 40,
+    backgroundColor: 'white',
+    height: 80,
+    width: 80,
+    shadowColor: 'black',
+    shadowOpacity: 0.12,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 16,
   },
   userName: {
-    fontSize: 28,
-    lineHeight: 34,
+    color: colors.darkText,
+    fontSize: 20,
+    fontWeight: 'bold',
+    lineHeight: 24,
+    marginTop: 12,
   },
-  line: {
-    flexDirection: 'row',
+  userEmail: {
+    color: colors.darkText,
+    fontSize: 14,
+    fontWeight: '500',
+    lineHeight: 17,
+    marginTop: 4,
+  },
+  lastActivity: {
+    color: colors.grey4,
+    fontSize: 12,
+    fontWeight: '500',
+    lineHeight: 14,
+    marginTop: 8,
+  },
+  course: {
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  courseLine: {
+    borderTopColor: colors.grey4,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    position: 'absolute',
+    top: '50%',
+    left: 0,
+    right: 0,
+  },
+  courseBox: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderColor: colors.grey4,
+    borderRadius: 4,
+    borderWidth: StyleSheet.hairlineWidth,
+    paddingTop: 8,
+    paddingBottom: 12,
+    paddingHorizontal: 16,
+  },
+  courseName: {
+    color: colors.darkText,
+    fontSize: 16,
+    fontWeight: 'bold',
+    lineHeight: 19,
+  },
+  section: {
+    color: colors.darkText,
+    fontSize: 12,
+    fontWeight: '500',
+    lineHeight: 14,
+    marginTop: 4,
   },
   heading: {
-    fontSize: 18,
-    fontWeight: '600',
-  },
-  largeText: {
-    fontSize: 28,
-    fontWeight: '800',
-    color: colors.darkText,
-    flex: 1,
-  },
-  label: {
+    color: colors.grey4,
     fontSize: 14,
     fontWeight: '600',
+    lineHeight: 17,
+    marginHorizontal: 16,
+    marginBottom: 12,
+  },
+  boxes: {
+    flexDirection: 'row',
+    marginHorizontal: 12,
+    marginBottom: 16,
+  },
+  box: {
+    alignItems: 'center',
+    flex: 1,
+    borderRadius: 8,
+    backgroundColor: colors.grey1,
+    paddingHorizontal: 8,
+    paddingVertical: 12,
+    marginHorizontal: 4,
+  },
+  largeText: {
     color: colors.darkText,
+    fontSize: 20,
+    fontWeight: 'bold',
+    lineHeight: 24,
   },
-  textWrapper: {
-    flex: 1,
-  },
-  outOf: {
+  label: {
+    color: colors.darkText,
     fontSize: 12,
-    color: colors.lightText,
-    top: -3,
-    fontWeight: '600',
-  },
-  analyticsGroup: {
-    flex: 1,
+    fontWeight: '500',
+    lineHeight: 14,
+    marginTop: 4,
   },
 })
 
-export function props (props: any) {
+export function props (props) {
   const data = props.data
   if (data.error) {
     return { error: data.error }
   }
 
   const course = data.course
-  const user = _.get(course, 'users.edges[0].user')
+  const user = course?.users?.edges?.[0]?.user
 
   if (!course || !user) {
     if (data.loading) {
@@ -308,16 +394,20 @@ export function props (props: any) {
     }
   }
 
-  const enrollment = _.get(user, 'enrollments[0]') || {}
-  const submissions = (_.get(course, 'submissions.edges') || []).map(e => e.submission).filter(Boolean)
+  const enrollment = user?.enrollments?.[0] ?? {}
+  const submissions = (course?.submissions?.edges ?? []).map(e => e.submission).filter(Boolean)
   const isStudent = enrollment.type === 'StudentEnrollment'
-  const permissions = course.permissions || {}
+  const permissions = course.permissions ?? {}
 
   return { course, user, enrollment, submissions, isStudent, permissions, loading: data.loading }
+}
+
+export function mapStateToProps (state, { courseID }) {
+  return { courseColor: state.entities.courses[courseID]?.color || '#00BCD5' }
 }
 
 export default graphql(query, {
   options: ({ courseID, userID }) => ({ variables: { courseID, userID, limit: 20 } }),
   fetchPolicy: 'cache-and-network',
   props,
-})(ContextCard)
+})(connect(mapStateToProps, {})(ContextCard))

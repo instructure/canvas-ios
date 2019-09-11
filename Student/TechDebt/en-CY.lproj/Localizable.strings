@@ -2,10 +2,10 @@
 "\n\nYou must first complete:" = "\n\nYou must first complete:";
 
 /* when locked item will become unlocked */
-" until %@" = "until %@";
+" until %@" = " until %@";
 
 /* %@ will be replaced by the filename */
-"'%@' is now ready to submit to assignments" = "'%@' is now ready to submit assignments";
+"'%@' is now ready to submit to assignments" = "'%@' is now ready to submit to assignments";
 
 /* explanation for locked module item */
 "\"%@\" is locked as part of \"%@\"" = "\"%1$@\" is locked as part of \"%2$@\"";
@@ -15,9 +15,6 @@
 
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ is coming soon!";
-
-/* local notification countdown alert */
-"%@ is due in %@" = "%1$@ is due in %2$@";
 
 /* explanation for locked item */
 "%@ is locked" = "%@ is locked";
@@ -35,7 +32,7 @@
 "%@ likes" = "%@ likes";
 
 /* Label indicating multiple submissions need grading */
-"%@ need grading" = "%@ need marking";
+"%@ need grading" = "%@ needs marking";
 
 /* Word and ellipses */
 "%@..." = "%@...";
@@ -131,7 +128,7 @@
 "%tu minutes" = "%tu minutes";
 
 /* No comment provided by engineer. */
-"%u Attachments" = "%u attachments";
+"%u Attachments" = "%u Attachments";
 
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
 "%u files" = "%u files";
@@ -182,7 +179,7 @@
 "Access Denied" = "Access denied";
 
 /* Error handling message when a network request has been denied by a server. Specifically with the HTTP 401 error code. */
-"Access denied. Please check your permissions for the action you're trying to complete." = "Access denied. Please check your permissions for the action you are trying to complete.";
+"Access denied. Please check your permissions for the action you're trying to complete." = "Access denied. Please check your permissions for the action you're trying to complete.";
 
 /* No comment provided by engineer. */
 "Add a folder" = "Add a folder";
@@ -225,9 +222,6 @@
    Title for the announcements view controller */
 "Announcements" = "Announcements";
 
-/* Assignment submission type for selecting an Arc video */
-"Arc" = "Arc";
-
 /* Archive selected messages button
    mark a message as archived */
 "Archive" = "Archive";
@@ -243,9 +237,6 @@
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Are you ready to log out?";
-
-/* Confirmation alert text for submitting an Arc video for an assignment */
-"Are you sure you want to submit this Arc video for this assignment?" = "Are you sure you want to submit this Arc video for this assignment?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Ask me later";
@@ -271,7 +262,7 @@
 /* Label for a discussion */
 "Attendance" = "Attendance";
 
-/* Audio file type */
+/* Media type is audio */
 "Audio" = "Audio";
 
 /* No comment provided by engineer. */
@@ -280,7 +271,7 @@
 /* No comment provided by engineer. */
 "Augment Reality" = "Augment reality";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Authentication error" = "Authentication error";
 
 /* Link to building panda avatar */
@@ -298,11 +289,10 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Cannot submit media";
 
-/* Cancel button title
-   Cancel button title to cancel submitting an Arc video as an assignment submission */
+/* Cancel button title */
 "Cancel" = "Cancel";
 
-/* Cancel button title */
+/* Cancel adding a comment button */
 "Cancel Message" = "Cancel message";
 
 /* No comment provided by engineer. */
@@ -311,11 +301,8 @@
 /* detail text for recipient fetch error message */
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas failed to find recipients for your current search. Please try again later.";
 
-/* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices, however some are not. If you attempt to take one of these unsupported quizzes on your phone, you may not be able to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please complete it on a desktop or laptop computer. If you know that the quiz contains only supported content, feel free to complete it on your mobile device.";
-
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, thus leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads and others.\n\nIf you believe that a quiz contains unsupported content, please take the quiz on a desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices, however some are not. If you attempt to take one of these unsupported quizzes on your phone, you may not be able to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please complete it on a desktop or laptop computer. If you know that the quiz contains only supported content, feel free to complete it on your mobile device.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Change profile image";
@@ -347,7 +334,7 @@
 /* Choose a video to send as a comment */
 "Choose Video" = "Choose video";
 
-/* Close the window */
+/* No comment provided by engineer. */
 "Close" = "Close";
 
 /* No comment provided by engineer. */
@@ -387,9 +374,6 @@
 /* Alert title */
 "Confirm deletion" = "Confirm deletion";
 
-/* Confirm an arc video submission for an assignment */
-"Confirm Submission" = "Confirm submission";
-
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
 "Continue" = "Continue";
 
@@ -406,9 +390,9 @@
 "Course Syllabus" = "Module syllabus";
 
 /* Courses page title */
-"Courses" = "Modules";
+"Courses" = "Courses";
 
-/* Cancel button title */
+/* cancel folder creation */
 "Create Folder" = "Create folder";
 
 /* Header for a section showing submitted filenames */
@@ -431,9 +415,6 @@
 
 /* Alert message */
 "Delete this reply?" = "Delete this reply?";
-
-/* delete file confirmation alert */
-"Deleted file: \"%@\"" = "Deleted file: \"%@\"";
 
 /* delete file confirmation alert */
 "Deleted file: &quot;%@&quot;" = "Deleted file: &quot;%@&quot;";
@@ -494,9 +475,6 @@
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Due:";
 
-/* Due date label indicating when an assignment is due */
-"Due: %@" = "Due: %@";
-
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Due: %1$@ at %2$@";
 
@@ -523,9 +501,6 @@
 /* Prompt asking user to enable push notifications */
 "Enable Push Notifications" = "Enable push notifications";
 
-/* No comment provided by engineer. */
-"Enter folder name" = "Enter folder name";
-
 /* Submission input view placeholder text */
 "Enter submission" = "Enter submission";
 
@@ -535,14 +510,11 @@
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "Entry posted";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Error" = "Error";
 
 /* Title of an alert popup */
 "Error adding recipeints" = "Error adding recipeints";
-
-/* Error deleting file alert view title */
-"Error deleting file \"%@\"" = "Error deleting file \"%@\"";
 
 /* Error deleting file alert view title */
 "Error deleting file &quot;%@&quot;" = "Error deleting file &quot;%@&quot;";
@@ -589,11 +561,11 @@
 /* File upload failed. */
 "File upload failed." = "File upload failed.";
 
-/* Title for the files screen */
+/* Files view
+   Name of a tab displaying files in a course
+   title for files view
+   Title for the Files View Controller */
 "Files" = "Files";
-
-/* No comment provided by engineer. */
-"Final Grade" = "Final Grade";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Finished downloading";
@@ -617,19 +589,19 @@
 "Go to Quiz" = "Go to quiz";
 
 /* No comment provided by engineer. */
-"Grade" = "Mark";
+"Grade" = "Grade";
 
 /* Tells the user to grade an assignment called something like 'Biology Assignment' */
-"Grade %@" = "Mark %@";
+"Grade %@" = "Grade %@";
 
 /* Launch the SpeedGrader app */
-"Grade in SpeedGrader" = "Mark in SpeedGrader";
+"Grade in SpeedGrader" = "Grade in SpeedGrader";
 
 /* No comment provided by engineer. */
-"Grade: %@" = "Mark: %@";
+"Grade: %@" = "Grade: %@";
 
 /* No comment provided by engineer. */
-"Grade: %1$i / %2$g" = "Mark: %1$i / %2$g";
+"Grade: %1$i / %2$g" = "Grade: %1$i / %2$g";
 
 /* Label for a discussion */
 "Graded Discussion" = "Marked discussion";
@@ -641,7 +613,7 @@
 "Graded discussion. %g points possible." = "Marked discussion. %g points possible.";
 
 /* Title for Grades view controller */
-"Grades" = "Marks";
+"Grades" = "Grades";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "Group conversation";
@@ -693,9 +665,6 @@
 "Item %1$d of %2$d" = "Item %1$d of %2$d";
 
 /* No comment provided by engineer. */
-"Item %d of %d" = "Item %1$d of %2$d";
-
-/* No comment provided by engineer. */
 "Jumps to current day on calendar" = "Jumps to current day on calendar";
 
 /* No comment provided by engineer. */
@@ -706,9 +675,6 @@
 
 /* Title for an alert popup */
 "Large file" = "Large file";
-
-/* No comment provided by engineer. */
-"Late Penalty" = "Late Penalty";
 
 /* Button in an alert */
 "Later" = "Later";
@@ -737,13 +703,10 @@
 
 /* logout action sheet logout button title
    logout button */
-"Logout" = "Logout";
+"Logout" = "Log out";
 
 /* No comment provided by engineer. */
 "Love it!" = "Love it!";
-
-/* Title for an LTI launch submitted as an assignment */
-"LTI Tool" = "LTI tool";
 
 /* Button title for mark as done */
 "Mark as Done" = "Mark as done";
@@ -764,7 +727,7 @@
 "Media recording" = "Media recording";
 
 /* Title for a media submission */
-"Media Submission" = "Media submission";
+"Media Submission" = "Media Submission";
 
 /* A slider to choose between media types */
 "Media type selector. %@" = "Media type selector. %@";
@@ -787,7 +750,7 @@
 "Mobile Quiz Warning" = "Mobile quiz warning";
 
 /* title for the modules tab */
-"Modules" = "Units";
+"Modules" = "Modules";
 
 /* time since creation (less than 1 minute) */
 "moments ago" = "moments ago";
@@ -796,7 +759,7 @@
 "More Info" = "More info";
 
 /* Title of a link to show additional due dates customized for sections or groups. */
-"Multiple Due Dates" = "Multiple due dates";
+"Multiple Due Dates" = "Multiple Due Dates";
 
 /* user must contribute to complete requirement */
 "Must contribute" = "Must contribute";
@@ -846,8 +809,7 @@
 /* No comment provided by engineer. */
 "No Date" = "No date";
 
-/* Indicates an assignment does not have a due date
-   String for when assignment has no due date */
+/* String for when assignment has no due date */
 "No due date" = "No due date";
 
 /* Label shown for a to do that doesn't have a due date */
@@ -908,7 +870,7 @@
 "Observer" = "Observer";
 
 /* No comment provided by engineer. */
-"Ok" = "OK";
+"Ok" = "Ok";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -999,7 +961,8 @@
 /* Title for profile screen */
 "Profile" = "Profile";
 
-/* A short test taken by students */
+/* Label for a quiz
+   Title for a quiz submission cell */
 "Quiz" = "Quiz";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -1015,7 +978,7 @@
 "Rating for %1$@, Score: %2$g" = "Rating for %1$@, Score: %2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
-"Re-submit Assignment" = "Re-submit assignment";
+"Re-submit Assignment" = "Resubmit assignment";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
 "Recipients" = "Recipients";
@@ -1045,7 +1008,7 @@
 "Refreshes the calendar content" = "Refreshes the calendar content";
 
 /* Refreshing Calendar Events */
-"Refreshing Calendar Events" = "Refreshing calendar events";
+"Refreshing Calendar Events" = "Refreshing Calendar events";
 
 /* Confirmation for removing a file */
 "Remove" = "Remove";
@@ -1092,7 +1055,8 @@
 /* No comment provided by engineer. */
 "Sent" = "Sent";
 
-/* Title for Settings */
+/* settings button
+   Title for Settings tab */
 "Settings" = "Settings";
 
 /* Title for button confirming showing a file */
@@ -1111,13 +1075,13 @@
 "Some items could not be deleted" = "Some items could not be deleted";
 
 /* Message for a warning popup */
-"Some selected folders are not empty. Are you sure you want to delete them?" = "Some selected folders are not empty. Are you certain you want to delete them?";
+"Some selected folders are not empty. Are you sure you want to delete them?" = "Some selected folders are not empty. Are you sure you want to delete them?";
 
 /* No comment provided by engineer. */
 "Something went wrong. Please try again." = "Something went wrong. Please try again.";
 
 /* 404 Error for missing assignment */
-"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Sorry, we couldn't find the assignment. This assignment might have been deleted.";
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Sorry, we couldn't find the assignment. This assignment may have been deleted.";
 
 /* Hint about the play button */
 "Starts playing your recording" = "Starts playing your recording";
@@ -1128,7 +1092,7 @@
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Stay logged in";
 
-/* Stop loading button for webview */
+/* A button that stops */
 "Stop" = "Stop";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
@@ -1155,11 +1119,8 @@
 /* Title for file submission error */
 "Submission Error" = "Submission error";
 
-/* Submit Arc video as assignment button */
+/* Submit an assignment */
 "Submit" = "Submit";
-
-/* Button to submit files to an assignment */
-"Submit (%d)" = "Submit (%d)";
 
 /* Submitted grouping */
 "Submitted" = "Submitted";
@@ -1231,7 +1192,7 @@
 /* Text entry submission type */
 "Text entry" = "Text entry";
 
-/* Title for a text submission cell */
+/* Generic name for a submission entered online. */
 "Text Submission" = "Text submission";
 
 /* Text explaining the error */
@@ -1268,7 +1229,7 @@
 "There was an error loading the document." = "There was an error loading the document.";
 
 /* No comment provided by engineer. */
-"There was an error loading your content. If it is an audio or video upload it may still be processing." = "There was an error loading your content. If it is an audio or video upload, it might still be processing.";
+"There was an error loading your content. If it is an audio or video upload it may still be processing." = "There was an error loading your content. If it is an audio or video upload it may still be processing.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "This app is not authorised for use.";
@@ -1300,12 +1261,9 @@
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "This would be a great time to do some extra credit.";
 
-/* No comment provided by engineer. */
-"To add a file from another app, open the file in that app and tap the Share icon. Then select the Copy to Student option. To add an attachment from the Mail app, tap and hold the attachment, then tap the Canvas icon." = "To add a file from another app, open the file in that app and tap the Share icon. Then select the Copy to Student option. To add an attachment from the Mail app, tap and hold the attachment, then tap the Canvas icon.";
-
 /* Title of to do screen
    To Do page title */
-"To Do" = "To do";
+"To Do" = "To-do";
 
 /* No comment provided by engineer. */
 "To:" = "To:";
@@ -1326,13 +1284,13 @@
 "Turn In" = "Turn in";
 
 /* Tells the user to turn in an assignment called something like 'Biology Assignment' */
-"Turn in %@" = "Turn in %@";
+"Turn in %@" = "Hand in %@";
 
 /* title for re-submitting an assignment */
 "Turn In Again" = "Turn in again";
 
 /* Notification over status bar that displays when not connected to the internet. */
-"Uh-oh! No Internet Connection" = "Uh-oh! No Internet connection";
+"Uh-oh! No Internet Connection" = "Uh-oh! No internet connection";
 
 /* Error title */
 "Unable to load" = "Unable to load";
@@ -1383,9 +1341,6 @@
 "Upload file" = "Upload file";
 
 /* Error message */
-"Upload to assignment \"%@\" failed" = "Upload to assignment \"%@\" failed";
-
-/* Error message */
 "Upload to assignment &quot;%@&quot; failed" = "Upload to assignment &quot;%@&quot; failed";
 
 /* Error message */
@@ -1400,7 +1355,7 @@
 /* Title for User Info section on the about page */
 "User Info" = "User info";
 
-/* Video file type */
+/* Media type is video */
 "Video" = "Video";
 
 /* No comment provided by engineer. */
@@ -1410,7 +1365,7 @@
 "View" = "View";
 
 /* Return to modules from locked module */
-"View Modules" = "View Units";
+"View Modules" = "View Modules";
 
 /* No comment provided by engineer. */
 "Warning" = "Warning";

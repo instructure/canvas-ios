@@ -21,6 +21,7 @@ import CoreData
 
 import Marshal
 import CanvasCore
+import Core
 
 public final class Alert: NSManagedObject {
     enum WorkflowState: String {
@@ -39,9 +40,8 @@ public final class Alert: NSManagedObject {
     internal (set) public var type: AlertThresholdType {
         get {
             willAccessValue(forKey: Alert.typeKey)
-            let val = AlertThresholdType(rawValue: primitiveType) ?? .unknown
+            let val = AlertThresholdType(rawValue: primitiveType) ?? AlertThresholdType.institutionAnnouncement
             didAccessValue(forKey: Alert.typeKey)
-            if val == .unknown { print("invalid AlertType enum value: %@", primitiveType) }
             return val
         }
         set {

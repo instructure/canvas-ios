@@ -105,6 +105,7 @@ export class SubmissionList extends Component<Props, State> {
       {
         filter: oldCreateFilter(this.state.filterOptions),
         studentIndex: index,
+        flags: this.state.flags
       }
     )
   }
@@ -132,6 +133,7 @@ export class SubmissionList extends Component<Props, State> {
         onPress={this.navigateToSubmission(index)}
         anonymous={this.props.anonymous}
         gradingType={this.props.gradingType}
+        newGradebookEnabled={this.state.flags.includes('new_gradebook')}
       />
     )
   }

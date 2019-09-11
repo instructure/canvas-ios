@@ -61,7 +61,7 @@ class CommentListViewController: UIViewController {
         replyTextView?.accessibilityLabel = NSLocalizedString("Reply to the annotation or previous comments", bundle: .core, comment: "")
         replyButton?.accessibilityLabel = NSLocalizedString("Send comment", bundle: .core, comment: "")
 
-        if (metadata?.permissions ?? .none) == .none {
+        if (metadata?.permissions ?? APIDocViewerPermissions.none) == APIDocViewerPermissions.none {
             replyView?.isHidden = true
             replyViewHeight?.isActive = true
         }

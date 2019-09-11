@@ -62,7 +62,7 @@ class SubmissionButtonPresenter: NSObject {
         let canSubmit = (
             assignment.canMakeSubmissions &&
             assignment.isOpenForSubmissions() &&
-            (course.enrollments?.hasRole(.student) ?? false) &&
+            course.hasStudentEnrollment &&
             onlineUpload == nil
         )
         guard canSubmit else { return nil }
@@ -72,7 +72,7 @@ class SubmissionButtonPresenter: NSObject {
         }
         if quiz?.submission?.attemptsLeft == 0 { return nil }
         if assignment.quizID != nil {
-            return assignment.submission?.workflowState == .unsubmitted
+            return assignment.submission?.submittedAt == nil
                 ? NSLocalizedString("Take Quiz", bundle: .student, comment: "")
                 : NSLocalizedString("Retake Quiz", bundle: .student, comment: "")
         }
@@ -95,10 +95,12 @@ class SubmissionButtonPresenter: NSObject {
     }
 
     func submitType(_ type: SubmissionType, for assignment: Assignment, button: UIView) {
+        Analytics.shared.logEvent("assignment_submit_selected")
         guard let view = view as? UIViewController, let userID = assignment.submission?.userID else { return }
         let courseID = assignment.courseID
         switch type {
         case .basic_lti_launch, .external_tool:
+            Analytics.shared.logEvent("assignment_launchlti_selected")
             LTITools(
                 env: env,
                 context: ContextModel(.course, id: courseID),
@@ -107,24 +109,36 @@ class SubmissionButtonPresenter: NSObject {
             ).getSessionlessLaunchURL { [weak self] url in
                 guard let url = url else { return }
                 let safari = SFSafariViewController(url: url)
-                self?.env.router.route(to: safari, from: view, options: .modal)
+                self?.env.router.show(safari, from: view, options: .modal)
             }
         case .discussion_topic:
+            Analytics.shared.logEvent("assignment_detail_discussionlaunch")
             guard let url = assignment.discussionTopic?.htmlUrl else { return }
             env.router.route(to: url, from: view)
         case .media_recording:
+            Analytics.shared.logEvent("submit_mediarecording_selected")
             pickMediaRecordingType(button: button)
         case .online_text_entry:
-            let route = Route.assignmentTextSubmission(courseID: courseID, assignmentID: assignment.id, userID: userID)
-            env.router.route(to: route, from: view, options: [.modal, .embedInNav])
+            Analytics.shared.logEvent("submit_textentry_selected")
+            env.router.show(TextSubmissionViewController.create(
+                courseID: courseID,
+                assignmentID: assignment.id,
+                userID: userID
+            ), from: view, options: [.modal, .embedInNav])
         case .online_quiz:
+            Analytics.shared.logEvent("assignment_detail_quizlaunch")
             guard let quizID = assignment.quizID else { return }
             env.router.route(to: .takeQuiz(forCourse: courseID, quizID: quizID), from: view, options: [.modal, .embedInNav])
         case .online_upload:
+            Analytics.shared.logEvent("submit_fileupload_selected")
             pickFiles(for: assignment)
         case .online_url:
-            let route = Route.assignmentUrlSubmission(courseID: courseID, assignmentID: assignment.id, userID: userID)
-            env.router.route(to: route, from: view, options: [.modal, .embedInNav, .formSheet])
+            Analytics.shared.logEvent("submit_url_selected")
+            env.router.show(UrlSubmissionViewController.create(
+                courseID: courseID,
+                assignmentID: assignment.id,
+                userID: userID
+            ), from: view, options: [.modal, .embedInNav, .formSheet])
         case .none, .not_graded, .on_paper:
             break
         }
@@ -132,6 +146,7 @@ class SubmissionButtonPresenter: NSObject {
 
     // MARK: - arc
     func submitArc(assignment: Assignment) {
+        Analytics.shared.logEvent("submit_arc_selected")
         guard case let .some(arcID) = arcID, let userID = assignment.submission?.userID else { return }
         let arc = ArcSubmissionViewController.create(environment: env, courseID: assignment.courseID, assignmentID: assignment.id, userID: userID, arcID: arcID)
         let nav = UINavigationController(rootViewController: arc)

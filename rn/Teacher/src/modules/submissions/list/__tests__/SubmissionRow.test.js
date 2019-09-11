@@ -37,24 +37,36 @@ const defaultProps = {
     avatarUrl: 'https://cats.pajamas/',
   }),
   submissionID: null,
-  submission: null,
+  submission: templates.submission(),
   anonymous: false,
+  newGradebookEnabled: false,
+  onPress: jest.fn(),
+  onAvatarPress: jest.fn(),
+  anonymous: false,
+  gradingType: 'points'
 }
 
 test('unsubmitted ungraded row renders correctly', () => {
+  let submission = templates.submission({
+    submittedAt: null,
+    grade: null,
+    state: 'unsubmitted'
+  })
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} onPress={jest.fn()} />
+    <SubmissionRow {...defaultProps} submission={submission} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('missing ungraded row renders correctly', () => {
   let submission = templates.submission({
+    state: 'unsubmitted',
+    submittedAt: null,
     missing: true,
     grade: null,
   })
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} submission={submission} onPress={jest.fn()} />
+    <SubmissionRow {...defaultProps} submission={submission} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
@@ -65,7 +77,7 @@ test('late graded row renders correctly', () => {
     grade: 'B-',
   })
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} submission={submission} onPress={jest.fn()} />
+    <SubmissionRow {...defaultProps} submission={submission} gradingType='gpa_scale' />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
@@ -75,8 +87,9 @@ test('submitted ungraded row renders correctly', () => {
     submittedAt: new Date().toISOString(),
     gradingStatus: 'needs_grading',
   })
+
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} submission={submission} onPress={jest.fn()} />
+    <SubmissionRow {...defaultProps} submission={submission} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
@@ -86,8 +99,9 @@ test('submitted not_graded row renders correctly', () => {
     submittedAt: new Date().toISOString(),
     gradingStatus: 'needs_grading',
   })
+
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} submission={submission} gradingType='not_graded' onPress={jest.fn()} />
+    <SubmissionRow {...defaultProps} submission={submission} gradingType='not_graded' />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
@@ -98,7 +112,7 @@ test('excused row renders correctly', () => {
     excused: true,
   })
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} submission={submission} onPress={jest.fn()} />
+    <SubmissionRow {...defaultProps} submission={submission} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
@@ -114,8 +128,17 @@ test('onPress called on tap', () => {
 })
 
 test('anonymous grading doesnt show users names', () => {
+  let submission = templates.submission({
+    state: 'unsubmitted',
+    submittedAt: null,
+    grade: null,
+  })
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} anonymous />
+    <SubmissionRow
+      {...defaultProps}
+      submission={submission}
+      anonymous
+    />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
@@ -128,4 +151,56 @@ test('pressing the avatar calls onAvatarPress', () => {
   let avatar = explore(tree).selectByType('Avatar')
   avatar.props.onPress()
   expect(onAvatarPress).toHaveBeenCalledWith('1')
+})
+
+test('shows the eyeball when grades are not posted', () => {
+  let submission = templates.submission({
+    submittedAt: '2017-04-05T15:12:45Z',
+    grade: '20%',
+    postedAt: null,
+  })
+  let tree = renderer.create(
+    <SubmissionRow
+      {...defaultProps}
+      submission={submission}
+      newGradebookEnabled
+    />
+  ).toJSON()
+  let eye = explore(tree).selectByID('SubmissionRow.hiddenIcon')
+  expect(eye).toBeTruthy()
+})
+
+test('does not show the eyeball when grade is posted', () => {
+  let submission = templates.submission({
+    submittedAt: '2017-04-05T15:12:45Z',
+    grade: '20%',
+    postedAt: '2019-08-29T00:00:00.000Z',
+  })
+  let tree = renderer.create(
+    <SubmissionRow
+      {...defaultProps}
+      submission={submission}
+      newGradebookEnabled
+    />
+  ).toJSON()
+  let eye = explore(tree).selectByID('SubmissionRow.hiddenIcon')
+  expect(eye).toBeFalsy()
+})
+
+test('does not show the eyeball when not graded', () => {
+  let submission = templates.submission({
+    submittedAt: null,
+    grade: null,
+    postedAt: null
+  })
+
+  let tree = renderer.create(
+    <SubmissionRow
+      {...defaultProps}
+      submission={submission}
+      newGradebookEnabled
+    />
+  ).toJSON()
+  let eye = explore(tree).selectByID('SubmissionRow.hiddenIcon')
+  expect(eye).toBeFalsy()
 })

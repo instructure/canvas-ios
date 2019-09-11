@@ -34,15 +34,13 @@ function packages () {
 }
 
 function commitMessage () {
-  const commit = danger.github.commits[0]
-  if (!commit) {
-    return fail('Somehow you made a pull request without a commit. Good job!')
+  const message = danger.github.pr.body
+  if (!message) {
+    return fail('Please add a description for Danger.')
   }
 
-  const message = commit.commit.message
-
   if (!message.trim()) {
-    fail('Please add a commit message.')
+    fail('Please add a description for Danger.')
   }
 
   // There are a few cases where linting commits is not required

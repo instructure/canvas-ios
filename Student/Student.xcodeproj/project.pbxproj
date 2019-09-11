@@ -61,18 +61,16 @@
 		492705D31CF4B73300C631C6 /* UIView+FloatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705911CF4B73200C631C6 /* UIView+FloatingView.m */; };
 		492705D41CF4B73300C631C6 /* UIView_render_IN.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705921CF4B73200C631C6 /* UIView_render_IN.h */; };
 		492705D51CF4B73300C631C6 /* UIView_render_IN.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705931CF4B73200C631C6 /* UIView_render_IN.m */; };
-		492705DA1CF4B73300C631C6 /* UIWebView+iCanvas.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705981CF4B73200C631C6 /* UIWebView+iCanvas.h */; };
-		492705DB1CF4B73300C631C6 /* UIWebView+iCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705991CF4B73200C631C6 /* UIWebView+iCanvas.m */; };
 		492705E01CF4B73300C631C6 /* UIWebView+SafeAPIURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */; };
 		492705E11CF4B73300C631C6 /* UIWebView+SafeAPIURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927059F1CF4B73200C631C6 /* UIWebView+SafeAPIURL.m */; };
-		492705E41CF4B73900C631C6 /* CBIViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705E21CF4B73900C631C6 /* CBIViewModel.h */; };
+		492705E41CF4B73900C631C6 /* CBIViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705E21CF4B73900C631C6 /* CBIViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492705E51CF4B73900C631C6 /* CBIViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705E31CF4B73900C631C6 /* CBIViewModel.m */; };
 		492705F01CF4B76A00C631C6 /* CBIColorfulCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705E71CF4B76A00C631C6 /* CBIColorfulCell.h */; };
 		492705F11CF4B76A00C631C6 /* CBIColorfulCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705E81CF4B76A00C631C6 /* CBIColorfulCell.m */; };
 		492705F21CF4B76A00C631C6 /* CBIColorfulCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 492705E91CF4B76A00C631C6 /* CBIColorfulCell.xib */; };
 		492705F31CF4B76A00C631C6 /* CBIColorfulRightDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 492705EA1CF4B76A00C631C6 /* CBIColorfulRightDetailCell.xib */; };
 		492705F41CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 492705EB1CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib */; };
-		492705F51CF4B76A00C631C6 /* CBIColorfulViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705EC1CF4B76A00C631C6 /* CBIColorfulViewModel.h */; };
+		492705F51CF4B76A00C631C6 /* CBIColorfulViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705EC1CF4B76A00C631C6 /* CBIColorfulViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492705F61CF4B76A00C631C6 /* CBIColorfulViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705ED1CF4B76A00C631C6 /* CBIColorfulViewModel.m */; };
 		492705F71CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705EE1CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.h */; };
 		492705F81CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705EF1CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.m */; };
@@ -85,33 +83,22 @@
 		492706A11CF4B93F00C631C6 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492706A01CF4B93F00C631C6 /* RootViewController.swift */; };
 		492706A91CF4B98900C631C6 /* iCanvasConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706A51CF4B98900C631C6 /* iCanvasConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492706AA1CF4B98900C631C6 /* iCanvasConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706A61CF4B98900C631C6 /* iCanvasConstants.m */; };
-		492706B11CF4B99700C631C6 /* Router.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706AD1CF4B99700C631C6 /* Router.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		492706B21CF4B99700C631C6 /* Router.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706AE1CF4B99700C631C6 /* Router.m */; };
-		492706B31CF4B99700C631C6 /* Router+Routes.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706AF1CF4B99700C631C6 /* Router+Routes.h */; };
-		492706B41CF4B99700C631C6 /* Router+Routes.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706B01CF4B99700C631C6 /* Router+Routes.m */; };
 		492706D31CF4BA7B00C631C6 /* ContentLockViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706CC1CF4BA7B00C631C6 /* ContentLockViewController.h */; };
 		492706D41CF4BA7B00C631C6 /* ContentLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706CD1CF4BA7B00C631C6 /* ContentLockViewController.m */; };
 		492706D51CF4BA7B00C631C6 /* ContentLockViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492706CE1CF4BA7B00C631C6 /* ContentLockViewController.storyboard */; };
 		4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707691CF4BB2100C631C6 /* CBIModuleProgressNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4927077D1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927076A1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m */; };
 		492707FA1CF4BC1000C631C6 /* UnsupportedView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492707DC1CF4BC1000C631C6 /* UnsupportedView.storyboard */; };
-		492707FB1CF4BC1000C631C6 /* UnsupportedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707DD1CF4BC1000C631C6 /* UnsupportedViewController.h */; };
+		492707FB1CF4BC1000C631C6 /* UnsupportedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707DD1CF4BC1000C631C6 /* UnsupportedViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492707FC1CF4BC1000C631C6 /* UnsupportedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707DE1CF4BC1000C631C6 /* UnsupportedViewController.m */; };
 		4927084A1CF4BC3200C631C6 /* UIViewController+Transitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 492708231CF4BC3200C631C6 /* UIViewController+Transitions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4927084B1CF4BC3200C631C6 /* UIViewController+Transitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 492708241CF4BC3200C631C6 /* UIViewController+Transitions.m */; };
-		492708521CF4BC3200C631C6 /* Storyboard-WebBrowser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4927082D1CF4BC3200C631C6 /* Storyboard-WebBrowser.storyboard */; };
-		492708531CF4BC3200C631C6 /* WebBrowserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927082E1CF4BC3200C631C6 /* WebBrowserViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		492708541CF4BC3200C631C6 /* WebBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927082F1CF4BC3200C631C6 /* WebBrowserViewController.m */; };
-		492708551CF4BC3200C631C6 /* WebBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 492708301CF4BC3200C631C6 /* WebBrowserViewController.xib */; };
 		49383CE21F848353009C8F8E /* Session+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CE11F84834A009C8F8E /* Session+Login.swift */; };
 		495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */; };
 		49642BC01CF4C44A00238B3F /* EXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 49642BBE1CF4C44A00238B3F /* EXTScope.h */; };
 		49642BC11CF4C44A00238B3F /* metamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 49642BBF1CF4C44A00238B3F /* metamacros.h */; };
-		49642BC41CF4C4DC00238B3F /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */; };
-		49642BC51CF4C4DC00238B3F /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; };
 		49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49642BC81CF4C4DF00238B3F /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */; };
 		49642BC91CF4C4DF00238B3F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; };
 		496D31261CF752C600A3B11E /* LegacyModuleProgressShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */; };
 		496D312A1CF7550A00A3B11E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31291CF7550A00A3B11E /* NetworkMonitor.swift */; };
@@ -159,10 +146,6 @@
 		49AA291A1CF4D1880055862D /* CanvasKit1.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA29191CF4D1880055862D /* CanvasKit1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA291E1CF4D1880055862D /* CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; };
 		49AA291F1CF4D1880055862D /* CanvasKit1.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49AA2B8D1CF4D51B0055862D /* CKAPICredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2ABF1CF4D51B0055862D /* CKAPICredentials.h */; };
-		49AA2B8E1CF4D51B0055862D /* CKAPICredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AC01CF4D51B0055862D /* CKAPICredentials.m */; };
-		49AA2B911CF4D51B0055862D /* CKCanvasAPI+Conversations.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AC31CF4D51B0055862D /* CKCanvasAPI+Conversations.h */; };
-		49AA2B921CF4D51B0055862D /* CKCanvasAPI+Conversations.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AC41CF4D51B0055862D /* CKCanvasAPI+Conversations.m */; };
 		49AA2B971CF4D51B0055862D /* CKCanvasAPI+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AC91CF4D51B0055862D /* CKCanvasAPI+Private.h */; };
 		49AA2B9C1CF4D51B0055862D /* CKCanvasAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2ACE1CF4D51B0055862D /* CKCanvasAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2B9D1CF4D51B0055862D /* CKCanvasAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2ACF1CF4D51B0055862D /* CKCanvasAPI.m */; };
@@ -176,10 +159,6 @@
 		49AA2BA51CF4D51B0055862D /* CKTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AD71CF4D51B0055862D /* CKTerm.m */; };
 		49AA2BA81CF4D51B0055862D /* CKCommonTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2ADB1CF4D51B0055862D /* CKCommonTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2BA91CF4D51B0055862D /* CKCommonTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2ADC1CF4D51B0055862D /* CKCommonTypes.m */; };
-		49AA2BAA1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2ADD1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.h */; };
-		49AA2BAB1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2ADE1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m */; };
-		49AA2BAC1CF4D51B0055862D /* NSArray+CKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2ADF1CF4D51B0055862D /* NSArray+CKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49AA2BAD1CF4D51B0055862D /* NSArray+CKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AE01CF4D51B0055862D /* NSArray+CKAdditions.m */; };
 		49AA2BB01CF4D51B0055862D /* NSDictionary+CKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AE31CF4D51B0055862D /* NSDictionary+CKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2BB11CF4D51B0055862D /* NSDictionary+CKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AE41CF4D51B0055862D /* NSDictionary+CKAdditions.m */; };
 		49AA2BB21CF4D51B0055862D /* NSFileManager+CKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AE51CF4D51B0055862D /* NSFileManager+CKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -194,8 +173,6 @@
 		49AA2BBB1CF4D51B0055862D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AEE1CF4D51B0055862D /* UIImage+Resize.m */; };
 		49AA2BBC1CF4D51B0055862D /* UIImage+RoundedCorner.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AEF1CF4D51B0055862D /* UIImage+RoundedCorner.h */; };
 		49AA2BBD1CF4D51B0055862D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AF01CF4D51B0055862D /* UIImage+RoundedCorner.m */; };
-		49AA2BBE1CF4D51B0055862D /* UITableView+in_fix10550644.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AF11CF4D51B0055862D /* UITableView+in_fix10550644.h */; };
-		49AA2BBF1CF4D51B0055862D /* UITableView+in_fix10550644.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AF21CF4D51B0055862D /* UITableView+in_fix10550644.m */; };
 		49AA2BC01CF4D51B0055862D /* UIWebView+AccessoryHiding.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AF31CF4D51B0055862D /* UIWebView+AccessoryHiding.h */; };
 		49AA2BC11CF4D51B0055862D /* UIWebView+AccessoryHiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2AF41CF4D51B0055862D /* UIWebView+AccessoryHiding.m */; };
 		49AA2BC61CF4D51B0055862D /* CKAssignment.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2AFA1CF4D51B0055862D /* CKAssignment.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -220,8 +197,6 @@
 		49AA2BE71CF4D51B0055862D /* CKDiscussionEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B1B1CF4D51B0055862D /* CKDiscussionEntry.m */; };
 		49AA2BE81CF4D51B0055862D /* CKDiscussionTopic.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B1C1CF4D51B0055862D /* CKDiscussionTopic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2BE91CF4D51B0055862D /* CKDiscussionTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B1D1CF4D51B0055862D /* CKDiscussionTopic.m */; };
-		49AA2BEA1CF4D51B0055862D /* CKEmbeddedMediaAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B1E1CF4D51B0055862D /* CKEmbeddedMediaAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49AA2BEB1CF4D51B0055862D /* CKEmbeddedMediaAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B1F1CF4D51B0055862D /* CKEmbeddedMediaAttachment.m */; };
 		49AA2BEC1CF4D51B0055862D /* CKEnrollment.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B201CF4D51B0055862D /* CKEnrollment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2BED1CF4D51B0055862D /* CKEnrollment.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B211CF4D51B0055862D /* CKEnrollment.m */; };
 		49AA2BF01CF4D51B0055862D /* CKFakeAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B241CF4D51B0055862D /* CKFakeAttachment.h */; };
@@ -268,11 +243,11 @@
 		49AA2D281CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D161CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m */; };
 		49AA2D291CF4DC540055862D /* CBIPeopleAvatarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49AA2D171CF4DC540055862D /* CBIPeopleAvatarCell.xib */; };
 		49AA2D2A1CF4DC540055862D /* CBIPeopleDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AA2D181CF4DC540055862D /* CBIPeopleDetail.storyboard */; };
-		49AA2D2B1CF4DC540055862D /* CBIPeopleDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D191CF4DC540055862D /* CBIPeopleDetailViewController.h */; };
+		49AA2D2B1CF4DC540055862D /* CBIPeopleDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D191CF4DC540055862D /* CBIPeopleDetailViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2D2C1CF4DC540055862D /* CBIPeopleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D1A1CF4DC540055862D /* CBIPeopleDetailViewController.m */; };
-		49AA2D2D1CF4DC540055862D /* CBIPeopleTabViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D1B1CF4DC540055862D /* CBIPeopleTabViewModel.h */; };
+		49AA2D2D1CF4DC540055862D /* CBIPeopleTabViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D1B1CF4DC540055862D /* CBIPeopleTabViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2D2E1CF4DC540055862D /* CBIPeopleTabViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D1C1CF4DC540055862D /* CBIPeopleTabViewModel.m */; };
-		49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D1D1CF4DC540055862D /* CBIPeopleViewModel.h */; };
+		49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D1D1CF4DC540055862D /* CBIPeopleViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2D301CF4DC540055862D /* CBIPeopleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D1E1CF4DC540055862D /* CBIPeopleViewModel.m */; };
 		49AA2D311CF4DC540055862D /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AA2D1F1CF4DC540055862D /* Profile.storyboard */; };
 		49AA2D321CF4DC540055862D /* ProfileViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D201CF4DC540055862D /* ProfileViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -303,7 +278,6 @@
 		49E1F9101F9517FF0003C91C /* MyLittleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E1F90F1F9517FF0003C91C /* MyLittleViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49F9FA471CF7B6F600654758 /* TechDebt.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F9FA461CF7B6F600654758 /* TechDebt.xcassets */; };
 		49F9FA4B1CF7B73100654758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F9FA4A1CF7B73100654758 /* Assets.xcassets */; };
-		49F9FA4D1CF89F8600654758 /* Router+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA4C1CF89F8600654758 /* Router+Canvas.swift */; };
 		49F9FA5A1CF8CDC400654758 /* UIImage+TechDebt.h in Headers */ = {isa = PBXBuildFile; fileRef = 49F9FA581CF8CDC400654758 /* UIImage+TechDebt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49F9FA5B1CF8CDC400654758 /* UIImage+TechDebt.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA591CF8CDC400654758 /* UIImage+TechDebt.m */; };
 		49F9FA6F1CF8FC8500654758 /* AppDelegate+Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */; };
@@ -342,8 +316,6 @@
 		5EB46E071D21A75C00C859A4 /* CalendarWeekDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DE31D21A75C00C859A4 /* CalendarWeekDayViewController.swift */; };
 		5EB46E081D21A75C00C859A4 /* CalendarWeekPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DE41D21A75C00C859A4 /* CalendarWeekPageViewController.swift */; };
 		61074F051DB7E88100DEEE63 /* MasteryPathSelectOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D7185C1DB7CA070081D56A /* MasteryPathSelectOptionViewController.swift */; };
-		613729511D54E91800C020A0 /* UIImage+CanvasKit1.h in Headers */ = {isa = PBXBuildFile; fileRef = 6137294F1D54E91800C020A0 /* UIImage+CanvasKit1.h */; };
-		613729521D54E91800C020A0 /* UIImage+CanvasKit1.m in Sources */ = {isa = PBXBuildFile; fileRef = 613729501D54E91800C020A0 /* UIImage+CanvasKit1.m */; };
 		61592F771DA7F0A200552B44 /* ModuleDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61592F761DA7F0A200552B44 /* ModuleDetailDataSource.swift */; };
 		61592F791DA83C4900552B44 /* ModuleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61592F781DA83C4900552B44 /* ModuleDetailsViewController.swift */; };
 		6181F12F1DFF41AD00B94488 /* ToDoTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6181F12E1DFF41AD00B94488 /* ToDoTab.swift */; };
@@ -365,6 +337,8 @@
 		7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D52D8A922FCD4F500684932 /* CKUploadProgressToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D52D8A822FCD4F500684932 /* CKUploadProgressToolbar.xib */; };
 		7D903C2122C27907009D9E9E /* GradesWidgetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D903C2022C27907009D9E9E /* GradesWidgetViewController.storyboard */; };
+		7D91D65C23217FA000C2F585 /* Routing.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D91D65B23217FA000C2F585 /* Routing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D91D660232180FE00C2F585 /* Routing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D91D65F232180FE00C2F585 /* Routing.m */; };
 		7D92447222FB7825002BC7CA /* UserPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92447122FB7825002BC7CA /* UserPreferencesTests.swift */; };
 		7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */; };
 		7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
@@ -513,6 +487,11 @@
 		9F00A56B2245599800C0CC32 /* GradesWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F00A56A2245599800C0CC32 /* GradesWidgetViewController.swift */; };
 		9F00A56D22455BD500C0CC32 /* GradesWidgetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F00A56C22455BD500C0CC32 /* GradesWidgetPresenter.swift */; };
 		9F61B52C205985A5009C0B13 /* CanvasAppDelegate+Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */; };
+		9F62EDDB2326E0FD00EA9F79 /* PeopleListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F62EDDA2326E0FD00EA9F79 /* PeopleListPresenterTests.swift */; };
+		9F87D0772322A94600EDA363 /* PeopleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87D0762322A94600EDA363 /* PeopleListCell.swift */; };
+		9F900E7C2321870600BB44B4 /* PeopleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F900E7B2321870600BB44B4 /* PeopleListViewController.swift */; };
+		9F900E7E2321870F00BB44B4 /* PeopleListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F900E7D2321870F00BB44B4 /* PeopleListPresenter.swift */; };
+		9F900E80232187D900BB44B4 /* PeopleListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F900E7F232187D900BB44B4 /* PeopleListViewController.storyboard */; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
 		B12A076622C67BE400A45427 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
 		B12A076722C67BE800A45427 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; };
@@ -641,7 +620,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */,
-				49642BC51CF4C4DC00238B3F /* CanvasKeymaster.framework in Embed Frameworks */,
 				49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */,
 				49AA291F1CF4D1880055862D /* CanvasKit1.framework in Embed Frameworks */,
 				7D1D7E06213743D300F7CCFE /* Core.framework in Embed Frameworks */,
@@ -749,8 +727,6 @@
 		492705911CF4B73200C631C6 /* UIView+FloatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FloatingView.m"; sourceTree = "<group>"; };
 		492705921CF4B73200C631C6 /* UIView_render_IN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView_render_IN.h; sourceTree = "<group>"; };
 		492705931CF4B73200C631C6 /* UIView_render_IN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView_render_IN.m; sourceTree = "<group>"; };
-		492705981CF4B73200C631C6 /* UIWebView+iCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+iCanvas.h"; sourceTree = "<group>"; };
-		492705991CF4B73200C631C6 /* UIWebView+iCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+iCanvas.m"; sourceTree = "<group>"; };
 		4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+SafeAPIURL.h"; sourceTree = "<group>"; };
 		4927059F1CF4B73200C631C6 /* UIWebView+SafeAPIURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+SafeAPIURL.m"; sourceTree = "<group>"; };
 		492705E21CF4B73900C631C6 /* CBIViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIViewModel.h; sourceTree = "<group>"; };
@@ -773,10 +749,6 @@
 		492706A01CF4B93F00C631C6 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		492706A51CF4B98900C631C6 /* iCanvasConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCanvasConstants.h; sourceTree = "<group>"; };
 		492706A61CF4B98900C631C6 /* iCanvasConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCanvasConstants.m; sourceTree = "<group>"; };
-		492706AD1CF4B99700C631C6 /* Router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Router.h; sourceTree = "<group>"; };
-		492706AE1CF4B99700C631C6 /* Router.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Router.m; sourceTree = "<group>"; };
-		492706AF1CF4B99700C631C6 /* Router+Routes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Router+Routes.h"; sourceTree = "<group>"; };
-		492706B01CF4B99700C631C6 /* Router+Routes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Router+Routes.m"; sourceTree = "<group>"; };
 		492706CC1CF4BA7B00C631C6 /* ContentLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentLockViewController.h; sourceTree = "<group>"; };
 		492706CD1CF4BA7B00C631C6 /* ContentLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ContentLockViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		492706CE1CF4BA7B00C631C6 /* ContentLockViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContentLockViewController.storyboard; sourceTree = "<group>"; };
@@ -787,15 +759,10 @@
 		492707DE1CF4BC1000C631C6 /* UnsupportedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnsupportedViewController.m; sourceTree = "<group>"; };
 		492708231CF4BC3200C631C6 /* UIViewController+Transitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Transitions.h"; sourceTree = "<group>"; };
 		492708241CF4BC3200C631C6 /* UIViewController+Transitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Transitions.m"; sourceTree = "<group>"; };
-		4927082D1CF4BC3200C631C6 /* Storyboard-WebBrowser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Storyboard-WebBrowser.storyboard"; sourceTree = "<group>"; };
-		4927082E1CF4BC3200C631C6 /* WebBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebBrowserViewController.h; sourceTree = "<group>"; };
-		4927082F1CF4BC3200C631C6 /* WebBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebBrowserViewController.m; sourceTree = "<group>"; };
-		492708301CF4BC3200C631C6 /* WebBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebBrowserViewController.xib; sourceTree = "<group>"; };
 		49383CE11F84834A009C8F8E /* Session+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Login.swift"; sourceTree = "<group>"; };
 		495D8BBA1CFE17D700D41098 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49642BBE1CF4C44A00238B3F /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		49642BBF1CF4C44A00238B3F /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
-		49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49642BC31CF4C4CD00238B3F /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49642BCA1CF4C66200238B3F /* Student.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Student.entitlements; sourceTree = "<group>"; };
 		496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyModuleProgressShim.swift; sourceTree = "<group>"; };
@@ -843,10 +810,6 @@
 		49AA29171CF4D1880055862D /* CanvasKit1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AA29191CF4D1880055862D /* CanvasKit1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasKit1.h; sourceTree = "<group>"; };
 		49AA291B1CF4D1880055862D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		49AA2ABF1CF4D51B0055862D /* CKAPICredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAPICredentials.h; sourceTree = "<group>"; };
-		49AA2AC01CF4D51B0055862D /* CKAPICredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKAPICredentials.m; sourceTree = "<group>"; };
-		49AA2AC31CF4D51B0055862D /* CKCanvasAPI+Conversations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKCanvasAPI+Conversations.h"; sourceTree = "<group>"; };
-		49AA2AC41CF4D51B0055862D /* CKCanvasAPI+Conversations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKCanvasAPI+Conversations.m"; sourceTree = "<group>"; };
 		49AA2AC91CF4D51B0055862D /* CKCanvasAPI+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKCanvasAPI+Private.h"; sourceTree = "<group>"; };
 		49AA2ACE1CF4D51B0055862D /* CKCanvasAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKCanvasAPI.h; sourceTree = "<group>"; };
 		49AA2ACF1CF4D51B0055862D /* CKCanvasAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCanvasAPI.m; sourceTree = "<group>"; };
@@ -860,10 +823,6 @@
 		49AA2AD71CF4D51B0055862D /* CKTerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKTerm.m; sourceTree = "<group>"; };
 		49AA2ADB1CF4D51B0055862D /* CKCommonTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKCommonTypes.h; sourceTree = "<group>"; };
 		49AA2ADC1CF4D51B0055862D /* CKCommonTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCommonTypes.m; sourceTree = "<group>"; };
-		49AA2ADD1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ISO8601DateFormatter+CKAdditions.h"; sourceTree = "<group>"; };
-		49AA2ADE1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ISO8601DateFormatter+CKAdditions.m"; sourceTree = "<group>"; };
-		49AA2ADF1CF4D51B0055862D /* NSArray+CKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CKAdditions.h"; sourceTree = "<group>"; };
-		49AA2AE01CF4D51B0055862D /* NSArray+CKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CKAdditions.m"; sourceTree = "<group>"; };
 		49AA2AE31CF4D51B0055862D /* NSDictionary+CKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CKAdditions.h"; sourceTree = "<group>"; };
 		49AA2AE41CF4D51B0055862D /* NSDictionary+CKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CKAdditions.m"; sourceTree = "<group>"; };
 		49AA2AE51CF4D51B0055862D /* NSFileManager+CKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+CKAdditions.h"; sourceTree = "<group>"; };
@@ -878,8 +837,6 @@
 		49AA2AEE1CF4D51B0055862D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		49AA2AEF1CF4D51B0055862D /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		49AA2AF01CF4D51B0055862D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
-		49AA2AF11CF4D51B0055862D /* UITableView+in_fix10550644.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+in_fix10550644.h"; sourceTree = "<group>"; };
-		49AA2AF21CF4D51B0055862D /* UITableView+in_fix10550644.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+in_fix10550644.m"; sourceTree = "<group>"; };
 		49AA2AF31CF4D51B0055862D /* UIWebView+AccessoryHiding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AccessoryHiding.h"; sourceTree = "<group>"; };
 		49AA2AF41CF4D51B0055862D /* UIWebView+AccessoryHiding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AccessoryHiding.m"; sourceTree = "<group>"; };
 		49AA2AFA1CF4D51B0055862D /* CKAssignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAssignment.h; sourceTree = "<group>"; };
@@ -904,8 +861,6 @@
 		49AA2B1B1CF4D51B0055862D /* CKDiscussionEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKDiscussionEntry.m; sourceTree = "<group>"; };
 		49AA2B1C1CF4D51B0055862D /* CKDiscussionTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKDiscussionTopic.h; sourceTree = "<group>"; };
 		49AA2B1D1CF4D51B0055862D /* CKDiscussionTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKDiscussionTopic.m; sourceTree = "<group>"; };
-		49AA2B1E1CF4D51B0055862D /* CKEmbeddedMediaAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKEmbeddedMediaAttachment.h; sourceTree = "<group>"; };
-		49AA2B1F1CF4D51B0055862D /* CKEmbeddedMediaAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKEmbeddedMediaAttachment.m; sourceTree = "<group>"; };
 		49AA2B201CF4D51B0055862D /* CKEnrollment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKEnrollment.h; sourceTree = "<group>"; };
 		49AA2B211CF4D51B0055862D /* CKEnrollment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKEnrollment.m; sourceTree = "<group>"; };
 		49AA2B241CF4D51B0055862D /* CKFakeAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKFakeAttachment.h; sourceTree = "<group>"; };
@@ -987,7 +942,6 @@
 		49E1F90F1F9517FF0003C91C /* MyLittleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLittleViewController.h; sourceTree = "<group>"; };
 		49F9FA461CF7B6F600654758 /* TechDebt.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TechDebt.xcassets; sourceTree = "<group>"; };
 		49F9FA4A1CF7B73100654758 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		49F9FA4C1CF89F8600654758 /* Router+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Router+Canvas.swift"; sourceTree = "<group>"; };
 		49F9FA581CF8CDC400654758 /* UIImage+TechDebt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TechDebt.h"; sourceTree = "<group>"; };
 		49F9FA591CF8CDC400654758 /* UIImage+TechDebt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TechDebt.m"; sourceTree = "<group>"; };
 		49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Push.swift"; sourceTree = "<group>"; };
@@ -1113,8 +1067,6 @@
 		5EB46DE31D21A75C00C859A4 /* CalendarWeekDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarWeekDayViewController.swift; sourceTree = "<group>"; };
 		5EB46DE41D21A75C00C859A4 /* CalendarWeekPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarWeekPageViewController.swift; sourceTree = "<group>"; };
 		60DEFAEF2C9B9DFE5512CC77 /* Pods_defaults_StudentUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_StudentUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6137294F1D54E91800C020A0 /* UIImage+CanvasKit1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CanvasKit1.h"; sourceTree = "<group>"; };
-		613729501D54E91800C020A0 /* UIImage+CanvasKit1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CanvasKit1.m"; sourceTree = "<group>"; };
 		61592F761DA7F0A200552B44 /* ModuleDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleDetailDataSource.swift; sourceTree = "<group>"; };
 		61592F781DA83C4900552B44 /* ModuleDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModuleDetailsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6181E615D15EF2EA5E2642B7 /* Pods-defaults-common_tests-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1211,6 +1163,8 @@
 		7D8F1D3A1FE1CCF000C27B42 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7D8F1D3B1FE1CCF100C27B42 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7D903C2022C27907009D9E9E /* GradesWidgetViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GradesWidgetViewController.storyboard; sourceTree = "<group>"; };
+		7D91D65B23217FA000C2F585 /* Routing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Routing.h; sourceTree = "<group>"; };
+		7D91D65F232180FE00C2F585 /* Routing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Routing.m; sourceTree = "<group>"; };
 		7D92447122FB7825002BC7CA /* UserPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesTests.swift; sourceTree = "<group>"; };
 		7DABA7451FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DABA7471FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1394,6 +1348,11 @@
 		9F00A56A2245599800C0CC32 /* GradesWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesWidgetViewController.swift; sourceTree = "<group>"; };
 		9F00A56C22455BD500C0CC32 /* GradesWidgetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesWidgetPresenter.swift; sourceTree = "<group>"; };
 		9F61B52B205985A5009C0B13 /* CanvasAppDelegate+Helm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CanvasAppDelegate+Helm.swift"; sourceTree = "<group>"; };
+		9F62EDDA2326E0FD00EA9F79 /* PeopleListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListPresenterTests.swift; sourceTree = "<group>"; };
+		9F87D0762322A94600EDA363 /* PeopleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListCell.swift; sourceTree = "<group>"; };
+		9F900E7B2321870600BB44B4 /* PeopleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewController.swift; sourceTree = "<group>"; };
+		9F900E7D2321870F00BB44B4 /* PeopleListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListPresenter.swift; sourceTree = "<group>"; };
+		9F900E7F232187D900BB44B4 /* PeopleListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PeopleListViewController.storyboard; sourceTree = "<group>"; };
 		A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13903D63AE70A2926A48F10 /* Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_ui_tests-StudentUITests/Pods-defaults-common_ui_tests-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+ViewModel.swift"; sourceTree = "<group>"; };
@@ -1618,7 +1577,6 @@
 				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
 				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
 				7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */,
-				49642BC41CF4C4DC00238B3F /* CanvasKeymaster.framework in Frameworks */,
 				49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */,
 				49AA291E1CF4D1880055862D /* CanvasKit1.framework in Frameworks */,
 				7D1D7E05213743D300F7CCFE /* Core.framework in Frameworks */,
@@ -1643,7 +1601,6 @@
 				B1F405EC22E23C51008FAFE6 /* ReactiveObjC.framework in Frameworks */,
 				2C6049611F72BB6900252BC5 /* CanvasCore.framework in Frameworks */,
 				B1F405EB22E23C4F008FAFE6 /* ReactiveMapKit.framework in Frameworks */,
-				49642BC81CF4C4DF00238B3F /* CanvasKeymaster.framework in Frameworks */,
 				49642BC91CF4C4DF00238B3F /* CanvasKit.framework in Frameworks */,
 				B1F405EE22E23C5B008FAFE6 /* ReactiveSwift.framework in Frameworks */,
 				49A04E4E1CF6420C0051E1E7 /* CanvasKit1.framework in Frameworks */,
@@ -1812,6 +1769,7 @@
 				7DCF0EBD22F8A001000AACCE /* Extensions */,
 				7DCF0EC122F8A00D000AACCE /* Groups */,
 				7DCF0ECA22F8A01C000AACCE /* IBDesignables */,
+				9F900E7A232186F400BB44B4 /* People */,
 				49A04E6F1CF64DE30051E1E7 /* Profile */,
 				7DCF0ED522F8A03D000AACCE /* Quizzes */,
 				7DCF0F0A22F8A050000AACCE /* Submissions */,
@@ -1844,7 +1802,6 @@
 				49AA2D121CF4DC3F0055862D /* People */,
 				492707D91CF4BC1000C631C6 /* Sad Panda */,
 				4927081C1CF4BC3200C631C6 /* Transitioning */,
-				4927082C1CF4BC3200C631C6 /* Web Browser */,
 			);
 			path = TechDebt;
 			sourceTree = "<group>";
@@ -1881,8 +1838,6 @@
 				492705911CF4B73200C631C6 /* UIView+FloatingView.m */,
 				492705921CF4B73200C631C6 /* UIView_render_IN.h */,
 				492705931CF4B73200C631C6 /* UIView_render_IN.m */,
-				492705981CF4B73200C631C6 /* UIWebView+iCanvas.h */,
-				492705991CF4B73200C631C6 /* UIWebView+iCanvas.m */,
 				4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */,
 				4927059F1CF4B73200C631C6 /* UIWebView+SafeAPIURL.m */,
 				49A04E251CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h */,
@@ -1959,10 +1914,8 @@
 			children = (
 				492706A51CF4B98900C631C6 /* iCanvasConstants.h */,
 				492706A61CF4B98900C631C6 /* iCanvasConstants.m */,
-				492706AD1CF4B99700C631C6 /* Router.h */,
-				492706AE1CF4B99700C631C6 /* Router.m */,
-				492706AF1CF4B99700C631C6 /* Router+Routes.h */,
-				492706B01CF4B99700C631C6 /* Router+Routes.m */,
+				7D91D65B23217FA000C2F585 /* Routing.h */,
+				7D91D65F232180FE00C2F585 /* Routing.m */,
 			);
 			path = iCanvas;
 			sourceTree = "<group>";
@@ -2005,17 +1958,6 @@
 			path = Transitioning;
 			sourceTree = "<group>";
 		};
-		4927082C1CF4BC3200C631C6 /* Web Browser */ = {
-			isa = PBXGroup;
-			children = (
-				4927082D1CF4BC3200C631C6 /* Storyboard-WebBrowser.storyboard */,
-				4927082E1CF4BC3200C631C6 /* WebBrowserViewController.h */,
-				4927082F1CF4BC3200C631C6 /* WebBrowserViewController.m */,
-				492708301CF4BC3200C631C6 /* WebBrowserViewController.xib */,
-			);
-			path = "Web Browser";
-			sourceTree = "<group>";
-		};
 		49383CE01F84834A009C8F8E /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -2038,7 +1980,6 @@
 			children = (
 				496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */,
 				496D31291CF7550A00A3B11E /* NetworkMonitor.swift */,
-				49F9FA4C1CF89F8600654758 /* Router+Canvas.swift */,
 			);
 			path = Shrug;
 			sourceTree = "<group>";
@@ -2186,10 +2127,6 @@
 		49AA2ABD1CF4D51B0055862D /* API Classes */ = {
 			isa = PBXGroup;
 			children = (
-				49AA2ABF1CF4D51B0055862D /* CKAPICredentials.h */,
-				49AA2AC01CF4D51B0055862D /* CKAPICredentials.m */,
-				49AA2AC31CF4D51B0055862D /* CKCanvasAPI+Conversations.h */,
-				49AA2AC41CF4D51B0055862D /* CKCanvasAPI+Conversations.m */,
 				49AA2AC91CF4D51B0055862D /* CKCanvasAPI+Private.h */,
 				49AA2ACE1CF4D51B0055862D /* CKCanvasAPI.h */,
 				49AA2ACF1CF4D51B0055862D /* CKCanvasAPI.m */,
@@ -2210,10 +2147,6 @@
 			children = (
 				49AA2ADB1CF4D51B0055862D /* CKCommonTypes.h */,
 				49AA2ADC1CF4D51B0055862D /* CKCommonTypes.m */,
-				49AA2ADD1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.h */,
-				49AA2ADE1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m */,
-				49AA2ADF1CF4D51B0055862D /* NSArray+CKAdditions.h */,
-				49AA2AE01CF4D51B0055862D /* NSArray+CKAdditions.m */,
 				49AA2AE31CF4D51B0055862D /* NSDictionary+CKAdditions.h */,
 				49AA2AE41CF4D51B0055862D /* NSDictionary+CKAdditions.m */,
 				49AA2AE51CF4D51B0055862D /* NSFileManager+CKAdditions.h */,
@@ -2228,12 +2161,8 @@
 				49AA2AEE1CF4D51B0055862D /* UIImage+Resize.m */,
 				49AA2AEF1CF4D51B0055862D /* UIImage+RoundedCorner.h */,
 				49AA2AF01CF4D51B0055862D /* UIImage+RoundedCorner.m */,
-				49AA2AF11CF4D51B0055862D /* UITableView+in_fix10550644.h */,
-				49AA2AF21CF4D51B0055862D /* UITableView+in_fix10550644.m */,
 				49AA2AF31CF4D51B0055862D /* UIWebView+AccessoryHiding.h */,
 				49AA2AF41CF4D51B0055862D /* UIWebView+AccessoryHiding.m */,
-				6137294F1D54E91800C020A0 /* UIImage+CanvasKit1.h */,
-				613729501D54E91800C020A0 /* UIImage+CanvasKit1.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -2263,8 +2192,6 @@
 				49AA2B1B1CF4D51B0055862D /* CKDiscussionEntry.m */,
 				49AA2B1C1CF4D51B0055862D /* CKDiscussionTopic.h */,
 				49AA2B1D1CF4D51B0055862D /* CKDiscussionTopic.m */,
-				49AA2B1E1CF4D51B0055862D /* CKEmbeddedMediaAttachment.h */,
-				49AA2B1F1CF4D51B0055862D /* CKEmbeddedMediaAttachment.m */,
 				49AA2B201CF4D51B0055862D /* CKEnrollment.h */,
 				49AA2B211CF4D51B0055862D /* CKEnrollment.m */,
 				49AA2B241CF4D51B0055862D /* CKFakeAttachment.h */,
@@ -2415,7 +2342,6 @@
 				2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */,
 				61F438E21DD4E60B00552D14 /* AVFoundation.framework */,
 				2C6049621F72BB6900252BC5 /* CanvasCore.framework */,
-				49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */,
 				49642BC31CF4C4CD00238B3F /* CanvasKit.framework */,
 				7D1D7E04213743D300F7CCFE /* Core.framework */,
 				2C67B0CB1E01F06800DDD191 /* CoreMedia.framework */,
@@ -3051,6 +2977,7 @@
 				7DCF0F1F22F8A096000AACCE /* Dashboard */,
 				7DCF0F2222F8A096000AACCE /* Extensions */,
 				7DCF0F2522F8A096000AACCE /* Helpers */,
+				9F62EDD92326E03600EA9F79 /* People */,
 				7D92447322FB782C002BC7CA /* Profile */,
 				7DCF0F3322F8A096000AACCE /* Submissions */,
 				7DCF0F3522F8A096000AACCE /* Views */,
@@ -3207,6 +3134,25 @@
 			path = StudentUITests;
 			sourceTree = "<group>";
 		};
+		9F62EDD92326E03600EA9F79 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				9F62EDDA2326E0FD00EA9F79 /* PeopleListPresenterTests.swift */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		9F900E7A232186F400BB44B4 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				9F900E7B2321870600BB44B4 /* PeopleListViewController.swift */,
+				9F900E7D2321870F00BB44B4 /* PeopleListPresenter.swift */,
+				9F900E7F232187D900BB44B4 /* PeopleListViewController.storyboard */,
+				9F87D0762322A94600EDA363 /* PeopleListCell.swift */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
 		B157A60D22BD782300963E56 /* Assignments */ = {
 			isa = PBXGroup;
 			children = (
@@ -3356,7 +3302,6 @@
 				4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */,
 				492705CA1CF4B73200C631C6 /* UITableView+in_updateInBlocks.h in Headers */,
 				49AA2D2B1CF4DC540055862D /* CBIPeopleDetailViewController.h in Headers */,
-				492706B31CF4B99700C631C6 /* Router+Routes.h in Headers */,
 				492705CE1CF4B73300C631C6 /* UIView+Circular.h in Headers */,
 				492705A61CF4B73200C631C6 /* CKIClient+CBIClient.h in Headers */,
 				492705BC1CF4B73200C631C6 /* UIFont+Canvas.h in Headers */,
@@ -3374,12 +3319,12 @@
 				492706971CF4B88600C631C6 /* NoPreviewAvailableController.h in Headers */,
 				492705F01CF4B76A00C631C6 /* CBIColorfulCell.h in Headers */,
 				2C7041AE203CDDB700745253 /* UIAlertController+TechDebt.h in Headers */,
+				7D91D65C23217FA000C2F585 /* Routing.h in Headers */,
 				49CE976D1F900B4700121A43 /* metamacros.h in Headers */,
 				492705B21CF4B73200C631C6 /* NSURL+TechDebt.h in Headers */,
 				49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */,
 				49CE97711F900B4700121A43 /* MLVCCollectionViewCellViewModel.h in Headers */,
 				49CE97731F900B4700121A43 /* MLVCTableViewCellViewModel.h in Headers */,
-				492706B11CF4B99700C631C6 /* Router.h in Headers */,
 				49AA2D271CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.h in Headers */,
 				492706A91CF4B98900C631C6 /* iCanvasConstants.h in Headers */,
 				49CE97661F900B4700121A43 /* UICollectionView+MyLittleViewController.h in Headers */,
@@ -3396,13 +3341,11 @@
 				4927084A1CF4BC3200C631C6 /* UIViewController+Transitions.h in Headers */,
 				61F438E61DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h in Headers */,
 				492705A21CF4B73200C631C6 /* CKIUser+SwiftCompatibility.h in Headers */,
-				492708531CF4BC3200C631C6 /* WebBrowserViewController.h in Headers */,
 				49CE976E1F900B4700121A43 /* EXTScope.h in Headers */,
 				492704AE1CF4B6D700C631C6 /* TechDebt.h in Headers */,
 				492707FB1CF4BC1000C631C6 /* UnsupportedViewController.h in Headers */,
 				49CE97721F900B4700121A43 /* MLVCCollectionController.h in Headers */,
 				49DE1DA31F8808F30055D74A /* CBIConversationStarter.h in Headers */,
-				492705DA1CF4B73300C631C6 /* UIWebView+iCanvas.h in Headers */,
 				49CE976B1F900B4700121A43 /* MLVCCollectionViewController.h in Headers */,
 				492705C21CF4B73200C631C6 /* UIImage+ImageEffects.h in Headers */,
 				49CE976C1F900B4700121A43 /* MLVCViewModel.h in Headers */,
@@ -3417,17 +3360,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49AA2BAA1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.h in Headers */,
 				49AA2BA21CF4D51B0055862D /* CKPaginationInfo.h in Headers */,
 				49AA2C1E1CF4D51B0055862D /* CKSubmission.h in Headers */,
 				49AA2C081CF4D51B0055862D /* CKRubric.h in Headers */,
 				49A04E001CF4F8620051E1E7 /* CXMLDocument_CreationExtensions.h in Headers */,
-				613729511D54E91800C020A0 /* UIImage+CanvasKit1.h in Headers */,
 				49A04E041CF4F8620051E1E7 /* CXHTMLDocument.h in Headers */,
 				49AA2BF41CF4D51B0055862D /* CKGroup.h in Headers */,
 				49AA2BCA1CF4D51B0055862D /* CKAssignmentOverride.h in Headers */,
-				49AA2BAC1CF4D51B0055862D /* NSArray+CKAdditions.h in Headers */,
-				49AA2BBE1CF4D51B0055862D /* UITableView+in_fix10550644.h in Headers */,
 				49A04E0A1CF4F8620051E1E7 /* CXMLElement_CreationExtensions.h in Headers */,
 				49AA2BB01CF4D51B0055862D /* NSDictionary+CKAdditions.h in Headers */,
 				49AA2C2A1CF4D51B0055862D /* CKUser.h in Headers */,
@@ -3450,12 +3389,10 @@
 				49AA2BC61CF4D51B0055862D /* CKAssignment.h in Headers */,
 				49AA2BA81CF4D51B0055862D /* CKCommonTypes.h in Headers */,
 				49AA2BE41CF4D51B0055862D /* CKCourse.h in Headers */,
-				49AA2BEA1CF4D51B0055862D /* CKEmbeddedMediaAttachment.h in Headers */,
 				49AA2BA01CF4D51B0055862D /* CKCanvasURLConnection.h in Headers */,
 				49AA2BE81CF4D51B0055862D /* CKDiscussionTopic.h in Headers */,
 				49AA2C2E1CF4D51B0055862D /* CKActionSheetWithBlocks.h in Headers */,
 				49A04DA81CF4F5E40051E1E7 /* ISO8601DateFormatter.h in Headers */,
-				49AA2B8D1CF4D51B0055862D /* CKAPICredentials.h in Headers */,
 				49A04E021CF4F8620051E1E7 /* CXMLNode_CreationExtensions.h in Headers */,
 				49A04E121CF4F8620051E1E7 /* CXMLNode_PrivateExtensions.h in Headers */,
 				49A04E1A1CF4F8620051E1E7 /* TouchXML.h in Headers */,
@@ -3465,7 +3402,6 @@
 				49AA2BBA1CF4D51B0055862D /* UIImage+Resize.h in Headers */,
 				49AA2BFA1CF4D51B0055862D /* CKMediaServer.h in Headers */,
 				49AA291A1CF4D1880055862D /* CanvasKit1.h in Headers */,
-				49AA2B911CF4D51B0055862D /* CKCanvasAPI+Conversations.h in Headers */,
 				49AA2BB81CF4D51B0055862D /* UIImage+Alpha.h in Headers */,
 				49AA2C241CF4D51B0055862D /* CKSubmissionType.h in Headers */,
 				49A04E141CF4F8620051E1E7 /* CXMLNode_XPathExtensions.h in Headers */,
@@ -3850,6 +3786,7 @@
 				2CE205B820EBF690002A6A64 /* GoogleService-Info.plist in Resources */,
 				7DCF0FB522F8A8D7000AACCE /* SubmissionCommentFileView.xib in Resources */,
 				7DCF0FAF22F8A8D7000AACCE /* RubricViewController.storyboard in Resources */,
+				9F900E80232187D900BB44B4 /* PeopleListViewController.storyboard in Resources */,
 				7DCF0F8E22F8A84D000AACCE /* SyllabusViewController.storyboard in Resources */,
 				B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */,
 				7DCF0F8922F8A84D000AACCE /* CourseCardCell.xib in Resources */,
@@ -3873,13 +3810,11 @@
 				492706D51CF4BA7B00C631C6 /* ContentLockViewController.storyboard in Resources */,
 				49F9FA471CF7B6F600654758 /* TechDebt.xcassets in Resources */,
 				492705F31CF4B76A00C631C6 /* CBIColorfulRightDetailCell.xib in Resources */,
-				492708551CF4BC3200C631C6 /* WebBrowserViewController.xib in Resources */,
 				49AA2D291CF4DC540055862D /* CBIPeopleAvatarCell.xib in Resources */,
 				2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */,
 				49AA2D2A1CF4DC540055862D /* CBIPeopleDetail.storyboard in Resources */,
 				49AA2D311CF4DC540055862D /* Profile.storyboard in Resources */,
 				492705F21CF4B76A00C631C6 /* CBIColorfulCell.xib in Resources */,
-				492708521CF4BC3200C631C6 /* Storyboard-WebBrowser.storyboard in Resources */,
 				492707FA1CF4BC1000C631C6 /* UnsupportedView.storyboard in Resources */,
 				492705F41CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib in Resources */,
 			);
@@ -3994,7 +3929,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\nexit 0\nfi\n\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\nif nc -w 5 -z localhost 8081 ; then\nif ! curl -s \"http://localhost:8081/status\" | grep -q \"packager-status:running\" ; then\necho \"Port 8081 already in use, packager is either not running or not running correctly\"\nexit 2\nfi\nelse\npwd\nopen \"$SRCROOT/../rn/Teacher/launchPackager.command\" || echo \"Can't start packager automatically\"\nfi\nfi";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\nexit 0\nfi\n\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\nif nc -w 5 -z localhost 8081 ; then\nif ! curl -s \"http://localhost:8081/status\" | grep -q \"packager-status:running\" ; then\necho \"Port 8081 already in use, packager is either not running or not running correctly\"\nexit 2\nfi\nelse\npwd\nopen \"$SRCROOT/../rn/Teacher/launchPackager.command\" || echo \"Can't start packager automatically\"\nfi\nfi\n";
 		};
 		49383CF11F848FCD009C8F8E /* Bundle React Native Code and Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4144,6 +4079,7 @@
 				7DCF0FCF22F8A8D7000AACCE /* UrlSubmissionViewController.swift in Sources */,
 				5EB46DFA1D21A75C00C859A4 /* CalendarWeekView.swift in Sources */,
 				7DCF0FC522F8A8D7000AACCE /* UrlSubmissionContentViewController.swift in Sources */,
+				9F87D0772322A94600EDA363 /* PeopleListCell.swift in Sources */,
 				61592F771DA7F0A200552B44 /* ModuleDetailDataSource.swift in Sources */,
 				5EB46DE71D21A75C00C859A4 /* NSError+CalendarKit.swift in Sources */,
 				7DCF0F9D22F8A897000AACCE /* DividerView.swift in Sources */,
@@ -4152,8 +4088,8 @@
 				49A04E6E1CF64D130051E1E7 /* TabsTableViewController.swift in Sources */,
 				4976C2001FBB84B900160EE4 /* CalendarEventDetailViewController.swift in Sources */,
 				5EB46DED1D21A75C00C859A4 /* UIView+Nib.swift in Sources */,
+				9F900E7E2321870F00BB44B4 /* PeopleListPresenter.swift in Sources */,
 				7DCF0F7F22F8A820000AACCE /* DashboardGroupCell.swift in Sources */,
-				49F9FA4D1CF89F8600654758 /* Router+Canvas.swift in Sources */,
 				7DCF0FAC22F8A8D7000AACCE /* RubricViewController.swift in Sources */,
 				496D312A1CF7550A00A3B11E /* NetworkMonitor.swift in Sources */,
 				7DCF0FCB22F8A8D7000AACCE /* SubmissionFilesViewController.swift in Sources */,
@@ -4235,6 +4171,7 @@
 				61592F791DA83C4900552B44 /* ModuleDetailsViewController.swift in Sources */,
 				61A6747E1DB589A3008A27FD /* ModuleViewModel.swift in Sources */,
 				7DCF0FA022F8A897000AACCE /* DynamicTextField.swift in Sources */,
+				9F900E7C2321870600BB44B4 /* PeopleListViewController.swift in Sources */,
 				492704771CF4AF7100C631C6 /* CanvasAppDelegate.swift in Sources */,
 				5EB46DE81D21A75C00C859A4 /* NSObject+Bundle.swift in Sources */,
 				5EB46DF81D21A75C00C859A4 /* CalendarNoticeView.swift in Sources */,
@@ -4272,7 +4209,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				492706B41CF4B99700C631C6 /* Router+Routes.m in Sources */,
 				492705B31CF4B73200C631C6 /* NSURL+TechDebt.m in Sources */,
 				49AA2D351CF4DC540055862D /* RoundedButton.m in Sources */,
 				492705B71CF4B73200C631C6 /* NSCache+AvatarCache.m in Sources */,
@@ -4287,7 +4223,6 @@
 				49DE1DA41F8808F30055D74A /* CBIConversationStarter.m in Sources */,
 				49F9FA5B1CF8CDC400654758 /* UIImage+TechDebt.m in Sources */,
 				49AA2D301CF4DC540055862D /* CBIPeopleViewModel.m in Sources */,
-				492705DB1CF4B73300C631C6 /* UIWebView+iCanvas.m in Sources */,
 				492705BB1CF4B73200C631C6 /* NSString_stripHTML.m in Sources */,
 				492705F11CF4B76A00C631C6 /* CBIColorfulCell.m in Sources */,
 				49CE976F1F900B4700121A43 /* MLVCCollectionViewController.m in Sources */,
@@ -4302,11 +4237,11 @@
 				492705BD1CF4B73200C631C6 /* UIFont+Canvas.m in Sources */,
 				492706981CF4B88600C631C6 /* NoPreviewAvailableController.m in Sources */,
 				49CE97761F900B4700121A43 /* MLVCViewController.m in Sources */,
+				7D91D660232180FE00C2F585 /* Routing.m in Sources */,
 				492705D31CF4B73300C631C6 /* UIView+FloatingView.m in Sources */,
 				787BAAE0215445BB002D0381 /* UserInfoTableViewCell.swift in Sources */,
 				49CE97691F900B4700121A43 /* MLVCCollectionController.m in Sources */,
 				49A04E281CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.m in Sources */,
-				492708541CF4BC3200C631C6 /* WebBrowserViewController.m in Sources */,
 				2C7041AF203CDDB700745253 /* UIAlertController+TechDebt.m in Sources */,
 				492706941CF4B88600C631C6 /* FileViewController.m in Sources */,
 				49CE97701F900B4700121A43 /* UICollectionView+MyLittleViewController.m in Sources */,
@@ -4321,7 +4256,6 @@
 				492705E11CF4B73300C631C6 /* UIWebView+SafeAPIURL.m in Sources */,
 				492705A71CF4B73200C631C6 /* CKIClient+CBIClient.m in Sources */,
 				49CE97671F900B4700121A43 /* MLVCTableViewController.m in Sources */,
-				492706B21CF4B99700C631C6 /* Router.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4333,33 +4267,26 @@
 				49AA2BCD1CF4D51B0055862D /* CKAttachment.m in Sources */,
 				49AA2BF31CF4D51B0055862D /* CKFolder.m in Sources */,
 				49AA2BBB1CF4D51B0055862D /* UIImage+Resize.m in Sources */,
-				49AA2BAB1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m in Sources */,
 				49AA2C2B1CF4D51B0055862D /* CKUser.m in Sources */,
 				49AA2BA31CF4D51B0055862D /* CKPaginationInfo.m in Sources */,
 				49AA2C0F1CF4D51B0055862D /* CKRubricCriterionRating.m in Sources */,
 				49AA2BA51CF4D51B0055862D /* CKTerm.m in Sources */,
 				49AA2C0B1CF4D51B0055862D /* CKRubricAssessment.m in Sources */,
 				49AA2C211CF4D51B0055862D /* CKSubmissionAttempt.m in Sources */,
-				49AA2BBF1CF4D51B0055862D /* UITableView+in_fix10550644.m in Sources */,
 				49AA2BA91CF4D51B0055862D /* CKCommonTypes.m in Sources */,
 				49AA2C0D1CF4D51B0055862D /* CKRubricCriterion.m in Sources */,
 				49AA2BFD1CF4D51B0055862D /* CKModelObject.m in Sources */,
 				49A04E071CF4F8620051E1E7 /* CXMLDocument_PrivateExtensions.m in Sources */,
 				49A04E131CF4F8620051E1E7 /* CXMLNode_PrivateExtensions.m in Sources */,
-				49AA2B8E1CF4D51B0055862D /* CKAPICredentials.m in Sources */,
-				49AA2BAD1CF4D51B0055862D /* NSArray+CKAdditions.m in Sources */,
-				49AA2B921CF4D51B0055862D /* CKCanvasAPI+Conversations.m in Sources */,
 				49A04E191CF4F8620051E1E7 /* CTidy.m in Sources */,
 				49AA2C4D1CF4D51B0055862D /* CKUploadProgressToolbar.m in Sources */,
 				49AA2C1F1CF4D51B0055862D /* CKSubmission.m in Sources */,
 				49AA2C251CF4D51B0055862D /* CKSubmissionType.m in Sources */,
 				49AA2B9D1CF4D51B0055862D /* CKCanvasAPI.m in Sources */,
 				49AA2BF51CF4D51B0055862D /* CKGroup.m in Sources */,
-				613729521D54E91800C020A0 /* UIImage+CanvasKit1.m in Sources */,
 				49A04E011CF4F8620051E1E7 /* CXMLDocument_CreationExtensions.m in Sources */,
 				49AA2BB71CF4D51B0055862D /* NSString+CKAdditions.m in Sources */,
 				49AA2BD91CF4D51B0055862D /* CKContextInfo.m in Sources */,
-				49AA2BEB1CF4D51B0055862D /* CKEmbeddedMediaAttachment.m in Sources */,
 				49A04DA91CF4F5E40051E1E7 /* ISO8601DateFormatter.m in Sources */,
 				49AA2BB51CF4D51B0055862D /* NSHTTPURLResponse+CKAdditions.m in Sources */,
 				49AA2BBD1CF4D51B0055862D /* UIImage+RoundedCorner.m in Sources */,
@@ -4443,6 +4370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DE1162522F8AB5C005BFE98 /* PersistenceTestCase.swift in Sources */,
+				9F62EDDB2326E0FD00EA9F79 /* PeopleListPresenterTests.swift in Sources */,
 				7DE1161C22F8AB5C005BFE98 /* BlockExpectation.swift in Sources */,
 				7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */,
 				7D92447222FB7825002BC7CA /* UserPreferencesTests.swift in Sources */,

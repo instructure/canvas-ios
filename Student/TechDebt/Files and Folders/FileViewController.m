@@ -21,24 +21,23 @@
 #import <CanvasKit1/CKUploadProgressToolbar.h>
 #import "FileViewController.h"
 #import "NoPreviewAvailableController.h"
-#import "Router.h"
 #import "ContentLockViewController.h"
 #import "UIWebView+SafeAPIURL.h"
 #import "CBIModuleProgressNotifications.h"
 #import "CKIClient+CBIClient.h"
 #import "UIAlertController+TechDebt.h"
 #import "UIImage+TechDebt.h"
+#import "Routing.h"
 
 @import PSPDFKit;
 @import PSPDFKitUI;
-@import CanvasKeymaster;
+@import CanvasKit;
 @import QuickLook;
 
 @interface FileViewController () <UIDocumentInteractionControllerDelegate, QLPreviewControllerDelegate, QLPreviewControllerDataSource>
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
 @property (nonatomic, strong) UIView *legacyFileMessageView;
 @property (nonatomic, strong) NSLayoutConstraint *legacyFileMessageViewHeightConstraint;
-@property(nonatomic,assign) BOOL showingOldVersion;
 @end
 
 @implementation FileViewController {
@@ -135,34 +134,6 @@
     return NO;
 }
 
-#pragma mark - Routing
-
-- (void)applyRoutingParameters:(NSDictionary *)params {
-    [super applyRoutingParameters:params];
-    NSNumber *fileIdent = params[@"query"][@"preview"];
-    if (fileIdent) {
-        self.fileIdent = [fileIdent intValue];
-    }
-
-    // don't write over routing parameters applied at
-    // beginning of function unless the query params really
-    // exist
-    NSString *courseID = params[@"query"][@"courseID"];
-    if (courseID) {
-        self.courseID = [NSNumber numberWithInteger:courseID.integerValue];
-    }
-    NSString *assignmentID = params[@"query"][@"assignmentID"];
-    if (assignmentID) {
-        self.assignmentID = [NSNumber numberWithInteger:assignmentID.integerValue];
-    }
-
-    NSString *url = params[@"url"];
-    if (url && [url.lastPathComponent isEqualToString:@"old"]) {
-        self.showingOldVersion = YES;
-    }
-    [self fetchFile];
-}
-
 #pragma mark - Fetching
 
 - (void)fetchFile {
@@ -241,7 +212,7 @@
     // Store the file in a directory unique to this file as well as the current user
     // Structuring this way prevents overriding files across users and folders
     // example: /canvas.instructure.com-:userID/:fileID/:fileName
-    NSString *sessionID = TheKeymaster.currentClient.authSession.sessionID;
+    NSString *sessionID = CKIClient.currentClient.authSession.sessionID;
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     NSURL *userDirectory = [[NSURL URLWithString:documentsPath] URLByAppendingPathComponent:sessionID isDirectory:YES];
     NSURL *fileDirectory = [userDirectory URLByAppendingPathComponent:[NSString stringWithFormat:@"%llu", file.ident] isDirectory:YES];
@@ -252,7 +223,7 @@
 
 - (NSString *)legacyPathForPersistedFile:(CKAttachment *)file {
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *path = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%llu_%@", TheKeymaster.currentClient.authSession.user.id, file.ident, file.filename]];
+    NSString *path = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%llu_%@", CKIClient.currentClient.authSession.user.id, file.ident, file.filename]];
     return path;
 }
 
@@ -322,7 +293,7 @@
 - (void)tappedViewOldVersion {
     NSString *path = [NSString stringWithFormat:@"/files/%llu/old", self.fileIdent];
     NSURL *url = [NSURL URLWithString:path];
-    [[Router sharedRouter] routeFromController:self toURL:url withOptions:nil];
+    Routing.routeToURL(url, self);
 }
 
 - (void)setFile:(CKAttachment *)file {
@@ -341,13 +312,11 @@
 }
 
 - (NSURL *)getHTMLFilePreviewURL {
-    NSURL *previewURL = TheKeymaster.currentClient.authSession.baseURL;
+    NSURL *previewURL = CKIClient.currentClient.authSession.baseURL;
 
     if (self.courseID) {
         previewURL = [previewURL URLByAppendingPathComponent:@"courses"];
-        // self.courseID should be an NSString but the way it gets set in
-        // [UIViewController applyRoutingParameters] makes it a number
-        previewURL = [previewURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@",self.courseID]];
+        previewURL = [previewURL URLByAppendingPathComponent:self.courseID];
     }
 
     previewURL = [previewURL URLByAppendingPathComponent:@"files"];
@@ -359,10 +328,8 @@
 - (UIViewController *)childControllerForContentAtURL:(NSURL *)url {
     UIViewController *controller = nil;
     if ([_file.contentType isEqualToString:@"application/pdf"]) {
-        NSString * _Nullable courseID = [self hackishlyGetDefaultCourseIfPossible];
-        NSString * _Nullable assignmentID = [self hackishlyGetDefaultAssignmentIfPossible];
-        Session *session = TheKeymaster.currentClient.authSession;
-        pdfDocPresenter = [[PreSubmissionPDFDocumentPresenter alloc] initWithDocumentURL:url session:session defaultCourseID:courseID defaultAssignmentID:assignmentID];
+        Session *session = CKIClient.currentClient.authSession;
+        pdfDocPresenter = [[PreSubmissionPDFDocumentPresenter alloc] initWithDocumentURL:url session:session defaultCourseID:self.courseID defaultAssignmentID:self.assignmentID];
         @weakify(self);
         pdfDocPresenter.didSubmitAssignment = ^{
             @strongify(self);
@@ -407,25 +374,6 @@
         controller = viewController;
     }
     return controller;
-}
-
-- (NSString * _Nullable)hackishlyGetDefaultAssignmentIfPossible {
-    if (self.assignmentID) {
-        return self.assignmentID.stringValue;
-    }
-    return nil;
-}
-
-- (NSString * _Nullable)hackishlyGetDefaultCourseIfPossible {
-    if (self.courseID) {
-        return self.courseID.stringValue;
-    }
-    
-    if (self.contextInfo.contextType == CKContextTypeCourse) {
-        return [@(self.contextInfo.ident) stringValue];
-    }
-    
-    return nil;
 }
 
 - (void)setUrl:(NSURL *)url {

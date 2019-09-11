@@ -23,62 +23,50 @@ import TestsFoundation
 import XCTest
 
 class AssignmentDetailsTests: StudentUITestCase {
-    lazy var course: APICourse = {
-        let course = APICourse.make()
-        mockData(GetCourseRequest(courseID: course.id), value: course)
-        return course
-    }()
-
-    func mockAssignment(_ assignment: APIAssignment) -> APIAssignment {
-        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
-        return assignment
-    }
-
-    override func show(_ route: String) {
-        super.show(route)
-        sleep(1)
-    }
+    lazy var course = mock(course: .make())
 
     func testUnsubmittedUpload() {
         mockBaseRequests()
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
             course.canvasContextID: "#123456",
         ]))
-        logIn()
-        let assignment = mockAssignment(APIAssignment.make(
+        let assignment = mock(assignment: .make(
             description: "A description",
             points_possible: 12.3,
             due_at: DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
+            submission: .make(submitted_at: nil, workflow_state: .unsubmitted),
             submission_types: [ .online_upload ],
             allowed_extensions: [ "doc", "docx", "pdf" ]
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.allowedExtensions.waitToExist()
-        XCTAssertEqual(NavBar.title.label, "Assignment Details")
-        XCTAssertEqual(NavBar.subtitle.label, course.name!)
+        XCTAssertEqual(NavBar.title.label(), "Assignment Details")
+        XCTAssertEqual(NavBar.subtitle.label(), course.name!)
         XCTAssertEqual(navBarColorHex(), "#123456")
 
-        XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
-        XCTAssertEqual(AssignmentDetails.points.label, "12.3 pts")
-        XCTAssertEqual(AssignmentDetails.status.label, "Not Submitted")
-        XCTAssertEqual(AssignmentDetails.due.label, "Jan 1, 2035 at 8:00 AM")
-        XCTAssertEqual(AssignmentDetails.submissionTypes.label, "File Upload")
-        XCTAssertEqual(AssignmentDetails.allowedExtensions.label, "doc, docx, or pdf")
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
+        XCTAssertEqual(AssignmentDetails.points.label(), "12.3 pts")
+        XCTAssertEqual(AssignmentDetails.status.label(), "Not Submitted")
+        XCTAssertEqual(AssignmentDetails.due.label(), "Jan 1, 2035 at 8:00 AM")
+        XCTAssertEqual(AssignmentDetails.submissionTypes.label(), "File Upload")
+        XCTAssertEqual(AssignmentDetails.allowedExtensions.label(), "doc, docx, or pdf")
         XCTAssertFalse(AssignmentDetails.submittedText.isVisible)
         XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Submit Assignment")
 
         let description = app.webViews.staticTexts.firstMatch.label
         XCTAssertEqual(description, assignment.description)
     }
 
     func testUnsubmittedDiscussion() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             name: "Discuss this",
             description: "Say it like you mean it",
             points_possible: 15.1,
             due_at: DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
+            submission: .make(submitted_at: nil, workflow_state: .unsubmitted),
             submission_types: [ .discussion_topic ],
             discussion_topic: APIDiscussionTopic.make(
                 message: "Say something I'm giving up on you."
@@ -87,15 +75,15 @@ class AssignmentDetailsTests: StudentUITestCase {
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submissionTypes.waitToExist()
-        XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
-        XCTAssertEqual(AssignmentDetails.points.label, "15.1 pts")
-        XCTAssertEqual(AssignmentDetails.status.label, "Not Submitted")
-        XCTAssertEqual(AssignmentDetails.due.label, "Jan 1, 2035 at 8:00 AM")
-        XCTAssertEqual(AssignmentDetails.submissionTypes.label, "Discussion Comment")
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
+        XCTAssertEqual(AssignmentDetails.points.label(), "15.1 pts")
+        XCTAssertEqual(AssignmentDetails.status.label(), "Not Submitted")
+        XCTAssertEqual(AssignmentDetails.due.label(), "Jan 1, 2035 at 8:00 AM")
+        XCTAssertEqual(AssignmentDetails.submissionTypes.label(), "Discussion Comment")
         XCTAssertFalse(AssignmentDetails.allowedExtensions.isVisible)
         XCTAssertFalse(AssignmentDetails.submittedText.isVisible)
         XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "View Discussion")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "View Discussion")
 
         let authorAvatar = app.webViews.staticTexts.element(boundBy: 0).label
         let authorName = app.webViews.staticTexts.element(boundBy: 1).label
@@ -106,7 +94,8 @@ class AssignmentDetailsTests: StudentUITestCase {
     }
 
     func testSubmittedDiscussion() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             submission: APISubmission.make(
                 discussion_entries: [ APIDiscussionEntry.make(
                     message: "My discussion entry"
@@ -115,31 +104,34 @@ class AssignmentDetailsTests: StudentUITestCase {
             submission_types: [ .discussion_topic ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.name.label, assignment.name)
+        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
         XCTAssertTrue(AssignmentDetails.submittedText.isVisible)
         XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "View Discussion")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "View Discussion")
     }
 
     func testResubmitAssignmentButton() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             submission: APISubmission.make(),
             submission_types: [ .online_upload ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Resubmit Assignment")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Resubmit Assignment")
     }
 
     func testSubmitAssignmentButton() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             submission_types: [ .online_upload ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Submit Assignment")
     }
 
     func testNoSubmitAssignmentButtonShows() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             submission_types: [ .none ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -147,7 +139,8 @@ class AssignmentDetailsTests: StudentUITestCase {
     }
 
     func testNoSubmitAssignmentButtonShowsForNotGraded() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             submission_types: [ .not_graded ]
         ))
         show("/courses/\(course.id)/assignments\(assignment.id)")
@@ -155,7 +148,8 @@ class AssignmentDetailsTests: StudentUITestCase {
     }
 
     func testNoSubmitAssignmentButtonShowsWhenExcused() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             submission: .make(excused: true),
             submission_types: [.online_text_entry]
         ))
@@ -164,17 +158,19 @@ class AssignmentDetailsTests: StudentUITestCase {
     }
 
     func testNoLockSection() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             submission_types: [ .online_upload ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Submit Assignment")
         XCTAssertFalse(AssignmentDetails.lockIcon.isVisible)
         XCTAssertFalse(AssignmentDetails.lockSection.isVisible)
     }
 
     func testNoSubmitAssignmentButtonShowsWhenLockAtLessThanNow() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             submission_types: [ .online_upload ],
             allowed_extensions: ["png"],
             lock_at: Date().addDays(-1),
@@ -191,7 +187,8 @@ class AssignmentDetailsTests: StudentUITestCase {
     }
 
     func testNoSubmitAssignmentButtonShowsWhenUnLockAtGreaterThanNow() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             submission_types: [ .online_upload ],
             allowed_extensions: ["png"],
             unlock_at: Date().addDays(1),
@@ -210,8 +207,9 @@ class AssignmentDetailsTests: StudentUITestCase {
     }
 
     func testNoSubmitAssignmentButtonShowsUserNotStudentEnrollment() {
+        mockBaseRequests()
         mockData(GetCourseRequest(courseID: course.id), value: APICourse.make(enrollments: []))
-        let assignment = mockAssignment(APIAssignment.make(
+        let assignment = mock(assignment: .make(
             submission_types: [ .online_upload ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -219,7 +217,8 @@ class AssignmentDetailsTests: StudentUITestCase {
     }
 
     func testTappingSubmitButtonShowsFileUploadOption() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             submission_types: [ .online_upload, .online_url ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -229,7 +228,8 @@ class AssignmentDetailsTests: StudentUITestCase {
     }
 
     func testCancelSubmitAction() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             submission_types: [ .online_upload, .online_url ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -239,16 +239,18 @@ class AssignmentDetailsTests: StudentUITestCase {
     }
 
     func testGradeCellShowsSubmittedTextWhenNotGraded() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             submission: APISubmission.make()
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertTrue(AssignmentDetails.submittedText.isVisible)
-        XCTAssertEqual(AssignmentDetails.submittedText.label, "Successfully submitted!")
+        XCTAssertTrue(AssignmentDetails.submittedText.waitToExist().isVisible)
+        XCTAssertEqual(AssignmentDetails.submittedText.label(), "Successfully submitted!")
     }
 
     func testGradeCellShowsDialWhenGraded() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             points_possible: 100,
             submission: APISubmission.make(
                 grade: "90",
@@ -256,11 +258,12 @@ class AssignmentDetailsTests: StudentUITestCase {
             )
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.gradeCircle.label, "Scored 90 out of 100 points possible")
+        XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 90 out of 100 points possible")
     }
 
     func testDisplayGradeAs() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             points_possible: 10,
             submission: APISubmission.make(
                 grade: "80%",
@@ -269,12 +272,13 @@ class AssignmentDetailsTests: StudentUITestCase {
             grading_type: .percent
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.gradeCircle.label, "Scored 8 out of 10 points possible")
-        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label, "80%")
+        XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 8 out of 10 points possible")
+        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "80%")
     }
 
     func testGradeCellShowsLatePenalty() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             points_possible: 100,
             due_at: Date(timeIntervalSinceNow: -10000), // less than 1 day should deduct 5 points
             submission: APISubmission.make(
@@ -286,22 +290,24 @@ class AssignmentDetailsTests: StudentUITestCase {
             )
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertEqual(AssignmentDetails.gradeLatePenalty.label, "Late penalty (-5 pts)")
+        XCTAssertEqual(AssignmentDetails.gradeLatePenalty.label(), "Late penalty (-5 pts)")
     }
 
     func testGradeCellShowsExcused() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             points_possible: 100,
             submission: .make(excused: true)
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        XCTAssertTrue(AssignmentDetails.gradeCell.isVisible)
-        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label, "Excused")
-        XCTAssertEqual(AssignmentDetails.gradeCircleOutOf.label, "Out of 100 pts")
+        XCTAssertTrue(AssignmentDetails.gradeCell.waitToExist().isVisible)
+        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "Excused")
+        XCTAssertEqual(AssignmentDetails.gradeCircleOutOf.label(), "Out of 100 pts")
     }
 
     func testViewSubmissionButtonWorksWithNoSubmission() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             points_possible: 10
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -311,7 +317,8 @@ class AssignmentDetailsTests: StudentUITestCase {
     }
 
     func testSubmissionButtonNavigatesToSubmission() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             points_possible: 10,
             submission: APISubmission.make()
         ))
@@ -321,7 +328,8 @@ class AssignmentDetailsTests: StudentUITestCase {
     }
 
     func testGradeCellNavigatesToSubmission() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             points_possible: 10,
             submission: APISubmission.make(
                 grade: "80%",
@@ -335,12 +343,12 @@ class AssignmentDetailsTests: StudentUITestCase {
     }
 
     func testSubmitUrlSubmission() {
-        let assignment = mockAssignment(APIAssignment.make(
+        mockBaseRequests()
+        let assignment = mock(assignment: .make(
             submission_types: [ .online_url ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        AssignmentDetails.submitAssignmentButton.waitToExist()
-        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label, "Submit Assignment")
+        XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Submit Assignment")
         AssignmentDetails.submitAssignmentButton.tap()
         AssignmentDetails.submitAssignmentButton.waitToVanish()
     }

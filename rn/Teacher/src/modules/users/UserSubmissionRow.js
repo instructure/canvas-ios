@@ -97,7 +97,6 @@ export default class UserSubmissionRow extends Component<Props, any> {
         renderImage={this._renderIcon}
         title={assignment.name}
         titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
-        border='bottom'
         testID={`user-submission-row.cell-${assignment.id}`}
         onPress={this.onPress}
         height='auto'

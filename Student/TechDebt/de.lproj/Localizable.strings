@@ -2,31 +2,28 @@
 "\n\nYou must first complete:" = "\n\nSie müssen zunächst das Folgende vervollständigen:";
 
 /* when locked item will become unlocked */
-" until %@" = "bis %@";
+" until %@" = " bis %@";
 
 /* %@ will be replaced by the filename */
-"'%@' is now ready to submit to assignments" = "'%@'ist nun bereit, die Aufgaben anzunehmen";
+"'%@' is now ready to submit to assignments" = "‚%@‘ ist nun bereit, an Aufgaben zu senden";
 
 /* explanation for locked module item */
-"\"%@\" is locked as part of \"%@\"" = "\"%1$@\" ist gesperrt als Teil von \"%2$@\"";
+"\"%@\" is locked as part of \"%@\"" = "„%1$@“ ist als Teil von „%2$@“ gesperrt ";
 
 /* explanation for locked module item */
 "&quot;%1$@&quot; is locked as part of &quot;%2$@&quot;" = "&quot;%1$@&quot; ist gesperrt als Teil von &quot;%2$@&quot;";
 
 /* Message for unsupported tab coming soon */
-"%@ is coming soon!" = "%@ kommt in Kürze!";
-
-/* local notification countdown alert */
-"%@ is due in %@" = "%1$@ ist fällig in %2$@";
+"%@ is coming soon!" = "%@ in Kürze!";
 
 /* explanation for locked item */
 "%@ is locked" = "%@ ist gesperrt";
 
 /* %@ is the token where the host name goes. Error message that the host doesn't exist. */
-"%@ is not a valid host" = "%@ ist kein zulässiger Host.";
+"%@ is not a valid host" = "%@ ist kein gültiger Host";
 
 /* No comment provided by engineer. */
-"%@ is not a valid URL" = "%@ ist keine zulässige URL";
+"%@ is not a valid URL" = "%@ ist keine gültige URL";
 
 /* Message for unsupported tab */
 "%@ is not currently supported." = "%@ wird derzeit nicht unterstützt.";
@@ -35,7 +32,7 @@
 "%@ likes" = "%@ Likes";
 
 /* Label indicating multiple submissions need grading */
-"%@ need grading" = "%@ muss benotet werden";
+"%@ need grading" = "%@ müssen benotet werden";
 
 /* Word and ellipses */
 "%@..." = "%@...";
@@ -59,7 +56,7 @@
 "%1$@ at %2$@" = "%1$@ um %2$@";
 
 /* local notification countdown alert */
-"%1$@ is due in %2$@" = "%1$@ ist fällig in %2$@";
+"%1$@ is due in %2$@" = "%1$@ Ist fällig in %2$@";
 
 /* 88 out of 100 points */
 "%1$@ out of %2$@" = "%1$@ von insgesamt %2$@";
@@ -83,19 +80,19 @@
 "%d %@" = "%1$d %2$@";
 
 /* time since creation (2 or more days) */
-"%d days ago" = "vor %d Tagen";
+"%d days ago" = "%d Tage vorher";
 
 /* time since creation (2 or more hours) */
-"%d hours ago" = "vor %d Stunden";
+"%d hours ago" = "%d Stunden vorher";
 
 /* Number of files/folders inside a folder. (Used for all cases except 1 item.) */
 "%d items" = "%d Elemente";
 
 /* time since creation (2 or more minutes) */
-"%d minutes ago" = "vor %d Minuten";
+"%d minutes ago" = "%d Minuten vorher";
 
 /* time since creation (2 or more months) */
-"%d months ago" = "vor %d Monaten";
+"%d months ago" = "%d Monate vorher";
 
 /* In the context 'Joe, Fred, ((25 more))' */
 "%d more" = "%d mehr";
@@ -107,7 +104,7 @@
 "%d unread" = "%d ungelesen";
 
 /* time since creation (2 or more years) */
-"%d years ago" = "vor %d Jahren";
+"%d years ago" = "%d Jahre vorher";
 
 /* As in, '15 bytes' */
 "%qu bytes" = "%qu Bytes";
@@ -119,16 +116,16 @@
 "%tu days" = "%tu Tage";
 
 /* offset for an hour */
-"%tu hour" = "%tu Stunde";
+"%tu hour" = "%tu Stunde";
 
 /* offset for number of hours */
-"%tu hours" = "%tu Stunden";
+"%tu hours" = "%tu Stunden";
 
 /* offset for less than one minute */
-"%tu minute" = "%tu Minute";
+"%tu minute" = "%tu Minute";
 
 /* offset for under an hour */
-"%tu minutes" = "%tu Minuten";
+"%tu minutes" = "%tu Minuten";
 
 /* No comment provided by engineer. */
 "%u Attachments" = "%u Anhänge";
@@ -137,19 +134,19 @@
 "%u files" = "%u Dateien";
 
 /* No comment provided by engineer. */
-"1 Attachment" = "1 Anhang";
+"1 Attachment" = "1 Anhang";
 
 /* one day */
-"1 day" = "1 Tag";
+"1 day" = "1 Tag";
 
 /* time since creation */
-"1 day ago" = "vor 1 Tag";
+"1 day ago" = "vor 1 Tag";
 
 /* one hour */
-"1 hour" = "1 Stunde";
+"1 hour" = "1 Std.";
 
 /* time since creation */
-"1 hour ago" = "vor 1 Stunde";
+"1 hour ago" = "vor 1 Stunde";
 
 /* Number of files/folders inside a folder. (Only used when there is exactly 1 item. */
 "1 item" = "1 Element";
@@ -158,7 +155,7 @@
 "1 like" = "1 Like";
 
 /* time since creation */
-"1 minute ago" = "vor 1 Minute";
+"1 minute ago" = "vor 1 Minute";
 
 /* time since creation */
 "1 month ago" = "vor 1 Monat";
@@ -176,7 +173,7 @@
 "5 minutes" = "5 Minuten";
 
 /* Name of a tab displaying Canvas Info including legal info */
-"About" = "Über";
+"About" = "Info zu";
 
 /* Access Denied from the server */
 "Access Denied" = "Zugriff verweigert";
@@ -223,14 +220,11 @@
 
 /* Announcements title
    Title for the announcements view controller */
-"Announcements" = "Ankündigungen";
-
-/* Assignment submission type for selecting an Arc video */
-"Arc" = "Arc";
+"Announcements" = "Announcements";
 
 /* Archive selected messages button
    mark a message as archived */
-"Archive" = "Archiv";
+"Archive" = "Archivieren";
 
 /* hint to archive selected messages */
 "Archive all selected messages" = "Alle ausgewählten Nachrichten archivieren";
@@ -243,9 +237,6 @@
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Sind Sie bereit, sich abzumelden?";
-
-/* Confirmation alert text for submitting an Arc video for an assignment */
-"Are you sure you want to submit this Arc video for this assignment?" = "Sind Sie sicher, dass Sie dieses Arc-Video für diese Aufgabe einreichen wollen?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Mich später fragen";
@@ -269,9 +260,9 @@
 "Attachments" = "Anhänge";
 
 /* Label for a discussion */
-"Attendance" = "Teilnahme";
+"Attendance" = "Anwesenheit";
 
-/* Audio file type */
+/* Media type is audio */
 "Audio" = "Audio";
 
 /* No comment provided by engineer. */
@@ -280,8 +271,8 @@
 /* No comment provided by engineer. */
 "Augment Reality" = "Erweitern der Realität";
 
-/* Title for an error popup */
-"Authentication error" = "Fehler bei der  Authentifizierung";
+/* Title of alert box */
+"Authentication error" = "Fehler bei der Authentifizierung";
 
 /* Link to building panda avatar */
 "Build Avatar" = "Avatar bauen";
@@ -298,24 +289,20 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Medien können nicht eingereicht werden";
 
-/* Cancel button title
-   Cancel button title to cancel submitting an Arc video as an assignment submission */
+/* Cancel button title */
 "Cancel" = "Abbrechen";
 
-/* Cancel button title */
+/* Cancel adding a comment button */
 "Cancel Message" = "Nachricht abbrechen";
 
 /* No comment provided by engineer. */
-"Canvas appears to be unavailable. Please try again later." = "Canvas scheint nicht verfügbar zu sein. Bitte versuchen Sie es später noch einmal.";
+"Canvas appears to be unavailable. Please try again later." = "Canvas ist scheinbar nicht verfügbar. Versuchen Sie es später noch einmal.";
 
 /* detail text for recipient fetch error message */
-"Canvas failed to find recipients for your current search. Please try again later." = "Canvas hat für Ihre aktuelle Suche  keine Empfänger gefunden. Bitte versuchen Sie es später noch einmal.";
-
-/* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas-Tests unterstützen verschiedene Bewertungsstile. Die meisten dieser Stile werden von Mobilgeräten unterstützt, einige jedoch nicht. Wenn Sie versuchen, einen dieser nicht unterstützten Tests auf Ihrem Handy zu machen, schaffen Sie es unter Umständen nicht, den Test zu beenden, und geraten so in Nachteil.\n\nZu den nicht unterstützten Fragearten gehören u. a. Fragen mit Adobe Flash™-Inhalten.\n\nWenn Sie glauben, dass ein Test nicht unterstützten Inhalt enthält, laden Sie ihn bitte auf einen Desktop-PC oder Laptop. Wenn Sie sicher sind, dass der Test nur unterstützte Inhalte enthält, können Sie ihn gern auf Ihr Mobilgerät laden.";
+"Canvas failed to find recipients for your current search. Please try again later." = "Canvas hat für Ihre aktuelle Suche keine Empfänger gefunden. Versuchen Sie es später noch einmal.";
 
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas-Quizze unterstützen verschiedene Aufgabenformate. Die meisten dieser Formate werden von Mobilgeräten unterstützt. Auf andere trifft dies nicht zu. Wenn Sie versuchen ein nicht-unterstütztes Quiz auf Ihrem Mobiltelefon anzuzeigen, wird es Ihnen möglicherweise nicht möglich sein, dass Quiz zu beenden, wodurch Ihnen ein Nachteil entsteht.\n\nNicht-unterstützte Fragentypen schließen Adobe-Flash™-Inhalte, hochgeladene Dateien und anderes ein.\n\nWenn Sie der Meinung sind, das ein Quiz nicht-unterstützte Inhalte aufweist, so bearbeiten Sie dieses bitte via Laptop oder Desktop-PC. Wenn Sie genau wissen, dass das Quiz 100-prozentige Mobiltelefonunterstützung genießt, können Sie ohne Bedenken Ihr Mobilgerät verwenden.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas-Tests unterstützen verschiedene Bewertungsstile. Die meisten dieser Stile werden von Mobilgeräten unterstützt, einige jedoch nicht. Wenn Sie versuchen, einen dieser nicht unterstützten Tests auf Ihrem Handy zu machen, schaffen Sie es unter Umständen nicht, den Test zu beenden, und geraten so in Nachteil.\n\nZu den nicht unterstützten Fragearten gehören u. a. Fragen bezüglich Adobe Flash™-Content, Datei-Uploads und anderes.\n\nWenn Sie glauben, dass ein Test nicht unterstützten Inhalt enthält, laden Sie ihn bitte auf einen Desktop-PC oder Laptop. Wenn Sie sicher sind, dass der Test nur unterstützte Inhalte enthält, können Sie ihn gern auf Ihr Mobilgerät laden.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Profilbild ändern";
@@ -347,17 +334,17 @@
 /* Choose a video to send as a comment */
 "Choose Video" = "Video wählen";
 
-/* Close the window */
+/* No comment provided by engineer. */
 "Close" = "Schließen";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "Für Kommentare geschlossen";
 
 /* Title for Collaborations tab */
-"Collaborations" = "Zusammenarbeiten";
+"Collaborations" = "Collaborations";
 
 /* Add message button for teacher or ta */
-"Comment" = "Kommentieren";
+"Comment" = "Kommentar";
 
 /* title for media comment upload failure */
 "Comment Error" = "Fehler beim Kommentieren";
@@ -373,7 +360,7 @@
 "Complete" = "Fertigstellen";
 
 /* No comment provided by engineer. */
-"Completed" = "Abgeschlossen";
+"Completed" = "Fertiggestellt";
 
 /* hint for button to compose a message */
 "Compose a message" = "Eine Nachricht erstellen";
@@ -387,11 +374,8 @@
 /* Alert title */
 "Confirm deletion" = "Löschen bestätigen";
 
-/* Confirm an arc video submission for an assignment */
-"Confirm Submission" = "Abgabe bestätigen";
-
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
-"Continue" = "Fortsetzen";
+"Continue" = "Weiter";
 
 /* No comment provided by engineer. */
 "Could not authenticate with server" = "Keine Authentifizierung mit dem Server möglich";
@@ -403,12 +387,12 @@
 "Couldn't Load Submission" = "Konnte Einreichung nicht laden";
 
 /* Title for Course Syllabus view controller */
-"Course Syllabus" = "Kursprogramm";
+"Course Syllabus" = "Kursplan";
 
 /* Courses page title */
 "Courses" = "Kurse";
 
-/* Cancel button title */
+/* cancel folder creation */
 "Create Folder" = "Ordner anlegen";
 
 /* Header for a section showing submitted filenames */
@@ -421,19 +405,16 @@
 "Custom Grade" = "Note anpassen";
 
 /* label for customizing a course */
-"Customize" = "Anpassen";
+"Customize" = "Personalisieren";
 
 /* Default delete button MLVC */
 "Delete" = "Löschen";
 
 /* Button for deleting files or folders. %d will be the number of selected items */
-"Delete (%d)" = "Löschen (%d)";
+"Delete (%d)" = "(%d) löschen?";
 
 /* Alert message */
 "Delete this reply?" = "Diese Antwort löschen?";
-
-/* delete file confirmation alert */
-"Deleted file: \"%@\"" = "Datei: \"%@\" löschen";
 
 /* delete file confirmation alert */
 "Deleted file: &quot;%@&quot;" = "Gelöschte Datei: &quot;%@&quot;";
@@ -465,16 +446,16 @@
 
 /* Dismiss button title
    uialertaction button name for dismissing the failed refresh error message */
-"Dismiss" = "Ablehnen";
+"Dismiss" = "Verwerfen";
 
 /* Alert title asking if you want to masquerade */
 "Do you want to masquerade as this user?" = "Möchten Sie sich als dieser Benutzer verkleiden?";
 
 /* The domain for the institution/school that the user is currently using */
-"Domain" = "Domain";
+"Domain" = "Domäne";
 
 /* No comment provided by engineer. */
-"Don't ask me again" = "Micht nicht nochmal fragen";
+"Don't ask me again" = "Mich nicht nochmal fragen";
 
 /* Button to cancel deleting folders */
 "Don't delete" = "Nicht löschen";
@@ -494,14 +475,11 @@
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Fällig:";
 
-/* Due date label indicating when an assignment is due */
-"Due: %@" = "Fällig: %@";
-
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Fällig: %1$@ um %2$@";
 
 /* Button to edit a discussion entry */
-"Edit" = "Bearbeiten";
+"Edit" = "Ändern";
 
 /* Edit course list title
    Edit the items in the course list */
@@ -515,16 +493,13 @@
 "Edit items" = "Elemente bearbeiten";
 
 /* Header when editing a discussion entry with name and timestamp */
-"Editing reply by %1$@, %2$@" = "Antwort von %1$@, %2$@ wird bearbeitet";
+"Editing reply by %1$@, %2$@" = "Antwort bearbeiten durch %1$@, %2$@";
 
 /* the users email */
 "Email" = "E-Mail";
 
 /* Prompt asking user to enable push notifications */
 "Enable Push Notifications" = "Push-Benachrichtigungen aktivieren";
-
-/* No comment provided by engineer. */
-"Enter folder name" = "Ordnernamen eingeben";
 
 /* Submission input view placeholder text */
 "Enter submission" = "Einreichung eingeben";
@@ -535,14 +510,11 @@
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "Eintrag gepostet";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Error" = "Fehler";
 
 /* Title of an alert popup */
 "Error adding recipeints" = "Fehler beim Hinzufügen von Empfängern";
-
-/* Error deleting file alert view title */
-"Error deleting file \"%@\"" = "Fehler beim Löschen von Datei \"%@\"";
 
 /* Error deleting file alert view title */
 "Error deleting file &quot;%@&quot;" = "Fehler beim Löschen der Datei &quot;%@&quot;";
@@ -560,10 +532,10 @@
 "Existing Attachments..." = "Vorhandene Anhänge...";
 
 /* Title for an external tool submission */
-"External Tool" = "Externe Tools";
+"External Tool" = "Externes Tool";
 
 /* No comment provided by engineer. */
-"External URL" = "Externe URL";
+"External URL" = "Externer URL";
 
 /* Error title for refresh failing on an MLVC tableview controller */
 "Failed to load" = "Laden fehlgeschlagen";
@@ -589,20 +561,20 @@
 /* File upload failed. */
 "File upload failed." = "Hochladen der Datei fehlgeschlagen.";
 
-/* Title for the files screen */
+/* Files view
+   Name of a tab displaying files in a course
+   title for files view
+   Title for the Files View Controller */
 "Files" = "Dateien";
-
-/* No comment provided by engineer. */
-"Final Grade" = "Gesamtnote";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Download abgeschlossen";
 
 /* badge indicating front page */
-"Front Page" = "Startseite";
+"Front Page" = "Frontseite";
 
 /* No comment provided by engineer. */
-"Future" = "Zukünftige";
+"Future" = "Zukünftig";
 
 /* Action on an alert */
 "Go to App Store" = "Zum App Store gehen";
@@ -620,10 +592,10 @@
 "Grade" = "Note";
 
 /* Tells the user to grade an assignment called something like 'Biology Assignment' */
-"Grade %@" = "Note: %@";
+"Grade %@" = "Note %@";
 
 /* Launch the SpeedGrader app */
-"Grade in SpeedGrader" = "Im SpeedGrader benoten";
+"Grade in SpeedGrader" = "Note in SpeedGrader";
 
 /* No comment provided by engineer. */
 "Grade: %@" = "Note: %@";
@@ -653,7 +625,7 @@
 "Help" = "Hilfe";
 
 /* Accessibility label for toggling grades to hidden */
-"Hide Grades" = "Noten verbergen";
+"Hide Grades" = "Noten ausblenden";
 
 /* No comment provided by engineer. */
 "How do you like Canvas?" = "Wie gefällt Ihnen Canvas?";
@@ -671,7 +643,7 @@
 "Import from Dropbox" = "Aus Dropbox importieren";
 
 /* No comment provided by engineer. */
-"Inbox" = "Inbox";
+"Inbox" = "Posteingang";
 
 /* Assignment grade: Incomplete
    Pass/fail assignment is incomplete */
@@ -681,7 +653,7 @@
 "Individual messages" = "Einzelne Nachrichten";
 
 /* No comment provided by engineer. */
-"Invalid URL" = "Unzulässige URL";
+"Invalid URL" = "Ungültiger URL";
 
 /* No comment provided by engineer. */
 "It has problems" = "Hat Probleme";
@@ -690,10 +662,7 @@
 "It’s empty, what are you still doing here." = "Hier gibt es nichts. Was machen Sie noch hier?!";
 
 /* No comment provided by engineer. */
-"Item %1$d of %2$d" = "Element %1$d von %2$d";
-
-/* No comment provided by engineer. */
-"Item %d of %d" = "Element %1$d von %2$d";
+"Item %1$d of %2$d" = "Objekt %1$d von %2$d";
 
 /* No comment provided by engineer. */
 "Jumps to current day on calendar" = "Springt zum aktuellen Kalendertag";
@@ -707,9 +676,6 @@
 /* Title for an alert popup */
 "Large file" = "Große Datei";
 
-/* No comment provided by engineer. */
-"Late Penalty" = "Strafe für Verspätung";
-
 /* Button in an alert */
 "Later" = "Später";
 
@@ -717,11 +683,11 @@
 "Launch External Tool" = "Externes Tool starten";
 
 /* Title for legal section on the about page */
-"Legal" = "Juristisch";
+"Legal" = "Rechtliches";
 
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
-"Loading..." = "Wird geladen...";
+"Loading..." = "Wird geladen ...";
 
 /* No comment provided by engineer. */
 "Locked" = "Gesperrt";
@@ -737,19 +703,16 @@
 
 /* logout action sheet logout button title
    logout button */
-"Logout" = "Abmeldung";
+"Logout" = "Abmelden";
 
 /* No comment provided by engineer. */
 "Love it!" = "Klasse!";
-
-/* Title for an LTI launch submitted as an assignment */
-"LTI Tool" = "LTI-Tool";
 
 /* Button title for mark as done */
 "Mark as Done" = "Als fertig markieren";
 
 /* Button title for beginning masquerading */
-"Masquerade" = "Sich ausgeben als";
+"Masquerade" = "Maskieren";
 
 /* No comment provided by engineer. */
 "Me" = "Ich selbst";
@@ -764,7 +727,7 @@
 "Media recording" = "Medienaufzeichnung";
 
 /* Title for a media submission */
-"Media Submission" = "Medieneinreichung";
+"Media Submission" = "Abgabe von Medien";
 
 /* A slider to choose between media types */
 "Media type selector. %@" = "Medientyp-Selector. %@";
@@ -802,10 +765,10 @@
 "Must contribute" = "Muss beitragen";
 
 /* user must mark item as done to complete requirement */
-"Must mark as done" = "Muss als fertig markieren";
+"Must mark as done" = "Muss als fertig markiert werden";
 
 /* format string saying what the minimum score must be */
-"Must score %@ or higher" = "Muss %@ oder mehr Punkte erreichen";
+"Must score %@ or higher" = "Muss %@ oder mehr erreichen";
 
 /* user must submit something to complete requirement */
 "Must submit" = "Muss einreichen";
@@ -820,7 +783,7 @@
 "Name" = "Name";
 
 /* Title notifying user that SpeedGrader is available for iPad */
-"Need SpeedGrader for iPad" = "Brauche SpeedGrader für iPad";
+"Need SpeedGrader for iPad" = "SpeedGrader für iPad benötigt";
 
 /* Network error title */
 "Network Error" = "Netzwerkfehler";
@@ -835,7 +798,7 @@
 "Next item" = "Nächstes Element";
 
 /* No comment provided by engineer. */
-"No" = "Kein";
+"No" = "Nein";
 
 /* Text of alert when attempting to select a file that can't be printed or passed to any other app */
 "No actions available for this file" = "Für diese Datei sind keine Handlungen verfügbar";
@@ -846,12 +809,11 @@
 /* No comment provided by engineer. */
 "No Date" = "Kein Datum";
 
-/* Indicates an assignment does not have a due date
-   String for when assignment has no due date */
-"No due date" = "Kein Abgabedatum";
+/* String for when assignment has no due date */
+"No due date" = "Kein Abgabetermin";
 
 /* Label shown for a to do that doesn't have a due date */
-"No Due Date" = "Kein Abgabedatum";
+"No Due Date" = "Kein Abgabetermin";
 
 /* Error message */
 "No installed apps support opening this file" = "Öffnen dieser Datei wird von keiner der installierten Apps unterstützt";
@@ -866,16 +828,16 @@
 "No results found" = "Keine Ergebnisse gefunden";
 
 /* No Submission groupong */
-"No Submission" = "Einreichung";
+"No Submission" = "Keine Abgabe";
 
 /* No comment provided by engineer. */
 "No Thanks" = "Nein, danke";
 
 /* error message for a 401 response. */
-"Not Authorized" = "Nicht autorisiert";
+"Not Authorized" = "Nicht berechtigt";
 
 /* Accessibility label for points out of points possible label when points are not availiable. */
-"Not available" = "NIcht verfügbar";
+"Not available" = "Nicht verfügbar";
 
 /* Pass/fail assignment is not complete */
 "Not Complete" = "Nicht abgeschlossen";
@@ -899,7 +861,7 @@
 "Notification" = "Benachrichtigung";
 
 /* Settings entry title for Notification Preferences */
-"Notification Preferences" = "Benachrichtigung - Lieblingseinstellungen";
+"Notification Preferences" = "Benachrichtigungseinstellungen";
 
 /* Notifications tab title */
 "Notifications" = "Benachrichtigungen";
@@ -919,13 +881,13 @@
 /* Error message title
    Error title
    Masquerade error title */
-"Oops!" = "Oops!";
+"Oops!" = "Hoppla!";
 
 /* Open a document in the application Safari */
 "Open in Safari" = "In Safari öffnen";
 
 /* Link to open assignment in SpeedGrader */
-"Open in SpeedGrader" = "Im SpeedGrader benoten";
+"Open in SpeedGrader" = "Öffnen in SpeedGrader";
 
 /* Open file in another application */
 "Open in..." = "Öffnen in...";
@@ -934,7 +896,7 @@
 "Open Source Components" = "Open-Source-Komponenten";
 
 /* No comment provided by engineer. */
-"Other" = "Andere(r)";
+"Other" = "Sonstige";
 
 /* A message indicating that the user cannot see other people's replies until the user has first posted a reply of their own. Only one line of text, so as concise as possible. */
 "Other replies hidden until you reply" = "Andere Antworten solange verborgen, bis Sie antworten";
@@ -949,16 +911,16 @@
 "out of %@ points" = "von %@ Punkten";
 
 /* Title for Outcomes tab */
-"Outcomes" = "Ergebnisse";
+"Outcomes" = "Lernziele";
 
 /* No comment provided by engineer. */
 "Page" = "Seite";
 
 /* No comment provided by engineer. */
-"Past" = "Vergangen";
+"Past" = "Vergangenheit";
 
 /* Title for the people view */
-"People" = "Menschen";
+"People" = "Personen";
 
 /* No comment provided by engineer. */
 "Permission Denied" = "Berechtigung verweigert";
@@ -967,7 +929,7 @@
 "photo" = "Foto";
 
 /* No comment provided by engineer. */
-"Pinned Discussions" = "Fixierte Diskussionen";
+"Pinned Discussions" = "Angeheftete Diskussionen";
 
 /* A button that plays */
 "Play" = "Abspielen";
@@ -976,7 +938,7 @@
 "Please check your network connection and try again." = "Bitte überprüfen Sie Ihre Netzwerkanbindung.";
 
 /* Button to post new discussion topic */
-"Post" = "Posten";
+"Post" = "Post";
 
 /* No comment provided by engineer. */
 "Post comment" = "Kommentar posten";
@@ -994,12 +956,13 @@
 "Previous item" = "Vorheriges Element";
 
 /* Link to the privacy policy */
-"Privacy Policy" = "Datenschutz";
+"Privacy Policy" = "Datenschutzrichtlinien";
 
 /* Title for profile screen */
 "Profile" = "Profil";
 
-/* A short test taken by students */
+/* Label for a quiz
+   Title for a quiz submission cell */
 "Quiz" = "Quiz";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -1015,10 +978,10 @@
 "Rating for %1$@, Score: %2$g" = "Bewertung für %1$@, Punktzahl: %2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
-"Re-submit Assignment" = "Aufgabe neu einreichen";
+"Re-submit Assignment" = "Aufgabe erneut abgeben";
 
 /* Title for the list of users who will receive a message. 15 characters is about all we have room for here. */
-"Recipients" = "Empfänger ";
+"Recipients" = "Empfänger";
 
 /* A button that records */
 "Record" = "Aufnehmen";
@@ -1060,7 +1023,7 @@
 "Request a feature" = "Ein Feature anfordern";
 
 /* View grading rubric */
-"Rubric" = "Rubrik";
+"Rubric" = "Bewertungsschema";
 
 /* No comment provided by engineer. */
 "Save" = "Speichern";
@@ -1092,14 +1055,15 @@
 /* No comment provided by engineer. */
 "Sent" = "Gesendet";
 
-/* Title for Settings */
+/* settings button
+   Title for Settings tab */
 "Settings" = "Einstellungen";
 
 /* Title for button confirming showing a file */
 "Show file" = "Datei zeigen";
 
 /* Accessibility label for toggling grades to visible */
-"Show Grades" = "Noten zeigen";
+"Show Grades" = "Noten anzeigen";
 
 /* title for quiz assignment submission button */
 "Show Quiz" = "Quiz zeigen";
@@ -1117,7 +1081,7 @@
 "Something went wrong. Please try again." = "Etwas ging schief. Bitte versuchen Sie es noch einmal.";
 
 /* 404 Error for missing assignment */
-"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Wir konnten diese Aufgabe leider nicht finden. Die Aufgabe wurde möglicherweise gelöscht.";
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Wir konnten die Aufgabe leider nicht finden. Diese Aufgabe wurde vielleicht gelöscht.";
 
 /* Hint about the play button */
 "Starts playing your recording" = "Startet das Abspielen Ihrer Aufzeichnung";
@@ -1128,11 +1092,11 @@
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Angemeldet bleiben";
 
-/* Stop loading button for webview */
+/* A button that stops */
 "Stop" = "Stopp";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
-"Stop Masquerading" = "Ausgeben als... anhalten";
+"Stop Masquerading" = "Maskieren beenden";
 
 /* Hint about the play button */
 "Stops playing your recording" = "Stoppt das Abspielen Ihrer Aufzeichnung";
@@ -1147,7 +1111,7 @@
 "Sub Header" = "Subheader";
 
 /* View previously submitted assignment */
-"Submission" = "Einreichung";
+"Submission" = "Abgabe";
 
 /* No comment provided by engineer. */
 "Submission complete" = "Einreichung abgeschlossen";
@@ -1155,23 +1119,20 @@
 /* Title for file submission error */
 "Submission Error" = "Fehler beim Einreichen";
 
-/* Submit Arc video as assignment button */
-"Submit" = "Einreichen";
-
-/* Button to submit files to an assignment */
-"Submit (%d)" = "(%d) abgeben";
+/* Submit an assignment */
+"Submit" = "Abgeben";
 
 /* Submitted grouping */
-"Submitted" = "Eingereicht";
+"Submitted" = "Abgegeben";
 
 /* No comment provided by engineer. */
-"Submitting..." = "Wird eingereicht...";
+"Submitting..." = "Wird abgegeben ...";
 
 /* Subscribe to calendar feed allows the user to export their calendar events to a 3rd party calendar */
 "Subscribe to calendar feed" = "Kalender-Feed abonnieren";
 
 /* Masquerade success title */
-"Success!" = "Erfolg!";
+"Success!" = "Erfolgreich!";
 
 /* No comment provided by engineer. */
 "Sure!" = "Sicher!";
@@ -1187,7 +1148,7 @@
 
 /* Syllabus screen name
    Title for Syllabus view controller */
-"Syllabus" = "Lehrplan";
+"Syllabus" = "Kursplan";
 
 /* Short name for TA enrollment */
 "TA" = "Lehrassistent";
@@ -1211,10 +1172,10 @@
 "Tap to view previous version" = "Hier tippen, um die vorherige Version anzuzeigen";
 
 /* No comment provided by engineer. */
-"TAs" = "Tutorstellen";
+"TAs" = "Lehrassistenten";
 
 /* Short name for teacher enrollment */
-"Teacher" = "Dozent";
+"Teacher" = "Lehrer";
 
 /* No comment provided by engineer. */
 "Teachers" = "Dozenten";
@@ -1231,20 +1192,20 @@
 /* Text entry submission type */
 "Text entry" = "Texteintrag";
 
-/* Title for a text submission cell */
+/* Generic name for a submission entered online. */
 "Text Submission" = "Textabgabe";
 
 /* Text explaining the error */
-"The recipients could not be added. Please try again. (%@)" = "Die Empfänger konnten nicht hinzugefügt werden. Bitte erneut versuchen. (%@)";
+"The recipients could not be added. Please try again. (%@)" = "Die Empfänger konnten nicht hinzugefügt werden. Bitte versuchen Sie es noch einmal. (%@)";
 
 /* Explanation for while a file is unavailable */
 "The server could not be reached" = "Der Server wurde nicht erreicht";
 
 /* No comment provided by engineer. */
-"The server you entered is not authorized for this app." = "Der Server, den Sie betreten haben, ist für diese App nicht autorisiert.";
+"The server you entered is not authorized for this app." = "Der Server, den Sie eingegeben haben, hat keine Berechtigung für diese App.";
 
 /* No comment provided by engineer. */
-"The user agent for this app is unauthorized." = "Der Benutzeragent ist für diese App nicht autorisiert";
+"The user agent for this app is unauthorized." = "Der Benutzer-Agent für diese App hat keine Berechtigung.";
 
 /* Error message */
 "There are no actions for this item" = "Für dieses Element gibt es keine Handlungen";
@@ -1268,7 +1229,7 @@
 "There was an error loading the document." = "Beim Laden des Dokuments ist ein Fehler aufgetreten.";
 
 /* No comment provided by engineer. */
-"There was an error loading your content. If it is an audio or video upload it may still be processing." = "Beim Laden Ihres Inhalts ist ein Fehler aufgetreten. Wenn Sie Audio- oder Videodateien hochladen, kann dies noch andauern.";
+"There was an error loading your content. If it is an audio or video upload it may still be processing." = "Fehler beim Laden Ihres Content Falls Sie eine Audio- oder Videodatei hochladen, kann dies noch andauern.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Keine Autorisierung, um diese App zu verwenden.";
@@ -1300,12 +1261,9 @@
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Dies wäre genau die richtige Zeit, um sich ein paar extra Punkte zu verdienen.";
 
-/* No comment provided by engineer. */
-"To add a file from another app, open the file in that app and tap the Share icon. Then select the Copy to Student option. To add an attachment from the Mail app, tap and hold the attachment, then tap the Canvas icon." = "Um eine Datei aus einer anderen App hinzuzufügen, öffnen Sie die Datei in der App, und tippen Sie auf das Symbol „Freigeben“. Wählen Sie dann die Option „Für Studenten kopieren“. Um eine Anlage aus der Mail-App hinzuzufügen, tippen Sie auf die Anlage, halten sie gedrückt und tippen dann auf das Canvas-Symbol.";
-
 /* Title of to do screen
    To Do page title */
-"To Do" = "To Do";
+"To Do" = "Zu erledigen";
 
 /* No comment provided by engineer. */
 "To:" = "An:";
@@ -1326,19 +1284,19 @@
 "Turn In" = "Einreichen";
 
 /* Tells the user to turn in an assignment called something like 'Biology Assignment' */
-"Turn in %@" = "%@ einreichen";
+"Turn in %@" = "Abgeben %@";
 
 /* title for re-submitting an assignment */
 "Turn In Again" = "Erneut einreichen";
 
 /* Notification over status bar that displays when not connected to the internet. */
-"Uh-oh! No Internet Connection" = "Oh je! Keine Internetverbindung";
+"Uh-oh! No Internet Connection" = "Ach du Schreck! Keine Internetverbindung";
 
 /* Error title */
 "Unable to load" = "Kann nicht laden";
 
 /* Error message */
-"Unable to post. Please try again later" = "Kann nicht posten. Bitte versuchen Sie es später noch einmal";
+"Unable to post. Please try again later" = "Posten nicht möglich. Bitte versuchen Sie es später noch einmal.";
 
 /* message saying that avatar couldn't be loaded to server */
 "Unable to upload to server" = "Upload zum Server nicht möglich";
@@ -1347,10 +1305,10 @@
 "Unauthorized" = "Nicht berechtigt";
 
 /* Grade unavailable */
-"Unavailable" = "Nicht vorhanden";
+"Unavailable" = "Nicht verfügbar";
 
 /* Title for grade button when no grade is present */
-"Ungraded" = "Unbenotet";
+"Ungraded" = "Nicht benotet";
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "unbekannt";
@@ -1368,7 +1326,7 @@
 "until %@" = "bis %@";
 
 /* Button title for uploading a file */
-"Upload" = "Upload";
+"Upload" = "Hochladen";
 
 /* No comment provided by engineer. */
 "Upload a file" = "Eine Datei hochladen";
@@ -1383,16 +1341,13 @@
 "Upload file" = "Datei hochladen";
 
 /* Error message */
-"Upload to assignment \"%@\" failed" = "Upload in Aufgabe \"%@\" fehlgeschlagen";
-
-/* Error message */
 "Upload to assignment &quot;%@&quot; failed" = "Hochladen zur Aufgabe &quot;%@&quot; fehlgeschlagen";
 
 /* Error message */
 "Upload to folder &quot;%@&quot; failed" = "Hochladen zum Ordner &quot;%@&quot; fehlgeschlagen";
 
 /* button for using the recorded audio */
-"Use" = "Verwendung";
+"Use" = "Verwenden";
 
 /* No comment provided by engineer. */
 "User ID" = "Benutzer-ID";
@@ -1400,7 +1355,7 @@
 /* Title for User Info section on the about page */
 "User Info" = "Benutzer-Info";
 
-/* Video file type */
+/* Media type is video */
 "Video" = "Video";
 
 /* No comment provided by engineer. */
@@ -1416,13 +1371,13 @@
 "Warning" = "Achtung";
 
 /* error message for failure to load a file submission */
-"We had a problem loading the submission. Please try again later." = "Beim Laden der Einreichung ist ein Problem aufgetreten. Bitte versuchen Sie es später noch einmal.";
+"We had a problem loading the submission. Please try again later." = "Beim Laden der Einreichung ist ein Problem aufgetreten. Versuchen Sie es später noch einmal.";
 
 /* No comment provided by engineer. */
 "We were unable to verify the server for use with this app." = "Der Server konnte für die Verwendung mit dieser App nicht verifiziert werden.";
 
 /* Error Title */
-"Whoops!" = "Ups!";
+"Whoops!" = "Hoppla!";
 
 /* unlock date for discussion/announcement */
 "Will unlock %@." = "Entriegelt %@.";

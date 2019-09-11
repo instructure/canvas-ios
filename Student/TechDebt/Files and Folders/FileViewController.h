@@ -31,9 +31,9 @@
 @property uint64_t fileIdent;
 
 // These can be passed via routing param or query param
-// Route params will be numbers so query params are converted from string to number
-@property (nullable, nonatomic, strong) NSNumber* courseID;
-@property (nullable, nonatomic, strong) NSNumber* assignmentID;
+@property (nullable, nonatomic, strong) NSString* courseID;
+@property (nullable, nonatomic, strong) NSString* assignmentID;
+@property (nonatomic, assign) BOOL showingOldVersion;
 
 @property (nonatomic) float downloadProgress;
 @property (nonatomic, copy, nullable) NSURL *url;
@@ -44,5 +44,6 @@
 @property (nonatomic, nonnull) PageViewEventLoggerLegacySupport* pageViewEventLog;
 @property (nonatomic, copy, nonnull) NSString* pageViewEventName;
 
+- (void)fetchFile;
 - (void)showDownloadError:(nonnull NSError *)error;
 @end

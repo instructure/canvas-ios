@@ -23,11 +23,16 @@ class PageListCell: UITableViewCell {
     @IBOutlet weak var titleLabel: DynamicLabel!
     @IBOutlet weak var dateLabel: DynamicLabel!
 
-    func update(page: Page, color: UIColor?) {
+    static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
-        dateLabel?.text = formatter.string(from: page.lastUpdated)
+        return formatter
+    }()
+
+    func update(page: Page, color: UIColor?) {
+        guard !page.isDeleted else { return }
+        PageListCell.dateFormatter.string(from: page.lastUpdated)
         titleLabel?.text = page.title
         accessIconView.icon = UIImage.icon(.document, .line)
         accessIconView.tintColor = color

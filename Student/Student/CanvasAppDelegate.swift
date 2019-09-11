@@ -20,7 +20,7 @@ import AVKit
 import UIKit
 import TechDebt
 import PSPDFKit
-import CanvasKeymaster
+import CanvasKit
 import Fabric
 import Crashlytics
 import CanvasCore
@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
-        env.router = Router.shared()
+        env.router = router
         return env
     }()
 
@@ -56,12 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         DocViewerViewController.setup(.studentPSPDFKitLicense)
         prepareReactNative()
         NetworkMonitor.engage()
-        Router.shared().addCanvasRoutes(handleError)
         setupDefaultErrorHandling()
         setupPageViewLogging()
         UIApplication.shared.reactive.applicationIconBadgeNumber
             <~ TabBarBadgeCounts.applicationIconBadgeNumber
-        CanvasAnalytics.setHandler(self)
+        Core.Analytics.shared.handler = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
         if let session = LoginSession.mostRecent {
@@ -90,14 +89,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
         }
 
-        // Legacy CanvasKeymaster support
+        // Legacy CanvasKit support
         let legacyClient = CKIClient(baseURL: session.baseURL, token: session.accessToken)!
         legacyClient.actAsUserID = session.actAsUserID
         legacyClient.originalIDOfMasqueradingUser = session.originalUserID
         legacyClient.originalBaseURL = session.originalBaseURL
         legacyClient.fetchCurrentUser().subscribeNext({ user in
             legacyClient.setValue(user, forKey: "currentUser")
-            CanvasKeymaster.the().setup(with: legacyClient)
+            CKIClient.current = legacyClient
             self.session = legacyClient.authSession
             PageViewEventController.instance.userDidChange()
             LegacyModuleProgressShim.observeProgress(legacyClient.authSession)
@@ -139,11 +138,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         Logger.shared.log()
-        UploadManager.shared.completionHandler = {
+        let manager = UploadManager(identifier: identifier)
+        manager.completionHandler = {
             DispatchQueue.main.async {
                 completionHandler()
             }
         }
+        manager.createSession()
     }
 }
 
@@ -204,7 +205,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
-extension AppDelegate: CanvasAnalyticsHandler {
+extension AppDelegate: Core.AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         if hasFirebase {
             Analytics.logEvent(name, parameters: parameters)
@@ -220,8 +221,7 @@ extension AppDelegate {
 
         DispatchQueue.main.async {
             let alertDetails = error.alertDetails(reportAction: {
-                let support = SupportTicketViewController.present(from: presentFrom, supportTicketType: SupportTicketTypeProblem, defaultSubject: nil)
-                support.reportedError = error
+                presentFrom.present(UINavigationController(rootViewController: ErrorReportViewController.create(error: error)), animated: true)
             })
 
             if let deets = alertDetails {
@@ -325,8 +325,8 @@ extension AppDelegate {
                 } else {
                     finish()
                 }
-            } else {
-                Router.shared().openCanvasURL(url, withOptions: ["modal": true])
+            } else if let from = self.topViewController {
+                AppEnvironment.shared.router.route(to: url, from: from, options: [.modal, .embedInNav, .addDoneButton])
             }
         }
         return true

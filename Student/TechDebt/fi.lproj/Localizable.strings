@@ -16,9 +16,6 @@
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ tulossa pian!";
 
-/* local notification countdown alert */
-"%@ is due in %@" = "%1$@ määräpäivä %2$@";
-
 /* explanation for locked item */
 "%@ is locked" = "%@ lukittu";
 
@@ -131,7 +128,7 @@
 "%tu minutes" = "%tu minuuttia";
 
 /* No comment provided by engineer. */
-"%u Attachments" = "%u liitettä";
+"%u Attachments" = "%u Liitteet";
 
 /* Label indicating multiple files are attached to a single homework submission. %u will be a positive number, and will not be '1' */
 "%u files" = "%u tiedostoa";
@@ -225,9 +222,6 @@
    Title for the announcements view controller */
 "Announcements" = "Ilmoitukset";
 
-/* Assignment submission type for selecting an Arc video */
-"Arc" = "Kaari";
-
 /* Archive selected messages button
    mark a message as archived */
 "Archive" = "Arkisto";
@@ -243,9 +237,6 @@
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Oletko valmis kirjautumaan ulos?";
-
-/* Confirmation alert text for submitting an Arc video for an assignment */
-"Are you sure you want to submit this Arc video for this assignment?" = "Oletko varma, että haluat lähettää tämän Arc-videon tälle tehtävälle?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Kysy minulta myöhemmin";
@@ -271,7 +262,7 @@
 /* Label for a discussion */
 "Attendance" = "Osallistuminen";
 
-/* Audio file type */
+/* Media type is audio */
 "Audio" = "Ääni";
 
 /* No comment provided by engineer. */
@@ -280,7 +271,7 @@
 /* No comment provided by engineer. */
 "Augment Reality" = "Lisätty todellisuus";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Authentication error" = "Valtuutusvirhe";
 
 /* Link to building panda avatar */
@@ -298,11 +289,10 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "Ei voida lähettää mediaa";
 
-/* Cancel button title
-   Cancel button title to cancel submitting an Arc video as an assignment submission */
+/* Cancel button title */
 "Cancel" = "Peruuta";
 
-/* Cancel button title */
+/* Cancel adding a comment button */
 "Cancel Message" = "Peruuta viesti";
 
 /* No comment provided by engineer. */
@@ -311,11 +301,8 @@
 /* detail text for recipient fetch error message */
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas ei löytänyt vastaanottajia nykyiselle haullesi. Yritä myöhemmin uudelleen.";
 
-/* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas-tietovisat tukevat erilaisia arviointityylejä. Suurinta osaa näistä tyyleistä tuetaan mobiililaitteilla, joitakin ei. Jos yrität osallistua johonkin näistä tukemattomista kyselyistä puhelimellasi, voi olla, että et pysty suorittamaan koko tietovisaa, mikä on sinulle huonompi vaihtoehto.\n\nTukemattomia kysymystyyppejä ovat mm. Adobe Flash™ -sisältö, jne.\n\nJos uskot, että kyselyssä on tukematonta sisältöä, suorita se pöytäkoneella tai kannettavalla tietokoneella. Jos tiedät, että kysely sisältää vain tuettua sisältöä, suorita se mobiililaitteellasi.";
-
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas-tietovisat tukevat erilaisia arviointityylejä. Suurinta osaa näistä tyyleistä tuetaan mobiililaitteilla, joitakin ei. Jos yrität osallistua johonkin näistä tukemattomista tietovisoista puhelimellasi, voi olla, että et pysty suorittamaan koko tietovisaa, mikä on sinulle huonompi vaihtoehto.\n\nTukemattomia kyselytyyppejä ovat mm. Adobe Flash™ -sisältö, tiedoston lataukset, jne.\n\nJos uskot, että tietovisassa on tukematonta sisältöä, suorita se pöytäkoneella tai kannettavalla tietokoneella. Jos tiedät, että kysely sisältää vain tuettua sisältöä, suorita se mobiililaitteellasi.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas-kyselyt tukevat erilaisia arviointityylejä. Suurinta osaa näistä tyyleistä tuetaan mobiililaitteilla, joitakin ei. Jos yrität osallistua johonkin näistä tukemattomista kyselyistä puhelimellasi, voi olla, että et pysty suorittamaan koko tietovisaa, mikä on sinulle huonompi vaihtoehto.\n\nTukemattomia kyselytyyppejä ovat mm. Adobe Flash™ -sisältö, tiedoston lataukset, jne.\n\nJos uskot, että tietovisassa on tukematonta sisältöä, suorita se pöytäkoneella tai kannettavalla tietokoneella. Jos tiedät, että kysely sisältää vain tuettua sisältöä, suorita se mobiililaitteellasi.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Vaihda profiilikuva";
@@ -347,7 +334,7 @@
 /* Choose a video to send as a comment */
 "Choose Video" = "Valitse video";
 
-/* Close the window */
+/* No comment provided by engineer. */
 "Close" = "Sulje";
 
 /* No comment provided by engineer. */
@@ -387,9 +374,6 @@
 /* Alert title */
 "Confirm deletion" = "Vahvista poisto";
 
-/* Confirm an arc video submission for an assignment */
-"Confirm Submission" = "Vahvista lähetys";
-
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
 "Continue" = "Jatka";
 
@@ -408,7 +392,7 @@
 /* Courses page title */
 "Courses" = "Kurssit";
 
-/* Cancel button title */
+/* cancel folder creation */
 "Create Folder" = "Kansion luonti";
 
 /* Header for a section showing submitted filenames */
@@ -431,9 +415,6 @@
 
 /* Alert message */
 "Delete this reply?" = "Poistetaanko tämä vastaus?";
-
-/* delete file confirmation alert */
-"Deleted file: \"%@\"" = "Poistettu tiedosto: \"%@\"";
 
 /* delete file confirmation alert */
 "Deleted file: &quot;%@&quot;" = "Poistettu tiedosto: &quot;%@&quot;";
@@ -494,9 +475,6 @@
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Määräpäivä:";
 
-/* Due date label indicating when an assignment is due */
-"Due: %@" = "Määräpäivä: %@";
-
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Määräpäivä: %1$@ kohteessa %2$@";
 
@@ -523,9 +501,6 @@
 /* Prompt asking user to enable push notifications */
 "Enable Push Notifications" = "Ota Push-ilmoitukset käyttöön";
 
-/* No comment provided by engineer. */
-"Enter folder name" = "Syötä kansion nimi";
-
 /* Submission input view placeholder text */
 "Enter submission" = "Syötä lähetys";
 
@@ -535,14 +510,11 @@
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "Merkintä lähetetty";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Error" = "Virhe";
 
 /* Title of an alert popup */
 "Error adding recipeints" = "Ilmeni virhe lisätessä vastaanottajia";
-
-/* Error deleting file alert view title */
-"Error deleting file \"%@\"" = "Virhe poistettaessa tiedostoa \"%@\"";
 
 /* Error deleting file alert view title */
 "Error deleting file &quot;%@&quot;" = "Virhe poistettaessa tiedostoa&quot;%@&quot;";
@@ -589,11 +561,11 @@
 /* File upload failed. */
 "File upload failed." = "Tiedoston lataus epäonnistui.";
 
-/* Title for the files screen */
+/* Files view
+   Name of a tab displaying files in a course
+   title for files view
+   Title for the Files View Controller */
 "Files" = "Tiedostot";
-
-/* No comment provided by engineer. */
-"Final Grade" = "Lopullinen arvosana";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Lataus valmis";
@@ -693,9 +665,6 @@
 "Item %1$d of %2$d" = "Kohde %1$d/ %2$d";
 
 /* No comment provided by engineer. */
-"Item %d of %d" = "Kohde %1$d/ %2$d";
-
-/* No comment provided by engineer. */
 "Jumps to current day on calendar" = "Hyppäää tämänhetkiseen päivään kalenterissa";
 
 /* No comment provided by engineer. */
@@ -706,9 +675,6 @@
 
 /* Title for an alert popup */
 "Large file" = "Suuri tiedosto";
-
-/* No comment provided by engineer. */
-"Late Penalty" = "Rangaistus myöhästymisestä";
 
 /* Button in an alert */
 "Later" = "Myöhemmin";
@@ -741,9 +707,6 @@
 
 /* No comment provided by engineer. */
 "Love it!" = "Tykkään siitä!";
-
-/* Title for an LTI launch submitted as an assignment */
-"LTI Tool" = "LTI-työkalu";
 
 /* Button title for mark as done */
 "Mark as Done" = "Merkitse valmiiksi";
@@ -846,8 +809,7 @@
 /* No comment provided by engineer. */
 "No Date" = "Ei päivämäärää";
 
-/* Indicates an assignment does not have a due date
-   String for when assignment has no due date */
+/* String for when assignment has no due date */
 "No due date" = "Ei määräpäivää";
 
 /* Label shown for a to do that doesn't have a due date */
@@ -999,7 +961,8 @@
 /* Title for profile screen */
 "Profile" = "Profiili";
 
-/* A short test taken by students */
+/* Label for a quiz
+   Title for a quiz submission cell */
 "Quiz" = "Tietovisa";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -1092,7 +1055,8 @@
 /* No comment provided by engineer. */
 "Sent" = "Lähetetty";
 
-/* Title for Settings */
+/* settings button
+   Title for Settings tab */
 "Settings" = "Asetukset";
 
 /* Title for button confirming showing a file */
@@ -1128,7 +1092,7 @@
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Pysy sisäänkirjautuneena";
 
-/* Stop loading button for webview */
+/* A button that stops */
 "Stop" = "Lopeta";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
@@ -1155,11 +1119,8 @@
 /* Title for file submission error */
 "Submission Error" = "Lähetysvirhe";
 
-/* Submit Arc video as assignment button */
+/* Submit an assignment */
 "Submit" = "Lähetä";
-
-/* Button to submit files to an assignment */
-"Submit (%d)" = "Lähetä (%d)";
 
 /* Submitted grouping */
 "Submitted" = "Lähetetty";
@@ -1231,7 +1192,7 @@
 /* Text entry submission type */
 "Text entry" = "Tekstin syöttäminen";
 
-/* Title for a text submission cell */
+/* Generic name for a submission entered online. */
 "Text Submission" = "Tekstin lähetys";
 
 /* Text explaining the error */
@@ -1299,9 +1260,6 @@
 
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Tämä olisi upea aika saada ylimääräisiä ansioita.";
-
-/* No comment provided by engineer. */
-"To add a file from another app, open the file in that app and tap the Share icon. Then select the Copy to Student option. To add an attachment from the Mail app, tap and hold the attachment, then tap the Canvas icon." = "Lisää tiedosto toisesta sovelluksesta, avaa tiedosto sovelluksessa ja napauta Jaa-kuvaketta. Valitse sitten Kopioi Student-sovellukseen. Lisää liite Mail-sovelluksesta, napauta ja pidä liitettä ja napauta Canvas-kuvaketta.";
 
 /* Title of to do screen
    To Do page title */
@@ -1383,9 +1341,6 @@
 "Upload file" = "Lataa tiedosto";
 
 /* Error message */
-"Upload to assignment \"%@\" failed" = "Tehtävän \"%@\" lataus epäonnistui";
-
-/* Error message */
 "Upload to assignment &quot;%@&quot; failed" = "Lataa tehtävä &quot;%@&quot; epäonnistui";
 
 /* Error message */
@@ -1400,7 +1355,7 @@
 /* Title for User Info section on the about page */
 "User Info" = "Käyttäjätiedot";
 
-/* Video file type */
+/* Media type is video */
 "Video" = "Video";
 
 /* No comment provided by engineer. */

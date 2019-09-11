@@ -86,6 +86,7 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
           gradingStatus
           gradeMatchesCurrentSubmission
           state
+          postedAt
 
           user {
             id: _id
@@ -119,6 +120,7 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
           gradingStatus
           gradeMatchesCurrentSubmission
           state
+          postedAt
 
           user {
             id: _id

@@ -13,10 +13,7 @@ exports[`UserSubmissionRow renders 1`] = `
   style={
     Array [
       undefined,
-      Object {
-        "borderBottomColor": "#C7CDD1",
-        "borderBottomWidth": 0.5,
-      },
+      undefined,
     ]
   }
   testID="user-submission-row.cell-1"
@@ -286,10 +283,7 @@ exports[`UserSubmissionRow renders complete 1`] = `
   style={
     Array [
       undefined,
-      Object {
-        "borderBottomColor": "#C7CDD1",
-        "borderBottomWidth": 0.5,
-      },
+      undefined,
     ]
   }
   testID="user-submission-row.cell-1"
@@ -559,10 +553,7 @@ exports[`UserSubmissionRow renders discussion 1`] = `
   style={
     Array [
       undefined,
-      Object {
-        "borderBottomColor": "#C7CDD1",
-        "borderBottomWidth": 0.5,
-      },
+      undefined,
     ]
   }
   testID="user-submission-row.cell-1"
@@ -832,10 +823,7 @@ exports[`UserSubmissionRow renders excused 1`] = `
   style={
     Array [
       undefined,
-      Object {
-        "borderBottomColor": "#C7CDD1",
-        "borderBottomWidth": 0.5,
-      },
+      undefined,
     ]
   }
   testID="user-submission-row.cell-1"
@@ -1015,10 +1003,7 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
   style={
     Array [
       undefined,
-      Object {
-        "borderBottomColor": "#C7CDD1",
-        "borderBottomWidth": 0.5,
-      },
+      undefined,
     ]
   }
   testID="user-submission-row.cell-1"
@@ -1288,10 +1273,7 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
   style={
     Array [
       undefined,
-      Object {
-        "borderBottomColor": "#C7CDD1",
-        "borderBottomWidth": 0.5,
-      },
+      undefined,
     ]
   }
   testID="user-submission-row.cell-1"
@@ -1561,10 +1543,7 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
   style={
     Array [
       undefined,
-      Object {
-        "borderBottomColor": "#C7CDD1",
-        "borderBottomWidth": 0.5,
-      },
+      undefined,
     ]
   }
   testID="user-submission-row.cell-1"
@@ -1791,10 +1770,7 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
   style={
     Array [
       undefined,
-      Object {
-        "borderBottomColor": "#C7CDD1",
-        "borderBottomWidth": 0.5,
-      },
+      undefined,
     ]
   }
   testID="user-submission-row.cell-1"
@@ -2064,10 +2040,7 @@ exports[`UserSubmissionRow renders published 1`] = `
   style={
     Array [
       undefined,
-      Object {
-        "borderBottomColor": "#C7CDD1",
-        "borderBottomWidth": 0.5,
-      },
+      undefined,
     ]
   }
   testID="user-submission-row.cell-1"

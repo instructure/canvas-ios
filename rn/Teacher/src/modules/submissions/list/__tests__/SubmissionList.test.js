@@ -255,7 +255,7 @@ test('should navigate to a submission', () => {
   expect(navigator.show).toHaveBeenCalledWith(
     '/courses/12/assignments/32/submissions/2',
     { modal: true, modalPresentationStyle: 'fullscreen' },
-    { filter: expect.any(Function), studentIndex: 1 }
+    { filter: expect.any(Function), studentIndex: 1, flags: [] }
   )
 })
 

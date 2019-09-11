@@ -17,7 +17,7 @@
 //
 
 import XCTest
-import Core
+@testable import Core
 import TestsFoundation
 import CoreData
 @testable import Student
@@ -40,6 +40,7 @@ class PersistenceTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        LoginSession.useTestKeychain()
         queue = OperationQueue()
         router = TestRouter()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
@@ -53,5 +54,10 @@ class PersistenceTestCase: XCTestCase {
         MockURLSession.reset()
         UploadManager.shared = uploadManager
         MockUploadManager.reset()
+    }
+
+    override func tearDown() {
+        super.tearDown()
+        LoginSession.clearAll()
     }
 }

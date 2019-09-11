@@ -18,7 +18,7 @@
 
 import UIKit
 import SafariServices
-import CanvasKeymaster
+import CanvasKit
 import React
 import Core
 

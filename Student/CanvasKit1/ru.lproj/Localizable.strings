@@ -19,35 +19,11 @@
 /* 83% (83 out of 100 points */
 "%@%% (%g out of %@)" = "%1$@%% (%2$g из %3$@)";
 
-/* Gigabytes */
-"%0.2f GB" = "%0.2f ГБ";
-
-/* Kilobytes */
-"%0.2f KB" = "%0.2f КБ";
-
-/* Megabytes */
-"%0.2f MB" = "%0.2f МБ";
-
 /* 88 out of 100 points */
 "%g out of %@" = "%1$g из %2$@";
 
-/* As in, '15 bytes' */
-"%qu bytes" = "%qu байтов";
-
-/* Media type is audio */
-"Audio" = "Аудио";
-
-/* No comment provided by engineer. */
-"Audio input hardware not available" = "Аппаратное обеспечение для входного аудио сигнала  не доступно";
-
 /* Assignment grade: Complete */
 "Complete" = "Завершить";
-
-/* A custom grade not specified by the rubric. */
-"Custom Grade" = "Настроить оценку";
-
-/* No comment provided by engineer. */
-"Done" = "Готово";
 
 /* No comment provided by engineer. */
 "Excused" = "По уважительной причине";
@@ -64,17 +40,8 @@
 /* Assignment grade: Incomplete */
 "Incomplete" = "Не завершено";
 
-/* No comment provided by engineer. */
-"Me" = "Я";
-
 /* The name for a video or audio response to something */
 "Media comment" = "Мультимедийный комментарий";
-
-/* No comment provided by engineer. */
-"Media Comment" = "Мультимедийный комментарий";
-
-/* A slider to choose between media types */
-"Media type selector. %@" = "Устройство выбора типа мультимедиа. %@";
 
 /* Pass/fail assignment is not complete */
 "Not Complete" = "Не завершено";
@@ -85,9 +52,6 @@
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Не оценено (0 из %@)";
 
-/* No comment provided by engineer. */
-"Note: Media files are not immediately available for playback while they are processed on the server." = "Примечание. Файлы мультимедиа не доступны для воспроизведения, пока они обрабатываются на сервере.";
-
 /* Short name for observer enrollment */
 "Observer" = "Наблюдатель";
 
@@ -97,59 +61,14 @@
 /* The assignment is out of 100 points */
 "out of %@" = "из %@";
 
-/* No comment provided by engineer. */
-"out of %@ points" = "из %@ баллов";
-
-/* A button that plays */
-"Play" = "Воспроизвести";
-
-/* No comment provided by engineer. */
-"Post Comment" = "Опубликовать комментарий";
-
-/* No comment provided by engineer. */
-"Posts your comment" = "Оставляет ваш комментарий";
-
-/* A button that records */
-"Record" = "Запись";
-
-/* No comment provided by engineer. */
-"Score" = "Оценка";
-
-/* Hint about the play button */
-"Starts playing your recording" = "Начинает воспроизведение Вашей записи";
-
-/* Hint about the record button */
-"Starts recording a media comment" = "Начало записи медиа-комментария";
-
-/* A button that stops */
-"Stop" = "Стоп";
-
-/* Hint about the play button */
-"Stops playing your recording" = "Останавливает воспроизведение Вашей записи";
-
-/* Hint about the record button */
-"Stops recording a media comment" = "Окончание записи медиа-комментария";
-
 /* Short name for student enrollment */
 "Student" = "Студент";
-
-/* Hint about media input selection */
-"Switches media input between audio and video. Currently set to %@" = "Переключает медиа-вход между аудио и видео. В настоящее время установлено %@";
-
-/* No comment provided by engineer. */
-"Switches to media comment mode" = "Переключение в режим медиа комментария";
-
-/* No comment provided by engineer. */
-"Switches to text comment mode" = "Переключение в режим текстового комментария";
 
 /* Short name for TA enrollment */
 "TA" = "TA";
 
 /* Short name for teacher enrollment */
 "Teacher" = "Преподаватель";
-
-/* No comment provided by engineer. */
-"Text Comment" = "Текстовый комментарий";
 
 /* Generic name for a submission entered online. */
 "Text Submission" = "Текстовая отправка";
@@ -159,13 +78,4 @@
 
 /* When we don't know the name of a file, we display this */
 "unknown" = "неизвестно";
-
-/* Media type is video */
-"Video" = "Видео";
-
-/* No comment provided by engineer. */
-"Video Error" = "Ошибка видео";
-
-/* No comment provided by engineer. */
-"Warning" = "Предупреждение";
 

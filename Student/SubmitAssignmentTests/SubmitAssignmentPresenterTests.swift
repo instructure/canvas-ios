@@ -49,12 +49,15 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
     var presenter: SubmitAssignmentPresenter!
 
     override func setUp() {
-        LoginSession.clearAll()
+        super.setUp()
         LoginSession.add(.make())
-        env.userDefaults?.reset()
         presenter = SubmitAssignmentPresenter()
         presenter.view = self
-        super.setUp()
+        presenter.uploadManager = uploadManager
+        // SubmitAssignmentPresenter calls env.userDidLogin, so need to reset after
+        env.api = api
+        env.database = database
+        env.userDefaults?.reset()
     }
 
     func testInitNilWithoutRecentSession() {
@@ -154,7 +157,9 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
         let item = TestExtensionItem(mockAttachments: [attachment])
         presenter.load(items: [item])
         wait(for: [expectation], timeout: 0.5)
-        presenter.submit(comment: nil)
+        let callback = XCTestExpectation(description: "callback was called")
+        presenter.submit(comment: nil) { callback.fulfill() }
+        wait(for: [callback], timeout: 1)
         XCTAssertTrue(uploadManager.cancelWasCalled)
         XCTAssertTrue(uploadManager.uploadWasCalled)
     }

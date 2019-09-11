@@ -5,7 +5,7 @@
 " until %@" = " tan %@";
 
 /* %@ will be replaced by the filename */
-"'%@' is now ready to submit to assignments" = "'%@' yn barod i gyflwyno i'r nodwedd aseiniadau";
+"'%@' is now ready to submit to assignments" = "'%@' yn barod i gyflwyno i aseiniadau";
 
 /* explanation for locked module item */
 "\"%@\" is locked as part of \"%@\"" = "\"%1$@\" ar glo fel rhan o \"%2$@\"";
@@ -15,9 +15,6 @@
 
 /* Message for unsupported tab coming soon */
 "%@ is coming soon!" = "%@ i ddod yn fuan!";
-
-/* local notification countdown alert */
-"%@ is due in %@" = "%1$@ angen cyflwyno erbyn %2$@";
 
 /* explanation for locked item */
 "%@ is locked" = "%@ ar glo";
@@ -210,7 +207,7 @@
 "Add inline media" = "Ychwanegu cyfryngau yn yr un lle";
 
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
-"Add recipients" = "Ychwanegu derbynnydd";
+"Add recipients" = "Ychwanegu derbynwyr";
 
 /* Button to select all members of a group */
 "All members" = "Pob aelod";
@@ -225,12 +222,9 @@
    Title for the announcements view controller */
 "Announcements" = "Cyhoeddiadau";
 
-/* Assignment submission type for selecting an Arc video */
-"Arc" = "Arc";
-
 /* Archive selected messages button
    mark a message as archived */
-"Archive" = "Archif";
+"Archive" = "Archifo";
 
 /* hint to archive selected messages */
 "Archive all selected messages" = "Archifo pob neges dan sylw";
@@ -243,9 +237,6 @@
 
 /* Action sheet title verifying that a user wants to logout. */
 "Are you ready to logout?" = "Ydych chi’n barod i allgofnodi?";
-
-/* Confirmation alert text for submitting an Arc video for an assignment */
-"Are you sure you want to submit this Arc video for this assignment?" = "Ydych chi’n siŵr eich bod am gyflwyno'r fideo Arc hwn ar gyfer yr aseiniad hwn?";
 
 /* No comment provided by engineer. */
 "Ask me later" = "Gofyn i mi wedyn";
@@ -266,12 +257,12 @@
 "Attachment %i" = "Atodiad %i";
 
 /* Table View Controller for Attachments */
-"Attachments" = "Atodiad";
+"Attachments" = "Atodiadau";
 
 /* Label for a discussion */
 "Attendance" = "Presenoldeb";
 
-/* Audio file type */
+/* Media type is audio */
 "Audio" = "Sain";
 
 /* No comment provided by engineer. */
@@ -280,7 +271,7 @@
 /* No comment provided by engineer. */
 "Augment Reality" = "Realiti Estynedig";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Authentication error" = "Gwall dilysu";
 
 /* Link to building panda avatar */
@@ -298,24 +289,20 @@
 /* Setup only allows media but no Kaltura instance error title */
 "Can't submit media" = "yn methu cyflwyno cyfryngau";
 
-/* Cancel button title
-   Cancel button title to cancel submitting an Arc video as an assignment submission */
+/* Cancel button title */
 "Cancel" = "Canslo";
 
-/* Cancel button title */
+/* Cancel adding a comment button */
 "Cancel Message" = "Canslo Neges";
 
 /* No comment provided by engineer. */
-"Canvas appears to be unavailable. Please try again later." = "Mae’n ymddangos bod Canvas ddim ar gael. Rhowch gynnig arall arni rywbryd eto.";
+"Canvas appears to be unavailable. Please try again later." = "Mae’n ymddangos nad yw Canvas ar gael. Rhowch gynnig arall arni rywbryd eto.";
 
 /* detail text for recipient fetch error message */
 "Canvas failed to find recipients for your current search. Please try again later." = "Canvas wedi methu canfod derbynwyr ar gyfer eich chwiliad presennol. Rhowch gynnig arall arni rywbryd eto.";
 
-/* mobile quiz warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Mae cwisiau Canvas yn gallu delio â sawl math o arddull asesu. Mae modd delio â'r rhan fwyaf o'r arddulliau hyn ar ddyfeisiau symudol, ond mae rhai nad oes modd delio â nhw. Os byddwch yn ceisio gwneud un o'r cwisiau hyn nad oes modd delio â nhw ar eich ffôn, efallai na fydd modd i chi gwblhau'r cwis, a fydd yn golygu eich bod dan anfantais.\n\nMae'r mathau o gwestiynau nad oes modd delio â nhw yn cynnwys rhai sy'n defnyddio Adobe Flash™, yn ogystal â mathau eraill.\n\nOs ydych chi'n meddwl bod cynnwys nad oes modd delio ag ef mewn cwis, ewch ati i'w wneud ar gyfrifiadur neu liniadur. Os ydych chi'n gwybod mai dim ond cynnwys y mae modd delio ag ef sydd mewn cwis, mae croeso i chi ei wneud ar eich dyfais symudol.";
-
 /* mobile quze warning info */
-"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Mae cwisiau Canvas yn gallu delio â sawl math o arddull asesu. Mae modd delio â'r rhan fwyaf o'r arddulliau hyn ar ddyfeisiau symudol, ond mae rhai nad oes modd delio â nhw. Os byddwch yn ceisio gwneud un o'r cwisiau hyn nad oes modd delio â nhw ar eich ffôn, efallai na fydd modd i chi gwblhau'r cwis, a fydd yn golygu eich bod dan anfantais.\n\nMae'r mathau o gwestiynau nad oes modd delio â nhw yn cynnwys rhai sy'n defnyddio Adobe Flash™ a ffeiliau wedi’u llwytho i fyny, yn ogystal â mathau eraill.\n\nOs ydych chi'n meddwl bod cynnwys nad oes modd delio ag ef mewn cwis, ewch ati i'w wneud ar gyfrifiadur neu liniadur. Os ydych chi'n gwybod mai dim ond cynnwys y mae modd delio ag ef sydd mewn cwis, mae croeso i chi ei wneud ar eich dyfais symudol.";
+"Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Mae cwisiau Canvas yn gallu delio â sawl math o arddull asesu. Mae modd delio â'r rhan fwyaf o'r arddulliau hyn ar ddyfeisiau symudol, ond mae rhai nad oes modd delio â nhw. Os byddwch yn ceisio gwneud un o'r cwisiau hyn nad oes modd delio â nhw ar eich ffôn, efallai na fydd modd i chi gwblhau'r cwis, a fydd yn golygu eich bod dan anfantais.\n\nMae'r mathau o gwestiynau nad oes modd delio â nhw yn cynnwys rhai â chynnwys Adobe Flash™ a ffeiliau wedi’u llwytho i fyny ynddynt, ac eraill.\n\nOs ydych chi'n meddwl bod cynnwys nad oes modd delio ag ef mewn cwis, ewch ati i'w wneud ar gyfrifiadur neu liniadur. Os ydych chi'n gwybod mai dim ond cynnwys y mae modd delio ag ef sydd mewn cwis, mae croeso i chi ei wneud ar eich dyfais symudol.";
 
 /* button to change user's profile image */
 "Change Profile Image" = "Newid Llun Proffil";
@@ -347,7 +334,7 @@
 /* Choose a video to send as a comment */
 "Choose Video" = "Dewiswch Fideo";
 
-/* Close the window */
+/* No comment provided by engineer. */
 "Close" = "Cau";
 
 /* No comment provided by engineer. */
@@ -387,9 +374,6 @@
 /* Alert title */
 "Confirm deletion" = "Cadarnhau’r dileu";
 
-/* Confirm an arc video submission for an assignment */
-"Confirm Submission" = "Cadarnhau'r Cyflwyniad";
-
 /* Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations. */
 "Continue" = "Bwrw ymlaen";
 
@@ -403,12 +387,12 @@
 "Couldn't Load Submission" = "Doedd dim modd Llwytho'r Cyflwyniad";
 
 /* Title for Course Syllabus view controller */
-"Course Syllabus" = "Maes Llafur Cwrs";
+"Course Syllabus" = "Maes Llafur y Cwrs";
 
 /* Courses page title */
 "Courses" = "Cyrsiau";
 
-/* Cancel button title */
+/* cancel folder creation */
 "Create Folder" = "Creu Ffolder";
 
 /* Header for a section showing submitted filenames */
@@ -431,9 +415,6 @@
 
 /* Alert message */
 "Delete this reply?" = "Dileu’r ateb hwn?";
-
-/* delete file confirmation alert */
-"Deleted file: \"%@\"" = "Ffeil wedi'i dileu: \"%@\"";
 
 /* delete file confirmation alert */
 "Deleted file: &quot;%@&quot;" = "Ffeil wedi'i dileu: &quot;%@&quot;";
@@ -465,7 +446,7 @@
 
 /* Dismiss button title
    uialertaction button name for dismissing the failed refresh error message */
-"Dismiss" = "Diystyru";
+"Dismiss" = "Gwrthod";
 
 /* Alert title asking if you want to masquerade */
 "Do you want to masquerade as this user?" = "Ydych chi am esgus mai chi yw'r defnyddiwr hwn?";
@@ -494,9 +475,6 @@
 /* This string is prepended to the due date for an assignment */
 "Due:" = "Erbyn:";
 
-/* Due date label indicating when an assignment is due */
-"Due: %@" = "Erbyn: %@";
-
 /* Due date label for to do items, first placeholder is date, second is time */
 "Due: %1$@ at %2$@" = "Erbyn: %1$@ am %2$@";
 
@@ -523,26 +501,20 @@
 /* Prompt asking user to enable push notifications */
 "Enable Push Notifications" = "Galluogi Hysbysiadau Marchnata";
 
-/* No comment provided by engineer. */
-"Enter folder name" = "Rhowch enw'r ffolder";
-
 /* Submission input view placeholder text */
 "Enter submission" = "Rhowch y cyflwyniad";
 
 /* masquerade prompt */
-"Enter User ID and Domain." = "Rhoi Parth ac ID Defnyddiwr.";
+"Enter User ID and Domain." = "Rhowch Barth ac ID Defnyddiwr.";
 
 /* Confirmation message after posting a discussion entry */
 "Entry posted" = "Wedi postio'r cofnod";
 
-/* Title for an error popup */
+/* Title of alert box */
 "Error" = "Gwall";
 
 /* Title of an alert popup */
 "Error adding recipeints" = "Gwall wrth ychwanegu derbynwyr";
-
-/* Error deleting file alert view title */
-"Error deleting file \"%@\"" = "Gwall wrth ddileu'r ffeil \"%@\"";
 
 /* Error deleting file alert view title */
 "Error deleting file &quot;%@&quot;" = "Gwall wrth ddileu ffeil &quot;%@&quot;";
@@ -589,11 +561,11 @@
 /* File upload failed. */
 "File upload failed." = "Wedi methu llwytho ffeil i fyny.";
 
-/* Title for the files screen */
+/* Files view
+   Name of a tab displaying files in a course
+   title for files view
+   Title for the Files View Controller */
 "Files" = "Ffeiliau";
-
-/* No comment provided by engineer. */
-"Final Grade" = "Gradd Derfynol";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Wedi gorffen llwytho i lawr";
@@ -693,9 +665,6 @@
 "Item %1$d of %2$d" = "Eitem %1$d o %2$d";
 
 /* No comment provided by engineer. */
-"Item %d of %d" = "Eitem %1$d o %2$d";
-
-/* No comment provided by engineer. */
 "Jumps to current day on calendar" = "Mae'n neidio i'r dyddiad presennol ar y calendr";
 
 /* No comment provided by engineer. */
@@ -706,9 +675,6 @@
 
 /* Title for an alert popup */
 "Large file" = "Ffeil fawr";
-
-/* No comment provided by engineer. */
-"Late Penalty" = "Cosb am fod yn hwyr";
 
 /* Button in an alert */
 "Later" = "Wedyn";
@@ -724,7 +690,7 @@
 "Loading..." = "Wrthi’n llwytho...";
 
 /* No comment provided by engineer. */
-"Locked" = "Ar glo";
+"Locked" = "Wedi Cloi";
 
 /* No comment provided by engineer. */
 "Locked until %@" = "Ar glo tan %@";
@@ -741,9 +707,6 @@
 
 /* No comment provided by engineer. */
 "Love it!" = "Wrth fy modd!";
-
-/* Title for an LTI launch submitted as an assignment */
-"LTI Tool" = "Adnodd LTI";
 
 /* Button title for mark as done */
 "Mark as Done" = "Marcio eu bod wedi’u gwneud";
@@ -846,8 +809,7 @@
 /* No comment provided by engineer. */
 "No Date" = "Dim Dyddiad";
 
-/* Indicates an assignment does not have a due date
-   String for when assignment has no due date */
+/* String for when assignment has no due date */
 "No due date" = "Dim dyddiad erbyn";
 
 /* Label shown for a to do that doesn't have a due date */
@@ -863,10 +825,10 @@
 "No Recorded Audio" = "Dim Sain wedi'i Recordio";
 
 /* Indicates a search found no results */
-"No results found" = "Heb ddod o hyd i unrhyw ganlyniadau";
+"No results found" = "Heb ddod o hyd i ganlyniadau";
 
 /* No Submission groupong */
-"No Submission" = "Dim cyflwyniad";
+"No Submission" = "Dim Cyflwyniad";
 
 /* No comment provided by engineer. */
 "No Thanks" = "Dim diolch";
@@ -922,7 +884,7 @@
 "Oops!" = "Wps!";
 
 /* Open a document in the application Safari */
-"Open in Safari" = "Agor yn Safari";
+"Open in Safari" = "Agor yn y Porwr";
 
 /* Link to open assignment in SpeedGrader */
 "Open in SpeedGrader" = "Agor yn SpeedGrader";
@@ -955,7 +917,7 @@
 "Page" = "Tudalen";
 
 /* No comment provided by engineer. */
-"Past" = "Blaenorol";
+"Past" = "Ddoe";
 
 /* Title for the people view */
 "People" = "Pobl";
@@ -999,7 +961,8 @@
 /* Title for profile screen */
 "Profile" = "Proffil";
 
-/* A short test taken by students */
+/* Label for a quiz
+   Title for a quiz submission cell */
 "Quiz" = "Cwis";
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
@@ -1012,7 +975,7 @@
 "Rate on App Store" = "Sgorio yn yr App Store";
 
 /* Description for rubric criterion rating object */
-"Rating for %1$@, Score: %2$g" = "Lefel sgôr ar gyfer %1$@, Sgôr: %2$g";
+"Rating for %1$@, Score: %2$g" = "Sgôr ar gyfer %1$@, Sgôr: %2$g";
 
 /* Title for a button allowing user to re-submit files for an assignment */
 "Re-submit Assignment" = "Ail-gyflwyno aseiniad";
@@ -1092,7 +1055,8 @@
 /* No comment provided by engineer. */
 "Sent" = "Wedi anfon";
 
-/* Title for Settings */
+/* settings button
+   Title for Settings tab */
 "Settings" = "Gosodiadau";
 
 /* Title for button confirming showing a file */
@@ -1117,7 +1081,7 @@
 "Something went wrong. Please try again." = "Aeth rhywbeth o’i le. Rhowch gynnig arall arni.";
 
 /* 404 Error for missing assignment */
-"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Yn anffodus, doedd dim modd dod o hyd i’r aseiniad. Efallai  bod yr aseiniad hwn wedi’i ddileu.";
+"Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Yn anffodus, doedd dim modd dod o hyd i’r aseiniad. Efallai fod yr aseiniad hwn wedi’i ddileu.";
 
 /* Hint about the play button */
 "Starts playing your recording" = "Mae'n dechrau chwarae eich recordiad";
@@ -1128,7 +1092,7 @@
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Aros wedi mewngofnodi";
 
-/* Stop loading button for webview */
+/* A button that stops */
 "Stop" = "Stopio";
 
 /* Button title for stopping masquerading; when a privileged user becomes another user in the system */
@@ -1155,14 +1119,11 @@
 /* Title for file submission error */
 "Submission Error" = "Gwall Cyflwyno";
 
-/* Submit Arc video as assignment button */
+/* Submit an assignment */
 "Submit" = "Cyflwyno";
 
-/* Button to submit files to an assignment */
-"Submit (%d)" = "Cyflwyno (%d)";
-
 /* Submitted grouping */
-"Submitted" = "Wedi’u cyflwyno";
+"Submitted" = "Wedi Cyflwyno";
 
 /* No comment provided by engineer. */
 "Submitting..." = "Wrthi’n cyflwyno...";
@@ -1199,7 +1160,7 @@
 "Take a Video..." = "Recordiwch Fideo...";
 
 /* Button label for taking a photo */
-"Take Photo" = "Tynnwch lun gyda Chamera";
+"Take Photo" = "Tynnu llun gyda chamera";
 
 /* Take a picture or video to use in a comment. */
 "Take Photo or Video..." = "Tynnwch Lun neu recordio Fideo...";
@@ -1231,7 +1192,7 @@
 /* Text entry submission type */
 "Text entry" = "Cofnod testun";
 
-/* Title for a text submission cell */
+/* Generic name for a submission entered online. */
 "Text Submission" = "Cyflwyniad Testun";
 
 /* Text explaining the error */
@@ -1256,7 +1217,7 @@
 "There was a network error posting your comment." = "Problem â'r rhwydwaith wrth bostio eich sylw.";
 
 /* message for failed submission upload */
-"There was a network problem while attempting to upload your submission" = "Problem â'r rhwydwaith wrth geisio cyflwyno eich cyflwyniad";
+"There was a network problem while attempting to upload your submission" = "Problem â'r rhwydwaith wrth geisio llwytho eich cyflwyniad i fyny";
 
 /* Error message when fetching a file fails */
 "There was a problem accessing the requested file.\n\nError: %@" = "Problem wrth gael mynediad at y ffeil dan sylw.\n\nGwall: %@";
@@ -1268,7 +1229,7 @@
 "There was an error loading the document." = "Gwall wrth lwytho'r ddogfen.";
 
 /* No comment provided by engineer. */
-"There was an error loading your content. If it is an audio or video upload it may still be processing." = "Gwall wrth lwytho’ch cynnwys. Os ydych chi'n llwytho sain neu fideo i fyny, gall fod wrthi'n prosesu o hyd.";
+"There was an error loading your content. If it is an audio or video upload it may still be processing." = "Gwall wrth lwytho’ch cynnwys. Os ydych chi'n llwytho sain neu fideo i fyny, gall fod yn prosesu o hyd.";
 
 /* No comment provided by engineer. */
 "This app is not authorized for use." = "Dydi’r ap hwn ddim wedi’i awdurdodi i’w ddefnyddio.";
@@ -1300,9 +1261,6 @@
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Byddai hwn yn amser gwych i wneud rhywfaint o waith am gredyd ychwanegol.";
 
-/* No comment provided by engineer. */
-"To add a file from another app, open the file in that app and tap the Share icon. Then select the Copy to Student option. To add an attachment from the Mail app, tap and hold the attachment, then tap the Canvas icon." = "I ychwanegu ffeil o ap arall, agorwch y ffeil yn yr ap hwnnw a thapiwch yr eicon Rhannu. Yna dewiswch yr opsiwn Copïo i Fyfyriwr. I ychwanegu atodiad o’r ap Post, tapiwch a dal yr atodiad, yna tapiwch yr eicon Canvas.";
-
 /* Title of to do screen
    To Do page title */
 "To Do" = "Tasgau i’w Gwneud";
@@ -1332,7 +1290,7 @@
 "Turn In Again" = "Cyflwyno eto";
 
 /* Notification over status bar that displays when not connected to the internet. */
-"Uh-oh! No Internet Connection" = "O na! Dim cysylltiad â'r rhyngrwyd";
+"Uh-oh! No Internet Connection" = "O na! Dim cysylltiad â’r rhyngrwyd";
 
 /* Error title */
 "Unable to load" = "Methu llwytho";
@@ -1383,9 +1341,6 @@
 "Upload file" = "Llwytho ffeil i fyny";
 
 /* Error message */
-"Upload to assignment \"%@\" failed" = "Wedi methu llwytho i fyny i'r aseiniad \"%@\"";
-
-/* Error message */
 "Upload to assignment &quot;%@&quot; failed" = "Wedi methu llwytho i fyny i'r aseiniad &quot;%@&quot;";
 
 /* Error message */
@@ -1400,7 +1355,7 @@
 /* Title for User Info section on the about page */
 "User Info" = "Gwybodaeth am Ddefnyddiwr";
 
-/* Video file type */
+/* Media type is video */
 "Video" = "Fideo";
 
 /* No comment provided by engineer. */

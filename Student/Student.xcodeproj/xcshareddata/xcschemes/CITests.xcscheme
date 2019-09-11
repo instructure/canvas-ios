@@ -95,13 +95,6 @@
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B1FC3AF21C98B4E500A8001F"
-            BuildableName = "CanvasKeymaster.framework"
-            BlueprintName = "CanvasKeymaster"
-            ReferencedContainer = "container:../Frameworks/CanvasKeymaster/CanvasKeymaster.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
             BlueprintIdentifier = "499D18861C8643E6005A86D2"
             BuildableName = "CanvasKit.framework"
             BlueprintName = "CanvasKit"
@@ -176,7 +169,8 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7DE1160622F8AAB1005BFE98"
@@ -206,7 +200,8 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES"
+            parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7DC5716F22F8B16200F2E9BB"
@@ -216,17 +211,7 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9F5D743422A99E91002FCCCE"
-               BuildableName = "CanvasUITests.xctest"
-               BlueprintName = "CanvasUITests"
-               ReferencedContainer = "container:Student.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E8315D3522FC9E60003CD27C"

@@ -278,6 +278,9 @@
 "out_of_g_pts" = "out_of_g_pts i waho i g ngā koinga";
 
 /* No comment provided by engineer. */
+"Pages" = "Ngā whārangi";
+
+/* No comment provided by engineer. */
 "Pause" = "Okioki";
 
 /* No comment provided by engineer. */
@@ -390,6 +393,9 @@
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Me tīmata te taupānga anō ki te whakamahi i ngā tautuhinga reo hou. Tēna koa tuku anō i te taupānga.";
+
+/* No comment provided by engineer. */
+"There are no pages to display." = "Kaore ngā whārangi hei whakātu.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "He raruraru i te wā e kimi ana i ngā Ture Whakamahia";

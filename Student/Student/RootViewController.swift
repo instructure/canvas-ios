@@ -31,10 +31,10 @@ func rootViewController(_ session: Session) -> UIViewController {
         tabs.viewControllers = [
             dashboardTab(session: session),
             UINavigationController(rootViewController: CalendarTabViewController(session: session) { vc, url in
-                Router.shared().route(from: vc, to: url)
+                AppEnvironment.shared.router.route(to: url, from: vc)
             }),
             try ToDoTabViewController(session: session) { vc, url in
-                Router.shared().route(from: vc, to: url)
+                AppEnvironment.shared.router.route(to: url, from: vc)
             },
             try NotificationsTab(session: session),
             inboxTab(),
