@@ -40,6 +40,8 @@
 		3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2F02322C56F00599A1E /* APIAlertThresholdFixture.swift */; };
 		3B54E3572326F93300D8D1D2 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B54E3562326F93300D8D1D2 /* TestsFoundation.framework */; };
 		3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54E3582326F9B000D8D1D2 /* ParentTestCase.swift */; };
+		3B5F4D9A2328AAEE00998223 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5F4D962328AA8900998223 /* CanvasKit.framework */; };
+		3B5F4D9B2328AAEE00998223 /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B5F4D962328AA8900998223 /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B801BFD2322FFB400D143F0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B11F912BD100A3BC06 /* Alert.swift */; };
 		3B801BFF2326CBFB00D143F0 /* StudentSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B801BFE2326CBFB00D143F0 /* StudentSettingsPresenter.swift */; };
 		3B86FA3622DD24FA0018C012 /* SettingsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B86FA3522DD24FA0018C012 /* SettingsAPIClient.swift */; };
@@ -163,6 +165,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				3B5F4D9B2328AAEE00998223 /* CanvasKit.framework in Embed Frameworks */,
 				4948BE6B1F915F4B0035BAFD /* CanvasCore.framework in Embed Frameworks */,
 				3BD0CD762327027000B3341E /* Core.framework in Embed Frameworks */,
 			);
@@ -568,6 +571,7 @@
 		3B54E3542326F87D00D8D1D2 /* StudentSettingsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSettingsPresenterTests.swift; sourceTree = "<group>"; };
 		3B54E3562326F93300D8D1D2 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B54E3582326F9B000D8D1D2 /* ParentTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentTestCase.swift; sourceTree = "<group>"; };
+		3B5F4D962328AA8900998223 /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B801BFE2326CBFB00D143F0 /* StudentSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSettingsPresenter.swift; sourceTree = "<group>"; };
 		3B86FA3522DD24FA0018C012 /* SettingsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAPIClient.swift; sourceTree = "<group>"; };
 		3B92109B231F02D500820CC3 /* StudentSettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StudentSettingsViewController.storyboard; sourceTree = "<group>"; };
@@ -909,6 +913,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B5F4D9A2328AAEE00998223 /* CanvasKit.framework in Frameworks */,
 				3BD0CD732327026400B3341E /* Core.framework in Frameworks */,
 				B1F4061522E6393D008FAFE6 /* ReactiveObjC.framework in Frameworks */,
 				B1F4061622E6393D008FAFE6 /* ReactiveMapKit.framework in Frameworks */,
@@ -1244,6 +1249,7 @@
 		5E7790AF1C46CBA100429BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B5F4D962328AA8900998223 /* CanvasKit.framework */,
 				3BD0CD722327026400B3341E /* Core.framework */,
 				3B54E3562326F93300D8D1D2 /* TestsFoundation.framework */,
 				B1F4061322E6393C008FAFE6 /* ReactiveCocoa.framework */,
