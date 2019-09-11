@@ -24,7 +24,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import i18n from 'format-message'
-import { Text, SEMI_BOLD_FONT } from '../../../common/text'
+import { Text } from '../../../common/text'
 import { Button } from '../../../common/buttons'
 import colors from '../../../common/colors'
 
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   button: {
     fontSize: 16,
-    fontFamily: SEMI_BOLD_FONT,
+    fontWeight: '600',
   },
   buttonContainer: {
     borderRadius: 4,

@@ -26,45 +26,32 @@ import ReactNative, {
   StyleSheet,
 } from 'react-native'
 import colors from './colors'
-import flattenStyle from 'flattenStyle'
-
-export const REGULAR_FONT = '.SFUIDisplay'
-export const REGULAR_FONT_ITALIC = '.SFUIDisplay-italic'
-export const MEDIUM_FONT = '.SFUIDisplay-medium'
-export const MEDIUM_FONT_ITALIC = 'SFUIDisplay-medium-italic'
-export const SEMI_BOLD_FONT = '.SFUIDisplay-semibold'
-export const SEMI_BOLD_FONT_ITALIC = '.SFUIDisplay-semibold-italic'
-export const BOLD_FONT = '.SFUIDisplay-bold'
-export const BOLD_FONT_ITALIC = '.SFUIDisplay-bold-italic'
-export const HEAVY_FONT = '.SFUIDisplay-heavy'
-export const HEAVY_FONT_ITALIC = '.SFUIDisplay-heavy-italic'
 
 export function Text ({ style, ...props }: Object) {
-  let font = fontFamilyFromStyle(style)
-  return <ReactNative.Text style={ [styles.font, styles.text, style, { fontFamily: font }] } {...props} />
+  return <ReactNative.Text style={ [styles.text, style] } {...props} />
 }
 
 Text.propTypes = ReactNative.Text.propTypes
 type TextProps = React.ElementConfig<typeof ReactNative.Text>
 
 export function Heading1 ({ style, ...props }: Object) {
-  return <ReactNative.Text style={[styles.font, styles.h1, style]} {...props} accessibilityRole='header' />
+  return <ReactNative.Text style={[styles.h1, style]} {...props} accessibilityRole='header' />
 }
 
 export function Heading2 ({ style, ...props }: Object) {
-  return <ReactNative.Text style={[styles.font, styles.h2, style]} {...props} />
+  return <ReactNative.Text style={[styles.h2, style]} {...props} />
 }
 
 export function Title ({ style, ...props }: Object) {
-  return <ReactNative.Text style={[styles.font, styles.title, style]} { ...props } />
+  return <ReactNative.Text style={[styles.title, style]} { ...props } />
 }
 
 export function SubTitle ({ style, ...props }: Object) {
-  return <ReactNative.Text style={[styles.font, styles.subtitle, style]} { ...props } />
+  return <ReactNative.Text style={[styles.subtitle, style]} { ...props } />
 }
 
 export function Paragraph ({ style, ...props }: Object) {
-  return <ReactNative.Text style={[styles.font, styles.p, style]} {...props} />
+  return <ReactNative.Text style={[styles.p, style]} {...props} />
 }
 
 export function Heavy ({ style, ...props }: Object) {
@@ -76,20 +63,19 @@ export function FormLabel ({ style, ...props }: TextProps) {
 }
 
 export function TextInput ({ style, ...props }: Object) {
-  let font = fontFamilyFromStyle(style)
-  return <ReactNative.TextInput style={[styles.font, styles.textInput, style, { fontFamily: font }]} {...props} />
+  return <ReactNative.TextInput style={[styles.textInput, style]} {...props} />
 }
 
 export function ModalOverlayText ({ style, ...props }: Object) {
-  return <ReactNative.Text style={[styles.font, styles.modalOverlayText, style]} {...props} />
+  return <ReactNative.Text style={[styles.modalOverlayText, style]} {...props} />
 }
 
 export function UnmetRequirementBannerText ({ style, ...props }: Object) {
-  return <ReactNative.Text style={[styles.font, styles.unmetRequirementBannerText, style]} {...props} />
+  return <ReactNative.Text style={[styles.unmetRequirementBannerText, style]} {...props} />
 }
 
 export function UnmetRequirementSubscriptText ({ style, ...props }: Object) {
-  return <ReactNative.Text style={[styles.font, styles.unmetRequirementSubscriptText, style]} {...props} />
+  return <ReactNative.Text style={[styles.unmetRequirementSubscriptText, style]} {...props} />
 }
 
 export function Separated (props: Object) {
@@ -126,73 +112,20 @@ export function DotSeparated (props: Object) {
   return <Separated {...props} separator={'  •  '} />
 }
 
-const FontWeight = {
-  normal: {
-    normal: REGULAR_FONT,
-    italic: REGULAR_FONT_ITALIC,
-  },
-  bold: { // 700 weight
-    normal: BOLD_FONT,
-    italic: BOLD_FONT_ITALIC,
-  },
-  semibold: { // 600 weight
-    normal: SEMI_BOLD_FONT,
-    italic: SEMI_BOLD_FONT_ITALIC,
-  },
-  medium: { // 500 weight
-    normal: MEDIUM_FONT,
-    italic: MEDIUM_FONT_ITALIC,
-  },
-  '800': {
-    normal: HEAVY_FONT,
-    italic: HEAVY_FONT_ITALIC,
-  },
-  '700': { // 700 weight
-    normal: BOLD_FONT,
-    italic: BOLD_FONT_ITALIC,
-  },
-  '600': {
-    normal: SEMI_BOLD_FONT,
-    italic: SEMI_BOLD_FONT_ITALIC,
-  },
-  '500': {
-    normal: MEDIUM_FONT,
-    italic: MEDIUM_FONT_ITALIC,
-  },
-  '400': {
-    normal: REGULAR_FONT,
-    italic: REGULAR_FONT_ITALIC,
-  },
-  '300': {
-    normal: REGULAR_FONT,
-    italic: REGULAR_FONT_ITALIC,
-  },
-}
-
-function fontFamilyFromStyle (style: Object): string {
-  let styleObj = flattenStyle(style) || {}
-  let fontWeight = styleObj.fontWeight || 'normal'
-  let fontStyle = styleObj.fontStyle || 'normal'
-  return FontWeight[fontWeight][fontStyle]
-}
-
 const styles = StyleSheet.create({
-  font: {
-    fontFamily: REGULAR_FONT,
-  },
   h1: {
     fontSize: 24,
     color: colors.darkText,
-    fontFamily: HEAVY_FONT,
+    fontWeight: '800',
   },
   h2: {
     fontSize: 16,
     color: colors.darkText,
-    fontFamily: BOLD_FONT,
+    fontWeight: 'bold',
   },
   title: {
     fontSize: 16,
-    fontFamily: SEMI_BOLD_FONT,
+    fontWeight: '600',
     color: colors.darkText,
   },
   subtitle: {
@@ -207,7 +140,7 @@ const styles = StyleSheet.create({
   heavy: {
     fontSize: 24,
     color: colors.darkText,
-    fontFamily: HEAVY_FONT,
+    fontWeight: '800',
   },
   text: {
     fontSize: 16,
@@ -216,7 +149,7 @@ const styles = StyleSheet.create({
   formLabel: {
     color: colors.grey5,
     fontSize: 14,
-    fontFamily: SEMI_BOLD_FONT,
+    fontWeight: '600',
     marginLeft: global.style.defaultPadding,
     marginTop: global.style.defaultPadding,
     marginBottom: global.style.defaultPadding / 2,
@@ -227,17 +160,17 @@ const styles = StyleSheet.create({
   modalOverlayText: {
     fontSize: 24,
     color: '#fff',
-    fontFamily: SEMI_BOLD_FONT,
+    fontWeight: '600',
   },
   unmetRequirementBannerText: {
     fontSize: 12,
     color: '#fff',
-    fontFamily: MEDIUM_FONT,
+    fontWeight: '500',
   },
   unmetRequirementSubscriptText: {
     fontSize: 14,
     color: '#EE0612',
-    fontFamily: REGULAR_FONT,
+    fontWeight: 'normal',
   },
   sectionHeader: {
     flex: 1,

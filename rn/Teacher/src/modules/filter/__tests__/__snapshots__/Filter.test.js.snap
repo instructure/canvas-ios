@@ -84,9 +84,6 @@ exports[`Filter renders the filter options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -102,9 +99,6 @@ exports[`Filter renders the filter options 1`] = `
                       null,
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -174,9 +168,6 @@ exports[`Filter renders the filter options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -192,9 +183,6 @@ exports[`Filter renders the filter options 1`] = `
                       null,
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -264,9 +252,6 @@ exports[`Filter renders the filter options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -282,9 +267,6 @@ exports[`Filter renders the filter options 1`] = `
                       null,
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -354,9 +336,6 @@ exports[`Filter renders the filter options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -372,9 +351,6 @@ exports[`Filter renders the filter options 1`] = `
                       null,
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -444,9 +420,6 @@ exports[`Filter renders the filter options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -462,9 +435,6 @@ exports[`Filter renders the filter options 1`] = `
                       null,
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -534,9 +504,6 @@ exports[`Filter renders the filter options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -552,9 +519,6 @@ exports[`Filter renders the filter options 1`] = `
                       null,
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -624,9 +588,6 @@ exports[`Filter renders the filter options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -642,9 +603,6 @@ exports[`Filter renders the filter options 1`] = `
                       null,
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -742,9 +700,6 @@ exports[`Filter renders with preselected options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -762,9 +717,6 @@ exports[`Filter renders with preselected options 1`] = `
                       },
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -834,9 +786,6 @@ exports[`Filter renders with preselected options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -854,9 +803,6 @@ exports[`Filter renders with preselected options 1`] = `
                       },
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -926,9 +872,6 @@ exports[`Filter renders with preselected options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -946,9 +889,6 @@ exports[`Filter renders with preselected options 1`] = `
                       },
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -1018,9 +958,6 @@ exports[`Filter renders with preselected options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1038,9 +975,6 @@ exports[`Filter renders with preselected options 1`] = `
                       },
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -1110,9 +1044,6 @@ exports[`Filter renders with preselected options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1128,9 +1059,6 @@ exports[`Filter renders with preselected options 1`] = `
                       null,
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -1244,9 +1172,6 @@ exports[`Filter renders with preselected options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1264,9 +1189,6 @@ exports[`Filter renders with preselected options 1`] = `
                       },
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -1336,9 +1258,6 @@ exports[`Filter renders with preselected options 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1356,9 +1275,6 @@ exports[`Filter renders with preselected options 1`] = `
                       },
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -1456,9 +1372,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1476,9 +1389,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                       },
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -1548,9 +1458,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1568,9 +1475,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                       },
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -1640,9 +1544,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1660,9 +1561,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                       },
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -1732,9 +1630,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1752,9 +1647,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                       },
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -1824,9 +1716,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1842,9 +1731,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                       null,
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -1958,9 +1844,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1978,9 +1861,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                       },
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -2050,9 +1930,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2070,9 +1947,6 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                       },
                     ],
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >

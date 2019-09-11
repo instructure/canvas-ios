@@ -187,9 +187,6 @@ exports[`AudioComment renders default 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -197,9 +194,6 @@ exports[`AudioComment renders default 1`] = `
               "color": "#73818B",
               "fontSize": 14,
               "fontWeight": "400",
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -270,9 +264,6 @@ exports[`AudioComment renders from them 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -280,9 +271,6 @@ exports[`AudioComment renders from them 1`] = `
               "color": "#73818B",
               "fontSize": 14,
               "fontWeight": "400",
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }

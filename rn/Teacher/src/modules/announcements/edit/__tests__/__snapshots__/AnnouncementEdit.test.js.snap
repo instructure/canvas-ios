@@ -113,12 +113,9 @@ exports[`AnnouncementEdit renders 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
                       "fontSize": 24,
+                      "fontWeight": "600",
                     },
                     Array [
                       Object {
@@ -171,8 +168,8 @@ exports[`AnnouncementEdit renders 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -261,8 +258,8 @@ exports[`AnnouncementEdit renders 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -321,8 +318,8 @@ exports[`AnnouncementEdit renders 1`] = `
             Array [
               Object {
                 "color": "#73818C",
-                "fontFamily": ".SFUIDisplay-semibold",
                 "fontSize": 14,
+                "fontWeight": "600",
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
@@ -394,9 +391,6 @@ exports[`AnnouncementEdit renders 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -405,9 +399,6 @@ exports[`AnnouncementEdit renders 1`] = `
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -444,16 +435,10 @@ exports[`AnnouncementEdit renders 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
                         Object {},
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -545,9 +530,6 @@ exports[`AnnouncementEdit renders 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -556,9 +538,6 @@ exports[`AnnouncementEdit renders 1`] = `
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -654,9 +633,6 @@ exports[`AnnouncementEdit renders 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -665,9 +641,6 @@ exports[`AnnouncementEdit renders 1`] = `
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >

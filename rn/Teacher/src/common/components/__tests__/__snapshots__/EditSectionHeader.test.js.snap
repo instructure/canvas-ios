@@ -22,8 +22,8 @@ exports[`render 1`] = `
       Array [
         Object {
           "color": "#73818C",
-          "fontFamily": ".SFUIDisplay-semibold",
           "fontSize": 14,
+          "fontWeight": "600",
           "marginBottom": 8,
           "marginLeft": 16,
           "marginTop": 16,
@@ -59,8 +59,8 @@ exports[`render no title 1`] = `
       Array [
         Object {
           "color": "#73818C",
-          "fontFamily": ".SFUIDisplay-semibold",
           "fontSize": 14,
+          "fontWeight": "600",
           "marginBottom": 8,
           "marginLeft": 16,
           "marginTop": 16,

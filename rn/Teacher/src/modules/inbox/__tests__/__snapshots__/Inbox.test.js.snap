@@ -59,9 +59,6 @@ exports[`Inbox filters conversations based on course 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -74,9 +71,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                       "color": "#374A59",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -124,9 +118,6 @@ exports[`Inbox filters conversations based on course 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -134,9 +125,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -168,9 +156,6 @@ exports[`Inbox filters conversations based on course 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -178,9 +163,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -212,9 +194,6 @@ exports[`Inbox filters conversations based on course 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -222,9 +201,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -256,9 +232,6 @@ exports[`Inbox filters conversations based on course 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -266,9 +239,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -305,12 +275,9 @@ exports[`Inbox filters conversations based on course 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               Object {
                 "flex": 1,
@@ -351,9 +318,6 @@ exports[`Inbox filters conversations based on course 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -365,9 +329,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                     },
                     undefined,
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
                 ]
               }
             >
@@ -481,9 +442,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -491,9 +449,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                           "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
                         },
                       ]
                     }
@@ -505,9 +460,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                       style={
                         Array [
                           Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
@@ -515,9 +467,6 @@ exports[`Inbox filters conversations based on course 1`] = `
                             "color": "#8B969E",
                             "flexShrink": 0,
                             "fontSize": 12,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
                           },
                         ]
                       }
@@ -532,18 +481,12 @@ exports[`Inbox filters conversations based on course 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "color": "#2D3B45",
                       "fontSize": 14,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
                     },
                   ]
                 }
@@ -555,18 +498,12 @@ exports[`Inbox filters conversations based on course 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "color": "#8B969E",
                       "fontSize": 14,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
                     },
                   ]
                 }
@@ -641,9 +578,6 @@ exports[`Inbox refreshed component 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -656,9 +590,6 @@ exports[`Inbox refreshed component 1`] = `
                       "color": "#374A59",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -706,9 +637,6 @@ exports[`Inbox refreshed component 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -716,9 +644,6 @@ exports[`Inbox refreshed component 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -750,9 +675,6 @@ exports[`Inbox refreshed component 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -760,9 +682,6 @@ exports[`Inbox refreshed component 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -794,9 +713,6 @@ exports[`Inbox refreshed component 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -804,9 +720,6 @@ exports[`Inbox refreshed component 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -838,9 +751,6 @@ exports[`Inbox refreshed component 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -848,9 +758,6 @@ exports[`Inbox refreshed component 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -887,12 +794,9 @@ exports[`Inbox refreshed component 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               Object {
                 "flex": 1,
@@ -935,9 +839,6 @@ exports[`Inbox refreshed component 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -949,9 +850,6 @@ exports[`Inbox refreshed component 1`] = `
                     },
                     undefined,
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
                 ]
               }
             >
@@ -989,9 +887,6 @@ exports[`Inbox refreshed component 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -1000,9 +895,6 @@ exports[`Inbox refreshed component 1`] = `
                 "fontWeight": "600",
                 "marginBottom": 4,
                 "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
@@ -1013,9 +905,6 @@ exports[`Inbox refreshed component 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -1023,9 +912,6 @@ exports[`Inbox refreshed component 1`] = `
                 "color": "#8B969E",
                 "fontSize": 16,
                 "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -1097,9 +983,6 @@ exports[`Inbox renders correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1112,9 +995,6 @@ exports[`Inbox renders correctly 1`] = `
                       "color": "#374A59",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -1162,9 +1042,6 @@ exports[`Inbox renders correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1172,9 +1049,6 @@ exports[`Inbox renders correctly 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -1206,9 +1080,6 @@ exports[`Inbox renders correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1216,9 +1087,6 @@ exports[`Inbox renders correctly 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -1250,9 +1118,6 @@ exports[`Inbox renders correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1260,9 +1125,6 @@ exports[`Inbox renders correctly 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -1294,9 +1156,6 @@ exports[`Inbox renders correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1304,9 +1163,6 @@ exports[`Inbox renders correctly 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -1343,12 +1199,9 @@ exports[`Inbox renders correctly 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               Object {
                 "flex": 1,
@@ -1391,9 +1244,6 @@ exports[`Inbox renders correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1405,9 +1255,6 @@ exports[`Inbox renders correctly 1`] = `
                     },
                     undefined,
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
                 ]
               }
             >
@@ -1521,9 +1368,6 @@ exports[`Inbox renders correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -1531,9 +1375,6 @@ exports[`Inbox renders correctly 1`] = `
                           "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
                         },
                       ]
                     }
@@ -1545,9 +1386,6 @@ exports[`Inbox renders correctly 1`] = `
                       style={
                         Array [
                           Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
@@ -1555,9 +1393,6 @@ exports[`Inbox renders correctly 1`] = `
                             "color": "#8B969E",
                             "flexShrink": 0,
                             "fontSize": 12,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
                           },
                         ]
                       }
@@ -1572,18 +1407,12 @@ exports[`Inbox renders correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "color": "#2D3B45",
                       "fontSize": 14,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
                     },
                   ]
                 }
@@ -1595,18 +1424,12 @@ exports[`Inbox renders correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "color": "#8B969E",
                       "fontSize": 14,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
                     },
                   ]
                 }
@@ -1716,9 +1539,6 @@ exports[`Inbox renders correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -1726,9 +1546,6 @@ exports[`Inbox renders correctly 1`] = `
                           "flex": 1,
                           "fontSize": 16,
                           "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
                         },
                       ]
                     }
@@ -1740,9 +1557,6 @@ exports[`Inbox renders correctly 1`] = `
                       style={
                         Array [
                           Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
@@ -1750,9 +1564,6 @@ exports[`Inbox renders correctly 1`] = `
                             "color": "#8B969E",
                             "flexShrink": 0,
                             "fontSize": 12,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
                           },
                         ]
                       }
@@ -1767,18 +1578,12 @@ exports[`Inbox renders correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "color": "#2D3B45",
                       "fontSize": 14,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
                     },
                   ]
                 }
@@ -1790,18 +1595,12 @@ exports[`Inbox renders correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "color": "#8B969E",
                       "fontSize": 14,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
                     },
                   ]
                 }
@@ -1876,9 +1675,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1891,9 +1687,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                       "color": "#374A59",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -1941,9 +1734,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1951,9 +1741,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -1985,9 +1772,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1995,9 +1779,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -2029,9 +1810,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2039,9 +1817,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -2073,9 +1848,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2083,9 +1855,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -2122,12 +1891,9 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               Object {
                 "flex": 1,
@@ -2170,9 +1936,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2184,9 +1947,6 @@ exports[`Inbox renders the activity indicator when loading conversations 1`] = `
                     },
                     undefined,
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
                 ]
               }
             >
@@ -2275,9 +2035,6 @@ exports[`Inbox renders the starred empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2285,9 +2042,6 @@ exports[`Inbox renders the starred empty state 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -2319,9 +2073,6 @@ exports[`Inbox renders the starred empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2329,9 +2080,6 @@ exports[`Inbox renders the starred empty state 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -2363,9 +2111,6 @@ exports[`Inbox renders the starred empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2378,9 +2123,6 @@ exports[`Inbox renders the starred empty state 1`] = `
                       "color": "#374A59",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -2428,9 +2170,6 @@ exports[`Inbox renders the starred empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2438,9 +2177,6 @@ exports[`Inbox renders the starred empty state 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -2472,9 +2208,6 @@ exports[`Inbox renders the starred empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2482,9 +2215,6 @@ exports[`Inbox renders the starred empty state 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -2521,12 +2251,9 @@ exports[`Inbox renders the starred empty state 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               Object {
                 "flex": 1,
@@ -2569,9 +2296,6 @@ exports[`Inbox renders the starred empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2583,9 +2307,6 @@ exports[`Inbox renders the starred empty state 1`] = `
                     },
                     undefined,
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
                 ]
               }
             >
@@ -2623,9 +2344,6 @@ exports[`Inbox renders the starred empty state 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -2634,9 +2352,6 @@ exports[`Inbox renders the starred empty state 1`] = `
                 "fontWeight": "600",
                 "marginBottom": 4,
                 "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
@@ -2647,9 +2362,6 @@ exports[`Inbox renders the starred empty state 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -2657,9 +2369,6 @@ exports[`Inbox renders the starred empty state 1`] = `
                 "color": "#8B969E",
                 "fontSize": 16,
                 "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -2731,9 +2440,6 @@ exports[`Inbox renders with an empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2746,9 +2452,6 @@ exports[`Inbox renders with an empty state 1`] = `
                       "color": "#374A59",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -2796,9 +2499,6 @@ exports[`Inbox renders with an empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2806,9 +2506,6 @@ exports[`Inbox renders with an empty state 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -2840,9 +2537,6 @@ exports[`Inbox renders with an empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2850,9 +2544,6 @@ exports[`Inbox renders with an empty state 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -2884,9 +2575,6 @@ exports[`Inbox renders with an empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2894,9 +2582,6 @@ exports[`Inbox renders with an empty state 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -2928,9 +2613,6 @@ exports[`Inbox renders with an empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2938,9 +2620,6 @@ exports[`Inbox renders with an empty state 1`] = `
                     "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -2977,12 +2656,9 @@ exports[`Inbox renders with an empty state 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               Object {
                 "flex": 1,
@@ -3025,9 +2701,6 @@ exports[`Inbox renders with an empty state 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -3039,9 +2712,6 @@ exports[`Inbox renders with an empty state 1`] = `
                     },
                     undefined,
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
                 ]
               }
             >
@@ -3079,9 +2749,6 @@ exports[`Inbox renders with an empty state 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -3090,9 +2757,6 @@ exports[`Inbox renders with an empty state 1`] = `
                 "fontWeight": "600",
                 "marginBottom": 4,
                 "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
@@ -3103,9 +2767,6 @@ exports[`Inbox renders with an empty state 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -3113,9 +2774,6 @@ exports[`Inbox renders with an empty state 1`] = `
                 "color": "#8B969E",
                 "fontSize": 16,
                 "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }

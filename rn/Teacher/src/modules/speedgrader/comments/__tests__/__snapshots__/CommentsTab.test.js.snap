@@ -48,12 +48,9 @@ exports[`comments render properly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
                     "fontSize": 24,
+                    "fontWeight": "800",
                   },
                   Array [
                     Object {
@@ -71,9 +68,6 @@ exports[`comments render properly 1`] = `
             <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                   Object {
                     "color": "#7F91A7",
                     "fontSize": 16,
@@ -200,9 +194,6 @@ exports[`comments render properly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -217,9 +208,6 @@ exports[`comments render properly 1`] = `
                       "color": "white",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -315,12 +303,9 @@ exports[`comments render properly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
                     "fontSize": 24,
+                    "fontWeight": "800",
                   },
                   Array [
                     Object {
@@ -338,9 +323,6 @@ exports[`comments render properly 1`] = `
             <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                   Object {
                     "color": "#7F91A7",
                     "fontSize": 16,
@@ -423,9 +405,6 @@ exports[`comments render properly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -440,9 +419,6 @@ exports[`comments render properly 1`] = `
                       "color": "#2D3B45",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -491,12 +467,9 @@ exports[`comments render properly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
                     "fontSize": 24,
+                    "fontWeight": "800",
                   },
                   Array [
                     Object {
@@ -514,9 +487,6 @@ exports[`comments render properly 1`] = `
             <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                   Object {
                     "color": "#7F91A7",
                     "fontSize": 16,
@@ -686,12 +656,9 @@ exports[`comments render properly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
                     "fontSize": 24,
+                    "fontWeight": "800",
                   },
                   Array [
                     Object {
@@ -709,9 +676,6 @@ exports[`comments render properly 1`] = `
             <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                   Object {
                     "color": "#7F91A7",
                     "fontSize": 16,
@@ -785,12 +749,9 @@ exports[`comments render properly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
                     "fontSize": 24,
+                    "fontWeight": "800",
                   },
                   Array [
                     Object {
@@ -808,9 +769,6 @@ exports[`comments render properly 1`] = `
             <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                   Object {
                     "color": "#7F91A7",
                     "fontSize": 16,
@@ -984,12 +942,9 @@ exports[`comments render properly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
-                    "fontFamily": ".SFUIDisplay-heavy",
                     "fontSize": 24,
+                    "fontWeight": "800",
                   },
                   Array [
                     Object {
@@ -1007,9 +962,6 @@ exports[`comments render properly 1`] = `
             <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                   Object {
                     "color": "#7F91A7",
                     "fontSize": 16,
@@ -1093,12 +1045,9 @@ exports[`comments render properly 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
                       "fontSize": 16,
+                      "fontWeight": "600",
                     },
                     undefined,
                   ]
@@ -1112,9 +1061,6 @@ exports[`comments render properly 1`] = `
                 numberOfLines={1}
                 style={
                   Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                     Object {
                       "color": "#7F91A7",
                       "fontSize": 14,

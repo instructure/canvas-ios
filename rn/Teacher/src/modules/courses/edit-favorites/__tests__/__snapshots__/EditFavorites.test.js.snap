@@ -66,9 +66,6 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -81,9 +78,6 @@ exports[`renders correctly 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -142,18 +136,12 @@ exports[`renders correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "500",
                       "marginRight": 16,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -215,18 +203,12 @@ exports[`renders correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "500",
                       "marginRight": 16,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -308,9 +290,6 @@ exports[`renders correctly as student 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -323,9 +302,6 @@ exports[`renders correctly as student 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -384,18 +360,12 @@ exports[`renders correctly as student 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "500",
                       "marginRight": 16,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -457,18 +427,12 @@ exports[`renders correctly as student 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "500",
                       "marginRight": 16,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -504,9 +468,6 @@ exports[`renders correctly as student 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -519,9 +480,6 @@ exports[`renders correctly as student 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -580,18 +538,12 @@ exports[`renders correctly as student 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "500",
                       "marginRight": 16,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -653,18 +605,12 @@ exports[`renders correctly as student 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "500",
                       "marginRight": 16,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -746,9 +692,6 @@ exports[`updates when courses prop changes 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -761,9 +704,6 @@ exports[`updates when courses prop changes 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -822,18 +762,12 @@ exports[`updates when courses prop changes 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "500",
                       "marginRight": 16,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -915,9 +849,6 @@ exports[`updates when courses prop changes 2`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -930,9 +861,6 @@ exports[`updates when courses prop changes 2`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -991,18 +919,12 @@ exports[`updates when courses prop changes 2`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "500",
                       "marginRight": 16,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }

@@ -39,12 +39,9 @@ exports[`My message rows render correctly 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Array [
               Object {
@@ -62,9 +59,6 @@ exports[`My message rows render correctly 1`] = `
       <Text
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#7F91A7",
               "fontSize": 16,
@@ -149,9 +143,6 @@ exports[`My message rows render correctly 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -166,9 +157,6 @@ exports[`My message rows render correctly 1`] = `
                 "color": "white",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
           ]
         }
       >
@@ -223,12 +211,9 @@ exports[`Their message rows render correctly 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Array [
               Object {
@@ -246,9 +231,6 @@ exports[`Their message rows render correctly 1`] = `
       <Text
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#7F91A7",
               "fontSize": 16,
@@ -331,9 +313,6 @@ exports[`Their message rows render correctly 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -348,9 +327,6 @@ exports[`Their message rows render correctly 1`] = `
                 "color": "#2D3B45",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
           ]
         }
       >
@@ -405,12 +381,9 @@ exports[`their submissions render correctly 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Array [
               Object {
@@ -428,9 +401,6 @@ exports[`their submissions render correctly 1`] = `
       <Text
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#7F91A7",
               "fontSize": 16,
@@ -510,12 +480,9 @@ exports[`video comments without url render correctly 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Array [
               Object {
@@ -533,9 +500,6 @@ exports[`video comments without url render correctly 1`] = `
       <Text
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#7F91A7",
               "fontSize": 16,

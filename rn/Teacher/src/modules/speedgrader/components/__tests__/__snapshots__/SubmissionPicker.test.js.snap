@@ -32,9 +32,6 @@ exports[`SubmissionPicker closes the picker 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -46,9 +43,6 @@ exports[`SubmissionPicker closes the picker 1`] = `
               },
               false,
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
           ]
         }
       >
@@ -106,9 +100,6 @@ exports[`SubmissionPicker opens the picker 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -120,9 +111,6 @@ exports[`SubmissionPicker opens the picker 1`] = `
               },
               false,
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
           ]
         }
       >
@@ -180,9 +168,6 @@ exports[`SubmissionPicker renders the picker with a 0 index 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -196,9 +181,6 @@ exports[`SubmissionPicker renders the picker with a 0 index 1`] = `
                 "color": "#374A59",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
           ]
         }
       >
@@ -276,9 +258,6 @@ exports[`SubmissionPicker renders the picker with a non-zero index 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -292,9 +271,6 @@ exports[`SubmissionPicker renders the picker with a non-zero index 1`] = `
                 "color": "#374A59",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
           ]
         }
       >
@@ -372,9 +348,6 @@ exports[`SubmissionPicker renders with a submission 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -386,9 +359,6 @@ exports[`SubmissionPicker renders with a submission 1`] = `
               },
               false,
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
           ]
         }
       >
@@ -460,9 +430,6 @@ exports[`SubmissionPicker renders with only one submission history 1`] = `
       style={
         Array [
           Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
             "color": "#2D3B45",
             "fontSize": 16,
           },
@@ -470,9 +437,6 @@ exports[`SubmissionPicker renders with only one submission history 1`] = `
             "color": "#8B969E",
             "fontSize": 14,
             "fontWeight": "500",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
           },
         ]
       }

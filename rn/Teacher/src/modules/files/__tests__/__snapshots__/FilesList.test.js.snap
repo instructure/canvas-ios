@@ -158,9 +158,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -169,9 +166,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -180,9 +174,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -194,9 +185,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
@@ -378,9 +366,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -389,9 +374,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -400,9 +382,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -414,9 +393,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
@@ -598,9 +574,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -609,9 +582,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -620,9 +590,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -634,9 +601,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
@@ -1020,9 +984,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -1031,9 +992,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -1042,9 +1000,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -1056,9 +1011,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
@@ -1240,9 +1192,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -1251,9 +1200,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -1262,9 +1208,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -1276,9 +1219,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
@@ -1460,9 +1400,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -1471,9 +1408,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -1482,9 +1416,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -1496,9 +1427,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
@@ -1882,9 +1810,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -1893,9 +1818,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -1904,9 +1826,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -1918,9 +1837,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
@@ -2102,9 +2018,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -2113,9 +2026,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -2124,9 +2034,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -2138,9 +2045,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
@@ -2322,9 +2226,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -2333,9 +2234,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -2344,9 +2242,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -2358,9 +2253,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
@@ -2744,9 +2636,6 @@ exports[`FilesList sending weird data into the progress update function should n
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -2755,9 +2644,6 @@ exports[`FilesList sending weird data into the progress update function should n
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -2766,9 +2652,6 @@ exports[`FilesList sending weird data into the progress update function should n
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -2780,9 +2663,6 @@ exports[`FilesList sending weird data into the progress update function should n
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
@@ -2964,9 +2844,6 @@ exports[`FilesList sending weird data into the progress update function should n
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -2975,9 +2852,6 @@ exports[`FilesList sending weird data into the progress update function should n
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -2986,9 +2860,6 @@ exports[`FilesList sending weird data into the progress update function should n
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -3000,9 +2871,6 @@ exports[`FilesList sending weird data into the progress update function should n
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
@@ -3184,9 +3052,6 @@ exports[`FilesList sending weird data into the progress update function should n
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -3195,9 +3060,6 @@ exports[`FilesList sending weird data into the progress update function should n
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -3206,9 +3068,6 @@ exports[`FilesList sending weird data into the progress update function should n
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -3220,9 +3079,6 @@ exports[`FilesList sending weird data into the progress update function should n
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
@@ -3613,9 +3469,6 @@ exports[`FilesList should render 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -3624,9 +3477,6 @@ exports[`FilesList should render 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -3635,9 +3485,6 @@ exports[`FilesList should render 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -3649,9 +3496,6 @@ exports[`FilesList should render 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
@@ -3833,9 +3677,6 @@ exports[`FilesList should render 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -3844,9 +3685,6 @@ exports[`FilesList should render 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -3855,9 +3693,6 @@ exports[`FilesList should render 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -3869,9 +3704,6 @@ exports[`FilesList should render 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
@@ -4053,9 +3885,6 @@ exports[`FilesList should render 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -4064,9 +3893,6 @@ exports[`FilesList should render 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -4075,9 +3901,6 @@ exports[`FilesList should render 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -4089,9 +3912,6 @@ exports[`FilesList should render 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
@@ -4349,9 +4169,6 @@ exports[`FilesList should render for course files 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -4360,9 +4177,6 @@ exports[`FilesList should render for course files 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -4371,9 +4185,6 @@ exports[`FilesList should render for course files 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -4385,9 +4196,6 @@ exports[`FilesList should render for course files 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
@@ -4569,9 +4377,6 @@ exports[`FilesList should render for course files 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -4580,9 +4385,6 @@ exports[`FilesList should render for course files 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -4591,9 +4393,6 @@ exports[`FilesList should render for course files 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -4605,9 +4404,6 @@ exports[`FilesList should render for course files 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
@@ -4789,9 +4585,6 @@ exports[`FilesList should render for course files 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -4800,9 +4593,6 @@ exports[`FilesList should render for course files 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -4811,9 +4601,6 @@ exports[`FilesList should render for course files 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -4825,9 +4612,6 @@ exports[`FilesList should render for course files 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
@@ -5092,9 +4876,6 @@ exports[`FilesList should render for user files 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -5103,9 +4884,6 @@ exports[`FilesList should render for user files 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -5114,9 +4892,6 @@ exports[`FilesList should render for user files 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -5128,9 +4903,6 @@ exports[`FilesList should render for user files 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
@@ -5312,9 +5084,6 @@ exports[`FilesList should render for user files 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -5323,9 +5092,6 @@ exports[`FilesList should render for user files 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -5334,9 +5100,6 @@ exports[`FilesList should render for user files 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -5348,9 +5111,6 @@ exports[`FilesList should render for user files 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
@@ -5532,9 +5292,6 @@ exports[`FilesList should render for user files 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -5543,9 +5300,6 @@ exports[`FilesList should render for user files 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -5554,9 +5308,6 @@ exports[`FilesList should render for user files 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -5568,9 +5319,6 @@ exports[`FilesList should render for user files 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
@@ -5842,9 +5590,6 @@ exports[`FilesList should render with folders 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -5853,9 +5598,6 @@ exports[`FilesList should render with folders 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -5864,9 +5606,6 @@ exports[`FilesList should render with folders 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -5878,9 +5617,6 @@ exports[`FilesList should render with folders 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
@@ -6062,9 +5798,6 @@ exports[`FilesList should render with folders 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -6073,9 +5806,6 @@ exports[`FilesList should render with folders 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -6084,9 +5814,6 @@ exports[`FilesList should render with folders 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -6098,9 +5825,6 @@ exports[`FilesList should render with folders 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
@@ -6282,9 +6006,6 @@ exports[`FilesList should render with folders 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -6293,9 +6014,6 @@ exports[`FilesList should render with folders 1`] = `
                             "fontWeight": "600",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
-                        },
                       ]
                     }
                   >
@@ -6304,9 +6022,6 @@ exports[`FilesList should render with folders 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
@@ -6318,9 +6033,6 @@ exports[`FilesList should render with folders 1`] = `
                             "marginTop": 2,
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                     testID="file-list.file-list-row.cell-file-2-subtitle-lbl"

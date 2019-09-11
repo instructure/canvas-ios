@@ -15,12 +15,9 @@ exports[`renders 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
-          "fontFamily": ".SFUIDisplay-bold",
           "fontSize": 16,
+          "fontWeight": "bold",
         },
         Object {
           "marginBottom": 8,

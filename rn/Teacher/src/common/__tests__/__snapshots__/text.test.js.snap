@@ -5,12 +5,9 @@ exports[`renders ModalOverlayText correctly 1`] = `
   style={
     Array [
       Object {
-        "fontFamily": ".SFUIDisplay",
-      },
-      Object {
         "color": "#fff",
-        "fontFamily": ".SFUIDisplay-semibold",
         "fontSize": 24,
+        "fontWeight": "600",
       },
       undefined,
     ]
@@ -24,12 +21,9 @@ exports[`renders heading1 correctly 1`] = `
   style={
     Array [
       Object {
-        "fontFamily": ".SFUIDisplay",
-      },
-      Object {
         "color": "#2D3B45",
-        "fontFamily": ".SFUIDisplay-heavy",
         "fontSize": 24,
+        "fontWeight": "800",
       },
       undefined,
     ]
@@ -42,12 +36,9 @@ exports[`renders heading2 correctly 1`] = `
   style={
     Array [
       Object {
-        "fontFamily": ".SFUIDisplay",
-      },
-      Object {
         "color": "#2D3B45",
-        "fontFamily": ".SFUIDisplay-bold",
         "fontSize": 16,
+        "fontWeight": "bold",
       },
       undefined,
     ]
@@ -59,9 +50,6 @@ exports[`renders paragraph correctly 1`] = `
 <Text
   style={
     Array [
-      Object {
-        "fontFamily": ".SFUIDisplay",
-      },
       Object {
         "color": "#7F91A7",
         "fontSize": 16,
@@ -93,16 +81,10 @@ exports[`renders separated correctly 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
         undefined,
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
       ]
     }
   >
@@ -114,9 +96,6 @@ exports[`renders separated correctly 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
@@ -128,9 +107,6 @@ exports[`renders separated correctly 1`] = `
             "fontSize": 10,
           },
         ],
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
       ]
     }
   >
@@ -148,16 +124,10 @@ exports[`renders separated correctly 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
         undefined,
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
       ]
     }
   >
@@ -169,9 +139,6 @@ exports[`renders separated correctly 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
@@ -183,9 +150,6 @@ exports[`renders separated correctly 1`] = `
             "fontSize": 10,
           },
         ],
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
       ]
     }
   >
@@ -203,16 +167,10 @@ exports[`renders separated correctly 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
         undefined,
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
       ]
     }
   >
@@ -239,16 +197,10 @@ exports[`renders separated with one item 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
         undefined,
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
       ]
     }
   >
@@ -262,16 +214,10 @@ exports[`renders text correctly 1`] = `
   style={
     Array [
       Object {
-        "fontFamily": ".SFUIDisplay",
-      },
-      Object {
         "color": "#2D3B45",
         "fontSize": 16,
       },
       undefined,
-      Object {
-        "fontFamily": ".SFUIDisplay",
-      },
     ]
   }
 />
@@ -282,17 +228,11 @@ exports[`renders text with fontWeight bold 1`] = `
   style={
     Array [
       Object {
-        "fontFamily": ".SFUIDisplay",
-      },
-      Object {
         "color": "#2D3B45",
         "fontSize": 16,
       },
       Object {
         "fontWeight": "bold",
-      },
-      Object {
-        "fontFamily": ".SFUIDisplay-bold",
       },
     ]
   }
@@ -304,17 +244,11 @@ exports[`renders text with fontWeight semibold 1`] = `
   style={
     Array [
       Object {
-        "fontFamily": ".SFUIDisplay",
-      },
-      Object {
         "color": "#2D3B45",
         "fontSize": 16,
       },
       Object {
         "fontWeight": "600",
-      },
-      Object {
-        "fontFamily": ".SFUIDisplay-semibold",
       },
     ]
   }
@@ -328,15 +262,9 @@ exports[`renders textInput correctly 1`] = `
   style={
     Array [
       Object {
-        "fontFamily": ".SFUIDisplay",
-      },
-      Object {
         "fontSize": 17,
       },
       undefined,
-      Object {
-        "fontFamily": ".SFUIDisplay",
-      },
     ]
   }
   underlineColorAndroid="transparent"

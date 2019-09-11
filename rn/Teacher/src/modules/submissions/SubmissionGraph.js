@@ -24,7 +24,7 @@ import i18n from 'format-message'
 import React, { Component } from 'react'
 import color from '../../common/colors'
 import * as Progress from 'react-native-progress'
-import { Text, MEDIUM_FONT } from '../../common/text'
+import { Text } from '../../common/text'
 import {
   Text as RNText,
   View,
@@ -142,7 +142,7 @@ const submissionsGraphStyle = StyleSheet.create({
   },
   innerText: {
     color: color.darkText,
-    fontFamily: MEDIUM_FONT,
+    fontWeight: '500',
     fontSize: 16,
   },
   center: {

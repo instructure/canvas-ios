@@ -249,7 +249,7 @@ export class Profile extends Component<Object, State> {
   }
 
   renderList = () => {
-    let titleStyles = { fontSize: 20, fontWeight: '300' }
+    let titleStyles = { fontSize: 20, fontWeight: '400' }
     let session = getSession()
     let externalTools = (this.props.externalTools || [])
 
