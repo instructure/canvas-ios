@@ -34,4 +34,20 @@ class UITableViewExtensionsTests: XCTestCase {
         let cell = table.dequeueReusableCell(withIdentifier: "Cell") as? Cell
         XCTAssertNotNil(cell)
     }
+
+    func testRegisterHeaderWithNib() {
+        let table = UITableView(frame: .zero)
+        table.registerHeaderFooterView(SectionHeaderView.self)
+        let header: SectionHeaderView = table.dequeueHeaderFooter(SectionHeaderView.self)
+        XCTAssertNotNil(header)
+    }
+
+    func testRegisterHeaderWithNoNib() {
+        let table = UITableView(frame: .zero)
+        table.registerHeaderFooterView(MockHeaderView.self, fromNib: false)
+        let header = table.dequeueHeaderFooter(MockHeaderView.self)
+        XCTAssertNotNil(header)
+    }
+
+    class MockHeaderView: UITableViewHeaderFooterView {}
 }

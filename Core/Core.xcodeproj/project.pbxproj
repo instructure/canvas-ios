@@ -50,6 +50,8 @@
 		3B35F071230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35F070230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift */; };
 		3B35F073230F01F600674FF5 /* APIGraphQLRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35F072230F01F600674FF5 /* APIGraphQLRequestableTests.swift */; };
 		3B4B75C7222F09C7002CCBEC /* CreateSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */; };
+		3B4D861323295239005126A5 /* GradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D861223295239005126A5 /* GradesViewController.swift */; };
+		3B4D861523295263005126A5 /* GradesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4D861423295263005126A5 /* GradesViewController.storyboard */; };
 		3B5369E2219CDD3500D3F62E /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5369E1219CDD3500D3F62E /* URLExtensions.swift */; };
 		3B5369E4219D0FD000D3F62E /* URLExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */; };
 		3B5425FC21B074500009D069 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */; };
@@ -686,6 +688,8 @@
 		3B35F070230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPostPolicyRequestableTests.swift; sourceTree = "<group>"; };
 		3B35F072230F01F600674FF5 /* APIGraphQLRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGraphQLRequestableTests.swift; sourceTree = "<group>"; };
 		3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmission.swift; sourceTree = "<group>"; };
+		3B4D861223295239005126A5 /* GradesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewController.swift; sourceTree = "<group>"; };
+		3B4D861423295263005126A5 /* GradesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GradesViewController.storyboard; sourceTree = "<group>"; };
 		3B5369E1219CDD3500D3F62E /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
 		3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -1437,6 +1441,7 @@
 		2C964830211E2F1A002C3255 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				3B4D86112329521F005126A5 /* Grades */,
 				9FBFE6D122412B71002B3796 /* ActAsUser */,
 				3BC3E01B2315A0B300E15C6D /* Analytics */,
 				7D8262E9212B1A4F00BD268D /* API */,
@@ -1659,6 +1664,15 @@
 				3B0CEB762150408A00D07CFA /* TestsFoundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B4D86112329521F005126A5 /* Grades */ = {
+			isa = PBXGroup;
+			children = (
+				3B4D861223295239005126A5 /* GradesViewController.swift */,
+				3B4D861423295263005126A5 /* GradesViewController.storyboard */,
+			);
+			path = Grades;
 			sourceTree = "<group>";
 		};
 		3BC3E01B2315A0B300E15C6D /* Analytics */ = {
@@ -2952,6 +2966,7 @@
 			files = (
 				7D0215A721BB1750009A8E69 /* LoginStartViewController.storyboard in Resources */,
 				B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */,
+				3B4D861523295263005126A5 /* GradesViewController.storyboard in Resources */,
 				7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */,
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
 				7DEAD09822789E8A0030C28A /* RichContentEditor.css in Resources */,
@@ -3350,6 +3365,7 @@
 				7D1758B42159898D00F88613 /* TitleSubtitleView.swift in Sources */,
 				9FCD79D42188DC4E0054293A /* APISubmissionRequestable.swift in Sources */,
 				7DCF1EB8216BC876003AF358 /* LatePolicyStatus.swift in Sources */,
+				3B4D861323295239005126A5 /* GradesViewController.swift in Sources */,
 				7DCF1EA0216BB731003AF358 /* SubmissionType.swift in Sources */,
 				B1F1328E224BBBC7002C0555 /* ModuleItem.swift in Sources */,
 				3B158CAA22E1343D0039A568 /* PageViewEventRequestManager.swift in Sources */,
