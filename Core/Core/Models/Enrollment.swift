@@ -21,13 +21,14 @@ import CoreData
 
 final public class Enrollment: NSManagedObject {
     @NSManaged public var canvasContextID: String?
-    @NSManaged public var roleRaw: String?
+    @NSManaged public var role: String?
     @NSManaged public var roleID: String?
     @NSManaged public var stateRaw: String?
     @NSManaged public var userID: String?
     @NSManaged public var multipleGradingPeriodsEnabled: Bool
     @NSManaged public var currentGradingPeriodID: String?
     @NSManaged public var totalsForAllGradingPeriodsOption: Bool
+    @NSManaged public var type: String
     @NSManaged public var course: Course?
 
     @NSManaged public var computedCurrentScoreRaw: NSNumber?
@@ -39,15 +40,9 @@ final public class Enrollment: NSManagedObject {
     @NSManaged public var currentPeriodComputedCurrentGrade: String?
     @NSManaged public var currentPeriodComputedFinalScoreRaw: NSNumber?
     @NSManaged public var currentPeriodComputedFinalGrade: String?
-
 }
 
 extension Enrollment {
-
-    public var role: EnrollmentRole? {
-        get { return EnrollmentRole(rawValue: roleRaw ?? "")  }
-        set { roleRaw = newValue?.rawValue }
-    }
 
     public var state: EnrollmentState {
         get { return EnrollmentState(rawValue: stateRaw ?? "") ?? .inactive }
@@ -73,13 +68,18 @@ extension Enrollment {
         get { return currentPeriodComputedFinalScoreRaw?.doubleValue }
         set { currentPeriodComputedFinalScoreRaw = NSNumber(value: newValue) }
     }
+
+    public var isStudent: Bool {
+        return type.lowercased().contains("student")
+    }
 }
 
 extension Enrollment {
     func update(fromApiModel item: APIEnrollment, course: Course?, in client: NSManagedObjectContext) {
-        role = EnrollmentRole(rawValue: item.role)
+        role = item.role
         roleID = item.role_id
         state = item.enrollment_state
+        type = item.type
         userID = item.user_id
         multipleGradingPeriodsEnabled = item.multiple_grading_periods_enabled ?? false
         currentGradingPeriodID = item.current_grading_period_id
@@ -99,11 +99,5 @@ extension Enrollment {
         if let course = course {
             canvasContextID = "course_\(course.id)"
         }
-    }
-}
-
-public extension Set where Element: Enrollment {
-    func hasRole(_ role: EnrollmentRole) -> Bool {
-        return self.filter { $0.role == role }.count > 0
     }
 }

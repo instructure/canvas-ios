@@ -22,7 +22,7 @@ import XCTest
 
 class APIEnrollmentRequestableTests: XCTestCase {
     func testEnrollUserRequest() {
-        let enrollment = PostEnrollmentRequest.Body.Enrollment(user_id: "1", type: .teacher, enrollment_state: .active)
+        let enrollment = PostEnrollmentRequest.Body.Enrollment(user_id: "1", type: "teacher", enrollment_state: .active)
         let body = PostEnrollmentRequest.Body(enrollment: enrollment)
         let request = PostEnrollmentRequest(courseID: "1", body: body)
 

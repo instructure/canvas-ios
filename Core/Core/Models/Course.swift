@@ -84,7 +84,7 @@ extension Course {
     }()
 
     public var displayGrade: String {
-        guard let enrollments = self.enrollments, let enrollment = enrollments.filter({ $0.role == .student }).first else {
+        guard let enrollments = self.enrollments, let enrollment = enrollments.filter({ $0.isStudent }).first else {
             return ""
         }
 
@@ -117,5 +117,9 @@ extension Course {
             return true
         }
         return !hideOverlaySetting
+    }
+
+    public var hasStudentEnrollment: Bool {
+        return enrollments?.first { $0.isStudent } != nil
     }
 }

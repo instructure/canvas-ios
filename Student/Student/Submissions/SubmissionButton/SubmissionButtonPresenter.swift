@@ -62,7 +62,7 @@ class SubmissionButtonPresenter: NSObject {
         let canSubmit = (
             assignment.canMakeSubmissions &&
             assignment.isOpenForSubmissions() &&
-            (course.enrollments?.hasRole(.student) ?? false) &&
+            course.hasStudentEnrollment &&
             onlineUpload == nil
         )
         guard canSubmit else { return nil }

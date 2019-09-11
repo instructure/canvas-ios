@@ -58,7 +58,7 @@ class CourseTests: CoreTestCase {
     }
 
     func testWidgetDisplayGradeNoStudentEnrollments() {
-        let c = Course.make(from: .make(enrollments: [.make(role: "TeacherEnrollment")]))
+        let c = Course.make(from: .make(enrollments: [.make(type: "TeacherEnrollment")]))
         XCTAssertEqual(c.displayGrade, "")
     }
 
@@ -128,5 +128,12 @@ class CourseTests: CoreTestCase {
         c.imageDownloadURL = URL(string: "https://google.com")!
         XCTAssertFalse(c.showColorOverlay(hideOverlaySetting: true))
         XCTAssertTrue(c.showColorOverlay(hideOverlaySetting: false))
+    }
+
+    func testHasStudentEnrollment() {
+        XCTAssertFalse(Course.make(from: .make(enrollments: [])).hasStudentEnrollment)
+        XCTAssertFalse(Course.make(from: .make(enrollments: [.make(type: "TeacherEnrollment")])).hasStudentEnrollment)
+        XCTAssertTrue(Course.make(from: .make(enrollments: [.make(type: "StudentEnrollment")])).hasStudentEnrollment)
+        XCTAssertTrue(Course.make(from: .make(enrollments: [.make(type: "StudentEnrollment"), .make(type: "TeacherEnrollment")])).hasStudentEnrollment)
     }
 }

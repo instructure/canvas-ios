@@ -26,19 +26,13 @@ class EnrollmentTests: CoreTestCase {
         XCTAssertEqual(EnrollmentState.invited.rawValue, "invited")
     }
 
-    func testEnrollmentRoleInitRawValue() {
-        // Converting to & from String is needed by database models
-        XCTAssertEqual(EnrollmentRole(rawValue: "StudentEnrollment"), .student)
-        XCTAssertEqual(EnrollmentRole.student.rawValue, "StudentEnrollment")
-    }
-
     func testUpdateFromAPI() {
         let apiEnrollment = APIEnrollment.make()
 
         let model: Enrollment = databaseClient.insert()
         model.update(fromApiModel: apiEnrollment, course: nil, in: databaseClient)
 
-        XCTAssertEqual(model.role, .student)
+        XCTAssertEqual(model.role, "StudentEnrollment")
         XCTAssertEqual(model.roleID, apiEnrollment.role_id)
         XCTAssertEqual(model.state, apiEnrollment.enrollment_state)
         XCTAssertEqual(model.userID, apiEnrollment.user_id)
@@ -49,14 +43,12 @@ class EnrollmentTests: CoreTestCase {
         XCTAssertEqual(model.currentPeriodComputedFinalScore, apiEnrollment.current_period_computed_final_score)
     }
 
-    func testHasRole() {
-        //  given
-        var data = Set<Enrollment>()
-        let a = Enrollment.make()
-        data.insert(a)
-
-        //  when    // then
-        XCTAssertFalse(data.hasRole(.teacher))
-        XCTAssertTrue(data.hasRole(.student))
+    func isStudent() {
+        XCTAssertTrue(Enrollment.make(from: .make(type: "student")).isStudent)
+        XCTAssertTrue(Enrollment.make(from: .make(type: "StudentEnrollment")).isStudent)
+        XCTAssertTrue(Enrollment.make(from: .make(type: "StudentView")).isStudent)
+        XCTAssertFalse(Enrollment.make(from: .make(type: "teacher")).isStudent)
+        XCTAssertFalse(Enrollment.make(from: .make(type: "TeacherEnrollment")).isStudent)
+        XCTAssertFalse(Enrollment.make(from: .make(type: "QaEnrollment")).isStudent)
     }
 }
