@@ -53,7 +53,7 @@ const submissions = [
     gradingStatus: 'graded',
     state: 'graded',
     excused: true,
-    grade: null,
+    grade: 'excused',
     submittedAt: null,
     user: templates.user({
       name: 'S2',
@@ -64,6 +64,7 @@ const submissions = [
     state: 'submitted',
     late: true,
     gradingStatus: 'needs_grading',
+    grade: null,
     user: templates.user({
       name: 'S3',
       id: '3',

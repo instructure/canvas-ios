@@ -33,6 +33,9 @@ type SubmissionStatusLabelProps = {
 export default class SubmissionStatusLabel extends Component<SubmissionStatusLabelProps, any> {
   render () {
     let submission = this.props.submission || {}
+
+    if (submission.excused) return null
+
     let color: string = '#8B969E' // none
     let title: string = i18n('Not Submitted')
 
@@ -45,8 +48,6 @@ export default class SubmissionStatusLabel extends Component<SubmissionStatusLab
     } else if (submission.submittedAt != null) {
       color = '#07AF1F'
       title = i18n('Submitted')
-    } else if (submission.excused) {
-      title = i18n('Excused')
     }
 
     if (this.props.onlineSubmissionType !== undefined && !this.props.onlineSubmissionType) { title = '' }

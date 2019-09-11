@@ -53,10 +53,10 @@ describe('SubmissionStatus', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('status `excused` renders properly', () => {
+  it('status `excused` does not render anything', () => {
     let tree = renderer.create(
       <SubmissionStatusLabel submission={templates.submission({ excused: true })} />
     ).toJSON()
-    expect(tree).toMatchSnapshot()
+    expect(tree).toBeFalsy()
   })
 })
