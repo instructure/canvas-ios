@@ -119,10 +119,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             legacyUser?.sisUserID = ""
             legacyClient.setValue(legacyUser, forKey: "currentUser")
             CKIClient.current = legacyClient
-            self.session = legacyClient.authSession
+            if let legacySession = Session.current {
+                self.session = legacySession
+                LegacyModuleProgressShim.observeProgress(legacySession)
+                ModuleItem.beginObservingProgress(legacySession)
+            }
             PageViewEventController.instance.userDidChange()
-            LegacyModuleProgressShim.observeProgress(legacyClient.authSession)
-            ModuleItem.beginObservingProgress(legacyClient.authSession)
             CKCanvasAPI.updateCurrentAPI()
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
                 DispatchQueue.main.async {

@@ -212,7 +212,7 @@
     // Store the file in a directory unique to this file as well as the current user
     // Structuring this way prevents overriding files across users and folders
     // example: /canvas.instructure.com-:userID/:fileID/:fileName
-    NSString *sessionID = CKIClient.currentClient.authSession.sessionID;
+    NSString *sessionID = Session.current.sessionID;
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     NSURL *userDirectory = [[NSURL URLWithString:documentsPath] URLByAppendingPathComponent:sessionID isDirectory:YES];
     NSURL *fileDirectory = [userDirectory URLByAppendingPathComponent:[NSString stringWithFormat:@"%llu", file.ident] isDirectory:YES];
@@ -223,7 +223,7 @@
 
 - (NSString *)legacyPathForPersistedFile:(CKAttachment *)file {
     NSString *documentsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *path = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%llu_%@", CKIClient.currentClient.authSession.user.id, file.ident, file.filename]];
+    NSString *path = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%llu_%@", Session.current.user.id, file.ident, file.filename]];
     return path;
 }
 
@@ -312,7 +312,7 @@
 }
 
 - (NSURL *)getHTMLFilePreviewURL {
-    NSURL *previewURL = CKIClient.currentClient.authSession.baseURL;
+    NSURL *previewURL = Session.current.baseURL;
 
     if (self.courseID) {
         previewURL = [previewURL URLByAppendingPathComponent:@"courses"];
@@ -328,7 +328,7 @@
 - (UIViewController *)childControllerForContentAtURL:(NSURL *)url {
     UIViewController *controller = nil;
     if ([_file.contentType isEqualToString:@"application/pdf"]) {
-        Session *session = CKIClient.currentClient.authSession;
+        Session *session = Session.current;
         pdfDocPresenter = [[PreSubmissionPDFDocumentPresenter alloc] initWithDocumentURL:url session:session defaultCourseID:self.courseID defaultAssignmentID:self.assignmentID];
         @weakify(self);
         pdfDocPresenter.didSubmitAssignment = ^{

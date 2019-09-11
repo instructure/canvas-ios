@@ -104,22 +104,12 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
         }
-        // Legacy Session support
-        legacySession = Session(
-            baseURL: session.baseURL,
-            user: SessionUser(
-                id: session.userID,
-                name: session.userName,
-                loginID: nil,
-                sortableName: nil,
-                email: session.userEmail,
-                avatarURL: session.userAvatarURL
-            ),
-            token: session.accessToken,
-            masqueradeAsUserID: session.actAsUserID
-        )
-        Router.sharedInstance.session = legacySession
-        NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: legacySession as Any])
+
+        if let legacySession = Session.current {
+            self.legacySession = legacySession
+            Router.sharedInstance.session = legacySession
+            NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: legacySession as Any])
+        }
         showRootView()
     }
 

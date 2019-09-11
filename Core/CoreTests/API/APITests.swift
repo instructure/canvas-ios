@@ -214,7 +214,8 @@ class APITests: XCTestCase {
         let request = URLRequest(url: url)
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
         MockURLSession.mock(
-            request, value: nil,
+            request,
+            value: nil,
             response: response,
             accessToken: session.accessToken
         )
@@ -261,7 +262,8 @@ class APITests: XCTestCase {
         let request = URLRequest(url: url)
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
         MockURLSession.mock(
-            request, value: nil,
+            request,
+            value: nil,
             response: response,
             accessToken: session.accessToken
         )
@@ -300,7 +302,8 @@ class APITests: XCTestCase {
         let request = URLRequest(url: url)
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
         MockURLSession.mock(
-            request, value: nil,
+            request,
+            value: nil,
             response: response,
             error: NSError.internalError(),
             accessToken: session.accessToken

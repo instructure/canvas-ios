@@ -114,7 +114,7 @@ public class ExternalToolManager: NSObject {
             pageViewPath = path.pruneApiVersionFromPath()
         }
         
-        var request = URLRequest(url: url).authorized(with: session)
+        var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
 
         disposable?.dispose()

@@ -23,11 +23,6 @@ open class TodoAPI {
     }
 
     open class func ignoreTodo(_ session: Session, todo: Todo) throws -> URLRequest {
-        var request = URLRequest(url: URL(string: todo.ignoreURL)!)
-        request.httpMethod = "DELETE"
-        if let token = session.token {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        }
-        return request
+        return try session.DELETE(todo.ignoreURL)
     }
 }

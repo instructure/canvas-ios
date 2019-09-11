@@ -39,7 +39,7 @@
 #endif
 #import "UIImage+TechDebt.h"
 
-@interface ProfileViewController () <UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface OldProfileViewController () <UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *simulatorMasqueradeButton;
 @property (weak, nonatomic) IBOutlet UIButton *avatarButton;
@@ -64,7 +64,7 @@
 
 
 // TODO: Unify the iPad and iPhone storyboards for profile
-@implementation ProfileViewController
+@implementation OldProfileViewController
 
 - (id)init {
     return [[UIStoryboard storyboardWithName:@"Profile" bundle:[NSBundle bundleForClass:[self class]]] instantiateInitialViewController];
@@ -117,7 +117,7 @@ CGFloat square(CGFloat x){return x*x;}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    Session *session = CKIClient.currentClient.authSession;
+    Session *session = Session.current;
     
     [session updateBackdropFileFromServer:^(BOOL success) {
         [session backdropPhoto:^(UIImage *backdropPhoto) {
@@ -178,7 +178,7 @@ CGFloat square(CGFloat x){return x*x;}
 
 -(void)chooseCoverPhoto {
     @weakify(self);
-    BackdropPickerViewController *backdropPicker = [[BackdropPickerViewController alloc] initWithSession:CKIClient.currentClient.authSession imageSelected:^(UIImage *selectedImage) {
+    BackdropPickerViewController *backdropPicker = [[BackdropPickerViewController alloc] initWithSession:Session.current imageSelected:^(UIImage *selectedImage) {
         @strongify(self);
         self.headerImageView.image = selectedImage;
     }];
@@ -233,8 +233,7 @@ CGFloat square(CGFloat x){return x*x;}
                 self.minHeaderHeight.constant = 90;
             }
         };
-        Session *session = [CKIClient currentClient].authSession;
-        [session backdropPhoto:gotPhoto];
+        [Session.current backdropPhoto:gotPhoto];
 
         [self.avatarButton setImage:image forState:UIControlStateNormal];
         [self.avatarButtonVerticalConstraint setConstant:10.0f];
@@ -299,7 +298,7 @@ CGFloat square(CGFloat x){return x*x;}
 - (IBAction)pickAvatar:(id)sender
 {
     [self.loadingIndicator startAnimating];
-    __weak ProfileViewController *weakSelf = self;
+    __weak OldProfileViewController *weakSelf = self;
     RACSignal *getUser = [[CKIClient currentClient] fetchResponseAtPath:@"api/v1/users/self" parameters:nil modelClass:[CKIUser class] context:nil];
     NSBundle *bundle = [NSBundle bundleForClass:self.class];
     [getUser subscribeNext:^(CKIUser *user) {
@@ -404,7 +403,7 @@ CGFloat square(CGFloat x){return x*x;}
     [activityIndicator startAnimating];
     
     __weak CKCanvasAPI *weakAPI = self.canvasAPI;
-    __weak ProfileViewController *weakSelf = self;
+    __weak OldProfileViewController *weakSelf = self;
     [self.canvasAPI postAvatarNamed:nil fileURL:imageFileURL block:^(NSError *error, BOOL isFinalValue, CKAttachment *attachment) {
         if (isFinalValue) {
             if (error) {

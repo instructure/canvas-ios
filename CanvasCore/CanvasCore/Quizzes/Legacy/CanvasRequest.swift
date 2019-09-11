@@ -61,7 +61,6 @@ struct Request<T>: CustomStringConvertible {
     fileprivate var request: Result<URLRequest, Error> {
         return Result(catching: {
             try URLRequest(method: method, URL: url, parameters: parameters ?? [:], encoding: parameterEncoding)
-                .authorized(with: auth)
         })
     }
     
@@ -81,12 +80,12 @@ The `Result`'s `NSError` may contain an explanation of the error from the Canvas
 :param: completed The response block that will be called with the `Result`. This will be invoked on the main thread.
 :return: A handler that can be used to cancel the request
 */
-func makeRequest<T>(_ request: Request<T>, completed: @escaping (Result<ResponsePage<T>, NSError>)->()) -> URLSessionDataTask? {
+func makeRequest<T>(_ request: Request<T>, completed: @escaping (Result<ResponsePage<T>, NSError>)->()) -> URLSessionTask? {
     
     let encodingResult = request.request
     
     if let urlRequest = encodingResult.value {
-        let dataTask = request.auth.URLSession.dataTask(with: urlRequest as URLRequest) { data, response, error in
+        return request.auth.api.makeRequest(urlRequest) { data, response, error in
             if let data = data, let httpURLResponse = response as? HTTPURLResponse {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
@@ -118,8 +117,6 @@ func makeRequest<T>(_ request: Request<T>, completed: @escaping (Result<Response
                 }
             }
         }
-        dataTask.resume()
-        return dataTask
     } else if let error = encodingResult.error as NSError? {
         completed(.failure(error))
     }

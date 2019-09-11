@@ -282,14 +282,15 @@ describe('httpClient', () => {
   })
 
   it('forwards legit 401 error', async () => {
-    const fetching = httpClient.get('')
+    const fetching = httpClient.get('', { refreshRetries: 1 })
     request.status = 401
     request.response = { error: [] }
     request.open = jest.fn((method, url) => {
       if (url.includes('login/oauth2/token')) {
         request.status = 201
         request.response = { access_token: 'new-token' }
-      } else if (request.status === 401) {
+      } else {
+        request.status = 401
         request.response = { error: [] }
       }
     })

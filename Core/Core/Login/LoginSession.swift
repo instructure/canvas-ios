@@ -116,7 +116,9 @@ public struct LoginSession: Codable, Hashable {
             userAvatarURL: userAvatarURL,
             userID: userID,
             userName: userName,
-            userEmail: userEmail
+            userEmail: userEmail,
+            clientID: clientID,
+            clientSecret: clientSecret
         )
     }
 
@@ -132,7 +134,9 @@ public struct LoginSession: Codable, Hashable {
             userAvatarURL: userAvatarURL,
             userID: userID,
             userName: userName,
-            userEmail: userEmail
+            userEmail: userEmail,
+            clientID: clientID,
+            clientSecret: clientSecret
         )
     }
 

@@ -44,20 +44,6 @@ extension URLRequest {
         httpBody = try encoding.body(method, encodingParameters: parameters)
         httpMethod = method.rawValue
     }
-
-    public func authorized(_ authorized: Bool = true, with session: Session) -> URLRequest {
-        guard let token = session.token, authorized else { return self }
-        
-        var authed = self
-        authed.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        
-        guard let masqID = session.masqueradeAsUserID, let url = url else { return authed }
-        let stringURL = url.absoluteString
-        let separator = stringURL.range(of: "?") == nil ? "?" : "&"
-        authed.url = URL(string:stringURL + separator + "as_user_id=\(masqID)")
-        
-        return authed
-    }
 }
 
 
@@ -75,8 +61,7 @@ extension Session {
         paramsPlusPagination["per_page"] = (parameters["per_page"] as? Int) ?? 99
         
         var request = try URLRequest(method: .GET, URL: url, parameters: paramsPlusPagination, encoding: encoding)
-            .authorized(authorized, with: self)
-        
+
         if let userAgent = userAgent {
             request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
         }
@@ -89,20 +74,17 @@ extension Session {
         let url = baseURL.appendingPathComponent(pathByRemovingDuplicateSlash(path))
         
         return try URLRequest(method: .POST, URL: url, parameters: parameters, encoding: encoding)
-            .authorized(authorized, with: self)
     }
 
     public func PUT(_ path: String, parameters: [String: Any] = [:], encoding: ParameterEncoding = .json, authorized: Bool = true) throws -> URLRequest {
         let url = baseURL.appendingPathComponent(pathByRemovingDuplicateSlash(path))
 
         return try URLRequest(method: .PUT, URL: url, parameters: parameters, encoding: encoding)
-            .authorized(authorized, with: self)
     }
 
     public func DELETE(_ path: String, parameters: [String: Any] = [:], encoding: ParameterEncoding = .urlEncodedInURL, authorized: Bool = true) throws -> URLRequest {
         let url = baseURL.appendingPathComponent(pathByRemovingDuplicateSlash(path))
 
         return try URLRequest(method: .DELETE, URL: url, parameters: parameters, encoding: encoding)
-            .authorized(authorized, with: self)
     }
 }

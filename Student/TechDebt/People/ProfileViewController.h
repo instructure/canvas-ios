@@ -21,7 +21,7 @@
 @class CKUser;
 @class CKCanvasAPI;
 
-@interface ProfileViewController : UIViewController
+@interface OldProfileViewController : UIViewController
 
 @property CKCanvasAPI *canvasAPI;
 @property (nonatomic) CKUser *user;

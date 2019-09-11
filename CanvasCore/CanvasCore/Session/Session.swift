@@ -30,70 +30,47 @@ open class Session: NSObject {
         case Default, AppGroup
     }
 
-    @objc public let user: SessionUser
-    @objc public let baseURL: URL
-    @objc public let masqueradeAsUserID: String?
-    @objc open var URLSession: Foundation.URLSession {
-        return URLSessionAPI.defaultURLSession
+    public let env: AppEnvironment
+    public var api: API {
+        return env.api
     }
-    open lazy var api: API = {
-        let masquerader = masqueradeAsUserID.flatMap { baseURL.appendingPathComponent("users").appendingPathComponent($0) }
-        let session = LoginSession(
-            accessToken: token,
-            baseURL: baseURL,
-            expiresAt: nil,
-            lastUsedAt: Date(),
-            locale: nil,
-            masquerader: masquerader,
-            refreshToken: refreshToken,
-            userAvatarURL: user.avatarURL,
-            userID: masqueradeAsUserID ?? user.id,
-            userName: user.name,
-            userEmail: user.email,
-            clientID: clientID,
-            clientSecret: clientSecret
-        )
-        return URLSessionAPI(loginSession: session, urlSession: URLSession)
-    }()
-    @objc open var token: String?
-    @objc open var refreshToken: String?
-    @objc open var clientID: String?
-    @objc open var clientSecret: String?
+    @objc public let baseURL: URL
+    @objc public let user: SessionUser
+    public let URLSession: Foundation.URLSession
     public let localStoreDirectory: LocalStoreDirectory
 
-    @objc public static var unauthenticated: Session {
-        return Session(baseURL: URL(string: "https://canvas.instructure.com/")!, user: SessionUser(id: "", name: ""), token: nil, refreshToken: nil, clientID: nil, clientSecret: nil)
+    @objc public static var current: Session? {
+        return Session(environment: .shared)
     }
 
-    @objc public convenience init(baseURL: URL, user: SessionUser, token: String?, refreshToken: String?, clientID: String?, clientSecret: String?, masqueradeAsUserID: String? = nil) {
-        self.init(baseURL: baseURL, user: user, token: token, refreshToken: refreshToken, clientID: clientID, clientSecret: clientSecret, localStoreDirectory: .AppGroup, masqueradeAsUserID: masqueradeAsUserID)
-    }
-
-    public init(baseURL: URL, user: SessionUser, token: String?, refreshToken: String?, clientID: String?, clientSecret: String?, localStoreDirectory: LocalStoreDirectory, masqueradeAsUserID: String? = nil) {
-        self.user = user
-        self.masqueradeAsUserID = masqueradeAsUserID
-        self.baseURL = baseURL
-        self.token = token
-        self.refreshToken = refreshToken
-        self.clientID = clientID
-        self.clientSecret = clientSecret
-        self.localStoreDirectory = localStoreDirectory
+    private init?(environment: AppEnvironment = .shared) {
+        guard let session = environment.currentSession, let api = environment.api as? URLSessionAPI else { return nil }
+        self.env = environment
+        self.baseURL = session.baseURL
+        self.user = SessionUser(
+            id: session.userID,
+            name: session.userName,
+            loginID: nil,
+            sortableName: session.userName,
+            email: session.userEmail,
+            avatarURL: session.userAvatarURL
+        )
+        self.URLSession = api.urlSession
+        self.localStoreDirectory = .AppGroup
     }
     
     @objc open var sessionID: String {
         let host = baseURL.host ?? "unknown-host"
         let userID = user.id
         var components = [host, userID]
-        if let masq = masqueradeAsUserID {
+        if let masq = env.currentSession?.originalUserID {
             components.append(masq)
         }
         return components.joined(separator: "-")
     }
     
     @objc open var isSiteAdmin: Bool {
-        guard let host = baseURL.host else { return false }
-
-        return host.lowercased().contains("siteadmin")
+        return env.currentSession?.baseURL.host?.lowercased().contains("siteadmin") == true
     }
     
     @objc open var localStoreDirectoryURL: URL {
@@ -132,13 +109,5 @@ open class Session: NSObject {
         let url = fileURL.appendingPathComponent("\(sessionID)_logs")
         let _ = try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
         return url
-    }
-}
-
-
-extension Session {
-    @objc public func compare(_ session: Session) -> Bool {
-        // Same if Token is equal or userID & baseURL are equal
-        return (self.token == session.token) || (session.user.id == self.user.id && session.baseURL.absoluteString == self.baseURL.absoluteString)
     }
 }

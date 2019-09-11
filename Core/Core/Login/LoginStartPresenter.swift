@@ -62,7 +62,9 @@ class LoginStartPresenter {
                         userAvatarURL: response.avatar_url,
                         userID: session.userID,
                         userName: response.short_name,
-                        userEmail: response.email
+                        userEmail: response.email,
+                        clientID: session.clientID,
+                        clientSecret: session.clientSecret
                     ))
                 }
                 group.leave()

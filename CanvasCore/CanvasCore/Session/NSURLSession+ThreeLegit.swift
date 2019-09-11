@@ -19,6 +19,7 @@
 import Foundation
 import ReactiveSwift
 import Marshal
+import Core
 
 private let networkErrorTitle = NSLocalizedString("Network Error", tableName: "Localizable", bundle: .core, value: "", comment: "Title for network errors")
 
@@ -125,8 +126,8 @@ public enum JSONObjectResponse {
 
 extension Session {
     public func rac_dataWithRequest(_ request: URLRequest) -> SignalProducer<(Data, URLResponse), NSError> {
-        return SignalProducer { [weak self] observer, disposable in
-            let task = self?.api.makeRequest(request) { data, urlResponse, error in
+        return SignalProducer { observer, disposable in
+            let task = AppEnvironment.shared.api.makeRequest(request) { data, urlResponse, error in
                 guard let data = data, let response = urlResponse, error == nil else {
                     observer.send(error: error as NSError? ?? NSError.invalidResponseError(urlResponse?.url))
                     return
@@ -220,7 +221,7 @@ extension Session {
 
     @discardableResult
     public func makeRequest<T>(_ request: URLRequest, callback: @escaping (Result<T, NSError>) -> Void) -> URLSessionTask? where T: Decodable {
-        return api.makeRequest(request) { data, response, error in
+        return AppEnvironment.shared.api.makeRequest(request) { data, response, error in
             if let error = error {
                 callback(.failure(error as NSError))
                 return

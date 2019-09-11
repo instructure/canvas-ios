@@ -56,7 +56,9 @@ public class ActAsUserPresenter {
                 userAvatarURL: user.avatar_url,
                 userID: user.id.value,
                 userName: user.short_name,
-                userEmail: user.email
+                userEmail: user.email,
+                clientID: session.clientID,
+                clientSecret: session.clientSecret
             )
             callback(nil)
             self.loginDelegate?.startActing(as: entry)

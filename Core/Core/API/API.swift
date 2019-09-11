@@ -25,7 +25,7 @@ public protocol API {
     var identifier: String? { get }
 
     @discardableResult
-    func makeRequest<R: APIRequestable>(_ requestable: R, refreshToken: Bool, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask?
+    func makeRequest<R: APIRequestable>(_ requestable: R, refreshTokenRetries: Int, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask?
 
     @discardableResult
     func makeDownloadRequest(_ url: URL, callback: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionTask?
@@ -37,14 +37,17 @@ public protocol API {
 extension API {
     @discardableResult
     public func makeRequest<R: APIRequestable>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
-        return makeRequest(requestable, refreshToken: true, callback: callback)
+        return makeRequest(requestable, refreshTokenRetries: 5, callback: callback)
     }
 }
 
 public class URLSessionAPI: API {
     public var loginSession: LoginSession?
     public let baseURL: URL
-    let urlSession: URLSession
+    public let urlSession: URLSession
+
+    var refreshTask: URLSessionTask?
+    var refreshQueue: [URLSessionTask] = []
 
     public var identifier: String? {
         return urlSession.configuration.identifier
@@ -79,13 +82,15 @@ public class URLSessionAPI: API {
         self.urlSession = urlSession
     }
 
+    var expired = true
+
     @discardableResult
-    public func makeRequest<R: APIRequestable>(_ requestable: R, refreshToken: Bool, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
+    public func makeRequest<R: APIRequestable>(_ requestable: R, refreshTokenRetries: Int, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
         do {
             let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
             let task = urlSession.dataTask(with: request) { [weak self] data, response, error in
-                if response?.isUnauthorized == true, refreshToken {
-                    self?.refreshToken { self?.makeRequest(requestable, refreshToken: false, callback: callback) }
+                if (response?.isUnauthorized == true || self?.expired == true), refreshTokenRetries > 0 {
+                    self?.refreshToken { self?.makeRequest(requestable, refreshTokenRetries: refreshTokenRetries - 1, callback: callback) }
                     return
                 }
                 guard let data = data, error == nil, !(R.Response.self is APINoContent.Type) else {
@@ -100,7 +105,11 @@ public class URLSessionAPI: API {
                     callback(nil, response, APIError.from(data: data, response: response, error: error))
                 }
             }
-            task.resume()
+            if refreshTask?.state == .running {
+                refreshQueue.append(task)
+            } else {
+                task.resume()
+            }
             return task
         } catch let error {
             callback(nil, nil, error)
@@ -140,7 +149,7 @@ public class URLSessionAPI: API {
         }
         let client = APIVerifyClient(authorized: true, base_url: baseURL, client_id: clientID, client_secret: clientSecret)
         let request = PostLoginOAuthRequest(client: client, refreshToken: refreshToken)
-        makeRequest(request, refreshToken: false) { [weak self] response, _, error in
+        refreshTask = makeRequest(request, refreshTokenRetries: 0) { [weak self] response, _, error in
             if let response = response, error == nil {
                 let session = loginSession.refresh(accessToken: response.access_token)
                 LoginSession.add(session)
@@ -148,8 +157,12 @@ public class URLSessionAPI: API {
                     AppEnvironment.shared.currentSession = session
                 }
                 self?.loginSession = session
+                self?.expired = false
             }
             callback()
+            let tasks = self?.refreshQueue ?? []
+            tasks.forEach { $0.resume() }
+            self?.refreshQueue = []
         }
     }
 }
