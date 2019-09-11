@@ -18,7 +18,7 @@
 
 import CanvasCore
 
-typealias CourseListSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: Course)->Void
+typealias CourseListSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: Course) -> Void
 
 class CourseListViewController: FetchedTableViewController<Course> {
 
@@ -26,7 +26,7 @@ class CourseListViewController: FetchedTableViewController<Course> {
     fileprivate let observeeID: String
 
     var courseCollection: FetchedCollection<Course>?
-    @objc var selectCourseAction: CourseListSelectCourseAction? = nil
+    @objc var selectCourseAction: CourseListSelectCourseAction?
 
     @objc init(session: Session, studentID: String) throws {
         self.session = session
@@ -48,7 +48,9 @@ class CourseListViewController: FetchedTableViewController<Course> {
         self.emptyView = emptyView
 
         let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
+        //  swiftlint:disable:next force_try
         let collection = try! Course.collectionByStudent(session, studentID: studentID)
+        //  swiftlint:disable:next force_try
         let refresher = try! Course.airwolfCollectionRefresher(session, studentID: studentID)
         prepare(collection, refresher: refresher, viewModelFactory: { course in
             CourseCellViewModel(course: course, highlightColor: scheme.highlightCellColor)

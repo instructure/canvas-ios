@@ -19,13 +19,13 @@
 import UIKit
 
 class DashboardTabView: UIView {
-    
+
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
     fileprivate let selectedAlpha: CGFloat = 1.0
     fileprivate let unselectedAlpha: CGFloat = 0.6
-    
+
     @objc var normalImage: UIImage?
     @objc var selectedImage: UIImage?
     @objc var title: String? {
@@ -53,7 +53,7 @@ class DashboardTabView: UIView {
             return .white
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -63,7 +63,7 @@ class DashboardTabView: UIView {
 
         iconImageView.addSubview(badgeView)
     }
-    
+
     @objc func setSelected(_ selected: Bool) {
         titleLabel.alpha = selected ? selectedAlpha : unselectedAlpha
 

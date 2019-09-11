@@ -63,16 +63,16 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         return true
     }
-    
+
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return openCanvasURL(url)
     }
-    
+
     func applicationDidBecomeActive(_ application: UIApplication) {
         CoreWebView.keepCookieAlive(for: environment)
         AppStoreReview.handleLaunch()
     }
-    
+
     @objc func openCanvasURL(_ url: URL) -> Bool {
         if url.scheme == "canvas-parent" {
             if environment.currentSession != nil {
@@ -83,10 +83,10 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
                 // should never get here... should either have a session or a window!
             }
         }
-        
+
         return false
     }
-    
+
     @objc func routeToRemindable(from response: UNNotificationResponse) {
         let userInfo = response.notification.request.content.userInfo
         if let urlString = userInfo[RemindableActionURLKey] as? String, let url = URL(string: urlString) {
@@ -212,15 +212,15 @@ extension ParentAppDelegate {
 
 // MARK: SoErroneous
 extension ParentAppDelegate {
-    
+
     @objc func alertUser(of error: NSError, from presentingViewController: UIViewController?) {
         guard let presentFrom = presentingViewController else { return }
-        
+
         DispatchQueue.main.async {
             let alertDetails = error.alertDetails(reportAction: {
                 presentFrom.present(UINavigationController(rootViewController: ErrorReportViewController.create(error: error)), animated: true)
             })
-            
+
             if let deets = alertDetails {
                 let alert = UIAlertController(title: deets.title, message: deets.description, preferredStyle: .alert)
                 deets.actions.forEach(alert.addAction)
@@ -228,11 +228,11 @@ extension ParentAppDelegate {
             }
         }
     }
-    
+
     @objc func setupDefaultErrorHandling() {
         CanvasCore.ErrorReporter.setErrorHandler({ error, presentingViewController in
             self.alertUser(of: error, from: presentingViewController)
-            
+
             if error.shouldRecordInCrashlytics {
                 Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: nil)
             }
@@ -249,7 +249,7 @@ extension ParentAppDelegate {
     @objc func setupCrashlytics() {
         guard !uiTesting else { return }
         guard hasFabric else {
-            NSLog("WARNING: Crashlytics was not properly initialized.");
+            NSLog("WARNING: Crashlytics was not properly initialized.")
             return
         }
         Fabric.with([Crashlytics.self])
@@ -257,7 +257,7 @@ extension ParentAppDelegate {
 }
 
 extension ParentAppDelegate: AnalyticsHandler {
-    func handleEvent(_ name: String, parameters: [String : Any]?) {
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
         if hasFirebase {
             Analytics.logEvent(name, parameters: parameters)
         }
@@ -272,7 +272,9 @@ extension ParentAppDelegate: UNUserNotificationCenterDelegate {
         }
     }
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound])
     }
 }

@@ -1425,6 +1425,7 @@
 				ADAFC3B5838CDB330E525883 /* [CP] Embed Pods Frameworks */,
 				F9B947062215E9CF0083E660 /* Carthage Copy Frameworks */,
 				61DA38861D468D2C002FEE31 /* Fabric */,
+				3B8F23CE2328405A00788730 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -1561,6 +1562,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3B8F23CE2328405A00788730 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --config ../.swiftlint.yml\n    swiftlint --config ../.swiftlint.yml --strict\nelse\n    echo \"warning: SwiftLint not installed, download --> `brew install swfitlint`\"\nfi\n";
+		};
 		61DA38861D468D2C002FEE31 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2702,6 +2721,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: iOS Builds (73MVYX3ELK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2012;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

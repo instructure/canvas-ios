@@ -28,7 +28,7 @@ class SettingsAPIClient {
         let parameters: [String: Any] = ["pairing_code": pairingCode]
 
         let request = try session.POST(path, parameters: parameters)
-        let task = ephemeralSession.dataTask(with: request) { (data, response, error) in
+        let task = ephemeralSession.dataTask(with: request) { (data, response, _) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode >= 300,
                 let data = data {

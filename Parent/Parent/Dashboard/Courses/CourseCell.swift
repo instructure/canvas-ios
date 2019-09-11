@@ -19,7 +19,7 @@
 import UIKit
 
 class CourseCell: UITableViewCell {
-    
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var codeLabel: UILabel!
     @IBOutlet weak var gradeLabel: UILabel!
@@ -44,5 +44,5 @@ class CourseCell: UITableViewCell {
 
         contentView.backgroundColor = highlighted ? highlightColor : UIColor.white
     }
-    
+
 }

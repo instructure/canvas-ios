@@ -18,9 +18,7 @@
 
 import Foundation
 
-
 import CanvasCore
-
 
 struct AlertCellViewModel: TableViewCellViewModel {
 

@@ -52,6 +52,7 @@ extension Core.AlertThreshold {
             model.studentID = api.user_id
             model.threshold = api.threshold
             model.typeRaw = api.alert_type
+            //  swiftlint:disable:next force_try
             try! context.save()
             return model
     }

@@ -18,13 +18,12 @@
 
 import Foundation
 
-
 import ReactiveSwift
 import Marshal
 import CanvasCore
 
 extension CalendarEvent {
-    
+
     // MARK: - Collection
 
     public static func getCalendarEvents(_ session: Session, studentID: String, startDate: Date, endDate: Date, contextCodes: [String]) throws -> SignalProducer<[JSONObject], NSError> {

@@ -30,7 +30,7 @@ open class DiscussionTopicAPI {
         let path = "/api/v1/courses/\(courseID)/discussion_topics"
         return try session.GET(path)
     }
-    
+
     open class func getDiscussionTopicView(_ session: Session, contextID: ContextID, topicID: String) throws -> URLRequest {
         let path = "\(contextID.apiPath)/discussion_topics/\(topicID)/view"
         return try session.GET(path)

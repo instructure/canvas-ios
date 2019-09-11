@@ -60,7 +60,7 @@ public class RemoveAlertThreshold: CollectionUseCase {
         self.thresholdID = thresholdID
     }
 
-    public var cacheKey: String? = nil
+    public var cacheKey: String?
 
     public var request: DeleteAlertThresholdRequest {
         return DeleteAlertThresholdRequest(thresholdID: thresholdID)
@@ -86,7 +86,7 @@ public class CreateAlertThreshold: APIUseCase {
         self.alertType = alertType
     }
 
-    public var cacheKey: String? = nil
+    public var cacheKey: String?
 
     public var request: PostAlertThresholdRequest {
         return PostAlertThresholdRequest(userID: userID, alertType: alertType, value: value)
@@ -116,7 +116,7 @@ public class UpdateAlertThreshold: APIUseCase {
         self.alertType = alertType
     }
 
-    public var cacheKey: String? = nil
+    public var cacheKey: String?
 
     public var request: PutAlertThresholdRequest {
         return PutAlertThresholdRequest(thresholdID: thresholdID, alertType: alertType, value: value)
@@ -170,7 +170,6 @@ public struct PutAlertThresholdRequest: APIRequestable {
     }
 }
 
-
 public struct PostAlertThresholdRequest: APIRequestable {
     public typealias Response = APIAlertThreshold
 
@@ -207,7 +206,7 @@ public struct GetAlertThresholdRequest: APIRequestable {
     public var query: [APIQueryItem] {
         return [
             .value("per_page", "99"),
-            .value("student_id", studentID)
+            .value("student_id", studentID),
         ]
     }
 }
