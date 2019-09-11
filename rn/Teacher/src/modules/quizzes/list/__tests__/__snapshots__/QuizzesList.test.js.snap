@@ -308,7 +308,9 @@ exports[`QuizzesList renders in correct order 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {
+                            "fontSize": 14,
+                          },
                         ]
                       }
                     >
@@ -324,7 +326,9 @@ exports[`QuizzesList renders in correct order 1`] = `
                             "fontSize": 16,
                           },
                           Array [
-                            undefined,
+                            Object {
+                              "fontSize": 14,
+                            },
                             Object {
                               "alignSelf": "center",
                               "color": "#8B969E",
@@ -350,7 +354,9 @@ exports[`QuizzesList renders in correct order 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {
+                            "fontSize": 14,
+                          },
                         ]
                       }
                     >
@@ -602,7 +608,9 @@ exports[`QuizzesList renders in correct order 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {
+                            "fontSize": 14,
+                          },
                         ]
                       }
                     >
@@ -618,7 +626,9 @@ exports[`QuizzesList renders in correct order 1`] = `
                             "fontSize": 16,
                           },
                           Array [
-                            undefined,
+                            Object {
+                              "fontSize": 14,
+                            },
                             Object {
                               "alignSelf": "center",
                               "color": "#8B969E",
@@ -644,7 +654,9 @@ exports[`QuizzesList renders in correct order 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {
+                            "fontSize": 14,
+                          },
                         ]
                       }
                     >
@@ -965,7 +977,9 @@ exports[`QuizzesList renders quizzes 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {
+                            "fontSize": 14,
+                          },
                         ]
                       }
                     >
@@ -981,7 +995,9 @@ exports[`QuizzesList renders quizzes 1`] = `
                             "fontSize": 16,
                           },
                           Array [
-                            undefined,
+                            Object {
+                              "fontSize": 14,
+                            },
                             Object {
                               "alignSelf": "center",
                               "color": "#8B969E",
@@ -1007,7 +1023,9 @@ exports[`QuizzesList renders quizzes 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {
+                            "fontSize": 14,
+                          },
                         ]
                       }
                     >
@@ -1259,7 +1277,9 @@ exports[`QuizzesList renders quizzes 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {
+                            "fontSize": 14,
+                          },
                         ]
                       }
                     >
@@ -1275,7 +1295,9 @@ exports[`QuizzesList renders quizzes 1`] = `
                             "fontSize": 16,
                           },
                           Array [
-                            undefined,
+                            Object {
+                              "fontSize": 14,
+                            },
                             Object {
                               "alignSelf": "center",
                               "color": "#8B969E",
@@ -1301,7 +1323,9 @@ exports[`QuizzesList renders quizzes 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {
+                            "fontSize": 14,
+                          },
                         ]
                       }
                     >

@@ -198,7 +198,9 @@ exports[`QuizRow renders 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "fontSize": 14,
+                },
               ]
             }
           >
@@ -214,7 +216,9 @@ exports[`QuizRow renders 1`] = `
                   "fontSize": 16,
                 },
                 Array [
-                  undefined,
+                  Object {
+                    "fontSize": 14,
+                  },
                   Object {
                     "alignSelf": "center",
                     "color": "#8B969E",
@@ -240,7 +244,9 @@ exports[`QuizRow renders 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "fontSize": 14,
+                },
               ]
             }
           >
@@ -493,7 +499,9 @@ exports[`QuizRow renders multiple question count 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "fontSize": 14,
+                },
               ]
             }
           >
@@ -509,7 +517,9 @@ exports[`QuizRow renders multiple question count 1`] = `
                   "fontSize": 16,
                 },
                 Array [
-                  undefined,
+                  Object {
+                    "fontSize": 14,
+                  },
                   Object {
                     "alignSelf": "center",
                     "color": "#8B969E",
@@ -535,7 +545,9 @@ exports[`QuizRow renders multiple question count 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "fontSize": 14,
+                },
               ]
             }
           >
@@ -788,7 +800,9 @@ exports[`QuizRow renders published 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "fontSize": 14,
+                },
               ]
             }
           >
@@ -804,7 +818,9 @@ exports[`QuizRow renders published 1`] = `
                   "fontSize": 16,
                 },
                 Array [
-                  undefined,
+                  Object {
+                    "fontSize": 14,
+                  },
                   Object {
                     "alignSelf": "center",
                     "color": "#8B969E",
@@ -830,7 +846,9 @@ exports[`QuizRow renders published 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "fontSize": 14,
+                },
               ]
             }
           >
@@ -1084,7 +1102,9 @@ exports[`QuizRow renders selected 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "fontSize": 14,
+                },
               ]
             }
           >
@@ -1100,7 +1120,9 @@ exports[`QuizRow renders selected 1`] = `
                   "fontSize": 16,
                 },
                 Array [
-                  undefined,
+                  Object {
+                    "fontSize": 14,
+                  },
                   Object {
                     "alignSelf": "center",
                     "color": "#8B969E",
@@ -1126,7 +1148,9 @@ exports[`QuizRow renders selected 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "fontSize": 14,
+                },
               ]
             }
           >
@@ -1379,7 +1403,9 @@ exports[`QuizRow renders single question count 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "fontSize": 14,
+                },
               ]
             }
           >
@@ -1395,7 +1421,9 @@ exports[`QuizRow renders single question count 1`] = `
                   "fontSize": 16,
                 },
                 Array [
-                  undefined,
+                  Object {
+                    "fontSize": 14,
+                  },
                   Object {
                     "alignSelf": "center",
                     "color": "#8B969E",
@@ -1421,7 +1449,9 @@ exports[`QuizRow renders single question count 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "fontSize": 14,
+                },
               ]
             }
           >
@@ -1674,7 +1704,9 @@ exports[`QuizRow renders unpublished 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "fontSize": 14,
+                },
               ]
             }
           >
@@ -1690,7 +1722,9 @@ exports[`QuizRow renders unpublished 1`] = `
                   "fontSize": 16,
                 },
                 Array [
-                  undefined,
+                  Object {
+                    "fontSize": 14,
+                  },
                   Object {
                     "alignSelf": "center",
                     "color": "#8B969E",
@@ -1716,7 +1750,9 @@ exports[`QuizRow renders unpublished 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "fontSize": 14,
+                },
               ]
             }
           >
@@ -1968,7 +2004,9 @@ exports[`QuizRow renders without points possible 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {
+                  "fontSize": 14,
+                },
               ]
             }
           >
