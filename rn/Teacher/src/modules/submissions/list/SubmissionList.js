@@ -105,7 +105,7 @@ export class SubmissionList extends Component<Props, State> {
       {
         filter: oldCreateFilter(this.state.filterOptions),
         studentIndex: index,
-        flags: this.state.flags
+        flags: this.state.flags,
       }
     )
   }

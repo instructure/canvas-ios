@@ -42,15 +42,14 @@ const defaultProps = {
   newGradebookEnabled: false,
   onPress: jest.fn(),
   onAvatarPress: jest.fn(),
-  anonymous: false,
-  gradingType: 'points'
+  gradingType: 'points',
 }
 
 test('unsubmitted ungraded row renders correctly', () => {
   let submission = templates.submission({
     submittedAt: null,
     grade: null,
-    state: 'unsubmitted'
+    state: 'unsubmitted',
   })
   let tree = renderer.create(
     <SubmissionRow {...defaultProps} submission={submission} />
@@ -191,7 +190,7 @@ test('does not show the eyeball when not graded', () => {
   let submission = templates.submission({
     submittedAt: null,
     grade: null,
-    postedAt: null
+    postedAt: null,
   })
 
   let tree = renderer.create(
