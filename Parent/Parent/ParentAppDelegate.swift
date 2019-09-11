@@ -117,7 +117,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             refresher.refreshingCompleted.observeValues { [weak self] _ in
                 guard let self = self, let window = self.window else { return }
 
-                let controller = UINavigationController.parentNavigationController(withRootViewController: DashboardViewController.create(session: session))
+                let controller = UINavigationController(rootViewController: DashboardViewController.create(session: session))
                 controller.view.layoutIfNeeded()
                 UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                     window.rootViewController = controller

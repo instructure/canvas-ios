@@ -113,7 +113,6 @@
 		6182D3B91D91D7EF00D516D5 /* DetailsAttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6182D3B71D91D7EF00D516D5 /* DetailsAttachmentCell.swift */; };
 		6182D3BA1D91D7EF00D516D5 /* DetailsAttachmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6182D3B81D91D7EF00D516D5 /* DetailsAttachmentCell.xib */; };
 		6196FC3A1CA1A47D0032B8EF /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6196FC391CA1A47D0032B8EF /* EventDetailsViewModel.swift */; };
-		619CB8BA1CA9B3B60022D26F /* UINavigationController+Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619CB8B91CA9B3B60022D26F /* UINavigationController+Parent.swift */; };
 		619FCC5D1CAC57AB003C97AA /* WebBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619FCC5B1CAC57AB003C97AA /* WebBrowserViewController.swift */; };
 		61B536E11C97C25A0052B8CB /* CalendarEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E01C97C25A0052B8CB /* CalendarEventDetailsViewController.swift */; };
 		61B536F51C99E58B0052B8CB /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536F41C99E58B0052B8CB /* DatePickerViewController.swift */; };
@@ -715,7 +714,6 @@
 		6182D3B71D91D7EF00D516D5 /* DetailsAttachmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsAttachmentCell.swift; sourceTree = "<group>"; };
 		6182D3B81D91D7EF00D516D5 /* DetailsAttachmentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsAttachmentCell.xib; sourceTree = "<group>"; };
 		6196FC391CA1A47D0032B8EF /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
-		619CB8B91CA9B3B60022D26F /* UINavigationController+Parent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Parent.swift"; sourceTree = "<group>"; };
 		619FCC5B1CAC57AB003C97AA /* WebBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebBrowserViewController.swift; sourceTree = "<group>"; };
 		61B536E01C97C25A0052B8CB /* CalendarEventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewController.swift; sourceTree = "<group>"; };
 		61B536F41C99E58B0052B8CB /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
@@ -1137,7 +1135,6 @@
 				5E41048C1C9B1F3E0021567C /* CalendarEvent+Submissions.swift */,
 				5E4104881C99E06D0021567C /* UIColor+Parent.swift */,
 				5E41048A1C99E08B0021567C /* UIImage+Resize.swift */,
-				619CB8B91CA9B3B60022D26F /* UINavigationController+Parent.swift */,
 				613E90E51D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift */,
 				4948BE681F915D330035BAFD /* BundleExtensions.swift */,
 			);
@@ -1674,7 +1671,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				619FCC5D1CAC57AB003C97AA /* WebBrowserViewController.swift in Sources */,
-				619CB8BA1CA9B3B60022D26F /* UINavigationController+Parent.swift in Sources */,
 				7D52D8A422FCC8A200684932 /* DiscussionTopicAPI.swift in Sources */,
 				5E0F9A741C739E6A00BB7707 /* SettingsObserveeCell.swift in Sources */,
 				7D52D8A122FCC89F00684932 /* DiscussionTopic.swift in Sources */,
@@ -1697,7 +1693,6 @@
 				5E0F9A6A1C739E6A00BB7707 /* CalendarEventCell.swift in Sources */,
 				612D64431C8794480045E03B /* DetailsInfoCell.swift in Sources */,
 				497C48BA1F912BD100A3BC06 /* Session+Alert.swift in Sources */,
-
 				7DBED00A2328282200392F3C /* Routes.swift in Sources */,
 				61B536F51C99E58B0052B8CB /* DatePickerViewController.swift in Sources */,
 				5E0F9A671C739E6A00BB7707 /* AlertCell.swift in Sources */,
