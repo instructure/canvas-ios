@@ -18,6 +18,7 @@
 
 import UIKit
 import Cartography
+import Core
 
 class QuizPresentingViewController: UIViewController {
     
@@ -312,6 +313,10 @@ class QuizPresentingViewController: UIViewController {
     }
     
     @objc func exitQuiz(_ button: UIBarButtonItem?) {
+        let courseID = quizController.service.context.id
+        let quizID = quizController.service.quizID
+        GetQuiz(courseID: courseID, quizID: quizID).fetch(force: true) { _, _, _ in }
+        GetQuizSubmissions(courseID: courseID, quizID: quizID).fetch(force: true) { _, _, _ in }
         dismiss(animated: true, completion: nil)
     }
     
