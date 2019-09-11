@@ -42,7 +42,7 @@ public class Logger: LoggerProtocol {
     public static let shared = Logger()
 
     public init() {
-        self.database = NSPersistentContainer.create()
+        self.database = NSPersistentContainer.shared
     }
 
     public func log(_ message: String = #function) {

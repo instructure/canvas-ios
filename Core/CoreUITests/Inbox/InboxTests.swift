@@ -59,7 +59,7 @@ class InboxTests: CoreUITestCase {
     }
 
     func testCanFilterMessagesAndShowsUnread() {
-        XCTAssert(TabBar.inboxTab.value == "2 items")
+        XCTAssert(TabBar.inboxTab.value() == "2 items")
         TabBar.inboxTab.tap()
 
         Inbox.message(id: "47").waitToExist()

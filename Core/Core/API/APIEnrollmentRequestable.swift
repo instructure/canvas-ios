@@ -24,7 +24,7 @@ struct PostEnrollmentRequest: APIRequestable {
     struct Body: Codable, Equatable {
         struct Enrollment: Codable, Equatable {
             let user_id: String
-            let type: EnrollmentRole
+            let type: String
             let enrollment_state: EnrollmentState
         }
 

@@ -36,12 +36,12 @@ class LoginFindSchoolTests: StudentUITestCase {
         LoginFindSchool.searchField.waitToExist()
 
         LoginFindAccountResult.emptyCell.waitToExist()
-        XCTAssertEqual(LoginFindAccountResult.emptyCell.label, "How do I find my school?")
+        XCTAssertEqual(LoginFindAccountResult.emptyCell.label(), "How do I find my school?")
 
         LoginFindSchool.searchField.typeText("zxzx")
         XCUIElementWrapper(app.activityIndicators.firstMatch).waitToVanish()
 
-        XCTAssertEqual(LoginFindAccountResult.emptyCell.label, "Can’t find your school? Try typing the full school URL. Tap here for help.")
+        XCTAssertEqual(LoginFindAccountResult.emptyCell.label(), "Can’t find your school? Try typing the full school URL. Tap here for help.")
     }
 
     func testFoundResults() {
@@ -54,9 +54,8 @@ class LoginFindSchoolTests: StudentUITestCase {
 
         LoginFindSchool.searchField.typeText("cgnu")
         let item = LoginFindAccountResult.item(host: "http://cgnuonline-eniversity.edu")
-        item.waitToExist()
 
-        XCTAssertEqual(item.label, "Crazy Go Nuts University")
+        XCTAssertEqual(item.label(), "Crazy Go Nuts University")
         item.tap()
         LoginWeb.webView.waitToExist()
     }

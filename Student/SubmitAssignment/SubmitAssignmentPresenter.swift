@@ -26,6 +26,7 @@ protocol SubmitAssignmentView: class {
 class SubmitAssignmentPresenter {
     let env: AppEnvironment
     let sharedContainer: URL
+    var uploadManager = UploadManager(identifier: "com.instructure.icanvas.SubmitAssignment.file-uploads")
     weak var view: SubmitAssignmentView?
 
     private(set) var course: Course? {
@@ -130,24 +131,23 @@ class SubmitAssignmentPresenter {
         guard let assignment = assignment, let urls = urls else { return }
         let uploadContext = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: comment)
         let batchID = "assignment-\(assignment.id)"
-        let manager = UploadManager.shared
-        manager.cancel(environment: env, batchID: batchID)
+        uploadManager.cancel(environment: env, batchID: batchID)
         let semaphore = DispatchSemaphore(value: 0)
         var error: Error?
         ProcessInfo.processInfo.performExpiringActivity(withReason: "get upload targets") { expired in
             if expired {
-                manager.sendFailedNotification()
+                self.uploadManager.sendFailedNotification()
                 return
             }
-            manager.viewContext.perform {
+            self.uploadManager.viewContext.perform {
                 do {
                     var files: [File] = []
                     for url in urls {
-                        let file = try manager.add(environment: self.env, url: url, batchID: batchID)
+                        let file = try self.uploadManager.add(environment: self.env, url: url, batchID: batchID)
                         files.append(file)
                     }
                     for file in files {
-                        manager.upload(environment: self.env, file: file, to: uploadContext) {
+                        self.uploadManager.upload(environment: self.env, file: file, to: uploadContext) {
                             semaphore.signal()
                         }
                     }
@@ -156,7 +156,7 @@ class SubmitAssignmentPresenter {
                 }
             }
             if error != nil {
-                manager.sendFailedNotification()
+                self.uploadManager.sendFailedNotification()
             }
             semaphore.wait()
             callback()

@@ -55,7 +55,6 @@ class URLSubmissionTests: StudentUITestCase {
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetails.urlButton.waitToExist()
-        XCTAssertEqual(SubmissionDetails.urlButton.label, "http://www.amazon.com")
+        XCTAssertEqual(SubmissionDetails.urlButton.label(), "http://www.amazon.com")
     }
 }

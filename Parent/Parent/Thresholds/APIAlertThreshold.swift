@@ -18,7 +18,10 @@
 
 import Foundation
 
-public enum EnrollmentRole: String, Codable {
-    case student = "StudentEnrollment"
-    case teacher = "TeacherEnrollment"
+public struct APIAlertThreshold: Codable, Equatable {
+    let id: String
+    let observer_id: String
+    let user_id: String
+    let alert_type: String
+    let threshold: String?
 }

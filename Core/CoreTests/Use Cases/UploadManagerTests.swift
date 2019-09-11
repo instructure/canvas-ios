@@ -31,7 +31,7 @@ class UploadManagerTests: CoreTestCase {
 
     let uploadContext: FileUploadContext = .course("1")
     let backgroundSession = MockURLSession()
-    let manager = UploadManager()
+    let manager = UploadManager(identifier: "upload-manager-tests")
     var context: NSManagedObjectContext {
         return NSPersistentContainer.shared.viewContext
     }

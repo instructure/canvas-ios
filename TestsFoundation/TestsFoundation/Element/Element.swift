@@ -22,13 +22,13 @@ import XCTest
 public protocol Element {
     var elementType: XCUIElement.ElementType { get }
     var exists: Bool { get }
-    var frame: CGRect { get }
     var id: String { get }
     var isEnabled: Bool { get }
     var isSelected: Bool { get }
     var isVisible: Bool { get }
-    var label: String { get }
-    var value: String { get }
+    func frame(file: StaticString, line: UInt) -> CGRect
+    func label(file: StaticString, line: UInt) -> String
+    func value(file: StaticString, line: UInt) -> String?
 
     @discardableResult
     func pick(column: Int, value: String, file: StaticString, line: UInt) -> Element
@@ -56,6 +56,16 @@ public protocol Element {
 }
 
 public extension Element {
+    func frame(file: StaticString = #file, line: UInt = #line) -> CGRect {
+        return frame(file: file, line: line)
+    }
+    func label(file: StaticString = #file, line: UInt = #line) -> String {
+        return label(file: file, line: line)
+    }
+    func value(file: StaticString = #file, line: UInt = #line) -> String? {
+        return value(file: file, line: line)
+    }
+
     @discardableResult
     func pick(column: Int, value: String, file: StaticString = #file, line: UInt = #line) -> Element {
         return pick(column: column, value: value, file: file, line: line)
@@ -126,12 +136,11 @@ public struct XCUIElementWrapper: Element {
     public var exists: Bool {
         return element.exists
     }
-    public var frame: CGRect {
-        guard exists else { return .zero }
+    public func frame(file: StaticString = #file, line: UInt = #line) -> CGRect {
+        waitToExist(30, file: file, line: line)
         return element.frame
     }
     public var id: String {
-        guard exists else { return "" }
         return element.identifier
     }
     public var isEnabled: Bool {
@@ -139,20 +148,19 @@ public struct XCUIElementWrapper: Element {
         return element.isEnabled
     }
     public var isSelected: Bool {
-        guard exists else { return false }
         return element.isSelected
     }
     public var isVisible: Bool {
         guard exists else { return false }
         return element.isHittable
     }
-    public var label: String {
-        guard exists else { return "" }
+    public func label(file: StaticString = #file, line: UInt = #line) -> String {
+        waitToExist(30, file: file, line: line)
         return element.label
     }
-    public var value: String {
-        guard exists else { return "" }
-        return element.value as? String ?? ""
+    public func value(file: StaticString = #file, line: UInt = #line) -> String? {
+        waitToExist(30, file: file, line: line)
+        return element.value as? String
     }
 
     @discardableResult
