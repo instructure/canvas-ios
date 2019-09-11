@@ -129,3 +129,7 @@ extension ApplicationViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+
+public class ResetTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
+    public static let shared = ResetTransitionDelegate()
+}

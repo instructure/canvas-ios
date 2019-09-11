@@ -111,14 +111,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         } })
     }
 
-    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
-        return openCanvasURL(url)
-    }
-
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return self.application(application, handleOpen: url)
-    }
-
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         return openCanvasURL(url)
     }

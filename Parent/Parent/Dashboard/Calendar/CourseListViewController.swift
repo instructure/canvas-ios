@@ -17,16 +17,14 @@
 //
 
 import CanvasCore
+import Core
 
-typealias CourseListSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: Course)->Void
-
-class CourseListViewController: FetchedTableViewController<Course> {
+class CourseListViewController: FetchedTableViewController<CanvasCore.Course> {
 
     fileprivate let session: Session
     fileprivate let observeeID: String
 
-    var courseCollection: FetchedCollection<Course>?
-    @objc var selectCourseAction: CourseListSelectCourseAction? = nil
+    var courseCollection: FetchedCollection<CanvasCore.Course>?
 
     @objc init(session: Session, studentID: String) throws {
         self.session = session
@@ -66,9 +64,15 @@ class CourseListViewController: FetchedTableViewController<Course> {
         tableView.backgroundColor = UIColor.white
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let scheme = ColorCoordinator.colorSchemeForStudentID(observeeID)
+        navigationController?.navigationBar.useContextColor(scheme.mainColor)
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let course = collection[indexPath]
-        selectCourseAction?(session, observeeID, course)
+        AppEnvironment.shared.router.route(to: .courseCalendar(courseID: course.id), from: self, options: [.modal, .embedInNav, .addDoneButton])
     }
 
 }

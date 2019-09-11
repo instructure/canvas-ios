@@ -20,10 +20,8 @@ import UIKit
 import CanvasCore
 import Core
 
-typealias SettingsSessionAction = (_ session: Session)->Void
-typealias SettingsObserveeSelectedAction = (_ session: Session, _ observee: Student)->Void
-
 class SettingsViewController: UIViewController {
+    var env = AppEnvironment.shared
     
     // ---------------------------------------------
     // MARK: - IBOutlets
@@ -43,27 +41,18 @@ class SettingsViewController: UIViewController {
     var observeesViewController: StudentsListViewController?
     
     // ---------------------------------------------
-    // MARK: - External Closures
-    // ---------------------------------------------
-    @objc var closeAction: SettingsSessionAction? = nil
-    @objc var allObserveesAction: SettingsSessionAction? = nil
-    @objc var observeeSelectedAction: SettingsObserveeSelectedAction? = nil
-    
-    // ---------------------------------------------
     // MARK: - Initializers
     // ---------------------------------------------
-    fileprivate static let defaultStoryboardName = "SettingsViewController"
-    @objc static func new(_ storyboardName: String = defaultStoryboardName, session: Session) -> SettingsViewController {
-        guard let controller = UIStoryboard(name: storyboardName, bundle: Bundle(for: self)).instantiateInitialViewController() as? SettingsViewController else {
-            fatalError("Initial ViewController is not of type SettingsViewController")
-        }
+    static func create(env: AppEnvironment = .shared, session: Session) -> SettingsViewController {
+        let controller = loadFromStoryboard()
+        controller.env = env
         controller.session = session
         controller.viewModel = SettingsViewModel(session: session)
         controller.observeesViewController = try! StudentsListViewController(session: session)
         controller.observeesViewController?.selectStudentAction = { [weak controller] session, student in
-            controller?.observeeSelectedAction?(session, student)
+            guard let view = controller else { return }
+            env.router.route(to: .observeeThresholds(student.id), from: view, options: nil)
         }
-        
         return controller
     }
     
@@ -112,7 +101,7 @@ class SettingsViewController: UIViewController {
     // MARK: - Actions
     // ---------------------------------------------
     @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
-        closeAction?(viewModel.session)
+        dismiss(animated: true)
     }
 
     @objc func actionAddStudent() {

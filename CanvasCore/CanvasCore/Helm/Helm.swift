@@ -122,10 +122,6 @@ open class HelmManager: NSObject {
 
     //  MARK: - Navigation
 
-    public class ResetTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
-        public static let shared = ResetTransitionDelegate()
-    }
-
     @objc public func openInSafariViewController(_ url : URL, completion: @escaping () -> Void) {
         guard let topViewController = topMostViewController() else { return completion() }
         let safari = SFSafariViewController(url: url)

@@ -21,6 +21,7 @@ import CanvasCore
 import UserNotifications
 
 let RemindableIDKey = "RemindableID"
+let RemindableStudentIDKey = "RemindableStudentID"
 let RemindableActionURLKey = "RemindableActionURL"
 
 // TODO: SoForgetful?
@@ -33,26 +34,26 @@ protocol Remindable {
     var reminderTitle: String { get }
     var defaultReminderDate: Date { get }
 
-    func scheduleReminder(atTime date: Date, actionURL: URL, completionHandler: @escaping (Error?) -> Void)
+    func scheduleReminder(atTime date: Date, studentID: String, actionURL: URL, completionHandler: @escaping (Error?) -> Void)
     func getScheduledReminder(completionHandler: @escaping (UNNotificationRequest?) -> Void)
     func cancelReminder()
 }
 
 extension Remindable {
-    func scheduleReminder(atTime date: Date, actionURL: URL, completionHandler: @escaping (Error?) -> Void) {
+    func scheduleReminder(atTime date: Date, studentID: String, actionURL: URL, completionHandler: @escaping (Error?) -> Void) {
         getScheduledReminder { pending in
             if pending != nil {
                 self.cancelReminder()
             }
-            self.scheduleNotificationRequest(forDate: date, actionURL: actionURL, completionHandler: completionHandler)
+            self.scheduleNotificationRequest(forDate: date, studentID: studentID, actionURL: actionURL, completionHandler: completionHandler)
         }
     }
 
-    private func scheduleNotificationRequest(forDate date: Date, actionURL: URL, completionHandler: @escaping (Error?) -> Void) {
+    private func scheduleNotificationRequest(forDate date: Date, studentID: String, actionURL: URL, completionHandler: @escaping (Error?) -> Void) {
         let content = UNMutableNotificationContent()
         content.title = reminderTitle
         content.body = reminderBody
-        content.userInfo = [RemindableIDKey: id, RemindableActionURLKey: actionURL.absoluteString]
+        content.userInfo = [RemindableIDKey: id, RemindableStudentIDKey: studentID, RemindableActionURLKey: actionURL.absoluteString]
         let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)

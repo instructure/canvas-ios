@@ -89,6 +89,14 @@ class AccountNotificationViewController: UITableViewController {
         tableView.reloadData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let studentID = currentStudentID {
+            let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
+            navigationController?.navigationBar.useContextColor(scheme.mainColor)
+        }
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = details[indexPath.row]
         let cell = row.cellForTableView(tableView, indexPath: indexPath)
