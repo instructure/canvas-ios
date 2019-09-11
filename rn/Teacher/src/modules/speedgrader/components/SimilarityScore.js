@@ -158,7 +158,7 @@ const style = StyleSheet.create({
   label: {
     fontSize: 14,
     color: colors.darkText,
-    fontFamily: '.SFUIDisplay-semibold',
+    fontWeight: '600',
   },
   scoreContainer: {
     paddingHorizontal: 8,
@@ -168,7 +168,7 @@ const style = StyleSheet.create({
   score: {
     fontSize: 16,
     color: 'white',
-    fontFamily: '.SFUIDisplay-semibold',
+    fontWeight: '600',
   },
   statusIcon: {
     width: 18,

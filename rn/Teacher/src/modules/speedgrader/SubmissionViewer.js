@@ -25,7 +25,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import i18n from 'format-message'
-import { Text, MEDIUM_FONT } from '../../common/text'
+import { Text } from '../../common/text'
 import type {
   SubmissionDataProps,
 } from '../submissions/list/submission-prop-types'
@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
   },
   noSubText: {
     textAlign: 'center',
-    fontFamily: MEDIUM_FONT,
+    fontWeight: '500',
   },
   savingBanner: {
     height: 22,
@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
   savingBannerText: {
     color: '#73818C',
     textAlign: 'center',
-    fontFamily: MEDIUM_FONT,
+    fontWeight: '500',
     fontSize: 12,
   },
   errorBanner: {
@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
   errorBannerText: {
     color: 'white',
     textAlign: 'center',
-    fontFamily: MEDIUM_FONT,
+    fontWeight: '500',
     fontSize: 12,
   },
 })

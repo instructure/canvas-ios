@@ -82,9 +82,6 @@ exports[`Render the base row 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -93,9 +90,6 @@ exports[`Render the base row 1`] = `
                 "fontWeight": "600",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -104,9 +98,6 @@ exports[`Render the base row 1`] = `
       <Text
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
@@ -118,9 +109,6 @@ exports[`Render the base row 1`] = `
                 "marginTop": 2,
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
           ]
         }
         testID="row.undefined-cell-subtitle-lbl"

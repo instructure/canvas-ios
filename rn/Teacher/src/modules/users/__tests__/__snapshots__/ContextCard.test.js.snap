@@ -144,9 +144,6 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -155,9 +152,6 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -166,9 +160,6 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
             <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                   Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
@@ -185,9 +176,6 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                       "color": "#8B969E",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -345,9 +333,6 @@ exports[`ContextCard renders 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -356,9 +341,6 @@ exports[`ContextCard renders 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -367,9 +349,6 @@ exports[`ContextCard renders 1`] = `
             <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                   Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
@@ -386,9 +365,6 @@ exports[`ContextCard renders 1`] = `
                       "color": "#8B969E",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -604,9 +580,6 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -615,9 +588,6 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -626,9 +596,6 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
             <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                   Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
@@ -645,9 +612,6 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
                       "color": "#8B969E",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -828,9 +792,6 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -839,9 +800,6 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -850,9 +808,6 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
             <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                   Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
@@ -869,9 +824,6 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
                       "color": "#8B969E",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -1029,9 +981,6 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1040,9 +989,6 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -1051,9 +997,6 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
             <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                   Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
@@ -1070,9 +1013,6 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
                       "color": "#8B969E",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -1230,9 +1170,6 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1241,9 +1178,6 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -1252,9 +1186,6 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
             <Text
               style={
                 Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                   Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
@@ -1271,9 +1202,6 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                       "color": "#8B969E",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >

@@ -38,8 +38,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Array [
               Object {
                 "color": "#73818C",
-                "fontFamily": ".SFUIDisplay-semibold",
                 "fontSize": 14,
+                "fontWeight": "600",
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
@@ -82,9 +82,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -92,9 +89,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                       "color": "#EE0612",
                       "fontSize": 14,
                       "fontWeight": "500",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -140,17 +134,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -169,16 +157,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {},
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -249,17 +231,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -281,16 +257,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -396,17 +366,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -428,16 +392,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -543,17 +501,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -575,16 +527,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -663,8 +609,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Array [
               Object {
                 "color": "#73818C",
-                "fontFamily": ".SFUIDisplay-semibold",
                 "fontSize": 14,
+                "fontWeight": "600",
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
@@ -707,9 +653,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -717,9 +660,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                       "color": "#EE0612",
                       "fontSize": 14,
                       "fontWeight": "500",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -765,17 +705,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -794,16 +728,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {},
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -874,17 +802,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -906,16 +828,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -1021,17 +937,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -1053,16 +963,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -1168,17 +1072,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -1200,16 +1098,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -1288,8 +1180,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Array [
               Object {
                 "color": "#73818C",
-                "fontFamily": ".SFUIDisplay-semibold",
                 "fontSize": 14,
+                "fontWeight": "600",
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
@@ -1332,9 +1224,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -1342,9 +1231,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                       "color": "#EE0612",
                       "fontSize": 14,
                       "fontWeight": "500",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -1390,17 +1276,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -1419,16 +1299,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {},
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -1499,17 +1373,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -1531,16 +1399,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -1646,17 +1508,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -1678,16 +1534,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -1793,17 +1643,11 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -1825,16 +1669,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -1947,9 +1785,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -1963,9 +1798,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   "color": "#374A59",
                 },
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
             ]
           }
         >
@@ -2023,8 +1855,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Array [
               Object {
                 "color": "#73818C",
-                "fontFamily": ".SFUIDisplay-semibold",
                 "fontSize": 14,
+                "fontWeight": "600",
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
@@ -2072,17 +1904,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -2101,16 +1927,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {},
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -2181,17 +2001,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -2213,16 +2027,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -2328,17 +2136,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -2360,16 +2162,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -2475,17 +2271,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -2507,16 +2297,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -2595,8 +2379,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Array [
               Object {
                 "color": "#73818C",
-                "fontFamily": ".SFUIDisplay-semibold",
                 "fontSize": 14,
+                "fontWeight": "600",
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
@@ -2639,9 +2423,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -2649,9 +2430,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
                       "color": "#EE0612",
                       "fontSize": 14,
                       "fontWeight": "500",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
                     },
                   ]
                 }
@@ -2697,17 +2475,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -2726,16 +2498,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {},
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -2806,17 +2572,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -2838,16 +2598,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -2953,17 +2707,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -2985,16 +2733,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -3100,17 +2842,11 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -3132,16 +2868,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -3254,9 +2984,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -3270,9 +2997,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   "color": "#374A59",
                 },
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
             ]
           }
         >
@@ -3330,8 +3054,8 @@ exports[`snapshots! render with single due date 1`] = `
             Array [
               Object {
                 "color": "#73818C",
-                "fontFamily": ".SFUIDisplay-semibold",
                 "fontSize": 14,
+                "fontWeight": "600",
                 "marginBottom": 8,
                 "marginLeft": 16,
                 "marginTop": 16,
@@ -3379,17 +3103,11 @@ exports[`snapshots! render with single due date 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -3408,16 +3126,10 @@ exports[`snapshots! render with single due date 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {},
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
                 ]
               }
             >
@@ -3488,17 +3200,11 @@ exports[`snapshots! render with single due date 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -3520,16 +3226,10 @@ exports[`snapshots! render with single due date 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -3635,17 +3335,11 @@ exports[`snapshots! render with single due date 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -3667,16 +3361,10 @@ exports[`snapshots! render with single due date 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -3782,17 +3470,11 @@ exports[`snapshots! render with single due date 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {
                       "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -3814,16 +3496,10 @@ exports[`snapshots! render with single due date 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
                     Object {},
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                   ]
                 }
               >
@@ -3936,9 +3612,6 @@ exports[`snapshots! render with single due date 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -3952,9 +3625,6 @@ exports[`snapshots! render with single due date 1`] = `
                   "color": "#374A59",
                 },
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
             ]
           }
         >

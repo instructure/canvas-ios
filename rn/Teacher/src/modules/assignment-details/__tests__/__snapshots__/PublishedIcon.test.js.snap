@@ -38,9 +38,6 @@ exports[`render larger icon size 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
@@ -54,9 +51,6 @@ exports[`render larger icon size 1`] = `
             "color": "#00AC18",
           },
         ],
-        Object {
-          "fontFamily": ".SFUIDisplay-medium",
-        },
       ]
     }
     testID="assignment-details.published-icon.publish-status-lbl"
@@ -101,9 +95,6 @@ exports[`render published 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
@@ -117,9 +108,6 @@ exports[`render published 1`] = `
             "color": "#00AC18",
           },
         ],
-        Object {
-          "fontFamily": ".SFUIDisplay-medium",
-        },
       ]
     }
     testID="assignment-details.published-icon.publish-status-lbl"
@@ -164,9 +152,6 @@ exports[`render unpublished 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
@@ -180,9 +165,6 @@ exports[`render unpublished 1`] = `
             "color": "#8B969E",
           },
         ],
-        Object {
-          "fontFamily": ".SFUIDisplay-medium",
-        },
       ]
     }
     testID="assignment-details.published-icon.publish-status-lbl"

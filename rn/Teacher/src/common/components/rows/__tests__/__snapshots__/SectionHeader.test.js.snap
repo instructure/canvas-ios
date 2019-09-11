@@ -25,9 +25,6 @@ exports[`render 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
@@ -40,9 +37,6 @@ exports[`render 1`] = `
           },
           undefined,
         ],
-        Object {
-          "fontFamily": ".SFUIDisplay-semibold",
-        },
       ]
     }
   >
@@ -79,9 +73,6 @@ exports[`render without key 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
@@ -94,9 +85,6 @@ exports[`render without key 1`] = `
           },
           undefined,
         ],
-        Object {
-          "fontFamily": ".SFUIDisplay-semibold",
-        },
       ]
     }
   >

@@ -34,7 +34,7 @@ import { getSession } from '../../../canvas-api'
 import { LinkButton } from '../../../common/buttons'
 import { logEvent } from '../../../common/CanvasAnalytics'
 import color from '../../../common/colors'
-import { Text, BOLD_FONT } from '../../../common/text'
+import { Text } from '../../../common/text'
 import Avatar from '../../../common/components/Avatar'
 import Video from '../../../common/components/Video'
 import Images from '../../../images'
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
   },
   attachmentText: {
     color: color.link,
-    fontFamily: BOLD_FONT,
+    fontWeight: 'bold',
     marginLeft: 4,
     fontSize: 14,
   },

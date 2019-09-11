@@ -31,12 +31,9 @@ exports[`GradePicker disables the button and has correct text for not graded ass
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {},
           ]
@@ -69,12 +66,9 @@ exports[`GradePicker disables the button and has correct text for not graded ass
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
                   "fontSize": 24,
+                  "fontWeight": "800",
                 },
                 undefined,
               ]
@@ -121,12 +115,9 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {
               "color": "#7F91A7",
@@ -203,18 +194,12 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginRight": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -322,18 +307,12 @@ exports[`GradePicker doesnt render late policy if no grade 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginLeft": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -379,12 +358,9 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {
               "color": "#7F91A7",
@@ -419,12 +395,9 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
                   "fontSize": 24,
+                  "fontWeight": "800",
                 },
                 Object {
                   "color": "#7F91A7",
@@ -452,18 +425,12 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#FC5E13",
               "fontSize": 14,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -474,18 +441,12 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#FC5E13",
               "fontSize": 14,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -509,12 +470,9 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             undefined,
           ]
@@ -527,12 +485,9 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             undefined,
           ]
@@ -573,18 +528,12 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginRight": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -692,18 +641,12 @@ exports[`GradePicker renders late policy with multiple points deducted 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginLeft": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -749,12 +692,9 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {
               "color": "#7F91A7",
@@ -789,12 +729,9 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
                   "fontSize": 24,
+                  "fontWeight": "800",
                 },
                 Object {
                   "color": "#7F91A7",
@@ -822,18 +759,12 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#FC5E13",
               "fontSize": 14,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -844,18 +775,12 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#FC5E13",
               "fontSize": 14,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -879,12 +804,9 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             undefined,
           ]
@@ -897,12 +819,9 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             undefined,
           ]
@@ -943,18 +862,12 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginRight": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -1062,18 +975,12 @@ exports[`GradePicker renders late policy with single point deducted 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginLeft": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -1118,12 +1025,9 @@ exports[`GradePicker renders points based grades 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {},
           ]
@@ -1156,12 +1060,9 @@ exports[`GradePicker renders points based grades 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
                   "fontSize": 24,
+                  "fontWeight": "800",
                 },
                 undefined,
               ]
@@ -1204,18 +1105,12 @@ exports[`GradePicker renders points based grades 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginRight": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -1323,18 +1218,12 @@ exports[`GradePicker renders points based grades 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginLeft": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -1379,12 +1268,9 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {},
           ]
@@ -1453,18 +1339,12 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginRight": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -1572,18 +1452,12 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginLeft": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -1628,12 +1502,9 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {},
           ]
@@ -1741,12 +1612,9 @@ exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {},
           ]
@@ -1779,12 +1647,9 @@ exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
                   "fontSize": 24,
+                  "fontWeight": "800",
                 },
                 undefined,
               ]
@@ -1830,12 +1695,9 @@ exports[`GradePicker renders with excused 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {},
           ]
@@ -1868,12 +1730,9 @@ exports[`GradePicker renders with excused 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
                   "fontSize": 24,
+                  "fontWeight": "800",
                 },
                 undefined,
               ]
@@ -1916,18 +1775,12 @@ exports[`GradePicker renders with excused 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginRight": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -2035,18 +1888,12 @@ exports[`GradePicker renders with excused 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginLeft": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -2091,12 +1938,9 @@ exports[`GradePicker renders with no grade 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {},
           ]
@@ -2171,18 +2015,12 @@ exports[`GradePicker renders with no grade 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginRight": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -2290,18 +2128,12 @@ exports[`GradePicker renders with no grade 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "flex": 0,
                   "marginLeft": 8,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -2346,12 +2178,9 @@ exports[`GradePicker updates the visible rubric score when useRubricForGrading a
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {},
           ]
@@ -2384,12 +2213,9 @@ exports[`GradePicker updates the visible rubric score when useRubricForGrading a
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
                   "fontSize": 24,
+                  "fontWeight": "800",
                 },
                 undefined,
               ]

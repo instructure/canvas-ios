@@ -61,12 +61,9 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               undefined,
             ]
@@ -93,9 +90,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -107,9 +101,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                     },
                     undefined,
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
                 ]
               }
             >
@@ -214,9 +205,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -225,9 +213,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -240,9 +225,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -251,9 +233,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -406,9 +385,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -417,9 +393,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -432,9 +405,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -443,9 +413,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -598,9 +565,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -609,9 +573,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -624,9 +585,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -635,9 +593,6 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -805,9 +760,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -816,9 +768,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -831,9 +780,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -842,9 +788,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -997,9 +940,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -1008,9 +948,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -1023,9 +960,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -1034,9 +968,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -1189,9 +1120,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -1200,9 +1128,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -1215,9 +1140,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -1226,9 +1148,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -1310,12 +1229,9 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               undefined,
             ]
@@ -1421,9 +1337,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -1432,9 +1345,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -1447,9 +1357,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -1458,9 +1365,6 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -1583,12 +1487,9 @@ exports[`Dashboard render 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               undefined,
             ]
@@ -1615,9 +1516,6 @@ exports[`Dashboard render 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1629,9 +1527,6 @@ exports[`Dashboard render 1`] = `
                     },
                     undefined,
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
                 ]
               }
             >
@@ -1736,9 +1631,6 @@ exports[`Dashboard render 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -1747,9 +1639,6 @@ exports[`Dashboard render 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -1762,9 +1651,6 @@ exports[`Dashboard render 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -1773,9 +1659,6 @@ exports[`Dashboard render 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -1928,9 +1811,6 @@ exports[`Dashboard render 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -1939,9 +1819,6 @@ exports[`Dashboard render 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -1954,9 +1831,6 @@ exports[`Dashboard render 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -1965,9 +1839,6 @@ exports[`Dashboard render 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -2120,9 +1991,6 @@ exports[`Dashboard render 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -2131,9 +1999,6 @@ exports[`Dashboard render 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -2146,9 +2011,6 @@ exports[`Dashboard render 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -2157,9 +2019,6 @@ exports[`Dashboard render 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -2282,12 +2141,9 @@ exports[`Dashboard render while pending 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               undefined,
             ]
@@ -2314,9 +2170,6 @@ exports[`Dashboard render while pending 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2328,9 +2181,6 @@ exports[`Dashboard render while pending 1`] = `
                     },
                     undefined,
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
                 ]
               }
             >
@@ -2435,9 +2285,6 @@ exports[`Dashboard render while pending 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -2446,9 +2293,6 @@ exports[`Dashboard render while pending 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -2461,9 +2305,6 @@ exports[`Dashboard render while pending 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -2472,9 +2313,6 @@ exports[`Dashboard render while pending 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -2627,9 +2465,6 @@ exports[`Dashboard render while pending 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -2638,9 +2473,6 @@ exports[`Dashboard render while pending 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -2653,9 +2485,6 @@ exports[`Dashboard render while pending 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -2664,9 +2493,6 @@ exports[`Dashboard render while pending 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -2819,9 +2645,6 @@ exports[`Dashboard render while pending 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -2830,9 +2653,6 @@ exports[`Dashboard render while pending 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -2845,9 +2665,6 @@ exports[`Dashboard render while pending 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -2856,9 +2673,6 @@ exports[`Dashboard render while pending 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -2981,12 +2795,9 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               undefined,
             ]
@@ -3013,9 +2824,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -3027,9 +2835,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
                     },
                     undefined,
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
                 ]
               }
             >
@@ -3068,9 +2873,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -3079,9 +2881,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
                     "fontSize": 30,
                     "lineHeight": 36,
                     "marginBottom": 8,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -3093,9 +2892,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -3106,9 +2902,6 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
                     "marginBottom": 40,
                     "paddingHorizontal": 10,
                     "textAlign": "center",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -3155,8 +2948,8 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
                         "color": "white",
                       },
                       Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                         "fontSize": 16,
+                        "fontWeight": "600",
                       },
                     ],
                     null,
@@ -3235,12 +3028,9 @@ exports[`Dashboard render without favorite courses 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               undefined,
             ]
@@ -3267,9 +3057,6 @@ exports[`Dashboard render without favorite courses 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -3281,9 +3068,6 @@ exports[`Dashboard render without favorite courses 1`] = `
                     },
                     undefined,
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
                 ]
               }
             >
@@ -3322,9 +3106,6 @@ exports[`Dashboard render without favorite courses 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -3333,9 +3114,6 @@ exports[`Dashboard render without favorite courses 1`] = `
                     "fontSize": 30,
                     "lineHeight": 36,
                     "marginBottom": 8,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -3347,9 +3125,6 @@ exports[`Dashboard render without favorite courses 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -3360,9 +3135,6 @@ exports[`Dashboard render without favorite courses 1`] = `
                     "marginBottom": 40,
                     "paddingHorizontal": 10,
                     "textAlign": "center",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -3409,8 +3181,8 @@ exports[`Dashboard render without favorite courses 1`] = `
                         "color": "white",
                       },
                       Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                         "fontSize": 16,
+                        "fontWeight": "600",
                       },
                     ],
                     null,
@@ -3537,9 +3309,6 @@ exports[`Dashboard renders course invites 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -3549,9 +3318,6 @@ exports[`Dashboard renders course invites 1`] = `
                         "margin": 12,
                         "marginBottom": 0,
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -3563,18 +3329,12 @@ exports[`Dashboard renders course invites 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {
                         "marginBottom": 4,
                         "marginHorizontal": 12,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }
@@ -3790,9 +3550,6 @@ exports[`Dashboard renders course invites 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -3802,9 +3559,6 @@ exports[`Dashboard renders course invites 1`] = `
                         "margin": 12,
                         "marginBottom": 0,
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -3816,18 +3570,12 @@ exports[`Dashboard renders course invites 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {
                         "marginBottom": 4,
                         "marginHorizontal": 12,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }
@@ -3997,12 +3745,9 @@ exports[`Dashboard renders course invites 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               undefined,
             ]
@@ -4029,9 +3774,6 @@ exports[`Dashboard renders course invites 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -4043,9 +3785,6 @@ exports[`Dashboard renders course invites 1`] = `
                     },
                     undefined,
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
                 ]
               }
             >
@@ -4150,9 +3889,6 @@ exports[`Dashboard renders course invites 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -4161,9 +3897,6 @@ exports[`Dashboard renders course invites 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -4176,9 +3909,6 @@ exports[`Dashboard renders course invites 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -4187,9 +3917,6 @@ exports[`Dashboard renders course invites 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -4342,9 +4069,6 @@ exports[`Dashboard renders course invites 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -4353,9 +4077,6 @@ exports[`Dashboard renders course invites 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -4368,9 +4089,6 @@ exports[`Dashboard renders course invites 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -4379,9 +4097,6 @@ exports[`Dashboard renders course invites 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -4534,9 +4249,6 @@ exports[`Dashboard renders course invites 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -4545,9 +4257,6 @@ exports[`Dashboard renders course invites 1`] = `
                         "fontSize": 18,
                         "fontWeight": "600",
                         "marginTop": 8,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -4560,9 +4269,6 @@ exports[`Dashboard renders course invites 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -4571,9 +4277,6 @@ exports[`Dashboard renders course invites 1`] = `
                         "fontSize": 12,
                         "fontWeight": "600",
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -4655,12 +4358,9 @@ exports[`Dashboard renders course invites 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               undefined,
             ]
@@ -4738,18 +4438,12 @@ exports[`Dashboard renders course invites 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
                         Object {
                           "fontSize": 18,
                           "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
                         },
                       ]
                     }
@@ -4759,9 +4453,6 @@ exports[`Dashboard renders course invites 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#7F91A7",
                           "fontSize": 14,
@@ -4783,9 +4474,6 @@ exports[`Dashboard renders course invites 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#7F91A7",
                           "fontSize": 14,
@@ -4873,18 +4561,12 @@ exports[`Dashboard renders course invites 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
                         Object {
                           "fontSize": 18,
                           "fontWeight": "600",
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-semibold",
                         },
                       ]
                     }
@@ -4894,9 +4576,6 @@ exports[`Dashboard renders course invites 1`] = `
                   <Text
                     style={
                       Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                         Object {
                           "color": "#7F91A7",
                           "fontSize": 14,

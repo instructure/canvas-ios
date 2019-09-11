@@ -30,12 +30,9 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
       style={
         Array [
           Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
             "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-heavy",
             "fontSize": 24,
+            "fontWeight": "800",
           },
           undefined,
         ]
@@ -47,9 +44,6 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
       style={
         Array [
           Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
             "color": "#2D3B45",
             "fontSize": 16,
           },
@@ -57,9 +51,6 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
             "color": "#8B969E",
             "fontSize": 14,
             "fontWeight": "500",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
           },
         ]
       }
@@ -92,9 +83,6 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -106,9 +94,6 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
               },
               undefined,
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
           ]
         }
       >
@@ -149,12 +134,9 @@ exports[`SubmissionHeader anonymous grading 1`] = `
       style={
         Array [
           Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
             "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-heavy",
             "fontSize": 24,
+            "fontWeight": "800",
           },
           undefined,
         ]
@@ -166,9 +148,6 @@ exports[`SubmissionHeader anonymous grading 1`] = `
       style={
         Array [
           Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
             "color": "#2D3B45",
             "fontSize": 16,
           },
@@ -176,9 +155,6 @@ exports[`SubmissionHeader anonymous grading 1`] = `
             "color": "#8B969E",
             "fontSize": 14,
             "fontWeight": "500",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
           },
         ]
       }
@@ -211,9 +187,6 @@ exports[`SubmissionHeader anonymous grading 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -225,9 +198,6 @@ exports[`SubmissionHeader anonymous grading 1`] = `
               },
               undefined,
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
           ]
         }
       >
@@ -268,12 +238,9 @@ exports[`SubmissionHeader muted grading 1`] = `
       style={
         Array [
           Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
             "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-heavy",
             "fontSize": 24,
+            "fontWeight": "800",
           },
           undefined,
         ]
@@ -285,9 +252,6 @@ exports[`SubmissionHeader muted grading 1`] = `
       style={
         Array [
           Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
             "color": "#2D3B45",
             "fontSize": 16,
           },
@@ -295,9 +259,6 @@ exports[`SubmissionHeader muted grading 1`] = `
             "color": "#8B969E",
             "fontSize": 14,
             "fontWeight": "500",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-medium",
           },
         ]
       }
@@ -330,9 +291,6 @@ exports[`SubmissionHeader muted grading 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -344,9 +302,6 @@ exports[`SubmissionHeader muted grading 1`] = `
               },
               undefined,
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
           ]
         }
       >

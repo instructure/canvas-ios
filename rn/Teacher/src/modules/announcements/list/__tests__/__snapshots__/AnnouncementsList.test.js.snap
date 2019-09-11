@@ -290,9 +290,6 @@ exports[`AnnouncementsList renders 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -301,9 +298,6 @@ exports[`AnnouncementsList renders 1`] = `
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -322,9 +316,6 @@ exports[`AnnouncementsList renders 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -332,9 +323,6 @@ exports[`AnnouncementsList renders 1`] = `
                         "color": "#8B969E",
                         "fontSize": 14,
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }
@@ -447,9 +435,6 @@ exports[`AnnouncementsList renders 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -458,9 +443,6 @@ exports[`AnnouncementsList renders 1`] = `
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -479,9 +461,6 @@ exports[`AnnouncementsList renders 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -489,9 +468,6 @@ exports[`AnnouncementsList renders 1`] = `
                         "color": "#8B969E",
                         "fontSize": 14,
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }
@@ -592,12 +568,9 @@ exports[`AnnouncementsList renders empty list 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
                 "fontSize": 16,
+                "fontWeight": "600",
               },
               undefined,
             ]
@@ -722,9 +695,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -733,9 +703,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -754,9 +721,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -764,9 +728,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                         "color": "#8B969E",
                         "fontSize": 14,
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }
@@ -879,9 +840,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -890,9 +848,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -911,9 +866,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -921,9 +873,6 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                         "color": "#8B969E",
                         "fontSize": 14,
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }
@@ -1058,9 +1007,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -1069,9 +1015,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -1090,9 +1033,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -1100,9 +1040,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                         "color": "#8B969E",
                         "fontSize": 14,
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }
@@ -1215,9 +1152,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -1226,9 +1160,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -1247,9 +1178,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -1257,9 +1185,6 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                         "color": "#8B969E",
                         "fontSize": 14,
                         "marginTop": 2,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }

@@ -99,9 +99,6 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -109,9 +106,6 @@ exports[`renders correctly 1`] = `
                   "flex": 1,
                   "fontSize": 16,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -123,9 +117,6 @@ exports[`renders correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -133,9 +124,6 @@ exports[`renders correctly 1`] = `
                     "color": "#8B969E",
                     "flexShrink": 0,
                     "fontSize": 12,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -150,18 +138,12 @@ exports[`renders correctly 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#2D3B45",
               "fontSize": 14,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -173,18 +155,12 @@ exports[`renders correctly 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#8B969E",
               "fontSize": 14,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -299,9 +275,6 @@ exports[`renders correctly with a bunch of people in there 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -309,9 +282,6 @@ exports[`renders correctly with a bunch of people in there 1`] = `
                   "flex": 1,
                   "fontSize": 16,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -323,9 +293,6 @@ exports[`renders correctly with a bunch of people in there 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -333,9 +300,6 @@ exports[`renders correctly with a bunch of people in there 1`] = `
                     "color": "#8B969E",
                     "flexShrink": 0,
                     "fontSize": 12,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -350,18 +314,12 @@ exports[`renders correctly with a bunch of people in there 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#2D3B45",
               "fontSize": 14,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -373,18 +331,12 @@ exports[`renders correctly with a bunch of people in there 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#8B969E",
               "fontSize": 14,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -527,9 +479,6 @@ exports[`renders correctly with different data 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -537,9 +486,6 @@ exports[`renders correctly with different data 1`] = `
                   "flex": 1,
                   "fontSize": 16,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -551,9 +497,6 @@ exports[`renders correctly with different data 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -561,9 +504,6 @@ exports[`renders correctly with different data 1`] = `
                     "color": "#8B969E",
                     "flexShrink": 0,
                     "fontSize": 12,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -578,18 +518,12 @@ exports[`renders correctly with different data 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#2D3B45",
               "fontSize": 14,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -601,18 +535,12 @@ exports[`renders correctly with different data 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#8B969E",
               "fontSize": 14,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }

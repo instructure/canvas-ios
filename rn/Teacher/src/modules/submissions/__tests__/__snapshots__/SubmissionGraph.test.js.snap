@@ -34,9 +34,6 @@ exports[`render 0 on graph 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
@@ -46,9 +43,6 @@ exports[`render 0 on graph 1`] = `
           "fontWeight": "500",
           "marginTop": 8,
           "textAlign": "center",
-        },
-        Object {
-          "fontFamily": ".SFUIDisplay-medium",
         },
       ]
     }
@@ -69,8 +63,8 @@ exports[`render 0 on graph 1`] = `
       style={
         Object {
           "color": "#2D3B45",
-          "fontFamily": ".SFUIDisplay-medium",
           "fontSize": 16,
+          "fontWeight": "500",
         }
       }
     >
@@ -114,9 +108,6 @@ exports[`render 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
@@ -126,9 +117,6 @@ exports[`render 1`] = `
           "fontWeight": "500",
           "marginTop": 8,
           "textAlign": "center",
-        },
-        Object {
-          "fontFamily": ".SFUIDisplay-medium",
         },
       ]
     }
@@ -149,8 +137,8 @@ exports[`render 1`] = `
       style={
         Object {
           "color": "#2D3B45",
-          "fontFamily": ".SFUIDisplay-medium",
           "fontSize": 16,
+          "fontWeight": "500",
         }
       }
     >
@@ -194,9 +182,6 @@ exports[`render undefined label 1`] = `
     style={
       Array [
         Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
           "color": "#2D3B45",
           "fontSize": 16,
         },
@@ -206,9 +191,6 @@ exports[`render undefined label 1`] = `
           "fontWeight": "500",
           "marginTop": 8,
           "textAlign": "center",
-        },
-        Object {
-          "fontFamily": ".SFUIDisplay-medium",
         },
       ]
     }
@@ -227,8 +209,8 @@ exports[`render undefined label 1`] = `
       style={
         Object {
           "color": "#2D3B45",
-          "fontFamily": ".SFUIDisplay-medium",
           "fontSize": 16,
+          "fontWeight": "500",
         }
       }
     >
