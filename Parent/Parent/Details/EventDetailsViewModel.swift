@@ -18,7 +18,6 @@
 
 import UIKit
 
-
 import CanvasCore
 
 private let TitleCellReuseIdentifier = "TitleCell"
@@ -148,6 +147,7 @@ enum EventDetailsViewModel: TableViewCellViewModel {
         tableView.reloadData()
     }
 
+    // swiftlint:disable:next function_parameter_count
     func scheduleRemindable(_ remindable: Remindable, studentID: String, url: URL, forCell cell: DetailsReminderCell, inTableView tableView: UITableView, inContext context: UIViewController) {
         let vc = DatePickerViewController()
         vc.cancelAction = {
@@ -197,7 +197,7 @@ enum EventDetailsViewModel: TableViewCellViewModel {
 }
 
 extension EventDetailsViewModel: Equatable { }
-func ==(lhs: EventDetailsViewModel, rhs: EventDetailsViewModel) -> Bool {
+func == (lhs: EventDetailsViewModel, rhs: EventDetailsViewModel) -> Bool {
     switch(lhs, rhs) {
     case let (.info(leftName, leftSubmissionInfo, _), .info(rightName, rightSubmissionInfo, _)):
         return leftName == rightName && leftSubmissionInfo == rightSubmissionInfo

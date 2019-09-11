@@ -21,7 +21,7 @@ import ReactiveSwift
 import CanvasCore
 import Core
 
-class StudentSettingsViewController : UIViewController {
+class StudentSettingsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     let activityIndicator = UIActivityIndicatorView(style: .white)
@@ -51,7 +51,7 @@ class StudentSettingsViewController : UIViewController {
         controller.presenter = StudentSettingsPresenter(view: controller, studentID: studentID)
         controller.session = session
         controller.studentID = studentID
-
+        //  swiftlint:disable:next force_try
         controller.studentObserver = try! Student.observer(session, studentID: studentID)
 
         return controller
@@ -65,7 +65,7 @@ class StudentSettingsViewController : UIViewController {
         setupTableView()
         setupNavigationBar()
 
-        _ = studentObserver?.signal.observe(on: UIScheduler()).observeValues{ [unowned self] (change, student) in
+        _ = studentObserver?.signal.observe(on: UIScheduler()).observeValues { [unowned self] (change, _) in
             switch change {
             case .insert, .update:
                 self.tableView?.reloadData()
@@ -213,7 +213,7 @@ class StudentSettingsViewController : UIViewController {
             return NSLocalizedString("Course announcements", comment: "Course Announcement Description")
         }
     }
-    
+
     @objc func displayError(error: NSError) {
         let title = NSLocalizedString("An Error Occurred", comment: "")
         let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
@@ -223,7 +223,6 @@ class StudentSettingsViewController : UIViewController {
         }
     }
 }
-
 
 extension StudentSettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -246,7 +245,7 @@ extension StudentSettingsViewController: UITableViewDataSource, UITableViewDeleg
             guard let cell: SwitchCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? SwitchCell else { fatalError("invalid cell") }
             cell.selectionStyle = .none
             cell.textLabel?.text = descriptionForType(alert)
-            if let _ = presenter.thresholdForType(alert) {
+            if presenter.thresholdForType(alert) != nil {
                 cell.toggle.isOn = true
             }
             cell.type = alert
@@ -270,8 +269,7 @@ extension StudentSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.valueTextField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: UIControl.Event.editingDidEnd)
             if indexPath == currentlySelectedIndexPath {
                 cell.textLabel?.textColor = .named(.electric)
-            }
-            else {
+            } else {
                 cell.textLabel?.textColor = .named(.textDarkest)
             }
             return cell
@@ -439,7 +437,6 @@ extension StudentSettingsViewController: UITextFieldDelegate {
         didUpdateValueOnTextField(type, thresholdValue: textField.text)
     }
 }
-
 
 extension AlertThresholdType {
     public static var validThresholdTypes: [AlertThresholdType] {

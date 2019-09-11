@@ -18,7 +18,6 @@
 
 import Foundation
 
-
 import ReactiveSwift
 import Marshal
 import CanvasCore
@@ -27,12 +26,12 @@ extension Course {
     @objc public static func predicate(_ courseID: String) -> NSPredicate {
         return NSPredicate(format: "%K == %@", "id", courseID)
     }
-    
+
     public static func getCourses(_ session: Session, studentID: String) throws -> SignalProducer<[JSONObject], NSError> {
-        
+
         var coursesParams = getCoursesParameters
         coursesParams["enrollment_state"] = "active"
-        
+
         let request = try session.GET("/api/v1/courses", parameters: coursesParams)
         return session.paginatedJSONSignalProducer(request)
             .map { (coursesJSON: [JSONObject]) -> [JSONObject] in
@@ -68,34 +67,33 @@ extension Course {
                 }
             }
     }
-    
+
     public static func getCourse(_ session: Session, studentID: String, courseID: String) throws -> SignalProducer<JSONObject, NSError> {
         let request = try session.GET("/api/v1/courses/\(courseID)", parameters: Course.getCourseParameters)
         return session.JSONSignalProducer(request)
     }
-    
+
     public static func airwolfCollectionRefresher(_ session: Session, studentID: String) throws -> Refresher {
         let remote = try Course.getCourses(session, studentID: studentID)
         let context = try session.enrollmentManagedObjectContext(studentID)
-        
+
         let courses = Course.syncSignalProducer(inContext: context, fetchRemote: remote).map { _ in () }
         let students = try Student.observedStudentsSyncProducer(session).map { _ in () }
-        
+
         let producer = SignalProducer.concat([courses, students])
-        
+
         let key = cacheKey(context, [studentID])
         return SignalProducerRefresher(refreshSignalProducer: producer, scope: session.refreshScope, cacheKey: key, ttl: ParentAppRefresherTTL)
     }
-    
+
     public static func airwolfRefresher(_ session: Session, studentID: String, courseID: String) throws -> Refresher {
         let remote = try Course.getCourse(session, studentID: studentID, courseID: courseID).map { [$0] }
         let context = try session.enrollmentManagedObjectContext(studentID)
         let predicate = Course.predicate(courseID)
-        
+
         let sync = Course.syncSignalProducer(predicate, inContext: context, fetchRemote: remote)
-        
+
         let key = cacheKey(context, [studentID])
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key, ttl: ParentAppRefresherTTL)
     }
 }
-

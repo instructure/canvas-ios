@@ -24,7 +24,7 @@ let router = Router(routes: [
 
     RouteHandler(.accountNotification(":id")) { _, params in
         guard let session = legacySession, let id = params["id"] else { return nil }
-        return try! AccountNotificationViewController(session: session, announcementID: id)
+        return try? AccountNotificationViewController(session: session, announcementID: id)
     },
 
     RouteHandler(.courses) { _, _ in
@@ -38,7 +38,7 @@ let router = Router(routes: [
         if assignmentID == "syllabus" {
             return CourseSyllabusViewController(courseID: courseID, studentID: studentID, session: session)
         }
-        return try! AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
+        return try? AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
     RouteHandler(.courseCalendar(courseID: ":courseID")) { _, params in
@@ -50,13 +50,13 @@ let router = Router(routes: [
     RouteHandler(.courseCalendarEvent(courseID: ":courseID", eventID: ":eventID")) { _, params in
         guard let courseID = params["courseID"], let eventID = params["eventID"] else { return nil }
         guard let session = legacySession, let studentID = currentStudentID else { return nil }
-        return try! CalendarEventDetailsViewController(session: session, studentID: studentID, courseID: courseID, calendarEventID: eventID)
+        return try? CalendarEventDetailsViewController(session: session, studentID: studentID, courseID: courseID, calendarEventID: eventID)
     },
 
     RouteHandler(.courseDiscussion(courseID: ":courseID", topicID: ":topicID")) { _, params in
         guard let courseID = params["courseID"], let topicID = params["topicID"] else { return nil }
         guard let session = legacySession, let studentID = currentStudentID else { return nil }
-        return try! AnnouncementDetailsViewController(session: session, studentID: studentID, courseID: courseID, announcementID: topicID)
+        return try? AnnouncementDetailsViewController(session: session, studentID: studentID, courseID: courseID, announcementID: topicID)
     },
 
     RouteHandler(.profile) { _, _ in

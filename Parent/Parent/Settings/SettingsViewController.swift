@@ -22,7 +22,7 @@ import Core
 
 class SettingsViewController: UIViewController {
     var env = AppEnvironment.shared
-    
+
     // ---------------------------------------------
     // MARK: - IBOutlets
     // ---------------------------------------------
@@ -31,15 +31,15 @@ class SettingsViewController: UIViewController {
     @objc var addButton: UIBarButtonItem?
     @IBOutlet weak var observeesContainerView: UIView!
     @objc var session: Session?
-    
+
     @objc let reuseIdentifier = "SettingsObserveesCell"
-    
+
     // ---------------------------------------------
     // MARK: - ViewModel
     // ---------------------------------------------
     var viewModel: SettingsViewModel!
     var observeesViewController: StudentsListViewController?
-    
+
     // ---------------------------------------------
     // MARK: - Initializers
     // ---------------------------------------------
@@ -48,6 +48,7 @@ class SettingsViewController: UIViewController {
         controller.env = env
         controller.session = session
         controller.viewModel = SettingsViewModel(session: session)
+        //  swiftlint:disable:next force_try
         controller.observeesViewController = try! StudentsListViewController(session: session)
         controller.observeesViewController?.selectStudentAction = { [weak controller] session, student in
             guard let view = controller else { return }
@@ -55,7 +56,7 @@ class SettingsViewController: UIViewController {
         }
         return controller
     }
-    
+
     // ---------------------------------------------
     // MARK: - LifeCycle
     // ---------------------------------------------
@@ -93,8 +94,14 @@ class SettingsViewController: UIViewController {
         addChild(observeesViewController)
         observeesContainerView.addSubview(observeesViewController.view)
         observeesViewController.didMove(toParent: self)
-        observeesContainerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[subview]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["subview": observeesViewController.view as Any]))
-        observeesContainerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[subview]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: ["subview": observeesViewController.view as Any]))
+        observeesContainerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[subview]-0-|",
+                                                                             options: .directionLeadingToTrailing,
+                                                                             metrics: nil,
+                                                                             views: ["subview": observeesViewController.view as Any]))
+        observeesContainerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[subview]-0-|",
+                                                                             options: .directionLeadingToTrailing,
+                                                                             metrics: nil,
+                                                                             views: ["subview": observeesViewController.view as Any]))
     }
 
     // ---------------------------------------------
@@ -112,10 +119,10 @@ class SettingsViewController: UIViewController {
             tf.placeholder = NSLocalizedString("Pairing Code", comment: "")
         }
 
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { action in }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in }))
         present(alert, animated: true, completion: nil)
 
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak self] action in
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak self] _ in
             guard let textField = alert.textFields?.first, let code = textField.text else { return }
             self?.addPairingCode(code: code)
         }))
@@ -127,10 +134,9 @@ class SettingsViewController: UIViewController {
             DispatchQueue.main.async {
                 if let error = error {
                     let alert = UIAlertController(title: nil, message: error, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { action in }))
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { _ in }))
                     self?.present(alert, animated: true, completion: nil)
-                }
-                else {
+                } else {
                     self?.observeesViewController?.refresh()
                 }
             }

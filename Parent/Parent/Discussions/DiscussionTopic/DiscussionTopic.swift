@@ -69,7 +69,6 @@ public final class DiscussionTopic: NSManagedObject, LockableModel {
 
 import Marshal
 
-
 extension DiscussionTopic: SynchronizedModel {
     @objc public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let id: String = try json.stringID("id")

@@ -32,8 +32,7 @@ extension Student {
                 if (!enrollments.any(hasObserverEnrollment)) {
                     let error = NSError(domain: "com.instructure.Enrollments", code: Error.NoObserverEnrollments, userInfo: [NSLocalizedDescriptionKey: "User has no observer enrollments"])
                     return SignalProducer<[JSONObject], NSError>(error: error)
-                }
-                else {
+                } else {
                     return SignalProducer<[JSONObject], NSError>(value: enrollments)
                 }
             })

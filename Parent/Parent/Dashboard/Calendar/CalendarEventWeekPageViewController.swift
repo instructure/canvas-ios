@@ -67,7 +67,7 @@ class CalendarEventWeekPageViewController: UIViewController {
                 let syllabusButton = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
                 syllabusButton.accessibilityLabel = NSLocalizedString("Syllabus", comment: "Syllabus Button Title")
                 syllabusButton.accessibilityIdentifier = "syllabus_button"
-                let syllabus = Action<(), (), Never>() { _ in
+                let syllabus = Action<(), (), Never> { _ in
                     env.router.route(to: .syllabus(courseID: courseID), from: controller, options: nil)
                     return .empty
                 }
@@ -93,12 +93,12 @@ class CalendarEventWeekPageViewController: UIViewController {
         nextWeekButton.setImage(nextImage, for: .normal)
         nextWeekButton.accessibilityIdentifier = "next_week_button"
         nextWeekButton.accessibilityLabel = NSLocalizedString("Next Week", comment: "Next Week Button Accessibility Label")
-        
+
         prevWeekButton.tintColor = UIColor.white
         prevWeekButton.setImage(prevImage, for: .normal)
         prevWeekButton.accessibilityIdentifier = "last_week_button"
         prevWeekButton.accessibilityLabel = NSLocalizedString("Last Week", comment: "Last Week Button Accessibility Label")
-        
+
         updateHeaderTitle()
 
         let colorScheme = ColorCoordinator.colorSchemeForStudentID(studentID)
@@ -122,6 +122,7 @@ class CalendarEventWeekPageViewController: UIViewController {
             pageVC.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
             let startDate = initialReferenceDate.dateOnSundayAtTheBeginningOfTheWeek
             let endDate = startDate + Calendar.current.numberOfDaysInWeek.daysComponents
+            //  swiftlint:disable:next force_try
             let initialViewController = try! CalendarEventListViewController(session: session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
             pageVC.setViewControllers([initialViewController], direction: .forward, animated: false, completion: nil)
 
@@ -193,6 +194,7 @@ class CalendarEventWeekPageViewController: UIViewController {
         let endDate = startDate + Calendar.current.numberOfDaysInWeek.daysComponents
 
         // Failing on purpose here.  If this is broken it's programmer error
+        //  swiftlint:disable:next force_try
         let eventListViewController = try! CalendarEventListViewController(session: session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
         return eventListViewController
     }
@@ -201,7 +203,7 @@ class CalendarEventWeekPageViewController: UIViewController {
 // ---------------------------------------------
 // MARK: - UIPageViewControllerDataSource
 // ---------------------------------------------
-extension CalendarEventWeekPageViewController : UIPageViewControllerDataSource {
+extension CalendarEventWeekPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewController = viewController as? CalendarEventListViewController else {
             return nil
@@ -226,7 +228,7 @@ extension CalendarEventWeekPageViewController : UIPageViewControllerDataSource {
 // ---------------------------------------------
 // MARK: - UIPageViewControllerDelegate
 // ---------------------------------------------
-extension CalendarEventWeekPageViewController : UIPageViewControllerDelegate {
+extension CalendarEventWeekPageViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if finished {
             updateHeaderTitle()

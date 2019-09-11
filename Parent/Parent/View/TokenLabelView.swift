@@ -20,13 +20,13 @@ import Foundation
 import UIKit
 
 class TokenLabelView: UIView {
-    
+
     fileprivate var horizontalConstraints: [NSLayoutConstraint] = []
     fileprivate var verticalConstraints: [NSLayoutConstraint] = []
 
     fileprivate let label = UILabel()
 
-    @objc var text = ""  {
+    @objc var text = "" {
         didSet {
             guard !text.isEmpty else {
                 removeConstraints(horizontalConstraints)
@@ -84,8 +84,14 @@ class TokenLabelView: UIView {
         removeConstraints(horizontalConstraints)
         removeConstraints(verticalConstraints)
 
-        horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-leftMargin-[subview]-rightMargin-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["leftMargin": insets.left, "rightMargin": insets.right], views: ["subview": label])
-        verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-topMargin-[subview]-bottomMargin-|", options: NSLayoutConstraint.FormatOptions(), metrics: ["topMargin": insets.top, "bottomMargin": insets.bottom], views: ["subview": label])
+        horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-leftMargin-[subview]-rightMargin-|",
+                                                               options: NSLayoutConstraint.FormatOptions(),
+                                                               metrics: ["leftMargin": insets.left, "rightMargin": insets.right],
+                                                               views: ["subview": label])
+        verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-topMargin-[subview]-bottomMargin-|",
+                                                             options: NSLayoutConstraint.FormatOptions(),
+                                                             metrics: ["topMargin": insets.top, "bottomMargin": insets.bottom],
+                                                             views: ["subview": label])
 
         addConstraints(horizontalConstraints)
         addConstraints(verticalConstraints)

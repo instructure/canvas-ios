@@ -18,7 +18,6 @@
 
 import Foundation
 
-
 import CanvasCore
 
 struct CalendarEventCellViewModel: TableViewCellViewModel {
@@ -51,12 +50,12 @@ struct CalendarEventCellViewModel: TableViewCellViewModel {
         submittedImage = calendarEvent.submittedImage
         self.highlightColor = highlightColor
     }
-    
+
     static func tableViewDidLoad(_ tableView: UITableView) {
         tableView.estimatedRowHeight = 76
         tableView.register(UINib(nibName: "CalendarEventCell", bundle: Bundle(for: ParentAppDelegate.self)), forCellReuseIdentifier: "CalendarEventCellViewModel")
     }
-    
+
     func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CalendarEventCellViewModel", for: indexPath) as? CalendarEventCell else {
             fatalError("Incorrect Cell Type Found Expected: CalendarEventTableViewCell")
@@ -83,11 +82,11 @@ struct CalendarEventCellViewModel: TableViewCellViewModel {
 
         return cell
     }
-    
+
 }
 
 extension EventType {
-    func image()->UIImage? {
+    func image() -> UIImage? {
         switch(self) {
         case .assignment:
             return UIImage(named: "icon_assignment_fill")

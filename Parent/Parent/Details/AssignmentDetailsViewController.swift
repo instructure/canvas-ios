@@ -82,4 +82,3 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
         navigationController?.navigationBar.useContextColor(scheme.mainColor)
     }
 }
-

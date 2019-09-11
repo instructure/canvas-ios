@@ -67,7 +67,7 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let action = UITableViewRowAction(style: .default, title: NSLocalizedString("Dismiss", comment: "")) { [unowned self] action, indexPath in
+        let action = UITableViewRowAction(style: .default, title: NSLocalizedString("Dismiss", comment: "")) { [unowned self] _, indexPath in
             tableView.setEditing(false, animated: true)
             let alert = self.collection[indexPath]
             alert.dismiss(self.session)

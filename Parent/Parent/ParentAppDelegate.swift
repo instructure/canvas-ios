@@ -68,13 +68,13 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         AppStoreReview.handleLaunch()
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if url.scheme == "canvas-parent" {
             environment.router.route(to: url, from: topMostViewController()!, options: [.modal, .embedInNav, .addDoneButton])
         }
         return false
     }
-    
+
     @objc func routeToRemindable(from response: UNNotificationResponse) {
         let userInfo = response.notification.request.content.userInfo
         if let url = userInfo[RemindableActionURLKey] as? String, let studentID = userInfo[RemindableStudentIDKey] as? String {
@@ -198,15 +198,15 @@ extension ParentAppDelegate {
 
 // MARK: SoErroneous
 extension ParentAppDelegate {
-    
+
     @objc func alertUser(of error: NSError, from presentingViewController: UIViewController?) {
         guard let presentFrom = presentingViewController else { return }
-        
+
         DispatchQueue.main.async {
             let alertDetails = error.alertDetails(reportAction: {
                 presentFrom.present(UINavigationController(rootViewController: ErrorReportViewController.create(error: error)), animated: true)
             })
-            
+
             if let deets = alertDetails {
                 let alert = UIAlertController(title: deets.title, message: deets.description, preferredStyle: .alert)
                 deets.actions.forEach(alert.addAction)
@@ -214,11 +214,11 @@ extension ParentAppDelegate {
             }
         }
     }
-    
+
     @objc func setupDefaultErrorHandling() {
         ErrorReporter.setErrorHandler({ error, presentingViewController in
             self.alertUser(of: error, from: presentingViewController)
-            
+
             if error.shouldRecordInCrashlytics {
                 Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: nil)
             }
@@ -235,7 +235,7 @@ extension ParentAppDelegate {
     @objc func setupCrashlytics() {
         guard !uiTesting else { return }
         guard hasFabric else {
-            NSLog("WARNING: Crashlytics was not properly initialized.");
+            NSLog("WARNING: Crashlytics was not properly initialized.")
             return
         }
         Fabric.with([Crashlytics.self])
@@ -243,7 +243,7 @@ extension ParentAppDelegate {
 }
 
 extension ParentAppDelegate: AnalyticsHandler {
-    func handleEvent(_ name: String, parameters: [String : Any]?) {
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
         if hasFirebase {
             Analytics.logEvent(name, parameters: parameters)
         }
@@ -258,7 +258,9 @@ extension ParentAppDelegate: UNUserNotificationCenterDelegate {
         }
     }
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound])
     }
 }

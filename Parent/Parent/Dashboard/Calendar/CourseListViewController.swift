@@ -46,8 +46,8 @@ class CourseListViewController: FetchedTableViewController<CanvasCore.Course> {
         self.emptyView = emptyView
 
         let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
-        let collection = try! Course.collectionByStudent(session, studentID: studentID)
-        let refresher = try! Course.airwolfCollectionRefresher(session, studentID: studentID)
+        let collection = try Course.collectionByStudent(session, studentID: studentID)
+        let refresher = try Course.airwolfCollectionRefresher(session, studentID: studentID)
         prepare(collection, refresher: refresher, viewModelFactory: { course in
             CourseCellViewModel(course: course, highlightColor: scheme.highlightCellColor)
         })

@@ -104,7 +104,7 @@ class CalendarEventListViewController: UITableViewController {
         CalendarEventCellViewModel.tableViewDidLoad(tableView)
         tableView.register(UINib(nibName: "EmptyCalendarEventCell", bundle: Bundle(for: ParentAppDelegate.self)), forCellReuseIdentifier: "EmptyCalendarEventCell")
     }
-    
+
     fileprivate var courseUpdatesDisposable: Disposable?
     fileprivate var eventUpdatesDisposable: Disposable?
 
@@ -133,8 +133,9 @@ class CalendarEventListViewController: UITableViewController {
         for course in self.courseCollection! {
             courseNamesDictionary[ContextID(id: course.id, context: .course).canvasContextID] = course.name
         }
-
+        //  swiftlint:disable:next force_try
         self.collection = try! CalendarEvent.collectionByDueDate(session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
+        //  swiftlint:disable:next force_try
         self.refresher = try! CalendarEvent.refresher(session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
         self.refresher?.refresh(false)
 
@@ -156,7 +157,7 @@ class CalendarEventListViewController: UITableViewController {
 
         return Calendar.current.numberOfDaysInWeek
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let collectionSection = collectionSection(section) else {
             return 1

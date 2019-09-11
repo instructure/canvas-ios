@@ -173,4 +173,3 @@ extension CalendarEvent: Remindable {
         }
     }
 }
-

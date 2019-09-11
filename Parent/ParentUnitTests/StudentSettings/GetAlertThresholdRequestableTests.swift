@@ -37,7 +37,7 @@ class GetAlertThresholdRequestTests: XCTestCase {
         let expected: [APIQueryItem] = [.value("per_page", "99"), .value("student_id", studentID)]
         XCTAssertEqual(req.query, expected)
     }
-	
+
 	func testModel() {
 		let model = APIAlertThreshold.make()
 		XCTAssertNotNil(model)

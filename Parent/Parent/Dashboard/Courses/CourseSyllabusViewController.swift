@@ -16,13 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
 import CanvasCore
-import CanvasCore
-
-
 import ReactiveSwift
-import CanvasCore
+import UIKit
 
 class CourseSyllabusViewController: UIViewController {
 
@@ -31,7 +27,7 @@ class CourseSyllabusViewController: UIViewController {
     @objc let session: Session
     @objc let whizzyWigView: WhizzyWigView
     internal var refresher: Refresher?
-    
+
     fileprivate var course: Course?
 
     @objc init(courseID: String, studentID: String, session: Session) {
@@ -40,14 +36,14 @@ class CourseSyllabusViewController: UIViewController {
         self.session = session
         whizzyWigView = WhizzyWigView(frame: .zero)
         whizzyWigView.scrollView.isScrollEnabled = true
-        
+
         do {
             self.refresher = try Course.airwolfRefresher(session, studentID: studentID, courseID: courseID)
         } catch let error as NSError {
             self.refresher = nil
             ErrorReporter.reportError(error)
         }
-        
+
         super.init(nibName: nil, bundle: nil)
 
         whizzyWigView.contentInsets = UIEdgeInsets(top: 5.0, left: 15.0, bottom: 5.0, right: 15.0)
@@ -58,7 +54,7 @@ class CourseSyllabusViewController: UIViewController {
             self.whizzyWigView.loadHTMLString(course.syllabusBody ?? "", baseURL: session.baseURL)
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -71,9 +67,9 @@ class CourseSyllabusViewController: UIViewController {
         view.addSubview(whizzyWigView)
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[whizzy]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["whizzy": whizzyWigView]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[whizzy]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["whizzy": whizzyWigView]))
-        
+
         configureRefresher()
-        
+
         refresher?.refresh(false)
     }
 
@@ -85,18 +81,18 @@ class CourseSyllabusViewController: UIViewController {
 
     @objc func configureRefresher() {
         guard let r = refresher else { return }
-        
+
         r.refreshControl.addTarget(self, action: #selector(CourseSyllabusViewController.refresh), for: UIControl.Event.valueChanged)
-        
+
         whizzyWigView.scrollView.addSubview(r.refreshControl)
-        
+
         r.refreshingCompleted.observeValues { [weak self] error in
             if let me = self, let error = error {
                 ErrorReporter.reportError(error, from: me)
             }
         }
     }
-    
+
     @objc internal func refresh() {
         refresher?.refresh(true)
     }

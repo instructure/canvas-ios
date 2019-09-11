@@ -18,13 +18,12 @@
 
 import Foundation
 
-
 import ReactiveSwift
 import Marshal
 import CanvasCore
 
 extension Assignment {
-    
+
     public static func getAssignment(_ session: Session, courseID: String, assignmentID: String) throws -> SignalProducer<JSONObject, NSError> {
         let request = try session.GET("/api/v1/courses/\(courseID)/assignments/\(assignmentID)", parameters: Assignment.parameters)
         return session.JSONSignalProducer(request)

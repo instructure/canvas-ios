@@ -63,7 +63,7 @@ class CalendarEventDetailsViewController: CalendarEventDetailViewController {
         super.init()
         let observer = try CalendarEvent.observer(session, studentID: studentID, calendarEventID: calendarEventID)
         let refresher = try CalendarEvent.refresher(session, studentID: studentID, calendarEventID: calendarEventID)
-        
+
         let deets: (CalendarEvent) -> [EventDetailsViewModel] = { [weak self] event in
             guard let me = self else { return [] }
             return EventDetailsViewModel.detailsForCalendarEvent(session.baseURL, studentID: studentID, context: me, calendarEvent: event)
