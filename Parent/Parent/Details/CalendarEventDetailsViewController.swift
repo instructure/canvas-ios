@@ -17,14 +17,15 @@
 //
 
 import UIKit
-import CanvasCore
 import ReactiveSwift
+import Core
+import CanvasCore
 
 extension EventDetailsViewModel {
     static func detailsForCalendarEvent(_ baseURL: URL, studentID: String, context: UIViewController, calendarEvent: CalendarEvent) -> [EventDetailsViewModel] {
-        var actionURL: URL = Router.sharedInstance.dashboardRoute()
+        var actionURL: URL = Route.courses.url.url!
         if let courseID = ContextID(canvasContext: calendarEvent.contextCode)?.id {
-            actionURL = Router.sharedInstance.calendarEventDetailsRoute(studentID: studentID, courseID: courseID, calendarEventID: calendarEvent.id)
+            actionURL = Route.courseCalendarEvent(courseID: courseID, eventID: calendarEvent.id).url.url!
         }
 
         // Pass along a `Reminder` struct because it's unsafe to pass around the managed object
@@ -32,7 +33,7 @@ extension EventDetailsViewModel {
         let remindable = Reminder(id: calendarEvent.id, title: calendarEvent.reminderTitle, body: calendarEvent.reminderBody, date: calendarEvent.defaultReminderDate)
         var vms: [EventDetailsViewModel] = [
             .info(name: calendarEvent.title ?? "", submissionInfo: calendarEvent.submittedVerboseText, submissionColor: calendarEvent.submittedColor),
-            .reminder(remindable: remindable, actionURL: actionURL, context: context),
+            .reminder(remindable: remindable, studentID: studentID, actionURL: actionURL, context: context),
         ]
 
         if let startAt = calendarEvent.startAt, let endAt = calendarEvent.endAt {
@@ -77,12 +78,18 @@ class CalendarEventDetailsViewController: CalendarEventDetailViewController {
             .producer(ContextID(id: courseID, context: .course))
             .observe(on: UIScheduler())
             .startWithValues { next in
-            guard let course = next as? Course else { return }
+            guard let course = next as? CanvasCore.Course else { return }
             self.title = course.name
         }
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
+        navigationController?.navigationBar.useContextColor(scheme.mainColor)
     }
 }

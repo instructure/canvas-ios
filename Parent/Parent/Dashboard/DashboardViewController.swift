@@ -22,11 +22,6 @@ import ReactiveSwift
 import CanvasCore
 import Core
 
-typealias DashboardSettingsAction = (_ session: Session) -> Void
-typealias DashboardSelectCalendarEventAction = (_ session: Session, _ observeeID: String, _ calendarEvent: CalendarEvent) -> Void
-typealias DashboardSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: CanvasCore.Course) -> Void
-typealias DashboardSelectAlertAction = (_ session: Session, _ observeeID: String, _ alert: Alert) -> Void
-
 struct DashboardViewState {
     var studentCount = 0
     var isSiteAdmin = false
@@ -34,6 +29,7 @@ struct DashboardViewState {
 }
 
 class DashboardViewController: UIViewController {
+    var env = AppEnvironment.shared
     var studentCollection: FetchedCollection<Student>!
     var studentSyncProducer: Student.ModelPageSignalProducer!
 
@@ -61,16 +57,10 @@ class DashboardViewController: UIViewController {
     @objc var session: Session!
     var presenter: DashboardPresenter?
 
-    @objc var selectCourseAction: DashboardSelectCourseAction?
-    @objc var selectCalendarEventAction: DashboardSelectCalendarEventAction?
-    @objc var selectAlertAction: DashboardSelectAlertAction?
-
-    @objc var logoutAction: (() -> Void)?
-    @objc var addStudentAction: (() -> Void)?
-
     @objc var currentStudent: Student? {
         didSet {
             if let student = currentStudent {
+                currentStudentID = student.id
                 if !UIAccessibility.isReduceTransparencyEnabled {
                     let colorScheme = ColorCoordinator.colorSchemeForStudentID(student.id)
                     headerContainerView.backgroundColor = colorScheme.mainColor
@@ -96,14 +86,11 @@ class DashboardViewController: UIViewController {
     // ---------------------------------------------
     // MARK: - Initializers
     // ---------------------------------------------
-    fileprivate static let defaultStoryboardName = "DashboardViewController"
-    @objc static func new(_ storyboardName: String = defaultStoryboardName, session: Session) -> DashboardViewController {
-        guard let controller = UIStoryboard(name: storyboardName, bundle: Bundle(for: self)).instantiateInitialViewController() as? DashboardViewController else {
-            fatalError("Initial ViewController is not of type DashboardViewController")
-        }
+    static func create(env: AppEnvironment = .shared, session: Session) -> DashboardViewController {
+        let controller = loadFromStoryboard()
+        controller.env = env
         controller.session = session
         controller.presenter = DashboardPresenter(view: controller)
-
         return controller
     }
 
@@ -358,25 +345,12 @@ class DashboardViewController: UIViewController {
             return nil
         }
 
-        //  swiftlint:disable:next force_try
-        let coursesViewController = try! CourseListViewController(session: session, studentID: currentStudent.id)
-        coursesViewController.selectCourseAction = { [weak self] in
-            self?.selectCourseAction?($0, $1, $2)
-        }
-        return coursesViewController
+        return try? CourseListViewController(session: session, studentID: currentStudent.id)
     }
 
     @objc func calendarViewController(_ session: Session, startDate: Date = Date()) -> UIViewController? {
-        guard let currentStudent = currentStudent else {
-            return nil
-        }
-
-        let calendarWeekPageVC = CalendarEventWeekPageViewController.new(session: session, studentID: currentStudent.id, contextCodes: [], initialReferenceDate: startDate)
-        calendarWeekPageVC.selectCalendarEventAction = { [weak self] in
-            self?.selectCalendarEventAction?($0, $1, $2)
-        }
-
-        return calendarWeekPageVC
+        guard let currentStudent = currentStudent else { return nil }
+        return CalendarEventWeekPageViewController.create(session: session, studentID: currentStudent.id, initialReferenceDate: startDate)
     }
 
     @objc func alertsViewController(_ session: Session) -> UIViewController? {
@@ -446,8 +420,8 @@ class DashboardViewController: UIViewController {
         self.pageViewController?.setViewControllers([alertsViewController], direction: .forward, animated: false, completion: { _ in })
     }
 
-    @IBAction func drawerDashboardButtonPreseed(_ sender: UIButton) {
-        Router.sharedInstance.route(self, toURL: Router.sharedInstance.profileRoute(), modal: true)
+    @IBAction func drawerDashboardButtonPressed(_ sender: UIButton) {
+        env.router.route(to: .profile, from: self, options: .modal)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

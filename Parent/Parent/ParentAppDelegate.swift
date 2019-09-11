@@ -26,6 +26,8 @@ import UserNotifications
 import Core
 
 let ParentAppRefresherTTL: TimeInterval = 5.minutes
+var legacySession: Session?
+var currentStudentID: String?
 
 @UIApplicationMain
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,12 +35,9 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
-        env.router = Parent.router
-        Router.sharedInstance.addRoutes()
+        env.router = router
         return env
     }()
-
-    var legacySession: Session?
 
     let hasFabric = (Bundle.main.object(forInfoDictionaryKey: "Fabric") as? [String: Any])?["APIKey"] != nil
     let hasFirebase = FirebaseOptions.defaultOptions()?.apiKey != nil
@@ -50,7 +49,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             FirebaseApp.configure()
         }
         setupDefaultErrorHandling()
-        Core.Analytics.shared.handler = self
+        Analytics.shared.handler = self
         UNUserNotificationCenter.current().delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
@@ -64,33 +63,23 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return openCanvasURL(url)
-    }
-
     func applicationDidBecomeActive(_ application: UIApplication) {
         CoreWebView.keepCookieAlive(for: environment)
         AppStoreReview.handleLaunch()
     }
 
-    @objc func openCanvasURL(_ url: URL) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if url.scheme == "canvas-parent" {
-            if environment.currentSession != nil {
-                Router.sharedInstance.route(topMostViewController()!, toURL: url, modal: false)
-            } else if let window = window, let vc = Router.sharedInstance.viewControllerForURL(url) {
-                Router.sharedInstance.route(window, toRootViewController: vc)
-            } else {
-                // should never get here... should either have a session or a window!
-            }
+            environment.router.route(to: url, from: topMostViewController()!, options: [.modal, .embedInNav, .addDoneButton])
         }
-
         return false
     }
 
     @objc func routeToRemindable(from response: UNNotificationResponse) {
         let userInfo = response.notification.request.content.userInfo
-        if let urlString = userInfo[RemindableActionURLKey] as? String, let url = URL(string: urlString) {
-            Router.sharedInstance.route(topMostViewController()!, toURL: url, modal: true)
+        if let url = userInfo[RemindableActionURLKey] as? String, let studentID = userInfo[RemindableStudentIDKey] as? String {
+            currentStudentID = studentID
+            environment.router.route(to: url, from: topMostViewController()!, options: [.modal, .embedInNav, .addDoneButton])
         }
     }
 
@@ -118,21 +107,17 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             token: session.accessToken,
             masqueradeAsUserID: session.actAsUserID
         )
-        Router.sharedInstance.session = legacySession
-        NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: legacySession as Any])
         showRootView()
     }
 
     func showRootView() {
-        guard let legacySession = legacySession else { return }
+        guard let session = legacySession else { return }
         do {
-            let refresher = try Student.observedStudentsRefresher(legacySession)
+            let refresher = try Student.observedStudentsRefresher(session)
             refresher.refreshingCompleted.observeValues { [weak self] _ in
                 guard let self = self, let window = self.window else { return }
 
-                let dashboardHandler = Router.sharedInstance.parentDashboardHandler()
-                guard let controller = dashboardHandler(nil) else { return }
-
+                let controller = UINavigationController(rootViewController: DashboardViewController.create(session: session))
                 controller.view.layoutIfNeeded()
                 UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                     window.rootViewController = controller
@@ -159,6 +144,7 @@ extension ParentAppDelegate: LoginDelegate {
 
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
+        legacySession = nil
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self)
         }, completion: nil)
@@ -230,7 +216,7 @@ extension ParentAppDelegate {
     }
 
     @objc func setupDefaultErrorHandling() {
-        CanvasCore.ErrorReporter.setErrorHandler({ error, presentingViewController in
+        ErrorReporter.setErrorHandler({ error, presentingViewController in
             self.alertUser(of: error, from: presentingViewController)
 
             if error.shouldRecordInCrashlytics {

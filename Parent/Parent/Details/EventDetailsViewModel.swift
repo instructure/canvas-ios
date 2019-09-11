@@ -29,7 +29,7 @@ private let DetailsCellReuseIdentifier = "DetailsCell"
 enum EventDetailsViewModel: TableViewCellViewModel {
 
     case info(name: String, submissionInfo: String?, submissionColor: UIColor?)
-    case reminder(remindable: Remindable, actionURL: URL, context: UIViewController)
+    case reminder(remindable: Remindable, studentID: String, actionURL: URL, context: UIViewController)
     case date(start: Date, end: Date, allDay: Bool)
     case location(locationName: String?, address: String?)
     case details(baseURL: URL, deets: String)
@@ -82,7 +82,7 @@ enum EventDetailsViewModel: TableViewCellViewModel {
 
             return cell
 
-        case .reminder(let remindable, let actionURL, let context):
+        case .reminder(let remindable, let studentID, let actionURL, let context):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReminderCellReuseIdentifier, for: indexPath) as? DetailsReminderCell else { fatalError() }
             remindable.getScheduledReminder { request in
                 DispatchQueue.main.async {
@@ -109,7 +109,7 @@ enum EventDetailsViewModel: TableViewCellViewModel {
                     self.requestNotifications { success in
                         DispatchQueue.main.async {
                             if success {
-                                self.scheduleRemindable(remindable, url: actionURL, forCell: cell, inTableView: tableView, inContext: context)
+                                self.scheduleRemindable(remindable, studentID: studentID, url: actionURL, forCell: cell, inTableView: tableView, inContext: context)
                             } else {
                                 cell.toggle.isOn = false
                                 self.resetReminderCell(cell, inTableView: tableView)
@@ -147,13 +147,14 @@ enum EventDetailsViewModel: TableViewCellViewModel {
         tableView.reloadData()
     }
 
-    func scheduleRemindable(_ remindable: Remindable, url: URL, forCell cell: DetailsReminderCell, inTableView tableView: UITableView, inContext context: UIViewController) {
+    // swiftlint:disable:next function_parameter_count
+    func scheduleRemindable(_ remindable: Remindable, studentID: String, url: URL, forCell cell: DetailsReminderCell, inTableView tableView: UITableView, inContext context: UIViewController) {
         let vc = DatePickerViewController()
         vc.cancelAction = {
             cell.toggle.setOn(false, animated: true)
         }
         vc.doneAction = { date in
-            remindable.scheduleReminder(atTime: date, actionURL: url) { error in
+            remindable.scheduleReminder(atTime: date, studentID: studentID, actionURL: url) { error in
                 DispatchQueue.main.async {
                     if let error = error {
                         ErrorReporter.reportError(error as NSError, from: context)
@@ -202,8 +203,8 @@ func == (lhs: EventDetailsViewModel, rhs: EventDetailsViewModel) -> Bool {
         return leftName == rightName && leftSubmissionInfo == rightSubmissionInfo
     case let (.date(leftStartDate, leftEndDate, leftAllDay), .date(rightStartDate, rightEndDate, rightAllDay)):
         return (leftStartDate == rightStartDate) && (leftEndDate == rightEndDate) && (leftAllDay == rightAllDay)
-    case let (.reminder(_, leftURL, _), .reminder(_, rightURL, _)):
-        return leftURL == rightURL
+    case let (.reminder(_, leftStudentID, leftURL, _), .reminder(_, rightStudentID, rightURL, _)):
+        return leftStudentID == rightStudentID && leftURL == rightURL
     case let (.location(leftName, leftAddress), .location(rightName, rightAddress)):
         return (leftName == rightName) && (leftAddress == rightAddress)
     case let (.details(leftURL, leftDeets), .details(rightURL, rightDeets)):

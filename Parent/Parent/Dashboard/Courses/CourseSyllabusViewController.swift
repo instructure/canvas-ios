@@ -62,6 +62,7 @@ class CourseSyllabusViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = NSLocalizedString("Syllabus", comment: "")
         whizzyWigView.frame = view.bounds
         view.addSubview(whizzyWigView)
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[whizzy]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["whizzy": whizzyWigView]))
@@ -70,8 +71,14 @@ class CourseSyllabusViewController: UIViewController {
         configureRefresher()
 
         refresher?.refresh(false)
-
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
+        navigationController?.navigationBar.useContextColor(scheme.mainColor)
+    }
+
     @objc func configureRefresher() {
         guard let r = refresher else { return }
 
@@ -81,7 +88,7 @@ class CourseSyllabusViewController: UIViewController {
 
         r.refreshingCompleted.observeValues { [weak self] error in
             if let me = self, let error = error {
-                Router.sharedInstance.defaultErrorHandler()(me, error)
+                ErrorReporter.reportError(error, from: me)
             }
         }
     }

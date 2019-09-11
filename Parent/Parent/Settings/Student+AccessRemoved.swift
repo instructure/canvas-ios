@@ -25,7 +25,7 @@ extension Student {
             let refresher = try Student.observedStudentsRefresher(session)
             refresher.refresh(true)
         } catch let e as NSError {
-            Router.sharedInstance.presentServerError(currentViewController, error: e)
+            ErrorReporter.reportError(e, from: currentViewController)
         }
     }
 }
