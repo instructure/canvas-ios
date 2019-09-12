@@ -50,11 +50,11 @@ struct PostDiscussionEntryRequest: APIRequestable {
     let method = APIMethod.post
     let replyId: String?
 
-    init(context: Context, topicID: ID, body: Body?, entryID: ID? = nil) {
+    init(context: Context, topicID: String, body: Body?, entryID: String? = nil) {
         self.context = context
-        self.topicID = topicID.value
+        self.topicID = topicID
         self.body = body
-        self.replyId = entryID?.value
+        self.replyId = entryID
     }
 
     public var path: String {
@@ -105,7 +105,7 @@ struct GetTopicRequests: APIRequestable {
     public var query: [APIQueryItem] {
         var query: [APIQueryItem] = []
         if !include.isEmpty {
-            query.append(.array("include", include.map { $0.rawValue }))
+            query.append(.include(include.map { $0.rawValue }))
         }
         return query
     }

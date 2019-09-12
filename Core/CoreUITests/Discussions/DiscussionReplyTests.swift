@@ -24,98 +24,96 @@ class DiscussionReplyTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return DiscussionReplyTests.self }
     override var user: UITestUser? { return nil }
 
-    let course1 = APICourse.make(id: "1",
-        enrollments: [.make(type: "StudentEnrollment")], permissions: .init(
+    lazy var course = mock(course: .make(
+        permissions: .init(
             create_announcement: true,
             create_discussion_topic: true
-    ))
-    let noReplyCourse = APICourse.make(id: "2", name: "noReplyCourse", course_code: "C2", enrollments: [.make(type: "TeacherEnrollment")], permissions: .init(
-            create_announcement: false,
-            create_discussion_topic: false
-    ))
+    )))
 
-    func discussion1(_ course: APICourse) -> APIDiscussionTopic {
-        return .make(
-                id: "1",
-                message: "top message",
-                html_url: URL(string: "/courses/\(course.id)/discussion_topics/1")
+    func mockDiscussion(allowAttachment: Bool? = true) -> APIDiscussionTopic {
+        let discussId: ID = "1"
+        let discussion = APIDiscussionTopic.make(
+            id: discussId,
+            message: "top message",
+            html_url: URL(string: "/courses/\(course.id)/discussion_topics/\(discussId)"),
+            permissions: .make(attach: allowAttachment)
         )
+        mockData(ListDiscussionTopicsRequest(context: course), value: [discussion])
+        mockData(GetTopicRequests(context: course, topicID: discussId.value), value: discussion)
+        let fullTopic = APIDiscussionFullTopic.make()
+        mockData(GetFullTopicRequests(context: course, topicID: discussId.value), value: fullTopic)
+        mockData(ListDiscussionEntriesRequest(context: course, topicID: discussId.value), value: fullTopic.view)
+        fullTopic.unread_entries.forEach {
+            let url = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussId)/entries/\($0)/read")!
+            mockDataRequest(URLRequest(url: url), response: HTTPURLResponse(url: url, statusCode: 204, httpVersion: nil, headerFields: [:]))
+        }
+        return discussion
     }
 
-    override func setUp() {
-        super.setUp()
-        mockBaseRequests(courseIDs: [course1.id, noReplyCourse.id])
-
-        mockData(GetContextPermissionsRequest(context: ContextModel(.course, id: course1.id.value)), value: .make(post_to_forum: true))
-        mockData(GetContextPermissionsRequest(context: ContextModel(.course, id: noReplyCourse.id.value)), value: .make())
-
-        for course in [course1, noReplyCourse] {
-            mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: course.id.value)), value: [])
-            let discussion = discussion1(course)
-            let discussId = discussion.id.value
-            mockData(GetCourseRequest(courseID: course.id), value: course)
-            mockData(ListDiscussionTopicsRequest(context: course), value: [discussion])
-            mockData(GetTopicRequests(context: course, topicID: discussId), value: discussion)
-            let fullTopic = APIDiscussionFullTopic.make()
-            mockData(GetFullTopicRequests(context: course, topicID: discussId), value: fullTopic)
-            mockData(ListDiscussionEntriesRequest(context: course, topicID: discussId), value: fullTopic.view)
-            fullTopic.unread_entries.forEach {
-                let url = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussId)/entries/\($0)/read")!
-                mockDataRequest(URLRequest(url: url), response: HTTPURLResponse(url: url, statusCode: 204, httpVersion: nil, headerFields: [:]))
-            }
-        }
-
-        logIn()
+    func mockCoursePermission(allowPost: Bool = true) {
+        mockData(GetContextPermissionsRequest(context: course), value: .make(post_to_forum: allowPost))
     }
 
-    func xtestViewReplies() {
-        for course in [noReplyCourse, course1] {
-            logIn()
-            show("/courses/\(course.id)/discussion_topics/1")
-            app.find(label: discussion1(course).message!).waitToExist()
+    func xtestUnreadMarkersCorrect() {
+        mockBaseRequests()
+        mockCoursePermission()
+        let discussion = mockDiscussion()
+        show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
 
-            let messageLabels = ["m1", "m2", "m3", "m5"]
-            var xs: [String: CGFloat] = [:]
-            messageLabels.forEach {
-                xs[$0] = app.find(label: $0).frame.minX
-            }
+        XCTAssertTrue(DiscussionReply.replyUnread(id: "1").waitToExist(3).exists)
+        XCTAssertFalse(DiscussionReply.replyUnread(id: "2").exists)
+        XCTAssertTrue(DiscussionReply.replyUnread(id: "3").exists)
+        XCTAssertTrue(DiscussionReply.replyUnread(id: "5").exists)
+    }
 
-            XCTAssertLessThan(xs["m1"]!, xs["m2"]!)
-            XCTAssertLessThan(xs["m2"]!, xs["m3"]!)
-            XCTAssertEqual(xs["m1"]!, xs["m5"]!)
+    func helpTestViewReplies(expectReplyButtons: Bool) {
+        let discussion = mockDiscussion()
+        show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
+        app.find(label: discussion.message!).waitToExist()
 
-            // BUG: These are failing in very weird ways... probably a bug
-            continueAfterFailure = true
-            XCTAssertTrue(DiscussionReply.replyUnread(id: "1").waitToExist(3).exists)
-            XCTAssertFalse(DiscussionReply.replyUnread(id: "2").exists)
-            XCTAssertTrue(DiscussionReply.replyUnread(id: "3").exists)
-            XCTAssertTrue(DiscussionReply.replyUnread(id: "5").exists)
-            continueAfterFailure = false
-
-            XCTAssertFalse(app.find(label: "m4 (deep)").exists)
-            DiscussionReply.moreReplies.tap()
-            app.find(label: "m4 (deep)").waitToExist()
-            app.find(label: "Back to replies").tap()
-            app.find(label: "m4 (deep)").waitToVanish()
-
-            // BUG: These fails if noReplyCourse is run before course1... probably a bug
-            continueAfterFailure = true
-            let expectReplyButtons = (course != noReplyCourse)
-            XCTAssertEqual(DiscussionReply.topReplyButton.exists, expectReplyButtons)
-            XCTAssertEqual(DiscussionReply.replyButton(id: "1").exists, expectReplyButtons)
-            XCTAssertEqual(DiscussionReply.replyButton(id: "2").exists, expectReplyButtons)
-            continueAfterFailure = false
+        let messageLabels = ["m1", "m2", "m3", "m5"]
+        var xs: [String: CGFloat] = [:]
+        messageLabels.forEach {
+            xs[$0] = app.find(label: $0).frame().minX
         }
+
+        XCTAssertLessThan(xs["m1"]!, xs["m2"]!)
+        XCTAssertLessThan(xs["m2"]!, xs["m3"]!)
+        XCTAssertEqual(xs["m1"]!, xs["m5"]!)
+
+        XCTAssertFalse(app.find(label: "m4 (deep)").exists)
+        DiscussionReply.moreReplies.tap()
+        app.find(label: "m4 (deep)").waitToExist()
+        app.find(label: "Back to replies").tap()
+        app.find(label: "m4 (deep)").waitToVanish()
+
+        XCTAssertEqual(DiscussionReply.topReplyButton.exists, expectReplyButtons)
+        XCTAssertEqual(DiscussionReply.replyButton(id: "1").exists, expectReplyButtons)
+        XCTAssertEqual(DiscussionReply.replyButton(id: "2").exists, expectReplyButtons)
+    }
+
+    func testViewReplies() {
+        mockBaseRequests()
+        mockCoursePermission(allowPost: true)
+        helpTestViewReplies(expectReplyButtons: true)
+    }
+
+    func testViewRepliesWithPostDisallowed() {
+        mockBaseRequests()
+        mockCoursePermission(allowPost: false)
+        helpTestViewReplies(expectReplyButtons: false)
     }
 
     func testReplyingWithoutAttachment() {
-        mockEncodableRequest("courses/\(course1.id)/settings", value: ["allow_student_forum_attachments": false])
-        logIn()
-        show("/courses/\(course1.id)/discussion_topics/1")
-        app.find(label: discussion1(course1).message!).waitToExist()
+        mockBaseRequests()
+        mockCoursePermission()
+        let discussion = mockDiscussion(allowAttachment: false)
+        mockEncodableRequest("courses/\(course.id)/settings", value: ["allow_student_forum_attachments": false])
+        show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
+        app.find(label: discussion.message!).waitToExist()
 
-        mockData(PostDiscussionEntryRequest(context: course1, topicID: 1, body: nil), value: .make())
-        mockData(PostDiscussionEntryRequest(context: course1, topicID: 1, body: nil, entryID: 2), value: .make())
+        mockData(PostDiscussionEntryRequest(context: course, topicID: "1", body: nil), value: .make())
+        mockData(PostDiscussionEntryRequest(context: course, topicID: "1", body: nil, entryID: "2"), value: .make())
 
         let undoButton = app.find(id: "rich-text-toolbar-item-undo")
 
@@ -126,28 +124,49 @@ class DiscussionReplyTests: CoreUITestCase {
         undoButton.waitToVanish()
 
         DiscussionReply.topReplyButton.tap()
-        undoButton.waitToExist()
-        DiscussionReply.replyDone.tap()
-        undoButton.waitToVanish()
+        DiscussionEditReply.doneButton.tapUntil {
+            !DiscussionEditReply.doneButton.isVisible
+        }
 
         DiscussionReply.replyButton(id: "2").tap()
         undoButton.waitToExist()
-        XCTAssertFalse(DiscussionEdit.attachmentButton.exists)
-        DiscussionReply.replyDone.tap()
-        undoButton.waitToVanish()
+        XCTAssertFalse(DiscussionEditReply.attachmentButton.exists)
+        DiscussionEditReply.doneButton.tapUntil {
+            !DiscussionEditReply.doneButton.isVisible
+        }
     }
 
-    func xtestReplyingWithAttachment() {
-        mockEncodableRequest("courses/\(course1.id)/settings", value: ["allow_student_forum_attachments": true])
-        logIn()
-        show("/courses/1/discussion_topics/1")
-        app.find(label: discussion1(course1).message!).waitToExist()
+    func testReplyingWithAttachment() {
+        mockBaseRequests()
+        mockCoursePermission()
+        let discussion = mockDiscussion()
+        show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
+        app.find(label: discussion.message!).waitToExist()
 
-        mockData(PostDiscussionEntryRequest(context: course1, topicID: 1, body: nil), value: .make())
+        mockData(PostDiscussionEntryRequest(context: course, topicID: "1", body: nil), value: .make())
         DiscussionReply.topReplyButton.tap()
-        // BUG: Why isn't it requesting courses/1/settings?
-        DiscussionEdit.attachmentButton.tap()
+        DiscussionEditReply.attachmentButton.tap()
 
-        sleep(100)
+        Attachments.addButton.tap()
+        allowAccessToPhotos {
+            app.find(label: "Choose From Library").tap()
+        }
+
+        let photo = app.find(labelContaining: "Photo, ")
+        app.find(label: "Camera Roll").tapUntil { photo.exists }
+        photo.tap()
+
+        app.find(label: "Upload complete").waitToExist()
+        let img = XCUIElementWrapper(app.images.firstMatch)
+        XCTAssertFalse(img.exists)
+        app.find(label: "Upload complete").tap()
+        img.waitToExist()
+        app.find(id: "screen.dismiss").tap()
+        Attachments.dismissButton.tap()
+
+        XCUIElementWrapper(app.webViews.firstMatch).typeText("Here's a nice picture I took")
+        DiscussionEditReply.doneButton.tapUntil {
+            !DiscussionEditReply.doneButton.isVisible
+        }
     }
 }

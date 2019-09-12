@@ -16,21 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
-enum DiscussionReply: String, ElementWrapper {
-    case topReplyButton = "discussion-reply"
-    case moreReplies = "discussion.more-replies"
-    var id: String { return self.rawValue }
-}
-
-extension DiscussionReply {
-    static func replyUnread(id: String) -> Element {
-        return app.find(id: "reply.\(id).unread")
-    }
-
-    static func replyButton(id: String) -> Element {
-        return app.find(id: "discussion.reply-btn.\(id)")
-    }
+public enum DiscussionEditReply: String, ElementWrapper {
+    case
+        attachmentButton,
+        doneButton
 }

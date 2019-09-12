@@ -26,6 +26,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     lazy var course = mock(course: .make())
 
     func testNoSubmission() {
+        mockBaseRequests()
         let dueAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date
         let assignment = mock(assignment: .make(due_at: dueAt))
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
@@ -38,6 +39,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     }
 
     func testOneSubmission() {
+        mockBaseRequests()
         let assignment = mock(assignment: .make())
         let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
@@ -60,6 +62,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     }
 
     func testManySubmissions() {
+        mockBaseRequests()
         let assignment = mock(assignment: .make())
         let submittedAt1 = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
         let submittedAt2 = DateComponents(calendar: Calendar.current, year: 2018, month: 11, day: 1, hour: 22, minute: 0).date!
@@ -99,6 +102,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     }
 
     func testNotGraded() {
+        mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [.not_graded]))
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value:
             APISubmission.make(workflow_state: .unsubmitted, attempt: nil
@@ -109,6 +113,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     }
 
     func testGradedButUnsubmitted() {
+        mockBaseRequests()
         let assignment = mock(assignment: .make())
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value:
             APISubmission.make(
@@ -124,6 +129,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     }
 
     func testPDFSubmission() {
+        mockBaseRequests()
         let url = Bundle(for: SubmissionDetailsTests.self).url(forResource: "empty", withExtension: "pdf")
         let previewURL = URL(string: "https://preview.url")!
         let sessionURL = URL(string: "https://doc.viewer/session/123")!
@@ -162,6 +168,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     }
 
     func testPDFAnnotations() {
+        mockBaseRequests()
         let url = Bundle(for: SubmissionDetailsTests.self).url(forResource: "empty", withExtension: "pdf")
         let previewURL = URL(string: "https://preview.url")!
         let sessionURL = URL(string: "https://canvas.instructure.com/session/123")!
@@ -227,6 +234,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     }
 
     func testDiscussionSubmission() {
+        mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [ .discussion_topic ]))
         let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
@@ -250,6 +258,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     }
 
     func testQuizSubmission() {
+        mockBaseRequests()
         let assignment = mock(assignment: .make(
             quiz_id: "1",
             submission_types: [ .online_quiz ]
@@ -265,6 +274,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     }
 
     func testUrlSubmission() {
+        mockBaseRequests()
         let url = URL(string: "https://www.instructure.com/")!
         let assignment = mock(assignment: .make(submission_types: [ .online_url ]))
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
@@ -284,6 +294,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     }
 
     func testExternalToolSubmission() {
+        mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [ .external_tool ]))
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
 
@@ -295,6 +306,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     }
 
     func testMediaSubmission() {
+        mockBaseRequests()
         let url = Bundle(for: SubmissionDetailsTests.self).url(forResource: "test", withExtension: "m4a")!
         let assignment = mock(assignment: .make(submission_types: [ .media_recording ]))
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
@@ -311,6 +323,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     }
 
     func testRubric() {
+        mockBaseRequests()
         let ratings: [APIRubricRating] = [
             APIRubricRating.make(id: "1", points: 10, description: "A", long_description: "this is A", assignmentID: "1", position: 0),
             APIRubricRating.make(id: "2", points: 20, description: "B", long_description: "this is B", assignmentID: "1", position: 1),

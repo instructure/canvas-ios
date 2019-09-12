@@ -31,7 +31,8 @@ extension APIDiscussionTopic {
         discussion_subentry_count: Int = 1,
         published: Bool = true,
         attachments: [APIFile]? = nil,
-        author: APIDiscussionParticipant = .make()
+        author: APIDiscussionParticipant = .make(),
+        permissions: APIDiscussionPermissions? = nil
     ) -> APIDiscussionTopic {
         return APIDiscussionTopic(
             id: id,
@@ -44,7 +45,8 @@ extension APIDiscussionTopic {
             discussion_subentry_count: discussion_subentry_count,
             published: published,
             attachments: attachments,
-            author: author
+            author: author,
+            permissions: permissions
         )
     }
 }
@@ -62,6 +64,12 @@ extension APIDiscussionParticipant {
                 avatar_image_url: avatar_image_url,
                 html_url: html_url
         )
+    }
+}
+
+extension APIDiscussionPermissions {
+    public static func make(attach: Bool? = nil) -> APIDiscussionPermissions {
+        return APIDiscussionPermissions(attach: attach)
     }
 }
 

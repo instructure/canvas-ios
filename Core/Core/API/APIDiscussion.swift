@@ -31,6 +31,7 @@ public struct APIDiscussionTopic: Codable, Equatable {
     let published: Bool
     let attachments: [APIFile]?
     let author: APIDiscussionParticipant
+    let permissions: APIDiscussionPermissions?
 }
 
 public struct APIDiscussionParticipant: Codable, Equatable {
@@ -48,6 +49,10 @@ public struct APIDiscussionEntry: Codable, Equatable {
     let updated_at: Date?
     let message: String
     let replies: [APIDiscussionEntry]?
+}
+
+public struct APIDiscussionPermissions: Codable, Equatable {
+    let attach: Bool?
 }
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.view

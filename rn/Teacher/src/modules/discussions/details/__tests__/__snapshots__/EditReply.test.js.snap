@@ -10,7 +10,7 @@ exports[`EditReply dismisses modal activity upon save error 1`] = `
       Object {
         "action": [Function],
         "style": "done",
-        "testID": "edit-discussion-reply.done-btn",
+        "testID": "DiscussionEditReply.doneButton",
         "title": "Done",
       },
       Object {
@@ -20,7 +20,7 @@ exports[`EditReply dismisses modal activity upon save error 1`] = `
         "image": Object {
           "testUri": "../../../src/images/paperclip-icon.png",
         },
-        "testID": "edit-discussion-reply.attachment-btn",
+        "testID": "DiscussionEditReply.attachmentButton",
       },
     ]
   }
@@ -85,7 +85,7 @@ exports[`EditReply renders 1`] = `
       Object {
         "action": [Function],
         "style": "done",
-        "testID": "edit-discussion-reply.done-btn",
+        "testID": "DiscussionEditReply.doneButton",
         "title": "Done",
       },
       Object {
@@ -95,7 +95,7 @@ exports[`EditReply renders 1`] = `
         "image": Object {
           "testUri": "../../../src/images/paperclip-icon.png",
         },
-        "testID": "edit-discussion-reply.attachment-btn",
+        "testID": "DiscussionEditReply.attachmentButton",
       },
     ]
   }
@@ -145,7 +145,7 @@ exports[`EditReply renders title correctly when editing 1`] = `
       Object {
         "action": [Function],
         "style": "done",
-        "testID": "edit-discussion-reply.done-btn",
+        "testID": "DiscussionEditReply.doneButton",
         "title": "Done",
       },
       Object {
@@ -155,7 +155,7 @@ exports[`EditReply renders title correctly when editing 1`] = `
         "image": Object {
           "testUri": "../../../src/images/paperclip-icon.png",
         },
-        "testID": "edit-discussion-reply.attachment-btn",
+        "testID": "DiscussionEditReply.attachmentButton",
       },
     ]
   }

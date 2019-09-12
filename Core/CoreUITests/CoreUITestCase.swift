@@ -280,7 +280,7 @@ open class CoreUITestCase: XCTestCase {
         return assignment
     }
 
-    open func mockBaseRequests(courseIDs: [ID] = [1]) {
+    open func mockBaseRequests() {
         mockData(GetUserRequest(userID: "self"), value: APIUser.make())
         mockDataRequest(URLRequest(url: URL(string: "https://canvas.instructure.com/api/v1/users/self/profile?per_page=50")!),
                         data: #"{"id":1,"name":"Bob","short_name":"Bob","sortable_name":"Bob","locale":"en"}"#.data(using: .utf8)) // CKIClient.fetchCurrentUser
@@ -290,6 +290,7 @@ open class CoreUITestCase: XCTestCase {
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
         mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
         mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
+        mockData(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make())
         mockData(GetAccountNotificationsRequest(), value: [])
         let enrollment = APIEnrollment.make(
             type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",
