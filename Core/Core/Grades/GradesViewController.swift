@@ -20,9 +20,17 @@ import UIKit
 
 public class GradesViewController: UIViewController {
 
-    private var sections: Int = 3
+    private var sections: Int = 1
     private var rows = [2, 2, 2]
     @IBOutlet weak var tableView: UITableView!
+    private var color: UIColor?
+    private var presenter: GradesPresenter?
+
+    static func create(courseID: String = "165") -> GradesViewController {
+        let vc = GradesViewController.loadFromStoryboard()
+        vc.presenter = GradesPresenter(view: vc, courseID: courseID)
+        return vc
+    }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +39,13 @@ public class GradesViewController: UIViewController {
 
     func setupTableView() {
         tableView.registerHeaderFooterView(SectionHeaderView.self)
-        tableView.registerCell(UITableViewCell.self)
+        tableView.registerCell(GradesCell.self)
+    }
+}
+
+extension GradesViewController: GradesViewProtocol {
+    func update() {
+        tableView.reloadData()
     }
 }
 
@@ -45,8 +59,18 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell =  tableView.dequeue(for: indexPath)
-        cell.textLabel?.text = "\(indexPath)"
+        let cell: GradesCell =  tableView.dequeue(for: indexPath)
+        cell.nameLabel?.text = "assignment name"
+        cell.gradeLabel?.text = "- 89/100"
+        cell.typeImage.image = .icon(.assignment, .line)
+        cell.accessoryType = .disclosureIndicator
+        if indexPath.row % 2 == 0 {
+            cell.statusLabel?.text = "submitted"
+            cell.statusLabel?.isHidden = false
+        } else {
+            cell.statusLabel?.text = nil
+            cell.statusLabel?.isHidden = true
+        }
         return cell
     }
 
@@ -55,5 +79,23 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
         view.titleLabel?.text = "section \(section)"
         view.backgroundColor = .named(.backgroundLight)
         return view
+    }
+}
+
+public class GradesCell: UITableViewCell {
+
+    @IBOutlet weak var typeImage: UIImageView!
+    @IBOutlet weak var gradeLabel: DynamicLabel!
+    @IBOutlet weak var statusLabel: DynamicLabel!
+    @IBOutlet weak var nameLabel: DynamicLabel!
+
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        loadFromXib()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        loadFromXib()
     }
 }
