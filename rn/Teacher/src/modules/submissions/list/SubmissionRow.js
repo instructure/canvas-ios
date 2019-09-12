@@ -105,8 +105,8 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
 
   render () {
     let { user, group, submission, gradingType, newGradebookEnabled } = this.props
-    let contextID = user?.id ?? group?.id
-    let name = user?.name ?? group?.name
+    let contextID = group?.id ?? user?.id
+    let name = group?.name ?? user?.name
     let avatarURL = user.avatarUrl
 
     if (this.props.anonymous) {

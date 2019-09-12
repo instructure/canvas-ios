@@ -124,6 +124,8 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
 
           user {
             id: _id
+            avatarUrl
+            name
           }
         }
       }

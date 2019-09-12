@@ -137,7 +137,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   setSubmissions (props: SpeedGraderProps) {
     // We can only set submissions once because of filters.
     // Also don't set if we are still pending...
-    if (this.state.submissions || props.pending) return
+    if (this.state.submissions?.length > 0 || props.pending) return
 
     const submissions = props.filter
       ? props.filter(props.submissions)
