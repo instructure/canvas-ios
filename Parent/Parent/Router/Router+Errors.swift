@@ -18,12 +18,11 @@
 
 import Foundation
 
-
 import Marshal
 import CanvasCore
 
 extension Router {
-    func defaultErrorHandler() -> ((UIViewController, NSError) -> ()) {
+    func defaultErrorHandler() -> ((UIViewController, NSError) -> Void) {
         return { [unowned self] viewController, error in
             let networkError = error.domain == "com.instructure.TooLegit"
             if networkError {
@@ -101,4 +100,3 @@ extension Router {
         viewController.present(alert, animated: true, completion: nil)
     }
 }
-

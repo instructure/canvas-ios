@@ -35,9 +35,6 @@ exports[`CourseSelect renders 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -50,9 +47,6 @@ exports[`CourseSelect renders 1`] = `
                 },
                 undefined,
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
             ]
           }
         >
@@ -121,9 +115,6 @@ exports[`CourseSelect renders 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -132,9 +123,6 @@ exports[`CourseSelect renders 1`] = `
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -170,9 +158,6 @@ exports[`CourseSelect renders 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -185,9 +170,6 @@ exports[`CourseSelect renders 1`] = `
                 },
                 undefined,
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
             ]
           }
         >
@@ -256,9 +238,6 @@ exports[`CourseSelect renders 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -267,9 +246,6 @@ exports[`CourseSelect renders 1`] = `
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -338,9 +314,6 @@ exports[`CourseSelect renders 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -349,9 +322,6 @@ exports[`CourseSelect renders 1`] = `
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -401,9 +371,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -416,9 +383,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
                 },
                 undefined,
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
             ]
           }
         >
@@ -487,9 +451,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -498,9 +459,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -536,9 +494,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -551,9 +506,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
                 },
                 undefined,
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
             ]
           }
         >
@@ -622,9 +574,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -633,9 +582,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -704,9 +650,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
@@ -715,9 +658,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
                         "fontWeight": "600",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >

@@ -28,7 +28,23 @@ extension UITableView {
         return cell
     }
 
+    public func dequeueHeaderFooter<T: UITableViewHeaderFooterView>(_ type: T.Type = T.self) -> T {
+        guard let headerFooter = dequeueReusableHeaderFooterView(withIdentifier: String(describing: T.self)) as? T else {
+            fatalError("Could not dequeue \(String(describing: T.self)) as headerFooterView.")
+        }
+        return headerFooter
+    }
+
     public func registerCell<T: UITableViewCell>(_ type: T.Type) {
         register(type, forCellReuseIdentifier: String(describing: T.self))
+    }
+
+    public func registerHeaderFooterView<T: UITableViewHeaderFooterView>(_ type: T.Type, fromNib: Bool = true, bundle: Bundle = .core) {
+        if fromNib {
+            let nib = UINib(nibName: String(describing: T.self), bundle: bundle)
+            register(nib, forHeaderFooterViewReuseIdentifier: String(describing: T.self))
+        } else {
+            register(type, forHeaderFooterViewReuseIdentifier: String(describing: T.self))
+        }
     }
 }

@@ -41,14 +41,19 @@ extension DiscussionTopic {
         return try ManagedObjectObserver<DiscussionTopic>(predicate: pred, inContext: context)
     }
 
-    public static func detailsTableViewDataSource<DVM: TableViewCellViewModel>(_ session: Session, courseID: String, discussionTopicID: String, detailsFactory: @escaping (DiscussionTopic)->[DVM]) throws -> TableViewDataSource where DVM: Equatable {
+    public static func detailsTableViewDataSource<DVM: TableViewCellViewModel>(_ session: Session,
+                                                                               courseID: String,
+                                                                               discussionTopicID: String,
+                                                                               detailsFactory: @escaping (DiscussionTopic) -> [DVM]) throws -> TableViewDataSource where DVM: Equatable {
         let obs = try observer(session, courseID: courseID, discussionTopicID: discussionTopicID)
         let collection = FetchedDetailsCollection<DiscussionTopic, DVM>(observer: obs, detailsFactory: detailsFactory)
         return CollectionTableViewDataSource(collection: collection, viewModelFactory: { $0 })
     }
 
     open class DetailViewController: TableViewController {
-        open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<DiscussionTopic>, refresher: Refresher? = nil, detailsFactory: @escaping (DiscussionTopic)->[DVM]) where DVM: Equatable {
+        open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<DiscussionTopic>,
+                                                       refresher: Refresher? = nil,
+                                                       detailsFactory: @escaping (DiscussionTopic) -> [DVM]) where DVM: Equatable {
             let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
             self.refresher = refresher
             dataSource = CollectionTableViewDataSource(collection: details)

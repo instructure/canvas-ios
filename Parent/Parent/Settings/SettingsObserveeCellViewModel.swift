@@ -18,9 +18,7 @@
 
 import Foundation
 
-
 import CanvasCore
-
 
 struct SettingsObserveeCellViewModel: TableViewCellViewModel {
     let name: String

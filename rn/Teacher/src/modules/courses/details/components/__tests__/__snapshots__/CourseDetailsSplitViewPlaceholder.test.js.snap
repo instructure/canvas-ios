@@ -48,9 +48,6 @@ exports[`renders correctly 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -59,9 +56,6 @@ exports[`renders correctly 1`] = `
               "fontSize": 24,
               "fontWeight": "500",
               "marginTop": 32,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
             },
           ]
         }
@@ -72,9 +66,6 @@ exports[`renders correctly 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -82,9 +73,6 @@ exports[`renders correctly 1`] = `
               "color": "#8B969E",
               "fontWeight": "600",
               "marginTop": 4,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
             },
           ]
         }
@@ -144,9 +132,6 @@ exports[`renders correctly 2`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -155,9 +140,6 @@ exports[`renders correctly 2`] = `
               "fontSize": 24,
               "fontWeight": "500",
               "marginTop": 32,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
             },
           ]
         }
@@ -168,9 +150,6 @@ exports[`renders correctly 2`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -178,9 +157,6 @@ exports[`renders correctly 2`] = `
               "color": "#8B969E",
               "fontWeight": "600",
               "marginTop": 4,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
             },
           ]
         }

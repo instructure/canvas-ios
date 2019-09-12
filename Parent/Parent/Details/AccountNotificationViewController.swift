@@ -54,7 +54,7 @@ class AccountNotificationViewController: UITableViewController {
                 case .value(let notification):
                     self.details = [
                         .title(notification.subject),
-                        .message(session.baseURL, notification.message)
+                        .message(session.baseURL, notification.message),
                     ]
                 case .failed(let error):
                     if error.code == 401 {
@@ -65,7 +65,7 @@ class AccountNotificationViewController: UITableViewController {
                         </div>
                         """
                         self.details = [
-                            .message(session.baseURL, markup)
+                            .message(session.baseURL, markup),
                         ]
                     } else {
                         ErrorReporter.reportError(error, from: self)
@@ -87,6 +87,14 @@ class AccountNotificationViewController: UITableViewController {
         tableView.dataSource = self
         AnnouncementDetailsCellViewModel.tableViewDidLoad(tableView)
         tableView.reloadData()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let studentID = currentStudentID {
+            let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
+            navigationController?.navigationBar.useContextColor(scheme.mainColor)
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

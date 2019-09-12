@@ -22,7 +22,7 @@ class CalendarEventCell: UITableViewCell {
 
     @objc static let iconImageDiameter: CGFloat = 36.0
     @objc static let iconSubtrator: CGFloat = 15.0
-    
+
     @IBOutlet weak var typeImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var courseNameLabel: UILabel!
@@ -39,7 +39,7 @@ class CalendarEventCell: UITableViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         typeImageView.layer.cornerRadius = typeImageView.frame.height/2
         statusLabel.layer.cornerRadius = statusLabel.frame.height/2
     }
@@ -55,5 +55,5 @@ class CalendarEventCell: UITableViewCell {
 
         contentView.backgroundColor = highlighted ? highlightColor : UIColor.white
     }
-    
+
 }

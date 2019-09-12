@@ -26,7 +26,7 @@ import {
   ActionSheetIOS,
   TouchableOpacity,
 } from 'react-native'
-import { Text, BOLD_FONT } from '../../../common/text'
+import { Text } from '../../../common/text'
 import { LinkButton, Button } from '../../../common/buttons'
 import colors from '../../../common/colors'
 import Images from '../../../images'
@@ -481,7 +481,7 @@ const style = StyleSheet.create({
   },
   attachmentText: {
     color: colors.link,
-    fontFamily: BOLD_FONT,
+    fontWeight: 'bold',
     marginLeft: 4,
     fontSize: 14,
   },

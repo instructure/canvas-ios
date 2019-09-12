@@ -118,18 +118,12 @@ exports[`render correctly 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {
                         "color": "#2D3B45",
                         "fontWeight": "600",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -166,9 +160,6 @@ exports[`render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -181,9 +172,6 @@ exports[`render correctly 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -284,18 +272,12 @@ exports[`render correctly 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {
                         "color": "#2D3B45",
                         "fontWeight": "600",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -307,18 +289,12 @@ exports[`render correctly 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {
                         "color": "#8B969E",
                         "fontSize": 14,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }
@@ -355,9 +331,6 @@ exports[`render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -370,9 +343,6 @@ exports[`render correctly 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -473,18 +443,12 @@ exports[`render correctly 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {
                         "color": "#2D3B45",
                         "fontWeight": "600",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -496,18 +460,12 @@ exports[`render correctly 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {
                         "color": "#8B969E",
                         "fontSize": 14,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }
@@ -544,9 +502,6 @@ exports[`render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -559,9 +514,6 @@ exports[`render correctly 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -659,18 +611,12 @@ exports[`render correctly 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {
                         "color": "#2D3B45",
                         "fontWeight": "600",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -735,9 +681,6 @@ exports[`render correctly 2`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -750,9 +693,6 @@ exports[`render correctly 2`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -853,18 +793,12 @@ exports[`render correctly 2`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {
                         "color": "#2D3B45",
                         "fontWeight": "600",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -876,18 +810,12 @@ exports[`render correctly 2`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {
                         "color": "#8B969E",
                         "fontSize": 14,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }
@@ -924,9 +852,6 @@ exports[`render correctly 2`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -939,9 +864,6 @@ exports[`render correctly 2`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -1042,18 +964,12 @@ exports[`render correctly 2`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {
                         "color": "#2D3B45",
                         "fontWeight": "600",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -1065,18 +981,12 @@ exports[`render correctly 2`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {
                         "color": "#8B969E",
                         "fontSize": 14,
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
                       },
                     ]
                   }

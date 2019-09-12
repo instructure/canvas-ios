@@ -131,9 +131,6 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -142,9 +139,6 @@ exports[`renders correctly 1`] = `
                     "fontWeight": "600",
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -153,9 +147,6 @@ exports[`renders correctly 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
@@ -167,9 +158,6 @@ exports[`renders correctly 1`] = `
                     "marginTop": 2,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
@@ -357,9 +345,6 @@ exports[`renders correctly assignment icon 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -368,9 +353,6 @@ exports[`renders correctly assignment icon 1`] = `
                     "fontWeight": "600",
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -379,9 +361,6 @@ exports[`renders correctly assignment icon 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
@@ -393,9 +372,6 @@ exports[`renders correctly assignment icon 1`] = `
                     "marginTop": 2,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
@@ -583,9 +559,6 @@ exports[`renders correctly discussion icon 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -594,9 +567,6 @@ exports[`renders correctly discussion icon 1`] = `
                     "fontWeight": "600",
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -605,9 +575,6 @@ exports[`renders correctly discussion icon 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
@@ -619,9 +586,6 @@ exports[`renders correctly discussion icon 1`] = `
                     "marginTop": 2,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
@@ -809,9 +773,6 @@ exports[`renders correctly not published icon 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -820,9 +781,6 @@ exports[`renders correctly not published icon 1`] = `
                     "fontWeight": "600",
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -831,9 +789,6 @@ exports[`renders correctly not published icon 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
@@ -845,9 +800,6 @@ exports[`renders correctly not published icon 1`] = `
                     "marginTop": 2,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
@@ -1035,9 +987,6 @@ exports[`renders correctly published icon 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -1046,9 +995,6 @@ exports[`renders correctly published icon 1`] = `
                     "fontWeight": "600",
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -1057,9 +1003,6 @@ exports[`renders correctly published icon 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
@@ -1071,9 +1014,6 @@ exports[`renders correctly published icon 1`] = `
                     "marginTop": 2,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
@@ -1261,9 +1201,6 @@ exports[`renders correctly quiz icon 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -1272,9 +1209,6 @@ exports[`renders correctly quiz icon 1`] = `
                     "fontWeight": "600",
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -1283,9 +1217,6 @@ exports[`renders correctly quiz icon 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
@@ -1297,9 +1228,6 @@ exports[`renders correctly quiz icon 1`] = `
                     "marginTop": 2,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
@@ -1487,9 +1415,6 @@ exports[`renders correctly with closed due dates 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -1498,9 +1423,6 @@ exports[`renders correctly with closed due dates 1`] = `
                     "fontWeight": "600",
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -1509,9 +1431,6 @@ exports[`renders correctly with closed due dates 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
@@ -1523,9 +1442,6 @@ exports[`renders correctly with closed due dates 1`] = `
                     "marginTop": 2,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
@@ -1713,9 +1629,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -1724,9 +1637,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
                     "fontWeight": "600",
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -1735,9 +1645,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
@@ -1749,9 +1656,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
                     "marginTop": 2,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
@@ -1761,9 +1665,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
@@ -1784,9 +1685,6 @@ exports[`renders correctly with needs_grading_count 1`] = `
                   "paddingLeft": 6,
                   "paddingRight": 6,
                   "paddingTop": 2,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -1973,9 +1871,6 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -1984,9 +1879,6 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
                     "fontWeight": "600",
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -1995,9 +1887,6 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
@@ -2009,9 +1898,6 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
                     "marginTop": 2,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
@@ -2199,9 +2085,6 @@ exports[`renders correctly with open due dates 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -2210,9 +2093,6 @@ exports[`renders correctly with open due dates 1`] = `
                     "fontWeight": "600",
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -2221,9 +2101,6 @@ exports[`renders correctly with open due dates 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
@@ -2235,9 +2112,6 @@ exports[`renders correctly with open due dates 1`] = `
                     "marginTop": 2,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
@@ -2425,9 +2299,6 @@ exports[`renders correctly with selected props 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -2436,9 +2307,6 @@ exports[`renders correctly with selected props 1`] = `
                     "fontWeight": "600",
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -2447,9 +2315,6 @@ exports[`renders correctly with selected props 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
@@ -2461,9 +2326,6 @@ exports[`renders correctly with selected props 1`] = `
                     "marginTop": 2,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"

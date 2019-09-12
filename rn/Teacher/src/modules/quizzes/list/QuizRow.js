@@ -97,7 +97,7 @@ export default class QuizRow extends Component<Props, any> {
       one {# Question}
       other {# Questions}
     }`, { count: quiz.question_count })
-    return <DotSeparated separated={[pointsPossible, questionCount].filter(v => v)} />
+    return <DotSeparated style={style.detailContent} separated={[pointsPossible, questionCount].filter(v => v)} />
   }
 }
 
@@ -112,5 +112,8 @@ const style = StyleSheet.create({
     color: '#8B969E',
     fontSize: 14,
     marginTop: 2,
+  },
+  detailContent: {
+    fontSize: 14,
   },
 })

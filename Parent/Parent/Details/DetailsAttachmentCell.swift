@@ -29,5 +29,5 @@ class DetailsAttachmentCell: UITableViewCell {
         // Because Xcode is being dumb and isn't picking it up from what it is set in the nib
         iconImageView.tintColor = UIColor(r: 180.0, g: 180.0, b: 180.0)
         filenameLabel.accessibilityIdentifier = "event_detail_attachment"
-    }    
+    }
 }

@@ -18,10 +18,7 @@
 
 import UIKit
 
-
-
 import CanvasCore
-
 
 class AlertCell: UITableViewCell {
 
@@ -33,8 +30,8 @@ class AlertCell: UITableViewCell {
     @IBOutlet var iconImageView: UIImageView!
 
     @objc var highlightColor = UIColor.white
-    @objc var alert: Alert? = nil
-    @objc var session : Session? = nil
+    @objc var alert: Alert?
+    @objc var session: Session?
 
     override func awakeFromNib() {
         super.awakeFromNib()

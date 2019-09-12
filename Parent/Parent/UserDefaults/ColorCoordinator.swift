@@ -23,13 +23,13 @@ struct ColorScheme {
     let mainColor: UIColor
     let secondaryColor: UIColor
     let highlightCellColor: UIColor
-    
+
     static let highlightCellColor = UIColor(r: 245, g: 245, b: 245)
 
     static let blueColorScheme = ColorScheme(mainColor: UIColor(r: 0, g: 142, b: 226),
                                              secondaryColor: UIColor(r: 0, g: 127, b: 202),
                                              highlightCellColor: ColorScheme.highlightCellColor)
-    
+
     static let orangeColorScheme = ColorScheme(mainColor: UIColor(r: 252, g: 94, b: 19),
                                                secondaryColor: UIColor(r: 237, g: 88, b: 17),
                                                highlightCellColor: ColorScheme.highlightCellColor)
@@ -45,14 +45,14 @@ struct ColorScheme {
     static let pinkColorScheme = ColorScheme(mainColor: UIColor(r: 191, g: 50, b: 164),
                                              secondaryColor: UIColor(r: 171, g: 44, b: 147),
                                              highlightCellColor: ColorScheme.highlightCellColor)
-    
+
     static let redColorScheme = ColorScheme(mainColor: UIColor(r: 236, g: 51, b: 73),
                                             secondaryColor: UIColor(r: 211, g: 45, b: 65),
                                             highlightCellColor: ColorScheme.highlightCellColor)
-    
+
     static let colorSchemes: [ColorScheme] = {
         var colorSchemes: [ColorScheme] = []
-        
+
         // Put the last color first because of how nextColorSchemeIndex() works
         // in getting the starting index from UserDefaults
         colorSchemes.append(ColorScheme.greenColorScheme)
@@ -61,7 +61,7 @@ struct ColorScheme {
         colorSchemes.append(ColorScheme.pinkColorScheme)
         colorSchemes.append(ColorScheme.redColorScheme)
         colorSchemes.append(ColorScheme.orangeColorScheme)
-        
+
         return colorSchemes
     }()
 }
@@ -83,8 +83,8 @@ static func colorSchemeForParent() -> ColorScheme {
     }
 
     static func colorSchemeForKey(_ key: String) -> ColorScheme {
-        guard let colorSchemeIndexDictionary = UserDefaults.standard.object(forKey: ColorSchemeDictionaryKey) as? [String : Int] else {
-            var colorSchemeIndexDictionary = [String : Int]()
+        guard let colorSchemeIndexDictionary = UserDefaults.standard.object(forKey: ColorSchemeDictionaryKey) as? [String: Int] else {
+            var colorSchemeIndexDictionary = [String: Int]()
             let nextIndex = nextColorSchemeIndex()
             colorSchemeIndexDictionary[key] = nextIndex
             UserDefaults.standard.set(colorSchemeIndexDictionary, forKey: ColorSchemeDictionaryKey)
@@ -119,7 +119,7 @@ static func colorSchemeForParent() -> ColorScheme {
 
         return nextIndex
     }
-    
+
     static func clearColorSchemeDictionary() {
         UserDefaults.standard.set(nil, forKey: ColorSchemeDictionaryKey)
         UserDefaults.standard.set(0, forKey: CurrentIndexKey)

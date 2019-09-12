@@ -35,5 +35,5 @@ open class StudentSettingsHeaderView: UITableViewHeaderFooterView {
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
     }
-    
+
 }

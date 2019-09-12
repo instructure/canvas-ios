@@ -67,18 +67,12 @@ exports[`GroupRow renders 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "fontSize": 18,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -88,9 +82,6 @@ exports[`GroupRow renders 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#7F91A7",
                   "fontSize": 14,
@@ -112,9 +103,6 @@ exports[`GroupRow renders 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#7F91A7",
                   "fontSize": 14,
@@ -202,18 +190,12 @@ exports[`GroupRow renders without a term 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Object {
                   "fontSize": 18,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -223,9 +205,6 @@ exports[`GroupRow renders without a term 1`] = `
           <Text
             style={
               Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
                 Object {
                   "color": "#7F91A7",
                   "fontSize": 14,

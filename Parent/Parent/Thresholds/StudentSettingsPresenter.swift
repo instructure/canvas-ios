@@ -49,7 +49,7 @@ class StudentSettingsPresenter {
 
     func createAlert(value: String?, alertType: AlertThresholdType) {
         let u = CreateAlertThreshold(userID: studentID, value: value, alertType: alertType)
-        u.fetch(environment: env, force: true) { [weak self] result, _, error in
+        u.fetch(environment: env, force: true) { [weak self] _, _, error in
             DispatchQueue.main.async {
                 if let error = error {
                     self?.view?.showError(error)
@@ -62,7 +62,7 @@ class StudentSettingsPresenter {
 
     func updateAlert(value: String, alertType: AlertThresholdType, thresholdID: String) {
         let u = UpdateAlertThreshold(thresholdID: thresholdID, value: value, alertType: alertType)
-        u.fetch(environment: env, force: true) { [weak self] result, _, error in
+        u.fetch(environment: env, force: true) { [weak self] _, _, error in
             DispatchQueue.main.async {
                 if let error = error {
                     self?.view?.showError(error)
@@ -75,7 +75,7 @@ class StudentSettingsPresenter {
 
     func removeAlert(alertID: String) {
         let u = RemoveAlertThreshold(thresholdID: alertID)
-        u.fetch(environment: env, force: true) { [weak self] result, _, error in
+        u.fetch(environment: env, force: true) { [weak self] _, _, error in
             DispatchQueue.main.async {
                 if let error = error {
                     self?.view?.showError(error)

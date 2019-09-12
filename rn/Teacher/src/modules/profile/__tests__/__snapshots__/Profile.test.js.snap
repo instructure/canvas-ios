@@ -82,8 +82,8 @@ exports[`Profile Tests renders correctly 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {
               "fontSize": 24,
@@ -98,9 +98,6 @@ exports[`Profile Tests renders correctly 1`] = `
         allowFontScaling={false}
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#7F91A7",
               "fontSize": 16,
@@ -175,9 +172,6 @@ exports[`Profile Tests renders correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -187,12 +181,9 @@ exports[`Profile Tests renders correctly 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -271,9 +262,6 @@ exports[`Profile Tests renders correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -283,12 +271,9 @@ exports[`Profile Tests renders correctly 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -369,9 +354,6 @@ exports[`Profile Tests renders correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -381,12 +363,9 @@ exports[`Profile Tests renders correctly 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -425,7 +404,7 @@ exports[`Profile Tests renders correctly 1`] = `
                       titleStyles={
                         Object {
                           "fontSize": 20,
-                          "fontWeight": "300",
+                          "fontWeight": "400",
                         }
                       }
                       value={true}
@@ -504,9 +483,6 @@ exports[`Profile Tests renders correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -516,12 +492,9 @@ exports[`Profile Tests renders correctly 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -600,9 +573,6 @@ exports[`Profile Tests renders correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -612,12 +582,9 @@ exports[`Profile Tests renders correctly 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -696,9 +663,6 @@ exports[`Profile Tests renders correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -708,12 +672,9 @@ exports[`Profile Tests renders correctly 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -792,9 +753,6 @@ exports[`Profile Tests renders correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -804,12 +762,9 @@ exports[`Profile Tests renders correctly 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -854,18 +809,12 @@ exports[`Profile Tests renders correctly 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#73818C",
               "fontSize": 12,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -963,7 +912,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
               titleStyles={
                 Object {
                   "fontSize": 20,
-                  "fontWeight": "300",
+                  "fontWeight": "400",
                 }
               }
             />
@@ -985,7 +934,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
               titleStyles={
                 Object {
                   "fontSize": 20,
-                  "fontWeight": "300",
+                  "fontWeight": "400",
                 }
               }
             />
@@ -1007,7 +956,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
               titleStyles={
                 Object {
                   "fontSize": 20,
-                  "fontWeight": "300",
+                  "fontWeight": "400",
                 }
               }
             />
@@ -1029,7 +978,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
               titleStyles={
                 Object {
                   "fontSize": 20,
-                  "fontWeight": "300",
+                  "fontWeight": "400",
                 }
               }
               value={true}
@@ -1052,7 +1001,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
               titleStyles={
                 Object {
                   "fontSize": 20,
-                  "fontWeight": "300",
+                  "fontWeight": "400",
                 }
               }
             />
@@ -1074,7 +1023,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
               titleStyles={
                 Object {
                   "fontSize": 20,
-                  "fontWeight": "300",
+                  "fontWeight": "400",
                 }
               }
             />
@@ -1096,7 +1045,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
               titleStyles={
                 Object {
                   "fontSize": 20,
-                  "fontWeight": "300",
+                  "fontWeight": "400",
                 }
               }
             />
@@ -1118,7 +1067,7 @@ exports[`Profile Tests renders correctly for students 1`] = `
               titleStyles={
                 Object {
                   "fontSize": 20,
-                  "fontWeight": "300",
+                  "fontWeight": "400",
                 }
               }
             />
@@ -1243,8 +1192,8 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {
               "fontSize": 24,
@@ -1259,9 +1208,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
         allowFontScaling={false}
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#7F91A7",
               "fontSize": 16,
@@ -1336,9 +1282,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -1348,12 +1291,9 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -1432,9 +1372,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -1444,12 +1381,9 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -1528,9 +1462,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -1540,12 +1471,9 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -1625,9 +1553,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -1637,12 +1562,9 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -1681,7 +1603,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                       titleStyles={
                         Object {
                           "fontSize": 20,
-                          "fontWeight": "300",
+                          "fontWeight": "400",
                         }
                       }
                       value={false}
@@ -1762,9 +1684,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -1774,12 +1693,9 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -1818,7 +1734,7 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                       titleStyles={
                         Object {
                           "fontSize": 20,
-                          "fontWeight": "300",
+                          "fontWeight": "400",
                         }
                       }
                       value={true}
@@ -1897,9 +1813,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -1909,12 +1822,9 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -1993,9 +1903,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -2005,12 +1912,9 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -2089,9 +1993,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -2101,12 +2002,9 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -2185,9 +2083,6 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -2197,12 +2092,9 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -2247,18 +2139,12 @@ exports[`Profile Tests renders correctly with lti apps 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#73818C",
               "fontSize": 12,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -2353,8 +2239,8 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {
               "fontSize": 24,
@@ -2369,9 +2255,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
         allowFontScaling={false}
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#7F91A7",
               "fontSize": 16,
@@ -2446,9 +2329,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -2458,12 +2338,9 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -2542,9 +2419,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -2554,12 +2428,9 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -2639,9 +2510,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -2651,12 +2519,9 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -2695,7 +2560,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                       titleStyles={
                         Object {
                           "fontSize": 20,
-                          "fontWeight": "300",
+                          "fontWeight": "400",
                         }
                       }
                       value={false}
@@ -2776,9 +2641,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -2788,12 +2650,9 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -2832,7 +2691,7 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                       titleStyles={
                         Object {
                           "fontSize": 20,
-                          "fontWeight": "300",
+                          "fontWeight": "400",
                         }
                       }
                       value={true}
@@ -2911,9 +2770,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -2923,12 +2779,9 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -3007,9 +2860,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -3019,12 +2869,9 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -3103,9 +2950,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -3115,12 +2959,9 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -3199,9 +3040,6 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -3211,12 +3049,9 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -3261,18 +3096,12 @@ exports[`Profile Tests renders correctly with no lti apps 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#73818C",
               "fontSize": 12,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -3367,8 +3196,8 @@ exports[`Profile Tests renders correctly with no session 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {
               "fontSize": 24,
@@ -3383,9 +3212,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
         allowFontScaling={false}
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#7F91A7",
               "fontSize": 16,
@@ -3460,9 +3286,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -3472,12 +3295,9 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -3556,9 +3376,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -3568,12 +3385,9 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -3654,9 +3468,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -3666,12 +3477,9 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -3710,7 +3518,7 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                       titleStyles={
                         Object {
                           "fontSize": 20,
-                          "fontWeight": "300",
+                          "fontWeight": "400",
                         }
                       }
                       value={true}
@@ -3789,9 +3597,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -3801,12 +3606,9 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -3885,9 +3687,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -3897,12 +3696,9 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -3981,9 +3777,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -3993,12 +3786,9 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -4077,9 +3867,6 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -4089,12 +3876,9 @@ exports[`Profile Tests renders correctly with no session 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -4139,18 +3923,12 @@ exports[`Profile Tests renders correctly with no session 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#73818C",
               "fontSize": 12,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }
@@ -4245,8 +4023,8 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
-              "fontFamily": ".SFUIDisplay-heavy",
               "fontSize": 24,
+              "fontWeight": "800",
             },
             Object {
               "fontSize": 24,
@@ -4261,9 +4039,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
         allowFontScaling={false}
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#7F91A7",
               "fontSize": 16,
@@ -4338,9 +4113,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -4350,12 +4122,9 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -4436,9 +4205,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -4448,12 +4214,9 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -4492,7 +4255,7 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                       titleStyles={
                         Object {
                           "fontSize": 20,
-                          "fontWeight": "300",
+                          "fontWeight": "400",
                         }
                       }
                       value={true}
@@ -4571,9 +4334,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -4583,12 +4343,9 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -4667,9 +4424,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -4679,12 +4433,9 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -4763,9 +4514,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -4775,12 +4523,9 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -4859,9 +4604,6 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                     style={
                       Array [
                         Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
@@ -4871,12 +4613,9 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
                           },
                           Object {
                             "fontSize": 20,
-                            "fontWeight": "300",
+                            "fontWeight": "400",
                           },
                         ],
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
                       ]
                     }
                   >
@@ -4921,18 +4660,12 @@ exports[`Profile Tests renders correctly without act as user 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             Object {
               "color": "#73818C",
               "fontSize": 12,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
             },
           ]
         }

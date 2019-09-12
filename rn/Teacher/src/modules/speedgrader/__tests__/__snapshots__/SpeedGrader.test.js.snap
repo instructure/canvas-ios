@@ -6,7 +6,6 @@ exports[`SpeedGrader defaults current page to 0 if userID is not in submissions 
   navBarStyle="light"
   noRotationInVerticallyCompact={true}
   showDismissButton={true}
-  statusBarHidden={true}
   statusBarStyle="default"
 >
   <View
@@ -57,7 +56,6 @@ exports[`SpeedGrader defaults current page to 0 without studentIndex 1`] = `
   navBarStyle="light"
   noRotationInVerticallyCompact={true}
   showDismissButton={true}
-  statusBarHidden={true}
   statusBarStyle="default"
 >
   <View
@@ -108,7 +106,6 @@ exports[`SpeedGrader only sets submissions once 1`] = `
   navBarStyle="light"
   noRotationInVerticallyCompact={true}
   showDismissButton={true}
-  statusBarHidden={true}
   statusBarStyle="default"
 >
   <View
@@ -186,7 +183,6 @@ exports[`SpeedGrader renders 1`] = `
   navBarStyle="light"
   noRotationInVerticallyCompact={true}
   showDismissButton={true}
-  statusBarHidden={true}
   statusBarStyle="default"
 >
   <View
@@ -460,7 +456,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   navBarStyle="light"
                   noRotationInVerticallyCompact={true}
                   showDismissButton={true}
-                  statusBarHidden={true}
                   statusBarStyle="default"
                 >
                   <View

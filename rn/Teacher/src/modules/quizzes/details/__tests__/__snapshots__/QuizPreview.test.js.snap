@@ -171,16 +171,10 @@ exports[`QuizPreview renders error if needed 2`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             undefined,
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
           ]
         }
       >
@@ -220,16 +214,10 @@ exports[`QuizPreview renders on error 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             undefined,
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
           ]
         }
       >
@@ -313,16 +301,10 @@ exports[`QuizPreview renders on timeout 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
             undefined,
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
           ]
         }
       >

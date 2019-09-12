@@ -16,17 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CanvasCore
-
-
-import CanvasCore
-import CanvasCore
-
 import ReactiveSwift
-
-typealias CalendarEventListSelectCalendarEventAction = (Session, String, CalendarEvent)->Void
+import CanvasCore
+import Core
 
 class CalendarEventListViewController: UITableViewController {
+    var env = AppEnvironment.shared
 
     @objc let emptyView = TableEmptyView.nibView()
 
@@ -42,9 +37,19 @@ class CalendarEventListViewController: UITableViewController {
     @objc let endDate: Date
     fileprivate var contextCodes: [String]
     fileprivate var courseNamesDictionary = [String: String]()
-    @objc var selectCalendarEventAction: CalendarEventListSelectCalendarEventAction? = nil
 
-    var courseCollection: FetchedCollection<Course>?
+    @objc func selectCalendarEventAction(_ session: Session, _ observeeID: String, _ calendarEvent: CalendarEvent) {
+        guard let courseID = ContextID(canvasContext: calendarEvent.contextCode)?.id else { return }
+        switch calendarEvent.type {
+        case .assignment, .quiz:
+            guard let assignmentID = calendarEvent.assignmentID else { fallthrough }
+            env.router.route(to: .course(courseID, assignment: assignmentID), from: self, options: [.modal, .embedInNav, .addDoneButton])
+        default:
+            env.router.route(to: .courseCalendarEvent(courseID: courseID, eventID: calendarEvent.id), from: self, options: [.modal, .embedInNav, .addDoneButton])
+        }
+    }
+
+    var courseCollection: FetchedCollection<CanvasCore.Course>?
     var collection: FetchedCollection<CalendarEvent>!
 
     var viewModelFactory: ((CalendarEvent) -> CalendarEventCellViewModel)!
@@ -57,7 +62,7 @@ class CalendarEventListViewController: UITableViewController {
             _ = self.refresher?.refreshingCompleted.observeValues { [weak self] err in
                 self?.updateEmptyView()
                 if let s = self, let e = err {
-                    Router.sharedInstance.defaultErrorHandler()(s, e)
+                    ErrorReporter.reportError(e, from: s)
                 }
             }
         }
@@ -99,12 +104,14 @@ class CalendarEventListViewController: UITableViewController {
         CalendarEventCellViewModel.tableViewDidLoad(tableView)
         tableView.register(UINib(nibName: "EmptyCalendarEventCell", bundle: Bundle(for: ParentAppDelegate.self)), forCellReuseIdentifier: "EmptyCalendarEventCell")
     }
-    
+
     fileprivate var courseUpdatesDisposable: Disposable?
     fileprivate var eventUpdatesDisposable: Disposable?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
+        navigationController?.navigationBar.useContextColor(scheme.mainColor)
 
         courseUpdatesDisposable = courseCollection?.collectionUpdates
             .observe(on: UIScheduler())
@@ -126,8 +133,9 @@ class CalendarEventListViewController: UITableViewController {
         for course in self.courseCollection! {
             courseNamesDictionary[ContextID(id: course.id, context: .course).canvasContextID] = course.name
         }
-
+        //  swiftlint:disable:next force_try
         self.collection = try! CalendarEvent.collectionByDueDate(session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
+        //  swiftlint:disable:next force_try
         self.refresher = try! CalendarEvent.refresher(session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
         self.refresher?.refresh(false)
 
@@ -149,7 +157,7 @@ class CalendarEventListViewController: UITableViewController {
 
         return Calendar.current.numberOfDaysInWeek
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let collectionSection = collectionSection(section) else {
             return 1
@@ -192,7 +200,7 @@ class CalendarEventListViewController: UITableViewController {
 
         let collectionIndexPath = IndexPath(row: indexPath.row, section: collectionSection)
         let calendarEvent = collection[collectionIndexPath]
-        selectCalendarEventAction?(session, studentID, calendarEvent)
+        selectCalendarEventAction(session, studentID, calendarEvent)
     }
 
     // This is probably not the best way to search through the sections, but it should be fast enough for now.

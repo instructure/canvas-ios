@@ -18,17 +18,16 @@
 
 import Foundation
 
-
 import CanvasCore
 
 struct CourseCellViewModel: TableViewCellViewModel {
-    
+
     let course: Course
     let highlightColor: UIColor
 
     var gradeLabelText: String {
         let grades: String = [course.visibleGrade, course.visibleScore]
-            .compactMap( { $0 } )
+            .compactMap({ $0 })
             .joined(separator: "   ")
 
         if grades != "" {
@@ -42,13 +41,13 @@ struct CourseCellViewModel: TableViewCellViewModel {
         self.course = course
         self.highlightColor = highlightColor
     }
-    
+
     static func tableViewDidLoad(_ tableView: UITableView) {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 107
         tableView.register(UINib(nibName: "CourseCell", bundle: Bundle(for: ParentAppDelegate.self)), forCellReuseIdentifier: "CourseCell")
     }
-    
+
     func cellForTableView(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CourseCell", for: indexPath) as? CourseCell else {
             fatalError("Incorrect Cell Type Found Expected: CourseCell")

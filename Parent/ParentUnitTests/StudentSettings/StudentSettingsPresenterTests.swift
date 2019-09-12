@@ -21,7 +21,6 @@ import XCTest
 @testable import Core
 import TestsFoundation
 
-
 class StudentSettingsPresenterTests: ParentTestCase {
     var resultingError: NSError?
     var presenter: StudentSettingsPresenter!
@@ -84,7 +83,6 @@ class StudentSettingsPresenterTests: ParentTestCase {
         XCTAssertEqual(presenter.thresholds.first?.type, AlertThresholdType.assignmentGradeHigh)
         XCTAssertEqual(presenter.thresholds.first?.threshold, "50")
     }
-
 
     func testDeleteAlert() {
         expectation.expectedFulfillmentCount = 4

@@ -48,7 +48,6 @@ import {
   Heading1,
   Text,
   SubTitle,
-  BOLD_FONT,
 } from '../../../common/text'
 import colors from '../../../common/colors'
 import refresh from '../../../utils/refresh'
@@ -768,7 +767,7 @@ const style = StyleSheet.create({
   },
   attachmentText: {
     color: colors.link,
-    fontFamily: BOLD_FONT,
+    fontWeight: 'bold',
     marginLeft: 4,
     fontSize: 14,
   },

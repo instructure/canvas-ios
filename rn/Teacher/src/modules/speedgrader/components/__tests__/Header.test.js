@@ -47,6 +47,7 @@ let noSubProps = {
   selectedAttachmentIndex: null,
   anonymous: false,
   navigator: templates.navigator(),
+  newGradebookEnabled: false,
 }
 
 let subProps = {
@@ -150,6 +151,29 @@ describe('SpeedGraderHeader', () => {
       `/groups/1/users`,
       { modal: true },
       { courseID: '3' },
+    )
+  })
+
+  it('renders the eye icon when newGradebook is enabled', () => {
+    let tree = shallow(<Header {...subProps} newGradebookEnabled />)
+    let eye = tree.find('[testID="header.navigation-eye"]')
+    expect(eye.length).toEqual(1)
+  })
+
+  it('navigates to post policy when tapping on the eye icon', () => {
+    let navigator = { show: jest.fn() }
+    let tree = shallow(
+      <Header
+        {...subProps}
+        navigator={navigator}
+        newGradebookEnabled
+      />
+    )
+    let eye = tree.find('[testID="header.navigation-eye"]')
+    eye.simulate('press')
+    expect(navigator.show).toHaveBeenCalledWith(
+      '/courses/3/assignments/2/post_policy',
+      { modal: true }
     )
   })
 })

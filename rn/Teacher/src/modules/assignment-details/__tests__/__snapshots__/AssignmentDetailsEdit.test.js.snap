@@ -98,12 +98,9 @@ exports[`error occurs when done pressed 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
                       "fontSize": 24,
+                      "fontWeight": "600",
                     },
                     Array [
                       Object {
@@ -156,12 +153,9 @@ exports[`error occurs when done pressed 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
                 "fontSize": 12,
+                "fontWeight": "500",
               },
               Object {
                 "alignItems": "center",
@@ -191,8 +185,8 @@ exports[`error occurs when done pressed 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -235,16 +229,10 @@ exports[`error occurs when done pressed 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "fontSize": 17,
               },
               Object {
                 "height": 45,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -260,8 +248,8 @@ exports[`error occurs when done pressed 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -341,9 +329,6 @@ exports[`error occurs when done pressed 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -357,9 +342,6 @@ exports[`error occurs when done pressed 1`] = `
                       "color": "#374A59",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -397,8 +379,8 @@ exports[`error occurs when done pressed 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -470,9 +452,6 @@ exports[`error occurs when done pressed 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -481,9 +460,6 @@ exports[`error occurs when done pressed 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -601,9 +577,6 @@ exports[`error occurs when done pressed 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -612,9 +585,6 @@ exports[`error occurs when done pressed 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -651,16 +621,10 @@ exports[`error occurs when done pressed 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {},
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
                     ]
                   }
                 >
@@ -731,9 +695,6 @@ exports[`error occurs when done pressed 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -742,9 +703,6 @@ exports[`error occurs when done pressed 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -938,12 +896,9 @@ exports[`modal saving is shown on assignment update 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
                       "fontSize": 24,
+                      "fontWeight": "600",
                     },
                     Array [
                       Object {
@@ -996,12 +951,9 @@ exports[`modal saving is shown on assignment update 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
                 "fontSize": 12,
+                "fontWeight": "500",
               },
               Object {
                 "alignItems": "center",
@@ -1031,8 +983,8 @@ exports[`modal saving is shown on assignment update 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -1075,16 +1027,10 @@ exports[`modal saving is shown on assignment update 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "fontSize": 17,
               },
               Object {
                 "height": 45,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -1100,8 +1046,8 @@ exports[`modal saving is shown on assignment update 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -1181,9 +1127,6 @@ exports[`modal saving is shown on assignment update 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1197,9 +1140,6 @@ exports[`modal saving is shown on assignment update 1`] = `
                       "color": "#374A59",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -1237,8 +1177,8 @@ exports[`modal saving is shown on assignment update 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -1310,9 +1250,6 @@ exports[`modal saving is shown on assignment update 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1321,9 +1258,6 @@ exports[`modal saving is shown on assignment update 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -1441,9 +1375,6 @@ exports[`modal saving is shown on assignment update 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1452,9 +1383,6 @@ exports[`modal saving is shown on assignment update 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -1491,16 +1419,10 @@ exports[`modal saving is shown on assignment update 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {},
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
                     ]
                   }
                 >
@@ -1571,9 +1493,6 @@ exports[`modal saving is shown on assignment update 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1582,9 +1501,6 @@ exports[`modal saving is shown on assignment update 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -1778,12 +1694,9 @@ exports[`renders 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
                       "fontSize": 24,
+                      "fontWeight": "600",
                     },
                     Array [
                       Object {
@@ -1836,12 +1749,9 @@ exports[`renders 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
                 "fontSize": 12,
+                "fontWeight": "500",
               },
               Object {
                 "alignItems": "center",
@@ -1871,8 +1781,8 @@ exports[`renders 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -1915,16 +1825,10 @@ exports[`renders 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "fontSize": 17,
               },
               Object {
                 "height": 45,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -1940,8 +1844,8 @@ exports[`renders 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -2021,9 +1925,6 @@ exports[`renders 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2037,9 +1938,6 @@ exports[`renders 1`] = `
                       "color": "#374A59",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -2077,8 +1975,8 @@ exports[`renders 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -2150,9 +2048,6 @@ exports[`renders 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2161,9 +2056,6 @@ exports[`renders 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -2281,9 +2173,6 @@ exports[`renders 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2292,9 +2181,6 @@ exports[`renders 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -2331,16 +2217,10 @@ exports[`renders 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {},
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
                     ]
                   }
                 >
@@ -2411,9 +2291,6 @@ exports[`renders 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2422,9 +2299,6 @@ exports[`renders 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -2618,12 +2492,9 @@ exports[`saving invalid dates displays banner 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
                       "fontSize": 24,
+                      "fontWeight": "600",
                     },
                     Array [
                       Object {
@@ -2676,12 +2547,9 @@ exports[`saving invalid dates displays banner 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
                 "fontSize": 12,
+                "fontWeight": "500",
               },
               Object {
                 "alignItems": "center",
@@ -2711,8 +2579,8 @@ exports[`saving invalid dates displays banner 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -2755,16 +2623,10 @@ exports[`saving invalid dates displays banner 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "fontSize": 17,
               },
               Object {
                 "height": 45,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -2780,8 +2642,8 @@ exports[`saving invalid dates displays banner 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -2861,9 +2723,6 @@ exports[`saving invalid dates displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -2877,9 +2736,6 @@ exports[`saving invalid dates displays banner 1`] = `
                       "color": "#374A59",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -2917,8 +2773,8 @@ exports[`saving invalid dates displays banner 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -2990,9 +2846,6 @@ exports[`saving invalid dates displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -3001,9 +2854,6 @@ exports[`saving invalid dates displays banner 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -3121,9 +2971,6 @@ exports[`saving invalid dates displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -3132,9 +2979,6 @@ exports[`saving invalid dates displays banner 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -3171,16 +3015,10 @@ exports[`saving invalid dates displays banner 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {},
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
                     ]
                   }
                 >
@@ -3251,9 +3089,6 @@ exports[`saving invalid dates displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -3262,9 +3097,6 @@ exports[`saving invalid dates displays banner 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -3462,12 +3294,9 @@ exports[`saving invalid name displays banner 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
                       "fontSize": 24,
+                      "fontWeight": "600",
                     },
                     Array [
                       Object {
@@ -3523,12 +3352,9 @@ exports[`saving invalid name displays banner 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
                 "fontSize": 12,
+                "fontWeight": "500",
               },
               Object {
                 "alignItems": "center",
@@ -3558,8 +3384,8 @@ exports[`saving invalid name displays banner 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -3602,16 +3428,10 @@ exports[`saving invalid name displays banner 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "fontSize": 17,
               },
               Object {
                 "height": 45,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -3635,12 +3455,9 @@ exports[`saving invalid name displays banner 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#EE0612",
-                "fontFamily": ".SFUIDisplay",
                 "fontSize": 14,
+                "fontWeight": "normal",
               },
               Object {
                 "marginHorizontal": 16,
@@ -3658,8 +3475,8 @@ exports[`saving invalid name displays banner 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -3739,9 +3556,6 @@ exports[`saving invalid name displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -3755,9 +3569,6 @@ exports[`saving invalid name displays banner 1`] = `
                       "color": "#374A59",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -3795,8 +3606,8 @@ exports[`saving invalid name displays banner 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -3868,9 +3679,6 @@ exports[`saving invalid name displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -3879,9 +3687,6 @@ exports[`saving invalid name displays banner 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -3999,9 +3804,6 @@ exports[`saving invalid name displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -4010,9 +3812,6 @@ exports[`saving invalid name displays banner 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -4049,16 +3848,10 @@ exports[`saving invalid name displays banner 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {},
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
                     ]
                   }
                 >
@@ -4129,9 +3922,6 @@ exports[`saving invalid name displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -4140,9 +3930,6 @@ exports[`saving invalid name displays banner 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -4336,12 +4123,9 @@ exports[`saving invalid points possible displays banner 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
                       "fontSize": 24,
+                      "fontWeight": "600",
                     },
                     Array [
                       Object {
@@ -4397,12 +4181,9 @@ exports[`saving invalid points possible displays banner 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
                 "fontSize": 12,
+                "fontWeight": "500",
               },
               Object {
                 "alignItems": "center",
@@ -4432,8 +4213,8 @@ exports[`saving invalid points possible displays banner 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -4476,16 +4257,10 @@ exports[`saving invalid points possible displays banner 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "fontSize": 17,
               },
               Object {
                 "height": 45,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -4501,8 +4276,8 @@ exports[`saving invalid points possible displays banner 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -4582,9 +4357,6 @@ exports[`saving invalid points possible displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -4598,9 +4370,6 @@ exports[`saving invalid points possible displays banner 1`] = `
                       "color": "#374A59",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -4638,8 +4407,8 @@ exports[`saving invalid points possible displays banner 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -4711,9 +4480,6 @@ exports[`saving invalid points possible displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -4722,9 +4488,6 @@ exports[`saving invalid points possible displays banner 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -4797,12 +4560,9 @@ exports[`saving invalid points possible displays banner 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#EE0612",
-                "fontFamily": ".SFUIDisplay",
                 "fontSize": 14,
+                "fontWeight": "normal",
               },
               Object {
                 "marginHorizontal": 16,
@@ -4873,9 +4633,6 @@ exports[`saving invalid points possible displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -4884,9 +4641,6 @@ exports[`saving invalid points possible displays banner 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -4923,16 +4677,10 @@ exports[`saving invalid points possible displays banner 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {},
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
                     ]
                   }
                 >
@@ -5003,9 +4751,6 @@ exports[`saving invalid points possible displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -5014,9 +4759,6 @@ exports[`saving invalid points possible displays banner 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -5210,12 +4952,9 @@ exports[`saving negative points possible displays banner 1`] = `
                 style={
                   Array [
                     Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
                       "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
                       "fontSize": 24,
+                      "fontWeight": "600",
                     },
                     Array [
                       Object {
@@ -5271,12 +5010,9 @@ exports[`saving negative points possible displays banner 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
                 "fontSize": 12,
+                "fontWeight": "500",
               },
               Object {
                 "alignItems": "center",
@@ -5306,8 +5042,8 @@ exports[`saving negative points possible displays banner 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -5350,16 +5086,10 @@ exports[`saving negative points possible displays banner 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "fontSize": 17,
               },
               Object {
                 "height": 45,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -5375,8 +5105,8 @@ exports[`saving negative points possible displays banner 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -5456,9 +5186,6 @@ exports[`saving negative points possible displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -5472,9 +5199,6 @@ exports[`saving negative points possible displays banner 1`] = `
                       "color": "#374A59",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -5512,8 +5236,8 @@ exports[`saving negative points possible displays banner 1`] = `
           Array [
             Object {
               "color": "#73818C",
-              "fontFamily": ".SFUIDisplay-semibold",
               "fontSize": 14,
+              "fontWeight": "600",
               "marginBottom": 8,
               "marginLeft": 16,
               "marginTop": 16,
@@ -5585,9 +5309,6 @@ exports[`saving negative points possible displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -5596,9 +5317,6 @@ exports[`saving negative points possible displays banner 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -5671,12 +5389,9 @@ exports[`saving negative points possible displays banner 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#EE0612",
-                "fontFamily": ".SFUIDisplay",
                 "fontSize": 14,
+                "fontWeight": "normal",
               },
               Object {
                 "marginHorizontal": 16,
@@ -5747,9 +5462,6 @@ exports[`saving negative points possible displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -5758,9 +5470,6 @@ exports[`saving negative points possible displays banner 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >
@@ -5797,16 +5506,10 @@ exports[`saving negative points possible displays banner 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
                       Object {},
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
                     ]
                   }
                 >
@@ -5877,9 +5580,6 @@ exports[`saving negative points possible displays banner 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -5888,9 +5588,6 @@ exports[`saving negative points possible displays banner 1`] = `
                       "fontWeight": "600",
                     },
                   ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
                 ]
               }
             >

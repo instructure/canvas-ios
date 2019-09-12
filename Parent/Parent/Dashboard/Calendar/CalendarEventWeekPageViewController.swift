@@ -18,10 +18,12 @@
 
 import Foundation
 import CanvasCore
-
-typealias EventWeekPageSelectCalendarEventAction = (_ session: Session, _ observeeID: String, _ calendarEvent: CalendarEvent)->Void
+import ReactiveSwift
+import ReactiveCocoa
+import Core
 
 class CalendarEventWeekPageViewController: UIViewController {
+    var env = AppEnvironment.shared
 
     @objc static var headerDateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -38,37 +40,43 @@ class CalendarEventWeekPageViewController: UIViewController {
     @objc var studentID: String!
     @objc var initialReferenceDate: Date!
     @objc var currentStartDate: Date?
-    @objc var contextCodes: [String]!
-
-    @objc var selectCalendarEventAction: EventWeekPageSelectCalendarEventAction? = nil {
-        didSet {
-            guard let viewControllers = pageViewController?.viewControllers else {
-                return
-            }
-
-            for viewController in viewControllers {
-                if let viewController = viewController as? CalendarEventListViewController {
-                    viewController.selectCalendarEventAction = self.selectCalendarEventAction
-                }
-            }
-        }
-    }
+    @objc var contextCodes: [String] = []
 
     // ---------------------------------------------
     // MARK: - Initializers
     // ---------------------------------------------
-    fileprivate static let defaultStoryboardName = "CalendarEventWeekPageViewController"
-    @objc static func new(_ storyboardName: String = defaultStoryboardName, session: Session, studentID: String, contextCodes: [String] = [], initialReferenceDate: Date = Date()) -> CalendarEventWeekPageViewController {
-        guard let controller = UIStoryboard(name: storyboardName, bundle: Bundle(for: self)).instantiateInitialViewController() as? CalendarEventWeekPageViewController else {
-            fatalError("Initial ViewController is not of type CalendarEventWeekPageViewController")
-        }
-        
+    static func create(env: AppEnvironment = .shared, session: Session, studentID: String, courseID: String? = nil, initialReferenceDate: Date = Date()) -> CalendarEventWeekPageViewController {
+        let controller = loadFromStoryboard()
         controller.session = session
         controller.studentID = studentID
         controller.initialReferenceDate = initialReferenceDate
         controller.currentStartDate = controller.initialReferenceDate
-        controller.contextCodes = contextCodes
-        
+
+        if let courseID = courseID {
+            controller.contextCodes = [ ContextID(id: courseID, context: .course).canvasContextID ]
+
+            // Only add syllabus if the course has a syllabus
+            session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .course)).observe(on: UIScheduler()).startWithValues { next in
+                guard let course = next as? CanvasCore.Course else { return }
+
+                controller.title = course.name
+
+                guard course.syllabusBody != nil else { return }
+
+                let image = UIImage(named: "icon_document_fill")?.imageScaledByPercentage(0.75)
+                let syllabusButton = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
+                syllabusButton.accessibilityLabel = NSLocalizedString("Syllabus", comment: "Syllabus Button Title")
+                syllabusButton.accessibilityIdentifier = "syllabus_button"
+                let syllabus = Action<(), (), Never> { _ in
+                    env.router.route(to: .syllabus(courseID: courseID), from: controller, options: nil)
+                    return .empty
+                }
+                syllabusButton.reactive.pressed = CocoaAction(syllabus)
+                syllabusButton.tintColor = .white
+                controller.navigationItem.rightBarButtonItem = syllabusButton
+            }
+        }
+
         return controller
     }
 
@@ -85,16 +93,22 @@ class CalendarEventWeekPageViewController: UIViewController {
         nextWeekButton.setImage(nextImage, for: .normal)
         nextWeekButton.accessibilityIdentifier = "next_week_button"
         nextWeekButton.accessibilityLabel = NSLocalizedString("Next Week", comment: "Next Week Button Accessibility Label")
-        
+
         prevWeekButton.tintColor = UIColor.white
         prevWeekButton.setImage(prevImage, for: .normal)
         prevWeekButton.accessibilityIdentifier = "last_week_button"
         prevWeekButton.accessibilityLabel = NSLocalizedString("Last Week", comment: "Last Week Button Accessibility Label")
-        
+
         updateHeaderTitle()
 
         let colorScheme = ColorCoordinator.colorSchemeForStudentID(studentID)
         view.backgroundColor = colorScheme.secondaryColor
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
+        navigationController?.navigationBar.useContextColor(scheme.mainColor)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -108,8 +122,8 @@ class CalendarEventWeekPageViewController: UIViewController {
             pageVC.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
             let startDate = initialReferenceDate.dateOnSundayAtTheBeginningOfTheWeek
             let endDate = startDate + Calendar.current.numberOfDaysInWeek.daysComponents
+            //  swiftlint:disable:next force_try
             let initialViewController = try! CalendarEventListViewController(session: session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
-            initialViewController.selectCalendarEventAction = selectCalendarEventAction
             pageVC.setViewControllers([initialViewController], direction: .forward, animated: false, completion: nil)
 
             currentStartDate = startDate
@@ -180,8 +194,8 @@ class CalendarEventWeekPageViewController: UIViewController {
         let endDate = startDate + Calendar.current.numberOfDaysInWeek.daysComponents
 
         // Failing on purpose here.  If this is broken it's programmer error
+        //  swiftlint:disable:next force_try
         let eventListViewController = try! CalendarEventListViewController(session: session, studentID: studentID, startDate: startDate, endDate: endDate, contextCodes: contextCodes)
-        eventListViewController.selectCalendarEventAction = selectCalendarEventAction
         return eventListViewController
     }
 }
@@ -189,7 +203,7 @@ class CalendarEventWeekPageViewController: UIViewController {
 // ---------------------------------------------
 // MARK: - UIPageViewControllerDataSource
 // ---------------------------------------------
-extension CalendarEventWeekPageViewController : UIPageViewControllerDataSource {
+extension CalendarEventWeekPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewController = viewController as? CalendarEventListViewController else {
             return nil
@@ -214,7 +228,7 @@ extension CalendarEventWeekPageViewController : UIPageViewControllerDataSource {
 // ---------------------------------------------
 // MARK: - UIPageViewControllerDelegate
 // ---------------------------------------------
-extension CalendarEventWeekPageViewController : UIPageViewControllerDelegate {
+extension CalendarEventWeekPageViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if finished {
             updateHeaderTitle()

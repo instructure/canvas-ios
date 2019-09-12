@@ -59,9 +59,6 @@ exports[`anonymous grading doesnt show users names 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -69,9 +66,6 @@ exports[`anonymous grading doesnt show users names 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
                 "fontWeight": "600",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
@@ -81,9 +75,6 @@ exports[`anonymous grading doesnt show users names 1`] = `
         <Text
           style={
             Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
               Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
@@ -98,9 +89,6 @@ exports[`anonymous grading doesnt show users names 1`] = `
                   "color": "#8B969E",
                 },
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
             ]
           }
         >
@@ -110,9 +98,6 @@ exports[`anonymous grading doesnt show users names 1`] = `
       <Text
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
@@ -127,9 +112,6 @@ exports[`anonymous grading doesnt show users names 1`] = `
                 "alignSelf": "center",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -199,9 +181,6 @@ exports[`excused row renders correctly 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -209,9 +188,6 @@ exports[`excused row renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
                 "fontWeight": "600",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
@@ -222,9 +198,6 @@ exports[`excused row renders correctly 1`] = `
       <Text
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
@@ -239,9 +212,6 @@ exports[`excused row renders correctly 1`] = `
                 "alignSelf": "center",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -311,9 +281,6 @@ exports[`late graded row renders correctly 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -321,9 +288,6 @@ exports[`late graded row renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
                 "fontWeight": "600",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
@@ -333,9 +297,6 @@ exports[`late graded row renders correctly 1`] = `
         <Text
           style={
             Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
               Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
@@ -350,9 +311,6 @@ exports[`late graded row renders correctly 1`] = `
                   "color": "#FC5E13",
                 },
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
             ]
           }
         >
@@ -362,9 +320,6 @@ exports[`late graded row renders correctly 1`] = `
       <Text
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
@@ -379,9 +334,6 @@ exports[`late graded row renders correctly 1`] = `
                 "alignSelf": "center",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -451,9 +403,6 @@ exports[`missing ungraded row renders correctly 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -461,9 +410,6 @@ exports[`missing ungraded row renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
                 "fontWeight": "600",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
@@ -473,9 +419,6 @@ exports[`missing ungraded row renders correctly 1`] = `
         <Text
           style={
             Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
               Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
@@ -490,9 +433,6 @@ exports[`missing ungraded row renders correctly 1`] = `
                   "color": "#EE0612",
                 },
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
             ]
           }
         >
@@ -502,9 +442,6 @@ exports[`missing ungraded row renders correctly 1`] = `
       <Text
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
@@ -519,9 +456,6 @@ exports[`missing ungraded row renders correctly 1`] = `
                 "alignSelf": "center",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -591,9 +525,6 @@ exports[`submitted not_graded row renders correctly 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -601,9 +532,6 @@ exports[`submitted not_graded row renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
                 "fontWeight": "600",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
@@ -614,9 +542,6 @@ exports[`submitted not_graded row renders correctly 1`] = `
           color="#368BD8"
           style={
             Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
               Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
@@ -644,9 +569,6 @@ exports[`submitted not_graded row renders correctly 1`] = `
                   "marginTop": 8,
                 },
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay-medium",
-              },
             ]
           }
         >
@@ -656,9 +578,6 @@ exports[`submitted not_graded row renders correctly 1`] = `
       <Text
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
@@ -673,9 +592,6 @@ exports[`submitted not_graded row renders correctly 1`] = `
                 "alignSelf": "center",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -745,9 +661,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -755,9 +668,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
                 "fontWeight": "600",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
@@ -767,9 +677,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
         <Text
           style={
             Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
               Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
@@ -784,9 +691,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
                   "color": "#07AF1F",
                 },
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
             ]
           }
         >
@@ -796,9 +700,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
           color="#368BD8"
           style={
             Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
               Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
@@ -826,9 +727,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
                   "marginTop": 8,
                 },
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay-medium",
-              },
             ]
           }
         >
@@ -838,9 +736,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
       <Text
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
@@ -855,9 +750,6 @@ exports[`submitted ungraded row renders correctly 1`] = `
                 "alignSelf": "center",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -927,9 +819,6 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -937,9 +826,6 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
                 "fontWeight": "600",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
@@ -949,9 +835,6 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
         <Text
           style={
             Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
               Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
@@ -966,9 +849,6 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
                   "color": "#8B969E",
                 },
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
             ]
           }
         >
@@ -978,9 +858,6 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
       <Text
         style={
           Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
             Object {
               "color": "#2D3B45",
               "fontSize": 16,
@@ -995,9 +872,6 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
                 "alignSelf": "center",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
