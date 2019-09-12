@@ -24,7 +24,7 @@ open class AirwolfAPI {
         do {
             let request = try session.GET("/api/v1/users/self/enrollments")
 
-            let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            let task = URLSession.shared.dataTask(with: request) {_, response, error in
                 if error != nil {
                     completionHandler(false)
                 }

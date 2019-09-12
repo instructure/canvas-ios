@@ -60,6 +60,12 @@ abstract_target 'defaults' do
     pod 'Fabric', '~> 1.7.7'
     pod 'Firebase/Core', '~> 5.20'
   end
+  
+  target 'ParentUnitTests' do
+    project 'Parent/Parent.xcodeproj'
+    pod 'Fabric', '~> 1.7.7'
+    pod 'Firebase/Core', '~> 5.20'
+  end
 
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'

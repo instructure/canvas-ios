@@ -18,7 +18,6 @@
 
 import Foundation
 import CanvasCore
-import CanvasCore
 
 private struct Submission {
 
@@ -77,7 +76,7 @@ private struct Submission {
             } else if (score == 0 && pointsPossible == 0) {
                 grade = "(0/0)"
             }
-            
+
             if status.contains(.Late) {
                 return String(format: NSLocalizedString("Late: %@", comment: ""), grade ?? "")
             } else {
@@ -104,7 +103,7 @@ private struct Submission {
         if status.contains(.Graded), let postedAt = gradePostedAt, postedAt < Date() {
             guard let pointsPossible = pointsPossible, let score = currentScore else { return self.displayText }
             let percentage = pointsPossible != 0 ? Submission.percentFormatter.string(from: NSNumber(value: score.doubleValue/pointsPossible.doubleValue)) : ""
-            
+
             if status.contains(.Late) {
                 return String(format: NSLocalizedString("Late: %@ (%@/%@)", comment: ""), percentage ?? "", score, pointsPossible)
             } else {
@@ -144,7 +143,7 @@ private struct Submission {
         if status.contains(.Late) {
             return UIColor.parentYellowColor()
         }
-        
+
         if status.contains(.Graded) || status.contains(.Submitted) || status.contains(.Excused) {
             return UIColor.parentBlueColor()
         }

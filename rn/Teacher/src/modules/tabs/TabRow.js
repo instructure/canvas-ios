@@ -72,7 +72,6 @@ export default class TabRow extends React.Component<Props> {
         border='bottom'
         selected={this.props.selected}
         testID={`courses-details.${tab.id}-cell`}
-        titleStyles={{ fontWeight: '500' }}
         accessories={tab.hidden &&
             <Image source={Images.invisible} accessibilityLabel={i18n('Hidden')} />
         }

@@ -17,12 +17,10 @@
 //
 
 import UIKit
-
-
 import CoreData
-
 import CanvasCore
 import ReactiveSwift
+import Core
 
 class AlertsListViewController: FetchedTableViewController<Alert> {
     @objc let session: Session
@@ -62,8 +60,14 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
         tableView.backgroundColor = UIColor.defaultTableViewBackgroundColor()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let scheme = ColorCoordinator.colorSchemeForStudentID(observeeID)
+        navigationController?.navigationBar.useContextColor(scheme.mainColor)
+    }
+
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let action = UITableViewRowAction(style: .default, title: NSLocalizedString("Dismiss", comment: "")) { [unowned self] action, indexPath in
+        let action = UITableViewRowAction(style: .default, title: NSLocalizedString("Dismiss", comment: "")) { [unowned self] _, indexPath in
             tableView.setEditing(false, animated: true)
             let alert = self.collection[indexPath]
             alert.dismiss(self.session)
@@ -78,12 +82,10 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
         alert.markAsRead(session)
         self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
 
-        if let assetPath = alert.assetPath, let routeURL = Router.sharedInstance.alertRoute(studentID: observeeID, alertAssetPath: assetPath) {
-            Router.sharedInstance.route(self, toURL: routeURL, modal: true)
-        } else if alert.type == .institutionAnnouncement,
-            let announcementID = alert.contextID,
-            let routeURL = Router.sharedInstance.alertRoute(studentID: observeeID, alertAssetPath: "account_notifications/\(announcementID)") {
-            Router.sharedInstance.route(self, toURL: routeURL, modal: true)
+        if let assetPath = alert.assetPath {
+            AppEnvironment.shared.router.route(to: assetPath, from: self, options: [.modal, .embedInNav, .addDoneButton])
+        } else if alert.type == .institutionAnnouncement, let announcementID = alert.contextID {
+            AppEnvironment.shared.router.route(to: .accountNotification(announcementID), from: self, options: [.modal, .embedInNav, .addDoneButton])
         }
     }
 }

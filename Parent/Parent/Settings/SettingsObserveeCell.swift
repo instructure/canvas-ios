@@ -55,14 +55,14 @@ class SettingsObserveeCell: UITableViewCell {
 
     @objc func stylize() {
         selectionStyle = .none
-        
+
         guard let imageView = avatarImageView else {
             return
         }
 
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.clipsToBounds = true
-        
+
         accessoryType = .disclosureIndicator
     }
 

@@ -61,9 +61,6 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -71,9 +68,6 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
                         "fontWeight": "500",
                         "overflow": "hidden",
                         "textAlign": "left",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-medium",
                       },
                     ]
                   }
@@ -158,9 +152,6 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -168,9 +159,6 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
                         "fontWeight": "500",
                         "overflow": "hidden",
                         "textAlign": "left",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-medium",
                       },
                     ]
                   }
@@ -271,9 +259,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -281,9 +266,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                         "fontWeight": "500",
                         "overflow": "hidden",
                         "textAlign": "left",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-medium",
                       },
                     ]
                   }
@@ -358,9 +340,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -368,9 +347,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                         "fontWeight": "500",
                         "overflow": "hidden",
                         "textAlign": "left",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-medium",
                       },
                     ]
                   }
@@ -462,9 +438,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -472,9 +445,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                         "fontWeight": "500",
                         "overflow": "hidden",
                         "textAlign": "left",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-medium",
                       },
                     ]
                   }
@@ -550,9 +520,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -560,9 +527,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                         "fontWeight": "500",
                         "overflow": "hidden",
                         "textAlign": "left",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-medium",
                       },
                     ]
                   }
@@ -638,9 +602,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -648,9 +609,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                         "fontWeight": "500",
                         "overflow": "hidden",
                         "textAlign": "left",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-medium",
                       },
                     ]
                   }
@@ -735,9 +693,6 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -745,9 +700,6 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
                         "fontWeight": "500",
                         "overflow": "hidden",
                         "textAlign": "left",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-medium",
                       },
                     ]
                   }
@@ -832,9 +784,6 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -842,9 +791,6 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
                         "fontWeight": "500",
                         "overflow": "hidden",
                         "textAlign": "left",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-medium",
                       },
                     ]
                   }

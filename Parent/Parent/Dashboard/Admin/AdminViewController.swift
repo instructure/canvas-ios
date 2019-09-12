@@ -19,26 +19,26 @@
 import Foundation
 import UIKit
 
-class AdminViewController : UIViewController {
+class AdminViewController: UIViewController {
     @IBOutlet weak var actAsUserButton: UIButton!
     @IBOutlet weak var directionsLabel: UILabel!
     @IBOutlet weak var welcomeLabel: UILabel!
-    
+
     @objc var actAsUserHandler: (() -> Void)?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.backgroundColor = .clear
-        
+
         welcomeLabel.text = NSLocalizedString("Welcome!", comment: "Header title of admin view")
         directionsLabel.text = NSLocalizedString("Tap to start viewing Canvas as another person.", comment: "Directions in the admin view")
-        
+
         actAsUserButton.titleLabel?.text = NSLocalizedString("Act as User", comment: "Label for button that allows admin to Act as User")
         actAsUserButton.layer.cornerRadius = 5
         actAsUserButton.clipsToBounds = true
     }
-    
+
     @IBAction func actAsUserTapped(_ sender: UIButton) {
         actAsUserHandler?()
     }

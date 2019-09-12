@@ -310,28 +310,12 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 
     "/courses/:courseID/users": { url, params in
         guard let courseID = params["courseID"] else { return nil }
-        let context = CKICourse(id: courseID)
-        let peopleTab = CKITab(id: "people", context: context)
-        let viewModel = CBIPeopleTabViewModel(for: peopleTab)
-        viewModel?.viewControllerTitle = NSLocalizedString("People", comment: "")
-        viewModel?.tintColor = Session.current?.colorForCourse(courseID)
-        let tableViewController = MLVCTableViewController(style: .plain)
-        tableViewController.url = url.url?.absoluteString
-        tableViewController.viewModel = viewModel
-        return tableViewController
+        return PeopleListViewController.create(context: ContextModel(.course, id: courseID))
     },
 
     "/groups/:groupID/users": { url, params in
         guard let groupID = params["groupID"] else { return nil }
-        let context = CKIGroup(id: groupID)
-        let peopleTab = CKITab(id: "people", context: context)
-        let viewModel = CBIPeopleTabViewModel(for: peopleTab)
-        viewModel?.viewControllerTitle = NSLocalizedString("People", comment: "")
-        viewModel?.tintColor = Session.current?.colorForGroup(groupID)
-        let tableViewController = MLVCTableViewController(style: .plain)
-        tableViewController.url = url.url?.absoluteString
-        tableViewController.viewModel = viewModel
-        return tableViewController
+        return PeopleListViewController.create(context: ContextModel(.group, id: groupID))
     },
 
     "/courses/:courseID/users/:userID": nil,

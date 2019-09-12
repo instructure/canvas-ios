@@ -19,16 +19,17 @@
 import UIKit
 import CanvasCore
 import ReactiveSwift
+import Core
 
 extension EventDetailsViewModel {
-    static func detailsForAssignment(_ baseURL: URL, observeeID: String, context: UIViewController) -> (Assignment) -> [EventDetailsViewModel] {
+    static func detailsForAssignment(_ baseURL: URL, observeeID: String, context: UIViewController) -> (CanvasCore.Assignment) -> [EventDetailsViewModel] {
         return { assignment in
             // Pass along a `Reminder` struct because it's unsafe to pass around the managed object
             // due to notification calls happening on different threads
             let remindable = Reminder(id: assignment.id, title: assignment.reminderTitle, body: assignment.reminderBody, date: assignment.defaultReminderDate)
             var deets: [EventDetailsViewModel] = [
                 .info(name: assignment.name, submissionInfo: assignment.submittedVerboseText, submissionColor: assignment.submittedColor),
-                .reminder(remindable: remindable, actionURL: Router.sharedInstance.assignmentDetailsRoute(studentID: observeeID, courseID: assignment.courseID, assignmentID: assignment.id), context: context),
+                .reminder(remindable: remindable, studentID: observeeID, actionURL: Route.course(assignment.courseID, assignment: assignment.id).url.url!, context: context),
             ]
 
             if let dueDate = assignment.due {
@@ -49,10 +50,12 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
     var disposable: Disposable?
     @objc let courseID: String
     @objc let assignmentID: String
+    let studentID: String
 
     @objc init(session: Session, studentID: String, courseID: String, assignmentID: String) throws {
         self.courseID = courseID
         self.assignmentID = assignmentID
+        self.studentID = studentID
         super.init()
         let observer = try Assignment.observer(session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
         let refresher = try Assignment.refresher(session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
@@ -64,7 +67,7 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
         }
 
         session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .course)).observe(on: UIScheduler()).startWithValues { next in
-            guard let course = next as? Course else { return }
+            guard let course = next as? CanvasCore.Course else { return }
             self.title = course.name
         }
     }
@@ -72,5 +75,10 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let scheme = ColorCoordinator.colorSchemeForStudentID(studentID)
+        navigationController?.navigationBar.useContextColor(scheme.mainColor)
+    }
+}

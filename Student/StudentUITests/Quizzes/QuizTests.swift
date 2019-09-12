@@ -40,7 +40,7 @@ class QuizTests: CoreUITestCase {
         Quiz.text(string: "Answer 1.A").waitToExist()
 
         Quiz.text(string: "This is question D").waitToExist()
-        XCTAssertEqual(XCUIElementWrapper(app.textFields.firstMatch).value, "42.000000")
+        XCTAssertEqual(XCUIElementWrapper(app.textFields.firstMatch).value(), "42.000000")
     }
 
     func testQuizQuestionsOpenInWebView() {

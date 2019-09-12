@@ -25,16 +25,15 @@ class ActAsUserTests: CoreUITestCase {
 
     func xtestActAsUser() { // TODO: reenable
         Profile.open()
-        XCTAssertEqual(Profile.userNameLabel.label, "Admin One")
+        XCTAssertEqual(Profile.userNameLabel.label(), "Admin One")
         Profile.actAsUserButton.tap()
         ActAsUser.userIDField.typeText("613")
-        XCTAssertEqual(ActAsUser.domainField.value, "https://\(user!.host)")
+        XCTAssertEqual(ActAsUser.domainField.value(), "https://\(user!.host)")
         ActAsUser.actAsUserButton.tap()
 
         Dashboard.courseCard(id: "263").waitToExist()
         Profile.open()
-        Profile.userNameLabel.waitToExist()
-        XCTAssertEqual(Profile.userNameLabel.label, "Student One")
+        XCTAssertEqual(Profile.userNameLabel.label(), "Student One")
         Profile.close()
 
         ActAsUser.endActAsUserButton.tap()
@@ -42,8 +41,7 @@ class ActAsUserTests: CoreUITestCase {
         ActAsUser.endActAsUserButton.waitToVanish()
 
         Profile.open()
-        Profile.userNameLabel.waitToExist()
-        XCTAssertEqual(Profile.userNameLabel.label, "Admin One")
+        XCTAssertEqual(Profile.userNameLabel.label(), "Admin One")
         Profile.close()
     }
 }

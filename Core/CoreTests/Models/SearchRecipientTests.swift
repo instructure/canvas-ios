@@ -1,0 +1,55 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2019-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Foundation
+import XCTest
+@testable import Core
+
+class SearchRecipientTests: CoreTestCase {
+    func testSaveIntoCoreData() {
+        SearchRecipient.make(from: APISearchRecipient.make(
+            id: "1",
+            name: "Jane",
+            full_name: "Jane Doe",
+            avatar_url: URL(string: "https://fillmurray.com/200/200"),
+            type: .course,
+            common_courses: [
+                "1": ["Teacher"],
+                "2": ["Student"],
+            ])
+        )
+
+        let model: SearchRecipient = databaseClient.fetch().first!
+
+        XCTAssertEqual(model.id, "1")
+        XCTAssertEqual(model.fullName, "Jane Doe")
+        XCTAssertEqual(model.avatarURL?.absoluteString, "https://fillmurray.com/200/200")
+        XCTAssertEqual(model.filter, "?context=course_1&search=&per_page=50")
+        XCTAssertEqual(model.roles, "Student, Teacher")
+    }
+
+    func testUpdateExisting() {
+        SearchRecipient.make()
+
+        let item = APISearchRecipient.make(full_name: "Jane Doe")
+        SearchRecipient.save(item, filter: "?context=course_1&search=&per_page=50", in: databaseClient)
+
+        let model: SearchRecipient = databaseClient.fetch().first!
+        XCTAssertEqual(model.fullName, "Jane Doe")
+    }
+}

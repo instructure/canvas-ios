@@ -119,7 +119,7 @@ extension Router {
             RouteTemplates.courseCalendarEventsTemplate: courseCalendarEventsHandler(),
             RouteTemplates.courseSyllabusTemplate: courseSyllabusHandler(),
             RouteTemplates.courseAnnouncementTemplate: courseAnnouncementHandler(),
-            RouteTemplates.accountNotificationTemplate: accountNotificationHandler()
+            RouteTemplates.accountNotificationTemplate: accountNotificationHandler(),
         ]
 
         let handler = defaultErrorHandler()
@@ -152,7 +152,6 @@ extension Router {
                     self.route(dashboardVC, toURL: self.calendarEventDetailsRoute(studentID: studentID, courseID: courseID, calendarEventID: calendarEvent.id), modal: true)
                 }
 
-
             }
             dashboardVC.selectCourseAction = { [weak dashboardVC] session, studentID, course in
                 guard let dashboardVC = dashboardVC else { return }
@@ -161,7 +160,6 @@ extension Router {
             dashboardVC.logoutAction = {
                 (UIApplication.shared.delegate as? ParentAppDelegate)?.logout()
             }
-
 
             let navController = UINavigationController.parentNavigationController(withRootViewController: dashboardVC)
             navController.navigationBar.accessibilityIdentifier = "navigation_bar"
@@ -224,7 +222,9 @@ extension Router {
                 }
             }
 
-            calendarWeekPageVC.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: calendarWeekPageVC, action: #selector(CalendarEventWeekPageViewController.close(_:)))
+            calendarWeekPageVC.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop,
+                                                                                  target: calendarWeekPageVC,
+                                                                                  action: #selector(CalendarEventWeekPageViewController.close(_:)))
             calendarWeekPageVC.navigationItem.leftBarButtonItem?.tintColor = .white
             calendarWeekPageVC.navigationItem.leftBarButtonItem?.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             calendarWeekPageVC.navigationItem.leftBarButtonItem?.accessibilityIdentifier = "close_button"
@@ -235,13 +235,13 @@ extension Router {
 
                 calendarWeekPageVC.title = course.name
 
-                guard let _ = course.syllabusBody else { return }
+                guard course.syllabusBody != nil else { return }
 
                 let image = UIImage(named: "icon_document_fill")?.imageScaledByPercentage(0.75)
                 let syllabusButton = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
                 syllabusButton.accessibilityLabel = NSLocalizedString("Syllabus", comment: "Syllabus Button Title")
                 syllabusButton.accessibilityIdentifier = "syllabus_button"
-                let close = Action<(), (), Never>() { _ in
+                let close = Action<(), (), Never> { _ in
                     self.route(calendarWeekPageVC, toURL: self.courseSyllabusRoute(studentID: studentID, courseID: courseID))
                     return .empty
                 }
@@ -258,16 +258,21 @@ extension Router {
 
     func assignmentDetailsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber, let assignmentID = parameters["assignmentID"] as? NSNumber else {
+            guard let session = self.session,
+                let parameters = params,
+                let studentID = parameters["studentID"] as? NSNumber,
+                let courseID = parameters["courseID"] as? NSNumber,
+                let assignmentID = parameters["assignmentID"] as? NSNumber else {
                 return nil
             }
 
+            //  swiftlint:disable:next force_try
             let assignmentDetailsVC = try! AssignmentDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, assignmentID: assignmentID.stringValue)
 
             let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             closeButton.accessibilityIdentifier = "close_button"
-            let close = Action<(), (), Never>() { _ in
+            let close = Action<(), (), Never> { _ in
                 assignmentDetailsVC.dismiss(animated: true, completion: nil)
                 return .empty
             }
@@ -281,10 +286,15 @@ extension Router {
 
     func standaloneAssignmentDetailsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber, let assignmentID = parameters["assignmentID"] as? NSNumber else {
+            guard let session = self.session,
+                let parameters = params,
+                let studentID = parameters["studentID"] as? NSNumber,
+                let courseID = parameters["courseID"] as? NSNumber,
+                let assignmentID = parameters["assignmentID"] as? NSNumber else {
                 return nil
             }
 
+            //  swiftlint:disable:next force_try
             let assignmentDetailsVC = try! AssignmentDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, assignmentID: assignmentID.stringValue)
             return assignmentDetailsVC
         }
@@ -292,16 +302,23 @@ extension Router {
 
     func calendarEventDetailsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let calendarEventID = parameters["calendarEventID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber else {
+            guard let session = self.session,
+                let parameters = params,
+                let studentID = parameters["studentID"] as? NSNumber,
+                let calendarEventID = parameters["calendarEventID"] as? NSNumber,
+                let courseID = parameters["courseID"] as? NSNumber else {
                 return nil
             }
-
-            let calendarEventDetailsVC = try! CalendarEventDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, calendarEventID: calendarEventID.stringValue)
+            //  swiftlint:disable:next force_try
+            let calendarEventDetailsVC = try! CalendarEventDetailsViewController(session: session,
+                                                                                 studentID: studentID.stringValue,
+                                                                                 courseID: courseID.stringValue,
+                                                                                 calendarEventID: calendarEventID.stringValue)
 
             let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             closeButton.accessibilityIdentifier = "close_button"
-            let close = Action<(), (), Never>() {
+            let close = Action<(), (), Never> {
                 calendarEventDetailsVC.dismiss(animated: true, completion: nil)
                 return .empty
             }
@@ -315,11 +332,18 @@ extension Router {
 
     func standaloneCalendarEventDetailsHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let calendarEventID = parameters["calendarEventID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber else {
+            guard let session = self.session,
+                let parameters = params,
+                let studentID = parameters["studentID"] as? NSNumber,
+                let calendarEventID = parameters["calendarEventID"] as? NSNumber,
+                let courseID = parameters["courseID"] as? NSNumber else {
                 return nil
             }
-
-            let calendarEventDetailsVC = try! CalendarEventDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, calendarEventID: calendarEventID.stringValue)
+            //  swiftlint:disable:next force_try
+            let calendarEventDetailsVC = try! CalendarEventDetailsViewController(session: session,
+                                                                                 studentID: studentID.stringValue,
+                                                                                 courseID: courseID.stringValue,
+                                                                                 calendarEventID: calendarEventID.stringValue)
             calendarEventDetailsVC.navigationItem.leftBarButtonItem?.tintColor = .white
 
             return calendarEventDetailsVC
@@ -340,15 +364,18 @@ extension Router {
 
     func courseAnnouncementHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID = parameters["studentID"] as? NSNumber, let courseID = parameters["courseID"] as? NSNumber, let announcementID = parameters["announcementID"] as? NSNumber else {
+            guard let session = self.session, let parameters = params,
+                let studentID = parameters["studentID"] as? NSNumber,
+                let courseID = parameters["courseID"] as? NSNumber,
+                let announcementID = parameters["announcementID"] as? NSNumber else {
                 return nil
             }
-
+            //  swiftlint:disable:next force_try
             let announcementVC = try! AnnouncementDetailsViewController(session: session, studentID: studentID.stringValue, courseID: courseID.stringValue, announcementID: announcementID.stringValue)
             let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             closeButton.accessibilityIdentifier = "close_button"
-            let close = Action<(),(), Never>() { _ in
+            let close = Action<(), (), Never> { _ in
                 announcementVC.dismiss(animated: true, completion: nil)
                 return .empty
             }
@@ -362,14 +389,18 @@ extension Router {
 
     func accountNotificationHandler() -> RouteHandler {
         return { params in
-            guard let session = self.session, let parameters = params, let studentID: String = try? parameters.stringID("studentID"), let announcementID: String = try? parameters.stringID("announcementID") else {
+            guard let session = self.session,
+                let parameters = params,
+                let studentID: String = try? parameters.stringID("studentID"),
+                let announcementID: String = try? parameters.stringID("announcementID") else {
                 return nil
             }
+            //  swiftlint:disable:next force_try
             let announcementVC = try! AccountNotificationViewController(session: session, announcementID: announcementID)
             let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
             closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "Close Button Title")
             closeButton.accessibilityIdentifier = "close_button"
-            let close = Action<(),(), Never>() { _ in
+            let close = Action<(), (), Never> { _ in
                 announcementVC.dismiss(animated: true, completion: nil)
                 return .empty
             }
@@ -429,7 +460,7 @@ let router = Core.Router(routes: [
         let safari = SFSafariViewController(url: url)
         safari.transitioningDelegate = ResetTransitionDelegate.shared
         return safari
-    }
+    },
 ]) { _, _, _ in }
 
 public class ResetTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {

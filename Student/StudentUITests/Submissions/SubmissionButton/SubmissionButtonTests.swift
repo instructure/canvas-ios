@@ -22,15 +22,11 @@ import TestsFoundation
 import XCTest
 
 class SubmissionButtonTests: StudentUITestCase {
-    lazy var course: APICourse = {
-        let course = APICourse.make()
-        mockData(GetCourseRequest(courseID: course.id), value: course)
-        return course
-    }()
+    let course = APICourse.make()
 
-    func mockAssignment(_ assignment: APIAssignment) -> APIAssignment {
-        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
-        return assignment
+    override func setUp() {
+        super.setUp()
+        mockData(GetCourseRequest(courseID: course.id), value: course)
     }
 
     override func show(_ route: String) {
@@ -40,9 +36,7 @@ class SubmissionButtonTests: StudentUITestCase {
 
     func testOnlineUpload() {
         mockBaseRequests()
-        let assignment = mockAssignment(APIAssignment.make(
-            submission_types: [ .online_upload ]
-        ))
+        let assignment = mock(assignment: .make(submission_types: [ .online_upload ]))
         let target = FileUploadTarget.make()
         mockData(PostFileUploadTargetRequest(
             context: .submission(courseID: course.id.value, assignmentID: assignment.id.value, comment: nil),
@@ -62,10 +56,7 @@ class SubmissionButtonTests: StudentUITestCase {
     }
 
     func testExternalTool() {
-        mockBaseRequests()
-        let assignment = mockAssignment(APIAssignment.make(
-            submission_types: [ .external_tool ]
-        ))
+        let assignment = mock(assignment: .make(submission_types: [ .external_tool ]))
         mockData(GetSessionlessLaunchURLRequest(
             context: course,
             id: nil,
@@ -82,9 +73,7 @@ class SubmissionButtonTests: StudentUITestCase {
 
     func testBasicLTILaunch() {
         mockBaseRequests()
-        let assignment = mockAssignment(APIAssignment.make(
-            submission_types: [ .basic_lti_launch ]
-        ))
+        let assignment = mock(assignment: .make(submission_types: [ .basic_lti_launch ]))
         mockData(GetSessionlessLaunchURLRequest(
             context: course,
             id: nil,
@@ -102,10 +91,7 @@ class SubmissionButtonTests: StudentUITestCase {
     func testOnlineQuiz() {
         mockBaseRequests()
         let quiz = APIQuiz.make()
-        let assignment = mockAssignment(APIAssignment.make(
-            quiz_id: quiz.id,
-            submission_types: [ .online_quiz ]
-        ))
+        let assignment = mock(assignment: .make(quiz_id: quiz.id, submission_types: [ .online_quiz ]))
         mockData(GetQuizRequest(courseID: course.id.value, quizID: quiz.id.value), value: .make())
         let submission = APIQuizSubmission.make()
         mockData(GetQuizSubmissionsRequest(courseID: course.id.value, quizID: quiz.id.value), value: .init(quiz_submissions: [submission]))
@@ -120,10 +106,7 @@ class SubmissionButtonTests: StudentUITestCase {
     func testDiscussionTopic() {
         mockBaseRequests()
         let topic = APIDiscussionTopic.make(html_url: URL(string: "/courses/\(course.id)/discussion_topics/1"))
-        let assignment = mockAssignment(APIAssignment.make(
-            submission_types: [ .discussion_topic ],
-            discussion_topic: topic
-        ))
+        let assignment = mock(assignment: .make(submission_types: [ .discussion_topic ], discussion_topic: topic))
         mockData(GetContextPermissionsRequest(context: course), value: .make())
         mockEncodableRequest("courses/\(course.id)/discussion_topics/1?include[]=sections", value: topic)
         mockEncodableRequest("courses/\(course.id)/discussion_topics/1/view?include_new_entries=1", value: [
@@ -134,20 +117,16 @@ class SubmissionButtonTests: StudentUITestCase {
             "entry_ratings": [String](),
         ])
 
-        logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
-        DiscussionDetails.titleLabel.waitToExist()
-        XCTAssertEqual(DiscussionDetails.titleLabel.label, topic.title)
+        XCTAssertEqual(DiscussionDetails.titleLabel.label(), topic.title)
         NavBar.backButton.tap()
     }
 
     // TODO: fix on bitrise
     func xtestMediaRecording() {
         mockBaseRequests()
-        let assignment = mockAssignment(APIAssignment.make(
-            submission_types: [ .media_recording ]
-        ))
+        let assignment = mock(assignment: .make(submission_types: [ .media_recording ]))
         mockData(GetMediaServiceRequest(), value: APIMediaService(domain: "canvas.instructure.com"))
         mockData(PostMediaSessionRequest(), value: APIMediaSession(ks: "k"))
         mockEncodedData(PostMediaUploadTokenRequest(body: .init(ks: "k")), data: "<id>t</id>".data(using: .utf8))

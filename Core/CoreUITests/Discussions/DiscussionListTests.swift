@@ -30,20 +30,20 @@ class DiscussionListTests: CoreUITestCase {
     }
 
     func testDiscussionListShowsDueDate() {
-        XCTAssert(DiscussionListCell.graded.label.contains("Due Dec"))
-        XCTAssertFalse(DiscussionListCell.simple.label.contains("Due"))
+        XCTAssert(DiscussionListCell.graded.label().contains("Due Dec"))
+        XCTAssertFalse(DiscussionListCell.simple.label().contains("Due"))
     }
 
     func testDiscussionListShowsDetails() {
-        XCTAssert(DiscussionListCell.graded.label.contains("Graded Discussion"))
-        XCTAssert(DiscussionListCell.graded.label.contains("Due Dec"))
-        XCTAssert(DiscussionListCell.graded.label.contains("10 pts"))
-        XCTAssert(DiscussionListCell.graded.label.contains("0 Replies"))
-        XCTAssert(DiscussionListCell.graded.label.contains("0 Unread"))
+        XCTAssert(DiscussionListCell.graded.label().contains("Graded Discussion"))
+        XCTAssert(DiscussionListCell.graded.label().contains("Due Dec"))
+        XCTAssert(DiscussionListCell.graded.label().contains("10 pts"))
+        XCTAssert(DiscussionListCell.graded.label().contains("0 Replies"))
+        XCTAssert(DiscussionListCell.graded.label().contains("0 Unread"))
 
-        XCTAssert(DiscussionListCell.simple.label.contains("Simple Discussion"))
-        XCTAssert(DiscussionListCell.simple.label.contains("Last post Jun"))
-        XCTAssert(DiscussionListCell.simple.label.contains("1 Reply"))
-        XCTAssert(DiscussionListCell.simple.label.contains("0 Unread"))
+        XCTAssert(DiscussionListCell.simple.label().contains("Simple Discussion"))
+        XCTAssert(DiscussionListCell.simple.label().contains("Last post Jun"))
+        XCTAssert(DiscussionListCell.simple.label().contains("1 Reply"))
+        XCTAssert(DiscussionListCell.simple.label().contains("0 Unread"))
     }
 }

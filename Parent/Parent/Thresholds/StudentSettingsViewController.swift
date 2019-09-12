@@ -19,21 +19,18 @@
 import Foundation
 import ReactiveSwift
 import CanvasCore
+import Core
 
-private enum SupportTicketCellTag: String {
-    case Email, Subject, Impact, Comment
-}
-
-class StudentSettingsViewController : UIViewController {
+class StudentSettingsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     let activityIndicator = UIActivityIndicatorView(style: .white)
     private var session: Session!
+    private var env: AppEnvironment!
     private var studentID: String = ""
 
     var studentObserver: ManagedObjectObserver<Student>?
-    fileprivate var collection: FetchedCollection<AlertThreshold>?
-    var thresholdsRefresher: Refresher?
+
     fileprivate var observeUpdatesDisposable: Disposable?
 
     private let formatter: NumberFormatter = {
@@ -43,6 +40,7 @@ class StudentSettingsViewController : UIViewController {
     }()
     private let settingsSection = 1
     private var currentlySelectedIndexPath: IndexPath?
+    private var presenter: StudentSettingsPresenter!
 
     // ---------------------------------------------
     // MARK: - Initializers
@@ -50,23 +48,11 @@ class StudentSettingsViewController : UIViewController {
 
     static func create(_ session: Session, studentID: String) -> StudentSettingsViewController {
         let controller = StudentSettingsViewController.loadFromStoryboard()
+        controller.presenter = StudentSettingsPresenter(view: controller, studentID: studentID)
         controller.session = session
         controller.studentID = studentID
-        controller.thresholdsRefresher = try! AlertThreshold.refresher(session, studentID: studentID)
-        _ = controller.thresholdsRefresher?.refreshingCompleted.observeValues { _ in
-            controller.thresholdsRefresher?.refreshControl.endRefreshing()
-        }
-        _ = controller.thresholdsRefresher?.refreshingBegan.observeValues {
-            controller.thresholdsRefresher?.refreshControl.beginRefreshing()
-        }
+        //  swiftlint:disable:next force_try
         controller.studentObserver = try! Student.observer(session, studentID: studentID)
-
-        controller.collection = try! AlertThreshold.collectionOfAlertThresholds(session, studentID: studentID)
-        controller.observeUpdatesDisposable = controller.collection?.collectionUpdates
-            .observe(on: UIScheduler())
-            .observeValues { updates in
-                controller.reload()
-            }.map(ScopedDisposable.init)
 
         return controller
     }
@@ -79,12 +65,7 @@ class StudentSettingsViewController : UIViewController {
         setupTableView()
         setupNavigationBar()
 
-        if let refreshControl = thresholdsRefresher?.refreshControl {
-            refreshControl.addTarget(self, action: #selector(StudentSettingsViewController.refresh(_:)), for: .valueChanged)
-            tableView?.addSubview(refreshControl)
-        }
-
-        _ = studentObserver?.signal.observe(on: UIScheduler()).observeValues{ [unowned self] (change, student) in
+        _ = studentObserver?.signal.observe(on: UIScheduler()).observeValues { [unowned self] (change, _) in
             switch change {
             case .insert, .update:
                 self.tableView?.reloadData()
@@ -114,6 +95,10 @@ class StudentSettingsViewController : UIViewController {
                 tableView.register(IntCell.self, forCellReuseIdentifier: "cell_\(i)")
             }
         }
+
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
 
     func reload() {
@@ -195,7 +180,7 @@ class StudentSettingsViewController : UIViewController {
     }
 
     @objc func refresh(_ refreshControl: UIRefreshControl?) {
-        thresholdsRefresher?.refresh(true)
+        presenter.viewIsReady()
     }
 
     // ---------------------------------------------
@@ -210,14 +195,6 @@ class StudentSettingsViewController : UIViewController {
         activityIndicator.hidesWhenStopped = true
     }
 
-    func thresholdForType(_ type: AlertThresholdType) -> AlertThreshold? {
-        let matchingThresholds = collection?.filter { threshold -> Bool in
-            return threshold.type == type
-        }
-
-        return matchingThresholds?.first
-    }
-    
     func descriptionForType(_ type: AlertThresholdType) -> String {
         switch type {
         case .courseGradeLow:
@@ -234,11 +211,9 @@ class StudentSettingsViewController : UIViewController {
             return NSLocalizedString("Institution announcements", comment: "Institution Announcement Description")
         case .courseAnnouncement:
             return NSLocalizedString("Course announcements", comment: "Course Announcement Description")
-        case .unknown:
-            return NSLocalizedString("Unknown", comment: "Unknown T`hreshold Description")
         }
     }
-    
+
     @objc func displayError(error: NSError) {
         let title = NSLocalizedString("An Error Occurred", comment: "")
         let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
@@ -248,7 +223,6 @@ class StudentSettingsViewController : UIViewController {
         }
     }
 }
-
 
 extension StudentSettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -271,11 +245,12 @@ extension StudentSettingsViewController: UITableViewDataSource, UITableViewDeleg
             guard let cell: SwitchCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? SwitchCell else { fatalError("invalid cell") }
             cell.selectionStyle = .none
             cell.textLabel?.text = descriptionForType(alert)
-            if let _ = thresholdForType(alert) {
+            if presenter.thresholdForType(alert) != nil {
                 cell.toggle.isOn = true
             }
             cell.type = alert
             cell.toggle.tag = indexPath.row
+            cell.toggle.isEnabled = true
             cell.toggle.addTarget(self, action: #selector(switchCellDidToggleValue(_:)), for: UIControl.Event.valueChanged)
             return cell
         default:
@@ -288,14 +263,13 @@ extension StudentSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.textLabel?.accessibilityLabel = descriptionForType(alert)
             cell.valueTextField.accessibilityLabel = descriptionForType(alert)
             cell.valueTextField.placeholder = NSLocalizedString("1-100%", comment: "Percentage field placeholder")
-            if let threshold = thresholdForType(alert), let value = threshold.threshold, let formattedValue = formatter.number(from: value)?.intValue {
+            if let threshold = presenter.thresholdForType(alert), let value = threshold.threshold, let formattedValue = formatter.number(from: value)?.intValue {
                 cell.valueTextField.text = "\(formattedValue)"
             }
             cell.valueTextField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: UIControl.Event.editingDidEnd)
             if indexPath == currentlySelectedIndexPath {
                 cell.textLabel?.textColor = .named(.electric)
-            }
-            else {
+            } else {
                 cell.textLabel?.textColor = .named(.textDarkest)
             }
             return cell
@@ -356,82 +330,42 @@ extension StudentSettingsViewController: UITableViewDataSource, UITableViewDeleg
     @objc func switchCellDidToggleValue(_ sender: UISwitch) {
         guard let cell = tableView.cellForRow(at: IndexPath(row: sender.tag, section: settingsSection)) as? SwitchCell, let type = cell.type else { return }
 
-        let onComplete = { (event: ReactiveSwift.Signal<Bool, NSError>.Event) -> Void in
-            switch(event) {
-            case .failed(let error):
-                self.displayError(error: error)
-                self.activityIndicator.stopAnimating()
-                break
-            default:
-                self.activityIndicator.stopAnimating()
-            }
-        }
-
         activityIndicator.startAnimating()
         sender.isEnabled = false
 
-
-        guard let threshold = thresholdForType(type) else {
-            AlertThreshold.createThreshold(session, type: type, observerID: session.user.id, observeeID: studentID).observe(on: UIScheduler()).start { event in
-                onComplete(event)
-                switch event {
-                case .completed, .failed:
-                    sender.isEnabled = true
-                default:
-                    break
-                }
-            }
+        guard let threshold = presenter.thresholdForType(type) else {
+            presenter.createAlert(value: nil, alertType: type)
             return
         }
 
-        threshold.remove(session).observe(on: UIScheduler()).start { event in
-            onComplete(event)
-            switch event {
-            case .completed, .failed:
-                sender.isEnabled = true
-            default:
-                break
-            }
-        }
-
+        presenter.removeAlert(alertID: threshold.id)
+        activityIndicator.stopAnimating()
+        sender.isEnabled = true
     }
 
     func didUpdateValueOnTextField(_ type: AlertThresholdType, thresholdValue: String?) {
-        if let threshold = thresholdForType(type), threshold.threshold == thresholdValue {
+        if let threshold = presenter.thresholdForType(type), threshold.threshold == thresholdValue {
             return
         }
 
-        let onComplete = { [weak self] (event: ReactiveSwift.Signal<Bool, NSError>.Event) -> Void in
-            switch(event) {
-            case .failed(let error):
-                self?.displayError(error: error)
-                self?.activityIndicator.stopAnimating()
-                break
-            default:
-                self?.activityIndicator.stopAnimating()
-                self?.deselectCurrentlySelected()
-            }
+        if (thresholdValue ?? "").isEmpty && presenter.thresholdForType(type) == nil {
+            return
         }
 
         activityIndicator.startAnimating()
 
-        guard let threshold = thresholdForType(type) else {
-            if let value = thresholdValue, !value.isEmpty {
-                AlertThreshold.createThreshold(session, type: type, observerID: session.user.id, observeeID: studentID, threshold: value).observe(on: UIScheduler()).start(onComplete)
-            } else {
-                activityIndicator.stopAnimating()
-            }
+        guard let threshold = presenter.thresholdForType(type) else {
+            presenter.createAlert(value: thresholdValue, alertType: type)
             return
         }
 
-        let signal: SignalProducer<Bool, NSError>
         if let value = thresholdValue, !value.isEmpty {
-            signal = threshold.update(session, newThreshold: value)
+            presenter.updateAlert(value: value, alertType: type, thresholdID: threshold.id)
         } else {
-            signal = threshold.remove(session)
+            presenter.removeAlert(alertID: threshold.id)
+            activityIndicator.stopAnimating()
+            deselectCurrentlySelected()
         }
-
-        signal.start(onComplete)
     }
 
     func deselectCurrentlySelected() {
@@ -504,4 +438,48 @@ extension StudentSettingsViewController: UITextFieldDelegate {
     }
 }
 
+extension AlertThresholdType {
+    public static var validThresholdTypes: [AlertThresholdType] {
+        return [
+            .courseGradeHigh,
+            .courseGradeLow,
+            .assignmentMissing,
+            .assignmentGradeHigh,
+            .assignmentGradeLow,
+            .courseAnnouncement,
+            .institutionAnnouncement,
+        ]
+    }
 
+    public var allowsThresholdValue: Bool {
+        switch self {
+        case .courseGradeLow:
+            return true
+        case .courseGradeHigh:
+            return true
+        case .assignmentMissing:
+            return false
+        case .assignmentGradeLow:
+            return true
+        case .assignmentGradeHigh:
+            return true
+        case .institutionAnnouncement:
+            return false
+        case .courseAnnouncement:
+            return false
+        }
+    }
+}
+
+extension StudentSettingsViewController: StudentSettingsViewProtocol {
+    func update() {
+        tableView.reloadData()
+        activityIndicator.stopAnimating()
+        tableView.refreshControl?.endRefreshing()
+    }
+
+    func didUpdateAlert() {
+        activityIndicator.stopAnimating()
+        deselectCurrentlySelected()
+    }
+}

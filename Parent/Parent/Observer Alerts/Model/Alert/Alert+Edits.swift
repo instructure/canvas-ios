@@ -21,28 +21,28 @@ import CanvasCore
 import ReactiveSwift
 
 extension Alert {
-    public func dismiss(_ session: Session, completion: ((Result<Bool, NSError>)->())? = nil) {
+    public func dismiss(_ session: Session, completion: ((Result<Bool, NSError>) -> Void)? = nil) {
         guard let context = managedObjectContext else {
             fatalError("Every Object should have a context or we're already screwed")
         }
 
         context.perform {
             self.dismissed = true
-            let _ = try? context.save()
+            _ = try? context.save()
         }
 
         do {
             let producer = try markDismissed(true, session: session)
-            producer.startWithSignal { signal, disposable in
+            producer.startWithSignal { signal, _ in
                 signal.observe(on: ManagedObjectContextScheduler(context: context)).observeResult { result in
                     if case .failure(let e) = result {
                         self.dismissed = false
-                        let _ = try? context.save()
+                        _ = try? context.save()
                         if e.code == 401 {
                             AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
                         }
                     }
-                    
+
                     completion?(result.map { _ in true })
                 }
             }
@@ -51,28 +51,28 @@ extension Alert {
         }
     }
 
-    public func markAsRead(_ session: Session, completion: ((Result<Bool, NSError>)->())? = nil) {
+    public func markAsRead(_ session: Session, completion: ((Result<Bool, NSError>) -> Void)? = nil) {
         guard let context = managedObjectContext else {
             fatalError("Every Object should have a context or we're already screwed")
         }
 
         context.perform {
             self.read = true
-            let _ = try? context.save()
+            _ = try? context.save()
         }
 
         do {
             let producer = try markAsRead(true, session: session)
-            producer.startWithSignal { signal, disposable in
+            producer.startWithSignal { signal, _ in
                 signal.observe(on: ManagedObjectContextScheduler(context: context)).observeResult { result in
                     if case .failure(let e) = result {
                         self.read = false
-                        let _ = try? context.save()
+                        _ = try? context.save()
                         if e.code == 401 {
                             AirwolfAPI.validateSessionAndLogout(session, parentID: session.user.id)
                         }
                     }
-                    
+
                     completion?(result.map { _ in true })
                 }
             }

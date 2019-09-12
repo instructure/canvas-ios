@@ -45,12 +45,9 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               undefined,
             ]
@@ -91,9 +88,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -105,9 +99,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-medium",
-                },
               ]
             }
           >
@@ -207,9 +198,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -217,9 +205,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                         "color": "#2D3B45",
                         "fontSize": 16,
                         "fontWeight": "600",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -229,9 +214,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                 <Text
                   style={
                     Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
                       Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
@@ -246,9 +228,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                           "color": "#07AF1F",
                         },
                       ],
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
                     ]
                   }
                 >
@@ -258,9 +237,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
               <Text
                 style={
                   Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                     Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
@@ -275,9 +251,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                         "alignSelf": "center",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -400,12 +373,9 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               undefined,
             ]
@@ -446,9 +416,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -460,9 +427,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-medium",
-                },
               ]
             }
           >
@@ -562,9 +526,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -572,9 +533,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                         "color": "#2D3B45",
                         "fontSize": 16,
                         "fontWeight": "600",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -584,9 +542,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                 <Text
                   style={
                     Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
                       Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
@@ -601,9 +556,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                           "color": "#07AF1F",
                         },
                       ],
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
                     ]
                   }
                 >
@@ -613,9 +565,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
               <Text
                 style={
                   Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                     Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
@@ -630,9 +579,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                         "alignSelf": "center",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >
@@ -722,12 +668,9 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-heavy",
                 "fontSize": 24,
+                "fontWeight": "800",
               },
               undefined,
             ]
@@ -768,9 +711,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -782,9 +722,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-medium",
-                },
               ]
             }
           >
@@ -884,9 +821,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                   style={
                     Array [
                       Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
@@ -894,9 +828,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                         "color": "#2D3B45",
                         "fontSize": 16,
                         "fontWeight": "600",
-                      },
-                      Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
                       },
                     ]
                   }
@@ -906,9 +837,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                 <Text
                   style={
                     Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
                       Object {
                         "color": "#2D3B45",
                         "fontSize": 16,
@@ -923,9 +851,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                           "color": "#07AF1F",
                         },
                       ],
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
                     ]
                   }
                 >
@@ -935,9 +860,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
               <Text
                 style={
                   Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
                     Object {
                       "color": "#2D3B45",
                       "fontSize": 16,
@@ -952,9 +874,6 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                         "alignSelf": "center",
                       },
                     ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
                   ]
                 }
               >

@@ -25,7 +25,6 @@ import {
   ActivityIndicator,
   FlatList,
   Dimensions,
-  DeviceInfo,
   NativeModules,
   Button,
 } from 'react-native'
@@ -350,7 +349,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
     return (
       <Screen
         navBarHidden
-        statusBarHidden={!DeviceInfo.isIPhoneX_deprecated}
         noRotationInVerticallyCompact
       >
         <View style={styles.speedGrader}>

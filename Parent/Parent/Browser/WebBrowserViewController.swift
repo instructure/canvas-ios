@@ -62,7 +62,10 @@ class WebBrowserViewController: UIViewController {
         self.isModal = isModal
         super.init(nibName: nil, bundle: nil)
 
-        self.doneButton = UIBarButtonItem(title: NSLocalizedString("Close", comment: "Close Button Title"), style: .plain, target: self, action: #selector(WebBrowserViewController.doneButtonTapped(_:)))
+        self.doneButton = UIBarButtonItem(title: NSLocalizedString("Close", comment: "Close Button Title"),
+                                          style: .plain,
+                                          target: self,
+                                          action: #selector(WebBrowserViewController.doneButtonTapped(_:)))
         self.reloadButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(WebBrowserViewController.reloadButtonTapped(_:)))
         self.activityItem = UIBarButtonItem(customView: activityIndicator)
         self.stopButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(WebBrowserViewController.stopButtonTapped(_:)))
@@ -74,7 +77,7 @@ class WebBrowserViewController: UIViewController {
         fixedSpace.width = 20
         self.toolbarItems = [backButton, fixedSpace, forwardButton, UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), actionButton]
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -168,14 +171,14 @@ class WebBrowserViewController: UIViewController {
         let title = webView.stringByEvaluatingJavaScript(from: "document.title")
         let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         if let fullURLString = fullURLString, let url = URL(string: fullURLString), request?.url?.isFileURL == false {
-            actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Open in Safari", comment: "Open a url in the application Safari"), style: .default) { action in
+            actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Open in Safari", comment: "Open a url in the application Safari"), style: .default) { _ in
                 UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             })
         }
 
         if let fileURLString = fileURLString, let fileURL = URL(string: fileURLString) {
             let dic = UIDocumentInteractionController(url: fileURL)
-            actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Open in...", comment: "Open file in another application"), style: .default) { [weak dic, weak self] action in
+            actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Open in...", comment: "Open file in another application"), style: .default) { [weak dic, weak self] _ in
                 let presentedOpenInMenu = dic?.presentOpenInMenu(from: actionButton, animated: true)
                 if presentedOpenInMenu == false {
                     let errorSheet = UIAlertController(title: NSLocalizedString("No installed apps support opening this file", comment: "Error message"), message: nil, preferredStyle: .actionSheet)
@@ -185,7 +188,7 @@ class WebBrowserViewController: UIViewController {
             })
         }
 
-        if actionSheet.actions.count == 0  {
+        if actionSheet.actions.count == 0 {
             actionSheet.title = NSLocalizedString("There are no actions for this item", comment: "Error message")
         }
 
@@ -266,11 +269,13 @@ extension WebBrowserViewController: UIWebViewDelegate {
                 let width: CGFloat = CGFloat(roundf(Float(size.width)))
                 self.titleField.frame = CGRect(x: x, y: self.titleField.frame.origin.y, width: width, height: self.titleField.frame.size.height)
             }
-        }) 
+        })
 
         let html = webView.stringByEvaluatingJavaScript(from: "document.body.innerHTML")
         if html == "Could not find download URL" {
-            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("There was an error loading your content. If it  is an audio or video upload it may still be processing.", comment: ""), preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""),
+                                          message: NSLocalizedString("There was an error loading your content. If it  is an audio or video upload it may still be processing.", comment: ""),
+                                          preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
@@ -295,6 +300,7 @@ extension WebBrowserViewController: UIWebViewDelegate {
                 // 204 is "Plug-in handled load", meaning it was handled outside the webview. Just let it be.
                 return
             } else {
+                //swiftlint:disable:next line_length
                 webView.loadHTMLString("<html><body style=\"font-family:sans-serif;font-size:30px;text-align:center;color:#555;padding:5px;\">There was an error loading the document.</body></html>", baseURL: nil)
             }
         }
@@ -303,7 +309,7 @@ extension WebBrowserViewController: UIWebViewDelegate {
     @objc func downloadFile(atURL url: URL) {
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
-        let downloadTask = session.dataTask(with: url) { data, response, error in
+        let downloadTask = session.dataTask(with: url) { data, response, _ in
             let filename = response?.suggestedFilename ?? "file"
             let url = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]).appendingPathComponent(filename)
             _ = try? data?.write(to: url, options: .atomic)
@@ -377,17 +383,17 @@ extension WebBrowserViewController {
 }
 
 // Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
 	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
 
 // Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+private func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
 	guard let input = input else { return nil }
 	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }
 
 // Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+private func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
 	return input.rawValue
 }

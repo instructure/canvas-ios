@@ -51,6 +51,7 @@ enum AnnouncementDetailsCellViewModel: TableViewCellViewModel {
             cell.filenameLabel.text = filename
             return cell
         case .message(let baseURL, let message):
+            //  swiftlint:disable:next force_cast
             let cell = tableView.dequeueReusableCell(withIdentifier: MessageBodyCellReuseIdentifier) as! WhizzyWigTableViewCell
             cell.cellSizeUpdated = { _ in
                 tableView.beginUpdates()
@@ -66,17 +67,17 @@ enum AnnouncementDetailsCellViewModel: TableViewCellViewModel {
         let attachmentInfo: AnnouncementDetailsCellViewModel? = discussionTopic
             .attachmentName
             .map(AnnouncementDetailsCellViewModel.attachment)
-        
+
         return [
             .title(discussionTopic.title),
             attachmentInfo,
-            .message(baseURL, discussionTopic.message)
+            .message(baseURL, discussionTopic.message),
         ].compactMap { $0 }
     }
 }
 
 extension AnnouncementDetailsCellViewModel: Equatable {}
-func ==(lhs: AnnouncementDetailsCellViewModel, rhs: AnnouncementDetailsCellViewModel) -> Bool {
+func == (lhs: AnnouncementDetailsCellViewModel, rhs: AnnouncementDetailsCellViewModel) -> Bool {
     switch (lhs, rhs) {
     case let (.title(leftTitle), .title(rightTitle)):
         return leftTitle == rightTitle
@@ -106,7 +107,7 @@ class AnnouncementDetailsViewController: DiscussionTopic.DetailViewController {
             self.title = course.name
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

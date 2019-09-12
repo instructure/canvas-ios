@@ -46,4 +46,14 @@ public extension URLComponents {
         url.path = string
         return url
     }
+
+    var withCanonicalQueryParams: URLComponents {
+        var cleaned = self
+        cleaned.query = cleaned.query?.replacingOccurrences(of: "+", with: " ")
+        cleaned.queryItems?.sort { a, b in
+            String(describing: (a.name, a.value)) < String(describing: (b.name, b.value))
+        }
+
+        return cleaned
+    }
 }

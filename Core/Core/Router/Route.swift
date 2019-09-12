@@ -25,6 +25,11 @@ public struct Route: Equatable {
         url = .parse(path)
     }
 
+    /// Used only in Parent app (not web)
+    public static func accountNotification(_ id: String) -> Route {
+        return Route("/accounts/self/users/self/account_notifications/\(id)")
+    }
+
     public static let courses = Route("/courses")
 
     public static func course(_ courseID: String) -> Route {
@@ -37,6 +42,20 @@ public struct Route: Equatable {
 
     public static func course(_ courseID: String, assignment assignmentID: String) -> Route {
         return Route("/courses/\(courseID)/assignments/\(assignmentID)")
+    }
+
+    /// Used only in Parent app (not web)
+    public static func courseCalendar(courseID: String) -> Route {
+        return Route("/courses/\(courseID)/calendar_events")
+    }
+
+    /// Used only in Parent app (not web)
+    public static func courseCalendarEvent(courseID: String, eventID: String) -> Route {
+        return Route("/courses/\(courseID)/calendar_events/\(eventID)")
+    }
+
+    public static func courseDiscussion(courseID: String, topicID: String) -> Route {
+        return Route("/courses/\(courseID)/discussion_topics/\(topicID)")
     }
 
     public static func assignments(forCourse courseID: String) -> Route {
@@ -77,7 +96,14 @@ public struct Route: Equatable {
         return Route("/courses/\(courseID)/quizzes/\(quizID)/take")
     }
 
+    public static let profile = Route("/profile")
+
     public static let profileObservees = Route("/profile/observees")
+
+    /// Used only in Parent app (not web)
+    public static func observeeThresholds(_ userID: String) -> Route {
+        return Route("/profile/observees/\(userID)/thresholds")
+    }
 
     public static let logs = Route("/logs")
 
@@ -91,6 +117,14 @@ public struct Route: Equatable {
 
     public static func moduleItem(forCourse courseID: String, moduleID: String, itemID: String) -> Route {
         return Route("/courses/\(courseID)/modules/\(moduleID)/items/\(itemID)")
+    }
+
+    public static func people(forCourse courseID: String) -> Route {
+        return Route("/courses/\(courseID)/users")
+    }
+
+    public static func people(forGroup groupID: String) -> Route {
+        return Route("/groups/\(groupID)/users")
     }
 
     public static func errorReport(for type: String) -> Route {

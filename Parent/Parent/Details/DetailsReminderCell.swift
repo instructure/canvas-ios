@@ -29,8 +29,8 @@ class DetailsReminderCell: UITableViewCell {
     fileprivate let expandedBottomConstraintValue: CGFloat = 46.0
     fileprivate let contractedBottomConstraintValue: CGFloat = 14.0
 
-    @objc var cellSizeUpdated: ()->() = { }
-    @objc var toggleAction: (_ on: Bool)->() = { _ in }
+    @objc var cellSizeUpdated: () -> Void = { }
+    @objc var toggleAction: (_ on: Bool) -> Void = { _ in }
 
     @objc static var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -44,7 +44,7 @@ class DetailsReminderCell: UITableViewCell {
 
         // Because Xcode is being dumb and isn't picking it up from what it is set in the nib
         iconImageView.tintColor = UIColor(r: 180.0, g: 180.0, b: 180.0)
-        
+
         dateLabel.text = ""
         dateLabel.accessibilityIdentifier = "reminder_date_label"
         toggle.accessibilityIdentifier = "reminder_toggle"

@@ -36,7 +36,7 @@ class AssignmentPostPolicyTests: TeacherUITestCase {
             let predicate = NSPredicate(format: "label CONTAINS[c] %@", "GRADE CURRENTLY HIDDEN")
             _ = app.staticTexts.containing(predicate).firstMatch.waitForExistence(timeout: 0.5)
 
-            XCTAssertEqual(PostPolicy.postToValue.label, "Everyone")
+            XCTAssertEqual(PostPolicy.postToValue.label(), "Everyone")
             PostPolicy.postTo.tap()
 
             let cells = app.cells.containing(NSPredicate(format: "label CONTAINS %@", "Graded"))
@@ -45,7 +45,7 @@ class AssignmentPostPolicyTests: TeacherUITestCase {
             gradedCell.tap()
             app.find(label: "Back").tap()
 
-            XCTAssertEqual(PostPolicy.postToValue.label, "Graded")
+            XCTAssertEqual(PostPolicy.postToValue.label(), "Graded")
 
             PostPolicy.togglePostToSections.tap()
 

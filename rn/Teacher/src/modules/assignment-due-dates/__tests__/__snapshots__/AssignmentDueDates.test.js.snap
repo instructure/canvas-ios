@@ -77,12 +77,9 @@ exports[`renders with overrides 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
                   "fontSize": 24,
+                  "fontWeight": "800",
                 },
                 undefined,
               ]
@@ -97,9 +94,6 @@ exports[`renders with overrides 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -107,9 +101,6 @@ exports[`renders with overrides 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -120,17 +111,11 @@ exports[`renders with overrides 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -154,9 +139,6 @@ exports[`renders with overrides 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -164,9 +146,6 @@ exports[`renders with overrides 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -177,17 +156,11 @@ exports[`renders with overrides 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -211,9 +184,6 @@ exports[`renders with overrides 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -221,9 +191,6 @@ exports[`renders with overrides 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -234,17 +201,11 @@ exports[`renders with overrides 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -309,12 +270,9 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
                   "fontSize": 24,
+                  "fontWeight": "800",
                 },
                 undefined,
               ]
@@ -329,9 +287,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -339,9 +294,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -352,17 +304,11 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -386,9 +332,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -396,9 +339,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -409,17 +349,11 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -443,9 +377,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -453,9 +384,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -466,17 +394,11 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -505,12 +427,9 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
                   "fontSize": 24,
+                  "fontWeight": "800",
                 },
                 undefined,
               ]
@@ -525,9 +444,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -535,9 +451,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -548,17 +461,11 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -582,9 +489,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -592,9 +496,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -605,17 +506,11 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -639,9 +534,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -649,9 +541,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -662,17 +551,11 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -701,12 +584,9 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
                   "fontSize": 24,
+                  "fontWeight": "800",
                 },
                 undefined,
               ]
@@ -721,9 +601,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -731,9 +608,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -744,17 +618,11 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -778,9 +646,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -788,9 +653,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -801,17 +663,11 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -835,9 +691,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -845,9 +698,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -858,17 +708,11 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -897,12 +741,9 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
-                  "fontFamily": ".SFUIDisplay-heavy",
                   "fontSize": 24,
+                  "fontWeight": "800",
                 },
                 undefined,
               ]
@@ -917,9 +758,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -927,9 +765,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -940,17 +775,11 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -974,9 +803,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -984,9 +810,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -997,17 +820,11 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -1031,9 +848,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
@@ -1041,9 +855,6 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                     "color": "#8B969E",
                     "fontWeight": "500",
                     "paddingTop": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -1054,17 +865,11 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               style={
                 Array [
                   Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
                   Object {
                     "paddingBottom": 16,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }

@@ -38,6 +38,3 @@ extension DiscussionTopic {
             }.flatMap(.latest, transform: session.JSONSignalProducer)
     }
 }
-
-
-

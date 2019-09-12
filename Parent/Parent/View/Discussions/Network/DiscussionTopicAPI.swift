@@ -18,8 +18,6 @@
 
 import Foundation
 
-
-
 open class DiscussionTopicAPI {
 
     open class func getDiscussionTopic(_ session: Session, courseID: String, discussionTopicID: String) throws -> URLRequest {
@@ -37,4 +35,3 @@ open class DiscussionTopicAPI {
         return try session.GET(path)
     }
 }
-

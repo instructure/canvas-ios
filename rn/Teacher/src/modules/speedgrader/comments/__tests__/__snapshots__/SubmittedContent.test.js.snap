@@ -48,12 +48,9 @@ exports[`my chat bubbles render correctly 1`] = `
       style={
         Array [
           Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
             "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
             "fontSize": 16,
+            "fontWeight": "600",
           },
           undefined,
         ]
@@ -67,9 +64,6 @@ exports[`my chat bubbles render correctly 1`] = `
       numberOfLines={1}
       style={
         Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
           Object {
             "color": "#7F91A7",
             "fontSize": 14,

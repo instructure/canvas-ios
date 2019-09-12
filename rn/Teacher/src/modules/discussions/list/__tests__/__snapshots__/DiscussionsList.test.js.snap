@@ -42,12 +42,9 @@ exports[`DiscussionsList renders 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
                 "fontSize": 16,
+                "fontWeight": "600",
               },
               undefined,
             ]
@@ -116,12 +113,9 @@ exports[`DiscussionsList renders as student app 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
                 "fontSize": 16,
+                "fontWeight": "600",
               },
               undefined,
             ]
@@ -188,9 +182,6 @@ exports[`DiscussionsList renders discussions 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -203,9 +194,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -343,9 +331,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                       style={
                         Array [
                           Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
@@ -354,9 +339,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                               "fontWeight": "600",
                             },
                           ],
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
                         ]
                       }
                     >
@@ -398,9 +380,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
@@ -408,9 +387,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                                   "color": "#8B969E",
                                   "fontSize": 14,
                                   "marginTop": 2,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -430,17 +406,11 @@ exports[`DiscussionsList renders discussions 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
                                 Object {
                                   "fontSize": 14,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -474,17 +444,11 @@ exports[`DiscussionsList renders discussions 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -496,9 +460,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                               accessible={false}
                               style={
                                 Array [
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                   Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
@@ -513,9 +474,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                                       "fontSize": 10,
                                     },
                                   ],
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                 ]
                               }
                             >
@@ -532,17 +490,11 @@ exports[`DiscussionsList renders discussions 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -744,9 +696,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                       style={
                         Array [
                           Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
@@ -755,9 +704,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                               "fontWeight": "600",
                             },
                           ],
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
                         ]
                       }
                     >
@@ -799,9 +745,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
@@ -809,9 +752,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                                   "color": "#8B969E",
                                   "fontSize": 14,
                                   "marginTop": 2,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -831,17 +771,11 @@ exports[`DiscussionsList renders discussions 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
                                 Object {
                                   "fontSize": 14,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -875,17 +809,11 @@ exports[`DiscussionsList renders discussions 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -897,9 +825,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                               accessible={false}
                               style={
                                 Array [
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                   Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
@@ -914,9 +839,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                                       "fontSize": 10,
                                     },
                                   ],
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                 ]
                               }
                             >
@@ -933,17 +855,11 @@ exports[`DiscussionsList renders discussions 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -1073,9 +989,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -1088,9 +1001,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -1228,9 +1138,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                       style={
                         Array [
                           Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
@@ -1239,9 +1146,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               "fontWeight": "600",
                             },
                           ],
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
                         ]
                       }
                     >
@@ -1283,9 +1187,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
@@ -1293,9 +1194,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                                   "color": "#8B969E",
                                   "fontSize": 14,
                                   "marginTop": 2,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -1329,17 +1227,11 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -1351,9 +1243,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               accessible={false}
                               style={
                                 Array [
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                   Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
@@ -1368,9 +1257,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                                       "fontSize": 10,
                                     },
                                   ],
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                 ]
                               }
                             >
@@ -1387,17 +1273,11 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -1599,9 +1479,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                       style={
                         Array [
                           Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
@@ -1610,9 +1487,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               "fontWeight": "600",
                             },
                           ],
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
                         ]
                       }
                     >
@@ -1654,9 +1528,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
@@ -1664,9 +1535,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                                   "color": "#8B969E",
                                   "fontSize": 14,
                                   "marginTop": 2,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -1700,17 +1568,11 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -1722,9 +1584,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               accessible={false}
                               style={
                                 Array [
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                   Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
@@ -1739,9 +1598,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                                       "fontSize": 10,
                                     },
                                   ],
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                 ]
                               }
                             >
@@ -1758,17 +1614,11 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -1898,9 +1748,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -1913,9 +1760,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -2053,9 +1897,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                       style={
                         Array [
                           Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
@@ -2064,9 +1905,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               "fontWeight": "600",
                             },
                           ],
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
                         ]
                       }
                     >
@@ -2108,9 +1946,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
@@ -2118,9 +1953,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                                   "color": "#8B969E",
                                   "fontSize": 14,
                                   "marginTop": 2,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -2140,17 +1972,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
                                 Object {
                                   "fontSize": 14,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -2184,17 +2010,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -2206,9 +2026,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               accessible={false}
                               style={
                                 Array [
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                   Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
@@ -2223,9 +2040,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                                       "fontSize": 10,
                                     },
                                   ],
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                 ]
                               }
                             >
@@ -2242,17 +2056,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -2454,9 +2262,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                       style={
                         Array [
                           Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
@@ -2465,9 +2270,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               "fontWeight": "600",
                             },
                           ],
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
                         ]
                       }
                     >
@@ -2509,9 +2311,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
@@ -2519,9 +2318,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                                   "color": "#8B969E",
                                   "fontSize": 14,
                                   "marginTop": 2,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -2541,17 +2337,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
                                 Object {
                                   "fontSize": 14,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -2585,17 +2375,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -2607,9 +2391,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               accessible={false}
                               style={
                                 Array [
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                   Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
@@ -2624,9 +2405,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                                       "fontSize": 10,
                                     },
                                   ],
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                 ]
                               }
                             >
@@ -2643,17 +2421,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -2783,9 +2555,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -2798,9 +2567,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -2938,9 +2704,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                       style={
                         Array [
                           Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
@@ -2949,9 +2712,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               "fontWeight": "600",
                             },
                           ],
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
                         ]
                       }
                     >
@@ -2993,9 +2753,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
@@ -3003,9 +2760,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                                   "color": "#8B969E",
                                   "fontSize": 14,
                                   "marginTop": 2,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -3025,17 +2779,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
                                 Object {
                                   "fontSize": 14,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -3069,17 +2817,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -3091,9 +2833,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               accessible={false}
                               style={
                                 Array [
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                   Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
@@ -3108,9 +2847,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                                       "fontSize": 10,
                                     },
                                   ],
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                 ]
                               }
                             >
@@ -3127,17 +2863,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -3339,9 +3069,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                       style={
                         Array [
                           Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
@@ -3350,9 +3077,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               "fontWeight": "600",
                             },
                           ],
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
                         ]
                       }
                     >
@@ -3394,9 +3118,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
@@ -3404,9 +3125,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                                   "color": "#8B969E",
                                   "fontSize": 14,
                                   "marginTop": 2,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -3426,17 +3144,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
                                 Object {
                                   "fontSize": 14,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -3470,17 +3182,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -3492,9 +3198,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               accessible={false}
                               style={
                                 Array [
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                   Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
@@ -3509,9 +3212,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                                       "fontSize": 10,
                                     },
                                   ],
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                 ]
                               }
                             >
@@ -3528,17 +3228,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -3635,9 +3329,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
@@ -3650,9 +3341,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                   },
                   undefined,
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
               ]
             }
           >
@@ -3790,9 +3478,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                       style={
                         Array [
                           Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
@@ -3801,9 +3486,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               "fontWeight": "600",
                             },
                           ],
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
                         ]
                       }
                     >
@@ -3845,9 +3527,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
@@ -3855,9 +3534,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                                   "color": "#8B969E",
                                   "fontSize": 14,
                                   "marginTop": 2,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -3877,17 +3553,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
                                 Object {
                                   "fontSize": 14,
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
                                 },
                               ]
                             }
@@ -3921,17 +3591,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }
@@ -3943,9 +3607,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               accessible={false}
                               style={
                                 Array [
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                   Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
@@ -3960,9 +3621,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                                       "fontSize": 10,
                                     },
                                   ],
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
                                 ]
                               }
                             >
@@ -3979,17 +3637,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                               style={
                                 Array [
                                   Object {
-                                    "fontFamily": ".SFUIDisplay",
-                                  },
-                                  Object {
                                     "color": "#2D3B45",
                                     "fontSize": 16,
                                   },
                                   Object {
                                     "fontSize": 14,
-                                  },
-                                  Object {
-                                    "fontFamily": ".SFUIDisplay",
                                   },
                                 ]
                               }

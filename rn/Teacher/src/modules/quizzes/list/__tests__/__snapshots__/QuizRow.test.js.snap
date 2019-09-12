@@ -126,9 +126,6 @@ exports[`QuizRow renders 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -137,9 +134,6 @@ exports[`QuizRow renders 1`] = `
                 "fontWeight": "600",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -162,9 +156,6 @@ exports[`QuizRow renders 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -172,9 +163,6 @@ exports[`QuizRow renders 1`] = `
                 "color": "#8B969E",
                 "fontSize": 14,
                 "marginTop": 2,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -207,15 +195,11 @@ exports[`QuizRow renders 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
                 },
               ]
             }
@@ -228,23 +212,19 @@ exports[`QuizRow renders 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Array [
-                  undefined,
+                  Object {
+                    "fontSize": 14,
+                  },
                   Object {
                     "alignSelf": "center",
                     "color": "#8B969E",
                     "fontSize": 10,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
           >
@@ -261,15 +241,11 @@ exports[`QuizRow renders 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
                 },
               ]
             }
@@ -451,9 +427,6 @@ exports[`QuizRow renders multiple question count 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -462,9 +435,6 @@ exports[`QuizRow renders multiple question count 1`] = `
                 "fontWeight": "600",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -487,9 +457,6 @@ exports[`QuizRow renders multiple question count 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -497,9 +464,6 @@ exports[`QuizRow renders multiple question count 1`] = `
                 "color": "#8B969E",
                 "fontSize": 14,
                 "marginTop": 2,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -532,15 +496,11 @@ exports[`QuizRow renders multiple question count 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
                 },
               ]
             }
@@ -553,23 +513,19 @@ exports[`QuizRow renders multiple question count 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Array [
-                  undefined,
+                  Object {
+                    "fontSize": 14,
+                  },
                   Object {
                     "alignSelf": "center",
                     "color": "#8B969E",
                     "fontSize": 10,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
           >
@@ -586,15 +542,11 @@ exports[`QuizRow renders multiple question count 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
                 },
               ]
             }
@@ -776,9 +728,6 @@ exports[`QuizRow renders published 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -787,9 +736,6 @@ exports[`QuizRow renders published 1`] = `
                 "fontWeight": "600",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -812,9 +758,6 @@ exports[`QuizRow renders published 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -822,9 +765,6 @@ exports[`QuizRow renders published 1`] = `
                 "color": "#8B969E",
                 "fontSize": 14,
                 "marginTop": 2,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -857,15 +797,11 @@ exports[`QuizRow renders published 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
                 },
               ]
             }
@@ -878,23 +814,19 @@ exports[`QuizRow renders published 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Array [
-                  undefined,
+                  Object {
+                    "fontSize": 14,
+                  },
                   Object {
                     "alignSelf": "center",
                     "color": "#8B969E",
                     "fontSize": 10,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
           >
@@ -911,15 +843,11 @@ exports[`QuizRow renders published 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
                 },
               ]
             }
@@ -1102,9 +1030,6 @@ exports[`QuizRow renders selected 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -1113,9 +1038,6 @@ exports[`QuizRow renders selected 1`] = `
                 "fontWeight": "600",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -1138,9 +1060,6 @@ exports[`QuizRow renders selected 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -1148,9 +1067,6 @@ exports[`QuizRow renders selected 1`] = `
                 "color": "#8B969E",
                 "fontSize": 14,
                 "marginTop": 2,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -1183,15 +1099,11 @@ exports[`QuizRow renders selected 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
                 },
               ]
             }
@@ -1204,23 +1116,19 @@ exports[`QuizRow renders selected 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Array [
-                  undefined,
+                  Object {
+                    "fontSize": 14,
+                  },
                   Object {
                     "alignSelf": "center",
                     "color": "#8B969E",
                     "fontSize": 10,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
           >
@@ -1237,15 +1145,11 @@ exports[`QuizRow renders selected 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
                 },
               ]
             }
@@ -1427,9 +1331,6 @@ exports[`QuizRow renders single question count 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -1438,9 +1339,6 @@ exports[`QuizRow renders single question count 1`] = `
                 "fontWeight": "600",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -1463,9 +1361,6 @@ exports[`QuizRow renders single question count 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -1473,9 +1368,6 @@ exports[`QuizRow renders single question count 1`] = `
                 "color": "#8B969E",
                 "fontSize": 14,
                 "marginTop": 2,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -1508,15 +1400,11 @@ exports[`QuizRow renders single question count 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
                 },
               ]
             }
@@ -1529,23 +1417,19 @@ exports[`QuizRow renders single question count 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Array [
-                  undefined,
+                  Object {
+                    "fontSize": 14,
+                  },
                   Object {
                     "alignSelf": "center",
                     "color": "#8B969E",
                     "fontSize": 10,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
           >
@@ -1562,15 +1446,11 @@ exports[`QuizRow renders single question count 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
                 },
               ]
             }
@@ -1752,9 +1632,6 @@ exports[`QuizRow renders unpublished 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -1763,9 +1640,6 @@ exports[`QuizRow renders unpublished 1`] = `
                 "fontWeight": "600",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -1788,9 +1662,6 @@ exports[`QuizRow renders unpublished 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -1798,9 +1669,6 @@ exports[`QuizRow renders unpublished 1`] = `
                 "color": "#8B969E",
                 "fontSize": 14,
                 "marginTop": 2,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -1833,15 +1701,11 @@ exports[`QuizRow renders unpublished 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
                 },
               ]
             }
@@ -1854,23 +1718,19 @@ exports[`QuizRow renders unpublished 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
                 Array [
-                  undefined,
+                  Object {
+                    "fontSize": 14,
+                  },
                   Object {
                     "alignSelf": "center",
                     "color": "#8B969E",
                     "fontSize": 10,
                   },
                 ],
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
               ]
             }
           >
@@ -1887,15 +1747,11 @@ exports[`QuizRow renders unpublished 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
                 },
               ]
             }
@@ -2077,9 +1933,6 @@ exports[`QuizRow renders without points possible 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
               "color": "#2D3B45",
               "fontSize": 16,
             },
@@ -2088,9 +1941,6 @@ exports[`QuizRow renders without points possible 1`] = `
                 "fontWeight": "600",
               },
             ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
           ]
         }
       >
@@ -2113,9 +1963,6 @@ exports[`QuizRow renders without points possible 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -2123,9 +1970,6 @@ exports[`QuizRow renders without points possible 1`] = `
                 "color": "#8B969E",
                 "fontSize": 14,
                 "marginTop": 2,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay",
               },
             ]
           }
@@ -2157,15 +2001,11 @@ exports[`QuizRow renders without points possible 1`] = `
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "fontSize": 14,
                 },
               ]
             }

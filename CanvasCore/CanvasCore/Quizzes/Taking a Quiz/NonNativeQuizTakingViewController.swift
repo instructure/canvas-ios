@@ -69,14 +69,21 @@ class NonNativeQuizTakingViewController: UIViewController, CoreWebViewLinkDelega
             let alert = UIAlertController(title: nil, message: areYouSure, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: stay, style: .cancel))
             alert.addAction(UIAlertAction(title: leave, style: .default) { _ in
+                self.refreshCoreQuiz()
                 self.dismiss(animated: true, completion: nil)
             })
             present(alert, animated: true, completion: nil)
         } else {
+            refreshCoreQuiz()
             dismiss(animated: true, completion: nil)
         }
         session.progressDispatcher.dispatch(Progress(kind: .submitted, contextID: contextID, itemType: .quiz, itemID: quiz.id))
         session.progressDispatcher.dispatch(Progress(kind: .viewed, contextID: contextID, itemType: .quiz, itemID: quiz.id))
         session.progressDispatcher.dispatch(Progress(kind: .minimumScore, contextID: contextID, itemType: .quiz, itemID: quiz.id))
+    }
+
+    func refreshCoreQuiz() {
+        GetQuiz(courseID: contextID.id, quizID: quiz.id).fetch(force: true) { _, _, _ in }
+        GetQuizSubmissions(courseID: contextID.id, quizID: quiz.id).fetch(force: true) { _, _, _ in }
     }
 }

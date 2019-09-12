@@ -27,12 +27,9 @@ exports[`CourseFilter renders correctly 1`] = `
       style={
         Array [
           Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
             "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-heavy",
             "fontSize": 24,
+            "fontWeight": "800",
           },
           Object {
             "flex": 1,
@@ -68,9 +65,6 @@ exports[`CourseFilter renders correctly 1`] = `
           style={
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
@@ -82,9 +76,6 @@ exports[`CourseFilter renders correctly 1`] = `
                 },
                 undefined,
               ],
-              Object {
-                "fontFamily": ".SFUIDisplay-medium",
-              },
             ]
           }
         >
