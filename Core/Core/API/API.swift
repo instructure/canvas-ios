@@ -86,13 +86,20 @@ public class URLSessionAPI: API {
     public func makeRequest<R: APIRequestable>(_ requestable: R, refreshTokenRetries: Int, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
         do {
             guard refreshTask?.state != .running else {
-                refreshQueue.append { [weak self] in self?.makeRequest(requestable, refreshTokenRetries: refreshTokenRetries, callback: callback) }
+                refreshQueue.append { [weak self] in
+                    self?.makeRequest(requestable, refreshTokenRetries: refreshTokenRetries, callback: callback)
+                }
                 return nil
             }
             let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
             let task = urlSession.dataTask(with: request) { [weak self] data, response, error in
                 if response?.isUnauthorized == true, refreshTokenRetries > 0 {
-                    self?.refreshToken { self?.makeRequest(requestable, refreshTokenRetries: refreshTokenRetries - 1, callback: callback) }
+                    self?.refreshQueue.append { [weak self] in
+                        self?.makeRequest(requestable, refreshTokenRetries: refreshTokenRetries - 1, callback: callback)
+                    }
+                    if self?.refreshTask?.state != .running {
+                        self?.refreshToken()
+                    }
                     return
                 }
                 guard let data = data, error == nil, !(R.Response.self is APINoContent.Type) else {
@@ -136,14 +143,14 @@ public class URLSessionAPI: API {
         return urlSession.uploadTask(with: request, fromFile: url)
     }
 
-    func refreshToken(callback: @escaping () -> Void) {
+    func refreshToken() {
         guard
             let loginSession = loginSession,
             let refreshToken = loginSession.refreshToken,
             let clientID = loginSession.clientID,
             let clientSecret = loginSession.clientSecret
         else {
-            return callback()
+            return flushRefreshQueue()
         }
         let client = APIVerifyClient(authorized: true, base_url: baseURL, client_id: clientID, client_secret: clientSecret)
         let request = PostLoginOAuthRequest(client: client, refreshToken: refreshToken)
@@ -156,11 +163,14 @@ public class URLSessionAPI: API {
                 }
                 self?.loginSession = session
             }
-            callback()
-            let tasks = self?.refreshQueue ?? []
-            tasks.forEach { $0() }
-            self?.refreshQueue = []
+            self?.flushRefreshQueue()
         }
+    }
+
+    private func flushRefreshQueue() {
+        let tasks = refreshQueue
+        tasks.forEach { $0() }
+        refreshQueue = []
     }
 }
 
