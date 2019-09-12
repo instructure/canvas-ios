@@ -241,6 +241,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
           navigator={this.props.navigator}
           courseID={this.props.courseID}
           userID={this.props.userID}
+          newGradebookEnabled={this.props.newGradebookEnabled}
         />
         <SubmissionPicker
           submissionProps={this.props.submissionProps}

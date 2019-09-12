@@ -22,6 +22,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   View,
+  Image,
   StyleSheet,
   TouchableHighlight,
 } from 'react-native'
@@ -34,6 +35,8 @@ import SubmissionStatusLabel from '../../submissions/list/SubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
 import { isAssignmentAnonymous } from '../../../common/anonymous-grading'
 import { submissionTypeIsOnline } from '@common/submissionTypes'
+import icon from '../../../images/inst-icons'
+import colors from '../../../common/colors'
 
 export class Header extends Component<HeaderProps, State> {
   state: State = {
@@ -47,14 +50,30 @@ export class Header extends Component<HeaderProps, State> {
     )
   }
 
+  navigateToPostPolicies = () => {
+    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/post_policy`, {
+      modal: true,
+    })
+  }
+
   renderDoneButton () {
     return (
-      <View style={styles.doneButton}>
+      <View style={styles.barButton}>
         <TouchableHighlight onPress={this.props.closeModal} underlayColor='white' testID='header.navigation-done'>
+          <Text style={{ color: '#008EE2', fontSize: 18, fontWeight: '600' }}>
+            {i18n('Done')}
+          </Text>
+        </TouchableHighlight>
+      </View>
+    )
+  }
+
+  renderEyeBall () {
+    return (
+      <View style={styles.barButton}>
+        <TouchableHighlight onPress={this.navigateToPostPolicies} underlayColor='white' testID='header.navigation-eye'>
           <View style={{ paddingLeft: 20 }}>
-            <Text style={{ color: '#008EE2', fontSize: 18, fontWeight: '600' }}>
-              {i18n('Done')}
-            </Text>
+            <Image source={icon('eye', 'line')} style={styles.eyeIcon} />
           </View>
         </TouchableHighlight>
       </View>
@@ -105,6 +124,7 @@ export class Header extends Component<HeaderProps, State> {
             </View>
           </TouchableHighlight>
         </View>
+        {this.props.newGradebookEnabled && this.renderEyeBall()}
         {this.renderDoneButton()}
       </View>
     )
@@ -163,9 +183,14 @@ const styles = StyleSheet.create({
   status: {
     fontSize: 14,
   },
-  doneButton: {
+  barButton: {
     backgroundColor: 'white',
     marginRight: 12,
+  },
+  eyeIcon: {
+    width: 20,
+    height: 20,
+    tintColor: colors.grey4,
   },
 })
 
