@@ -60,9 +60,15 @@ public class MockURLSession: URLSession {
         public var resumed = false
         public var canceled = false
 
+        public var _state: URLSessionTask.State = .suspended
+        public override var state: URLSessionTask.State {
+            return _state
+        }
+
         public override func resume() {
             callback?(mock?.data, mock?.response, mock?.error)
             resumed = true
+            _state = .completed
         }
 
         public override func cancel() {

@@ -164,11 +164,9 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
   inFlight.set(key, promise)
   return promise.catch((error) => {
     let { config, request } = error
-    let retries = config.refreshRetries
-    if (retries == null) retries = 5
-    if (request.status === 401 && retries > 0) {
+    if (request.status === 401 && config.refreshToken !== false) {
       return refreshToken()
-        .then(() => xhr(method, url, data, { ...config, refreshRetries: retries - 1 }))
+        .then(() => xhr(method, url, data, { ...config, refreshToken: false }))
     }
     throw error
   })
@@ -185,7 +183,7 @@ export function refreshToken () {
     refresh_token: refreshToken,
     client_id: clientID,
     client_secret: clientSecret,
-  }, { excludeVersion: true, refreshRetries: 0 })
+  }, { excludeVersion: true, refreshToken: false })
     .then(result => {
       if (result && result.data && result.data.access_token) {
         setSession({ ...getSession(), authToken: result.data.access_token })

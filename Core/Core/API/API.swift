@@ -25,7 +25,7 @@ public protocol API {
     var identifier: String? { get }
 
     @discardableResult
-    func makeRequest<R: APIRequestable>(_ requestable: R, refreshTokenRetries: Int, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask?
+    func makeRequest<R: APIRequestable>(_ requestable: R, refreshToken: Bool, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask?
 
     @discardableResult
     func makeDownloadRequest(_ url: URL, callback: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionTask?
@@ -37,7 +37,7 @@ public protocol API {
 extension API {
     @discardableResult
     public func makeRequest<R: APIRequestable>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
-        return makeRequest(requestable, refreshTokenRetries: 5, callback: callback)
+        return makeRequest(requestable, refreshToken: true, callback: callback)
     }
 }
 
@@ -83,19 +83,19 @@ public class URLSessionAPI: API {
     }
 
     @discardableResult
-    public func makeRequest<R: APIRequestable>(_ requestable: R, refreshTokenRetries: Int, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
+    public func makeRequest<R: APIRequestable>(_ requestable: R, refreshToken: Bool, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
         do {
             guard refreshTask?.state != .running else {
                 refreshQueue.append { [weak self] in
-                    self?.makeRequest(requestable, refreshTokenRetries: refreshTokenRetries, callback: callback)
+                    self?.makeRequest(requestable, callback: callback)
                 }
                 return nil
             }
             let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
             let task = urlSession.dataTask(with: request) { [weak self] data, response, error in
-                if response?.isUnauthorized == true, refreshTokenRetries > 0 {
+                if response?.isUnauthorized == true, refreshToken {
                     self?.refreshQueue.append { [weak self] in
-                        self?.makeRequest(requestable, refreshTokenRetries: refreshTokenRetries - 1, callback: callback)
+                        self?.makeRequest(requestable, refreshToken: false, callback: callback)
                     }
                     if self?.refreshTask?.state != .running {
                         self?.refreshToken()
@@ -154,7 +154,7 @@ public class URLSessionAPI: API {
         }
         let client = APIVerifyClient(authorized: true, base_url: baseURL, client_id: clientID, client_secret: clientSecret)
         let request = PostLoginOAuthRequest(client: client, refreshToken: refreshToken)
-        refreshTask = makeRequest(request, refreshTokenRetries: 0) { [weak self] response, _, error in
+        refreshTask = makeRequest(request, refreshToken: false) { [weak self] response, _, error in
             if let response = response, error == nil {
                 let session = loginSession.refresh(accessToken: response.access_token)
                 LoginSession.add(session)

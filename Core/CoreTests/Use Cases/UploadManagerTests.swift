@@ -74,7 +74,7 @@ class UploadManagerTests: CoreTestCase {
         URLSessionAPI.delegateURLSession = { (configuration: URLSessionConfiguration, delegate: URLSessionDelegate?, delegateQueue: OperationQueue?) -> URLSession in
             return URLSession(configuration: config, delegate: delegate, delegateQueue: delegateQueue)
         }
-        let manager = UploadManager()
+        let manager = UploadManager(identifier: "test")
         XCTAssertEqual(try manager.uploadURL(url), expected)
     }
 
