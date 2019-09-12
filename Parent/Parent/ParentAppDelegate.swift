@@ -93,11 +93,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
         }
-        if let legacySession = Session.current {
-            self.legacySession = legacySession
-            Router.sharedInstance.session = legacySession
-            NotificationCenter.default.post(name: .loggedIn, object: self, userInfo: [LoggedInNotificationContentsSession: legacySession as Any])
-        }
+        legacySession = Session.current
         showRootView()
     }
 
