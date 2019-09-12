@@ -78,14 +78,23 @@ public struct GetAssignmentsRequest: APIRequestable {
         case position, name
     }
 
+    public enum Include: String {
+        case overrides
+        case discussion_topic
+        case observed_users
+        case submission
+    }
+
     public typealias Response = [APIAssignment]
 
     let courseID: String
     let orderBy: OrderBy
+    let include: [Include]
 
-    public init(courseID: String, orderBy: OrderBy = .position) {
+    public init(courseID: String, orderBy: OrderBy = .position, include: [Include] = []) {
         self.courseID = courseID
         self.orderBy = orderBy
+        self.include = include
     }
 
     public var path: String {
@@ -94,8 +103,11 @@ public struct GetAssignmentsRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        return [
-            .value("order_by", orderBy.rawValue),
-        ]
+        var q: [APIQueryItem] = [ .value("order_by", orderBy.rawValue), ]
+
+        if !include.isEmpty {
+            q.append( .array("include", include.map { $0.rawValue }) )
+        }
+        return q
     }
 }

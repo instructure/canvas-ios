@@ -27,10 +27,14 @@ public class GetAssignments: CollectionUseCase {
     public typealias Model = Assignment
     public let courseID: String
     private let sort: Sort
+    let include: [GetAssignmentsRequest.Include]
+    let updateSubmission: Bool
 
-    public init(courseID: String, sort: Sort = .position) {
+    public init(courseID: String, sort: Sort = .position, include: [GetAssignmentsRequest.Include] = []) {
         self.courseID = courseID
         self.sort = sort
+        self.include = include
+        self.updateSubmission = include.contains(.submission)
     }
 
     public var cacheKey: String? {
@@ -45,7 +49,7 @@ public class GetAssignments: CollectionUseCase {
         case .name:
             orderBy = .name
         }
-        return GetAssignmentsRequest(courseID: courseID, orderBy: orderBy)
+        return GetAssignmentsRequest(courseID: courseID, orderBy: orderBy, include: include)
     }
 
     public var scope: Scope {
@@ -72,7 +76,7 @@ public class GetAssignments: CollectionUseCase {
         for item in response {
             let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), item.id.value)
             let model: Assignment = client.fetch(predicate).first ?? client.insert()
-            model.update(fromApiModel: item, in: client, updateSubmission: false)
+            model.update(fromApiModel: item, in: client, updateSubmission: updateSubmission)
         }
     }
 }

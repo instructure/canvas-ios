@@ -300,4 +300,82 @@ class AssignmentTests: CoreTestCase {
         let assignment = Assignment.make(from: .make(lock_at: Date().addYears(-1), locked_for_user: true))
         XCTAssertEqual(assignment.lockStatus, .after)
     }
+
+    func testIconForDiscussion() {
+        let a = Assignment.make(from: .make(id: "1", submission_types: [ .discussion_topic ]))
+        let icon = a.icon
+        let expected = UIImage.icon(.discussion, .line)
+        XCTAssertEqual(icon, expected)
+    }
+
+    func testIconForAssignment() {
+        let a = Assignment.make(from: .make(id: "1"))
+        let icon = a.icon
+        let expected = UIImage.icon(.assignment, .line)
+        XCTAssertEqual(icon, expected)
+    }
+
+    func testIconForQuiz() {
+        let a = Assignment.make(from: .make(id: "1", quiz_id: "1"))
+        let icon = a.icon
+        let expected = UIImage.icon(.quiz, .line)
+        XCTAssertEqual(icon, expected)
+    }
+
+    func testIconForExternalTool() {
+        let a = Assignment.make(from: .make(id: "1", submission_types: [ .external_tool ]))
+        let icon = a.icon
+        let expected = UIImage.icon(.lti, .line)
+        XCTAssertEqual(icon, expected)
+    }
+
+    func testIconForLocked() {
+        let a = Assignment.make(from: .make(id: "1", submission_types: [ .external_tool ], locked_for_user: true))
+        let icon = a.icon
+        let expected = UIImage.icon(.lock, .line)
+        XCTAssertEqual(icon, expected)
+    }
+
+    func testSubmissionStatusTextSubmissionMissingPastDue() {
+        let a = Assignment.make(from: .make(id: "2", due_at: Date().addDays(-2), submission: nil))
+        let result = a.submissionStatusText
+        let expected = "missing"
+        XCTAssertEqual(result, expected)
+    }
+
+    func testSubmissionStatusTextUnsubmitted() {
+        let s = APISubmission.make(workflow_state: .unsubmitted)
+        let a = Assignment.make(from: .make(id: "3", due_at: Date().addDays(-3), submission: s))
+        let result = a.submissionStatusText
+        let expected = "missing"
+        XCTAssertEqual(result, expected)
+    }
+
+    func testSubmissionStatusTextSubmissionMissing() {
+        let s = APISubmission.make(missing: true)
+        let a = Assignment.make(from: .make(id: "4", due_at: Date().addDays(-4), submission: s))
+        let result = a.submissionStatusText
+        let expected = "missing"
+        XCTAssertEqual(result, expected)
+    }
+
+    func testSubmissionStatusTextSubmissionLate() {
+        let s = APISubmission.make(late: true)
+        let a = Assignment.make(from: .make(id: "5", submission: s))
+        let result = a.submissionStatusText
+        let expected = "late"
+        XCTAssertEqual(result, expected)
+    }
+
+    func testSubmissionStatusTextSubmitted() {
+        let s = APISubmission.make(submission_type: .online_text_entry)
+        let a = Assignment.make(from: .make(id: "6", submission: s))
+        let result = a.submissionStatusText
+        let expected = "submitted"
+        XCTAssertEqual(result, expected)
+    }
+
+    func testNewVarsAddedByGrades() {
+        XCTFail("implement me")
+    }
 }

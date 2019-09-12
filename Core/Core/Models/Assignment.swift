@@ -45,6 +45,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var useRubricForGrading: Bool
     @NSManaged public var lastUpdatedAt: Date?
     @NSManaged public var hideRubricPoints: Bool
+    @NSManaged public var assignmentGroupID: String?
 
     public var gradingType: GradingType {
         get { return GradingType(rawValue: gradingTypeRaw) ?? .points }
@@ -85,6 +86,7 @@ extension Assignment {
         url = item.url
         useRubricForGrading = item.use_rubric_for_grading ?? false
         lastUpdatedAt = Date()
+        assignmentGroupID = item.assignment_group_id?.value
 
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)
@@ -208,6 +210,40 @@ extension Assignment {
         } else {
             return .unlocked
         }
+    }
+
+    public var submissionStatusText: String? {
+        if submission == nil || submission?.workflowState == .unsubmitted || (submission?.missing ?? false) {
+            if let dueAt = dueAt, dueAt < Clock.now {
+                return NSLocalizedString("missing", comment: "")
+            } else {
+                return nil
+            }
+        }
+
+        if submission?.late ?? false {
+            return NSLocalizedString("late", comment: "")
+        } else if let s = submission, s.type != .on_paper, s.type != .none {
+            return NSLocalizedString("submitted", comment: "")
+        }
+        return nil
+    }
+
+    public var icon: UIImage? {
+        var image: UIImage? = .icon(.assignment, .line)
+        if quizID != nil {
+            image = .icon(.quiz, .line)
+        } else if submissionTypes.contains(.discussion_topic) {
+            image = .icon(.discussion, .line)
+        } else if submissionTypes.contains(.external_tool) || submissionTypes.contains(.basic_lti_launch) {
+            image = .icon(.lti, .line)
+        }
+
+        if lockedForUser {
+            image = .icon(.lock, .line)
+        }
+
+        return image
     }
 }
 

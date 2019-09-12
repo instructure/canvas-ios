@@ -19,20 +19,33 @@
 import Foundation
 
 protocol GradesViewProtocol: ErrorViewController {
-    func update()
+    func update(groups: [String], assignmentsByGroup: [[GradesPresenter.CellViewModel]])
 }
 
 class GradesPresenter {
+
+    struct CellViewModel: Equatable {
+        var name: String
+        var grade: String?
+        var status: String?
+        var icon: UIImage?
+    }
+
     var sort: GetAssignments.Sort
     let courseID: String
     let env: AppEnvironment
     weak var view: GradesViewProtocol?
+    var didRefreshAssignments = false
 
     lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
     }
 
-    lazy var assignments = env.subscribe(GetAssignments(courseID: self.courseID, sort: sort)) { [weak self] in
+    lazy var assignmentGroups = env.subscribe(GetAssignmentGroups(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
+
+    lazy var assignments = env.subscribe(GetAssignments(courseID: self.courseID, sort: sort, include: [.submission, .observed_users])) { [weak self] in
         self?.update()
     }
 
@@ -44,19 +57,31 @@ class GradesPresenter {
     }
 
     func viewIsReady() {
-        assignments.exhaust(while: { _ in true })
+        assignments.refresh(force: true) // does this need to exhaust?
         course.refresh()
-        update()
     }
 
     func update() {
-        view?.update()
-        loadColor()
+        if !assignments.pending && !didRefreshAssignments {
+            didRefreshAssignments = true
+            assignmentGroups.refresh(force: true)   // does this need to exhaust?
+        }
+
+        if didRefreshAssignments && assignments.count > 0 && !assignments.pending && assignmentGroups.count > 0 {
+            var groups: [String] = []
+            var assignmentsByGroup = [[CellViewModel]]()
+            assignmentGroups.forEach {
+                groups.append($0.name)
+                let models = Array($0.assignments).map { viewModel(from: $0) }
+                assignmentsByGroup.append( models )
+            }
+
+            view?.update(groups: groups, assignmentsByGroup: assignmentsByGroup)
+        }
     }
 
-    func loadColor() {
-//        guard let course = course.first else { return }
-        print("**** implement me")
+    func viewModel(from: Assignment) -> CellViewModel {
+        return CellViewModel(name: from.name, grade: from.gradeText, status: from.submissionStatusText, icon: from.icon)
     }
 
     func select(_ assignment: Assignment, from: UIViewController) {
