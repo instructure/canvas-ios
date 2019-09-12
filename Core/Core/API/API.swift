@@ -47,7 +47,7 @@ public class URLSessionAPI: API {
     public let urlSession: URLSession
 
     var refreshTask: URLSessionTask?
-    var refreshQueue: [URLSessionTask] = []
+    var refreshQueue: [() -> Void] = []
 
     public var identifier: String? {
         return urlSession.configuration.identifier
@@ -82,14 +82,16 @@ public class URLSessionAPI: API {
         self.urlSession = urlSession
     }
 
-    var expired = true
-
     @discardableResult
     public func makeRequest<R: APIRequestable>(_ requestable: R, refreshTokenRetries: Int, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
         do {
+            guard refreshTask?.state != .running else {
+                refreshQueue.append { [weak self] in self?.makeRequest(requestable, refreshTokenRetries: refreshTokenRetries, callback: callback) }
+                return nil
+            }
             let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
             let task = urlSession.dataTask(with: request) { [weak self] data, response, error in
-                if (response?.isUnauthorized == true || self?.expired == true), refreshTokenRetries > 0 {
+                if response?.isUnauthorized == true, refreshTokenRetries > 0 {
                     self?.refreshToken { self?.makeRequest(requestable, refreshTokenRetries: refreshTokenRetries - 1, callback: callback) }
                     return
                 }
@@ -105,11 +107,7 @@ public class URLSessionAPI: API {
                     callback(nil, response, APIError.from(data: data, response: response, error: error))
                 }
             }
-            if refreshTask?.state == .running {
-                refreshQueue.append(task)
-            } else {
-                task.resume()
-            }
+            task.resume()
             return task
         } catch let error {
             callback(nil, nil, error)
@@ -157,11 +155,10 @@ public class URLSessionAPI: API {
                     AppEnvironment.shared.currentSession = session
                 }
                 self?.loginSession = session
-                self?.expired = false
             }
             callback()
             let tasks = self?.refreshQueue ?? []
-            tasks.forEach { $0.resume() }
+            tasks.forEach { $0() }
             self?.refreshQueue = []
         }
     }
