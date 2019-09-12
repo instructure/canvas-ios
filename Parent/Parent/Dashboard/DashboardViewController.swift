@@ -176,6 +176,7 @@ class DashboardViewController: UIViewController {
     }
 
     @objc func setup() throws {
+        guard studentCollection == nil else { return }
         viewState.isSiteAdmin = session.isSiteAdmin
         studentCollection = try Student.observedStudentsCollection(session)
         studentCountObserver = try Student.countOfObservedStudentsObserver(session) { [weak self] count in
