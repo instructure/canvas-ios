@@ -185,7 +185,7 @@ export default class Reply extends Component<Props, State> {
                 heightCacheKey={reply.id}
               />
             }
-            {reply.attachment &&
+            {!reply.deleted && reply.attachment &&
               <TouchableOpacity testID={`discussion-reply.${reply.id}.attachment`} onPress={this.showAttachment}>
                 <View style={style.attachment}>
                   <Image source={Images.paperclip} style={style.attachmentIcon} />
