@@ -59,7 +59,7 @@ class APIOAuthRequestableTests: XCTestCase {
             URLQueryItem(name: "client_secret", value: "dna evidence"),
             URLQueryItem(name: "grant_type", value: "refresh_token"),
             URLQueryItem(name: "refresh_token", value: "1234"),
-            ])
+        ])
     }
 
     func testGetWebSessionRequest() {
