@@ -76,6 +76,13 @@ describe('DiscussionReplies', () => {
     expect(webview.props().html.includes('Deleted this reply.')).toEqual(true)
   })
 
+  it('does not show attachments when deleted', () => {
+    props.reply.deleted = true
+    props.reply.attachment = {}
+    let tree = shallow(<Reply {...props} />)
+    expect(tree.find(`[testID="discussion-reply.${props.reply.id}.attachment"]`).length).toEqual(0)
+  })
+
   it('renders with no user', () => {
     props.reply.user_id = ''
     props.reply.editor_id = ''
