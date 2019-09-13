@@ -55,3 +55,4 @@ export default class ExperimentalFeature {
 ExperimentalFeature.conferences = new ExperimentalFeature(false)
 ExperimentalFeature.favoriteGroups = new ExperimentalFeature(false)
 ExperimentalFeature.simpleDiscussionRenderer = new ExperimentalFeature(false)
+ExperimentalFeature.graphqlSpeedGrader = new ExperimentalFeature(false)
