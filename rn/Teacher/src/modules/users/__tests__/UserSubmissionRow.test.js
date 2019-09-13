@@ -22,6 +22,7 @@ import React from 'react'
 import UserSubmissionRow from '../UserSubmissionRow'
 
 import renderer from 'react-test-renderer'
+import { shallow } from 'enzyme'
 
 let templates = {
   ...require('../../../__templates__/assignments'),
@@ -139,5 +140,18 @@ describe('UserSubmissionRow', () => {
     )
 
     expect(view.toJSON()).toMatchSnapshot()
+  })
+
+  it('doesnt accidently send NaN through the bridge', () => {
+    let submission = templates.submission({
+      grading_status: 'graded',
+      assignment: templates.assignment({ points_possible: 0 })
+    })
+
+    let view = shallow(
+      <UserSubmissionRow {...defaultProps} submission={submission} />
+    )
+    let props = view.find('LinearGradient').props()
+    expect(props.style.flex).toEqual(1)
   })
 })
