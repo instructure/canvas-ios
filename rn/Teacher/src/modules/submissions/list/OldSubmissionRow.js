@@ -21,19 +21,20 @@
 import React, { Component } from 'react'
 import {
   View,
-  Image,
   StyleSheet,
   TouchableHighlight,
 } from 'react-native'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 import Token from '../../../common/components/Token'
 import i18n from 'format-message'
+import type {
+  GradeProp,
+} from './submission-prop-types'
 import colors from '../../../common/colors'
 import { Text } from '../../../common/text'
-import SubmissionStatusLabel from './SubmissionStatusLabel'
+import OldSubmissionStatusLabel from './OldSubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
 import { formatGradeText } from '../../../common/formatters'
-import images from '../../../images'
 
 type RowProps = {
   testID: string,
@@ -42,24 +43,24 @@ type RowProps = {
   disclosure?: boolean,
 }
 
-export type SubmissionRowDataProps = {
+export type OldSubmissionRowDataProps = {
+  userID: string,
   groupID?: string,
-  user: {
-    id: string,
-    avatarUrl: string,
-    name: string,
-  },
+  avatarURL: string,
+  name: string,
+  status: ?SubmissionStatus,
+  grade: ?GradeProp,
   gradingType: GradingType,
+  score: ?number,
   disclosure?: boolean,
   disabled?: boolean,
-  submission: Object,
 }
 
-export type SubmissionRowProps = {
+export type OldSubmissionRowProps = {
   onPress: (userID: string) => any,
   onAvatarPress?: Function,
   anonymous: boolean,
-} & SubmissionRowDataProps
+} & OldSubmissionRowDataProps
 
 class Row extends Component<RowProps, any> {
   render () {
@@ -77,48 +78,47 @@ class Row extends Component<RowProps, any> {
   }
 }
 
-export const Grade = ({ submission, gradingType }) => {
-  let gradeText = submission.grade
+export const Grade = ({ grade, gradingType }: {grade: ?GradeProp, gradingType: GradingType}) => {
+  if (!grade || grade === 'not_submitted' || grade === 'ungraded' || gradingType === 'not_graded') {
+    return null
+  }
 
-  if (submission == null || submission.state === 'unsubmitted' || submission.gradingStatus === 'needs_grading') {
-    gradeText = '--'
-  } else if (submission.excused) {
+  let gradeText = grade
+  if (grade === 'excused') {
     gradeText = i18n('Excused')
   } else {
-    gradeText = formatGradeText(submission.grade, gradingType)
+    gradeText = formatGradeText(grade, gradingType)
   }
 
   return <Text style={[ styles.gradeText, { alignSelf: 'center' } ]}>{ gradeText }</Text>
 }
 
-class SubmissionRow extends Component<SubmissionRowProps, any> {
+class OldSubmissionRow extends Component<OldSubmissionRowProps, any> {
   onPress = () => {
     // $FlowFixMe
-    this.props.onPress(this.props.user.id)
+    this.props.onPress(this.props.userID)
   }
 
   onAvatarPress = () => {
     if (this.props.onAvatarPress) {
-      this.props.onAvatarPress(this.props.user.id)
+      this.props.onAvatarPress(this.props.userID)
     }
   }
 
   render () {
-    let { user, group, submission, gradingType, newGradebookEnabled } = this.props
-    let contextID = group?.id ?? user?.id
-    let name = group?.name ?? user?.name
-    let avatarURL = user.avatarUrl
-
+    let { userID, avatarURL, name, status, grade, gradingType, disclosure } = this.props
+    if (disclosure === undefined) {
+      disclosure = true
+    }
     if (this.props.anonymous) {
-      name = group != null ? i18n('Group') : i18n('Student')
+      name = (this.props.groupID ? i18n('Group') : i18n('Student'))
       avatarURL = null
     }
-
     return (
-      <Row testID={`submission-${contextID}`} onPress={this.onPress}>
+      <Row disclosure={disclosure} testID={`submission-${userID}`} onPress={this.onPress}>
         <View style={styles.avatar}>
           <Avatar
-            key={contextID}
+            key={userID}
             avatarURL={avatarURL}
             userName={name}
             onPress={this.props.onAvatarPress && this.onAvatarPress}
@@ -129,29 +129,22 @@ class SubmissionRow extends Component<SubmissionRowProps, any> {
             style={styles.title}
             ellipsizeMode='tail'
             numberOfLines={2}>{name}</Text>
-          {gradingType !== 'not_graded' &&
-            <SubmissionStatusLabel submission={submission} />
+          {status && gradingType !== 'not_graded' &&
+            <OldSubmissionStatusLabel status={status} />
           }
-          {submission.gradingStatus === 'needs_grading' &&
+          {grade === 'ungraded' && gradingType !== 'not_graded' &&
             <Token style={{ alignSelf: 'flex-start', marginTop: 8 }} color={ colors.primaryButton }>
               {i18n('Needs Grading')}
             </Token>
           }
         </View>
-        <Grade submission={submission} gradingType={gradingType} />
-        {newGradebookEnabled && submission.grade != null && submission.postedAt == null &&
-          <Image
-            source={images.off}
-            testID='SubmissionRow.hiddenIcon'
-            style={{ tintColor: colors.destructiveButtonColor, height: 20, width: 20, marginLeft: 10 }}
-          />
-        }
+        <Grade grade={grade} gradingType={gradingType} />
       </Row>
     )
   }
 }
 
-export default SubmissionRow
+export default OldSubmissionRow
 
 const styles = StyleSheet.create({
   touchableHighlight: {

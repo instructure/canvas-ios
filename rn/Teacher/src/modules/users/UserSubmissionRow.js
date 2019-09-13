@@ -31,7 +31,7 @@ import AccessIcon from '../../common/components/AccessIcon'
 import { Text } from '../../common/text'
 import Row from '../../common/components/rows/Row'
 import Images from '../../images'
-import SubmissionStatusLabel from '../submissions/list/SubmissionStatusLabel'
+import OldSubmissionStatusLabel from '../submissions/list/OldSubmissionStatusLabel'
 import LinearGradient from 'react-native-linear-gradient'
 import Token from '../../common/components/Token'
 import colors from '../../common/colors'
@@ -56,7 +56,7 @@ export default class UserSubmissionRow extends Component<Props, any> {
     } else {
       status = this.props.submission.submission_status
     }
-    return <SubmissionStatusLabel style={{ marginBottom: 8 }} status={status} />
+    return <OldSubmissionStatusLabel style={{ marginBottom: 8 }} status={status} />
   }
 
   grade = () => {

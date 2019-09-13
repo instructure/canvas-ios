@@ -36,6 +36,14 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
     {
       type: 'all',
       title: () => i18n('All submissions'),
+      getFilter: () => ({
+        states: ['submitted', 'unsubmitted', 'pending_review', 'graded', 'ungraded'],
+        late: null,
+        scoredMoreThan: null,
+        scoredLessThan: null,
+        sectionIDs: [],
+        gradingStatus: null,
+      }),
       filterFunc: (submission) => submission,
       selected: false,
       disabled: false,
@@ -44,6 +52,9 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
     {
       type: 'late',
       title: () => i18n('Submitted late'),
+      getFilter: () => ({
+        late: true,
+      }),
       filterFunc: (submission) => submission.status === 'late',
       selected: false,
       disabled: false,
@@ -52,6 +63,9 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
     {
       type: 'not_submitted',
       title: () => i18n("Haven't submitted yet"),
+      getFilter: () => ({
+        states: ['unsubmitted'],
+      }),
       filterFunc: (submission) => submission.grade === 'not_submitted',
       selected: false,
       disabled: false,
@@ -60,6 +74,10 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
     {
       type: 'ungraded',
       title: () => i18n("Haven't been graded"),
+      getFilter: () => ({
+        states: ['submitted', 'pending_review', 'ungraded'],
+        gradingStatus: 'needs_grading',
+      }),
       filterFunc: (submission) => submission.grade === 'ungraded',
       selected: false,
       disabled: false,
@@ -68,6 +86,9 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
     {
       type: 'graded',
       title: () => i18n('Graded'),
+      getFilter: () => ({
+        states: ['graded'],
+      }),
       filterFunc: (submission) => submission.grade === 'excused' || (submission.grade !== 'not_submitted' && submission.grade !== 'ungraded'),
       selected: false,
       disabled: false,
@@ -79,6 +100,11 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
         return this.promptValue
           ? i18n('Scored less than {promptValue}', { promptValue: this.promptValue })
           : i18n('Scored less than…')
+      },
+      getFilter: function () {
+        return {
+          scoredLessThan: +this.promptValue,
+        }
       },
       filterFunc: function (submission: any) {
         return (submission.score !== null && submission.score !== undefined) && (submission.score < this.promptValue)
@@ -94,6 +120,11 @@ export default function defaultFilterOptions (defaultFilterType?: string): Array
         return this.promptValue
           ? i18n('Scored more than {promptValue}', { promptValue: this.promptValue })
           : i18n('Scored more than…')
+      },
+      getFilter: function () {
+        return {
+          scoredMoreThan: +this.promptValue,
+        }
       },
       filterFunc: function (submission: any) {
         return (submission.score !== null && submission.score !== undefined) && (submission.score > this.promptValue)
@@ -130,6 +161,31 @@ export function updateFilterSelection (filterOptions: Array<SubmissionFilterOpti
 }
 
 export function createFilter (filterOptions: Array<SubmissionFilterOption>): Function {
+  let defaultFilter = {
+    states: ['submitted', 'unsubmitted', 'pending_review', 'graded', 'ungraded'],
+    late: null,
+    scoredMoreThan: null,
+    scoredLessThan: null,
+    sectionIDs: [],
+    gradingStatus: null,
+  }
+
+  return filterOptions
+    .filter(option => option.selected)
+    .reduce((filter, option) => {
+      if (option.getFilter().sectionIDs != null) {
+        filter.sectionIDs.push(...option.getFilter().sectionIDs)
+        return filter
+      }
+
+      return {
+        ...filter,
+        ...option.getFilter(),
+      }
+    }, defaultFilter)
+}
+
+export function oldCreateFilter (filterOptions: Array<SubmissionFilterOption>): Function {
   let exclusiveFilter = filterOptions.find(option => option.exclusive && option.selected)
   let otherFilters = filterOptions.filter(option => !option.exclusive && option.selected)
 

@@ -21,99 +21,123 @@
 import 'react-native'
 import React from 'react'
 import SubmissionRow from '../SubmissionRow'
-import type {
-  SubmissionDataProps,
-} from '../submission-prop-types'
 import explore from '../../../../../test/helpers/explore'
 import renderer from 'react-test-renderer'
-import * as templates from '../../../../__templates__'
+
+import * as templates from '../../../../canvas-api-v2/__templates__'
 
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('../../../../common/components/Avatar', () => 'Avatar')
 
-const mockSubmission = (overrides): SubmissionDataProps => {
-  return {
-    userID: '1',
-    avatarURL: 'https://cats.pajamas/',
+const defaultProps = {
+  user: templates.user({
+    id: '1',
     name: 'Green Latern',
-    status: 'none',
-    grade: null,
-    submissionID: '32',
-    submission: templates.submission({ grade: null, score: null }),
-    anonymous: false,
-    ...overrides,
-  }
-}
-
-let defaultProps = {
+    avatarUrl: 'https://cats.pajamas/',
+  }),
+  submissionID: null,
+  submission: templates.submission(),
+  anonymous: false,
+  newGradebookEnabled: false,
   onPress: jest.fn(),
   onAvatarPress: jest.fn(),
-  anonymouse: false,
   gradingType: 'points',
-  newGradebookEnabled: false,
-  ...mockSubmission(),
 }
 
 test('unsubmitted ungraded row renders correctly', () => {
+  let submission = templates.submission({
+    submittedAt: null,
+    grade: null,
+    state: 'unsubmitted',
+  })
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} />
+    <SubmissionRow {...defaultProps} submission={submission} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('missing ungraded row renders correctly', () => {
-  const submission = mockSubmission({ status: 'missing' })
+  let submission = templates.submission({
+    state: 'unsubmitted',
+    submittedAt: null,
+    missing: true,
+    grade: null,
+  })
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} {...submission} />
+    <SubmissionRow {...defaultProps} submission={submission} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('late graded row renders correctly', () => {
-  const submission = mockSubmission({ status: 'late', grade: 'B-' })
+  const submission = templates.submission({
+    late: true,
+    grade: 'B-',
+  })
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} {...submission} gradingType='gpa_scale' />
+    <SubmissionRow {...defaultProps} submission={submission} gradingType='gpa_scale' />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('submitted ungraded row renders correctly', () => {
-  const submission = mockSubmission({ status: 'submitted', grade: 'ungraded' })
+  const submission = templates.submission({
+    submittedAt: new Date().toISOString(),
+    gradingStatus: 'needs_grading',
+  })
+
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} {...submission} />
+    <SubmissionRow {...defaultProps} submission={submission} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('submitted not_graded row renders correctly', () => {
-  const submission = mockSubmission({ status: 'submitted', grade: 'ungraded' })
+  const submission = templates.submission({
+    submittedAt: new Date().toISOString(),
+    gradingStatus: 'needs_grading',
+  })
+
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} {...submission} gradingType='not_graded' />
+    <SubmissionRow {...defaultProps} submission={submission} gradingType='not_graded' />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('excused row renders correctly', () => {
-  const submission = mockSubmission({ status: 'missing', grade: 'excused' })
+  const submission = templates.submission({
+    missing: true,
+    excused: true,
+  })
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} {...submission} />
+    <SubmissionRow {...defaultProps} submission={submission} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('onPress called on tap', () => {
   const onPress = jest.fn()
+  let submission = templates.submission()
   let row = explore(renderer.create(
-    <SubmissionRow {...defaultProps} onPress={onPress} />
-  ).toJSON()).selectByID(`submission-${defaultProps.userID}`)
+    <SubmissionRow {...defaultProps} submission={submission} onPress={onPress} />
+  ).toJSON()).selectByID(`submission-${defaultProps.user.id}`)
   row && row.props.onPress()
-  expect(onPress).toHaveBeenCalledWith(defaultProps.userID)
+  expect(onPress).toHaveBeenCalledWith(defaultProps.user.id)
 })
 
 test('anonymous grading doesnt show users names', () => {
+  let submission = templates.submission({
+    state: 'unsubmitted',
+    submittedAt: null,
+    grade: null,
+  })
   let tree = renderer.create(
-    <SubmissionRow {...defaultProps} anonymous />
+    <SubmissionRow
+      {...defaultProps}
+      submission={submission}
+      anonymous
+    />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
@@ -129,15 +153,15 @@ test('pressing the avatar calls onAvatarPress', () => {
 })
 
 test('shows the eyeball when grades are not posted', () => {
-  let submission = mockSubmission({
-    status: 'submitted',
+  let submission = templates.submission({
+    submittedAt: '2017-04-05T15:12:45Z',
     grade: '20%',
-    submission: templates.submission({ posted_at: null }),
+    postedAt: null,
   })
   let tree = renderer.create(
     <SubmissionRow
       {...defaultProps}
-      {...submission}
+      submission={submission}
       newGradebookEnabled
     />
   ).toJSON()
@@ -146,15 +170,15 @@ test('shows the eyeball when grades are not posted', () => {
 })
 
 test('does not show the eyeball when grade is posted', () => {
-  let submission = mockSubmission({
-    status: 'submitted',
+  let submission = templates.submission({
+    submittedAt: '2017-04-05T15:12:45Z',
     grade: '20%',
-    submission: templates.submission({ posted_at: '2019-08-29T00:00:00.000Z' }),
+    postedAt: '2019-08-29T00:00:00.000Z',
   })
   let tree = renderer.create(
     <SubmissionRow
       {...defaultProps}
-      {...submission}
+      submission={submission}
       newGradebookEnabled
     />
   ).toJSON()
@@ -163,9 +187,16 @@ test('does not show the eyeball when grade is posted', () => {
 })
 
 test('does not show the eyeball when not graded', () => {
+  let submission = templates.submission({
+    submittedAt: null,
+    grade: null,
+    postedAt: null,
+  })
+
   let tree = renderer.create(
     <SubmissionRow
       {...defaultProps}
+      submission={submission}
       newGradebookEnabled
     />
   ).toJSON()

@@ -35,14 +35,14 @@ import {
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
 import SubmissionsHeader from '../../submissions/SubmissionsHeader'
-import SubmissionRow, { type SubmissionRowDataProps } from '../../submissions/list/SubmissionRow'
+import OldSubmissionRow, { type OldSubmissionRowDataProps } from '../../submissions/list/OldSubmissionRow'
 import mapStateToProps from './map-state-to-props'
 import Images from '../../../images'
 import i18n from 'format-message'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
-import defaultFilterOptions, { type SubmissionFilterOption, createFilter, joinTitles } from '../../filter/filter-options'
+import defaultFilterOptions, { type SubmissionFilterOption, oldCreateFilter as createFilter, joinTitles } from '../../filter/filter-options'
 import colors from '../../../common/colors'
 
 export type QuizSubmissionListNavProps = {
@@ -54,7 +54,7 @@ export type QuizSubmissionListNavProps = {
 }
 
 export type QuizSubmissionListDataProps = {
-  rows: SubmissionRowDataProps[],
+  rows: OldSubmissionRowDataProps[],
   quiz: QuizState,
   pending: boolean,
   error: ?string,
@@ -138,12 +138,12 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
     })
   }
 
-  renderRow = ({ item, index }: { item: SubmissionRowDataProps, index: number }) => {
+  renderRow = ({ item, index }: { item: OldSubmissionRowDataProps, index: number }) => {
     let onPress = this.props.quiz?.data.assignment_id == null
       ? this.showSnackbar
       : this.navigateToSubmission(index)
 
-    return <SubmissionRow
+    return <OldSubmissionRow
       {...item}
       onPress={onPress}
       anonymous={this.props.anonymous}
@@ -151,7 +151,7 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
     />
   }
 
-  keyExtractor = (item: SubmissionRowDataProps) => {
+  keyExtractor = (item: OldSubmissionRowDataProps) => {
     return item.userID
   }
 
