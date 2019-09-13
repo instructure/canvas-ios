@@ -27,9 +27,6 @@ class GradesPresenterTests: CoreTestCase {
     var expectation = XCTestExpectation(description: "presenter updated")
     let courseID = "1"
 
-    var resultingAssignmentsByGroup: [[GradesPresenter.CellViewModel]] = []
-    var resultingGroups = [String]()
-
     override func setUp() {
         super.setUp()
         expectation = XCTestExpectation(description: "presenter updated")
@@ -38,30 +35,41 @@ class GradesPresenterTests: CoreTestCase {
 
     func testViewIsReady() {
         Course.make()
-        let assignmentB = APIAssignment.make(id: "1", assignment_group_id: "1")
+        let b1: APIAssignment = APIAssignment.make(id: "1", assignment_group_id: "1")
+        let a1: APIAssignment = APIAssignment.make(id: "2", assignment_group_id: "2")
+        let a2: APIAssignment = APIAssignment.make(id: "3", assignment_group_id: "2")
+        let c1: APIAssignment = APIAssignment.make(id: "4", assignment_group_id: "3")
 
-        let assignmentA1 = APIAssignment.make(id: "2", assignment_group_id: "2")
-        let assignmentA2 = APIAssignment.make(id: "3", assignment_group_id: "2")
+        let req = GetAssignmentsRequest(courseID: courseID, orderBy: .name, include: [.observed_users, .submission])
+        let v: [APIAssignment] = [b1, a1, a2, c1]
+        api.mock(req, value: v, response: nil, error: nil)
 
-        let assignmentC1 = APIAssignment.make(id: "4", assignment_group_id: "3")
-
-        AssignmentGroup.make(from: APIAssignmentGroup.make(id: "3", name: "c", position: 3, assignments: [assignmentC1]), courseID: courseID, in: databaseClient)
-        AssignmentGroup.make(from: APIAssignmentGroup.make(id: "1", name: "b", position: 2, assignments: [assignmentB]), courseID: courseID, in: databaseClient)
-        AssignmentGroup.make(from: APIAssignmentGroup.make(id: "2", name: "a", position: 1, assignments: [assignmentA1, assignmentA2]), courseID: courseID, in: databaseClient)
+        let req2 = GetAssignmentGroupsRequest(courseID: courseID)
+        let v2 = [
+            APIAssignmentGroup.make(id: "3", name: "c", position: 3),
+            APIAssignmentGroup.make(id: "1", name: "b", position: 2),
+            APIAssignmentGroup.make(id: "2", name: "a", position: 1),
+        ]
+        api.mock(req2, value: v2, response: nil, error: nil)
 
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 0.5)
 
-        XCTAssertEqual(resultingGroups, ["a", "b", "c"])
-        let str = resultingAssignmentsByGroup.map { "\($0.count)" }.joined(separator: " ")
-        XCTAssertEqual(str, "2 1 1")
+        XCTAssertEqual(presenter.assignmentGroups.map { $0.name }, ["a", "b", "c"])
+        XCTAssertEqual(presenter.assignments.numberOfSections, 3)
+        XCTAssertEqual(presenter.assignments.numberOfObjects(inSection: 0), 2)
+        XCTAssertEqual(presenter.assignments.numberOfObjects(inSection: 1), 1)
+        XCTAssertEqual(presenter.assignments.numberOfObjects(inSection: 2), 1)
+
+        XCTAssertEqual(presenter.assignments[IndexPath(row: 0, section: 0)]?.id, "3")
+        XCTAssertEqual(presenter.assignments[IndexPath(row: 1, section: 0)]?.id, "2")
+        XCTAssertEqual(presenter.assignments[IndexPath(row: 0, section: 1)]?.id, "1")
+        XCTAssertEqual(presenter.assignments[IndexPath(row: 0, section: 2)]?.id, "4")
     }
 }
 
 extension GradesPresenterTests: GradesViewProtocol {
-    func update(groups: [String], assignmentsByGroup: [[GradesPresenter.CellViewModel]]) {
-        resultingGroups = groups
-        resultingAssignmentsByGroup = assignmentsByGroup
+    func update() {
         expectation.fulfill()
     }
 

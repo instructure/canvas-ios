@@ -46,6 +46,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var lastUpdatedAt: Date?
     @NSManaged public var hideRubricPoints: Bool
     @NSManaged public var assignmentGroupID: String?
+    @NSManaged public var assignmentGroupPosition: Int
 
     public var gradingType: GradingType {
         get { return GradingType(rawValue: gradingTypeRaw) ?? .points }

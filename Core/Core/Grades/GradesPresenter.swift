@@ -17,25 +17,18 @@
 //
 
 import Foundation
+import CoreData
 
 protocol GradesViewProtocol: ErrorViewController {
-    func update(groups: [String], assignmentsByGroup: [[GradesPresenter.CellViewModel]])
+    func update()
 }
 
 class GradesPresenter {
-
-    struct CellViewModel: Equatable {
-        var name: String
-        var grade: String?
-        var status: String?
-        var icon: UIImage?
-    }
-
     var sort: GetAssignments.Sort
     let courseID: String
     let env: AppEnvironment
     weak var view: GradesViewProtocol?
-    var didRefreshAssignments = false
+    var didFetchGroups = false
 
     lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
@@ -45,8 +38,8 @@ class GradesPresenter {
         self?.update()
     }
 
-    lazy var assignments = env.subscribe(GetAssignments(courseID: self.courseID, sort: sort, include: [.submission, .observed_users])) { [weak self] in
-        self?.update()
+    lazy var assignments = env.subscribe(GetAssignmentsForGrades(courseID: self.courseID)) { [weak self] in
+        self?.updateAssignmentGroups()
     }
 
     init(env: AppEnvironment = .shared, view: GradesViewProtocol, courseID: String, sort: GetAssignments.Sort = GetAssignments.Sort.dueAt) {
@@ -57,31 +50,21 @@ class GradesPresenter {
     }
 
     func viewIsReady() {
-        assignments.refresh(force: true) // does this need to exhaust?
+        assignments.refresh()
         course.refresh()
     }
 
-    func update() {
-        if !assignments.pending && !didRefreshAssignments {
-            didRefreshAssignments = true
-            assignmentGroups.refresh(force: true)   // does this need to exhaust?
-        }
-
-        if didRefreshAssignments && assignments.count > 0 && !assignments.pending && assignmentGroups.count > 0 {
-            var groups: [String] = []
-            var assignmentsByGroup = [[CellViewModel]]()
-            assignmentGroups.forEach {
-                groups.append($0.name)
-                let models = Array($0.assignments).map { viewModel(from: $0) }
-                assignmentsByGroup.append( models )
-            }
-
-            view?.update(groups: groups, assignmentsByGroup: assignmentsByGroup)
+    func updateAssignmentGroups() {
+        if !assignments.pending && !didFetchGroups {
+            didFetchGroups = true
+            assignmentGroups.refresh()
         }
     }
 
-    func viewModel(from: Assignment) -> CellViewModel {
-        return CellViewModel(name: from.name, grade: from.gradeText, status: from.submissionStatusText, icon: from.icon)
+    func update() {
+        if didFetchGroups && !assignmentGroups.pending && !assignments.pending && assignments.count > 0 && assignmentGroups.count > 0 {
+            view?.update()
+        }
     }
 
     func select(_ assignment: Assignment, from: UIViewController) {

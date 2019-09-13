@@ -35,7 +35,7 @@ public class GetAssignmentGroups: CollectionUseCase {
     }
 
     public var request: GetAssignmentGroupsRequest {
-        return GetAssignmentGroupsRequest(courseID: courseID, include: [.assignments])
+        return GetAssignmentGroupsRequest(courseID: courseID)
     }
 
     public func write(response: [APIAssignmentGroup]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {

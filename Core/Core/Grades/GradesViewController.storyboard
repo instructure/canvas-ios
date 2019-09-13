@@ -31,17 +31,39 @@
                                     <outlet property="delegate" destination="j3n-Ay-Z48" id="Qt0-Kg-YdV"/>
                                 </connections>
                             </tableView>
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUy-8Z-yN9">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bvs-mD-dxP">
+                                        <rect key="frame" x="182" y="384" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="jEf-jQ-Y56"/>
+                                            <constraint firstAttribute="width" constant="50" id="qAk-Hl-Ne4"/>
+                                        </constraints>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="bvs-mD-dxP" firstAttribute="centerX" secondItem="MUy-8Z-yN9" secondAttribute="centerX" id="czw-Or-1se"/>
+                                    <constraint firstItem="bvs-mD-dxP" firstAttribute="centerY" secondItem="MUy-8Z-yN9" secondAttribute="centerY" id="fe0-JE-nCa"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="MUy-8Z-yN9" firstAttribute="top" secondItem="cOb-sB-t27" secondAttribute="top" id="0Pi-Tc-8Hi"/>
+                            <constraint firstItem="cOb-sB-t27" firstAttribute="trailing" secondItem="MUy-8Z-yN9" secondAttribute="trailing" id="Af1-lE-qzd"/>
                             <constraint firstItem="cOb-sB-t27" firstAttribute="bottom" secondItem="rcC-p7-Yqh" secondAttribute="bottom" id="GNQ-f7-o5R"/>
                             <constraint firstItem="rcC-p7-Yqh" firstAttribute="leading" secondItem="cOb-sB-t27" secondAttribute="leading" id="O1q-VJ-TWL"/>
+                            <constraint firstItem="MUy-8Z-yN9" firstAttribute="leading" secondItem="cOb-sB-t27" secondAttribute="leading" id="Tuk-q0-WAm"/>
                             <constraint firstItem="rcC-p7-Yqh" firstAttribute="top" secondItem="cOb-sB-t27" secondAttribute="top" id="l2e-4t-CGi"/>
                             <constraint firstAttribute="trailing" secondItem="rcC-p7-Yqh" secondAttribute="trailing" id="ujU-DG-gEf"/>
+                            <constraint firstItem="cOb-sB-t27" firstAttribute="bottom" secondItem="MUy-8Z-yN9" secondAttribute="bottom" id="zvY-ik-6Wn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cOb-sB-t27"/>
                     </view>
                     <connections>
+                        <outlet property="loadingView" destination="MUy-8Z-yN9" id="Sed-qd-e6j"/>
                         <outlet property="tableView" destination="rcC-p7-Yqh" id="KXi-xN-rRQ"/>
                     </connections>
                 </viewController>

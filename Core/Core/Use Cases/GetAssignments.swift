@@ -100,3 +100,18 @@ public class GetSubmittableAssignments: GetAssignments {
         return Scope(predicate: predicate, order: [ a, b, c ])
     }
 }
+
+public class GetAssignmentsForGrades: GetAssignments {
+    public init(courseID: String) {
+        super.init(courseID: courseID, sort: .name, include: [.observed_users, .submission])
+    }
+
+    public override var scope: Scope {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), courseID)
+        let s0 = NSSortDescriptor(key: #keyPath(Assignment.assignmentGroupPosition), ascending: true, selector: nil)
+        let s1 = NSSortDescriptor(key: #keyPath(Assignment.dueAt), ascending: true, selector: nil)
+        let s3 = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
+
+        return Scope(predicate: predicate, order: [s0, s1, s3], sectionNameKeyPath: #keyPath(Assignment.assignmentGroupPosition))
+    }
+}

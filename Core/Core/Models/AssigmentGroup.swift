@@ -26,7 +26,6 @@ public final class AssignmentGroup: NSManagedObject {
     @NSManaged public var name: String
     @NSManaged public var position: Int
     @NSManaged public var courseID: String
-    @NSManaged public var assignments: Set<Assignment>
 
     @discardableResult
     public static func save(_ item: APIAssignmentGroup, courseID: String, in context: NSManagedObjectContext) -> AssignmentGroup {
@@ -37,15 +36,9 @@ public final class AssignmentGroup: NSManagedObject {
         model.position = item.position
         model.courseID = courseID
 
-        if let apiAssignments = item.assignments, apiAssignments.count > 0 {
-            model.assignments = Set<Assignment>()
-            for a in apiAssignments {
-                let assignmentPred = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), a.id.value)
-                let dbModel: Assignment = context.fetch(assignmentPred).first ?? context.insert()
-                dbModel.update(fromApiModel: a, in: context, updateSubmission: false)
-                model.assignments.insert(dbModel)
-            }
-        }
+        let assignmentPredicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.assignmentGroupID), item.id.value)
+        let assignments: [Assignment] = context.fetch(assignmentPredicate)
+        assignments.forEach { $0.assignmentGroupPosition = item.position }
 
         return model
     }

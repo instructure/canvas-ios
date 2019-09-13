@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import Core
+import CoreData
 
 class GetAssignmentsTests: CoreTestCase {
     func testItCreatesAssignment() {
@@ -217,6 +218,40 @@ class GetAssignmentsTests: CoreTestCase {
 
         let assignments: [Assignment] = databaseClient.fetch(getAssignments.scope.predicate, sortDescriptors: getAssignments.scope.order)
         XCTAssertEqual(assignments.count, 3)
+    }
+
+    func testGetAssignmentsForGrades() {
+        let apiAssignments = [
+            APIAssignment.make(id: "1", name: "1", due_at: Date().addDays(+5), assignment_group_id: "5"),
+            APIAssignment.make(id: "2", name: "2", due_at: nil, assignment_group_id: "6"),
+            APIAssignment.make(id: "3", name: "3", due_at: Date().addDays(+1), assignment_group_id: "6"),
+            APIAssignment.make(id: "4", name: "4", due_at: Date().addDays(-2), assignment_group_id: "5"),
+            APIAssignment.make(id: "5", name: "5", assignment_group_id: "7"),
+            APIAssignment.make(id: "6", name: "6", due_at: Date().addDays(-1), assignment_group_id: "5"),
+        ]
+        let u = GetAssignmentsForGrades(courseID: "1")
+        u.write(response: apiAssignments, urlResponse: nil, to: databaseClient)
+
+        let groups = [
+            APIAssignmentGroup(id: 5, name: "5", position: 2),
+            APIAssignmentGroup(id: 6, name: "6", position: 1),
+            APIAssignmentGroup(id: 7, name: "7", position: 3),
+        ]
+        let agUseCase = GetAssignmentGroups(courseID: "1")
+        agUseCase.write(response: groups, urlResponse: nil, to: databaseClient)
+
+        let assignmentGroups: [AssignmentGroup] = databaseClient.fetch(agUseCase.scope.predicate, sortDescriptors: agUseCase.scope.order)
+        XCTAssertEqual(assignmentGroups.count, 3)
+
+        let assignments: [Assignment] = databaseClient.fetch(u.scope.predicate, sortDescriptors: u.scope.order)
+        XCTAssertEqual(assignments.count, 6)
+
+        XCTAssertEqual(assignments[0].assignmentGroupPosition, 1)
+        XCTAssertEqual(assignments[1].assignmentGroupPosition, 1)
+        XCTAssertEqual(assignments[2].assignmentGroupPosition, 2)
+        XCTAssertEqual(assignments[3].assignmentGroupPosition, 2)
+        XCTAssertEqual(assignments[4].assignmentGroupPosition, 2)
+        XCTAssertEqual(assignments[5].assignmentGroupPosition, 3)
     }
 
     func testSortOrderByDueDate2() {

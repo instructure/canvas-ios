@@ -22,6 +22,11 @@ import XCTest
 
 class AssignmentTests: CoreTestCase {
 
+    override func setUp() {
+        super.setUp()
+        Clock.reset()
+    }
+
     func testUpdateFromAPIItemWithAPISubmission() {
         let client = databaseClient
         let a = Assignment.make(from: .make(name: "a", submission: nil))
@@ -373,9 +378,5 @@ class AssignmentTests: CoreTestCase {
         let result = a.submissionStatusText
         let expected = "submitted"
         XCTAssertEqual(result, expected)
-    }
-
-    func testNewVarsAddedByGrades() {
-        XCTFail("implement me")
     }
 }

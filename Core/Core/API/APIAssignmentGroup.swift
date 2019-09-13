@@ -22,5 +22,4 @@ public struct APIAssignmentGroup: Codable, Equatable {
     let id: ID
     let name: String
     let position: Int
-    let assignments: [APIAssignment]?
 }

@@ -23,14 +23,12 @@ extension APIAssignmentGroup {
     public static func make(
         id: ID = "1",
         name: String = "Assignment Group A",
-        position: Int = 1,
-        assignments: [APIAssignment] = []
+        position: Int = 1
         ) -> APIAssignmentGroup {
         return APIAssignmentGroup(
             id: id,
             name: name,
-            position: position,
-            assignments: assignments
+            position: position
         )
     }
 }

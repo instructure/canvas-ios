@@ -21,9 +21,8 @@ import UIKit
 public class GradesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    private var presenter: GradesPresenter?
-    private var groups: [String] = []
-    private var assignmentsByGroup: [[GradesPresenter.CellViewModel]] = []
+    private var presenter: GradesPresenter!
+    @IBOutlet weak var loadingView: UIView!
 
     public static func create(courseID: String) -> GradesViewController {
         let vc = GradesViewController.loadFromStoryboard()
@@ -34,7 +33,7 @@ public class GradesViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        presenter?.viewIsReady()
+        presenter.viewIsReady()
     }
 
     func setupTableView() {
@@ -44,39 +43,39 @@ public class GradesViewController: UIViewController {
 }
 
 extension GradesViewController: GradesViewProtocol {
-    func update(groups: [String], assignmentsByGroup: [[GradesPresenter.CellViewModel]]) {
-        self.groups = groups
-        self.assignmentsByGroup = assignmentsByGroup
+    func update() {
         tableView.reloadData()
+        loadingView.isHidden = true
     }
 }
 
 extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return groups.count
+        return presenter.assignments.numberOfSections
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return assignmentsByGroup[section].count
+        return presenter.assignments.numberOfObjects(inSection: section)
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let a = assignmentsByGroup[indexPath.section][indexPath.row]
+        let a = presenter.assignments[indexPath]
         let cell: GradesCell =  tableView.dequeue(for: indexPath)
-        cell.nameLabel?.text = a.name
-        cell.gradeLabel?.text = a.grade
-        cell.typeImage.image = a.icon
+        cell.nameLabel?.text = a?.name
+        cell.gradeLabel?.text = a?.gradeText
+        cell.typeImage.image = a?.icon
         cell.accessoryType = .disclosureIndicator
 
-        cell.statusLabel?.text = a.status
-        cell.statusLabel?.isHidden = a.status == nil
+        let status = a?.submissionStatusText
+        cell.statusLabel?.text = status
+        cell.statusLabel?.isHidden = status == nil
 
         return cell
     }
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
-        view.titleLabel?.text = groups[section]
+        view.titleLabel?.text = presenter.assignmentGroups[section]?.name
         let bg = UIView(); bg.backgroundColor = .named(.backgroundLight); view.backgroundView = bg
         return view
     }
