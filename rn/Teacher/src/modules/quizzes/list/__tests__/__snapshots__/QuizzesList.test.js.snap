@@ -916,7 +916,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                     ]
                   }
                 >
-                  Quiz 2
+                  Quiz 1
                 </Text>
                 <View
                   style={
@@ -1216,7 +1216,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                     ]
                   }
                 >
-                  Quiz 1
+                  Quiz 2
                 </Text>
                 <View
                   style={

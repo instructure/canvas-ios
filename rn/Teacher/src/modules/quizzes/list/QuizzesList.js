@@ -149,18 +149,15 @@ export class QuizzesList extends Component<Props, any> {
   _sortSectionByKey (section: Quiz[], key: string): Array<Quiz> {
     const sortBy = key === 'assignment' ? 'due_at' : 'lock_at'
     return section.sort((a, b) => {
-      const tieBreaker = localeSort(a.title, b.title)
-      if (!a[sortBy] && !b[sortBy]) {
-        return tieBreaker
-      }
-      if (!a[sortBy]) {
-        return 1
-      }
-      if (!b[sortBy]) {
+      const dateA = new Date(a[sortBy] || 0)
+      const dateB = new Date(b[sortBy] || 0)
+      if (dateA < dateB) {
         return -1
+      } else if (dateA > dateB) {
+        return 1
+      } else {
+        return localeSort(a.title, b.title)
       }
-      const x = new Date(a[sortBy]) < new Date(b[sortBy]) ? -1 : 1
-      return x === 0 ? tieBreaker : x
     })
   }
 
