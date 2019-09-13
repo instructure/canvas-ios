@@ -98,7 +98,7 @@ let router = Router(routes: [
     },
 
 ]) { url, view, _ in
-    guard url.host != nil, url.scheme?.hasPrefix("http") == true, let url = url.url else { return }
+    guard url.host != nil, url.scheme?.hasPrefix("http") == true, let url = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
     let request = GetWebSessionRequest(to: url)
     AppEnvironment.shared.api.makeRequest(request) { response, _, error in
         DispatchQueue.main.async {
