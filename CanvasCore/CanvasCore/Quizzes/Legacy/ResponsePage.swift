@@ -32,7 +32,7 @@ struct ResponsePage<T> {
     
     typealias PaginatedResult = Result<ResponsePage<T>, NSError>
     
-    func getNextPage(_ response: @escaping (PaginatedResult)->()) -> URLSessionDataTask? {
+    func getNextPage(_ response: @escaping (PaginatedResult)->()) -> URLSessionTask? {
         if let nextPage = nextPage {
             return makeRequest(nextPage, completed: response)
         } else {

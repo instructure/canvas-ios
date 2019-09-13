@@ -117,28 +117,25 @@ class LoginWebPresenter {
             let mobileVerify = mobileVerifyModel, let baseURL = mobileVerify.base_url {
             task?.cancel()
             task = URLSessionAPI(urlSession: session).makeRequest(PostLoginOAuthRequest(client: mobileVerify, code: code)) { [weak self] (response, _, error) in
-                if let model = response {
-                    DispatchQueue.main.async {
-                        self?.view?.show(LoadingViewController.create(), sender: nil)
-                        self?.loginDelegate?.userDidLogin(session: LoginSession(
-                            accessToken: model.access_token,
-                            baseURL: baseURL,
-                            expiresAt: model.expires_in.flatMap { Date().addingTimeInterval($0) },
-                            locale: model.user.effective_locale,
-                            refreshToken: model.refresh_token,
-                            userID: model.user.id.value,
-                            userName: model.user.name,
-                            userEmail: model.user.email
-                        ))
+                DispatchQueue.main.async {
+                    guard let token = response, error == nil else {
+                        self?.view?.showError(error ?? NSError.internalError())
+                        return
                     }
-                }
-                if let error = error {
-                    DispatchQueue.main.async {
-                        self?.view?.showError(error)
-                    }
+                    let session = LoginSession(
+                        accessToken: token.access_token,
+                        baseURL: baseURL,
+                        expiresAt: token.expires_in.flatMap { Clock.now + $0 },
+                        refreshToken: token.refresh_token,
+                        userID: token.user.id.value,
+                        userName: token.user.name,
+                        clientID: mobileVerify.client_id,
+                        clientSecret: mobileVerify.client_secret
+                    )
+                    self?.view?.show(LoadingViewController.create(), sender: nil)
+                    self?.loginDelegate?.userDidLogin(session: session)
                 }
             }
-
             return .cancel
         } else if queryItems?.first(where: { $0.name == "error" }) != nil {
             let error = NSError.instructureError(NSLocalizedString("Authentication failed. Most likely the user denied the request for access.", comment: ""))

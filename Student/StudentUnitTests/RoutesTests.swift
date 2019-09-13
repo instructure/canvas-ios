@@ -29,13 +29,12 @@ class RoutesTests: XCTestCase {
         super.setUp()
         let user = CKIUser(id: "1")!
         user.name = "Bob"
-        CKIClient.current = CKIClient(baseURL: URL(string: "https://canvas.instructure.com")!, token: "t")
-        CKIClient.current?.setValue(user, forKey: "currentUser")
+        AppEnvironment.shared.currentSession = LoginSession.make()
     }
 
     override func tearDown() {
         super.tearDown()
-        CKIClient.current = nil
+        AppEnvironment.shared.currentSession = nil
     }
 
     func testActAsUser() {
@@ -49,7 +48,7 @@ class RoutesTests: XCTestCase {
     func testCalendarEvents() {
         // XCTAssert(router.match(.parse("/calendar_events/7")) is CalendarEventDetailViewController)
         XCTAssertNotNil(router.match(.parse("/calendar_events/7")))
-        CKIClient.current = nil
+        AppEnvironment.shared.currentSession = nil
         XCTAssertNil(router.match(.parse("/calendar_events/7")))
     }
 
@@ -67,7 +66,7 @@ class RoutesTests: XCTestCase {
 
     func testGroup() {
         XCTAssert(router.match(Route.group("7").url) is TabsTableViewController)
-        CKIClient.current = nil
+        AppEnvironment.shared.currentSession = nil
         XCTAssertNil(router.match(Route.group("7").url))
     }
 

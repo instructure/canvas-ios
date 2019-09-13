@@ -29,7 +29,7 @@ class TeacherTestCase: XCTestCase {
         return database.viewContext
     }
 
-    var api = MockAPI()
+    var api = MockURLSession.self
     var environment = AppEnvironment.shared
     var queue = OperationQueue()
     var router = TestRouter()
@@ -37,10 +37,10 @@ class TeacherTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
-
+        MockURLSession.reset()
         LoginSession.useTestKeychain()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
-        environment.api = api
+        environment.api = URLSessionAPI()
         environment.database = singleSharedTestDatabase
         environment.globalDatabase = singleSharedTestDatabase
         environment.router = router

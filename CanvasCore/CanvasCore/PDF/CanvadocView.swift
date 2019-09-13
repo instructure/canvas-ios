@@ -22,6 +22,7 @@ import PSPDFKitUI
 import React
 import CanvasKit
 import AFNetworking
+import Core
 
 // CREDIT: https://stackoverflow.com/a/24590678
 extension UIView {
@@ -60,6 +61,9 @@ public class CanvadocView: UIView {
     fileprivate let activityIndicator = UIActivityIndicatorView(style: .gray)
     fileprivate let openInButton = UIButton()
     fileprivate var docInteractionController: UIDocumentInteractionController?
+
+    var sessionAPI: API?
+    var task: URLSessionTask?
     
     private let toolbar = UIToolbar()
     private let flexibleToolbarContainer = PSPDFFlexibleToolbarContainer()
@@ -106,11 +110,16 @@ public class CanvadocView: UIView {
         openInButton.sizeToFit()
         openInButton.isHidden = true
         openInButton.addTarget(self, action: #selector(openInButtonTapped), for: .touchUpInside)
+
+        if let session = AppEnvironment.shared.currentSession {
+            sessionAPI = URLSessionAPI(loginSession: session, urlSession: URLSessionAPI.noFollowRedirectURLSession)
+        }
     }
     required public init?(coder aDecoder: NSCoder) { fatalError("nope") }
     
     deinit {
         self.pdfViewController?.annotationStateManager.remove(self)
+        task?.cancel()
     }
     
     override public func layoutSubviews() {
@@ -184,50 +193,39 @@ public class CanvadocView: UIView {
     
     private func loadDocument() {
         activityIndicator.startAnimating()
-        
-        guard previewPath != "" else { downloadFallback(); return }
-        
-        guard let client = CKIClient.current?.copy() as? CKIClient, let accessToken = CKIClient.current?.accessToken else { return }
-        client.requestSerializer = AFHTTPRequestSerializer()
-        client.responseSerializer = AFHTTPResponseSerializer()
-        client.requestSerializer.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        client.setTaskWillPerformHTTPRedirectionBlock { [weak self] (session, task, response, request) in
-            
-            guard let requestURL = request.url, let me = self else {
-                return request
-            }
-            
-            var components = URLComponents(url: requestURL, resolvingAgainstBaseURL: false)!
-            components.query = nil
-            components.path = (components.path as NSString).deletingLastPathComponent
-            
-            if let goodURL = components.url {
-                CanvadocsPDFDocumentPresenter.loadPDFViewController(goodURL, with: teacherAppConfiguration(bottomInset: me.bottomInset), showAnnotationBarButton: true, onSaveStateChange: self?.onSaveStateChange) { [weak self] (pdfViewController, errors) in
-                    if let pdfViewController = pdfViewController as? PSPDFViewController {
-                        self?.activityIndicator.stopAnimating()
-                        self?.embed(pdfViewController: pdfViewController)
-                    } else  {
-                        self?.downloadFallback()
-                    }
+        guard previewPath != "", let url = URL(string: previewPath, relativeTo: sessionAPI?.baseURL) else {
+            return downloadFallback()
+        }
+        let request = URLRequest(url: url)
+        task = sessionAPI?.makeRequest(request) { [weak self] _, response, error in
+            guard let self = self else { return }
+            if let error = error {
+                return DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+                    let dismiss = NSLocalizedString("Dismiss", tableName: nil, bundle: .core, value: "Dismiss", comment: "")
+                    alert.addAction(UIAlertAction(title: dismiss, style: .default, handler: nil))
+                    UIApplication.shared.delegate?.topViewController?.present(alert, animated: true, completion: nil)
                 }
             }
-            
-            return request
-        }
-        
-        var params = Dictionary<String, String>()
-        if let actAsUser = client.actAsUserID {
-            params["as_user_id"] = actAsUser
-        }
-        client.get(previewPath, parameters: params, progress: nil, success: { (task, response) in
-            // successful load doesn't actually mean anything except the redirect happened
-        }) { (task, error) in
-            DispatchQueue.main.async { [weak self] in
-                self?.activityIndicator.stopAnimating()
-                let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-                let dismiss = NSLocalizedString("Dismiss", tableName: nil, bundle: .core, value: "Dismiss", comment: "")
-                alert.addAction(UIAlertAction(title: dismiss, style: .default, handler: nil))
-                UIApplication.shared.delegate?.topViewController?.present(alert, animated: true, completion: nil)
+            if let url = (response as? HTTPURLResponse)?.allHeaderFields["Location"] as? String {
+                var components = URLComponents.parse(url)
+                components.query = nil
+                components.path = components.path.replacingOccurrences(of: "/view", with: "")
+                if let goodURL = components.url {
+                    CanvadocsPDFDocumentPresenter.loadPDFViewController(goodURL, with: teacherAppConfiguration(bottomInset: self.bottomInset), showAnnotationBarButton: true, onSaveStateChange: self.onSaveStateChange) { pdfViewController, errors in
+                        if let pdfViewController = pdfViewController as? PSPDFViewController {
+                            self.activityIndicator.stopAnimating()
+                            self.embed(pdfViewController: pdfViewController)
+                        } else  {
+                            self.downloadFallback()
+                        }
+                    }
+                } else {
+                    self.downloadFallback()
+                }
+            } else {
+                self.downloadFallback()
             }
         }
     }

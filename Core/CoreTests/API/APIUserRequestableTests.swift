@@ -54,4 +54,10 @@ class APIUserRequestableTests: XCTestCase {
         XCTAssertEqual(request.path, "users/self/settings")
         XCTAssertEqual(request.method, .get)
     }
+
+    func testGetUserProfileRequest() {
+        let request = GetUserProfileRequest(userID: "2")
+        XCTAssertEqual(request.path, "users/2/profile")
+        XCTAssertEqual(request.method, .get)
+    }
 }

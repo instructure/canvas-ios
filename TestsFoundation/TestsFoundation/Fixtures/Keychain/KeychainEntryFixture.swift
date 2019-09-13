@@ -20,7 +20,7 @@
 
 extension LoginSession {
     public static func make(
-        accessToken: String = "token",
+        accessToken: String? = "token",
         baseURL: URL = URL(string: "https://canvas.instructure.com")!,
         expiresAt: Date? = nil,
         lastUsedAt: Date = Date(),
@@ -29,7 +29,9 @@ extension LoginSession {
         refreshToken: String? = nil,
         userAvatarURL: URL? = nil,
         userID: String = "1",
-        userName: String = "Eve"
+        userName: String = "Eve",
+        clientID: String? = nil,
+        clientSecret: String? = nil
     ) -> LoginSession {
         return LoginSession(
             accessToken: accessToken,
@@ -41,7 +43,9 @@ extension LoginSession {
             refreshToken: refreshToken,
             userAvatarURL: userAvatarURL,
             userID: userID,
-            userName: userName
+            userName: userName,
+            clientID: clientID,
+            clientSecret: clientSecret
         )
     }
 

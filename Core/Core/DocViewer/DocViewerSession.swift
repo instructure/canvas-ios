@@ -20,7 +20,8 @@ import Foundation
 
 public class DocViewerSession: NSObject, URLSessionTaskDelegate {
     var annotations: [APIDocViewerAnnotation]?
-    lazy var api: API = URLSessionAPI(accessToken: nil, baseURL: sessionURL)
+    lazy var api: API = URLSessionAPI(baseURL: sessionURL)
+    var sessionAPI: API?
     var callback: () -> Void
     var error: Error?
     var localURL: URL?
@@ -43,10 +44,11 @@ public class DocViewerSession: NSObject, URLSessionTaskDelegate {
         task?.cancel()
     }
 
-    func load(url: URL, accessToken: String) {
-        var request = URLRequest(url: url)
-        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: HttpHeader.authorization)
-        task = NoFollowRedirect.session.dataTask(with: request) { [weak self] _, response, error in
+    func load(url: URL, session: LoginSession) {
+        task?.cancel()
+        sessionAPI = URLSessionAPI(session: session, urlSession: URLSessionAPI.noFollowRedirectURLSession)
+        let request = URLRequest(url: url)
+        task = sessionAPI?.makeRequest(request) { [weak self] _, response, error in
             self?.error = error
             if let url = (response as? HTTPURLResponse)?.allHeaderFields["Location"] as? String {
                 var components = URLComponents.parse(url)
@@ -57,7 +59,6 @@ public class DocViewerSession: NSObject, URLSessionTaskDelegate {
                 self?.loadMetadata(sessionURL: nil)
             }
         }
-        task?.resume()
     }
 
     func loadMetadata(sessionURL: URL?) {
@@ -112,23 +113,5 @@ public class DocViewerSession: NSObject, URLSessionTaskDelegate {
             }
             if self?.annotations != nil { self?.notify() }
         }
-    }
-}
-
-public class NoFollowRedirect: NSObject, URLSessionTaskDelegate {
-    public static var session = URLSession(configuration: .ephemeral, delegate: NoFollowRedirect(), delegateQueue: nil)
-
-    private override init() {
-        super.init()
-    }
-
-    public func urlSession(
-        _ session: URLSession,
-        task: URLSessionTask,
-        willPerformHTTPRedirection response: HTTPURLResponse,
-        newRequest request: URLRequest,
-        completionHandler: @escaping (URLRequest?) -> Void
-    ) {
-        completionHandler(nil)
     }
 }

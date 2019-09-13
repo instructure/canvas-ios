@@ -43,7 +43,7 @@ class ParentTestCase: XCTestCase {
         router = TestRouter()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         env = AppEnvironment.shared
-        env.api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
+        env.api = URLSessionAPI(loginSession: nil, urlSession: MockURLSession())
         env.database = database
         env.globalDatabase = database
         env.router = router

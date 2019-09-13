@@ -27,7 +27,7 @@ public class MockDistantURLSession: URLSession {
     static let defaultURLSession = URLSessionAPI.defaultURLSession
     static let cachingURLSession = URLSessionAPI.cachingURLSession
     static let delegateURLSession = URLSessionAPI.delegateURLSession
-    static let noFollowRedirectSession = NoFollowRedirect.session
+    static let noFollowRedirectSession = URLSessionAPI.noFollowRedirectURLSession
     static let api = AppEnvironment.shared.api
 
     @objc public static var isSetup: Bool {
@@ -39,13 +39,13 @@ public class MockDistantURLSession: URLSession {
         let session = MockDistantURLSession()
         URLSessionAPI.defaultURLSession = session
         URLSessionAPI.cachingURLSession = session
+        URLSessionAPI.noFollowRedirectURLSession = session
         URLSessionAPI.delegateURLSession = { config, delegate, queue in
             let session = MockDistantURLSession()
             session.mockConfiguration = config
             session.mockDelegate = delegate
             return session
         }
-        NoFollowRedirect.session = session
         AppEnvironment.shared.api = URLSessionAPI()
     }
 
@@ -53,7 +53,7 @@ public class MockDistantURLSession: URLSession {
         URLSessionAPI.defaultURLSession = defaultURLSession
         URLSessionAPI.cachingURLSession = cachingURLSession
         URLSessionAPI.delegateURLSession = delegateURLSession
-        NoFollowRedirect.session = noFollowRedirectSession
+        URLSessionAPI.noFollowRedirectURLSession = noFollowRedirectSession
         AppEnvironment.shared.api = api
 
         dataMocks = [:]

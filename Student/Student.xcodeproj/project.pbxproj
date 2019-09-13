@@ -101,7 +101,6 @@
 		49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49642BC91CF4C4DF00238B3F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49642BC31CF4C4CD00238B3F /* CanvasKit.framework */; };
 		496D31261CF752C600A3B11E /* LegacyModuleProgressShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */; };
-		496D312A1CF7550A00A3B11E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31291CF7550A00A3B11E /* NetworkMonitor.swift */; };
 		4976C2001FBB84B900160EE4 /* CalendarEventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4976C1FF1FBB84B900160EE4 /* CalendarEventDetailViewController.swift */; };
 		49A04DA81CF4F5E40051E1E7 /* ISO8601DateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A04DA41CF4F5E40051E1E7 /* ISO8601DateFormatter.h */; };
 		49A04DA91CF4F5E40051E1E7 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A04DA51CF4F5E40051E1E7 /* ISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -472,7 +471,6 @@
 		7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */; };
 		7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */; };
 		7DE1161B22F8AB5C005BFE98 /* TestEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2322F8A096000AACCE /* TestEnvironment.swift */; };
-		7DE1161C22F8AB5C005BFE98 /* BlockExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2422F8A096000AACCE /* BlockExpectation.swift */; };
 		7DE1161D22F8AB5C005BFE98 /* ArcSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2622F8A096000AACCE /* ArcSubmissionPresenterTests.swift */; };
 		7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2822F8A096000AACCE /* SubmissionButtonPresenterTests.swift */; };
 		7DE1161F22F8AB5C005BFE98 /* RubricPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2A22F8A096000AACCE /* RubricPresenterTests.swift */; };
@@ -766,7 +764,6 @@
 		49642BC31CF4C4CD00238B3F /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49642BCA1CF4C66200238B3F /* Student.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Student.entitlements; sourceTree = "<group>"; };
 		496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyModuleProgressShim.swift; sourceTree = "<group>"; };
-		496D31291CF7550A00A3B11E /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		4976C1FF1FBB84B900160EE4 /* CalendarEventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailViewController.swift; sourceTree = "<group>"; };
 		49A04DA41CF4F5E40051E1E7 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
 		49A04DA51CF4F5E40051E1E7 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
@@ -1271,7 +1268,6 @@
 		7DCF0F2022F8A096000AACCE /* UIImageStudentExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageStudentExtensionTests.swift; sourceTree = "<group>"; };
 		7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		7DCF0F2322F8A096000AACCE /* TestEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestEnvironment.swift; sourceTree = "<group>"; };
-		7DCF0F2422F8A096000AACCE /* BlockExpectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockExpectation.swift; sourceTree = "<group>"; };
 		7DCF0F2622F8A096000AACCE /* ArcSubmissionPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcSubmissionPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2822F8A096000AACCE /* SubmissionButtonPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionButtonPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2A22F8A096000AACCE /* RubricPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricPresenterTests.swift; sourceTree = "<group>"; };
@@ -1979,7 +1975,6 @@
 			isa = PBXGroup;
 			children = (
 				496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */,
-				496D31291CF7550A00A3B11E /* NetworkMonitor.swift */,
 			);
 			path = Shrug;
 			sourceTree = "<group>";
@@ -2892,7 +2887,6 @@
 			isa = PBXGroup;
 			children = (
 				7DCF0F2322F8A096000AACCE /* TestEnvironment.swift */,
-				7DCF0F2422F8A096000AACCE /* BlockExpectation.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -4091,7 +4085,6 @@
 				9F900E7E2321870F00BB44B4 /* PeopleListPresenter.swift in Sources */,
 				7DCF0F7F22F8A820000AACCE /* DashboardGroupCell.swift in Sources */,
 				7DCF0FAC22F8A8D7000AACCE /* RubricViewController.swift in Sources */,
-				496D312A1CF7550A00A3B11E /* NetworkMonitor.swift in Sources */,
 				7DCF0FCB22F8A8D7000AACCE /* SubmissionFilesViewController.swift in Sources */,
 				5EB46DF41D21A75C00C859A4 /* CalendarDayListCell.swift in Sources */,
 				7DCF0F8B22F8A84D000AACCE /* SyllabusActionableItemsViewController.swift in Sources */,
@@ -4371,7 +4364,6 @@
 			files = (
 				7DE1162522F8AB5C005BFE98 /* PersistenceTestCase.swift in Sources */,
 				9F62EDDB2326E0FD00EA9F79 /* PeopleListPresenterTests.swift in Sources */,
-				7DE1161C22F8AB5C005BFE98 /* BlockExpectation.swift in Sources */,
 				7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */,
 				7D92447222FB7825002BC7CA /* UserPreferencesTests.swift in Sources */,
 				7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */,

@@ -24,7 +24,6 @@ public class UploadMediaComment {
     var callback: (SubmissionComment?, Error?) -> Void = { _, _ in }
     let courseID: String
     let isGroup: Bool
-    var mediaAPI: API?
     var placeholderID: String?
     let submissionID: String
     let type: MediaCommentType

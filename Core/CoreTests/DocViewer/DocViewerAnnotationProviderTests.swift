@@ -22,7 +22,7 @@ import TestsFoundation
 @testable import Core
 
 class DocViewerAnnotationProviderTests: XCTestCase {
-    let api = MockAPI()
+    let api = MockURLSession.self
 
     class Delegate: DocViewerAnnotationProviderDelegate {
         var annotation: APIDocViewerAnnotation?
@@ -39,6 +39,11 @@ class DocViewerAnnotationProviderTests: XCTestCase {
         }
     }
 
+    override func setUp() {
+        super.setUp()
+        MockURLSession.reset()
+    }
+
     func getProvider(
         annotations: [APIDocViewerAnnotation] = [ APIDocViewerAnnotation.make() ],
         enabled: Bool = true,
@@ -51,7 +56,7 @@ class DocViewerAnnotationProviderTests: XCTestCase {
             documentProvider: documentProvider,
             metadata: metadata,
             annotations: annotations,
-            api: api,
+            api: URLSessionAPI(urlSession: MockURLSession()),
             sessionID: "a"
         )
         documentProvider.annotationManager.annotationProviders.insert(provider, at: 0)
@@ -76,7 +81,7 @@ class DocViewerAnnotationProviderTests: XCTestCase {
         let delegate = Delegate()
         provider.docViewerDelegate = delegate
         let annotation = DocViewerPointAnnotation()
-        api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"))
+        api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), error: APIDocViewerError.noData)
         XCTAssertEqual(provider.add([ annotation ])?.count, 1)
         XCTAssertEqual(delegate.error as? APIDocViewerError, APIDocViewerError.noData)
     }
@@ -96,7 +101,7 @@ class DocViewerAnnotationProviderTests: XCTestCase {
         let delegate = Delegate()
         provider.docViewerDelegate = delegate
         let annotation = DocViewerCommentReplyAnnotation(contents: "")
-        api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"))
+        api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), value: nil)
         XCTAssertEqual(provider.add([ annotation ])?.count, 1)
         XCTAssertNil(delegate.error)
     }
@@ -133,7 +138,7 @@ class DocViewerAnnotationProviderTests: XCTestCase {
     func testRemoveSuccess() {
         let provider = getProvider()
         let annotation = try! DocViewerPointAnnotation(dictionary: [ "name": "1" ])
-        api.mock(DeleteDocViewerAnnotationRequest(annotationID: "1", sessionID: "a"))
+        api.mock(DeleteDocViewerAnnotationRequest(annotationID: "1", sessionID: "a"), value: nil)
         XCTAssertEqual(provider.remove([ annotation ])?.count, 1)
     }
 
@@ -142,7 +147,7 @@ class DocViewerAnnotationProviderTests: XCTestCase {
         let delegate = Delegate()
         provider.docViewerDelegate = delegate
         let annotation = DocViewerPointAnnotation()
-        api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"))
+        api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), value: nil)
         provider.didChange(annotation, keyPaths: [])
         XCTAssertEqual(delegate.error as? APIDocViewerError, APIDocViewerError.noData)
     }
@@ -163,7 +168,7 @@ class DocViewerAnnotationProviderTests: XCTestCase {
         let delegate = Delegate()
         provider.docViewerDelegate = delegate
         let annotation = DocViewerCommentReplyAnnotation(contents: "")
-        api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"))
+        api.mock(PutDocViewerAnnotationRequest(body: annotation.apiAnnotation(), sessionID: "a"), value: nil)
         provider.didChange(annotation, keyPaths: [])
         XCTAssertNil(delegate.error)
     }

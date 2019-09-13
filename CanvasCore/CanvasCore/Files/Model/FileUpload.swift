@@ -17,11 +17,9 @@
 //
 
 import CoreData
-
-
 import ReactiveSwift
 import Marshal
-
+import Core
 
 open class FileUpload: Upload {
     @NSManaged open internal(set) var data: Data
@@ -173,15 +171,16 @@ extension FileUpload {
         disposable = CompositeDisposable()
         disposable += attemptProducer {
             let request = try session.requestPostUploadTarget(path: path, fileName: name, size: data.count, contentType: contentType, folderPath: nil, overwrite: false)
-            let task = session.URLSession.dataTask(with: request) { [weak self] data, response, error in
+            let task = session.api.makeRequest(request) { [weak self] data, response, error in
                 self?.taskCompletionHandler(session: session, context: context, data: data, response: response, error: error)
             }
-            self.startWithTask(task)
+            if let t = task {
+                self.startWithTask(t)
+            }
             try context.save()
             self.disposable.add { [weak task] in
                 task?.cancel()
             }
-            task.resume()
         }
         .observe(on: ManagedObjectContextScheduler(context: context))
         .flatMapError(saveError(context))

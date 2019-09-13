@@ -45,30 +45,16 @@ NSString * const CBICourseColorUpdatedValue = @"CBICourseColorUpdatedValue";
 */
 - (CKIClient *)imageClient
 {
-    CKIClient *client = [[CKIClient alloc] initWithBaseURL:self.baseURL];
-    [client setValue:self.accessToken forKey:@"accessToken"];
-    [client setValue:self.currentUser forKey:@"currentUser"];
-    [client setValue:self.actAsUserID forKey:@"actAsUserID"];
-
+    CKIClient *client = [[CKIClient alloc] initWithBaseURL:self.baseURL
+                                                     token:self.accessToken
+                                              refreshToken:self.refreshToken
+                                                  clientID:self.clientID
+                                              clientSecret:self.clientSecret];
+    client.currentUser = self.currentUser;
+    client.actAsUserID = self.actAsUserID;
     [client setResponseSerializer:[AFHTTPAvatarImageResponseSerializer new]];
 
     return client;
 }
-
-- (Session *)authSession {
-    Session *session = objc_getAssociatedObject(self, @selector(authSession));
-    if (session != nil && [session isKindOfClass:[Session class]]) {
-        return session;
-    }
-    
-    
-    NSString *masqueradeID = self.actAsUserID.length > 0 ? self.actAsUserID : nil;
-
-    session = [[Session alloc] initWithBaseURL:self.baseURL user:self.currentUser.sessionUser token:self.accessToken masqueradeAsUserID:masqueradeID];
-    
-    objc_setAssociatedObject(self, @selector(authSession), session, OBJC_ASSOCIATION_RETAIN);
-    return session;
-}
-
 
 @end
