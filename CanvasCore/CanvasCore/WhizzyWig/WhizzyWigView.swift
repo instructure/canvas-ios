@@ -23,16 +23,7 @@ import Core
 public typealias URLHandler = (URL)->()
 var WhizzyWigOpenURLHandler: URLHandler? = { url in
     guard let from = UIApplication.shared.keyWindow?.rootViewController?.topMostViewController() else { return }
-    let request = GetWebSessionRequest(to: url)
-    AppEnvironment.shared.api.makeRequest(request) { response, _, error in
-        DispatchQueue.main.async {
-            guard let response = response, error == nil else {
-                AppEnvironment.shared.router.route(to: url, from: from, options: nil)
-                return
-            }
-            AppEnvironment.shared.router.route(to: response.session_url, from: from, options: nil)
-        }
-    }
+    AppEnvironment.shared.router.route(to: url, from: from, options: nil)
 }
 
 private func renderHTML(_ html: String, fontColor: UIColor, backgroundColor: UIColor, padding: UIEdgeInsets) -> String {
