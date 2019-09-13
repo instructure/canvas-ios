@@ -29,16 +29,7 @@ import {
   NativeModules,
   Button,
 } from 'react-native'
-import refresh from '../../utils/refresh'
-import { connect } from 'react-redux'
-import SubmissionActions from '../submissions/list/actions'
-import EnrollmentActions from '../enrollments/actions'
-import AssignmentActions from '../assignments/actions'
-import GroupActions from '../groups/actions'
-import CourseActions from '../courses/actions'
-import SubmissionGrader from '../speedgrader/SubmissionGrader'
-import SpeedGraderActions from '../speedgrader/actions'
-import { getSubmissionsProps } from '../submissions/list/get-submissions-props'
+// import SubmissionGrader from '../speedgrader/SubmissionGrader'
 import type {
   AsyncSubmissionsDataProps,
   SubmissionDataProps,
@@ -50,10 +41,9 @@ import DrawerState, { type DrawerPosition } from '../speedgrader/utils/drawer-st
 import Tutorial from '../speedgrader/components/Tutorial'
 import i18n from 'format-message'
 import Images from '../../images'
-import shuffle from 'knuth-shuffle-seeded'
+// import shuffle from 'knuth-shuffle-seeded'
 import { Title } from '../../common/text'
 import CommentInput from '../speedgrader/comments/CommentInput'
-import { isAssignmentAnonymous } from '../../common/anonymous-grading'
 import A11yGroup from '../../common/components/A11yGroup'
 import { graphql } from 'react-apollo'
 import query from '../../canvas-api-v2/queries/SpeedGrader'
@@ -71,7 +61,6 @@ type State = {
 }
 
 const PAGE_GUTTER_HALF_WIDTH = 10.0
-const REFRESH_TTL = 1000 * 60 * 15 // 15 minutes
 
 export class SpeedGrader extends Component<SpeedGraderProps, State> {
   props: SpeedGraderProps
@@ -151,15 +140,15 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   }
 
   renderItem = ({ item, index }: { item: SubmissionItem, index: number }) => {
-    const isCurrentStudent = this.state.currentStudentID
-      ? this.state.currentStudentID === item.user.id
-      : index === 0
+    // const isCurrentStudent = this.state.currentStudentID
+    //   ? this.state.currentStudentID === item.user.id
+    //   : index === 0
 
-    let group = this.props.isGroupGradedAssignment
-      ? this.props.groups.find(({ members }) => {
-          return members.edges.find(({ member }) => member.user.id === item.user.id)
-        })
-      : null
+    // let group = this.props.isGroupGradedAssignment
+    //   ? this.props.groups.find(({ members }) => {
+    //     return members.edges.find(({ member }) => member.user.id === item.user.id)
+    //   })
+    //   : null
 
     return <A11yGroup style={[styles.page, this.state.size]}>
       {/* <SubmissionGrader
@@ -322,7 +311,7 @@ const styles = StyleSheet.create({
   },
 })
 
-function props(props) {
+function props (props) {
   if (props.data.loading) {
     return {
       pending: true,
