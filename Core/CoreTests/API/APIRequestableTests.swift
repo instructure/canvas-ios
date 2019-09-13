@@ -80,6 +80,13 @@ class APIRequestableTests: XCTestCase {
         }
     }
 
+    struct CrossDomain: APIRequestable {
+        typealias Response = DateHaver
+        var path: String {
+            return "https://s3.instructure.com/bucket/1"
+        }
+    }
+
     func expectedUrlRequest(path: String) -> URLRequest {
         var expected = URLRequest(url: URL(string: path, relativeTo: baseURL)!)
         expected.httpMethod = "GET"
@@ -170,5 +177,26 @@ class APIRequestableTests: XCTestCase {
         let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
         XCTAssertEqual(request.httpBody, expected)
         XCTAssertEqual(request.allHTTPHeaderFields?[HttpHeader.contentType], "multipart/form-data; charset=utf-8; boundary=\"xxzzxx\"")
+    }
+
+    func testAuthorizationHeaderSameDomain() throws {
+        let urlRequest = URLRequest(url: baseURL.appendingPathComponent("api/v1/courses"))
+        var request = try urlRequest.urlRequest(relativeTo: baseURL, accessToken: "token", actAsUserID: nil)
+        XCTAssertEqual(request.allHTTPHeaderFields?[HttpHeader.authorization], "Bearer token")
+
+        let requestable = CrossDomain()
+        let url = URL(string: requestable.path)!
+        request = try requestable.urlRequest(relativeTo: url, accessToken: "token", actAsUserID: nil)
+        XCTAssertEqual(request.allHTTPHeaderFields?[HttpHeader.authorization], "Bearer token")
+    }
+
+    func testAuthorizationOtherDomain() throws {
+        let requestable = CrossDomain()
+        var request = try requestable.urlRequest(relativeTo: baseURL, accessToken: "token", actAsUserID: nil)
+        XCTAssertNil(request.allHTTPHeaderFields?[HttpHeader.authorization])
+
+        let urlRequest = URLRequest(url: URL(string: "https://s3.amazon.com")!)
+        request = try urlRequest.urlRequest(relativeTo: baseURL, accessToken: "token", actAsUserID: nil)
+        XCTAssertNil(request.allHTTPHeaderFields?[HttpHeader.authorization])
     }
 }

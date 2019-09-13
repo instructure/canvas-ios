@@ -20,7 +20,7 @@
 /* global XMLHttpRequest, Blob */
 
 import AsyncStorage from '@react-native-community/async-storage'
-import { setSession, getSession } from './session'
+import { getSession } from './session'
 import * as models from './model'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
@@ -63,13 +63,7 @@ export function isAbort (error: Error) {
 export const inFlight: Map<string, ApiPromise<any>> = new Map()
 
 function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
-  const {
-    actAsUserID,
-    authToken,
-  } = getSession()
-
   const params = { ...config.params }
-  if (actAsUserID) params.as_user_id = actAsUserID
   const query = serializeParams(params)
 
   let fullUrl = resolveUrl(url, config)
@@ -89,7 +83,6 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
 
     const headers = {
       'X-Requested-With': 'XMLHttpRequest',
-      'Authorization': `Bearer ${authToken}`,
       'Accept': 'application/json+canvas-string-ids',
       ...config.headers,
     }
@@ -162,33 +155,7 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
   })
   promise.request = request
   inFlight.set(key, promise)
-  return promise.catch((error) => {
-    let { config, request } = error
-    if (request.status === 401 && config.refreshToken !== false) {
-      return refreshToken()
-        .then(() => xhr(method, url, data, { ...config, refreshToken: false }))
-    }
-    throw error
-  })
-}
-
-export function refreshToken () {
-  const {
-    refreshToken,
-    clientID,
-    clientSecret,
-  } = getSession()
-  return xhr('POST', 'login/oauth2/token', {
-    grant_type: 'refresh_token',
-    refresh_token: refreshToken,
-    client_id: clientID,
-    client_secret: clientSecret,
-  }, { excludeVersion: true, refreshToken: false })
-    .then(result => {
-      if (result && result.data && result.data.access_token) {
-        setSession({ ...getSession(), authToken: result.data.access_token })
-      }
-    })
+  return promise
 }
 
 export default {

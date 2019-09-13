@@ -50,7 +50,7 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
       "clearStoreCallbacks": Array [],
       "defaultOptions": Object {},
       "disableNetworkFetches": false,
-      "link": ApolloLink {
+      "link": HttpLink {
         "request": [Function],
       },
       "localState": LocalState {
@@ -134,7 +134,7 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
         "fetchQueryRejectFns": Map {},
         "idCounter": 1,
         "inFlightLinkObservables": Map {},
-        "link": ApolloLink {
+        "link": HttpLink {
           "request": [Function],
         },
         "localState": LocalState {
@@ -277,7 +277,7 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
           "clearStoreCallbacks": Array [],
           "defaultOptions": Object {},
           "disableNetworkFetches": false,
-          "link": ApolloLink {
+          "link": HttpLink {
             "request": [Function],
           },
           "localState": LocalState {
@@ -361,7 +361,7 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
             "fetchQueryRejectFns": Map {},
             "idCounter": 1,
             "inFlightLinkObservables": Map {},
-            "link": ApolloLink {
+            "link": HttpLink {
               "request": [Function],
             },
             "localState": LocalState {
