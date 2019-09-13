@@ -21,7 +21,8 @@
     "Student\/Dashboard\/",
     "Student\/GradesWidget\/",
     "TechDebt\/",
-    "UITestHelpers\/"
+    "UITestHelpers\/",
+    "rn/Teacher\/src\/modules\/graphql-speed-grader\/"
   ],
   "fileMinCoverage": 0.5,
   "totalMinCoverage": 0.9
