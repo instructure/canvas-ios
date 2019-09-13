@@ -290,6 +290,7 @@ open class CoreUITestCase: XCTestCase {
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [:]))
         mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
         mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
+        mockData(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make())
         mockData(GetAccountNotificationsRequest(), value: [])
         let enrollment = APIEnrollment.make(
             type: Bundle.main.isTeacherUITestsRunner ? "TeacherEnrollment" : "StudentEnrollment",

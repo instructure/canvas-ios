@@ -30,10 +30,11 @@ public struct APIDiscussionTopic: Codable, Equatable {
     let discussion_subentry_count: Int
     let published: Bool
     let attachments: [APIFile]?
-    let author: APIDiscussionAuthor
+    let author: APIDiscussionParticipant
+    let permissions: APIDiscussionPermissions?
 }
 
-public struct APIDiscussionAuthor: Codable, Equatable {
+public struct APIDiscussionParticipant: Codable, Equatable {
     let id: ID?
     let display_name: String?
     let avatar_image_url: URL?
@@ -47,4 +48,18 @@ public struct APIDiscussionEntry: Codable, Equatable {
     let created_at: Date?
     let updated_at: Date?
     let message: String
+    let replies: [APIDiscussionEntry]?
+}
+
+public struct APIDiscussionPermissions: Codable, Equatable {
+    let attach: Bool?
+}
+
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.view
+public struct APIDiscussionFullTopic: Codable, Equatable {
+    let participants: [APIDiscussionParticipant]
+    let unread_entries: [ID]
+    let entry_ratings: [ID: Int]
+    let forced_entries: [ID]
+    let view: [APIDiscussionEntry]
 }

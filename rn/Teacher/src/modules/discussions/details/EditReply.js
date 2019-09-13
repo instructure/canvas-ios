@@ -75,12 +75,12 @@ export class EditReply extends React.Component<Props, any> {
           {
             title: i18n('Done'),
             style: 'done',
-            testID: 'edit-discussion-reply.done-btn',
+            testID: 'DiscussionEditReply.doneButton',
             action: this._actionDonePressed,
           },
           permissions && permissions.attach && {
             image: Images.paperclip,
-            testID: 'edit-discussion-reply.attachment-btn',
+            testID: 'DiscussionEditReply.attachmentButton',
             action: this.addAttachment,
             accessibilityLabel: i18n('Edit attachment ({count})', { count: this.state.attachment ? '1' : i18n('none') }),
             badge: this.state.attachment && {

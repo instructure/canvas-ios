@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,16 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
+import TestsFoundation
 
-public enum NavBar: String, ElementWrapper {
-    case title, subtitle
+enum DiscussionReply: String, ElementWrapper {
+    case topReplyButton = "discussion-reply"
+    case moreReplies = "discussion.more-replies"
+    var id: String { return self.rawValue }
+}
 
-    public static var backButton: Element {
-        return XCUIElementWrapper(app.navigationBars.buttons["Back"].firstMatch)
+extension DiscussionReply {
+    static func replyUnread(id: String) -> Element {
+        return app.find(id: "reply.\(id).unread")
     }
 
-    public static var dismissButton: Element {
-        return app.find(id: "screen.dismiss")
+    static func replyButton(id: String) -> Element {
+        return app.find(id: "discussion.reply-btn.\(id)")
     }
 }

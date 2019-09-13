@@ -45,4 +45,10 @@ class DeepLinkTests: CoreUITestCase {
         app.find(labelContaining: "public-course-page").tap()
         app.find(labelContaining: "this is a public course").waitToExist()
     }
+
+    func testDeepLinkToDiscussion() {
+        app.find(labelContaining: "discussion").tap()
+        app.find(labelContaining: "A discussion").waitToExist()
+    }
+
 }

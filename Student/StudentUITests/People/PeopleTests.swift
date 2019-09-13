@@ -41,8 +41,7 @@ class PeopleTests: CoreUITestCase {
         CourseNavigation.people.tap()
 
         CoursePeople.person(name: "Student One").waitToExist()
-        XCTAssert(CoursePeople.person(name: "Student One").exists)
-        XCTAssert(CoursePeople.person(name: "Student Two").exists)
+        CoursePeople.person(name: "Student Two").waitToExist()
         CoursePeople.person(name: "Student One").tap()
 
         PersonContextCard.emailLabel("ios+student1@instructure.com").waitToExist()

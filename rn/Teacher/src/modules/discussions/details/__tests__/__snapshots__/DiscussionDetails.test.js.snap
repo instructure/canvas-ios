@@ -2598,7 +2598,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.reply-btn"
+                        testID="discussion.reply-btn.25472827"
                       >
                         <View>
                           <Text
@@ -4264,7 +4264,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.reply-btn"
+                        testID="discussion.reply-btn.25472827"
                       >
                         <View>
                           <Text
@@ -6818,7 +6818,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.reply-btn"
+                        testID="discussion.reply-btn.25472827"
                       >
                         <View>
                           <Text
@@ -8434,7 +8434,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.reply-btn"
+                        testID="discussion.reply-btn.4"
                       >
                         <View>
                           <Text
@@ -8742,7 +8742,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.reply-btn"
+                        testID="discussion.reply-btn.5"
                       >
                         <View>
                           <Text
@@ -10334,7 +10334,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             "paddingTop": 2,
                           }
                         }
-                        testID="discussion.reply-btn"
+                        testID="discussion.reply-btn.25472827"
                       >
                         <View>
                           <Text

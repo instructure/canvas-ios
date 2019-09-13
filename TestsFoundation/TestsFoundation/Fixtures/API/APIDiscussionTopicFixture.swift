@@ -31,7 +31,8 @@ extension APIDiscussionTopic {
         discussion_subentry_count: Int = 1,
         published: Bool = true,
         attachments: [APIFile]? = nil,
-        author: APIDiscussionAuthor = .make()
+        author: APIDiscussionParticipant = .make(),
+        permissions: APIDiscussionPermissions? = nil
     ) -> APIDiscussionTopic {
         return APIDiscussionTopic(
             id: id,
@@ -44,23 +45,61 @@ extension APIDiscussionTopic {
             discussion_subentry_count: discussion_subentry_count,
             published: published,
             attachments: attachments,
-            author: author
+            author: author,
+            permissions: permissions
         )
     }
 }
 
-extension APIDiscussionAuthor {
+extension APIDiscussionParticipant {
     public static func make(
         id: ID? = "1",
         display_name: String? = "Bob",
         avatar_image_url: URL? = nil,
         html_url: URL? = URL(string: "/users/1")
-    ) -> APIDiscussionAuthor {
-        return APIDiscussionAuthor(
-            id: id,
-            display_name: display_name,
-            avatar_image_url: avatar_image_url,
-            html_url: html_url
+    ) -> APIDiscussionParticipant {
+        return APIDiscussionParticipant(
+                id: id,
+                display_name: display_name,
+                avatar_image_url: avatar_image_url,
+                html_url: html_url
+        )
+    }
+}
+
+extension APIDiscussionPermissions {
+    public static func make(attach: Bool? = nil) -> APIDiscussionPermissions {
+        return APIDiscussionPermissions(attach: attach)
+    }
+}
+
+extension APIDiscussionFullTopic {
+    public static let date1 = Date(timeIntervalSince1970: 0)
+    public static func make(
+        participants: [APIDiscussionParticipant] = [
+            .make(),
+            .make(id: 2, display_name: "Alice", html_url: URL(string: "/users/2")),
+        ],
+        unread_entries: [ID] = [1, 3, 5],
+        entry_ratings: [ID: Int] = [3: 1],
+        forced_entries: [ID] = [1],
+        view: [APIDiscussionEntry] = [
+            .make(id: 1, updated_at: date1, message: "m1", replies: [
+                .make(id: 2, user_id: 2, updated_at: date1, message: "m2", replies: [
+                    .make(id: 3, updated_at: date1, message: "m3", replies: [
+                        .make(id: 4, updated_at: date1, message: "m4 (deep)"),
+                    ]),
+                ]),
+            ]),
+            .make(id: 4, updated_at: date1, message: "m5"),
+        ]
+    ) -> APIDiscussionFullTopic {
+        return APIDiscussionFullTopic(
+                participants: participants,
+                unread_entries: unread_entries,
+                entry_ratings: entry_ratings,
+                forced_entries: forced_entries,
+                view: view
         )
     }
 }

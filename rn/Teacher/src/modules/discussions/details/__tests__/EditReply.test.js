@@ -98,7 +98,7 @@ describe('EditReply', () => {
     )
     let postReply = jest.fn(() => ({ payload: { promise: Promise.reject('error') } }))
     component.update(<EditReply {...defaultProps} createEntry={postReply} />)
-    const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
+    const doneButton: any = explore(component.toJSON()).selectRightBarButton('DiscussionEditReply.doneButton')
     doneButton.action()
     expect(component.toJSON()).toMatchSnapshot()
   })
@@ -110,7 +110,7 @@ describe('EditReply', () => {
     let postReply = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
     let refresh = jest.fn(() => ({ payload: { promise: Promise.resolve() } }))
     component.update(<EditReply {...defaultProps} createEntry={postReply} refreshDiscussionEntries={refresh} />)
-    const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
+    const doneButton: any = explore(component.toJSON()).selectRightBarButton('DiscussionEditReply.doneButton')
     await doneButton.action()
     expect(postReply).toHaveBeenCalled()
     expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
@@ -166,7 +166,7 @@ describe('EditReply', () => {
     defaultProps.permissions.attach = false
     const tree = shallow(<EditReply {...defaultProps} />)
     const attach = tree.find('Screen').prop('rightBarButtons')
-      .find(({ testID }) => testID === 'edit-discussion-reply.attachment-btn')
+      .find(({ testID }) => testID === 'DiscussionEditReply.attachmentButton')
     expect(attach).toBeUndefined()
   })
 
@@ -175,7 +175,7 @@ describe('EditReply', () => {
     defaultProps.permissions.attach = true
     const tree = shallow(<EditReply {...defaultProps} />)
     const attach = tree.find('Screen').prop('rightBarButtons')
-      .find(({ testID }) => testID === 'edit-discussion-reply.attachment-btn')
+      .find(({ testID }) => testID === 'DiscussionEditReply.attachmentButton')
     expect(attach).toBeDefined()
     attach.action()
     expect(defaultProps.navigator.show).toHaveBeenCalledWith(

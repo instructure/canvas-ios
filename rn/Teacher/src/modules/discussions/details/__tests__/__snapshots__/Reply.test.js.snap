@@ -162,7 +162,7 @@ exports[`DiscussionReplies renders 1`] = `
                 "paddingTop": 2,
               }
             }
-            testID="discussion.reply-btn"
+            testID="discussion.reply-btn.1"
             textStyle={
               Object {
                 "color": "#8B969E",

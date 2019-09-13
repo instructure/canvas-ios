@@ -48,14 +48,8 @@ class DiscussionEditTests: CoreUITestCase {
         XCTAssertFalse(DiscussionList.newButton.isVisible)
     }
 
-    func xtestCreateDiscussion() {
+    func testCreateDiscussion() {
         mockBaseRequests()
-        if Bundle.main.isTeacherApp {
-            mockData(GetCoursesRequest(state: [.available, .completed, .unpublished]), value: [ noPermissionCourse ])
-        } else {
-            mockData(GetCoursesRequest(state: [.available, .completed]), value: [ noPermissionCourse ])
-        }
-        mockData(GetCourseRequest(courseID: "1"), value: course1)
         mockEncodableRequest("courses/1/discussion_topics?per_page=99&include[]=sections", value: [String]())
         mockEncodableRequest("courses/1/discussion_topics", value: [String: String]())
         mockEncodableRequest("courses/1/settings", value: ["allow_student_forum_attachments": false])

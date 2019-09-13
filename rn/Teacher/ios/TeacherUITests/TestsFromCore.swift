@@ -22,3 +22,4 @@ import Foundation
 class TeacherAccountNotificationsTests: AccountNotificationsTests {}
 class TeacherDiscussionDetailsTests: DiscussionDetailsTests {}
 class TeacherDiscussionEditTests: DiscussionEditTests {}
+class TeacherDiscussionReplyTests: DiscussionReplyTests {}
