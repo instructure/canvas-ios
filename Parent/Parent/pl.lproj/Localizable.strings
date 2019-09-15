@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "Wystąpił błąd serwera. Spróbuj ponownie.";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Działaj jako użytkownik";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "Wystąpił błąd";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "Wystąpił nieoczekiwany błąd. Spróbuj ponownie.";
 
 /* No comment provided by engineer. */
 "Announcement" = "Ogłoszenie";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Brakuje:  (-/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "Błąd sieci";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "Następny tydzień";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "Brak uczniów";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "Brak autoryzacji";
-
-/* Not Found Error Title */
-"Not Found" = "Nie znaleziono";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Nic w tym tygodniu";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Zażądaj funkcji";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "Nie znaleziono zasobu. Spróbuj ponownie później.";
-
-/* Server Error Title */
-"Server Error" = "Błąd serwera";
 
 /* No comment provided by engineer. */
 "Settings" = "Ustawienia";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "Problem z logowaniem";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "Nieznany";
-
 /* No comment provided by engineer. */
 "Unread" = "Nieprzeczytane";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "Witamy!";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "Brak autoryzacji dostępu do danych informacji. Sprawdź pozwolenia użytkownika i spróbuj ponownie.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Aby ustawić przypomnienia, musisz zezwolić na powiadomienia w Ustawieniach.";

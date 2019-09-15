@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "En serverfeil har oppstått.  Vennligst prøv igjen.";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Opptre som bruker";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "Det oppsto et avvik";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "Det oppsto et uventet avvik.  Vennligst prøv igjen.";
 
 /* No comment provided by engineer. */
 "Announcement" = "Kunngjøring";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Mangler: (-/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "Nettverksfeil";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "Neste uke";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "Ingen elever";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "Ikke Autorisert";
-
-/* Not Found Error Title */
-"Not Found" = "Ikke funnet";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Ingenting denne uken";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Be om en funksjon";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "Kilden ikke funnet.  Vennligst prøv igjen.";
-
-/* Server Error Title */
-"Server Error" = "Serverfeil";
 
 /* No comment provided by engineer. */
 "Settings" = "Innstillinger";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "Problemer med innloggingen";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "Ukjent";
-
 /* No comment provided by engineer. */
 "Unread" = "Ulest";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "Velkommen!";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "Du er uautorisert for å få tilgang til denne informasjonen.  Sjekk brukertillatelsene dine og forsøk igjen.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Du må tillate varsler i Innstillingene for å stille inn påminnelser.";

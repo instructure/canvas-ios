@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "{ grade } benoten"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "Richtlinie zur Notenvergabe"
+  },
   "graded_25cd3fcd": {
     "message": "Benotet"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "Link einfügen"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "Internet-Verbindung offline"
-  },
   "invalid_field_54480fae": {
     "message": "Ungültiges Feld"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "Einladung abgelehnt"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "Ihre Internetverbindung scheint offline zu sein. Stellen Sie erneut eine Verbindung zum Internet her, und versuchen Sie es erneut."
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Es scheint, es gibt keine gültigen zu benotenden Abgaben."
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "Keine Note"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "Keine Internetverbindung"
-  },
   "no_messages_a2e67ad4": {
     "message": "Keine Nachrichten"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "Seite nicht gefunden"
-  },
-  "pages_e5414c2c": {
-    "message": "Seiten"
   },
   "pages_front_page_9ce5188": {
     "message": "Seiten – Startseite"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "Es sind keine Dateien anzuzeigen."
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "Es sind keine Seiten anzuzeigen."
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "Es sind keine Quizze anzuzeigen."
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Diese Aktion kann nicht rückgängig gemacht werden."
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "Diese Aktion erfordert eine Internetverbindung."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Diese Aufgabe lässt keine Abgaben zu."

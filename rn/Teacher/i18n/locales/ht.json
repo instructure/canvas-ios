@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "Nòt { grade }"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "Politik piblikasyon nòt"
+  },
   "graded_25cd3fcd": {
     "message": "Klase"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "Ensere Lyen"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "Koneksyon Entènèt Dekonekte"
-  },
   "invalid_field_54480fae": {
     "message": "Chan envalid"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "Envitasyon an refize!"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "Ta sanble entènèt ou a dekonekte. Rekonekte entènèt ou a epi eseye ankò."
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Ta sanble pa gen okenn soumisyon valid pou klase."
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "Pa gen Klas"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "Pa gen koneksyon entènèt"
-  },
   "no_messages_a2e67ad4": {
     "message": "Pa gen Mesaj"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "Paj Entwouvab"
-  },
-  "pages_e5414c2c": {
-    "message": "Paj"
   },
   "pages_front_page_9ce5188": {
     "message": "Paj Paj Prensipal"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "Pa gen fichye pou afiche."
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "Pa gen paj pou afiche."
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "Pa gen quiz pou afiche."
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Aksyon sa a paka defèt."
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "Pou aksyon sa a ou bezwen konekte sou entènèt."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Sesyon sa a pa otorize soumisyon."

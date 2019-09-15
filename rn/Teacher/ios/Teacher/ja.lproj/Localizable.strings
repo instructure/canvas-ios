@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "すべての成績は今、非表示になっています。";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "すべての成績は今、掲示されています。";
+
+/* No comment provided by engineer. */
+"All Hidden" = "すべて非表示";
+
+/* No comment provided by engineer. */
+"All Posted" = "すべて掲示済";
+
+/* No comment provided by engineer. */
+"Back" = "戻る";
+
+/* No comment provided by engineer. */
 "Courses" = "コース";
 
 /* No comment provided by engineer. */
+"Everyone" = "全員";
+
+/* No comment provided by engineer. */
+"Graded" = "採点済み";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "成績はすべての受講生に表示されます";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "成績は、提出物が採点された受講生が閲覧できるよう表示されます。";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "成績を非表示にする";
+
+/* No comment provided by engineer. */
 "Modules" = "モジュール";
+
+/* No comment provided by engineer. */
+"Post Grades" = "成績表の掲示";
+
+/* No comment provided by engineer. */
+"Post Settings" = "掲示設定";
+
+/* No comment provided by engineer. */
+"Post to..." = "掲示先...";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "特定のセクション";
 
 /* No comment provided by engineer. */
 "To Do" = "するべきこと";

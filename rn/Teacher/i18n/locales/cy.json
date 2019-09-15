@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "Gradd { grade }"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "Polisi postio graddau"
+  },
   "graded_25cd3fcd": {
     "message": "Wedi graddio"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "Mewnosod Dolen"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "Dim cysylltiad â’r rhyngrwyd"
-  },
   "invalid_field_54480fae": {
     "message": "Maes annilys"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "Mae'r gwahoddiad wedi'i wrthod!"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "Mae’n edrych yn debyg nad oes gennych chi gysylltiad â’r rhyngrwyd. Mae angen i chi ailgysylltu â'r rhyngrwyd a rhoi cynnig arall arni."
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Does dim cyflwyniadau dilys i’w graddio yn ôl pob golwg."
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "Dim Gradd"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "Dim cysylltiad â'r rhyngrwyd"
-  },
   "no_messages_a2e67ad4": {
     "message": "Dim Negeseuon"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "Heb ddod o hyd i’r dudalen"
-  },
-  "pages_e5414c2c": {
-    "message": "Tudalennau"
   },
   "pages_front_page_9ce5188": {
     "message": "Tudalen Flaen ar gyfer Tudalennau"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "Does dim ffeiliau i’w dangos."
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "Does dim tudalennau i’w dangos."
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "Does dim cwisiau i’w dangos."
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Does dim modd dad-wneud hyn."
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "Mae angen cysylltiad â'r rhyngrwyd."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Dydy’r cwrs hwn ddim yn caniatáu cyflwyniadau."

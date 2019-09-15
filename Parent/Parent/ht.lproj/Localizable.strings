@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "Yon erè te fèt sou sèvè a. Tanpri eseye ankò.";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Aji tankou Itilizatè";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "Gen yon Erè ki Fèt";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "Yon erè ki fèt sanzatann. Tanpri eseye ankò.";
 
 /* No comment provided by engineer. */
 "Announcement" = "Anons";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Manke: (-/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "Erè Rezo";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "Semenn Pwochen";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "Pa gen Elèv";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "Pa Otorize";
-
-/* Not Found Error Title */
-"Not Found" = "Entwouvab";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Pa gen anyen pou semenn sa a";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Mande yon Fonksyon";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "Resous entwouvab. Tanpri eseye ankò.";
-
-/* Server Error Title */
-"Server Error" = "Erè Sèvè";
 
 /* No comment provided by engineer. */
 "Settings" = "Paramèt";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "Difikilte pou konekte";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "Enkoni";
-
 /* No comment provided by engineer. */
 "Unread" = "Poko li";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "Bienveni!";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "Ou pa otorize pou gen aksè a enfòmasyon sa a. Verifye pèmisyon itilizatè ou epi eseye ankò.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Ou dwe otorize notifikasyon nan Paramèt yo pou ka regle èd memwa yo.";

@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "Bedöm { grade }"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "Publiceringspolicy för bedömningar"
+  },
   "graded_25cd3fcd": {
     "message": "Bedömd"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "Skriv in länk"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "Internetuppkoppling offline"
-  },
   "invalid_field_54480fae": {
     "message": "Ogiltigt fält"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "Inbjudan avböjd!"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "Din internetuppkoppling tycks vara offline. Koppla upp internet och försök igen."
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Det tycks inte finnas några giltiga inlämningar att bedöma."
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "Ingen bedömning"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "Ingen internetanslutning"
-  },
   "no_messages_a2e67ad4": {
     "message": "Inga meddelanden"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "Sidan hittades inte"
-  },
-  "pages_e5414c2c": {
-    "message": "Sidor"
   },
   "pages_front_page_9ce5188": {
     "message": "Sidornas framsida"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "Det finns inga filer att visa."
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "Det finns inga sidor att visa."
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "Det finns inga quizzes att visa."
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Åtgärden kan inte göras ogjord"
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "Den här åtgärden kräver en internet-anslutningen."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Den här uppgiften tillåter inte inlämningar."

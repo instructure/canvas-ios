@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "All grades are currently hidden.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "All grades are currently posted.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "All Hidden";
+
+/* No comment provided by engineer. */
+"All Posted" = "All Posted";
+
+/* No comment provided by engineer. */
+"Back" = "Back";
+
+/* No comment provided by engineer. */
 "Courses" = "Subjects";
 
 /* No comment provided by engineer. */
+"Everyone" = "Everyone";
+
+/* No comment provided by engineer. */
+"Graded" = "Graded";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Grades will be made visible to all students";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Grades will be made visible to students with graded submissions";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Hide Grades";
+
+/* No comment provided by engineer. */
 "Modules" = "Modules";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Post Grades";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Post Settings";
+
+/* No comment provided by engineer. */
+"Post to..." = "Post to...";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Specific Sections";
 
 /* No comment provided by engineer. */
 "To Do" = "To Do";

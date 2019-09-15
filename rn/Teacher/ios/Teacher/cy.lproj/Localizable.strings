@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "Pob gradd wedi'i chuddio ar hyn o bryd.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Pob gradd wedi'i phostio ar hyn o bryd.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Pob un wedi'i Guddio";
+
+/* No comment provided by engineer. */
+"All Posted" = "Pob un wedi'i Bostio";
+
+/* No comment provided by engineer. */
+"Back" = "Yn ôl";
+
+/* No comment provided by engineer. */
 "Courses" = "Cwrs";
 
 /* No comment provided by engineer. */
+"Everyone" = "Pawb";
+
+/* No comment provided by engineer. */
+"Graded" = "Wedi graddio";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Bydd yr holl fyfyrwyr yn gallu gweld y graddau";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Bydd myfyrwyr â gwaith wedi’i raddio yn gallu gweld y graddau";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Cuddio Graddau";
+
+/* No comment provided by engineer. */
 "Modules" = "Modiwlau";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Postio Graddau";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Postio Gosodiadau";
+
+/* No comment provided by engineer. */
+"Post to..." = "Postio i...";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Adrannau Penodol";
 
 /* No comment provided by engineer. */
 "To Do" = "Tasgau i’w Gwneud";
