@@ -407,7 +407,7 @@ export function mapStateToProps (state, { courseID }) {
 }
 
 export default graphql(query, {
-  options: ({ courseID, userID }) => ({ variables: { courseID, userID, limit: 20 } }),
+  options: ({ courseID, userID }) => ({ variables: { courseID, userID } }),
   fetchPolicy: 'cache-and-network',
   props,
 })(connect(mapStateToProps, {})(ContextCard))

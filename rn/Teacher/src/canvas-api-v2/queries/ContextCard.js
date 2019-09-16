@@ -19,7 +19,7 @@
 // @flow
 import gql from 'graphql-tag'
 
-export default gql`query StudentContextCard($courseID: ID!, $userID: ID!, $limit: Int) {
+export default gql`query StudentContextCard($courseID: ID!, $userID: ID!) {
   course: legacyNode(type: Course, _id: $courseID) {
     ... on Course {
       id: _id
@@ -75,10 +75,10 @@ export default gql`query StudentContextCard($courseID: ID!, $userID: ID!, $limit
           }
         }
       }
+
       submissions: submissionsConnection(
         orderBy: [{field: gradedAt, direction: descending}]
         studentIds: [$userID]
-        first: $limit
       ) {
         edges {
           submission: node {
