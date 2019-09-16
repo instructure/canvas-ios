@@ -229,7 +229,7 @@ class GetAssignmentsTests: CoreTestCase {
             APIAssignment.make(id: "5", name: "5", assignment_group_id: "7"),
             APIAssignment.make(id: "6", name: "6", due_at: Date().addDays(-1), assignment_group_id: "5"),
         ]
-        let u = GetAssignmentsForGrades(courseID: "1", groupBy: .assingnmentGroup, requestQuerySize: 99)
+        let u = GetAssignmentsForGrades(courseID: "1", groupBy: .assignmentGroup, requestQuerySize: 99)
         u.write(response: apiAssignments, urlResponse: nil, to: databaseClient)
 
         let groups = [
