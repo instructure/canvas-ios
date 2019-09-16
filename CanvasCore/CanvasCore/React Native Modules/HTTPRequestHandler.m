@@ -16,8 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#if DEBUG
-
 #import <Foundation/Foundation.h>
 #import <CanvasCore/CanvasCore-Swift.h>
 @import React;
@@ -48,5 +46,3 @@ RCT_EXPORT_MODULE();
 + (BOOL)requiresMainQueueSetup { return YES; }
 
 @end
-
-#endif
