@@ -56,3 +56,12 @@ public enum SubmissionType: String, Codable {
         }
     }
 }
+
+extension Array where Element == SubmissionType {
+    var isOnline: Bool {
+        if contains(.on_paper) || contains(.not_graded) || contains(.none) {
+            return false
+        }
+        return true
+    }
+}

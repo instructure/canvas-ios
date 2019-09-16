@@ -9,10 +9,12 @@
     </entity>
     <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
         <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="assignmentGroupID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="assignmentGroupPosition" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="courseID" attributeType="String" syncable="YES"/>
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="dueAtOrder" attributeType="String" defaultValueString="z" syncable="YES"/>
+        <attribute name="dueAtSortNilsAtBottom" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="gradedIndividually" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="gradingTypeRaw" attributeType="String" syncable="YES"/>
         <attribute name="hideRubricPoints" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -33,6 +35,12 @@
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="assignment" inverseEntity="DiscussionTopic" syncable="YES"/>
         <relationship name="rubric" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric" syncable="YES"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission" syncable="YES"/>
+    </entity>
+    <entity name="AssignmentGroup" representedClassName="Core.AssignmentGroup" syncable="YES">
+        <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="CalendarEventItem" representedClassName="Core.CalendarEventItem" syncable="YES">
         <attribute name="contextRaw" attributeType="String" syncable="YES"/>
@@ -426,7 +434,8 @@
     </entity>
     <elements>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="120"/>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="420"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="450"/>
+        <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="105"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="195"/>
@@ -455,5 +464,6 @@
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
+        <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
     </elements>
 </model>

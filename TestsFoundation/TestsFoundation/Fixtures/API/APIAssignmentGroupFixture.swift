@@ -17,17 +17,18 @@
 //
 
 import Foundation
-import UIKit
+@testable import Core
 
-public class SectionHeaderView: UITableViewHeaderFooterView {
-    @IBOutlet weak var titleLabel: DynamicLabel?
-    @IBOutlet weak var bgView: UIView!
-
-    public static func create(title: String, section: Int) -> SectionHeaderView {
-        let view = loadFromXib()
-        view.backgroundColor = .named(.backgroundLight)
-        view.titleLabel?.text = title
-        view.bgView.backgroundColor = .named(.backgroundLightest)
-        return view
+extension APIAssignmentGroup {
+    public static func make(
+        id: ID = "1",
+        name: String = "Assignment Group A",
+        position: Int = 1
+        ) -> APIAssignmentGroup {
+        return APIAssignmentGroup(
+            id: id,
+            name: name,
+            position: position
+        )
     }
 }

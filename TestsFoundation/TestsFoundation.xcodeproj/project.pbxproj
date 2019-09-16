@@ -17,6 +17,8 @@
 		3B0CEBA421504C2500D07CFA /* APIGroupFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CEBA121504C2500D07CFA /* APIGroupFixture.swift */; };
 		3B0CEBA521504C2500D07CFA /* APICourseFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CEBA221504C2500D07CFA /* APICourseFixture.swift */; };
 		3B19D25D2265391F003A0565 /* RubricFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B19D25C2265391F003A0565 /* RubricFixture.swift */; };
+		3B6043A1232AAD1A00757B93 /* APIAssignmentGroupFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A0232AAD1A00757B93 /* APIAssignmentGroupFixture.swift */; };
+		3B6043AA232AB93900757B93 /* AssignmentGroupsFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A9232AB93900757B93 /* AssignmentGroupsFixture.swift */; };
 		3B635B35225CDFB1001F353D /* CalendarEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B34225CDFB1001F353D /* CalendarEventFixture.swift */; };
 		3B635B39225CE613001F353D /* APICalendarEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B38225CE613001F353D /* APICalendarEventFixture.swift */; };
 		3B6386A72264F781002DEE72 /* APIRubricFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6386A62264F781002DEE72 /* APIRubricFixture.swift */; };
@@ -98,6 +100,8 @@
 		3B0CEBA121504C2500D07CFA /* APIGroupFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIGroupFixture.swift; sourceTree = "<group>"; };
 		3B0CEBA221504C2500D07CFA /* APICourseFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICourseFixture.swift; sourceTree = "<group>"; };
 		3B19D25C2265391F003A0565 /* RubricFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricFixture.swift; sourceTree = "<group>"; };
+		3B6043A0232AAD1A00757B93 /* APIAssignmentGroupFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAssignmentGroupFixture.swift; sourceTree = "<group>"; };
+		3B6043A9232AB93900757B93 /* AssignmentGroupsFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentGroupsFixture.swift; sourceTree = "<group>"; };
 		3B635B34225CDFB1001F353D /* CalendarEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventFixture.swift; sourceTree = "<group>"; };
 		3B635B38225CE613001F353D /* APICalendarEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarEventFixture.swift; sourceTree = "<group>"; };
 		3B6386A62264F781002DEE72 /* APIRubricFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRubricFixture.swift; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 		3B0CEB9121504B6F00D07CFA /* API */ = {
 			isa = PBXGroup;
 			children = (
+				3B6043A0232AAD1A00757B93 /* APIAssignmentGroupFixture.swift */,
 				7D148646230B49DC003944A2 /* APIAccountNotificationFixture.swift */,
 				7DB0A1D321C1C90D009ABB40 /* APIAccountResultsFixture.swift */,
 				7D6C8C6A22EA0C5900E5ADD8 /* APIActivityFixture.swift */,
@@ -304,6 +309,7 @@
 				3B032D17215037C900B570F7 /* TTLFixture.swift */,
 				9F10A66C22931C5B00E3360C /* UserSettingsFixture.swift */,
 				9F62EDD32326C5B900EA9F79 /* SearchRecipientFixture.swift */,
+				3B6043A9232AB93900757B93 /* AssignmentGroupsFixture.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -516,10 +522,12 @@
 				B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */,
 				B141ABE4231EE16F00E73D84 /* APIOAuthTokenFixture.swift in Sources */,
 				7D903C1E22C17128009D9E9E /* TabBar.swift in Sources */,
+				3B6043A1232AAD1A00757B93 /* APIAssignmentGroupFixture.swift in Sources */,
 				7D6C8C7A22F351F400E5ADD8 /* ActAsUser.swift in Sources */,
 				3BDB8F3C22E663A2003D81C3 /* MockPageViewLogger.swift in Sources */,
 				7D5C87232239A9EE00D99651 /* SubmissionCommentFixture.swift in Sources */,
 				7D903C0A22BC1329009D9E9E /* LoginStart.swift in Sources */,
+				3B6043AA232AB93900757B93 /* AssignmentGroupsFixture.swift in Sources */,
 				9F1CEA5B22400A1D000BB98F /* APIPermissions.swift in Sources */,
 				B16F0371215BD5F10011E952 /* TestRouter.swift in Sources */,
 				B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */,

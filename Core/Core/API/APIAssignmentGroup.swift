@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2018-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,17 +17,9 @@
 //
 
 import Foundation
-import UIKit
 
-public class SectionHeaderView: UITableViewHeaderFooterView {
-    @IBOutlet weak var titleLabel: DynamicLabel?
-    @IBOutlet weak var bgView: UIView!
-
-    public static func create(title: String, section: Int) -> SectionHeaderView {
-        let view = loadFromXib()
-        view.backgroundColor = .named(.backgroundLight)
-        view.titleLabel?.text = title
-        view.bgView.backgroundColor = .named(.backgroundLightest)
-        return view
-    }
+public struct APIAssignmentGroup: Codable, Equatable {
+    let id: ID
+    let name: String
+    let position: Int
 }

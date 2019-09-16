@@ -25,6 +25,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var quizID: String?
     @NSManaged public var details: String?
     @NSManaged public var dueAt: Date?
+    @NSManaged public var dueAtSortNilsAtBottom: Date
     @NSManaged public var gradedIndividually: Bool
     @NSManaged var gradingTypeRaw: String
     @NSManaged public var htmlURL: URL
@@ -39,12 +40,13 @@ public class Assignment: NSManagedObject {
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var lockExplanation: String?
     @NSManaged public var url: URL?
-    @NSManaged public var dueAtOrder: String
     @NSManaged public var discussionTopic: DiscussionTopic?
     @NSManaged public var rubric: Set<Rubric>?
     @NSManaged public var useRubricForGrading: Bool
     @NSManaged public var lastUpdatedAt: Date?
     @NSManaged public var hideRubricPoints: Bool
+    @NSManaged public var assignmentGroupID: String?
+    @NSManaged public var assignmentGroupPosition: Int
 
     public var gradingType: GradingType {
         get { return GradingType(rawValue: gradingTypeRaw) ?? .points }
@@ -71,7 +73,7 @@ extension Assignment {
         details = item.description
         pointsPossible = item.points_possible
         dueAt = item.due_at
-        dueAtOrder = item.due_at == nil ? "z" : "a"
+        dueAtSortNilsAtBottom = item.due_at ?? Date.distantFuture
         htmlURL = item.html_url
         gradingType = item.grading_type
         gradedIndividually = item.grade_group_students_individually ?? true
@@ -85,6 +87,7 @@ extension Assignment {
         url = item.url
         useRubricForGrading = item.use_rubric_for_grading ?? false
         lastUpdatedAt = Date()
+        assignmentGroupID = item.assignment_group_id?.value
 
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)
@@ -208,6 +211,74 @@ extension Assignment {
         } else {
             return .unlocked
         }
+    }
+
+    public var submissionStatus: String {
+        guard let s = submission else { return NSLocalizedString("Not Submitted", comment: "") }
+
+        if !submissionTypes.isOnline { return "" }
+        if s.excused ?? false { return "" }
+        if s.late { return NSLocalizedString("Late", comment: "") }
+        if s.missing { return NSLocalizedString("Missing", comment: "") }
+        if s.submittedAt != nil { return NSLocalizedString("Submitted", comment: "") }
+
+        return ""
+    }
+
+    public var icon: UIImage? {
+        var image: UIImage? = .icon(.assignment, .line)
+        if quizID != nil {
+            image = .icon(.quiz, .line)
+        } else if submissionTypes.contains(.discussion_topic) {
+            image = .icon(.discussion, .line)
+        } else if submissionTypes.contains(.external_tool) || submissionTypes.contains(.basic_lti_launch) {
+            image = .icon(.lti, .line)
+        }
+
+        if lockedForUser {
+            image = .icon(.lock, .line)
+        }
+
+        return image
+    }
+
+    public var gradesListGradeText: String? {
+        let totalPointsPossible: String = formattedGradeNumber(pointsPossible) ?? ""
+        let emptyPoints = "- / \(totalPointsPossible)"
+        guard let submission = submission else {
+            return emptyPoints
+        }
+
+        if submission.excused ?? false {
+            return NSLocalizedString("Excused", comment: "")
+        }
+
+        if submission.score == nil {
+            return "- / \(totalPointsPossible)"
+        }
+
+        let score = formattedGradeNumber(submission.score) ?? ""
+
+        switch gradingType {
+        case .pass_fail:
+            var status = "-"
+            status = submission.grade == "incomplete"
+                ? NSLocalizedString("Incomplete", bundle: .core, comment: "")
+                : NSLocalizedString("Complete", bundle: .core, comment: "")
+            return "\(status) / \(totalPointsPossible)"
+        case .points:
+            return "\(score) / \(totalPointsPossible)"
+
+        case .letter_grade, .percent, .gpa_scale:
+            return "\(score) / \(totalPointsPossible) (\(submission.grade ?? ""))"
+        case .not_graded:
+            return ""
+        }
+    }
+
+    func formattedGradeNumber(_ number: Double?) -> String? {
+        guard let number = number else { return nil }
+        return NumberFormatter.localizedString(from: NSNumber(value: (number * 100) / 100), number: .decimal)
     }
 }
 

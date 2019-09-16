@@ -119,6 +119,10 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         return frc.sections?[section].numberOfObjects ?? 0
     }
 
+    public func sectionInfo(inSection section: Int) -> NSFetchedResultsSectionInfo? {
+        return frc.sections?[section]
+    }
+
     public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) {
         request(useCase, force: force, callback: callback)
     }

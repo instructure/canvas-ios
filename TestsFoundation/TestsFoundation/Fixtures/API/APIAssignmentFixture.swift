@@ -43,7 +43,8 @@ extension APIAssignment {
         discussion_topic: APIDiscussionTopic? = nil,
         rubric: [APIRubric]? = nil,
         use_rubric_for_grading: Bool? = nil,
-        rubric_settings: APIRubricSettings? = nil
+        rubric_settings: APIRubricSettings? = nil,
+        assignment_group_id: ID? = nil
     ) -> APIAssignment {
         return APIAssignment(
             id: id,
@@ -68,7 +69,8 @@ extension APIAssignment {
             rubric: rubric,
             submission: submission.flatMap { APIList($0) },
             use_rubric_for_grading: use_rubric_for_grading,
-            rubric_settings: rubric_settings
+            rubric_settings: rubric_settings,
+            assignment_group_id: assignment_group_id
         )
     }
 }
@@ -94,7 +96,8 @@ extension APIAssignmentNoSubmission {
         url: URL? = nil,
         discussion_topic: APIDiscussionTopic? = nil,
         rubric: [APIRubric]? = nil,
-        use_rubric_for_grading: Bool? = nil
+        use_rubric_for_grading: Bool? = nil,
+        assignment_group_id: ID? = nil
     ) -> APIAssignmentNoSubmission {
         return APIAssignmentNoSubmission(
             id: id,
@@ -116,7 +119,8 @@ extension APIAssignmentNoSubmission {
             url: url,
             discussion_topic: discussion_topic,
             rubric: rubric,
-            use_rubric_for_grading: use_rubric_for_grading
+            use_rubric_for_grading: use_rubric_for_grading,
+            assignment_group_id: assignment_group_id
         )
     }
 }

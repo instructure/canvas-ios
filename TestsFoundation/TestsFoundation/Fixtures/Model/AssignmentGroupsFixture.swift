@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2018-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,18 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import CoreData
 import Foundation
-import UIKit
+@testable import Core
 
-public class SectionHeaderView: UITableViewHeaderFooterView {
-    @IBOutlet weak var titleLabel: DynamicLabel?
-    @IBOutlet weak var bgView: UIView!
-
-    public static func create(title: String, section: Int) -> SectionHeaderView {
-        let view = loadFromXib()
-        view.backgroundColor = .named(.backgroundLight)
-        view.titleLabel?.text = title
-        view.bgView.backgroundColor = .named(.backgroundLightest)
-        return view
+extension AssignmentGroup {
+    @discardableResult
+    public static func make(
+        from api: APIAssignmentGroup = .make(), courseID: String = "1",
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+        ) -> AssignmentGroup {
+        let model = AssignmentGroup.save(api, courseID: courseID, in: context)
+        try! context.save()
+        return model
     }
 }

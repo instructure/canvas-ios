@@ -55,6 +55,15 @@
 		3B5369E2219CDD3500D3F62E /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5369E1219CDD3500D3F62E /* URLExtensions.swift */; };
 		3B5369E4219D0FD000D3F62E /* URLExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */; };
 		3B5425FC21B074500009D069 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */; };
+		3B60439123299B6C00757B93 /* GradesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B60439023299B6C00757B93 /* GradesCell.xib */; };
+		3B604393232A975A00757B93 /* GradesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B604392232A975A00757B93 /* GradesPresenter.swift */; };
+		3B60439A232AAC4E00757B93 /* AssignmentGroupRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B604398232AAC4E00757B93 /* AssignmentGroupRequestable.swift */; };
+		3B60439B232AAC4E00757B93 /* APIAssignmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B604399232AAC4E00757B93 /* APIAssignmentGroup.swift */; };
+		3B60439D232AAC9600757B93 /* GetAssignmentGroupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B60439C232AAC9600757B93 /* GetAssignmentGroupUseCase.swift */; };
+		3B60439F232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B60439E232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift */; };
+		3B6043A3232AADB600757B93 /* AssigmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A2232AADB600757B93 /* AssigmentGroup.swift */; };
+		3B6043A5232AB00700757B93 /* AssignmentGroupRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A4232AB00700757B93 /* AssignmentGroupRequestableTests.swift */; };
+		3B6043A8232AB81900757B93 /* GradesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A7232AB81900757B93 /* GradesPresenterTests.swift */; };
 		3B635B29225C13DD001F353D /* DiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B28225C13DD001F353D /* DiscussionTopic.swift */; };
 		3B635B2B225CD298001F353D /* APICalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B2A225CD298001F353D /* APICalendarEvent.swift */; };
 		3B635B2D225CD377001F353D /* APICalendarRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B2C225CD377001F353D /* APICalendarRequestable.swift */; };
@@ -700,6 +709,15 @@
 		3B5369E1219CDD3500D3F62E /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
 		3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		3B60439023299B6C00757B93 /* GradesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GradesCell.xib; sourceTree = "<group>"; };
+		3B604392232A975A00757B93 /* GradesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesPresenter.swift; sourceTree = "<group>"; };
+		3B604398232AAC4E00757B93 /* AssignmentGroupRequestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentGroupRequestable.swift; sourceTree = "<group>"; };
+		3B604399232AAC4E00757B93 /* APIAssignmentGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAssignmentGroup.swift; sourceTree = "<group>"; };
+		3B60439C232AAC9600757B93 /* GetAssignmentGroupUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignmentGroupUseCase.swift; sourceTree = "<group>"; };
+		3B60439E232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignmentGroupUseCaseTests.swift; sourceTree = "<group>"; };
+		3B6043A2232AADB600757B93 /* AssigmentGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigmentGroup.swift; sourceTree = "<group>"; };
+		3B6043A4232AB00700757B93 /* AssignmentGroupRequestableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentGroupRequestableTests.swift; sourceTree = "<group>"; };
+		3B6043A7232AB81900757B93 /* GradesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesPresenterTests.swift; sourceTree = "<group>"; };
 		3B635B28225C13DD001F353D /* DiscussionTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopic.swift; sourceTree = "<group>"; };
 		3B635B2A225CD298001F353D /* APICalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarEvent.swift; sourceTree = "<group>"; };
 		3B635B2C225CD377001F353D /* APICalendarRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarRequestable.swift; sourceTree = "<group>"; };
@@ -1501,6 +1519,7 @@
 		2C96483B211E2F1A002C3255 /* CoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				3B6043A6232AB80500757B93 /* Grades */,
 				3BC3E01E2315A2A700E15C6D /* Analytics */,
 				7D3A1EED227BEFB20094531E /* ActAsUser */,
 				7D80AC13212B659300C40ECE /* API */,
@@ -1686,6 +1705,16 @@
 			children = (
 				3B4D861223295239005126A5 /* GradesViewController.swift */,
 				3B4D861423295263005126A5 /* GradesViewController.storyboard */,
+				3B60439023299B6C00757B93 /* GradesCell.xib */,
+				3B604392232A975A00757B93 /* GradesPresenter.swift */,
+			);
+			path = Grades;
+			sourceTree = "<group>";
+		};
+		3B6043A6232AB80500757B93 /* Grades */ = {
+			isa = PBXGroup;
+			children = (
+				3B6043A7232AB81900757B93 /* GradesPresenterTests.swift */,
 			);
 			path = Grades;
 			sourceTree = "<group>";
@@ -1785,6 +1814,7 @@
 				9F84595D228F34200031034E /* UserSettings.swift */,
 				B1B6F070219A1F2800C1575D /* UTI.swift */,
 				3B801BF92322F64900D143F0 /* AlertThreshold.swift */,
+				3B6043A2232AADB600757B93 /* AssigmentGroup.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2111,6 +2141,7 @@
 		7D80AC13212B659300C40ECE /* API */ = {
 			isa = PBXGroup;
 			children = (
+				3B6043A4232AB00700757B93 /* AssignmentGroupRequestableTests.swift */,
 				7D80AC24212C61F100C40ECE /* APIAccountRequestableTests.swift */,
 				B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */,
 				B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift */,
@@ -2191,6 +2222,8 @@
 		7D8262E9212B1A4F00BD268D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				3B604399232AAC4E00757B93 /* APIAssignmentGroup.swift */,
+				3B604398232AAC4E00757B93 /* AssignmentGroupRequestable.swift */,
 				7D80AC11212B4F8E00C40ECE /* API.swift */,
 				7D80AC22212B8A2100C40ECE /* APIAccount.swift */,
 				7D80AC20212B89C500C40ECE /* APIAccountRequestable.swift */,
@@ -2428,6 +2461,7 @@
 		B1445309212E5B8E0009D848 /* Use Cases */ = {
 			isa = PBXGroup;
 			children = (
+				3B60439C232AAC9600757B93 /* GetAssignmentGroupUseCase.swift */,
 				3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */,
 				7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */,
 				B150C623229733C50096D58C /* GetArc.swift */,
@@ -2535,6 +2569,7 @@
 		B1EA5AEC212E652C00DABC5F /* Use Cases */ = {
 			isa = PBXGroup;
 			children = (
+				3B60439E232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift */,
 				3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */,
 				7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */,
 				B150C63D2298E6410096D58C /* GetArcTests.swift */,
@@ -3011,6 +3046,7 @@
 				7DD694892195F7A200BA4984 /* DocViewerViewController.storyboard in Resources */,
 				7D842A8E22A818C800484B92 /* WrongAppLinkView.xib in Resources */,
 				B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */,
+				3B60439123299B6C00757B93 /* GradesCell.xib in Resources */,
 				EE584C7E22F2048D00D1E201 /* PageListViewController.storyboard in Resources */,
 				3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */,
 				7DE6A7042319921A00A5B796 /* ItemPickerViewController.storyboard in Resources */,
@@ -3159,16 +3195,19 @@
 				B1A32BDC21599F1C0071B41E /* APISubmission.swift in Sources */,
 				B19792F3217634D30000369C /* Scope.swift in Sources */,
 				B1E789AF21B0F9370087FE4A /* Logger.swift in Sources */,
+				3B60439B232AAC4E00757B93 /* APIAssignmentGroup.swift in Sources */,
 				B1A32BD821599C610071B41E /* APIAssignment.swift in Sources */,
 				B195DC45213201DE00797FE4 /* GetUserGroups.swift in Sources */,
 				9FBE5358223AD1AB001EC40C /* DeveloperMenuViewController.swift in Sources */,
 				7D5A2BC222CD062E0029B6AC /* APIList.swift in Sources */,
 				B11D321721E464AB00F37ABF /* Store.swift in Sources */,
+				3B6043A3232AADB600757B93 /* AssigmentGroup.swift in Sources */,
 				7DF4FFCA217116BC007E5F81 /* Course.swift in Sources */,
 				3B158CA822E1343D0039A568 /* PageViewSession.swift in Sources */,
 				DFE1FF1D212F5E1A003F27AA /* LoginSession.swift in Sources */,
 				7D80AC2B212C77C600C40ECE /* APIOAuth.swift in Sources */,
 				7D20F61921C3166800B77E5E /* UICollectionViewExtensions.swift in Sources */,
+				3B60439D232AAC9600757B93 /* GetAssignmentGroupUseCase.swift in Sources */,
 				B1E789B121B199E40087FE4A /* LogEventListPresenter.swift in Sources */,
 				3B339B6A226FA9AF00D3283D /* ChatBubbleView.swift in Sources */,
 				3B5425FC21B074500009D069 /* UIViewControllerExtensions.swift in Sources */,
@@ -3237,6 +3276,7 @@
 				7D062AF4212496E600677F66 /* Context.swift in Sources */,
 				7DCF2038216D55E6003AF358 /* QuizType.swift in Sources */,
 				7D29D309218A5E810036437C /* APIDocViewerRequestable.swift in Sources */,
+				3B60439A232AAC4E00757B93 /* AssignmentGroupRequestable.swift in Sources */,
 				9F6878AF223951EE00E559CE /* APIMediaComment.swift in Sources */,
 				9FE21AA8226A09DE00A1D9AD /* APIRecentlyGradedRequestable.swift in Sources */,
 				7D29D307218A592B0036437C /* APIDocViewer.swift in Sources */,
@@ -3319,6 +3359,7 @@
 				7D8262F9212B3B2000BD268D /* APISection.swift in Sources */,
 				3B4B75C7222F09C7002CCBEC /* CreateSubmission.swift in Sources */,
 				7D52D8AB2301BA5100684932 /* ExperimentalFeature.swift in Sources */,
+				3B604393232A975A00757B93 /* GradesPresenter.swift in Sources */,
 				B195DC512132257500797FE4 /* GetCourse.swift in Sources */,
 				7D29D2FF218A4FEA0036437C /* PSPDFAnnotationExtension.swift in Sources */,
 				7D80AC0E212B4D4100C40ECE /* APIFavorite.swift in Sources */,
@@ -3503,8 +3544,10 @@
 				DFE1FF20212F5E41003F27AA /* LoginSessionTests.swift in Sources */,
 				B15CA22D221CA2EE0014FB02 /* UseCaseTests.swift in Sources */,
 				B164DC1F22DE2AB30037FA86 /* APIAccountResultTests.swift in Sources */,
+				3B6043A8232AB81900757B93 /* GradesPresenterTests.swift in Sources */,
 				7D52D8AD2301C0A400684932 /* ExperimentalFeatureTests.swift in Sources */,
 				B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */,
+				3B6043A5232AB00700757B93 /* AssignmentGroupRequestableTests.swift in Sources */,
 				3BD364AB225D3C02006CEBD8 /* DiscussionTopicTests.swift in Sources */,
 				7D80AC17212B689E00C40ECE /* APITabRequestableTests.swift in Sources */,
 				3B3467D62135B99700F9BC2E /* IDTests.swift in Sources */,
@@ -3580,6 +3623,7 @@
 				7DCF2040216D5EF1003AF358 /* APIQuizRequestableTests.swift in Sources */,
 				3B158CBA22E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift in Sources */,
 				B1E789BD21B1D3D50087FE4A /* LogEventListPresenterTests.swift in Sources */,
+				3B60439F232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift in Sources */,
 				B133A78A221F59A3000E393E /* ColorTests.swift in Sources */,
 				7D7110CC2139AB310085C2E5 /* URLComponentsExtensionsTests.swift in Sources */,
 				7DF4FFC121700BCE007E5F81 /* TabViewableTests.swift in Sources */,

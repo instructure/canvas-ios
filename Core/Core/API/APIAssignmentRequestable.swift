@@ -78,24 +78,38 @@ public struct GetAssignmentsRequest: APIRequestable {
         case position, name
     }
 
+    public enum Include: String {
+        case overrides
+        case discussion_topic
+        case observed_users
+        case submission
+    }
+
     public typealias Response = [APIAssignment]
 
     let courseID: String
     let orderBy: OrderBy
+    let include: [Include]
+    let querySize: Int
 
-    public init(courseID: String, orderBy: OrderBy = .position) {
+    public init(courseID: String, orderBy: OrderBy = .position, include: [Include] = [], querySize: Int = 100) {
         self.courseID = courseID
         self.orderBy = orderBy
+        self.include = include
+        self.querySize = querySize
     }
 
     public var path: String {
         let context = ContextModel(.course, id: courseID)
-        return "\(context.pathComponent)/assignments?per_page=100"
+        return "\(context.pathComponent)/assignments"
     }
 
     public var query: [APIQueryItem] {
-        return [
-            .value("order_by", orderBy.rawValue),
-        ]
+        var q: [APIQueryItem] = [ .value("order_by", orderBy.rawValue), .value("per_page", String(querySize)) ]
+
+        if !include.isEmpty {
+            q.append( .array("include", include.map { $0.rawValue }) )
+        }
+        return q
     }
 }
