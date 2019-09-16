@@ -79,7 +79,7 @@ public class GetAssignments: CollectionUseCase {
 
 public class GetSubmittableAssignments: GetAssignments {
     public init(courseID: String) {
-        super.init(courseID: courseID, sort: .name)
+        super.init(courseID: courseID, sort: .dueAt)
     }
 
     public override var scope: Scope {
@@ -89,6 +89,10 @@ public class GetSubmittableAssignments: GetAssignments {
             NSPredicate(format: "%K == NIL OR %K > %@", #keyPath(Assignment.lockAt), #keyPath(Assignment.lockAt), NSDate()),
             NSPredicate(format: "%K == NIL OR %K <= %@", #keyPath(Assignment.unlockAt), #keyPath(Assignment.unlockAt), NSDate()),
         ])
-        return Scope(predicate: predicate, orderBy: #keyPath(Assignment.name))
+        //  this puts nil dueAt at the bottom of the list
+        let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtOrder), ascending: true)
+        let b = NSSortDescriptor(key: #keyPath(Assignment.dueAt), ascending: true)
+        let c = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
+        return Scope(predicate: predicate, order: [ a, b, c ])
     }
 }
