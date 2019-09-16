@@ -58,8 +58,12 @@ public class GradesViewController: UIViewController {
 extension GradesViewController: GradesViewProtocol {
     func update(isLoading: Bool) {
         tableView.reloadData()
-        loadingView.isHidden = isLoading
-        tableView?.refreshControl?.endRefreshing()
+
+        if !isLoading {
+            loadingView.isHidden = true
+            tableView?.refreshControl?.endRefreshing()
+            view.setNeedsLayout()
+        }
     }
 }
 
@@ -75,15 +79,7 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let a = presenter.assignments[indexPath]
         let cell: GradesCell =  tableView.dequeue(for: indexPath)
-        cell.nameLabel?.text = a?.name
-        cell.gradeLabel?.text = a?.gradesListGradeText
-        cell.typeImage.image = a?.icon
-        cell.accessoryType = .disclosureIndicator
-
-        let status = a?.submissionStatusText
-        cell.statusLabel?.text = status
-        cell.statusLabel?.isHidden = status == nil
-
+        cell.update(a)
         return cell
     }
 
@@ -110,10 +106,11 @@ extension GradesViewController: UIScrollViewDelegate {
 
 public class GradesCell: UITableViewCell {
 
-    @IBOutlet weak var typeImage: UIImageView!
-    @IBOutlet weak var gradeLabel: DynamicLabel!
-    @IBOutlet weak var statusLabel: DynamicLabel!
     @IBOutlet weak var nameLabel: DynamicLabel!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var typeImage: UIImageView!
+    @IBOutlet weak var dueLabel: DynamicLabel!
+    @IBOutlet weak var gradeLabel: DynamicLabel!
 
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
@@ -123,5 +120,13 @@ public class GradesCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadFromXib()
+    }
+
+    func update(_ a: Assignment?) {
+        typeImage.image = a?.icon
+        nameLabel.text = a?.name
+        gradeLabel.text = a?.gradesListGradeText
+        dueLabel.text = a?.dueAt != nil ? a?.dueText : nil
+        dueLabel.isHidden = a?.dueAt == nil
     }
 }
