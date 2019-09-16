@@ -96,10 +96,9 @@ public class GetSubmittableAssignments: GetAssignments {
             NSPredicate(format: "%K == NIL OR %K <= %@", #keyPath(Assignment.unlockAt), #keyPath(Assignment.unlockAt), NSDate()),
         ])
         //  this puts nil dueAt at the bottom of the list
-        let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtOrder), ascending: true)
-        let b = NSSortDescriptor(key: #keyPath(Assignment.dueAt), ascending: true)
-        let c = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
-        return Scope(predicate: predicate, order: [ a, b, c ])
+        let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
+        let b = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
+        return Scope(predicate: predicate, order: [ a, b ])
     }
 }
 
