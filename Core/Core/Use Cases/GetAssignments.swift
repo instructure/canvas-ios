@@ -59,10 +59,9 @@ public class GetAssignments: CollectionUseCase {
         case .dueAt:
             //  this puts nil dueAt at the bottom of the list
             let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
-            let b = NSSortDescriptor(key: #keyPath(Assignment.dueAt), ascending: true)
-            let c = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
+            let b = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
             let predicate = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.courseID), courseID])
-            return Scope(predicate: predicate, order: [a, b, c])
+            return Scope(predicate: predicate, order: [a, b])
         case .position:
             return .where(#keyPath(Assignment.courseID), equals: courseID, orderBy: #keyPath(Assignment.position))
         case .name:
@@ -107,7 +106,7 @@ public class GetAssignmentsForGrades: GetAssignments {
     let groupBy: GroupBy
 
     public enum GroupBy: String {
-        case assingnmentGroup, dueAt
+        case assignmentGroup, dueAt
     }
 
     public init(courseID: String, groupBy: GroupBy = .dueAt, requestQuerySize: Int = 10) {
@@ -117,7 +116,7 @@ public class GetAssignmentsForGrades: GetAssignments {
 
     public override var scope: Scope {
         switch groupBy {
-        case .assingnmentGroup:
+        case .assignmentGroup:
             let predicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.courseID), courseID)
             let s0 = NSSortDescriptor(key: #keyPath(Assignment.assignmentGroupPosition), ascending: true, selector: nil)
             let s1 = NSSortDescriptor(key: #keyPath(Assignment.dueAt), ascending: true, selector: nil)

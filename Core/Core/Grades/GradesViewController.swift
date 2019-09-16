@@ -58,7 +58,7 @@ public class GradesViewController: UIViewController {
 extension GradesViewController: GradesViewProtocol {
     func update(isLoading: Bool) {
         tableView.reloadData()
-        loadingView.isHidden = true
+        loadingView.isHidden = isLoading
         tableView?.refreshControl?.endRefreshing()
     }
 }

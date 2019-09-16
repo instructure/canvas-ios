@@ -73,7 +73,7 @@ extension Assignment {
         details = item.description
         pointsPossible = item.points_possible
         dueAt = item.due_at
-        dueAtSortNilsAtBottom = item.due_at == nil ? Date.distantFuture : item.due_at!
+        dueAtSortNilsAtBottom = item.due_at ?? Date.distantFuture
         htmlURL = item.html_url
         gradingType = item.grading_type
         gradedIndividually = item.grade_group_students_individually ?? true
@@ -213,7 +213,7 @@ extension Assignment {
         }
     }
 
-    public var submissionStatus: String? {
+    public var submissionStatus: String {
         guard let s = submission else { return NSLocalizedString("Not Submitted", comment: "") }
 
         if !submissionTypes.isOnline { return "" }
