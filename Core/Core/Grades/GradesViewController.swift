@@ -23,6 +23,11 @@ public class GradesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var presenter: GradesPresenter!
     @IBOutlet weak var loadingView: UIView!
+    static let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm:ss ZZ"
+        return df
+    }()
 
     public static func create(courseID: String) -> GradesViewController {
         let vc = GradesViewController.loadFromStoryboard()
@@ -62,7 +67,7 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
         let a = presenter.assignments[indexPath]
         let cell: GradesCell =  tableView.dequeue(for: indexPath)
         cell.nameLabel?.text = a?.name
-        cell.gradeLabel?.text = a?.gradeText
+        cell.gradeLabel?.text = a?.gradesListGradeText
         cell.typeImage.image = a?.icon
         cell.accessoryType = .disclosureIndicator
 
@@ -75,8 +80,13 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
-        view.titleLabel?.text = presenter.assignmentGroups[section]?.name
-        let bg = UIView(); bg.backgroundColor = .named(.backgroundLight); view.backgroundView = bg
+        guard let sectionInfo = presenter.assignments.sectionInfo(inSection: section) else { return nil }
+
+        if let date = GradesViewController.dateFormatter.date(from: sectionInfo.name), date != Date.distantFuture {
+            view.titleLabel?.text = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
+        } else {
+            view.titleLabel?.text = NSLocalizedString("No Due Date", comment: "")
+        }
         return view
     }
 }

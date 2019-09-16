@@ -25,6 +25,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var quizID: String?
     @NSManaged public var details: String?
     @NSManaged public var dueAt: Date?
+    @NSManaged public var dueAtSortNilsAtBottom: Date
     @NSManaged public var gradedIndividually: Bool
     @NSManaged var gradingTypeRaw: String
     @NSManaged public var htmlURL: URL
@@ -39,7 +40,6 @@ public class Assignment: NSManagedObject {
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var lockExplanation: String?
     @NSManaged public var url: URL?
-    @NSManaged public var dueAtOrder: String
     @NSManaged public var discussionTopic: DiscussionTopic?
     @NSManaged public var rubric: Set<Rubric>?
     @NSManaged public var useRubricForGrading: Bool
@@ -73,7 +73,7 @@ extension Assignment {
         details = item.description
         pointsPossible = item.points_possible
         dueAt = item.due_at
-        dueAtOrder = item.due_at == nil ? "z" : "a"
+        dueAtSortNilsAtBottom = item.due_at == nil ? Date.distantFuture : item.due_at!
         htmlURL = item.html_url
         gradingType = item.grading_type
         gradedIndividually = item.grade_group_students_individually ?? true

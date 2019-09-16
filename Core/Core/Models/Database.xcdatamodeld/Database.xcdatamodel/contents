@@ -14,7 +14,7 @@
         <attribute name="courseID" attributeType="String" syncable="YES"/>
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="dueAtOrder" attributeType="String" defaultValueString="z" syncable="YES"/>
+        <attribute name="dueAtSortNilsAtBottom" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="gradedIndividually" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="gradingTypeRaw" attributeType="String" syncable="YES"/>
         <attribute name="hideRubricPoints" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
