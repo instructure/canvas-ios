@@ -103,7 +103,7 @@ export class SubmissionList extends Component<Props, State> {
       path,
       { modal: true, modalPresentationStyle: 'fullscreen' },
       {
-        filter: oldCreateFilter(this.state.filterOptions),
+        filter: this.state.filter,
         studentIndex: index,
         flags: this.state.flags,
       }
