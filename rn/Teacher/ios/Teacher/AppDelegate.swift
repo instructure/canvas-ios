@@ -117,6 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 NativeLoginManager.login(as: session, wasReload: wasReload)
             }
         }
+        Analytics.shared.logSession(session)
     }
 
     @objc func prepareReactNative() {

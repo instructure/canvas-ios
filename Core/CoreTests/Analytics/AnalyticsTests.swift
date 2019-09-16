@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import Core
+import TestsFoundation
 
 class AnalyticsTests: XCTestCase {
 
@@ -36,6 +37,25 @@ class AnalyticsTests: XCTestCase {
 
         XCTAssertEqual(loggedEvent, name)
         XCTAssertEqual(loggedParameters?["bar"] as? String, "foo")
+    }
+
+    func testLogSession() {
+        var session = LoginSession.make(expiresAt: nil)
+        var defaults = SessionDefaults(sessionID: session.uniqueID)
+        defaults.reset()
+
+        Analytics.shared.logSession(session)
+        XCTAssertEqual(loggedEvent, "auth_forever_token")
+
+        loggedEvent = nil
+        Analytics.shared.logSession(session)
+        XCTAssertNil(loggedEvent)
+
+        session = LoginSession.make(expiresAt: Date())
+        Analytics.shared.logSession(session)
+        XCTAssertEqual(loggedEvent, "auth_expiring_token")
+
+        defaults.reset()
     }
 }
 
