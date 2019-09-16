@@ -35,7 +35,6 @@ enum PersonContextCard {
 class PeopleTests: CoreUITestCase {
     func testCourseUsersAndUserContextCardDisplay() {
         // Dashboard
-        Dashboard.courseCard(id: "262").waitToExist()
         Dashboard.courseCard(id: "262").tap()
 
         CourseNavigation.people.tap()

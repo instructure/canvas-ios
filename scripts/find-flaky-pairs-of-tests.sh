@@ -17,47 +17,87 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-set -eo pipefail
 
-cd ..
+set -euo pipefail
 
-export target_test=StudentDiscussionEditTests/testCreateDiscussionWithAttachment
+script_dir="$(dirname "$0")"
 
-echo "finding a flaky pair of tests conatining $target_test... failed tests will be saved to fail.txt"
+cd "$script_dir/.."
+
+usage() {
+    echo "usage: $0 [--teacher] testClass.method"
+}
+
+TEST_SUITE=StudentUITests
+while [[ "$1" != "" ]]; do
+    case $1 in
+        --teacher )   TEST_SUITE=TeacherUITests
+                      ;;
+        -h | --help ) usage
+                      exit 0
+                      ;;
+        * )           break
+                      ;;
+    esac
+    shift
+done
+
+if [[ "$#" -ne 1 ]]; then
+    usage
+    exit 1
+fi
+
+export TEST_SCHEME=NightlyTests
+export TARGET_TEST="$TEST_SUITE/${1:s#.#/#}"
+export LOG_FILE="scripts/failing-test-pairs.txt"
+
+echo "finding a flaky pair of tests conatining $TARGET_TEST"
+echo "failed tests will be saved to \"$LOG_FILE\""
 
 parallel --version >/dev/null || brew install parallel
 
-XCB=(xcodebuild -workspace Canvas.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 8' -scheme list-student-ui-tests)
+xcb=(xcodebuild -workspace Canvas.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 8' -scheme list-ui-tests)
 
-$XCB build-for-testing 2>&1 | xcpretty
-tests=(${(f)"$($XCB test-without-building 2>/dev/null | awk '/^UI_TEST:/ { print $2 "/" $3; }' | tr -d '[]-')"})
+$xcb build-for-testing 2>&1 | xcpretty
+tests=(${(f)"$(
+    $xcb test-without-building 2>/dev/null | \
+    awk '$1 == "UI_TEST:" && $2 == "'$TEST_SUITE'" { print $2 "/" $3 "/" $4; }' | \
+    tr -d '[]-'
+)"})
 
-xcodebuild -workspace Canvas.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 8' -scheme CITests build-for-testing 2>&1 | xcpretty
+echo
+echo "=== Found tests in suite $TEST_SUITE ==="
+echo $tests | tr ' ' $'\n'
+echo "========================================"
+echo
 
-JOBS=6
+xcodebuild -workspace Canvas.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 8' -scheme $TEST_SCHEME build-for-testing 2>&1 | xcpretty
+
+jobs=6
 
 parallel '
+set -euo pipefail
 xcrun simctl delete ip8-{} || true
 xcrun simctl create ip8-{} "iPhone 8" com.apple.CoreSimulator.SimRuntime.iOS-12-4
 xcrun simctl boot ip8-{}
-' ::: $(seq $JOBS)
+' ::: $(seq $jobs)
 
-rm -f fail.txt
+rm -f "$LOG_FILE"
 
-parallel --jobs $JOBS '
-set -o pipefail
-PRETTY=$(xcodebuild \
+parallel --jobs $jobs '
+set -euo pipefail
+command=(xcodebuild \
         -workspace Canvas.xcworkspace \
         -destination "platform=iOS Simulator,name=ip8-"{%} \
-        -scheme CITests test-without-building \
+        -scheme $TEST_SCHEME test-without-building \
         -parallel-testing-enabled NO \
-        -only-testing:StudentUITests/{} \
-        -only-testing:StudentUITests/$target_test 2>&1 \
-        | xcpretty --color \
-) || (printf "%s\n" "$PRETTY" >> fail.txt)
-printf "%s\n" "$PRETTY"
+        -only-testing:{} \
+        -only-testing:$TARGET_TEST \
+)
+output=$($command 2>&1) || (printf "%s" "$output" >> $LOG_FILE)
+printf "%s" "$output" | xcpretty --color
 ' ::: $tests
 
-parallel 'xcrun simctl shutdown ip8-{} || true' ::: $(seq $JOBS)
+parallel 'xcrun simctl shutdown ip8-{} || true' ::: $(seq $jobs)
 
-cat fail.txt
+xcpretty --color < $LOG_FILE | less

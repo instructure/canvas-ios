@@ -24,38 +24,31 @@ class DiscussionEditTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return DiscussionEditTests.self }
     override var user: UITestUser? { return nil }
 
-    let course1 = APICourse.make(id: "1", enrollments: [ .make(type: "TeacherEnrollment") ], permissions: .init(
+    lazy var course1 = mock(course: .make(id: "1", enrollments: [ .make(type: "TeacherEnrollment") ], permissions: .init(
         create_announcement: true,
         create_discussion_topic: true
-    ))
-    let noPermissionCourse = APICourse.make(id: "1", enrollments: [ .make(type: "TeacherEnrollment") ], permissions: .init(
+    )))
+    lazy var noPermissionCourse = mock(course: .make(id: "1", enrollments: [ .make(type: "TeacherEnrollment") ], permissions: .init(
         create_announcement: false,
         create_discussion_topic: false
-    ))
+    )))
 
-    func xtestCantCreateDiscussion() {
+    func testCantCreateDiscussion() {
         mockBaseRequests()
-        if Bundle.main.isTeacherApp {
-            mockData(GetCoursesRequest(state: [.available, .completed, .unpublished]), value: [ noPermissionCourse ])
-        } else {
-            mockData(GetCoursesRequest(state: [.available, .completed]), value: [ noPermissionCourse ])
-        }
-        mockData(GetCourseRequest(courseID: "1"), value: noPermissionCourse)
-        mockEncodableRequest("courses/1/discussion_topics?per_page=99&include[]=sections", value: [String]())
+        mockEncodableRequest("courses/\(noPermissionCourse.id)/discussion_topics?per_page=99&include[]=sections", value: [String]())
 
-        show("/courses/1/discussion_topics")
+        show("/courses/\(noPermissionCourse.id)/discussion_topics")
         app.find(label: "There are no discussions to display.").waitToExist()
         XCTAssertFalse(DiscussionList.newButton.isVisible)
     }
 
     func testCreateDiscussion() {
         mockBaseRequests()
-        mockEncodableRequest("courses/1/discussion_topics?per_page=99&include[]=sections", value: [String]())
-        mockEncodableRequest("courses/1/discussion_topics", value: [String: String]())
-        mockEncodableRequest("courses/1/settings", value: ["allow_student_forum_attachments": false])
-        mockEncodableRequest("courses/1/features/enabled", value: [String: String]())
+        mockEncodableRequest("courses/\(course1.id)/discussion_topics?per_page=99&include[]=sections", value: [String]())
+        mockEncodableRequest("courses/\(course1.id)/discussion_topics", value: [String: String]())
+        mockEncodableRequest("courses/\(course1.id)/settings", value: ["allow_student_forum_attachments": false])
 
-        show("/courses/1/discussion_topics")
+        show("/courses/\(course1.id)/discussion_topics")
         DiscussionList.newButton.tap()
 
         DiscussionEdit.titleField.waitToExist()
@@ -73,19 +66,16 @@ class DiscussionEditTests: CoreUITestCase {
 
     func testCreateDiscussionWithAttachment() {
         mockBaseRequests()
-        mockData(GetCoursesRequest(), value: [course1])
-        mockData(GetCourseRequest(courseID: "1"), value: course1)
-        mockEncodableRequest("courses/1/discussion_topics?per_page=99&include[]=sections", value: [String]())
-        mockEncodableRequest("courses/1/discussion_topics", value: [String: String](), error: "error")
-        mockEncodableRequest("courses/1/settings", value: ["allow_student_forum_attachments": true])
-        mockEncodableRequest("courses/1/features/enabled", value: [String: String]())
+        mockEncodableRequest("courses/\(course1.id)/discussion_topics?per_page=99&include[]=sections", value: [String]())
+        mockEncodableRequest("courses/\(course1.id)/discussion_topics", value: [String: String](), error: "error")
+        mockEncodableRequest("courses/\(course1.id)/settings", value: ["allow_student_forum_attachments": true])
 
         let targetUrl = "https://canvas.s3.bucket.com/bucket/1"
         mockEncodableRequest("users/self/files", value: FileUploadTarget.make(upload_url: URL(string: targetUrl)!))
         mockEncodableRequest(targetUrl, value: ["id": "1"])
         mockEncodableRequest("files/1", value: APIFile.make())
 
-        show("/courses/1/discussion_topics")
+        show("/courses/\(course1.id)/discussion_topics")
         DiscussionList.newButton.waitToExist(10).tap()
         DiscussionEdit.attachmentButton.tap()
         Attachments.addButton.tap()
@@ -100,8 +90,7 @@ class DiscussionEditTests: CoreUITestCase {
         app.find(label: "Upload complete").waitToExist()
         let img = XCUIElementWrapper(app.images.firstMatch)
         XCTAssertFalse(img.exists)
-        app.find(label: "Upload complete").tap()
-        img.waitToExist()
+        app.find(label: "Upload complete").tapUntil { img.exists }
         app.find(id: "screen.dismiss").tap()
         app.find(id: "attachments.attachment-row.0.remove.btn").tap()
         app.find(label: "Remove").tap()
