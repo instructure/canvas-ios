@@ -19,16 +19,20 @@
 import UIKit
 
 public protocol ProfilePresenterProtocol: class {
-    var view: ProfileViewControllerProtocol? { get set }
+    var view: ProfileViewProtocol? { get set }
     var cells: [ProfileViewCell] { get }
+    var helpLinks: Store<GetAccountHelpLinks> { get }
     func didTapVersion()
     func viewIsReady()
 }
 
-public protocol ProfileViewControllerProtocol: class {
+public protocol ProfileViewProtocol: class {
     func reload()
-    func show(_ route: Route, options: Core.RouteOptions?)
-    func show(_ route: String, options: Core.RouteOptions?)
+    func route(to: Route, options: RouteOptions?)
+    func route(to url: URL, options: RouteOptions?)
+    func route(to url: String, options: RouteOptions?)
+    func route(to url: URLComponents, options: RouteOptions?)
+    func showHelpMenu(from cell: UITableViewCell)
     func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?)
 }
 
@@ -44,20 +48,25 @@ public struct ProfileViewCell {
     }
 }
 
-public class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
+class ProfileTableViewCell: UITableViewCell {
+    @IBOutlet weak var nameLabel: UILabel?
+}
 
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var email: UILabel!
-    @IBOutlet weak var versionLabel: UILabel!
+public class ProfileViewController: UIViewController, ProfileViewProtocol {
+    @IBOutlet weak var avatarView: AvatarView?
+    @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var nameLabel: UILabel?
+    @IBOutlet weak var emailLabel: UILabel?
+    @IBOutlet weak var versionLabel: UILabel?
 
+    var env = AppEnvironment.shared
     var presenter: ProfilePresenterProtocol?
 
-    public static func create(presenter: ProfilePresenterProtocol) -> ProfileViewController {
-        let controller = self.loadFromXib()
+    public static func create(env: AppEnvironment = .shared, presenter: ProfilePresenterProtocol) -> ProfileViewController {
+        let controller = loadFromStoryboard()
         controller.modalPresentationStyle = .custom
         controller.transitioningDelegate = DrawerTransitioningDelegate.shared
+        controller.env = env
         controller.presenter = presenter
         presenter.view = controller
         return controller
@@ -68,50 +77,73 @@ public class ProfileViewController: UIViewController, ProfileViewControllerProto
 
         let session = AppEnvironment.shared.currentSession
 
-        avatarImageView.layer.cornerRadius = ceil( avatarImageView.bounds.size.width / 2 )
-        avatarImageView.clipsToBounds = true
-        avatarImageView.load(url: session?.userAvatarURL)
+        view?.backgroundColor = .named(.backgroundLightest)
 
-        name.text = session?.userName
-        email.text = session?.userEmail
+        avatarView?.name = session?.userName ?? ""
+        avatarView?.url = session?.userAvatarURL
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.tableFooterView = UIView()
-        tableView.delegate = self
+        nameLabel?.text = session?.userName
+        emailLabel?.text = session?.userEmail
+
+        tableView?.separatorColor = .named(.borderMedium)
         presenter?.viewIsReady()
 
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-            versionLabel.text = "v.\(version)"
+            versionLabel?.text = "v. \(version)"
         }
     }
 
     public func reload() {
-        self.tableView.reloadData()
+        tableView?.reloadData()
     }
 
-    public func show(_ route: Route, options: Core.RouteOptions? = nil) {
-        let router = AppEnvironment.shared.router
+    public func route(to: Route, options: RouteOptions?) {
+        route(to: to.url, options: options)
+    }
+
+    public func route(to url: URL, options: RouteOptions?) {
+        route(to: .parse(url), options: options)
+    }
+
+    public func route(to url: String, options: RouteOptions?) {
+        route(to: .parse(url), options: options)
+    }
+
+    public func route(to url: URLComponents, options: RouteOptions?) {
         let dashboard = presentingViewController ?? self
         dismiss(animated: true) {
-            router.route(to: route, from: dashboard, options: options)
+            self.env.router.route(to: url, from: dashboard, options: options)
         }
     }
 
-    public func show(_ route: String, options: Core.RouteOptions? = nil) {
-        let router = AppEnvironment.shared.router
-        let dashboard = presentingViewController ?? self
-        dismiss(animated: true) {
-            router.route(to: route, from: dashboard, options: options)
+    public func showHelpMenu(from cell: UITableViewCell) {
+        guard let helpLinks = presenter?.helpLinks, let root = helpLinks.first, helpLinks.count > 1 else { return }
+
+        let helpMenu = UIAlertController(title: root.text, message: nil, preferredStyle: .actionSheet)
+        for link in helpLinks.dropFirst() {
+            helpMenu.addAction(UIAlertAction(title: link.text, style: .default) { [weak self] _ in
+                switch link.id {
+                case "instructor_question":
+                    self?.route(to: "/conversations/compose?instructorQuestion=1&canAddRecipients=0", options: [.modal, .embedInNav])
+                case "report_a_problem":
+                    self?.route(to: .errorReport(for: "problem"), options: [.modal, .embedInNav])
+                default:
+                    self?.route(to: link.url, options: [.modal, .embedInNav])
+                }
+            })
         }
+        helpMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+
+        helpMenu.popoverPresentationController?.sourceView = cell
+        helpMenu.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint(x: cell.bounds.maxX, y: cell.bounds.midY), size: .zero)
+        present(helpMenu, animated: true)
     }
 }
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.contentView.backgroundColor = UIColor.named(.white)
-        cell.textLabel?.textColor = UIColor.named(.textDarkest)
-        cell.textLabel?.text = presenter?.cells[indexPath.row].name
+        let cell: ProfileTableViewCell = tableView.dequeue(for: indexPath)
+        cell.nameLabel?.text = presenter?.cells[indexPath.row].name
         return cell
     }
 

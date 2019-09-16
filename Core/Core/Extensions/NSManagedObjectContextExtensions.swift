@@ -50,6 +50,14 @@ extension NSManagedObjectContext {
         return (try? fetch(request)) as? [T] ?? []
     }
 
+    public func fetch<T>(scope: Scope) -> [T] {
+        let name = String(describing: T.self)
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: name)
+        request.predicate = scope.predicate
+        request.sortDescriptors = scope.order
+        return (try? fetch(request)) as? [T] ?? []
+    }
+
     public func delete<T: NSManagedObject>(_ objects: [T]) {
         for o in objects {
             delete(o)

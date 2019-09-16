@@ -473,6 +473,7 @@ private func makeProps(_ url: URLComponents, params: Props) -> Props {
         "port": url.port.flatMap { String($0) },
         "protocol": url.scheme.flatMap { "\($0):" },
         "query": url.queryItems?.reduce(into: [String: String?]()) { query, item in
+            props[item.name] = item.value
             query[item.name] = item.value
         },
         "search": url.query.flatMap { "?\($0)" },

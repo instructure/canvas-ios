@@ -21,13 +21,17 @@ import Core
 
 public class ProfilePresenter: ProfilePresenterProtocol {
     let env: AppEnvironment
-    public weak var view: ProfileViewControllerProtocol?
+    public weak var view: ProfileViewProtocol?
 
     #if DEBUG
     var showDevMenu = true
     #else
     var showDevMenu = UserDefaults.standard.bool(forKey: "showDevMenu")
     #endif
+
+    public lazy var helpLinks = env.subscribe(GetAccountHelpLinks(for: .observer)) { [weak self] in
+        self?.view?.reload()
+    }
 
     lazy var permissions: Store<GetContextPermissions> = {
         let useCase = GetContextPermissions(context: ContextModel(.account, id: "self"), permissions: [.becomeUser])
@@ -51,63 +55,40 @@ public class ProfilePresenter: ProfilePresenterProtocol {
     public var cells: [ProfileViewCell] {
         var cells: [ProfileViewCell] = []
 
+        cells.append(ProfileViewCell(name: NSLocalizedString("Manage Children", comment: "")) { [weak self] _ in
+            self?.view?.route(to: .profileObservees, options: nil)
+        })
+        if let root = helpLinks.first, helpLinks.count > 1 {
+            cells.append(ProfileViewCell(name: root.text) { [weak self] cell in
+                self?.view?.showHelpMenu(from: cell)
+            })
+        }
         if self.canMasquerade {
-            cells.append(ProfileViewCell(
-                name: NSLocalizedString("Act as User", bundle: .parent, comment: ""),
-                block: { [weak self] _ in
-                    self?.view?.show(.actAsUser, options: [.modal, .embedInNav])
-                }
-            ))
+            cells.append(ProfileViewCell(name: NSLocalizedString("Act as User", comment: "")) { [weak self] _ in
+                self?.view?.route(to: .actAsUser, options: [.modal, .embedInNav])
+            })
         }
-
-        cells.append(contentsOf: [
-            ProfileViewCell(
-                name: NSLocalizedString("Manage Children", bundle: .parent, comment: ""),
-                block: { [weak self] _ in
-                    self?.view?.show(.profileObservees, options: nil)
-                }
-            ),
-            ProfileViewCell(
-                name: NSLocalizedString("Help", bundle: .parent, comment: ""),
-                block: { [weak self] cell in
-                    self?.showHelpMenu(source: cell)
-                }
-            ),
-            ProfileViewCell(
-                name: NSLocalizedString("Change User", bundle: .parent, comment: ""),
-                block: { _ in
-                    guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
-                    delegate.changeUser()
-                }
-            ),
-            ProfileViewCell(
-                name: NSLocalizedString("Log Out", bundle: .parent, comment: ""),
-                block: { _ in
-                    guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
-                    guard let session = delegate.environment.currentSession else { return }
-                    delegate.userDidLogout(session: session)
-                }
-            ),
-        ])
-
+        cells.append(ProfileViewCell(name: NSLocalizedString("Change User", comment: "")) { _ in
+            guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
+            delegate.changeUser()
+        })
         if env.currentSession?.actAsUserID != nil {
-            cells.append(ProfileViewCell(
-                name: NSLocalizedString("Stop Act as User", bundle: .parent, comment: ""),
-                block: { _ in
-                    guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
-                    guard let session = delegate.environment.currentSession else { return }
-                    delegate.stopActing(as: session)
-                }
-            ))
+            cells.append(ProfileViewCell(name: NSLocalizedString("Stop Act as User", comment: "")) { _ in
+                guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
+                guard let session = delegate.environment.currentSession else { return }
+                delegate.stopActing(as: session)
+            })
+        } else {
+            cells.append(ProfileViewCell(name: NSLocalizedString("Log Out", comment: "")) { _ in
+                guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
+                guard let session = delegate.environment.currentSession else { return }
+                delegate.userDidLogout(session: session)
+            })
         }
-
         if showDevMenu {
-            cells.append(ProfileViewCell(
-                name: NSLocalizedString("Developer Menu", bundle: .parent, comment: ""),
-                block: { [weak self] _ in
-                    self?.view?.show(.developerMenu, options: [.modal, .embedInNav ])
-                }
-            ))
+            cells.append(ProfileViewCell(name: NSLocalizedString("Developer Menu", comment: "")) { [weak self] _ in
+                self?.view?.route(to: .developerMenu, options: [.modal, .embedInNav ])
+            })
         }
         return cells
     }
@@ -117,6 +98,7 @@ public class ProfilePresenter: ProfilePresenterProtocol {
     }
 
     public func viewIsReady() {
+        helpLinks.refresh(force: true)
         permissions.refresh(force: true)
     }
 
@@ -124,31 +106,5 @@ public class ProfilePresenter: ProfilePresenterProtocol {
         showDevMenu = true
         UserDefaults.standard.set(true, forKey: "showDevMenu")
         self.view?.reload()
-    }
-
-    func showHelpMenu(source cell: UITableViewCell) {
-        let helpMenu = UIAlertController(title: NSLocalizedString("Help", bundle: .parent, comment: ""), message: nil, preferredStyle: .actionSheet)
-
-        helpMenu.addAction(UIAlertAction(title: NSLocalizedString("View Canvas Guides", bundle: .parent, comment: ""), style: .default) { [weak self] _ in
-            self?.view?.show("https://community.canvaslms.com/docs/DOC-9919", options: .modal)
-        })
-
-        helpMenu.addAction(UIAlertAction(title: NSLocalizedString("Report a Problem", bundle: .parent, comment: ""), style: .default) { [weak self] _ in
-            self?.view?.show(.errorReport(for: "problem"), options: [.modal, .embedInNav])
-        })
-
-        helpMenu.addAction(UIAlertAction(title: NSLocalizedString("Request a Feature", bundle: .parent, comment: ""), style: .default) { [weak self] _ in
-            self?.view?.show(.errorReport(for: "feature"), options: [.modal, .embedInNav])
-        })
-
-        helpMenu.addAction(UIAlertAction(title: NSLocalizedString("Terms of Use", bundle: .parent, comment: ""), style: .default) { [weak self] _ in
-            self?.view?.show(.termsOfService(forAccount: "self"), options: [.modal, .embedInNav])
-        })
-
-        helpMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .parent, comment: ""), style: .cancel))
-
-        helpMenu.popoverPresentationController?.sourceView = cell
-        helpMenu.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint(x: cell.bounds.maxX, y: cell.bounds.midY), size: .zero)
-        view?.present(helpMenu, animated: true, completion: nil)
     }
 }
