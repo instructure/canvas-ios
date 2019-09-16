@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "Gwall ar y gweinydd.  Rhowch gynnig arall arni.";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Gweithredu fel Defnyddiwr";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "Gwall";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "Gwall Annisgwyl.  Rhowch gynnig arall arni.";
 
 /* No comment provided by engineer. */
 "Announcement" = "Cyhoeddiad";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Ar goll: (-/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "Gwall ar y Rhwydwaith";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "Wythnos Nesaf";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "Dim Myfyrwyr";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "Heb ei awdurdodi";
-
-/* Not Found Error Title */
-"Not Found" = "Heb ganfod";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Dim byd yr wythnos hon";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Gofyn am Nodwedd";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "Heb ddod o hyd i'r adnodd.  Rhowch gynnig arall arni.";
-
-/* Server Error Title */
-"Server Error" = "Gwall ar y Gweinydd";
 
 /* No comment provided by engineer. */
 "Settings" = "Gosodiadau";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "Trafferth yn mewngofnodi";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "Dieithr";
-
 /* No comment provided by engineer. */
 "Unread" = "Heb ddarllen";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "Croeso!";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "Does gennych chi ddim hawl i gael mynediad at yr wybodaeth hon.  Gwiriwch eich hawliau defnyddiwr a rhoi cynnig arall arni.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Rhaid i chi ganiatáu hysbysiadau yn y Gosodiadau er mwyn gosod nodiadau atgoffa.";

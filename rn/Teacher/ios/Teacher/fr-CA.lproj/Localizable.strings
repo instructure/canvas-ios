@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "Toutes les notes sont actuellement masquées.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Toutes les notes sont actuellement publiées.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Tous masqués";
+
+/* No comment provided by engineer. */
+"All Posted" = "Tous publiés";
+
+/* No comment provided by engineer. */
+"Back" = "Revenir";
+
+/* No comment provided by engineer. */
 "Courses" = "Cours";
 
 /* No comment provided by engineer. */
+"Everyone" = "Tous";
+
+/* No comment provided by engineer. */
+"Graded" = "Noté";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Les notes seront rendues visibles à tous les étudiants";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Les notes seront rendues visibles par les étudiants avec des envois notés";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Masquer les notes";
+
+/* No comment provided by engineer. */
 "Modules" = "Modules";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Publier les notes";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Paramètres de l’article";
+
+/* No comment provided by engineer. */
+"Post to..." = "Publier à...";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Sections spécifiques";
 
 /* No comment provided by engineer. */
 "To Do" = "À faire";

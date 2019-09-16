@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "Tout nòt yo kache kounye a.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Tout nòt yo pibliye kounye a.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Tout Kache";
+
+/* No comment provided by engineer. */
+"All Posted" = "Tout Pibliye";
+
+/* No comment provided by engineer. */
+"Back" = "Retounen";
+
+/* No comment provided by engineer. */
 "Courses" = "Kou";
 
 /* No comment provided by engineer. */
+"Everyone" = "Tout Moun";
+
+/* No comment provided by engineer. */
+"Graded" = "Klase";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Nòt yo ap vizib pou tout elèv";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Nòt yo ap vizib pou elèv ki gen soumisyon ki evalye.";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Kache Klas";
+
+/* No comment provided by engineer. */
 "Modules" = "Modil";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Piblikasyon Nòt";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Paramèt Piblikasyon";
+
+/* No comment provided by engineer. */
+"Post to..." = "Pibliye nan...";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Seksyon Espesyal";
 
 /* No comment provided by engineer. */
 "To Do" = "Pou Fè";

@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "Arvosana { grade }"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "Arvosanan lähetyskäytäntö"
+  },
   "graded_25cd3fcd": {
     "message": "Arvosteltu"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "Lisää linkki"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "Internet-yhteys pois verkosta"
-  },
   "invalid_field_54480fae": {
     "message": "Kenttä ei kelpaa"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "Kutsu kielletty!"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "Näyttää siltä kuin Internet-yhteytesi on pois verkosta. Yhdistä uudelleen Internetiin ja yritä uudelleen."
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Näyttää siltä, että arvosanalle ei ole voimassa olevia lähetyksiä."
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "Ei arvosanaa"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "Ei Internet-yhteyttä"
-  },
   "no_messages_a2e67ad4": {
     "message": "Ei viestejä"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "Sivua ei löytynyt"
-  },
-  "pages_e5414c2c": {
-    "message": "Sivut"
   },
   "pages_front_page_9ce5188": {
     "message": "Sivut-etusivu"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "Näytettäviä tiedostoja ei ole."
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "Näytettäviä sivuja ei ole."
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "Näytettäviä tietovsoja ei ole."
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Tätä toiminto ei ole mahdollista kumota."
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "Tähän toimintoon vaaditaan Internet-yhteys."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Tämä tehtävä ei salli lähetyksiä."

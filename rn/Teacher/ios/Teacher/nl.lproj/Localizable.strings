@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "Alle cijfers zijn momenteel verborgen.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Alle cijfers zijn momenteel gepost.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Alle verborgen cijfers";
+
+/* No comment provided by engineer. */
+"All Posted" = "Alle geposte cijfers";
+
+/* No comment provided by engineer. */
+"Back" = "Terug";
+
+/* No comment provided by engineer. */
 "Courses" = "Cursussen";
 
 /* No comment provided by engineer. */
+"Everyone" = "Iedereen";
+
+/* No comment provided by engineer. */
+"Graded" = "Beoordeeld";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Cijfers worden zichtbaar gemaakt voor alle cursisten";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Cijfers worden zichtbaar gemaakt voor cursisten met beoordeelde inleveringen";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Cijfers verbergen";
+
+/* No comment provided by engineer. */
 "Modules" = "Modules";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Cijfers posten";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Instellingen voor posten";
+
+/* No comment provided by engineer. */
+"Post to..." = "Posten in...";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Specifieke secties";
 
 /* No comment provided by engineer. */
 "To Do" = "Te doen";

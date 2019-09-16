@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "Cijfer { grade }"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "Beleid voor het posten van cijfers"
+  },
   "graded_25cd3fcd": {
     "message": "Beoordeeld"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "Koppeling invoegen"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "Internetverbinding offline"
-  },
   "invalid_field_54480fae": {
     "message": "Ongeldig veld"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "Uitnodiging geweigerd!"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "Het ziet ernaar uit dat je internetverbinding offline is. Maak verbinding met internet en probeer het opnieuw."
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Het lijkt erop dat er geen geldige inleveringen zijn om te beoordelen."
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "Geen cijfer"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "Geen internetverbinding"
-  },
   "no_messages_a2e67ad4": {
     "message": "Geen berichten"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "Pagina niet gevonden"
-  },
-  "pages_e5414c2c": {
-    "message": "Pagina's"
   },
   "pages_front_page_9ce5188": {
     "message": "Voorpagina van pagina's"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "Er zijn geen bestanden om weer te geven."
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "Er zijn geen pagina's om weer te geven"
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "Er zijn geen toetsen om weer te geven"
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Deze actie kan niet ongedaan worden gemaakt."
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "Voor deze actie is een internetverbinding vereist."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Voor deze opdracht zijn er geen inzendingen toegestaan."

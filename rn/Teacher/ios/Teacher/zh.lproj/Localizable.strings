@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "已隐藏所有评分。";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "已发布所有评分。";
+
+/* No comment provided by engineer. */
+"All Hidden" = "全部隐藏";
+
+/* No comment provided by engineer. */
+"All Posted" = "全部发布";
+
+/* No comment provided by engineer. */
+"Back" = "返回";
+
+/* No comment provided by engineer. */
 "Courses" = "课程";
 
 /* No comment provided by engineer. */
+"Everyone" = "所有人";
+
+/* No comment provided by engineer. */
+"Graded" = "已评分";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "评分将对所有学生显示";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "评分将对所有具备评分提交项的学生显示";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "隐藏评分";
+
+/* No comment provided by engineer. */
 "Modules" = "单元";
+
+/* No comment provided by engineer. */
+"Post Grades" = "发布评分";
+
+/* No comment provided by engineer. */
+"Post Settings" = "发布设置";
+
+/* No comment provided by engineer. */
+"Post to..." = "发布到...";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "特定分组";
 
 /* No comment provided by engineer. */
 "To Do" = "待办事项";

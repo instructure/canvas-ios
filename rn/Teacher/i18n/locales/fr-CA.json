@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "Noter { grade }"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "Politique de publication des notes"
+  },
   "graded_25cd3fcd": {
     "message": "Noté"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "Insérer un lien"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "Connexion Internet hors ligne"
-  },
   "invalid_field_54480fae": {
     "message": "Champ non valide"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "Invitation déclinée!"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "Il semblerait que votre connexion Internet est hors ligne. Reconnectez-vous à Internet et essayez de nouveau."
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Il semble qu'il n'y ait pas de soumissions valides à noter."
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "Non noté"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "Aucune connexion Internet"
-  },
   "no_messages_a2e67ad4": {
     "message": "Aucun message"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "Page introuvable"
-  },
-  "pages_e5414c2c": {
-    "message": "Pages"
   },
   "pages_front_page_9ce5188": {
     "message": "Première page"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "Il n'existe aucun fichier à afficher."
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "Il n'existe aucune page à afficher."
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "Il n'existe aucun questionnaire à afficher."
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Cette action ne peut pas être annulée."
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "Cette action nécessite une connexion Internet."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Cette tâche ne permet pas d’envoi."

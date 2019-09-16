@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "Alla omdömen döljs för tillfället.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Alla omdömen har publicerats.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Alla dolda";
+
+/* No comment provided by engineer. */
+"All Posted" = "Alla publicerade";
+
+/* No comment provided by engineer. */
+"Back" = "Tillbaka";
+
+/* No comment provided by engineer. */
 "Courses" = "Kurser";
 
 /* No comment provided by engineer. */
+"Everyone" = "Alla";
+
+/* No comment provided by engineer. */
+"Graded" = "Omdöme har getts";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Omdömen kan ses av alla studenter";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Omdömen kan ses av alla studenter med bedömda inlämningar";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Dölj betyg";
+
+/* No comment provided by engineer. */
 "Modules" = "Moduler";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Publicera omdömen";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Publiceringsinställningar";
+
+/* No comment provided by engineer. */
+"Post to..." = "Publicera till...";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Specifika sektioner";
 
 /* No comment provided by engineer. */
 "To Do" = "Att göra";

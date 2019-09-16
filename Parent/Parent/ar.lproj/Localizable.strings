@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "حدث خطأ في الخادم. يرجى إعادة المحاولة.";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "تصرف كمستخدم";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "حدث خطأ";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "حدث خطأ غير متوقع. يرجى إعادة المحاولة.";
 
 /* No comment provided by engineer. */
 "Announcement" = "الإعلان";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "غير منجزة: (-/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "خطأ في الشبكة";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "الأسبوع المقبل";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "لا يوجد أي طالب";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "غير مخوّل";
-
-/* Not Found Error Title */
-"Not Found" = "غير موجود";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "لا شيء هذا الأسبوع";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "طلب ميزة";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "لم يتم العثور على المورد. يرجى إعادة المحاولة.";
-
-/* Server Error Title */
-"Server Error" = "خطأ في الخادم";
 
 /* No comment provided by engineer. */
 "Settings" = "إعدادات";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "مشكلة تسجيل الدخول";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "غير معروف";
-
 /* No comment provided by engineer. */
 "Unread" = "غير مقروء";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "مرحبًا!";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "غير مخول لك بالوصول إلى هذه المعلومات. تحقق من أذونات المستخدم وأعد المحاولة.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "يجب السماح بالإعلامات في الإعدادات لتعيين التذكيرات.";

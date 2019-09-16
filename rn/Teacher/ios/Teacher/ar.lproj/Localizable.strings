@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "جميع الدرجات مخفية حالياً.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "جميع الدرجات منشورة حالياً.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "جميعها مخفية";
+
+/* No comment provided by engineer. */
+"All Posted" = "جميعها منشورة";
+
+/* No comment provided by engineer. */
+"Back" = "عودة";
+
+/* No comment provided by engineer. */
 "Courses" = "المساقات";
 
 /* No comment provided by engineer. */
+"Everyone" = "الجميع";
+
+/* No comment provided by engineer. */
+"Graded" = "تم تقييم الدرجة";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "سيتم عرض الدرجات لجميع الطلاب";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "سيتم عرض الدرجات للطلاب أصحاب الإرسالات التي تم وضع درجة لها";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "إخفاء الدرجات";
+
+/* No comment provided by engineer. */
 "Modules" = "الوحدات النمطية";
+
+/* No comment provided by engineer. */
+"Post Grades" = "نشر الدرجات";
+
+/* No comment provided by engineer. */
+"Post Settings" = "نشر الإعدادات";
+
+/* No comment provided by engineer. */
+"Post to..." = "نشر على...";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "أقسام محددة";
 
 /* No comment provided by engineer. */
 "To Do" = "ما يجب القيام به";

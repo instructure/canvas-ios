@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "الدرجة { grade }"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "سياسة نشر التقدير"
+  },
   "graded_25cd3fcd": {
     "message": "تم منح الدرجات"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "إدراج ارتباط"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "الإنترنت غير متصل"
-  },
   "invalid_field_54480fae": {
     "message": "حقل غير صالح"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "تم رفض الدعوة!"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "يبدو أنك غير متصل بالإنترنت. أعد الاتصال بالإنترنت وأعد المحاولة."
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "يبدو أنه لا توجد أي إرسالات صالحة للدرجة."
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "لا توجد أي درجة"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "لا يوجد اتصال بالإنترنت"
-  },
   "no_messages_a2e67ad4": {
     "message": "لا توجد رسائل"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "لم يتم العثور على الصفحة"
-  },
-  "pages_e5414c2c": {
-    "message": "الصفحات"
   },
   "pages_front_page_9ce5188": {
     "message": "الصفحة الأمامية للصفحات"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "لا توجد أي ملفات للعرض."
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "لا توجد أي صفحات للعرض."
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "لا توجد أي اختبارات موجزة للعرض."
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "لا يمكن التراجع عن هذه الإجراء."
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "يتطلب هذا الإجراء اتصالاً بالإنترنت."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "لا تسمح هذه المهمة بإرسالات."

@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "サーバーエラーが発生しました。再度お試しください。";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "ユーザーとして行動する";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "エラーが発生しました。";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "予期しないエラーが発生しました。再度お試しください。";
 
 /* No comment provided by engineer. */
 "Announcement" = "発表";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "紛失: (-/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "ネットワークエラー";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "次週";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "受講生なし";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "権限がありません。";
-
-/* Not Found Error Title */
-"Not Found" = "見つかりません";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "今週はありません";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "機能をリクエストする";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "リソースが見つかりません。再度お試しください。";
-
-/* Server Error Title */
-"Server Error" = "サーバーエラー";
 
 /* No comment provided by engineer. */
 "Settings" = "設定";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "ログインできません";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "未知の";
-
 /* No comment provided by engineer. */
 "Unread" = "未読";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "どういたしまして！";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "この情報にアクセスする権限がありません。ユーザー承認をご確認のうえ、再度お試しください。";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "[設定]で通知を許可して、リマインダを設定しなければなりません。";
