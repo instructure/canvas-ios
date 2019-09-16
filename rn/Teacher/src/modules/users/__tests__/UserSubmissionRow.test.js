@@ -145,7 +145,7 @@ describe('UserSubmissionRow', () => {
   it('doesnt accidently send NaN through the bridge', () => {
     let submission = templates.submission({
       grading_status: 'graded',
-      assignment: templates.assignment({ points_possible: 0 })
+      assignment: templates.assignment({ points_possible: 0 }),
     })
 
     let view = shallow(
