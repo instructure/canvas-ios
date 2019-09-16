@@ -442,4 +442,61 @@ class AssignmentTests: CoreTestCase {
         let expected = ""
         XCTAssertEqual(result, expected)
     }
+
+    func testSubmissionStatusLabelNoSubmission() {
+        let a = Assignment.make(from: .make(id: "6", submission: nil))
+        let result = a.submissionStatus
+        let expected = "Not Submitted"
+        XCTAssertEqual(result, expected)
+    }
+
+    func testSubmissionStatusLabelExcused() {
+        let s = APISubmission.make(excused: true)
+        let a = Assignment.make(from: .make(id: "6", submission: s))
+        let result = a.submissionStatus
+        let expected = ""
+        XCTAssertEqual(result, expected)
+    }
+
+    func testSubmissionStatusLabelLate() {
+        let s = APISubmission.make(late: true)
+        let a = Assignment.make(from: .make(id: "6", submission: s))
+        let result = a.submissionStatus
+        let expected = "Late"
+        XCTAssertEqual(result, expected)
+    }
+
+    func testSubmissionStatusLabelMissing() {
+        let s = APISubmission.make(missing: true)
+        let a = Assignment.make(from: .make(id: "6", submission: s))
+        let result = a.submissionStatus
+        let expected = "Missing"
+        XCTAssertEqual(result, expected)
+    }
+
+    func testSubmissionStatusLabelSubmitted() {
+        let s = APISubmission.make(submitted_at: Date().addYears(-1))
+        let a = Assignment.make(from: .make(id: "6", submission: s))
+        let result = a.submissionStatus
+        let expected = "Submitted"
+        XCTAssertEqual(result, expected)
+    }
+
+    func testSubmissionStatusLabelOfflineSubmssionTypeOffline() {
+        var s = APISubmission.make(submitted_at: Date().addYears(-1))
+        var a = Assignment.make(from: .make(id: "1", submission: s, submission_types: [.none]))
+        var result = a.submissionStatus
+        let expected = ""
+        XCTAssertEqual(result, expected)
+
+        s = APISubmission.make(submitted_at: Date().addYears(-1))
+        a = Assignment.make(from: .make(id: "2", submission: s, submission_types: [.not_graded]))
+        result = a.submissionStatus
+        XCTAssertEqual(result, expected)
+
+        s = APISubmission.make(submitted_at: Date().addYears(-1))
+        a = Assignment.make(from: .make(id: "3", submission: s, submission_types: [.on_paper]))
+        result = a.submissionStatus
+        XCTAssertEqual(result, expected)
+    }
 }

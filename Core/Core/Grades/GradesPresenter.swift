@@ -107,6 +107,18 @@ extension Assignment {
         }
     }
 
+    public var submissionStatus: String {
+        guard let s = submission else { return NSLocalizedString("Not Submitted", comment: "") }
+
+        if !submissionTypes.isOnline { return "" }
+        if s.excused ?? false { return "" }
+        if s.late { return NSLocalizedString("Late", comment: "") }
+        if s.missing { return NSLocalizedString("Missing", comment: "") }
+        if s.submittedAt != nil { return NSLocalizedString("Submitted", comment: "") }
+
+        return ""
+    }
+
     func formattedGradeNumber(_ number: Double?) -> String? {
         guard let number = number else { return nil }
         return NumberFormatter.localizedString(from: NSNumber(value: (number * 100) / 100), number: .decimal)
