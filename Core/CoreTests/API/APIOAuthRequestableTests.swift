@@ -27,13 +27,14 @@ class APIOAuthRequestableTests: XCTestCase {
         ])
     }
 
-    func testPostLoginOAuthRequest() {
+    func testPostLoginOAuthRequestCode() {
         let client = APIVerifyClient(authorized: true, base_url: URL(string: "https://cgnuonline-eniversity.edu"), client_id: "cgnu", client_secret: "dna evidence")
         XCTAssertEqual(PostLoginOAuthRequest(client: client, code: "1234").method, .post)
         XCTAssertEqual(PostLoginOAuthRequest(client: client, code: "1234").path, "https://cgnuonline-eniversity.edu/login/oauth2/token")
         XCTAssertEqual(PostLoginOAuthRequest(client: client, code: "1234").queryItems, [
             URLQueryItem(name: "client_id", value: "cgnu"),
             URLQueryItem(name: "client_secret", value: "dna evidence"),
+            URLQueryItem(name: "grant_type", value: "authorization_code"),
             URLQueryItem(name: "code", value: "1234"),
         ])
     }
@@ -44,7 +45,20 @@ class APIOAuthRequestableTests: XCTestCase {
         XCTAssertEqual(PostLoginOAuthRequest(client: client, code: "1234").queryItems, [
             URLQueryItem(name: "client_id", value: ""),
             URLQueryItem(name: "client_secret", value: ""),
+            URLQueryItem(name: "grant_type", value: "authorization_code"),
             URLQueryItem(name: "code", value: "1234"),
+        ])
+    }
+
+    func testPostLoginOAuthRequestRefreshToken() {
+        let client = APIVerifyClient(authorized: true, base_url: URL(string: "https://cgnuonline-eniversity.edu"), client_id: "cgnu", client_secret: "dna evidence")
+        XCTAssertEqual(PostLoginOAuthRequest(client: client, refreshToken: "1234").method, .post)
+        XCTAssertEqual(PostLoginOAuthRequest(client: client, refreshToken: "1234").path, "https://cgnuonline-eniversity.edu/login/oauth2/token")
+        XCTAssertEqual(PostLoginOAuthRequest(client: client, refreshToken: "1234").queryItems, [
+            URLQueryItem(name: "client_id", value: "cgnu"),
+            URLQueryItem(name: "client_secret", value: "dna evidence"),
+            URLQueryItem(name: "grant_type", value: "refresh_token"),
+            URLQueryItem(name: "refresh_token", value: "1234"),
         ])
     }
 

@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "Kaikki arvosanat on parhaillaan piilotettu.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Kaikki arvosanat on parhaillaan lähetetty.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Kaikki piilotettu";
+
+/* No comment provided by engineer. */
+"All Posted" = "Kaikki lähetetty";
+
+/* No comment provided by engineer. */
+"Back" = "Takaisin";
+
+/* No comment provided by engineer. */
 "Courses" = "Kurssit";
 
 /* No comment provided by engineer. */
+"Everyone" = "Kaikki";
+
+/* No comment provided by engineer. */
+"Graded" = "Arvosteltu";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Arvosanat tehdään näkyviksi kaikille opiskelijoille.";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Arvosanat tehdään näkyviksi opiskelijoille, joilla on arvosteltuja lähetyksiä.";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Piilota arvosanat";
+
+/* No comment provided by engineer. */
 "Modules" = "Moduulit";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Lähetä arvosanoja";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Lähetysasetukset";
+
+/* No comment provided by engineer. */
+"Post to..." = "Lähetä vastaanottajalle...";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Määrätyt osat";
 
 /* No comment provided by engineer. */
 "To Do" = "Tehtävä";

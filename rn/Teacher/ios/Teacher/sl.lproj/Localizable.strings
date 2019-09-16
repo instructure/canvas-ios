@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "Trenutno so vse ocene skrite.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Trenutno so vse ocene objavljene.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Vse skrite";
+
+/* No comment provided by engineer. */
+"All Posted" = "Vse objavljene";
+
+/* No comment provided by engineer. */
+"Back" = "Nazaj";
+
+/* No comment provided by engineer. */
 "Courses" = "Predmeti";
 
 /* No comment provided by engineer. */
+"Everyone" = "Vsi";
+
+/* No comment provided by engineer. */
+"Graded" = "Ocenjeno";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Ocene bodo vidne vsem študentom";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Ocene bodo vidne študentom z ocenjenimi oddajami";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Skrij ocene";
+
+/* No comment provided by engineer. */
 "Modules" = "Moduli";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Pošlji ocene v SIS";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Nastavitve objavljanja";
+
+/* No comment provided by engineer. */
+"Post to..." = "Objavi v ...";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Določene sekcije";
 
 /* No comment provided by engineer. */
 "To Do" = "Seznam opravil";

@@ -30,20 +30,17 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(viewedDiscussion:(NSString *)courseID discussionID:(NSString *)discussionID)
 {
-    Session *session = CKIClient.currentClient.authSession;
-    [session postProgressDiscussionViewedWithCourseID:courseID discussionTopicID:discussionID];
+    [Session.current postProgressDiscussionViewedWithCourseID:courseID discussionTopicID:discussionID];
 }
 
 RCT_EXPORT_METHOD(contributedDiscussion:(NSString *)courseID discussionID:(NSString *)discussionID)
 {
-    Session *session = CKIClient.currentClient.authSession;
-    [session postProgressDiscussionContributedWithCourseID:courseID discussionTopicID:discussionID];
+    [Session.current postProgressDiscussionContributedWithCourseID:courseID discussionTopicID:discussionID];
 }
 
 RCT_EXPORT_METHOD(viewedPage:(NSString *)courseID pageURL:(NSString *)pageURL)
 {
-    Session *session = CKIClient.currentClient.authSession;
-    [session postProgressPageViewedWithCourseID:courseID pageURL:pageURL];
+    [Session.current postProgressPageViewedWithCourseID:courseID pageURL:pageURL];
 }
 
 - (dispatch_queue_t)methodQueue {

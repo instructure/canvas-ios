@@ -39,4 +39,8 @@ extension URLResponse {
         }
         return links
     }
+
+    public var isUnauthorized: Bool {
+        return (self as? HTTPURLResponse)?.statusCode == 401
+    }
 }

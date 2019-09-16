@@ -104,7 +104,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         file.batchID = batchID
         file.size = url.lookupFileSize()
         if let session = environment.currentSession {
-            file.user = File.User(id: session.userID, baseURL: session.baseURL, actAsUserID: session.actAsUserID)
+            file.user = File.User(id: session.userID, baseURL: session.baseURL, masquerader: session.masquerader)
         }
         try viewContext.save()
         return file
@@ -140,7 +140,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             do {
                 file.context = uploadContext
                 if let session = environment.currentSession {
-                    file.user = File.User(id: session.userID, baseURL: session.baseURL, actAsUserID: session.actAsUserID)
+                    file.user = File.User(id: session.userID, baseURL: session.baseURL, masquerader: session.masquerader)
                 }
                 file.uploadError = nil
                 file.id = nil
@@ -158,7 +158,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                         do {
                             file.size = url.lookupFileSize()
                             let request = PostFileUploadRequest(fileURL: url, target: target)
-                            let api = URLSessionAPI(accessToken: nil, actAsUserID: file.user?.actAsUserID, baseURL: target.upload_url, urlSession: self.backgroundSession)
+                            let api = URLSessionAPI(loginSession: nil, baseURL: target.upload_url, urlSession: self.backgroundSession)
                             let task = try api.uploadTask(request)
                             file.taskID = task.taskIdentifier
                             try self.context.save()
@@ -208,7 +208,9 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                     let session = LoginSession.sessions.first(where: { user == $0 }) {
                     let objectID = file.objectID
                     var request = URLRequest(url: url)
-                    request.setValue("Bearer \(session.accessToken)", forHTTPHeaderField: HttpHeader.authorization)
+                    if let token = session.accessToken {
+                        request.setValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
+                    }
                     request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
                     currentTask = URLSession.getDefaultURLSession().dataTask(with: request) { data, _, error in
                         self.context.performAndWait {
@@ -315,7 +317,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             if expired {
                 task?.cancel()
             }
-            let api = URLSessionAPI(accessToken: session.accessToken, actAsUserID: session.actAsUserID, baseURL: session.baseURL)
+            let api = URLSessionAPI(loginSession: session)
             task = api.makeRequest(requestable) { response, _, error in
                 self.context.performAndWait {
                     defer { semaphore.signal() }

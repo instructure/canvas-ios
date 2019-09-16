@@ -19,14 +19,13 @@
 import Foundation
 
 public protocol API {
-    var accessToken: String? { get }
+    var loginSession: LoginSession? { get }
     var baseURL: URL { get }
-    var actAsUserID: String? { get }
 
     var identifier: String? { get }
 
     @discardableResult
-    func makeRequest<R: APIRequestable>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask?
+    func makeRequest<R: APIRequestable>(_ requestable: R, refreshToken: Bool, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask?
 
     @discardableResult
     func makeDownloadRequest(_ url: URL, callback: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionTask?
@@ -35,11 +34,20 @@ public protocol API {
     func uploadTask<R: APIRequestable>(_ requestable: R) throws -> URLSessionTask
 }
 
-public struct URLSessionAPI: API {
-    public let accessToken: String?
-    public let actAsUserID: String?
+extension API {
+    @discardableResult
+    public func makeRequest<R: APIRequestable>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
+        return makeRequest(requestable, refreshToken: true, callback: callback)
+    }
+}
+
+public class URLSessionAPI: API {
+    public var loginSession: LoginSession?
     public let baseURL: URL
-    let urlSession: URLSession
+    public let urlSession: URLSession
+
+    var refreshTask: URLSessionTask?
+    var refreshQueue: [() -> Void] = []
 
     public var identifier: String? {
         return urlSession.configuration.identifier
@@ -54,24 +62,46 @@ public struct URLSessionAPI: API {
     public static var delegateURLSession = { (configuration: URLSessionConfiguration, delegate: URLSessionDelegate?, delegateQueue: OperationQueue?) -> URLSession in
         return URLSession(configuration: configuration, delegate: delegate, delegateQueue: delegateQueue)
     }
+    public static var noFollowRedirectURLSession = {
+        return URLSession(configuration: .ephemeral, delegate: NoFollowRedirect(), delegateQueue: nil)
+    }()
 
     public init(
-        accessToken: String? = nil,
-        actAsUserID: String? = nil,
+        loginSession: LoginSession? = nil,
         baseURL: URL? = nil,
         urlSession: URLSession = URLSessionAPI.defaultURLSession
     ) {
-        self.accessToken = accessToken
-        self.actAsUserID = actAsUserID
+        self.loginSession = loginSession
         self.baseURL = baseURL ?? URL(string: "https://canvas.instructure.com/")!
         self.urlSession = urlSession
     }
 
+    public init(session: LoginSession, urlSession: URLSession = URLSessionAPI.defaultURLSession) {
+        self.loginSession = session
+        self.baseURL = session.baseURL
+        self.urlSession = urlSession
+    }
+
     @discardableResult
-    public func makeRequest<R: APIRequestable>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
+    public func makeRequest<R: APIRequestable>(_ requestable: R, refreshToken: Bool, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
         do {
-            let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: actAsUserID)
-            let task = urlSession.dataTask(with: request) { data, response, error in
+            guard refreshTask?.state != .running else {
+                refreshQueue.append { [weak self] in
+                    self?.makeRequest(requestable, callback: callback)
+                }
+                return nil
+            }
+            let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
+            let task = urlSession.dataTask(with: request) { [weak self] data, response, error in
+                if response?.isUnauthorized == true, refreshToken {
+                    self?.refreshQueue.append { [weak self] in
+                        self?.makeRequest(requestable, refreshToken: false, callback: callback)
+                    }
+                    if self?.refreshTask?.state != .running {
+                        self?.refreshToken()
+                    }
+                    return
+                }
                 guard let data = data, error == nil, !(R.Response.self is APINoContent.Type) else {
                     return callback(nil, response, error)
                 }
@@ -102,7 +132,7 @@ public struct URLSessionAPI: API {
 
     @discardableResult
     public func uploadTask<R: APIRequestable>(_ requestable: R) throws -> URLSessionTask {
-        let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: actAsUserID)
+        let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
         let directory = urlSession.configuration.sharedContainerIdentifier.flatMap(URL.sharedContainer) ?? URL.temporaryDirectory
         let url = directory.appendingPathComponent(UUID.string)
         try request.httpBody?.write(to: url) // TODO: delete this file after upload completes
@@ -112,10 +142,52 @@ public struct URLSessionAPI: API {
         #endif
         return urlSession.uploadTask(with: request, fromFile: url)
     }
+
+    func refreshToken() {
+        guard
+            let loginSession = loginSession,
+            let refreshToken = loginSession.refreshToken,
+            let clientID = loginSession.clientID,
+            let clientSecret = loginSession.clientSecret
+        else {
+            return flushRefreshQueue()
+        }
+        let client = APIVerifyClient(authorized: true, base_url: baseURL, client_id: clientID, client_secret: clientSecret)
+        let request = PostLoginOAuthRequest(client: client, refreshToken: refreshToken)
+        refreshTask = makeRequest(request, refreshToken: false) { [weak self] response, _, error in
+            if let response = response, error == nil {
+                let session = loginSession.refresh(accessToken: response.access_token)
+                LoginSession.add(session)
+                if loginSession == AppEnvironment.shared.currentSession {
+                    AppEnvironment.shared.currentSession = session
+                }
+                self?.loginSession = session
+            }
+            self?.flushRefreshQueue()
+        }
+    }
+
+    private func flushRefreshQueue() {
+        let tasks = refreshQueue
+        tasks.forEach { $0() }
+        refreshQueue = []
+    }
 }
 
 extension URLSession {
     @objc public static func getDefaultURLSession() -> URLSession {
         return URLSessionAPI.defaultURLSession
+    }
+}
+
+public class NoFollowRedirect: NSObject, URLSessionTaskDelegate {
+    public func urlSession(
+        _ session: URLSession,
+        task: URLSessionTask,
+        willPerformHTTPRedirection response: HTTPURLResponse,
+        newRequest request: URLRequest,
+        completionHandler: @escaping (URLRequest?) -> Void
+    ) {
+        completionHandler(nil)
     }
 }

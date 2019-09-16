@@ -52,3 +52,51 @@ class APIDiscussionRequestableTests: XCTestCase {
         XCTAssertEqual(request.body, expectedBody)
     }
 }
+
+class ListDiscussionEntriesRequestTests: XCTestCase {
+    func testPath() {
+        let request = ListDiscussionEntriesRequest(context: ContextModel(.course, id: "1"), topicID: "2")
+        XCTAssertEqual(request.path, "courses/1/discussion_topics/2/entries")
+    }
+}
+
+class GetTopicRequestsTests: XCTestCase {
+    func testPath() {
+        let request = GetTopicRequests(context: ContextModel(.course, id: "1"), topicID: "2")
+        XCTAssertEqual(request.path, "courses/1/discussion_topics/2")
+    }
+
+    func testQuery() {
+        let request = GetTopicRequests(context: ContextModel(.course, id: "1"), topicID: "2", include: [.allDates, .overrides, .sections, .sectionsUserCount])
+        XCTAssertEqual(request.query, [
+            .include(["all_dates", "overrides", "sections", "section_user_count"]),
+        ])
+    }
+}
+
+class GetFullTopicRequestsTests: XCTestCase {
+    func testPath() {
+        let request = GetFullTopicRequests(context: ContextModel(.course, id: "1"), topicID: "2")
+        XCTAssertEqual(request.path, "courses/1/discussion_topics/2/view")
+    }
+
+    func testQuery() {
+        let request = GetFullTopicRequests(context: ContextModel(.course, id: "1"), topicID: "2", includeNewEntries: true)
+        XCTAssertEqual(request.query, [.value("include_new_entries", "1")])
+    }
+}
+
+class ListDiscussionTopicsRequestTests: XCTestCase {
+    func testPath() {
+        let request = ListDiscussionTopicsRequest(context: ContextModel(.course, id: "1"))
+        XCTAssertEqual(request.path, "courses/1/discussion_topics/")
+    }
+
+    func testQuery() {
+        let request = ListDiscussionTopicsRequest(context: ContextModel(.course, id: "1"), perPage: "25", include: [.allDates, .overrides, .sections, .sectionsUserCount])
+        XCTAssertEqual(request.query, [
+            .value("per_page", "25"),
+            .array("include", ["all_dates", "overrides", "sections", "section_user_count"]),
+        ])
+    }
+}

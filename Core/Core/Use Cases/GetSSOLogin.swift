@@ -54,7 +54,9 @@ public class GetSSOLogin {
                     refreshToken: model.refresh_token,
                     userID: model.user.id.value,
                     userName: model.user.name,
-                    userEmail: model.user.email
+                    userEmail: model.user.email,
+                    clientID: client.client_id,
+                    clientSecret: client.client_secret
                 ), nil)
             }
         }

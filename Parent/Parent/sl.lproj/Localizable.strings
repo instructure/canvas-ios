@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1–100 %";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "Prišlo je do napake strežnika.  Poskusite znova.";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Nastopajoči v vlogi uporabnika";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "Prišlo je do napake.";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "Prišlo je do nepričakovane napake.  Poskusite znova.";
 
 /* No comment provided by engineer. */
 "Announcement" = "Obvestilo";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Manjkajoče: (–/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "Napaka v omrežju";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "Naslednji teden";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "Ni študentov.";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "Ni pooblastila.";
-
-/* Not Found Error Title */
-"Not Found" = "Ni mogoče najti.";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Ta teden ni ničesar.";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Zahtevaj funkcionalnost";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "Vira ni mogoče najti.  Poskusite znova.";
-
-/* Server Error Title */
-"Server Error" = "Napaka strežnika";
 
 /* No comment provided by engineer. */
 "Settings" = "Nastavitve";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "Težave pri prijavi";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "Neznano";
-
 /* No comment provided by engineer. */
 "Unread" = "Neprebrano";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "Dobrodošli.";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "Nimate pooblastil za dostop do teh informacij.  Preverite dovoljenja uporabnika in poskusite znova.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Za nastavitev opomnikov morate v možnosti »Nastavitve« dovoliti sporočila.";

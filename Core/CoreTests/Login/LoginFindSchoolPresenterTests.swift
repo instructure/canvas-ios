@@ -26,6 +26,11 @@ class LoginFindSchoolPresenterTests: XCTestCase {
     var shown: UIViewController?
     var results: [APIAccountResult]?
 
+    override func setUp() {
+        super.setUp()
+        MockURLSession.reset()
+    }
+
     func testViewIsReady() {
         let presenter = LoginFindSchoolPresenter(loginDelegate: nil, method: .normalLogin, view: self)
         presenter.viewIsReady()
@@ -34,11 +39,9 @@ class LoginFindSchoolPresenterTests: XCTestCase {
 
     func testSearch() {
         let presenter = LoginFindSchoolPresenter(loginDelegate: nil, method: .normalLogin, view: self)
-        let mockAPI = MockAPI()
-        mockAPI.mock(GetAccountsSearchRequest(searchTerm: "a"), value: [
+        MockURLSession.mock(GetAccountsSearchRequest(searchTerm: "a"), value: [
             APIAccountResult.make(name: "A", domain: "a.instructure.com"),
         ])
-        presenter.api = mockAPI
         presenter.search(query: "a")
         presenter.search(query: "a") // test preempting old operations
         let expectation = self.expectation(for: NSPredicate(value: true), evaluatedWith: presenter) { self.results != nil }
@@ -51,9 +54,7 @@ class LoginFindSchoolPresenterTests: XCTestCase {
 
     func testSearchNoResults() {
         let presenter = LoginFindSchoolPresenter(loginDelegate: nil, method: .normalLogin, view: self)
-        let mockAPI = MockAPI()
-        mockAPI.mock(GetAccountsSearchRequest(searchTerm: "bogus"))
-        presenter.api = mockAPI
+        MockURLSession.mock(GetAccountsSearchRequest(searchTerm: "bogus"), value: nil)
         presenter.search(query: "bogus")
         let expectation = self.expectation(for: NSPredicate(value: true), evaluatedWith: presenter) { self.results != nil }
         wait(for: [expectation], timeout: 5)

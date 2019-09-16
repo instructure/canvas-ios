@@ -48,13 +48,9 @@ class UploadManagerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-
         manager.notificationManager = notificationManager
+        LoginSession.clearAll()
         manager.process = TestProcess()
-        URLSessionAPI.delegateURLSession = { _, _, _ in self.backgroundSession }
-        URLSessionAPI.defaultURLSession = MockURLSession()
-        environment.api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
-        MockURLSession.reset()
         UUID.mock("abcdefg")
     }
 
@@ -75,7 +71,10 @@ class UploadManagerTests: CoreTestCase {
             .appendingPathComponent(url.lastPathComponent)
         let config = URLSessionConfiguration.background(withIdentifier: "doesnt matter")
         config.sharedContainerIdentifier = "group.com.instructure.icanvas"
-        backgroundSession.config = config
+        URLSessionAPI.delegateURLSession = { (configuration: URLSessionConfiguration, delegate: URLSessionDelegate?, delegateQueue: OperationQueue?) -> URLSession in
+            return URLSession(configuration: config, delegate: delegate, delegateQueue: delegateQueue)
+        }
+        let manager = UploadManager(identifier: "test")
         XCTAssertEqual(try manager.uploadURL(url), expected)
     }
 
@@ -101,7 +100,7 @@ class UploadManagerTests: CoreTestCase {
         badBatch.user = good.user
         let badUser = context.insert() as File
         badUser.batchID = good.batchID
-        badUser.user = File.User(id: "bad", baseURL: currentSession.baseURL, actAsUserID: currentSession.actAsUserID)
+        badUser.user = File.User(id: "bad", baseURL: currentSession.baseURL, masquerader: nil)
         try! context.save()
         let store = manager.subscribe(batchID: good.batchID!) {}
         XCTAssertEqual(store.count, 1)
@@ -150,7 +149,7 @@ class UploadManagerTests: CoreTestCase {
         task.mock = MockURLSession.MockData(data: nil, response: response, error: nil)
         task.taskIdentifier = 1
         var request = URLRequest(url: URL(string: location)!)
-        request.setValue("Bearer \(currentSession.accessToken)", forHTTPHeaderField: HttpHeader.authorization)
+        request.setValue("Bearer \(currentSession.accessToken!)", forHTTPHeaderField: HttpHeader.authorization)
         request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
         MockURLSession.mock(request, data: try encoder.encode(APIFile.make(id: "1")), taskID: 2)
         let file = try manager.add(url: url)
@@ -180,7 +179,7 @@ class UploadManagerTests: CoreTestCase {
         task.mock = MockURLSession.MockData(data: nil, response: response, error: nil)
         task.taskIdentifier = 1
         var request = URLRequest(url: URL(string: location)!)
-        request.setValue("Bearer \(currentSession.accessToken)", forHTTPHeaderField: HttpHeader.authorization)
+        request.setValue("Bearer \(currentSession.accessToken!)", forHTTPHeaderField: HttpHeader.authorization)
         request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
         MockURLSession.mock(request, data: try encoder.encode(APIFile.make(id: "1")), taskID: 2)
         mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["1", "2"], taskID: 3)
@@ -280,7 +279,7 @@ class UploadManagerTests: CoreTestCase {
         wait(for: [expectation], timeout: 1)
     }
 
-    private func mockSubmission(courseID: String, assignmentID: String, fileIDs: [String], comment: String? = nil, taskID: Int) {
+    private func mockSubmission(courseID: String, assignmentID: String, fileIDs: [String], comment: String? = nil, taskID: Int, accessToken: String? = nil) {
         let submission = CreateSubmissionRequest.Body.Submission(
             text_comment: comment,
             submission_type: .online_upload,
@@ -299,7 +298,7 @@ class UploadManagerTests: CoreTestCase {
             submissionRequest,
             value: APISubmission.make(),
             baseURL: currentSession.baseURL,
-            accessToken: currentSession.accessToken,
+            accessToken: accessToken ?? currentSession.accessToken,
             taskID: taskID
         )
     }
@@ -313,7 +312,7 @@ class UploadManagerTests: CoreTestCase {
             requestable,
             value: target,
             baseURL: AppEnvironment.shared.api.baseURL,
-            accessToken: AppEnvironment.shared.api.accessToken,
+            accessToken: AppEnvironment.shared.api.loginSession?.accessToken,
             taskID: taskID
         )
         return target
@@ -337,7 +336,7 @@ class UploadManagerTests: CoreTestCase {
         task.mock = MockURLSession.MockData(data: nil, response: response, error: nil)
         task.taskIdentifier = 1
         var request = URLRequest(url: URL(string: location)!)
-        request.setValue("Bearer \(currentSession.accessToken)", forHTTPHeaderField: HttpHeader.authorization)
+        request.setValue("Bearer \(currentSession.accessToken!)", forHTTPHeaderField: HttpHeader.authorization)
         request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
         MockURLSession.mock(request, taskID: 2)
         return task

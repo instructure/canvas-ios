@@ -28,8 +28,6 @@
 */
 - (nonnull CKIClient *)imageClient;
 
-@property (nonatomic, readonly, nonnull) Session *authSession;
-
 @end
 
 extern NSString * _Nonnull const CBICourseColorUpdatedNotification;

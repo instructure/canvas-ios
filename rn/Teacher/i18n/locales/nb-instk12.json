@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "Vurder { grade }"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "Retningslinjer for vurderingspostering"
+  },
   "graded_25cd3fcd": {
     "message": "Vurdert"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "Sett inn lenke"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "Internettilkobling frakoblet"
-  },
   "invalid_field_54480fae": {
     "message": "Ugyldig felt"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "Invitasjonen ble avslått!"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "Det ser ut til at din internettilkobling er frakoblet. Koble til internett og prøv igjen."
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Det ser ikke ut til at det er noen gyldige innleveringer å vurdere."
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "Ingen vurdering"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "Ingen Internett-tilkobling"
-  },
   "no_messages_a2e67ad4": {
     "message": "Ingen meldinger"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "Side ikke funnet"
-  },
-  "pages_e5414c2c": {
-    "message": "Sider"
   },
   "pages_front_page_9ce5188": {
     "message": "Sider forside"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "Det er ingen filer å vise."
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "Det er ingen sider å vise."
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "Det er ingen tester å vise."
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Denne handlingen kan ikke endres tilbake."
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "Denne handlingen krever Internett-tilkobling."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Denne oppgaven tillater ikke innleveringer."

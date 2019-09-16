@@ -233,18 +233,14 @@ public class CanvasWebView: WKWebView {
 
     /// Reloads `self` with an authenticated url for `src`
     @objc func loadFrame(src: String) {
-        guard let session = CKIClient.current?.authSession, let url = URL(string: src) else {
-            return
-        }
-
-        session.getAuthenticatedURL(forURL: url) { [weak self] result in
+        let request = GetWebSessionRequest(to: url)
+        AppEnvironment.shared.api.makeRequest(request) { [weak self] response, urlResponse, error in
             DispatchQueue.main.async {
-                switch result {
-                case .success(let url):
-                    self?.load(URLRequest(url: url))
-                case .failure(let error):
-                    self?.onError?(error)
+                guard let response = response, error != nil else {
+                    self?.onError?(error ?? NSError.internalError())
+                    return
                 }
+                self?.load(URLRequest(url: response.session_url))
             }
         }
     }
@@ -260,7 +256,7 @@ extension CanvasWebView: WKNavigationDelegate {
         }
 
         if action.navigationType == .linkActivated, let url = request.url, LTITools(link: url) != nil,
-            let from = presentingViewController, let session = CKIClient.current?.authSession {
+            let from = presentingViewController, let session = Session.current {
             ExternalToolManager.shared.launch(url, in: session, from: from)
             return decisionHandler(.cancel)
         }

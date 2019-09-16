@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1 – 100%";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "A server error has occurred. Please try again.";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Act as user";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "An error occurred";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "An unexpected error occurred. Please try again.";
 
 /* No comment provided by engineer. */
 "Announcement" = "Announcement";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Missing: (-/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "Network error";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "Next week";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "No students";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "Not authorised";
-
-/* Not Found Error Title */
-"Not Found" = "Not found";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Nothing this week";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Request a feature";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "Resource not found. Please try again.";
-
-/* Server Error Title */
-"Server Error" = "Server error";
 
 /* No comment provided by engineer. */
 "Settings" = "Settings";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "Trouble logging in";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "Unknown";
-
 /* No comment provided by engineer. */
 "Unread" = "Unread";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "Welcome!";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "You are unauthorised to access this information. Check your user permissions and try again.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "You must allow notifications in settings to set reminders.";

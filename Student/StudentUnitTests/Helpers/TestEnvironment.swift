@@ -23,7 +23,7 @@ import CoreData
 
 func testEnvironment() -> AppEnvironment {
     let env = AppEnvironment.shared
-    env.api = MockAPI()
+    env.api = URLSessionAPI(loginSession: .make(), urlSession: MockURLSession())
     env.database = singleSharedTestDatabase
     env.globalDatabase = singleSharedTestDatabase
     env.router = TestRouter()

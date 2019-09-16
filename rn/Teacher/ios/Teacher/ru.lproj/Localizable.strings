@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "Все скрытые в настоящее время оценки.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Все опубликованные в настоящее время оценки.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Все скрытые";
+
+/* No comment provided by engineer. */
+"All Posted" = "Все размещенные";
+
+/* No comment provided by engineer. */
+"Back" = "Назад";
+
+/* No comment provided by engineer. */
 "Courses" = "Курсы";
 
 /* No comment provided by engineer. */
+"Everyone" = "Все";
+
+/* No comment provided by engineer. */
+"Graded" = "С оценкой";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Оценки будут видны для всех учащихся";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Оценки будут видны для учащихся с отправками, по которым выставлены оценки";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Скрыть Оценки";
+
+/* No comment provided by engineer. */
 "Modules" = "Модули";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Опубликовать оценки";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Опубликовать настройки";
+
+/* No comment provided by engineer. */
+"Post to..." = "Опубликовать в...";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Специальные разделы";
 
 /* No comment provided by engineer. */
 "To Do" = "Для выполнения";

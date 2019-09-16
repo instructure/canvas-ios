@@ -31,7 +31,7 @@ class DocViewerPresenterTests: CoreTestCase {
     class MockSession: DocViewerSession {
         var requested: URL?
         var loading: URL?
-        override func load(url: URL, accessToken: String) {
+        override func load(url: URL, session: LoginSession) {
             requested = url
             notify()
         }
@@ -62,15 +62,8 @@ class DocViewerPresenterTests: CoreTestCase {
         XCTAssertEqual(session.loading, presenter.fallbackURL)
     }
 
-    func testViewIsReadyMasquerade() {
-        api.actAsUserID = "1"
-        presenter.viewIsReady()
-        XCTAssertEqual(session.requested?.query, "as_user_id=1")
-    }
-
     func testSessionIsReady() {
         session.annotations = []
-        session.api = api
         session.sessionID = "abcd"
         session.sessionURL = URL(string: "session")
         session.localURL = url

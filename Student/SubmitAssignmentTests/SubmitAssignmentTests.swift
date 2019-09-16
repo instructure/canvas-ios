@@ -23,7 +23,7 @@ import CoreData
 
 class SubmitAssignmentTests: XCTestCase {
     let env = AppEnvironment.shared
-    let api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
+    let api = URLSessionAPI(loginSession: nil, baseURL: nil, urlSession: MockURLSession())
     var database: NSPersistentContainer {
         return TestsFoundation.singleSharedTestDatabase
     }

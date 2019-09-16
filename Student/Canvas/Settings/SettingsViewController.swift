@@ -20,11 +20,11 @@ import Foundation
 import UIKit
 import CanvasCore
 import CanvasKit1
-import TechDebt
 import CanvasKit
 import UserNotifications
 import Kingfisher
 import Core
+import TechDebt
 
 class SettingsViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
     @IBOutlet weak var tableView: UITableView!
@@ -118,8 +118,8 @@ extension SettingsViewController {
     
     fileprivate func data() -> [SettingsRow] {
         let profile = TextSettingsRow(title: NSLocalizedString("Profile", comment: "")) { () -> () in
-            if let session = CKIClient.current?.authSession {
-                let profile = TechDebt.ProfileViewController()
+            if let session = Session.current {
+                let profile = OldProfileViewController()
                 profile.canvasAPI = CKCanvasAPI.current()
                 profile.user = profile.canvasAPI.user
                 profile.profileImageSelected = { newProfileImage in
@@ -149,9 +149,8 @@ extension SettingsViewController {
         })
         
         let notificationPreferences = TextSettingsRow(title: NSLocalizedString("Notification Preferences", comment: "Settings entry title for Notification Preferences")) { () -> () in
-            if let session = CKIClient.current?.authSession {
+            if let session = Session.current {
                 let notificationDataController = NotificationKitController(session: session)
-                
                 let viewController = CommunicationChannelsViewController.new(notificationDataController)
                 self.navigationController?.pushViewController(viewController, animated: true)
             }

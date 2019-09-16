@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "Wszystkie oceny są obecnie ukryte.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Wszystkie oceny są obecnie opublikowane.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Wszystkie ukryte";
+
+/* No comment provided by engineer. */
+"All Posted" = "Wszystkie opublikowane";
+
+/* No comment provided by engineer. */
+"Back" = "Wstecz";
+
+/* No comment provided by engineer. */
 "Courses" = "Kursy";
 
 /* No comment provided by engineer. */
+"Everyone" = "Każdy";
+
+/* No comment provided by engineer. */
+"Graded" = "Oceniono";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Oceny staną się widoczne dla wszystkich uczestników";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Oceny staną się widoczne dla uczestników z ocenionymi przesyłkami";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Ukryj oceny";
+
+/* No comment provided by engineer. */
 "Modules" = "Moduły";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Opublikuj oceny";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Ustawienia publikowania";
+
+/* No comment provided by engineer. */
+"Post to..." = "Opublikuj na...";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Określone sekcje";
 
 /* No comment provided by engineer. */
 "To Do" = "Do zrobienia";

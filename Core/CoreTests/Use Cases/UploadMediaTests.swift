@@ -29,7 +29,7 @@ class UploadMediaTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         UUID.mock("zzxxzz")
-        upload.mediaAPI = api
+        upload.mediaAPI = URLSessionAPI()
         upload.env = environment
         upload.callback = { [weak self] (comment, error) in
             self?.error = error
@@ -92,7 +92,6 @@ class UploadMediaTests: CoreTestCase {
         var error: Error?
         var mediaID: String?
         let upload = UploadMedia(type: .audio, url: URL(string: "data:text/plain,abcde")!, context: context)
-        upload.mediaAPI = api
         upload.env = environment
         upload.callback = {
             mediaID = $0
@@ -112,7 +111,6 @@ class UploadMediaTests: CoreTestCase {
         var error: Error?
         var mediaID: String?
         let upload = UploadMedia(type: .audio, url: URL(string: "data:text/plain,abcde")!, context: context)
-        upload.mediaAPI = api
         upload.env = environment
         upload.callback = {
             mediaID = $0
@@ -133,7 +131,6 @@ class UploadMediaTests: CoreTestCase {
         var error: Error?
         var mediaID: String?
         let upload = UploadMedia(type: .audio, url: URL(string: "data:text/plain,abcde")!, context: nil)
-        upload.mediaAPI = api
         upload.env = environment
         upload.callback = {
             mediaID = $0

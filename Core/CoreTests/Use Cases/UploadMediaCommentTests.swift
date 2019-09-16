@@ -29,7 +29,6 @@ class UploadMediaCommentTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         UUID.mock("zzxxzz")
-        upload.mediaAPI = api
         upload.env = environment
         upload.callback = { [weak self] (comment, error) in
             self?.comment = comment
@@ -66,14 +65,14 @@ class UploadMediaCommentTests: CoreTestCase {
             assignmentID: upload.assignmentID,
             userID: upload.userID,
             body: .init(comment: .init(mediaID: "2", type: upload.type, forGroup: upload.isGroup), submission: nil)
-        ), error: NSError.internalError())
+        ), value: nil, error: NSError.internalError())
         upload.putComment(mediaID: "2")
         XCTAssertNotNil(error)
     }
 
     func testSuccess() {
         let baseURL = URL(string: "https://u.edu/")!
-        environment.api = URLSessionAPI(accessToken: nil, actAsUserID: nil, baseURL: nil, urlSession: MockURLSession())
+        environment.api = URLSessionAPI(loginSession: nil, urlSession: MockURLSession())
         let api = MockURLSession.self
         api.mock(GetMediaServiceRequest(), value: APIMediaService(domain: "u.edu"))
         api.mock(PostMediaSessionRequest(), value: APIMediaSession(ks: "k"))

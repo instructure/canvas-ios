@@ -64,8 +64,7 @@ open class NotificationKitController {
             guard settings.authorizationStatus == .authorized else {
                 return
             }
-            if let client = CKIClient.current {
-                let session = client.authSession
+            if let session = Session.current {
                 let controller = NotificationKitController(session: session)
                 let userToken = UserDeviceToken(session: session, token: deviceToken)
                 let register = { () -> Void in

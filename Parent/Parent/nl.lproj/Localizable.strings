@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "Er heeft zich een serverfout voorgedaan. Probeer het nogmaals.";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Optreden als gebruiker";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "Er is een fout opgetreden";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "Er heeft zich een onverwachte fout voorgedaan. Probeer het nogmaals.";
 
 /* No comment provided by engineer. */
 "Announcement" = "Aankondiging";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Ontbrekend: (-/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "Netwerkfout";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "Volgende week";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "Geen cursisten";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "Geen toestemming";
-
-/* Not Found Error Title */
-"Not Found" = "Niet gevonden";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Niets deze week";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Een functie aanvragen";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "Bron niet gevonden. Probeer het nogmaals.";
-
-/* Server Error Title */
-"Server Error" = "Serverfout";
 
 /* No comment provided by engineer. */
 "Settings" = "Instellingen";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "Problemen met inloggen";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "Onbekend";
-
 /* No comment provided by engineer. */
 "Unread" = "Ongelezen";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "Welkom!";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "Je hebt geen toestemming voor toegang tot deze informatie. Controleer je gebruikersvergunningen en probeer het nogmaals.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Je moet in Instellingen meldingen activeren om herinneringen in te stellen.";

@@ -29,11 +29,14 @@ import Navigator from './Navigator'
 import { getSession } from '../canvas-api/session'
 import ErrorScreen from './ErrorScreen'
 import app from '../modules/app'
+import { refreshToken } from '../canvas-api/httpClient'
 
 import { ApolloProvider } from 'react-apollo'
 import { ApolloClient } from 'apollo-client'
+import { ApolloLink, Observable } from 'apollo-link'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
+import { onError } from 'apollo-link-error'
 
 export const routes: Map<RouteHandler, RouteConfig> = new Map()
 export const routeProps: Map<string, ?Object> = new Map()
@@ -110,16 +113,43 @@ export function wrapComponentInProviders (moduleName: string, generator: (props:
 
       const ScreenComponent = generator(props)
       const session = getSession()
-      // $FlowFixMe
       const uri = `${session.baseURL.replace(/\/?$/, '')}/api/graphql`
       const headers = {
-        // $FlowFixMe
         'Authorization': `Bearer ${session.authToken}`,
         'GraphQL-Metrics': true,
       }
 
+      const errorLink = onError(({ networkError, operation, forward }) => {
+        if (networkError && networkError.statusCode === 401) {
+          return new Observable((subscriber) => {
+            refreshToken().then(
+              () => {
+                if (subscriber.closed) return
+                subscriber.next(true)
+                subscriber.complete()
+              },
+              err => subscriber.error(err)
+            )
+          }).flatMap(() => {
+            const oldHeaders = operation.getContext().headers
+            operation.setContext({
+              headers: {
+                ...oldHeaders,
+                'Authorization': `Bearer ${getSession().authToken}`,
+              },
+            })
+            return forward(operation)
+          })
+        }
+      })
+
+      const link = ApolloLink.from([
+        errorLink,
+        new HttpLink({ uri, headers }),
+      ])
+
       const client = new ApolloClient({
-        link: new HttpLink({ uri, headers }),
+        link,
         cache: new InMemoryCache(),
       })
 

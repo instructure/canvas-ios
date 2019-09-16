@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100 %";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "Ilmeni palvelinvirhe.  Yritä uudelleen.";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Toimi käyttäjänä";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "Tapahtui virhe.";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "Ilmeni odottamaton virhe.  Yritä uudelleen.";
 
 /* No comment provided by engineer. */
 "Announcement" = "Ilmoitus";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Puuttuu (-/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "Verkkovirhe";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "Ensi viikolla";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "Ei opiskelijoita";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "Ei valtuutettu";
-
-/* Not Found Error Title */
-"Not Found" = "Ei löydy";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Ei mitään tällä viikolla";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Pyydä ominaisuus";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "Resurssia ei löytynyt  Yritä uudelleen.";
-
-/* Server Error Title */
-"Server Error" = "Palvelinvirhe";
 
 /* No comment provided by engineer. */
 "Settings" = "Asetukset";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "Ongelmia sisään kirjautumisessa";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "Tuntematon";
-
 /* No comment provided by engineer. */
 "Unread" = "Lukematon";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "Tervetuloa!";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "Sinulla ei ole valtuuksia näiden tietojen käyttöön.  Tarkista käyttöoikeutesi ja yritä uudelleen.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Sinun täytyy sallia ilmoitukset asetuksissa määrittääksesi muistutukset.";

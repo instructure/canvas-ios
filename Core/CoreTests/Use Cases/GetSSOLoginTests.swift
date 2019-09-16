@@ -80,6 +80,8 @@ class GetSSOLoginTest: CoreTestCase {
         waitForMainAsync()
         XCTAssertEqual(entry?.accessToken, "t")
         XCTAssertEqual(entry?.userID, "1")
+        XCTAssertEqual(entry?.clientID, "id")
+        XCTAssertEqual(entry?.clientSecret, "sec")
         XCTAssertNil(error)
     }
 }

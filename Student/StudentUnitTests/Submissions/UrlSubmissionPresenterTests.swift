@@ -21,15 +21,18 @@ import XCTest
 @testable import Student
 import TestsFoundation
 
-class UrlSubmissionPresenterTests: XCTestCase {
+class UrlSubmissionPresenterTests: PersistenceTestCase {
     var dismissed = false
     var presenter: UrlSubmissionPresenter!
     var resultingUrl: URL?
     var resultingError: Error?
     var navigationController: UINavigationController?
+    var onError: (() -> Void)?
+    var onDismiss: (() -> Void)?
 
     override func setUp() {
-        presenter = UrlSubmissionPresenter(view: self, courseID: "1", assignmentID: "1", userID: "1", env: testEnvironment())
+        super.setUp()
+        presenter = UrlSubmissionPresenter(view: self, courseID: "1", assignmentID: "1", userID: "1", env: env)
     }
 
     func testScrubUrl() {
@@ -49,21 +52,23 @@ class UrlSubmissionPresenterTests: XCTestCase {
 
     func testSubmitError() {
         let url = URL(string: "https://instructure.com")
-        let api = presenter.env.api as? MockAPI
         let error = NSError(domain: "test", code: 5, userInfo: nil)
-        api?.mock(submissionRequest(for: url), value: nil, response: nil, error: error)
+        MockURLSession.mock(submissionRequest(for: url), value: nil, response: nil, error: error, accessToken: presenter.env.api.loginSession?.accessToken)
+        let expectation = XCTestExpectation(description: "got an error")
+        onError = expectation.fulfill
         presenter.submit(url?.absoluteString)
-        let expectation = BlockExpectation(description: "got an error") { self.resultingError != nil }
         wait(for: [expectation], timeout: 10)
+        XCTAssertNotNil(resultingError)
     }
 
     func testSubmitSuccess() {
         let url = URL(string: "https://instructure.com")
-        let api = presenter.env.api as? MockAPI
-        api?.mock(submissionRequest(for: url), value: APISubmission.make(), response: nil, error: nil)
+        MockURLSession.mock(submissionRequest(for: url), value: APISubmission.make(), response: nil, error: nil, accessToken: presenter.env.api.loginSession?.accessToken)
+        let expectation = XCTestExpectation(description: "dismissed")
+        onDismiss = expectation.fulfill
         presenter.submit(url?.absoluteString)
-        let expectation = BlockExpectation(description: "dismissed") { self.dismissed }
         wait(for: [expectation], timeout: 10)
+        XCTAssertNil(resultingError)
     }
 
     func submissionRequest(for url: URL?) -> CreateSubmissionRequest {
@@ -86,6 +91,7 @@ class UrlSubmissionPresenterTests: XCTestCase {
 extension UrlSubmissionPresenterTests: UrlSubmissionViewProtocol {
     func dismiss() {
         dismissed = true
+        onDismiss?()
     }
 
     func loadUrl(url: URL) {
@@ -94,5 +100,6 @@ extension UrlSubmissionPresenterTests: UrlSubmissionViewProtocol {
 
     func showError(_ error: Error) {
         resultingError = error
+        onError?()
     }
 }

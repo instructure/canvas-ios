@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "Kua puta tētahi hapa tūmau. Tēnā koa ngana anō.";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Mahi rite kaiwhakamahi";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "I puta tētahi Hapa";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "He hapa ohorere. Tēnā koa ngana anō.";
 
 /* No comment provided by engineer. */
 "Announcement" = "Pānui";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Ngaro: (-/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "Hapa Whatunga";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "Wiki Muri";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "Kāore he ākonga";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "Manakore";
-
-/* Not Found Error Title */
-"Not Found" = "Kaore i kitea";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Kahore tēnei wiki";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Tono he Āhuatanga";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "Rauemi kore i kitea. Tēnā koa ngana anō.";
-
-/* Server Error Title */
-"Server Error" = "Hapa Tūmau";
 
 /* No comment provided by engineer. */
 "Settings" = "Ngā Tautuhinga";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "He raruraru ki te takiuru?";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "Kaore e mōhiotia";
-
 /* No comment provided by engineer. */
 "Unread" = "kia pānuitia";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "Nau Mai!";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "Kaore koe e manahia ki te uru i tēnei mōhiohio. Tirohia tō whakāetanga kaiwhakamahi, me te ngana anō.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Me tukua e koe ngā whakamōhiotanga i roto i ngā Tautuhinga ki te whakatau ngā whakamaharatanga.";

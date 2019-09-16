@@ -35,7 +35,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 
     "/calendar_events/:eventID": { _, params in
         guard let eventID = params["eventID"] else { return nil }
-        guard let session = CKIClient.current?.authSession else { return nil }
+        guard let session = Session.current else { return nil }
         return try? CalendarEventDetailViewController(forEventWithID: eventID, in: session, route: route)
     },
 
@@ -48,18 +48,18 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 
     "/groups/:groupID": { url, _ in
         guard let context = ContextID(path: url.path) else { return nil }
-        guard let session = CKIClient.current?.authSession else { return nil }
+        guard let session = Session.current else { return nil }
         return try? TabsTableViewController(session: session, contextID: context, route: route)
     },
     "/groups/:groupID/tabs": { url, _ in
         guard let context = ContextID(path: url.path) else { return nil }
-        guard let session = CKIClient.current?.authSession else { return nil }
+        guard let session = Session.current else { return nil }
         return try? TabsTableViewController(session: session, contextID: context, route: route)
     },
 
     "/:context/:contextID/activity_stream": { url, _ in
         guard let context = ContextID(path: url.path) else { return nil }
-        guard let session = CKIClient.current?.authSession else { return nil }
+        guard let session = Session.current else { return nil }
         return try? ActivityStreamTableViewController(session: session, context: context, route: route)
     },
 
@@ -142,7 +142,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 
     "/courses/:courseID/external_tools/:toolID": { url, _ in
         guard let url = url.url, let vc = HelmManager.shared.topMostViewController() else { return nil }
-        guard let session = CKIClient.current?.authSession else { return nil }
+        guard let session = Session.current else { return nil }
         ExternalToolManager.shared.launch(url, in: session, from: vc, fallbackURL: url)
         return nil
     },
@@ -193,7 +193,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 
     "/courses/:courseID/modules": { _, params in
         guard let courseID = params["courseID"] else { return nil }
-        guard let session = CKIClient.current?.authSession else { return nil }
+        guard let session = Session.current else { return nil }
         let contextID = ContextID.course(withID: courseID)
         // Restrict access to Modules tab if it's hidden (unless it is the home tab)
         let modulesTab = try? Tab.modulesTab(for: contextID, in: session)
@@ -210,19 +210,19 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 
     "/courses/:courseID/modules/:moduleID": { _, params in
         guard let courseID = params["courseID"], let moduleID = params["moduleID"] else { return nil }
-        guard let session = CKIClient.current?.authSession else { return nil }
+        guard let session = Session.current else { return nil }
         return try? ModuleDetailsViewController(session: session, courseID: courseID, moduleID: moduleID, route: route)
     },
 
     "/courses/:courseID/modules/items/:itemID": { _, params in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
-        guard let session = CKIClient.current?.authSession else { return nil }
+        guard let session = Session.current else { return nil }
         return try? ModuleItemDetailViewController(session: session, courseID: courseID, moduleItemID: itemID, route: route)
     },
 
     "/courses/:courseID/modules/:moduleID/items/:itemID": { _, params in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
-        guard let session = CKIClient.current?.authSession else { return nil }
+        guard let session = Session.current else { return nil }
         return try? ModuleItemDetailViewController(session: session, courseID: courseID, moduleItemID: itemID, route: route)
     },
 
@@ -273,14 +273,14 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         guard let groupID = params["groupID"], let purl = params["url"] else { return nil }
         // FIXME: confusing groupIDs for courseIDs (carried over from previoud route handler)
         if let controller = moduleItemController(for: url, courseID: groupID) { return controller }
-        guard let session = CKIClient.current?.authSession else { return nil }
+        guard let session = Session.current else { return nil }
         return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
     },
     "/groups/:groupID/wiki/:url": { url, params in
         guard let groupID = params["groupID"], let purl = params["url"] else { return nil }
         // FIXME: confusing groupIDs for courseIDs (carried over from previoud route handler)
         if let controller = moduleItemController(for: url, courseID: groupID) { return controller }
-        guard let session = CKIClient.current?.authSession else { return nil }
+        guard let session = Session.current else { return nil }
         return try? Page.DetailViewController(session: session, contextID: ContextID(id: groupID, context: .group), url: purl, route: route)
     },
 
@@ -291,7 +291,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 
     "/courses/:courseID/quizzes/:quizID": { url, params in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        guard let session = CKIClient.current?.authSession else { return nil }
+        guard let session = Session.current else { return nil }
         if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
         return QuizIntroViewController(session: session, courseID: courseID, quizID: quizID)
     },
@@ -325,7 +325,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         let context = CKIGroup(id: groupID)
         let user = CKIUser(id: userID, context: context)
         let viewModel = CBIPeopleViewModel(for: user)
-        viewModel?.tintColor = CKIClient.current?.authSession.colorForGroup(groupID)
+        viewModel?.tintColor = Session.current?.colorForGroup(groupID)
         let detailViewController = CBIPeopleDetailViewController()
         detailViewController.viewModel = viewModel
         return detailViewController
@@ -383,7 +383,7 @@ HelmManager.shared.registerNativeViewController(for: "/native-route-master/*rout
 CBIConversationStarter.setConversationStarter { recipients, context in
     guard
         let contextID = ContextID(canvasContext: context),
-        let currentSession = CKIClient.current?.authSession,
+        let currentSession = Session.current,
         let enrollment = currentSession.enrollmentsDataSource[contextID] else {
             return
     }
@@ -410,7 +410,7 @@ CBIConversationStarter.setConversationStarter { recipients, context in
 Routing.routeToURL = { url, view in route(view, url: url) }
 
 return Router(routes: routes) { url, view, _ in
-    guard let url = url.url, url.scheme != "canvas-courses", let session = CKIClient.current?.authSession else { return }
+    guard let url = url.url, url.scheme != "canvas-courses", let session = Session.current else { return }
     ExternalToolManager.shared.showAuthenticatedURL(url, in: session, from: view)
 }
 }()
@@ -456,7 +456,7 @@ private func fileViewController(url: URLComponents, params: [String: String]) ->
 
 private func moduleItemController(for url: URLComponents, courseID: String) -> UIViewController? {
     guard let itemID = url.queryItems?.first(where: { $0.name == "module_item_id" })?.value else { return nil }
-    guard let session = CKIClient.current?.authSession else { return nil }
+    guard let session = Session.current else { return nil }
     return try? ModuleItemDetailViewController(session: session, courseID: courseID, moduleItemID: itemID, route: route)
 }
 

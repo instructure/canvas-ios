@@ -55,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         }
         DocViewerViewController.setup(.studentPSPDFKitLicense)
         prepareReactNative()
-        NetworkMonitor.engage()
         setupDefaultErrorHandling()
         setupPageViewLogging()
         UIApplication.shared.reactive.applicationIconBadgeNumber
@@ -90,25 +89,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         }
 
         // Legacy CanvasKit support
-        let legacyClient = CKIClient(baseURL: session.baseURL, token: session.accessToken)!
+        let legacyClient = CKIClient(
+            baseURL: session.baseURL,
+            token: session.accessToken ?? "",
+            refreshToken: session.refreshToken,
+            clientID: session.clientID,
+            clientSecret: session.clientSecret
+        )!
         legacyClient.actAsUserID = session.actAsUserID
         legacyClient.originalIDOfMasqueradingUser = session.originalUserID
         legacyClient.originalBaseURL = session.originalBaseURL
-        legacyClient.fetchCurrentUser().subscribeNext({ user in
-            legacyClient.setValue(user, forKey: "currentUser")
+        let getProfile = GetUserProfileRequest(userID: session.userID)
+        environment.api.makeRequest(getProfile) { response, urlResponse, error in
+            guard let profile = response, error == nil else {
+                if urlResponse?.isUnauthorized == true {
+                    DispatchQueue.main.async { self.userDidLogout(session: session) }
+                }
+                return
+            }
+            let legacyUser = CKIUser()
+            legacyUser?.id = session.userID
+            legacyUser?.name = session.userName
+            legacyUser?.sortableName = session.userName
+            legacyUser?.shortName = session.userName
+            legacyUser?.avatarURL = profile.avatar_url
+            legacyUser?.loginID = profile.login_id
+            legacyUser?.email = profile.primary_email
+            legacyUser?.calendar = profile.calendar?.ics
+            legacyUser?.sisUserID = ""
+            legacyClient.setValue(legacyUser, forKey: "currentUser")
             CKIClient.current = legacyClient
-            self.session = legacyClient.authSession
+            if let legacySession = Session.current {
+                self.session = legacySession
+                LegacyModuleProgressShim.observeProgress(legacySession)
+                ModuleItem.beginObservingProgress(legacySession)
+            }
             PageViewEventController.instance.userDidChange()
-            LegacyModuleProgressShim.observeProgress(legacyClient.authSession)
-            ModuleItem.beginObservingProgress(legacyClient.authSession)
             CKCanvasAPI.updateCurrentAPI()
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
-                Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
-                NativeLoginManager.login(as: session, wasReload: wasReload)
+                DispatchQueue.main.async {
+                    Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
+                    NativeLoginManager.login(as: session, wasReload: wasReload)
+                }
             }
-        }, error: { _ in DispatchQueue.main.async {
-            self.userDidLogout(session: session)
-        } })
+        }
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -364,6 +388,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
+        NativeLoginManager.shared().logout()
     }
 
     func userDidLogout(session: LoginSession) {

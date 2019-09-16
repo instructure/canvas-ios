@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "Произошла ошибка сервера. Пожалуйста, попробуйте еще раз.";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Действовать как пользователь";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "Произошла ошибка";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "Произошла непредвиденная ошибка. Пожалуйста, попробуйте еще раз.";
 
 /* No comment provided by engineer. */
 "Announcement" = "Объявление";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Отсутствует: (-/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "Ошибка сети";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "На следующей неделе";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "Студенты отсутствуют";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "Нет авторизации";
-
-/* Not Found Error Title */
-"Not Found" = "Не найдено";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Ничего на этой неделе";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Запросить функцию";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "Ресурс не найден. Пожалуйста, попробуйте еще раз.";
-
-/* Server Error Title */
-"Server Error" = "Ошибка сервера";
 
 /* No comment provided by engineer. */
 "Settings" = "Настройки";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "Проблема со входом в систему";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "Неизвестно";
-
 /* No comment provided by engineer. */
 "Unread" = "Не прочитано";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "Добро пожаловать!";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "Вы не авторизованы для доступа к этой информации. Проверьте права доступа пользователя и повторите попытку.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Вы должны разрешить уведомления в настройках для задания напоминаний.";

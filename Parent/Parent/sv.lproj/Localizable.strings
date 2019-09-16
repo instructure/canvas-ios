@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "Ett serverfel inträffade. Försök igen.";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Agera som användare";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "Ett fel uppstod";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "Ett oväntat fel inträffade. Försök igen.";
 
 /* No comment provided by engineer. */
 "Announcement" = "Meddelande";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "Saknas: (-/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "Nätverksfel";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "Nästa vecka";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "Inga studenter";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "Du har inte behörighet";
-
-/* Not Found Error Title */
-"Not Found" = "Hittades inte";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "Inget den här veckan";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "Begär en funktion";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "Resursen hittades inte. Försök igen.";
-
-/* Server Error Title */
-"Server Error" = "Serverfel";
 
 /* No comment provided by engineer. */
 "Settings" = "Inställningar";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "Inloggningsproblem";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "Okänd";
-
 /* No comment provided by engineer. */
 "Unread" = "Oläst";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "Välkommen!";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "Du har inte behörighet att komma åt den här informationen. Kontrollera din behörighet och försök igen.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Du måste tillåta notifikationer i Inställningar för att ställa in påminnelser.";

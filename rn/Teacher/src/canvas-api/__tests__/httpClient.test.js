@@ -21,7 +21,7 @@
 
 import AsyncStorage from '@react-native-community/async-storage'
 import httpClient, { isAbort, httpCache, inFlight } from '../httpClient'
-import { setSession } from '../session'
+import { getSession, setSession } from '../session'
 import * as templates from '../../__templates__'
 
 jest.unmock('../httpClient')
@@ -141,10 +141,9 @@ describe('httpClient', () => {
   })
 
   it('dedupes get requests', () => {
-    const a = httpClient.get('/courses/22')
-    const b = httpClient.get('/courses/22')
+    httpClient.get('/courses/22')
+    httpClient.get('/courses/22')
     expect(request.open).toHaveBeenCalledTimes(1)
-    expect(b).toBe(a)
   })
 
   it('passes along headers', () => {
@@ -249,6 +248,59 @@ describe('httpClient', () => {
     request.status = 400
     expect(request.addEventListener).toHaveBeenCalledWith('load', expect.any(Object))
     const handler = request.addEventListener.mock.calls[0][1]
+    handler.handleEvent({ type: 'load' })
+    const error = await fetching.catch(error => error)
+    expect(isAbort(error)).toBe(false)
+    expect(error.message).toBe('Network request failed')
+    expect(error.response.data).toBe(request.response)
+  })
+
+  it('refreshes token on 401', async () => {
+    setSession({ ...getSession(), clientID: 'id', clientSecret: 'secret', refreshToken: 'refresh' })
+    const fetching = httpClient.get('')
+    request.status = 401
+    request.response = { error: [] }
+    request.open = jest.fn((method, url) => {
+      if (url.includes('login/oauth2/token')) {
+        request.status = 201
+        request.response = { access_token: 'new-token' }
+      } else if (request.status === 201) {
+        request.response = 'booyah'
+      }
+    })
+    expect(request.addEventListener).toHaveBeenCalledWith('load', expect.any(Object))
+    const handler = request.addEventListener.mock.calls[0][1]
+    request.addEventListener = jest.fn((name, handler) => {
+      if (name === 'load') {
+        handler.handleEvent({ type: 'load' })
+      }
+    })
+    handler.handleEvent({ type: 'load' })
+    const result = await fetching
+    expect(getSession().authToken).toEqual('new-token')
+    expect(result.data).toEqual('booyah')
+  })
+
+  it('forwards legit 401 error', async () => {
+    const fetching = httpClient.get('', { refreshRetries: 1 })
+    request.status = 401
+    request.response = { error: [] }
+    request.open = jest.fn((method, url) => {
+      if (url.includes('login/oauth2/token')) {
+        request.status = 201
+        request.response = { access_token: 'new-token' }
+      } else {
+        request.status = 401
+        request.response = { error: [] }
+      }
+    })
+    expect(request.addEventListener).toHaveBeenCalledWith('load', expect.any(Object))
+    const handler = request.addEventListener.mock.calls[0][1]
+    request.addEventListener = jest.fn((name, handler) => {
+      if (name === 'load') {
+        handler.handleEvent({ type: 'load' })
+      }
+    })
     handler.handleEvent({ type: 'load' })
     const error = await fetching.catch(error => error)
     expect(isAbort(error)).toBe(false)

@@ -19,7 +19,7 @@
 import Foundation
 
 public struct LoginSession: Codable, Hashable {
-    public let accessToken: String
+    public let accessToken: String?
     public let baseURL: URL
     public let expiresAt: Date?
     public let lastUsedAt: Date
@@ -30,6 +30,8 @@ public struct LoginSession: Codable, Hashable {
     public let userID: String
     public let userName: String
     public let userEmail: String?
+    public let clientID: String?
+    public let clientSecret: String?
 
     public var actAsUserID: String? {
         return masquerader == nil ? nil : userID
@@ -55,17 +57,19 @@ public struct LoginSession: Codable, Hashable {
     }
 
     public init(
-        accessToken: String,
+        accessToken: String? = nil,
         baseURL: URL,
-        expiresAt: Date?,
+        expiresAt: Date? = nil,
         lastUsedAt: Date = Date(),
-        locale: String?,
+        locale: String? = nil,
         masquerader: URL? = nil,
-        refreshToken: String?,
+        refreshToken: String? = nil,
         userAvatarURL: URL? = nil,
         userID: String,
         userName: String,
-        userEmail: String? = nil
+        userEmail: String? = nil,
+        clientID: String? = nil,
+        clientSecret: String? = nil
     ) {
         self.accessToken = accessToken
         // remove trailing slash
@@ -81,6 +85,8 @@ public struct LoginSession: Codable, Hashable {
         self.userID = userID
         self.userName = userName
         self.userEmail = userEmail
+        self.clientID = clientID
+        self.clientSecret = clientSecret
     }
 
     // Only keep 1 entry per account user
@@ -110,7 +116,27 @@ public struct LoginSession: Codable, Hashable {
             userAvatarURL: userAvatarURL,
             userID: userID,
             userName: userName,
-            userEmail: userEmail
+            userEmail: userEmail,
+            clientID: clientID,
+            clientSecret: clientSecret
+        )
+    }
+
+    public func refresh(accessToken: String) -> LoginSession {
+        return LoginSession(
+            accessToken: accessToken,
+            baseURL: baseURL,
+            expiresAt: expiresAt,
+            lastUsedAt: lastUsedAt,
+            locale: locale,
+            masquerader: masquerader,
+            refreshToken: refreshToken,
+            userAvatarURL: userAvatarURL,
+            userID: userID,
+            userName: userName,
+            userEmail: userEmail,
+            clientID: clientID,
+            clientSecret: clientSecret
         )
     }
 

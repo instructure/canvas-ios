@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "Grade { grade }"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "Grade post policy"
+  },
   "graded_25cd3fcd": {
     "message": "Graded"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "Insert Link"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "Internet Connection Offline"
-  },
   "invalid_field_54480fae": {
     "message": "Invalid field"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "Invite declined!"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "It looks like your internet connection is offline. Reconnect to the internet and try again."
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "It seems there aren''t any valid submissions to grade."
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "No Grade"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "No internet connection"
-  },
   "no_messages_a2e67ad4": {
     "message": "No Messages"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "Page Not Found"
-  },
-  "pages_e5414c2c": {
-    "message": "Pages"
   },
   "pages_front_page_9ce5188": {
     "message": "Pages Front Page"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "There are no files to display."
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "There are no pages to display."
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "There are no quizzes to display."
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "This action can not be undone."
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "This action requires an internet connection."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "This assignment does not allow submissions."

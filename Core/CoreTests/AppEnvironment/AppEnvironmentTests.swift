@@ -23,7 +23,7 @@ class AppEnvironmentTests: CoreTestCase {
     func testUserDidLogin() {
         let env = AppEnvironment()
         env.userDidLogin(session: LoginSession.make(accessToken: "token"))
-        XCTAssertEqual(env.api.accessToken, "token")
+        XCTAssertEqual(env.api.loginSession?.accessToken, "token")
     }
 
     func testUserDidLogout() {
@@ -31,9 +31,9 @@ class AppEnvironmentTests: CoreTestCase {
         let current = LoginSession.make(accessToken: "token")
         env.userDidLogin(session: current)
         env.userDidLogout(session: LoginSession.make(userID: "7"))
-        XCTAssertEqual(env.api.accessToken, "token")
+        XCTAssertEqual(env.api.loginSession?.accessToken, "token")
         env.userDidLogout(session: current)
-        XCTAssertNil(env.api.accessToken)
+        XCTAssertNil(env.api.loginSession?.accessToken)
         XCTAssertNil(env.currentSession)
     }
 }

@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "Alle vurderinger er nå skjult.";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Alle vurderinger er nå publisert.";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Alle skjult";
+
+/* No comment provided by engineer. */
+"All Posted" = "Alle publisert";
+
+/* No comment provided by engineer. */
+"Back" = "Tilbake";
+
+/* No comment provided by engineer. */
 "Courses" = "Fag";
 
 /* No comment provided by engineer. */
+"Everyone" = "Alle";
+
+/* No comment provided by engineer. */
+"Graded" = "Vurdert";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Vurderinger vil gjøres synlig for alle elever";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Vurderinger vil gjøres synlig for elevene med vurderte innleveringer";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Skjul vurderinger";
+
+/* No comment provided by engineer. */
 "Modules" = "Moduler";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Publisert vurderinger";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Publiseringsinnstillinger";
+
+/* No comment provided by engineer. */
+"Post to..." = "Publiser til";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Utvalgte seksjoner";
 
 /* No comment provided by engineer. */
 "To Do" = "Å gjøre";

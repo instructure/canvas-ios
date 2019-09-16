@@ -26,5 +26,5 @@ export function account (): ApiPromise<Account> {
 }
 
 export function becomeUserPermissions (accountID: string): ApiPromise<RolePermission> {
-  return httpClient.get(`/accounts/${accountID}/permissions?permissions[]=become_user`)
+  return httpClient.get(`/accounts/${accountID}/permissions?permissions[]=become_user`, { refreshToken: false })
 }

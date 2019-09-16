@@ -48,6 +48,11 @@ class UIImageViewExtensionsTests: XCTestCase {
         }
     }
 
+    override func setUp() {
+        super.setUp()
+        URLSessionAPI.cachingURLSession = URLSession.shared
+    }
+
     func testLoadPng() {
         let expectation = XCTestExpectation(description: "load callback runs")
         let view = MockImageView { _, loaded, error in

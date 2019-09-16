@@ -19,6 +19,7 @@
 import XCTest
 import WebKit
 @testable import Core
+import TestsFoundation
 
 class CoreWebViewTests: CoreTestCase {
     class LinkDelegate: CoreWebViewLinkDelegate {
@@ -162,13 +163,13 @@ class CoreWebViewTests: CoreTestCase {
     }
 
     func testKeepCookieAlive() {
-        api.accessToken = nil
+        environment.api = URLSessionAPI(loginSession: LoginSession.make(accessToken: nil))
         CoreWebView.keepCookieAlive(for: environment)
         XCTAssertNil(CoreWebView.cookieKeepAliveTimer)
 
-        api.accessToken = "a"
+        environment.api = URLSessionAPI(loginSession: LoginSession.make(accessToken: "a"))
         let value = GetWebSessionRequest.Response(session_url: URL(string: "data:text/html,")!)
-        api.mock(GetWebSessionRequest(to: api.baseURL.appendingPathComponent("users/self")), value: value, response: nil, error: nil)
+        api.mock(GetWebSessionRequest(to: environment.api.baseURL.appendingPathComponent("users/self")), value: value, baseURL: environment.api.baseURL, accessToken: "a")
         CoreWebView.keepCookieAlive(for: environment)
         wait(for: [expectation(for: .all, evaluatedWith: api) { CoreWebView.cookieKeepAliveWebView.url != nil }], timeout: 10)
         XCTAssertEqual(CoreWebView.cookieKeepAliveWebView.url, URL(string: "data:text/html,"))

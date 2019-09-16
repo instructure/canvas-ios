@@ -18,6 +18,7 @@
 
 import XCTest
 @testable import Core
+import TestsFoundation
 
 let accountResultsUrl = Bundle(for: APITests.self).url(forResource: "APIAccountResults", withExtension: "json")!
 
@@ -73,6 +74,16 @@ class APITests: XCTestCase {
         func encode(_ body: URL) throws -> Data {
             return body.path.data(using: .utf8)!
         }
+    }
+
+    override func setUp() {
+        super.setUp()
+        URLSessionAPI.defaultURLSession = {
+            let configuration = URLSessionConfiguration.ephemeral
+            configuration.urlCache = nil
+            return URLSession(configuration: configuration)
+        }()
+        AppEnvironment.shared.currentSession = LoginSession.make()
     }
 
     func testIdentifier() {
@@ -174,4 +185,148 @@ class APITests: XCTestCase {
         let value = try? String(contentsOf: file, encoding: .utf8)
         XCTAssertEqual(value, "/file.png")
     }
+
+    func testNoFollowRedirect() {
+        let expectation = XCTestExpectation(description: "handler called")
+        let url = URL(string: "/")!
+        NoFollowRedirect().urlSession(
+            URLSessionAPI.noFollowRedirectURLSession,
+            task: MockURLSession.MockDataTask(),
+            willPerformHTTPRedirection: HTTPURLResponse(url: url, mimeType: nil, expectedContentLength: 0, textEncodingName: nil),
+            newRequest: URLRequest(url: url)
+        ) { request in
+            XCTAssertNil(request)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+
+    func testRefreshToken() {
+        let session = LoginSession.make(
+            accessToken: "expired-token",
+            refreshToken: "refresh-token",
+            clientID: "client-id",
+            clientSecret: "client-secret"
+        )
+        AppEnvironment.shared.currentSession = session
+        let api = URLSessionAPI(loginSession: session, urlSession: MockURLSession())
+        let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
+        let request = URLRequest(url: url)
+        let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
+        MockURLSession.mock(
+            request,
+            value: nil,
+            response: response,
+            accessToken: session.accessToken
+        )
+        MockURLSession.mock(
+            PostLoginOAuthRequest(
+                client: APIVerifyClient(
+                    authorized: true,
+                    base_url: api.baseURL,
+                    client_id: "client-id",
+                    client_secret: "client-secret"
+                ),
+                refreshToken: "refresh-token"
+            ),
+            value: APIOAuthToken.make(accessToken: "new-token"),
+            accessToken: session.accessToken
+        )
+        let expectation = XCTestExpectation(description: "request callback was called")
+        api.makeRequest(request) { _, _, error in
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        XCTAssertEqual(api.loginSession?.accessToken, "new-token")
+        XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, "new-token")
+        XCTAssertTrue(LoginSession.sessions.contains(where: { $0.accessToken == "new-token" }))
+    }
+
+    func testRefreshTokenNotCurrentSession() {
+        AppEnvironment.shared.currentSession = LoginSession.make(
+            accessToken: "expired-token",
+            baseURL: URL(string: "https://other.instructure.com")!,
+            refreshToken: "refresh-token",
+            clientID: "client-id",
+            clientSecret: "client-secret"
+        )
+        let session = LoginSession.make(
+            accessToken: "expired-token",
+            baseURL: URL(string: "https://canvas.instructure.com")!,
+            refreshToken: "refresh-token",
+            clientID: "client-id",
+            clientSecret: "client-secret"
+        )
+        let api = URLSessionAPI(loginSession: session, urlSession: MockURLSession())
+        let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
+        let request = URLRequest(url: url)
+        let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
+        MockURLSession.mock(
+            request,
+            value: nil,
+            response: response,
+            accessToken: session.accessToken
+        )
+        MockURLSession.mock(
+            PostLoginOAuthRequest(
+                client: APIVerifyClient(
+                    authorized: true,
+                    base_url: api.baseURL,
+                    client_id: "client-id",
+                    client_secret: "client-secret"
+                ),
+                refreshToken: "refresh-token"
+            ),
+            value: APIOAuthToken.make(accessToken: "new-token"),
+            accessToken: session.accessToken
+        )
+        let expectation = XCTestExpectation(description: "request callback was called")
+        api.makeRequest(request) { _, _, error in
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        XCTAssertEqual(api.loginSession?.accessToken, "new-token")
+        XCTAssertNotEqual(AppEnvironment.shared.currentSession?.accessToken, "new-token")
+        XCTAssertTrue(LoginSession.sessions.contains(where: { $0.accessToken == "new-token" }))
+    }
+
+    func testRefreshTokenError() {
+        let session = LoginSession.make(
+            accessToken: "expired-token",
+            refreshToken: "refresh-token",
+            clientID: "client-id",
+            clientSecret: "client-secret"
+        )
+        let api = URLSessionAPI(loginSession: session, urlSession: MockURLSession())
+        let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
+        let request = URLRequest(url: url)
+        let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
+        MockURLSession.mock(
+            request,
+            value: nil,
+            response: response,
+            error: NSError.internalError(),
+            accessToken: session.accessToken
+        )
+        MockURLSession.mock(
+            PostLoginOAuthRequest(
+                client: APIVerifyClient(
+                    authorized: true,
+                    base_url: api.baseURL,
+                    client_id: "client-id",
+                    client_secret: "client-secret"
+                ),
+                refreshToken: "refresh-token"
+            ),
+            error: NSError.internalError(),
+            accessToken: session.accessToken
+        )
+        let expectation = XCTestExpectation(description: "request callback was called")
+        api.makeRequest(request) { _, _, error in
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        XCTAssertEqual(api.loginSession?.accessToken, "expired-token")
+    }
+
 }

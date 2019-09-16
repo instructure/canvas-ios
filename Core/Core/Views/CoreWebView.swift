@@ -271,7 +271,7 @@ extension CoreWebView {
     static var cookieKeepAliveWebView = CoreWebView()
 
     public static func keepCookieAlive(for env: AppEnvironment) {
-        guard env.api.accessToken != nil else { return }
+        guard env.api.loginSession?.accessToken != nil else { return }
         DispatchQueue.main.async {
             cookieKeepAliveTimer?.invalidate()
             let interval: TimeInterval = 10 * 60 // ten minutes
