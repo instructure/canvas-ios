@@ -26,6 +26,7 @@ class SyllabusTests: StudentUITestCase {
     lazy var course = mock(course: .make(course_code: "abc", syllabus_body: html))
 
     func testSyllabusLoad() {
+        mockBaseRequests()
         let assignmentName = "Foobar"
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
             course.canvasContextID: "#123456",

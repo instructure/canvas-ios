@@ -17,7 +17,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-
 set -euo pipefail
 
 script_dir="$(dirname "$0")"
