@@ -71,3 +71,44 @@ class GradesPresenter {
         env.router.route(to: assignment.htmlURL, from: from, options: nil)
     }
 }
+
+extension Assignment {
+    public var gradesListGradeText: String? {
+        let totalPointsPossible: String = formattedGradeNumber(pointsPossible) ?? ""
+        let emptyPoints = "- / \(totalPointsPossible)"
+        guard let submission = submission else {
+            return emptyPoints
+        }
+
+        if submission.excused ?? false {
+            return NSLocalizedString("Excused", comment: "")
+        }
+
+        if submission.score == nil {
+            return "- / \(totalPointsPossible)"
+        }
+
+        let score = formattedGradeNumber(submission.score) ?? ""
+
+        switch gradingType {
+        case .pass_fail:
+            var status = "-"
+            status = submission.grade == "incomplete"
+                ? NSLocalizedString("Incomplete", bundle: .core, comment: "")
+                : NSLocalizedString("Complete", bundle: .core, comment: "")
+            return "\(status) / \(totalPointsPossible)"
+        case .points:
+            return "\(score) / \(totalPointsPossible)"
+
+        case .letter_grade, .percent, .gpa_scale:
+            return "\(score) / \(totalPointsPossible) (\(submission.grade ?? ""))"
+        case .not_graded:
+            return ""
+        }
+    }
+
+    func formattedGradeNumber(_ number: Double?) -> String? {
+        guard let number = number else { return nil }
+        return NumberFormatter.localizedString(from: NSNumber(value: (number * 100) / 100), number: .decimal)
+    }
+}
