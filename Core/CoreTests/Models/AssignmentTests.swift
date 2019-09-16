@@ -341,45 +341,6 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(icon, expected)
     }
 
-    func testSubmissionStatusTextSubmissionMissingPastDue() {
-        let a = Assignment.make(from: .make(id: "2", due_at: Date().addDays(-2), submission: nil))
-        let result = a.submissionStatusText
-        let expected = "missing"
-        XCTAssertEqual(result, expected)
-    }
-
-    func testSubmissionStatusTextUnsubmitted() {
-        let s = APISubmission.make(workflow_state: .unsubmitted)
-        let a = Assignment.make(from: .make(id: "3", due_at: Date().addDays(-3), submission: s))
-        let result = a.submissionStatusText
-        let expected = "missing"
-        XCTAssertEqual(result, expected)
-    }
-
-    func testSubmissionStatusTextSubmissionMissing() {
-        let s = APISubmission.make(missing: true)
-        let a = Assignment.make(from: .make(id: "4", due_at: Date().addDays(-4), submission: s))
-        let result = a.submissionStatusText
-        let expected = "missing"
-        XCTAssertEqual(result, expected)
-    }
-
-    func testSubmissionStatusTextSubmissionLate() {
-        let s = APISubmission.make(late: true)
-        let a = Assignment.make(from: .make(id: "5", submission: s))
-        let result = a.submissionStatusText
-        let expected = "late"
-        XCTAssertEqual(result, expected)
-    }
-
-    func testSubmissionStatusTextSubmitted() {
-        let s = APISubmission.make(submission_type: .online_text_entry)
-        let a = Assignment.make(from: .make(id: "6", submission: s))
-        let result = a.submissionStatusText
-        let expected = "submitted"
-        XCTAssertEqual(result, expected)
-    }
-
     func testGradesListGradeTextWithNoSubmission() {
         let a = Assignment.make(from: .make(id: "6", submission: nil))
         let result = a.gradesListGradeText
