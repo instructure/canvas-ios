@@ -1,8 +1,56 @@
 /* No comment provided by engineer. */
+"All grades are currently hidden." = "Kei te hungaia ngā kōeke katoa i tēnei wā";
+
+/* No comment provided by engineer. */
+"All grades are currently posted." = "Kei te whakairihia ngā kōeke katoa i tēnei wā";
+
+/* No comment provided by engineer. */
+"All Hidden" = "Kua hungaia katoa";
+
+/* No comment provided by engineer. */
+"All Posted" = "Kua whakairihia katoa";
+
+/* No comment provided by engineer. */
+"Back" = "Hoki";
+
+/* No comment provided by engineer. */
 "Courses" = "Ngā Akoranga";
 
 /* No comment provided by engineer. */
+"Everyone" = "tāngata katoa";
+
+/* No comment provided by engineer. */
+"Graded" = "kōekehia";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to all students" = "Ka kitea e ngā ākonga katoa ngā koeke";
+
+/* No comment provided by engineer. */
+"Grades will be made visible to students with graded submissions" = "Ka kitea e nga ākonga ngā koeke me ngā kōeke tukunga";
+
+/* number of grades hidden */
+"grades_currently_hidden" = "grades_currently_hidden";
+
+/* number of grades hidden */
+"grades_currently_posted" = "grades_currently_posted";
+
+/* No comment provided by engineer. */
+"Hide Grades" = "Huna ngā Kōeke";
+
+/* No comment provided by engineer. */
 "Modules" = "kōwae";
+
+/* No comment provided by engineer. */
+"Post Grades" = "Whakairi ngā kōeke";
+
+/* No comment provided by engineer. */
+"Post Settings" = "Whakairi ngā tautuhinga";
+
+/* No comment provided by engineer. */
+"Post to..." = "Whakairi kī";
+
+/* No comment provided by engineer. */
+"Specific Sections" = "Ngā Wāhanga Motuhake";
 
 /* No comment provided by engineer. */
 "To Do" = "Hei mahi";

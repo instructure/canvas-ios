@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "Classificação { grade }"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "Política de postagem de classificação"
+  },
   "graded_25cd3fcd": {
     "message": "Classificado"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "Inserir ligação"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "Conexão com a Internet Off-line"
-  },
   "invalid_field_54480fae": {
     "message": "Campo inválido"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "Convite recusado!"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "Parece que sua conexão com a internet está off-line. Reconecte-se à internet e tente novamente."
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Parece que não há inscrições válidas para avaliação."
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "Sem classificação"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "Sem conexão à internet"
-  },
   "no_messages_a2e67ad4": {
     "message": "Não há mensagens"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "Página não encontrada"
-  },
-  "pages_e5414c2c": {
-    "message": "Páginas"
   },
   "pages_front_page_9ce5188": {
     "message": "Páginas na primeira página"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "Não há ficheiros para exibir."
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "Não há páginas a exibir."
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "Não há questionários a exibir."
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Essa ação não pode ser desfeita."
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "Esta ação requer uma conexão com a internet."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Esta tarefa não permite submissões."

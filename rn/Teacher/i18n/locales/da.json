@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "Karakter { grade }"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "Politik for at slå karakterer op"
+  },
   "graded_25cd3fcd": {
     "message": "Bedømt"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "Indsæt link"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "Internetforbindelse offline"
-  },
   "invalid_field_54480fae": {
     "message": "Ugyldigt felt"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "Invitation afvist!"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "Det ser ud til, at din internetforbindelse er offline. Opret forbindelse til internettet, og prøv igen."
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Det ser ud til, at der ikke er nogen gyldige afleveringer at bedømme."
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "Ingen vurderinger"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "Ingen internetforbindelse"
-  },
   "no_messages_a2e67ad4": {
     "message": "Ingen beskeder"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "Side ikke fundet"
-  },
-  "pages_e5414c2c": {
-    "message": "Sider"
   },
   "pages_front_page_9ce5188": {
     "message": "Sider forside"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "Der er ikke nogen filer at vise."
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "Der er ikke nogen sider at vise."
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "Der er ikke nogen test at vise."
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Denne handling kan ikke fortrydes"
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "Denne handling kræver en internetforbindelse."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Denne opgave tillader ikke afleveringer."

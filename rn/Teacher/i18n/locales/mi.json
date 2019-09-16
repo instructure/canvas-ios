@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "kōeke { grade }"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "Kōeke Whakairi Kaupapa"
+  },
   "graded_25cd3fcd": {
     "message": "kōeketia"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "Whakauru hono"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "Kei te Tuimotu te Hononga Ipurangi"
-  },
   "invalid_field_54480fae": {
     "message": "Whīra muhu"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "Kua whakakoretia te tono!"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "He rite kei te tuimotuhia tō hononga ipurangi. Hono anō ki te ipurangi ka ngana anō"
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Anō nei kaore he tukuna whaimana hei kōeke."
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "Kaore he Kōeke"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "Kāore he hononga ipurangi"
-  },
   "no_messages_a2e67ad4": {
     "message": "Kāore he Karere"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "Kāore te Whārangi i kitea"
-  },
-  "pages_e5414c2c": {
-    "message": "Ngā whārangi"
   },
   "pages_front_page_9ce5188": {
     "message": "Ngā Whārangi Whārangi o mua"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "Kaore he kōnae hei whakātu."
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "Kaore ngā whārangi hei whakātu."
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "Kaore ngā quizzes hei whakātu."
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "Kaore tēnei mahi e taea te wete"
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "Tēnei mahi ka mahi he hononga ipurangi"
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Kāore tēnei whakataunga e whakāe ngā tāpaetanga"

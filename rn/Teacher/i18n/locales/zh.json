@@ -692,6 +692,9 @@
   "grade_grade_990eb477": {
     "message": "评分{ grade }"
   },
+  "grade_post_policy_7fa3ef03": {
+    "message": "评分发布政策"
+  },
   "graded_25cd3fcd": {
     "message": "已评分"
   },
@@ -782,9 +785,6 @@
   "insert_link_6dc23cae": {
     "message": "插入链接"
   },
-  "internet_connection_offline_d7c02b88": {
-    "message": "网络连接断开"
-  },
   "invalid_field_54480fae": {
     "message": "无效的字段"
   },
@@ -793,9 +793,6 @@
   },
   "invite_declined_d0a9e398": {
     "message": "已拒绝邀请！"
-  },
-  "it_looks_like_your_internet_connection_is_offline__cf4003": {
-    "message": "您的网络连接似乎已断开。重新连接网络并重试。"
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "似乎没有要评分的有效提交项。"
@@ -977,9 +974,6 @@
   "no_grade_3b4d7f3e": {
     "message": "没有评分"
   },
-  "no_internet_connection_9df26cf8": {
-    "message": "无互联网连接"
-  },
   "no_messages_a2e67ad4": {
     "message": "无消息"
   },
@@ -1111,9 +1105,6 @@
   },
   "page_not_found_683da852": {
     "message": "页面未找到"
-  },
-  "pages_e5414c2c": {
-    "message": "页面"
   },
   "pages_front_page_9ce5188": {
     "message": "页面首页"
@@ -1541,9 +1532,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "没有文件可显示。"
   },
-  "there_are_no_pages_to_display_ce6ca4d3": {
-    "message": "没有要显示的页面。"
-  },
   "there_are_no_quizzes_to_display_733b28f2": {
     "message": "没有要显示的测验。"
   },
@@ -1606,9 +1594,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "无法撤销此操作。"
-  },
-  "this_action_requires_an_internet_connection_81f6688a": {
-    "message": "此操作需要互联网连接。"
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "此作业不允许提交。"

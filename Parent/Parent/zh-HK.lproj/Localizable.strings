@@ -13,9 +13,6 @@
 /* Percentage field placeholder */
 "1-100%" = "1-100%";
 
-/* Server Error Message */
-"A server error has occurred.  Please try again." = "出現伺服器故障。請重試。";
-
 /* Label for button that allows admin to Act as User */
 "Act as User" = "作為使用者";
 
@@ -33,9 +30,6 @@
 
 /* No comment provided by engineer. */
 "An Error Occurred" = "出現了一個錯誤";
-
-/* Generic Network Error Message */
-"An unexpected error occurred.  Please try again." = "出現意外故障。請重試。";
 
 /* No comment provided by engineer. */
 "Announcement" = "通告";
@@ -166,9 +160,6 @@
 /* No comment provided by engineer. */
 "Missing: (-/%@)" = "缺少：(-/%@)";
 
-/* Generic Network Error Title */
-"Network Error" = "網路錯誤";
-
 /* Next Week Button Accessibility Label */
 "Next Week" = "下週";
 
@@ -183,12 +174,6 @@
 
 /* Empty Students Text */
 "No Students" = "無學生";
-
-/* Not Authorized Error Title */
-"Not Authorized" = "未授權";
-
-/* Not Found Error Title */
-"Not Found" = "找不到";
 
 /* Empty Calendar Events Text */
 "Nothing this week" = "本週無事";
@@ -216,12 +201,6 @@
 
 /* No comment provided by engineer. */
 "Request a Feature" = "請求功能";
-
-/* Not Found Error Message */
-"Resource not found.  Please try again." = "資源未找到。請重試。";
-
-/* Server Error Title */
-"Server Error" = "伺服器錯誤";
 
 /* No comment provided by engineer. */
 "Settings" = "設定";
@@ -271,9 +250,6 @@
 /* No comment provided by engineer. */
 "Trouble logging in" = "登入發生問題";
 
-/* Unknown T`hreshold Description */
-"Unknown" = "未知";
-
 /* No comment provided by engineer. */
 "Unread" = "未讀";
 
@@ -285,9 +261,6 @@
 
 /* Header title of admin view */
 "Welcome!" = "歡迎！";
-
-/* Not Authorized Error Message */
-"You are unauthorized to access this information.  Check your user permissions and try again." = "您未獲得存取此資訊的權限。請核對您的使用者許可並重試。";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "您必須允許設定內的通知，方可設定提醒。";
