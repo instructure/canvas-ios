@@ -54,6 +54,21 @@ class LoginTests: CoreUITestCase {
         TabBar.dashboardTab.waitToExist()
     }
 
+    func testSAMLLoginToDashboard() {
+        setAnimationsEnabled(true)
+        let user = UITestUser.saml
+        LoginStart.findSchoolButton.tap()
+        LoginFindSchool.searchField.typeText("\(user.host)")
+        LoginFindAccountResult.item(host: "iosauto.instructure.com").tap()
+        LoginWeb.emailField.typeText(" \r")
+        LoginWeb.emailField.typeText("\(user.username)\r")
+        LoginWeb.passwordField.tap()
+        LoginWeb.passwordField.typeText(" \r")
+        LoginWeb.passwordField.tap()
+        LoginWeb.passwordField.typeText("\(user.password)\r")
+        TabBar.dashboardTab.waitToExist()
+    }
+
     func testMultipleUsers() {
         logInUser(.readStudent1)
         let entry1 = UITestUser.readStudent1.session!
