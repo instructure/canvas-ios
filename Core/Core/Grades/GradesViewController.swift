@@ -42,15 +42,24 @@ public class GradesViewController: UIViewController {
     }
 
     func setupTableView() {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        tableView.refreshControl = refresh
+
         tableView.registerHeaderFooterView(SectionHeaderView.self)
         tableView.registerCell(GradesCell.self)
+    }
+
+    @objc func refresh(_ control: UIRefreshControl) {
+        presenter.assignments.refresh(force: true)
     }
 }
 
 extension GradesViewController: GradesViewProtocol {
-    func update() {
+    func update(isLoading: Bool) {
         tableView.reloadData()
         loadingView.isHidden = true
+        tableView?.refreshControl?.endRefreshing()
     }
 }
 
@@ -88,6 +97,14 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
             view.titleLabel?.text = NSLocalizedString("No Due Date", comment: "")
         }
         return view
+    }
+}
+
+extension GradesViewController: UIScrollViewDelegate {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isBottomReached() {
+            presenter?.assignments.getNextPage()
+        }
     }
 }
 

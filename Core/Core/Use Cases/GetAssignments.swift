@@ -29,12 +29,14 @@ public class GetAssignments: CollectionUseCase {
     private let sort: Sort
     let include: [GetAssignmentsRequest.Include]
     let updateSubmission: Bool
+    let requestQuerySize: Int
 
-    public init(courseID: String, sort: Sort = .position, include: [GetAssignmentsRequest.Include] = []) {
+    public init(courseID: String, sort: Sort = .position, include: [GetAssignmentsRequest.Include] = [], requestQuerySize: Int = 100) {
         self.courseID = courseID
         self.sort = sort
         self.include = include
         self.updateSubmission = include.contains(.submission)
+        self.requestQuerySize = requestQuerySize
     }
 
     public var cacheKey: String? {
@@ -49,7 +51,7 @@ public class GetAssignments: CollectionUseCase {
         case .name:
             orderBy = .name
         }
-        return GetAssignmentsRequest(courseID: courseID, orderBy: orderBy, include: include)
+        return GetAssignmentsRequest(courseID: courseID, orderBy: orderBy, include: include, querySize: requestQuerySize)
     }
 
     public var scope: Scope {
@@ -109,9 +111,9 @@ public class GetAssignmentsForGrades: GetAssignments {
         case assingnmentGroup, dueAt
     }
 
-    public init(courseID: String, groupBy: GroupBy = .dueAt) {
+    public init(courseID: String, groupBy: GroupBy = .dueAt, requestQuerySize: Int = 10) {
         self.groupBy = groupBy
-        super.init(courseID: courseID, sort: .name, include: [.observed_users, .submission])
+        super.init(courseID: courseID, sort: .dueAt, include: [.observed_users, .submission], requestQuerySize: requestQuerySize)
     }
 
     public override var scope: Scope {

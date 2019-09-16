@@ -220,7 +220,7 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual(assignments.count, 3)
     }
 
-    func testGetAssignmentsForGrades() {
+    func testGetAssignmentsForGradesByAssignmentGroup() {
         let apiAssignments = [
             APIAssignment.make(id: "1", name: "1", due_at: Date().addDays(+5), assignment_group_id: "5"),
             APIAssignment.make(id: "2", name: "2", due_at: nil, assignment_group_id: "6"),
@@ -229,7 +229,7 @@ class GetAssignmentsTests: CoreTestCase {
             APIAssignment.make(id: "5", name: "5", assignment_group_id: "7"),
             APIAssignment.make(id: "6", name: "6", due_at: Date().addDays(-1), assignment_group_id: "5"),
         ]
-        let u = GetAssignmentsForGrades(courseID: "1")
+        let u = GetAssignmentsForGrades(courseID: "1", groupBy: .assingnmentGroup, requestQuerySize: 99)
         u.write(response: apiAssignments, urlResponse: nil, to: databaseClient)
 
         let groups = [
@@ -254,6 +254,29 @@ class GetAssignmentsTests: CoreTestCase {
         XCTAssertEqual(assignments[5].assignmentGroupPosition, 3)
     }
 
+    func testGetAssignmentsForGradesByDueDate() {
+        let apiAssignments = [
+            APIAssignment.make(id: "1", name: "1", due_at: Date().addDays(+5), assignment_group_id: "5"),
+            APIAssignment.make(id: "2", name: "2", due_at: nil, assignment_group_id: "6"),
+            APIAssignment.make(id: "3", name: "3", due_at: Date().addDays(+1), assignment_group_id: "6"),
+            APIAssignment.make(id: "4", name: "4", due_at: Date().addDays(-2), assignment_group_id: "5"),
+            APIAssignment.make(id: "5", name: "5", assignment_group_id: "7"),
+            APIAssignment.make(id: "6", name: "6", due_at: Date().addDays(-1), assignment_group_id: "5"),
+        ]
+        let u = GetAssignmentsForGrades(courseID: "1", groupBy: .dueAt, requestQuerySize: 99)
+        u.write(response: apiAssignments, urlResponse: nil, to: databaseClient)
+
+        let assignments: [Assignment] = databaseClient.fetch(u.scope.predicate, sortDescriptors: u.scope.order)
+        XCTAssertEqual(assignments.count, 6)
+
+        XCTAssertEqual(assignments[0].id, "4")
+        XCTAssertEqual(assignments[1].id, "6")
+        XCTAssertEqual(assignments[2].id, "3")
+        XCTAssertEqual(assignments[3].id, "1")
+        XCTAssertEqual(assignments[4].id, "2")
+        XCTAssertEqual(assignments[5].id, "5")
+    }
+
     func testSortOrderByDueDate2() {
         let dateC = Date().addDays(2)
         let dateD = Date().addDays(3)
@@ -272,7 +295,7 @@ class GetAssignmentsTests: CoreTestCase {
         let a6 = Assignment.make(from: .make(id: "6"))
         let a7 = Assignment.make(from: .make(id: "7"))
 
-       //   must do this so dueAtOrder property gets updated
+       //   must do this so dueAtSortNilsAtBottom property gets updated
         a2.update(fromApiModel: api2, in: databaseClient, updateSubmission: false)
         a3.update(fromApiModel: api3, in: databaseClient, updateSubmission: false)
         a4.update(fromApiModel: api4, in: databaseClient, updateSubmission: false)

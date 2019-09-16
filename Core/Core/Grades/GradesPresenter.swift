@@ -20,7 +20,7 @@ import Foundation
 import CoreData
 
 protocol GradesViewProtocol: ErrorViewController {
-    func update()
+    func update(isLoading: Bool)
 }
 
 class GradesPresenter {
@@ -34,12 +34,8 @@ class GradesPresenter {
         self?.update()
     }
 
-    lazy var assignmentGroups = env.subscribe(GetAssignmentGroups(courseID: courseID)) { [weak self] in
+    lazy var assignments = env.subscribe(GetAssignmentsForGrades(courseID: self.courseID, requestQuerySize: 99)) { [weak self] in
         self?.update()
-    }
-
-    lazy var assignments = env.subscribe(GetAssignmentsForGrades(courseID: self.courseID)) { [weak self] in
-        self?.updateAssignmentGroups()
     }
 
     init(env: AppEnvironment = .shared, view: GradesViewProtocol, courseID: String, sort: GetAssignments.Sort = GetAssignments.Sort.dueAt) {
@@ -54,16 +50,10 @@ class GradesPresenter {
         course.refresh()
     }
 
-    func updateAssignmentGroups() {
-        if !assignments.pending && !didFetchGroups {
-            didFetchGroups = true
-            assignmentGroups.refresh()
-        }
-    }
-
     func update() {
-        if didFetchGroups && !assignmentGroups.pending && !assignments.pending && assignments.count > 0 && assignmentGroups.count > 0 {
-            view?.update()
+        view?.update(isLoading: assignments.pending)
+        if let error = course.error ?? assignments.error {
+            view?.showError(error)
         }
     }
 
