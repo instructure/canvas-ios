@@ -445,7 +445,7 @@
 		7D52D89622FCC73100684932 /* Submission+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D86F22FCC73100684932 /* Submission+Network.swift */; };
 		7D52D8A022FCC7FD00684932 /* Graphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D89F22FCC7FC00684932 /* Graphic.swift */; };
 		7D6410EC2280B74E008FA345 /* NativeLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */; };
-		7D6C8C7522F2335A00E5ADD8 /* MockHTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C7422F2335A00E5ADD8 /* MockHTTPRequestHandler.m */; };
+		7D6C8C7522F2335A00E5ADD8 /* HTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C7422F2335A00E5ADD8 /* HTTPRequestHandler.m */; };
 		7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD89E8A20AB626600650227 /* AppStoreReview.m */; };
 		7DF5A776208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF5A775208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift */; };
 		9F068D64207C082B0040EFFA /* registerSharedNativeViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F068D63207C082B0040EFFA /* registerSharedNativeViewControllers.swift */; };
@@ -457,6 +457,7 @@
 		9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */; };
 		9FD18B6B2052DE6800119927 /* LTITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD18B6A2052DE6800119927 /* LTITools.m */; };
 		B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */; };
+		B157F370232C1C2B003B6D53 /* HTTPRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157F36F232C1C2B003B6D53 /* HTTPRequestHandler.swift */; };
 		B190BA3F229EE60D003B612A /* NSObject+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B190BA3E229EE60D003B612A /* NSObject+Reactive.swift */; };
 		B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B196F79A206AB60400DE640F /* CoreDataSync.m */; };
 		B1A6BC94218CAB51000515E3 /* SessionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC93218CAB51000515E3 /* SessionToken.swift */; };
@@ -989,7 +990,7 @@
 		7D52D86F22FCC73100684932 /* Submission+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Submission+Network.swift"; sourceTree = "<group>"; };
 		7D52D89F22FCC7FC00684932 /* Graphic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphic.swift; sourceTree = "<group>"; };
 		7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeLoginManager.swift; sourceTree = "<group>"; };
-		7D6C8C7422F2335A00E5ADD8 /* MockHTTPRequestHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MockHTTPRequestHandler.m; sourceTree = "<group>"; };
+		7D6C8C7422F2335A00E5ADD8 /* HTTPRequestHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPRequestHandler.m; sourceTree = "<group>"; };
 		7D9DF28B22BD7F4D003110B9 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D9DF28C22BD7F4D003110B9 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
 		7D9DF28D22BD7F4D003110B9 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/SubmissionConfirmationViewController.strings"; sourceTree = "<group>"; };
@@ -1072,6 +1073,7 @@
 		9FFBF1B11FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FFBF1B21FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/TimedQuizViewController.strings; sourceTree = "<group>"; };
 		B1411D591FE825ED00CD4967 /* CoreDataSyncHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSyncHelper.swift; sourceTree = "<group>"; };
+		B157F36F232C1C2B003B6D53 /* HTTPRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestHandler.swift; sourceTree = "<group>"; };
 		B190BA3E229EE60D003B612A /* NSObject+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Reactive.swift"; sourceTree = "<group>"; };
 		B196F79A206AB60400DE640F /* CoreDataSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataSync.m; sourceTree = "<group>"; };
 		B1A6BC93218CAB51000515E3 /* SessionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionToken.swift; sourceTree = "<group>"; };
@@ -1575,7 +1577,8 @@
 				494AE08E1F843A01001A8F31 /* HapticFeedback.h */,
 				494AE0911F843A02001A8F31 /* HapticFeedback.m */,
 				9FD18B6A2052DE6800119927 /* LTITools.m */,
-				7D6C8C7422F2335A00E5ADD8 /* MockHTTPRequestHandler.m */,
+				7D6C8C7422F2335A00E5ADD8 /* HTTPRequestHandler.m */,
+				B157F36F232C1C2B003B6D53 /* HTTPRequestHandler.swift */,
 				B1C3407720D1AD3B00D0554D /* ModuleItemsProgress.m */,
 				494AE0971F843A04001A8F31 /* NativeAccessibility.h */,
 				494AE0921F843A02001A8F31 /* NativeAccessibility.m */,
@@ -2806,7 +2809,7 @@
 				4961F5A91F8FB2A90093EC86 /* HairlineView.swift in Sources */,
 				496C7D661F8C00250010DC03 /* TabBarBadgeCounts.m in Sources */,
 				B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */,
-				7D6C8C7522F2335A00E5ADD8 /* MockHTTPRequestHandler.m in Sources */,
+				7D6C8C7522F2335A00E5ADD8 /* HTTPRequestHandler.m in Sources */,
 				49CE97A41F900D0000121A43 /* BackdropServerHandling.swift in Sources */,
 				4930204E1F902364006BD777 /* Values.swift in Sources */,
 				49CE96A21F8FF4A700121A43 /* Dispatcher.swift in Sources */,
@@ -2945,6 +2948,7 @@
 				B1ED11942040CD5F00C3C580 /* CanvasWebViewManager.m in Sources */,
 				4961F66D1F8FB9620093EC86 /* Session+FileUploads.swift in Sources */,
 				4961F6381F8FB7110093EC86 /* Group+Collections.swift in Sources */,
+				B157F370232C1C2B003B6D53 /* HTTPRequestHandler.swift in Sources */,
 				493020731F902462006BD777 /* Session+NSURLRequest.swift in Sources */,
 				49CE979A1F900D0000121A43 /* User.swift in Sources */,
 				4930205D1F902364006BD777 /* NSData+SoLazy.swift in Sources */,

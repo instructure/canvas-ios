@@ -16,17 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#if DEBUG
-
 #import <Foundation/Foundation.h>
 #import <CanvasCore/CanvasCore-Swift.h>
 @import React;
 @import Core;
 
-@interface MockHTTPRequestHandler : NSObject <RCTURLRequestHandler>
+@interface APIHTTPRequestHandler : NSObject <RCTURLRequestHandler>
 @end
 
-@implementation MockHTTPRequestHandler
+@implementation APIHTTPRequestHandler
 
 RCT_EXPORT_MODULE();
 
@@ -36,33 +34,15 @@ RCT_EXPORT_MODULE();
 
 - (BOOL)canHandleRequest:(NSURLRequest *)request
 {
-    return (
-        [MockDistantURLSession isSetup] &&
-        [request.URL.scheme.lowercaseString hasPrefix:@"http"] &&
-        !request.URL.port // don't mock requests to bundler
-    );
+    return [request.URL.scheme.lowercaseString hasPrefix:@"http"];
 }
 
 - (NSObject *)sendRequest:(NSURLRequest *)request withDelegate:(id<RCTURLRequestDelegate>)delegate
 {
-    NSObject* token = [NSObject new];
-    NSURLSessionDataTask *task = [[NSURLSession getDefaultURLSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (response) {
-            [delegate URLRequest:token didReceiveResponse:response];
-        }
-        if (data) {
-            [delegate URLRequest:token didReceiveData:data];
-        }
-        [delegate URLRequest:token didCompleteWithError:error];
-    }];
-
-    dispatch_async([[[RCTBridge currentBridge] networking] methodQueue], ^{ [task resume]; });
-    return token;
+    return [HTTPRequestHandler sendRequest:request withDelegate:delegate];
 }
 
 - (dispatch_queue_t)methodQueue { return dispatch_get_main_queue(); }
 + (BOOL)requiresMainQueueSetup { return YES; }
 
 @end
-
-#endif
