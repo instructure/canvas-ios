@@ -85,7 +85,7 @@ class DrawerCloseTransitioning: NSObject, UIViewControllerAnimatedTransitioning 
 }
 
 public class DrawerPresentationController: UIPresentationController {
-    let dimmer = UIView()
+    let dimmer = UIButton()
 
     public override func presentationTransitionWillBegin() {
         super.presentationTransitionWillBegin()
@@ -101,7 +101,9 @@ public class DrawerPresentationController: UIPresentationController {
             dimmer.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
             dimmer.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
         ])
-        dimmer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapped)))
+        dimmer.addTarget(self, action: #selector(tapped), for: .primaryActionTriggered)
+        dimmer.accessibilityLabel = NSLocalizedString("Close", bundle: .core, comment: "")
+        dimmer.accessibilityFrame = CGRect(x: drawerWidth, y: 0, width: containerView.bounds.width - drawerWidth, height: containerView.bounds.height)
 
         presentingViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
             self.dimmer.alpha = 1
