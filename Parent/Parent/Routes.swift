@@ -98,8 +98,18 @@ let router = Router(routes: [
     },
 
 ]) { url, view, _ in
-    guard url.host != nil, url.scheme?.hasPrefix("http") == true, let url = url.url else { return }
-    let safari = SFSafariViewController(url: url)
-    safari.transitioningDelegate = ResetTransitionDelegate.shared
-    view.present(safari, animated: true)
+    guard url.host != nil, url.scheme?.hasPrefix("http") == true, let url = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
+    let request = GetWebSessionRequest(to: url)
+    AppEnvironment.shared.api.makeRequest(request) { response, _, error in
+        DispatchQueue.main.async {
+            let safari: SFSafariViewController
+            if let response = response, error == nil {
+                safari = SFSafariViewController(url: response.session_url)
+            } else {
+                safari = SFSafariViewController(url: url)
+            }
+            safari.transitioningDelegate = ResetTransitionDelegate.shared
+            view.present(safari, animated: true)
+        }
+    }
 }
