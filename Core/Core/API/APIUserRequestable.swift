@@ -62,6 +62,29 @@ struct CreateUserRequest: APIRequestable {
     }
 }
 
+// https://canvas.instructure.com/doc/api/users.html#method.users.update
+struct PutUserAvatarRequest: APIRequestable {
+    typealias Response = APIUser
+
+    struct Body: Encodable {
+        let user: User
+    }
+    struct User: Encodable {
+        let avatar: Avatar
+    }
+    struct Avatar: Encodable {
+        let token: String
+    }
+
+    let token: String
+
+    let method = APIMethod.put
+    let path = "users/self"
+    var body: Body? {
+        return Body(user: User(avatar: Avatar(token: token)))
+    }
+}
+
 // https://canvas.instructure.com/doc/api/users.html#method.users.set_custom_color
 struct UpdateCustomColorRequest: APIRequestable {
     struct Response: Codable {

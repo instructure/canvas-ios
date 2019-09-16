@@ -48,6 +48,7 @@ public struct APIFile: Codable, Equatable {
     // optional: url to the document preview. This url is specific to the user
     // making the api call. Only included in submission endpoints.
     let preview_url: URL?
+    let avatar: APIFileToken?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -73,5 +74,10 @@ public struct APIFile: Codable, Equatable {
         case lock_info = "lock_info"
         case lock_explanation = "lock_explanation"
         case preview_url = "preview_url"
+        case avatar = "avatar"
     }
+}
+
+public struct APIFileToken: Codable, Equatable {
+    let token: String
 }
