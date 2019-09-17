@@ -94,6 +94,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             Crashlytics.sharedInstance().setUserIdentifier(crashlyticsUserId)
         }
         legacySession = Session.current
+        Analytics.shared.logSession(session)
         showRootView()
     }
 

@@ -40,6 +40,11 @@ public struct SessionDefaults {
         set { self["submitAssignmentID"] = newValue }
     }
 
+    public var tokenExpires: Bool? {
+        get { return self["tokenExpires"] as? Bool }
+        set { self["tokenExpires"] = newValue }
+    }
+
     public mutating func reset() {
         sessionDefaults = nil
     }
