@@ -44,6 +44,10 @@ public struct Route: Equatable {
         return Route("/courses/\(courseID)/assignments/\(assignmentID)")
     }
 
+    public static func courseGrades(_ courseID: String) -> Route {
+        return Route("/courses/\(courseID)/grades")
+    }
+
     /// Used only in Parent app (not web)
     public static func courseCalendar(courseID: String) -> Route {
         return Route("/courses/\(courseID)/calendar_events")
