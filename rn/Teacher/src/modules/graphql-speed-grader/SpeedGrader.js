@@ -46,7 +46,6 @@ import CommentInput from '../speedgrader/comments/CommentInput'
 import A11yGroup from '../../common/components/A11yGroup'
 import { graphql } from 'react-apollo'
 import query from '../../canvas-api-v2/queries/SpeedGrader'
-import defaultFilterOptions, { createFilter } from '../filter/filter-options'
 import { getEnabledFeatureFlags } from '../../canvas-api'
 
 const { NativeAccessibility } = NativeModules
@@ -97,7 +96,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
     SpeedGrader.drawerState.registerDrawer(this)
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     if (this.state.flags.length === 0) {
       try {
         let flags = await this.props.getEnabledFeatureFlags('courses', this.props.courseID)

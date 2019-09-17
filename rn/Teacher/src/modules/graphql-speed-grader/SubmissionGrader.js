@@ -86,7 +86,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
       selectedTabIndex: props.selectedTabIndex || -1,
       unsavedChanges: null,
       selectedIndex: props.submission.submissionHistory.edges.length - 1,
-      selectedAttachmentIndex: 0
+      selectedAttachmentIndex: 0,
     }
   }
 
