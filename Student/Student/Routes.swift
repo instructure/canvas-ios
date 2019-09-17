@@ -409,9 +409,18 @@ CBIConversationStarter.setConversationStarter { recipients, context in
 
 Routing.routeToURL = { url, view in route(view, url: url) }
 
-return Router(routes: routes) { url, view, _ in
-    guard let url = url.url, url.scheme != "canvas-courses", let session = Session.current else { return }
-    ExternalToolManager.shared.showAuthenticatedURL(url, in: session, from: view)
+return Router(routes: routes) { url, _, _ in
+    guard let url = url.url, url.scheme != "canvas-courses" else { return }
+    let request = GetWebSessionRequest(to: url)
+    AppEnvironment.shared.api.makeRequest(request) { response, _, error in
+        DispatchQueue.main.async {
+            if let response = response, error == nil {
+                UIApplication.shared.open(response.session_url)
+            } else {
+                UIApplication.shared.open(url)
+            }
+        }
+    }
 }
 }()
 

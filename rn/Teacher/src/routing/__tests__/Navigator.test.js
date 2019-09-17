@@ -169,7 +169,7 @@ describe('Navigator', () => {
 
     await promise
 
-    expect(NativeModules.Helm.openInSafariViewController).toHaveBeenCalledWith('https://google.com')
+    expect(Linking.openURL).toHaveBeenCalledWith('https://google.com')
   })
 
   it('linking should  be called if something is unsupported and it is not http or https', () => {
@@ -186,7 +186,7 @@ describe('Navigator', () => {
     new Navigator('push').show('https://google.com')
 
     await promise
-    expect(NativeModules.Helm.openInSafariViewController).toHaveBeenCalledWith('https://google.com')
+    expect(Linking.openURL).toHaveBeenCalledWith('https://google.com')
   })
 
   it('opens a webview with the https url if we dont route some canvas protocol', async () => {
@@ -197,7 +197,7 @@ describe('Navigator', () => {
 
     expect(canvas.getAuthenticatedSessionURL).toHaveBeenCalledWith(httpsUrl)
     await promise
-    expect(NativeModules.Helm.openInSafariViewController).toHaveBeenCalledWith(httpsUrl + '?auth')
+    expect(Linking.openURL).toHaveBeenCalledWith(httpsUrl + '?auth')
   })
 
   it('opens the original url if getting the authenticated session url errors', async () => {
@@ -208,7 +208,7 @@ describe('Navigator', () => {
     try {
       await promise
     } catch (err) {
-      expect(NativeModules.Helm.openInSafariViewController).toHaveBeenCalledWith('https://google.com')
+      expect(Linking.openURL).toHaveBeenCalledWith('https://google.com')
     }
   })
 

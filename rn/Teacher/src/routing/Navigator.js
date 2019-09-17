@@ -76,9 +76,9 @@ export default class Navigator {
       logEvent('webview_content_selected', { url })
       try {
         let { data: { session_url: authenticatedURL } } = await getAuthenticatedSessionURL(url)
-        NativeModules.Helm.openInSafariViewController(authenticatedURL)
+        Linking.openURL(authenticatedURL)
       } catch (err) {
-        NativeModules.Helm.openInSafariViewController(url)
+        Linking.openURL(url)
       }
     } else {
       Linking.openURL(url)
