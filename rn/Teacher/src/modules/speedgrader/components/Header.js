@@ -96,7 +96,7 @@ export class Header extends Component<HeaderProps, State> {
       action = this.showGroup
       testID = 'header.groupList.button'
     }
-    const onlineSubmissionType = this.props.assignmentSubmissionTypes.every(submissionTypeIsOnline)
+    const onlineSubmissionType = this.props.assignmentSubmissionTypes?.every(submissionTypeIsOnline)
 
     return (
       <View style={styles.profileContainer}>

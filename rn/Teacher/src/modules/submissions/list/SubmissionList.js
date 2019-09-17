@@ -33,7 +33,7 @@ import SubmissionRow from './SubmissionRow'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import SubmissionsHeader from '../SubmissionsHeader'
-import defaultFilterOptions, { type SubmissionFilterOption, createFilter, joinTitles } from '../../filter/filter-options'
+import defaultFilterOptions, { type SubmissionFilterOption, createFilter, joinTitles, oldCreateFilter } from '../../filter/filter-options'
 import Images from '../../../images'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
@@ -42,6 +42,7 @@ import { graphql } from 'react-apollo'
 import query from '../../../canvas-api-v2/queries/SubmissionList'
 import * as canvas from '../../../canvas-api'
 import icon from '../../../images/inst-icons'
+import ExperimentalFeature from '../../../common/ExperimentalFeature'
 
 const { getEnabledFeatureFlags } = canvas
 
@@ -99,11 +100,14 @@ export class SubmissionList extends Component<Props, State> {
 
   navigateToSubmission = (index: number) => (userID: string) => {
     const path = `/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submissions/${userID}`
+    let filter = ExperimentalFeature.graphqlSpeedGrader.isEnabled
+      ? this.state.filter
+      : oldCreateFilter(this.state.filterOptions)
     this.props.navigator.show(
       path,
       { modal: true, modalPresentationStyle: 'fullscreen' },
       {
-        filter: this.state.filter,
+        filter: filter,
         studentIndex: index,
         flags: this.state.flags,
       }
