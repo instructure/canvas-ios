@@ -27,7 +27,7 @@ import {
 import i18n from 'format-message'
 import BottomDrawer from '../../common/components/BottomDrawer'
 import Header from './components/Header'
-// import SubmissionPicker from './components/SubmissionPicker'
+import SubmissionPicker from './components/SubmissionPicker'
 // import GradeTab from './GradeTab'
 // import FilesTab from './components/FilesTab'
 // import CommentsTab from './comments/CommentsTab'
@@ -187,15 +187,16 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
         //   />
         // )
       case 2:
-        return (
-          <FilesTab
-            {...this.props}
-            selectedIndex={this.state.selectedIndex}
-            selectedAttachmentIndex={this.state.selectedAttachmentIndex}
-            selectFile={this.selectFile}
-            isWide={this.isWide()}
-          />
-        )
+        return null
+        // return (
+        // <FilesTab
+        //   {...this.props}
+        //   selectedIndex={this.state.selectedIndex}
+        //   selectedAttachmentIndex={this.state.selectedAttachmentIndex}
+        //   selectFile={this.selectFile}
+        //   isWide={this.isWide()}
+        // />
+        // )
       default:
         return null
         // const showToolTip = this.toolTip ? this.toolTip.showToolTip : undefined
@@ -274,13 +275,13 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
           anonymousGrading={this.props.anonymousGrading}
           newGradebookEnabled={this.props.newGradebookEnabled}
         />
-        {/* <SubmissionPicker
+        <SubmissionPicker
           submission={this.props.submission}
           submissionID={this.props.submissionID}
           selectedIndex={this.state.selectedIndex}
           selectSubmissionFromHistory={this.selectSubmissionFromHistory}
         />
-        <SimilarityScore
+        {/* <SimilarityScore
           submission={this.props.submission}
           selectedIndex={this.state.selectedIndex}
           selectedAttachmentIndex={this.state.selectedAttachmentIndex}
@@ -321,13 +322,15 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
           anonymousGrading={this.props.anonymousGrading}
           newGradebookEnabled={this.props.newGradebookEnabled}
         />
-        {/* <View style={styles.splitView}>
+        <View style={styles.splitView}>
           <View style={styles.left}>
             <SubmissionPicker
-              submissionProps={this.props.submissionProps}
+              submission={this.props.submission}
               submissionID={this.props.submissionID}
+              selectedIndex={this.state.selectedIndex}
+              selectSubmissionFromHistory={this.selectSubmissionFromHistory}
             />
-            <SimilarityScore submissionID={this.props.submissionID} />
+            {/* <SimilarityScore submissionID={this.props.submissionID} />
             <SubmissionViewer
               {...this.props}
               size={{
@@ -335,14 +338,14 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
                 width: width - DRAWER_WIDTH,
               }}
               drawerInset={0}
-            />
+            /> */}
           </View>
-          <View style={styles.right}>
+          {/* <View style={styles.right}>
             {this.renderHandleContent()}
             {this.renderTab(this.state.selectedTabIndex)}
-          </View>
+          </View> */}
         </View>
-        <ToolTip ref={this.captureToolTip} /> */}
+        {/* <ToolTip ref={this.captureToolTip} /> */}
       </A11yGroup>
     )
   }
