@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import WebKit
-@testable import Core
+import Core
 
-class AvatarViewTests: CoreTestCase {
-    func testHtml() {
-        XCTAssertTrue(AvatarView.html(for: nil, name: "Strong Bad Ignored").contains("SB"))
-        XCTAssertFalse(AvatarView.html(for: nil, name: "Strong Bad").contains("background-image"))
-        XCTAssertFalse(AvatarView.html(for: URL(string: "/"), name: "Strong Bad").contains("SB"))
-        XCTAssertTrue(AvatarView.html(for: URL(string: "/"), name: "Strong Bad").contains("background-image:url(/)"))
-    }
-}
+@IBDesignable
+class AvatarView: Core.AvatarView {}

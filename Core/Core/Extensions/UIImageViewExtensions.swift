@@ -28,6 +28,7 @@ private var urlHandle: UInt8 = 0
 private var loaderHandle: UInt8 = 0
 
 public protocol ImageLoadingView: class {
+    var frame: CGRect { get }
     var loader: ImageLoader? { get }
     func load(url: URL?) -> URLSessionTask?
     func load(url: URL, didCompleteWith: LoadedImage?, error: Error?)
@@ -62,11 +63,10 @@ extension UIImageView: ImageLoadingView {
     public func load(url: URL?) -> URLSessionTask? {
         guard self.url != url else { return nil }
         self.url = url
-        loader?.cancel()
         loader = nil
         image = nil
         if let url = url {
-            loader = ImageLoader(url: url, frame: frame, contentMode: contentMode, view: self)
+            loader = ImageLoader(url: url, view: self)
         }
         return loader?.load()
     }
@@ -89,23 +89,23 @@ extension UIImageView: ImageLoadingView {
 }
 
 public class ImageLoader {
-    let url: URL
     let frame: CGRect
-    let contentMode: UIView.ContentMode
     let key: String
-
-    weak var view: ImageLoadingView?
-
     var task: URLSessionTask?
-    var observation: NSKeyValueObservation?
+    let url: URL
+    weak var view: ImageLoadingView?
     var webView: WKWebView?
 
-    init(url: URL, frame: CGRect, contentMode: UIView.ContentMode, view: ImageLoadingView) {
+    private static var rendered: [String: LoadedImage] = [:]
+    private static var loading: [String: [ImageLoader]] = [:]
+
+    init(url: URL, view: ImageLoadingView) {
+        self.frame = view.frame
+        self.key = url.pathExtension == "svg"
+            ? "\(url.absoluteString)@\(view.frame.width)x\(view.frame.height)"
+            : url.absoluteString
         self.url = url
-        self.frame = frame
-        self.contentMode = contentMode
         self.view = view
-        self.key = "\(url.absoluteString)@\(frame.width)x\(frame.height):\(contentMode)"
     }
 
     func cancel() {
@@ -115,19 +115,19 @@ public class ImageLoader {
 
     @discardableResult
     func load() -> URLSessionTask? {
-        // Course images and likely others loaded from S3 sometimes come with content-disposition headers
-        // that prevent automatic caching. Manually storing and retrieving gets around that issue.
-        let request = URLRequest(url: url)
-        if let cached = URLCache.shared.cachedResponse(for: request) {
-            imageFrom(data: cached.data, response: cached.response as? HTTPURLResponse)
+        if let loaded = ImageLoader.rendered[key] {
+            view?.load(url: url, didCompleteWith: loaded, error: nil)
+            return nil
+        } else if ImageLoader.loading[key] != nil {
+            ImageLoader.loading[key]?.append(self)
             return nil
         }
-        task = URLSessionAPI.cachingURLSession.dataTask(with: request) { data, response, error in
+        ImageLoader.loading[key] = []
+        ImageLoader.loading[key]?.append(self)
+
+        task = URLSessionAPI.defaultURLSession.dataTask(with: URLRequest(url: url)) { data, response, error in
             self.task = nil
             if let data = data, error == nil {
-                if let response = response {
-                    URLCache.shared.storeCachedResponse(CachedURLResponse(response: response, data: data), for: request)
-                }
                 self.imageFrom(data: data, response: response as? HTTPURLResponse)
             } else {
                 self.handle(nil, 0, error)
@@ -139,7 +139,7 @@ public class ImageLoader {
 
     func imageFrom(data: Data, response: HTTPURLResponse? = nil) {
         let type = response?.allHeaderFields["Content-Type"] as? String
-        if type == "image/svg+xml" || url.pathExtension == "svg", #available(iOS 11.0, *) {
+        if type == "image/svg+xml" || url.pathExtension == "svg" {
             DispatchQueue.main.async { self.svgFrom(data: data) }
         } else if type == "image/gif" || url.pathExtension == "gif" {
             gifFrom(data: data)
@@ -156,36 +156,39 @@ public class ImageLoader {
         var loaded: LoadedImage?
         if let image = image {
             loaded = LoadedImage(image: image, repeatCount: repeatCount)
+            ImageLoader.rendered[key] = loaded
         }
-        view?.load(url: url, didCompleteWith: loaded, error: error)
+        for loader in ImageLoader.loading[key] ?? [] {
+            loader.view?.load(url: url, didCompleteWith: loaded, error: error)
+        }
+        ImageLoader.loading[key] = nil
     }
 
     // MARK: - SVG snapshot
 
-    @available(iOS 11.0, *)
     func svgFrom(data: Data) {
-        let view = WKWebView(frame: frame, configuration: WKWebViewConfiguration())
-        view.isOpaque = false
+        let config = WKWebViewConfiguration()
+        config.websiteDataStore = .nonPersistent()
+        let view = WKWebView(frame: frame, configuration: config)
         view.backgroundColor = .clear
-        view.scrollView.backgroundColor = .clear
+        view.isOpaque = false
         webView = view
-
-        observation = view.observe(\.title, options: .new) { webView, _ in
-            guard webView.title == "SVG" else { return }
-            webView.takeSnapshot(with: nil) { snapshot, error in
-                self.webView = nil
-                self.observation = nil
-                self.handle(snapshot, 0, error)
-            }
-        }
 
         let dataUri = "data:image/svg+xml;base64,\(data.base64EncodedString())"
         let html = """
             <!doctype html>
             <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-            <style>html{height:100%;background:no-repeat \(cssFromContentMode(contentMode)) url(\(dataUri))}</style>
-            <script>window.onload=()=>{setTimeout(()=>{document.title="SVG"},0)}</script>
+            <style>*{margin:0;padding:0;height:100%;width:100%;}</style>
+            <img src="\(dataUri)" style="object-position:center;object-fit:contain;"
+                onload="setTimeout(()=>webkit.messageHandlers.svg.postMessage(''),17)"
+            />
         """
+        view.handle("svg") { [weak self] _ in
+            self?.webView?.takeSnapshot(with: nil) { snapshot, error in
+                self?.webView = nil
+                self?.handle(snapshot, 0, error)
+            }
+        }
         view.loadHTMLString(html, baseURL: url)
     }
 
@@ -254,28 +257,3 @@ public func greatestCommonFactor(_ a: Int, _ b: Int) -> Int {
     }
     return a
 }
-
-// swiftlint:disable cyclomatic_complexity
-/// Convert `UIViewContentMode` into a css string for use in `background` that sizes and positions.
-///
-/// - Parameter contentMode: A `UIViewContentMode` to convert.
-/// - Returns: A `String` meant to be embedded in a css `background` value.
-public func cssFromContentMode(_ contentMode: UIView.ContentMode) -> String {
-    switch contentMode {
-    case .bottom: return "bottom"
-    case .bottomLeft: return "bottom left"
-    case .bottomRight: return "bottom right"
-    case .center: return "center"
-    case .left: return "left"
-    case .redraw: return "center/100% 100%"
-    case .right: return "right"
-    case .scaleAspectFill: return "center/cover"
-    case .scaleAspectFit: return "center/contain"
-    case .scaleToFill: return "center/100% 100%"
-    case .top: return "top"
-    case .topLeft: return "top left"
-    case .topRight: return "top right"
-    @unknown default: return ""
-    }
-}
-// swiftlint:enable cyclomatic_complexity

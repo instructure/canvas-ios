@@ -20,7 +20,7 @@ import UIKit
 
 open class StudentSettingsHeaderView: UITableViewHeaderFooterView {
 
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var avatarView: AvatarView!
     @IBOutlet var nameLabel: UILabel!
 
     open override func awakeFromNib() {
@@ -28,12 +28,6 @@ open class StudentSettingsHeaderView: UITableViewHeaderFooterView {
         let bgview = UIView()
         bgview.backgroundColor = .white
         backgroundView = bgview
-        imageView.layer.cornerRadius = imageView.frame.height/2
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.borderWidth = 2.0
-        imageView.backgroundColor = UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 235.0/255.0, alpha: 1.0)
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFit
     }
 
 }

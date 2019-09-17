@@ -36,11 +36,13 @@ open class AvatarView: UIView {
 
             addSubview(label)
             label.pin(inside: self)
+            label.allowsDefaultTighteningForTruncation = true
             label.backgroundColor = .named(.backgroundLightest)
             label.clipsToBounds = true
             label.isAccessibilityElement = false
             label.layer.borderColor = UIColor.named(.borderMedium).cgColor
             label.layer.borderWidth = 1 / UIScreen.main.scale
+            label.lineBreakMode = .byClipping
             label.textAlignment = .center
             label.textColor = .named(.textDark)
         }
@@ -77,7 +79,7 @@ open class AvatarView: UIView {
     }
 
     static func initials(for name: String) -> String {
-        return name.split(separator: " ", maxSplits: 2).reduce("") { (value: String, part: Substring) -> String in
+        return name.split(separator: " ", maxSplits: 1).reduce("") { (value: String, part: Substring) -> String in
             guard let char = part.first else { return value }
             return "\(value)\(char)"
         }.localizedUppercase

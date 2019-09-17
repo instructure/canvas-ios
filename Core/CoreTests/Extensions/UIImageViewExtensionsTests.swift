@@ -39,7 +39,7 @@ class UIImageViewExtensionsTests: XCTestCase {
         @discardableResult
         func load(url: URL?) -> URLSessionTask? {
             guard let url = url else { return nil }
-            loader = ImageLoader(url: url, frame: frame, contentMode: .center, view: self)
+            loader = ImageLoader(url: url, view: self)
             return loader?.load()
         }
 
@@ -50,7 +50,7 @@ class UIImageViewExtensionsTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        URLSessionAPI.cachingURLSession = URLSession.shared
+        URLSessionAPI.defaultURLSession = URLSession.shared
     }
 
     func testLoadPng() {
@@ -128,36 +128,10 @@ class UIImageViewExtensionsTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testCancel() {
-        let view = MockImageView(frame: .zero) { _, _, _ in
-            XCTFail("callback should not be called")
-        }
-        let task = view.load(url: svgUrl)
-        view.loader?.cancel()
-        XCTAssertNotEqual(task, view.loader?.task)
-        XCTAssertNil(view.loader?.task)
-    }
-
     func testGreatestCommonFactor() {
         XCTAssertEqual(greatestCommonFactor(1, 7), 1)
         XCTAssertEqual(greatestCommonFactor(6, 9), 3)
         XCTAssertEqual(greatestCommonFactor(36, 24), 12)
-    }
-
-    func testCssFromContentMode() {
-        XCTAssertEqual(cssFromContentMode(.bottom), "bottom")
-        XCTAssertEqual(cssFromContentMode(.bottomLeft), "bottom left")
-        XCTAssertEqual(cssFromContentMode(.bottomRight), "bottom right")
-        XCTAssertEqual(cssFromContentMode(.center), "center")
-        XCTAssertEqual(cssFromContentMode(.left), "left")
-        XCTAssertEqual(cssFromContentMode(.redraw), "center/100% 100%")
-        XCTAssertEqual(cssFromContentMode(.right), "right")
-        XCTAssertEqual(cssFromContentMode(.scaleAspectFill), "center/cover")
-        XCTAssertEqual(cssFromContentMode(.scaleAspectFit), "center/contain")
-        XCTAssertEqual(cssFromContentMode(.scaleToFill), "center/100% 100%")
-        XCTAssertEqual(cssFromContentMode(.top), "top")
-        XCTAssertEqual(cssFromContentMode(.topLeft), "top left")
-        XCTAssertEqual(cssFromContentMode(.topRight), "top right")
     }
 
     func testLoadUrl() {
@@ -165,7 +139,6 @@ class UIImageViewExtensionsTests: XCTestCase {
         view.load(url: pngUrl)
         view.load(url: pngUrl) // same url, no-op
         XCTAssertEqual(view.url, pngUrl)
-        XCTAssertNotNil(view.loader)
     }
 
     func testLoadUrlDidCompleteWith() {

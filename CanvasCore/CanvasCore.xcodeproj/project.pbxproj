@@ -417,7 +417,6 @@
 		78C610CD21CA022400913B93 /* CanvasCrashlytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C610CC21CA022400913B93 /* CanvasCrashlytics.m */; };
 		78C610CE21CA022C00913B93 /* CanvasCrashlytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A221BAE703009A8E69 /* Core.framework */; };
-		7D0F8D8421347CD50092E8F8 /* SVGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0F8D8321347CD50092E8F8 /* SVGImageView.swift */; };
 		7D52D87022FCC73100684932 /* DueDateOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D83E22FCC73100684932 /* DueDateOverride.swift */; };
 		7D52D87422FCC73100684932 /* AssignmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D84322FCC73100684932 /* AssignmentGroup.swift */; };
 		7D52D87522FCC73100684932 /* AssignmentGroup+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D84422FCC73100684932 /* AssignmentGroup+Network.swift */; };
@@ -950,7 +949,6 @@
 		78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasCrashlytics.h; sourceTree = "<group>"; };
 		78C610CC21CA022400913B93 /* CanvasCrashlytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasCrashlytics.m; sourceTree = "<group>"; };
 		7D0215A221BAE703009A8E69 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7D0F8D8321347CD50092E8F8 /* SVGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGImageView.swift; sourceTree = "<group>"; };
 		7D349C6521430C8C004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C6621430C8C004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C6921430C8E004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/TimedQuizViewController.strings"; sourceTree = "<group>"; };
@@ -2119,7 +2117,6 @@
 				2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */,
 				2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */,
 				2C195F51201948DB003B0D7D /* HelmScreenConfig.swift */,
-				7D0F8D8321347CD50092E8F8 /* SVGImageView.swift */,
 			);
 			path = Helm;
 			sourceTree = "<group>";
@@ -2884,7 +2881,6 @@
 				4961F5A01F8FB2970093EC86 /* UIColor+ShadesOfGray.swift in Sources */,
 				4902ADBE1FB26E860004837D /* LTIViewController.swift in Sources */,
 				4961F63C1F8FB7180093EC86 /* GradingPeriodAPI.swift in Sources */,
-				7D0F8D8421347CD50092E8F8 /* SVGImageView.swift in Sources */,
 				B1CE74412020CE92003F2366 /* ExternalToolManager.swift in Sources */,
 				4961F6261F8FB7010093EC86 /* Enrollment+Colors.swift in Sources */,
 				4938ACF71F8FD2340069F43D /* Todo.swift in Sources */,

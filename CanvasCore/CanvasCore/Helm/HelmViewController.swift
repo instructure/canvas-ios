@@ -18,7 +18,6 @@
 
 import UIKit
 import React
-import Kingfisher
 import Core
 
 public typealias Props = [String: Any]
@@ -341,8 +340,11 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
                     let imageSource = RCTConvert.rctImageSource(imageConfig),
                     let url = imageSource.request.url, url.scheme?.lowercased() == "https" {
                     let button = UIButton(type: .custom)
-                    button.kf.setImage(with: url, for: .normal)
-                    button.imageView?.contentMode = .scaleAspectFit
+                    let image = UIImageView()
+                    button.addSubview(image)
+                    image.pin(inside: button)
+                    image.load(url: url)
+                    image.contentMode = .scaleAspectFit
                     let view = UIView()
                     if let width = imageConfig["width"] as? CGFloat, let height = imageConfig["height"] as? CGFloat {
                         let frame = CGRect(x: 0, y: 0, width: width, height: height)
