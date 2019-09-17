@@ -1,0 +1,16 @@
+import Foundation
+@testable import Core
+
+extension API{{entity}} {
+    public static func make(
+    {{# properties }}
+    	{{ name }}: {{type}} = "<{{name}}>",
+    {{/ properties }}        
+    ) -> API{{entity}} {
+        return API{{entity}}(
+	    {{# properties }}
+			{{name}}: {{name}},  
+	    {{/ properties }}        
+        )
+    }
+}
