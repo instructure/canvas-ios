@@ -25,11 +25,10 @@ import {
   ActivityIndicator,
   FlatList,
   Dimensions,
-  DeviceInfo,
   NativeModules,
   Button,
 } from 'react-native'
-// import SubmissionGrader from '../speedgrader/SubmissionGrader'
+import SubmissionGrader from './SubmissionGrader'
 import type {
   AsyncSubmissionsDataProps,
   SubmissionDataProps,
@@ -47,7 +46,7 @@ import CommentInput from '../speedgrader/comments/CommentInput'
 import A11yGroup from '../../common/components/A11yGroup'
 import { graphql } from 'react-apollo'
 import query from '../../canvas-api-v2/queries/SpeedGrader'
-import defaultFilterOptions, { createFilter } from '../filter/filter-options'
+import { getEnabledFeatureFlags } from '../../canvas-api'
 
 const { NativeAccessibility } = NativeModules
 
@@ -73,6 +72,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   static defaultProps = {
     onDismiss: () => {},
     drawerPosition: 0,
+    getEnabledFeatureFlags,
   }
 
   constructor (props: SpeedGraderProps) {
@@ -91,8 +91,19 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
       hasScrolledToInitialSubmission: false,
       hasSetInitialDrawerPosition: false,
       scrollEnabled: true,
+      flags: props.flags || [],
     }
     SpeedGrader.drawerState.registerDrawer(this)
+  }
+
+  async componentDidMount () {
+    if (this.state.flags.length === 0) {
+      try {
+        let flags = await this.props.getEnabledFeatureFlags('courses', this.props.courseID)
+        this.setState({ flags: flags.data })
+      } catch (e) {
+      }
+    }
   }
 
   // DrawerObserver
@@ -140,18 +151,18 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
   }
 
   renderItem = ({ item, index }: { item: SubmissionItem, index: number }) => {
-    // const isCurrentStudent = this.state.currentStudentID
-    //   ? this.state.currentStudentID === item.user.id
-    //   : index === 0
+    const isCurrentStudent = this.state.currentStudentID
+      ? this.state.currentStudentID === item.user.id
+      : index === 0
 
-    // let group = this.props.isGroupGradedAssignment
-    //   ? this.props.groups.find(({ members }) => {
-    //     return members.edges.find(({ member }) => member.user.id === item.user.id)
-    //   })
-    //   : null
+    let group = this.props.isGroupGradedAssignment
+      ? this.props.groups.find(({ members }) => {
+        return members.edges.find(({ member }) => member.user.id === item.user.id)
+      })
+      : null
 
     return <A11yGroup style={[styles.page, this.state.size]}>
-      {/* <SubmissionGrader
+      <SubmissionGrader
         isCurrentStudent={isCurrentStudent}
         drawerState={SpeedGrader.drawerState}
         courseID={this.props.courseID}
@@ -172,7 +183,8 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         group={group}
         anonymousGrading={this.props.anonymousGrading}
         assignment={this.props.assignment}
-      /> */}
+        newGradebookEnabled={this.state.flags.includes('new_gradebook')}
+      />
     </A11yGroup>
   }
 
@@ -281,7 +293,6 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
     return (
       <Screen
         navBarHidden
-        statusBarHidden={!DeviceInfo.isIPhoneX_deprecated}
         noRotationInVerticallyCompact
       >
         <View style={styles.speedGrader}>
@@ -318,7 +329,7 @@ function props (props) {
       hasRubric: false,
     }
   }
-  console.log(props.data)
+
   let assignment = props.data.assignment
   let rubric = assignment.rubric
   let submissions = assignment.submissions.edges.map(({ submission }) => submission)
@@ -340,9 +351,7 @@ function props (props) {
 }
 
 export default graphql(query, {
-  options: ({ assignmentID, filterType }) => {
-    let filterOptions = defaultFilterOptions(filterType)
-    let filter = createFilter(filterOptions)
+  options: ({ assignmentID, filter }) => {
     return {
       variables: {
         assignmentID,

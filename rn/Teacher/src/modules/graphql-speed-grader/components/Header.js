@@ -19,7 +19,6 @@
 // @flow
 
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import {
   View,
   Image,
@@ -33,12 +32,10 @@ import type {
 } from '../../submissions/list/submission-prop-types'
 import SubmissionStatusLabel from '../../submissions/list/SubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
-import { isAssignmentAnonymous } from '../../../common/anonymous-grading'
-import { submissionTypeIsOnline } from '@common/submissionTypes'
-import icon from '../../../images/inst-icons'
 import colors from '../../../common/colors'
+import icon from '../../../images/inst-icons'
 
-export class Header extends Component<HeaderProps, State> {
+export default class Header extends Component<HeaderProps, State> {
   state: State = {
     showingPicker: false,
   }
@@ -81,22 +78,26 @@ export class Header extends Component<HeaderProps, State> {
   }
 
   renderGroupProfile () {
-    const sub = this.props.submissionProps
-    let name = this.props.anonymous
-      ? (sub.groupID ? i18n('Group') : i18n('Student'))
-      : sub.name
+    const submission = this.props.submission
 
-    let avatarURL = this.props.anonymous
-      ? ''
-      : sub.avatarURL
+    let name, avatarURL
+    if (this.props.anonymousGrading) {
+      name = this.props.group != null ? i18n('Group') : i18n('Student')
+      avatarURL = ''
+    } else if (this.props.group != null) {
+      name = this.props.group.name
+      avatarURL = ''
+    } else {
+      name = submission.user.name
+      avatarURL = submission.user.avatarUrl
+    }
 
     let action = this.navigateToContextCard
     let testID = 'header.context.button'
-    if (sub.groupID && !this.props.anonymous) {
+    if (this.props.group != null && !this.props.anonymousGrading) {
       action = this.showGroup
       testID = 'header.groupList.button'
     }
-    const onlineSubmissionType = this.props.assignmentSubmissionTypes?.every(submissionTypeIsOnline)
 
     return (
       <View style={styles.profileContainer}>
@@ -109,17 +110,14 @@ export class Header extends Component<HeaderProps, State> {
             <View style={styles.innerRowContainer}>
               <View style={styles.avatar}>
                 <Avatar
-                  key={sub.userID}
+                  key={submission.user.id}
                   avatarURL={avatarURL}
                   userName={name}
                 />
               </View>
               <View style={styles.nameContainer}>
                 <Text style={styles.name} accessibilityTraits='header'>{name}</Text>
-                <SubmissionStatusLabel
-                  status={sub.status}
-                  onlineSubmissionType={onlineSubmissionType}
-                />
+                <SubmissionStatusLabel submission={submission} />
               </View>
             </View>
           </TouchableHighlight>
@@ -140,7 +138,7 @@ export class Header extends Component<HeaderProps, State> {
 
   showGroup = () => {
     this.props.navigator.show(
-      `/groups/${this.props.submissionProps.groupID}/users`,
+      `/groups/${this.props.group.id}/users`,
       { modal: true },
       { courseID: this.props.courseID }
     )
@@ -194,25 +192,12 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps (state: AppState, ownProps: RouterProps) {
-  const { courseID, assignmentID } = ownProps
-  const anonymous = isAssignmentAnonymous(state, courseID, assignmentID)
-
-  return {
-    anonymous,
-  }
-}
-
-let Connected = connect(mapStateToProps)(Header)
-export default (Connected: any)
-
 type RouterProps = {
   courseID: string,
   assignmentID: string,
   userID: string,
   submissionID: ?string,
   submissionProps: SubmissionDataProps,
-  assignmentSubmissionTypes: SubmissionType[],
   closeModal: Function,
   style?: Object,
 }
