@@ -31,7 +31,7 @@
                                     <outlet property="delegate" destination="j3n-Ay-Z48" id="Qt0-Kg-YdV"/>
                                 </connections>
                             </tableView>
-                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUy-8Z-yN9">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUy-8Z-yN9">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bvs-mD-dxP">

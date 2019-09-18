@@ -41,6 +41,12 @@ let router = Router(routes: [
         return try? AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
+    RouteHandler(.courseGrades(":courseID")) { _, params in
+        guard let courseID = params["courseID"] else { return nil }
+        guard let studentID = currentStudentID else { return nil }
+        return GradesViewController.create(courseID: courseID)
+    },
+
     RouteHandler(.courseCalendar(courseID: ":courseID")) { _, params in
         guard let courseID = params["courseID"] else { return nil }
         guard let session = legacySession, let studentID = currentStudentID else { return nil }

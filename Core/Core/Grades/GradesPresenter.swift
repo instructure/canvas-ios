@@ -51,7 +51,7 @@ class GradesPresenter {
     }
 
     func update() {
-        view?.update(isLoading: assignments.pending)
+        view?.update(isLoading: course.pending || assignments.pending)
         if let error = course.error ?? assignments.error {
             view?.showError(error)
         }
