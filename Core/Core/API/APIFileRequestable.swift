@@ -22,11 +22,21 @@ import Foundation
 public struct GetFileRequest: APIRequestable {
     public typealias Response = APIFile
 
+    enum Include: String, Codable {
+        case avatar, usage_rights, user
+    }
+
     let context: Context
     let fileID: String
+    let include: [Include]
 
     public var path: String {
         return "\(context.pathComponent)/files/\(fileID)"
+    }
+
+    public var query: [APIQueryItem] {
+        guard !include.isEmpty else { return [] }
+        return [ .include(include.map { $0.rawValue }) ]
     }
 }
 
@@ -38,12 +48,14 @@ public struct PostFileUploadTargetRequest: APIRequestable {
         let name: String
         let on_duplicate: OnDuplicate
         let parent_folder_id: String?
+        let parent_folder_path: String?
         let size: Int
 
-        public init(name: String, on_duplicate: OnDuplicate, parent_folder_id: String?, size: Int) {
+        public init(name: String, on_duplicate: OnDuplicate, parent_folder_id: String? = nil, parent_folder_path: String? = nil, size: Int) {
             self.name = name
             self.on_duplicate = on_duplicate
             self.parent_folder_id = parent_folder_id
+            self.parent_folder_path = parent_folder_path
             self.size = size
         }
     }

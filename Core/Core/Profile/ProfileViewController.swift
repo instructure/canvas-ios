@@ -26,7 +26,7 @@ public protocol ProfilePresenterProtocol: class {
     func viewIsReady()
 }
 
-public protocol ProfileViewProtocol: class {
+public protocol ProfileViewProtocol: ErrorViewController {
     func reload()
     func route(to: Route, options: RouteOptions?)
     func route(to url: URL, options: RouteOptions?)
@@ -53,6 +53,8 @@ class ProfileTableViewCell: UITableViewCell {
 }
 
 public class ProfileViewController: UIViewController, ProfileViewProtocol {
+    @IBOutlet weak var avatarButton: UIButton?
+    @IBOutlet weak var avatarLoading: UIActivityIndicatorView?
     @IBOutlet weak var avatarView: AvatarView?
     @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var nameLabel: UILabel?
@@ -79,6 +81,7 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
 
         view?.backgroundColor = .named(.backgroundLightest)
 
+        avatarButton?.accessibilityLabel = NSLocalizedString("Change Profile Image", bundle: .core, comment: "")
         avatarView?.name = session?.userName ?? ""
         avatarView?.url = session?.userAvatarURL
 
@@ -132,7 +135,7 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
                 }
             })
         }
-        helpMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
+        helpMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
 
         helpMenu.popoverPresentationController?.sourceView = cell
         helpMenu.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint(x: cell.bounds.maxX, y: cell.bounds.midY), size: .zero)
@@ -155,6 +158,64 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         presenter?.cells[indexPath.row].block(cell)
+    }
+}
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @IBAction func showAvatarMenu(sender: UIButton) {
+        let avatarMenu = UIAlertController(title: NSLocalizedString("Choose Profile Picture", bundle: .core, comment: ""), message: nil, preferredStyle: .actionSheet)
+        avatarMenu.addAction(UIAlertAction(title: NSLocalizedString("Take Photo", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+            self?.showImagePicker(for: .camera, at: sender)
+        })
+        avatarMenu.addAction(UIAlertAction(title: NSLocalizedString("Choose Photo", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+            self?.showImagePicker(for: .photoLibrary, at: sender)
+        })
+        avatarMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+
+        avatarMenu.popoverPresentationController?.sourceView = sender
+        avatarMenu.popoverPresentationController?.sourceRect = sender.bounds
+        present(avatarMenu, animated: true)
+    }
+
+    func showImagePicker(for type: UIImagePickerController.SourceType, at: UIButton) {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        picker.sourceType = type
+        picker.modalPresentationStyle = .popover
+        picker.popoverPresentationController?.sourceView = at
+        picker.popoverPresentationController?.sourceRect = at.bounds
+        present(picker, animated: true)
+    }
+
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        picker.dismiss(animated: true)
+        guard let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage else { return }
+        avatarLoading?.startAnimating()
+        do {
+            UploadAvatar(url: try image.write(nameIt: "profile")).fetch(env: env) { [weak self] result in DispatchQueue.main.async {
+                switch result {
+                case .success(let url):
+                    self?.avatarView?.url = url
+                case .failure(let error):
+                    self?.showError(error)
+                }
+                self?.avatarLoading?.stopAnimating()
+            } }
+        } catch {
+            showError(error)
+            avatarLoading?.stopAnimating()
+        }
+    }
+
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+
+    public func showAlert(title: String?, message: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: nil))
+        present(alert, animated: true)
     }
 }
 

@@ -21,8 +21,9 @@ import XCTest
 
 class APIFileRequestableTests: XCTestCase {
     func testGetFileRequest() {
-        let request = GetFileRequest(context: ContextModel(.course, id: "1"), fileID: "2")
+        let request = GetFileRequest(context: ContextModel(.course, id: "1"), fileID: "2", include: [.avatar])
         XCTAssertEqual(request.path, "courses/1/files/2")
+        XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "avatar") ])
     }
 }
 

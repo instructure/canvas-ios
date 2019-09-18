@@ -43,7 +43,8 @@ extension APIFile {
         locked_for_user: Bool = false,
         lock_info: String? = nil,
         lock_explanation: String? = nil,
-        preview_url: URL? = nil
+        preview_url: URL? = nil,
+        avatar: APIFileToken? = nil
     ) -> APIFile {
         return APIFile(
             id: id,
@@ -68,7 +69,8 @@ extension APIFile {
             locked_for_user: locked_for_user,
             lock_info: lock_info,
             lock_explanation: lock_explanation,
-            preview_url: preview_url
+            preview_url: preview_url,
+            avatar: avatar
         )
     }
 }
