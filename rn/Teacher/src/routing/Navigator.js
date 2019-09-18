@@ -77,7 +77,7 @@ export default class Navigator {
     url = url.replace(/^canvas-[^:]*:/i, 'https:')
     if (url.startsWith('http') || url.startsWith('https')) {
       logEvent('webview_content_selected', { url })
-      let openURL = isStudent() ? Linking.openURL : Helm.openInSafariViewController
+      let openURL = isStudent() ? Linking.openURL.bind(Linking) : Helm.openInSafariViewController
       try {
         let { data: { session_url: authenticatedURL } } = await getAuthenticatedSessionURL(url)
         openURL(authenticatedURL)
