@@ -47,6 +47,8 @@
 		3B86FA3622DD24FA0018C012 /* SettingsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B86FA3522DD24FA0018C012 /* SettingsAPIClient.swift */; };
 		3B8F23CB2327050F00788730 /* StudentSettingsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54E3542326F87D00D8D1D2 /* StudentSettingsPresenterTests.swift */; };
 		3B92109C231F02D500820CC3 /* StudentSettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B92109B231F02D500820CC3 /* StudentSettingsViewController.storyboard */; };
+		3BA9FF6D2332999900196A06 /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF6C2332999900196A06 /* CourseDetailsViewController.swift */; };
+		3BA9FF6F23329D9F00196A06 /* CourseDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA9FF6E23329D9F00196A06 /* CourseDetailsViewController.storyboard */; };
 		3BD0CD732327026400B3341E /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD722327026400B3341E /* Core.framework */; };
 		3BD0CD752327027000B3341E /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD742327027000B3341E /* Core.framework */; };
 		3BD0CD762327027000B3341E /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD742327027000B3341E /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -570,6 +572,8 @@
 		3B801BFE2326CBFB00D143F0 /* StudentSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSettingsPresenter.swift; sourceTree = "<group>"; };
 		3B86FA3522DD24FA0018C012 /* SettingsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAPIClient.swift; sourceTree = "<group>"; };
 		3B92109B231F02D500820CC3 /* StudentSettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StudentSettingsViewController.storyboard; sourceTree = "<group>"; };
+		3BA9FF6C2332999900196A06 /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
+		3BA9FF6E23329D9F00196A06 /* CourseDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseDetailsViewController.storyboard; sourceTree = "<group>"; };
 		3BD0CD722327026400B3341E /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD0CD742327027000B3341E /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4948BE681F915D330035BAFD /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
@@ -945,6 +949,15 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		3BA9FF6B2332997D00196A06 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				3BA9FF6C2332999900196A06 /* CourseDetailsViewController.swift */,
+				3BA9FF6E23329D9F00196A06 /* CourseDetailsViewController.storyboard */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
 		497C48A51F912B7F00A3BC06 /* Observer Alerts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1166,6 +1179,7 @@
 		5E6441891C3EE2E0003D7397 /* Parent */ = {
 			isa = PBXGroup;
 			children = (
+				3BA9FF6B2332997D00196A06 /* Course */,
 				497C48C51F91539700A3BC06 /* Airwolf */,
 				5E6441911C3EE2E0003D7397 /* Assets.xcassets */,
 				5E0F9A4E1C739E6A00BB7707 /* Dashboard */,
@@ -1492,6 +1506,7 @@
 				6182D3BA1D91D7EF00D516D5 /* DetailsAttachmentCell.xib in Resources */,
 				78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */,
 				5E6441921C3EE2E0003D7397 /* Assets.xcassets in Resources */,
+				3BA9FF6F23329D9F00196A06 /* CourseDetailsViewController.storyboard in Resources */,
 				2CB69BC61D91CE180059C5A5 /* StudentSettingsHeaderView.xib in Resources */,
 				2C61CD091D9311B400196C03 /* Localizable.strings in Resources */,
 				2CB69BC01D91CE100059C5A5 /* SettingsObserveeCell.xib in Resources */,
@@ -1695,6 +1710,7 @@
 				497C48B81F912BD100A3BC06 /* AlertAPI.swift in Sources */,
 				B11A2CF720E42D9500A2DBDD /* AccountNotificationViewController.swift in Sources */,
 				5E0F9A7B1C739F2700BB7707 /* StudentsListViewController.swift in Sources */,
+				3BA9FF6D2332999900196A06 /* CourseDetailsViewController.swift in Sources */,
 				61B536F71C9B77900052B8CB /* CourseSyllabusViewController.swift in Sources */,
 				61D6A84D1C8F84E400370117 /* AlertsListViewController.swift in Sources */,
 				5E0F9A6C1C739E6A00BB7707 /* CalendarEventCellViewModel.swift in Sources */,
