@@ -100,7 +100,7 @@ class APITests: XCTestCase {
         let expected = URL(string: "https://foo.com")!
         XCTAssertEqual(URLSessionAPI(session: LoginSession.make(baseURL: expected)).baseURL, expected)
         XCTAssertEqual(URLSessionAPI(loginSession: LoginSession.make(baseURL: URL(string: "https://bar.com")!), baseURL: expected).baseURL, expected)
-        XCTAssertEqual(URLSessionAPI(loginSession: nil, baseURL: nil).baseURL, URL(string: "https://canvas.instructure.com")!)
+        XCTAssertEqual(URLSessionAPI(loginSession: nil, baseURL: nil).baseURL, URL(string: "https://canvas.instructure.com/")!)
     }
 
     func testMakeRequestInvalidPath() {
