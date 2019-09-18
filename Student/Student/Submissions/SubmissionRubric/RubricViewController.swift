@@ -127,6 +127,7 @@ class RubricViewController: UIViewController {
             descButton.titleLabel?.font = UIFont.scaledNamedFont(.medium14)
             descButton.setTitle("Description", for: .normal)
             descButton.setTitleColor(Brand.shared.linkColor, for: .normal)
+            descButton.tag = index
             contentStackView.addArrangedSubview(descButton)
             contentStackView.setCustomSpacing(spacing, after: descButton)
             descButton.addTarget(self, action: #selector(actionDescButtonTapped(sender:)), for: .primaryActionTriggered)
