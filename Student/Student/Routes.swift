@@ -412,13 +412,9 @@ Routing.routeToURL = { url, view in route(view, url: url) }
 return Router(routes: routes) { url, _, _ in
     guard let url = url.url, url.scheme != "canvas-courses" else { return }
     let request = GetWebSessionRequest(to: url)
-    AppEnvironment.shared.api.makeRequest(request) { response, _, error in
+    AppEnvironment.shared.api.makeRequest(request) { response, _, _ in
         DispatchQueue.main.async {
-            if let response = response, error == nil {
-                UIApplication.shared.open(response.session_url)
-            } else {
-                UIApplication.shared.open(url)
-            }
+            UIApplication.shared.open(response?.session_url ?? url)
         }
     }
 }
