@@ -103,19 +103,16 @@ let router = Router(routes: [
         return WrongAppViewController.create(delegate: loginDelegate)
     },
 
-]) { url, view, _ in
-    guard url.host != nil, url.scheme?.hasPrefix("http") == true, let url = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
+]) { url, _, _ in
+    var components = url
+    if components.scheme?.hasPrefix("http") == false {
+        components.scheme = "https"
+    }
+    guard let url = components.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
     let request = GetWebSessionRequest(to: url)
-    AppEnvironment.shared.api.makeRequest(request) { response, _, error in
+    AppEnvironment.shared.api.makeRequest(request) { response, _, _ in
         DispatchQueue.main.async {
-            let safari: SFSafariViewController
-            if let response = response, error == nil {
-                safari = SFSafariViewController(url: response.session_url)
-            } else {
-                safari = SFSafariViewController(url: url)
-            }
-            safari.transitioningDelegate = ResetTransitionDelegate.shared
-            view.present(safari, animated: true)
+            AppEnvironment.shared.loginDelegate?.openExternalURL(response?.session_url ?? url)
         }
     }
 }

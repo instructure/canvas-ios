@@ -24,6 +24,7 @@ import Crashlytics
 import Firebase
 import UserNotifications
 import Core
+import SafariServices
 
 let ParentAppRefresherTTL: TimeInterval = 5.minutes
 var legacySession: Session?
@@ -36,6 +37,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
         env.router = router
+        env.loginDelegate = self
         return env
     }()
 
@@ -136,7 +138,13 @@ extension ParentAppDelegate: LoginDelegate {
     }
 
     func openExternalURL(_ url: URL) {
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        if url.scheme == "https", let topVC = topMostViewController() {
+            let safari = SFSafariViewController(url: url)
+            safari.modalPresentationStyle = .fullScreen
+            topVC.present(safari, animated: true, completion: nil)
+        } else {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
 
     func userDidLogin(session: LoginSession) {
