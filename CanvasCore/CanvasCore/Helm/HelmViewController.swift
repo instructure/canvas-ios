@@ -457,7 +457,8 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         navigationItem.rightBarButtonItems = barButtonItems(fromConfig: rightBarButtons)
         
         // show the dismiss button when view controller is shown modally
-        if let navigatorOptions = props[PropKeys.navigatorOptions] as? [String: Any], navigatorOptions["modal"] as? Bool == true && screenConfig[PropKeys.showDismissButton] as? Bool == true {
+        let navigatorOptions = props[PropKeys.navigatorOptions] as? [String: Any]
+        if screenConfig[PropKeys.dismissButtonTitle] != nil || (navigatorOptions?["modal"] as? Bool == true && screenConfig[PropKeys.showDismissButton] as? Bool == true) {
             let dismissTitle = screenConfig[PropKeys.dismissButtonTitle] as? String ?? NSLocalizedString("Done", comment: "")
             addModalDismissButton(buttonTitle: dismissTitle)
         }

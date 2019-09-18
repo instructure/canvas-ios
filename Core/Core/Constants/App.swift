@@ -18,14 +18,8 @@
 
 import Foundation
 
-public struct APIPage: Codable, Equatable {
-    let url: String
-    let updated_at: Date
-    let front_page: Bool
-    let page_id: ID
-    let title: String
-    let html_url: String
-    let published: Bool
-    let body: String?
-    let editing_roles: String?
+public enum App: String {
+    case student
+    case teacher
+    case parent
 }

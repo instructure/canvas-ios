@@ -249,7 +249,9 @@
         <attribute name="notificationsRaw" attributeType="String" defaultValueString=""/>
     </entity>
     <entity name="Page" representedClassName="Core.Page" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String"/>
         <attribute name="contextID" attributeType="String"/>
+        <attribute name="editingRoles" optional="YES" attributeType="Transformable"/>
         <attribute name="htmlURL" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isFrontPage" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -512,7 +514,7 @@
         <element name="Module" positionX="-369" positionY="-18" width="128" height="135"/>
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="225"/>
         <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
-        <element name="Page" positionX="-549" positionY="-27" width="128" height="165"/>
+        <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="463"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>

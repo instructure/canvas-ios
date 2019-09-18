@@ -39,6 +39,7 @@ public protocol RouterProtocol {
     func route(to url: String, from: UIViewController, options: RouteOptions?)
     func route(to url: URLComponents, from: UIViewController, options: RouteOptions?)
     func show(_ view: UIViewController, from: UIViewController, options: RouteOptions?)
+    func pop(from: UIViewController)
 }
 
 public extension RouterProtocol {
@@ -141,5 +142,16 @@ public class Router: RouterProtocol {
             }
         }
         fallback(url, from, options)
+    }
+
+    public func pop(from: UIViewController) {
+        guard let navController = from.navigationController else {
+             return
+         }
+         if navController.viewControllers.count == 1 {
+             navController.viewControllers = [EmptyViewController(nibName: nil, bundle: nil)]
+         } else {
+             navController.popViewController(animated: true)
+         }
     }
 }

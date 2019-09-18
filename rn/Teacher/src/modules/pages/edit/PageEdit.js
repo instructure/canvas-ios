@@ -222,7 +222,11 @@ export class PageEdit extends Component<Props, State> {
         ? api.updatePage('courses', courseID, url, parameters)
         : api.createPage('courses', courseID, parameters)
       const response = await request
-      NativeNotificationCenter.postNotification('refresh-pages', {})
+      if (url) {
+        NativeNotificationCenter.postNotification('page-edit', response.data.raw)
+      } else {
+        NativeNotificationCenter.postNotification('page-created', response.data.raw)
+      }
       await this.props.navigator.dismiss()
       this.props.onChange && this.props.onChange(response.data)
     } catch (error) {
