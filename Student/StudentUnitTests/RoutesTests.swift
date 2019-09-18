@@ -40,6 +40,7 @@ class RoutesTests: XCTestCase {
         }
     }
 
+    // swiftlint:disable:next weak_delegate
     let loginDelegate = LoginDelegate()
 
     override func setUp() {
