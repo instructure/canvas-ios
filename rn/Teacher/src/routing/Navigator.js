@@ -22,6 +22,9 @@ import { route } from './index'
 import { getAuthenticatedSessionURL } from '../canvas-api'
 import { recordRoute } from '../modules/developer-menu/DeveloperMenu'
 import { logEvent } from '@common/CanvasAnalytics'
+import { isStudent } from '../modules/app'
+
+const { Helm } = NativeModules
 
 type ShowOptions = {
   modal: boolean,
@@ -74,11 +77,12 @@ export default class Navigator {
     url = url.replace(/^canvas-[^:]*:/i, 'https:')
     if (url.startsWith('http') || url.startsWith('https')) {
       logEvent('webview_content_selected', { url })
+      let openURL = isStudent() ? Linking.openURL : Helm.openInSafariViewController
       try {
         let { data: { session_url: authenticatedURL } } = await getAuthenticatedSessionURL(url)
-        Linking.openURL(authenticatedURL)
+        openURL(authenticatedURL)
       } catch (err) {
-        Linking.openURL(url)
+        openURL(url)
       }
     } else {
       Linking.openURL(url)
