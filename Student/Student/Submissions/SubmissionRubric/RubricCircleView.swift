@@ -238,7 +238,7 @@ class RubricCircleView: UIView {
             let str = r.desc + stringPadding
             let fontAttributes = [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20Monodigit)]
             let size = str.size(withAttributes: fontAttributes)
-            let width = ceil ( max(w, size.width) )
+            let width = ceil( max(w, size.width) )
             total += ceil( width ) + space
             if total >= ( maxWidth - (space * 2) ) {
                 rows += 1

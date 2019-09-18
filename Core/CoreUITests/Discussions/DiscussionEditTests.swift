@@ -35,7 +35,7 @@ class DiscussionEditTests: CoreUITestCase {
 
     func testCantCreateDiscussion() {
         mockBaseRequests()
-        mockEncodableRequest("courses/\(noPermissionCourse.id)/discussion_topics?per_page=99&include[]=sections", value: [String]())
+        mockData(ListDiscussionTopicsRequest(context: noPermissionCourse), value: [])
 
         show("/courses/\(noPermissionCourse.id)/discussion_topics")
         app.find(label: "There are no discussions to display.").waitToExist()
@@ -44,8 +44,8 @@ class DiscussionEditTests: CoreUITestCase {
 
     func testCreateDiscussion() {
         mockBaseRequests()
-        mockEncodableRequest("courses/\(course1.id)/discussion_topics?per_page=99&include[]=sections", value: [String]())
-        mockEncodableRequest("courses/\(course1.id)/discussion_topics", value: [String: String]())
+        mockData(ListDiscussionTopicsRequest(context: course1), value: [])
+        mockData(ListDiscussionTopicsRequest(context: course1, perPage: nil, include: []), value: [])
         mockEncodableRequest("courses/\(course1.id)/settings", value: ["allow_student_forum_attachments": false])
 
         show("/courses/\(course1.id)/discussion_topics")
@@ -66,8 +66,8 @@ class DiscussionEditTests: CoreUITestCase {
 
     func testCreateDiscussionWithAttachment() {
         mockBaseRequests()
-        mockEncodableRequest("courses/\(course1.id)/discussion_topics?per_page=99&include[]=sections", value: [String]())
-        mockEncodableRequest("courses/\(course1.id)/discussion_topics", value: [String: String](), error: "error")
+        mockData(ListDiscussionTopicsRequest(context: course1), value: [])
+        mockData(ListDiscussionTopicsRequest(context: course1, perPage: nil, include: []), value: [])
         mockEncodableRequest("courses/\(course1.id)/settings", value: ["allow_student_forum_attachments": true])
 
         let targetUrl = "https://canvas.s3.bucket.com/bucket/1"

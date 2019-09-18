@@ -31,9 +31,11 @@ public class UITestHelpers {
         case mockDownload(MockDownloadMessage)
         case tearDown
         case currentSession
+        case useMocksOnly
+        case meta(Any?)
 
         private enum CodingKeys: String, CodingKey {
-            case reset, login, show, mockData, mockDownload, tearDown, currentSession
+            case reset, login, show, mockData, mockDownload, tearDown, currentSession, useMocksOnly, meta
         }
 
         public init(from decoder: Decoder) throws {
@@ -52,6 +54,10 @@ public class UITestHelpers {
                 self = .tearDown
             } else if container.contains(.currentSession) {
                 self = .currentSession
+            } else if container.contains(.useMocksOnly) {
+                self = .useMocksOnly
+            } else if let data = try container.decodeIfPresent(Data.self, forKey: .meta) {
+                self = .meta(NSKeyedUnarchiver(forReadingWith: data).decodeObject(forKey: "meta"))
             } else {
                 throw DecodingError.typeMismatch(Helper.self, .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(Helper.self)"))
             }
@@ -73,6 +79,12 @@ public class UITestHelpers {
                 try container.encode(nil as Int?, forKey: .tearDown)
             case .currentSession:
                 try container.encode(nil as Int?, forKey: .currentSession)
+            case .useMocksOnly:
+                try container.encode(nil as Int?, forKey: .useMocksOnly)
+            case .meta(let payload):
+                let archiver = NSKeyedArchiver()
+                archiver.encode(payload, forKey: "meta")
+                try container.encode(archiver.encodedData, forKey: .meta)
             }
         }
     }
@@ -129,6 +141,11 @@ public class UITestHelpers {
             tearDown()
         case .currentSession:
             return try? encoder.encode(AppEnvironment.shared.currentSession)
+        case .useMocksOnly:
+            MockDistantURLSession.setup()
+        case .meta:
+            // insert ad-hoc debug code here
+            ()
         }
         return nil
     }
