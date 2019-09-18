@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,24 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-@testable import Core
+import Foundation
+import CoreData
 
-class GetGradingPeriodsRequestTests: XCTestCase {
-    var req: GetGradingPeriodsRequest!
-    let courseID = "1"
+public final class GradingPeriod: NSManagedObject, WriteableModel {
+    public typealias JSON = APIGradingPeriod
 
-    override func setUp() {
-        super.setUp()
-        req = GetGradingPeriodsRequest(courseID: courseID)
-    }
+    @NSManaged public var id: String
+    @NSManaged public var title: String
+    @NSManaged public var courseID: String
 
-    func testPath() {
-        XCTAssertEqual(req.path, "courses/1/grading_periods")
-    }
+    @discardableResult
+    public static func save(_ item: APIGradingPeriod, in context: NSManagedObjectContext) -> GradingPeriod {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(GradingPeriod.id), item.id.value)
+        let model: GradingPeriod = context.fetch(predicate).first ?? context.insert()
+        model.id = item.id.value
+        model.title = item.title
 
-    func testModel() {
-        let model = APIGradingPeriod.make()
-        XCTAssertNotNil(model)
+        return model
     }
 }

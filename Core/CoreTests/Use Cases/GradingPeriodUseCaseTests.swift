@@ -16,24 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 @testable import Core
+import XCTest
 
-class GetGradingPeriodsRequestTests: XCTestCase {
-    var req: GetGradingPeriodsRequest!
-    let courseID = "1"
+class GetGradingPeriosdUseCaseTests: XCTestCase {
+
+    var useCase: GetGradingPeriods!
+    let courseID: String = "1"
 
     override func setUp() {
         super.setUp()
-        req = GetGradingPeriodsRequest(courseID: courseID)
+        useCase = GetGradingPeriods(courseID: courseID)
     }
 
-    func testPath() {
-        XCTAssertEqual(req.path, "courses/1/grading_periods")
+    func testCacheKey() {
+        XCTAssertEqual(useCase.cacheKey, "get-gradingPeriods-\(courseID)")
+
+    }
+
+    func testScope() {
+        XCTAssertEqual(useCase.scope, Scope.where(#keyPath(GradingPeriod.courseID), equals: courseID))
+    }
+
+    func testRequest() {
+        XCTAssertEqual(useCase.request.courseID, courseID)
     }
 
     func testModel() {
-        let model = APIGradingPeriod.make()
+        let model = GradingPeriod.make()
         XCTAssertNotNil(model)
     }
 }

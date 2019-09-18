@@ -16,24 +16,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-@testable import Core
+import CoreData
 
-class GetGradingPeriodsRequestTests: XCTestCase {
-    var req: GetGradingPeriodsRequest!
-    let courseID = "1"
+public class GetGradingPeriods: CollectionUseCase {
+    public typealias Model = GradingPeriod
 
-    override func setUp() {
-        super.setUp()
-        req = GetGradingPeriodsRequest(courseID: courseID)
+    public let courseID: String
+
+    public init(courseID: String) {
+        self.courseID = courseID
     }
 
-    func testPath() {
-        XCTAssertEqual(req.path, "courses/1/grading_periods")
+    public var cacheKey: String? {
+        return "get-gradingPeriods-\(courseID)"
     }
 
-    func testModel() {
-        let model = APIGradingPeriod.make()
-        XCTAssertNotNil(model)
+    public var scope: Scope {
+        return .where(#keyPath(GradingPeriod.courseID), equals: courseID)
+    }
+
+    public var request: GetGradingPeriodsRequest {
+        return GetGradingPeriodsRequest(courseID: courseID)
+    }
+
+    public func write(response: [GradingPeriod]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+
     }
 }

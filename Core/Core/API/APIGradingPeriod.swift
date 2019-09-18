@@ -19,6 +19,6 @@
 import Foundation
 
 public struct APIGradingPeriod: Codable, Equatable {
-    let id: String
+    let id: ID
     let title: String
 }
