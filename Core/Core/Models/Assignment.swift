@@ -243,10 +243,8 @@ extension Assignment {
     }
 
     public var gradesListGradeText: String? {
-        let totalPointsPossible: String = formattedGradeNumber(pointsPossible) ?? ""
-        let emptyPoints = "- / \(totalPointsPossible)"
         guard let submission = submission else {
-            return emptyPoints
+            return nil
         }
 
         if submission.excused ?? false {
@@ -254,26 +252,31 @@ extension Assignment {
         }
 
         if submission.score == nil {
-            return "- / \(totalPointsPossible)"
+            return nil
         }
 
-        let score = formattedGradeNumber(submission.score) ?? ""
+        let score = formattedGradeNumber(submission.score)
+        let totalPointsPossible: String = formattedGradeNumber(pointsPossible) ?? ""
 
         switch gradingType {
         case .pass_fail:
-            var status = "-"
-            status = submission.grade == "incomplete"
+            let status = submission.grade == "incomplete"
                 ? NSLocalizedString("Incomplete", bundle: .core, comment: "")
                 : NSLocalizedString("Complete", bundle: .core, comment: "")
-            return "\(status) / \(totalPointsPossible)"
+            return status
         case .points:
-            return "\(score) / \(totalPointsPossible)"
-
+            if let score = score {
+                let format = NSLocalizedString("%@ out of %@", comment: "")
+                return String.localizedStringWithFormat(format, score, totalPointsPossible)
+            }
         case .letter_grade, .percent, .gpa_scale:
-            return "\(score) / \(totalPointsPossible) (\(submission.grade ?? ""))"
-        case .not_graded:
-            return ""
+            if let score = score {
+                let format = NSLocalizedString("%@ out of %@ (%@)", comment: "")
+                return String.localizedStringWithFormat(format, score, totalPointsPossible, submission.grade ?? "")
+            }
+        case .not_graded: break
         }
+        return nil
     }
 
     func formattedGradeNumber(_ number: Double?) -> String? {
