@@ -120,10 +120,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
 extension ParentAppDelegate: LoginDelegate {
     var supportsCanvasNetwork: Bool { return false }
-    var whatsNewURL: URL? {
-        return URL(string: "https://s3.amazonaws.com/tr-learncanvas/docs/WhatsNewCanvasParent.pdf")
-    }
-
+    
     func openSupportTicket() {
         guard let presentFrom = topMostViewController() else { return }
         let subject = String.localizedStringWithFormat("[Parent Login Issue] %@", NSLocalizedString("Trouble logging in", comment: ""))
