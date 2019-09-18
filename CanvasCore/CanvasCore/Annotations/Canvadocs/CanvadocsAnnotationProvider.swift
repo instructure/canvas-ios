@@ -193,3 +193,12 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
         self.allAnnotations.forEach { syncAnnotation($0) }
     }
 }
+
+// Needed for setRotationOffset(_:forPageAt:)
+extension CanvadocsAnnotationProvider: PSPDFAnnotationProviderRefreshing {
+    func prepareForRefresh() {
+    }
+
+    func refreshAnnotationsForPages(at pageIndexes: IndexSet) {
+    }
+}
