@@ -22,22 +22,15 @@ import XCTest
 import TestsFoundation
 
 class SubmissionCommentsTests: StudentUITestCase {
-    lazy var course: APICourse = {
-        let course = APICourse.make()
-        mockData(GetCourseRequest(courseID: course.id), value: course)
-        return course
-    }()
+    lazy var course = mock(course: .make())
 
-    lazy var assignment: APIAssignment = {
-        let assignment = APIAssignment.make(
+    lazy var assignment = mock(assignment: .make(
             submission_types: [ .online_upload ],
             allowed_extensions: [ "pdf" ]
-        )
-        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
-        return assignment
-    }()
+    ))
 
     func testFileComments() {
+        mockBaseRequests()
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             id: "1",
             user_id: "1",
@@ -59,6 +52,7 @@ class SubmissionCommentsTests: StudentUITestCase {
     }
 
     func testAttemptComments() {
+        mockBaseRequests()
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             id: "1",
             user_id: "1",
@@ -75,6 +69,7 @@ class SubmissionCommentsTests: StudentUITestCase {
     }
 
     func testTextComments() {
+        mockBaseRequests()
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             id: "1",
             user_id: "1",
@@ -131,6 +126,7 @@ class SubmissionCommentsTests: StudentUITestCase {
     }
 
     func testAudioComments() {
+        mockBaseRequests()
         let testm4a = Bundle(for: SubmissionCommentsTests.self).url(forResource: "test", withExtension: "m4a")!
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             id: "1",
@@ -170,8 +166,7 @@ class SubmissionCommentsTests: StudentUITestCase {
         SubmissionComments.audioCellPlayPauseButton(commentID: "2").tap()
     }
 
-    // TODO: fix on bitrise
-    func xtestAudioRecording() {
+    func testAudioRecording() {
         mockBaseRequests()
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
         mockData(GetMediaServiceRequest(), value: APIMediaService(domain: "canvas.instructure.com"))

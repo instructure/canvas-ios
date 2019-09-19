@@ -23,7 +23,7 @@ class ActAsUserTests: CoreUITestCase {
     override var user: UITestUser? { return .readAdmin1 }
     override var abstractTestClass: CoreUITestCase.Type { return ActAsUserTests.self }
 
-    func xtestActAsUser() { // TODO: reenable
+    func testActAsUser() {
         Profile.open()
         XCTAssertEqual(Profile.userNameLabel.label(), "Admin One")
         Profile.actAsUserButton.tap()

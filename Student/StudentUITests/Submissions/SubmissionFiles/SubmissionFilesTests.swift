@@ -22,11 +22,7 @@ import XCTest
 import TestsFoundation
 
 class SubmissionFilesTests: StudentUITestCase {
-    let course = APICourse.make()
-
-    override func setUp() {
-        mockData(GetCourseRequest(courseID: course.id), value: course)
-    }
+    lazy var course = mock(course: .make())
 
     lazy var assignment: APIAssignment = {
         let assignment = APIAssignment.make()
@@ -35,6 +31,7 @@ class SubmissionFilesTests: StudentUITestCase {
     }()
 
     func testFilesList() {
+        mockBaseRequests()
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             user_id: "1",
             submission_type: .online_upload,

@@ -44,7 +44,7 @@ open class CoreUITestCase: XCTestCase {
     open override func perform(_ run: XCTestRun) {
         guard type(of: self) != abstractTestClass else { return }
         if ProcessInfo.processInfo.environment["LIST_TESTS_ONLY"] == "YES" {
-            print("UI_TEST: \(name)")
+            print("UI_TEST: \(Bundle(for: type(of: self)).bundleURL.deletingPathExtension().lastPathComponent) \(name)")
         } else {
             super.perform(run)
         }

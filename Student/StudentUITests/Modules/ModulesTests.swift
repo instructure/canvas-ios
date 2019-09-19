@@ -42,7 +42,6 @@ class ModulesTests: CoreUITestCase {
     }
 
     func testLaunchIntoDiscussionModuleItem() {
-        Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
@@ -55,7 +54,6 @@ class ModulesTests: CoreUITestCase {
     }
 
     func testLaunchIntoPageModuleItem() {
-        Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
@@ -67,7 +65,6 @@ class ModulesTests: CoreUITestCase {
     }
 
     func testLaunchIntoQuizModuleItem() {
-        Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
@@ -80,7 +77,6 @@ class ModulesTests: CoreUITestCase {
     }
 
     func testLaunchIntoFileModuleItem() {
-        Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
@@ -92,7 +88,6 @@ class ModulesTests: CoreUITestCase {
     }
 
     func testLaunchIntoExternalURLModuleItem() {
-        Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
@@ -103,8 +98,7 @@ class ModulesTests: CoreUITestCase {
         XCUIElementWrapper(app.webViews.staticTexts.firstMatch).waitToExist(60)
     }
 
-    func xtestLaunchIntoExternalToolModuleItem() {
-        Dashboard.courseCard(id: "263").waitToExist()
+    func testLaunchIntoExternalToolModuleItem() {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
@@ -118,7 +112,6 @@ class ModulesTests: CoreUITestCase {
     }
 
     func testLaunchIntoTextHeaderModuleItem() {
-        Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()

@@ -22,17 +22,7 @@ import TestsFoundation
 import XCTest
 
 class SubmissionButtonTests: StudentUITestCase {
-    let course = APICourse.make()
-
-    override func setUp() {
-        super.setUp()
-        mockData(GetCourseRequest(courseID: course.id), value: course)
-    }
-
-    override func show(_ route: String) {
-        super.show(route)
-        sleep(1)
-    }
+    lazy var course = mock(course: .make())
 
     func testOnlineUpload() {
         mockBaseRequests()
@@ -56,6 +46,7 @@ class SubmissionButtonTests: StudentUITestCase {
     }
 
     func testExternalTool() {
+        mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [ .external_tool ]))
         mockData(GetSessionlessLaunchURLRequest(
             context: course,
@@ -123,8 +114,7 @@ class SubmissionButtonTests: StudentUITestCase {
         NavBar.backButton.tap()
     }
 
-    // TODO: fix on bitrise
-    func xtestMediaRecording() {
+    func testMediaRecording() {
         mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [ .media_recording ]))
         mockData(GetMediaServiceRequest(), value: APIMediaService(domain: "canvas.instructure.com"))

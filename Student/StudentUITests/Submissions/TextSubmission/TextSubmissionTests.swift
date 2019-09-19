@@ -24,8 +24,8 @@ import XCTest
 
 class TextSubmissionTests: StudentUITestCase {
     func testTextSubmission() {
-        let course = APICourse.make()
-        mockData(GetCourseRequest(courseID: course.id), value: course)
+        mockBaseRequests()
+        let course = mock(course: APICourse.make())
         let assignment = APIAssignment.make(submission_types: [ .online_text_entry ])
         mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
 

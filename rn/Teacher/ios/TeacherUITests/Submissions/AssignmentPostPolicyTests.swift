@@ -22,7 +22,7 @@ import TestsFoundation
 
 class AssignmentPostPolicyTests: TeacherUITestCase {
     // https://instructure.atlassian.net/browse/MBL-13155
-    func xtestPostPolicySettings() {
+    func testPostPolicySettings() {
         let courseID = "263"
         let assignmentID = "5431"
 
