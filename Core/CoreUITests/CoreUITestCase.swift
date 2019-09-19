@@ -38,6 +38,10 @@ open class CoreUITestCase: XCTestCase {
         }
     }
 
+    open var experimentalFeaturesEnabled: Bool {
+        return true
+    }
+
     // The class in this variable will not have tests run for it, only for subclasses
     open var abstractTestClass: CoreUITestCase.Type { return CoreUITestCase.self }
 
@@ -139,6 +143,7 @@ open class CoreUITestCase: XCTestCase {
 
     open func reset(file: StaticString = #file, line: UInt = #line) {
         send(.reset)
+        setExperimentalFeaturesEnabled(experimentalFeaturesEnabled)
         LoginStart.findSchoolButton.waitToExist(file: file, line: line)
     }
 
@@ -225,6 +230,10 @@ open class CoreUITestCase: XCTestCase {
 
     open func setAnimationsEnabled(_ enabled: Bool) {
         send(.setAnimationsEnabled(enabled))
+    }
+
+    open func setExperimentalFeaturesEnabled(_ enabled: Bool) {
+        send(.setExperimentalFeaturesEnabled(enabled))
     }
 
     // MARK: mock (convenience)

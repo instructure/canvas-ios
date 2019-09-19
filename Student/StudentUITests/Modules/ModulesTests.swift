@@ -76,17 +76,6 @@ class ModulesTests: CoreUITestCase {
         Quiz.resumeButton.waitToExist()
     }
 
-    func testLaunchIntoFileModuleItem() {
-        Dashboard.courseCard(id: "263").tap()
-
-        CourseNavigation.modules.tap()
-
-        ModulesDetail.module(index: 7).tap()
-        ModulesDetail.moduleItem(index: 0).tap()
-
-        app.find(type: .image).waitToExist()
-    }
-
     func testLaunchIntoExternalURLModuleItem() {
         Dashboard.courseCard(id: "263").tap()
 
@@ -118,5 +107,22 @@ class ModulesTests: CoreUITestCase {
 
         ModulesDetail.module(index: 6).tap()
         ModulesDetail.moduleItem(index: 0).waitToExist()
+    }
+}
+
+class MyFileModuleItemTests: CoreUITestCase {
+    override var experimentalFeaturesEnabled: Bool {
+        return false
+    }
+
+    func testLaunchIntoFileModuleItem() {
+        Dashboard.courseCard(id: "263").tap()
+
+        CourseNavigation.modules.tap()
+
+        ModulesDetail.module(index: 7).tap()
+        ModulesDetail.moduleItem(index: 0).tap()
+
+        app.find(type: .image).waitToExist()
     }
 }

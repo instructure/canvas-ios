@@ -34,9 +34,10 @@ public class UITestHelpers {
         case setAnimationsEnabled(Bool)
         case useMocksOnly
         case debug(Any?)
+        case setExperimentalFeaturesEnabled(Bool)
 
         private enum CodingKeys: String, CodingKey {
-            case reset, login, show, mockData, mockDownload, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, debug
+            case reset, login, show, mockData, mockDownload, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, debug, setExperimentalFeaturesEnabled
         }
 
         public init(from decoder: Decoder) throws {
@@ -61,6 +62,8 @@ public class UITestHelpers {
                 self = .useMocksOnly
             } else if let data = try container.decodeIfPresent(Data.self, forKey: .debug) {
                 self = .debug(NSKeyedUnarchiver(forReadingWith: data).decodeObject(forKey: "debug"))
+            } else if let enabled = try container.decodeIfPresent(Bool.self, forKey: .setExperimentalFeaturesEnabled) {
+                self = .setExperimentalFeaturesEnabled(enabled)
             } else {
                 throw DecodingError.typeMismatch(Helper.self, .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(Helper.self)"))
             }
@@ -90,6 +93,8 @@ public class UITestHelpers {
                 let archiver = NSKeyedArchiver()
                 archiver.encode(payload, forKey: "debug")
                 try container.encode(archiver.encodedData, forKey: .debug)
+            case .setExperimentalFeaturesEnabled(let enabled):
+                try container.encode(enabled, forKey: .setExperimentalFeaturesEnabled)
             }
         }
     }
@@ -117,7 +122,6 @@ public class UITestHelpers {
         LoginSession.keychain = Keychain(serviceName: "com.instructure.shared-credentials.tests")
         CacheManager.clear()
         UserDefaults.standard.set(true, forKey: "IS_UI_TEST")
-        ExperimentalFeature.allEnabled = true
         if let portName = ProcessInfo.processInfo.environment["APP_IPC_PORT_NAME"] {
             ipcAppServer = IPCAppServer(machPortName: portName)
         }
@@ -150,6 +154,8 @@ public class UITestHelpers {
         case .debug:
             // insert ad-hoc debug code here
             ()
+        case .setExperimentalFeaturesEnabled(let enabled):
+            setExperimentalFeaturesEnabled(enabled)
         }
         return nil
     }
@@ -201,6 +207,10 @@ public class UITestHelpers {
     func setAnimationsEnabled(_ enabled: Bool) {
         window?.layer.speed = enabled ? 1 : 100
         UIView.setAnimationsEnabled(enabled)
+    }
+
+    func setExperimentalFeaturesEnabled(_ enabled: Bool) {
+        ExperimentalFeature.allEnabled = enabled
     }
 }
 
