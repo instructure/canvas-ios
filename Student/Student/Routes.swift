@@ -409,9 +409,18 @@ CBIConversationStarter.setConversationStarter { recipients, context in
 
 Routing.routeToURL = { url, view in route(view, url: url) }
 
-return Router(routes: routes) { url, view, _ in
-    guard let url = url.url, url.scheme != "canvas-courses", let session = Session.current else { return }
-    ExternalToolManager.shared.showAuthenticatedURL(url, in: session, from: view)
+return Router(routes: routes) { url, _, _ in
+    var components = url
+    if components.scheme?.hasPrefix("http") == false {
+        components.scheme = "https"
+    }
+    guard let url = components.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
+    let request = GetWebSessionRequest(to: url)
+    AppEnvironment.shared.api.makeRequest(request) { response, _, _ in
+        DispatchQueue.main.async {
+            AppEnvironment.shared.loginDelegate?.openExternalURL(response?.session_url ?? url)
+        }
+    }
 }
 }()
 

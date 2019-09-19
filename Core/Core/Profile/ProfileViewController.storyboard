@@ -28,6 +28,15 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="name" value="John Doe"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIy-rc-eoW">
+                                <rect key="frame" x="16" y="36" width="56" height="56"/>
+                                <connections>
+                                    <action selector="showAvatarMenuWithSender:" destination="BVD-zW-7jA" eventType="primaryActionTriggered" id="4TS-NA-HAj"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="e9y-t1-9X5">
+                                <rect key="frame" x="34" y="54" width="20" height="20"/>
+                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTo-Xx-NrJ" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="16" y="100" width="343" height="30"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Profile.userNameLabel"/>
@@ -117,7 +126,11 @@
                         <constraints>
                             <constraint firstItem="fhp-Ns-WWs" firstAttribute="top" secondItem="gs0-Gp-hxA" secondAttribute="top" constant="16" id="0QN-wv-dY3"/>
                             <constraint firstItem="GwY-LE-3Lp" firstAttribute="leading" secondItem="gs0-Gp-hxA" secondAttribute="leading" id="1ej-95-TQs"/>
+                            <constraint firstItem="e9y-t1-9X5" firstAttribute="centerY" secondItem="fhp-Ns-WWs" secondAttribute="centerY" id="2hj-9K-07O"/>
                             <constraint firstItem="khr-Ui-0Vs" firstAttribute="leading" secondItem="gs0-Gp-hxA" secondAttribute="leading" constant="16" id="3CY-Ch-I60"/>
+                            <constraint firstItem="fhp-Ns-WWs" firstAttribute="bottom" secondItem="jIy-rc-eoW" secondAttribute="bottom" id="9MY-lc-yBB"/>
+                            <constraint firstItem="fhp-Ns-WWs" firstAttribute="trailing" secondItem="jIy-rc-eoW" secondAttribute="trailing" id="DgP-2N-LI9"/>
+                            <constraint firstItem="jIy-rc-eoW" firstAttribute="leading" secondItem="fhp-Ns-WWs" secondAttribute="leading" id="FAc-He-E63"/>
                             <constraint firstItem="fTo-Xx-NrJ" firstAttribute="leading" secondItem="gs0-Gp-hxA" secondAttribute="leading" constant="16" id="Kc9-zM-W9G"/>
                             <constraint firstItem="GwY-LE-3Lp" firstAttribute="top" secondItem="kc1-NZ-bN4" secondAttribute="bottom" constant="38" id="N2R-SW-EKp"/>
                             <constraint firstItem="gs0-Gp-hxA" firstAttribute="trailing" secondItem="GwY-LE-3Lp" secondAttribute="trailing" id="R8Q-mR-4ef"/>
@@ -130,16 +143,21 @@
                             <constraint firstItem="kc1-NZ-bN4" firstAttribute="leading" secondItem="gs0-Gp-hxA" secondAttribute="leading" constant="16" id="i4B-b0-qgr"/>
                             <constraint firstItem="khr-Ui-0Vs" firstAttribute="top" secondItem="GwY-LE-3Lp" secondAttribute="bottom" constant="12" id="rbY-FR-2Sz"/>
                             <constraint firstItem="gs0-Gp-hxA" firstAttribute="trailing" secondItem="fTo-Xx-NrJ" secondAttribute="trailing" constant="16" id="s0g-cu-Bll"/>
+                            <constraint firstItem="jIy-rc-eoW" firstAttribute="top" secondItem="fhp-Ns-WWs" secondAttribute="top" id="yjG-SM-9fW"/>
+                            <constraint firstItem="e9y-t1-9X5" firstAttribute="centerX" secondItem="fhp-Ns-WWs" secondAttribute="centerX" id="ypX-Bk-4SI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gs0-Gp-hxA"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="avatarButton" destination="jIy-rc-eoW" id="noK-MB-xdH"/>
+                        <outlet property="avatarLoading" destination="e9y-t1-9X5" id="j1n-T7-mLr"/>
                         <outlet property="avatarView" destination="fhp-Ns-WWs" id="C4c-5d-ux8"/>
                         <outlet property="emailLabel" destination="kc1-NZ-bN4" id="r6W-hl-thB"/>
                         <outlet property="nameLabel" destination="fTo-Xx-NrJ" id="IrT-cH-DRe"/>
                         <outlet property="tableView" destination="GwY-LE-3Lp" id="Uwd-HI-KQZ"/>
+                        <outlet property="versionLabel" destination="khr-Ui-0Vs" id="Bo9-gT-7EN"/>
                     </connections>
                 </viewController>
                 <tapGestureRecognizer numberOfTapsRequired="10" id="yG3-LD-k6I">

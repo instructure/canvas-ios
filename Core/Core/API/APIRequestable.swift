@@ -126,7 +126,7 @@ extension APIRequestable {
         }
 
         request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
-        if let token = accessToken {
+        if let token = accessToken, request.url?.host == baseURL.host {
             request.setValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
         }
         request.setValue(UserAgent.default.description, forHTTPHeaderField: HttpHeader.userAgent)
@@ -211,7 +211,7 @@ extension URLRequest: APIRequestable {
     public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
         guard let url = url else { throw NSError.internalError() }
         var request = self
-        if let token = accessToken {
+        if let token = accessToken, url.host == baseURL.host {
             request.setValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
         }
         if let actAsUserID = actAsUserID {

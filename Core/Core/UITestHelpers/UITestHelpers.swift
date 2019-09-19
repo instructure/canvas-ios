@@ -31,11 +31,12 @@ public class UITestHelpers {
         case mockDownload(MockDownloadMessage)
         case tearDown
         case currentSession
+        case setAnimationsEnabled(Bool)
         case useMocksOnly
         case meta(Any?)
 
         private enum CodingKeys: String, CodingKey {
-            case reset, login, show, mockData, mockDownload, tearDown, currentSession, useMocksOnly, meta
+            case reset, login, show, mockData, mockDownload, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, meta
         }
 
         public init(from decoder: Decoder) throws {
@@ -54,6 +55,8 @@ public class UITestHelpers {
                 self = .tearDown
             } else if container.contains(.currentSession) {
                 self = .currentSession
+            } else if let enabled = try container.decodeIfPresent(Bool.self, forKey: .setAnimationsEnabled) {
+                self = .setAnimationsEnabled(enabled)
             } else if container.contains(.useMocksOnly) {
                 self = .useMocksOnly
             } else if let data = try container.decodeIfPresent(Data.self, forKey: .meta) {
@@ -79,6 +82,8 @@ public class UITestHelpers {
                 try container.encode(nil as Int?, forKey: .tearDown)
             case .currentSession:
                 try container.encode(nil as Int?, forKey: .currentSession)
+            case .setAnimationsEnabled(let enabled):
+                try container.encode(enabled, forKey: .setAnimationsEnabled)
             case .useMocksOnly:
                 try container.encode(nil as Int?, forKey: .useMocksOnly)
             case .meta(let payload):
@@ -119,9 +124,6 @@ public class UITestHelpers {
         if let portName = ProcessInfo.processInfo.environment["DRIVER_IPC_PORT_NAME"] {
             ipcDriverClient = IPCClient(serverPortName: portName)
         }
-
-        window?.layer.speed = 100
-        UIView.setAnimationsEnabled(false)
     }
 
     func run(_ helper: Helper) -> Data? {
@@ -141,6 +143,8 @@ public class UITestHelpers {
             tearDown()
         case .currentSession:
             return try? encoder.encode(AppEnvironment.shared.currentSession)
+        case .setAnimationsEnabled(let enabled):
+            setAnimationsEnabled(enabled)
         case .useMocksOnly:
             MockDistantURLSession.setup()
         case .meta:
@@ -156,6 +160,7 @@ public class UITestHelpers {
         (appDelegate as? LoginDelegate)?.changeUser()
         resetDatabase()
         MockDistantURLSession.reset()
+        setAnimationsEnabled(false)
     }
 
     func resetNavigationStack() {
@@ -191,6 +196,11 @@ public class UITestHelpers {
     func tearDown() {
         resetNavigationStack()
         LoginSession.clearAll()
+    }
+
+    func setAnimationsEnabled(_ enabled: Bool) {
+        window?.layer.speed = enabled ? 1 : 100
+        UIView.setAnimationsEnabled(enabled)
     }
 }
 

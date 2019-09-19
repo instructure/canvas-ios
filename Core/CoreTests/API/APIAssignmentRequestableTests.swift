@@ -39,11 +39,11 @@ class APIAssignmentRequestableTests: XCTestCase {
 
     func testGetAssignmentsRequest() {
         var request = GetAssignmentsRequest(courseID: "1")
-        XCTAssertEqual(request.path, "courses/1/assignments?per_page=100")
-        XCTAssertEqual(request.queryItems, [URLQueryItem(name: "order_by", value: "position")])
+        XCTAssertEqual(request.path, "courses/1/assignments")
+        XCTAssertEqual(request.queryItems, [URLQueryItem(name: "order_by", value: "position"), URLQueryItem(name: "per_page", value: "100")])
 
         request = GetAssignmentsRequest(courseID: "1", orderBy: .name)
-        XCTAssertEqual(request.queryItems, [URLQueryItem(name: "order_by", value: "name")])
+        XCTAssertEqual(request.queryItems, [URLQueryItem(name: "order_by", value: "name"), URLQueryItem(name: "per_page", value: "100")])
     }
 
     func testCreateAssignmentRequest() {

@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
         env.router = Teacher.router
+        env.loginDelegate = self
         return env
     }()
 
@@ -117,6 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 NativeLoginManager.login(as: session, wasReload: wasReload)
             }
         }
+        Analytics.shared.logSession(session)
     }
 
     @objc func prepareReactNative() {

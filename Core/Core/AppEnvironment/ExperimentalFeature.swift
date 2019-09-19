@@ -63,4 +63,5 @@ extension ExperimentalFeature {
     public static let conferences = ExperimentalFeature(state: .disabled)
     public static let favoriteGroups = ExperimentalFeature(state: .disabled)
     public static let simpleDiscussionRenderer = ExperimentalFeature(state: .disabled)
+    public static let graphqlSpeedGrader = ExperimentalFeature(state: .disabled)
 }

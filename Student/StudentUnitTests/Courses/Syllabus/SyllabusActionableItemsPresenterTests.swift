@@ -98,41 +98,6 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(str, "May 15, 2018 at 8:00 PM")
     }
 
-    func testIconForDiscussion() {
-        let a = Assignment.make(from: .make(id: "1", submission_types: [ .discussion_topic ]))
-        let icon = presenter.icon(for: a)
-        let expected = UIImage.icon(.discussion, .line)
-        XCTAssertEqual(icon, expected)
-    }
-
-    func testIconForAssignment() {
-        let a = Assignment.make(from: .make(id: "1"))
-        let icon = presenter.icon(for: a)
-        let expected = UIImage.icon(.assignment, .line)
-        XCTAssertEqual(icon, expected)
-    }
-
-    func testIconForQuiz() {
-        let a = Assignment.make(from: .make(id: "1", quiz_id: "1"))
-        let icon = presenter.icon(for: a)
-        let expected = UIImage.icon(.quiz, .line)
-        XCTAssertEqual(icon, expected)
-    }
-
-    func testIconForExternalTool() {
-        let a = Assignment.make(from: .make(id: "1", submission_types: [ .external_tool ]))
-        let icon = presenter.icon(for: a)
-        let expected = UIImage.icon(.lti, .line)
-        XCTAssertEqual(icon, expected)
-    }
-
-    func testIconForLocked() {
-        let a = Assignment.make(from: .make(id: "1", submission_types: [ .external_tool ], locked_for_user: true))
-        let icon = presenter.icon(for: a)
-        let expected = UIImage.icon(.lock, .line)
-        XCTAssertEqual(icon, expected)
-    }
-
     func testSortOrder() {
         Assignment.make(from: .make(id: "1", name: "a", due_at: Date(fromISOString: "2017-05-15T20:00:00Z")))
         Assignment.make(from: .make(id: "2", name: "b", due_at: Date(fromISOString: "2018-05-15T20:00:00Z")))

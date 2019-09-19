@@ -223,6 +223,10 @@ open class CoreUITestCase: XCTestCase {
         removeUIInterruptionMonitor(alertHandler)
     }
 
+    open func setAnimationsEnabled(_ enabled: Bool) {
+        send(.setAnimationsEnabled(enabled))
+    }
+
     // MARK: mock (convenience)
 
     open func mockData<R: APIRequestable>(

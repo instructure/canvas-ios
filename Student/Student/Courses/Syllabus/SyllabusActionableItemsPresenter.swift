@@ -72,7 +72,7 @@ class SyllabusActionableItemsPresenter {
     func updateAssignments() {
         assignmentUpdateCount += 1
         assignmentViewModels = assignments.map {
-            SyllabusActionableItemsViewController.ViewModel(id: $0.id, htmlUrl: $0.htmlURL, title: $0.name, dueDate: $0.dueAt, formattedDate: formattedDueDate($0.dueAt), image: icon(for: $0))
+            SyllabusActionableItemsViewController.ViewModel(id: $0.id, htmlUrl: $0.htmlURL, title: $0.name, dueDate: $0.dueAt, formattedDate: formattedDueDate($0.dueAt), image: $0.icon)
         }
         signalUpdate()
     }
@@ -108,22 +108,5 @@ class SyllabusActionableItemsPresenter {
             result = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short)
         }
         return result
-    }
-
-    func icon(for assignment: Assignment) -> UIImage? {
-        var image: UIImage? = .icon(.assignment, .line)
-        if assignment.quizID != nil {
-            image = .icon(.quiz, .line)
-        } else if assignment.submissionTypes.contains(.discussion_topic) {
-            image = .icon(.discussion, .line)
-        } else if assignment.submissionTypes.contains(.external_tool) || assignment.submissionTypes.contains(.basic_lti_launch) {
-            image = .icon(.lti, .line)
-        }
-
-        if assignment.lockedForUser {
-            image = .icon(.lock, .line)
-        }
-
-        return image
     }
 }

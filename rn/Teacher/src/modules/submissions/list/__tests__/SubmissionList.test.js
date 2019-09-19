@@ -27,6 +27,7 @@ import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
 import defaultFilterOptions, { updateFilterSelection } from '../../../filter/filter-options'
 import * as templates from '../../../../canvas-api-v2/__templates__'
+import ExperimentalFeature from '../../../../common/ExperimentalFeature'
 
 const template = {
   ...require('../../../../__templates__/helm'),
@@ -243,6 +244,8 @@ test('should show old settings button if new gradebook not enabled', async () =>
 })
 
 test('should navigate to a submission', () => {
+  ExperimentalFeature.allEnabled = false
+
   let submission = props.submissions[1]
   let navigator = template.navigator({
     show: jest.fn(),
@@ -258,6 +261,8 @@ test('should navigate to a submission', () => {
     { modal: true, modalPresentationStyle: 'fullscreen' },
     { filter: expect.any(Function), studentIndex: 1, flags: [] }
   )
+
+  ExperimentalFeature.allEnabled = true
 })
 
 it('renders the row properly', () => {

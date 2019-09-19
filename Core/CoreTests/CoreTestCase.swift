@@ -57,6 +57,7 @@ class CoreTestCase: XCTestCase {
         environment.router = router
         environment.logger = logger
         environment.currentSession = currentSession
+        LoginSession.add(currentSession)
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)
         UploadManager.shared = MockUploadManager()
         MockUploadManager.reset()

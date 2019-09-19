@@ -31,4 +31,13 @@ public class Analytics: NSObject {
     public func logEvent(_ name: String, parameters: [String: Any]? = nil) {
         handler?.handleEvent(name, parameters: parameters)
     }
+
+    public func logSession(_ session: LoginSession) {
+        var defaults = SessionDefaults(sessionID: session.uniqueID)
+        let tokenExpires = session.expiresAt != nil
+        if defaults.tokenExpires == nil || defaults.tokenExpires != tokenExpires {
+            tokenExpires ? logEvent("auth_expiring_token") : logEvent("auth_forever_token")
+            defaults.tokenExpires = tokenExpires
+        }
+    }
 }

@@ -32,6 +32,7 @@ open class AppEnvironment {
     public var currentSession: LoginSession?
     public var pageViewLogger: PageViewEventViewControllerLoggingProtocol = PresenterPageViewLogger()
     public var userDefaults: SessionDefaults?
+    public weak var loginDelegate: LoginDelegate?
 
     public init() {
         self.database = globalDatabase
