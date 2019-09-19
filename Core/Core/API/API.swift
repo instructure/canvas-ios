@@ -93,7 +93,7 @@ public class URLSessionAPI: API {
             }
             let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
             let task = urlSession.dataTask(with: request) { [weak self] data, response, error in
-                if response?.isUnauthorized == true, refreshToken {
+                if response?.isUnauthorized == true, refreshToken, ExperimentalFeature.refreshTokens.isEnabled {
                     self?.refreshQueue.append { [weak self] in
                         self?.makeRequest(requestable, refreshToken: false, callback: callback)
                     }
