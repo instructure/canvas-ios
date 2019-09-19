@@ -55,22 +55,26 @@ class AssignmentPostPolicyTests: TeacherUITestCase {
         }
 
         let waitForAPI: UInt32 = 10
-        let allGradesPostedView = app.find(id: "PostPolicy.allGradesPosted")
 
-        if allGradesPostedView.exists {
-            app.swipeLeft()
-            checkHide()
-            sleep(waitForAPI)
-            SubmissionsList.postpolicy.tap()
-            checkPost()
-        } else {
-            checkPost()
-            sleep(waitForAPI)
-            SubmissionsList.postpolicy.tap()
+        let timeout = Date() + 30
+        while Date() < timeout {
+            if PostPolicy.allGradesPosted.exists {
+                app.find(id: "PostSettings.hideMenuItem").tap()
+                checkHide()
+                sleep(waitForAPI)
+                SubmissionsList.postpolicy.tap()
+                checkPost()
+                return
+            } else if PostPolicy.postTo.isVisible {
+                checkPost()
+                sleep(waitForAPI)
+                SubmissionsList.postpolicy.tap()
+                app.find(id: "PostSettings.hideMenuItem").tap()
+                checkHide()
+                return
+            }
             sleep(1)
-            app.swipeRight()
-            checkHide()
         }
+        XCTFail("timeout")
     }
-
 }
