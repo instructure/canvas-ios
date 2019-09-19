@@ -338,7 +338,6 @@
 		7D91D660232180FE00C2F585 /* Routing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D91D65F232180FE00C2F585 /* Routing.m */; };
 		7D92447222FB7825002BC7CA /* UserPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92447122FB7825002BC7CA /* UserPreferencesTests.swift */; };
 		7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */; };
-		7DBED01F233172B900392F3C /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED01E233172B800392F3C /* ProfilePresenter.swift */; };
 		7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
 		7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DBF920422690ECF00710D0F /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
@@ -1163,7 +1162,6 @@
 		7DABA7451FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DABA7471FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToDoEmptyView.xib; sourceTree = "<group>"; };
-		7DBED01E233172B800392F3C /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		7DBF0F101FE1CD0600B7C242 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DBF0F111FE1CD0600B7C242 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7DC5717022F8B16200F2E9BB /* StudentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2073,7 +2071,6 @@
 		49A04E6F1CF64DE30051E1E7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				7DBED01E233172B800392F3C /* ProfilePresenter.swift */,
 				49A04E7A1CF650EE0051E1E7 /* UserPreferences.swift */,
 			);
 			path = Profile;
@@ -4186,7 +4183,6 @@
 				7DCF0F8622F8A831000AACCE /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				7DCF0FC922F8A8D7000AACCE /* SubmissionFilesCell.swift in Sources */,
 				7DCF0F8022F8A820000AACCE /* DashboardSectionHeaderView.swift in Sources */,
-				7DBED01F233172B900392F3C /* ProfilePresenter.swift in Sources */,
 				7DCF0FB422F8A8D7000AACCE /* SubmissionCommentFileView.swift in Sources */,
 				7DCF0FAB22F8A8D7000AACCE /* SubmissionButtonPresenter.swift in Sources */,
 				5EB46DF01D21A75C00C859A4 /* CalendarCollectionView.swift in Sources */,

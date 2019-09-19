@@ -18,14 +18,6 @@
 
 import UIKit
 
-public protocol ProfilePresenterProtocol: class {
-    var view: ProfileViewProtocol? { get set }
-    var cells: [ProfileViewCell] { get }
-    var helpLinks: Store<GetAccountHelpLinks> { get }
-    func didTapVersion()
-    func viewIsReady()
-}
-
 public protocol ProfileViewProtocol: ErrorViewController {
     func reload()
     func route(to: Route, options: RouteOptions?)
@@ -33,8 +25,8 @@ public protocol ProfileViewProtocol: ErrorViewController {
     func route(to url: String, options: RouteOptions?)
     func route(to url: URLComponents, options: RouteOptions?)
     func showHelpMenu(from cell: UITableViewCell)
-    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?)
-    func dismiss(animated flag: Bool, completion: (() -> Void)?)
+    func showTeacherSettingsMenu(from cell: UITableViewCell)
+    func launchLTI(url: URL)
 }
 
 extension ProfileViewProtocol {
@@ -83,15 +75,24 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
     @IBOutlet weak var versionLabel: UILabel?
 
     var env = AppEnvironment.shared
-    var presenter: ProfilePresenterProtocol?
+    var presenter: ProfilePresenter?
+    var dashboard: UIViewController {
+        var dashboard = presentingViewController ?? self
+        if let tabs = dashboard as? UITabBarController {
+            dashboard = tabs.selectedViewController ?? tabs
+        }
+        if let split = dashboard as? UISplitViewController {
+            dashboard = split.viewControllers.first ?? split
+        }
+        return dashboard
+    }
 
-    public static func create(env: AppEnvironment = .shared, presenter: ProfilePresenterProtocol) -> ProfileViewController {
+    public static func create(env: AppEnvironment = .shared, enrollment: HelpLinkEnrollment) -> ProfileViewController {
         let controller = loadFromStoryboard()
         controller.modalPresentationStyle = .custom
         controller.transitioningDelegate = DrawerTransitioningDelegate.shared
         controller.env = env
-        controller.presenter = presenter
-        presenter.view = controller
+        controller.presenter = ProfilePresenter(env: env, enrollment: enrollment, view: controller)
         return controller
     }
 
@@ -122,15 +123,16 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
     }
 
     public func route(to url: URLComponents, options: RouteOptions?) {
-        var dashboard = presentingViewController ?? self
-        if let tabs = dashboard as? UITabBarController {
-            dashboard = tabs.selectedViewController ?? tabs
-        }
-        if let split = dashboard as? UISplitViewController {
-            dashboard = split.viewControllers.first ?? split
-        }
+        let dashboard = self.dashboard
         dismiss(animated: true) {
             self.env.router.route(to: url, from: dashboard, options: options)
+        }
+    }
+
+    public func launchLTI(url: URL) {
+        let dashboard = self.dashboard
+        dismiss(animated: true) {
+            LTITools(url: url).presentToolInSFSafariViewController(from: dashboard, animated: true)
         }
     }
 
@@ -155,6 +157,21 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
         helpMenu.popoverPresentationController?.sourceView = cell
         helpMenu.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint(x: cell.bounds.maxX, y: cell.bounds.midY), size: .zero)
         present(helpMenu, animated: true)
+    }
+
+    public func showTeacherSettingsMenu(from cell: UITableViewCell) {
+        let settingsMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        settingsMenu.addAction(UIAlertAction(title: NSLocalizedString("Visit the Canvas Guides", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+            self?.route(to: "https://community.canvaslms.com/community/answers/guides/mobile-guide/content?filterID=contentstatus%5Bpublished%5D~category%5Btable-of-contents%5D", options: nil)
+        })
+        settingsMenu.addAction(UIAlertAction(title: NSLocalizedString("Terms of Use", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+            self?.route(to: .termsOfService(), options: [.modal, .embedInNav])
+        })
+        settingsMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+
+        settingsMenu.popoverPresentationController?.sourceView = cell
+        settingsMenu.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint(x: cell.bounds.maxX, y: cell.bounds.midY), size: .zero)
+        present(settingsMenu, animated: true)
     }
 }
 

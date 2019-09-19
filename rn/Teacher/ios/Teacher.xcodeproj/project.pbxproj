@@ -46,7 +46,6 @@
 		78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913021C8180C0075FBCF /* GoogleService-Info.plist */; };
 		7D3DA83A2187615E000D828F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; };
 		7D3DA83B2187615E000D828F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7DBED0282332C88D00392F3C /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0272332C88D00392F3C /* ProfilePresenter.swift */; };
 		7DBED02B2332EAF100392F3C /* ProfilePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED02A2332EAF000392F3C /* ProfilePresenterTests.swift */; };
 		7DBF923B2269791600710D0F /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
@@ -278,7 +277,6 @@
 		7D3DA83821876142000D828F /* Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D5D1DFC22BD7DE100371C2F /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "Teacher/en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D5D1DFD22BD7DE100371C2F /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		7DBED0272332C88D00392F3C /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		7DBED02A2332EAF000392F3C /* ProfilePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterTests.swift; sourceTree = "<group>"; };
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
@@ -370,7 +368,6 @@
 				B15CA293221E0F890014FB02 /* IBDesignables */,
 				B15CA241221DC4DA0014FB02 /* Extensions */,
 				B15CA23E221DB3480014FB02 /* Modules */,
-				7DBED0262332C87500392F3C /* Profile */,
 				78AD913021C8180C0075FBCF /* GoogleService-Info.plist */,
 				61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */,
 				494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */,
@@ -452,14 +449,6 @@
 				3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */,
 			);
 			path = Submissions;
-			sourceTree = "<group>";
-		};
-		7DBED0262332C87500392F3C /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				7DBED0272332C88D00392F3C /* ProfilePresenter.swift */,
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		7DBED0292332EADB00392F3C /* Profile */ = {
@@ -958,7 +947,6 @@
 				B15CA297221E103B0014FB02 /* DynamicLabel.swift in Sources */,
 				B18359B2222485E60005A918 /* AccessIconView.swift in Sources */,
 				3B18E82B230C683D006CAF5C /* PostGradesPresenter.swift in Sources */,
-				7DBED0282332C88D00392F3C /* ProfilePresenter.swift in Sources */,
 				B183F99B2252925F000A6930 /* IconView.swift in Sources */,
 				494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */,
 				B15CA299221E10900014FB02 /* ModuleItemCell.swift in Sources */,

@@ -339,7 +339,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
     },
 
     "/profile": { _, _ in
-        return ProfileViewController.create(presenter: ProfilePresenter())
+        return ProfileViewController.create(enrollment: .student)
     },
 
     "/profile/settings": { _, _ in

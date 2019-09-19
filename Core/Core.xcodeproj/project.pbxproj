@@ -294,6 +294,7 @@
 		7DBED01D2330332800392F3C /* UploadAvatarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED01C2330332800392F3C /* UploadAvatarTests.swift */; };
 		7DBED02323317E0F00392F3C /* ExternalToolLaunchPlacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED02223317E0F00392F3C /* ExternalToolLaunchPlacement.swift */; };
 		7DBED0252331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */; };
+		7DBED02F2333E0C900392F3C /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED02E2333E0C900392F3C /* ProfilePresenter.swift */; };
 		7DBF9235226975B100710D0F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96482E211E2F1A002C3255 /* Core.framework */; };
 		7DBF9236226975B100710D0F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96482E211E2F1A002C3255 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DC23092213D710000318ED0 /* UIImageViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC23091213D710000318ED0 /* UIImageViewExtensionsTests.swift */; };
@@ -1102,6 +1103,7 @@
 		7DBED01C2330332800392F3C /* UploadAvatarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarTests.swift; sourceTree = "<group>"; };
 		7DBED02223317E0F00392F3C /* ExternalToolLaunchPlacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolLaunchPlacement.swift; sourceTree = "<group>"; };
 		7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGlobalNavExternalToolsPlacements.swift; sourceTree = "<group>"; };
+		7DBED02E2333E0C900392F3C /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		7DC23091213D710000318ED0 /* UIImageViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensionsTests.swift; sourceTree = "<group>"; };
 		7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntryTests.swift; sourceTree = "<group>"; };
 		7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64ExtensionsTests.swift; sourceTree = "<group>"; };
@@ -2406,6 +2408,7 @@
 				7DBED00F232C2C7500392F3C /* GetAccountHelpLinks.swift */,
 				7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */,
 				7DBED011232C32CD00392F3C /* HelpLink.swift */,
+				7DBED02E2333E0C900392F3C /* ProfilePresenter.swift */,
 				7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */,
 				9FAA58FD223A987600FEC3F8 /* ProfileViewController.swift */,
 				7DBED01A2330158F00392F3C /* UploadAvatar.swift */,
@@ -3421,6 +3424,7 @@
 				B1E789AD21B0F0800087FE4A /* LoggableCell.swift in Sources */,
 				3B158CA622E1343D0039A568 /* Persistency.swift in Sources */,
 				789C9BC12138516300B37AC4 /* UIColorExtensions.swift in Sources */,
+				7DBED02F2333E0C900392F3C /* ProfilePresenter.swift in Sources */,
 				7D92D657224ACC7A0015B368 /* UploadMediaComment.swift in Sources */,
 				7DF4FFD5217133AF007E5F81 /* TabType.swift in Sources */,
 				EEC3EF6322E25F6100799FE2 /* APIPage.swift in Sources */,
