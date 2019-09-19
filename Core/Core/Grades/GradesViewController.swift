@@ -20,6 +20,10 @@ import UIKit
 
 public class GradesViewController: UIViewController {
 
+    @IBOutlet weak var filterButton: DynamicButton!
+    @IBOutlet weak var headerGradeHeader: DynamicLabel!
+    @IBOutlet weak var headerGradeTotalLabel: DynamicLabel!
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var tableView: UITableView!
     private var presenter: GradesPresenter!
     @IBOutlet weak var loadingView: UIView!
@@ -39,6 +43,9 @@ public class GradesViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         presenter.viewIsReady()
+
+        headerGradeHeader.text = NSLocalizedString("Total Grade", comment: "")
+        filterButton.setTitle(NSLocalizedString("Filter", comment: ""), for: .normal)
     }
 
     func setupTableView() {
@@ -52,6 +59,10 @@ public class GradesViewController: UIViewController {
 
     @objc func refresh(_ control: UIRefreshControl) {
         presenter.assignments.refresh(force: true)
+    }
+
+    @IBAction func actionUserDidClickFilter(_ sender: Any) {
+        print("\(#function)")
     }
 }
 
