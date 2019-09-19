@@ -64,4 +64,5 @@ extension ExperimentalFeature {
     public static let favoriteGroups = ExperimentalFeature(state: .disabled)
     public static let simpleDiscussionRenderer = ExperimentalFeature(state: .disabled)
     public static let graphqlSpeedGrader = ExperimentalFeature(state: .disabled)
+    public static let refreshTokens = ExperimentalFeature(state: .disabled)
 }

@@ -84,6 +84,12 @@ class APITests: XCTestCase {
             return URLSession(configuration: configuration)
         }()
         AppEnvironment.shared.currentSession = LoginSession.make()
+        ExperimentalFeature.allEnabled = true
+    }
+
+    override func tearDown() {
+        super.tearDown()
+        ExperimentalFeature.allEnabled = false
     }
 
     func testIdentifier() {
