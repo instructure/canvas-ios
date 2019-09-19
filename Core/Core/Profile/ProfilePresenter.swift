@@ -111,7 +111,7 @@ public class ProfilePresenter {
         }
         if enrollment == .student {
             cells.append(ProfileViewCell("settings", name: NSLocalizedString("Settings", comment: "")) { [weak self] _ in
-                self?.view?.route(to: .profileSettings, options: [.modal, .embedInNav])
+                self?.view?.route(to: .profileSettings, options: [.modal, .embedInNav, .formSheet])
             })
         } else if enrollment == .teacher {
             cells.append(ProfileViewCell("settings", name: NSLocalizedString("Settings", comment: "")) { [weak self] cell in

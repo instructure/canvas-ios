@@ -129,9 +129,9 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
             helpMenu.addAction(UIAlertAction(title: link.text, style: .default) { [weak self] _ in
                 switch link.id {
                 case "instructor_question":
-                    self?.route(to: Route("/conversations/compose?instructorQuestion=1&canAddRecipients="), options: [.modal, .embedInNav])
+                    self?.route(to: Route("/conversations/compose?instructorQuestion=1&canAddRecipients="), options: [.modal, .embedInNav, .formSheet])
                 case "report_a_problem":
-                    self?.route(to: .errorReport(for: "problem"), options: [.modal, .embedInNav])
+                    self?.route(to: .errorReport(for: "problem"), options: [.modal, .embedInNav, .formSheet])
                 default:
                     self?.route(to: Route(link.url.absoluteString), options: [.modal, .embedInNav])
                 }
@@ -171,6 +171,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
                 let toggle = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
                 toggle.isOn = isOn
                 toggle.tag = indexPath.row
+                toggle.onTintColor = Brand.shared.primary
                 toggle.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
                 cell.accessoryView = toggle
                 cell.accessibilityIdentifier = "Profile.\(item.id)Toggle"
