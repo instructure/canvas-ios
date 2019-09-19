@@ -110,7 +110,7 @@ class ModulesTests: CoreUITestCase {
     }
 }
 
-class MyFileModuleItemTests: CoreUITestCase {
+class FileModuleItemTests: CoreUITestCase {
     override var experimentalFeaturesEnabled: Bool {
         return false
     }
