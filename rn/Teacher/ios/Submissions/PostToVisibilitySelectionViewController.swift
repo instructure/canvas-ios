@@ -55,6 +55,7 @@ class PostToVisibilitySelectionViewController: UITableViewController {
         cell.detailTextLabel?.textColor = .named(.textDark)
         cell.detailTextLabel?.text = row.subHeader
         cell.accessoryType = row == selectedVisibility ? .checkmark : .none
+        cell.accessibilityIdentifier = "PostToSelection.\(row.rawValue)"
 
         return cell
     }
