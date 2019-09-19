@@ -33,10 +33,10 @@ public class UITestHelpers {
         case currentSession
         case setAnimationsEnabled(Bool)
         case useMocksOnly
-        case meta(Any?)
+        case debug(Any?)
 
         private enum CodingKeys: String, CodingKey {
-            case reset, login, show, mockData, mockDownload, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, meta
+            case reset, login, show, mockData, mockDownload, tearDown, currentSession, setAnimationsEnabled, useMocksOnly, debug
         }
 
         public init(from decoder: Decoder) throws {
@@ -59,8 +59,8 @@ public class UITestHelpers {
                 self = .setAnimationsEnabled(enabled)
             } else if container.contains(.useMocksOnly) {
                 self = .useMocksOnly
-            } else if let data = try container.decodeIfPresent(Data.self, forKey: .meta) {
-                self = .meta(NSKeyedUnarchiver(forReadingWith: data).decodeObject(forKey: "meta"))
+            } else if let data = try container.decodeIfPresent(Data.self, forKey: .debug) {
+                self = .debug(NSKeyedUnarchiver(forReadingWith: data).decodeObject(forKey: "debug"))
             } else {
                 throw DecodingError.typeMismatch(Helper.self, .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(Helper.self)"))
             }
@@ -86,10 +86,10 @@ public class UITestHelpers {
                 try container.encode(enabled, forKey: .setAnimationsEnabled)
             case .useMocksOnly:
                 try container.encode(nil as Int?, forKey: .useMocksOnly)
-            case .meta(let payload):
+            case .debug(let payload):
                 let archiver = NSKeyedArchiver()
-                archiver.encode(payload, forKey: "meta")
-                try container.encode(archiver.encodedData, forKey: .meta)
+                archiver.encode(payload, forKey: "debug")
+                try container.encode(archiver.encodedData, forKey: .debug)
             }
         }
     }
@@ -147,7 +147,7 @@ public class UITestHelpers {
             setAnimationsEnabled(enabled)
         case .useMocksOnly:
             MockDistantURLSession.setup()
-        case .meta:
+        case .debug:
             // insert ad-hoc debug code here
             ()
         }
