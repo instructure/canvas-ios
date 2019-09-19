@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class GetGradingPeriosdUseCaseTests: XCTestCase {
+class GetGradingPeriosdUseCaseTests: CoreTestCase {
 
     var useCase: GetGradingPeriods!
     let courseID: String = "1"
@@ -42,8 +42,22 @@ class GetGradingPeriosdUseCaseTests: XCTestCase {
         XCTAssertEqual(useCase.request.courseID, courseID)
     }
 
+    func testWrite() {
+        let a = APIGradingPeriod.make(id: "1", title: "1")
+        let b = APIGradingPeriod.make(id: "2", title: "2")
+        let response = APIGradingPeriodResponse(grading_periods: [a, b])
+
+        useCase.write(response: response, urlResponse: nil, to: databaseClient)
+        let sort = NSSortDescriptor(key: #keyPath(GradingPeriod.id), ascending: true)
+        let gradingPeriods: [GradingPeriod] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: [sort])
+
+        XCTAssertEqual(gradingPeriods.count, 2)
+        XCTAssertEqual(gradingPeriods.first?.id, "1")
+        XCTAssertEqual(gradingPeriods.last?.id, "2")
+    }
+
     func testModel() {
-        let model = GradingPeriod.make()
+        let model = GradingPeriod.make(courseID: "1")
         XCTAssertNotNil(model)
     }
 }

@@ -19,7 +19,7 @@
 import Foundation
 import CoreData
 
-public final class GradingPeriod: NSManagedObject, WriteableModel {
+public final class GradingPeriod: NSManagedObject {
     public typealias JSON = APIGradingPeriod
 
     @NSManaged public var id: String
@@ -27,11 +27,12 @@ public final class GradingPeriod: NSManagedObject, WriteableModel {
     @NSManaged public var courseID: String
 
     @discardableResult
-    public static func save(_ item: APIGradingPeriod, in context: NSManagedObjectContext) -> GradingPeriod {
+    public static func save(_ item: APIGradingPeriod, courseID: String, in context: NSManagedObjectContext) -> GradingPeriod {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(GradingPeriod.id), item.id.value)
         let model: GradingPeriod = context.fetch(predicate).first ?? context.insert()
         model.id = item.id.value
         model.title = item.title
+        model.courseID = courseID
 
         return model
     }

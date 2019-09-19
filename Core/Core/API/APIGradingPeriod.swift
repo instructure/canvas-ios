@@ -22,3 +22,7 @@ public struct APIGradingPeriod: Codable, Equatable {
     let id: ID
     let title: String
 }
+
+public struct APIGradingPeriodResponse: Codable, Equatable {
+    let grading_periods: [APIGradingPeriod]
+}

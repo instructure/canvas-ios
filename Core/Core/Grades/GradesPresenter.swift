@@ -30,11 +30,15 @@ class GradesPresenter {
     weak var view: GradesViewProtocol?
     var didFetchGroups = false
 
-    lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+    lazy var course = env.subscribe(GetCourse(courseID: courseID, include: [.observedUsers, .totalScores])) { [weak self] in
         self?.update()
     }
 
-    lazy var assignments = env.subscribe(GetAssignmentsForGrades(courseID: self.courseID, requestQuerySize: 99)) { [weak self] in
+    lazy var assignments = env.subscribe(GetAssignmentsForGrades(courseID: courseID, requestQuerySize: 99)) { [weak self] in
+        self?.update()
+    }
+
+    lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
         self?.update()
     }
 
@@ -48,10 +52,11 @@ class GradesPresenter {
     func viewIsReady() {
         assignments.refresh()
         course.refresh()
+        gradingPeriods.refresh(force: true)
     }
 
     func update() {
-        view?.update(isLoading: course.pending || assignments.pending)
+        view?.update(isLoading: course.pending || assignments.pending || gradingPeriods.pending)
         if let error = course.error ?? assignments.error {
             view?.showError(error)
         }
