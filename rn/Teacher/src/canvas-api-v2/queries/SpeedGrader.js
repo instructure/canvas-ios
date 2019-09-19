@@ -70,6 +70,7 @@ export default gql`query SpeedGrader($assignmentID: ID!, $states: [SubmissionSta
           state
           submittedAt
           attempt
+          submissionType
 
           attachments {
             id
@@ -84,6 +85,12 @@ export default gql`query SpeedGrader($assignmentID: ID!, $states: [SubmissionSta
             id: _id
             name
             avatarUrl
+          }
+
+          turnitinData {
+            contextId
+            status
+            score
           }
 
           comments: commentsConnection(filter: { allComments: true }) {
@@ -119,6 +126,7 @@ export default gql`query SpeedGrader($assignmentID: ID!, $states: [SubmissionSta
                 state
                 submittedAt
                 attempt
+                submissionType
 
                 attachments {
                   id
@@ -127,6 +135,12 @@ export default gql`query SpeedGrader($assignmentID: ID!, $states: [SubmissionSta
                   displayName
                   thumbnailUrl
                   mimeClass
+                }
+
+                turnitinData {
+                  contextId
+                  status
+                  score
                 }
               }
             }

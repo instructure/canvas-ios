@@ -36,7 +36,7 @@ import DrawerState, { type DrawerPosition } from '../speedgrader/utils/drawer-st
 import ToolTip from '../../common/components/ToolTip'
 import A11yGroup from '../../common/components/A11yGroup'
 import colors from '../../common/colors'
-// import SimilarityScore from './components/SimilarityScore'
+import SimilarityScore from './components/SimilarityScore'
 
 let { width, height } = Dimensions.get('window')
 
@@ -281,12 +281,12 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
           selectedIndex={this.state.selectedIndex}
           selectSubmissionFromHistory={this.selectSubmissionFromHistory}
         />
-        {/* <SimilarityScore
+        <SimilarityScore
           submission={this.props.submission}
           selectedIndex={this.state.selectedIndex}
           selectedAttachmentIndex={this.state.selectedAttachmentIndex}
         />
-        <SubmissionViewer
+        {/*<SubmissionViewer
           {...this.props}
           selectedIndex={this.state.selectedIndex}
           selectedAttachmentIndex={this.state.selectedAttachmentIndex}
@@ -330,8 +330,12 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
               selectedIndex={this.state.selectedIndex}
               selectSubmissionFromHistory={this.selectSubmissionFromHistory}
             />
-            {/* <SimilarityScore submissionID={this.props.submissionID} />
-            <SubmissionViewer
+            <SimilarityScore
+              submission={this.props.submission}
+              selectedIndex={this.state.selectedIndex}
+              selectedAttachmentIndex={this.state.selectedAttachmentIndex}
+            />
+            {/*<SubmissionViewer
               {...this.props}
               size={{
                 height,
