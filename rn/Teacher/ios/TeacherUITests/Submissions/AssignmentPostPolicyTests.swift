@@ -21,49 +21,34 @@ import TestsFoundation
 @testable import Core
 
 class AssignmentPostPolicyTests: TeacherUITestCase {
-    // https://instructure.atlassian.net/browse/MBL-13155
     func testPostPolicySettings() {
         let courseID = "263"
         let assignmentID = "5431"
+        let sectionID = "U2VjdGlvbi0yMjE="
 
         show("/courses/\(courseID)/assignments/\(assignmentID)/submissions")
 
-        SubmissionsList.postpolicy.waitToExist()
         SubmissionsList.postpolicy.tap()
-        sleep(1)
 
         func checkPost() {
-            let predicate = NSPredicate(format: "label CONTAINS[c] %@", "GRADE CURRENTLY HIDDEN")
-            _ = app.staticTexts.containing(predicate).firstMatch.waitForExistence(timeout: 0.5)
-
             XCTAssertEqual(PostPolicy.postToValue.label(), "Everyone")
             PostPolicy.postTo.tap()
-
-            let cells = app.cells.containing(NSPredicate(format: "label CONTAINS %@", "Graded"))
-
-            let gradedCell = cells.firstMatch
-            gradedCell.tap()
+            PostToSelection.graded.tap()
             app.find(label: "Back").tap()
 
             XCTAssertEqual(PostPolicy.postToValue.label(), "Graded")
 
             PostPolicy.togglePostToSections.tap()
 
-            let postToSectionToggle = PostPolicy.postToSectionToggle(id: "U2VjdGlvbi0yMjE=")
-            postToSectionToggle.waitToExist()
-            postToSectionToggle.tap()
+            PostPolicy.postToSectionToggle(id: sectionID).tap()
             PostPolicy.postGradesButton.tap()
 
             SubmissionsList.postpolicy.waitToExist()
         }
 
         func checkHide() {
-            let predicate = NSPredicate(format: "label CONTAINS[c] %@", "GRADE CURRENTLY POSTED")
-            _ = app.staticTexts.containing(predicate).firstMatch.waitForExistence(timeout: 0.5)
-
             PostPolicy.toggleHideGradeSections.tap()
-            let hideSectionToggle = PostPolicy.hideSectionToggle(id: "U2VjdGlvbi0yMjE=")
-            hideSectionToggle.waitToExist()
+            let hideSectionToggle = PostPolicy.hideSectionToggle(id: sectionID)
             hideSectionToggle.tap()
             PostPolicy.hideGradesButton.tap()
             SubmissionsList.postpolicy.waitToExist()
@@ -76,16 +61,14 @@ class AssignmentPostPolicyTests: TeacherUITestCase {
             app.swipeLeft()
             checkHide()
             sleep(waitForAPI)
-            SubmissionsList.postpolicy.waitToExist()
             SubmissionsList.postpolicy.tap()
             checkPost()
         } else {
             checkPost()
             sleep(waitForAPI)
-            SubmissionsList.postpolicy.waitToExist()
             SubmissionsList.postpolicy.tap()
             sleep(1)
-            app.swipeLeft()
+            app.swipeRight()
             checkHide()
         }
     }
