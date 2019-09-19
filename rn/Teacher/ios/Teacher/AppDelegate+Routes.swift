@@ -75,6 +75,10 @@ extension AppDelegate {
             return PostSettingsViewController.create(courseID: courseID, assignmentID: assignmentID)
         })
 
+        HelmManager.shared.registerNativeViewController(for: "/profile", factory: { _ in
+            return ProfileViewController.create(presenter: ProfilePresenter())
+        })
+
         CanvasCore.registerSharedNativeViewControllers()
     }
 }

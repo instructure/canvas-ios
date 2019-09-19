@@ -130,7 +130,7 @@ NativeModules.RNSound = {
 }
 
 NativeModules.NativeNotificationCenter = {
-  postAsyncActionNotification: jest.fn(),
+  addObserver: jest.fn(),
   postNotification: jest.fn(),
 }
 

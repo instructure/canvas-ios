@@ -248,9 +248,7 @@
 		49AA2D2E1CF4DC540055862D /* CBIPeopleTabViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D1C1CF4DC540055862D /* CBIPeopleTabViewModel.m */; };
 		49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D1D1CF4DC540055862D /* CBIPeopleViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2D301CF4DC540055862D /* CBIPeopleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D1E1CF4DC540055862D /* CBIPeopleViewModel.m */; };
-		49AA2D311CF4DC540055862D /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AA2D1F1CF4DC540055862D /* Profile.storyboard */; };
-		49AA2D321CF4DC540055862D /* ProfileViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D201CF4DC540055862D /* ProfileViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49AA2D331CF4DC540055862D /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D211CF4DC540055862D /* ProfileViewController.m */; };
+		49AA2D311CF4DC540055862D /* AboutViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AA2D1F1CF4DC540055862D /* AboutViewController.storyboard */; };
 		49AA2D341CF4DC540055862D /* RoundedButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D221CF4DC540055862D /* RoundedButton.h */; };
 		49AA2D351CF4DC540055862D /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D231CF4DC540055862D /* RoundedButton.m */; };
 		49CE97661F900B4700121A43 /* UICollectionView+MyLittleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CE97521F900B4100121A43 /* UICollectionView+MyLittleViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -340,6 +338,7 @@
 		7D91D660232180FE00C2F585 /* Routing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D91D65F232180FE00C2F585 /* Routing.m */; };
 		7D92447222FB7825002BC7CA /* UserPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92447122FB7825002BC7CA /* UserPreferencesTests.swift */; };
 		7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */; };
+		7DBED01F233172B900392F3C /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED01E233172B800392F3C /* ProfilePresenter.swift */; };
 		7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
 		7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DBF920422690ECF00710D0F /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EE221492040083E660 /* PSPDFKit.framework */; };
@@ -910,9 +909,7 @@
 		49AA2D1C1CF4DC540055862D /* CBIPeopleTabViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIPeopleTabViewModel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49AA2D1D1CF4DC540055862D /* CBIPeopleViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIPeopleViewModel.h; sourceTree = "<group>"; };
 		49AA2D1E1CF4DC540055862D /* CBIPeopleViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIPeopleViewModel.m; sourceTree = "<group>"; };
-		49AA2D1F1CF4DC540055862D /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		49AA2D201CF4DC540055862D /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		49AA2D211CF4DC540055862D /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		49AA2D1F1CF4DC540055862D /* AboutViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AboutViewController.storyboard; sourceTree = "<group>"; };
 		49AA2D221CF4DC540055862D /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
 		49AA2D231CF4DC540055862D /* RoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedButton.m; sourceTree = "<group>"; };
 		49CE97521F900B4100121A43 /* UICollectionView+MyLittleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+MyLittleViewController.h"; sourceTree = "<group>"; };
@@ -1166,6 +1163,7 @@
 		7DABA7451FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DABA7471FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToDoEmptyView.xib; sourceTree = "<group>"; };
+		7DBED01E233172B800392F3C /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		7DBF0F101FE1CD0600B7C242 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DBF0F111FE1CD0600B7C242 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7DC5717022F8B16200F2E9BB /* StudentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2075,6 +2073,7 @@
 		49A04E6F1CF64DE30051E1E7 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				7DBED01E233172B800392F3C /* ProfilePresenter.swift */,
 				49A04E7A1CF650EE0051E1E7 /* UserPreferences.swift */,
 			);
 			path = Profile;
@@ -2250,6 +2249,7 @@
 			children = (
 				49AA2D131CF4DC540055862D /* AboutViewController.h */,
 				49AA2D141CF4DC540055862D /* AboutViewController.m */,
+				49AA2D1F1CF4DC540055862D /* AboutViewController.storyboard */,
 				49AA2D151CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.h */,
 				49AA2D161CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m */,
 				49AA2D171CF4DC540055862D /* CBIPeopleAvatarCell.xib */,
@@ -2260,9 +2260,6 @@
 				49AA2D1C1CF4DC540055862D /* CBIPeopleTabViewModel.m */,
 				49AA2D1D1CF4DC540055862D /* CBIPeopleViewModel.h */,
 				49AA2D1E1CF4DC540055862D /* CBIPeopleViewModel.m */,
-				49AA2D1F1CF4DC540055862D /* Profile.storyboard */,
-				49AA2D201CF4DC540055862D /* ProfileViewController.h */,
-				49AA2D211CF4DC540055862D /* ProfileViewController.m */,
 				49AA2D221CF4DC540055862D /* RoundedButton.h */,
 				49AA2D231CF4DC540055862D /* RoundedButton.m */,
 				787BAADF215445BB002D0381 /* UserInfoTableViewCell.swift */,
@@ -3324,7 +3321,6 @@
 				49CE97661F900B4700121A43 /* UICollectionView+MyLittleViewController.h in Headers */,
 				49F9FA5A1CF8CDC400654758 /* UIImage+TechDebt.h in Headers */,
 				49642BC01CF4C44A00238B3F /* EXTScope.h in Headers */,
-				49AA2D321CF4DC540055862D /* ProfileViewController.h in Headers */,
 				492705D21CF4B73300C631C6 /* UIView+FloatingView.h in Headers */,
 				49AA2D251CF4DC540055862D /* AboutViewController.h in Headers */,
 				49A04E271CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h in Headers */,
@@ -3807,7 +3803,7 @@
 				49AA2D291CF4DC540055862D /* CBIPeopleAvatarCell.xib in Resources */,
 				2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */,
 				49AA2D2A1CF4DC540055862D /* CBIPeopleDetail.storyboard in Resources */,
-				49AA2D311CF4DC540055862D /* Profile.storyboard in Resources */,
+				49AA2D311CF4DC540055862D /* AboutViewController.storyboard in Resources */,
 				492705F21CF4B76A00C631C6 /* CBIColorfulCell.xib in Resources */,
 				492707FA1CF4BC1000C631C6 /* UnsupportedView.storyboard in Resources */,
 				492705F41CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib in Resources */,
@@ -4190,6 +4186,7 @@
 				7DCF0F8622F8A831000AACCE /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				7DCF0FC922F8A8D7000AACCE /* SubmissionFilesCell.swift in Sources */,
 				7DCF0F8022F8A820000AACCE /* DashboardSectionHeaderView.swift in Sources */,
+				7DBED01F233172B900392F3C /* ProfilePresenter.swift in Sources */,
 				7DCF0FB422F8A8D7000AACCE /* SubmissionCommentFileView.swift in Sources */,
 				7DCF0FAB22F8A8D7000AACCE /* SubmissionButtonPresenter.swift in Sources */,
 				5EB46DF01D21A75C00C859A4 /* CalendarCollectionView.swift in Sources */,
@@ -4211,7 +4208,6 @@
 				4927077D1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m in Sources */,
 				49AA2D2E1CF4DC540055862D /* CBIPeopleTabViewModel.m in Sources */,
 				49AA2D281CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m in Sources */,
-				49AA2D331CF4DC540055862D /* ProfileViewController.m in Sources */,
 				492705F61CF4B76A00C631C6 /* CBIColorfulViewModel.m in Sources */,
 				49DE1DA41F8808F30055D74A /* CBIConversationStarter.m in Sources */,
 				49F9FA5B1CF8CDC400654758 /* UIImage+TechDebt.m in Sources */,

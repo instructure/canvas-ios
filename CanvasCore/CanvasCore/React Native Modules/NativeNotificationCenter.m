@@ -24,7 +24,7 @@ RCT_EXPORT_MODULE()
 
 - (NSArray<NSString *> *)supportedEvents
 {
-    return @[@"Notification"];
+    return @[ @"redux-action", @"route" ];
 }
 
 RCT_EXPORT_METHOD(postNotification:(NSString *)name userInfo:(NSDictionary *)userInfo)
@@ -35,7 +35,7 @@ RCT_EXPORT_METHOD(postNotification:(NSString *)name userInfo:(NSDictionary *)use
 RCT_EXPORT_METHOD(addObserver:(NSString *)name)
 {
     [[NSNotificationCenter defaultCenter] addObserverForName:name object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        [self sendEventWithName:@"Notification" body:@{ @"name": name, @"userInfo": note.userInfo }];
+        [self sendEventWithName:name body:@{ @"name": name, /*@"object": note.object,*/ @"userInfo": note.userInfo }];
     }];
 }
 

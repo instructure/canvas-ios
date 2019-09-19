@@ -34,15 +34,36 @@ public protocol ProfileViewProtocol: ErrorViewController {
     func route(to url: URLComponents, options: RouteOptions?)
     func showHelpMenu(from cell: UITableViewCell)
     func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?)
+    func dismiss(animated flag: Bool, completion: (() -> Void)?)
+}
+
+extension ProfileViewProtocol {
+    public func route(to: Route, options: RouteOptions?) {
+        route(to: to.url, options: options)
+    }
+    public func route(to url: URL, options: RouteOptions?) {
+        route(to: .parse(url), options: options)
+    }
+    public func route(to url: String, options: RouteOptions?) {
+        route(to: .parse(url), options: options)
+    }
 }
 
 public typealias ProfileViewCellBlock = (UITableViewCell) -> Void
 
+public enum ProfileViewCellAccessoryType {
+    case toggle(Bool)
+}
+
 public struct ProfileViewCell {
+    let id: String
+    let type: ProfileViewCellAccessoryType?
     let name: String
     let block: ProfileViewCellBlock
 
-    public init(name: String, block: @escaping ProfileViewCellBlock) {
+    public init(_ id: String, type: ProfileViewCellAccessoryType? = nil, name: String, block: @escaping ProfileViewCellBlock) {
+        self.id = id
+        self.type = type
         self.name = name
         self.block = block
     }
@@ -100,20 +121,14 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
         tableView?.reloadData()
     }
 
-    public func route(to: Route, options: RouteOptions?) {
-        route(to: to.url, options: options)
-    }
-
-    public func route(to url: URL, options: RouteOptions?) {
-        route(to: .parse(url), options: options)
-    }
-
-    public func route(to url: String, options: RouteOptions?) {
-        route(to: .parse(url), options: options)
-    }
-
     public func route(to url: URLComponents, options: RouteOptions?) {
-        let dashboard = presentingViewController ?? self
+        var dashboard = presentingViewController ?? self
+        if let tabs = dashboard as? UITabBarController {
+            dashboard = tabs.selectedViewController ?? tabs
+        }
+        if let split = dashboard as? UISplitViewController {
+            dashboard = split.viewControllers.first ?? split
+        }
         dismiss(animated: true) {
             self.env.router.route(to: url, from: dashboard, options: options)
         }
@@ -127,7 +142,7 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
             helpMenu.addAction(UIAlertAction(title: link.text, style: .default) { [weak self] _ in
                 switch link.id {
                 case "instructor_question":
-                    self?.route(to: "/conversations/compose?instructorQuestion=1&canAddRecipients=0", options: [.modal, .embedInNav])
+                    self?.route(to: "/conversations/compose?instructorQuestion=1&canAddRecipients=", options: [.modal, .embedInNav])
                 case "report_a_problem":
                     self?.route(to: .errorReport(for: "problem"), options: [.modal, .embedInNav])
                 default:
@@ -146,7 +161,21 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ProfileTableViewCell = tableView.dequeue(for: indexPath)
-        cell.nameLabel?.text = presenter?.cells[indexPath.row].name
+        if let item = presenter?.cells[indexPath.row] {
+            cell.accessibilityIdentifier = "Profile.\(item.id)Button"
+            cell.nameLabel?.text = item.name
+            switch item.type {
+            case .toggle(let isOn)?:
+                let toggle = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+                toggle.isOn = isOn
+                toggle.tag = indexPath.row
+                toggle.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
+                cell.accessoryView = toggle
+                cell.accessibilityIdentifier = "Profile.\(item.id)Toggle"
+            case .none:
+                cell.accessoryView = nil
+            }
+        }
         return cell
     }
 
@@ -156,8 +185,16 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        presenter?.cells[indexPath.row].block(cell)
+        guard let cell = tableView.cellForRow(at: indexPath), let item = presenter?.cells[indexPath.row] else { return }
+        if let toggle = cell.accessoryView as? UISwitch {
+            toggle.setOn(!toggle.isOn, animated: true)
+        }
+        item.block(cell)
+    }
+
+    @objc func toggleChanged(_ toggle: UISwitch) {
+        guard let cell = tableView?.cellForRow(at: IndexPath(row: toggle.tag, section: 0)) else { return }
+        presenter?.cells[toggle.tag].block(cell)
     }
 }
 

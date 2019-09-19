@@ -32,3 +32,14 @@ public struct APIExternalTool: Codable, Equatable {
 public struct APIGetSessionlessLaunchResponse: Codable, Equatable {
     public let url: URL
 }
+
+public struct APIExternalToolLaunch: Codable, Equatable {
+    let definition_id: ID
+    let domain: String?
+    let placements: [String: APIExternalToolLaunchPlacement]
+}
+
+struct APIExternalToolLaunchPlacement: Codable, Equatable {
+    let title: String
+    let url: URL
+}

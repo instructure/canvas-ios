@@ -74,6 +74,10 @@ public struct Route: Equatable {
         return Route("/courses/\(courseID)\(includeAssignmentPath ? "/assignments" : "")/syllabus")
     }
 
+    public static func files(context: Context = ContextModel.currentUser) -> Route {
+        return Route("\(context.pathComponent)/files")
+    }
+
     public static let groups = Route("/groups")
 
     public static func group(_ groupID: String) -> Route {
@@ -103,6 +107,8 @@ public struct Route: Equatable {
     public static let profile = Route("/profile")
 
     public static let profileObservees = Route("/profile/observees")
+
+    public static let profileSettings = Route("/profile/settings")
 
     /// Used only in Parent app (not web)
     public static func observeeThresholds(_ userID: String) -> Route {
@@ -137,7 +143,7 @@ public struct Route: Equatable {
 
     public static let developerMenu = Route("/dev-menu")
 
-    public static func termsOfService(forAccount accountID: String) -> Route {
+    public static func termsOfService(forAccount accountID: String = "self") -> Route {
         return Route("/accounts/\(accountID)/terms_of_service")
     }
 

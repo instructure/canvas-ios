@@ -63,7 +63,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GwY-LE-3Lp">
-                                <rect key="frame" x="0.0" y="187" width="375" height="441.5"/>
+                                <rect key="frame" x="0.0" y="165" width="375" height="463.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.78039215689999997" green="0.80392156859999997" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="nFn-yR-KC2">
@@ -81,12 +81,12 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buA-8o-EAN" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="12" width="343" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular20"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
@@ -132,7 +132,7 @@
                             <constraint firstItem="fhp-Ns-WWs" firstAttribute="trailing" secondItem="jIy-rc-eoW" secondAttribute="trailing" id="DgP-2N-LI9"/>
                             <constraint firstItem="jIy-rc-eoW" firstAttribute="leading" secondItem="fhp-Ns-WWs" secondAttribute="leading" id="FAc-He-E63"/>
                             <constraint firstItem="fTo-Xx-NrJ" firstAttribute="leading" secondItem="gs0-Gp-hxA" secondAttribute="leading" constant="16" id="Kc9-zM-W9G"/>
-                            <constraint firstItem="GwY-LE-3Lp" firstAttribute="top" secondItem="kc1-NZ-bN4" secondAttribute="bottom" constant="38" id="N2R-SW-EKp"/>
+                            <constraint firstItem="GwY-LE-3Lp" firstAttribute="top" secondItem="kc1-NZ-bN4" secondAttribute="bottom" constant="16" id="N2R-SW-EKp"/>
                             <constraint firstItem="gs0-Gp-hxA" firstAttribute="trailing" secondItem="GwY-LE-3Lp" secondAttribute="trailing" id="R8Q-mR-4ef"/>
                             <constraint firstItem="fhp-Ns-WWs" firstAttribute="leading" secondItem="gs0-Gp-hxA" secondAttribute="leading" constant="16" id="Vn4-ve-N0M"/>
                             <constraint firstItem="fTo-Xx-NrJ" firstAttribute="top" secondItem="fhp-Ns-WWs" secondAttribute="bottom" constant="8" id="Xbi-fA-L6M"/>

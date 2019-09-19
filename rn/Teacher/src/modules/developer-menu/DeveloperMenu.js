@@ -209,7 +209,10 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
       return accumulator
     }, [<SectionHeader title='Route History' key={'route-history-section-header'} />])
     return (
-      <Screen title='Developer Menu'>
+      <Screen title='Developer Menu' rightBarButtons={[{
+        title: 'Done',
+        action: () => this.props.navigator.dismiss(),
+      }]}>
         <ScrollView style={styles.mainContainer} >
           <View style={{ marginTop: 16 }}>
             <TextInput

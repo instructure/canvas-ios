@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2016-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#import <UIKit/UIKit.h>
+import CoreData
 
-@class CKUser;
-@class CKCanvasAPI;
+public enum ExternalToolLaunchPlacementLocation: String {
+    case account_navigation, course_navigation, global_navigation // not exhaustive
+}
 
-@interface OldProfileViewController : UIViewController
+public class ExternalToolLaunchPlacement: NSManagedObject {
+    @NSManaged public var definitionID: String
+    @NSManaged public var domain: String?
+    @NSManaged public var locationRaw: String
+    @NSManaged public var title: String
+    @NSManaged public var url: URL
 
-@property CKCanvasAPI *canvasAPI;
-@property (nonatomic) CKUser *user;
-@property (nonatomic, copy) void (^profileImageSelected)(UIImage *newProfileImage);
-
-@end
+    public var location: ExternalToolLaunchPlacementLocation {
+        get { return ExternalToolLaunchPlacementLocation(rawValue: locationRaw) ?? .account_navigation }
+        set { locationRaw = newValue.rawValue }
+    }
+}

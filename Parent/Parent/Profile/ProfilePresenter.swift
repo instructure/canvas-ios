@@ -40,11 +40,7 @@ public class ProfilePresenter: ProfilePresenterProtocol {
         }
     }()
 
-    var canMasquerade: Bool {
-        if env.currentSession?.actAsUserID != nil {
-            return false
-        }
-
+    var canActAsUser: Bool {
         if env.api.baseURL.absoluteString.contains("siteadmin.instructure.com") {
             return true
         }
@@ -55,38 +51,38 @@ public class ProfilePresenter: ProfilePresenterProtocol {
     public var cells: [ProfileViewCell] {
         var cells: [ProfileViewCell] = []
 
-        cells.append(ProfileViewCell(name: NSLocalizedString("Manage Children", comment: "")) { [weak self] _ in
+        cells.append(ProfileViewCell("manageChildren", name: NSLocalizedString("Manage Children", comment: "")) { [weak self] _ in
             self?.view?.route(to: .profileObservees, options: nil)
         })
         if let root = helpLinks.first, helpLinks.count > 1 {
-            cells.append(ProfileViewCell(name: root.text) { [weak self] cell in
+            cells.append(ProfileViewCell("help", name: root.text) { [weak self] cell in
                 self?.view?.showHelpMenu(from: cell)
             })
         }
-        if self.canMasquerade {
-            cells.append(ProfileViewCell(name: NSLocalizedString("Act as User", comment: "")) { [weak self] _ in
+        if canActAsUser {
+            cells.append(ProfileViewCell("actAsUser", name: NSLocalizedString("Act as User", comment: "")) { [weak self] _ in
                 self?.view?.route(to: .actAsUser, options: [.modal, .embedInNav])
             })
         }
-        cells.append(ProfileViewCell(name: NSLocalizedString("Change User", comment: "")) { _ in
+        cells.append(ProfileViewCell("changeUser", name: NSLocalizedString("Change User", comment: "")) { _ in
             guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
             delegate.changeUser()
         })
         if env.currentSession?.actAsUserID != nil {
-            cells.append(ProfileViewCell(name: NSLocalizedString("Stop Act as User", comment: "")) { _ in
+            cells.append(ProfileViewCell("logOut", name: NSLocalizedString("Stop Act as User", comment: "")) { _ in
                 guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
                 guard let session = delegate.environment.currentSession else { return }
                 delegate.stopActing(as: session)
             })
         } else {
-            cells.append(ProfileViewCell(name: NSLocalizedString("Log Out", comment: "")) { _ in
+            cells.append(ProfileViewCell("logOut", name: NSLocalizedString("Log Out", comment: "")) { _ in
                 guard let delegate = UIApplication.shared.delegate as? ParentAppDelegate else { return }
                 guard let session = delegate.environment.currentSession else { return }
                 delegate.userDidLogout(session: session)
             })
         }
         if showDevMenu {
-            cells.append(ProfileViewCell(name: NSLocalizedString("Developer Menu", comment: "")) { [weak self] _ in
+            cells.append(ProfileViewCell("developerMenu", name: NSLocalizedString("Developer Menu", comment: "")) { [weak self] _ in
                 self?.view?.route(to: .developerMenu, options: [.modal, .embedInNav ])
             })
         }
