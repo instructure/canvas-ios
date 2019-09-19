@@ -168,6 +168,11 @@
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission" syncable="YES"/>
         <relationship name="submissionComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubmissionComment" inverseName="attachments" inverseEntity="SubmissionComment" syncable="YES"/>
     </entity>
+    <entity name="GradingPeriod" representedClassName="Core.GradingPeriod" syncable="YES">
+        <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Group" representedClassName="Core.Group" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="concluded" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -450,8 +455,10 @@
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="255"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="315"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="660"/>
+        <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
@@ -471,6 +478,5 @@
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
     </elements>
 </model>

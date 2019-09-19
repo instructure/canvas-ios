@@ -126,6 +126,7 @@ public class GradesCell: UITableViewCell {
         typeImage.image = a?.icon
         nameLabel.text = a?.name
         gradeLabel.text = a?.gradesListGradeText
+        gradeLabel.isHidden = a?.gradesListGradeText == nil
         dueLabel.text = a?.dueAt != nil ? a?.dueText : nil
         dueLabel.isHidden = a?.dueAt == nil
     }

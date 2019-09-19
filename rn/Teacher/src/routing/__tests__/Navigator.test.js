@@ -26,6 +26,7 @@ import {
 import { registerScreens } from '../register-screens'
 import Navigator from '../Navigator'
 import canvas from '../../canvas-api'
+import app from '../../modules/app'
 
 jest.mock('../../canvas-api', () => ({
   getAuthenticatedSessionURL: jest.fn(),
@@ -49,6 +50,7 @@ registerScreens({})
 describe('Navigator', () => {
   beforeEach(() => {
     jest.clearAllMocks()
+    app.setCurrentApp('teacher')
   })
 
   it('forwards show as a push', () => {
@@ -160,7 +162,7 @@ describe('Navigator', () => {
     )
   })
 
-  it('opens a webview if we try to deepLink to something that is unsupported', async () => {
+  it('opens SFSafariViewController in Teacher if we try to deepLink to something that is unsupported', async () => {
     let promise = Promise.resolve({ data: { session_url: 'https://google.com' } })
     canvas.getAuthenticatedSessionURL.mockReturnValueOnce(promise)
     new Navigator('deepLink').show('https://google.com', {
@@ -170,6 +172,19 @@ describe('Navigator', () => {
     await promise
 
     expect(NativeModules.Helm.openInSafariViewController).toHaveBeenCalledWith('https://google.com')
+  })
+
+  it('opens Safari in Student if we try to deepLink to something that is unsupported', async () => {
+    app.setCurrentApp('student')
+    let promise = Promise.resolve({ data: { session_url: 'https://google.com' } })
+    canvas.getAuthenticatedSessionURL.mockReturnValueOnce(promise)
+    new Navigator('deepLink').show('https://google.com', {
+      deepLink: true,
+    })
+
+    await promise
+
+    expect(Linking.openURL).toHaveBeenCalledWith('https://google.com')
   })
 
   it('linking should  be called if something is unsupported and it is not http or https', () => {
