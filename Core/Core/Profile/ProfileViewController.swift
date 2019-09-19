@@ -21,24 +21,9 @@ import UIKit
 public protocol ProfileViewProtocol: ErrorViewController {
     func reload()
     func route(to: Route, options: RouteOptions?)
-    func route(to url: URL, options: RouteOptions?)
-    func route(to url: String, options: RouteOptions?)
-    func route(to url: URLComponents, options: RouteOptions?)
     func showHelpMenu(from cell: UITableViewCell)
     func showTeacherSettingsMenu(from cell: UITableViewCell)
     func launchLTI(url: URL)
-}
-
-extension ProfileViewProtocol {
-    public func route(to: Route, options: RouteOptions?) {
-        route(to: to.url, options: options)
-    }
-    public func route(to url: URL, options: RouteOptions?) {
-        route(to: .parse(url), options: options)
-    }
-    public func route(to url: String, options: RouteOptions?) {
-        route(to: .parse(url), options: options)
-    }
 }
 
 public typealias ProfileViewCellBlock = (UITableViewCell) -> Void
@@ -122,10 +107,10 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
         tableView?.reloadData()
     }
 
-    public func route(to url: URLComponents, options: RouteOptions?) {
+    public func route(to: Route, options: RouteOptions?) {
         let dashboard = self.dashboard
         dismiss(animated: true) {
-            self.env.router.route(to: url, from: dashboard, options: options)
+            self.env.router.route(to: to, from: dashboard, options: options)
         }
     }
 
@@ -144,11 +129,11 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
             helpMenu.addAction(UIAlertAction(title: link.text, style: .default) { [weak self] _ in
                 switch link.id {
                 case "instructor_question":
-                    self?.route(to: "/conversations/compose?instructorQuestion=1&canAddRecipients=", options: [.modal, .embedInNav])
+                    self?.route(to: Route("/conversations/compose?instructorQuestion=1&canAddRecipients="), options: [.modal, .embedInNav])
                 case "report_a_problem":
                     self?.route(to: .errorReport(for: "problem"), options: [.modal, .embedInNav])
                 default:
-                    self?.route(to: link.url, options: [.modal, .embedInNav])
+                    self?.route(to: Route(link.url.absoluteString), options: [.modal, .embedInNav])
                 }
             })
         }
@@ -162,7 +147,7 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
     public func showTeacherSettingsMenu(from cell: UITableViewCell) {
         let settingsMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         settingsMenu.addAction(UIAlertAction(title: NSLocalizedString("Visit the Canvas Guides", bundle: .core, comment: ""), style: .default) { [weak self] _ in
-            self?.route(to: "https://community.canvaslms.com/community/answers/guides/mobile-guide/content?filterID=contentstatus%5Bpublished%5D~category%5Btable-of-contents%5D", options: nil)
+            self?.route(to: Route("https://community.canvaslms.com/community/answers/guides/mobile-guide/content?filterID=contentstatus%5Bpublished%5D~category%5Btable-of-contents%5D"), options: nil)
         })
         settingsMenu.addAction(UIAlertAction(title: NSLocalizedString("Terms of Use", bundle: .core, comment: ""), style: .default) { [weak self] _ in
             self?.route(to: .termsOfService(), options: [.modal, .embedInNav])

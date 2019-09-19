@@ -86,7 +86,7 @@
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular20"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>

@@ -254,10 +254,12 @@ typedef NS_ENUM(NSInteger, LegalRows) {
         NSString *urlAddress = @"";
         
         if (indexPath.row == TermsRow) {
-            return [[HelmManager shared] present:@"/accounts/self/terms_of_service" withProps:@{} options:@{
-                                                                                          @"modal": @YES,
-                                                                                          @"embedInNavigationController": @YES
-                                                                                          } callback:nil];
+            return [[HelmManager shared]
+                present: @"/accounts/:accountID/terms_of_service"
+                withProps: @{ @"accountID": @"self" }
+                options: @{ @"modal": @YES, @"embedInNavigationController": @YES }
+                callback: nil
+            ];
         }
 
         if (indexPath.row == PrivacyRow) {

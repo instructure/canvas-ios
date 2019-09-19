@@ -334,6 +334,8 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 
     "/dev-menu": nil,
 
+    "/accounts/:accountID/terms_of_service": nil,
+
     "/logs": { _, _ in
         return LogEventListViewController.create()
     },

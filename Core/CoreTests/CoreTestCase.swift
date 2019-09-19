@@ -34,6 +34,7 @@ class CoreTestCase: XCTestCase {
     var logger = TestLogger()
     var environment: AppEnvironment!
     var currentSession = LoginSession.make()
+    var login = TestLoginDelegate()
 
     let notificationCenter = MockUserNotificationCenter()
     var notificationManager: NotificationManager!
@@ -55,6 +56,7 @@ class CoreTestCase: XCTestCase {
         environment.globalDatabase = database
         environment.database = database
         environment.router = router
+        environment.loginDelegate = login
         environment.logger = logger
         environment.currentSession = currentSession
         LoginSession.add(currentSession)

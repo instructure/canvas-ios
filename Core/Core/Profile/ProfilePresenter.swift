@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class ProfilePresenter {
     let env: AppEnvironment
@@ -33,6 +34,10 @@ public class ProfilePresenter {
         self?.view?.reload()
     }
 
+    lazy var permissions = env.subscribe(GetContextPermissions(context: ContextModel(.account, id: "self"), permissions: [.becomeUser])) { [weak self] in
+        self?.view?.reload()
+    }
+
     lazy var settings = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
         self?.view?.reload()
     }
@@ -41,12 +46,8 @@ public class ProfilePresenter {
         self?.view?.reload()
     }
 
-    lazy var permissions = env.subscribe(GetContextPermissions(context: ContextModel(.account, id: "self"), permissions: [.becomeUser])) { [weak self] in
-        self?.view?.reload()
-    }
-
     var canActAsUser: Bool {
-        if env.api.baseURL.absoluteString.contains("siteadmin.instructure.com") {
+        if env.currentSession?.baseURL.host?.hasPrefix("siteadmin.") == true {
             return true
         }
 
@@ -117,31 +118,29 @@ public class ProfilePresenter {
                 self?.view?.showTeacherSettingsMenu(from: cell)
             })
         }
-        if showDevMenu {
-            cells.append(ProfileViewCell("developerMenu", name: NSLocalizedString("Developer Menu", comment: "")) { [weak self] _ in
-                self?.view?.route(to: .developerMenu, options: [.modal, .embedInNav])
-            })
-        }
         if canActAsUser {
             cells.append(ProfileViewCell("actAsUser", name: NSLocalizedString("Act as User", comment: "")) { [weak self] _ in
                 self?.view?.route(to: .actAsUser, options: [.modal, .embedInNav])
             })
         }
         cells.append(ProfileViewCell("changeUser", name: NSLocalizedString("Change User", comment: "")) { [weak self] _ in
-            guard let delegate = self?.env.loginDelegate as? LoginDelegate else { return }
+            guard let delegate = self?.env.loginDelegate else { return }
             delegate.changeUser()
         })
         if env.currentSession?.actAsUserID != nil {
             cells.append(ProfileViewCell("logOut", name: NSLocalizedString("Stop Act as User", comment: "")) { [weak self] _ in
-                guard let delegate = self?.env.loginDelegate as? LoginDelegate else { return }
                 guard let session = self?.env.currentSession else { return }
-                delegate.stopActing(as: session)
+                self?.env.loginDelegate?.stopActing(as: session)
             })
         } else {
             cells.append(ProfileViewCell("logOut", name: NSLocalizedString("Log Out", comment: "")) { [weak self] _ in
-                guard let delegate = self?.env.loginDelegate as? LoginDelegate else { return }
                 guard let session = self?.env.currentSession else { return }
-                delegate.userDidLogout(session: session)
+                self?.env.loginDelegate?.userDidLogout(session: session)
+            })
+        }
+        if showDevMenu {
+            cells.append(ProfileViewCell("developerMenu", name: NSLocalizedString("Developer Menu", comment: "")) { [weak self] _ in
+                self?.view?.route(to: .developerMenu, options: [.modal, .embedInNav])
             })
         }
         return cells
