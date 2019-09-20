@@ -34,7 +34,7 @@
         <attribute name="useRubricForGrading" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="assignment" inverseEntity="DiscussionTopic" syncable="YES"/>
         <relationship name="rubric" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric" syncable="YES"/>
-        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission" syncable="YES"/>
+        <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission" syncable="YES"/>
     </entity>
     <entity name="AssignmentGroup" representedClassName="Core.AssignmentGroup" syncable="YES">
         <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
@@ -397,7 +397,7 @@
         <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="workflowStateRaw" attributeType="String" syncable="YES"/>
-        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="submission" inverseEntity="Assignment" syncable="YES"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="submissions" inverseEntity="Assignment" syncable="YES"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="submission" inverseEntity="File" syncable="YES"/>
         <relationship name="discussionEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionEntry" inverseName="submission" inverseEntity="DiscussionEntry" syncable="YES"/>
         <relationship name="mediaComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MediaComment" inverseName="submission" inverseEntity="MediaComment" syncable="YES"/>
@@ -465,7 +465,7 @@
         <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="120"/>
-        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="375"/>
+        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="390"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="240"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>

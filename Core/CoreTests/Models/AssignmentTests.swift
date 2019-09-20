@@ -465,4 +465,17 @@ class AssignmentTests: CoreTestCase {
         result = a.submissionStatus
         XCTAssertEqual(result, expected)
     }
+
+    func testMutlipleSubmissions() {
+        let a = APISubmission.make(id: "1", assignment_id: "1", user_id: "1")
+        let b = APISubmission.make(id: "2", assignment_id: "1", user_id: "2")
+        let assignment = Assignment.make(from: APIAssignment.make(submissions: [a, b]), in: databaseClient)
+
+        XCTAssertEqual(assignment.submissions?.count, 2)
+        let submissions = assignment.submissions?.sorted(by: { (s1, s2) -> Bool in
+            return s1.id < s2.id
+        })
+        XCTAssertEqual(submissions?.first?.id, "1")
+        XCTAssertEqual(submissions?.last?.id, "2")
+    }
 }

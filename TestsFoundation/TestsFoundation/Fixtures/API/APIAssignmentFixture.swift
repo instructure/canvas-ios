@@ -30,6 +30,7 @@ extension APIAssignment {
         due_at: Date? = nil,
         html_url: URL = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!,
         submission: APISubmission? = .make(workflow_state: .unsubmitted),
+        submissions: [APISubmission]? = nil,
         grade_group_students_individually: Bool? = nil,
         grading_type: GradingType = .points,
         submission_types: [SubmissionType] = [.online_text_entry],
@@ -46,6 +47,14 @@ extension APIAssignment {
         rubric_settings: APIRubricSettings? = nil,
         assignment_group_id: ID? = nil
     ) -> APIAssignment {
+
+        var submissionList: APIList<APISubmission>?
+        if let submissions = submissions, submissions.count > 0 {
+            submissionList = APIList<APISubmission>(values: submissions)
+        } else if let submission = submission {
+            submissionList = APIList<APISubmission>( submission )
+        }
+
         return APIAssignment(
             id: id,
             course_id: course_id,
@@ -67,7 +76,7 @@ extension APIAssignment {
             url: url,
             discussion_topic: discussion_topic,
             rubric: rubric,
-            submission: submission.flatMap { APIList($0) },
+            submission: submissionList,
             use_rubric_for_grading: use_rubric_for_grading,
             rubric_settings: rubric_settings,
             assignment_group_id: assignment_group_id
