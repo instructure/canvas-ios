@@ -34,6 +34,8 @@ import type {
 } from '../../submissions/list/submission-prop-types'
 import { formattedDueDate } from '../../../common/formatters'
 import brand from '../../../common/branding'
+import icon from '../../../images/inst-icons'
+import colors from '../../../common/colors'
 
 var PickerItemIOS = PickerIOS.Item
 
@@ -78,7 +80,7 @@ export default class SubmissionPicker extends Component<SubmissionPickerProps, S
             <Text style={[styles.submissionDate, this.state.showingPicker && { color: brand.primaryBrandColor }]}>
               {formattedDueDate(new Date((selected && selected.submittedAt) || ''))}
             </Text>
-            <Image source={Images.pickerArrow} style={[{ alignSelf: 'center' }, this.state.showingPicker && styles.arrowSelecting]} />
+            <Image source={icon('miniArrowDown', 'line')} style={[styles.arrow, this.state.showingPicker && styles.arrowSelecting]} />
           </View>
         </TouchableHighlight>
         { this.state.showingPicker &&
@@ -133,6 +135,12 @@ const styles = StyleSheet.create({
     color: '#8B969E',
     fontSize: 14,
     fontWeight: '500',
+  },
+  arrow: {
+    alignSelf: 'center',
+    width: 16,
+    height: 10,
+    tintColor: colors.grey4,
   },
   arrowSelecting: {
     transform: [
