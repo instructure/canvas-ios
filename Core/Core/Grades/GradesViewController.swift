@@ -33,16 +33,16 @@ public class GradesViewController: UIViewController {
         return df
     }()
 
-    public static func create(courseID: String) -> GradesViewController {
+    public static func create(courseID: String, studentID: String) -> GradesViewController {
         let vc = GradesViewController.loadFromStoryboard()
-        vc.presenter = GradesPresenter(view: vc, courseID: courseID)
+        vc.presenter = GradesPresenter(view: vc, courseID: courseID, studentID: studentID)
         return vc
     }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        presenter.viewIsReady()
+        presenter.refresh()
 
         headerGradeHeader.text = NSLocalizedString("Total Grade", comment: "")
         filterButton.setTitle(NSLocalizedString("Filter", comment: ""), for: .normal)
@@ -58,7 +58,7 @@ public class GradesViewController: UIViewController {
     }
 
     @objc func refresh(_ control: UIRefreshControl) {
-        presenter.assignments.refresh(force: true)
+        presenter.refresh(force: true)
     }
 
     @IBAction func actionUserDidClickFilter(_ sender: Any) {
@@ -76,6 +76,10 @@ extension GradesViewController: GradesViewProtocol {
             view.setNeedsLayout()
         }
     }
+
+    func updateScore(_ score: String?) {
+        headerGradeTotalLabel.text = score
+    }
 }
 
 extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
@@ -90,7 +94,7 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let a = presenter.assignments[indexPath]
         let cell: GradesCell =  tableView.dequeue(for: indexPath)
-        cell.update(a)
+        cell.update(a, studentID: presenter.studentID)
         return cell
     }
 
@@ -133,11 +137,12 @@ public class GradesCell: UITableViewCell {
         loadFromXib()
     }
 
-    func update(_ a: Assignment?) {
+    func update(_ a: Assignment?, studentID: String) {
         typeImage.image = a?.icon
         nameLabel.text = a?.name
-        gradeLabel.text = a?.gradesListGradeText
-        gradeLabel.isHidden = a?.gradesListGradeText == nil
+        let grade = a?.multiUserSubmissionGradeText(studentID: studentID)
+        gradeLabel.text = grade
+        gradeLabel.isHidden = grade == nil
         dueLabel.text = a?.dueAt != nil ? a?.dueText : nil
         dueLabel.isHidden = a?.dueAt == nil
     }

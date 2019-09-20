@@ -266,10 +266,8 @@ extension Assignment {
         return image
     }
 
-    public var gradesListGradeText: String? {
-        guard let submission = submission else {
-            return nil
-        }
+    public func multiUserSubmissionGradeText(studentID: String) -> String? {
+        guard let submission = submissions?.filter({ $0.userID == studentID }).first else { return nil }
 
         if submission.excused ?? false {
             return NSLocalizedString("Excused", comment: "")

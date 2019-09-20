@@ -343,14 +343,14 @@ class AssignmentTests: CoreTestCase {
 
     func testGradesListGradeTextWithNoSubmission() {
         let a = Assignment.make(from: .make(id: "6", submission: nil))
-        let result = a.gradesListGradeText
+        let result = a.multiUserSubmissionGradeText(studentID: "1")
         XCTAssertNil(result)
     }
 
     func testGradesListGradeTextWithExcusedSubmission() {
         let s = APISubmission.make(excused: true)
         let a = Assignment.make(from: .make(id: "6", submission: s))
-        let result = a.gradesListGradeText
+        let result = a.multiUserSubmissionGradeText(studentID: "1")
         let expected = "Excused"
         XCTAssertEqual(result, expected)
     }
@@ -358,30 +358,43 @@ class AssignmentTests: CoreTestCase {
     func testGradesListGradeTextWithNilSubmissionScore() {
         let s = APISubmission.make(score: nil)
         let a = Assignment.make(from: .make(id: "6", submission: s))
-        let result = a.gradesListGradeText
+        let result = a.multiUserSubmissionGradeText(studentID: "1")
         XCTAssertNil(result)
     }
 
     func testGradesListGradeTextWithPassFailGradeTypeIncomplete() {
         let s = APISubmission.make(grade: "incomplete", score: 6)
         let a = Assignment.make(from: .make(id: "6", submission: s, grading_type: .pass_fail))
-        let result = a.gradesListGradeText
+        let result = a.multiUserSubmissionGradeText(studentID: "1")
         let expected = "Incomplete"
         XCTAssertEqual(result, expected)
     }
 
     func testGradesListGradeTextWithPassFailGradeTypeComplete() {
-        let s = APISubmission.make(grade: "complete", score: 6)
-        let a = Assignment.make(from: .make(id: "6", submission: s, grading_type: .pass_fail))
-        let result = a.gradesListGradeText
+        let s1 = APISubmission.make(id: "1", user_id: "1", grade: "complete", score: 6)
+        let s2 = APISubmission.make(id: "2", user_id: "2", grade: "complete", score: 6)
+        let s3 = APISubmission.make(id: "3", user_id: "3", grade: "complete", score: 6)
+        let s4 = APISubmission.make(id: "4", user_id: "4", grade: "complete", score: 6)
+        let a = Assignment.make(from: .make(id: "6", submissions: [s1, s2, s3, s4], grading_type: .pass_fail))
+        let result = a.multiUserSubmissionGradeText(studentID: "1")
         let expected = "Complete"
         XCTAssertEqual(result, expected)
+    }
+
+    func testGradesListGradeTextWithNoStudentIDSubmissions() {
+        let s1 = APISubmission.make(id: "1", user_id: "1", grade: "complete", score: 6)
+        let s2 = APISubmission.make(id: "2", user_id: "2", grade: "complete", score: 6)
+        let s3 = APISubmission.make(id: "3", user_id: "3", grade: "complete", score: 6)
+        let s4 = APISubmission.make(id: "4", user_id: "4", grade: "complete", score: 6)
+        let a = Assignment.make(from: .make(id: "6", submissions: [s1, s2, s3, s4], grading_type: .pass_fail))
+        let result = a.multiUserSubmissionGradeText(studentID: "5")
+        XCTAssertNil(result)
     }
 
     func testGradesListGradeTextWithPoints() {
         let s = APISubmission.make(score: 5)
         let a = Assignment.make(from: .make(id: "6", submission: s, grading_type: .points))
-        let result = a.gradesListGradeText
+        let result = a.multiUserSubmissionGradeText(studentID: "1")
         let expected = "5 out of 10"
         XCTAssertEqual(result, expected)
     }
@@ -389,7 +402,7 @@ class AssignmentTests: CoreTestCase {
     func testGradesListGradeTextWithPointsFixME() {
         let s = APISubmission.make(grade: "75%", score: 76.0)
         let a = Assignment.make(from: .make(id: "6", points_possible: 111.8, submission: s, grading_type: .percent))
-        let result = a.gradesListGradeText
+        let result = a.multiUserSubmissionGradeText(studentID: "1")
         let expected = "76 out of 111.8 (75%)"
         XCTAssertEqual(result, expected)
     }
@@ -397,7 +410,7 @@ class AssignmentTests: CoreTestCase {
     func testGradesListGradeTextWithLetterGrade() {
         let s = APISubmission.make(grade: "A", score: 5)
         let a = Assignment.make(from: .make(id: "6", submission: s, grading_type: .letter_grade))
-        let result = a.gradesListGradeText
+        let result = a.multiUserSubmissionGradeText(studentID: "1")
         let expected = "5 out of 10 (A)"
         XCTAssertEqual(result, expected)
     }
@@ -405,7 +418,7 @@ class AssignmentTests: CoreTestCase {
     func testGradesListGradeTexNotGraded() {
         let s = APISubmission.make(grade: "A", score: 5)
         let a = Assignment.make(from: .make(id: "6", submission: s, grading_type: .not_graded))
-        let result = a.gradesListGradeText
+        let result = a.multiUserSubmissionGradeText(studentID: "1")
         XCTAssertNil(result)
     }
 
