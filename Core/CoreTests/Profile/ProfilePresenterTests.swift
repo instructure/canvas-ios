@@ -24,6 +24,14 @@ class ProfilePresenterTests: CoreTestCase {
     var enrollment = HelpLinkEnrollment.student
     let view = MockView()
 
+    override func setUp() {
+        super.setUp()
+        api.mock(GetAccountHelpLinksRequest(), value: nil)
+        api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make(become_user: false))
+        api.mock(GetGlobalNavExternalToolsRequest(), value: [])
+        api.mock(GetUserSettingsRequest(userID: "self"), value: .make())
+    }
+
     lazy var presenter: ProfilePresenter = {
         let presenter = ProfilePresenter(enrollment: enrollment, view: view)
         let ready = expectation(description: "stores ready")

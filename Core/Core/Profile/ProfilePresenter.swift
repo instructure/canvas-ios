@@ -153,10 +153,10 @@ public class ProfilePresenter {
     }
 
     public func viewIsReady() {
-        helpLinks.refresh(force: true)
-        permissions.refresh(force: true)
-        settings.refresh(force: true)
-        tools.refresh(force: true)
+        helpLinks.refresh()
+        permissions.refresh()
+        settings.refresh()
+        tools.refresh()
     }
 
     public func didTapVersion() {
