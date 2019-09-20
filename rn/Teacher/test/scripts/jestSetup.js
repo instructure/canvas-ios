@@ -193,6 +193,10 @@ NativeModules.QLPreviewManager = {
   previewFile: jest.fn(),
 }
 
+NativeModules.LTITools = {
+  launchExternalTool: jest.fn(),
+}
+
 jest.mock('NativeEventEmitter')
 
 jest.mock('Animated', () => {
