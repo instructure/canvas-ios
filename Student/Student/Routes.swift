@@ -126,9 +126,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         return controller
     },
 
-    "/courses/:courseID/conferences": nil,
-
-    "/groups/:groupID/conferences": { url, _ in
+    "/:context/:contextID/conferences": { url, _ in
         let controller = UnsupportedViewController()
         controller.canvasURL = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL)
         controller.tabName = NSLocalizedString("Conferences", comment: "")
