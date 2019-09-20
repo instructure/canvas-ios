@@ -132,6 +132,37 @@ class RouterTests: XCTestCase {
         XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
     }
 
+    func testDetailSplitViewButtons() {
+        let mockView = MockViewController()
+        mockView.navigationItem.leftItemsSupplementBackButton = false
+        mockView.navigationItem.leftBarButtonItems = nil
+        let router = Router(routes: [
+            RouteHandler("/detail") { _, _ in
+                return UIViewController()
+            },
+        ]) { _, _, _ in }
+
+        // not detail
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: nil)
+        XCTAssertNil(mockView.navigationItem.leftBarButtonItems?.first)
+        XCTAssertFalse(mockView.navigationItem.leftItemsSupplementBackButton)
+
+        let split = UISplitViewController()
+        split.viewControllers = [UIViewController(), UINavigationController(rootViewController: mockView)]
+
+        // to detail
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: [.detail])
+        XCTAssertNotNil(mockView.shown?.navigationItem.leftBarButtonItems?.first)
+        XCTAssert(mockView.shown?.navigationItem.leftItemsSupplementBackButton == true)
+
+        // from detail
+        mockView.navigationItem.leftBarButtonItems = nil
+        mockView.navigationItem.leftItemsSupplementBackButton = false
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: nil)
+        XCTAssertNotNil(mockView.shown?.navigationItem.leftBarButtonItems?.first)
+        XCTAssert(mockView.shown?.navigationItem.leftItemsSupplementBackButton == true)
+    }
+
     func testRouteMatch() {
         let mockView = MockViewController()
         let router = Router(routes: [

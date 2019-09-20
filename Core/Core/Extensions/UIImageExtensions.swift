@@ -24,6 +24,7 @@ extension UIImage {
         case attendance, cameraSolid, collaborations, conferences
         case todo, todoSolid
         case addAudioLine, addCameraLine, addDocumentLine, addImageLine, addVideoCameraLine
+        case splitCollapse, splitExpand
     }
 
     public static func icon(_ name: IconName) -> UIImage {

@@ -56,6 +56,13 @@ public extension RouterProtocol {
 
     func show(_ view: UIViewController, from: UIViewController, options: RouteOptions? = nil) {
         if view is UIAlertController { return from.present(view, animated: true) }
+
+        if let displayModeButton = from.displayModeButtonItem,
+            options?.contains(.detail) == true || from.isInSplitViewDetail {
+            view.addNavigationButton(displayModeButton, side: .left)
+            view.navigationItem.leftItemsSupplementBackButton = true
+        }
+
         if options?.contains(.modal) == true {
             if options?.contains(.embedInNav) == true {
                 if options?.contains(.addDoneButton) == true {
