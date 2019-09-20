@@ -84,6 +84,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
 
         let router = env.router as? TestRouter
         XCTAssertEqual(router?.calls.last?.0, .parse("/courses/1/users/1"))
+        XCTAssertEqual(router?.calls.last?.2, [.detail, .embedInNav])
     }
 }
 

@@ -64,6 +64,6 @@ class PeopleListPresenter {
     }
 
     func select(recipient: SearchRecipient, from: UIViewController) {
-        env.router.route(to: "/\(context.pathComponent)/users/\(recipient.id)", from: from)
+        env.router.route(to: "/\(context.pathComponent)/users/\(recipient.id)", from: from, options: [.detail, .embedInNav])
     }
 }

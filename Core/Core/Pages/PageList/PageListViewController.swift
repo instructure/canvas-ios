@@ -57,7 +57,7 @@ public class PageListViewController: UIViewController, PageListViewProtocol {
 
         if !isLoading && !isEmpty && !selectedFirstPage {
             selectedFirstPage = true
-            if appTraitCollection?.horizontalSizeClass == .regular {
+            if appTraitCollection?.horizontalSizeClass == .regular && !isInSplitViewDetail {
                 if let frontPage = presenter?.frontPage.first {
                     presenter?.select(frontPage, from: self)
                 } else if let page = presenter?.pages.first {
