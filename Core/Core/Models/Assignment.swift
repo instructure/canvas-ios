@@ -32,7 +32,6 @@ public class Assignment: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged var pointsPossibleRaw: NSNumber?
-    @NSManaged public var submission: Submission?
     @NSManaged var submissionTypesRaw: [String]
     @NSManaged public var position: Int
     @NSManaged public var lockAt: Date?
@@ -47,6 +46,30 @@ public class Assignment: NSManagedObject {
     @NSManaged public var hideRubricPoints: Bool
     @NSManaged public var assignmentGroupID: String?
     @NSManaged public var assignmentGroupPosition: Int
+    /**
+     Use this property (vs. submissions) when you want the most recent submission
+     commonly for a student (i.e. Student app, all submissions returned are for 1 particular student)
+     - Returns: most recent submission from student
+     */
+    public var submission: Submission? {
+        get {
+            return submissions?.first
+        }
+
+        set {
+            if let v = newValue {
+                self.submissions = Set<Submission>( [v] )
+            } else {
+                self.submissions = nil
+            }
+        }
+    }
+    /**
+     Use this property (vs. submission) when you have an assignment with submissions
+     from multiple students (i.e. Parent app when user is observer role)
+     - Returns: all submissions related to assignment that may be for various different students
+     */
+    @NSManaged public var submissions: Set<Submission>?
 
     public var gradingType: GradingType {
         get { return GradingType(rawValue: gradingTypeRaw) ?? .points }
@@ -114,12 +137,13 @@ extension Assignment {
         hideRubricPoints = item.rubric_settings?.hide_points == true
 
         if updateSubmission {
-            if let submissionItem = item.submission?.values.first {
-                let sub = Submission.save(submissionItem, in: client)
-                submission = sub
-            } else if let submission = submission {
-                client.delete(submission)
-                self.submission = nil
+            if let values = item.submission?.values, values.count > 0 {
+                self.submissions = Set<Submission>()
+                let newSubs = values.map { Submission.save($0, in: client) }
+                self.submissions = Set<Submission>(newSubs)
+            } else if let submissions = submissions {
+                client.delete(Array(submissions))
+                self.submissions = nil
             }
         }
     }
