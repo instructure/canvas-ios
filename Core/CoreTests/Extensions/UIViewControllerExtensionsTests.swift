@@ -68,4 +68,15 @@ class UIViewControllerExtensionsTests: XCTestCase {
         XCTAssertNil(child.view.superview)
         XCTAssertEqual(parent.view.constraints.count, 0)
     }
+
+    func testIsInSplitViewDetail() {
+        let controller = UIViewController()
+        let split = UISplitViewController()
+        split.viewControllers = [UIViewController(), UINavigationController(rootViewController: controller)]
+        XCTAssertTrue(controller.isInSplitViewDetail)
+        split.viewControllers = [UINavigationController(rootViewController: controller)]
+        XCTAssertFalse(controller.isInSplitViewDetail)
+        split.viewControllers = [UIViewController(), controller]
+        XCTAssertFalse(controller.isInSplitViewDetail)
+    }
 }

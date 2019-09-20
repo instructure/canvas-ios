@@ -205,13 +205,13 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
             alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default))
             return alert
         }
-        return try? ModulesTableViewController(session: session, courseID: courseID, route: route)
+        return try? ModulesTableViewController(session: session, courseID: courseID)
     },
 
     "/courses/:courseID/modules/:moduleID": { _, params in
         guard let courseID = params["courseID"], let moduleID = params["moduleID"] else { return nil }
         guard let session = Session.current else { return nil }
-        return try? ModuleDetailsViewController(session: session, courseID: courseID, moduleID: moduleID, route: route)
+        return try? ModuleDetailsViewController(session: session, courseID: courseID, moduleID: moduleID)
     },
 
     "/courses/:courseID/modules/items/:itemID": { _, params in

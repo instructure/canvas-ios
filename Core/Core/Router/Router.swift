@@ -29,6 +29,7 @@ public struct RouteOptions: OptionSet {
     public static let embedInNav = RouteOptions(rawValue: 2)
     public static let addDoneButton = RouteOptions(rawValue: 4)
     public static let formSheet = RouteOptions(rawValue: 8)
+    public static let detail = RouteOptions(rawValue: 16)
 }
 
 public protocol RouterProtocol {
@@ -70,6 +71,12 @@ public extension RouterProtocol {
                     view.modalPresentationStyle = .formSheet
                 }
                 from.present(view, animated: true)
+            }
+        } else if options?.contains(.detail) == true && !from.isInSplitViewDetail {
+            if options?.contains(.embedInNav) == true {
+                from.showDetailViewController(UINavigationController(rootViewController: view), sender: from)
+            } else {
+                from.showDetailViewController(view, sender: from)
             }
         } else {
             from.show(view, sender: nil)
