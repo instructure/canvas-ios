@@ -122,7 +122,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
 extension ParentAppDelegate: LoginDelegate {
     var supportsCanvasNetwork: Bool { return false }
-    
+
     func openSupportTicket() {
         guard let presentFrom = topMostViewController() else { return }
         let subject = String.localizedStringWithFormat("[Parent Login Issue] %@", NSLocalizedString("Trouble logging in", comment: ""))
