@@ -55,6 +55,16 @@ extension UIViewController {
         return false
     }
 
+    public var displayModeButtonItem: UIBarButtonItem? {
+        guard let splitView = splitViewController else { return nil }
+        let defaultButton = splitView.displayModeButtonItem
+        let isExpanded = splitView.displayMode == .primaryOverlay || splitView.displayMode == .primaryHidden
+        let icon: UIImage = isExpanded ? .icon(.splitCollapse) : .icon(.splitExpand)
+        let buttonItem = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
+        buttonItem.accessibilityLabel = splitView.isCollapsed ? NSLocalizedString("Collapse", comment: "") : NSLocalizedString("Expand", comment: "")
+        return buttonItem
+    }
+
     public func addNavigationButton(_ button: UIBarButtonItem, side: NavigationItemSide) {
         switch side {
         case .right:
