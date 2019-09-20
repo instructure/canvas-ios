@@ -166,16 +166,19 @@ AppState.addEventListener('change', (nextAppState) => {
 
 APIBridge()
 
-NativeNotificationCenter.addObserver('route')
 const notificationCenter = new NativeEventEmitter(NativeNotificationCenter)
-notificationCenter.addListener('Notification', (notification) => {
-  switch (notification.name) {
-    case 'route':
-      const userInfo = notification.userInfo
-      if (userInfo && userInfo.url) {
-        const navigator = new Navigator('')
-        navigator.show(userInfo.url, { modal: userInfo.modal === true })
-      }
-      break
+NativeNotificationCenter.addObserver('redux-action')
+notificationCenter.addListener('redux-action', (notification) => {
+  const userInfo = notification.userInfo
+  if (userInfo && userInfo.type && userInfo.payload) {
+    store.dispatch(userInfo)
+  }
+})
+NativeNotificationCenter.addObserver('route')
+notificationCenter.addListener('route', (notification) => {
+  const userInfo = notification.userInfo
+  if (userInfo && userInfo.url) {
+    const navigator = new Navigator('')
+    navigator.show(userInfo.url, { modal: userInfo.modal === true })
   }
 })

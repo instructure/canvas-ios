@@ -421,7 +421,7 @@ export class Dashboard extends React.Component<Props, State> {
   }
 
   showProfile = () => {
-    this.props.navigator.show('/profile', { modal: true, modalPresentationStyle: 'drawer' })
+    this.props.navigator.show('/profile', { modal: true, modalPresentationStyle: 'drawer', embedInNavigationController: false })
   }
 
   showGroup = (groupID: string) => {

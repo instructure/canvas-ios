@@ -26,10 +26,10 @@ class ActAsUserPresenterTests: CoreTestCase, LoginDelegate {
         opened = url
     }
 
-    var login: LoginSession?
+    var session: LoginSession?
     let onLogin = XCTestExpectation(description: "userDidLogin")
     func userDidLogin(session: LoginSession) {
-        login = session
+        self.session = session
         onLogin.fulfill()
     }
 
@@ -47,14 +47,14 @@ class ActAsUserPresenterTests: CoreTestCase, LoginDelegate {
         MockURLSession.mock(GetUserRequest(userID: "1"), value: APIUser.make(), baseURL: URL(string: "https://cgnu.instructure.com")!, accessToken: presenter.env.currentSession?.accessToken)
         presenter.didSubmit(domain: "cgnu", userID: "1") { _ in }
         wait(for: [onLogin], timeout: 1)
-        XCTAssertNotNil(login)
+        XCTAssertNotNil(session)
     }
 
     func testDidSubmitExtra() {
         MockURLSession.mock(GetUserRequest(userID: "1"), value: APIUser.make(), baseURL: URL(string: "http://cgnu.online")!, accessToken: presenter.env.currentSession?.accessToken)
         presenter.didSubmit(domain: "http://cgnu.online/extra", userID: "1") { _ in }
         wait(for: [onLogin], timeout: 1)
-        XCTAssertNotNil(login)
+        XCTAssertNotNil(session)
     }
 
     func testDidSubmitNoSession() {
@@ -98,8 +98,8 @@ class ActAsUserPresenterTests: CoreTestCase, LoginDelegate {
         }
         wait(for: [done], timeout: 1)
         XCTAssertNil(error)
-        XCTAssertEqual(login?.userID, "1")
-        XCTAssertEqual(login?.baseURL, URL(string: "https://cgnu.instructure.com"))
-        XCTAssertEqual(login?.masquerader, URL(string: "https://canvas.instructure.com/users/1"))
+        XCTAssertEqual(session?.userID, "1")
+        XCTAssertEqual(session?.baseURL, URL(string: "https://cgnu.instructure.com"))
+        XCTAssertEqual(session?.masquerader, URL(string: "https://canvas.instructure.com/users/1"))
     }
 }

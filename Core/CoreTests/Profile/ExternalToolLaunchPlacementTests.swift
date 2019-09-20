@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2016-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+import TestsFoundation
+@testable import Core
 
-@class CKUser;
-@class CKCanvasAPI;
-
-@interface OldProfileViewController : UIViewController
-
-@property CKCanvasAPI *canvasAPI;
-@property (nonatomic) CKUser *user;
-@property (nonatomic, copy) void (^profileImageSelected)(UIImage *newProfileImage);
-
-@end
+class ExternalToolLaunchPlacementTests: CoreTestCase {
+    func testLocation() {
+        let placement: ExternalToolLaunchPlacement = databaseClient.insert()
+        placement.location = .global_navigation
+        XCTAssertEqual(placement.locationRaw, "global_navigation")
+        placement.locationRaw = "account_navigation"
+        XCTAssertEqual(placement.location, .account_navigation)
+        placement.locationRaw = "bogus"
+        XCTAssertEqual(placement.location, .account_navigation)
+    }
+}

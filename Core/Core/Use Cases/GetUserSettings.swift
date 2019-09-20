@@ -39,3 +39,19 @@ public struct GetUserSettings: APIUseCase {
         return Scope(predicate: .all, order: [])
     }
 }
+
+public struct UpdateUserSettings: APIUseCase {
+    public typealias Model = UserSettings
+
+    public let cacheKey: String? = nil
+    public let request: PutUserSettingsRequest
+    public let scope = Scope(predicate: .all, order: [])
+
+    public init(manual_mark_as_read: Bool? = nil, collapse_global_nav: Bool? = nil, hide_dashcard_color_overlays: Bool? = nil) {
+        request = PutUserSettingsRequest(
+            manual_mark_as_read: manual_mark_as_read,
+            collapse_global_nav: collapse_global_nav,
+            hide_dashcard_color_overlays: hide_dashcard_color_overlays
+        )
+    }
+}

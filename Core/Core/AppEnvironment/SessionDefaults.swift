@@ -45,6 +45,11 @@ public struct SessionDefaults {
         set { self["tokenExpires"] = newValue }
     }
 
+    public var showGradesOnDashboard: Bool? {
+        get { return self["showGradesOnDashboard"] as? Bool }
+        set { self["showGradesOnDashboard"] = newValue }
+    }
+
     public mutating func reset() {
         sessionDefaults = nil
     }

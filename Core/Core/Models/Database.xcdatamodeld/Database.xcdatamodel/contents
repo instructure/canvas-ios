@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="19A558d" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AlertThreshold" representedClassName="Core.AlertThreshold" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="observerID" optional="YES" attributeType="String" syncable="YES"/>
@@ -116,6 +116,13 @@
         <attribute name="arc" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ExternalToolLaunchPlacement" representedClassName="Core.ExternalToolLaunchPlacement" syncable="YES">
+        <attribute name="definitionID" attributeType="String" syncable="YES"/>
+        <attribute name="domain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationRaw" attributeType="String" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="url" attributeType="URI" syncable="YES"/>
     </entity>
     <entity name="FeatureFlag" representedClassName="Core.FeatureFlag" syncable="YES">
         <attribute name="canvasContextID" optional="YES" attributeType="String" syncable="YES"/>
@@ -448,6 +455,7 @@
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="255"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="315"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="660"/>
         <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="90"/>

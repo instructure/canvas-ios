@@ -110,9 +110,30 @@ public struct GetUserSettingsRequest: APIRequestable {
 
     let userID: String
 
-    public let method = APIMethod.get
     public var path: String {
         return "users/\(userID)/settings"
+    }
+}
+
+// https://canvas.instructure.com/doc/api/users.html#method.users.settings
+public struct PutUserSettingsRequest: APIRequestable {
+    public typealias Response = APIUserSettings
+    public struct Body: Encodable {
+        let manual_mark_as_read: Bool?
+        let collapse_global_nav: Bool?
+        let hide_dashcard_color_overlays: Bool?
+    }
+
+    public let method = APIMethod.put
+    public let path = "users/self/settings"
+    public let body: Body?
+
+    init(manual_mark_as_read: Bool? = nil, collapse_global_nav: Bool? = nil, hide_dashcard_color_overlays: Bool? = nil) {
+        body = Body(
+            manual_mark_as_read: manual_mark_as_read,
+            collapse_global_nav: collapse_global_nav,
+            hide_dashcard_color_overlays: hide_dashcard_color_overlays
+        )
     }
 }
 

@@ -66,7 +66,7 @@ let router = Router(routes: [
     },
 
     RouteHandler(.profile) { _, _ in
-        return ProfileViewController.create(presenter: ProfilePresenter())
+        return ProfileViewController.create(enrollment: .observer)
     },
 
     RouteHandler(.profileObservees) { _, _ in

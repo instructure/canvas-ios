@@ -32,7 +32,6 @@ import Compose from '../modules/inbox/Compose'
 import AddressBook from '../modules/address-book/AddressBook'
 import CourseSelect from '../modules/inbox/CourseSelect'
 import ConversationDetails from '../modules/inbox/detail/ConversationDetails'
-import Profile from '../modules/profile/Profile'
 import DeveloperMenu from '../modules/developer-menu/DeveloperMenu'
 import SubmissionList from '../modules/submissions/list/SubmissionList'
 import SubmissionSettings from '../modules/submissions/list/SubmissionSettings'
@@ -131,7 +130,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/conversations/course-select', wrap(CourseSelect), store)
   registerScreen('/conversations/:conversationID', wrap(ConversationDetails), store, { deepLink: true })
   registerScreen('/address-book', wrap(AddressBook), store)
-  registerScreen('/profile', wrap(Profile), store)
+  registerScreen('/profile')
   registerScreen('/dev-menu', wrap(DeveloperMenu), store)
   registerScreen('/rich-text-editor', wrap(RichTextEditor), store)
   registerScreen('/rich-text-editor/link', wrap(LinkModal), store)
@@ -149,7 +148,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/to-do', wrap(ToDoList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/wiki', wrap(PageDetails), store, { deepLink: true })
   registerScreen('/courses/:courseID/pages/:url/edit', wrap(PageEdit), store, { deepLink: true })
-  registerScreen('/terms-of-use', wrap(TermsOfUse), store)
+  registerScreen('/accounts/:accountID/terms_of_service', wrap(TermsOfUse), store)
   registerScreen('/profile/settings')
   registerScreen('/support/:type', undefined, undefined, { deepLink: true })
   registerScreen('/ui', wrap(UI), store)

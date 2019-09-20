@@ -20,8 +20,6 @@
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
 
-extern NSString * const AsyncActionNotificationName;
-
 @interface NativeNotificationCenter : RCTEventEmitter<RCTBridgeModule>
 
 @end

@@ -45,6 +45,10 @@ public struct GetContextPermissions: APIUseCase {
         )
     }
 
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APIPermissions?, URLResponse?, Error?) -> Void) {
+        environment.api.makeRequest(request, refreshToken: false, callback: completionHandler)
+    }
+
     public func write(response: APIPermissions?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let item = response else {
             return

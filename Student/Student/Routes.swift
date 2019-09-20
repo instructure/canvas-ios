@@ -39,6 +39,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         return try? CalendarEventDetailViewController(forEventWithID: eventID, in: session, route: route)
     },
 
+    "/conversations/compose": nil,
     "/conversations/:conversationID": nil,
 
     "/courses": nil,
@@ -331,8 +332,16 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         return detailViewController
     },
 
+    "/dev-menu": nil,
+
+    "/accounts/:accountID/terms_of_service": nil,
+
     "/logs": { _, _ in
         return LogEventListViewController.create()
+    },
+
+    "/profile": { _, _ in
+        return ProfileViewController.create(enrollment: .student)
     },
 
     "/profile/settings": { _, _ in
@@ -347,7 +356,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 ]
 
 var routes: [RouteHandler] = []
-for (template, handler) in routeMap {
+for (template, handler) in routeMap.sorted(by: { $0.key > $1.key }) {
     if let factory = handler {
         let route = RouteHandler(template, factory: factory)
         HelmManager.shared.registerNativeViewController(for: template, factory: { props in

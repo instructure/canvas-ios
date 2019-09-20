@@ -117,24 +117,6 @@ class TextSettingsRow: SettingsRow {
 extension SettingsViewController {
     
     fileprivate func data() -> [SettingsRow] {
-        let profile = TextSettingsRow(title: NSLocalizedString("Profile", comment: "")) { () -> () in
-            if let session = Session.current {
-                let profile = OldProfileViewController()
-                profile.canvasAPI = CKCanvasAPI.current()
-                profile.user = profile.canvasAPI.user
-                profile.profileImageSelected = { newProfileImage in
-                    if let key = session.user.avatarURL?.absoluteString {
-                        if let image = newProfileImage {
-                            KingfisherManager.shared.cache.store(image, forKey: key)
-                        } else {
-                            KingfisherManager.shared.cache.removeImage(forKey: key)
-                        }
-                    }
-                }
-                self.navigationController?.pushViewController(profile, animated: true)
-            }
-        }
-
         let about = TextSettingsRow(title: NSLocalizedString("About", comment: "Settings entry title for About")) { () -> () in
             let aboutViewController = AboutViewController.init()
             aboutViewController.canvasAPI = self.canvasAPI
@@ -156,7 +138,7 @@ extension SettingsViewController {
             }
         }
         
-        let dataSource: [SettingsRow] = [profile, about, landingPage, notificationPreferences]
+        let dataSource: [SettingsRow] = [about, landingPage, notificationPreferences]
         return dataSource
     }
 }
