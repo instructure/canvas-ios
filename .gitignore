@@ -69,6 +69,7 @@ scripts/coverage/**/
 scripts/coverage/*.xcresult
 scripts/translations/source
 scripts/translations/imports
+scripts/failing-test-pairs.txt
 scripts/apiModelCodegen/output
 scripts/apiModelCodegen/input.json
 

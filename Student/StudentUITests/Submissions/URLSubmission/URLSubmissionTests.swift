@@ -23,6 +23,7 @@ import XCTest
 
 class URLSubmissionTests: StudentUITestCase {
     func testSumbitUrl() {
+        mockBaseRequests()
         let course = APICourse.make()
         mockData(GetCourseRequest(courseID: course.id), value: course)
         let assignment = APIAssignment.make(submission_types: [ .online_url ])
@@ -43,6 +44,7 @@ class URLSubmissionTests: StudentUITestCase {
     }
 
     func testShowSubmission() {
+        mockBaseRequests()
         let course = APICourse.make()
         mockData(GetCourseRequest(courseID: course.id), value: course)
         let assignment = APIAssignment.make(submission_types: [ .online_url ])

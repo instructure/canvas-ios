@@ -178,12 +178,12 @@ class AssignmentDetailsTests: StudentUITestCase {
             lock_explanation: "this is locked"
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertTrue(AssignmentDetails.lockSection.waitToExist().isVisible)
+        XCTAssertTrue(AssignmentDetails.due.waitToExist().isVisible)
+        XCTAssertTrue(AssignmentDetails.submissionTypes.waitToExist().isVisible)
+        XCTAssertTrue(AssignmentDetails.viewSubmissionButton.waitToExist().isVisible)
         XCTAssertFalse(AssignmentDetails.submitAssignmentButton.isVisible)
         XCTAssertFalse(AssignmentDetails.lockIcon.isVisible)
-        XCTAssertTrue(AssignmentDetails.lockSection.isVisible)
-        XCTAssertTrue(AssignmentDetails.due.isVisible)
-        XCTAssertTrue(AssignmentDetails.submissionTypes.isVisible)
-        XCTAssertTrue(AssignmentDetails.viewSubmissionButton.isVisible)
     }
 
     func testNoSubmitAssignmentButtonShowsWhenUnLockAtGreaterThanNow() {
@@ -196,9 +196,8 @@ class AssignmentDetailsTests: StudentUITestCase {
             lock_explanation: "this is locked"
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
-        AssignmentDetails.lockIcon.waitToExist(5)
-        XCTAssertTrue(AssignmentDetails.lockIcon.isVisible)
-        XCTAssertTrue(AssignmentDetails.lockSection.isVisible)
+        XCTAssertTrue(AssignmentDetails.lockIcon.waitToExist().isVisible)
+        XCTAssertTrue(AssignmentDetails.lockSection.waitToExist().isVisible)
         XCTAssertFalse(AssignmentDetails.due.isVisible)
         XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
         XCTAssertFalse(AssignmentDetails.submissionTypes.isVisible)

@@ -159,8 +159,7 @@ class DiscussionReplyTests: CoreUITestCase {
         app.find(label: "Upload complete").waitToExist()
         let img = XCUIElementWrapper(app.images.firstMatch)
         XCTAssertFalse(img.exists)
-        app.find(label: "Upload complete").tap()
-        img.waitToExist()
+        app.find(label: "Upload complete").tapUntil { img.exists }
         app.find(id: "screen.dismiss").tap()
         Attachments.dismissButton.tap()
 

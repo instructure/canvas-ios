@@ -44,7 +44,7 @@ open class CoreUITestCase: XCTestCase {
     open override func perform(_ run: XCTestRun) {
         guard type(of: self) != abstractTestClass else { return }
         if ProcessInfo.processInfo.environment["LIST_TESTS_ONLY"] == "YES" {
-            print("UI_TEST: \(name)")
+            print("UI_TEST: \(Bundle(for: type(of: self)).bundleURL.deletingPathExtension().lastPathComponent) \(name)")
         } else {
             super.perform(run)
         }
@@ -309,6 +309,7 @@ open class CoreUITestCase: XCTestCase {
         mockEncodableRequest("users/self/custom_data/favorites/groups?ns=com.canvas.canvas-app", value: [String: String]())
         mockEncodableRequest("users/self/enrollments?include[]=avatar_url", value: [enrollment])
         mockEncodableRequest("users/self/groups", value: [String]())
+        mockEncodableRequest("users/self/todo_item_count", value: ["needs_grading_count": 0])
         mockEncodableRequest("users/self/todo", value: [String]())
         mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
         mockEncodableRequest("dashboard/dashboard_cards", value: [String]())

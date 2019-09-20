@@ -100,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         legacyClient.actAsUserID = session.actAsUserID
         legacyClient.originalIDOfMasqueradingUser = session.originalUserID
         legacyClient.originalBaseURL = session.originalBaseURL
-        let getProfile = GetUserProfileRequest(userID: session.userID)
+        let getProfile = GetUserProfileRequest(userID: "self")
         environment.api.makeRequest(getProfile) { response, urlResponse, error in
             guard let profile = response, error == nil else {
                 if urlResponse?.isUnauthorized == true {

@@ -22,14 +22,14 @@ import TestsFoundation
 class ProfileTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return ProfileTests.self }
 
-    func xtestCourseCardGrades() {
+    func testCourseCardGrades() {
         Profile.open()
         Profile.showGradesToggle.waitToExist()
         if !Profile.showGradesToggle.isSelected {
             Profile.showGradesToggle.tap()
         }
         Profile.close()
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label(), "Assignments 70%")
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label(), "Assignments 72.73%")
 
         Profile.open()
         Profile.showGradesToggle.tap()
@@ -65,7 +65,7 @@ class ProfileTests: CoreUITestCase {
         app.find(label: "File", type: .image).waitToExist()
     }
 
-    func xtestProfileLandingPage() { // TODO: reenable
+    func testProfileLandingPage() {
         guard let entry = user?.session else {
             return XCTFail("Couldn't get keychain entry")
         }
