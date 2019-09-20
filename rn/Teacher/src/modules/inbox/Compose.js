@@ -284,13 +284,13 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
             ref={e => { this.scrollView = e }}
             contentContainerStyle={{ flexGrow: 1, paddingBottom: 16 }}
           >
-            { this.props.showCourseSelect &&
+            { Boolean(this.props.showCourseSelect) &&
               <TouchableHighlight testID='compose.course-select' underlayColor='#fff' style={styles.wrapper} onPress={this.props.canSelectCourse ? this.selectCourse : undefined}>
                 <View style={styles.courseSelect}>
                   <Text style={[styles.courseSelectText, this.state.contextName ? styles.courseSelectedText : undefined]}>
                     { this.state.contextName || i18n('Select a Course') }
                   </Text>
-                  { this.props.canSelectCourse &&
+                  { Boolean(this.props.canSelectCourse) &&
                     <DisclosureIndicator />
                   }
                 </View>
@@ -315,7 +315,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
                     )
                   })}
                 </View>
-                { this.props.canAddRecipients &&
+                { Boolean(this.props.canAddRecipients) &&
                   <TouchableOpacity testID='compose.add-recipient' onPress={this._openAddressBook} style={{ height: 54, justifyContent: 'center' }} accessibilityTraits={['button']} accessibilityLabel={i18n('Add recipient')}>
                     <Image source={Images.add} style={{ tintColor: colors.primaryButton }} />
                   </TouchableOpacity>
