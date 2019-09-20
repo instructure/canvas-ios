@@ -128,6 +128,16 @@ class UIImageViewExtensionsTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    func testCancel() {
+        let view = MockImageView(frame: .zero) { _, _, _ in
+            XCTFail("callback should not be called")
+        }
+        let task = view.load(url: svgUrl)
+        view.loader?.cancel()
+        XCTAssertNotEqual(task, view.loader?.task)
+        XCTAssertNil(view.loader?.task)
+    }
+
     func testGreatestCommonFactor() {
         XCTAssertEqual(greatestCommonFactor(1, 7), 1)
         XCTAssertEqual(greatestCommonFactor(6, 9), 3)
