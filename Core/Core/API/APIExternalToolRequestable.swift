@@ -94,3 +94,10 @@ public struct GetExternalToolsRequest: APIRequestable {
         return query
     }
 }
+
+public struct GetGlobalNavExternalToolsRequest: APIRequestable {
+    public typealias Response = [APIExternalToolLaunch]
+
+    public let path = "accounts/self/lti_apps/launch_definitions"
+    public let query = [APIQueryItem.array("placements", ["global_navigation"])]
+}

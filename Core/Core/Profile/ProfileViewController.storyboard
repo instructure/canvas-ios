@@ -37,12 +37,9 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="e9y-t1-9X5">
                                 <rect key="frame" x="34" y="54" width="20" height="20"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTo-Xx-NrJ" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="100" width="343" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTo-Xx-NrJ" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="16" y="100" width="343" height="24"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Profile.userNameLabel"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="RMW-jk-osR"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -52,7 +49,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JohnDoe@instructure.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc1-NZ-bN4" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="132" width="343" height="17"/>
+                                <rect key="frame" x="16" y="126" width="343" height="17"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Profile.userEmailLabel"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -63,25 +60,28 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GwY-LE-3Lp">
-                                <rect key="frame" x="0.0" y="187" width="375" height="441.5"/>
+                                <rect key="frame" x="0.0" y="159" width="375" height="469.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.78039215689999997" green="0.80392156859999997" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="nFn-yR-KC2">
-                                    <rect key="frame" x="0.0" y="72" width="375" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="93" width="375" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileTableViewCell" id="YIG-qf-RbT" customClass="ProfileTableViewCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileTableViewCell" rowHeight="65" id="YIG-qf-RbT" customClass="ProfileTableViewCell" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YIG-qf-RbT" id="mdf-eG-rzQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buA-8o-EAN" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="12" width="343" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buA-8o-EAN" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="12" width="343" height="40.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="JD2-kD-vjT"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
@@ -132,7 +132,7 @@
                             <constraint firstItem="fhp-Ns-WWs" firstAttribute="trailing" secondItem="jIy-rc-eoW" secondAttribute="trailing" id="DgP-2N-LI9"/>
                             <constraint firstItem="jIy-rc-eoW" firstAttribute="leading" secondItem="fhp-Ns-WWs" secondAttribute="leading" id="FAc-He-E63"/>
                             <constraint firstItem="fTo-Xx-NrJ" firstAttribute="leading" secondItem="gs0-Gp-hxA" secondAttribute="leading" constant="16" id="Kc9-zM-W9G"/>
-                            <constraint firstItem="GwY-LE-3Lp" firstAttribute="top" secondItem="kc1-NZ-bN4" secondAttribute="bottom" constant="38" id="N2R-SW-EKp"/>
+                            <constraint firstItem="GwY-LE-3Lp" firstAttribute="top" secondItem="kc1-NZ-bN4" secondAttribute="bottom" constant="16" id="N2R-SW-EKp"/>
                             <constraint firstItem="gs0-Gp-hxA" firstAttribute="trailing" secondItem="GwY-LE-3Lp" secondAttribute="trailing" id="R8Q-mR-4ef"/>
                             <constraint firstItem="fhp-Ns-WWs" firstAttribute="leading" secondItem="gs0-Gp-hxA" secondAttribute="leading" constant="16" id="Vn4-ve-N0M"/>
                             <constraint firstItem="fTo-Xx-NrJ" firstAttribute="top" secondItem="fhp-Ns-WWs" secondAttribute="bottom" constant="8" id="Xbi-fA-L6M"/>

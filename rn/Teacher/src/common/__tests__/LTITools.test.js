@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,30 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+/* eslint-disable flowtype/require-valid-file-annotation */
 
-public struct APIExternalTool: Codable, Equatable {
-    public let id: ID
-    public let name: String
-    public let domain: String?
-    public let url: URL?
+import { NativeModules } from 'react-native'
+import { launchExternalTool } from '../LTITools'
 
-    public var arc: Bool {
-        return domain?.contains("arc.instructure.com") == true
-    }
-}
-
-public struct APIGetSessionlessLaunchResponse: Codable, Equatable {
-    public let url: URL
-}
-
-public struct APIExternalToolLaunch: Codable, Equatable {
-    let definition_id: ID
-    let domain: String?
-    let placements: [String: APIExternalToolLaunchPlacement]
-}
-
-struct APIExternalToolLaunchPlacement: Codable, Equatable {
-    let title: String
-    let url: URL
-}
+describe('LTITools', () => {
+  it('defers to native on launchExternalTool', () => {
+    const url = 'https://arc.instructure.com/login'
+    launchExternalTool(url)
+    expect(NativeModules.LTITools.launchExternalTool).toHaveBeenCalledWith(url)
+  })
+})

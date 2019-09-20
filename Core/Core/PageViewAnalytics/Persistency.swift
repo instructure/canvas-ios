@@ -70,7 +70,7 @@ class Persistency {
                 self?.dispatchQueue.async(flags: .barrier) {
                     do {
                         let data = try PropertyListEncoder().encode(weakself.queuedEvents)
-                        let saveData = NSKeyedArchiver.archivedData(withRootObject: data)
+                        let saveData = try NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
                         try? saveData.write(to: URL(fileURLWithPath: path), options: [.atomic])
                     } catch {
                         print("Archive failed")
@@ -85,7 +85,7 @@ class Persistency {
         dispatchQueue.async(flags: .barrier) { [weak self] in
            guard let URL = self?.storageFileURL(),
             let fileData = try? Data(contentsOf: URL),
-            let unArchivedData = NSKeyedUnarchiver.unarchiveObject(with: fileData) as? Data else { return }
+            let unArchivedData = (try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(fileData)) as? Data else { return }
             if let eventsToRestore = try? PropertyListDecoder().decode([PageViewEvent].self, from: unArchivedData) {
                 self?.queuedEvents = eventsToRestore
             }

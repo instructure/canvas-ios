@@ -102,6 +102,7 @@ class PageListPresenterTests: CoreTestCase {
         let router = environment.router as? TestRouter
         XCTAssertNoThrow(coursePresenter.select(page, from: UIViewController()))
         XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(page.htmlURL))
+        XCTAssertEqual(router?.calls.last?.2, [.detail, .embedInNav])
     }
 
     func testPageViewEventName() {

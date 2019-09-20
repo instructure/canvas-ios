@@ -18,31 +18,29 @@
 
 import UIKit
 
-public protocol ProfilePresenterProtocol: class {
-    var view: ProfileViewProtocol? { get set }
-    var cells: [ProfileViewCell] { get }
-    var helpLinks: Store<GetAccountHelpLinks> { get }
-    func didTapVersion()
-    func viewIsReady()
-}
-
 public protocol ProfileViewProtocol: ErrorViewController {
     func reload()
     func route(to: Route, options: RouteOptions?)
-    func route(to url: URL, options: RouteOptions?)
-    func route(to url: String, options: RouteOptions?)
-    func route(to url: URLComponents, options: RouteOptions?)
     func showHelpMenu(from cell: UITableViewCell)
-    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?)
+    func showTeacherSettingsMenu(from cell: UITableViewCell)
+    func launchLTI(url: URL)
 }
 
 public typealias ProfileViewCellBlock = (UITableViewCell) -> Void
 
+public enum ProfileViewCellAccessoryType {
+    case toggle(Bool)
+}
+
 public struct ProfileViewCell {
+    let id: String
+    let type: ProfileViewCellAccessoryType?
     let name: String
     let block: ProfileViewCellBlock
 
-    public init(name: String, block: @escaping ProfileViewCellBlock) {
+    public init(_ id: String, type: ProfileViewCellAccessoryType? = nil, name: String, block: @escaping ProfileViewCellBlock) {
+        self.id = id
+        self.type = type
         self.name = name
         self.block = block
     }
@@ -62,15 +60,24 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
     @IBOutlet weak var versionLabel: UILabel?
 
     var env = AppEnvironment.shared
-    var presenter: ProfilePresenterProtocol?
+    var presenter: ProfilePresenter?
+    var dashboard: UIViewController {
+        var dashboard = presentingViewController ?? self
+        if let tabs = dashboard as? UITabBarController {
+            dashboard = tabs.selectedViewController ?? tabs
+        }
+        if let split = dashboard as? UISplitViewController {
+            dashboard = split.viewControllers.first ?? split
+        }
+        return dashboard
+    }
 
-    public static func create(env: AppEnvironment = .shared, presenter: ProfilePresenterProtocol) -> ProfileViewController {
+    public static func create(env: AppEnvironment = .shared, enrollment: HelpLinkEnrollment) -> ProfileViewController {
         let controller = loadFromStoryboard()
         controller.modalPresentationStyle = .custom
         controller.transitioningDelegate = DrawerTransitioningDelegate.shared
         controller.env = env
-        controller.presenter = presenter
-        presenter.view = controller
+        controller.presenter = ProfilePresenter(env: env, enrollment: enrollment, view: controller)
         return controller
     }
 
@@ -101,21 +108,16 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
     }
 
     public func route(to: Route, options: RouteOptions?) {
-        route(to: to.url, options: options)
-    }
-
-    public func route(to url: URL, options: RouteOptions?) {
-        route(to: .parse(url), options: options)
-    }
-
-    public func route(to url: String, options: RouteOptions?) {
-        route(to: .parse(url), options: options)
-    }
-
-    public func route(to url: URLComponents, options: RouteOptions?) {
-        let dashboard = presentingViewController ?? self
+        let dashboard = self.dashboard
         dismiss(animated: true) {
-            self.env.router.route(to: url, from: dashboard, options: options)
+            self.env.router.route(to: to, from: dashboard, options: options)
+        }
+    }
+
+    public func launchLTI(url: URL) {
+        let dashboard = self.dashboard
+        dismiss(animated: true) {
+            LTITools(url: url).presentToolInSFSafariViewController(from: dashboard, animated: true)
         }
     }
 
@@ -127,11 +129,11 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
             helpMenu.addAction(UIAlertAction(title: link.text, style: .default) { [weak self] _ in
                 switch link.id {
                 case "instructor_question":
-                    self?.route(to: "/conversations/compose?instructorQuestion=1&canAddRecipients=0", options: [.modal, .embedInNav])
+                    self?.route(to: Route("/conversations/compose?instructorQuestion=1&canAddRecipients="), options: [.modal, .embedInNav, .formSheet])
                 case "report_a_problem":
-                    self?.route(to: .errorReport(for: "problem"), options: [.modal, .embedInNav])
+                    self?.route(to: .errorReport(for: "problem"), options: [.modal, .embedInNav, .formSheet])
                 default:
-                    self?.route(to: link.url, options: [.modal, .embedInNav])
+                    self?.route(to: Route(link.url.absoluteString), options: [.modal, .embedInNav])
                 }
             })
         }
@@ -141,12 +143,42 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
         helpMenu.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint(x: cell.bounds.maxX, y: cell.bounds.midY), size: .zero)
         present(helpMenu, animated: true)
     }
+
+    public func showTeacherSettingsMenu(from cell: UITableViewCell) {
+        let settingsMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        settingsMenu.addAction(UIAlertAction(title: NSLocalizedString("Visit the Canvas Guides", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+            self?.route(to: Route("https://community.canvaslms.com/community/answers/guides/mobile-guide/content?filterID=contentstatus%5Bpublished%5D~category%5Btable-of-contents%5D"), options: nil)
+        })
+        settingsMenu.addAction(UIAlertAction(title: NSLocalizedString("Terms of Use", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+            self?.route(to: .termsOfService(), options: [.modal, .embedInNav])
+        })
+        settingsMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+
+        settingsMenu.popoverPresentationController?.sourceView = cell
+        settingsMenu.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint(x: cell.bounds.maxX, y: cell.bounds.midY), size: .zero)
+        present(settingsMenu, animated: true)
+    }
 }
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ProfileTableViewCell = tableView.dequeue(for: indexPath)
-        cell.nameLabel?.text = presenter?.cells[indexPath.row].name
+        if let item = presenter?.cells[indexPath.row] {
+            cell.accessibilityIdentifier = "Profile.\(item.id)Button"
+            cell.nameLabel?.text = item.name
+            switch item.type {
+            case .toggle(let isOn)?:
+                let toggle = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+                toggle.isOn = isOn
+                toggle.tag = indexPath.row
+                toggle.onTintColor = Brand.shared.primary
+                toggle.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
+                cell.accessoryView = toggle
+                cell.accessibilityIdentifier = "Profile.\(item.id)Toggle"
+            case .none:
+                cell.accessoryView = nil
+            }
+        }
         return cell
     }
 
@@ -156,8 +188,16 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        presenter?.cells[indexPath.row].block(cell)
+        guard let cell = tableView.cellForRow(at: indexPath), let item = presenter?.cells[indexPath.row] else { return }
+        if let toggle = cell.accessoryView as? UISwitch {
+            toggle.setOn(!toggle.isOn, animated: true)
+        }
+        item.block(cell)
+    }
+
+    @objc func toggleChanged(_ toggle: UISwitch) {
+        guard let cell = tableView?.cellForRow(at: IndexPath(row: toggle.tag, section: 0)) else { return }
+        presenter?.cells[toggle.tag].block(cell)
     }
 }
 

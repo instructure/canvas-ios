@@ -33,9 +33,7 @@ func rootViewController(_ session: Session) -> UIViewController {
             UINavigationController(rootViewController: CalendarTabViewController(session: session) { vc, url in
                 AppEnvironment.shared.router.route(to: url, from: vc)
             }),
-            try ToDoTabViewController(session: session) { vc, url in
-                AppEnvironment.shared.router.route(to: url, from: vc)
-            },
+            try ToDoTabViewController(session: session),
             try NotificationsTab(session: session),
             inboxTab(),
         ]

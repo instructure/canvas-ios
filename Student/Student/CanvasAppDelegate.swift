@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
+        env.loginDelegate = self
         env.router = router
         return env
     }()

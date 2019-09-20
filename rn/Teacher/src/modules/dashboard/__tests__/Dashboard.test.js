@@ -196,7 +196,7 @@ describe('Dashboard', () => {
 
     const leftButton = explore(tree).selectLeftBarButton('favorited-course-list.profile-btn') || {}
     leftButton.action()
-    expect(props.navigator.show).toHaveBeenCalledWith('/profile', { modal: true, modalPresentationStyle: 'drawer' })
+    expect(props.navigator.show).toHaveBeenCalledWith('/profile', { modal: true, embedInNavigationController: false, modalPresentationStyle: 'drawer' })
   })
 
   it('select course', () => {

@@ -298,6 +298,11 @@
 		7DBED017232FDDB700392F3C /* GetAccountHelpLinksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED016232FDDB700392F3C /* GetAccountHelpLinksTests.swift */; };
 		7DBED01B2330158F00392F3C /* UploadAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED01A2330158F00392F3C /* UploadAvatar.swift */; };
 		7DBED01D2330332800392F3C /* UploadAvatarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED01C2330332800392F3C /* UploadAvatarTests.swift */; };
+		7DBED02323317E0F00392F3C /* ExternalToolLaunchPlacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED02223317E0F00392F3C /* ExternalToolLaunchPlacement.swift */; };
+		7DBED0252331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */; };
+		7DBED02F2333E0C900392F3C /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED02E2333E0C900392F3C /* ProfilePresenter.swift */; };
+		7DBED0312333EC3B00392F3C /* ProfilePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0302333EC3B00392F3C /* ProfilePresenterTests.swift */; };
+		7DBED03623344EDF00392F3C /* ExternalToolLaunchPlacementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED03523344EDE00392F3C /* ExternalToolLaunchPlacementTests.swift */; };
 		7DBF9235226975B100710D0F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96482E211E2F1A002C3255 /* Core.framework */; };
 		7DBF9236226975B100710D0F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96482E211E2F1A002C3255 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DC23092213D710000318ED0 /* UIImageViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC23091213D710000318ED0 /* UIImageViewExtensionsTests.swift */; };
@@ -1110,6 +1115,11 @@
 		7DBED016232FDDB700392F3C /* GetAccountHelpLinksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountHelpLinksTests.swift; sourceTree = "<group>"; };
 		7DBED01A2330158F00392F3C /* UploadAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatar.swift; sourceTree = "<group>"; };
 		7DBED01C2330332800392F3C /* UploadAvatarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarTests.swift; sourceTree = "<group>"; };
+		7DBED02223317E0F00392F3C /* ExternalToolLaunchPlacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolLaunchPlacement.swift; sourceTree = "<group>"; };
+		7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGlobalNavExternalToolsPlacements.swift; sourceTree = "<group>"; };
+		7DBED02E2333E0C900392F3C /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		7DBED0302333EC3B00392F3C /* ProfilePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterTests.swift; sourceTree = "<group>"; };
+		7DBED03523344EDE00392F3C /* ExternalToolLaunchPlacementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolLaunchPlacementTests.swift; sourceTree = "<group>"; };
 		7DC23091213D710000318ED0 /* UIImageViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensionsTests.swift; sourceTree = "<group>"; };
 		7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntryTests.swift; sourceTree = "<group>"; };
 		7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64ExtensionsTests.swift; sourceTree = "<group>"; };
@@ -2342,7 +2352,9 @@
 		7DBED015232FDD8000392F3C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				7DBED03523344EDE00392F3C /* ExternalToolLaunchPlacementTests.swift */,
 				7DBED016232FDDB700392F3C /* GetAccountHelpLinksTests.swift */,
+				7DBED0302333EC3B00392F3C /* ProfilePresenterTests.swift */,
 				7DBED01C2330332800392F3C /* UploadAvatarTests.swift */,
 			);
 			path = Profile;
@@ -2414,8 +2426,11 @@
 			children = (
 				7DBED00D232C252200392F3C /* APIHelpLinks.swift */,
 				9FAA58FC223A987600FEC3F8 /* DrawerTransitioning.swift */,
+				7DBED02223317E0F00392F3C /* ExternalToolLaunchPlacement.swift */,
 				7DBED00F232C2C7500392F3C /* GetAccountHelpLinks.swift */,
+				7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */,
 				7DBED011232C32CD00392F3C /* HelpLink.swift */,
+				7DBED02E2333E0C900392F3C /* ProfilePresenter.swift */,
 				7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */,
 				9FAA58FD223A987600FEC3F8 /* ProfileViewController.swift */,
 				7DBED01A2330158F00392F3C /* UploadAvatar.swift */,
@@ -3331,6 +3346,7 @@
 				7DD371BF22E7B20900C2D0F7 /* GetQuizSubmissions.swift in Sources */,
 				B1E789A421B0EC1A0087FE4A /* LogEvent.swift in Sources */,
 				7DCF1EBA216BC8C6003AF358 /* TabVisibility.swift in Sources */,
+				7DBED0252331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift in Sources */,
 				7DA20E8F21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift in Sources */,
 				9FD504E82180BE1400B395BA /* APIFileRequestable.swift in Sources */,
 				7D6A2BE2214C11AD00DB15C4 /* Route.swift in Sources */,
@@ -3418,6 +3434,7 @@
 				7D2FADBE225BA50A00BCE19E /* RichContentEditorViewController.swift in Sources */,
 				B1BEB2CB22458B5E00E893A4 /* MDMManager.swift in Sources */,
 				3B3467D821360A7C00F9BC2E /* APILoginWebRequestable.swift in Sources */,
+				7DBED02323317E0F00392F3C /* ExternalToolLaunchPlacement.swift in Sources */,
 				7D80AC21212B89C500C40ECE /* APIAccountRequestable.swift in Sources */,
 				7D005F772239CCEF0040CBD7 /* AvatarView.swift in Sources */,
 				B1C783EF2241EA3700DD89A9 /* NSManagedObjectContextExtensions.swift in Sources */,
@@ -3435,6 +3452,7 @@
 				B1E789AD21B0F0800087FE4A /* LoggableCell.swift in Sources */,
 				3B158CA622E1343D0039A568 /* Persistency.swift in Sources */,
 				789C9BC12138516300B37AC4 /* UIColorExtensions.swift in Sources */,
+				7DBED02F2333E0C900392F3C /* ProfilePresenter.swift in Sources */,
 				7D92D657224ACC7A0015B368 /* UploadMediaComment.swift in Sources */,
 				7DF4FFD5217133AF007E5F81 /* TabType.swift in Sources */,
 				EEC3EF6322E25F6100799FE2 /* APIPage.swift in Sources */,
@@ -3485,6 +3503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DBED0312333EC3B00392F3C /* ProfilePresenterTests.swift in Sources */,
 				7D5C87212239A99E00D99651 /* SubmissionCommentTests.swift in Sources */,
 				B1A6BC8A218A977D000515E3 /* APIEnrollmentRequestableTests.swift in Sources */,
 				7D80AC5B212DB0B500C40ECE /* URLResponseExtensionsTests.swift in Sources */,
@@ -3544,6 +3563,7 @@
 				3B158CB122E167CD0039A568 /* PageViewEventTests.swift in Sources */,
 				7D1F704821CAE4E700E78D69 /* AppEnvironmentTests.swift in Sources */,
 				7DEAD09E22790B720030C28A /* RichContentEditorPresenterTests.swift in Sources */,
+				7DBED03623344EDF00392F3C /* ExternalToolLaunchPlacementTests.swift in Sources */,
 				7D80AC25212C61F100C40ECE /* APIAccountRequestableTests.swift in Sources */,
 				9F09A4CF22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift in Sources */,
 				7D85D8E5226A8CFB002DBF63 /* AvatarViewTests.swift in Sources */,
@@ -4013,7 +4033,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -4072,7 +4092,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

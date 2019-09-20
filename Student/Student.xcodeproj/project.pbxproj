@@ -248,9 +248,7 @@
 		49AA2D2E1CF4DC540055862D /* CBIPeopleTabViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D1C1CF4DC540055862D /* CBIPeopleTabViewModel.m */; };
 		49AA2D2F1CF4DC540055862D /* CBIPeopleViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D1D1CF4DC540055862D /* CBIPeopleViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2D301CF4DC540055862D /* CBIPeopleViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D1E1CF4DC540055862D /* CBIPeopleViewModel.m */; };
-		49AA2D311CF4DC540055862D /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AA2D1F1CF4DC540055862D /* Profile.storyboard */; };
-		49AA2D321CF4DC540055862D /* ProfileViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D201CF4DC540055862D /* ProfileViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49AA2D331CF4DC540055862D /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D211CF4DC540055862D /* ProfileViewController.m */; };
+		49AA2D311CF4DC540055862D /* AboutViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AA2D1F1CF4DC540055862D /* AboutViewController.storyboard */; };
 		49AA2D341CF4DC540055862D /* RoundedButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2D221CF4DC540055862D /* RoundedButton.h */; };
 		49AA2D351CF4DC540055862D /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D231CF4DC540055862D /* RoundedButton.m */; };
 		49CE97661F900B4700121A43 /* UICollectionView+MyLittleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CE97521F900B4100121A43 /* UICollectionView+MyLittleViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -910,9 +908,7 @@
 		49AA2D1C1CF4DC540055862D /* CBIPeopleTabViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIPeopleTabViewModel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49AA2D1D1CF4DC540055862D /* CBIPeopleViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIPeopleViewModel.h; sourceTree = "<group>"; };
 		49AA2D1E1CF4DC540055862D /* CBIPeopleViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIPeopleViewModel.m; sourceTree = "<group>"; };
-		49AA2D1F1CF4DC540055862D /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		49AA2D201CF4DC540055862D /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		49AA2D211CF4DC540055862D /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		49AA2D1F1CF4DC540055862D /* AboutViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AboutViewController.storyboard; sourceTree = "<group>"; };
 		49AA2D221CF4DC540055862D /* RoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundedButton.h; sourceTree = "<group>"; };
 		49AA2D231CF4DC540055862D /* RoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedButton.m; sourceTree = "<group>"; };
 		49CE97521F900B4100121A43 /* UICollectionView+MyLittleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+MyLittleViewController.h"; sourceTree = "<group>"; };
@@ -2250,6 +2246,7 @@
 			children = (
 				49AA2D131CF4DC540055862D /* AboutViewController.h */,
 				49AA2D141CF4DC540055862D /* AboutViewController.m */,
+				49AA2D1F1CF4DC540055862D /* AboutViewController.storyboard */,
 				49AA2D151CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.h */,
 				49AA2D161CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m */,
 				49AA2D171CF4DC540055862D /* CBIPeopleAvatarCell.xib */,
@@ -2260,9 +2257,6 @@
 				49AA2D1C1CF4DC540055862D /* CBIPeopleTabViewModel.m */,
 				49AA2D1D1CF4DC540055862D /* CBIPeopleViewModel.h */,
 				49AA2D1E1CF4DC540055862D /* CBIPeopleViewModel.m */,
-				49AA2D1F1CF4DC540055862D /* Profile.storyboard */,
-				49AA2D201CF4DC540055862D /* ProfileViewController.h */,
-				49AA2D211CF4DC540055862D /* ProfileViewController.m */,
 				49AA2D221CF4DC540055862D /* RoundedButton.h */,
 				49AA2D231CF4DC540055862D /* RoundedButton.m */,
 				787BAADF215445BB002D0381 /* UserInfoTableViewCell.swift */,
@@ -3324,7 +3318,6 @@
 				49CE97661F900B4700121A43 /* UICollectionView+MyLittleViewController.h in Headers */,
 				49F9FA5A1CF8CDC400654758 /* UIImage+TechDebt.h in Headers */,
 				49642BC01CF4C44A00238B3F /* EXTScope.h in Headers */,
-				49AA2D321CF4DC540055862D /* ProfileViewController.h in Headers */,
 				492705D21CF4B73300C631C6 /* UIView+FloatingView.h in Headers */,
 				49AA2D251CF4DC540055862D /* AboutViewController.h in Headers */,
 				49A04E271CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.h in Headers */,
@@ -3807,7 +3800,7 @@
 				49AA2D291CF4DC540055862D /* CBIPeopleAvatarCell.xib in Resources */,
 				2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */,
 				49AA2D2A1CF4DC540055862D /* CBIPeopleDetail.storyboard in Resources */,
-				49AA2D311CF4DC540055862D /* Profile.storyboard in Resources */,
+				49AA2D311CF4DC540055862D /* AboutViewController.storyboard in Resources */,
 				492705F21CF4B76A00C631C6 /* CBIColorfulCell.xib in Resources */,
 				492707FA1CF4BC1000C631C6 /* UnsupportedView.storyboard in Resources */,
 				492705F41CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib in Resources */,
@@ -4211,7 +4204,6 @@
 				4927077D1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m in Sources */,
 				49AA2D2E1CF4DC540055862D /* CBIPeopleTabViewModel.m in Sources */,
 				49AA2D281CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.m in Sources */,
-				49AA2D331CF4DC540055862D /* ProfileViewController.m in Sources */,
 				492705F61CF4B76A00C631C6 /* CBIColorfulViewModel.m in Sources */,
 				49DE1DA41F8808F30055D74A /* CBIConversationStarter.m in Sources */,
 				49F9FA5B1CF8CDC400654758 /* UIImage+TechDebt.m in Sources */,
@@ -5030,7 +5022,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -5081,7 +5073,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

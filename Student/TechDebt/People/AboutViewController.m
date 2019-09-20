@@ -62,7 +62,7 @@ typedef NS_ENUM(NSInteger, LegalRows) {
 @synthesize canvasAPI = _canvasAPI;
 
 - (id)init {
-    return [[UIStoryboard storyboardWithName:@"Profile" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"About"];
+    return [[UIStoryboard storyboardWithName:@"AboutViewController" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"AboutViewController"];
 }
 
 #pragma mark - View Lifecycle
@@ -254,10 +254,12 @@ typedef NS_ENUM(NSInteger, LegalRows) {
         NSString *urlAddress = @"";
         
         if (indexPath.row == TermsRow) {
-            return [[HelmManager shared] present:@"/terms-of-use" withProps:@{} options:@{
-                                                                                          @"modal": @YES,
-                                                                                          @"embedInNavigationController": @YES
-                                                                                          } callback:nil];
+            return [[HelmManager shared]
+                present: @"/accounts/:accountID/terms_of_service"
+                withProps: @{ @"accountID": @"self" }
+                options: @{ @"modal": @YES, @"embedInNavigationController": @YES }
+                callback: nil
+            ];
         }
 
         if (indexPath.row == PrivacyRow) {

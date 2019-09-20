@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 workspace 'Canvas.xcworkspace'
 inhibit_all_warnings!
-platform :ios, '11.0'
+platform :ios, '12.0'
 
 abstract_target 'defaults' do
   use_frameworks!

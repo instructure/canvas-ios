@@ -130,7 +130,7 @@ NativeModules.RNSound = {
 }
 
 NativeModules.NativeNotificationCenter = {
-  postAsyncActionNotification: jest.fn(),
+  addObserver: jest.fn(),
   postNotification: jest.fn(),
 }
 
@@ -191,6 +191,10 @@ NativeModules.CanvasAnalytics = {
 
 NativeModules.QLPreviewManager = {
   previewFile: jest.fn(),
+}
+
+NativeModules.LTITools = {
+  launchExternalTool: jest.fn(),
 }
 
 jest.mock('NativeEventEmitter')
