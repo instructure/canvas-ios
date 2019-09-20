@@ -22,33 +22,26 @@ import TestsFoundation
 import XCTest
 
 class URLSubmissionTests: StudentUITestCase {
+    lazy var course = mock(course: .make())
+    lazy var assignment = mock(assignment: .make(submission_types: [ .online_url ]))
+
     func testSumbitUrl() {
         mockBaseRequests()
-        let course = APICourse.make()
-        mockData(GetCourseRequest(courseID: course.id), value: course)
-        let assignment = APIAssignment.make(submission_types: [ .online_url ])
-        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
         mockData(CreateSubmissionRequest(context: course, assignmentID: assignment.id.value, body: nil), noCallback: true)
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
-        XCTAssertTrue(URLSubmission.url.isVisible)
-        XCTAssertTrue(URLSubmission.url.isVisible)
+        XCTAssertTrue(URLSubmission.url.waitToExist().isVisible)
         XCTAssertTrue(URLSubmission.preview.isVisible)
         XCTAssertFalse(URLSubmission.loadingView.isVisible)
         URLSubmission.url.tap()
         URLSubmission.url.typeText("www.amazon.com")
         URLSubmission.submit.tap()
-        XCTAssertTrue(URLSubmission.loadingView.exists)
-        XCTAssertTrue(URLSubmission.loadingView.isVisible)
+        XCTAssertTrue(URLSubmission.loadingView.waitToExist().isVisible)
     }
 
     func testShowSubmission() {
         mockBaseRequests()
-        let course = APICourse.make()
-        mockData(GetCourseRequest(courseID: course.id), value: course)
-        let assignment = APIAssignment.make(submission_types: [ .online_url ])
-        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
         mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             assignment_id: assignment.id,
             user_id: "1",
