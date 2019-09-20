@@ -32,6 +32,10 @@ class RouterTests: XCTestCase {
                 completion()
             }
         }
+        var detail: UIViewController?
+        override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
+            detail = vc
+        }
     }
 
     func testRouter() {
@@ -87,6 +91,45 @@ class RouterTests: XCTestCase {
         router.route(to: URLComponents(string: "/modalEmbed")!, from: mockView, options: [.modal, .embedInNav])
         XCTAssertNotNil(mockView.presented)
         XCTAssert(mockView.presented?.isKind(of: UINavigationController.self) == true)
+    }
+
+    func testRouteDetail() {
+        let mockView = MockViewController()
+        let router = Router(routes: [
+            RouteHandler("/detail") { _, _ in
+                return UIViewController()
+            },
+        ]) { _, _, _ in }
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: [.detail])
+        XCTAssertNotNil(mockView.detail)
+        XCTAssert(mockView.detail?.isKind(of: UIViewController.self) == true)
+    }
+
+    func testRouteDetailEmbedInNav() {
+        let mockView = MockViewController()
+        let router = Router(routes: [
+            RouteHandler("/detail") { _, _ in
+                return UIViewController()
+            },
+        ]) { _, _, _ in }
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: [.detail, .embedInNav])
+        XCTAssertNotNil(mockView.detail)
+        XCTAssert(mockView.detail?.isKind(of: UINavigationController.self) == true)
+    }
+
+    func testRouteDetailFromDetailDoesAShow() {
+        let mockView = MockViewController()
+        let split = UISplitViewController()
+        split.viewControllers = [UINavigationController(), UINavigationController(rootViewController: mockView)]
+        let router = Router(routes: [
+            RouteHandler("/detail") { _, _ in
+                return UIViewController()
+            },
+        ]) { _, _, _ in }
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: [.detail, .embedInNav])
+        XCTAssertNil(mockView.detail)
+        XCTAssertNotNil(mockView.shown)
+        XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
     }
 
     func testRouteMatch() {

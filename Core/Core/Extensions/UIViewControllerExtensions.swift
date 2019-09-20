@@ -44,6 +44,17 @@ extension UIViewController {
         case left
     }
 
+    public var isInSplitViewDetail: Bool {
+        if
+            let splitView = splitViewController,
+            splitView.viewControllers.count == 2,
+            let nav = splitView.viewControllers.last as? UINavigationController,
+            nav.viewControllers.contains(self) {
+            return true
+        }
+        return false
+    }
+
     public func addNavigationButton(_ button: UIBarButtonItem, side: NavigationItemSide) {
         switch side {
         case .right:

@@ -26,13 +26,11 @@ class ModuleDetailsViewController: CanvasCore.TableViewController, PageViewEvent
     @objc let session: Session
     @objc let courseID: String
     let viewModel: ModuleViewModel
-    @objc let route: (UIViewController, URL) -> Void
     let disposable = CompositeDisposable()
 
-    @objc init(session: Session, courseID: String, moduleID: String, route: @escaping (UIViewController, URL) -> Void) throws {
+    @objc init(session: Session, courseID: String, moduleID: String) throws {
         self.session = session
         self.courseID = courseID
-        self.route = route
         viewModel = try ModuleViewModel(session: session, courseID: courseID, moduleID: moduleID)
         super.init(style: .grouped)
 
@@ -88,15 +86,13 @@ class ModuleDetailsViewController: CanvasCore.TableViewController, PageViewEvent
         case 0:
             Analytics.shared.logEvent("module_item_selected")
             let module = dataSource.prerequisiteModulesCollection[IndexPath(row: indexPath.row, section: 0)]
-            let url = URL(string: "\(ContextID.course(withID: courseID).htmlPath)/modules/\(module.id)")!
-            route(self, url)
+            router.route(to: Route.module(forCourse: courseID, moduleID: module.id), from: self)
         case 1:
             let moduleItem = dataSource.itemsCollection[IndexPath(row: indexPath.row, section: 0)]
             guard let content = moduleItem.content, content != .subHeader else { return }
             let analyticsParams = ["contentType": moduleItem.contentType.rawValue]
             Analytics.shared.logEvent("module_item_content_selected", parameters: analyticsParams)
-            let url = URL(string: "\(ContextID(id: courseID, context: .course).htmlPath)/modules/\(moduleItem.moduleID)/items/\(moduleItem.id)")!
-            route(self, url)
+            router.route(to: Route.moduleItem(forCourse: courseID, moduleID: moduleItem.moduleID, itemID: moduleItem.id), from: self, options: [.detail, .embedInNav])
         default:
             return
         }
