@@ -53,11 +53,11 @@ class KeychainTests: XCTestCase {
         let key = "myDictionary"
         let date = Date(fromISOString: "2019-06-25T06:00:00Z")!
         let dict: [String: Any] = ["foo": "bar", "date": date]
-        let data = NSKeyedArchiver.archivedData(withRootObject: dict)
+        let data = try! NSKeyedArchiver.archivedData(withRootObject: dict, requiringSecureCoding: false)
         keychain.setData(data, for: key)
 
         let newInstance = Keychain(serviceName: serviceName, accessGroup: nil)
-        if let data = newInstance.getData(for: key), let result = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String: Any] {
+        if let data = newInstance.getData(for: key), let result =  try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [String: Any] {
             XCTAssertEqual(result["foo"] as! String, dict["foo"] as! String)
             XCTAssertEqual(result["date"] as! Date, dict["date"] as! Date)
         } else {

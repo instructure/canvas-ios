@@ -60,7 +60,7 @@ public class UITestHelpers {
             } else if container.contains(.useMocksOnly) {
                 self = .useMocksOnly
             } else if let data = try container.decodeIfPresent(Data.self, forKey: .debug) {
-                self = .debug(NSKeyedUnarchiver(forReadingWith: data).decodeObject(forKey: "debug"))
+                self = .debug(try NSKeyedUnarchiver(forReadingFrom: data).decodeObject(forKey: "debug"))
             } else {
                 throw DecodingError.typeMismatch(Helper.self, .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(Helper.self)"))
             }
@@ -87,7 +87,7 @@ public class UITestHelpers {
             case .useMocksOnly:
                 try container.encode(nil as Int?, forKey: .useMocksOnly)
             case .debug(let payload):
-                let archiver = NSKeyedArchiver()
+                let archiver = NSKeyedArchiver(requiringSecureCoding: false)
                 archiver.encode(payload, forKey: "debug")
                 try container.encode(archiver.encodedData, forKey: .debug)
             }
