@@ -60,7 +60,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
     "/:context/:contextID/activity_stream": { url, _ in
         guard let context = ContextID(path: url.path) else { return nil }
         guard let session = Session.current else { return nil }
-        return try? ActivityStreamTableViewController(session: session, context: context, route: route)
+        return try? ActivityStreamTableViewController(session: session, context: context)
     },
 
     "/:context/:contextID/announcements": nil,

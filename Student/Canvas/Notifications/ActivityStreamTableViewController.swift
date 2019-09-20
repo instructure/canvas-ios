@@ -70,10 +70,7 @@ private func colorfulActivity(session: Session) -> ((Activity) -> ColorfulViewMo
 }
 
 class ActivityStreamTableViewController: FetchedTableViewController<Activity> {
-    @objc let route: (UIViewController, URL)->()
-
-    init(session: Session, context: ContextID = .currentUser, route: @escaping (UIViewController, URL)->()) throws {
-        self.route = route
+    init(session: Session, context: ContextID = .currentUser) throws {
         super.init()
 
         tableView.rowHeight = UITableView.automaticDimension
@@ -89,6 +86,6 @@ class ActivityStreamTableViewController: FetchedTableViewController<Activity> {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Analytics.shared.logEvent("notification_selected")
         let activity = collection[indexPath]
-        route(self, activity.url)
+        router.route(to: activity.url, from: self, options: [.detail, .embedInNav])
     }
 }

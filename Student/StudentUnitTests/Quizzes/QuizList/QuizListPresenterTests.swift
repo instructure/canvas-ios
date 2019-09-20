@@ -112,6 +112,7 @@ class QuizListPresenterTests: PersistenceTestCase {
         let router = env.router as? TestRouter
         XCTAssertNoThrow(presenter.select(quiz, from: UIViewController()))
         XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(quiz.htmlURL))
+        XCTAssertEqual(router?.calls.last?.2, [.detail, .embedInNav])
     }
 }
 

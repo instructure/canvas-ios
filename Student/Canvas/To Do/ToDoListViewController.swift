@@ -85,11 +85,9 @@ func colorfulToDoViewModel(session: Session, toDoItem: Todo) -> ColorfulViewMode
 class ToDoListViewController: FetchedTableViewController<Todo>, PageViewEventViewControllerLoggingProtocol {
 
     @objc let session: Session
-    @objc let route: (UIViewController, URL)->()
 
-    @objc init(session: Session, route: @escaping (UIViewController, URL)->()) throws {
+    @objc init(session: Session) throws {
         self.session = session
-        self.route = route
         super.init()
 
         tableView.rowHeight = UITableView.automaticDimension
@@ -132,7 +130,7 @@ class ToDoListViewController: FetchedTableViewController<Todo>, PageViewEventVie
         let todo = collection[indexPath]
         Analytics.shared.logEvent("todo_selected")
         if let url = URL(string: todo.routingURL) {
-            route(self, url)
+            router.route(to: url, from: self, options: [.detail, .embedInNav])
         }
     }
 }

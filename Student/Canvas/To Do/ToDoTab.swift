@@ -21,9 +21,9 @@ import TechDebt
 import CanvasCore
 import Core
 
-public func ToDoTabViewController(session: Session, route: @escaping (UIViewController, URL)->()) throws -> UIViewController {
+public func ToDoTabViewController(session: Session) throws -> UIViewController {
         
-    let list = try ToDoListViewController(session: session, route: route)
+    let list = try ToDoListViewController(session: session)
 
     let split = SplitViewController()
     split.preferredDisplayMode = .allVisible
