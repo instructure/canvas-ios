@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "Ocena"
   },
+  "grade_after_posting_51718245": {
+    "message": "Ocena po objavi"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "Ocena po objavi { grade }"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "Ocena pred objavo"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "Ocena pred objavo { grade }"
+  },
   "grade_grade_990eb477": {
     "message": "Ocena { grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "Preglasitev ocene"
+  },
+  "grade_override_grade_4788faec": {
+    "message": "Preglasitev ocene { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "Pravila o objavah ocen"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "Vadi kviz"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "Kvizi in ankete za vajo nimajo podrobnih ogledov."
   },
   "preview_quiz_1ffbf684": {
     "message": "Predogled kviza"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "Skupna ocena:"
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "Skupno število oddaj { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "Brez zvezdice"

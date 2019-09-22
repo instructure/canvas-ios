@@ -38,6 +38,9 @@
 "black" = "črna";
 
 /* No comment provided by engineer. */
+"Blocking" = "Blokiram";
+
+/* No comment provided by engineer. */
 "blue" = "modra";
 
 /* No comment provided by engineer. */
@@ -71,6 +74,12 @@
 "Canvas Teacher" = "Izvajalec v sistemu Canvas";
 
 /* No comment provided by engineer. */
+"Casual question or suggestion" = "Naključno vprašanje ali predlog";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Preverite omrežje in poskusite znova.";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Počisti snemanje";
 
 /* No comment provided by engineer. */
@@ -78,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Closed" = "Zaprto";
+
+/* No comment provided by engineer. */
+"Comment" = "Komentar";
 
 /* No comment provided by engineer. */
 "Comments" = "Komentarji";
@@ -104,6 +116,12 @@
 "Delete Comment" = "Odstrani komentar";
 
 /* No comment provided by engineer. */
+"Describe the feature" = "Opišite funkcionalnost";
+
+/* No comment provided by engineer. */
+"Describe the problem" = "Opišite težavo";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Komentar k razpravi";
 
 /* No comment provided by engineer. */
@@ -116,6 +134,9 @@
 "Done" = "Dokončano";
 
 /* No comment provided by engineer. */
+"Emergency" = "Nujni primer";
+
+/* No comment provided by engineer. */
 "End Act as User" = "Opustite vlogo uporabnika";
 
 /* No comment provided by engineer. */
@@ -126,6 +147,9 @@
 
 /* No comment provided by engineer. */
 "External Tool" = "Zunanje orodje";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Skrajno kritični nujni primer";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Shranjevanje slike ni uspelo.";
@@ -176,7 +200,19 @@
 "How do I find my school?" = "Kako najdem svojo šolo?";
 
 /* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Ne morem dokončati zadev, dokler ne prejmem vašega odziva.";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Potrebujem pomoč, ni pa nujno.";
+
+/* No comment provided by engineer. */
 "Image" = "Slika";
+
+/* No comment provided by engineer. */
+"Impact" = "Vpliv";
+
+/* No comment provided by engineer. */
+"Impact Level" = "Raven vpliva";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Nezaključeno";
@@ -263,6 +299,9 @@
 "Not Submitted" = "Ni oddano.";
 
 /* No comment provided by engineer. */
+"Not Urgent" = "Ni nujno";
+
+/* No comment provided by engineer. */
 "OK" = "V redu";
 
 /* No comment provided by engineer. */
@@ -320,6 +359,15 @@
 "Reply to the annotation or previous comments" = "Odgovori na opombo ali predhodne komentarje";
 
 /* No comment provided by engineer. */
+"Report a Problem" = "Poročajte o težavi.";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Zahtevaj funkcionalnost";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Zahteva ni uspela.";
+
+/* No comment provided by engineer. */
 "Retry" = "Ponovno poskusi";
 
 /* No comment provided by engineer. */
@@ -338,6 +386,9 @@
 "Select Course" = "Izberi predmet";
 
 /* No comment provided by engineer. */
+"Select One" = "Izberi eno";
+
+/* No comment provided by engineer. */
 "Send" = "Pošlji";
 
 /* No comment provided by engineer. */
@@ -353,6 +404,15 @@
 "Site Admin Login" = "Prijava skrbnika mesta";
 
 /* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Nekaj ne deluje, a znam to rešiti.";
+
+/* No comment provided by engineer. */
+"Something is Missing" = "Nekaj manjka";
+
+/* No comment provided by engineer. */
+"Something is Wrong" = "Prišlo je do težave";
+
+/* No comment provided by engineer. */
 "Start recording" = "Zaženi snemanje";
 
 /* No comment provided by engineer. */
@@ -365,6 +425,9 @@
 "Style" = "Slog";
 
 /* No comment provided by engineer. */
+"Subject" = "Kratek opis predmeta";
+
+/* No comment provided by engineer. */
 "Submit" = "Pošlji";
 
 /* No comment provided by engineer. */
@@ -375,6 +438,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Poslano %@";
+
+/* No comment provided by engineer. */
+"Success!" = "Uspešno!";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Za pomoč tapnite tukaj.";
@@ -390,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Vnos besedila";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Hvala, vaša zahteva je prejeta.";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikacija se mora znova zagnati, da lahko uporabi nove jezikovne nastavitve. Ponovno zaženite aplikacijo.";
@@ -464,6 +533,9 @@
 "Whoops!" = "Ups.";
 
 /* No comment provided by engineer. */
+"Workaround" = "Rešitev";
+
+/* No comment provided by engineer. */
 "yellow" = "rumena";
 
 /* No comment provided by engineer. */
@@ -477,4 +549,7 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Prenehali boste nastopati v vlogi tega uporabnika in se boste vrnili v svoj račun.";
+
+/* No comment provided by engineer. */
+"Your Email" = "Vaš e-poštni naslov";
 

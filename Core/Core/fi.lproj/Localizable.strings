@@ -38,6 +38,9 @@
 "black" = "musta";
 
 /* No comment provided by engineer. */
+"Blocking" = "Estetään";
+
+/* No comment provided by engineer. */
 "blue" = "sininen";
 
 /* No comment provided by engineer. */
@@ -71,6 +74,12 @@
 "Canvas Teacher" = "Canvas-opettaja";
 
 /* No comment provided by engineer. */
+"Casual question or suggestion" = "Huoleton kysymys tai ehdotus";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Tarkasta verkkoyhteys ja yritä uudelleen!";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Tyhjennä nauhoitus";
 
 /* No comment provided by engineer. */
@@ -78,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Closed" = "Suljettu";
+
+/* No comment provided by engineer. */
+"Comment" = "Kommentti";
 
 /* No comment provided by engineer. */
 "Comments" = "Kommentit";
@@ -104,6 +116,12 @@
 "Delete Comment" = "Poista kommentti";
 
 /* No comment provided by engineer. */
+"Describe the feature" = "Kuvaa ominaisuus";
+
+/* No comment provided by engineer. */
+"Describe the problem" = "Kuvaa ongelma";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Keskustelua koskeva kommentti";
 
 /* No comment provided by engineer. */
@@ -116,6 +134,9 @@
 "Done" = "Valmis";
 
 /* No comment provided by engineer. */
+"Emergency" = "Hätätila";
+
+/* No comment provided by engineer. */
 "End Act as User" = "Päätä toimi käyttäjänä";
 
 /* No comment provided by engineer. */
@@ -126,6 +147,9 @@
 
 /* No comment provided by engineer. */
 "External Tool" = "Ulkoinen työkalu";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Erittäin kiireellinen hätätapaus";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Kuvan tallennus epäonnistui";
@@ -176,7 +200,19 @@
 "How do I find my school?" = "Miten löydän kouluni";
 
 /* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "En saa asioita tehtyä, ennen kuin kuulen sinusta.";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Tarvitsen apua, mutta tämä ei ele kiireellistä";
+
+/* No comment provided by engineer. */
 "Image" = "Kuva";
+
+/* No comment provided by engineer. */
+"Impact" = "Vaikutus";
+
+/* No comment provided by engineer. */
+"Impact Level" = "Vaikutustaso";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Keskeneräinen";
@@ -263,6 +299,9 @@
 "Not Submitted" = "Ei lähetetty";
 
 /* No comment provided by engineer. */
+"Not Urgent" = "Ei kiireellinen";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -320,6 +359,15 @@
 "Reply to the annotation or previous comments" = "Vastaa huomautukseen tai edellisiin kommentteihin";
 
 /* No comment provided by engineer. */
+"Report a Problem" = "Raportoi ongelma";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Pyydä ominaisuus";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Pyyntö epäonnistui!";
+
+/* No comment provided by engineer. */
 "Retry" = "Yritä uudelleen";
 
 /* No comment provided by engineer. */
@@ -338,6 +386,9 @@
 "Select Course" = "Valitse kurssi";
 
 /* No comment provided by engineer. */
+"Select One" = "Valitse yksi";
+
+/* No comment provided by engineer. */
 "Send" = "Lähetä";
 
 /* No comment provided by engineer. */
@@ -353,6 +404,15 @@
 "Site Admin Login" = "Sivuston pääkäyttäjän kirjautuminen";
 
 /* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Jotakin on rikki, mutta löydän kiertotien";
+
+/* No comment provided by engineer. */
+"Something is Missing" = "Jotakin puuttuu";
+
+/* No comment provided by engineer. */
+"Something is Wrong" = "Jotakin on väärin";
+
+/* No comment provided by engineer. */
 "Start recording" = "Aloita nauhoitus";
 
 /* No comment provided by engineer. */
@@ -365,6 +425,9 @@
 "Style" = "Tyyli";
 
 /* No comment provided by engineer. */
+"Subject" = "Aihe";
+
+/* No comment provided by engineer. */
 "Submit" = "Lähetä";
 
 /* No comment provided by engineer. */
@@ -375,6 +438,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Lähetetty %@";
+
+/* No comment provided by engineer. */
+"Success!" = "Onnistui!";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Avaa ohje napauttamalla tässä.";
@@ -390,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Tekstin syöttäminen";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Kiitos, pyyntösi vastaanotettiin";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Sovellus täytyy käynnistää uudelleen, jotta uusia kieliasetuksia voidaan käyttää. Käynnistä sovellus uudelleen.";
@@ -464,6 +533,9 @@
 "Whoops!" = "Hups!";
 
 /* No comment provided by engineer. */
+"Workaround" = "Väliaikainen ratkaisu";
+
+/* No comment provided by engineer. */
 "yellow" = "keltainen";
 
 /* No comment provided by engineer. */
@@ -477,4 +549,7 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Lopetat toimimasta tänä käyttäjänä ja palaat tilillesi.";
+
+/* No comment provided by engineer. */
+"Your Email" = "Sähköpostiosoitteesi";
 

@@ -49,7 +49,7 @@
 /* No comment provided by engineer. */
 "Assignment reminder" = "Assignment reminder";
 
-/* Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Cancel";
 
 /* Percent value is over 100 */
@@ -62,13 +62,7 @@
 "Caught up on Alerts" = "Caught up on alerts";
 
 /* No comment provided by engineer. */
-"Change User" = "Change user";
-
-/* No comment provided by engineer. */
 "Choose a student" = "Choose a student";
-
-/* Close Button Title */
-"Close" = "Close";
 
 /* Course Announcement Description */
 "Course announcements" = "Module announcements";
@@ -86,16 +80,10 @@
 "Current student: %@, tap to switch students" = "Current student: %@, tap to switch students";
 
 /* No comment provided by engineer. */
-"Developer Menu" = "Developer menu";
-
-/* No comment provided by engineer. */
 "Discussion" = "Discussion";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Dismiss";
-
-/* No comment provided by engineer. */
-"Error" = "Error";
 
 /* No comment provided by engineer. */
 "Event" = "Event";
@@ -108,9 +96,6 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Failed to load (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
-"Help" = "Help";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "High assignment mark cannot be lower than low assignment mark";
@@ -142,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Late: %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log Out" = "Log out";
-
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Low assignment mark cannot be higher than high assignment mark";
 
@@ -169,9 +151,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "No mark";
 
-/* Error message */
-"No installed apps support opening this file" = "No installed apps support opening this file";
-
 /* Empty Students Text */
 "No Students" = "No students";
 
@@ -180,12 +159,6 @@
 
 /* OK Button Title */
 "OK" = "OK";
-
-/* Open a url in the application Safari */
-"Open in Safari" = "Open in Safari";
-
-/* Open file in another application */
-"Open in..." = "Open in...";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Pairing Code";
@@ -197,16 +170,7 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
-"Report a Problem" = "Report a problem";
-
-/* No comment provided by engineer. */
-"Request a Feature" = "Request a feature";
-
-/* No comment provided by engineer. */
 "Settings" = "Settings";
-
-/* No comment provided by engineer. */
-"Stop Act as User" = "Stop act as user";
 
 /* No comment provided by engineer. */
 "Submitted" = "Submitted";
@@ -223,12 +187,6 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tap to start viewing Canvas as another person.";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Terms of Use";
-
-/* Error message */
-"There are no actions for this item" = "There are no actions for this item";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "There was a problem loading the AlertKit database file.";
 
@@ -237,9 +195,6 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "There was a problem loading the DiscussionKit database file.";
-
-/* No comment provided by engineer. */
-"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "There was an error loading your content. If it is an audio or video upload, it might still be processing.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "This announcement has expired.";
@@ -252,9 +207,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Unread";
-
-/* No comment provided by engineer. */
-"View Canvas Guides" = "View Canvas Guides";
 
 /* Calendar Tab */
 "Week" = "Week";

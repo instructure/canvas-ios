@@ -38,6 +38,9 @@
 "black" = "ブラック";
 
 /* No comment provided by engineer. */
+"Blocking" = "ブロック中";
+
+/* No comment provided by engineer. */
 "blue" = "ブルー";
 
 /* No comment provided by engineer. */
@@ -71,6 +74,12 @@
 "Canvas Teacher" = "Canvas 講師";
 
 /* No comment provided by engineer. */
+"Casual question or suggestion" = "気軽なご質問または提案";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "ネットワークをチェックして、もういちど試してください。";
+
+/* No comment provided by engineer. */
 "Clear recording" = "録音をクリアする";
 
 /* No comment provided by engineer. */
@@ -78,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Closed" = "終了済み";
+
+/* No comment provided by engineer. */
+"Comment" = "コメント";
 
 /* No comment provided by engineer. */
 "Comments" = "コメント";
@@ -104,6 +116,12 @@
 "Delete Comment" = "コメントを削除する";
 
 /* No comment provided by engineer. */
+"Describe the feature" = "特徴を記述する";
+
+/* No comment provided by engineer. */
+"Describe the problem" = "問題を説明";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "ディスカッションのコメント";
 
 /* No comment provided by engineer. */
@@ -116,6 +134,9 @@
 "Done" = "完了";
 
 /* No comment provided by engineer. */
+"Emergency" = "緊急";
+
+/* No comment provided by engineer. */
 "End Act as User" = "ユーザーとして行動することを止める";
 
 /* No comment provided by engineer. */
@@ -126,6 +147,9 @@
 
 /* No comment provided by engineer. */
 "External Tool" = "外部ツール";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "非常に深刻な緊急事態";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "画像の保存に失敗しました";
@@ -176,7 +200,19 @@
 "How do I find my school?" = "私のスクールの見つけ方は？";
 
 /* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "回答があるまで何もできません";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "ヘルプが必要ですが、緊急ではありません";
+
+/* No comment provided by engineer. */
 "Image" = "画像";
+
+/* No comment provided by engineer. */
+"Impact" = "影響";
+
+/* No comment provided by engineer. */
+"Impact Level" = "影響のレベル";
 
 /* No comment provided by engineer. */
 "Incomplete" = "不完全";
@@ -263,6 +299,9 @@
 "Not Submitted" = "未提出";
 
 /* No comment provided by engineer. */
+"Not Urgent" = "緊急ではありません";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -320,6 +359,15 @@
 "Reply to the annotation or previous comments" = "注釈や以前のコメントに返信する";
 
 /* No comment provided by engineer. */
+"Report a Problem" = "問題を報告する";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "機能をリクエストする";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "リクエストに失敗しました！";
+
+/* No comment provided by engineer. */
 "Retry" = "再試行";
 
 /* No comment provided by engineer. */
@@ -338,6 +386,9 @@
 "Select Course" = "コースの選択";
 
 /* No comment provided by engineer. */
+"Select One" = "1 つを選択";
+
+/* No comment provided by engineer. */
 "Send" = "送信";
 
 /* No comment provided by engineer. */
@@ -353,6 +404,15 @@
 "Site Admin Login" = "サイト管理者ログイン";
 
 /* No comment provided by engineer. */
+"Something is broken but I can work around it" = "何かが壊れていますが、それを避けて作業ができます";
+
+/* No comment provided by engineer. */
+"Something is Missing" = "何かが不足しています";
+
+/* No comment provided by engineer. */
+"Something is Wrong" = "なにか問題があります";
+
+/* No comment provided by engineer. */
 "Start recording" = "録画開始";
 
 /* No comment provided by engineer. */
@@ -365,6 +425,9 @@
 "Style" = "スタイル";
 
 /* No comment provided by engineer. */
+"Subject" = "件名";
+
+/* No comment provided by engineer. */
 "Submit" = "提出";
 
 /* No comment provided by engineer. */
@@ -375,6 +438,9 @@
 
 /* Submitted date */
 "Submitted %@" = "タスクの成績を送信%@";
+
+/* No comment provided by engineer. */
+"Success!" = "成功です！";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "ここをタップしてヘルプを表示します。";
@@ -390,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "テキストエントリ";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "リクエストが受理されました！";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "新しい言語設定を使用するには、アプリの再起動が必要です。アプリを再起動してください。";
@@ -464,6 +533,9 @@
 "Whoops!" = "しまった！";
 
 /* No comment provided by engineer. */
+"Workaround" = "回避方法";
+
+/* No comment provided by engineer. */
 "yellow" = "イエロー";
 
 /* No comment provided by engineer. */
@@ -477,4 +549,7 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "このユーザーとして行動することを止め、自分のアカウントに戻る";
+
+/* No comment provided by engineer. */
+"Your Email" = "あなたのメールアドレス";
 

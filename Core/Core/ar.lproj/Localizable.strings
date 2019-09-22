@@ -38,6 +38,9 @@
 "black" = "أسود";
 
 /* No comment provided by engineer. */
+"Blocking" = "حظر";
+
+/* No comment provided by engineer. */
 "blue" = "أزرق";
 
 /* No comment provided by engineer. */
@@ -71,6 +74,12 @@
 "Canvas Teacher" = "Canvas Teacher";
 
 /* No comment provided by engineer. */
+"Casual question or suggestion" = "مجرد سؤال عابر أو اقتراح";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "تحقق من الشبكة وحاول مرة أخرى!";
+
+/* No comment provided by engineer. */
 "Clear recording" = "مسح التسجيل";
 
 /* No comment provided by engineer. */
@@ -78,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Closed" = "مغلق";
+
+/* No comment provided by engineer. */
+"Comment" = "تعليق";
 
 /* No comment provided by engineer. */
 "Comments" = "التعليقات";
@@ -104,6 +116,12 @@
 "Delete Comment" = "حذف التعليق";
 
 /* No comment provided by engineer. */
+"Describe the feature" = "قم بوصف الميزة";
+
+/* No comment provided by engineer. */
+"Describe the problem" = "قم بوصف المشكلة";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "تعليق على النقاش";
 
 /* No comment provided by engineer. */
@@ -116,6 +134,9 @@
 "Done" = "تم";
 
 /* No comment provided by engineer. */
+"Emergency" = "الطوارئ";
+
+/* No comment provided by engineer. */
 "End Act as User" = "إنهاء التصرف كمستخدم";
 
 /* No comment provided by engineer. */
@@ -126,6 +147,9 @@
 
 /* No comment provided by engineer. */
 "External Tool" = "أداة خارجية";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "حالة طارئة حرجة للغاية";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "تعذر حفظ الصورة";
@@ -176,7 +200,19 @@
 "How do I find my school?" = "كيف أعثر على مدرستي؟";
 
 /* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "لن أستطيع إنجاز أعمالي حتى تردون عليّ";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "أحتاج للمساعدة لكن الأمر ليس مستعجلاً";
+
+/* No comment provided by engineer. */
 "Image" = "صورة";
+
+/* No comment provided by engineer. */
+"Impact" = "التأثير";
+
+/* No comment provided by engineer. */
+"Impact Level" = "مستوى التأثير";
 
 /* No comment provided by engineer. */
 "Incomplete" = "غير مكتمل";
@@ -263,6 +299,9 @@
 "Not Submitted" = "لم يتم الإرسال";
 
 /* No comment provided by engineer. */
+"Not Urgent" = "ليس عاجلاً";
+
+/* No comment provided by engineer. */
 "OK" = "موافق";
 
 /* No comment provided by engineer. */
@@ -320,6 +359,15 @@
 "Reply to the annotation or previous comments" = "الرد على التعليق التوضيحي أو التعليقات السابقة";
 
 /* No comment provided by engineer. */
+"Report a Problem" = "إبلاغ عن مشكلة";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "طلب ميزة";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "فشل الطلب!";
+
+/* No comment provided by engineer. */
 "Retry" = "إعادة المحاولة";
 
 /* No comment provided by engineer. */
@@ -338,6 +386,9 @@
 "Select Course" = "تحديد مساق";
 
 /* No comment provided by engineer. */
+"Select One" = "حدد واحدًا";
+
+/* No comment provided by engineer. */
 "Send" = "إرسال";
 
 /* No comment provided by engineer. */
@@ -353,6 +404,15 @@
 "Site Admin Login" = "تسجيل دخول مسؤول الموقع";
 
 /* No comment provided by engineer. */
+"Something is broken but I can work around it" = "شيء ما معطل لكن أستطيع تدبير أموري";
+
+/* No comment provided by engineer. */
+"Something is Missing" = "هناك شيء مفقود";
+
+/* No comment provided by engineer. */
+"Something is Wrong" = "هناك شيء خطأ";
+
+/* No comment provided by engineer. */
 "Start recording" = "بدء تسجيل";
 
 /* No comment provided by engineer. */
@@ -365,6 +425,9 @@
 "Style" = "النمط";
 
 /* No comment provided by engineer. */
+"Subject" = "الموضوع";
+
+/* No comment provided by engineer. */
 "Submit" = "إرسال";
 
 /* No comment provided by engineer. */
@@ -375,6 +438,9 @@
 
 /* Submitted date */
 "Submitted %@" = "تم الإرسال %@";
+
+/* No comment provided by engineer. */
+"Success!" = "نجاح!";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "اضغط هنا للحصول على المساعدة.";
@@ -390,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "إدخال النص";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "شكراً، تم استلام طلبك!";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "يحتاج التطبيق لإعادة التشغيل لاستخدام إعدادات اللغة الجديدة. يرجى إعادة تشغيل التطبيق.";
@@ -464,6 +533,9 @@
 "Whoops!" = "عذرًا!";
 
 /* No comment provided by engineer. */
+"Workaround" = "الحل";
+
+/* No comment provided by engineer. */
 "yellow" = "أصفر";
 
 /* No comment provided by engineer. */
@@ -477,4 +549,7 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "ستتوقف عن التصرف باعتبارك هذا المستخدم وستعود إلى حسابك.";
+
+/* No comment provided by engineer. */
+"Your Email" = "بريدك الإلكتروني";
 

@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "Note"
   },
+  "grade_after_posting_51718245": {
+    "message": "Note nach Posting"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "Note nach Posting { grade }"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "Note vor Posting"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "Note vor Posting { grade }"
+  },
   "grade_grade_990eb477": {
     "message": "{ grade } benoten"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "Note außer Kraft setzen"
+  },
+  "grade_override_grade_4788faec": {
+    "message": "Note außer Kraft setzen { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "Richtlinie zur Notenvergabe"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "Übungsquiz"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "Übungsquizze und Umfragen haben keine Detailansichten."
   },
   "preview_quiz_1ffbf684": {
     "message": "Vorschau Quiz"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "Gesamtnote:"
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "Gesamtzahl der Abgaben { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "Unmarkiert"

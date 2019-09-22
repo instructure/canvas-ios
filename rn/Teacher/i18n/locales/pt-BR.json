@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "Nota"
   },
+  "grade_after_posting_51718245": {
+    "message": "Nota após postar"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "Nota após postar { grade }"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "Nota antes de postar"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "Nota antes de postar { grade }"
+  },
   "grade_grade_990eb477": {
     "message": "Nota { grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "Substituição da nota "
+  },
+  "grade_override_grade_4788faec": {
+    "message": "Substituição da nota { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "Política de postagem de notas"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "Praticar teste"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "Questionários de prática e pesquisas não têm visualizações detalhadas."
   },
   "preview_quiz_1ffbf684": {
     "message": "Pré-visualizar questionário"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "Nota total:"
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "Envios totais { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "Marcação como favorito cancelada"

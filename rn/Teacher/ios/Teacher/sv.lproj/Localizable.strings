@@ -20,13 +20,13 @@
 "Everyone" = "Alla";
 
 /* No comment provided by engineer. */
-"Graded" = "Omdöme har getts";
+"Graded" = "Har bedömts";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to all students" = "Omdömen kan ses av alla studenter";
+"Grades will be made visible to all students" = "Bedömningar kan ses av alla studenter";
 
 /* No comment provided by engineer. */
-"Grades will be made visible to students with graded submissions" = "Omdömen kan ses av alla studenter med bedömda inlämningar";
+"Grades will be made visible to students with graded submissions" = "Bedömningar kan ses av alla studenter med bedömda inlämningar";
 
 /* number of grades hidden */
 "grades_currently_hidden" = "grades_currently_hidden";
@@ -35,13 +35,13 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
-"Hide Grades" = "Dölj betyg";
+"Hide Grades" = "Dölj bedömningar";
 
 /* No comment provided by engineer. */
 "Modules" = "Moduler";
 
 /* No comment provided by engineer. */
-"Post Grades" = "Publicera omdömen";
+"Post Grades" = "Publicera bedömningar";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Publiceringsinställningar";

@@ -304,9 +304,6 @@
 /* mobile quze warning info */
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas quiz stödjer olika bedömningsmetoder. De flesta av dessa metoder stöds på mobila enheter; men inte alla. Om du försöker att ta ett quiz som inte stöds på din telefon, kan du vara oförmögen att fullfölja hela testet, vilket är till nackdel för dig.\n\nFrågetyper som inte stöds omfattar frågor som innehåller Adobe Flash™ innehåll, filuppladdning, och annat.\n\nOm du tror att ett quiz innefattar innehåll som inte stöds, ta det på stationär eller bärbar dator. Om du vet att testet bara innehåller innehåll som stöds, kan du gärna ta det på din mobila enhet.";
 
-/* button to change user's profile image */
-"Change Profile Image" = "Ändra profilbild";
-
 /* No comment provided by engineer. */
 "Change User" = "Byt användare";
 
@@ -1393,9 +1390,6 @@
 
 /* No comment provided by engineer. */
 "Yes" = "Ja";
-
-/* No comment provided by engineer. */
-"You are not allowed to change your avatar at this time." = "Du kan för närvarande inte ändra din avatar.";
 
 /* No comment provided by engineer. */
 "You are not allowed to send messages at this time." = "Du får inte skicka meddelanden för tillfället.";

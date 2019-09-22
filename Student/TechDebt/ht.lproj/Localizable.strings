@@ -304,9 +304,6 @@
 /* mobile quze warning info */
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Quiz canvas yo sipòte divès tip evalyasyon. Anpil nan tip evalyasyon sa yo disponib pou aparèy mobil, men gen kèk ladan yo ki pa disponib. Si w eseye pran yonn nan tès ki pa disponib sa yo sou telefòn ou, ou gendwa pa kapab fini quiz la, ki pa p yon avantaj pou ou.\n\nKesyon ki pa pran an chaj yo se kesyon ki gen kontni Adobe Flash™, fichye transfere ak lòt ankò.\n\nSi w panse yon quiz gen kontni ki pa sipòte, tanpri fè li sou òdinatè PC oswa laptòp. Si w panse yon quiz gen kontni ke yo sipòte sèlman, ou mèt pran li sou aparèy pòtab ou.";
 
-/* button to change user's profile image */
-"Change Profile Image" = "Chanje Imaj Pwofil";
-
 /* No comment provided by engineer. */
 "Change User" = "Chanje Itilizatè";
 
@@ -1393,9 +1390,6 @@
 
 /* No comment provided by engineer. */
 "Yes" = "Wi";
-
-/* No comment provided by engineer. */
-"You are not allowed to change your avatar at this time." = "Ou pa otorize pou chanje avata ou pou kounye a.";
 
 /* No comment provided by engineer. */
 "You are not allowed to send messages at this time." = "Pou kounye a ou pa otorize pou w voye mesaj.";

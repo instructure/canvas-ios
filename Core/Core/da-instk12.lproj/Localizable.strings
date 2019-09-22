@@ -38,6 +38,9 @@
 "black" = "sort";
 
 /* No comment provided by engineer. */
+"Blocking" = "Blokerer";
+
+/* No comment provided by engineer. */
 "blue" = "blå";
 
 /* No comment provided by engineer. */
@@ -71,6 +74,12 @@
 "Canvas Teacher" = "Canvas Teacher";
 
 /* No comment provided by engineer. */
+"Casual question or suggestion" = "Uformelt spørgsmål eller forslag";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Tjek netværk og prøv igen!";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Ryd optagelse";
 
 /* No comment provided by engineer. */
@@ -78,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Closed" = "Lukket";
+
+/* No comment provided by engineer. */
+"Comment" = "Kommentar";
 
 /* No comment provided by engineer. */
 "Comments" = "Kommentarer";
@@ -104,6 +116,12 @@
 "Delete Comment" = "Slet kommentar";
 
 /* No comment provided by engineer. */
+"Describe the feature" = "Beskriv funktionen";
+
+/* No comment provided by engineer. */
+"Describe the problem" = "Beskriv problemet";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Diskussionskommentar";
 
 /* No comment provided by engineer. */
@@ -116,6 +134,9 @@
 "Done" = "Udført";
 
 /* No comment provided by engineer. */
+"Emergency" = "Nødsituation";
+
+/* No comment provided by engineer. */
 "End Act as User" = "Afslut \\'funger som bruger\\'";
 
 /* No comment provided by engineer. */
@@ -126,6 +147,9 @@
 
 /* No comment provided by engineer. */
 "External Tool" = "Eksternt værktøj";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Ekstrem kritisk nødsituation";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Kunne ikke gemme billede";
@@ -176,7 +200,19 @@
 "How do I find my school?" = "Hvordan finder jeg min skole?";
 
 /* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Jeg kan ikke gøre noget, før jeg hører fra dig";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Jeg behøver hjælp, men det er ikke en hastesag";
+
+/* No comment provided by engineer. */
 "Image" = "Billede";
+
+/* No comment provided by engineer. */
+"Impact" = "Indvirkning";
+
+/* No comment provided by engineer. */
+"Impact Level" = "Betydningsniveau";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Ufuldstændig";
@@ -263,6 +299,9 @@
 "Not Submitted" = "Ikke indsendt";
 
 /* No comment provided by engineer. */
+"Not Urgent" = "Haster ikke";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -320,6 +359,15 @@
 "Reply to the annotation or previous comments" = "Besvar anmærkningen eller tidligere kommentarer";
 
 /* No comment provided by engineer. */
+"Report a Problem" = "Indberet et problem";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Anmod om en funktion";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Forespørgsel mislykkedes!";
+
+/* No comment provided by engineer. */
 "Retry" = "Prøv igen";
 
 /* No comment provided by engineer. */
@@ -338,6 +386,9 @@
 "Select Course" = "Vælg fag";
 
 /* No comment provided by engineer. */
+"Select One" = "Vælg en";
+
+/* No comment provided by engineer. */
 "Send" = "Send";
 
 /* No comment provided by engineer. */
@@ -353,6 +404,15 @@
 "Site Admin Login" = "Websted admin login";
 
 /* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Noget virker ikke, men jeg kan klare mig";
+
+/* No comment provided by engineer. */
+"Something is Missing" = "Der mangler noget";
+
+/* No comment provided by engineer. */
+"Something is Wrong" = "Der er noget galt";
+
+/* No comment provided by engineer. */
 "Start recording" = "Start optagelsen";
 
 /* No comment provided by engineer. */
@@ -365,6 +425,9 @@
 "Style" = "Stil";
 
 /* No comment provided by engineer. */
+"Subject" = "Emne";
+
+/* No comment provided by engineer. */
 "Submit" = "Aflever";
 
 /* No comment provided by engineer. */
@@ -375,6 +438,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Afleveret %@";
+
+/* No comment provided by engineer. */
+"Success!" = "Succes!";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tryk her for at få hjælp.";
@@ -390,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Tekstindlæg";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Tak, din anmodning er modtaget!";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen skal genstarte for at bruge de nye sprogindstillinger. Genstart venligst appen.";
@@ -464,6 +533,9 @@
 "Whoops!" = "Ups!";
 
 /* No comment provided by engineer. */
+"Workaround" = "Løsning";
+
+/* No comment provided by engineer. */
 "yellow" = "gul";
 
 /* No comment provided by engineer. */
@@ -477,4 +549,7 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Du vil stoppe med at fungere som denne bruger og vende tilbage til din konto.";
+
+/* No comment provided by engineer. */
+"Your Email" = "Din e-mail";
 

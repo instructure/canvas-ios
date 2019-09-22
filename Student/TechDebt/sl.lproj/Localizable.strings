@@ -304,9 +304,6 @@
 /* mobile quze warning info */
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Pri kvizih sistema Canvas je podprtih več različnih slogov ocenjevanja. Večina teh slogov je na mobilnih napravah podprta, nekateri pa niso. Če poskušate opravljati enega od teh nepodprtih kvizov na svojem telefonu, kviza morda ne boste mogli v celoti zaključiti, zato boste v slabšem položaju.\n\nNepodprte vrste vprašanj so tiste, ki vključujejo vprašanja z vsebino in naloženimi datotekami Adobe Flash™ ter druga.\n\nČe menite, da kviz vsebuje nepodprto vsebino, si ga prenesite na namizni ali prenosni računalnik. Če veste, da kviz vsebuje samo podprto vsebino, ga lahko opravljate na mobilni napravi.";
 
-/* button to change user's profile image */
-"Change Profile Image" = "Spremeni sliko profila";
-
 /* No comment provided by engineer. */
 "Change User" = "Spremeni uporabnika";
 
@@ -1393,9 +1390,6 @@
 
 /* No comment provided by engineer. */
 "Yes" = "Da";
-
-/* No comment provided by engineer. */
-"You are not allowed to change your avatar at this time." = "Trenutno nimate dovoljenja za spreminjanje svojega avatarja.";
 
 /* No comment provided by engineer. */
 "You are not allowed to send messages at this time." = "Trenutno nimate dovoljenja za pošiljanje sporočil.";

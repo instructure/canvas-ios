@@ -38,6 +38,9 @@
 "black" = "черный";
 
 /* No comment provided by engineer. */
+"Blocking" = "Блокирование";
+
+/* No comment provided by engineer. */
 "blue" = "синий";
 
 /* No comment provided by engineer. */
@@ -71,6 +74,12 @@
 "Canvas Teacher" = "Преподаватель Canvas";
 
 /* No comment provided by engineer. */
+"Casual question or suggestion" = "Обычный вопрос или предложение";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Проверьте сеть и попробуйте еще раз!";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Удалить запись";
 
 /* No comment provided by engineer. */
@@ -78,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Closed" = "Закрыто";
+
+/* No comment provided by engineer. */
+"Comment" = "Комментарий";
 
 /* No comment provided by engineer. */
 "Comments" = "Комментарии";
@@ -104,6 +116,12 @@
 "Delete Comment" = "Удалить комментарий";
 
 /* No comment provided by engineer. */
+"Describe the feature" = "Опишите функцию";
+
+/* No comment provided by engineer. */
+"Describe the problem" = "Опишите проблему";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Комментарий к дискуссии";
 
 /* No comment provided by engineer. */
@@ -116,6 +134,9 @@
 "Done" = "Готово";
 
 /* No comment provided by engineer. */
+"Emergency" = "Чрезвычайная ситуация";
+
+/* No comment provided by engineer. */
 "End Act as User" = "Завершить функцию «Действовать как пользователь»";
 
 /* No comment provided by engineer. */
@@ -126,6 +147,9 @@
 
 /* No comment provided by engineer. */
 "External Tool" = "Внешний инструмент";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Крайне критическая ситуация";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Не удалось сохранить изображение";
@@ -176,7 +200,19 @@
 "How do I find my school?" = "Как мне найти свою школу?";
 
 /* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Я не могу закончить, пока не услышу ваш ответ";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Мне нужна помощь, но это не срочно";
+
+/* No comment provided by engineer. */
 "Image" = "Изображение";
+
+/* No comment provided by engineer. */
+"Impact" = "Влияние";
+
+/* No comment provided by engineer. */
+"Impact Level" = "Уровень воздействия";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Не завершено";
@@ -263,6 +299,9 @@
 "Not Submitted" = "Не отправлено";
 
 /* No comment provided by engineer. */
+"Not Urgent" = "Не срочно";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -320,6 +359,15 @@
 "Reply to the annotation or previous comments" = "Ответить на аннотацию или предыдущие комментарии";
 
 /* No comment provided by engineer. */
+"Report a Problem" = "Сообщить о проблеме";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Запросить функцию";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Сбой при выполнении запроса!";
+
+/* No comment provided by engineer. */
 "Retry" = "Повторить";
 
 /* No comment provided by engineer. */
@@ -338,6 +386,9 @@
 "Select Course" = "Выбрать курс";
 
 /* No comment provided by engineer. */
+"Select One" = "Выберите один";
+
+/* No comment provided by engineer. */
 "Send" = "Отправить";
 
 /* No comment provided by engineer. */
@@ -353,6 +404,15 @@
 "Site Admin Login" = "Учетная запись администратора";
 
 /* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Что-то сломалось, но я могу работать и без этого";
+
+/* No comment provided by engineer. */
+"Something is Missing" = "Чего-то не хватает";
+
+/* No comment provided by engineer. */
+"Something is Wrong" = "Что-то неверно";
+
+/* No comment provided by engineer. */
 "Start recording" = "Запустить запись";
 
 /* No comment provided by engineer. */
@@ -365,6 +425,9 @@
 "Style" = "Стиль";
 
 /* No comment provided by engineer. */
+"Subject" = "Тема";
+
+/* No comment provided by engineer. */
 "Submit" = "Отправить";
 
 /* No comment provided by engineer. */
@@ -375,6 +438,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Отправлено %@";
+
+/* No comment provided by engineer. */
+"Success!" = "Успешно!";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Прикоснитесь здесь для получения помощи.";
@@ -390,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Ввод текста";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Спасибо, ваш запрос был получен!";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Необходимо перезапустить приложение для использования новых языковых настроек. Перезапустите приложение.";
@@ -464,6 +533,9 @@
 "Whoops!" = "Ой!";
 
 /* No comment provided by engineer. */
+"Workaround" = "Выход из ситуации";
+
+/* No comment provided by engineer. */
 "yellow" = "желтый";
 
 /* No comment provided by engineer. */
@@ -477,4 +549,7 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Вы прекратите действовать как этот пользователь и вернетесь в свою учетную запись.";
+
+/* No comment provided by engineer. */
+"Your Email" = "Ваша электронная почта";
 

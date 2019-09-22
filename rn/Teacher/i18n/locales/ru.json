@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "Оценка"
   },
+  "grade_after_posting_51718245": {
+    "message": "Оценка после публикации"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "Оценка после публикации { grade }"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "Оценка до публикации"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "Оценка до публикации { grade }"
+  },
   "grade_grade_990eb477": {
     "message": "Оценить { grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "Отклонение оценки"
+  },
+  "grade_override_grade_4788faec": {
+    "message": "Отклонение оценки { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "Политика публикации оценок"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "Практическая контрольная работа"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "Практические тесты и опросы не имеют подробного представления."
   },
   "preview_quiz_1ffbf684": {
     "message": "Просмотреть контрольную работу"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "Общая оценка:"
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "Общее число отправок { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "Звездочка убрана"

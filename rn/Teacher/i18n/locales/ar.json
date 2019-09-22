@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "الدرجة"
   },
+  "grade_after_posting_51718245": {
+    "message": "التقدير بعد النشر"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "التقدير بعد نشر { grade }"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "التقدير قبل النشر"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "التقدير قبل نشر { grade }"
+  },
   "grade_grade_990eb477": {
     "message": "الدرجة { grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "تجاوز التقدير"
+  },
+  "grade_override_grade_4788faec": {
+    "message": "تجاوز التقدير { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "سياسة نشر التقدير"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "أداء الاختبار الموجز"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "اختبارات التدريب والاستبيانات لا تحتوي على طرق عرض تفصيلية."
   },
   "preview_quiz_1ffbf684": {
     "message": "معاينة الاختبار الموجز"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "الدرجة الإجمالية:"
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "إجمالي الإرسالات { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "تمت إزالة علامة النجمة"

@@ -304,9 +304,6 @@
 /* mobile quze warning info */
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Les questionnaires prennent en charge plusieurs styles d'évaluation. La plupart de ces styles sont pris en charge par les appareils mobiles; cependant, certains ne sont pas. Si vous essayez de remplir un de ces questionnaires non pris en charge sur votre téléphone, vous pourriez être incapable de terminer le questionnaire, vous laissant dans une situation désavantageuse.\n\nLes types de questions non prises en charge comprennent des questions contenant du contenu Adobe Flash™, fichiers téléversés, et autres.\n\nSi vous pensez qu’un questionnaire contient du contenu non pris en charge, veuillez le remplir sur un ordinateur de bureau ou un ordinateur portable. Si vous êtes certain que le questionnaire contient uniquement du contenu pris en charge, n'hésitez pas à le remplir sur votre appareil mobile.";
 
-/* button to change user's profile image */
-"Change Profile Image" = "Changer l'image de profil";
-
 /* No comment provided by engineer. */
 "Change User" = "Changer d’utilisateur";
 
@@ -1393,9 +1390,6 @@
 
 /* No comment provided by engineer. */
 "Yes" = "Oui";
-
-/* No comment provided by engineer. */
-"You are not allowed to change your avatar at this time." = "Vous n'êtes pas autorisé à modifier votre avatar à l'heure actuelle.";
 
 /* No comment provided by engineer. */
 "You are not allowed to send messages at this time." = "Vous n'êtes pas autorisé à envoyer des messages à l'heure actuelle.";

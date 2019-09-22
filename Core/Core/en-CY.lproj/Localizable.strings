@@ -38,6 +38,9 @@
 "black" = "black";
 
 /* No comment provided by engineer. */
+"Blocking" = "Blocking";
+
+/* No comment provided by engineer. */
 "blue" = "blue";
 
 /* No comment provided by engineer. */
@@ -71,6 +74,12 @@
 "Canvas Teacher" = "Canvas teacher";
 
 /* No comment provided by engineer. */
+"Casual question or suggestion" = "Casual question or suggestion";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Check network and try again!";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Clear recording";
 
 /* No comment provided by engineer. */
@@ -78,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Closed" = "Closed";
+
+/* No comment provided by engineer. */
+"Comment" = "Comment";
 
 /* No comment provided by engineer. */
 "Comments" = "Comments";
@@ -104,6 +116,12 @@
 "Delete Comment" = "Delete comment";
 
 /* No comment provided by engineer. */
+"Describe the feature" = "Describe the feature";
+
+/* No comment provided by engineer. */
+"Describe the problem" = "Describe the problem";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Discussion Comment";
 
 /* No comment provided by engineer. */
@@ -116,6 +134,9 @@
 "Done" = "Done";
 
 /* No comment provided by engineer. */
+"Emergency" = "Emergency";
+
+/* No comment provided by engineer. */
 "End Act as User" = "End Act as User";
 
 /* No comment provided by engineer. */
@@ -126,6 +147,9 @@
 
 /* No comment provided by engineer. */
 "External Tool" = "External tool";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Extremely critical emergency";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Failed to save image";
@@ -176,7 +200,19 @@
 "How do I find my school?" = "How do I find my school?";
 
 /* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "I can't get things done until I hear back from you";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "I need help but it's not urgent";
+
+/* No comment provided by engineer. */
 "Image" = "Image";
+
+/* No comment provided by engineer. */
+"Impact" = "Impact";
+
+/* No comment provided by engineer. */
+"Impact Level" = "Impact level";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Incomplete";
@@ -263,6 +299,9 @@
 "Not Submitted" = "Not submitted";
 
 /* No comment provided by engineer. */
+"Not Urgent" = "Not Urgent";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -320,6 +359,15 @@
 "Reply to the annotation or previous comments" = "Reply to the annotation or previous comments";
 
 /* No comment provided by engineer. */
+"Report a Problem" = "Report a problem";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Request a feature";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Request failed";
+
+/* No comment provided by engineer. */
 "Retry" = "Retry";
 
 /* No comment provided by engineer. */
@@ -338,6 +386,9 @@
 "Select Course" = "Select Module";
 
 /* No comment provided by engineer. */
+"Select One" = "Select one";
+
+/* No comment provided by engineer. */
 "Send" = "Send";
 
 /* No comment provided by engineer. */
@@ -353,6 +404,15 @@
 "Site Admin Login" = "Site admin login";
 
 /* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Something is broken but I can work around it";
+
+/* No comment provided by engineer. */
+"Something is Missing" = "Something is Missing";
+
+/* No comment provided by engineer. */
+"Something is Wrong" = "Something is Wrong";
+
+/* No comment provided by engineer. */
 "Start recording" = "Start recording";
 
 /* No comment provided by engineer. */
@@ -365,6 +425,9 @@
 "Style" = "Style";
 
 /* No comment provided by engineer. */
+"Subject" = "Subject";
+
+/* No comment provided by engineer. */
 "Submit" = "Submit";
 
 /* No comment provided by engineer. */
@@ -375,6 +438,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Submitted %@";
+
+/* No comment provided by engineer. */
+"Success!" = "Success!";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tap here for help.";
@@ -390,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Text entry";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Thanks, your request was received.";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "The app needs to restart to use the new language settings. Please relaunch the app.";
@@ -464,6 +533,9 @@
 "Whoops!" = "Whoops!";
 
 /* No comment provided by engineer. */
+"Workaround" = "Workaround";
+
+/* No comment provided by engineer. */
 "yellow" = "yellow";
 
 /* No comment provided by engineer. */
@@ -477,4 +549,7 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "You will stop acting as this user and return to your account.";
+
+/* No comment provided by engineer. */
+"Your Email" = "Your email";
 

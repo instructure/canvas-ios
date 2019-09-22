@@ -38,6 +38,9 @@
 "black" = "黑色";
 
 /* No comment provided by engineer. */
+"Blocking" = "阻止中";
+
+/* No comment provided by engineer. */
 "blue" = "蓝色";
 
 /* No comment provided by engineer. */
@@ -71,6 +74,12 @@
 "Canvas Teacher" = "Canvas 教师";
 
 /* No comment provided by engineer. */
+"Casual question or suggestion" = "简单问题或建议";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "请检查网络，并重试！";
+
+/* No comment provided by engineer. */
 "Clear recording" = "清除录制";
 
 /* No comment provided by engineer. */
@@ -78,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Closed" = "已关闭";
+
+/* No comment provided by engineer. */
+"Comment" = "评论";
 
 /* No comment provided by engineer. */
 "Comments" = "评论";
@@ -104,6 +116,12 @@
 "Delete Comment" = "删除评论";
 
 /* No comment provided by engineer. */
+"Describe the feature" = "描述功能";
+
+/* No comment provided by engineer. */
+"Describe the problem" = "描述问题";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "讨论评论";
 
 /* No comment provided by engineer. */
@@ -116,6 +134,9 @@
 "Done" = "完成";
 
 /* No comment provided by engineer. */
+"Emergency" = "紧急";
+
+/* No comment provided by engineer. */
 "End Act as User" = "结束担当用户";
 
 /* No comment provided by engineer. */
@@ -126,6 +147,9 @@
 
 /* No comment provided by engineer. */
 "External Tool" = "外部工具";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "十万火急的紧急事件";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "保存图像失败";
@@ -176,7 +200,19 @@
 "How do I find my school?" = "如何查找我的学校？";
 
 /* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "我需要您的回信才能完成工作";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "我需要帮助，但不是迫切";
+
+/* No comment provided by engineer. */
 "Image" = "图片";
+
+/* No comment provided by engineer. */
+"Impact" = "影响力";
+
+/* No comment provided by engineer. */
+"Impact Level" = "影响级别";
 
 /* No comment provided by engineer. */
 "Incomplete" = "未完成";
@@ -263,6 +299,9 @@
 "Not Submitted" = "未提交";
 
 /* No comment provided by engineer. */
+"Not Urgent" = "不紧急";
+
+/* No comment provided by engineer. */
 "OK" = "确定";
 
 /* No comment provided by engineer. */
@@ -320,6 +359,15 @@
 "Reply to the annotation or previous comments" = "恢复注释或原来的评论";
 
 /* No comment provided by engineer. */
+"Report a Problem" = "报告问题";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "请求功能";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "请求失败！";
+
+/* No comment provided by engineer. */
 "Retry" = "重试";
 
 /* No comment provided by engineer. */
@@ -338,6 +386,9 @@
 "Select Course" = "选择课程";
 
 /* No comment provided by engineer. */
+"Select One" = "选择一个";
+
+/* No comment provided by engineer. */
 "Send" = "发送";
 
 /* No comment provided by engineer. */
@@ -353,6 +404,15 @@
 "Site Admin Login" = "站点管理员登录";
 
 /* No comment provided by engineer. */
+"Something is broken but I can work around it" = "某东西坏了，但我可以修复它";
+
+/* No comment provided by engineer. */
+"Something is Missing" = "有缺失";
+
+/* No comment provided by engineer. */
+"Something is Wrong" = "出错";
+
+/* No comment provided by engineer. */
 "Start recording" = "开始录制";
 
 /* No comment provided by engineer. */
@@ -365,6 +425,9 @@
 "Style" = "样式";
 
 /* No comment provided by engineer. */
+"Subject" = "主题";
+
+/* No comment provided by engineer. */
 "Submit" = "提交";
 
 /* No comment provided by engineer. */
@@ -375,6 +438,9 @@
 
 /* Submitted date */
 "Submitted %@" = "已提交%@";
+
+/* No comment provided by engineer. */
+"Success!" = "成功！";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "轻击此处获取帮助。";
@@ -390,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "文本输入";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "谢谢，您的请求被接受！";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "需重启应用程序才能使用新语言设置。请重启该应用程序。";
@@ -464,6 +533,9 @@
 "Whoops!" = "糟糕！";
 
 /* No comment provided by engineer. */
+"Workaround" = "变通方法";
+
+/* No comment provided by engineer. */
 "yellow" = "黄色";
 
 /* No comment provided by engineer. */
@@ -477,4 +549,7 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "你将停止担当该用户并返回至帐号。";
+
+/* No comment provided by engineer. */
+"Your Email" = "您的电子邮件";
 

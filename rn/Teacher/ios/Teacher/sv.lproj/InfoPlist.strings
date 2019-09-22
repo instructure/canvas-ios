@@ -8,7 +8,7 @@
 "NSLocationWhenInUseUsageDescription" = "";
 
 /* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "Anslut ljudinspelningar till inlämningskommentarer.";
+"NSMicrophoneUsageDescription" = "Bifoga ljudinspelningar till inlämningskommentarer.";
 
 /* Privacy - Photo Library Additions Usage Description */
 "NSPhotoLibraryAddUsageDescription" = "Bifoga foton och videor till inlämningskommentarer.";

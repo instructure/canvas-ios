@@ -304,9 +304,6 @@
 /* mobile quze warning info */
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "E tautoko ana a Canvas quizzes i ngā momo aromatawai. Te nuinga o ēnei momo e tautokotia ana i runga i ngā taonga haerērē, heoi, kaore ētahi. Mehemea ka ngana koe ki te hari tētahi o ēnei quizzes kaore e tautokotia i runga i tō waea pūkoro, kaore pea e taea e koe te whakaoti i te nuinga o te quiz, ka waiho koe ngoikore tia koe.\n\nNgā momo pātai kaore e tautokotia whakauru pātai kei roto Adobe Flash™ ihirangi, kōnae tikiake, rorohiko pōnaho.\n\nMehemea e pono ana koe he quiz kaore i te tautokotia te ihirangi, tēnā koa haria i runga i papamahi rorohiko pōnaho rānei. Mehemea e mōhio ana koe kei roto te quiz ngā ihirangi kua tautokotia, whakawātea ki te hari i runga i tō taonga haerērē.";
 
-/* button to change user's profile image */
-"Change Profile Image" = "Huriai te Kōtaha Āhua";
-
 /* No comment provided by engineer. */
 "Change User" = "Huri Kaiwhakamahi";
 
@@ -1393,9 +1390,6 @@
 
 /* No comment provided by engineer. */
 "Yes" = "Ae";
-
-/* No comment provided by engineer. */
-"You are not allowed to change your avatar at this time." = "Kāore koe e whakāetia ki te huri i tō avatar i tēnei wā.";
 
 /* No comment provided by engineer. */
 "You are not allowed to send messages at this time." = "Kāore koe e whakāetia ki te tuku karere i tēnei wā.";

@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "Karakter"
   },
+  "grade_after_posting_51718245": {
+    "message": "Karakter efter opslag"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "Karakter efter opslag af { grade }"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "Karakter inden opslag"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "Karakter inden opslag af { grade }"
+  },
   "grade_grade_990eb477": {
     "message": "Karakter { grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "Tilsidesættelse af karakter"
+  },
+  "grade_override_grade_4788faec": {
+    "message": "Tilsidesættelse af karakter { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "Politik for at slå karakterer op"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "Øvelsesquiz"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "Øvelsestest og -undersøgelser har ikke detaljerede visninger."
   },
   "preview_quiz_1ffbf684": {
     "message": "Forhåndsvisning af quiz"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "Samlet karakter:"
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "Afleveringer i alt { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "Uden stjerne"

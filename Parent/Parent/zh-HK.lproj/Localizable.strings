@@ -49,7 +49,7 @@
 /* No comment provided by engineer. */
 "Assignment reminder" = "作業提醒";
 
-/* Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "取消";
 
 /* Percent value is over 100 */
@@ -62,13 +62,7 @@
 "Caught up on Alerts" = "趕上提示的進度";
 
 /* No comment provided by engineer. */
-"Change User" = "變更使用者";
-
-/* No comment provided by engineer. */
 "Choose a student" = "選取一個學生";
-
-/* Close Button Title */
-"Close" = "關閉";
 
 /* Course Announcement Description */
 "Course announcements" = "課程宣告";
@@ -86,16 +80,10 @@
 "Current student: %@, tap to switch students" = "目前的學生：%@，點選以轉換學生";
 
 /* No comment provided by engineer. */
-"Developer Menu" = "開發人員選單";
-
-/* No comment provided by engineer. */
 "Discussion" = "討論";
 
 /* No comment provided by engineer. */
 "Dismiss" = "取消";
-
-/* No comment provided by engineer. */
-"Error" = "錯誤";
 
 /* No comment provided by engineer. */
 "Event" = "活動";
@@ -108,9 +96,6 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "無法載入 (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
-"Help" = "支援";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "高的作業評分不可低於低的作業評分";
@@ -142,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "遲交： %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log Out" = "登出";
-
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "低的作業評分不可高於高的作業評分";
 
@@ -169,9 +151,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "無評分";
 
-/* Error message */
-"No installed apps support opening this file" = "已安裝的app中，無法支持打開這個資料夾";
-
 /* Empty Students Text */
 "No Students" = "無學生";
 
@@ -180,12 +159,6 @@
 
 /* OK Button Title */
 "OK" = "是";
-
-/* Open a url in the application Safari */
-"Open in Safari" = "在 Safari 中打開";
-
-/* Open file in another application */
-"Open in..." = "打開方式...";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "配對代碼";
@@ -197,16 +170,7 @@
 "Quiz" = "測驗";
 
 /* No comment provided by engineer. */
-"Report a Problem" = "報告問題";
-
-/* No comment provided by engineer. */
-"Request a Feature" = "請求功能";
-
-/* No comment provided by engineer. */
 "Settings" = "設定";
-
-/* No comment provided by engineer. */
-"Stop Act as User" = "停止作為使用者";
 
 /* No comment provided by engineer. */
 "Submitted" = "已提交";
@@ -223,12 +187,6 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "點選以開始作為另一個人檢視 Canvas。";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "使用條款";
-
-/* Error message */
-"There are no actions for this item" = "無法對此項目進行操作";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "載入 AlertKit 資料庫檔案時出現問題。";
 
@@ -237,9 +195,6 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "載入 DiscussionKit 資料庫檔案時出現問題。";
-
-/* No comment provided by engineer. */
-"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "載入您的內容時出錯。如果內容是音頻或視頻資料，可能依然正在上載中。";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "此通告已過期。";
@@ -252,9 +207,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "未讀";
-
-/* No comment provided by engineer. */
-"View Canvas Guides" = "查看 Canvas 指南";
 
 /* Calendar Tab */
 "Week" = "週";

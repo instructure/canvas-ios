@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "Gradd"
   },
+  "grade_after_posting_51718245": {
+    "message": "Gradd ar ôl postio"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "Gradd ar ôl postio { grade }"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "Gradd cyn postio"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "Gradd cyn postio { grade }"
+  },
   "grade_grade_990eb477": {
     "message": "Gradd { grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "Disodli Gradd"
+  },
+  "grade_override_grade_4788faec": {
+    "message": "Disodli Gradd { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "Polisi postio graddau"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "Cwis Ymarfer"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "Nid oes gan gwisiau ac arolygon weddau manwl."
   },
   "preview_quiz_1ffbf684": {
     "message": "Rhagolwg o'r Cwis"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "Gradd Gyffredinol:"
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "Cyfanswm y Cyflwyniadau { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "Heb seren"

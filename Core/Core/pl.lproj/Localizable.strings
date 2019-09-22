@@ -38,6 +38,9 @@
 "black" = "czarny";
 
 /* No comment provided by engineer. */
+"Blocking" = "Blokowanie";
+
+/* No comment provided by engineer. */
 "blue" = "niebieski";
 
 /* No comment provided by engineer. */
@@ -71,6 +74,12 @@
 "Canvas Teacher" = "Canvas Teacher";
 
 /* No comment provided by engineer. */
+"Casual question or suggestion" = "Nieformalne pytanie lub sugestia";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Sprawdź sieć i spróbuj ponownie!";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Wyczyść nagranie";
 
 /* No comment provided by engineer. */
@@ -78,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Closed" = "Zamknięte";
+
+/* No comment provided by engineer. */
+"Comment" = "Komentarz";
 
 /* No comment provided by engineer. */
 "Comments" = "Komentarze";
@@ -104,6 +116,12 @@
 "Delete Comment" = "Usuń komentarz";
 
 /* No comment provided by engineer. */
+"Describe the feature" = "Opisz funkcję";
+
+/* No comment provided by engineer. */
+"Describe the problem" = "Opisz problem";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Komentarz do dyskusji";
 
 /* No comment provided by engineer. */
@@ -116,6 +134,9 @@
 "Done" = "Gotowe";
 
 /* No comment provided by engineer. */
+"Emergency" = "Sytuacja awaryjna";
+
+/* No comment provided by engineer. */
 "End Act as User" = "Zakończ podszywanie się jako użytkownik";
 
 /* No comment provided by engineer. */
@@ -126,6 +147,9 @@
 
 /* No comment provided by engineer. */
 "External Tool" = "Narzędzie zewnętrzne";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Niezwykle krytyczna awaria";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Nie udało się zapisać obrazu";
@@ -176,7 +200,19 @@
 "How do I find my school?" = "Jak mogę znaleźć swoją szkołę?";
 
 /* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Nie mogę skończyć pracy, dopóki nie otrzymam tej informacji.";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Potrzebuję pomocy ale nie jest to pilne";
+
+/* No comment provided by engineer. */
 "Image" = "Zdjęcie";
+
+/* No comment provided by engineer. */
+"Impact" = "Wpływ";
+
+/* No comment provided by engineer. */
+"Impact Level" = "Poziom istotności";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Nie ukończono";
@@ -263,6 +299,9 @@
 "Not Submitted" = "Nie wysłano";
 
 /* No comment provided by engineer. */
+"Not Urgent" = "Niepilne";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -320,6 +359,15 @@
 "Reply to the annotation or previous comments" = "Odpowiedz na adnotację lub poprzednie komentarze";
 
 /* No comment provided by engineer. */
+"Report a Problem" = "Zgłoś problem";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Zażądaj funkcji";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Niepowodzenie żądania!";
+
+/* No comment provided by engineer. */
 "Retry" = "Ponów próbę";
 
 /* No comment provided by engineer. */
@@ -338,6 +386,9 @@
 "Select Course" = "Wybierz kurs";
 
 /* No comment provided by engineer. */
+"Select One" = "Wybierz jeden";
+
+/* No comment provided by engineer. */
 "Send" = "Wyślij";
 
 /* No comment provided by engineer. */
@@ -353,6 +404,15 @@
 "Site Admin Login" = "Login admina witryny";
 
 /* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Coś się zepsuło, ale poradzę sobie bez tego";
+
+/* No comment provided by engineer. */
+"Something is Missing" = "Czegoś brakuje";
+
+/* No comment provided by engineer. */
+"Something is Wrong" = "Wystąpił problem";
+
+/* No comment provided by engineer. */
 "Start recording" = "Rozpocznij nagrywanie";
 
 /* No comment provided by engineer. */
@@ -365,6 +425,9 @@
 "Style" = "Styl";
 
 /* No comment provided by engineer. */
+"Subject" = "Temat";
+
+/* No comment provided by engineer. */
 "Submit" = "Prześlij";
 
 /* No comment provided by engineer. */
@@ -375,6 +438,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Przesłano %@";
+
+/* No comment provided by engineer. */
+"Success!" = "Zakończono powodzeniem!";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Stuknij tutaj, aby uzyskać pomoc.";
@@ -390,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Zapis tekstu";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Dziękujemy, Twoja prośba została odebrana!";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aby użyć nowych ustawień językowych, aplikację należy uruchomić ponownie. Uruchom aplikację ponownie.";
@@ -464,6 +533,9 @@
 "Whoops!" = "Ups!";
 
 /* No comment provided by engineer. */
+"Workaround" = "Obejście";
+
+/* No comment provided by engineer. */
 "yellow" = "żółty";
 
 /* No comment provided by engineer. */
@@ -477,4 +549,7 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Zatrzymasz podszywanie się jako ten użytkownik i powrócisz do swojego konta.";
+
+/* No comment provided by engineer. */
+"Your Email" = "Twój adres e-mail";
 

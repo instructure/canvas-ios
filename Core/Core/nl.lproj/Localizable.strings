@@ -38,6 +38,9 @@
 "black" = "zwart";
 
 /* No comment provided by engineer. */
+"Blocking" = "Blokkeren";
+
+/* No comment provided by engineer. */
 "blue" = "blauw";
 
 /* No comment provided by engineer. */
@@ -71,6 +74,12 @@
 "Canvas Teacher" = "Canvas Teacher";
 
 /* No comment provided by engineer. */
+"Casual question or suggestion" = "Informele vraag of suggestie";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Controleer het netwerk en probeer het nogmaals!";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Opname wissen";
 
 /* No comment provided by engineer. */
@@ -78,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Closed" = "Gesloten";
+
+/* No comment provided by engineer. */
+"Comment" = "Opmerking";
 
 /* No comment provided by engineer. */
 "Comments" = "Opmerkingen";
@@ -104,6 +116,12 @@
 "Delete Comment" = "Opmerking verwijderen";
 
 /* No comment provided by engineer. */
+"Describe the feature" = "Beschrijf de functie";
+
+/* No comment provided by engineer. */
+"Describe the problem" = "Beschrijf het probleem";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Opmerking bij discussie";
 
 /* No comment provided by engineer. */
@@ -116,6 +134,9 @@
 "Done" = "Gereed";
 
 /* No comment provided by engineer. */
+"Emergency" = "Noodgeval";
+
+/* No comment provided by engineer. */
 "End Act as User" = "Stop met optreden als gebruiker";
 
 /* No comment provided by engineer. */
@@ -126,6 +147,9 @@
 
 /* No comment provided by engineer. */
 "External Tool" = "Externe tool";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Extreem noodgeval";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Kan afbeelding niet Opslaan";
@@ -176,7 +200,19 @@
 "How do I find my school?" = "Hoe vind ik mijn school?";
 
 /* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Ik kan niets doen tot ik een antwoord van je terugkrijg";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Ik heb hulp nodig maar het is niet dringend";
+
+/* No comment provided by engineer. */
 "Image" = "Afbeelding";
+
+/* No comment provided by engineer. */
+"Impact" = "Impact";
+
+/* No comment provided by engineer. */
+"Impact Level" = "Impactniveau";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Incompleet";
@@ -263,6 +299,9 @@
 "Not Submitted" = "Niet ingediend";
 
 /* No comment provided by engineer. */
+"Not Urgent" = "Niet urgent";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -320,6 +359,15 @@
 "Reply to the annotation or previous comments" = "Reageer op de aantekening of op vorige opmerkingen";
 
 /* No comment provided by engineer. */
+"Report a Problem" = "Een probleem melden";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Een functie aanvragen";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Verzoek mislukt!";
+
+/* No comment provided by engineer. */
 "Retry" = "Opnieuw proberen";
 
 /* No comment provided by engineer. */
@@ -338,6 +386,9 @@
 "Select Course" = "Cursus selecteren";
 
 /* No comment provided by engineer. */
+"Select One" = "Eén selecteren";
+
+/* No comment provided by engineer. */
 "Send" = "Versturen";
 
 /* No comment provided by engineer. */
@@ -353,6 +404,15 @@
 "Site Admin Login" = "Aanmelding sitebeheer";
 
 /* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Er is iets kapot maar ik kan er wel omheen werken";
+
+/* No comment provided by engineer. */
+"Something is Missing" = "Er ontbreekt iets";
+
+/* No comment provided by engineer. */
+"Something is Wrong" = "Er is iets mis";
+
+/* No comment provided by engineer. */
 "Start recording" = "Opname starten";
 
 /* No comment provided by engineer. */
@@ -365,6 +425,9 @@
 "Style" = "Stijl";
 
 /* No comment provided by engineer. */
+"Subject" = "Vak";
+
+/* No comment provided by engineer. */
 "Submit" = "Inleveren";
 
 /* No comment provided by engineer. */
@@ -375,6 +438,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Ingediend %@";
+
+/* No comment provided by engineer. */
+"Success!" = "Gelukt!";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tik hier voor hulp.";
@@ -390,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Tekstinvoer";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Dank je, je verzoek is ontvangen!";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "De app moet opnieuw worden gestart om de nieuwe taalinstellingen te activeren. Start de app opnieuw.";
@@ -464,6 +533,9 @@
 "Whoops!" = "Oeps!";
 
 /* No comment provided by engineer. */
+"Workaround" = "Oplossing";
+
+/* No comment provided by engineer. */
 "yellow" = "geel";
 
 /* No comment provided by engineer. */
@@ -477,4 +549,7 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Je stopt met optreden als deze gebruiker en keert terug naar je account.";
+
+/* No comment provided by engineer. */
+"Your Email" = "Je e-mail";
 
