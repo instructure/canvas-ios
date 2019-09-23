@@ -36,6 +36,11 @@ class RouterTests: XCTestCase {
         override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
             detail = vc
         }
+
+        var trait: UITraitCollection?
+        override var traitCollection: UITraitCollection {
+            return trait ?? super.traitCollection
+        }
     }
 
     func testRouter() {
@@ -134,11 +139,13 @@ class RouterTests: XCTestCase {
 
     func testDetailSplitViewButtons() {
         let mockView = MockViewController()
+        let mockDestination = MockViewController()
+        mockDestination.trait = UITraitCollection(horizontalSizeClass: .regular)
         mockView.navigationItem.leftItemsSupplementBackButton = false
         mockView.navigationItem.leftBarButtonItems = nil
         let router = Router(routes: [
             RouteHandler("/detail") { _, _ in
-                return UIViewController()
+                return mockDestination
             },
         ]) { _, _, _ in }
 
@@ -161,6 +168,12 @@ class RouterTests: XCTestCase {
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: nil)
         XCTAssertNotNil(mockView.shown?.navigationItem.leftBarButtonItems?.first)
         XCTAssert(mockView.shown?.navigationItem.leftItemsSupplementBackButton == true)
+
+        // compact
+        mockDestination.trait = UITraitCollection(horizontalSizeClass: .compact)
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: nil)
+        XCTAssertNil(mockView.navigationItem.leftBarButtonItems?.first)
+        XCTAssertFalse(mockView.navigationItem.leftItemsSupplementBackButton)
     }
 
     func testRouteMatch() {

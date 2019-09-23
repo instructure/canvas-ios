@@ -542,6 +542,10 @@
 		B1C783EF2241EA3700DD89A9 /* NSManagedObjectContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C783EE2241EA3700DD89A9 /* NSManagedObjectContextExtensions.swift */; };
 		B1C783F12241EB5E00DD89A9 /* NSPersistentContainerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C783F02241EB5E00DD89A9 /* NSPersistentContainerExtensions.swift */; };
 		B1C783F32241ECEB00DD89A9 /* NSManagedObjectContextExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C783F22241ECEB00DD89A9 /* NSManagedObjectContextExtensionsTests.swift */; };
+		B1CA333E233929A30015CBB4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA333D233929A20015CBB4 /* User.swift */; };
+		B1CA334023392A140015CBB4 /* GetContextUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA333F23392A140015CBB4 /* GetContextUsers.swift */; };
+		B1CA33462339434A0015CBB4 /* GetContextUsersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */; };
+		B1CA3348233948870015CBB4 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA3347233948870015CBB4 /* UserTests.swift */; };
 		B1E789A421B0EC1A0087FE4A /* LogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789A321B0EC1A0087FE4A /* LogEvent.swift */; };
 		B1E789A721B0ED490087FE4A /* LogEventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789A621B0ED490087FE4A /* LogEventListViewController.swift */; };
 		B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1E789AA21B0EF130087FE4A /* LogEventListViewController.storyboard */; };
@@ -1356,6 +1360,10 @@
 		B1C783EE2241EA3700DD89A9 /* NSManagedObjectContextExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtensions.swift; sourceTree = "<group>"; };
 		B1C783F02241EB5E00DD89A9 /* NSPersistentContainerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentContainerExtensions.swift; sourceTree = "<group>"; };
 		B1C783F22241ECEB00DD89A9 /* NSManagedObjectContextExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtensionsTests.swift; sourceTree = "<group>"; };
+		B1CA333D233929A20015CBB4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B1CA333F23392A140015CBB4 /* GetContextUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsers.swift; sourceTree = "<group>"; };
+		B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsersTests.swift; sourceTree = "<group>"; };
+		B1CA3347233948870015CBB4 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		B1E789A321B0EC1A0087FE4A /* LogEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEvent.swift; sourceTree = "<group>"; };
 		B1E789A621B0ED490087FE4A /* LogEventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventListViewController.swift; sourceTree = "<group>"; };
 		B1E789AA21B0EF130087FE4A /* LogEventListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogEventListViewController.storyboard; sourceTree = "<group>"; };
@@ -1837,6 +1845,7 @@
 				7DF4FFD4217133AF007E5F81 /* TabType.swift */,
 				7DCF1EB9216BC8C5003AF358 /* TabVisibility.swift */,
 				7DF4FFD02171322E007E5F81 /* TTL.swift */,
+				B1CA333D233929A20015CBB4 /* User.swift */,
 				9F84595D228F34200031034E /* UserSettings.swift */,
 				B1B6F070219A1F2800C1575D /* UTI.swift */,
 				3B801BF92322F64900D143F0 /* AlertThreshold.swift */,
@@ -1850,6 +1859,7 @@
 			isa = PBXGroup;
 			children = (
 				7DCF1ED2216C055B003AF358 /* Viewable */,
+				3B8F23CC23274FC500788730 /* AlertThresholdTests.swift */,
 				3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */,
 				B19792F6217697E30000369C /* AssignmentTests.swift */,
 				3BD364AE225E36FC006CEBD8 /* CalendarEventItemTests.swift */,
@@ -1875,6 +1885,7 @@
 				B19792FA21769B320000369C /* QuizTests.swift */,
 				7DCF2039216D5712003AF358 /* QuizTypeTests.swift */,
 				3B300C842277981100743C59 /* RubricTests.swift */,
+				9F62EDCF2326C23C00EA9F79 /* SearchRecipientTests.swift */,
 				7D5C87202239A99E00D99651 /* SubmissionCommentTests.swift */,
 				7D37BE8C21C837840063FAAC /* SubmissionTests.swift */,
 				7DCF1EA1216BB7E4003AF358 /* SubmissionTypeTests.swift */,
@@ -1882,9 +1893,8 @@
 				B19792FE2176A0F00000369C /* TabTests.swift */,
 				7DCF1EBF216BC97F003AF358 /* TabVisibilityTests.swift */,
 				9F10A66A2293191200E3360C /* UserSettingsTests.swift */,
+				B1CA3347233948870015CBB4 /* UserTests.swift */,
 				B1B6F077219A7D8B00C1575D /* UTITests.swift */,
-				9F62EDCF2326C23C00EA9F79 /* SearchRecipientTests.swift */,
-				3B8F23CC23274FC500788730 /* AlertThresholdTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2509,6 +2519,7 @@
 				3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */,
 				7D9BB1E722527F310058D9C6 /* GetContextPermissions.swift */,
 				9FE84DDD2150281300B95A68 /* GetContextTabs.swift */,
+				B1CA333F23392A140015CBB4 /* GetContextUsers.swift */,
 				B195DC502132257500797FE4 /* GetCourse.swift */,
 				B1EA5AEA212E641900DABC5F /* GetCourses.swift */,
 				7851D9B22138264800E76EC3 /* GetCustomColors.swift */,
@@ -2607,16 +2618,16 @@
 		B1EA5AEC212E652C00DABC5F /* Use Cases */ = {
 			isa = PBXGroup;
 			children = (
-				3BA9FF782332B39700196A06 /* GradingPeriodUseCaseTests.swift */,
-				3B60439E232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift */,
 				3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */,
 				7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */,
 				B150C63D2298E6410096D58C /* GetArcTests.swift */,
+				3B60439E232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift */,
 				3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */,
 				7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */,
 				3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */,
 				9F1CEA6222401AF1000BB98F /* GetContextPermissionsTests.swift */,
 				9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */,
+				B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */,
 				B1EA5AED212E656100DABC5F /* GetCoursesTest.swift */,
 				B195DC612133326900797FE4 /* GetCourseTest.swift */,
 				7DFB2CF821C978D40077DEEE /* GetCustomColorsTests.swift */,
@@ -2628,16 +2639,17 @@
 				7DD371C022E7B39800C2D0F7 /* GetQuizSubmissionsTests.swift */,
 				7DCF2045216D652C003AF358 /* GetQuizzesTests.swift */,
 				9FCF53E822776EAA006D2EFE /* GetRecentlyGradedSubmissionsTests.swift */,
+				9F62EDD72326D1E500EA9F79 /* GetSearchRecipientsTests.swift */,
 				7D5AA3C722959D5D00438667 /* GetSSOLoginTests.swift */,
 				7D5C871E2239A45300D99651 /* GetSubmissionCommentsTests.swift */,
 				9FCD79D92188E3CD0054293A /* GetSubmissionTest.swift */,
 				B195DC5421324DA600797FE4 /* GetUserGroupsTest.swift */,
+				3BA9FF782332B39700196A06 /* GradingPeriodUseCaseTests.swift */,
 				B14B70562294758600B568D6 /* UploadFileCommentTests.swift */,
 				B1B42C1522403AFD0087399A /* UploadManagerTests.swift */,
 				9F10A66E22931E7900E3360C /* GetUserSettingsTests.swift */,
 				7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */,
 				B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */,
-				9F62EDD72326D1E500EA9F79 /* GetSearchRecipientsTests.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -3390,6 +3402,7 @@
 				7D29D305218A57560036437C /* DocViewerAnnotationStateManager.swift in Sources */,
 				B150C62D2297814E0096D58C /* ExternalTool.swift in Sources */,
 				7D80AC23212B8A2100C40ECE /* APIAccount.swift in Sources */,
+				B1CA334023392A140015CBB4 /* GetContextUsers.swift in Sources */,
 				7D765026215AEDE300BB4F38 /* DynamicLabel.swift in Sources */,
 				B1999AAD2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift in Sources */,
 				B150C63A2298DAB90096D58C /* WKWebViewExtensions.swift in Sources */,
@@ -3445,6 +3458,7 @@
 				7D765024215AEDDE00BB4F38 /* DividerView.swift in Sources */,
 				7851D9B32138264800E76EC3 /* GetCustomColors.swift in Sources */,
 				7DCE0C8822AEFE0C00BA549F /* QuizSubmissionWorkflowState.swift in Sources */,
+				B1CA333E233929A30015CBB4 /* User.swift in Sources */,
 				B1F6D6B822EB672500CDD44D /* SessionDefaults.swift in Sources */,
 				B1EF7ABB21E902DD00D653D7 /* UseCase.swift in Sources */,
 				7DD6948B21960EBD00BA4984 /* DocViewerPresenter.swift in Sources */,
@@ -3530,6 +3544,7 @@
 				3B158CBC22E267FF0039A568 /* PageViewSessionTests.swift in Sources */,
 				7DF9BF082152AEF10099026B /* UIColorExtensionsTests.swift in Sources */,
 				B191D5E8226E2CBA00D02948 /* CacheManagerTests.swift in Sources */,
+				B1CA3348233948870015CBB4 /* UserTests.swift in Sources */,
 				B19792FF2176A0F00000369C /* TabTests.swift in Sources */,
 				2C96485B211E30B3002C3255 /* RouterTests.swift in Sources */,
 				B14B70572294758600B568D6 /* UploadFileCommentTests.swift in Sources */,
@@ -3662,6 +3677,7 @@
 				B1A890BA224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift in Sources */,
 				7D1758C4215A995200F88613 /* ListFormatterTests.swift in Sources */,
 				9FAE410321B6C88000FE7F58 /* APIExternalToolRequestableTests.swift in Sources */,
+				B1CA33462339434A0015CBB4 /* GetContextUsersTests.swift in Sources */,
 				B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */,
 				B15CA273221DE1FA0014FB02 /* GetModulesTests.swift in Sources */,
 				9FBE536B223C2B9F001EC40C /* APIPermissionsRequestableTests.swift in Sources */,

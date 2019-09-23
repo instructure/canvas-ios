@@ -81,6 +81,7 @@
 		B1A32BE02159A28D0071B41E /* APISubmissionFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BDF2159A28D0071B41E /* APISubmissionFixture.swift */; };
 		B1B42C1822404AB20087399A /* FileUploadTargetFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B42C1722404AB20087399A /* FileUploadTargetFixture.swift */; };
 		B1C6BF6521BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */; };
+		B1CA334423393FEC0015CBB4 /* UserFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA334323393FEC0015CBB4 /* UserFixture.swift */; };
 		B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B721B1B06F0087FE4A /* TestLogger.swift */; };
 		B1E789BA21B1D0D30087FE4A /* LogEventFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */; };
 		B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */; };
@@ -168,6 +169,7 @@
 		B1A32BDF2159A28D0071B41E /* APISubmissionFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubmissionFixture.swift; sourceTree = "<group>"; };
 		B1B42C1722404AB20087399A /* FileUploadTargetFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTargetFixture.swift; sourceTree = "<group>"; };
 		B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensions.swift; sourceTree = "<group>"; };
+		B1CA334323393FEC0015CBB4 /* UserFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFixture.swift; sourceTree = "<group>"; };
 		B1E789B721B1B06F0087FE4A /* TestLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLogger.swift; sourceTree = "<group>"; };
 		B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventFixture.swift; sourceTree = "<group>"; };
 		B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemFixture.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				B16F0374215C2B340011E952 /* AssignmentFixture.swift */,
+				3B6043A9232AB93900757B93 /* AssignmentGroupsFixture.swift */,
 				3B635B34225CDFB1001F353D /* CalendarEventFixture.swift */,
 				B19792F421767B830000369C /* ColorFixture.swift */,
 				3B032D18215037CA00B570F7 /* CourseFixture.swift */,
@@ -302,6 +305,7 @@
 				B119B4BE230720FF00A74062 /* FeatureFlagFixture.swift */,
 				9F4B53AB2180FFDF0056A557 /* FileFixture.swift */,
 				B1B42C1722404AB20087399A /* FileUploadTargetFixture.swift */,
+				3B519EFE2332D74D00C8DEB8 /* GradingPeriodFixture.swift */,
 				3B032D19215037CA00B570F7 /* GroupFixture.swift */,
 				B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */,
 				9F6878B42239701F00E559CE /* MediaCommentFixture.swift */,
@@ -311,14 +315,13 @@
 				9F1CEA5C22400CE0000BB98F /* PermissionsFixture.swift */,
 				7DCF2049216D6668003AF358 /* QuizFixture.swift */,
 				3B19D25C2265391F003A0565 /* RubricFixture.swift */,
+				9F62EDD32326C5B900EA9F79 /* SearchRecipientFixture.swift */,
 				7D5C87222239A9EE00D99651 /* SubmissionCommentFixture.swift */,
 				B16F0376215C2CEF0011E952 /* SubmissionFixture.swift */,
 				3B0CEB7D2150445100D07CFA /* TabFixture.swift */,
 				3B032D17215037C900B570F7 /* TTLFixture.swift */,
+				B1CA334323393FEC0015CBB4 /* UserFixture.swift */,
 				9F10A66C22931C5B00E3360C /* UserSettingsFixture.swift */,
-				9F62EDD32326C5B900EA9F79 /* SearchRecipientFixture.swift */,
-				3B6043A9232AB93900757B93 /* AssignmentGroupsFixture.swift */,
-				3B519EFE2332D74D00C8DEB8 /* GradingPeriodFixture.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				7D6C8C6B22EA0C5900E5ADD8 /* APIActivityFixture.swift in Sources */,
 				3B0CEB722150406400D07CFA /* CourseFixture.swift in Sources */,
 				7DB0A1C921C07F39009ABB40 /* APIUserFixture.swift in Sources */,
+				B1CA334423393FEC0015CBB4 /* UserFixture.swift in Sources */,
 				7D903C1922C1513D009D9E9E /* NavBar.swift in Sources */,
 				9F6878B52239701F00E559CE /* MediaCommentFixture.swift in Sources */,
 				EE424B3A22E8E97100D083EE /* PageFixture.swift in Sources */,

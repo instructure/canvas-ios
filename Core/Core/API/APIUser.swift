@@ -27,7 +27,7 @@ struct APIUserDisplay: Codable, Equatable {
 }
 
 // https://canvas.instructure.com/doc/api/users.html#User
-struct APIUser: Codable, Equatable {
+public struct APIUser: Codable, Equatable {
     let id: ID
     let name: String
     let sortable_name: String
@@ -37,7 +37,7 @@ struct APIUser: Codable, Equatable {
     // let integration_id: String?
     let login_id: String?
     let avatar_url: URL?
-    // let enrollments: [APIEnrollment]?
+    let enrollments: [APIEnrollment]?
     let email: String?
     let locale: String?
     let effective_locale: String?

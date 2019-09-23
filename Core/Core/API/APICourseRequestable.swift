@@ -155,3 +155,17 @@ struct PostCourseRequest: APIRequestable {
         return "\(ContextModel(.account, id: accountID).pathComponent)/courses"
     }
 }
+
+// https://canvas.instructure.com/doc/api/courses.html#method.courses.users
+public struct GetCourseUsersRequest: APIRequestable {
+    public typealias Response = [APIUser]
+    let courseID: String
+
+    public var path: String {
+        return "\(ContextModel(.course, id: courseID))/users"
+    }
+
+    public var query: [APIQueryItem] {
+        return [.value("sort", "username")]
+    }
+}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AlertThreshold" representedClassName="Core.AlertThreshold" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="observerID" optional="YES" attributeType="String" syncable="YES"/>
@@ -111,6 +111,7 @@
         <attribute name="type" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="enrollments" inverseEntity="Course" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="enrollments" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="ExternalTool" representedClassName="Core.ExternalTool" syncable="YES">
         <attribute name="arc" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -439,6 +440,17 @@
         <attribute name="key" attributeType="String" syncable="YES"/>
         <attribute name="lastRefresh" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
+    <entity name="User" representedClassName="Core.User" syncable="YES">
+        <attribute name="avatarURL" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="groupID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortName" attributeType="String" syncable="YES"/>
+        <attribute name="sortableName" attributeType="String" syncable="YES"/>
+        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="user" inverseEntity="Enrollment" syncable="YES"/>
+    </entity>
     <entity name="UserSettings" representedClassName="Core.UserSettings" syncable="YES">
         <attribute name="collapseGlobalNav" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="hideDashcardColorOverlays" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -453,7 +465,7 @@
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="195"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="255"/>
-        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="315"/>
+        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="330"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
@@ -478,5 +490,6 @@
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="User" positionX="-540" positionY="-27" width="128" height="180"/>
     </elements>
 </model>

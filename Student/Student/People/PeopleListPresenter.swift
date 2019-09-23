@@ -35,7 +35,7 @@ class PeopleListPresenter {
         self?.updateNavBar()
     }
 
-    lazy var searchRecipients = env.subscribe(GetSearchRecipients(context: context)) { [weak self] in
+    lazy var users = env.subscribe(GetContextUsers(context: context)) { [weak self] in
         self?.viewController.update()
     }
 
@@ -47,7 +47,7 @@ class PeopleListPresenter {
 
     func viewIsReady() {
         colors.refresh()
-        searchRecipients.refresh()
+        users.refresh()
 
         if context.contextType == .course {
             course.refresh()
@@ -63,7 +63,7 @@ class PeopleListPresenter {
         viewController.updateNavBar(subtitle: name, color: color)
     }
 
-    func select(recipient: SearchRecipient, from: UIViewController) {
-        env.router.route(to: "/\(context.pathComponent)/users/\(recipient.id)", from: from, options: [.detail, .embedInNav])
+    func select(user: User, from: UIViewController) {
+        env.router.route(to: "/\(context.pathComponent)/users/\(user.id)", from: from, options: [.detail, .embedInNav])
     }
 }
