@@ -52,12 +52,12 @@ class GetRecentlyGradedSubmissionsTests: CoreTestCase {
     }
 
     func testScope() {
-        let firstSubmission = Submission.make(from: APISubmission.make(assignment_id: "1", graded_at: Date(fromISOString: "2019-04-29T18:17:21.890Z")), in: databaseClient)
-        let secondSubmission = Submission.make(from: APISubmission.make(assignment_id: "2", graded_at: Date(fromISOString: "2019-04-28T18:17:21.890Z")), in: databaseClient)
+        let firstSubmission = Submission.make(from: APISubmission.make(assignment_id: "1", graded_at: Date(fromISOString: "2019-04-29T18:17:21Z")), in: databaseClient)
+        let secondSubmission = Submission.make(from: APISubmission.make(assignment_id: "2", graded_at: Date(fromISOString: "2019-04-28T18:17:21Z")), in: databaseClient)
 
         let useCase = GetRecentlyGradedSubmissions(userID: "self")
 
-        let submissions: [Submission] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+        let submissions: [Submission] = databaseClient.fetch(scope: useCase.scope)
 
         XCTAssertEqual(submissions.count, 2)
         XCTAssertEqual(submissions[0], firstSubmission)

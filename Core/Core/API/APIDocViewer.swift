@@ -69,6 +69,7 @@ struct APIDocViewerAnnotation: Codable, Equatable {
     let deleted_by_id: String?
     let type: APIDocViewerAnnotationType
     let color: String?
+    let bgColor: String?
     let icon: String?
     let contents: String?
     let inreplyto: String?

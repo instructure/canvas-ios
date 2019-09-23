@@ -42,6 +42,7 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         deleted_by: String? = "b",
         deleted_by_id: String? = "2",
         color: String? = "#ffff00",
+        bgColor: String? = nil,
         icon: String? = nil,
         contents: String? = "",
         inreplyto: String? = nil,
@@ -54,7 +55,7 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         return APIDocViewerAnnotation(
             id: id, document_id: document_id, user_id: user_id, user_name: user_name, page: page,
             created_at: created_at, modified_at: modified_at, deleted: deleted, deleted_at: deleted_at,
-            deleted_by: deleted_by, deleted_by_id: deleted_by_id, type: type, color: color, icon: icon,
+            deleted_by: deleted_by, deleted_by_id: deleted_by_id, type: type, color: color, bgColor: bgColor, icon: icon,
             contents: contents, inreplyto: inreplyto, coords: coords, rect: rect, font: font,
             inklist: inklist, width: width
         )
@@ -80,20 +81,21 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
     }
 
     func testFreetext() {
-        let apiAnnotation = model(type: .freetext, contents: "freetext", font: "38pt Helvetica")
+        let apiAnnotation = model(type: .freetext, bgColor: "#ffffff", contents: "freetext", font: "38pt Helvetica")
         let annotation = PSPDFAnnotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
         XCTAssert(annotation is PSPDFFreeTextAnnotation)
         XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
         XCTAssertEqual(annotation?.contents, "freetext")
         XCTAssertEqual(annotation?.fontName, "Helvetica")
-        XCTAssertEqual(annotation?.fontSize, 38)
+        XCTAssertEqual(annotation?.fontSize, 38 * 0.9)
 
         let apiEmpty = model(type: .freetext, contents: nil, font: nil)
         let empty = PSPDFAnnotation.from(apiEmpty, metadata: metadata)
         XCTAssertEqual(empty?.contents, "")
-        XCTAssertEqual(empty?.fontName, "Verdana")
-        XCTAssertEqual(empty?.fontSize, 14)
+        XCTAssertEqual(empty?.fontName, "Helvetica")
+        XCTAssertEqual(empty?.fontSize, 14 * 0.9)
+        XCTAssertEqual(empty?.fillColor, UIColor(hexString: "#ffffff"))
     }
 
     func testPoint() {
