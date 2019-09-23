@@ -29,12 +29,10 @@ class CourseFileTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return CourseFileTests.self }
 
     func testPreviewCourseFile() {
-        Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.files.tap()
 
-        FilesList.file(id: "10528").waitToExist()
         FilesList.file(id: "10528").tap()
 
         // need be on the next page before checking for image

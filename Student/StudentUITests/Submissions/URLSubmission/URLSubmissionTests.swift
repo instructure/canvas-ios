@@ -25,7 +25,7 @@ class URLSubmissionTests: StudentUITestCase {
     lazy var course = mock(course: .make())
     lazy var assignment = mock(assignment: .make(submission_types: [ .online_url ]))
 
-    func testSumbitUrl() {
+    func testSubmitUrl() {
         mockBaseRequests()
         mockData(CreateSubmissionRequest(context: course, assignmentID: assignment.id.value, body: nil), noCallback: true)
 
