@@ -146,8 +146,6 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - ReactNativeSearchBar (3.4.2):
-    - React
   - RNAudio (3.6.0):
     - React
   - RNCAsyncStorage (1.6.1):
@@ -155,6 +153,8 @@ PODS:
   - RNDeviceInfo (0.9.3):
     - React
   - RNFS (2.14.1):
+    - React
+  - RNSearchBar (3.4.3):
     - React
   - RNSound (0.10.12):
     - React/Core
@@ -194,11 +194,11 @@ DEPENDENCIES:
   - React/RCTText (from `./rn/Teacher/node_modules/react-native/`)
   - React/RCTVibration (from `./rn/Teacher/node_modules/react-native/`)
   - React/RCTWebSocket (from `./rn/Teacher/node_modules/react-native/`)
-  - ReactNativeSearchBar (from `./rn/Teacher/node_modules/react-native-search-bar`)
   - RNAudio (from `./rn/Teacher/node_modules/react-native-audio`)
   - "RNCAsyncStorage (from `./rn/Teacher/node_modules/@react-native-community/async-storage`)"
   - RNDeviceInfo (from `./rn/Teacher/node_modules/react-native-device-info`)
   - RNFS (from `./rn/Teacher/node_modules/react-native-fs`)
+  - RNSearchBar (from `./rn/Teacher/node_modules/react-native-search-bar`)
   - RNSound (from `./rn/Teacher/node_modules/react-native-sound`)
   - yoga (from `./rn/Teacher/node_modules/react-native/ReactCommon/yoga`)
 
@@ -238,8 +238,6 @@ EXTERNAL SOURCES:
     :path: "./rn/Teacher/node_modules/react-native-document-picker"
   react-native-image-picker:
     :path: "./rn/Teacher/node_modules/react-native-image-picker"
-  ReactNativeSearchBar:
-    :path: "./rn/Teacher/node_modules/react-native-search-bar"
   RNAudio:
     :path: "./rn/Teacher/node_modules/react-native-audio"
   RNCAsyncStorage:
@@ -248,6 +246,8 @@ EXTERNAL SOURCES:
     :path: "./rn/Teacher/node_modules/react-native-device-info"
   RNFS:
     :path: "./rn/Teacher/node_modules/react-native-fs"
+  RNSearchBar:
+    :path: "./rn/Teacher/node_modules/react-native-search-bar"
   RNSound:
     :path: "./rn/Teacher/node_modules/react-native-sound"
   yoga:
@@ -277,14 +277,14 @@ SPEC CHECKSUMS:
   react-native-camera: a4446f056fb28a9aa7acb3e14af595216aac0a8d
   react-native-document-picker: e3516aff0dcf65ee0785d9bcf190eb10e2261154
   react-native-image-picker: 3693786b3d5958c8f71deed66ec068b323565e0d
-  ReactNativeSearchBar: 1e3e667edb51de2cbc878b977c5b13f3b25fe21e
   RNAudio: 5a5bc9863f6db8b6c9f34f98a7b472c03c684246
   RNCAsyncStorage: 2e2e3feb9bdadc752a026703d8c4065ca912e75a
   RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
   RNFS: a8fbe7060fa49157d819466404794ad9c58e58cf
+  RNSearchBar: eb40cc483e6ef81a6e5c30efef8c450705d0e395
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
   yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
 
-PODFILE CHECKSUM: 1d042618aa9a38dcc0abedc041979e5b59dbeb85
+PODFILE CHECKSUM: b9a73742604fe172ebfc8f1266256388772fba05
 
 COCOAPODS: 1.7.5
