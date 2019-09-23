@@ -579,7 +579,6 @@
 				B714E89FBF87F7C6C1A4CBF2 /* [CP] Embed Pods Frameworks */,
 				F9B947072215EA3C0083E660 /* Carthage Copy Frameworks */,
 				2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */,
-				7D52D83A22FCA0BA00684932 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -821,24 +820,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		7D52D83A22FCA0BA00684932 /* Swiftlint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Swiftlint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint autocorrect --config ../../../.swiftlint.yml\n    swiftlint --config ../../../.swiftlint.yml --strict\nelse\n    echo \"warning: SwiftLint not installed, download --> `brew install swfitlint`\"\nfi\n";
 		};
 		AF77E971FEE0456B393856EF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
