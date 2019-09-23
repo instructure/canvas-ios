@@ -38,6 +38,13 @@ class RouterTests: XCTestCase {
         }
     }
 
+    class MockSplitViewController: UISplitViewController {
+        var mockCollapsed: Bool?
+        override var isCollapsed: Bool {
+            return mockCollapsed ?? super.isCollapsed
+        }
+    }
+
     func testRouter() {
         let router = Router(routes: [
             RouteHandler("/courses") { _, _ in
@@ -147,7 +154,7 @@ class RouterTests: XCTestCase {
         XCTAssertNil(mockView.navigationItem.leftBarButtonItems?.first)
         XCTAssertFalse(mockView.navigationItem.leftItemsSupplementBackButton)
 
-        let split = UISplitViewController()
+        let split = MockSplitViewController()
         split.viewControllers = [UIViewController(), UINavigationController(rootViewController: mockView)]
 
         // to detail
@@ -161,6 +168,12 @@ class RouterTests: XCTestCase {
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: nil)
         XCTAssertNotNil(mockView.shown?.navigationItem.leftBarButtonItems?.first)
         XCTAssert(mockView.shown?.navigationItem.leftItemsSupplementBackButton == true)
+
+        // compact
+        split.mockCollapsed = true
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: nil)
+        XCTAssertNil(mockView.navigationItem.leftBarButtonItems?.first)
+        XCTAssertFalse(mockView.navigationItem.leftItemsSupplementBackButton)
     }
 
     func testRouteMatch() {

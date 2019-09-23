@@ -58,6 +58,7 @@ public extension RouterProtocol {
         if view is UIAlertController { return from.present(view, animated: true) }
 
         if let displayModeButton = from.displayModeButtonItem,
+            from.splitViewController?.isCollapsed == false,
             options?.contains(.detail) == true || from.isInSplitViewDetail {
             view.addNavigationButton(displayModeButton, side: .left)
             view.navigationItem.leftItemsSupplementBackButton = true

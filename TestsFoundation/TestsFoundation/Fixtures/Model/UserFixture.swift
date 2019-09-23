@@ -16,28 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
-import Core
+import CoreData
+import Foundation
+@testable import Core
 
-class PeopleListCell: UITableViewCell {
-    @IBOutlet weak var avatar: UIImageView!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var roles: UILabel!
-
-    func update(user: User?) {
-        guard let user = user else {
-            return
-        }
-
-        if let avatarURL = user.avatarURL {
-            avatar.setImageWith(avatarURL)
-            avatar.roundCorners(corners: .allCorners, radius: avatar.frame.width / 2)
-        } else {
-            avatar.image = nil
-        }
-        name.text = user.name
-        let roles = user.enrollments?.compactMap { $0.formattedRole } ?? []
-        self.roles.text = roles.joined(separator: ", ")
-        self.roles.isHidden = roles.isEmpty
+extension User {
+    @discardableResult
+    public static func make(
+        from api: APIUser = .make(),
+        courseID: String? = nil,
+        groupID: String? = nil,
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> User {
+        let model = User.save(api, in: context)
+        model.courseID = courseID
+        model.groupID = groupID
+        try! context.save()
+        return model
     }
 }

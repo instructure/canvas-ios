@@ -45,15 +45,15 @@ class PeopleListPresenterTests: PersistenceTestCase {
         presenter = PeopleListPresenter(env: env, viewController: self, context: context)
     }
 
-    func testLoadSearchRecipients() {
-        SearchRecipient.make(from: APISearchRecipient.make(id: "1", full_name: "John Doe"), canvasContext: context)
-        SearchRecipient.make(from: APISearchRecipient.make(id: "2", full_name: "Jane Doe"), canvasContext: context)
+    func testLoadUsers() {
+        User.make(from: APIUser.make(id: "1", name: "John Doe", sortable_name: "Doe, John"), courseID: "1")
+        User.make(from: APIUser.make(id: "2", name: "Jane Doe", sortable_name: "Doe, Jane"), courseID: "1")
 
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(presenter.searchRecipients.count, 2)
-        XCTAssertEqual(presenter.searchRecipients.first!.id, "2") // Jane
-        XCTAssertEqual(presenter.searchRecipients.last!.id, "1") // John
+        XCTAssertEqual(presenter.users.count, 2)
+        XCTAssertEqual(presenter.users.first!.id, "2") // Jane
+        XCTAssertEqual(presenter.users.last!.id, "1") // John
     }
 
     func testLoadCourse() {
@@ -79,8 +79,8 @@ class PeopleListPresenterTests: PersistenceTestCase {
     }
 
     func testSendsToContextCard() {
-        let recipient = SearchRecipient.make()
-        presenter.select(recipient: recipient, from: UIViewController())
+        let user = User.make()
+        presenter.select(user: user, from: UIViewController())
 
         let router = env.router as? TestRouter
         XCTAssertEqual(router?.calls.last?.0, .parse("/courses/1/users/1"))

@@ -44,31 +44,56 @@ class PeopleListViewController: UIViewController, PeopleListViewProtocol {
 
         setupTitleViewInNavbar(title: NSLocalizedString("People", bundle: .student, comment: ""))
 
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+
         presenter?.viewIsReady()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let selected = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selected, animated: true)
+        }
     }
 
     func update() {
         tableView.reloadData()
     }
+
+    @objc func refresh() {
+        presenter?.users.refresh(force: true) { [weak self] _ in
+            self?.tableView.refreshControl?.endRefreshing()
+        }
+    }
 }
 
 extension PeopleListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let recipient = presenter?.searchRecipients[indexPath.row] else {
+        guard let user = presenter?.users[indexPath.row] else {
             return
         }
-        presenter?.select(recipient: recipient, from: self)
+        presenter?.select(user: user, from: self)
     }
 }
 
 extension PeopleListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.searchRecipients.count ?? 0
+        return presenter?.users.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(PeopleListCell.self, for: indexPath)
-        cell.update(searchRecipient: presenter?.searchRecipients[indexPath.row])
+        cell.update(user: presenter?.users[indexPath.row])
         return cell
+    }
+}
+
+extension PeopleListViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isBottomReached() {
+            presenter?.users.getNextPage()
+        }
     }
 }

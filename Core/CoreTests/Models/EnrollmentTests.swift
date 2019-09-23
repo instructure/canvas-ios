@@ -51,4 +51,16 @@ class EnrollmentTests: CoreTestCase {
         XCTAssertFalse(Enrollment.make(from: .make(type: "TeacherEnrollment")).isStudent)
         XCTAssertFalse(Enrollment.make(from: .make(type: "QaEnrollment")).isStudent)
     }
+
+    func testFormattedRole() {
+        XCTAssertEqual(Enrollment.make(from: .make(role: "StudentEnrollment")).formattedRole, "Student")
+        XCTAssertEqual(Enrollment.make(from: .make(role: "TeacherEnrollment")).formattedRole, "Teacher")
+        XCTAssertEqual(Enrollment.make(from: .make(role: "TaEnrollment")).formattedRole, "TA")
+        XCTAssertEqual(Enrollment.make(from: .make(role: "ObserverEnrollment")).formattedRole, "Observer")
+        XCTAssertEqual(Enrollment.make(from: .make(role: "DesignerEnrollment")).formattedRole, "Designer")
+        XCTAssertEqual(Enrollment.make(from: .make(role: "Custom Role")).formattedRole, "Custom Role")
+        let enrollment = databaseClient.insert() as Enrollment
+        enrollment.role = nil
+        XCTAssertNil(enrollment.formattedRole)
+    }
 }
