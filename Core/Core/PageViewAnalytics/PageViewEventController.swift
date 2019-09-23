@@ -144,20 +144,16 @@ public class PageViewEventController: NSObject {
     private func populatePlaceholderUrl(urlWithPlaceholders: String?, params: PageViewEventDictionary?) -> String? {
         guard let baseURL = LoginSession.mostRecent?.baseURL,
             let urlWithPlaceholders = urlWithPlaceholders
-            else { return nil }
+        else { return nil }
+        //  return url if it's already a full url
+        if let isFullyQualifiedUrl = URL(string: urlWithPlaceholders), isFullyQualifiedUrl.scheme == "http" || isFullyQualifiedUrl.scheme == "https" {
+            return urlWithPlaceholders
+        }
         var path = urlWithPlaceholders
         if let customPageViewPath = params?[PageViewEventController.Constants.customPageViewPath]?.description { path = customPageViewPath }
         if let paramterizedUrl = path.populatePathWithParams(params) {
             path = paramterizedUrl
         }
-        if (path.hasPrefix("/")) {
-            path = String(path.dropFirst())
-        }
-        //  return url if it's already a full url
-        if let isFullyQualifiedUrl = URL(string: urlWithPlaceholders), isFullyQualifiedUrl.scheme == "http" || isFullyQualifiedUrl.scheme == "https" {
-            return urlWithPlaceholders
-        }
-
         return baseURL.appendingPathComponent(path).absoluteString
     }
 
