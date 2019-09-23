@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Account has no Terms of Use"
   },
-  "act_as_user_d7ef0e48": {
-    "message": "Act as User"
-  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Add a few of your favorite courses to make this place your home."
   },
@@ -269,9 +266,6 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Change { discussionTitle } to different grouping"
   },
-  "change_user_1b7c4f23": {
-    "message": "Change User"
-  },
   "choose_color_11148181": {
     "message": "Choose { color }"
   },
@@ -307,9 +301,6 @@
   },
   "color_a363e1b0": {
     "message": "Color"
-  },
-  "color_overlay_fb5ecce7": {
-    "message": "Color Overlay"
   },
   "comment_7ef1428e": {
     "message": "Comment"
@@ -472,9 +463,6 @@
   },
   "details_98a31b68": {
     "message": "Details"
-  },
-  "developer_menu_1e80da35": {
-    "message": "Developer Menu"
   },
   "discussion_details_5728ea3d": {
     "message": "Discussion Details"
@@ -868,9 +856,6 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Lock Questions After Answering"
-  },
-  "log_out_379ba28a": {
-    "message": "Log Out"
   },
   "long_description_7d89285c": {
     "message": "Long Description"
@@ -1406,9 +1391,6 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Show Correct Answers At"
   },
-  "show_grades_8680e38e": {
-    "message": "Show Grades"
-  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Show One Question at a Time"
   },
@@ -1435,9 +1417,6 @@
   },
   "start_recording_189496b9": {
     "message": "Start recording"
-  },
-  "stop_act_as_user_4f2a4f22": {
-    "message": "Stop Act as User"
   },
   "stop_playing_audio_96aed3bc": {
     "message": "Stop playing audio"
@@ -1516,9 +1495,6 @@
   },
   "terms_of_use_62ee73ad": {
     "message": "Terms Of Use"
-  },
-  "terms_of_use_6542769b": {
-    "message": "Terms of Use"
   },
   "text_color_colorhex_62e206a5": {
     "message": "Text Color ({ colorHex })"
@@ -1790,9 +1766,6 @@
   },
   "view_responses_d2874266": {
     "message": "View Responses"
-  },
-  "visit_the_canvas_guides_7328b93f": {
-    "message": "Visit the Canvas Guides"
   },
   "welcome_73d18b4d": {
     "message": "Welcome!"
