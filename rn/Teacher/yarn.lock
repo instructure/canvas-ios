@@ -7008,10 +7008,10 @@ react-native-progress@^3.5.0:
   dependencies:
     prop-types "^15.7.2"
 
-react-native-search-bar@^3.4.0:
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/react-native-search-bar/-/react-native-search-bar-3.4.2.tgz#8606bb1d6b29a26dd5ee86cfae00f7253181736d"
-  integrity sha512-hchI0UBeKzNbPchJ4fXhl+o3fu4a9uQEmtRQrtf1lAqtTU3/WEtSHZ9Dz5Ix/ZalZQtiBcqlDVZTfIk3x7DbVw==
+react-native-search-bar@^3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/react-native-search-bar/-/react-native-search-bar-3.4.3.tgz#0a772baba1ee66c54c55b7c1a278ae3fd4b13ab7"
+  integrity sha512-zBUU+atLC0bhc2SrezHuivQndfwKp/iJq3QbLDItI3nl/5AZCvS/7CzPke7gWrH7lhgn6kaBdouPH34lZtfQYQ==
   dependencies:
     prop-types "^15.5.10"
 
