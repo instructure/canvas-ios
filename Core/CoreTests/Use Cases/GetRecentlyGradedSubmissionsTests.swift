@@ -52,8 +52,14 @@ class GetRecentlyGradedSubmissionsTests: CoreTestCase {
     }
 
     func testScope() {
-        let firstSubmission = Submission.make(from: APISubmission.make(assignment_id: "1", graded_at: Date(fromISOString: "2019-04-29T18:17:21Z")), in: databaseClient)
-        let secondSubmission = Submission.make(from: APISubmission.make(assignment_id: "2", graded_at: Date(fromISOString: "2019-04-28T18:17:21Z")), in: databaseClient)
+        let firstDate = Date(fromISOString: "2019-04-29T18:17:21.890Z", formatOptions: [ .withInternetDateTime, .withFractionalSeconds ])
+        let secondDate = Date(fromISOString: "2019-04-28T18:17:21.890Z", formatOptions: [ .withInternetDateTime, .withFractionalSeconds ])
+
+        XCTAssertNotNil(firstDate)
+        XCTAssertNotNil(secondDate)
+
+        let firstSubmission = Submission.make(from: APISubmission.make(assignment_id: "1", graded_at: firstDate), in: databaseClient)
+        let secondSubmission = Submission.make(from: APISubmission.make(assignment_id: "2", graded_at: secondDate), in: databaseClient)
 
         let useCase = GetRecentlyGradedSubmissions(userID: "self")
 

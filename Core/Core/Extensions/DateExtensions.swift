@@ -23,8 +23,12 @@ public extension Date {
         return ISO8601DateFormatter.string(from: self, timeZone: TimeZone(abbreviation: "UTC")!, formatOptions: .withInternetDateTime)
     }
 
-    init?(fromISOString: String) {
-        guard let date = ISO8601DateFormatter().date(from: fromISOString) else { return nil }
+    init?(fromISOString: String, formatOptions: ISO8601DateFormatter.Options? = nil) {
+        let formatter = ISO8601DateFormatter()
+        if let options = formatOptions {
+            formatter.formatOptions = options
+        }
+        guard let date = formatter.date(from: fromISOString) else { return nil }
         self = date
     }
 
