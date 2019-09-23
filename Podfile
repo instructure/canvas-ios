@@ -42,7 +42,7 @@ abstract_target 'defaults' do
   pod 'react-native-image-picker', :path => nm_path + 'react-native-image-picker'
   pod 'Interactable', :path => nm_path + 'react-native-interactable'
   pod 'BVLinearGradient', :path => nm_path + 'react-native-linear-gradient'
-  pod 'ReactNativeSearchBar', :path => nm_path + 'react-native-search-bar'
+  pod 'RNSearchBar', :path => nm_path + 'react-native-search-bar'
   pod 'react-native-document-picker', :path => nm_path + 'react-native-document-picker'
   pod 'RNAudio', :path => nm_path + 'react-native-audio'
   pod 'RNSound', :path => nm_path + 'react-native-sound'
