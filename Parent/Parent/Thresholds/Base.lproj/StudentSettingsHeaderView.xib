@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,13 +14,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bk1-va-nbe">
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bk1-va-nbe" customClass="AvatarView" customModule="Parent" customModuleProvider="target">
                     <rect key="frame" x="8" y="15" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="Xdh-83-SKm"/>
                         <constraint firstAttribute="height" constant="40" id="g6U-Vl-nIv"/>
                     </constraints>
-                </imageView>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pmg-Ex-yNw">
                     <rect key="frame" x="56" y="24.5" width="256" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -39,7 +38,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="imageView" destination="Bk1-va-nbe" id="S4v-9O-Mdx"/>
+                <outlet property="avatarView" destination="Bk1-va-nbe" id="dQW-R7-bba"/>
                 <outlet property="nameLabel" destination="Pmg-Ex-yNw" id="v0a-ra-ENU"/>
             </connections>
             <point key="canvasLocation" x="864" y="512"/>

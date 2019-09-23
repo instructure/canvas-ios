@@ -286,13 +286,10 @@ extension StudentSettingsViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: StudentSettingsHeaderView.self)) as? StudentSettingsHeaderView
-            header?.nameLabel.text = ""
-            header?.imageView.image = UIImage(named: "icon_user")
             let student = studentObserver?.object
             header?.nameLabel.text = student?.name
-            if let url = student?.avatarURL {
-                header?.imageView.kf.setImage(with: url, placeholder: DefaultAvatarCoordinator.defaultAvatarForStudentID(studentID))
-            }
+            header?.avatarView.name = student?.name ?? ""
+            header?.avatarView.url = student?.avatarURL
             return header
         }
         return nil

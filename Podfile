@@ -50,8 +50,6 @@ abstract_target 'defaults' do
 
   pod 'Marshal', '~> 1.2.7'
   pod 'Cartography', '~> 3.1'
-  pod 'Kingfisher', '~> 4.10'
-  pod 'TBBModal', '~> 1.0'
   pod 'AFNetworking', '~> 3.0'
   pod 'Mantle', '~> 1.5.5'
 

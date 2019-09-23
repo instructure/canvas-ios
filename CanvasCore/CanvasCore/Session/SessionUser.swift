@@ -18,8 +18,6 @@
 
 import Foundation
 
-import Kingfisher
-
 // this is in `AuthKit` so the `Session` can have a `currentUser`
 open class SessionUser: NSObject {
     @objc public let id: String
@@ -36,13 +34,6 @@ open class SessionUser: NSObject {
         self.email = email
         self.avatarURL = avatarURL
         self.sortableName = sortableName
-    }
-
-    @objc open func getAvatarImage(_ completion: @escaping (UIImage?, NSError?)->Void) {
-        guard let url = avatarURL else { completion(nil, NSError(subdomain: "TooLegit", description: NSLocalizedString("User has no valid avatar image url", tableName: "Localizable", bundle: .core, value: "", comment: "Error message if we can't pull the avatar image"))); return }
-        KingfisherManager.shared.retrieveImage(with: url, options: nil, progressBlock: nil) { (image, error, cacheType, imageURL) in
-            completion(image, error)
-        }
     }
 }
 

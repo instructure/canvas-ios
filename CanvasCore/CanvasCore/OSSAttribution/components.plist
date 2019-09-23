@@ -4,12 +4,6 @@
 <array>
 	<dict>
 		<key>name</key>
-		<string>TBBModal</string>
-		<key>url</key>
-		<string>https://github.com/thebestbits/TBBModal</string>
-	</dict>
-	<dict>
-		<key>name</key>
 		<string>AFNetworking</string>
 		<key>url</key>
 		<string>https://github.com/AFNetworking/AFNetworking</string>
@@ -25,12 +19,6 @@
 		<string>Eureka</string>
 		<key>url</key>
 		<string>https://github.com/xmartlabs/Eureka</string>
-	</dict>
-	<dict>
-		<key>name</key>
-		<string>Kingfisher</string>
-		<key>url</key>
-		<string>https://github.com/onevcat/Kingfisher</string>
 	</dict>
 	<dict>
 		<key>name</key>

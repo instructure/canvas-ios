@@ -74,7 +74,6 @@ PODS:
     - GoogleUtilities/Logger
   - Interactable (0.0.9):
     - React
-  - Kingfisher (4.10.1)
   - Mantle (1.5.8):
     - Mantle/extobjc (= 1.5.8)
   - Mantle/extobjc (1.5.8)
@@ -162,7 +161,6 @@ PODS:
     - RNSound/Core (= 0.10.12)
   - RNSound/Core (0.10.12):
     - React/Core
-  - TBBModal (1.0.2)
   - yoga (0.59.9.React)
 
 DEPENDENCIES:
@@ -176,7 +174,6 @@ DEPENDENCIES:
   - Folly (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/glog.podspec`)
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
-  - Kingfisher (~> 4.10)
   - Mantle (~> 1.5.5)
   - Marshal (~> 1.2.7)
   - react-native-camera (from `./rn/Teacher/node_modules/react-native-camera`)
@@ -203,7 +200,6 @@ DEPENDENCIES:
   - RNDeviceInfo (from `./rn/Teacher/node_modules/react-native-device-info`)
   - RNFS (from `./rn/Teacher/node_modules/react-native-fs`)
   - RNSound (from `./rn/Teacher/node_modules/react-native-sound`)
-  - TBBModal (~> 1.0)
   - yoga (from `./rn/Teacher/node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -219,11 +215,9 @@ SPEC REPOS:
     - FirebaseInstanceID
     - GoogleAppMeasurement
     - GoogleUtilities
-    - Kingfisher
     - Mantle
     - Marshal
     - nanopb
-    - TBBModal
 
 EXTERNAL SOURCES:
   BVLinearGradient:
@@ -276,7 +270,6 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
   GoogleUtilities: 04fce34bcd5620c1ee76fb79172105c74a4df335
   Interactable: 0a9f2a42b02ea03114d7e03e714d946a65cd8d0b
-  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   Mantle: f03b2b606c3f0cabd80214ad8a2fed6b464a7359
   Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
@@ -290,9 +283,8 @@ SPEC CHECKSUMS:
   RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
   RNFS: a8fbe7060fa49157d819466404794ad9c58e58cf
   RNSound: a1d01988e043aed5dbb476c2152b5ffb02446750
-  TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
   yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
 
-PODFILE CHECKSUM: ad09913b8bae418b5f236173f2898acdf665a3e8
+PODFILE CHECKSUM: 1d042618aa9a38dcc0abedc041979e5b59dbeb85
 
 COCOAPODS: 1.7.5

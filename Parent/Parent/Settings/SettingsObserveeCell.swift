@@ -20,7 +20,7 @@ import UIKit
 
 class SettingsObserveeCell: UITableViewCell {
 
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: AvatarView!
     @IBOutlet weak var nameLabel: UILabel!
 
     @objc var highlightColor = UIColor.white
@@ -55,14 +55,6 @@ class SettingsObserveeCell: UITableViewCell {
 
     @objc func stylize() {
         selectionStyle = .none
-
-        guard let imageView = avatarImageView else {
-            return
-        }
-
-        imageView.layer.cornerRadius = imageView.frame.height/2
-        imageView.clipsToBounds = true
-
         accessoryType = .disclosureIndicator
     }
 

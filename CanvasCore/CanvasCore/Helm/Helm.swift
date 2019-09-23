@@ -497,39 +497,20 @@ extension UIViewController {
 extension HelmManager {
     @objc static func narBarTitleViewFromImagePath(_ imagePath: Any) -> UIView? {
         var titleView: UIView? = nil
-        switch (imagePath) {
-        case is String:
-            if let path = imagePath as? String {
-                if let url = URL(string: path), url.pathExtension == "svg" {
-                    let view = SVGImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44), url: url)
-                    view.heightAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-                    titleView = view
-                } else {
-                    let imageView = UIImageView()
-                    imageView.kf.setImage(with: URL(string: path))
-                    titleView = imageView
-                }
-            }
-        case is [String: Any]:
-            let image = RCTConvert.uiImage(imagePath)
+        if let path = imagePath as? String {
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+            imageView.load(url: URL(string: path))
+            titleView = imageView
+        } else if let image = RCTConvert.uiImage(imagePath) {
             let imageView = UIImageView(image: image)
             titleView = imageView
-            break
-        default: break
         }
-
         guard let view = titleView else { return nil }
 
         view.contentMode = .scaleAspectFit
-        if #available(iOS 11, *) {
-            view.widthAnchor.constraint(equalToConstant: 44).isActive = true
-            return view
-        } else {
-            view.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-            let container = UIView()
-            container.addSubview(view)
-            container.frame = view.frame
-            return container
-        }
+        view.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        view.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        view.backgroundColor = Core.Brand.shared.headerImageBackground
+        return view
     }
 }

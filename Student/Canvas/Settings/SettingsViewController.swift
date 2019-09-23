@@ -22,7 +22,6 @@ import CanvasCore
 import CanvasKit1
 import CanvasKit
 import UserNotifications
-import Kingfisher
 import Core
 import TechDebt
 

@@ -37,7 +37,7 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var headerContainerView: UIView!
     @IBOutlet weak var studentInfoContainer: UIView!
     @IBOutlet weak var studentInfoStackView: UIStackView!
-    @IBOutlet weak var studentInfoAvatar: UIImageView!
+    @IBOutlet weak var studentInfoAvatar: AvatarView!
     @IBOutlet weak var studentInfoName: UILabel!
     @IBOutlet weak var studentInfoDownArrow: UIImageView!
 
@@ -106,12 +106,6 @@ class DashboardViewController: UIViewController {
         studentInfoName.backgroundColor = .clear
 
         studentInfoDownArrow.image = UIImage.icon(.dropdown)
-
-        // Decorate the avatar to be circular
-        studentInfoAvatar.layer.cornerRadius = studentInfoAvatar.frame.width / 2
-        studentInfoAvatar.layer.borderWidth = 1
-        studentInfoAvatar.layer.borderColor = UIColor.white.cgColor
-        studentInfoAvatar.clipsToBounds = true
 
         // Add the gesture recognizer that will open the action sheet to select a student
         let tap = UITapGestureRecognizer(target: self, action: #selector(studentInfoTapped))
@@ -440,10 +434,8 @@ class DashboardViewController: UIViewController {
         studentInfoAvatar.isHidden = currentStudent == nil
         studentInfoDownArrow.isHidden = currentStudent == nil
         if let student = currentStudent {
-            if let url = student.avatarURL {
-                studentInfoAvatar.kf.setImage(with: url,
-                                              placeholder: DefaultAvatarCoordinator.defaultAvatarForStudent(student))
-            }
+            studentInfoAvatar.name = student.name
+            studentInfoAvatar.url = student.avatarURL
             studentInfoContainer.accessibilityLabel = String.localizedStringWithFormat(NSLocalizedString("Current student: %@, tap to switch students", comment: ""), student.name)
             studentInfoContainer.accessibilityTraits = UIAccessibilityTraits.header
         } else {
