@@ -28,7 +28,6 @@ import {
   LayoutAnimation,
 } from 'react-native'
 import { Text } from '../../../common/text'
-import Images from '../../../images'
 import type {
   SubmissionDataProps,
 } from '../../submissions/list/submission-prop-types'
