@@ -49,7 +49,7 @@ extension UIViewController {
             let splitView = splitViewController,
             splitView.viewControllers.count == 2,
             let nav = splitView.viewControllers.last as? UINavigationController,
-            nav.viewControllers.contains(self) {
+            nav.viewControllers.contains(self) || (parent != nil && nav.viewControllers.contains(parent!)) {
             return true
         }
         return false
