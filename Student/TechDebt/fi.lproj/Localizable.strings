@@ -304,9 +304,6 @@
 /* mobile quze warning info */
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas-kyselyt tukevat erilaisia arviointityylejä. Suurinta osaa näistä tyyleistä tuetaan mobiililaitteilla, joitakin ei. Jos yrität osallistua johonkin näistä tukemattomista kyselyistä puhelimellasi, voi olla, että et pysty suorittamaan koko tietovisaa, mikä on sinulle huonompi vaihtoehto.\n\nTukemattomia kyselytyyppejä ovat mm. Adobe Flash™ -sisältö, tiedoston lataukset, jne.\n\nJos uskot, että tietovisassa on tukematonta sisältöä, suorita se pöytäkoneella tai kannettavalla tietokoneella. Jos tiedät, että kysely sisältää vain tuettua sisältöä, suorita se mobiililaitteellasi.";
 
-/* button to change user's profile image */
-"Change Profile Image" = "Vaihda profiilikuva";
-
 /* No comment provided by engineer. */
 "Change User" = "Vaihda käyttäjää";
 
@@ -1393,9 +1390,6 @@
 
 /* No comment provided by engineer. */
 "Yes" = "Kyllä";
-
-/* No comment provided by engineer. */
-"You are not allowed to change your avatar at this time." = "Et saa vaihtaa avatartasi tällä kertaa.";
 
 /* No comment provided by engineer. */
 "You are not allowed to send messages at this time." = "Et saa lähettää viestejä tällä kertaa.";

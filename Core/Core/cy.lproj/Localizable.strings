@@ -38,6 +38,9 @@
 "black" = "du";
 
 /* No comment provided by engineer. */
+"Blocking" = "Rhwystro";
+
+/* No comment provided by engineer. */
 "blue" = "glas";
 
 /* No comment provided by engineer. */
@@ -71,6 +74,12 @@
 "Canvas Teacher" = "Canvas Teacher";
 
 /* No comment provided by engineer. */
+"Casual question or suggestion" = "Awgrym neu gwestiwn anffurfiol";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Gwiriwch y rhwydwaith a rhoi cynnig arall arni!";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Clirio’r recordiad";
 
 /* No comment provided by engineer. */
@@ -78,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Closed" = "Wedi cau";
+
+/* No comment provided by engineer. */
+"Comment" = "Sylw";
 
 /* No comment provided by engineer. */
 "Comments" = "Sylwadau";
@@ -104,6 +116,12 @@
 "Delete Comment" = "Dileu Sylw";
 
 /* No comment provided by engineer. */
+"Describe the feature" = "Disgrifiwch y nodwedd";
+
+/* No comment provided by engineer. */
+"Describe the problem" = "Disgrifiwch y broblem";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Sylw ar Drafodaeth";
 
 /* No comment provided by engineer. */
@@ -116,6 +134,9 @@
 "Done" = "Wedi gorffen";
 
 /* No comment provided by engineer. */
+"Emergency" = "Argyfwng";
+
+/* No comment provided by engineer. */
 "End Act as User" = "Gorffen Gweithredu fel Defnyddiwr";
 
 /* No comment provided by engineer. */
@@ -126,6 +147,9 @@
 
 /* No comment provided by engineer. */
 "External Tool" = "Adnodd Allanol";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Argyfwng difrifol iawn";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Wedi methu cadw delwedd";
@@ -176,7 +200,19 @@
 "How do I find my school?" = "Sut ydw i’n dod o hyd i fy ysgol?";
 
 /* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Alla i ddim bwrw ymlaen nes bydda i wedi cael ateb gennych chi";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Mae angen help arna i, ond dydy’r mater ddim yn un brys";
+
+/* No comment provided by engineer. */
 "Image" = "Delwedd";
+
+/* No comment provided by engineer. */
+"Impact" = "Effaith";
+
+/* No comment provided by engineer. */
+"Impact Level" = "Lefel yr Effaith";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Heb Gwblhau";
@@ -263,6 +299,9 @@
 "Not Submitted" = "Heb Gyflwyno";
 
 /* No comment provided by engineer. */
+"Not Urgent" = "Dim Brys";
+
+/* No comment provided by engineer. */
 "OK" = "Iawn";
 
 /* No comment provided by engineer. */
@@ -320,6 +359,15 @@
 "Reply to the annotation or previous comments" = "Ymateb i’r anodiad neu sylwadau blaenorol";
 
 /* No comment provided by engineer. */
+"Report a Problem" = "Rhoi gwybod am broblem";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Gofyn am Nodwedd";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Mae'r cais wedi methu!";
+
+/* No comment provided by engineer. */
 "Retry" = "Ailgynnig";
 
 /* No comment provided by engineer. */
@@ -338,6 +386,9 @@
 "Select Course" = "Dewis Cwrs";
 
 /* No comment provided by engineer. */
+"Select One" = "Dewiswch Un";
+
+/* No comment provided by engineer. */
 "Send" = "Anfon";
 
 /* No comment provided by engineer. */
@@ -353,6 +404,15 @@
 "Site Admin Login" = "Manylion Mewngofnodi Gweinyddwr y Safle";
 
 /* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Mae rhywbeth wedi mynd o’i le, ond fe alla i ddal ati";
+
+/* No comment provided by engineer. */
+"Something is Missing" = "Mae rhywbeth ar goll";
+
+/* No comment provided by engineer. */
+"Something is Wrong" = "Mae rhywbeth o'i le";
+
+/* No comment provided by engineer. */
 "Start recording" = "Dechrau'r recordiad";
 
 /* No comment provided by engineer. */
@@ -365,6 +425,9 @@
 "Style" = "Arddull";
 
 /* No comment provided by engineer. */
+"Subject" = "Pwnc";
+
+/* No comment provided by engineer. */
 "Submit" = "Cyflwyno";
 
 /* No comment provided by engineer. */
@@ -375,6 +438,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Wedi Cyflwyno %@";
+
+/* No comment provided by engineer. */
+"Success!" = "Wedi llwyddo!";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tapiwch yma i gael help.";
@@ -390,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Cofnod Testun";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Wedi cael eich cais, diolch!";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Er mwyn defnyddio’r gosodiadau iaith newydd mae angen ailddechrau’r ap. Ail-lansiwch yr ap.";
@@ -464,6 +533,9 @@
 "Whoops!" = "Wps!";
 
 /* No comment provided by engineer. */
+"Workaround" = "Datrys";
+
+/* No comment provided by engineer. */
 "yellow" = "melyn";
 
 /* No comment provided by engineer. */
@@ -477,4 +549,7 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Byddwch yn stopio gweithredu fel y defnyddiwr hwn ac yn dychwelyd i’ch cyfrif eich hun.";
+
+/* No comment provided by engineer. */
+"Your Email" = "Eich E-bost";
 

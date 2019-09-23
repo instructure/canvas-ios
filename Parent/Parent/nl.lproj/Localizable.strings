@@ -49,7 +49,7 @@
 /* No comment provided by engineer. */
 "Assignment reminder" = "Opdrachtherinnering";
 
-/* Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Annuleren";
 
 /* Percent value is over 100 */
@@ -62,13 +62,7 @@
 "Caught up on Alerts" = "Waarschuwingen bijgewerkt";
 
 /* No comment provided by engineer. */
-"Change User" = "Gebruiker wijzigen";
-
-/* No comment provided by engineer. */
 "Choose a student" = "Kies een cursist";
-
-/* Close Button Title */
-"Close" = "Sluiten";
 
 /* Course Announcement Description */
 "Course announcements" = "Cursusaankondigingen";
@@ -86,16 +80,10 @@
 "Current student: %@, tap to switch students" = "Huidige cursist: %@, tik om van cursist te wisselen";
 
 /* No comment provided by engineer. */
-"Developer Menu" = "Menu Ontwikkelaar";
-
-/* No comment provided by engineer. */
 "Discussion" = "Discussie";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Verwijderen";
-
-/* No comment provided by engineer. */
-"Error" = "Fout";
 
 /* No comment provided by engineer. */
 "Event" = "Gebeurtenis";
@@ -108,9 +96,6 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Laden van (discussionKitModelName) NSManagedObjectModel is mislukt";
-
-/* No comment provided by engineer. */
-"Help" = "Help";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Hoog beoordelingscijfer kan niet lager zijn dan laag beoordelingscijfer";
@@ -142,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Laat: %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log Out" = "Afmelden";
-
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Laag opdrachtcijfer kan niet hoger zijn dan hoog beoordelingscijfer";
 
@@ -169,9 +151,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Geen beoordeling";
 
-/* Error message */
-"No installed apps support opening this file" = "Geen geïnstalleerde apps die het openen van dit bestand ondersteunen";
-
 /* Empty Students Text */
 "No Students" = "Geen cursisten";
 
@@ -180,12 +159,6 @@
 
 /* OK Button Title */
 "OK" = "OK";
-
-/* Open a url in the application Safari */
-"Open in Safari" = "Openen in Safari";
-
-/* Open file in another application */
-"Open in..." = "Openen in...";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Koppelingscode";
@@ -197,16 +170,7 @@
 "Quiz" = "Toets";
 
 /* No comment provided by engineer. */
-"Report a Problem" = "Een probleem melden";
-
-/* No comment provided by engineer. */
-"Request a Feature" = "Een functie aanvragen";
-
-/* No comment provided by engineer. */
 "Settings" = "Instellingen";
-
-/* No comment provided by engineer. */
-"Stop Act as User" = "Stop met optreden als gebruiker";
 
 /* No comment provided by engineer. */
 "Submitted" = "Ingediend";
@@ -223,12 +187,6 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tik hierop om Canvas weer te geven als een andere persoon.";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Gebruiksvoorwaarden";
-
-/* Error message */
-"There are no actions for this item" = "Er zijn geen handelingen voor dit item";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Er is een probleem met het laden van het AlertKit-databasebestand.";
 
@@ -237,9 +195,6 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Er is een probleem met het laden van het DiscussionKit databasebestand.";
-
-/* No comment provided by engineer. */
-"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Er was een probleem bij het laden van je content. Als het een audio of video upload is, wordt het misschien nog verwerkt.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Deze aankondiging is vervallen.";
@@ -252,9 +207,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Ongelezen";
-
-/* No comment provided by engineer. */
-"View Canvas Guides" = "Canvas-handleidingen weergeven";
 
 /* Calendar Tab */
 "Week" = "Week";

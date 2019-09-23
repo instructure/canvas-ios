@@ -49,7 +49,7 @@
 /* No comment provided by engineer. */
 "Assignment reminder" = "課題のリマインダ";
 
-/* Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "キャンセル";
 
 /* Percent value is over 100 */
@@ -62,13 +62,7 @@
 "Caught up on Alerts" = "アラートにこだわる";
 
 /* No comment provided by engineer. */
-"Change User" = "ユーザーを変更する";
-
-/* No comment provided by engineer. */
 "Choose a student" = "受講生を選択";
-
-/* Close Button Title */
-"Close" = "閉じる";
 
 /* Course Announcement Description */
 "Course announcements" = "コースのアナウンスメント";
@@ -86,16 +80,10 @@
 "Current student: %@, tap to switch students" = "現在の受講生：%@、タップして受講生を切り替える";
 
 /* No comment provided by engineer. */
-"Developer Menu" = "開発者用メニュー";
-
-/* No comment provided by engineer. */
 "Discussion" = "ディスカッション";
 
 /* No comment provided by engineer. */
 "Dismiss" = "棄却する";
-
-/* No comment provided by engineer. */
-"Error" = "エラー";
 
 /* No comment provided by engineer. */
 "Event" = "イベント";
@@ -108,9 +96,6 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NSManagedObjectModelの読込に失敗しました";
-
-/* No comment provided by engineer. */
-"Help" = "ヘルプ";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "高い課題成績は、低い課題成績より低くしないでください";
@@ -142,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "遅滞: %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log Out" = "ログアウト";
-
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "低い課題成績は、高い課題成績より高くしないでください";
 
@@ -169,9 +151,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "成績なし";
 
-/* Error message */
-"No installed apps support opening this file" = "このファイルを開くことができるアプリがインストールされていません";
-
 /* Empty Students Text */
 "No Students" = "受講生なし";
 
@@ -180,12 +159,6 @@
 
 /* OK Button Title */
 "OK" = "OK";
-
-/* Open a url in the application Safari */
-"Open in Safari" = "Safariで開く";
-
-/* Open file in another application */
-"Open in..." = "...で開く";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "ペアリングコード";
@@ -197,16 +170,7 @@
 "Quiz" = "クイズ";
 
 /* No comment provided by engineer. */
-"Report a Problem" = "問題を報告する";
-
-/* No comment provided by engineer. */
-"Request a Feature" = "機能をリクエストする";
-
-/* No comment provided by engineer. */
 "Settings" = "設定";
-
-/* No comment provided by engineer. */
-"Stop Act as User" = "ユーザーとして行動することを止める";
 
 /* No comment provided by engineer. */
 "Submitted" = "提出済み";
@@ -223,12 +187,6 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "タップして別の人物としてCanvasの閲覧を開始する";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "利用規約";
-
-/* Error message */
-"There are no actions for this item" = "このアイテムへのアクションはありません";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "AlertKit データベースファイルを読み込み中、問題がありました。.";
 
@@ -237,9 +195,6 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "DiscussionKit データベースファイルを読み込み中、問題がありました。.";
-
-/* No comment provided by engineer. */
-"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "コンテンツのロード中にエラーが発生しました。コンテンツがオーディオまたは動画のアップロードの場合、処理が継続中の可能性があります。";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "この発表は終了しました。";
@@ -252,9 +207,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "未読";
-
-/* No comment provided by engineer. */
-"View Canvas Guides" = "Canvas ガイドを見る";
 
 /* Calendar Tab */
 "Week" = "週";

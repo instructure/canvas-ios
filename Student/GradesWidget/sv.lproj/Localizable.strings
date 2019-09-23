@@ -1,8 +1,8 @@
 /* No comment provided by engineer. */
-"Course Grades" = "Kursens omdömen";
+"Course Grades" = "Kursens bedömningar";
 
 /* No comment provided by engineer. */
-"Failed to load grades" = "Misslyckades med att ladda betyg";
+"Failed to load grades" = "Det gick inte att läsa in bedömningar";
 
 /* No comment provided by engineer. */
 "Log in with Canvas" = "Logga in med Canvas";

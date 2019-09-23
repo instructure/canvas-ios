@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "評分"
   },
+  "grade_after_posting_51718245": {
+    "message": "發佈後評分"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "發佈 { grade } 後評分"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "發佈前評分"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "發佈 { grade } 前評分 "
+  },
   "grade_grade_990eb477": {
     "message": "評分 { grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "重寫評分 "
+  },
+  "grade_override_grade_4788faec": {
+    "message": "重寫評分 { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "評分公佈政策"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "練習測驗"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "練習測驗和調查問卷沒有詳情視圖"
   },
   "preview_quiz_1ffbf684": {
     "message": "預覽測驗"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "總評分："
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "總提交項目 { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "移除星號"

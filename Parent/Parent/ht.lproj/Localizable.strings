@@ -49,7 +49,7 @@
 /* No comment provided by engineer. */
 "Assignment reminder" = "Rapèl sesyon";
 
-/* Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Anile";
 
 /* Percent value is over 100 */
@@ -62,13 +62,7 @@
 "Caught up on Alerts" = "Pran nan Avètisman";
 
 /* No comment provided by engineer. */
-"Change User" = "Chanje Itilizatè";
-
-/* No comment provided by engineer. */
 "Choose a student" = "Chwazi yon elèv";
-
-/* Close Button Title */
-"Close" = "Fèmen";
 
 /* Course Announcement Description */
 "Course announcements" = "Anons kou";
@@ -86,16 +80,10 @@
 "Current student: %@, tap to switch students" = "Elèv aktyèl: %@, tape pou chanje elèv yo";
 
 /* No comment provided by engineer. */
-"Developer Menu" = "Meni Developè";
-
-/* No comment provided by engineer. */
 "Discussion" = "Diskisyon";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Rejte";
-
-/* No comment provided by engineer. */
-"Error" = "Erè";
 
 /* No comment provided by engineer. */
 "Event" = "Aktivite";
@@ -108,9 +96,6 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Echèk chajman (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
-"Help" = "Èd";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Klas sesyon elve pa kapab enferyè a klas sesyon fèb";
@@ -142,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Ta: %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log Out" = "Dekonekte";
-
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Klas sesyon fèb pa kapab siperyè a klas sesyon elve";
 
@@ -169,9 +151,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Pa gen Klas";
 
-/* Error message */
-"No installed apps support opening this file" = "Pa gen app instale ki sipòte ouvèti fichye sa a";
-
 /* Empty Students Text */
 "No Students" = "Pa gen Elèv";
 
@@ -180,12 +159,6 @@
 
 /* OK Button Title */
 "OK" = "OK";
-
-/* Open a url in the application Safari */
-"Open in Safari" = "Ouvri nan Safari";
-
-/* Open file in another application */
-"Open in..." = "Ouvri nan...";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Kòd Kouplaj";
@@ -197,16 +170,7 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
-"Report a Problem" = "Rapòte yon Pwoblèm";
-
-/* No comment provided by engineer. */
-"Request a Feature" = "Mande yon Fonksyon";
-
-/* No comment provided by engineer. */
 "Settings" = "Paramèt";
-
-/* No comment provided by engineer. */
-"Stop Act as User" = "Sispann Aji tankou Itilizatè";
 
 /* No comment provided by engineer. */
 "Submitted" = "Soumèt";
@@ -223,12 +187,6 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tape pou kòmanse afiche Canvas tankou yon lòt moun.";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Kondisyon Itilizasyon";
-
-/* Error message */
-"There are no actions for this item" = "Pa gen aksyon pou atik sa a";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done AlertKit a,";
 
@@ -237,9 +195,6 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done DiscussionKit a,";
-
-/* No comment provided by engineer. */
-"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Te gen yon erè nan chajman kontni ou an. Si se yon odyo oswa videyo li kapab ap chaje toujou.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Anons sa a ekspire.";
@@ -252,9 +207,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Poko li";
-
-/* No comment provided by engineer. */
-"View Canvas Guides" = "Afiche Gid Canvas";
 
 /* Calendar Tab */
 "Week" = "Semenn";

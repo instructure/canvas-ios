@@ -49,7 +49,7 @@
 /* No comment provided by engineer. */
 "Assignment reminder" = "Whakataunga whakamaharatanga";
 
-/* Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Whakakore";
 
 /* Percent value is over 100 */
@@ -62,13 +62,7 @@
 "Caught up on Alerts" = "Mau ake i runga i Matohi";
 
 /* No comment provided by engineer. */
-"Change User" = "Huri Kaiwhakamahi";
-
-/* No comment provided by engineer. */
 "Choose a student" = "Tīpako he ākonga";
-
-/* Close Button Title */
-"Close" = "Katia";
 
 /* Course Announcement Description */
 "Course announcements" = "Kōrerorero akoranga";
@@ -86,16 +80,10 @@
 "Current student: %@, tap to switch students" = "Ākonga o ināianei: %@, pātō ki te huri ngā ākonga";
 
 /* No comment provided by engineer. */
-"Developer Menu" = "Tahua Whakawhanake";
-
-/* No comment provided by engineer. */
 "Discussion" = "Kōrerorero";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Pana";
-
-/* No comment provided by engineer. */
-"Error" = "Hapa";
 
 /* No comment provided by engineer. */
 "Event" = "Tauwhāinga";
@@ -108,9 +96,6 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "I rahua te uta (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
-"Help" = "Āwhina";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "e kore e taea te whakataunga teitei kōeke e raro atu kōeke whakatuanga iti";
@@ -142,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Tūreiti: %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log Out" = "takiputa";
-
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "e kore e taea raro iho te whakataunga kōeke e tiketike ake te whakataunga kōeke teitei";
 
@@ -169,9 +151,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Kaore he Kōeke";
 
-/* Error message */
-"No installed apps support opening this file" = "No taupānga tāutatia tautoko te whakatuwhera i tēnei kōnae";
-
 /* Empty Students Text */
 "No Students" = "Kāore he ākonga";
 
@@ -180,12 +159,6 @@
 
 /* OK Button Title */
 "OK" = "Ae";
-
-/* Open a url in the application Safari */
-"Open in Safari" = "Tuwhera i roto i te Safari";
-
-/* Open file in another application */
-"Open in..." = "Tuwhera i roto i ...";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Waihere Hono";
@@ -197,16 +170,7 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
-"Report a Problem" = "Pūrongo i te Raruraru";
-
-/* No comment provided by engineer. */
-"Request a Feature" = "Tono he Āhuatanga";
-
-/* No comment provided by engineer. */
 "Settings" = "Ngā Tautuhinga";
-
-/* No comment provided by engineer. */
-"Stop Act as User" = "Kati Mahi hei Kaiwhakamahi";
 
 /* No comment provided by engineer. */
 "Submitted" = "Kua tukuna";
@@ -223,12 +187,6 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Patopato ki te tīmata ki te tiro Canvas he tangata atu kē.";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Ngā ritenga whakamahi";
-
-/* Error message */
-"There are no actions for this item" = "Kāore he mahi hoki mo tēnei tūemi";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "He raruraru i te wā e uta ana i te AlertKit Matāra kōnae pātengi rarunga.";
 
@@ -237,9 +195,6 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "He raruraru i te wā e uta ana i te DiscussionKit kōnae pātengi rarunga.";
-
-/* No comment provided by engineer. */
-"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "He hapa i te wā e uta ana i tō ihirangi. Ki te mea he ororongo ataata rānei tukuake ai tonu te tukatuka ";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Kua pau te wā o tēnei pānuitanga";
@@ -252,9 +207,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "kia pānuitia";
-
-/* No comment provided by engineer. */
-"View Canvas Guides" = "Titiro ki ngā Canvas Kaiarahi";
 
 /* Calendar Tab */
 "Week" = "Wiki";

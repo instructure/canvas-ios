@@ -38,6 +38,9 @@
 "black" = "svart";
 
 /* No comment provided by engineer. */
+"Blocking" = "Blockerar";
+
+/* No comment provided by engineer. */
 "blue" = "blå";
 
 /* No comment provided by engineer. */
@@ -71,6 +74,12 @@
 "Canvas Teacher" = "Canvas Lärare";
 
 /* No comment provided by engineer. */
+"Casual question or suggestion" = "Informell fråga eller förslag";
+
+/* No comment provided by engineer. */
+"Check network and try again!" = "Kontrollera nätverket och försök igen!";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Rensa inspelning";
 
 /* No comment provided by engineer. */
@@ -78,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Closed" = "Stängda";
+
+/* No comment provided by engineer. */
+"Comment" = "Kommentera";
 
 /* No comment provided by engineer. */
 "Comments" = "Kommentarer";
@@ -104,6 +116,12 @@
 "Delete Comment" = "Ta bort kommentar";
 
 /* No comment provided by engineer. */
+"Describe the feature" = "Beskriv funktionen";
+
+/* No comment provided by engineer. */
+"Describe the problem" = "Beskriv problemet";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Diskussionskommentar";
 
 /* No comment provided by engineer. */
@@ -116,6 +134,9 @@
 "Done" = "Färdig";
 
 /* No comment provided by engineer. */
+"Emergency" = "Nödläge";
+
+/* No comment provided by engineer. */
 "End Act as User" = "Sluta uppträd som användare";
 
 /* No comment provided by engineer. */
@@ -126,6 +147,9 @@
 
 /* No comment provided by engineer. */
 "External Tool" = "Externt verktyg";
+
+/* No comment provided by engineer. */
+"Extremely critical emergency" = "Extremt kritiskt nödläge";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Det gick inte att spara bilden";
@@ -176,7 +200,19 @@
 "How do I find my school?" = "Hur hittar jag min skola?";
 
 /* No comment provided by engineer. */
+"I can't get things done until I hear back from you" = "Jag kan inte utföra saker innan jag hör från dig";
+
+/* No comment provided by engineer. */
+"I need help but it's not urgent" = "Jag behöver hjälp men det är inte akut";
+
+/* No comment provided by engineer. */
 "Image" = "Bild";
+
+/* No comment provided by engineer. */
+"Impact" = "Påverkan";
+
+/* No comment provided by engineer. */
+"Impact Level" = "Inverkansnivå";
 
 /* No comment provided by engineer. */
 "Incomplete" = "Ej fullständig";
@@ -263,6 +299,9 @@
 "Not Submitted" = "Inte inskickad";
 
 /* No comment provided by engineer. */
+"Not Urgent" = "Ej brådskande";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -320,6 +359,15 @@
 "Reply to the annotation or previous comments" = "Svara på noteringen eller tidigare kommentarer";
 
 /* No comment provided by engineer. */
+"Report a Problem" = "Rapportera ett problem";
+
+/* No comment provided by engineer. */
+"Request a Feature" = "Begär en funktion";
+
+/* No comment provided by engineer. */
+"Request Failed!" = "Begäran misslyckades!";
+
+/* No comment provided by engineer. */
 "Retry" = "Försök igen";
 
 /* No comment provided by engineer. */
@@ -338,6 +386,9 @@
 "Select Course" = "Välj kurs";
 
 /* No comment provided by engineer. */
+"Select One" = "Välj en";
+
+/* No comment provided by engineer. */
 "Send" = "Skicka";
 
 /* No comment provided by engineer. */
@@ -353,6 +404,15 @@
 "Site Admin Login" = "Sidoadministratörs inloggning";
 
 /* No comment provided by engineer. */
+"Something is broken but I can work around it" = "Något är trasigt och jag kan inte hitta en alternativ lösning";
+
+/* No comment provided by engineer. */
+"Something is Missing" = "Något saknas";
+
+/* No comment provided by engineer. */
+"Something is Wrong" = "Något stämmer inte";
+
+/* No comment provided by engineer. */
 "Start recording" = "Påbörja inspelning";
 
 /* No comment provided by engineer. */
@@ -365,6 +425,9 @@
 "Style" = "Stil";
 
 /* No comment provided by engineer. */
+"Subject" = "Ämne";
+
+/* No comment provided by engineer. */
 "Submit" = "Lämna in";
 
 /* No comment provided by engineer. */
@@ -375,6 +438,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Inlämnad %@";
+
+/* No comment provided by engineer. */
+"Success!" = "Lyckades!";
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tryck här för hjälp.";
@@ -390,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Text Entry" = "Textinlägg";
+
+/* No comment provided by engineer. */
+"Thanks, your request was received!" = "Tack, din förfrågan har tagits emot!";
 
 /* No comment provided by engineer. */
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen behöver starta om för att börja använda de nya språkinställningarna. Starta om appen.";
@@ -464,6 +533,9 @@
 "Whoops!" = "Oooj!";
 
 /* No comment provided by engineer. */
+"Workaround" = "Tillfällig lösning";
+
+/* No comment provided by engineer. */
 "yellow" = "gul";
 
 /* No comment provided by engineer. */
@@ -477,4 +549,7 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Du kommer sluta att uppträda som den här användaren och återvända till ditt konto.";
+
+/* No comment provided by engineer. */
+"Your Email" = "Din e-post";
 

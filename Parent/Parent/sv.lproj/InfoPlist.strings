@@ -5,7 +5,7 @@
 "NSCameraUsageDescription" = "Bifoga foton och videor till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
 
 /* Privacy - Microphone Usage Description */
-"NSMicrophoneUsageDescription" = "Anslut ljudinspelningar till meddelanden och diskussionsinställningar, eller skicka in dem som inlämningsuppgifter.";
+"NSMicrophoneUsageDescription" = "Bifoga ljudinspelningar till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";
 
 /* Privacy - Photo Library Additions Usage Description */
 "NSPhotoLibraryAddUsageDescription" = "Bifoga foton och videor till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter.";

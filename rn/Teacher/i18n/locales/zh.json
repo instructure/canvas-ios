@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "评分"
   },
+  "grade_after_posting_51718245": {
+    "message": "发布后的评分"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "发布后的评分{ grade }"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "发布前的评分"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "发布前的评分{ grade }"
+  },
   "grade_grade_990eb477": {
     "message": "评分{ grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "评分覆盖"
+  },
+  "grade_override_grade_4788faec": {
+    "message": "评分覆盖{ grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "评分发布政策"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "练习测验"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "练习测验和调查没有详情视图。"
   },
   "preview_quiz_1ffbf684": {
     "message": "预览测验"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "总评分："
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "提交项总数{ total, number }"
   },
   "un_starred_8fef021f": {
     "message": "未标记星号"

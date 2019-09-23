@@ -13,15 +13,15 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d Fråga</string>
+			<string>%d fråga</string>
 			<key>other</key>
-			<string>%d Frågor</string>
+			<string>%d frågor</string>
 		</dict>
 	</dict>
 	<key>final_grade_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Totalt omdöme: %#@points@</string>
+		<string>Total bedömning: %#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -37,7 +37,7 @@
 	<key>g_out_of_g_points_possible</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Fick %g av %#@points@ möjliga</string>
+		<string>Fick %g av %#@points@ möjliga poäng</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>

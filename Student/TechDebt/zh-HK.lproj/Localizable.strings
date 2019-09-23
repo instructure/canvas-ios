@@ -304,9 +304,6 @@
 /* mobile quze warning info */
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas 測驗支援不同評估類型。手機支援大部份評估類型，但有的例外。如果您嘗試在您的手機接受這些不受支援的測驗之一，您有可能無法完成整個測驗，這將為您帶來不利。\n\n不受支援的問題類型包括包含 Adobe Flash™ 內容、檔案上傳和其他的問題。\n\n如測驗含有未經支援的內容，請在桌面或筆記本電腦上完成測驗。如果測驗只含受支援的內容，請放心在手機上完成測驗。";
 
-/* button to change user's profile image */
-"Change Profile Image" = "更改個人檔案圖片";
-
 /* No comment provided by engineer. */
 "Change User" = "變更使用者";
 
@@ -1393,9 +1390,6 @@
 
 /* No comment provided by engineer. */
 "Yes" = "是";
-
-/* No comment provided by engineer. */
-"You are not allowed to change your avatar at this time." = "您目前不獲允許更改頭像。";
 
 /* No comment provided by engineer. */
 "You are not allowed to send messages at this time." = "您目前不獲允許發送訊息。";

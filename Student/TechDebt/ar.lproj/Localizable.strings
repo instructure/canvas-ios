@@ -304,9 +304,6 @@
 /* mobile quze warning info */
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "تدعم اختبارات Canvas أنماطًا متنوعة للتقييمات. تحظى معظم هذه الأنماط بالدعم على الأجهزة المحمولة، في حين لا يتم دعم بعض الأنماط الأخرى. إذا حاولت تلقي أحد تلك الاختبارات غير المدعومة على هاتفك، فقد لا تتمكن من إكمال الاختبار بأكمله، مما يضعك في موقف غير جيد.\n\nوتتضمن أنواع الأسئلة غير المدعومة الأسئلة التي يوجد بها محتوى Adobe Flash™ وتحميلات الملفات وغيرها.\n\nإذا كنت تظن أن اختبارًا ما يوجد به محتوى غير مدعوم، يرجى الإجابة عليه على جهاز كمبيوتر مكتبي أو محمول. إذا كنت تعلم أن الاختبار يحتوي فقط على محتوى مدعوم، فبإمكانك الإجابة عليه على جهازك المحمول.";
 
-/* button to change user's profile image */
-"Change Profile Image" = "تغيير صورة الملف التعريفي";
-
 /* No comment provided by engineer. */
 "Change User" = "تغيير المستخدم";
 
@@ -1393,9 +1390,6 @@
 
 /* No comment provided by engineer. */
 "Yes" = "نعم";
-
-/* No comment provided by engineer. */
-"You are not allowed to change your avatar at this time." = "غير مسموح لك بتغيير صورة أفاتار في الوقت الحالي.";
 
 /* No comment provided by engineer. */
 "You are not allowed to send messages at this time." = "غير مسموح لك بإرسال رسائل في الوقت الحالي.";

@@ -49,7 +49,7 @@
 /* No comment provided by engineer. */
 "Assignment reminder" = "Tehtävän muistutus";
 
-/* Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Peruuta";
 
 /* Percent value is over 100 */
@@ -62,13 +62,7 @@
 "Caught up on Alerts" = "Hallitse hälytykset";
 
 /* No comment provided by engineer. */
-"Change User" = "Vaihda käyttäjää";
-
-/* No comment provided by engineer. */
 "Choose a student" = "Valitse opiskelija";
-
-/* Close Button Title */
-"Close" = "Sulje";
 
 /* Course Announcement Description */
 "Course announcements" = "Kurssin ilmoitukset";
@@ -86,16 +80,10 @@
 "Current student: %@, tap to switch students" = "Kurssin opiskelija %@, napauta vaihtaaksesi opiskelijaa";
 
 /* No comment provided by engineer. */
-"Developer Menu" = "Sovelluskehittäjän valikko";
-
-/* No comment provided by engineer. */
 "Discussion" = "Keskustelu";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Ohita";
-
-/* No comment provided by engineer. */
-"Error" = "Virhe";
 
 /* No comment provided by engineer. */
 "Event" = "Tapahtuma";
@@ -108,9 +96,6 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NS:n lataus epäonnistuiManagedObjectModel";
-
-/* No comment provided by engineer. */
-"Help" = "Ohje";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Korkea tehtävän arvosana ei voi olla pienempi kuin alhainen tehtävän arvosana";
@@ -142,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Myöhään %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log Out" = "Kirjaudu ulos";
-
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Alhainen tehtävän arvosana ei voi olla suurempi kuin korkea tehtävän arvosana";
 
@@ -169,9 +151,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Ei arvosanaa";
 
-/* Error message */
-"No installed apps support opening this file" = "Ei tämän tiedoston avaamista tukevia sovelluksia asennettu";
-
 /* Empty Students Text */
 "No Students" = "Ei opiskelijoita";
 
@@ -180,12 +159,6 @@
 
 /* OK Button Title */
 "OK" = "OK";
-
-/* Open a url in the application Safari */
-"Open in Safari" = "Avaa Safarissa";
-
-/* Open file in another application */
-"Open in..." = "Avaa kohteessa...";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Parinmuodostuskoodi";
@@ -197,16 +170,7 @@
 "Quiz" = "Tietovisa";
 
 /* No comment provided by engineer. */
-"Report a Problem" = "Raportoi ongelma";
-
-/* No comment provided by engineer. */
-"Request a Feature" = "Pyydä ominaisuus";
-
-/* No comment provided by engineer. */
 "Settings" = "Asetukset";
-
-/* No comment provided by engineer. */
-"Stop Act as User" = "Lopeta toimiminen käyttäjänä";
 
 /* No comment provided by engineer. */
 "Submitted" = "Lähetetty";
@@ -223,12 +187,6 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Aloita Canvas-sovelluksen tarkastelu toisena henkilönä.";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Käyttöehdot";
-
-/* Error message */
-"There are no actions for this item" = "Tälle kohteelle ei ole toimintoja";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Tietokantatiedoston AlertKit latauksessa tapahtui virhe.";
 
@@ -237,9 +195,6 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Tietokantatiedoston DiscussionKit latauksessa tapahtui virhe.";
-
-/* No comment provided by engineer. */
-"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Sisältösi latauksessa ilmeni virhe. Jos se on äänen tai videon lataus, sitä saatetaan yhä käsitellä.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Tämä ilmoitus on vanhentunut.";
@@ -252,9 +207,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Lukematon";
-
-/* No comment provided by engineer. */
-"View Canvas Guides" = "Tarkastele Canvas-oppaita";
 
 /* Calendar Tab */
 "Week" = "Viikko";

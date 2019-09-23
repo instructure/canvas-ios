@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "Kōeke"
   },
+  "grade_after_posting_51718245": {
+    "message": "Te kōeke i muri o te whakairi"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "Te kōeke i muri o te whakairi { grade }"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "Te kōeke i mua o te whakairi"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "Te kōeke i mua o te whakairi { grade }"
+  },
   "grade_grade_990eb477": {
     "message": "kōeke { grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "Whakakorenga Kōeke"
+  },
+  "grade_override_grade_4788faec": {
+    "message": "Whakakorenga Kōeke { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "Kōeke Whakairi Kaupapa"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "Parakitihi Quiz"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "Mahi Quizzes & kaore ngā rūri he taipitopito Tirohanga."
   },
   "preview_quiz_1ffbf684": {
     "message": "Arokite Quiz"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "Kōeke Katoa:"
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "Ngā tapaetanga { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "Kaore i whetūngia"

@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "Arvosana"
   },
+  "grade_after_posting_51718245": {
+    "message": "Arvosana lähetyksen jälkeen"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "Arvosana { grade } lähetyksen jälkeen"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "Arvosana ennen lähetystä"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "Arvosana ennen { grade } lähetystä"
+  },
   "grade_grade_990eb477": {
     "message": "Arvosana { grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "Korvaa arvosana "
+  },
+  "grade_override_grade_4788faec": {
+    "message": "Korvaa arvosana { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "Arvosanan lähetyskäytäntö"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "Harjoittelutietovisa"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "Harjoitteluvisaluissa ja -kyselyissä ei ole yksityiskohtaisia näkymiä."
   },
   "preview_quiz_1ffbf684": {
     "message": "Esikatsele tietovisa"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "Kokonaisarvosana:"
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "Lähetykset yhteensä { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "Ei merkitty tähdellä"

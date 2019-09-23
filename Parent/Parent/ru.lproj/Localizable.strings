@@ -49,7 +49,7 @@
 /* No comment provided by engineer. */
 "Assignment reminder" = "Напоминание о тестировании";
 
-/* Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Отменить";
 
 /* Percent value is over 100 */
@@ -62,13 +62,7 @@
 "Caught up on Alerts" = "Выполнить задания по оповещениям";
 
 /* No comment provided by engineer. */
-"Change User" = "Сменить пользователя";
-
-/* No comment provided by engineer. */
 "Choose a student" = "Выберите студента";
-
-/* Close Button Title */
-"Close" = "Закрыть";
 
 /* Course Announcement Description */
 "Course announcements" = "Объявления курса";
@@ -86,16 +80,10 @@
 "Current student: %@, tap to switch students" = "Текущий студент: %@, нажмите для переключения между студентами";
 
 /* No comment provided by engineer. */
-"Developer Menu" = "Меню программиста";
-
-/* No comment provided by engineer. */
 "Discussion" = "Обсуждение";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Отклонить";
-
-/* No comment provided by engineer. */
-"Error" = "Ошибка";
 
 /* No comment provided by engineer. */
 "Event" = "Событие";
@@ -108,9 +96,6 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Не удалось загрузить (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
-"Help" = "Справка";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Высокая оценка за задание не может быть ниже низкой оценки за задание";
@@ -142,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "С опозданием: %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log Out" = "Выйти";
-
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Низкая оценка за задание не может быть выше высокой оценки за задание";
 
@@ -169,9 +151,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Без оценки";
 
-/* Error message */
-"No installed apps support opening this file" = "Установленные приложения не поддерживают открытие этого файла";
-
 /* Empty Students Text */
 "No Students" = "Студенты отсутствуют";
 
@@ -180,12 +159,6 @@
 
 /* OK Button Title */
 "OK" = "OK";
-
-/* Open a url in the application Safari */
-"Open in Safari" = "Открыть в Safari";
-
-/* Open file in another application */
-"Open in..." = "Открыть в...";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Код сопряжения";
@@ -197,16 +170,7 @@
 "Quiz" = "Тест";
 
 /* No comment provided by engineer. */
-"Report a Problem" = "Сообщить о проблеме";
-
-/* No comment provided by engineer. */
-"Request a Feature" = "Запросить функцию";
-
-/* No comment provided by engineer. */
 "Settings" = "Настройки";
-
-/* No comment provided by engineer. */
-"Stop Act as User" = "Отключить функцию «Действовать как пользователь»";
 
 /* No comment provided by engineer. */
 "Submitted" = "Отправлено";
@@ -223,12 +187,6 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Нажмите, чтобы начать просмотр Canvas как другой пользователь.";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Условия использования";
-
-/* Error message */
-"There are no actions for this item" = "Отсутствуют действия для этого элемента";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Возникла проблема при загрузке файла базы данных AlertKit.";
 
@@ -237,9 +195,6 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Возникла проблема при загрузке файла базы данных DiscussionKit.";
-
-/* No comment provided by engineer. */
-"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Возникла ошибка при загрузке контента. Если это загрузка аудио или видео, она все еще может быть в обработке.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Срок действия этого объявления истек.";
@@ -252,9 +207,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Не прочитано";
-
-/* No comment provided by engineer. */
-"View Canvas Guides" = "Просмотр руководств Canvas";
 
 /* Calendar Tab */
 "Week" = "Неделя";

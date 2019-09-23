@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "Calificación"
   },
+  "grade_after_posting_51718245": {
+    "message": "Calificación después de la publicación"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "Calificación después de la publicación { grade }"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "Calificación antes de la publicación"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "Calificación antes de la publicación { grade }"
+  },
   "grade_grade_990eb477": {
     "message": "Calificar { grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "Anulación de la calificación"
+  },
+  "grade_override_grade_4788faec": {
+    "message": "Anulación de la calificación { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "Política de publicación de calificaciones"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "Evaluación de las prácticas"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "Las evaluaciones y encuestas de práctica no tienen vistas detalladas."
   },
   "preview_quiz_1ffbf684": {
     "message": "Vista previa de la evaluación"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "Calificación total:"
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "Presentaciones totales { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "Sin calificación mediante estrellas"

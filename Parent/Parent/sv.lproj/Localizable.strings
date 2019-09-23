@@ -11,13 +11,13 @@
 "%@ will begin at %@" = "%1$@ börjar %2$@";
 
 /* Percentage field placeholder */
-"1-100%" = "1-100%";
+"1-100%" = "1–100 %";
 
 /* Label for button that allows admin to Act as User */
 "Act as User" = "Agera som användare";
 
 /* No comment provided by engineer. */
-"Add Student" = "Lägg till elev";
+"Add Student" = "Lägg till student";
 
 /* Label displayed when logged in as an admin */
 "Admin" = "Admin";
@@ -32,24 +32,24 @@
 "An Error Occurred" = "Ett fel uppstod";
 
 /* No comment provided by engineer. */
-"Announcement" = "Meddelande";
+"Announcement" = "Kursmeddelande";
 
 /* No comment provided by engineer. */
 "Assignment" = "Uppgift";
 
 /* Assignment Grade High On Description */
-"Assignment grade above" = "Uppgiftsbetyg över";
+"Assignment grade above" = "Uppgiftsbedömning ovan";
 
 /* Assignment Grade Low On Description */
-"Assignment grade below" = "Uppgiftsbetyg under";
+"Assignment grade below" = "Uppgiftsbedömning nedan";
 
 /* Assignment Missing Description */
-"Assignment missing" = "Uppgiften saknas";
+"Assignment missing" = "Uppgift saknas";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Påminnelse om uppgift";
 
-/* Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Avbryt";
 
 /* Percent value is over 100 */
@@ -59,43 +59,31 @@
 "Cannot use percent that is less than 0" = "Kan inte använda en procentsats som är lägre än 0";
 
 /* Empty Alerts Text */
-"Caught up on Alerts" = "Läst av larmen";
+"Caught up on Alerts" = "Du är uppdaterad när det gäller larmen";
 
 /* No comment provided by engineer. */
-"Change User" = "Byt användare";
-
-/* No comment provided by engineer. */
-"Choose a student" = "Välj en elev";
-
-/* Close Button Title */
-"Close" = "Stäng";
+"Choose a student" = "Välj en student";
 
 /* Course Announcement Description */
-"Course announcements" = "Kursannonseringar";
+"Course announcements" = "Kursmeddelanden";
 
 /* Course Grade High On Description */
-"Course grade above" = "Kursbetyg över";
+"Course grade above" = "Kursbedömning över";
 
 /* Course Grade Low On Description */
-"Course grade below" = "Kursbetyg under";
+"Course grade below" = "Kursbedömning under";
 
 /* Courses Tab */
 "Courses" = "Kurser";
 
 /* No comment provided by engineer. */
-"Current student: %@, tap to switch students" = "Aktuell student: %@, tryck för att växla student";
-
-/* No comment provided by engineer. */
-"Developer Menu" = "Meny för utvecklare";
+"Current student: %@, tap to switch students" = "Aktuell student: %@. Tryck för att växla student";
 
 /* No comment provided by engineer. */
 "Discussion" = "Diskussion";
 
 /* No comment provided by engineer. */
-"Dismiss" = "Avfärda";
-
-/* No comment provided by engineer. */
-"Error" = "Fel";
+"Dismiss" = "Avvisa";
 
 /* No comment provided by engineer. */
 "Event" = "Händelse";
@@ -104,34 +92,31 @@
 "Event reminder" = "Påminnelse om händelse";
 
 /* No comment provided by engineer. */
-"Excused" = "Befriad";
+"Excused" = "Slipper göra";
 
 /* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Misslyckades att ladda (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
-"Help" = "Hjälp";
+"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Det gick inte att läsa in (discussionKitModelName) NSManagedObjectModel";
 
 /* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "Högt uppgiftsbetyg kan inte vara lägre än lågt uppgiftsbetyg";
+"High assignment grade cannot be lower than low assignment grade" = "Hög uppgiftsbedömning kan inte vara lägre än låg uppgiftsbedömning";
 
 /* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "Högt kursbetyg kan inte vara lägre än lågt kursbetyg";
+"High course grade cannot be lower than low course grade" = "Hög kursbedömning kan inte vara lägre än låg kursbedömning";
 
 /* No comment provided by engineer. */
-"In-Class" = "I klassen";
+"In-Class" = "Närvarande";
 
 /* No comment provided by engineer. */
-"Input the student pairing code provided to you." = "Ange studentkopplingskoden du fått.";
+"Input the student pairing code provided to you." = "Ange kopplingskoden du fått för studerande.";
 
 /* Institution Announcement Description */
-"Institution announcements" = "Institutionsannonseringar";
+"Institution announcements" = "Institutionsmeddelanden";
 
 /* Title for an alert view */
 "Invalid Input" = "Ogiltig inmatning";
 
 /* Last Week Button Accessibility Label */
-"Last Week" = "Förra veckan";
+"Last Week" = "Senaste veckan";
 
 /* No comment provided by engineer. */
 "Late" = "Sen";
@@ -142,14 +127,11 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Sen: %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log Out" = "Logga ut";
-
 /* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "Lågt uppgiftsbetyg kan inte vara högre än högt uppgiftsbetyg";
+"Low assignment grade cannot be higher than high assignment grade" = "Låg uppgiftsbedömning kan inte vara högre än hög uppgiftsbedömning";
 
 /* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "Lågt kursbetyg kan inte vara högre än högt kursbetyg";
+"Low course grade cannot be higher than high course grade" = "Låg kursbedömning kan inte vara högre än hög kursbedömning";
 
 /* Title of the manage children screen. This screen is used to add/remove children that a parent is observing. */
 "Manage Children" = "Hantera barn";
@@ -167,10 +149,7 @@
 "No Courses" = "Inga kurser";
 
 /* Title for label when no grade has been assigned to the course */
-"No Grade" = "Inget betyg";
-
-/* Error message */
-"No installed apps support opening this file" = "Inga installerade appar stöder öppning av den här filen";
+"No Grade" = "Ingen bedömning";
 
 /* Empty Students Text */
 "No Students" = "Inga studenter";
@@ -181,14 +160,8 @@
 /* OK Button Title */
 "OK" = "OK";
 
-/* Open a url in the application Safari */
-"Open in Safari" = "Öppna i Safari";
-
-/* Open file in another application */
-"Open in..." = "Öppna i...";
-
 /* No comment provided by engineer. */
-"Pairing Code" = "Parkopplingskod";
+"Pairing Code" = "Kopplingskod";
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Tillstånd behövs";
@@ -197,64 +170,43 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
-"Report a Problem" = "Rapportera ett problem";
-
-/* No comment provided by engineer. */
-"Request a Feature" = "Begär en funktion";
-
-/* No comment provided by engineer. */
 "Settings" = "Inställningar";
 
 /* No comment provided by engineer. */
-"Stop Act as User" = "Sluta agera som användare";
+"Submitted" = "Inlämnad";
 
 /* No comment provided by engineer. */
-"Submitted" = "Inskickad";
+"Submitted: %@" = "Inlämnad: %@";
 
 /* No comment provided by engineer. */
-"Submitted: %@" = "Inskickad: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Inskickad: %1$@ (%2$@/%3$@)";
+"Submitted: %@ (%@/%@)" = "Inlämnad: %1$@ (%2$@/%3$@)";
 
 /* Syllabus Button Title */
-"Syllabus" = "Antura tidsplan";
+"Syllabus" = "Kursöversikt";
 
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tryck för att använda Canvas som någon annan.";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Användarvillkor";
-
-/* Error message */
-"There are no actions for this item" = "Det finns inga åtgärder för det här objektet";
-
 /* AlertKit Database Load Failure Message */
-"There was a problem loading the AlertKit database file." = "Ett problem uppstod vid laddningen av AlertKit databas filen.";
+"There was a problem loading the AlertKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för AlertKit.";
 
 /* Airwolf database error message */
-"There was a problem loading the database." = "Det uppstod ett problem vid laddning av databasen.";
+"There was a problem loading the database." = "Ett problem uppstod vid inläsning av databasen.";
 
 /* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Ett problem uppstod vid laddningen av DiscussionKit databas filen.";
+"There was a problem loading the DiscussionKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för DiscussionKit.";
 
 /* No comment provided by engineer. */
-"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Ett fel inträffade när innehållet laddades. Om det var ljud eller video kanske innehållet fortfarande bearbetas.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "Detta meddelande har löpt ut.";
+"This announcement has expired." = "Detta kursmeddelande har upphört att gälla.";
 
 /* No comment provided by engineer. */
 "This student's courses may not be published yet." = "Den här studentens kurser får ännu inte publiceras.";
 
 /* No comment provided by engineer. */
-"Trouble logging in" = "Inloggningsproblem";
+"Trouble logging in" = "Problem med inloggning";
 
 /* No comment provided by engineer. */
 "Unread" = "Oläst";
-
-/* No comment provided by engineer. */
-"View Canvas Guides" = "Visa Canvas-guider";
 
 /* Calendar Tab */
 "Week" = "Vecka";
@@ -263,5 +215,5 @@
 "Welcome!" = "Välkommen!";
 
 /* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Du måste tillåta notifikationer i Inställningar för att ställa in påminnelser.";
+"You must allow notifications in Settings to set reminders." = "Du måste tillåta aviseringar i Inställningar för att ställa in påminnelser.";
 

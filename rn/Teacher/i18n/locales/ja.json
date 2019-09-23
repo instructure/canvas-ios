@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "成績"
   },
+  "grade_after_posting_51718245": {
+    "message": "投稿後の成績"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "{ grade }投稿後の成績"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "投稿前の成績"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "{ grade }投稿前の成績"
+  },
   "grade_grade_990eb477": {
     "message": "成績{ grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "成績上書き"
+  },
+  "grade_override_grade_4788faec": {
+    "message": "成績上書き{ grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "成績掲示規約"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "練習クイズ"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "演習クイズと調査には詳細ビューはありません。"
   },
   "preview_quiz_1ffbf684": {
     "message": "プレビュークイズ"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "トータルの成績："
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "提出物合計数{ total, number }"
   },
   "un_starred_8fef021f": {
     "message": "スターなし"

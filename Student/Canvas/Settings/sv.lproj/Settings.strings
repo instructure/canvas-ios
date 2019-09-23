@@ -2,7 +2,7 @@
 "mYw-YB-SVS.text" = "Tillåt aviseringar i inställningar";
 
 /* Class = "UILabel"; text = "Enable Push Notifications"; ObjectID = "PMb-wZ-ARX"; */
-"PMb-wZ-ARX.text" = "Aktivera pushmeddelanden";
+"PMb-wZ-ARX.text" = "Aktivera push-aviseringar";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "qwG-FB-tzR"; */
 "qwG-FB-tzR.title" = "Inställningar";

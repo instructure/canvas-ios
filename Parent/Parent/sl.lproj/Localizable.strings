@@ -49,7 +49,7 @@
 /* No comment provided by engineer. */
 "Assignment reminder" = "Opomnik za nalogo";
 
-/* Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Prekliči";
 
 /* Percent value is over 100 */
@@ -62,13 +62,7 @@
 "Caught up on Alerts" = "Seznanitev z opozorili";
 
 /* No comment provided by engineer. */
-"Change User" = "Spremeni uporabnika";
-
-/* No comment provided by engineer. */
 "Choose a student" = "Izberi študenta";
-
-/* Close Button Title */
-"Close" = "Zapri";
 
 /* Course Announcement Description */
 "Course announcements" = "Obvestila o predmetu";
@@ -86,16 +80,10 @@
 "Current student: %@, tap to switch students" = "Trenutni študent: %@, tapnite za preklop študentov.";
 
 /* No comment provided by engineer. */
-"Developer Menu" = "Meni razvijalca";
-
-/* No comment provided by engineer. */
 "Discussion" = "Razprava";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Opusti";
-
-/* No comment provided by engineer. */
-"Error" = "Napaka";
 
 /* No comment provided by engineer. */
 "Event" = "Dogodek";
@@ -108,9 +96,6 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Nalaganje (discussionKitModelName) NSManagedObjectModel ni uspelo";
-
-/* No comment provided by engineer. */
-"Help" = "Pomoč";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Visoka ocena naloge ne more biti nižja od nizke ocene naloge.";
@@ -142,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Zamuda: %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log Out" = "Odjava";
-
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Nizka ocena naloge ne more biti višja od visoke ocene naloge.";
 
@@ -169,9 +151,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Ni ocen.";
 
-/* Error message */
-"No installed apps support opening this file" = "Nobena nameščena aplikacija ne podpira odpiranja te datoteke.";
-
 /* Empty Students Text */
 "No Students" = "Ni študentov.";
 
@@ -180,12 +159,6 @@
 
 /* OK Button Title */
 "OK" = "V redu";
-
-/* Open a url in the application Safari */
-"Open in Safari" = "Odpri v brskalniku Safari";
-
-/* Open file in another application */
-"Open in..." = "Odpri v ...";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Koda za seznanjanje naprave";
@@ -197,16 +170,7 @@
 "Quiz" = "Kviz";
 
 /* No comment provided by engineer. */
-"Report a Problem" = "Poročajte o težavi.";
-
-/* No comment provided by engineer. */
-"Request a Feature" = "Zahtevaj funkcionalnost";
-
-/* No comment provided by engineer. */
 "Settings" = "Nastavitve";
-
-/* No comment provided by engineer. */
-"Stop Act as User" = "Opustite vlogo uporabnika";
 
 /* No comment provided by engineer. */
 "Submitted" = "Poslano";
@@ -223,12 +187,6 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Tapnite za ogled sistema Canvas v vlogi drugega uporabnika.";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Pogoji uporabe";
-
-/* Error message */
-"There are no actions for this item" = "Pri tem elementu ni dejanj.";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov AlertKit.";
 
@@ -237,9 +195,6 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov DiscussionKit.";
-
-/* No comment provided by engineer. */
-"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Pri nalaganju vsebine je prišlo do napake. Če gre za nalaganje zvočnega posnetka ali videoposnetka, obdelava morda še poteka.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Čas tega obvestila se je iztekel.";
@@ -252,9 +207,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Neprebrano";
-
-/* No comment provided by engineer. */
-"View Canvas Guides" = "Ogled vodnikov po sistemu Canvas";
 
 /* Calendar Tab */
 "Week" = "Teden";

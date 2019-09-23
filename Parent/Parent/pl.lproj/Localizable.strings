@@ -49,7 +49,7 @@
 /* No comment provided by engineer. */
 "Assignment reminder" = "Przypomnienie o zadaniu";
 
-/* Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Anuluj";
 
 /* Percent value is over 100 */
@@ -62,13 +62,7 @@
 "Caught up on Alerts" = "Alerty przeczytane";
 
 /* No comment provided by engineer. */
-"Change User" = "Zmień użytkownika";
-
-/* No comment provided by engineer. */
 "Choose a student" = "Wybierz ucznia";
-
-/* Close Button Title */
-"Close" = "Zamknij";
 
 /* Course Announcement Description */
 "Course announcements" = "Ogłoszenie kursowe";
@@ -86,16 +80,10 @@
 "Current student: %@, tap to switch students" = "Obecny uczestnik: %@, stuknij, aby przełącznik uczestników";
 
 /* No comment provided by engineer. */
-"Developer Menu" = "Menu programisty";
-
-/* No comment provided by engineer. */
 "Discussion" = "Dyskusja";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Odwołaj";
-
-/* No comment provided by engineer. */
-"Error" = "Błąd";
 
 /* No comment provided by engineer. */
 "Event" = "Wydarzenie";
@@ -108,9 +96,6 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Nie udało się wczytać (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
-"Help" = "Pomoc";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Wysoka ocena za zadanie nie może być niższa od niskiej oceny za zadanie";
@@ -142,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Spóźnione: %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log Out" = "Wyloguj";
-
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Niska ocena za zadanie nie może być wyższa od wysokiej oceny za zadanie";
 
@@ -169,9 +151,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Brak oceny";
 
-/* Error message */
-"No installed apps support opening this file" = "Brak zainstalowanych aplikacji, które obsługują otwieranie tego pliku";
-
 /* Empty Students Text */
 "No Students" = "Brak uczniów";
 
@@ -180,12 +159,6 @@
 
 /* OK Button Title */
 "OK" = "OK";
-
-/* Open a url in the application Safari */
-"Open in Safari" = "Otwórz w Safari";
-
-/* Open file in another application */
-"Open in..." = "Otwórz w...";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Kod parowania";
@@ -197,16 +170,7 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
-"Report a Problem" = "Zgłoś problem";
-
-/* No comment provided by engineer. */
-"Request a Feature" = "Zażądaj funkcji";
-
-/* No comment provided by engineer. */
 "Settings" = "Ustawienia";
-
-/* No comment provided by engineer. */
-"Stop Act as User" = "Zatrzymaj podszywanie się jako użytkownik";
 
 /* No comment provided by engineer. */
 "Submitted" = "Złożono";
@@ -223,12 +187,6 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Stuknij, aby rozpocząć wyświetlanie Canvas jako inna osoba.";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Warunki korzystania";
-
-/* Error message */
-"There are no actions for this item" = "Brak działań dla danej pozycji";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Wystąpił problem z wczytaniem pliku bazy danych AlertKit.";
 
@@ -237,9 +195,6 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Wystąpił problem z wczytaniem pliku bazy danych DiscussionKit.";
-
-/* No comment provided by engineer. */
-"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Wystąpił błąd podczas ładowania Twojej zawartości. Jeżeli jest to nagranie dźwiękowe lub wideo możliwe, że jest wciąż przetwarzane.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "To ogłoszenie wygasło.";
@@ -252,9 +207,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Nieprzeczytane";
-
-/* No comment provided by engineer. */
-"View Canvas Guides" = "Wyświetl przewodniki Canvas";
 
 /* Calendar Tab */
 "Week" = "Tydzień";

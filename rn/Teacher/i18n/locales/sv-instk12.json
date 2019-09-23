@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "Bedömning"
   },
+  "grade_after_posting_51718245": {
+    "message": "Bedöm efter publicering"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "Bedöm efter publicering { grade }"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "Bedöm före publicering"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "Bedöm före publicering { grade }"
+  },
   "grade_grade_990eb477": {
     "message": "Bedöm { grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "Åsidosätt bedömning"
+  },
+  "grade_override_grade_4788faec": {
+    "message": "Åsidosätt bedömning { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "Publiceringspolicy för bedömningar"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "Övningsquiz"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "Övningsquiz och enkäter har inte informationsvyer."
   },
   "preview_quiz_1ffbf684": {
     "message": "Visa Quiz"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "Total bedömning:"
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "Totalt antal inlämningar { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "Ej stjärnmärkta"

@@ -304,9 +304,6 @@
 /* mobile quze warning info */
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas クイズは、各種の課題スタイルをサポートしています。これらスタイルのほとんどは、.モバイルデバイスサポートされていないものもあります。携帯電話でこれらのサポートされていないクイズに回答しようとすると、クイズ全体を完了できない場合があり、その際には不利な結果が出ます。\n\nサポートされていない質問タイプには、Adobe Flash™ コンテンツ、ファイルアップロードその他を含む質問が含まれます。\n\nサポートされていないコンテンツがクイズに含まれていると思われる場合には、デスクトップまたはラップトップコンピュータ上で回答してください。クイズにはサポートされているコンテンツしかないことが分かっている場合には、モバイルデバイスで回答してかまいません。";
 
-/* button to change user's profile image */
-"Change Profile Image" = "プロフィール画像を変更する";
-
 /* No comment provided by engineer. */
 "Change User" = "ユーザーを変更する";
 
@@ -1393,9 +1390,6 @@
 
 /* No comment provided by engineer. */
 "Yes" = "はい";
-
-/* No comment provided by engineer. */
-"You are not allowed to change your avatar at this time." = "現時点であなたのアバターを変更することはできません。";
 
 /* No comment provided by engineer. */
 "You are not allowed to send messages at this time." = "現時点でメッセージを送信することはできません。";

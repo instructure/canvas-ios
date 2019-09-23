@@ -689,8 +689,26 @@
   "grade_9c6f076d": {
     "message": "Note"
   },
+  "grade_after_posting_51718245": {
+    "message": "Notation après publication"
+  },
+  "grade_after_posting_grade_d6e10b87": {
+    "message": "Notation après publication { grade }"
+  },
+  "grade_before_posting_fce5a333": {
+    "message": "Notation avant publication"
+  },
+  "grade_before_posting_grade_ca67f851": {
+    "message": "Notation avant publication { grade }"
+  },
   "grade_grade_990eb477": {
     "message": "Noter { grade }"
+  },
+  "grade_override_ff74e3b4": {
+    "message": "Surclasser la notation "
+  },
+  "grade_override_grade_4788faec": {
+    "message": "Surclasser la notation { grade }"
   },
   "grade_post_policy_7fa3ef03": {
     "message": "Politique de publication des notes"
@@ -1153,6 +1171,9 @@
   },
   "practice_quiz_19a8505d": {
     "message": "Questionnaire d’entraînement"
+  },
+  "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
+    "message": "Les questionnaires pratiques et les sondages n'ont pas de vues détaillées."
   },
   "preview_quiz_1ffbf684": {
     "message": "Prévisualiser le questionnaire"
@@ -1660,6 +1681,9 @@
   },
   "total_grade_568e719f": {
     "message": "Note totale :"
+  },
+  "total_submissions_total_number_dbb28cf9": {
+    "message": "Envois totaux { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "Astérisque retirée"

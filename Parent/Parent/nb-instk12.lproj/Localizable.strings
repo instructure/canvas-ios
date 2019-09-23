@@ -49,7 +49,7 @@
 /* No comment provided by engineer. */
 "Assignment reminder" = "Oppgavepåminnelse";
 
-/* Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Avbryt";
 
 /* Percent value is over 100 */
@@ -62,13 +62,7 @@
 "Caught up on Alerts" = "Hengt opp i varsler";
 
 /* No comment provided by engineer. */
-"Change User" = "Endre bruker";
-
-/* No comment provided by engineer. */
 "Choose a student" = "Velg en elev";
-
-/* Close Button Title */
-"Close" = "Lukk";
 
 /* Course Announcement Description */
 "Course announcements" = "Beskjeder for fag";
@@ -86,16 +80,10 @@
 "Current student: %@, tap to switch students" = "Nåværende elever: %@, trykk for å bytte mellom elever";
 
 /* No comment provided by engineer. */
-"Developer Menu" = "Utvikler-meny";
-
-/* No comment provided by engineer. */
 "Discussion" = "Diskusjon";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Avvise";
-
-/* No comment provided by engineer. */
-"Error" = "Avvik";
 
 /* No comment provided by engineer. */
 "Event" = "Hendelse";
@@ -108,9 +96,6 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Kunne ikke laste inn (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
-"Help" = "Hjelp";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Høy oppgavevurdering kan ikke være lavere enn lav oppgavevurdering";
@@ -142,9 +127,6 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Sent: %1$@ (%2$@/%3$@)";
 
-/* No comment provided by engineer. */
-"Log Out" = "Logg Ut";
-
 /* Low Assignment Grade too High */
 "Low assignment grade cannot be higher than high assignment grade" = "Lav oppgavevurdering kan ikke være høyere enn høy oppgavevurdering";
 
@@ -169,9 +151,6 @@
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Ingen vurdering";
 
-/* Error message */
-"No installed apps support opening this file" = "Ingen installerte apper støtter åpning av denne filen.";
-
 /* Empty Students Text */
 "No Students" = "Ingen elever";
 
@@ -180,12 +159,6 @@
 
 /* OK Button Title */
 "OK" = "OK";
-
-/* Open a url in the application Safari */
-"Open in Safari" = "Åpne i Safari";
-
-/* Open file in another application */
-"Open in..." = "Åpne i ...";
 
 /* No comment provided by engineer. */
 "Pairing Code" = "Paringskode";
@@ -197,16 +170,7 @@
 "Quiz" = "Test";
 
 /* No comment provided by engineer. */
-"Report a Problem" = "Rapporter et problem";
-
-/* No comment provided by engineer. */
-"Request a Feature" = "Be om en funksjon";
-
-/* No comment provided by engineer. */
 "Settings" = "Innstillinger";
-
-/* No comment provided by engineer. */
-"Stop Act as User" = "Avslutt å opptre som bruker";
 
 /* No comment provided by engineer. */
 "Submitted" = "Innlevert";
@@ -223,12 +187,6 @@
 /* Directions in the admin view */
 "Tap to start viewing Canvas as another person." = "Trykk for å begynne å se Canvas som en annen person.";
 
-/* No comment provided by engineer. */
-"Terms of Use" = "Bruksvilkår";
-
-/* Error message */
-"There are no actions for this item" = "Det er ingen handlinger for dette elementet";
-
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Det oppstod et problem under lasting av AlertKit databasefilen.";
 
@@ -237,9 +195,6 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Det oppstod et problem under lasting av DiscussionKit databasefilen.";
-
-/* No comment provided by engineer. */
-"There was an error loading your content. If it  is an audio or video upload it may still be processing." = "Det oppsto en feil med lasting av innholdet ditt. Hvis det er en lyd- eller video-opplasting kan den fremdeles være under behandling.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Denne kunngjøringen har utløpt-";
@@ -252,9 +207,6 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Ulest";
-
-/* No comment provided by engineer. */
-"View Canvas Guides" = "Se Canvas-guider";
 
 /* Calendar Tab */
 "Week" = "Uke";
