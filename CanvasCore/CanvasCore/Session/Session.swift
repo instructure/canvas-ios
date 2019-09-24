@@ -34,15 +34,17 @@ open class Session: NSObject {
     public var api: API {
         return env.api
     }
-    @objc public let baseURL: URL
-    @objc public let user: SessionUser
+    @objc public private(set) var baseURL: URL
+    @objc public private(set) var user: SessionUser
     public let URLSession: Foundation.URLSession
     public let localStoreDirectory: LocalStoreDirectory
 
     private static var _current: Session?
     @objc public static var current: Session? {
-        if let current = _current {
+        if let current = _current, let loginSession = AppEnvironment.shared.currentSession {
             current.env = AppEnvironment.shared
+            current.baseURL = loginSession.baseURL
+            current.user = SessionUser(loginSession: loginSession)
             return current
         }
         _current = Session(environment: .shared)
@@ -53,14 +55,7 @@ open class Session: NSObject {
         guard let session = environment.currentSession, let api = environment.api as? URLSessionAPI else { return nil }
         self.env = environment
         self.baseURL = session.baseURL
-        self.user = SessionUser(
-            id: session.userID,
-            name: session.userName,
-            loginID: nil,
-            sortableName: session.userName,
-            email: session.userEmail,
-            avatarURL: session.userAvatarURL
-        )
+        self.user = SessionUser(loginSession: session)
         self.URLSession = api.urlSession
         self.localStoreDirectory = .AppGroup
     }
@@ -115,5 +110,18 @@ open class Session: NSObject {
         let url = fileURL.appendingPathComponent("\(sessionID)_logs")
         let _ = try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
         return url
+    }
+}
+
+extension SessionUser {
+    convenience init(loginSession: LoginSession) {
+        self.init(
+            id: loginSession.userID,
+            name: loginSession.userName,
+            loginID: nil,
+            sortableName: loginSession.userName,
+            email: loginSession.userEmail,
+            avatarURL: loginSession.userAvatarURL
+        )
     }
 }
