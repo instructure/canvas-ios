@@ -30,7 +30,7 @@ open class Session: NSObject {
         case Default, AppGroup
     }
 
-    public let env: AppEnvironment
+    public private(set) var env: AppEnvironment
     public var api: API {
         return env.api
     }
@@ -39,8 +39,14 @@ open class Session: NSObject {
     public let URLSession: Foundation.URLSession
     public let localStoreDirectory: LocalStoreDirectory
 
+    private static var _current: Session?
     @objc public static var current: Session? {
-        return Session(environment: .shared)
+        if let current = _current {
+            current.env = AppEnvironment.shared
+            return current
+        }
+        _current = Session(environment: .shared)
+        return _current
     }
 
     private init?(environment: AppEnvironment = .shared) {
