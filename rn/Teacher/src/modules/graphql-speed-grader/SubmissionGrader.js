@@ -286,7 +286,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
           selectedIndex={this.state.selectedIndex}
           selectedAttachmentIndex={this.state.selectedAttachmentIndex}
         />
-        {/*<SubmissionViewer
+        {/* <SubmissionViewer
           {...this.props}
           selectedIndex={this.state.selectedIndex}
           selectedAttachmentIndex={this.state.selectedAttachmentIndex}
@@ -335,7 +335,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
               selectedIndex={this.state.selectedIndex}
               selectedAttachmentIndex={this.state.selectedAttachmentIndex}
             />
-            {/*<SubmissionViewer
+            {/* <SubmissionViewer
               {...this.props}
               size={{
                 height,
