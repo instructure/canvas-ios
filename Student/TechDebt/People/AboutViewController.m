@@ -121,6 +121,8 @@ typedef NS_ENUM(NSInteger, LegalRows) {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 #pragma mark - User
@@ -255,9 +257,10 @@ typedef NS_ENUM(NSInteger, LegalRows) {
         
         if (indexPath.row == TermsRow) {
             return [[HelmManager shared]
-                present: @"/accounts/:accountID/terms_of_service"
+                pushFrom: @"/profile/settings"
+                destinationModule: @"/accounts/:accountID/terms_of_service"
                 withProps: @{ @"accountID": @"self" }
-                options: @{ @"modal": @YES, @"embedInNavigationController": @YES }
+                options: @{}
                 callback: nil
             ];
         }
