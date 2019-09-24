@@ -56,6 +56,9 @@ export class ContextCard extends Component {
     if (enrollment && enrollment.grades && (enrollment.grades.unposted_current_grade || enrollment.grades.unposted_current_score != null)) {
       unpostedGrade = enrollment.grades.unposted_current_grade || i18n.number(enrollment.grades.unposted_current_score / 100, 'percent')
     }
+    if (unpostedGrade === grade) {
+      unpostedGrade = null
+    }
 
     let overrideGrade
     if (enrollment && enrollment.grades && (enrollment.grades.override_grade || enrollment.grades.override_score != null)) {
@@ -116,12 +119,20 @@ export class ContextCard extends Component {
                 accessible={true}
                 style={[styles.box, gradeSelected && selectedBox]}
                 testID='ContextCard.currentGradeLabel'
-                accessibilityLabel={i18n('Grade before posting {grade}', { grade })}
+                accessibilityLabel={ unpostedGrade
+                  ? i18n('Grade before posting {grade}', { grade })
+                  : i18n('Current grade {grade}', { grade })
+                }
               >
                 <Text testID='context-card.grade' style={[styles.largeText, gradeSelected && selectedText]}>{grade}</Text>
-                <Text style={[styles.label, gradeSelected && selectedText]}>{i18n('Grade before posting')}</Text>
+                <Text style={[styles.label, gradeSelected && selectedText]}>
+                  { unpostedGrade
+                    ? i18n('Grade before posting')
+                    : i18n('Current Grade')
+                  }
+                </Text>
               </View>
-              { unpostedGrade &&
+              { Boolean(unpostedGrade) &&
                 <View
                   accessible={true}
                   style={[styles.box, unpostedSelected && selectedBox]}
@@ -132,7 +143,7 @@ export class ContextCard extends Component {
                   <Text style={[styles.label, unpostedSelected && selectedText]}>{i18n('Grade after posting')}</Text>
                 </View>
               }
-              { overrideGrade &&
+              { Boolean(overrideGrade) &&
                 <View
                   accessible={true}
                   style={[styles.box, selectedBox]}
