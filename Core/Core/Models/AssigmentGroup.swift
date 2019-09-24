@@ -39,6 +39,7 @@ public final class AssignmentGroup: NSManagedObject {
         for a in item.assignments ?? [] {
             let assignmentPredicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), a.id.value)
             let assignment: Assignment = context.fetch(assignmentPredicate).first ?? context.insert()
+            assignment.update(fromApiModel: a, in: context, updateSubmission: false)
             assignment.assignmentGroupPosition = item.position
             assignment.gradingPeriodID = gradingPeriodID
         }
