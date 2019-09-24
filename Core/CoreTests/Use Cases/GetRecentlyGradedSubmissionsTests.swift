@@ -63,7 +63,7 @@ class GetRecentlyGradedSubmissionsTests: CoreTestCase {
 
         let useCase = GetRecentlyGradedSubmissions(userID: "self")
 
-        let submissions: [Submission] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: useCase.scope.order)
+        let submissions: [Submission] = databaseClient.fetch(scope: useCase.scope)
 
         XCTAssertEqual(submissions.count, 2)
         XCTAssertEqual(submissions[0], firstSubmission)

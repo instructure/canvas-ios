@@ -48,11 +48,7 @@ class APIDocViewerRequestableTests: XCTestCase {
     }
 
     func testPutDocViewerAnnotationRequest() {
-        let annotation = APIDocViewerAnnotation(
-            id: "1", document_id: nil, user_id: nil, user_name: "a", page: 1, created_at: nil, modified_at: nil,
-            deleted: false, deleted_at: nil, deleted_by: nil, deleted_by_id: nil, type: .text, color: nil, icon: nil,
-            contents: nil, inreplyto: nil, coords: nil, rect: [[0, 0], [1, 1]], font: nil, inklist: nil, width: nil
-        )
+        let annotation = APIDocViewerAnnotation.make()
         XCTAssertEqual(PutDocViewerAnnotationRequest(body: annotation, sessionID: "{}").method, .put)
         XCTAssertEqual(PutDocViewerAnnotationRequest(body: annotation, sessionID: "{}").path, "/2018-03-07/sessions/{}/annotations/1")
         XCTAssertEqual(PutDocViewerAnnotationRequest(body: annotation, sessionID: "{}").headers, [
@@ -63,28 +59,16 @@ class APIDocViewerRequestableTests: XCTestCase {
     }
 
     func testPutDocViewerAnnotationRequestEncode() {
-        let annotation = APIDocViewerAnnotation(
-            id: "1", document_id: nil, user_id: nil, user_name: "a", page: 1, created_at: nil, modified_at: nil,
-            deleted: false, deleted_at: nil, deleted_by: nil, deleted_by_id: nil, type: .text, color: nil, icon: nil,
-            contents: nil, inreplyto: nil, coords: nil, rect: [[0, 0], [1, 1]], font: nil, inklist: nil, width: nil
-        )
+        let annotation = APIDocViewerAnnotation.make()
         XCTAssertNotNil(try PutDocViewerAnnotationRequest(body: annotation, sessionID: "{}").encode(annotation))
 
         let bigContents = String(repeating: "a", count: PutDocViewerAnnotationRequest.SizeLimit)
-        let big = APIDocViewerAnnotation(
-            id: "1", document_id: nil, user_id: nil, user_name: "a", page: 1, created_at: nil, modified_at: nil,
-            deleted: false, deleted_at: nil, deleted_by: nil, deleted_by_id: nil, type: .text, color: nil, icon: nil,
-            contents: bigContents, inreplyto: nil, coords: nil, rect: [[0, 0], [1, 1]], font: nil, inklist: nil, width: nil
-        )
+        let big = APIDocViewerAnnotation.make(contents: bigContents)
         XCTAssertThrowsError(try PutDocViewerAnnotationRequest(body: big, sessionID: "{}").encode(big))
     }
 
     func testPutDocViewerAnnotationRequestDecode() {
-        let annotation = APIDocViewerAnnotation(
-            id: "1", document_id: nil, user_id: nil, user_name: "a", page: 1, created_at: nil, modified_at: nil,
-            deleted: false, deleted_at: nil, deleted_by: nil, deleted_by_id: nil, type: .text, color: nil, icon: nil,
-            contents: nil, inreplyto: nil, coords: nil, rect: [[0, 0], [1, 1]], font: nil, inklist: nil, width: nil
-        )
+        let annotation = APIDocViewerAnnotation.make()
 
         let date = Date()
         let dateStr = ISO8601DateFormatter.string(from: date, timeZone: TimeZone(identifier: "GMT")!, formatOptions: [.withInternetDateTime, .withFractionalSeconds])

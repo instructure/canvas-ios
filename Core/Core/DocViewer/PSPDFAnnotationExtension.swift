@@ -58,12 +58,11 @@ extension PSPDFAnnotation {
             annotation = strikeout
         case .freetext:
             let freeText = PSPDFFreeTextAnnotation(contents: apiAnnotation.contents ?? "")
-            let fontInfo = apiAnnotation.font?.split(separator: " ")
             let fontSizeStr = apiAnnotation.font?.trimmingCharacters(in: CharacterSet(charactersIn: "0123456789").inverted) ?? ""
-            freeText.fontName = fontInfo?.last.flatMap { String($0) } ?? "Verdana"
-            freeText.fontSize = CGFloat(Int(fontSizeStr) ?? 14)
-            freeText.fillColor = .white
-            freeText.sizeToFit()
+            freeText.fontName = "Helvetica" // apiAnnotation.font?.split(separator: " ")?.last.flatMap { String($0) } ?? "Helvetica"
+            freeText.fontSize = CGFloat(Float(fontSizeStr) ?? 14) * 0.9
+            freeText.fillColor = apiAnnotation.bgColor == "transparent" ? .clear
+                : UIColor(hexString: apiAnnotation.bgColor) ?? .white
             annotation = freeText
         case .text: // legacy name for point
             let point = DocViewerPointAnnotation()
@@ -153,12 +152,13 @@ extension PSPDFAnnotation {
             deleted_by_id: deletedByID,
             type: type,
             color: color?.hexString,
+            bgColor: fillColor?.hexString,
             icon: type == .text ? "Comment" : nil,
             contents: contents,
             inreplyto: inreplyto,
             coords: rects?.map { pointsFrom($0.cgRectValue) },
             rect: pointsFrom(boundingBox),
-            font: fontName.flatMap { "\(Int(fontSize))pt \($0)" },
+            font: fontName.flatMap { "\(Int(fontSize / 0.9))pt \($0)" },
             inklist: inklist,
             width: Double(lineWidth)
         )
