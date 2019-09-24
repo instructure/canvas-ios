@@ -112,26 +112,10 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         )
     },
 
-    "/courses/:courseID/collaborations": { url, _ in
-        let controller = UnsupportedViewController()
-        controller.canvasURL = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL)
-        controller.tabName = NSLocalizedString("Collaborations", comment: "")
-        return controller
-    },
+    // No native support, fall back to web
+    // "/:context/:contextID/collaborations": { url, _ in },
 
-    "/groups/:groupID/collaborations": { url, _ in
-        let controller = UnsupportedViewController()
-        controller.canvasURL = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL)
-        controller.tabName = NSLocalizedString("Collaborations", comment: "")
-        return controller
-    },
-
-    "/:context/:contextID/conferences": { url, _ in
-        let controller = UnsupportedViewController()
-        controller.canvasURL = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL)
-        controller.tabName = NSLocalizedString("Conferences", comment: "")
-        return controller
-    },
+    "/courses/:courseID/conferences": nil,
 
     "/:context/:contextID/discussions": nil,
     "/:context/:contextID/discussion_topics": nil,
@@ -225,12 +209,8 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         return try? ModuleItemDetailViewController(session: session, courseID: courseID, moduleItemID: itemID, route: route)
     },
 
-    "/courses/:courseID/outcomes": { url, _ in
-        let controller = UnsupportedViewController()
-        controller.canvasURL = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL)
-        controller.tabName = NSLocalizedString("Outcomes", comment: "")
-        return controller
-    },
+    // No native support, fall back to web
+    // "/courses/:courseID/outcomes": { url, _ in },
 
     "/courses/:courseID/pages": { _, params in
         guard let courseID = params["courseID"] else { return nil }
@@ -300,12 +280,8 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         return QuizIntroViewController.takeController(contextID: ContextID(id: courseID, context: .course), quizID: quizID)
     },
 
-    "/courses/:courseID/settings": { url, _ in
-        let controller = UnsupportedViewController()
-        controller.canvasURL = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL)
-        controller.tabName = NSLocalizedString("Settings", comment: "")
-        return controller
-    },
+    // No native support, fall back to web
+    // "/courses/:courseID/settings": { url, _ in },
 
     "/courses/:courseID/users": { url, params in
         guard let courseID = params["courseID"] else { return nil }

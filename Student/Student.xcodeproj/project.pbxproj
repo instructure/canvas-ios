@@ -88,11 +88,6 @@
 		492706D51CF4BA7B00C631C6 /* ContentLockViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492706CE1CF4BA7B00C631C6 /* ContentLockViewController.storyboard */; };
 		4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707691CF4BB2100C631C6 /* CBIModuleProgressNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4927077D1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927076A1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m */; };
-		492707FA1CF4BC1000C631C6 /* UnsupportedView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492707DC1CF4BC1000C631C6 /* UnsupportedView.storyboard */; };
-		492707FB1CF4BC1000C631C6 /* UnsupportedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707DD1CF4BC1000C631C6 /* UnsupportedViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		492707FC1CF4BC1000C631C6 /* UnsupportedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707DE1CF4BC1000C631C6 /* UnsupportedViewController.m */; };
-		4927084A1CF4BC3200C631C6 /* UIViewController+Transitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 492708231CF4BC3200C631C6 /* UIViewController+Transitions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4927084B1CF4BC3200C631C6 /* UIViewController+Transitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 492708241CF4BC3200C631C6 /* UIViewController+Transitions.m */; };
 		49383CE21F848353009C8F8E /* Session+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CE11F84834A009C8F8E /* Session+Login.swift */; };
 		495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */; };
 		49642BC01CF4C44A00238B3F /* EXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 49642BBE1CF4C44A00238B3F /* EXTScope.h */; };
@@ -750,11 +745,6 @@
 		492706CE1CF4BA7B00C631C6 /* ContentLockViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContentLockViewController.storyboard; sourceTree = "<group>"; };
 		492707691CF4BB2100C631C6 /* CBIModuleProgressNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIModuleProgressNotifications.h; sourceTree = "<group>"; };
 		4927076A1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIModuleProgressNotifications.m; sourceTree = "<group>"; };
-		492707DC1CF4BC1000C631C6 /* UnsupportedView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UnsupportedView.storyboard; sourceTree = "<group>"; };
-		492707DD1CF4BC1000C631C6 /* UnsupportedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnsupportedViewController.h; sourceTree = "<group>"; };
-		492707DE1CF4BC1000C631C6 /* UnsupportedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnsupportedViewController.m; sourceTree = "<group>"; };
-		492708231CF4BC3200C631C6 /* UIViewController+Transitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Transitions.h"; sourceTree = "<group>"; };
-		492708241CF4BC3200C631C6 /* UIViewController+Transitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Transitions.m"; sourceTree = "<group>"; };
 		49383CE11F84834A009C8F8E /* Session+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Login.swift"; sourceTree = "<group>"; };
 		495D8BBA1CFE17D700D41098 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49642BBE1CF4C44A00238B3F /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
@@ -1792,8 +1782,6 @@
 				492706C71CF4BA7B00C631C6 /* Locked */,
 				4927075D1CF4BB2100C631C6 /* Modules */,
 				49AA2D121CF4DC3F0055862D /* People */,
-				492707D91CF4BC1000C631C6 /* Sad Panda */,
-				4927081C1CF4BC3200C631C6 /* Transitioning */,
 			);
 			path = TechDebt;
 			sourceTree = "<group>";
@@ -1929,25 +1917,6 @@
 				4927076A1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		492707D91CF4BC1000C631C6 /* Sad Panda */ = {
-			isa = PBXGroup;
-			children = (
-				492707DC1CF4BC1000C631C6 /* UnsupportedView.storyboard */,
-				492707DD1CF4BC1000C631C6 /* UnsupportedViewController.h */,
-				492707DE1CF4BC1000C631C6 /* UnsupportedViewController.m */,
-			);
-			path = "Sad Panda";
-			sourceTree = "<group>";
-		};
-		4927081C1CF4BC3200C631C6 /* Transitioning */ = {
-			isa = PBXGroup;
-			children = (
-				492708231CF4BC3200C631C6 /* UIViewController+Transitions.h */,
-				492708241CF4BC3200C631C6 /* UIViewController+Transitions.m */,
-			);
-			path = Transitioning;
 			sourceTree = "<group>";
 		};
 		49383CE01F84834A009C8F8E /* Login */ = {
@@ -3325,12 +3294,10 @@
 				492706931CF4B88600C631C6 /* FileViewController.h in Headers */,
 				492705BA1CF4B73200C631C6 /* NSString_stripHTML.h in Headers */,
 				49AA2D341CF4DC540055862D /* RoundedButton.h in Headers */,
-				4927084A1CF4BC3200C631C6 /* UIViewController+Transitions.h in Headers */,
 				61F438E61DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h in Headers */,
 				492705A21CF4B73200C631C6 /* CKIUser+SwiftCompatibility.h in Headers */,
 				49CE976E1F900B4700121A43 /* EXTScope.h in Headers */,
 				492704AE1CF4B6D700C631C6 /* TechDebt.h in Headers */,
-				492707FB1CF4BC1000C631C6 /* UnsupportedViewController.h in Headers */,
 				49CE97721F900B4700121A43 /* MLVCCollectionController.h in Headers */,
 				49DE1DA31F8808F30055D74A /* CBIConversationStarter.h in Headers */,
 				49CE976B1F900B4700121A43 /* MLVCCollectionViewController.h in Headers */,
@@ -3801,7 +3768,6 @@
 				49AA2D2A1CF4DC540055862D /* CBIPeopleDetail.storyboard in Resources */,
 				49AA2D311CF4DC540055862D /* AboutViewController.storyboard in Resources */,
 				492705F21CF4B76A00C631C6 /* CBIColorfulCell.xib in Resources */,
-				492707FA1CF4BC1000C631C6 /* UnsupportedView.storyboard in Resources */,
 				492705F41CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4211,11 +4177,9 @@
 				2C7041AF203CDDB700745253 /* UIAlertController+TechDebt.m in Sources */,
 				492706941CF4B88600C631C6 /* FileViewController.m in Sources */,
 				49CE97701F900B4700121A43 /* UICollectionView+MyLittleViewController.m in Sources */,
-				4927084B1CF4BC3200C631C6 /* UIViewController+Transitions.m in Sources */,
 				492705E51CF4B73900C631C6 /* CBIViewModel.m in Sources */,
 				492705C31CF4B73200C631C6 /* UIImage+ImageEffects.m in Sources */,
 				492705D51CF4B73300C631C6 /* UIView_render_IN.m in Sources */,
-				492707FC1CF4BC1000C631C6 /* UnsupportedViewController.m in Sources */,
 				492705B91CF4B73200C631C6 /* NSString+IN_Additions.m in Sources */,
 				492706D41CF4BA7B00C631C6 /* ContentLockViewController.m in Sources */,
 				492705B51CF4B73200C631C6 /* NSArray_in_additions.m in Sources */,
