@@ -45,7 +45,7 @@ public struct Route: Equatable {
     }
 
     public static func courseGrades(_ courseID: String) -> Route {
-        return Route("/courses/\(courseID)/grades)")
+        return Route("/courses/\(courseID)/grades")
     }
 
     /// Used only in Parent app (not web)

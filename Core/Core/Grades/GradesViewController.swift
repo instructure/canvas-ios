@@ -27,10 +27,16 @@ public class GradesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var presenter: GradesPresenter!
     @IBOutlet weak var loadingView: UIView!
-    static let dateFormatter: DateFormatter = {
+    static let dateParser: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd HH:mm:ss ZZ"
         return df
+    }()
+
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "EEEEMMMMd", options: 0, locale: NSLocale.current)
+        return dateFormatter
     }()
 
     public static func create(courseID: String, studentID: String) -> GradesViewController {
@@ -45,7 +51,7 @@ public class GradesViewController: UIViewController {
         presenter.refresh()
 
         headerGradeHeader.text = NSLocalizedString("Total Grade", comment: "")
-        filterButton.setTitle(NSLocalizedString("Filter", comment: ""), for: .normal)
+        filterButton.setTitle(presenter.filterButtonTitle, for: .normal)
     }
 
     func setupTableView() {
@@ -62,7 +68,22 @@ public class GradesViewController: UIViewController {
     }
 
     @IBAction func actionUserDidClickFilter(_ sender: Any) {
-        print("\(#function)")
+        if presenter.currentGradingPeriodID != nil {
+            presenter.filterByGradingPeriod(nil)
+            filterButton.setTitle(presenter.filterButtonTitle, for: .normal)
+        } else {
+            let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", comment: ""), preferredStyle: .actionSheet)
+            for gp in presenter.gradingPeriods {
+                let action = UIAlertAction(title: gp.title, style: .default) { [weak self] _ in
+                    self?.presenter.filterByGradingPeriod(gp.id)
+                    self?.filterButton.setTitle(self?.presenter.filterButtonTitle, for: .normal)
+                }
+                alert.addAction(action)
+            }
+            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: nil)
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
+        }
     }
 }
 
@@ -102,8 +123,8 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
         let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
         guard let sectionInfo = presenter.assignments.sectionInfo(inSection: section) else { return nil }
 
-        if let date = GradesViewController.dateFormatter.date(from: sectionInfo.name), date != Date.distantFuture {
-            view.titleLabel?.text = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
+        if let date = GradesViewController.dateParser.date(from: sectionInfo.name), date != Date.distantFuture {
+            view.titleLabel?.text = GradesViewController.dateFormatter.string(from: date)
         } else {
             view.titleLabel?.text = NSLocalizedString("No Due Date", comment: "")
         }

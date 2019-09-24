@@ -104,13 +104,15 @@ public class GetSubmittableAssignments: GetAssignments {
 public class GetAssignmentsForGrades: GetAssignments {
 
     let groupBy: GroupBy
+    let gradingPeriodID: String?
 
     public enum GroupBy: String {
         case assignmentGroup, dueAt
     }
 
-    public init(courseID: String, groupBy: GroupBy = .dueAt, requestQuerySize: Int = 10) {
+    public init(courseID: String, gradingPeriodID: String? = nil, groupBy: GroupBy = .dueAt, requestQuerySize: Int = 10) {
         self.groupBy = groupBy
+        self.gradingPeriodID = gradingPeriodID
         super.init(courseID: courseID, sort: .dueAt, include: [.observed_users, .submission], requestQuerySize: requestQuerySize)
     }
 
@@ -126,7 +128,14 @@ public class GetAssignmentsForGrades: GetAssignments {
         case .dueAt:
             let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
             let b = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
-            let predicate = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.courseID), courseID])
+
+            let p1 = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.courseID), courseID])
+            var preds: [NSPredicate] = [p1]
+            if let gradingPeriodID = gradingPeriodID {
+                let p2 = NSPredicate(format: "%K == %@", argumentArray: [#keyPath(Assignment.gradingPeriodID), gradingPeriodID])
+                preds.append(p2)
+            }
+            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: preds)
             return Scope(predicate: predicate, order: [a, a, b], sectionNameKeyPath: #keyPath(Assignment.dueAtSortNilsAtBottom))
         }
     }

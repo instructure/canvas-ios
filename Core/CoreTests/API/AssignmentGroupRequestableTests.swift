@@ -43,6 +43,12 @@ class GetAssignmentGroupRequestTests: XCTestCase {
         XCTAssertEqual(req.query, expected)
     }
 
+    func testQueryWithIncludeWithGradingPeriodID() {
+        req = GetAssignmentGroupsRequest(courseID: courseID, gradingPeriodID: "1", include: [.assignments])
+        let expected: [APIQueryItem] = [.value("per_page", "99"), .array("include", ["assignments"]), .value("grading_period_id", "1")]
+        XCTAssertEqual(req.query, expected)
+    }
+
     func testModel() {
         let model = APIAssignmentGroup.make()
         XCTAssertNotNil(model)

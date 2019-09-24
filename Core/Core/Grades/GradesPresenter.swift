@@ -31,6 +31,9 @@ class GradesPresenter {
     let env: AppEnvironment
     weak var view: GradesViewProtocol?
     var didFetchGroups = false
+    var currentGradingPeriodID: String?
+    var assignmentGroups: Store<GetAssignmentGroups>?
+    var assignments: Store<GetAssignmentsForGrades>!
 
     private let percentageFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -42,10 +45,6 @@ class GradesPresenter {
     }()
 
     lazy var courses = env.subscribe(GetCourse(courseID: courseID, include: [.observedUsers, .totalScores])) { [weak self] in
-        self?.update()
-    }
-
-    lazy var assignments = env.subscribe(GetAssignmentsForGrades(courseID: courseID, requestQuerySize: 99)) { [weak self] in
         self?.update()
     }
 
@@ -61,10 +60,27 @@ class GradesPresenter {
         self.studentID = studentID
     }
 
+    func refreshAssignments(force: Bool) {
+        assignments = env.subscribe( GetAssignmentsForGrades(courseID: courseID, gradingPeriodID: currentGradingPeriodID, requestQuerySize: 99) ) { [weak self] in
+            self?.update()
+        }
+        assignments?.refresh(force: force)
+    }
+
+    func refreshAssignmentGroups(force: Bool) {
+        assignmentGroups = env.subscribe(  GetAssignmentGroups(courseID: courseID, gradingPeriodID: currentGradingPeriodID, include: [.assignments])  ) { [weak self] in
+            if !(self?.assignmentGroups?.pending ?? false) {
+                self?.refreshAssignments(force: false)
+            }
+        }
+        assignmentGroups?.refresh(force: force)
+    }
+
     func refresh(force: Bool = false) {
-        assignments.refresh(force: force)
+        refreshAssignments(force: force)
         courses.refresh(force: force)
-        gradingPeriods.refresh(force: force)
+        gradingPeriods.refresh(force: true)
+        refreshAssignmentGroups(force: force)
     }
 
     func update() {
@@ -74,13 +90,26 @@ class GradesPresenter {
             view?.updateScore(score)
         }
 
-        view?.update(isLoading: courses.pending || assignments.pending || gradingPeriods.pending)
-        if let error = courses.error ?? assignments.error {
+        view?.update(isLoading: courses.pending || assignments?.pending ?? false || gradingPeriods.pending || assignmentGroups?.pending ?? false)
+        if let error = courses.error ?? assignments?.error {
             view?.showError(error)
         }
     }
 
-    func select(_ assignment: Assignment, from: UIViewController) {
-        env.router.route(to: assignment.htmlURL, from: from, options: nil)
+    func filterByGradingPeriod(_ id: String?) {
+        currentGradingPeriodID = id
+        if id != nil {
+            refreshAssignmentGroups(force: true)
+        } else {
+            refreshAssignments(force: false)
+        }
+    }
+
+    var filterButtonTitle: String? {
+        if currentGradingPeriodID != nil {
+            return NSLocalizedString("Clear filter", comment: "")
+        } else {
+            return NSLocalizedString("Filter", comment: "")
+        }
     }
 }
