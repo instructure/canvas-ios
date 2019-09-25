@@ -84,8 +84,8 @@ class RouterTests: XCTestCase {
             },
         ]) { _, _, _ in }
         router.route(to: URLComponents(string: "/modal")!, from: mockView, options: [.modal, .embedInNav, .addDoneButton])
-        let nav = try XCTUnwrap(mockView.presented as? UINavigationController)
-        XCTAssertEqual(nav.viewControllers.first?.navigationItem.leftBarButtonItems?.count, 1)
+        let nav = mockView.presented as? UINavigationController
+        XCTAssertEqual(nav?.viewControllers.first?.navigationItem.leftBarButtonItems?.count, 1)
     }
 
     func testRouteFormSheet() {
