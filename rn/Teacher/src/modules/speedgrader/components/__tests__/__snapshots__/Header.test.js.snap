@@ -20,7 +20,10 @@ exports[`SpeedGraderHeader anonymizes the avatar and name 1`] = `
       }
     }
   >
-    <View
+    <TouchableHighlight
+      activeOpacity={0.85}
+      delayPressOut={100}
+      onPress={[Function]}
       style={
         Object {
           "alignItems": "center",
@@ -29,67 +32,63 @@ exports[`SpeedGraderHeader anonymizes the avatar and name 1`] = `
           "flexDirection": "row",
         }
       }
+      testID="header.context.button"
+      underlayColor="white"
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
-        onPress={[Function]}
-        testID="header.context.button"
-        underlayColor="white"
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
       >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
+              "height": 40,
+              "marginLeft": 16,
+              "width": 40,
             }
           }
         >
-          <View
-            style={
-              Object {
-                "height": 40,
-                "marginLeft": 16,
-                "width": 40,
-              }
-            }
-          >
-            <Avatar
-              avatarURL=""
-              key="4"
-              userName="Student"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "flexDirection": "column",
-                "justifyContent": "space-between",
-                "marginLeft": 12,
-              }
-            }
-          >
-            <Text
-              accessibilityTraits="header"
-              style={
-                Object {
-                  "fontSize": 16,
-                  "fontWeight": "600",
-                }
-              }
-            >
-              Student
-            </Text>
-            <SubmissionStatusLabel
-              onlineSubmissionType={true}
-              status="submitted"
-            />
-          </View>
+          <Avatar
+            avatarURL=""
+            key="4"
+            userName="Student"
+          />
         </View>
-      </TouchableHighlight>
-    </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "space-between",
+              "marginLeft": 12,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            numberOfLines={1}
+            style={
+              Object {
+                "fontSize": 16,
+                "fontWeight": "600",
+              }
+            }
+          >
+            Student
+          </Text>
+          <SubmissionStatusLabel
+            onlineSubmissionType={true}
+            status="submitted"
+          />
+        </View>
+      </View>
+    </TouchableHighlight>
     <View
       style={
         Object {
@@ -142,7 +141,10 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
       }
     }
   >
-    <View
+    <TouchableHighlight
+      activeOpacity={0.85}
+      delayPressOut={100}
+      onPress={[Function]}
       style={
         Object {
           "alignItems": "center",
@@ -151,67 +153,63 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
           "flexDirection": "row",
         }
       }
+      testID="header.context.button"
+      underlayColor="white"
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
-        onPress={[Function]}
-        testID="header.context.button"
-        underlayColor="white"
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
       >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
+              "height": 40,
+              "marginLeft": 16,
+              "width": 40,
             }
           }
         >
-          <View
-            style={
-              Object {
-                "height": 40,
-                "marginLeft": 16,
-                "width": 40,
-              }
-            }
-          >
-            <Avatar
-              avatarURL=""
-              key="4"
-              userName="Group"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "flexDirection": "column",
-                "justifyContent": "space-between",
-                "marginLeft": 12,
-              }
-            }
-          >
-            <Text
-              accessibilityTraits="header"
-              style={
-                Object {
-                  "fontSize": 16,
-                  "fontWeight": "600",
-                }
-              }
-            >
-              Group
-            </Text>
-            <SubmissionStatusLabel
-              onlineSubmissionType={true}
-              status="submitted"
-            />
-          </View>
+          <Avatar
+            avatarURL=""
+            key="4"
+            userName="Group"
+          />
         </View>
-      </TouchableHighlight>
-    </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "space-between",
+              "marginLeft": 12,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            numberOfLines={1}
+            style={
+              Object {
+                "fontSize": 16,
+                "fontWeight": "600",
+              }
+            }
+          >
+            Group
+          </Text>
+          <SubmissionStatusLabel
+            onlineSubmissionType={true}
+            status="submitted"
+          />
+        </View>
+      </View>
+    </TouchableHighlight>
     <View
       style={
         Object {
@@ -264,7 +262,10 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
       }
     }
   >
-    <View
+    <TouchableHighlight
+      activeOpacity={0.85}
+      delayPressOut={100}
+      onPress={[Function]}
       style={
         Object {
           "alignItems": "center",
@@ -273,67 +274,63 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
           "flexDirection": "row",
         }
       }
+      testID="header.context.button"
+      underlayColor="white"
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
-        onPress={[Function]}
-        testID="header.context.button"
-        underlayColor="white"
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
       >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
+              "height": 40,
+              "marginLeft": 16,
+              "width": 40,
             }
           }
         >
-          <View
-            style={
-              Object {
-                "height": 40,
-                "marginLeft": 16,
-                "width": 40,
-              }
-            }
-          >
-            <Avatar
-              avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
-              key="4"
-              userName="Allura"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "flexDirection": "column",
-                "justifyContent": "space-between",
-                "marginLeft": 12,
-              }
-            }
-          >
-            <Text
-              accessibilityTraits="header"
-              style={
-                Object {
-                  "fontSize": 16,
-                  "fontWeight": "600",
-                }
-              }
-            >
-              Allura
-            </Text>
-            <SubmissionStatusLabel
-              onlineSubmissionType={true}
-              status="none"
-            />
-          </View>
+          <Avatar
+            avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
+            key="4"
+            userName="Allura"
+          />
         </View>
-      </TouchableHighlight>
-    </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "space-between",
+              "marginLeft": 12,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            numberOfLines={1}
+            style={
+              Object {
+                "fontSize": 16,
+                "fontWeight": "600",
+              }
+            }
+          >
+            Allura
+          </Text>
+          <SubmissionStatusLabel
+            onlineSubmissionType={true}
+            status="none"
+          />
+        </View>
+      </View>
+    </TouchableHighlight>
     <View
       style={
         Object {
@@ -386,7 +383,10 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
       }
     }
   >
-    <View
+    <TouchableHighlight
+      activeOpacity={0.85}
+      delayPressOut={100}
+      onPress={[Function]}
       style={
         Object {
           "alignItems": "center",
@@ -395,67 +395,63 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
           "flexDirection": "row",
         }
       }
+      testID="header.groupList.button"
+      underlayColor="white"
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
-        onPress={[Function]}
-        testID="header.groupList.button"
-        underlayColor="white"
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
       >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
+              "height": 40,
+              "marginLeft": 16,
+              "width": 40,
             }
           }
         >
-          <View
-            style={
-              Object {
-                "height": 40,
-                "marginLeft": 16,
-                "width": 40,
-              }
-            }
-          >
-            <Avatar
-              avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
-              key="4"
-              userName="Allura"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "flexDirection": "column",
-                "justifyContent": "space-between",
-                "marginLeft": 12,
-              }
-            }
-          >
-            <Text
-              accessibilityTraits="header"
-              style={
-                Object {
-                  "fontSize": 16,
-                  "fontWeight": "600",
-                }
-              }
-            >
-              Allura
-            </Text>
-            <SubmissionStatusLabel
-              onlineSubmissionType={true}
-              status="submitted"
-            />
-          </View>
+          <Avatar
+            avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
+            key="4"
+            userName="Allura"
+          />
         </View>
-      </TouchableHighlight>
-    </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "space-between",
+              "marginLeft": 12,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            numberOfLines={1}
+            style={
+              Object {
+                "fontSize": 16,
+                "fontWeight": "600",
+              }
+            }
+          >
+            Allura
+          </Text>
+          <SubmissionStatusLabel
+            onlineSubmissionType={true}
+            status="submitted"
+          />
+        </View>
+      </View>
+    </TouchableHighlight>
     <View
       style={
         Object {
@@ -508,7 +504,10 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
       }
     }
   >
-    <View
+    <TouchableHighlight
+      activeOpacity={0.85}
+      delayPressOut={100}
+      onPress={[Function]}
       style={
         Object {
           "alignItems": "center",
@@ -517,67 +516,63 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
           "flexDirection": "row",
         }
       }
+      testID="header.context.button"
+      underlayColor="white"
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
-        onPress={[Function]}
-        testID="header.context.button"
-        underlayColor="white"
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
       >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
+              "height": 40,
+              "marginLeft": 16,
+              "width": 40,
             }
           }
         >
-          <View
-            style={
-              Object {
-                "height": 40,
-                "marginLeft": 16,
-                "width": 40,
-              }
-            }
-          >
-            <Avatar
-              avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
-              key="4"
-              userName="Allura"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "flexDirection": "column",
-                "justifyContent": "space-between",
-                "marginLeft": 12,
-              }
-            }
-          >
-            <Text
-              accessibilityTraits="header"
-              style={
-                Object {
-                  "fontSize": 16,
-                  "fontWeight": "600",
-                }
-              }
-            >
-              Allura
-            </Text>
-            <SubmissionStatusLabel
-              onlineSubmissionType={true}
-              status="submitted"
-            />
-          </View>
+          <Avatar
+            avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
+            key="4"
+            userName="Allura"
+          />
         </View>
-      </TouchableHighlight>
-    </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "space-between",
+              "marginLeft": 12,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            numberOfLines={1}
+            style={
+              Object {
+                "fontSize": 16,
+                "fontWeight": "600",
+              }
+            }
+          >
+            Allura
+          </Text>
+          <SubmissionStatusLabel
+            onlineSubmissionType={true}
+            status="submitted"
+          />
+        </View>
+      </View>
+    </TouchableHighlight>
     <View
       style={
         Object {
@@ -630,7 +625,10 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
       }
     }
   >
-    <View
+    <TouchableHighlight
+      activeOpacity={0.85}
+      delayPressOut={100}
+      onPress={[Function]}
       style={
         Object {
           "alignItems": "center",
@@ -639,67 +637,63 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
           "flexDirection": "row",
         }
       }
+      testID="header.context.button"
+      underlayColor="white"
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
-        onPress={[Function]}
-        testID="header.context.button"
-        underlayColor="white"
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
       >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
+              "height": 40,
+              "marginLeft": 16,
+              "width": 40,
             }
           }
         >
-          <View
-            style={
-              Object {
-                "height": 40,
-                "marginLeft": 16,
-                "width": 40,
-              }
-            }
-          >
-            <Avatar
-              avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
-              key="4"
-              userName="Allura"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "flexDirection": "column",
-                "justifyContent": "space-between",
-                "marginLeft": 12,
-              }
-            }
-          >
-            <Text
-              accessibilityTraits="header"
-              style={
-                Object {
-                  "fontSize": 16,
-                  "fontWeight": "600",
-                }
-              }
-            >
-              Allura
-            </Text>
-            <SubmissionStatusLabel
-              onlineSubmissionType={true}
-              status="missing"
-            />
-          </View>
+          <Avatar
+            avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
+            key="4"
+            userName="Allura"
+          />
         </View>
-      </TouchableHighlight>
-    </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "space-between",
+              "marginLeft": 12,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            numberOfLines={1}
+            style={
+              Object {
+                "fontSize": 16,
+                "fontWeight": "600",
+              }
+            }
+          >
+            Allura
+          </Text>
+          <SubmissionStatusLabel
+            onlineSubmissionType={true}
+            status="missing"
+          />
+        </View>
+      </View>
+    </TouchableHighlight>
     <View
       style={
         Object {
@@ -752,7 +746,10 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
       }
     }
   >
-    <View
+    <TouchableHighlight
+      activeOpacity={0.85}
+      delayPressOut={100}
+      onPress={[Function]}
       style={
         Object {
           "alignItems": "center",
@@ -761,67 +758,63 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
           "flexDirection": "row",
         }
       }
+      testID="header.context.button"
+      underlayColor="white"
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
-        onPress={[Function]}
-        testID="header.context.button"
-        underlayColor="white"
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
       >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
+              "height": 40,
+              "marginLeft": 16,
+              "width": 40,
             }
           }
         >
-          <View
-            style={
-              Object {
-                "height": 40,
-                "marginLeft": 16,
-                "width": 40,
-              }
-            }
-          >
-            <Avatar
-              avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
-              key="4"
-              userName="Allura"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "flexDirection": "column",
-                "justifyContent": "space-between",
-                "marginLeft": 12,
-              }
-            }
-          >
-            <Text
-              accessibilityTraits="header"
-              style={
-                Object {
-                  "fontSize": 16,
-                  "fontWeight": "600",
-                }
-              }
-            >
-              Allura
-            </Text>
-            <SubmissionStatusLabel
-              onlineSubmissionType={false}
-              status="missing"
-            />
-          </View>
+          <Avatar
+            avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
+            key="4"
+            userName="Allura"
+          />
         </View>
-      </TouchableHighlight>
-    </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "space-between",
+              "marginLeft": 12,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            numberOfLines={1}
+            style={
+              Object {
+                "fontSize": 16,
+                "fontWeight": "600",
+              }
+            }
+          >
+            Allura
+          </Text>
+          <SubmissionStatusLabel
+            onlineSubmissionType={false}
+            status="missing"
+          />
+        </View>
+      </View>
+    </TouchableHighlight>
     <View
       style={
         Object {
@@ -874,7 +867,10 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
       }
     }
   >
-    <View
+    <TouchableHighlight
+      activeOpacity={0.85}
+      delayPressOut={100}
+      onPress={[Function]}
       style={
         Object {
           "alignItems": "center",
@@ -883,67 +879,63 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
           "flexDirection": "row",
         }
       }
+      testID="header.context.button"
+      underlayColor="white"
     >
-      <TouchableHighlight
-        activeOpacity={0.85}
-        delayPressOut={100}
-        onPress={[Function]}
-        testID="header.context.button"
-        underlayColor="white"
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
       >
         <View
           style={
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
+              "height": 40,
+              "marginLeft": 16,
+              "width": 40,
             }
           }
         >
-          <View
-            style={
-              Object {
-                "height": 40,
-                "marginLeft": 16,
-                "width": 40,
-              }
-            }
-          >
-            <Avatar
-              avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
-              key="4"
-              userName="Allura"
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "flexDirection": "column",
-                "justifyContent": "space-between",
-                "marginLeft": 12,
-              }
-            }
-          >
-            <Text
-              accessibilityTraits="header"
-              style={
-                Object {
-                  "fontSize": 16,
-                  "fontWeight": "600",
-                }
-              }
-            >
-              Allura
-            </Text>
-            <SubmissionStatusLabel
-              onlineSubmissionType={true}
-              status="none"
-            />
-          </View>
+          <Avatar
+            avatarURL="https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg"
+            key="4"
+            userName="Allura"
+          />
         </View>
-      </TouchableHighlight>
-    </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "space-between",
+              "marginLeft": 12,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            numberOfLines={1}
+            style={
+              Object {
+                "fontSize": 16,
+                "fontWeight": "600",
+              }
+            }
+          >
+            Allura
+          </Text>
+          <SubmissionStatusLabel
+            onlineSubmissionType={true}
+            status="none"
+          />
+        </View>
+      </View>
+    </TouchableHighlight>
     <View
       style={
         Object {
