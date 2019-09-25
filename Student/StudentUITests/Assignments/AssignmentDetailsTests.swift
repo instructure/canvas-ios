@@ -349,6 +349,6 @@ class AssignmentDetailsTests: StudentUITestCase {
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "Submit Assignment")
         AssignmentDetails.submitAssignmentButton.tap()
-        AssignmentDetails.submitAssignmentButton.waitToVanish()
+        app.find(label: "Website Address").waitToExist()
     }
 }
