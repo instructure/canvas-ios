@@ -138,10 +138,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
     "/files/folder/:folderID": { _, params in
         return fileListController(params: params)
     },
-    "/:context/:contextID/files": { url, params in
-        if let preview = previewFileViewController(url: url, params: params) { return preview }
-        return fileListController(params: params)
-    },
+    "/:context/:contextID/files": nil,
 
     "/files/folder/*subFolder": { url, params in
         if let preview = previewFileViewController(url: url, params: params) { return preview }
@@ -150,15 +147,8 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         props["contextID"] = "self"
         return HelmViewController(moduleName: "/:context/:contextID/files/folder/*subFolder", props: makeProps(url, params: props))
     },
-    "/:context/:contextID/files/folder/*subFolder": { url, params in
-        if let preview = previewFileViewController(url: url, params: params) { return preview }
-        return HelmViewController(moduleName: "/:context/:contextID/files/folder/*subFolder", props: makeProps(url, params: params))
-    },
-
-    "/:context/:contextID/files/folders/:folderID": { _, params in
-        // We don't support routing to a specific folderID yet, that's to come later
-        return fileListController(params: params)
-    },
+    "/:context/:contextID/files/folder/*subFolder": nil,
+    "/:context/:contextID/files/folders/*subFolder": nil,
 
     "/files/:fileID": fileViewController,
     "/files/:fileID/download": fileViewController,
