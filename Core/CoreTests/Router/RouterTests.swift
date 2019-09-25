@@ -172,8 +172,14 @@ class RouterTests: XCTestCase {
         // compact
         split.mockCollapsed = true
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: nil)
-        XCTAssertNil(mockView.navigationItem.leftBarButtonItems?.first)
-        XCTAssertFalse(mockView.navigationItem.leftItemsSupplementBackButton)
+        XCTAssertNil(mockView.shown?.navigationItem.leftBarButtonItems?.first)
+        XCTAssert(mockView.shown?.navigationItem.leftItemsSupplementBackButton == false)
+
+        // modal
+        split.mockCollapsed = false
+        router.route(to: URLComponents(string: "/detail")!, from: mockView, options: [.modal])
+        XCTAssertNil(mockView.presented?.navigationItem.leftBarButtonItems?.first)
+        XCTAssert(mockView.presented?.navigationItem.leftItemsSupplementBackButton == false)
     }
 
     func testRouteMatch() {
