@@ -37,7 +37,9 @@ class StudentUITestCase: CoreUITestCase {
             let data = CFDataGetBytePtr(pixelData) else {
             return nil
         }
-        let red = UInt(data[0]), green = UInt(data[1]), blue = UInt(data[2]), alpha = UInt(data[3])
+        // test bottom because of potential rounded corners at the top
+        let bottom = Int(image.size.width) * Int(image.size.height) * 4
+        let red = UInt(data[bottom + 0]), green = UInt(data[bottom + 1]), blue = UInt(data[bottom + 2]), alpha = UInt(data[bottom + 3])
         let num = (alpha << 24) + (red << 16) + (green << 8) + blue
         return "#\(String(num, radix: 16))".replacingOccurrences(of: "#ff", with: "#")
     }

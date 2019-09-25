@@ -29,9 +29,9 @@ open class CoreUITestCase: XCTestCase {
     open var downloadMocks = [MockDownloadMessage]()
 
     open var user: UITestUser? {
-        if Bundle.main.isStudentUITestsRunner {
+        if Bundle.main.isStudentApp {
             return .readStudent1
-        } else if Bundle.main.isTeacherUITestsRunner {
+        } else if Bundle.main.isTeacherApp {
             return .readTeacher1
         } else {
             return nil
