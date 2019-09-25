@@ -182,7 +182,7 @@ open class CoreUITestCase: XCTestCase {
         guard let data = ipcAppClient.requestRemote(UITestHelpers.Helper.currentSession) else {
             fatalError("Bad IPC response (no data returned)")
         }
-        if data.isEmpty {
+        if data.isEmpty || data == "null".data(using: .utf8) {
             return nil
         } else {
             return try? JSONDecoder().decode(LoginSession?.self, from: data)
