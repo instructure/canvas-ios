@@ -44,7 +44,7 @@ class GetContextUsersTests: CoreTestCase {
         let two = User.make(from: .make(id: "2", sortable_name: "B"), courseID: "1")
         User.make(from: .make(id: "3"), courseID: nil)
         User.make(from: .make(id: "4"), courseID: "2")
-        let users: [User] = databaseClient.fetch(useCase.scope.predicate)
+        let users: [User] = databaseClient.fetch(scope: useCase.scope)
         XCTAssertEqual([one, two], users)
     }
 
@@ -54,7 +54,7 @@ class GetContextUsersTests: CoreTestCase {
         let two = User.make(from: .make(id: "2", sortable_name: "B"), groupID: "1")
         User.make(from: .make(id: "3"), groupID: nil)
         User.make(from: .make(id: "4"), groupID: "2")
-        let users: [User] = databaseClient.fetch(useCase.scope.predicate)
+        let users: [User] = databaseClient.fetch(scope: useCase.scope)
         XCTAssertEqual([one, two], users)
     }
 
