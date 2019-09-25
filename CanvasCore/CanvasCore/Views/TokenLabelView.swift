@@ -18,21 +18,6 @@
 
 import UIKit
 
-extension UIFont {
-    // Attribution: http://stackoverflow.com/a/37926738/1518561
-    fileprivate static var tokenFont: UIFont {
-        let font = UIFont.preferredFont(forTextStyle: .caption2)
-        
-        let settings = [[convertFromUIFontDescriptorFeatureKey(UIFontDescriptor.FeatureKey.featureIdentifier): kLowerCaseType, convertFromUIFontDescriptorFeatureKey(UIFontDescriptor.FeatureKey.typeIdentifier): kLowerCaseSmallCapsSelector]]
-        
-        let attributes: [String: Any] = [convertFromUIFontDescriptorAttributeName(UIFontDescriptor.AttributeName.featureSettings): settings, convertFromUIFontDescriptorAttributeName(UIFontDescriptor.AttributeName.name): font.fontName]
-        
-        let descriptor = UIFontDescriptor(fontAttributes: convertToUIFontDescriptorAttributeNameDictionary(attributes))
-            .withSymbolicTraits([.traitBold])
-        return UIFont(descriptor: descriptor!, size: font.pointSize)
-    }
-}
-
 public class TokenView: UILabel {
     
     private static let xInset = CGFloat(7)
@@ -52,7 +37,7 @@ public class TokenView: UILabel {
     
     @objc func setup() {
         clipsToBounds = true
-        font = .tokenFont
+        font = UIFont.scaledNamedFont(.bold11)
         textColor = UIColor.white
         
         setContentCompressionResistancePriority(UILayoutPriority.required, for: .vertical)
@@ -84,19 +69,4 @@ public class TokenView: UILabel {
             return super.text
         }
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIFontDescriptorFeatureKey(_ input: UIFontDescriptor.FeatureKey) -> String {
-	return input.rawValue
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIFontDescriptorAttributeName(_ input: UIFontDescriptor.AttributeName) -> String {
-	return input.rawValue
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIFontDescriptorAttributeNameDictionary(_ input: [String: Any]) -> [UIFontDescriptor.AttributeName: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIFontDescriptor.AttributeName(rawValue: key), value)})
 }
