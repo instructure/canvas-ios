@@ -165,9 +165,6 @@ open class CoreUITestCase: XCTestCase {
             return logInEntry(entry)
         }
 
-        // FIXME: this shouldn't be necessary
-        LoginStart.findSchoolButton.waitToExist().rawElement.tap(withNumberOfTaps: 2, numberOfTouches: 2)
-
         // Assumes we are on the login start screen
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("\(user.host)\r")
