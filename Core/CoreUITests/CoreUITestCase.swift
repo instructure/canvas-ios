@@ -185,7 +185,7 @@ open class CoreUITestCase: XCTestCase {
         if data.isEmpty || data == "null".data(using: .utf8) {
             return nil
         } else {
-            return try? JSONDecoder().decode(LoginSession?.self, from: data)
+            return (try? JSONDecoder().decode(LoginSession?.self, from: data))!
         }
     }
 
