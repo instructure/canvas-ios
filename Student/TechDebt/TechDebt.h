@@ -36,7 +36,6 @@ FOUNDATION_EXPORT const unsigned char TechDebtVersionString[];
 #import <TechDebt/CBIColorfulViewModel.h>
 #import <TechDebt/CKIClient+CBIClient.h>
 #import <TechDebt/UIImage+TechDebt.h>
-#import <TechDebt/UIViewController+Transitions.h>
 #import <TechDebt/AboutViewController.h>
 #import <TechDebt/MyLittleViewController.h>
 #import <TechDebt/MLVCTableViewController.h>
@@ -44,5 +43,4 @@ FOUNDATION_EXPORT const unsigned char TechDebtVersionString[];
 #import <TechDebt/InsetTableViewCell.h>
 #import <TechDebt/NSObject+RACCollectionChanges.h>
 #import <TechDebt/UICollectionView+MyLittleViewController.h>
-#import <TechDebt/UnsupportedViewController.h>
 #import <TechDebt/Routing.h>
