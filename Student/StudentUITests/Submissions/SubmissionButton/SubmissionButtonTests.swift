@@ -39,7 +39,7 @@ class SubmissionButtonTests: StudentUITestCase {
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
         FilePicker.libraryButton.tap()
-        app.find(label: "Camera Roll").tap()
+        app.find(label: "All Photos").tap()
         app.find(labelContaining: "Photo, HDR").tap()
         FilePicker.submitButton.tap()
         FilePicker.submitButton.waitToVanish()
