@@ -29,8 +29,6 @@ public extension Bundle {
     static let coreBundleID = "com.instructure.core"
     static let studentUITestsBundleID = "com.instructure.StudentUITests.xctrunner"
     static let teacherUITestsBundleID = "com.instructure.TeacherUITests.xctrunner"
-    static let oldStudentUITestsBundleID = "com.apple.test.StudentUITests-Runner"
-    static let oldTeacherUITestsBundleID = "com.apple.test.TeacherUITests-Runner"
 
     func appGroupID(bundleID: String? = nil) -> String? {
         if (bundleID ?? bundleIdentifier)?.hasPrefix(Bundle.studentBundleID) == true {
@@ -42,13 +40,7 @@ public extension Bundle {
     var isStudentApp: Bool { return bundleIdentifier == Bundle.studentBundleID || isStudentUITestsRunner }
     var isTeacherApp: Bool { return bundleIdentifier == Bundle.teacherBundleID || isTeacherUITestsRunner }
     var isParentApp: Bool { return bundleIdentifier == Bundle.parentBundleID }
-    var isStudentUITestsRunner: Bool {
-        return bundleIdentifier == Bundle.studentUITestsBundleID ||
-            bundleIdentifier == Bundle.oldStudentUITestsBundleID
-    }
-    var isTeacherUITestsRunner: Bool {
-        return bundleIdentifier == Bundle.teacherUITestsBundleID ||
-            bundleIdentifier == Bundle.oldTeacherUITestsBundleID
-    }
+    var isStudentUITestsRunner: Bool { return bundleIdentifier == Bundle.studentUITestsBundleID }
+    var isTeacherUITestsRunner: Bool { return bundleIdentifier == Bundle.teacherUITestsBundleID }
     static var isExtension: Bool { return Bundle.main.bundleURL.pathExtension == "appex" }
 }
