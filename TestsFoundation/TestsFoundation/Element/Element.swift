@@ -214,9 +214,10 @@ public struct XCUIElementWrapper: Element {
 
     @discardableResult
     public func waitToExist(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element {
-        if !rawElement.exists {
+        // This wonderful, time-saving shortcut is just too flaky on iOS 13.0...
+//        if !rawElement.exists {
             XCTAssertTrue(rawElement.waitForExistence(timeout: timeout), "Element \(id) not found", file: file, line: line)
-        }
+//        }
         return self
     }
 

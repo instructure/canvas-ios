@@ -63,6 +63,7 @@
         }
       ]
     },
+    "mainThreadCheckerEnabled" : false,
     "targetForVariableExpansion" : {
       "containerPath" : "container:Student.xcodeproj",
       "identifier" : "492704721CF4AF7100C631C6",
