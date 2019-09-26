@@ -21,12 +21,11 @@ import Core
 @testable import Student
 import TestsFoundation
 
-class SyllabusPresenterTests: PersistenceTestCase {
+class StudentSyllabusPresenterTests: PersistenceTestCase {
 
-    var presenter: SyllabusPresenter!
+    var presenter: StudentSyllabusPresenter!
     var resultingError: NSError?
     var navigationController: UINavigationController?
-    var html: String?
     var courseCode: String?
     var backgroundColor: UIColor?
     var didCallShowAssignmentsOnly = false
@@ -40,7 +39,7 @@ class SyllabusPresenterTests: PersistenceTestCase {
         didCallShowAssignmentsOnly = false
         navBarExpectation = XCTestExpectation(description: "navBarExpectation")
         htmlExpectation = XCTestExpectation(description: "htmlExpectation")
-        presenter = SyllabusPresenter(courseID: "1", view: self, env: env)
+        presenter = StudentSyllabusPresenter(courseID: "1", view: self, env: env)
     }
 
     func testLoadHtml() {
@@ -51,8 +50,6 @@ class SyllabusPresenterTests: PersistenceTestCase {
         //  when
         presenter.viewIsReady()
         wait(for: [htmlExpectation], timeout: 0.1)
-        //  then
-        XCTAssertEqual(expectedSyllabusHtml, html)
     }
 
     func testLoadNavBarStuff() {
@@ -98,15 +95,14 @@ class SyllabusPresenterTests: PersistenceTestCase {
     }
 }
 
-extension SyllabusPresenterTests: SyllabuseViewProtocol {
+extension StudentSyllabusPresenterTests: StudentSyllabusViewProtocol {
     func updateNavBar(courseCode: String?, backgroundColor: UIColor?) {
         self.courseCode = courseCode
         self.backgroundColor = backgroundColor
         navBarExpectation.fulfill()
     }
 
-    func loadHtml(_ html: String?) {
-        self.html = html
+    func updateMenuHeight() {
         htmlExpectation.fulfill()
     }
 

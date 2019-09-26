@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class SyllabusViewController: UIViewController {
+class StudentSyllabusViewController: UIViewController {
 
     @IBOutlet weak var menuBorder: UIView!
     @IBOutlet weak var menuBorderHeight: NSLayoutConstraint!
@@ -27,11 +27,11 @@ class SyllabusViewController: UIViewController {
     var assignmentConstraints: [NSLayoutConstraint] = []
     @IBOutlet weak var menu: HorizontalMenuView!
     @IBOutlet weak var scrollView: UIScrollView!
-    var presenter: SyllabusPresenter!
+    var presenter: StudentSyllabusPresenter!
     var titleView: TitleSubtitleView!
     var courseID: String = ""
     var color: UIColor?
-    var syllabus: CoreWebView?
+    var syllabus: Core.SyllabusViewController?
     var assignments: SyllabusActionableItemsViewController?
     let menuHeight: CGFloat = 45.0
 
@@ -45,10 +45,10 @@ class SyllabusViewController: UIViewController {
         case syllabus, assignments
     }
 
-    static func create(courseID: String) -> SyllabusViewController {
+    static func create(courseID: String) -> StudentSyllabusViewController {
         let vc = loadFromStoryboard()
         vc.courseID = courseID
-        vc.presenter = SyllabusPresenter(courseID: courseID, view: vc)
+        vc.presenter = StudentSyllabusPresenter(courseID: courseID, view: vc)
         return vc
     }
 
@@ -84,12 +84,12 @@ class SyllabusViewController: UIViewController {
     }
 
     func configureSyllabus() {
-        syllabus = CoreWebView(frame: CGRect.zero)
-        syllabus?.linkDelegate = self
+        syllabus = Core.SyllabusViewController.create(courseID: courseID)
         guard let syllabus = syllabus else { return }
-        scrollView.addSubview(syllabus)
-        syllabus.addConstraintsWithVFL("H:|[view(==superview)]")
-        syllabus.addConstraintsWithVFL("V:|[view(==superview)]|")
+        embed(syllabus, in: scrollView) { (child, _) in
+            child.view.addConstraintsWithVFL("H:|[view(==superview)]")
+            child.view.addConstraintsWithVFL("V:|[view(==superview)]|")
+        }
     }
 
     func configureAssignments() {
@@ -97,7 +97,7 @@ class SyllabusViewController: UIViewController {
         guard let assignments = assignments else { return }
         embed(assignments, in: scrollView) { [weak self] (child, _) in
             guard let syllabus = self?.syllabus else { return }
-            self?.assignmentConstraints = child.view.addConstraintsWithVFL("H:[syllabus][view(==superview)]|", views: ["syllabus": syllabus]) ?? []
+            self?.assignmentConstraints = child.view.addConstraintsWithVFL("H:[syllabus][view(==superview)]|", views: ["syllabus": syllabus.view]) ?? []
             child.view.addConstraintsWithVFL("V:|[view(==superview)]|")
         }
     }
@@ -114,7 +114,7 @@ class SyllabusViewController: UIViewController {
 
     func showSyllabus() {
         guard let syllabus = syllabus else { return }
-        scrollView.scrollRectToVisible(syllabus.frame, animated: true)
+        scrollView.scrollRectToVisible(syllabus.view.frame, animated: true)
     }
 
     func showAssignments() {
@@ -123,7 +123,7 @@ class SyllabusViewController: UIViewController {
     }
 }
 
-extension SyllabusViewController: UIScrollViewDelegate {
+extension StudentSyllabusViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let assignmentsView = assignments?.view else { return }
         if assignmentsView.frame.contains(scrollView.contentOffset) {
@@ -134,7 +134,7 @@ extension SyllabusViewController: UIScrollViewDelegate {
     }
 }
 
-extension SyllabusViewController: SyllabuseViewProtocol {
+extension StudentSyllabusViewController: StudentSyllabusViewProtocol {
     func updateNavBar(courseCode: String?, backgroundColor: UIColor?) {
         titleView.subtitle = courseCode
         navigationController?.navigationBar.useContextColor(backgroundColor)
@@ -142,10 +142,8 @@ extension SyllabusViewController: SyllabuseViewProtocol {
         menu.reload()
     }
 
-    func loadHtml(_ html: String?) {
-        guard let html = html else { return }
+    func updateMenuHeight() {
         menuHeightConstraint.constant = menuHeight
-        syllabus?.loadHTMLString(html, baseURL: nil)
     }
 
     func showAssignmentsOnly() {
@@ -153,7 +151,7 @@ extension SyllabusViewController: SyllabuseViewProtocol {
     }
 }
 
-extension SyllabusViewController: HorizontalMenuDelegate {
+extension StudentSyllabusViewController: HorizontalMenuDelegate {
     func accessibilityIdentifier(at: IndexPath) -> String {
         guard let menuItem = MenuItem(rawValue: at.row) else { return "" }
         var identifier: String
@@ -201,7 +199,7 @@ extension SyllabusViewController: HorizontalMenuDelegate {
     }
 }
 
-extension SyllabusViewController: CoreWebViewLinkDelegate {
+extension StudentSyllabusViewController: CoreWebViewLinkDelegate {
     public func handleLink(_ url: URL) -> Bool {
         presenter.show(url, from: self)
         return true

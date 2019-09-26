@@ -17,45 +17,35 @@
 //
 
 import Foundation
-import Core
 
-protocol SyllabuseViewProtocol: class {
-    func updateNavBar(courseCode: String?, backgroundColor: UIColor?)
+protocol SyllabusViewProtocol: class {
     func loadHtml(_ html: String?)
-    func showAssignmentsOnly()
 }
 
 class SyllabusPresenter {
-    weak var view: SyllabuseViewProtocol?
-    let env: AppEnvironment
+    weak var view: SyllabusViewProtocol?
     let courseID: String
+    let env: AppEnvironment
 
     lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
     }
 
-    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
-        self?.update()
-    }
-
-    init(courseID: String, view: SyllabuseViewProtocol, env: AppEnvironment = .shared) {
+    init(view: SyllabusViewProtocol, courseID: String, env: AppEnvironment = .shared) {
+        self.view = view
         self.courseID = courseID
         self.env = env
-        self.view = view
     }
 
     func viewIsReady() {
-        colors.refresh()
         courses.refresh()
-        update()
     }
 
     func update() {
-        view?.updateNavBar(courseCode: courses.first?.courseCode, backgroundColor: courses.first?.color)
-        if let html = courses.first?.syllabusBody, courses.first != nil, !html.isEmpty {
+        if !courses.pending,
+            let course = courses.first,
+            let html = course.syllabusBody, !html.isEmpty {
             view?.loadHtml(html)
-        } else if courses.first != nil {
-            view?.showAssignmentsOnly()
         }
     }
 
