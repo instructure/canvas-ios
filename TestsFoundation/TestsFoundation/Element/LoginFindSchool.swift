@@ -30,8 +30,4 @@ public enum LoginFindAccountResult {
     public static func item(host: String) -> Element {
         return app.find(id: "LoginFindAccountResult.\(host)")
     }
-
-    public static func item(label: String) -> Element {
-        return app.find(label: label)
-    }
 }
