@@ -29,9 +29,9 @@ open class CoreUITestCase: XCTestCase {
     open var downloadMocks = [MockDownloadMessage]()
 
     open var user: UITestUser? {
-        if Bundle.main.isStudentUITestsRunner {
+        if Bundle.main.isStudentApp {
             return .readStudent1
-        } else if Bundle.main.isTeacherUITestsRunner {
+        } else if Bundle.main.isTeacherApp {
             return .readTeacher1
         } else {
             return nil
@@ -182,7 +182,7 @@ open class CoreUITestCase: XCTestCase {
         guard let data = ipcAppClient.requestRemote(UITestHelpers.Helper.currentSession) else {
             fatalError("Bad IPC response (no data returned)")
         }
-        if data.isEmpty {
+        if data.isEmpty || data == "null".data(using: .utf8) {
             return nil
         } else {
             return (try? JSONDecoder().decode(LoginSession?.self, from: data))!

@@ -401,6 +401,12 @@
   "creative_commons_license_ba94fd4d": {
     "message": "Creative Commons License"
   },
+  "current_grade_6d0b8ef7": {
+    "message": "Current Grade"
+  },
+  "current_grade_grade_5b083a30": {
+    "message": "Current grade { grade }"
+  },
   "customize_course_eefa9c21": {
     "message": "Customize Course"
   },
