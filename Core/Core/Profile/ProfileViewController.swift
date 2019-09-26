@@ -22,7 +22,6 @@ public protocol ProfileViewProtocol: ErrorViewController {
     func reload()
     func route(to: Route, options: RouteOptions?)
     func showHelpMenu(from cell: UITableViewCell)
-    func showTeacherSettingsMenu(from cell: UITableViewCell)
     func launchLTI(url: URL)
 }
 
@@ -142,21 +141,6 @@ public class ProfileViewController: UIViewController, ProfileViewProtocol {
         helpMenu.popoverPresentationController?.sourceView = cell
         helpMenu.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint(x: cell.bounds.maxX, y: cell.bounds.midY), size: .zero)
         present(helpMenu, animated: true)
-    }
-
-    public func showTeacherSettingsMenu(from cell: UITableViewCell) {
-        let settingsMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        settingsMenu.addAction(UIAlertAction(title: NSLocalizedString("Visit the Canvas Guides", bundle: .core, comment: ""), style: .default) { [weak self] _ in
-            self?.route(to: Route("https://community.canvaslms.com/community/answers/guides/mobile-guide/content?filterID=contentstatus%5Bpublished%5D~category%5Btable-of-contents%5D"), options: nil)
-        })
-        settingsMenu.addAction(UIAlertAction(title: NSLocalizedString("Terms of Use", bundle: .core, comment: ""), style: .default) { [weak self] _ in
-            self?.route(to: .termsOfService(), options: [.modal, .embedInNav])
-        })
-        settingsMenu.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-
-        settingsMenu.popoverPresentationController?.sourceView = cell
-        settingsMenu.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint(x: cell.bounds.maxX, y: cell.bounds.midY), size: .zero)
-        present(settingsMenu, animated: true)
     }
 }
 

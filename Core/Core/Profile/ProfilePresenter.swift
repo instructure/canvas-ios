@@ -109,13 +109,9 @@ public class ProfilePresenter {
                 self?.view?.showHelpMenu(from: cell)
             })
         }
-        if enrollment == .student {
+        if enrollment == .student || enrollment == .teacher {
             cells.append(ProfileViewCell("settings", name: NSLocalizedString("Settings", comment: "")) { [weak self] _ in
-                self?.view?.route(to: .profileSettings, options: [.modal, .embedInNav, .formSheet])
-            })
-        } else if enrollment == .teacher {
-            cells.append(ProfileViewCell("settings", name: NSLocalizedString("Settings", comment: "")) { [weak self] cell in
-                self?.view?.showTeacherSettingsMenu(from: cell)
+                self?.view?.route(to: .profileSettings, options: [.modal, .embedInNav, .formSheet, .addDoneButton])
             })
         }
         if canActAsUser {

@@ -50,6 +50,29 @@ public struct SessionDefaults {
         set { self["showGradesOnDashboard"] = newValue }
     }
 
+    public var landingPath: String? {
+        set { self["landingPath"] = newValue }
+        mutating get {
+            if let landingPath = self["landingPath"] as? String {
+                return landingPath
+            }
+            if let legacy = (UserDefaults.standard.object(forKey: "landingPageSettings") as? [String: String])?.first?.value {
+                let map = [
+                    "Courses": "/",
+                    "Calendar": "/calendar",
+                    "To-Do List": "/to-do",
+                    "Notifications": "/notifications",
+                    "Messages": "/conversations",
+                ]
+                if let path = map[legacy] {
+                    landingPath = path
+                    return path
+                }
+            }
+            return nil
+        }
+    }
+
     public mutating func reset() {
         sessionDefaults = nil
     }
