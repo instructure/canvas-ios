@@ -27,7 +27,7 @@ public extension Bundle {
     static let teacherBundleID = "com.instructure.ios.teacher"
     static let parentBundleID = "com.instructure.parentapp"
     static let coreBundleID = "com.instructure.core"
-    static let studentUITestsBundleID = "com.apple.test.StudentUITests-Runner"
+    static let studentUITestsBundleID = "com.instructure.StudentUITests.xctrunner"
     static let teacherUITestsBundleID = "com.apple.test.TeacherUITests-Runner"
 
     func appGroupID(bundleID: String? = nil) -> String? {
