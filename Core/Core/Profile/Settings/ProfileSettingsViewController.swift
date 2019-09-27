@@ -92,10 +92,10 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                     guard let self = self else { return }
                     self.show(ItemPickerViewController.create(
                         title: NSLocalizedString("Landing Page", comment: ""),
-                        sections: [ItemPickerSection(items: LandingPage.allCases.map { page in
+                        sections: [ItemPickerSection(items: LandingPage.appCases.map { page in
                             ItemPickerItem(title: page.name)
                         })],
-                        selected: LandingPage.allCases.firstIndex(of: self.landingPage).flatMap {
+                        selected: LandingPage.appCases.firstIndex(of: self.landingPage).flatMap {
                             IndexPath(row: $0, section: 0)
                         },
                         delegate: self
@@ -175,7 +175,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
 
 extension ProfileSettingsViewController: ItemPickerDelegate {
     public func itemPicker(_ itemPicker: ItemPickerViewController, didSelectRowAt indexPath: IndexPath) {
-        landingPage = LandingPage.allCases[indexPath.row]
+        landingPage = LandingPage.appCases[indexPath.row]
         reloadData()
     }
 }
@@ -206,7 +206,7 @@ private struct Row {
     }
 }
 
-private enum LandingPage: String, CaseIterable {
+private enum LandingPage: String {
     case dashboard = "/"
     case calendar = "/calendar"
     case todo = "/to-do"
@@ -216,6 +216,9 @@ private enum LandingPage: String, CaseIterable {
     var name: String {
         switch self {
         case .dashboard:
+            if Bundle.main.isTeacherApp {
+                return NSLocalizedString("Courses", bundle: .core, comment: "")
+            }
             return NSLocalizedString("Dashboard", bundle: .core, comment: "")
         case .calendar:
             return NSLocalizedString("Calendar", bundle: .core, comment: "")
@@ -227,4 +230,10 @@ private enum LandingPage: String, CaseIterable {
             return NSLocalizedString("Inbox", bundle: .core, comment: "")
         }
     }
+
+    static var appCases: [LandingPage] = {
+        return Bundle.main.isTeacherApp
+            ? [ .dashboard, .todo, .inbox ]
+            : [ .dashboard, .calendar, .todo, .notifications, .inbox ]
+    }()
 }

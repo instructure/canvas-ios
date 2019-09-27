@@ -49,6 +49,9 @@ class RootTabBarController: UITabBarController {
 
     @objc func configureTabs() {
         viewControllers = [coursesTab(), toDoTab(), inboxTab()]
+        let paths = [ "/", "/to-do", "/conversations" ]
+        selectedIndex = AppEnvironment.shared.userDefaults?.landingPath
+            .flatMap { paths.firstIndex(of: $0) } ?? 0
         tabBar.useGlobalNavStyle()
     }
 
