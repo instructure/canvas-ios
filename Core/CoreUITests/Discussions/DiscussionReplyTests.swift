@@ -153,7 +153,7 @@ class DiscussionReplyTests: CoreUITestCase {
         }
 
         let photo = app.find(labelContaining: "Photo, ")
-        app.find(label: "Camera Roll").tapUntil { photo.exists }
+        app.find(label: "All Photos").tapUntil { photo.exists }
         photo.tap()
 
         app.find(label: "Upload complete").waitToExist()
