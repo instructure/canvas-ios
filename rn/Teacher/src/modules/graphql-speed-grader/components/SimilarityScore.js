@@ -63,12 +63,12 @@ export default class SimilarityScore extends Component<Props, any> {
     let turnitinData
     if (selectedSubmission.submissionType === 'online_text_entry') {
       turnitinData = selectedSubmission.turnitinData
-        .find(data => data.contextId === `submission_${selectedSubmission.rootId}`)
+        .find(data => data.target.__typename === 'Submission' && data.target._id === selectedSubmission.rootId)
     } else if (selectedSubmission.submissionType === 'online_upload') {
       let selectedAttachmentIndex = this.props.selectedAttachmentIndex
       let selectedAttachment = selectedSubmission.attachments[selectedAttachmentIndex]
       turnitinData = selectedSubmission.turnitinData
-        .find(data => data.contextId === `attachment_${selectedAttachment._id}`)
+        .find(data => data.target.__typename === 'File' && data.target._id === selectedAttachment._id)
     }
 
     if (turnitinData == null) return null

@@ -88,7 +88,15 @@ export default gql`query SpeedGrader($assignmentID: ID!, $states: [SubmissionSta
           }
 
           turnitinData {
-            contextId
+            target {
+              __typename
+              ...on Submission {
+                _id
+              }
+              ...on File {
+                _id
+              }
+            }
             status
             score
           }
@@ -138,7 +146,15 @@ export default gql`query SpeedGrader($assignmentID: ID!, $states: [SubmissionSta
                 }
 
                 turnitinData {
-                  contextId
+                  target {
+                    __typename
+                    ...on Submission {
+                      _id
+                    }
+                    ...on File {
+                      _id
+                    }
+                  }
                   status
                   score
                 }
