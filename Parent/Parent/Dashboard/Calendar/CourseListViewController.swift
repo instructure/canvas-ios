@@ -74,7 +74,7 @@ class CourseListViewController: FetchedTableViewController<CanvasCore.Course> {
         let course = collection[indexPath]
         if ExperimentalFeature.parent3.isEnabled {
             let vc = CourseDetailsViewController.create(courseID: course.id)
-            self.navigationController?.present(vc, animated: true)
+            navigationController?.pushViewController(vc, animated: true)
         } else {
             AppEnvironment.shared.router.route(to: .courseCalendar(courseID: course.id), from: self, options: [.modal, .embedInNav, .addDoneButton])
         }
