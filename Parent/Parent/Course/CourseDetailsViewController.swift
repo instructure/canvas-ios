@@ -41,14 +41,13 @@ class CourseDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("Post Settings", comment: "")
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
+
         configureMenu()
         configureGrades()
         configureSyllabus()
         scrollView.delegate = self
-        navigationController?.navigationBar.barTintColor = UIColor.white
-
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
     }
 
     func configureMenu() {
