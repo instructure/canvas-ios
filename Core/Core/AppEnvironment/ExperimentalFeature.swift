@@ -60,6 +60,7 @@ public class ExperimentalFeature {
 }
 
 extension ExperimentalFeature {
+    public static let parent3 = ExperimentalFeature(state: .disabled)
     public static let conferences = ExperimentalFeature(state: .disabled)
     public static let favoriteGroups = ExperimentalFeature(state: .disabled)
     public static let simpleDiscussionRenderer = ExperimentalFeature(state: .disabled)
