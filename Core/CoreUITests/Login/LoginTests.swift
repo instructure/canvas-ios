@@ -59,7 +59,7 @@ class LoginTests: CoreUITestCase {
         let user = UITestUser.saml
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("\(user.host)")
-        LoginFindAccountResult.item(host: "iosauto.instructure.com").tap()
+        app.find(label: "iOS Auto - SAML").tap()
         LoginWeb.emailField.typeText(" \r")
         LoginWeb.emailField.typeText("\(user.username)\r")
         LoginWeb.passwordField.tap()

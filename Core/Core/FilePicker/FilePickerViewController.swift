@@ -267,9 +267,9 @@ extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigatio
                 let destination = URL
                     .temporaryDirectory
                     .appendingPathComponent("videos", isDirectory: true)
-                    .appendingPathComponent(String(Clock.now.timeIntervalSince1970))
+                    .appendingPathComponent(String(Clock.now.timeIntervalSince1970), isDirectory: true)
                     .appendingPathExtension(videoURL.pathExtension)
-                try videoURL.move(to: destination)
+                try videoURL.copy(to: destination)
                 presenter?.add(url: destination)
             }
         } catch {
