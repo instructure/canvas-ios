@@ -34,7 +34,17 @@ public extension XCUIApplication {
         return app.descendants(matching: type).matching(id: id).firstElement
     }
 
+    func find(value: String, type: XCUIElement.ElementType = .any) -> Element {
+        return app.descendants(matching: type).matching(value: value).firstElement
+    }
+
     func find(type: XCUIElement.ElementType, index: Int = 0) -> Element {
         return XCUIElementQueryWrapper(app.descendants(matching: type), index: index)
+    }
+
+    func waitForSnapshot() {
+        while (try? snapshot()) == nil {
+            sleep(1)
+        }
     }
 }

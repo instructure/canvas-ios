@@ -381,6 +381,6 @@ class SubmissionDetailsTests: StudentUITestCase {
 
         button3.tap()
         XCTAssertEqual(ratingTitleLabel.label(), "Custom Grade")
-        XCTAssertEqual(ratingDescLabel.label(), ratings[0].long_description)
+        ratingDescLabel.waitToVanish()
     }
 }

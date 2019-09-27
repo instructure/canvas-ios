@@ -131,7 +131,8 @@ public struct XCUIElementQueryWrapper: Element {
     }
 
     public var exists: Bool {
-        return query.count > 0 && rawElement.exists
+        app.waitForSnapshot()
+        return rawElement.exists
     }
 
     public var elementType: XCUIElement.ElementType { return rawElement.elementType }
@@ -183,6 +184,7 @@ public struct XCUIElementQueryWrapper: Element {
         while rawElement.value(forKey: "hasKeyboardFocus") as? Bool != true, taps < 5 {
             taps += 1
             tap(file: file, line: line)
+            sleep(1)
         }
         rawElement.typeText(text)
         return self

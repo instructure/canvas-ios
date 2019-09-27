@@ -38,7 +38,7 @@ class TextSubmissionTests: StudentUITestCase {
         // app.find(label: "Enter submission").waitToExist()
         sleep(1)
 
-        let webView = app.webViews.firstElement
+        let webView = app.find(id: "RichContentEditor.webView")
         webView.typeText("This is rich content.")
         webView.tap()
         app.find(label: "Select All").tap()
