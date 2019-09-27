@@ -71,7 +71,7 @@ struct GetNotificationPreferencesRequest: APIRequestable {
 // https://canvas.instructure.com/doc/api/notification_preferences.html#method.notification_preferences.update_all
 struct PutNotificationPreferencesRequest: APIRequestable {
     typealias Response = GetNotificationPreferencesRequest.Response
-    struct Body: Encodable {
+    struct Body: Encodable, Equatable {
         let notification_preferences: [String: [String: NotificationFrequency]]
     }
 

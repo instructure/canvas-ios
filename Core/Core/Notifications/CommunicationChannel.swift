@@ -54,8 +54,6 @@ extension CommunicationChannel: WriteableModel {
 public struct GetCommunicationChannels: CollectionUseCase {
     public typealias Model = CommunicationChannel
 
-    public init () {}
-
     public let cacheKey: String? = "get-user-self-communication-channels"
 
     public let request = GetCommunicationChannelsRequest()
