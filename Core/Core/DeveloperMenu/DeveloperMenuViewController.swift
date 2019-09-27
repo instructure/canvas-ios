@@ -102,8 +102,7 @@ extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegat
             toggleCell.toggle.addTarget(self, action: #selector(actionToggleExperimentalFeatures(_:)), for: .valueChanged)
             toggleCell.toggle.isOn = ExperimentalFeature.allEnabled
             cell = toggleCell
-        case .crash: fallthrough
-        case .clearStorage:
+        case .clearStorage, .crash:
             cell = tableView.dequeue(for: indexPath) as UITableViewCell
         }
 
