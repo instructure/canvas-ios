@@ -116,14 +116,26 @@ open class CoreUITestCase: XCTestCase {
         super.tearDown()
     }
 
-    let ipcAppClient = IPCClient(serverPortName: IPCAppServer.portName(id: "\(ProcessInfo.processInfo.processIdentifier)"))
-    let ipcDriverServer = IPCDriverServer(machPortName: IPCDriverServer.portName(id: "\(ProcessInfo.processInfo.processIdentifier)"))
+    class ServerDelegate: IPCDriverServerDelegate {
+        public func handler(_ message: IPCDriverServerMessage) -> Data? {
+            switch message {
+            case .fail(let reason):
+                XCTFail(reason)
+            }
+            // unreachable
+            return nil
+        }
+    }
+    static let delegate = ServerDelegate()
+
+    let ipcAppClient: IPCClient = IPCClient(serverPortName: IPCAppServer.portName(id: "\(ProcessInfo.processInfo.processIdentifier)"))
+    static let ipcDriverServer: IPCDriverServer = IPCDriverServer(machPortName: IPCDriverServer.portName(id: "\(ProcessInfo.processInfo.processIdentifier)"), delegate: delegate)
 
     open func launch(_ block: ((XCUIApplication) -> Void)? = nil) {
         let app = XCUIApplication()
         app.launchEnvironment["IS_UI_TEST"] = "TRUE"
         app.launchEnvironment["APP_IPC_PORT_NAME"] = ipcAppClient.serverPortName
-        app.launchEnvironment["DRIVER_IPC_PORT_NAME"] = ipcDriverServer.machPortName
+        app.launchEnvironment["DRIVER_IPC_PORT_NAME"] = CoreUITestCase.ipcDriverServer.machPortName
         block?(app)
         app.launch()
         // Wait for RN to finish loading
@@ -354,5 +366,4 @@ open class CoreUITestCase: XCTestCase {
         downloadMocks.append(message)
         send(.mockDownload(message))
     }
-
 }

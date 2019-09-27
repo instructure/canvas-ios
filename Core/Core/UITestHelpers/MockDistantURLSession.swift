@@ -122,8 +122,11 @@ public class MockDistantURLSession: URLSession {
             self.session = nil
             let mock = MockDistantURLSession.dataMocks[url]
             if mock == nil {
-                print("⚠️ data mock not found for url:\n\(url.absoluteString)")
-                for key in MockDistantURLSession.dataMocks.keys { print(key.absoluteString) }
+                var failReason = "data mock not found for url:\n\(url.absoluteString)\n"
+                for key in MockDistantURLSession.dataMocks.keys {
+                    failReason += "  \(key.absoluteString)\n"
+                }
+                UITestHelpers.shared?.send(.fail(reason: failReason))
             }
             guard mock?.noCallback != true else { return }
             if let completionHandler = completionHandler {
@@ -207,8 +210,11 @@ public class MockDistantURLSession: URLSession {
             self.session = nil
             let mock = MockDistantURLSession.downloadMocks[url]
             if mock == nil {
-                print("⚠️ download mock not found for url:\n\(url.absoluteString)")
-                for key in MockDistantURLSession.downloadMocks.keys { print(key.absoluteString) }
+                var failReason = "download mock not found for url:\n\(url.absoluteString)\n"
+                for key in MockDistantURLSession.downloadMocks.keys {
+                    failReason += "  \(key.absoluteString)\n"
+                }
+                UITestHelpers.shared?.send(.fail(reason: failReason))
             }
             if let completionHandler = completionHandler {
                 return completionHandler(mock?.url, mock?.response, mock?.error)
@@ -276,8 +282,11 @@ public class MockDistantURLSession: URLSession {
             self.session = nil
             let mock = MockDistantURLSession.dataMocks[request.url!]
             if mock == nil {
-                print("⚠️ upload mock not found for url:\n\(request.url!.absoluteString)")
-                for key in MockDistantURLSession.dataMocks.keys { print(key.absoluteString) }
+                var failReason = "upload mock not found for url:\n\(request.url!.absoluteString)\n"
+                for key in MockDistantURLSession.dataMocks.keys {
+                    failReason += "  \(key.absoluteString)\n"
+                }
+                UITestHelpers.shared?.send(.fail(reason: failReason))
             }
             guard mock?.noCallback != true else { return }
             if let completionHandler = completionHandler {

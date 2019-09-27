@@ -64,13 +64,54 @@ class IPCAppServer: IPCServer {
     }
 }
 
+enum IPCDriverServerMessage {
+    case fail(reason: String)
+}
+extension IPCDriverServerMessage: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case fail
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let reason = try container.decodeIfPresent(String.self, forKey: .fail) {
+            self = .fail(reason: reason)
+        } else {
+            throw DecodingError.typeMismatch(Self.self, .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(Self.self)"))
+        }
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .fail(let reason):
+            try container.encode(reason, forKey: .fail)
+        }
+    }
+}
+
+protocol IPCDriverServerDelegate: class {
+    func handler(_ message: IPCDriverServerMessage) -> Data?
+}
+
 class IPCDriverServer: IPCServer {
     static func portName(id: String) -> String {
         return "com.instructure.icanvas.ui-test-driver-\(id)"
     }
 
-    init (machPortName: String) {
+    override func handler(msgid: Int32, data: Data?) -> Data? {
+        guard
+            let data = data,
+            let message = try? JSONDecoder().decode(IPCDriverServerMessage.self, from: data)
+            else {
+                fatalError("bad IPC request")
+        }
+        return delegate!.handler(message)
+    }
+
+    weak var delegate: IPCDriverServerDelegate?
+    init (machPortName: String, delegate: IPCDriverServerDelegate?) {
         super.init(machPortName: machPortName, queue: .global())
+        self.delegate = delegate
     }
 }
 

@@ -44,7 +44,7 @@ class LoginTests: CoreUITestCase {
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("\(user.host)\r")
 
-        app.webViews.links.matching(label:"LDAP").firstElement.tap()
+        app.webViews.links.matching(label: "LDAP").firstElement.tap()
 
         LoginWeb.emailField.typeText(user.username)
         LoginWeb.passwordField.typeText(user.password)

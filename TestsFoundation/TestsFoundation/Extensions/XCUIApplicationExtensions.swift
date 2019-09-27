@@ -42,8 +42,9 @@ public extension XCUIApplication {
         return XCUIElementQueryWrapper(app.descendants(matching: type), index: index)
     }
 
-    func waitForSnapshot() {
-        while (try? snapshot()) == nil {
+    func waitForSnapshot(timeout: TimeInterval = 30) {
+        let deadline = Date().addingTimeInterval(timeout)
+        while (try? snapshot()) == nil, Date() < deadline {
             sleep(1)
         }
     }

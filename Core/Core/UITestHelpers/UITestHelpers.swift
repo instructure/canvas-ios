@@ -125,6 +125,11 @@ public class UITestHelpers {
         }
     }
 
+    @discardableResult
+    func send(_ message: IPCDriverServerMessage) -> Data? {
+        return ipcDriverClient?.requestRemote(message)
+    }
+
     func run(_ helper: Helper) -> Data? {
         print("Running UI Test Helper \(helper)")
         switch helper {
