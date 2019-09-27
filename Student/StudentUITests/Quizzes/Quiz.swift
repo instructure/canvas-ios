@@ -25,7 +25,7 @@ enum Quiz {
     }
 
     static var submitButton: Element {
-        return XCUIElementWrapper(app.buttons["Submit"].firstMatch)
+        return app.buttons.matching(label: "Submit").firstElement
     }
 
     static func text(string: String) -> Element {

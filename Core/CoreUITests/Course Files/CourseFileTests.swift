@@ -46,7 +46,7 @@ class CourseFileTests: CoreUITestCase {
 
         CourseNavigation.pages.tap()
         PagesList.page(index: 1).tap()
-        XCUIElementWrapper(app.links.firstMatch).tap()
+        app.links.firstElement.tap()
         app.find(type: .image).waitToExist()
     }
 }

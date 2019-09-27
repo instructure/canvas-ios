@@ -157,13 +157,13 @@ class DiscussionReplyTests: CoreUITestCase {
         photo.tap()
 
         app.find(label: "Upload complete").waitToExist()
-        let img = XCUIElementWrapper(app.images.firstMatch)
+        let img = app.images.firstElement
         XCTAssertFalse(img.exists)
         app.find(label: "Upload complete").tapUntil { img.exists }
         app.find(id: "screen.dismiss").tap()
         Attachments.dismissButton.tap()
 
-        XCUIElementWrapper(app.webViews.firstMatch).typeText("Here's a nice picture I took")
+        app.webViews.firstElement.typeText("Here's a nice picture I took")
         DiscussionEditReply.doneButton.tapUntil {
             !DiscussionEditReply.doneButton.isVisible
         }

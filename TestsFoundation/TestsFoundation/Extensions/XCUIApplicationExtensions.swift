@@ -23,32 +23,18 @@ import XCTest
 // so will only function properly on the test target app.
 public extension XCUIApplication {
     func find(label: String, type: XCUIElement.ElementType = .any) -> Element {
-       return XCUIElementWrapper(
-            app.descendants(matching: type)
-            .matching(NSPredicate(format: "%K == %@", #keyPath(XCUIElement.label), label))
-            .firstMatch
-        )
+        return app.descendants(matching: type).matching(label: label).firstElement
     }
 
     func find(labelContaining needle: String, type: XCUIElement.ElementType = .any) -> Element {
-       return XCUIElementWrapper(
-            app.descendants(matching: type)
-            .matching(NSPredicate(format: "%K CONTAINS %@", #keyPath(XCUIElement.label), needle))
-            .firstMatch
-        )
+        return app.descendants(matching: type).matching(labelContaining: needle).firstElement
     }
 
     func find(id: String, type: XCUIElement.ElementType = .any) -> Element {
-        return XCUIElementWrapper(
-            app.descendants(matching: type)
-            .matching(NSPredicate(format: "%K == %@", #keyPath(XCUIElement.identifier), id))
-            .firstMatch
-        )
+        return app.descendants(matching: type).matching(id: id).firstElement
     }
 
     func find(type: XCUIElement.ElementType, index: Int = 0) -> Element {
-        return XCUIElementWrapper(
-            app.descendants(matching: type).element(boundBy: index)
-        )
+        return XCUIElementQueryWrapper(app.descendants(matching: type), index: index)
     }
 }

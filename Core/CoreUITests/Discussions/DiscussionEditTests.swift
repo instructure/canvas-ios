@@ -59,7 +59,7 @@ class DiscussionEditTests: CoreUITestCase {
         DiscussionEdit.invalidTitleLabel.waitToExist()
 
         DiscussionEdit.titleField.typeText("Discuss This")
-        XCUIElementWrapper(app.webViews.firstMatch).typeText("A new topic")
+        app.webViews.firstElement.typeText("A new topic")
         DiscussionEdit.doneButton.tap()
         DiscussionEdit.titleField.waitToVanish()
     }
@@ -88,7 +88,7 @@ class DiscussionEditTests: CoreUITestCase {
         photo.tap()
 
         app.find(label: "Upload complete").waitToExist()
-        let img = XCUIElementWrapper(app.images.firstMatch)
+        let img = app.images.firstElement
         XCTAssertFalse(img.exists)
         app.find(label: "Upload complete").tapUntil { img.exists }
         app.find(id: "screen.dismiss").tap()

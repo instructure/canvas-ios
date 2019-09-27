@@ -121,39 +121,29 @@ public extension Element {
     }
 }
 
-public struct XCUIElementWrapper: Element {
-    public var rawElement: XCUIElement {
-        return finder()
-    }
-    private let finder: () -> XCUIElement
+public struct XCUIElementQueryWrapper: Element {
+    public let query: XCUIElementQuery
+    public let index: Int
 
-    public init(_ finder: @autoclosure @escaping () -> XCUIElement) {
-        self.finder = finder
+    public init(_ query: XCUIElementQuery, index: Int = 0) {
+        self.query = query
+        self.index = index
     }
 
-    public var elementType: XCUIElement.ElementType {
-        return rawElement.elementType
-    }
     public var exists: Bool {
-        return rawElement.exists
+        return query.count > 0 && rawElement.exists
     }
+
+    public var elementType: XCUIElement.ElementType { return rawElement.elementType }
+    public var rawElement: XCUIElement { return query.element(boundBy: index) }
+    public var id: String { return rawElement.identifier }
+    public var isEnabled: Bool { return exists && rawElement.isEnabled }
+    public var isSelected: Bool { return rawElement.isSelected }
+    public var isVisible: Bool { return exists && rawElement.isHittable }
+
     public func frame(file: StaticString = #file, line: UInt = #line) -> CGRect {
         waitToExist(30, file: file, line: line)
         return rawElement.frame
-    }
-    public var id: String {
-        return rawElement.identifier
-    }
-    public var isEnabled: Bool {
-        guard exists else { return false }
-        return rawElement.isEnabled
-    }
-    public var isSelected: Bool {
-        return rawElement.isSelected
-    }
-    public var isVisible: Bool {
-        guard exists else { return false }
-        return rawElement.isHittable
     }
     public func label(file: StaticString = #file, line: UInt = #line) -> String {
         waitToExist(30, file: file, line: line)
@@ -214,10 +204,9 @@ public struct XCUIElementWrapper: Element {
 
     @discardableResult
     public func waitToExist(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element {
-        // This wonderful, time-saving shortcut is just too flaky on iOS 13.0...
-//        if !rawElement.exists {
+        if !exists {
             XCTAssertTrue(rawElement.waitForExistence(timeout: timeout), "Element \(id) not found", file: file, line: line)
-//        }
+        }
         return self
     }
 
