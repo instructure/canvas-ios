@@ -34,19 +34,19 @@ public enum CommunicationChannelType: String, Codable {
     var name: String {
         switch self {
         case .chat:
-            return NSLocalizedString("Chat", bundle: .core, comment: "Description for Chat communication channel")
+            return NSLocalizedString("Chat Notifications", bundle: .core, comment: "Description for Chat communication channel")
         case .email:
-            return NSLocalizedString("Email", bundle: .core, comment: "Description for email communication channel")
+            return NSLocalizedString("Email Notifications", bundle: .core, comment: "Description for email communication channel")
         case .push:
             return NSLocalizedString("Push Notifications", bundle: .core, comment: "Description for Push Notification channel")
         case .slack:
-            return NSLocalizedString("Slack", bundle: .core, comment: "Description for Slack communication channel")
+            return NSLocalizedString("Slack Notifications", bundle: .core, comment: "Description for Slack communication channel")
         case .sms:
-            return NSLocalizedString("SMS", bundle: .core, comment: "Description for SMS communication channel")
+            return NSLocalizedString("SMS Notifications", bundle: .core, comment: "Description for SMS communication channel")
         case .twitter:
-            return NSLocalizedString("Twitter", bundle: .core, comment: "Description for Twitter communication channel")
+            return NSLocalizedString("Twitter Notifications", bundle: .core, comment: "Description for Twitter communication channel")
         case .yo:
-            return NSLocalizedString("Yo", bundle: .core, comment: "Description for Yo communication channel")
+            return NSLocalizedString("Yo Notifications", bundle: .core, comment: "Description for Yo communication channel")
         }
     }
 }

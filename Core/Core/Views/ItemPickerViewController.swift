@@ -66,9 +66,14 @@ public class ItemPickerViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundColor = .named(.backgroundLight)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.tableFooterView = UIView()
+        tableView.registerCell(RightDetailTableViewCell.self)
+        tableView.registerCell(SubtitleTableViewCell.self)
+        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorInset = .zero
+        tableView.tintColor = Brand.shared.primary
     }
 }
 
@@ -87,15 +92,15 @@ extension ItemPickerViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = sections[indexPath.section].items[indexPath.row]
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        let cell: UITableViewCell
+        if let subtitle = item.subtitle, !subtitle.isEmpty {
+            cell = tableView.dequeue(for: indexPath) as SubtitleTableViewCell
+            cell.detailTextLabel?.text = subtitle
+        } else {
+            cell = tableView.dequeue(for: indexPath) as RightDetailTableViewCell
+        }
         cell.imageView?.image = item.image
-        cell.imageView?.tintColor = .named(.textDarkest)
         cell.textLabel?.text = item.title
-        cell.textLabel?.textColor = .named(.textDarkest)
-        cell.textLabel?.font = .scaledNamedFont(.semibold16)
-        cell.detailTextLabel?.text = item.subtitle
-        cell.detailTextLabel?.textColor = .named(.textDark)
-        cell.detailTextLabel?.font = .scaledNamedFont(.medium14)
         cell.accessoryType = indexPath == selected ? .checkmark : .none
         return cell
     }

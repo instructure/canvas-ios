@@ -23,6 +23,8 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
     var channelID: String = ""
     var channelType = CommunicationChannelType.push
     let env = AppEnvironment.shared
+    var isNotificationsEnabled = false
+    var sections: [(index: Int, name: String, rows: [NotificationCategory])] = []
     var selectedCategory: (String, [String])?
 
     let tableView = UITableView(frame: .zero, style: .grouped)
@@ -31,7 +33,75 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
         self?.reloadData()
     }
 
-    var sections: [(index: Int, name: String, rows: [NotificationCategory])] = []
+    static func create(title: String, channelID: String, type: CommunicationChannelType) -> NotificationCategoriesViewController {
+        let controller = NotificationCategoriesViewController()
+        controller.channelID = channelID
+        controller.channelType = type
+        controller.isNotificationsEnabled = type != .push
+        controller.title = title
+        return controller
+    }
+
+    override func loadView() {
+        view = tableView
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        tableView.backgroundColor = .named(.backgroundLight)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        tableView.registerHeaderFooterView(GroupedSectionFooterView.self, fromNib: false)
+        tableView.registerHeaderFooterView(GroupedSectionHeaderView.self, fromNib: false)
+        tableView.registerCell(RightDetailTableViewCell.self)
+        tableView.registerCell(SwitchTableViewCell.self)
+        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorInset = .zero
+
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.useModalStyle()
+        refresh()
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc func refresh(sender: Any? = nil) {
+        let force = sender != nil
+        categories.refresh(force: force)
+
+        guard channelType == .push else { return }
+        UNUserNotificationCenter.current().getNotificationSettings() { [weak self] settings in DispatchQueue.main.async {
+            self?.isNotificationsEnabled = settings.authorizationStatus == .authorized
+            self?.reloadData()
+        } }
+    }
+
+    func reloadData() {
+        if let error = categories.error {
+            return showError(error)
+        }
+        var groups: [String: (index: Int, name: String, rows: [NotificationCategory])] = [:]
+        if isNotificationsEnabled {
+            for category in categories {
+                guard let (position, _, section) = categoryMap[category.category] else { continue }
+                if groups[section] == nil { groups[section] = (index: position, name: section, rows: []) }
+                groups[section]?.rows.append(category)
+            }
+            sections = groups.values.sorted { $0.index < $1.index }
+        }
+        tableView.refreshControl?.endRefreshing()
+        tableView.reloadData()
+    }
+
     lazy var categoryMap: [String: (Int, String, String)] = {
         let courseActivities = NSLocalizedString("Course Activities", bundle: .core, comment: "")
         let discussions = NSLocalizedString("Discussions", bundle: .core, comment: "")
@@ -73,94 +143,80 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
             "content_link_error": (5, NSLocalizedString("Content Link Error", bundle: .core, comment: ""), alerts),
         ]
     }()
-
-    func reloadData() {
-        var groups: [String: (index: Int, name: String, rows: [NotificationCategory])] = [:]
-        for category in categories {
-            guard let (position, _, section) = categoryMap[category.category] else { continue }
-            if groups[section] == nil { groups[section] = (index: position, name: section, rows: []) }
-            groups[section]?.rows.append(category)
-        }
-        sections = groups.values.sorted { $0.index < $1.index }
-        tableView.refreshControl?.endRefreshing()
-        tableView.reloadData()
-    }
-
-    static func create(channelID: String, type: CommunicationChannelType) -> NotificationCategoriesViewController {
-        let controller = NotificationCategoriesViewController()
-        controller.channelID = channelID
-        controller.channelType = type
-        return controller
-    }
-
-    override func loadView() {
-        view = tableView
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        title = NSLocalizedString("Notification Preferences", comment: "")
-
-        tableView.dataSource = self
-        tableView.delegate = self
-
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-
-        refresh()
-    }
-
-    @objc func refresh(sender: Any? = nil) {
-        let force = sender != nil
-        categories.refresh(force: force)
-    }
 }
 
 extension NotificationCategoriesViewController: UITableViewDataSource, UITableViewDelegate {
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        guard isNotificationsEnabled else { return 1 }
         return sections.count
     }
 
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].name
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard isNotificationsEnabled else { return nil }
+        let header: GroupedSectionHeaderView = tableView.dequeueHeaderFooter()
+        header.titleLabel.text = sections[section].name
+        return header
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard !isNotificationsEnabled else { return nil }
+        let footer: GroupedSectionFooterView = tableView.dequeueHeaderFooter()
+        footer.titleLabel.text = NSLocalizedString("Notifications are currently disabled in Settings. Tap to enable them again.", bundle: .core, comment: "")
+        return footer
+    }
+
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        guard !isNotificationsEnabled else { return 0 }
+        return UITableView.automaticDimension
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard isNotificationsEnabled else { return 1 }
         return sections[section].rows.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard isNotificationsEnabled else {
+            let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
+            cell.textLabel?.text = NSLocalizedString("Enable Push Notifications", bundle: .core, comment: "")
+            cell.accessibilityIdentifier = "NotificationCategories.enableNotificationsCell"
+            return cell
+        }
+
         let row = sections[indexPath.section].rows[indexPath.row]
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         switch channelType {
         case .email:
+            let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
+            cell.textLabel?.text = categoryMap[row.category]?.1
             cell.detailTextLabel?.text = row.frequency.name
-            cell.detailTextLabel?.textColor = .named(.textDark)
-            cell.detailTextLabel?.font = .scaledNamedFont(.semibold16)
             cell.accessoryType = .disclosureIndicator
             cell.accessibilityIdentifier = "NotificationCategories.\(row.category)Cell"
+            return cell
         default:
-            let toggle = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-            toggle.isOn = row.frequency != .never
-            toggle.tag = indexPath.section * 1000 + indexPath.row
-            toggle.onTintColor = Brand.shared.primary
-            toggle.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
-            cell.accessoryView = toggle
+            let cell: SwitchTableViewCell = tableView.dequeue(for: indexPath)
+            cell.textLabel?.text = categoryMap[row.category]?.1
+            cell.toggle.isOn = row.frequency != .never
+            cell.onToggleChange = { [weak self] toggle in
+                guard let row = self?.sections[indexPath.section].rows[indexPath.row] else { return }
+                self?.update(row.category, notifications: row.notifications, frequency: toggle.isOn ? .immediately : .never)
+            }
             cell.accessibilityIdentifier = "NotificationCategories.\(row.category)Toggle"
+            return cell
         }
-        cell.textLabel?.text = categoryMap[row.category]?.1
-        cell.textLabel?.textColor = .named(.textDarkest)
-        cell.textLabel?.font = .scaledNamedFont(.semibold16)
-        return cell
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        guard isNotificationsEnabled else {
+            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+            env.loginDelegate?.openExternalURL(url)
+            return
+        }
+
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        if let toggle = cell.accessoryView as? UISwitch {
-            toggle.setOn(!toggle.isOn, animated: true)
-            toggleChanged(toggle)
+        if let toggle = cell as? SwitchTableViewCell {
+            toggle.toggle.setOn(!toggle.toggle.isOn, animated: true)
+            toggle.onToggleChange(toggle.toggle)
         } else {
             let row = sections[indexPath.section].rows[indexPath.row]
             selectedCategory = (row.category, row.notifications)
@@ -174,12 +230,6 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
                 delegate: self
             ), sender: self)
         }
-    }
-
-    @objc func toggleChanged(_ toggle: UISwitch) {
-        let indexPath = IndexPath(row: toggle.tag % 1000, section: toggle.tag / 1000)
-        let row = sections[indexPath.section].rows[indexPath.row]
-        update(row.category, notifications: row.notifications, frequency: toggle.isOn ? .immediately : .never)
     }
 
     func update(_ category: String, notifications: [String], frequency: NotificationFrequency) {

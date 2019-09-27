@@ -20,7 +20,6 @@ import UIKit
 
 public class ProfileSettingsViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
     let env = AppEnvironment.shared
-    var isNotificationsEnabled = false
     private var sections: [Section] = []
 
     private var landingPage: LandingPage {
@@ -51,19 +50,16 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
 
         title = NSLocalizedString("Settings", comment: "")
 
+        tableView.backgroundColor = .named(.backgroundLight)
         tableView.dataSource = self
         tableView.delegate = self
-
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: UIApplication.didBecomeActiveNotification, object: nil)
-
-        refresh()
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+        tableView.registerHeaderFooterView(GroupedSectionHeaderView.self, fromNib: false)
+        tableView.registerCell(RightDetailTableViewCell.self)
+        tableView.sectionFooterHeight = 0
+        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorInset = .zero
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -82,16 +78,16 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
         let force = sender != nil
         channels.exhaust(while: { _ in true })
         profile.refresh(force: force)
-
-        UNUserNotificationCenter.current().getNotificationSettings() { [weak self] settings in DispatchQueue.main.async {
-            self?.isNotificationsEnabled = settings.authorizationStatus == .authorized
-            self?.reloadData()
-        } }
     }
 
     func reloadData() {
+        var channelTypes: [CommunicationChannelType: [CommunicationChannel]] = [:]
+        for channel in channels {
+            channelTypes[channel.type] = channelTypes[channel.type] ?? []
+            channelTypes[channel.type]?.append(channel)
+        }
         sections = [
-            Section(rows: [
+            Section(NSLocalizedString("Preferences", bundle: .core, comment: ""), rows: [
                 Row(NSLocalizedString("Landing Page", comment: ""), detail: landingPage.name) { [weak self] in
                     guard let self = self else { return }
                     self.show(ItemPickerViewController.create(
@@ -105,42 +101,38 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                         delegate: self
                     ), sender: self)
                 },
-            ]),
-
-            Section(NSLocalizedString("Notifications", comment: ""), rows: [
-                Row(NSLocalizedString("Allow Notifications in Settings", comment: "")) { [weak self] in
-                    guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
-                    self?.env.loginDelegate?.openExternalURL(url)
-                },
-            ], footer: isNotificationsEnabled
-                ? NSLocalizedString("All notifications are currently enabled.", comment: "")
-                : NSLocalizedString("All notifications are currently disabled.", comment: "")
-            ),
-            Section(rows: channels.map { channel in
-                Row(channel.type.name, detail: channel.address, style: .subtitle) { [weak self] in
+            ] + channelTypes.values.map({ channels -> Row in
+                Row(channels[0].type.name) { [weak self] in
                     guard let self = self else { return }
-                    self.show(NotificationCategoriesViewController.create(channelID: channel.id, type: channel.type), sender: self)
+                    if channels.count == 1, let channel = channels.first {
+                        self.show(NotificationCategoriesViewController.create(
+                            title: channel.type.name,
+                            channelID: channel.id,
+                            type: channel.type
+                        ), sender: self)
+                    } else {
+                        self.show(NotificationChannelsViewController.create(type: channels[0].type), sender: self)
+                    }
                 }
-            }),
-
-            Section(rows: [
-                Row(NSLocalizedString("Calendar Feed", comment: ""), hasDisclosure: false) { [weak self] in
+            }).sorted(by: { $0.title < $1.title }) + [
+                Row(NSLocalizedString("Subscribe to Calendar Feed", comment: ""), hasDisclosure: false) { [weak self] in
                     guard let url = self?.profile.first?.calendarURL else { return }
                     self?.env.loginDelegate?.openExternalURL(url)
                 },
             ]),
 
-            Section(rows: [
-                Row(NSLocalizedString("Open Source Components", comment: "")) { [weak self] in
-                    self?.show(OpenSourceComponentsViewController.create(), sender: self)
+            Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
+                Row(NSLocalizedString("Privacy Policy", comment: "")) { [weak self] in
+                    guard let self = self else { return }
+                    self.env.router.route(to: "https://www.instructure.com/policies/privacy/", from: self, options: nil)
                 },
                 Row(NSLocalizedString("Terms of Use", comment: "")) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: .termsOfService(), from: self, options: nil)
                 },
-                Row(NSLocalizedString("Privacy Policy", comment: "")) { [weak self] in
+                Row(NSLocalizedString("Canvas on GitHub", comment: "")) { [weak self] in
                     guard let self = self else { return }
-                    self.env.router.route(to: "https://www.instructure.com/policies/privacy/", from: self, options: nil)
+                    self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self, options: nil)
                 },
             ]),
         ]
@@ -156,32 +148,21 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         return sections.count
     }
 
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].title
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header: GroupedSectionHeaderView = tableView.dequeueHeaderFooter()
+        header.titleLabel.text = sections[section].title
+        return header
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].rows.count
     }
 
-    public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return sections[section].footer
-    }
-
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
-        let cell = UITableViewCell(style: row.style, reuseIdentifier: nil)
+        let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
         cell.textLabel?.text = row.title
-        cell.textLabel?.textColor = .named(.textDarkest)
-        cell.textLabel?.font = .scaledNamedFont(.semibold16)
         cell.detailTextLabel?.text = row.detail
-        cell.detailTextLabel?.textColor = .named(.textDark)
-        switch row.style {
-        case .value1:
-            cell.detailTextLabel?.font = .scaledNamedFont(.semibold16)
-        default:
-            cell.detailTextLabel?.font = .scaledNamedFont(.medium14)
-        }
         cell.accessoryType = row.hasDisclosure ? .disclosureIndicator : .none
         return cell
     }
@@ -200,14 +181,12 @@ extension ProfileSettingsViewController: ItemPickerDelegate {
 }
 
 private struct Section {
-    let title: String?
+    let title: String
     let rows: [Row]
-    let footer: String?
 
-    init(_ title: String? = nil, rows: [Row], footer: String? = nil) {
+    init(_ title: String, rows: [Row]) {
         self.title = title
         self.rows = rows
-        self.footer = footer
     }
 }
 
