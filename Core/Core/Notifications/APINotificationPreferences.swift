@@ -19,13 +19,13 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/notification_preferences.html#NotificationPreference
-struct APINotificationPreference: Codable {
+public struct APINotificationPreference: Codable {
     let notification: String
     let category: String
     let frequency: NotificationFrequency
 }
 
-enum NotificationFrequency: String, CaseIterable, Codable {
+public enum NotificationFrequency: String, CaseIterable, Codable {
     case immediately, daily, weekly, never
 
     var name: String {
