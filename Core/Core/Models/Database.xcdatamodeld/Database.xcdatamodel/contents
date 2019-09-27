@@ -8,7 +8,7 @@
         <attribute name="typeRaw" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
-        <attribute name="allowedExtensions" optional="YES" attributeType="Transformable"/>
+        <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
         <attribute name="assignmentGroupID" optional="YES" attributeType="String"/>
         <attribute name="assignmentGroupPosition" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="courseID" attributeType="String"/>
@@ -28,7 +28,7 @@
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="quizID" optional="YES" attributeType="String"/>
-        <attribute name="submissionTypesRaw" attributeType="Transformable"/>
+        <attribute name="submissionTypesRaw" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
         <attribute name="useRubricForGrading" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -53,7 +53,7 @@
     </entity>
     <entity name="Color" representedClassName="Core.Color" syncable="YES">
         <attribute name="canvasContextID" attributeType="String"/>
-        <attribute name="color" attributeType="Transformable" customClassName="UIKit.UIColor"/>
+        <attribute name="color" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="UIKit.UIColor"/>
     </entity>
     <entity name="CommunicationChannel" representedClassName="Core.CommunicationChannel" syncable="YES">
         <attribute name="address" attributeType="String"/>
@@ -340,7 +340,7 @@
         <attribute name="order" optional="YES" attributeType="String"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="questionCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="questionTypesRaw" attributeType="Transformable"/>
+        <attribute name="questionTypesRaw" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
         <attribute name="quizTypeRaw" attributeType="String"/>
         <attribute name="requireLockdownBrowser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="requireLockdownBrowserForResults" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -480,7 +480,7 @@
     </entity>
     <elements>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="120"/>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="450"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="448"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
@@ -502,7 +502,7 @@
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="225"/>
         <element name="Page" positionX="-549" positionY="-27" width="128" height="165"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
-        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="465"/>
+        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="463"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>
         <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="135"/>
