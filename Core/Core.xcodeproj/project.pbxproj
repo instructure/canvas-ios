@@ -228,6 +228,7 @@
 		7D7110C12138910D0085C2E5 /* RouteHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C02138910D0085C2E5 /* RouteHandlerTests.swift */; };
 		7D7110CA2139A57A0085C2E5 /* URLComponentsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C92139A57A0085C2E5 /* URLComponentsExtensions.swift */; };
 		7D7110CC2139AB310085C2E5 /* URLComponentsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110CB2139AB310085C2E5 /* URLComponentsExtensionsTests.swift */; };
+		7D71807B233FCD0A0053FC7A /* UserProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D71807A233FCD0A0053FC7A /* UserProfileTests.swift */; };
 		7D7472D6218CC4B200CE1430 /* APIDocViewerRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7472D5218CC4B200CE1430 /* APIDocViewerRequestableTests.swift */; };
 		7D7472D9218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7472D8218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift */; };
 		7D765024215AEDDE00BB4F38 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D765023215AEDDD00BB4F38 /* DividerView.swift */; };
@@ -1062,6 +1063,7 @@
 		7D7110C02138910D0085C2E5 /* RouteHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHandlerTests.swift; sourceTree = "<group>"; };
 		7D7110C92139A57A0085C2E5 /* URLComponentsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLComponentsExtensions.swift; sourceTree = "<group>"; };
 		7D7110CB2139AB310085C2E5 /* URLComponentsExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLComponentsExtensionsTests.swift; sourceTree = "<group>"; };
+		7D71807A233FCD0A0053FC7A /* UserProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTests.swift; sourceTree = "<group>"; };
 		7D7472D5218CC4B200CE1430 /* APIDocViewerRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDocViewerRequestableTests.swift; sourceTree = "<group>"; };
 		7D7472D8218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSPDFAnnotationExtensionTests.swift; sourceTree = "<group>"; };
 		7D765023215AEDDD00BB4F38 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
@@ -2412,6 +2414,7 @@
 				7DBED016232FDDB700392F3C /* GetAccountHelpLinksTests.swift */,
 				7DBED0302333EC3B00392F3C /* ProfilePresenterTests.swift */,
 				7DBED01C2330332800392F3C /* UploadAvatarTests.swift */,
+				7D71807A233FCD0A0053FC7A /* UserProfileTests.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -3730,6 +3733,7 @@
 				B150C63E2298E6410096D58C /* GetArcTests.swift in Sources */,
 				B14B7055229468BC00B568D6 /* FilePickerPresenterTests.swift in Sources */,
 				7DCF203E216D5C4C003AF358 /* LockStatusViewable.swift in Sources */,
+				7D71807B233FCD0A0053FC7A /* UserProfileTests.swift in Sources */,
 				9F10A66B2293191200E3360C /* UserSettingsTests.swift in Sources */,
 				B1A890BA224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift in Sources */,
 				7D1758C4215A995200F88613 /* ListFormatterTests.swift in Sources */,
