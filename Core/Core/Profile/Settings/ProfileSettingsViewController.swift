@@ -23,7 +23,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
     private var sections: [Section] = []
 
     private var landingPage: LandingPage {
-        get { LandingPage(rawValue: env.userDefaults?.landingPath ?? "/") ?? .dashboard }
+        get { return LandingPage(rawValue: env.userDefaults?.landingPath ?? "/") ?? .dashboard }
         set { env.userDefaults?.landingPath = newValue.rawValue }
     }
 
@@ -92,9 +92,9 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                     guard let self = self else { return }
                     self.show(ItemPickerViewController.create(
                         title: NSLocalizedString("Landing Page", comment: ""),
-                        sections: [ItemPickerSection(items: LandingPage.appCases.map { page in
+                        sections: [ ItemPickerSection(items: LandingPage.appCases.map { page in
                             ItemPickerItem(title: page.name)
-                        })],
+                        }), ],
                         selected: LandingPage.appCases.firstIndex(of: self.landingPage).flatMap {
                             IndexPath(row: $0, section: 0)
                         },

@@ -28,11 +28,11 @@ public final class CommunicationChannel: NSManagedObject {
     @NSManaged var workflowStateRaw: String
 
     public var type: CommunicationChannelType {
-        get { CommunicationChannelType(rawValue: typeRaw) ?? .email }
+        get { return CommunicationChannelType(rawValue: typeRaw) ?? .email }
         set { typeRaw = newValue.rawValue }
     }
     public var workflowState: CommunicationChannelWorkflowState {
-        get { CommunicationChannelWorkflowState(rawValue: workflowStateRaw) ?? .unconfirmed }
+        get { return CommunicationChannelWorkflowState(rawValue: workflowStateRaw) ?? .unconfirmed }
         set { workflowStateRaw = newValue.rawValue }
     }
 }

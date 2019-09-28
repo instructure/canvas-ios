@@ -26,12 +26,12 @@ class NotificationCategory: NSManagedObject {
     @NSManaged var notificationsRaw: String
 
     var frequency: NotificationFrequency {
-        get { NotificationFrequency(rawValue: frequencyRaw) ?? .never }
+        get { return NotificationFrequency(rawValue: frequencyRaw) ?? .never }
         set { frequencyRaw = newValue.rawValue }
     }
 
     var notifications: [String] {
-        get { notificationsRaw.components(separatedBy: ",") }
+        get { return notificationsRaw.components(separatedBy: ",") }
         set { notificationsRaw = newValue.joined(separator: ",") }
     }
 }
@@ -53,7 +53,7 @@ struct GetNotificationCategories: CollectionUseCase {
     }
 
     var request: GetNotificationPreferencesRequest {
-        GetNotificationPreferencesRequest(channelID: channelID)
+        return GetNotificationPreferencesRequest(channelID: channelID)
     }
 
     func write(response: Request.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
@@ -85,10 +85,10 @@ struct PutNotificationCategory: APIUseCase {
     let notifications: [String]
     let frequency: NotificationFrequency
 
-    var cacheKey: String? = nil
+    let cacheKey: String? = nil
 
     var request: PutNotificationPreferencesRequest {
-        PutNotificationPreferencesRequest(channelID: channelID, notifications: notifications, frequency: frequency)
+        return PutNotificationPreferencesRequest(channelID: channelID, notifications: notifications, frequency: frequency)
     }
 
     func write(response: Request.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
