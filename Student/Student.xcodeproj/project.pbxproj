@@ -318,7 +318,6 @@
 		7D903C2122C27907009D9E9E /* GradesWidgetViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D903C2022C27907009D9E9E /* GradesWidgetViewController.storyboard */; };
 		7D91D65C23217FA000C2F585 /* Routing.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D91D65B23217FA000C2F585 /* Routing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7D91D660232180FE00C2F585 /* Routing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D91D65F232180FE00C2F585 /* Routing.m */; };
-		7D92447222FB7825002BC7CA /* UserPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92447122FB7825002BC7CA /* UserPreferencesTests.swift */; };
 		7DAEE5872111019600BF5C43 /* ToDoEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */; };
 		7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
 		7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1112,7 +1111,6 @@
 		7D903C2022C27907009D9E9E /* GradesWidgetViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GradesWidgetViewController.storyboard; sourceTree = "<group>"; };
 		7D91D65B23217FA000C2F585 /* Routing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Routing.h; sourceTree = "<group>"; };
 		7D91D65F232180FE00C2F585 /* Routing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Routing.m; sourceTree = "<group>"; };
-		7D92447122FB7825002BC7CA /* UserPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesTests.swift; sourceTree = "<group>"; };
 		7DABA7451FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DABA7471FE1CCFB004E903E /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7DAEE5862111019600BF5C43 /* ToDoEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToDoEmptyView.xib; sourceTree = "<group>"; };
@@ -2333,14 +2331,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		7D92447322FB782C002BC7CA /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				7D92447122FB7825002BC7CA /* UserPreferencesTests.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
 		7DC1140E22F9E276000B19AE /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
@@ -2848,7 +2838,6 @@
 				7DCF0F2222F8A096000AACCE /* Extensions */,
 				7DCF0F2522F8A096000AACCE /* Helpers */,
 				9F62EDD92326E03600EA9F79 /* People */,
-				7D92447322FB782C002BC7CA /* Profile */,
 				7DCF0F3322F8A096000AACCE /* Submissions */,
 				7DCF0F3522F8A096000AACCE /* Views */,
 				7DCF0F3622F8A096000AACCE /* Info.plist */,
@@ -4201,7 +4190,6 @@
 				7DE1162522F8AB5C005BFE98 /* PersistenceTestCase.swift in Sources */,
 				9F62EDDB2326E0FD00EA9F79 /* PeopleListPresenterTests.swift in Sources */,
 				7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */,
-				7D92447222FB7825002BC7CA /* UserPreferencesTests.swift in Sources */,
 				7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */,
 				7DE1161B22F8AB5C005BFE98 /* TestEnvironment.swift in Sources */,
 				7DE1161222F8AB5C005BFE98 /* AssignmentDetailsPresenterTests.swift in Sources */,
