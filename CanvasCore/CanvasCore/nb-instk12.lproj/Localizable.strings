@@ -759,9 +759,6 @@
 /* permission denied button a11y hint */
 "User has denied record permission" = "Bruker har nektet opptakstillatelse";
 
-/* Error message if we can't pull the avatar image */
-"User has no valid avatar image url" = "Bruker har ingen gyldig avatar bilde-url";
-
 /* button for viewing quiz results */
 "View Results" = "Se resultater";
 

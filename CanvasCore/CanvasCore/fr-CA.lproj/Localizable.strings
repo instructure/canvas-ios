@@ -759,9 +759,6 @@
 /* permission denied button a11y hint */
 "User has denied record permission" = "L'utilisateur a rejeté l’autorisation d'enregistrement";
 
-/* Error message if we can't pull the avatar image */
-"User has no valid avatar image url" = "L'utilisateur n'a aucune URL d'image d'avatar valide";
-
 /* button for viewing quiz results */
 "View Results" = "Voir les résultats";
 

@@ -759,9 +759,6 @@
 /* permission denied button a11y hint */
 "User has denied record permission" = "Itilizatè a refize pèmisyon anrejistreman an";
 
-/* Error message if we can't pull the avatar image */
-"User has no valid avatar image url" = "Itilizatè a pa gen yon url imaj avata valid";
-
 /* button for viewing quiz results */
 "View Results" = "Afiche Rezilta";
 
