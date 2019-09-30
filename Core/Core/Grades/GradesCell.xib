@@ -30,12 +30,12 @@
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="XIK-90-1NF">
-                    <rect key="frame" x="66" y="54" width="395" height="61.5"/>
+                    <rect key="frame" x="66" y="54" width="379" height="61.5"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ih-k9-Im2" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="395" height="19.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ih-k9-Im2" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="379" height="19.5"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="19.5" id="Yib-ra-rdu"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19.5" id="Yib-ra-rdu"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
@@ -46,7 +46,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="excused" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJX-RP-3eH" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="21.5" width="395" height="19"/>
+                            <rect key="frame" x="0.0" y="21.5" width="379" height="19"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="19" id="EpB-3K-hwR"/>
                             </constraints>
@@ -59,7 +59,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="251" text="85/100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qim-rl-VBq" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="42.5" width="395" height="19"/>
+                            <rect key="frame" x="0.0" y="42.5" width="379" height="19"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="19" id="tjA-Ic-mpf"/>
                             </constraints>
@@ -84,7 +84,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="VpP-3m-wzd" secondAttribute="bottom" priority="900" constant="16" id="gyd-Hy-ZyI"/>
                 <constraint firstItem="XIK-90-1NF" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" priority="750" constant="12" id="o4r-fs-udo"/>
                 <constraint firstItem="XIK-90-1NF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="siz-ll-bRt"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="XIK-90-1NF" secondAttribute="trailing" id="uzs-4P-R6X"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="XIK-90-1NF" secondAttribute="trailing" constant="16" id="uzs-4P-R6X"/>
                 <constraint firstItem="VpP-3m-wzd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="vyZ-1B-2Ie"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
