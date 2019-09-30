@@ -21,6 +21,9 @@
 Downloads the Canvas GraphQL schema and creates a schema file
 outlining all of the union types for Apollo cache priming.
 
+This script follows the Apollo docs found at the bottom of the page here
+https://www.apollographql.com/docs/react/data/fragments/
+
 Depends on node
  brew install node
 
