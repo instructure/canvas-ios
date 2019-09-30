@@ -46,6 +46,8 @@ public class Assignment: NSManagedObject {
     @NSManaged public var hideRubricPoints: Bool
     @NSManaged public var assignmentGroupID: String?
     @NSManaged public var assignmentGroupPosition: Int
+    @NSManaged public var gradingPeriodID: String?
+
     /**
      Use this property (vs. submissions) when you want the most recent submission
      commonly for a student (i.e. Student app, all submissions returned are for 1 particular student)
@@ -266,10 +268,8 @@ extension Assignment {
         return image
     }
 
-    public var gradesListGradeText: String? {
-        guard let submission = submission else {
-            return nil
-        }
+    public func multiUserSubmissionGradeText(studentID: String) -> String? {
+        guard let submission = submissions?.filter({ $0.userID == studentID }).first else { return nil }
 
         if submission.excused ?? false {
             return NSLocalizedString("Excused", comment: "")

@@ -44,7 +44,7 @@ let router = Router(routes: [
     RouteHandler(.courseGrades(":courseID")) { _, params in
         guard let courseID = params["courseID"] else { return nil }
         guard let studentID = currentStudentID else { return nil }
-        return GradesViewController.create(courseID: courseID)
+        return GradesViewController.create(courseID: courseID, studentID: studentID)
     },
 
     RouteHandler(.courseCalendar(courseID: ":courseID")) { _, params in

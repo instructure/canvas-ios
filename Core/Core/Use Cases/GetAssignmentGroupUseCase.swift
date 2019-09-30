@@ -21,13 +21,21 @@ import CoreData
 public class GetAssignmentGroups: CollectionUseCase {
     public typealias Model = AssignmentGroup
     public let courseID: String
+    public let gradingPeriodID: String?
+    let include: [GetAssignmentGroupsRequest.Include]
 
-    public init(courseID: String) {
+    public init(courseID: String, gradingPeriodID: String?, include: [GetAssignmentGroupsRequest.Include] = []) {
         self.courseID = courseID
+        self.gradingPeriodID = gradingPeriodID
+        self.include = include
     }
 
     public var cacheKey: String? {
-        return "get-assignmentGroup-\(courseID)"
+        var key = "get-assignmentGroup-\(courseID)"
+        if let gradingPeriodID = gradingPeriodID {
+            key.append("-\(gradingPeriodID)")
+        }
+        return key
     }
 
     public var scope: Scope {
@@ -35,13 +43,13 @@ public class GetAssignmentGroups: CollectionUseCase {
     }
 
     public var request: GetAssignmentGroupsRequest {
-        return GetAssignmentGroupsRequest(courseID: courseID)
+        return GetAssignmentGroupsRequest(courseID: courseID, gradingPeriodID: gradingPeriodID, include: include)
     }
 
     public func write(response: [APIAssignmentGroup]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         for item in response {
-            AssignmentGroup.save(item, courseID: courseID, in: client)
+            AssignmentGroup.save(item, courseID: courseID, gradingPeriodID: gradingPeriodID, in: client)
         }
     }
 }

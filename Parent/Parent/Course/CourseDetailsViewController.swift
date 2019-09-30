@@ -28,14 +28,16 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet weak var containerA: UIView!
     @IBOutlet weak var containerB: UIView!
     var courseID: String = ""
+    var studentID: String = ""
 
     enum MenuItem: Int {
         case grades, syllabus
     }
 
-    static func create(courseID: String) -> CourseDetailsViewController {
+    static func create(courseID: String, studentID: String) -> CourseDetailsViewController {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
+        controller.studentID = studentID
         return controller
     }
 
@@ -56,7 +58,7 @@ class CourseDetailsViewController: UIViewController {
     }
 
     func configureGrades() {
-        gradesViewController = GradesViewController.create(courseID: courseID)
+        gradesViewController = GradesViewController.create(courseID: courseID, studentID: studentID)
         embed(gradesViewController, in: containerA)
     }
 

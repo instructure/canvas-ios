@@ -26,11 +26,12 @@ class GradesPresenterTests: CoreTestCase {
     var presenter: GradesPresenter!
     var expectation = XCTestExpectation(description: "presenter updated")
     let courseID = "1"
+    let studentID = "1"
 
     override func setUp() {
         super.setUp()
         expectation = XCTestExpectation(description: "presenter updated")
-        presenter = GradesPresenter(env: environment, view: self, courseID: courseID)
+        presenter = GradesPresenter(env: environment, view: self, courseID: courseID, studentID: studentID)
     }
 
     func testViewIsReady() {
@@ -44,7 +45,7 @@ class GradesPresenterTests: CoreTestCase {
         let v: [APIAssignment] = [b1, a1, a2, c1]
         api.mock(req, value: v, response: nil, error: nil)
 
-        presenter.viewIsReady()
+        presenter.refresh()
         wait(for: [expectation], timeout: 0.5)
 
         XCTAssertEqual(presenter.assignments[IndexPath(row: 0, section: 0)]?.id, "1")
@@ -55,8 +56,10 @@ class GradesPresenterTests: CoreTestCase {
 }
 
 extension GradesPresenterTests: GradesViewProtocol {
+    func updateScore(_ score: String?) {
+    }
+
     func update(isLoading: Bool) {
-        print("isLoading: \(isLoading)")
         if !isLoading { expectation.fulfill() }
     }
 
