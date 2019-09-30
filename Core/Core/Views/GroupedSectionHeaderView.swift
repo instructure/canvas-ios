@@ -19,12 +19,11 @@
 import Foundation
 import UIKit
 
-public class SwitchTableViewCell: UITableViewCell {
-    public let toggle = UISwitch()
-    public var onToggleChange: (UISwitch) -> Void = { _ in }
+public class GroupedSectionHeaderView: UITableViewHeaderFooterView {
+    public let titleLabel = UILabel()
 
-    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+    public override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         setup()
     }
 
@@ -34,17 +33,9 @@ public class SwitchTableViewCell: UITableViewCell {
     }
 
     func setup() {
-        toggle.onTintColor = Brand.shared.primary
-        toggle.addTarget(self, action: #selector(toggleChanged(_:)), for: .valueChanged)
-        accessoryView = toggle
-        backgroundColor = .named(.backgroundLightest)
-        directionalLayoutMargins = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
-        heightAnchor.constraint(greaterThanOrEqualToConstant: 54).isActive = true
-        textLabel?.textColor = .named(.textDarkest)
-        textLabel?.font = .scaledNamedFont(.semibold16)
-    }
-
-    @objc func toggleChanged(_ sender: UISwitch) {
-        onToggleChange(sender)
+        titleLabel.textColor = .named(.textDark)
+        titleLabel.font = .scaledNamedFont(.semibold12)
+        contentView.addSubview(titleLabel)
+        titleLabel.pin(inside: contentView, leading: 16, trailing: 16, top: 16, bottom: 6)
     }
 }

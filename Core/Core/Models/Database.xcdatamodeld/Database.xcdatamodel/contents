@@ -55,6 +55,14 @@
         <attribute name="canvasContextID" attributeType="String"/>
         <attribute name="color" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="UIKit.UIColor"/>
     </entity>
+    <entity name="CommunicationChannel" representedClassName="Core.CommunicationChannel" syncable="YES">
+        <attribute name="address" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="typeRaw" attributeType="String"/>
+        <attribute name="userID" attributeType="String"/>
+        <attribute name="workflowStateRaw" attributeType="String"/>
+    </entity>
     <entity name="Course" representedClassName="Core.Course" syncable="YES">
         <attribute name="arcEnabledRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="arcID" optional="YES" attributeType="String"/>
@@ -224,6 +232,12 @@
         <attribute name="typeRaw" optional="YES" attributeType="Binary"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
         <relationship name="module" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Module" inverseName="itemsRaw" inverseEntity="Module"/>
+    </entity>
+    <entity name="NotificationCategory" representedClassName="Core.NotificationCategory" syncable="YES">
+        <attribute name="category" attributeType="String"/>
+        <attribute name="channelID" attributeType="String"/>
+        <attribute name="frequencyRaw" attributeType="String"/>
+        <attribute name="notificationsRaw" attributeType="String" defaultValueString=""/>
     </entity>
     <entity name="Page" representedClassName="Core.Page" syncable="YES">
         <attribute name="contextID" attributeType="String"/>
@@ -451,6 +465,14 @@
         <attribute name="sortableName" attributeType="String"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="user" inverseEntity="Enrollment"/>
     </entity>
+    <entity name="UserProfile" representedClassName="Core.UserProfile" syncable="YES">
+        <attribute name="avatarURL" optional="YES" attributeType="URI"/>
+        <attribute name="calendarURL" optional="YES" attributeType="URI"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="loginID" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+    </entity>
     <entity name="UserSettings" representedClassName="Core.UserSettings" syncable="YES">
         <attribute name="collapseGlobalNav" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hideDashcardColorOverlays" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -461,7 +483,8 @@
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="448"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
-        <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
+        <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
+        <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="195"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="255"/>
@@ -490,6 +513,8 @@
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="User" positionX="-540" positionY="-27" width="128" height="180"/>
+        <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
     </elements>
 </model>

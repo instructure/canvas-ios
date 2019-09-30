@@ -29,31 +29,30 @@ public struct ItemPickerSection {
 }
 
 public struct ItemPickerItem {
+    let image: UIImage?
     let title: String
     let subtitle: String?
 
-    public init(title: String, subtitle: String? = nil) {
+    public init(image: UIImage? = nil, title: String, subtitle: String? = nil) {
+        self.image = image
         self.title = title
         self.subtitle = subtitle
     }
-}
-
-public class ItemPickerCell: UITableViewCell {
-    @IBOutlet weak var titleLabel: UILabel?
-    @IBOutlet weak var subtitleLabel: UILabel?
 }
 
 public protocol ItemPickerDelegate: class {
     func itemPicker(_ itemPicker: ItemPickerViewController, didSelectRowAt indexPath: IndexPath)
 }
 
-public class ItemPickerViewController: UITableViewController {
+public class ItemPickerViewController: UIViewController {
     weak var delegate: ItemPickerDelegate?
     var sections: [ItemPickerSection] = []
     var selected: IndexPath?
 
+    let tableView = UITableView(frame: .zero, style: .grouped)
+
     public static func create(title: String, sections: [ItemPickerSection], selected: IndexPath?, delegate: ItemPickerDelegate?) -> ItemPickerViewController {
-        let controller = loadFromStoryboard()
+        let controller = ItemPickerViewController()
         controller.delegate = delegate
         controller.sections = sections
         controller.selected = selected
@@ -61,28 +60,61 @@ public class ItemPickerViewController: UITableViewController {
         return controller
     }
 
-    public override func numberOfSections(in tableView: UITableView) -> Int {
+    public override func loadView() {
+        view = tableView
+    }
+
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.backgroundColor = .named(.backgroundLight)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.registerCell(RightDetailTableViewCell.self)
+        tableView.registerCell(SubtitleTableViewCell.self)
+        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorInset = .zero
+        tableView.tintColor = Brand.shared.primary
+    }
+}
+
+extension ItemPickerViewController: UITableViewDataSource, UITableViewDelegate {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
 
-    public override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section].title
     }
 
-    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].items.count
     }
 
-    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = sections[indexPath.section].items[indexPath.row]
-        let cell: ItemPickerCell = tableView.dequeue(for: indexPath)
-        cell.titleLabel?.text = item.title
-        cell.subtitleLabel?.text = item.subtitle
-        cell.accessoryType = indexPath == selected ? .checkmark : .none
+        let cell: UITableViewCell
+        if let subtitle = item.subtitle, !subtitle.isEmpty {
+            cell = tableView.dequeue(for: indexPath) as SubtitleTableViewCell
+            cell.detailTextLabel?.text = subtitle
+        } else {
+            cell = tableView.dequeue(for: indexPath) as RightDetailTableViewCell
+        }
+        cell.imageView?.image = item.image
+        cell.textLabel?.text = item.title
+        cell.accessibilityTraits.insert(.button)
+        if indexPath == selected {
+            let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 18, height: 18))
+            image.image = .icon(.check, .solid)
+            cell.accessoryView = image
+            cell.accessibilityTraits.insert(.selected)
+        } else {
+            cell.accessoryView = nil
+            cell.accessibilityTraits.remove(.selected)
+        }
         return cell
     }
 
-    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selected = indexPath
         delegate?.itemPicker(self, didSelectRowAt: indexPath)
         tableView.deselectRow(at: indexPath, animated: false)

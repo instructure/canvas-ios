@@ -19,12 +19,9 @@
 import Foundation
 import UIKit
 
-public class SwitchTableViewCell: UITableViewCell {
-    public let toggle = UISwitch()
-    public var onToggleChange: (UISwitch) -> Void = { _ in }
-
+public class SubtitleTableViewCell: UITableViewCell {
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         setup()
     }
 
@@ -34,17 +31,12 @@ public class SwitchTableViewCell: UITableViewCell {
     }
 
     func setup() {
-        toggle.onTintColor = Brand.shared.primary
-        toggle.addTarget(self, action: #selector(toggleChanged(_:)), for: .valueChanged)
-        accessoryView = toggle
         backgroundColor = .named(.backgroundLightest)
+        detailTextLabel?.textColor = .named(.textDark)
+        detailTextLabel?.font = .scaledNamedFont(.medium14)
         directionalLayoutMargins = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
         heightAnchor.constraint(greaterThanOrEqualToConstant: 54).isActive = true
         textLabel?.textColor = .named(.textDarkest)
         textLabel?.font = .scaledNamedFont(.semibold16)
-    }
-
-    @objc func toggleChanged(_ sender: UISwitch) {
-        onToggleChange(sender)
     }
 }

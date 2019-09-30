@@ -55,6 +55,7 @@ open class AppEnvironment {
         database = globalDatabase
         api = URLSessionAPI()
         currentSession = nil
+        userDefaults = nil
         Logger.shared.database = database
     }
 

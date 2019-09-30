@@ -309,8 +309,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
     },
 
     "/profile/settings": { _, _ in
-        let settings = SettingsViewController.controller(CKCanvasAPI.current())
-        return UINavigationController(rootViewController: settings)
+        return ProfileSettingsViewController.create()
     },
 
     "/support/:type": { _, params in

@@ -42,8 +42,9 @@ func rootViewController(_ session: Session) -> UIViewController {
         }
     }
 
-    let selectedTab = UserPreferences.landingPage(session.user.id)
-    tabs.selectedIndex = selectedTab.tabIndex
+    let paths = [ "/", "/calendar", "/to-do", "/notifications", "/conversations" ]
+    tabs.selectedIndex = AppEnvironment.shared.userDefaults?.landingPath
+        .flatMap { paths.firstIndex(of: $0) } ?? 0
     tabs.tabBar.useGlobalNavStyle()
     return tabs
 }

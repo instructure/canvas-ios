@@ -1,9 +1,0 @@
-/* Class = "UILabel"; text = "Allow Notifications in Settings"; ObjectID = "mYw-YB-SVS"; */
-"mYw-YB-SVS.text" = "Caniatáu Hysbysiadau yn eich Gosodiadau";
-
-/* Class = "UILabel"; text = "Enable Push Notifications"; ObjectID = "PMb-wZ-ARX"; */
-"PMb-wZ-ARX.text" = "Galluogi Hysbysiadau Marchnata";
-
-/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "qwG-FB-tzR"; */
-"qwG-FB-tzR.title" = "Gosodiadau";
-

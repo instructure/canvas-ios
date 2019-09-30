@@ -148,7 +148,7 @@ class ProfilePresenterTests: CoreTestCase {
         XCTAssertFalse(presenter.cells.contains(where: { $0.id == "showGrades" }))
         XCTAssertNoThrow(presenter.cells.first(where: { $0.id == "colorOverlay" })?.block(UITableViewCell()))
         presenter.cells.first(where: { $0.id == "settings" })?.block(UITableViewCell())
-        XCTAssertTrue(view.teacherSettingsShown)
+        XCTAssertEqual(view.routedTo, Route.profileSettings)
         presenter.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
         XCTAssertEqual(view.routedTo, Route.developerMenu)
     }
