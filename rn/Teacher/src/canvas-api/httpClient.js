@@ -27,7 +27,8 @@ type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 type Body = null | void | string | Object | FormData | Blob | ArrayBuffer
 
 export function resolveUrl (url: string, config: ApiConfig) {
-  const baseURL = (config.baseURL || getSession().baseURL || '').replace(/\/?$/, '')
+  // FIXME: hardcoded url. MBL-13344
+  const baseURL = (config.baseURL || getSession().baseURL || 'https://canvas.instructure.com').replace(/\/?$/, '')
   const version = config.excludeVersion ? '/' : '/api/v1/'
   return /^\w+:/.test(url) ? url : `${baseURL}${version}${url.replace(/^\//, '')}`
 }
@@ -117,6 +118,7 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
             }
 
             if (!request.status || request.status >= 400) {
+              console.log(request)
               throw new TypeError('Network request failed')
             }
             if (config.transform) {
@@ -126,6 +128,7 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
             resolve(response)
             break
           case 'error':
+            console.log(request)
             throw new TypeError('Network request failed')
           case 'timeout':
             throw new TypeError('Network request timed out')

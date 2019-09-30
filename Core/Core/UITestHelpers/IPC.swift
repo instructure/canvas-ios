@@ -65,17 +65,17 @@ class IPCAppServer: IPCServer {
 }
 
 enum IPCDriverServerMessage {
-    case fail(reason: String)
+    case mockNotFound(reason: String)
 }
 extension IPCDriverServerMessage: Codable {
     private enum CodingKeys: String, CodingKey {
-        case fail
+        case mockNotFound
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let reason = try container.decodeIfPresent(String.self, forKey: .fail) {
-            self = .fail(reason: reason)
+        if let reason = try container.decodeIfPresent(String.self, forKey: .mockNotFound) {
+            self = .mockNotFound(reason: reason)
         } else {
             throw DecodingError.typeMismatch(Self.self, .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(Self.self)"))
         }
@@ -83,8 +83,8 @@ extension IPCDriverServerMessage: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
-        case .fail(let reason):
-            try container.encode(reason, forKey: .fail)
+        case .mockNotFound(let reason):
+            try container.encode(reason, forKey: .mockNotFound)
         }
     }
 }

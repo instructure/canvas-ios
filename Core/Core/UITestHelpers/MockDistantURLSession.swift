@@ -126,7 +126,7 @@ public class MockDistantURLSession: URLSession {
                 for key in MockDistantURLSession.dataMocks.keys {
                     failReason += "  \(key.absoluteString)\n"
                 }
-                UITestHelpers.shared?.send(.fail(reason: failReason))
+                UITestHelpers.shared?.send(.mockNotFound(reason: failReason))
             }
             guard mock?.noCallback != true else { return }
             if let completionHandler = completionHandler {
@@ -214,7 +214,7 @@ public class MockDistantURLSession: URLSession {
                 for key in MockDistantURLSession.downloadMocks.keys {
                     failReason += "  \(key.absoluteString)\n"
                 }
-                UITestHelpers.shared?.send(.fail(reason: failReason))
+                UITestHelpers.shared?.send(.mockNotFound(reason: failReason))
             }
             if let completionHandler = completionHandler {
                 return completionHandler(mock?.url, mock?.response, mock?.error)
@@ -286,7 +286,7 @@ public class MockDistantURLSession: URLSession {
                 for key in MockDistantURLSession.dataMocks.keys {
                     failReason += "  \(key.absoluteString)\n"
                 }
-                UITestHelpers.shared?.send(.fail(reason: failReason))
+                UITestHelpers.shared?.send(.mockNotFound(reason: failReason))
             }
             guard mock?.noCallback != true else { return }
             if let completionHandler = completionHandler {

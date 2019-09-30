@@ -69,6 +69,7 @@ class DiscussionEditTests: CoreUITestCase {
         mockData(ListDiscussionTopicsRequest(context: course1), value: [])
         mockData(ListDiscussionTopicsRequest(context: course1, perPage: nil, include: []), value: [])
         mockEncodableRequest("courses/\(course1.id)/settings", value: ["allow_student_forum_attachments": true])
+        mockEncodableRequest("conversations?include%5B%5D=participant_avatars&per_page=50", value: [String]())
 
         let targetUrl = "https://canvas.s3.bucket.com/bucket/1"
         mockEncodableRequest("users/self/files", value: FileUploadTarget.make(upload_url: URL(string: targetUrl)!))
@@ -91,7 +92,7 @@ class DiscussionEditTests: CoreUITestCase {
         let img = app.images.firstElement
         XCTAssertFalse(img.exists)
         app.find(label: "Upload complete").tapUntil { img.exists }
-        app.find(id: "screen.dismiss").tap()
+        app.swipeDown()
         app.find(id: "attachments.attachment-row.0.remove.btn").tap()
         app.find(label: "Remove").tap()
 

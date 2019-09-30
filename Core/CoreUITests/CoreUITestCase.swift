@@ -43,46 +43,49 @@ open class CoreUITestCase: XCTestCase {
 
     open override func perform(_ run: XCTestRun) {
         guard type(of: self) != abstractTestClass else { return }
+
+        CoreUITestCase.currentTestCase = self
         if ProcessInfo.processInfo.environment["LIST_TESTS_ONLY"] == "YES" {
             print("UI_TEST: \(Bundle(for: type(of: self)).bundleURL.deletingPathExtension().lastPathComponent) \(name)")
         } else {
             super.perform(run)
         }
+        CoreUITestCase.currentTestCase = nil
     }
 
-    open class CoreUITestRun: XCTestCaseRun {
-        var needsRetry = false
-
-        // Don't set this above 1!
-        // There seems to be a bug in how this interacts with XCTest causing too many retries to look like success (!!)
-        var retries = 1
-        override open func recordFailure(withDescription description: String, inFile filePath: String?, atLine lineNumber: Int, expected: Bool) {
-            if needsRetry { return }
-            if retries > 0 {
-                retries -= 1
-                // TODO: collect this information across builds
-                print("WARN: \(description) at \(filePath ?? "<unknown>"):\(lineNumber), will retry with clean launch...")
-                needsRetry = true
-            } else {
-                super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
-            }
-        }
-    }
-
-    @objc var shouldHaltWhenReceivesControl: Bool {
-        return (testRun as? CoreUITestRun)?.needsRetry ?? false
-    }
-
-    override open var testRunClass: AnyClass? { return CoreUITestRun.self }
-
-    open override func invokeTest() {
-        super.invokeTest()
-        if let run = testRun as? CoreUITestRun, run.needsRetry {
-            run.needsRetry = false
-            app.terminate()
-            invokeTest()
-        }
-    }
+//    open class CoreUITestRun: XCTestCaseRun {
+//        var needsRetry = false
+//
+//        // Don't set this above 1!
+//        // There seems to be a bug in how this interacts with XCTest causing too many retries to look like success (!!)
+//        var retries = 1
+//        override open func recordFailure(withDescription description: String, inFile filePath: String?, atLine lineNumber: Int, expected: Bool) {
+//            if needsRetry { return }
+//            if retries > 0 {
+//                retries -= 1
+//                // TODO: collect this information across builds
+//                print("WARN: \(description) at \(filePath ?? "<unknown>"):\(lineNumber), will retry with clean launch...")
+//                needsRetry = true
+//            } else {
+//                super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
+//            }
+//        }
+//    }
+//
+//    @objc var shouldHaltWhenReceivesControl: Bool {
+//        return (testRun as? CoreUITestRun)?.needsRetry ?? false
+//    }
+//
+//    override open var testRunClass: AnyClass? { return CoreUITestRun.self }
+//
+//    open override func invokeTest() {
+//        super.invokeTest()
+//        if let run = testRun as? CoreUITestRun, run.needsRetry {
+//            run.needsRetry = false
+//            app.terminate()
+//            invokeTest()
+//        }
+//    }
 
     private static var firstRun = true
     open override func setUp() {
@@ -116,11 +119,18 @@ open class CoreUITestCase: XCTestCase {
         super.tearDown()
     }
 
+    var failTestOnMissingMock = true
+    static var currentTestCase: CoreUITestCase?
+
     class ServerDelegate: IPCDriverServerDelegate {
         public func handler(_ message: IPCDriverServerMessage) -> Data? {
             switch message {
-            case .fail(let reason):
-                XCTFail(reason)
+            case .mockNotFound(let reason):
+                if currentTestCase?.failTestOnMissingMock == true {
+                    XCTFail(reason)
+                } else {
+                    print("missing mock (allowed): \(reason)")
+                }
             }
             // unreachable
             return nil

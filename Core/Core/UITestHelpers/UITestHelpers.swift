@@ -188,7 +188,7 @@ public class UITestHelpers {
     }
 
     func logIn(_ entry: LoginSession) {
-        guard let loginDelegate = appDelegate as? LoginDelegate else { return }
+        guard let loginDelegate = appDelegate as? LoginDelegate else { fatalError() }
         loginDelegate.userDidLogin(session: entry)
     }
 
