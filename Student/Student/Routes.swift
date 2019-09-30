@@ -115,8 +115,6 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
     // No native support, fall back to web
     // "/:context/:contextID/collaborations": { url, _ in },
 
-    "/courses/:courseID/conferences": nil,
-
     "/:context/:contextID/discussions": nil,
     "/:context/:contextID/discussion_topics": nil,
 

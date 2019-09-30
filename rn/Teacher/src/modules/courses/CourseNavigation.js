@@ -112,7 +112,7 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
         if (tab.id === 'pages') {
           const url = `/courses/${this.props.courseID}/pages`
           this.props.navigator.show(url)
-        } else if (tab.id === 'collaborations') {
+        } else if (tab.id === 'collaborations' || tab.id === 'conferences') {
           this.props.navigator.show(tab.full_url)
         } else if (isTeacher() || tab.id === 'syllabus') {
           this.props.navigator.show(tab.html_url)
@@ -135,12 +135,6 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
             url += '-fromHomeTab'
           }
           this.props.navigator.show(url, undefined, { color: processColor(this.props.color) })
-        } else if (tab.id === 'conferences') {
-          if (ExperimentalFeature.conferences.isEnabled) {
-            this.props.navigator.show(tab.html_url, undefined, { color: this.props.color, course: this.props.course })
-          } else {
-            this.props.navigator.show(`/native-route${tab.html_url}`)
-          }
         } else {
           const url = `/native-route-master${tab.html_url}`
           this.props.navigator.show(url)
