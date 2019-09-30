@@ -51,17 +51,13 @@ open class SplitViewController: UISplitViewController {
 }
 
 extension SplitViewController: UISplitViewControllerDelegate {
-    public func targetDisplayModeForAction(in svc: UISplitViewController) -> UISplitViewController.DisplayMode {
-        if svc.displayMode == .primaryOverlay || svc.displayMode == .primaryHidden {
-            if let nav = svc.viewControllers.last as? UINavigationController {
-                nav.topViewController?.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem
+    public func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
+        if svc.viewControllers.count == 2 {
+            let top = (svc.viewControllers.last as? UINavigationController)?.topViewController
+            top?.navigationItem.leftItemsSupplementBackButton = true
+            if top?.isKind(of: EmptyViewController.self) == false {
+                top?.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(displayMode)
             }
-            return .allVisible;
-        } else {
-            if let nav = svc.viewControllers.last as? UINavigationController {
-                nav.topViewController?.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem
-            }
-            return .primaryHidden;
         }
     }
 
@@ -72,7 +68,7 @@ extension SplitViewController: UISplitViewControllerDelegate {
 }
 
 extension UISplitViewController {
-    @objc open var prettyDisplayModeButtonItem: UIBarButtonItem {
+    @objc open func prettyDisplayModeButtonItem(_ displayMode: DisplayMode) -> UIBarButtonItem {
         let defaultButton = self.displayModeButtonItem
         let collapse = displayMode == .primaryOverlay || displayMode == .primaryHidden
         let icon: UIImage = collapse ? .icon(.collapse) : .icon(.expand)
