@@ -759,9 +759,6 @@
 /* permission denied button a11y hint */
 "User has denied record permission" = "Użytkownik odmówił pozwolenia na nagranie";
 
-/* Error message if we can't pull the avatar image */
-"User has no valid avatar image url" = "Użytkownik nie posiada prawidłowego adresu URL do obrazu Awatara";
-
 /* button for viewing quiz results */
 "View Results" = "Wyświetl wyniki";
 

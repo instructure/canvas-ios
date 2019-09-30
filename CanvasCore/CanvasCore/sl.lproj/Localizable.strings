@@ -759,9 +759,6 @@
 /* permission denied button a11y hint */
 "User has denied record permission" = "Uporabnik je zavrnil dovoljenje za snemanje.";
 
-/* Error message if we can't pull the avatar image */
-"User has no valid avatar image url" = "Uporabnik nima veljavnega naslova URL za sliko avatarja.";
-
 /* button for viewing quiz results */
 "View Results" = "Ogled rezultatov";
 

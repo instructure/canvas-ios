@@ -759,9 +759,6 @@
 /* permission denied button a11y hint */
 "User has denied record permission" = "Käyttäjä on kieltänyt nauhoituksen käyttöoikeudet";
 
-/* Error message if we can't pull the avatar image */
-"User has no valid avatar image url" = "Käyttäjällä ei ole voimassa olevaa avatar-kuvan url-linkkiä";
-
 /* button for viewing quiz results */
 "View Results" = "Näytä tulokset";
 
