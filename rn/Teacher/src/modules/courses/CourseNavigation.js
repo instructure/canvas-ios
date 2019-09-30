@@ -40,7 +40,6 @@ import currentWindowTraits from '../../utils/windowTraits'
 import { isTeacher, isStudent } from '../app'
 import * as LTITools from '../../common/LTITools'
 import TabsList from '../tabs/TabsList'
-import ExperimentalFeature from '../../common/ExperimentalFeature'
 import { logEvent } from '@common/CanvasAnalytics'
 import showColorOverlayForCourse from '../../common/show-color-overlay-for-course'
 

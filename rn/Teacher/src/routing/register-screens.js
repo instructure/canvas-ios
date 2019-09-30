@@ -79,7 +79,6 @@ import ExperimentalFeature from '../common/ExperimentalFeature'
 import RatingRequest from '../modules/developer-menu/RatingRequest'
 import GradesList from '../modules/grades/GradesList'
 import PageViewEvents from '../modules/developer-menu/PageViewEvents'
-import ConferenceList from '../modules/courses/conferences/ConferenceList'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
