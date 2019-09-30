@@ -77,6 +77,7 @@ public struct GetCourseRequest: APIRequestable {
         case syllabusBody = "syllabus_body"
         case term
         case totalScores = "total_scores"
+        case observedUsers = "observed_users"
     }
 
     let courseID: String

@@ -39,6 +39,9 @@
 		7D6C8C6B22EA0C5900E5ADD8 /* APIActivityFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C6A22EA0C5900E5ADD8 /* APIActivityFixture.swift */; };
 		7D6C8C6F22EFA29F00E5ADD8 /* APITodoFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C6E22EFA29F00E5ADD8 /* APITodoFixture.swift */; };
 		7D6C8C7A22F351F400E5ADD8 /* ActAsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C7922F351F400E5ADD8 /* ActAsUser.swift */; };
+		7D70DE9C233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE9B233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift */; };
+		7D70DE9E233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE9D233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift */; };
+		7D70DEA0233EACF200F5C3D4 /* CommunicationChannelFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE9F233EACF200F5C3D4 /* CommunicationChannelFixture.swift */; };
 		7D903C0A22BC1329009D9E9E /* LoginStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0922BC1329009D9E9E /* LoginStart.swift */; };
 		7D903C0C22BC132E009D9E9E /* LoginWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0B22BC132E009D9E9E /* LoginWeb.swift */; };
 		7D903C0E22BC133B009D9E9E /* LoginFindSchool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D903C0D22BC133B009D9E9E /* LoginFindSchool.swift */; };
@@ -126,6 +129,9 @@
 		7D6C8C6A22EA0C5900E5ADD8 /* APIActivityFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIActivityFixture.swift; sourceTree = "<group>"; };
 		7D6C8C6E22EFA29F00E5ADD8 /* APITodoFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITodoFixture.swift; sourceTree = "<group>"; };
 		7D6C8C7922F351F400E5ADD8 /* ActAsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUser.swift; sourceTree = "<group>"; };
+		7D70DE9B233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommunicationChannelFixture.swift; sourceTree = "<group>"; };
+		7D70DE9D233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINotificationPreferencesFixture.swift; sourceTree = "<group>"; };
+		7D70DE9F233EACF200F5C3D4 /* CommunicationChannelFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationChannelFixture.swift; sourceTree = "<group>"; };
 		7D903C0922BC1329009D9E9E /* LoginStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStart.swift; sourceTree = "<group>"; };
 		7D903C0B22BC132E009D9E9E /* LoginWeb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWeb.swift; sourceTree = "<group>"; };
 		7D903C0D22BC133B009D9E9E /* LoginFindSchool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchool.swift; sourceTree = "<group>"; };
@@ -258,14 +264,14 @@
 		3B0CEB9121504B6F00D07CFA /* API */ = {
 			isa = PBXGroup;
 			children = (
-				3BA9FF762332B06900196A06 /* APIGradingPeriodFixture.swift */,
-				3B6043A0232AAD1A00757B93 /* APIAssignmentGroupFixture.swift */,
 				7D148646230B49DC003944A2 /* APIAccountNotificationFixture.swift */,
 				7DB0A1D321C1C90D009ABB40 /* APIAccountResultsFixture.swift */,
 				7D6C8C6A22EA0C5900E5ADD8 /* APIActivityFixture.swift */,
 				B1A32BDD2159A1D70071B41E /* APIAssignmentFixture.swift */,
+				3B6043A0232AAD1A00757B93 /* APIAssignmentGroupFixture.swift */,
 				7D63F793215D8FC100151E49 /* APIBrandVariablesFixture.swift */,
 				3B635B38225CE613001F353D /* APICalendarEventFixture.swift */,
+				7D70DE9B233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift */,
 				3B0CEBA221504C2500D07CFA /* APICourseFixture.swift */,
 				7DC4A556222EF9A800FA03DC /* APIDiscussionEntryFixture.swift */,
 				3BD364AC225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift */,
@@ -273,10 +279,12 @@
 				3BAA4178218A3ACE00701E03 /* APIEnrollmentFixture.swift */,
 				B150C6372298D6F20096D58C /* APIExternalToolFixture.swift */,
 				9F4B53AD218100BC0056A557 /* APIFileFixture.swift */,
+				3BA9FF762332B06900196A06 /* APIGradingPeriodFixture.swift */,
 				3B0CEBA121504C2500D07CFA /* APIGroupFixture.swift */,
 				7DBED018232FE3B400392F3C /* APIHelpLinks.swift */,
 				9F6878B222396A7900E559CE /* APIMediaCommentFixture.swift */,
 				B15CA281221DFF240014FB02 /* APIModuleFixture.swift */,
+				7D70DE9D233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift */,
 				B141ABE3231EE16F00E73D84 /* APIOAuthTokenFixture.swift */,
 				EE424B3722E8E72D00D083EE /* APIPageFixture.swift */,
 				9F1CEA5A22400A1D000BB98F /* APIPermissions.swift */,
@@ -298,6 +306,7 @@
 				3B6043A9232AB93900757B93 /* AssignmentGroupsFixture.swift */,
 				3B635B34225CDFB1001F353D /* CalendarEventFixture.swift */,
 				B19792F421767B830000369C /* ColorFixture.swift */,
+				7D70DE9F233EACF200F5C3D4 /* CommunicationChannelFixture.swift */,
 				3B032D18215037CA00B570F7 /* CourseFixture.swift */,
 				7D37BE8E21C8398D0063FAAC /* DiscussionEntryFixture.swift */,
 				3BAA4176218A361100701E03 /* EnrollmentFixture.swift */,
@@ -525,6 +534,7 @@
 				B1911CEF21C84B1000F42F91 /* MockNotificationManager.swift in Sources */,
 				3B84C392218BB102005946BA /* DateExtensions.swift in Sources */,
 				3B6386A72264F781002DEE72 /* APIRubricFixture.swift in Sources */,
+				7D70DE9E233EAB5500F5C3D4 /* APINotificationPreferencesFixture.swift in Sources */,
 				B1A32BE02159A28D0071B41E /* APISubmissionFixture.swift in Sources */,
 				B150C6382298D6F20096D58C /* APIExternalToolFixture.swift in Sources */,
 				3B0CEBA321504C2500D07CFA /* APITabFixture.swift in Sources */,
@@ -551,6 +561,7 @@
 				7D903C0A22BC1329009D9E9E /* LoginStart.swift in Sources */,
 				3B6043AA232AB93900757B93 /* AssignmentGroupsFixture.swift in Sources */,
 				9F1CEA5B22400A1D000BB98F /* APIPermissions.swift in Sources */,
+				7D70DE9C233EAB3500F5C3D4 /* APICommunicationChannelFixture.swift in Sources */,
 				B16F0371215BD5F10011E952 /* TestRouter.swift in Sources */,
 				B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */,
 				7DAC288622B1AE1700C0B692 /* ElementWrapper.swift in Sources */,
@@ -570,6 +581,7 @@
 				3B0CEB7E2150445100D07CFA /* TabFixture.swift in Sources */,
 				7DB0A1CE21C16D5A009ABB40 /* KeychainEntryFixture.swift in Sources */,
 				9F62EDD42326C5B900EA9F79 /* SearchRecipientFixture.swift in Sources */,
+				7D70DEA0233EACF200F5C3D4 /* CommunicationChannelFixture.swift in Sources */,
 				B19792F521767B830000369C /* ColorFixture.swift in Sources */,
 				B119B4BF230720FF00A74062 /* FeatureFlagFixture.swift in Sources */,
 				B15CA282221DFF240014FB02 /* APIModuleFixture.swift in Sources */,

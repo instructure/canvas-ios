@@ -135,7 +135,7 @@ class CalendarEventDetailViewController: UIViewController {
         locationAddressLabel.text = event?.locationAddress
         
         if let description = event?.htmlDescription {
-            details.load(html: description, title: event?.title, baseURL: nil) { [weak self] url in
+            details.load(html: description, title: nil, baseURL: nil) { [weak self] url in
                 guard let me = self else { return }
                 me.route(me, url)
             }
@@ -148,7 +148,7 @@ class CalendarEventDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refresher.refresh(false)
+        refresher.refresh(true)
     }
     
     override func viewDidLoad() {

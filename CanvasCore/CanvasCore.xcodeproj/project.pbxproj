@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C195F52201948DB003B0D7D /* HelmScreenConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C195F51201948DB003B0D7D /* HelmScreenConfig.swift */; };
-		2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */; };
-		2C34211D1F7409CF00D8E158 /* components.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C34211A1F74099400D8E158 /* components.plist */; };
 		2C4EBB3B204DFC820085D00E /* UITabBarController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */; };
 		2C4FAD3220487DD6000551EB /* UINavigationController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */; };
 		2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */; };
@@ -62,11 +60,7 @@
 		49301FE81F901854006BD777 /* NotificationKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FD71F901853006BD777 /* NotificationKitController.swift */; };
 		49301FEA1F901854006BD777 /* SimpleErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FDA1F901853006BD777 /* SimpleErrorExtension.swift */; };
 		49301FEB1F901854006BD777 /* SimpleAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FDB1F901853006BD777 /* SimpleAlertExtension.swift */; };
-		49301FEC1F901854006BD777 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49301FDD1F901853006BD777 /* Main.storyboard */; };
 		49301FED1F901854006BD777 /* RemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FDF1F901853006BD777 /* RemoteService.swift */; };
-		49301FEE1F901854006BD777 /* CommunicationChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FE11F901853006BD777 /* CommunicationChannelsViewController.swift */; };
-		49301FEF1F901854006BD777 /* NotificationPreferencesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FE21F901853006BD777 /* NotificationPreferencesTableViewCell.swift */; };
-		49301FF01F901854006BD777 /* NotificationPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FE31F901853006BD777 /* NotificationPreferencesViewController.swift */; };
 		49301FF11F901854006BD777 /* CommunicationChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FE51F901853006BD777 /* CommunicationChannel.swift */; };
 		49301FF21F901854006BD777 /* PushState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FE61F901853006BD777 /* PushState.swift */; };
 		49301FF31F901854006BD777 /* NotificationPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FE71F901853006BD777 /* NotificationPreference.swift */; };
@@ -486,8 +480,6 @@
 		0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		210CE9F7FA304793F1B02F7C /* Pods-defaults-CanvasCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.debug.xcconfig"; sourceTree = "<group>"; };
 		2C195F51201948DB003B0D7D /* HelmScreenConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmScreenConfig.swift; sourceTree = "<group>"; };
-		2C34211A1F74099400D8E158 /* components.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = components.plist; sourceTree = "<group>"; };
-		2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSSAttributionViewController.swift; sourceTree = "<group>"; };
 		2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Core.swift"; sourceTree = "<group>"; };
 		2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Core.swift"; sourceTree = "<group>"; };
 		2C68DCF22086786E00A1EBFA /* UIPickerView+Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPickerView+Quiz.swift"; sourceTree = "<group>"; };
@@ -559,11 +551,7 @@
 		49301FD71F901853006BD777 /* NotificationKitController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKitController.swift; sourceTree = "<group>"; };
 		49301FDA1F901853006BD777 /* SimpleErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleErrorExtension.swift; sourceTree = "<group>"; };
 		49301FDB1F901853006BD777 /* SimpleAlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAlertExtension.swift; sourceTree = "<group>"; };
-		49301FDD1F901853006BD777 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		49301FDF1F901853006BD777 /* RemoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteService.swift; sourceTree = "<group>"; };
-		49301FE11F901853006BD777 /* CommunicationChannelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationChannelsViewController.swift; sourceTree = "<group>"; };
-		49301FE21F901853006BD777 /* NotificationPreferencesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesTableViewCell.swift; sourceTree = "<group>"; };
-		49301FE31F901853006BD777 /* NotificationPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesViewController.swift; sourceTree = "<group>"; };
 		49301FE51F901853006BD777 /* CommunicationChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationChannel.swift; sourceTree = "<group>"; };
 		49301FE61F901853006BD777 /* PushState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushState.swift; sourceTree = "<group>"; };
 		49301FE71F901853006BD777 /* NotificationPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPreference.swift; sourceTree = "<group>"; };
@@ -1120,15 +1108,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C3421191F74093000D8E158 /* OSSAttribution */ = {
-			isa = PBXGroup;
-			children = (
-				2C34211A1F74099400D8E158 /* components.plist */,
-				2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */,
-			);
-			path = OSSAttribution;
-			sourceTree = "<group>";
-		};
 		2C60495C1F72B9CE00252BC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1190,7 +1169,6 @@
 				493BEFA81FB14560006E8EFC /* LTI */,
 				4961F5441F8FAEE70093EC86 /* Media */,
 				49CE96C11F8FFC0B00121A43 /* Modules */,
-				2C3421191F74093000D8E158 /* OSSAttribution */,
 				49CE96A61F8FF8FE00121A43 /* Pages */,
 				494AE0AF1F843B1F001A8F31 /* PDF */,
 				49CE97791F900CBD00121A43 /* People */,
@@ -1313,8 +1291,6 @@
 				49301FE41F901853006BD777 /* Model */,
 				49301FD71F901853006BD777 /* NotificationKitController.swift */,
 				49301FDE1F901853006BD777 /* Services */,
-				49301FDC1F901853006BD777 /* View */,
-				49301FE01F901853006BD777 /* View Controller */,
 			);
 			path = "Push Notifications";
 			sourceTree = "<group>";
@@ -1328,30 +1304,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		49301FDC1F901853006BD777 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				49301FDD1F901853006BD777 /* Main.storyboard */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		49301FDE1F901853006BD777 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				49301FDF1F901853006BD777 /* RemoteService.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		49301FE01F901853006BD777 /* View Controller */ = {
-			isa = PBXGroup;
-			children = (
-				49301FE11F901853006BD777 /* CommunicationChannelsViewController.swift */,
-				49301FE21F901853006BD777 /* NotificationPreferencesTableViewCell.swift */,
-				49301FE31F901853006BD777 /* NotificationPreferencesViewController.swift */,
-			);
-			path = "View Controller";
 			sourceTree = "<group>";
 		};
 		49301FE41F901853006BD777 /* Model */ = {
@@ -2736,7 +2694,6 @@
 				9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */,
 				3BA8BE9B1FE2ED85003EC4FD /* SubmissionConfirmationViewController.xib in Resources */,
 				49CE96641F8FF41B00121A43 /* AnswersFinalViewController.xib in Resources */,
-				2C34211D1F7409CF00D8E158 /* components.plist in Resources */,
 				49CE96591F8FF41B00121A43 /* TimedQuizViewController.strings in Resources */,
 				49CE96751F8FF41B00121A43 /* ShortAnswerCell.xib in Resources */,
 				9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */,
@@ -2764,7 +2721,6 @@
 				49CE96731F8FF41B00121A43 /* TextAnswerCell.xib in Resources */,
 				4961F6251F8FB7010093EC86 /* CustomizeEnrollmentViewController.xib in Resources */,
 				4961F5411F8FAD9A0093EC86 /* WhizzyWigTemplate.html in Resources */,
-				49301FEC1F901854006BD777 /* Main.storyboard in Resources */,
 				49CE96671F8FF41B00121A43 /* QuizDetailCell.xib in Resources */,
 				49698D771F8FA2D000E38B78 /* Assets.xcassets in Resources */,
 				49CE96571F8FF41B00121A43 /* Quizzes.xcassets in Resources */,
@@ -2972,7 +2928,6 @@
 				497CA76F1F82D19600501613 /* Helm.swift in Sources */,
 				4961F6361F8FB70D0093EC86 /* GradingPeriodCollection.swift in Sources */,
 				49698D7F1F8FA2D000E38B78 /* DatePickerViewController.swift in Sources */,
-				49301FF01F901854006BD777 /* NotificationPreferencesViewController.swift in Sources */,
 				49CE96881F8FF41B00121A43 /* SubmissionQuestionsController.swift in Sources */,
 				493020461F902364006BD777 /* NSError+Categorization.swift in Sources */,
 				49CE96601F8FF41B00121A43 /* AnswersFinalViewController.swift in Sources */,
@@ -2986,7 +2941,6 @@
 				493020561F902364006BD777 /* NSURLSession+SoLazy.swift in Sources */,
 				49CE96BF1F8FF94B00121A43 /* Page+Network.swift in Sources */,
 				7D52D8A022FCC7FD00684932 /* Graphic.swift in Sources */,
-				49301FEF1F901854006BD777 /* NotificationPreferencesTableViewCell.swift in Sources */,
 				49CE96DA1F8FFC4400121A43 /* ModuleItem+Edits.swift in Sources */,
 				4961F5E81F8FB3FF0093EC86 /* SoRefreshing.xcdatamodeld in Sources */,
 				B1ED11982044803400C3C580 /* CanvasWebViewContainer.m in Sources */,
@@ -3034,7 +2988,6 @@
 				4961F5A21F8FB2A10093EC86 /* UIColor+Toast.swift in Sources */,
 				49CE96941F8FF41B00121A43 /* Question.swift in Sources */,
 				3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */,
-				2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */,
 				4961F67D1F8FB9620093EC86 /* File+Details.swift in Sources */,
 				49CE97A11F900D0000121A43 /* PandatarBuilderViewController.swift in Sources */,
 				B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */,
@@ -3176,7 +3129,6 @@
 				4961F6391F8FB7110093EC86 /* Group.swift in Sources */,
 				49CE97A61F900D0000121A43 /* BackdropFile.swift in Sources */,
 				2CAF17801F7AF61100EA2742 /* UIFont+Core.swift in Sources */,
-				49301FEE1F901854006BD777 /* CommunicationChannelsViewController.swift in Sources */,
 				4961F5541F8FAF280093EC86 /* AudioRecorderView.swift in Sources */,
 				49CE96981F8FF41B00121A43 /* SubmissionAnswer.swift in Sources */,
 				49CE97991F900D0000121A43 /* User+Details.swift in Sources */,

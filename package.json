@@ -8,6 +8,7 @@
     "coverage": "./scripts/coverage/coverage.js",
     "danger": "danger",
     "export-translations": "./scripts/translations/export.js",
+    "graphql-schema": "./scripts/get-graphql-schema.js",
     "import-translations": "./scripts/translations/import.js",
     "svg2pdf": "./scripts/svg2pdf.js",
     "test": "./scripts/coverage/coverage.js --test",

@@ -51,7 +51,7 @@ extension URL {
         return components.url ?? self
     }
 
-    public func move(to destination: URL, override: Bool = true) throws {
+    public func move(to destination: URL, override: Bool = true, copy: Bool = false) throws {
         let manager = FileManager.default
         if destination.hasDirectoryPath {
             try manager.createDirectory(at: destination, withIntermediateDirectories: true, attributes: nil)
@@ -61,7 +61,15 @@ extension URL {
         if override && manager.fileExists(atPath: destination.path) {
             try manager.removeItem(at: destination)
         }
-        try manager.moveItem(at: self, to: destination)
+        if copy {
+            try manager.copyItem(at: self, to: destination)
+        } else {
+            try manager.moveItem(at: self, to: destination)
+        }
+    }
+
+    public func copy(to destination: URL, override: Bool = true) throws {
+        try move(to: destination, override: override, copy: true)
     }
 
     public var withCanonicalQueryParams: URL? {

@@ -759,9 +759,6 @@
 /* permission denied button a11y hint */
 "User has denied record permission" = "ユーザーが録音許可のリクエストを拒否しました";
 
-/* Error message if we can't pull the avatar image */
-"User has no valid avatar image url" = "ユーザーは有効なアバターの画像url を持っていません";
-
 /* button for viewing quiz results */
 "View Results" = "結果を表示";
 

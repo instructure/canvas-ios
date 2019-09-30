@@ -18,15 +18,9 @@
 #
 
 # fail if any commands fails
-# set -e
+set -e -o pipefail
 # debug log
 # set -x
-
-printHelp() {
-	echo "$0 <command>*"
-	echo "    fix - fix lint"
-	echo "    (* optional)"
-}
 
 LINT_CONFIG_FILE_PATH="$(pwd .swiftlint.yml)/.swiftlint.yml"
 
@@ -44,7 +38,6 @@ if [ "$#" -eq 1 ]; then
 	
 fi
 
-
 declare -a names=("core" "student" "teacher" "parent")
 declare -a paths=("Core" "Student" "rn/Teacher/ios" "Parent")
 arraylength=${#paths[@]}
@@ -56,6 +49,6 @@ for (( i=0; i<${arraylength}; i++ ));
 do
 	echo "[${names[$i]}]"
 	pushd ${paths[$i]} > /dev/null 2>&1
-	swiftlint ${FIX} --config ${LINT_CONFIG_FILE_PATH} ${STRICT}  # > /dev/null 2>&1
+	swiftlint ${FIX} --config ${LINT_CONFIG_FILE_PATH} ${STRICT}  #> /dev/null 2>&1
 	popd > /dev/null 2>&1
 done

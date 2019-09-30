@@ -759,9 +759,6 @@
 /* permission denied button a11y hint */
 "User has denied record permission" = "Kua whakakahore te whakāetanga rekoata a te Kaiwhakamahi";
 
-/* Error message if we can't pull the avatar image */
-"User has no valid avatar image url" = "Kāore he whaimana Kaiwhakamahi avatar āhua url ";
-
 /* button for viewing quiz results */
 "View Results" = "Tirohia Ngā Hua";
 

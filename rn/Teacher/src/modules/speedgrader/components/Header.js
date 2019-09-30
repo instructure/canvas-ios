@@ -100,30 +100,29 @@ export class Header extends Component<HeaderProps, State> {
 
     return (
       <View style={styles.profileContainer}>
-        <View style={styles.innerRowContainer}>
-          <TouchableHighlight
-            onPress={action}
-            underlayColor='white'
-            testID={testID}
-          >
-            <View style={styles.innerRowContainer}>
-              <View style={styles.avatar}>
-                <Avatar
-                  key={sub.userID}
-                  avatarURL={avatarURL}
-                  userName={name}
-                />
-              </View>
-              <View style={styles.nameContainer}>
-                <Text style={styles.name} accessibilityTraits='header'>{name}</Text>
-                <SubmissionStatusLabel
-                  status={sub.status}
-                  onlineSubmissionType={onlineSubmissionType}
-                />
-              </View>
+        <TouchableHighlight
+          style={styles.innerRowContainer}
+          onPress={action}
+          underlayColor='white'
+          testID={testID}
+        >
+          <View style={styles.innerRowContainer}>
+            <View style={styles.avatar}>
+              <Avatar
+                key={sub.userID}
+                avatarURL={avatarURL}
+                userName={name}
+              />
             </View>
-          </TouchableHighlight>
-        </View>
+            <View style={styles.nameContainer}>
+              <Text style={styles.name} accessibilityTraits='header' numberOfLines={1}>{name}</Text>
+              <SubmissionStatusLabel
+                status={sub.status}
+                onlineSubmissionType={onlineSubmissionType}
+              />
+            </View>
+          </View>
+        </TouchableHighlight>
         {this.props.newGradebookEnabled && this.renderEyeBall()}
         {this.renderDoneButton()}
       </View>
@@ -175,6 +174,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     marginLeft: 12,
+    flex: 1,
   },
   name: {
     fontSize: 16,

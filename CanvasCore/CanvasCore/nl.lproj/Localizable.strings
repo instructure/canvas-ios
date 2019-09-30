@@ -759,9 +759,6 @@
 /* permission denied button a11y hint */
 "User has denied record permission" = "Gebruiker heeft toestemming om op te nemen geweigerd";
 
-/* Error message if we can't pull the avatar image */
-"User has no valid avatar image url" = "Gebruiker heeft geen geldige avatar afbeelding url";
-
 /* button for viewing quiz results */
 "View Results" = "Resultaten weergeven";
 

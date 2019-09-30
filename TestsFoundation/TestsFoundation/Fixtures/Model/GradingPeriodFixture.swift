@@ -22,8 +22,8 @@ import Foundation
 
 extension GradingPeriod {
     @discardableResult
-    public static func make(from api: APIGradingPeriod = .make(), in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext) -> GradingPeriod {
-        let model = GradingPeriod.save(api, in: context)
+    public static func make(from api: APIGradingPeriod = .make(), courseID: String, in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext) -> GradingPeriod {
+        let model = GradingPeriod.save(api, courseID: courseID, in: context)
         try! context.save()
         return model
     }

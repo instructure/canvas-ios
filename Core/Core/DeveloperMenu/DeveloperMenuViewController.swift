@@ -20,7 +20,8 @@ import UIKit
 
 public class DeveloperMenuViewController: UIViewController {
 
-    enum MenuOptions: String, CaseIterable {
+    enum MenuOptions: Int, CaseIterable {
+        case enableAllExperimentalFeatures
         case crash
         case clearStorage
 //        case logs
@@ -33,6 +34,8 @@ public class DeveloperMenuViewController: UIViewController {
                 return "Clear local cache"
 //            case .logs:
 //                return "Logs"
+            case .enableAllExperimentalFeatures:
+                return "Enable all experimental features"
             }
         }
     }
@@ -54,7 +57,8 @@ public class DeveloperMenuViewController: UIViewController {
         title = "Developer Menu"
         addDismissBarButton(.done, side: .right)
 
-        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView?.register(SwitchTableViewCell.self, forCellReuseIdentifier: String(describing: SwitchTableViewCell.self))
+        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
         tableView?.delegate = self
         tableView?.dataSource = self
 
@@ -89,7 +93,19 @@ public class DeveloperMenuViewController: UIViewController {
 
 extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let menuItem = MenuOptions(rawValue: indexPath.row) else { fatalError("invalid menu item") }
+
+        var cell: UITableViewCell
+        switch menuItem {
+        case .enableAllExperimentalFeatures:
+            let toggleCell = tableView.dequeue(for: indexPath) as SwitchTableViewCell
+            toggleCell.toggle.addTarget(self, action: #selector(actionToggleExperimentalFeatures(_:)), for: .valueChanged)
+            toggleCell.toggle.isOn = ExperimentalFeature.allEnabled
+            cell = toggleCell
+        case .clearStorage, .crash:
+            cell = tableView.dequeue(for: indexPath) as UITableViewCell
+        }
+
         cell.textLabel?.text = MenuOptions.allCases[indexPath.row].title()
         return cell
     }
@@ -108,6 +124,12 @@ extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegat
             UserDefaults.standard.synchronize()
 //        case .logs:
 //            shareLogs()
+        case .enableAllExperimentalFeatures: break
         }
+    }
+
+    @objc
+    func actionToggleExperimentalFeatures(_ sender: UISwitch) {
+        ExperimentalFeature.allEnabled = sender.isOn
     }
 }

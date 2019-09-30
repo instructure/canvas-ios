@@ -26,11 +26,16 @@ class GetAssignmentGroupUseCaseTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        useCase = GetAssignmentGroups(courseID: courseID)
+        useCase = GetAssignmentGroups(courseID: courseID, gradingPeriodID: nil)
     }
 
     func testCacheKey() {
         XCTAssertEqual(useCase.cacheKey, "get-assignmentGroup-\(courseID)")
+    }
+
+    func testCacheKeyWithGradingPeriod() {
+        useCase = GetAssignmentGroups(courseID: courseID, gradingPeriodID: "1")
+        XCTAssertEqual(useCase.cacheKey, "get-assignmentGroup-\(courseID)-1")
     }
 
     func testScope() {

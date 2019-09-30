@@ -759,9 +759,6 @@
 /* permission denied button a11y hint */
 "User has denied record permission" = "使用者已拒絕錄製許可請求";
 
-/* Error message if we can't pull the avatar image */
-"User has no valid avatar image url" = "使用者使用了無效的頭像圖片 url";
-
 /* button for viewing quiz results */
 "View Results" = "檢視答案";
 

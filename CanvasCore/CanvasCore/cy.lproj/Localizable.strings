@@ -759,9 +759,6 @@
 /* permission denied button a11y hint */
 "User has denied record permission" = "Defnyddiwr wedi gwrthod hawl i recordio";
 
-/* Error message if we can't pull the avatar image */
-"User has no valid avatar image url" = "Does gan y defnyddiwr ddim URL delwedd avatar dilys";
-
 /* button for viewing quiz results */
 "View Results" = "Gweld Canlyniadau";
 

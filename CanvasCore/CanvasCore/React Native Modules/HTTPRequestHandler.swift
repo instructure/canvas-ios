@@ -24,6 +24,9 @@ public class HTTPRequestHandler: NSObject {
     @objc public static func sendRequest(_ request: URLRequest, withDelegate delegate: RCTURLRequestDelegate) -> NSObject {
         let token = NSObject()
         AppEnvironment.shared.api.makeRequest(request) { data, response, error in
+            if let total = request.httpBody?.count {
+                delegate.urlRequest(token, didSendDataWithProgress: Int64(total))
+            }
             if let response = response {
                 delegate.urlRequest(token, didReceive: response)
             }

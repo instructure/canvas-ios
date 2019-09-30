@@ -23,6 +23,7 @@ public enum ErrorReportType: String {
 }
 
 public class ErrorReportViewController: UIViewController {
+    @IBOutlet weak var backgroundColorView: UIView?
     @IBOutlet weak var commentsField: UITextView?
     weak var commentsMinHeight: NSLayoutConstraint?
     @IBOutlet weak var commentsPlaceholder: UILabel?
@@ -93,6 +94,8 @@ public class ErrorReportViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Send", bundle: .core, comment: ""), style: .done, target: self, action: #selector(send))
         navigationItem.rightBarButtonItem?.isEnabled = false
 
+        backgroundColorView?.backgroundColor = .named(.backgroundLightest)
+
         emailField?.textAlignment = view.effectiveUserInterfaceLayoutDirection == .rightToLeft ? .left : .right
         emailLabel?.text = NSLocalizedString("Your Email", bundle: .core, comment: "")
         if let email = AppEnvironment.shared.currentSession?.userEmail, !email.isEmpty {
@@ -117,6 +120,7 @@ public class ErrorReportViewController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
+        navigationController?.navigationBar.useModalStyle()
     }
 
     public override func viewDidLayoutSubviews() {

@@ -759,9 +759,6 @@
 /* permission denied button a11y hint */
 "User has denied record permission" = "Användaren har nekat inspelningstillstånd";
 
-/* Error message if we can't pull the avatar image */
-"User has no valid avatar image url" = "Användaren har ingen giltig avatar bild-url";
-
 /* button for viewing quiz results */
 "View Results" = "Visa resultat";
 

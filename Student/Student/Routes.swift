@@ -78,13 +78,13 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 
     "/courses/:courseID/syllabus": { _, params in
         guard let courseID = params["courseID"] else { return nil }
-        return SyllabusViewController.create(courseID: ID.expandTildeID(courseID))
+        return StudentSyllabusViewController.create(courseID: ID.expandTildeID(courseID))
     },
 
     "/courses/:courseID/assignments/:assignmentID": { url, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         if assignmentID == "syllabus" {
-            return SyllabusViewController.create(courseID: ID.expandTildeID(courseID))
+            return StudentSyllabusViewController.create(courseID: ID.expandTildeID(courseID))
         }
         if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
         return AssignmentDetailsViewController.create(
@@ -112,26 +112,10 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         )
     },
 
-    "/courses/:courseID/collaborations": { url, _ in
-        let controller = UnsupportedViewController()
-        controller.canvasURL = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL)
-        controller.tabName = NSLocalizedString("Collaborations", comment: "")
-        return controller
-    },
+    // No native support, fall back to web
+    // "/:context/:contextID/collaborations": { url, _ in },
 
-    "/groups/:groupID/collaborations": { url, _ in
-        let controller = UnsupportedViewController()
-        controller.canvasURL = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL)
-        controller.tabName = NSLocalizedString("Collaborations", comment: "")
-        return controller
-    },
-
-    "/:context/:contextID/conferences": { url, _ in
-        let controller = UnsupportedViewController()
-        controller.canvasURL = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL)
-        controller.tabName = NSLocalizedString("Conferences", comment: "")
-        return controller
-    },
+    "/courses/:courseID/conferences": nil,
 
     "/:context/:contextID/discussions": nil,
     "/:context/:contextID/discussion_topics": nil,
@@ -154,10 +138,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
     "/files/folder/:folderID": { _, params in
         return fileListController(params: params)
     },
-    "/:context/:contextID/files": { url, params in
-        if let preview = previewFileViewController(url: url, params: params) { return preview }
-        return fileListController(params: params)
-    },
+    "/:context/:contextID/files": nil,
 
     "/files/folder/*subFolder": { url, params in
         if let preview = previewFileViewController(url: url, params: params) { return preview }
@@ -166,15 +147,8 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         props["contextID"] = "self"
         return HelmViewController(moduleName: "/:context/:contextID/files/folder/*subFolder", props: makeProps(url, params: props))
     },
-    "/:context/:contextID/files/folder/*subFolder": { url, params in
-        if let preview = previewFileViewController(url: url, params: params) { return preview }
-        return HelmViewController(moduleName: "/:context/:contextID/files/folder/*subFolder", props: makeProps(url, params: params))
-    },
-
-    "/:context/:contextID/files/folders/:folderID": { _, params in
-        // We don't support routing to a specific folderID yet, that's to come later
-        return fileListController(params: params)
-    },
+    "/:context/:contextID/files/folder/*subFolder": nil,
+    "/:context/:contextID/files/folders/*subFolder": nil,
 
     "/files/:fileID": fileViewController,
     "/files/:fileID/download": fileViewController,
@@ -225,12 +199,8 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         return try? ModuleItemDetailViewController(session: session, courseID: courseID, moduleItemID: itemID, route: route)
     },
 
-    "/courses/:courseID/outcomes": { url, _ in
-        let controller = UnsupportedViewController()
-        controller.canvasURL = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL)
-        controller.tabName = NSLocalizedString("Outcomes", comment: "")
-        return controller
-    },
+    // No native support, fall back to web
+    // "/courses/:courseID/outcomes": { url, _ in },
 
     "/courses/:courseID/pages": { _, params in
         guard let courseID = params["courseID"] else { return nil }
@@ -300,12 +270,8 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
         return QuizIntroViewController.takeController(contextID: ContextID(id: courseID, context: .course), quizID: quizID)
     },
 
-    "/courses/:courseID/settings": { url, _ in
-        let controller = UnsupportedViewController()
-        controller.canvasURL = url.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL)
-        controller.tabName = NSLocalizedString("Settings", comment: "")
-        return controller
-    },
+    // No native support, fall back to web
+    // "/courses/:courseID/settings": { url, _ in },
 
     "/courses/:courseID/users": { url, params in
         guard let courseID = params["courseID"] else { return nil }
@@ -343,8 +309,7 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
     },
 
     "/profile/settings": { _, _ in
-        let settings = SettingsViewController.controller(CKCanvasAPI.current())
-        return UINavigationController(rootViewController: settings)
+        return ProfileSettingsViewController.create()
     },
 
     "/support/:type": { _, params in

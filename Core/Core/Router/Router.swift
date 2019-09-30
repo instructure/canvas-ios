@@ -59,7 +59,8 @@ public extension RouterProtocol {
 
         if let displayModeButton = from.displayModeButtonItem,
             from.splitViewController?.isCollapsed == false,
-            options?.contains(.detail) == true || from.isInSplitViewDetail {
+            options?.contains(.detail) == true || from.isInSplitViewDetail,
+            options?.contains(.modal) != true {
             view.addNavigationButton(displayModeButton, side: .left)
             view.navigationItem.leftItemsSupplementBackButton = true
         }
@@ -67,7 +68,7 @@ public extension RouterProtocol {
         if options?.contains(.modal) == true {
             if options?.contains(.embedInNav) == true {
                 if options?.contains(.addDoneButton) == true {
-                    view.addDoneButton()
+                    view.addDoneButton(side: .left)
                 }
                 let nav = view as? UINavigationController ?? UINavigationController(rootViewController: view)
                 if options?.contains(.formSheet) == true {

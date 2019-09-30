@@ -66,3 +66,29 @@ extension APIUserSettings {
         )
     }
 }
+
+extension APIProfile {
+    public static func make(
+        id: ID = "1",
+        name: String = "Bob",
+        primary_email: String? = nil,
+        login_id: String? = nil,
+        avatar_url: URL? = nil,
+        calendar: APIProfile.APICalendar? = .make()
+    ) -> APIProfile {
+        return APIProfile(
+            id: id,
+            name: name,
+            primary_email: primary_email,
+            login_id: login_id,
+            avatar_url: avatar_url,
+            calendar: calendar
+        )
+    }
+}
+
+extension APIProfile.APICalendar {
+    public static func make(ics: URL? = URL(string: "https://calendar.url")) -> APIProfile.APICalendar {
+        return APIProfile.APICalendar(ics: ics)
+    }
+}

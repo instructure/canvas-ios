@@ -19,7 +19,7 @@
 import Foundation
 
 public struct GetGradingPeriodsRequest: APIRequestable {
-    public typealias Response = [APIGradingPeriod]
+    public typealias Response = APIGradingPeriodResponse
 
     let courseID: String
 

@@ -24,31 +24,32 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var menuHeight: NSLayoutConstraint!
     private var gradesViewController: GradesViewController!
-    private var syllabusViewController: UIViewController!
+    private var syllabusViewController: Core.SyllabusViewController!
     @IBOutlet weak var containerA: UIView!
     @IBOutlet weak var containerB: UIView!
     var courseID: String = ""
+    var studentID: String = ""
 
     enum MenuItem: Int {
         case grades, syllabus
     }
 
-    static func create(courseID: String) -> CourseDetailsViewController {
+    static func create(courseID: String, studentID: String) -> CourseDetailsViewController {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
+        controller.studentID = studentID
         return controller
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("Post Settings", comment: "")
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
+
         configureMenu()
         configureGrades()
         configureSyllabus()
         scrollView.delegate = self
-        navigationController?.navigationBar.barTintColor = UIColor.white
-
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
     }
 
     func configureMenu() {
@@ -57,12 +58,12 @@ class CourseDetailsViewController: UIViewController {
     }
 
     func configureGrades() {
-        gradesViewController = GradesViewController.create(courseID: courseID)
+        gradesViewController = GradesViewController.create(courseID: courseID, studentID: studentID)
         embed(gradesViewController, in: containerA)
     }
 
     func configureSyllabus() {
-        syllabusViewController = UIViewController()
+        syllabusViewController = Core.SyllabusViewController.create(courseID: courseID)
         embed(syllabusViewController, in: containerB)
     }
 
