@@ -376,6 +376,7 @@ test('mapStateToProps returns comment and submission rows', () => {
   })
 
   const quiz = templates.submission({
+    id: 'quiz-attempt-id',
     attempt: 6,
     submitted_at: '2017-03-19T19:13:25Z',
     submission_type: 'online_quiz',
@@ -455,8 +456,12 @@ test('mapStateToProps returns comment and submission rows', () => {
   session.user.id = teacherComment.author_id
   setSession(session)
 
-  expect(mapStateToProps(appState, ownProps))
-    .toMatchSnapshot()
+  let props = mapStateToProps(appState, ownProps)
+  expect(props).toMatchSnapshot()
+  let contents = props.commentRows.map(({ contents }) => contents)
+  let quizAttempt = contents.filter(({ attemptIndex }) => attemptIndex === 6)[0]
+  expect(quizAttempt.submissionID).toEqual(submission.id)
+  expect(quizAttempt.submissionID).not.toEqual(quizAttempt.id)
 })
 
 test('mapStateToProps returns true when the assignment is a quiz that is an anonymous survey', () => {
