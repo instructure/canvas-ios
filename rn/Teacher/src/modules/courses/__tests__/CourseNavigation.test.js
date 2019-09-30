@@ -328,7 +328,7 @@ describe('CourseNavigation', () => {
   it('navigates to conferences', () => {
     const tab = template.tab({
       id: 'conferences',
-      html_url: '/courses/1/conferences',
+      full_url: 'https://canvas.instructure.com/courses/1/conferences',
     })
     const props = {
       ...defaultProps,
@@ -344,7 +344,7 @@ describe('CourseNavigation', () => {
       .find('OnLayout').first().dive()
       .find('[testID="courses-details.tab.conferences"]')
       .simulate('Press', tab)
-    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/conferences')
+    expect(props.navigator.show).toHaveBeenCalledWith(tab.full_url)
   })
 
   it('shows collaborations in a web view', () => {
