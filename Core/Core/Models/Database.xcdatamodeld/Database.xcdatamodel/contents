@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AlertThreshold" representedClassName="Core.AlertThreshold" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="observerID" optional="YES" attributeType="String"/>
@@ -53,7 +53,7 @@
     </entity>
     <entity name="Color" representedClassName="Core.Color" syncable="YES">
         <attribute name="canvasContextID" attributeType="String"/>
-        <attribute name="color" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="UIKit.UIColor"/>
+        <attribute name="colorRaw" attributeType="Integer 32" valueTransformerName="" defaultValueString="0" usesScalarValueType="YES" customClassName="UIKit.UIColor"/>
     </entity>
     <entity name="CommunicationChannel" representedClassName="Core.CommunicationChannel" syncable="YES">
         <attribute name="address" attributeType="String"/>
@@ -483,7 +483,7 @@
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="448"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
-        <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="75"/>
+        <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="195"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
@@ -500,6 +500,7 @@
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="135"/>
         <element name="Module" positionX="-369" positionY="-18" width="128" height="135"/>
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="225"/>
+        <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
         <element name="Page" positionX="-549" positionY="-27" width="128" height="165"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="463"/>
@@ -515,6 +516,5 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="180"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
     </elements>
 </model>
