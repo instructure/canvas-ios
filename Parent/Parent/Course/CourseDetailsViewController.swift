@@ -24,7 +24,7 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var menuHeight: NSLayoutConstraint!
     private var gradesViewController: GradesViewController!
-    private var syllabusViewController: UIViewController!
+    private var syllabusViewController: Core.SyllabusViewController!
     @IBOutlet weak var containerA: UIView!
     @IBOutlet weak var containerB: UIView!
     var courseID: String = ""
@@ -63,7 +63,7 @@ class CourseDetailsViewController: UIViewController {
     }
 
     func configureSyllabus() {
-        syllabusViewController = UIViewController()
+        syllabusViewController = Core.SyllabusViewController.create(courseID: courseID)
         embed(syllabusViewController, in: containerB)
     }
 
