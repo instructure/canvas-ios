@@ -20,25 +20,38 @@ import UIKit
 
 public class GradesViewController: UIViewController {
 
+    @IBOutlet weak var filterButton: DynamicButton!
+    @IBOutlet weak var headerGradeHeader: DynamicLabel!
+    @IBOutlet weak var headerGradeTotalLabel: DynamicLabel!
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var tableView: UITableView!
     private var presenter: GradesPresenter!
     @IBOutlet weak var loadingView: UIView!
-    static let dateFormatter: DateFormatter = {
+    static let dateParser: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd HH:mm:ss ZZ"
         return df
     }()
 
-    public static func create(courseID: String) -> GradesViewController {
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "EEEEMMMMd", options: 0, locale: NSLocale.current)
+        return dateFormatter
+    }()
+
+    public static func create(courseID: String, studentID: String) -> GradesViewController {
         let vc = GradesViewController.loadFromStoryboard()
-        vc.presenter = GradesPresenter(view: vc, courseID: courseID)
+        vc.presenter = GradesPresenter(view: vc, courseID: courseID, studentID: studentID)
         return vc
     }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        presenter.viewIsReady()
+        presenter.refresh()
+
+        headerGradeHeader.text = NSLocalizedString("Total Grade", comment: "")
+        filterButton.setTitle(presenter.filterButtonTitle, for: .normal)
     }
 
     func setupTableView() {
@@ -51,7 +64,26 @@ public class GradesViewController: UIViewController {
     }
 
     @objc func refresh(_ control: UIRefreshControl) {
-        presenter.assignments.refresh(force: true)
+        presenter.refresh(force: true)
+    }
+
+    @IBAction func actionUserDidClickFilter(_ sender: Any) {
+        if presenter.currentGradingPeriodID != nil {
+            presenter.filterByGradingPeriod(nil)
+            filterButton.setTitle(presenter.filterButtonTitle, for: .normal)
+        } else {
+            let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", comment: ""), preferredStyle: .actionSheet)
+            for gp in presenter.gradingPeriods {
+                let action = UIAlertAction(title: gp.title, style: .default) { [weak self] _ in
+                    self?.presenter.filterByGradingPeriod(gp.id)
+                    self?.filterButton.setTitle(self?.presenter.filterButtonTitle, for: .normal)
+                }
+                alert.addAction(action)
+            }
+            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: nil)
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
+        }
     }
 }
 
@@ -64,6 +96,10 @@ extension GradesViewController: GradesViewProtocol {
             tableView?.refreshControl?.endRefreshing()
             view.setNeedsLayout()
         }
+    }
+
+    func updateScore(_ score: String?) {
+        headerGradeTotalLabel.text = score
     }
 }
 
@@ -79,7 +115,7 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let a = presenter.assignments[indexPath]
         let cell: GradesCell =  tableView.dequeue(for: indexPath)
-        cell.update(a)
+        cell.update(a, studentID: presenter.studentID)
         return cell
     }
 
@@ -87,8 +123,8 @@ extension GradesViewController: UITableViewDataSource, UITableViewDelegate {
         let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
         guard let sectionInfo = presenter.assignments.sectionInfo(inSection: section) else { return nil }
 
-        if let date = GradesViewController.dateFormatter.date(from: sectionInfo.name), date != Date.distantFuture {
-            view.titleLabel?.text = DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .none)
+        if let date = GradesViewController.dateParser.date(from: sectionInfo.name), date != Date.distantFuture {
+            view.titleLabel?.text = GradesViewController.dateFormatter.string(from: date)
         } else {
             view.titleLabel?.text = NSLocalizedString("No Due Date", comment: "")
         }
@@ -122,11 +158,12 @@ public class GradesCell: UITableViewCell {
         loadFromXib()
     }
 
-    func update(_ a: Assignment?) {
+    func update(_ a: Assignment?, studentID: String) {
         typeImage.image = a?.icon
         nameLabel.text = a?.name
-        gradeLabel.text = a?.gradesListGradeText
-        gradeLabel.isHidden = a?.gradesListGradeText == nil
+        let grade = a?.multiUserSubmissionGradeText(studentID: studentID)
+        gradeLabel.text = grade
+        gradeLabel.isHidden = grade == nil
         dueLabel.text = a?.dueAt != nil ? a?.dueText : nil
         dueLabel.isHidden = a?.dueAt == nil
     }

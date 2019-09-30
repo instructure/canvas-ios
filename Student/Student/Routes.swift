@@ -78,13 +78,13 @@ let routeMap: [String: RouteHandler.ViewFactory?] = [
 
     "/courses/:courseID/syllabus": { _, params in
         guard let courseID = params["courseID"] else { return nil }
-        return SyllabusViewController.create(courseID: ID.expandTildeID(courseID))
+        return StudentSyllabusViewController.create(courseID: ID.expandTildeID(courseID))
     },
 
     "/courses/:courseID/assignments/:assignmentID": { url, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         if assignmentID == "syllabus" {
-            return SyllabusViewController.create(courseID: ID.expandTildeID(courseID))
+            return StudentSyllabusViewController.create(courseID: ID.expandTildeID(courseID))
         }
         if let controller = moduleItemController(for: url, courseID: courseID) { return controller }
         return AssignmentDetailsViewController.create(

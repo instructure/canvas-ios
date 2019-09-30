@@ -232,12 +232,12 @@ class GetAssignmentsTests: CoreTestCase {
         let u = GetAssignmentsForGrades(courseID: "1", groupBy: .assignmentGroup, requestQuerySize: 99)
         u.write(response: apiAssignments, urlResponse: nil, to: databaseClient)
 
-        let groups = [
-            APIAssignmentGroup(id: 5, name: "5", position: 2),
-            APIAssignmentGroup(id: 6, name: "6", position: 1),
-            APIAssignmentGroup(id: 7, name: "7", position: 3),
+        let groups: [APIAssignmentGroup] = [
+            APIAssignmentGroup.make(id: 5, name: "5", position: 2, assignments: [apiAssignments[0], apiAssignments[3], apiAssignments[5]]),
+            APIAssignmentGroup.make(id: 6, name: "6", position: 1, assignments: [apiAssignments[1], apiAssignments[2]]),
+            APIAssignmentGroup.make(id: 7, name: "7", position: 3, assignments: [apiAssignments[4]]),
         ]
-        let agUseCase = GetAssignmentGroups(courseID: "1")
+        let agUseCase = GetAssignmentGroups(courseID: "1", gradingPeriodID: nil)
         agUseCase.write(response: groups, urlResponse: nil, to: databaseClient)
 
         let assignmentGroups: [AssignmentGroup] = databaseClient.fetch(agUseCase.scope.predicate, sortDescriptors: agUseCase.scope.order)

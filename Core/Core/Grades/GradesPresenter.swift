@@ -21,43 +21,95 @@ import CoreData
 
 protocol GradesViewProtocol: ErrorViewController {
     func update(isLoading: Bool)
+    func updateScore(_ score: String?)
 }
 
 class GradesPresenter {
     var sort: GetAssignments.Sort
     let courseID: String
+    let studentID: String
     let env: AppEnvironment
     weak var view: GradesViewProtocol?
     var didFetchGroups = false
+    var currentGradingPeriodID: String?
+    var assignmentGroups: Store<GetAssignmentGroups>?
+    var assignments: Store<GetAssignmentsForGrades>!
 
-    lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
+    private let percentageFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.multiplier = 1.0
+        formatter.maximumFractionDigits = 2
+        formatter.locale = Locale.current
+        return formatter
+    }()
+
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID, include: [.observedUsers, .totalScores])) { [weak self] in
         self?.update()
     }
 
-    lazy var assignments = env.subscribe(GetAssignmentsForGrades(courseID: self.courseID, requestQuerySize: 99)) { [weak self] in
+    lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
         self?.update()
     }
 
-    init(env: AppEnvironment = .shared, view: GradesViewProtocol, courseID: String, sort: GetAssignments.Sort = GetAssignments.Sort.dueAt) {
+    init(env: AppEnvironment = .shared, view: GradesViewProtocol, courseID: String, studentID: String, sort: GetAssignments.Sort = GetAssignments.Sort.dueAt) {
         self.courseID = courseID
         self.env = env
         self.view = view
         self.sort = sort
+        self.studentID = studentID
     }
 
-    func viewIsReady() {
-        assignments.refresh()
-        course.refresh()
+    func refreshAssignments(force: Bool) {
+        assignments = env.subscribe( GetAssignmentsForGrades(courseID: courseID, gradingPeriodID: currentGradingPeriodID, requestQuerySize: 99) ) { [weak self] in
+            self?.update()
+        }
+        assignments?.refresh(force: force)
+    }
+
+    func refreshAssignmentGroups(force: Bool) {
+        assignmentGroups = env.subscribe(  GetAssignmentGroups(courseID: courseID, gradingPeriodID: currentGradingPeriodID, include: [.assignments])  ) { [weak self] in
+            if !(self?.assignmentGroups?.pending ?? false) {
+                self?.refreshAssignments(force: false)
+            }
+        }
+        assignmentGroups?.refresh(force: force)
+    }
+
+    func refresh(force: Bool = false) {
+        refreshAssignments(force: force)
+        courses.refresh(force: force)
+        gradingPeriods.refresh(force: true)
+        refreshAssignmentGroups(force: force)
     }
 
     func update() {
-        view?.update(isLoading: course.pending || assignments.pending)
-        if let error = course.error ?? assignments.error {
+        if let course = courses.first,
+            let enrollments = course.enrollments?.filter({ $0.userID == studentID }) {
+            let score = percentageFormatter.string(for: enrollments.first?.computedCurrentScore)
+            view?.updateScore(score)
+        }
+
+        view?.update(isLoading: courses.pending || assignments?.pending ?? false || gradingPeriods.pending || assignmentGroups?.pending ?? false)
+        if let error = courses.error ?? assignments?.error {
             view?.showError(error)
         }
     }
 
-    func select(_ assignment: Assignment, from: UIViewController) {
-        env.router.route(to: assignment.htmlURL, from: from, options: nil)
+    func filterByGradingPeriod(_ id: String?) {
+        currentGradingPeriodID = id
+        if id != nil {
+            refreshAssignmentGroups(force: true)
+        } else {
+            refreshAssignments(force: false)
+        }
+    }
+
+    var filterButtonTitle: String? {
+        if currentGradingPeriodID != nil {
+            return NSLocalizedString("Clear filter", comment: "")
+        } else {
+            return NSLocalizedString("Filter", comment: "")
+        }
     }
 }

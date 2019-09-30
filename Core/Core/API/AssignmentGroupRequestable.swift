@@ -24,10 +24,12 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
     }
 
     let courseID: String
+    let gradingPeriodID: String?
     let include: [Include]
 
-    init(courseID: String, include: [Include] = []) {
+    init(courseID: String, gradingPeriodID: String? = nil, include: [Include] = []) {
         self.courseID = courseID
+        self.gradingPeriodID = gradingPeriodID
         self.include = include
     }
 
@@ -41,6 +43,11 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
         if !include.isEmpty {
             q.append( .array("include", include.map { $0.rawValue }) )
         }
+
+        if let gradingPeriodID = gradingPeriodID {
+            q.append( .value("grading_period_id", gradingPeriodID))
+        }
+
         return q
     }
 }

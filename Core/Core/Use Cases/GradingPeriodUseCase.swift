@@ -39,7 +39,11 @@ public class GetGradingPeriods: CollectionUseCase {
         return GetGradingPeriodsRequest(courseID: courseID)
     }
 
-    public func write(response: [GradingPeriod]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public func write(response: APIGradingPeriodResponse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let gradingPeriods = response?.grading_periods else { return }
 
+        for item in gradingPeriods {
+            GradingPeriod.save(item, courseID: courseID, in: client)
+        }
     }
 }
