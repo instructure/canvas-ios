@@ -459,7 +459,7 @@ test('mapStateToProps returns comment and submission rows', () => {
   let props = mapStateToProps(appState, ownProps)
   expect(props).toMatchSnapshot()
   let contents = props.commentRows.map(({ contents }) => contents)
-  let quizAttempt = contents.filter(({ attemptIndex }) => attemptIndex === 6)
+  let quizAttempt = contents.filter(({ attemptIndex }) => attemptIndex === 6)[0]
   expect(quizAttempt.submissionID).toEqual(submission.id)
   expect(quizAttempt.submissionID).not.toEqual(quizAttempt.id)
 })
