@@ -91,19 +91,21 @@ extension NavigationSubtitleView {
 }
 
 extension HelmSplitViewController: UISplitViewControllerDelegate {
+    public func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
+        if svc.viewControllers.count == 2 {
+            let top = (svc.viewControllers.last as? UINavigationController)?.topViewController
+            top?.navigationItem.leftItemsSupplementBackButton = true
+            if top?.isKind(of: EmptyViewController.self) == false {
+                top?.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(displayMode)
+            }
+        }
+    }
+
     open func targetDisplayModeForAction(in svc: UISplitViewController) -> UISplitViewController.DisplayMode {
         if svc.displayMode == .primaryOverlay || svc.displayMode == .primaryHidden {
-            if let nav = svc.viewControllers.last as? UINavigationController {
-                nav.topViewController?.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem
-                nav.topViewController?.navigationItem.leftItemsSupplementBackButton = true
-            }
-            return .allVisible;
+            return .allVisible
         } else {
-            if let nav = svc.viewControllers.last as? UINavigationController, let top = nav.topViewController, !top.isKind(of: EmptyViewController.self) {
-                nav.topViewController?.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem
-                nav.topViewController?.navigationItem.leftItemsSupplementBackButton = true
-            }
-            return .primaryHidden;
+            return .primaryHidden
         }
     }
 
