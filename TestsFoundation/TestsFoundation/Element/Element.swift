@@ -125,6 +125,7 @@ public struct XCUIElementQueryWrapper: Element {
     public let query: XCUIElementQuery
     public let index: Int
 
+    // A negative index counts backwards from the end, e.g. -1 is the last matching element
     public init(_ query: XCUIElementQuery, index: Int = 0) {
         self.query = query
         self.index = index
@@ -136,7 +137,15 @@ public struct XCUIElementQueryWrapper: Element {
     }
 
     public var elementType: XCUIElement.ElementType { return rawElement.elementType }
-    public var rawElement: XCUIElement { return query.element(boundBy: index) }
+    public var rawElement: XCUIElement {
+        let rawIndex: Int
+        if index < 0 {
+            rawIndex = query.count + index
+        } else {
+            rawIndex = index
+        }
+        return query.element(boundBy: rawIndex)
+    }
     public var id: String { return rawElement.identifier }
     public var isEnabled: Bool { return exists && rawElement.isEnabled }
     public var isSelected: Bool { return rawElement.isSelected }

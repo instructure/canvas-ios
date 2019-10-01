@@ -157,10 +157,10 @@ class DiscussionReplyTests: CoreUITestCase {
         photo.tap()
 
         app.find(label: "Upload complete").waitToExist()
-        let img = app.images.firstElement
-        XCTAssertFalse(img.exists)
-        app.find(label: "Upload complete").tapUntil { img.exists }
-        app.find(id: "screen.dismiss").tap()
+        let img = app.images["AttachmentView.image"]
+        app.find(label: "Upload complete").tapUntil { img.exists == true }
+        NavBar.dismissButton.tap()
+
         Attachments.dismissButton.tap()
 
         app.webViews.firstElement.typeText("Here's a nice picture I took")

@@ -53,39 +53,39 @@ open class CoreUITestCase: XCTestCase {
         CoreUITestCase.currentTestCase = nil
     }
 
-//    open class CoreUITestRun: XCTestCaseRun {
-//        var needsRetry = false
-//
-//        // Don't set this above 1!
-//        // There seems to be a bug in how this interacts with XCTest causing too many retries to look like success (!!)
-//        var retries = 1
-//        override open func recordFailure(withDescription description: String, inFile filePath: String?, atLine lineNumber: Int, expected: Bool) {
-//            if needsRetry { return }
-//            if retries > 0 {
-//                retries -= 1
-//                // TODO: collect this information across builds
-//                print("WARN: \(description) at \(filePath ?? "<unknown>"):\(lineNumber), will retry with clean launch...")
-//                needsRetry = true
-//            } else {
-//                super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
-//            }
-//        }
-//    }
-//
-//    @objc var shouldHaltWhenReceivesControl: Bool {
-//        return (testRun as? CoreUITestRun)?.needsRetry ?? false
-//    }
-//
-//    override open var testRunClass: AnyClass? { return CoreUITestRun.self }
-//
-//    open override func invokeTest() {
-//        super.invokeTest()
-//        if let run = testRun as? CoreUITestRun, run.needsRetry {
-//            run.needsRetry = false
-//            app.terminate()
-//            invokeTest()
-//        }
-//    }
+    open class CoreUITestRun: XCTestCaseRun {
+        var needsRetry = false
+
+        // Don't set this above 1!
+        // There seems to be a bug in how this interacts with XCTest causing too many retries to look like success (!!)
+        var retries = 1
+        override open func recordFailure(withDescription description: String, inFile filePath: String?, atLine lineNumber: Int, expected: Bool) {
+            if needsRetry { return }
+            if retries > 0 {
+                retries -= 1
+                // TODO: collect this information across builds
+                print("WARN: \(description) at \(filePath ?? "<unknown>"):\(lineNumber), will retry with clean launch...")
+                needsRetry = true
+            } else {
+                super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
+            }
+        }
+    }
+
+    @objc var shouldHaltWhenReceivesControl: Bool {
+        return (testRun as? CoreUITestRun)?.needsRetry ?? false
+    }
+
+    override open var testRunClass: AnyClass? { return CoreUITestRun.self }
+
+    open override func invokeTest() {
+        super.invokeTest()
+        if let run = testRun as? CoreUITestRun, run.needsRetry {
+            run.needsRetry = false
+            app.terminate()
+            invokeTest()
+        }
+    }
 
     private static var firstRun = true
     open override func setUp() {

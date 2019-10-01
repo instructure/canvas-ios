@@ -26,6 +26,6 @@ public enum NavBar: String, ElementWrapper {
     }
 
     public static var dismissButton: Element {
-        return app.find(id: "screen.dismiss")
+        return app.navigationBars.buttons.matching(id: "screen.dismiss").lastElement
     }
 }

@@ -89,10 +89,9 @@ class DiscussionEditTests: CoreUITestCase {
         photo.tap()
 
         app.find(label: "Upload complete").waitToExist()
-        let img = app.images.firstElement
-        XCTAssertFalse(img.exists)
-        app.find(label: "Upload complete").tapUntil { img.exists }
-        app.swipeDown()
+        let img = app.images["AttachmentView.image"]
+        app.find(label: "Upload complete").tapUntil { img.exists == true }
+        NavBar.dismissButton.tap()
         app.find(id: "attachments.attachment-row.0.remove.btn").tap()
         app.find(label: "Remove").tap()
 

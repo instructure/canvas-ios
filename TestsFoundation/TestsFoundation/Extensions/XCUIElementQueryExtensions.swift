@@ -33,4 +33,5 @@ public extension XCUIElementQuery {
         return matching(NSPredicate(format: "%K == %@", #keyPath(XCUIElement.value), value))
     }
     var firstElement: Element { return XCUIElementQueryWrapper(self) }
+    var lastElement: Element { return XCUIElementQueryWrapper(self, index: -1) }
 }

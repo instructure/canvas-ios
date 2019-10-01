@@ -161,7 +161,14 @@ public class UITestHelpers {
     func reset() {
         LoginSession.clearAll()
         UserDefaults.standard.removeObject(forKey: MDMManager.MDMUserDefaultsKey)
-        (appDelegate as? LoginDelegate)?.changeUser()
+
+        guard let loginDelegate = appDelegate as? LoginDelegate, let window = window else { fatalError() }
+
+        // horrible hack to get rid of old modally presented controllers that stick around after the rootViewController is changed
+        window.rootViewController = nil
+        window.subviews.forEach { $0.removeFromSuperview() }
+        window.rootViewController = LoginNavigationController.create(loginDelegate: loginDelegate)
+
         resetDatabase()
         MockDistantURLSession.reset()
         setAnimationsEnabled(false)
