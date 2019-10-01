@@ -19,7 +19,6 @@
 // @flow
 
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import i18n from 'format-message'
 import colors from '../../../common/colors'
 import images from '../../../images'
@@ -32,10 +31,6 @@ import {
   View,
   Image,
 } from 'react-native'
-
-type OwnProps = {
-  submissionID: ?string,
-}
 
 type StateProps = {
   status: ?string,
