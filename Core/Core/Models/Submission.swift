@@ -139,11 +139,16 @@ extension Submission: WriteableModel {
         }
 
         if let comments = item.submission_comments {
-            let allPredicate = NSPredicate(format: "%K == %@", #keyPath(SubmissionComment.submissionID), item.id.value)
+            let allPredicate = NSPredicate(format: "%K == %@ AND %K == %@",
+                #keyPath(SubmissionComment.assignmentID),
+                item.assignment_id.value,
+                #keyPath(SubmissionComment.userID),
+                item.user_id.value
+            )
             let all: [SubmissionComment] = client.fetch(allPredicate)
             client.delete(all)
             for comment in comments {
-                SubmissionComment.save(comment, forSubmission: item.id.value, in: client)
+                SubmissionComment.save(comment, for: item, in: client)
             }
         }
         if item.submission_type != nil, item.submission_type != SubmissionType.none, item.submission_type != .not_graded, item.submission_type != .on_paper {
