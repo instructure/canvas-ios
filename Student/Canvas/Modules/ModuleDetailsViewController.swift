@@ -92,6 +92,11 @@ class ModuleDetailsViewController: CanvasCore.TableViewController, PageViewEvent
             guard let content = moduleItem.content, content != .subHeader else { return }
             let analyticsParams = ["contentType": moduleItem.contentType.rawValue]
             Analytics.shared.logEvent("module_item_content_selected", parameters: analyticsParams)
+            if content == .masteryPaths, let item = moduleItem as? MasteryPathsItem {
+                showMasteryPathOptions(for: item)
+                tableView.deselectRow(at: indexPath, animated: true)
+                return
+            }
             router.route(to: Route.moduleItem(forCourse: courseID, moduleID: moduleItem.moduleID, itemID: moduleItem.id), from: self, options: [.detail, .embedInNav])
         default:
             return
@@ -100,5 +105,17 @@ class ModuleDetailsViewController: CanvasCore.TableViewController, PageViewEvent
 
     @objc func requirementCompleted() {
         refresher?.refresh(true)
+    }
+
+    func showMasteryPathOptions(for item: MasteryPathsItem) {
+        do {
+            let selection = try MasteryPathSelectOptionViewController(session: session, moduleID: item.moduleID, itemIDWithMasteryPaths: item.moduleItemID)
+            let nav = UINavigationController(rootViewController: selection)
+            selection.addCancelButton()
+            nav.modalPresentationStyle = .formSheet
+            present(nav, animated: true, completion: nil)
+        } catch let error as NSError {
+            handleError(error)
+        }
     }
 }

@@ -70,10 +70,6 @@ class ModuleItemViewModel: NSObject {
                         return nil
                     }
                     return LTIViewController(toolName: "", courseID: courseID, launchURL: url, in: self.session, fallbackURL: htmlURL.flatMap(URL.init))
-                case .masteryPaths:
-                    if let moduleItemID = moduleItemID, let moduleID = moduleID {
-                        return try! MasteryPathSelectOptionViewController(session: self.session, moduleID: moduleID, itemIDWithMasteryPaths: moduleItemID)
-                    }
                 default: break
                 }
             }

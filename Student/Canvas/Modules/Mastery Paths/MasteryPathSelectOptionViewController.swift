@@ -101,15 +101,13 @@ class MasteryPathSelectOptionViewController: UIViewController {
         navigationItem.title = NSLocalizedString("Select Option", comment: "")
 
         let toolbar = UIToolbar()
-        toolbar.barTintColor = Brand.current.navBgColor
-        toolbar.tintColor = Brand.current.navButtonColor
         let item = UIBarButtonItem(customView: optionSegmentedControl)
         toolbar.setItems([UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), item, UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)], animated: false)
         toolbar.delegate = self
         view.addSubview(toolbar)
 
         toolbar.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        toolbar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
 
@@ -142,7 +140,7 @@ class MasteryPathSelectOptionViewController: UIViewController {
             selectOptionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
             selectOptionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
             selectOptionButton.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
-            selectOptionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+            selectOptionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 
             selectOptionActivityIndicator.hidesWhenStopped = true
             view.insertSubview(selectOptionActivityIndicator, aboveSubview: selectOptionButton)
@@ -150,7 +148,7 @@ class MasteryPathSelectOptionViewController: UIViewController {
             selectOptionActivityIndicator.centerXAnchor.constraint(equalTo: selectOptionButton.centerXAnchor).isActive = true
             selectOptionActivityIndicator.centerYAnchor.constraint(equalTo: selectOptionButton.centerYAnchor).isActive = true
         } else {
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         }
     }
 
@@ -174,15 +172,15 @@ class MasteryPathSelectOptionViewController: UIViewController {
         selectOptionActivityIndicator.startAnimating()
         do {
             try itemWithMasteryPaths.selectMasteryPath(session: session, assignmentSetID: assignmentSet.id).startWithResult { [weak self] result in
-                self?.selectOptionActivityIndicator.stopAnimating()
-                switch result {
-                case .success:
-                    DispatchQueue.main.async {
-                        self?.navigationController?.popViewController(animated: true)
+                DispatchQueue.main.async {
+                    self?.selectOptionActivityIndicator.stopAnimating()
+                    switch result {
+                    case .success:
+                        self?.dismiss(animated: true, completion: nil)
+                    case .failure(let error):
+                        self?.selectOptionButton.setTitle(String(format: NSLocalizedString("Select Option %d", comment: "Button title to select a certain assignment set option"), (self?.optionSegmentedControl.selectedSegmentIndex ?? 0)+1), for: .normal)
+                        ErrorReporter.reportError(error, from: self)
                     }
-                case .failure(let error):
-                    self?.selectOptionButton.setTitle(String(format: NSLocalizedString("Select Option %d", comment: "Button title to select a certain assignment set option"), (self?.optionSegmentedControl.selectedSegmentIndex ?? 0)+1), for: .normal)
-                    ErrorReporter.reportError(error, from: self)
                 }
             }
         } catch let error as NSError {
