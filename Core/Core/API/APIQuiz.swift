@@ -66,7 +66,7 @@ public struct APIQuiz: Codable, Equatable {
 
 // https://canvas.instructure.com/doc/api/quiz_submissions.html#QuizSubmission
 public struct APIQuizSubmission: Codable {
-    let attempt: Int
+    let attempt: Int?
     let attempts_left: Int
     let end_at: Date?
     let extra_time: Double?
@@ -87,4 +87,44 @@ public struct APIQuizSubmission: Codable {
     // let score_before_regrade: Double?
     // let score: Double?
     // let time_spent: TimeInterval?
+}
+
+// https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.index
+public struct GetQuizzesRequest: APIRequestable {
+    public typealias Response = [APIQuiz]
+
+    let courseID: String
+
+    public var path: String {
+        let context = ContextModel(.course, id: courseID)
+        return "\(context.pathComponent)/quizzes?per_page=100"
+    }
+}
+
+// https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.show
+public struct GetQuizRequest: APIRequestable {
+    public typealias Response = APIQuiz
+
+    let courseID: String
+    let quizID: String
+
+    public var path: String {
+        let context = ContextModel(.course, id: courseID)
+        return "\(context.pathComponent)/quizzes/\(quizID)"
+    }
+}
+
+// https://canvas.instructure.com/doc/api/quiz_submissions.html#method.quizzes/quiz_submissions_api.submission
+public struct GetQuizSubmissionRequest: APIRequestable {
+    public struct Response: Codable {
+        let quiz_submissions: [APIQuizSubmission]
+    }
+
+    let courseID: String
+    let quizID: String
+
+    public var path: String {
+        let context = ContextModel(.course, id: courseID)
+        return "\(context.pathComponent)/quizzes/\(quizID)/submission"
+    }
 }
