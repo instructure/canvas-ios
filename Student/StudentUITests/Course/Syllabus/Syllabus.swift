@@ -20,7 +20,6 @@ import Foundation
 import TestsFoundation
 
 enum Syllabus: String, ElementWrapper {
-    case menu
     case syllabusMenuItem
     case assignmentsMenuItem
 }
