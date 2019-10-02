@@ -90,6 +90,7 @@
 		B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */; };
 		B1F428DC228B5C3C00EC8C37 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */; };
 		E839146523102F9200D772E0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DAC287D22B19D5C00C0B692 /* XCTest.framework */; };
+		E8BE4F5C233E73E100DC399A /* XCUIElementQueryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */; };
 		EE424B3822E8E72D00D083EE /* APIPageFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3722E8E72D00D083EE /* APIPageFixture.swift */; };
 		EE424B3A22E8E97100D083EE /* PageFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3922E8E97100D083EE /* PageFixture.swift */; };
 /* End PBXBuildFile section */
@@ -180,6 +181,7 @@
 		B1E789B921B1D0D30087FE4A /* LogEventFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventFixture.swift; sourceTree = "<group>"; };
 		B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemFixture.swift; sourceTree = "<group>"; };
 		B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElementQueryExtensions.swift; sourceTree = "<group>"; };
 		EE424B3722E8E72D00D083EE /* APIPageFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPageFixture.swift; sourceTree = "<group>"; };
 		EE424B3922E8E97100D083EE /* PageFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFixture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -341,6 +343,7 @@
 				3B84C391218BB102005946BA /* DateExtensions.swift */,
 				B1C6BF6421BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift */,
 				7DAC287F22B1A3F900C0B692 /* XCUIApplicationExtensions.swift */,
+				E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				7DAC287A22B199D100C0B692 /* Element.swift in Sources */,
 				B1B42C1822404AB20087399A /* FileUploadTargetFixture.swift in Sources */,
 				3BA9FF772332B06900196A06 /* APIGradingPeriodFixture.swift in Sources */,
+				E8BE4F5C233E73E100DC399A /* XCUIElementQueryExtensions.swift in Sources */,
 				B15CA280221DFED00014FB02 /* ModuleFixture.swift in Sources */,
 				7D47769A21AF396500B441CE /* APIQuiz.swift in Sources */,
 				7DCF2048216D6597003AF358 /* APIQuizFixture.swift in Sources */,

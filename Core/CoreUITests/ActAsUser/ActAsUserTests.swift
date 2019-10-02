@@ -37,7 +37,7 @@ class ActAsUserTests: CoreUITestCase {
         Profile.close()
 
         ActAsUser.endActAsUserButton.tap()
-        XCUIElementWrapper(app.alerts.buttons["OK"]).tap()
+        app.alerts.buttons["OK"].tap()
         ActAsUser.endActAsUserButton.waitToVanish()
 
         Profile.open()

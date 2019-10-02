@@ -34,7 +34,8 @@ RCT_EXPORT_MODULE();
 
 - (BOOL)canHandleRequest:(NSURLRequest *)request
 {
-    return [request.URL.scheme.lowercaseString hasPrefix:@"http"];
+    return [request.URL.scheme.lowercaseString hasPrefix:@"http"]
+    && ![(request.URL.host ?: @"") isEqualToString:@"localhost"];
 }
 
 - (NSObject *)sendRequest:(NSURLRequest *)request withDelegate:(id<RCTURLRequestDelegate>)delegate

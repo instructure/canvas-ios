@@ -209,6 +209,8 @@ class SubmissionDetailsTests: StudentUITestCase {
         ]))
         mockDownload(downloadURL, data: url)
 
+        // There's a uuid in a request that has no way to be mocked currently
+        failTestOnMissingMock = false
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
         // 😱 PSPDFAnnotations are not in the accessibility tree
@@ -381,6 +383,6 @@ class SubmissionDetailsTests: StudentUITestCase {
 
         button3.tap()
         XCTAssertEqual(ratingTitleLabel.label(), "Custom Grade")
-        XCTAssertEqual(ratingDescLabel.label(), ratings[0].long_description)
+        ratingDescLabel.waitToVanish()
     }
 }

@@ -43,6 +43,9 @@ public extension ElementWrapper where Self: RawRepresentable, Self.RawValue: Str
 }
 
 public extension ElementWrapper {
+    var rawElement: XCUIElement {
+        return element.rawElement
+    }
     var elementType: XCUIElement.ElementType {
         return element.elementType
     }
