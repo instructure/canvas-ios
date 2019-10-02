@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-
 import UIKit
 
 open class HorizontalMenuViewController: UIViewController {
@@ -29,7 +28,7 @@ open class HorizontalMenuViewController: UIViewController {
     var underlineWidthConstraint: NSLayoutConstraint?
     var underlineLeftConstraint: NSLayoutConstraint?
     var menuHeightConstraint: NSLayoutConstraint?
-    public var delegate: HorizontalPagedMenuDelegate?
+    public weak var delegate: HorizontalPagedMenuDelegate?
     private var selectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
 
     private var itemCount: Int {
@@ -98,7 +97,7 @@ open class HorizontalMenuViewController: UIViewController {
         assert(delegate != nil)
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width:view.frame.width , height: view.frame.height)
+        layout.itemSize = CGSize(width: view.frame.width, height: view.frame.height)
         layout.minimumLineSpacing = 0.0
 
         pages = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -165,10 +164,9 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
             }
 
             return cell
-        }
-        else {
+        } else {
             let identifier = "child_\(indexPath.item)"
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) 
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
             guard let vc = delegate?.viewControllers[indexPath.item] else { fatalError("\(#function) delegate nil") }
             embed(vc, in: cell.contentView)
             return cell
