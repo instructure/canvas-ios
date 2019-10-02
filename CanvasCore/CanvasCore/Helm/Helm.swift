@@ -259,10 +259,10 @@ open class HelmManager: NSObject {
             callback?()
         }
             //  This is a hack to fix coming from native assignment detail
-            //  with a NON-Helm splitviewController navigating to a child group discussion
+            //  navigating to a child group discussion
             //  As more code moves to RN this will probably lose it's need here,
         else if let replace = options["replace"] as? Bool, replace,
-            let svc = topMostViewController() as? SplitViewController,
+            let svc = topMostViewController() as? HelmSplitViewController,
             let nav = svc.viewControllers.last as? UINavigationController,
             let helmViewController = viewController as? HelmViewController {
                 var viewControllers = nav.viewControllers

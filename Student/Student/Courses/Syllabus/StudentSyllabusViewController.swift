@@ -103,6 +103,7 @@ class StudentSyllabusViewController: UIViewController {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         let ratio = self.scrollView.contentOffsetRatio
         coordinator.animate(alongsideTransition: { [weak self] _ in
             ratio.x >= 0.5 ? self?.showAssignments() : self?.showSyllabus()
