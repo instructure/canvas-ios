@@ -77,7 +77,8 @@ extension IPCDriverServerMessage: Codable {
         if let reason = try container.decodeIfPresent(String.self, forKey: .mockNotFound) {
             self = .mockNotFound(reason: reason)
         } else {
-            throw DecodingError.typeMismatch(Self.self, .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(Self.self)"))
+
+            throw DecodingError.typeMismatch(type(of: self), .init(codingPath: container.codingPath, debugDescription: "Couldn't decode \(type(of: self))"))
         }
     }
     public func encode(to encoder: Encoder) throws {
