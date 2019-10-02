@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,58 +15,13 @@
                     <view key="view" contentMode="scaleToFill" id="0Y1-lH-lhN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGj-uf-9Z2" customClass="HorizontalMenuView" customModule="Core">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <accessibility key="accessibilityConfiguration" identifier="Syllabus.menu"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" id="FqU-RE-AQ0"/>
-                                </constraints>
-                            </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="sFi-e9-YFv">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rbl-JY-nxo">
-                                <rect key="frame" x="0.0" y="-3" width="375" height="1"/>
-                                <color key="backgroundColor" name="borderMedium"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="pmy-2S-xmf"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="cLN-QP-Sbm" firstAttribute="trailing" secondItem="PGj-uf-9Z2" secondAttribute="trailing" id="9mS-D8-XtQ"/>
-                            <constraint firstAttribute="trailing" secondItem="Rbl-JY-nxo" secondAttribute="trailing" id="CZS-Qx-pQg"/>
-                            <constraint firstItem="cLN-QP-Sbm" firstAttribute="trailing" secondItem="sFi-e9-YFv" secondAttribute="trailing" id="CaA-HM-RLi"/>
-                            <constraint firstItem="sFi-e9-YFv" firstAttribute="top" secondItem="PGj-uf-9Z2" secondAttribute="bottom" id="DDu-0j-Q6Z"/>
-                            <constraint firstItem="PGj-uf-9Z2" firstAttribute="leading" secondItem="cLN-QP-Sbm" secondAttribute="leading" id="Lfe-rV-Zy0"/>
-                            <constraint firstItem="sFi-e9-YFv" firstAttribute="leading" secondItem="cLN-QP-Sbm" secondAttribute="leading" id="QtT-O6-a58"/>
-                            <constraint firstItem="PGj-uf-9Z2" firstAttribute="top" secondItem="cLN-QP-Sbm" secondAttribute="top" id="S0R-Vl-8H1"/>
-                            <constraint firstItem="sFi-e9-YFv" firstAttribute="width" secondItem="cLN-QP-Sbm" secondAttribute="width" id="U0s-Df-rmj"/>
-                            <constraint firstItem="cLN-QP-Sbm" firstAttribute="bottom" secondItem="sFi-e9-YFv" secondAttribute="bottom" id="aoo-JN-7aI"/>
-                            <constraint firstItem="Rbl-JY-nxo" firstAttribute="leading" secondItem="0Y1-lH-lhN" secondAttribute="leading" id="kVq-IE-x49"/>
-                            <constraint firstItem="Rbl-JY-nxo" firstAttribute="top" secondItem="PGj-uf-9Z2" secondAttribute="bottom" constant="-3" id="mTM-fm-iW4"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="cLN-QP-Sbm"/>
                     </view>
-                    <connections>
-                        <outlet property="menu" destination="PGj-uf-9Z2" id="vHo-Nv-dg0"/>
-                        <outlet property="menuBorder" destination="Rbl-JY-nxo" id="y1D-QN-tDY"/>
-                        <outlet property="menuBorderHeight" destination="pmy-2S-xmf" id="Euo-Nz-Sc9"/>
-                        <outlet property="menuHeightConstraint" destination="FqU-RE-AQ0" id="wJ8-Na-eLQ"/>
-                        <outlet property="scrollView" destination="sFi-e9-YFv" id="so6-KP-Nkc"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HCl-gB-eoG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="105" y="-83"/>
         </scene>
     </scenes>
-    <resources>
-        <namedColor name="borderMedium">
-            <color red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>
