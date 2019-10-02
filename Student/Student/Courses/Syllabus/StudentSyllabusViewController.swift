@@ -72,7 +72,6 @@ class StudentSyllabusViewController: HorizontalMenuViewController {
     }
 }
 
-
 extension StudentSyllabusViewController: StudentSyllabusViewProtocol {
     func updateNavBar(courseCode: String?, backgroundColor: UIColor?) {
         titleView.subtitle = courseCode
@@ -94,7 +93,7 @@ extension StudentSyllabusViewController: StudentSyllabusViewProtocol {
 
 extension StudentSyllabusViewController: HorizontalPagedMenuDelegate {
     var menuItemSelectedColor: UIColor? { color }
-    
+
     func accessibilityIdentifier(at: IndexPath) -> String {
         guard let menuItem = MenuItem(rawValue: at.row) else { return "" }
         var identifier: String
