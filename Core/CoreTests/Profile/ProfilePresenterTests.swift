@@ -178,7 +178,7 @@ class ProfilePresenterTests: CoreTestCase {
             onReload?()
         }
 
-        func expect(route: Route, file: StaticString = #file, line: UInt = #line, block: () -> ()) {
+        func expect(route: Route, file: StaticString = #file, line: UInt = #line, block: () -> Void) {
             routeExpectation = XCTestExpectation(description: "route to \(route)")
             block()
             testCase.wait(for: [routeExpectation!], timeout: 5)
