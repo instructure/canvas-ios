@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="19A573a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AlertThreshold" representedClassName="Core.AlertThreshold" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="observerID" optional="YES" attributeType="String"/>
@@ -427,6 +427,7 @@
         <relationship name="rubricAssesmentRaw" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RubricAssessment" inverseName="submission" inverseEntity="RubricAssessment"/>
     </entity>
     <entity name="SubmissionComment" representedClassName="Core.SubmissionComment" syncable="YES">
+        <attribute name="assignmentID" attributeType="String"/>
         <attribute name="authorAvatarURL" optional="YES" attributeType="URI"/>
         <attribute name="authorID" attributeType="String"/>
         <attribute name="authorName" attributeType="String"/>
@@ -438,7 +439,7 @@
         <attribute name="mediaName" optional="YES" attributeType="String"/>
         <attribute name="mediaTypeRaw" optional="YES" attributeType="String"/>
         <attribute name="mediaURL" optional="YES" attributeType="URI"/>
-        <attribute name="submissionID" attributeType="String"/>
+        <attribute name="userID" optional="YES" attributeType="String"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="submissionComment" inverseEntity="File"/>
     </entity>
     <entity name="Tab" representedClassName="Core.Tab" syncable="YES">
@@ -511,7 +512,7 @@
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="390"/>
-        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="240"/>
+        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="253"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="User" positionX="-540" positionY="-27" width="128" height="180"/>
