@@ -775,10 +775,6 @@
 		3BA9FF782332B39700196A06 /* GradingPeriodUseCaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodUseCaseTests.swift; sourceTree = "<group>"; };
 		3BA9FF7A2332B3BA00196A06 /* GradingPeriodUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingPeriodUseCase.swift; sourceTree = "<group>"; };
 		3BA9FF7C2332B43C00196A06 /* GradingPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingPeriod.swift; sourceTree = "<group>"; };
-		3BBCF83F224C193B004B519D /* HorizontalMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalMenuView.xib; sourceTree = "<group>"; };
-		3BBCF840224C193B004B519D /* HorizontalMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalMenuView.swift; sourceTree = "<group>"; };
-		3BBCF841224C193B004B519D /* HorizontalMenuViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalMenuViewCell.swift; sourceTree = "<group>"; };
-		3BBCF842224C193B004B519D /* HorizontalMenuViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalMenuViewCell.xib; sourceTree = "<group>"; };
 		3BC3E01C2315A0DE00E15C6D /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		3BC3E01F2315A2BC00E15C6D /* AnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTests.swift; sourceTree = "<group>"; };
 		3BD364AA225D3C02006CEBD8 /* DiscussionTopicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopicTests.swift; sourceTree = "<group>"; };
@@ -2046,10 +2042,6 @@
 				9FCF153F227B6BC1009D35F6 /* GradeCircleView.xib */,
 				7D70DE91233E808600F5C3D4 /* GroupedSectionFooterView.swift */,
 				7D9E80D1233D9934003C608B /* GroupedSectionHeaderView.swift */,
-				3BBCF840224C193B004B519D /* HorizontalMenuView.swift */,
-				3BBCF83F224C193B004B519D /* HorizontalMenuView.xib */,
-				3BBCF841224C193B004B519D /* HorizontalMenuViewCell.swift */,
-				3BBCF842224C193B004B519D /* HorizontalMenuViewCell.xib */,
 				7DA057512193A30E00A3CFBB /* IconView.swift */,
 				7DAFBE73231871F500E9A37D /* ItemPickerViewController.swift */,
 				7D1219232243340200D3BF5C /* KeyboardTransitioning.swift */,
