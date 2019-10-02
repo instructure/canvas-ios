@@ -24,6 +24,7 @@ class UINavigationBarExtensionsTests: XCTestCase {
     func testUseContextColor() {
         let bar = UINavigationBar(frame: .zero)
         bar.useContextColor(.named(.backgroundDarkest))
+        XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, .named(.textLightest))
         XCTAssertEqual(bar.tintColor, .named(.textLightest))
         XCTAssertEqual(bar.barTintColor, .named(.backgroundDarkest))
         XCTAssertEqual(bar.barStyle, .black)
@@ -33,6 +34,7 @@ class UINavigationBarExtensionsTests: XCTestCase {
     func testUseGlobalNavStyle() {
         let bar = UINavigationBar(frame: .zero)
         bar.useGlobalNavStyle()
+        XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, Brand.shared.navTextColor)
         XCTAssertEqual(bar.tintColor, Brand.shared.navTextColor)
         XCTAssertEqual(bar.barTintColor, Brand.shared.navBackground)
         XCTAssertEqual(bar.barStyle, .black)
@@ -63,6 +65,7 @@ class UINavigationBarExtensionsTests: XCTestCase {
     func testUseModalStyle() {
         let bar = UINavigationBar(frame: .zero)
         bar.useModalStyle()
+        XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, Brand.shared.linkColor)
         XCTAssertEqual(bar.tintColor, Brand.shared.linkColor)
         XCTAssertEqual(bar.barTintColor, .named(.backgroundLightest))
         XCTAssertEqual(bar.barStyle, .default)
