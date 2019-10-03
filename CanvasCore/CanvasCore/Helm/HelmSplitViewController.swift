@@ -139,6 +139,10 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
                 vc.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(splitViewController.displayMode)
             }
 
+            if let nav = newDeets as? UINavigationController {
+                nav.syncStyles()
+            }
+
             return newDeets
         }
         
