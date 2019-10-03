@@ -38,7 +38,7 @@ extension APIFile {
         hidden_for_user: Bool = false,
         thumbnail_url: URL? = nil,
         modified_at: Date = Date(),
-        mime_class: String = "JPEG",
+        mime_class: String = "image",
         media_entry_id: String? = nil,
         locked_for_user: Bool = false,
         lock_info: String? = nil,

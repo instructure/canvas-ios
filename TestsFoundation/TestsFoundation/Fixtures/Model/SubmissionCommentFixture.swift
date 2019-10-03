@@ -24,10 +24,10 @@ extension SubmissionComment {
     @discardableResult
     public static func make(
         from api: APISubmissionComment = .make(),
-        forSubmission submissionID: String = "1",
+        for submission: APISubmission = .make(),
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> SubmissionComment {
-        let model = SubmissionComment.save(api, forSubmission: submissionID, in: context)
+        let model = SubmissionComment.save(api, for: submission, in: context)
         try! context.save()
         return model
     }

@@ -86,13 +86,14 @@ public class UploadFileComment {
         }
         context.performAndWait {
             let placeholder: SubmissionComment = self.context.insert()
+            placeholder.assignmentID = self.assignmentID
             placeholder.authorAvatarURL = session.userAvatarURL
             placeholder.authorID = session.userID
             placeholder.authorName = session.userName
             placeholder.comment = NSLocalizedString("See attached files.", bundle: .core, comment: "")
             placeholder.createdAt = Date()
             placeholder.id = "placeholder-\(UploadFileComment.placeholderSuffix)"
-            placeholder.submissionID = self.submissionID
+            placeholder.userID = self.userID
             do {
                 try self.context.save()
                 self.placeholderID = placeholder.id
@@ -108,11 +109,11 @@ public class UploadFileComment {
         let body = PutSubmissionGradeRequest.Body(comment: .init(fileIDs: fileIDs, forGroup: isGroup), submission: nil)
         task = env.api.makeRequest(PutSubmissionGradeRequest(courseID: courseID, assignmentID: assignmentID, userID: userID, body: body)) { data, _, error in
             self.task = nil
-            guard error == nil, let comment = data?.submission_comments?.last else {
+            guard error == nil, let submission = data, let comment = submission.submission_comments?.last else {
                 return self.callback(nil, error)
             }
             self.context.performAndWait {
-                let comment = SubmissionComment.save(comment, forSubmission: self.submissionID, replacing: self.placeholderID, in: self.context)
+                let comment = SubmissionComment.save(comment, for: submission, replacing: self.placeholderID, in: self.context)
                 var e: Error?
                 defer { self.callback(comment, e) }
                 do {

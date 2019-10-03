@@ -22,7 +22,12 @@ import UIKit
 
 public final class Color: NSManagedObject {
     @NSManaged public var canvasContextID: String
-    @NSManaged public var color: UIColor
+    @NSManaged public var colorRaw: UInt32
+
+    public var color: UIColor {
+        get { return UIColor(intValue: colorRaw) }
+        set { colorRaw = newValue.intValue }
+    }
 
     @discardableResult
     public static func save(_ item: APICustomColors, in context: NSManagedObjectContext) -> [Color] {

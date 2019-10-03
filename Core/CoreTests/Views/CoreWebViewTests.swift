@@ -68,7 +68,7 @@ class CoreWebViewTests: CoreTestCase {
         }
 
         view.loadHTMLString("some content")
-        wait(for: [expectation], timeout: 5)
+        wait(for: [expectation], timeout: 30)
         observation.invalidate()
         XCTAssertGreaterThan(constraint.constant, 32)
     }
@@ -102,7 +102,7 @@ class CoreWebViewTests: CoreTestCase {
             expectation.fulfill()
         }
         view.loadHTMLString("<a name='t' href='#t'>link</a>", baseURL: URL(string: "#t"))
-        wait(for: [expectation], timeout: 5)
+        wait(for: [expectation], timeout: 30)
         observation.invalidate()
         XCTAssertNotEqual(scrollView.contentOffset.y, 0)
     }

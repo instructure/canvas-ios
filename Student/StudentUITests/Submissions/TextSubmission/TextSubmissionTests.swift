@@ -38,7 +38,7 @@ class TextSubmissionTests: StudentUITestCase {
         // app.find(label: "Enter submission").waitToExist()
         sleep(1)
 
-        let webView = XCUIElementWrapper(app.webViews.firstMatch)
+        let webView = app.find(id: "RichContentEditor.webView")
         webView.typeText("This is rich content.")
         webView.tap()
         app.find(label: "Select All").tap()
@@ -51,7 +51,7 @@ class TextSubmissionTests: StudentUITestCase {
         let create = CreateSubmissionRequest(context: ContextModel(.course, id: "1"), assignmentID: "1", body: nil)
         mockData(create, error: "Bad Network")
         TextSubmission.submitButton.tap()
-        XCUIElementWrapper(app.alerts.buttons["OK"].firstMatch).tap()
+        app.alerts.buttons.matching(label: "OK").firstElement.tap()
 
         mockData(create)
         TextSubmission.submitButton.tap()

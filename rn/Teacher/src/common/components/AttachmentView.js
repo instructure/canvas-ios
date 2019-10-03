@@ -130,7 +130,7 @@ export default class AttachmentView extends Component<Props, State> {
     switch (this.props.attachment.mime_class) {
       case 'image':
         body = <View style={styles.imageContainer}>
-          <Image source={{ uri: this.state.filePath }} resizeMode='contain' style={styles.image} onError={this.onError} />
+          <Image source={{ uri: this.state.filePath }} resizeMode='contain' style={styles.image} onError={this.onError} testID="AttachmentView.image" />
         </View>
         break
       case 'audio':

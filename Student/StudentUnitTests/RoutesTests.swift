@@ -18,7 +18,6 @@
 
 import XCTest
 @testable import CanvasCore
-@testable import CanvasKit
 @testable import Core
 @testable import TechDebt
 @testable import Student
@@ -45,8 +44,6 @@ class RoutesTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        let user = CKIUser(id: "1")!
-        user.name = "Bob"
         AppEnvironment.shared.currentSession = LoginSession.make()
         AppEnvironment.shared.loginDelegate = loginDelegate
         AppEnvironment.shared.api = URLSessionAPI(loginSession: nil, baseURL: nil, urlSession: MockURLSession())

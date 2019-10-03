@@ -44,7 +44,7 @@ class LoginTests: CoreUITestCase {
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("\(user.host)\r")
 
-        XCUIElementWrapper(app.webViews.links["LDAP"]).tap()
+        app.webViews.links.matching(label: "LDAP").firstElement.tap()
 
         LoginWeb.emailField.typeText(user.username)
         LoginWeb.passwordField.typeText(user.password)
@@ -55,15 +55,16 @@ class LoginTests: CoreUITestCase {
     }
 
     func testSAMLLoginToDashboard() {
+        // This test is so flaky it deserves a clean launch every time
+        launch()
         setAnimationsEnabled(true)
         let user = UITestUser.saml
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("\(user.host)")
         app.find(label: "iOS Auto - SAML").tap()
-        LoginWeb.emailField.typeText(" \r")
-        LoginWeb.emailField.typeText("\(user.username)\r")
-        LoginWeb.passwordField.tap()
-        LoginWeb.passwordField.typeText(" \r")
+        let emailField = app.find(label: "Enter your email, phone, or Skype.")
+        emailField.tap()
+        emailField.typeText("\(user.username)\r")
         LoginWeb.passwordField.tap()
         LoginWeb.passwordField.typeText("\(user.password)\r")
         TabBar.dashboardTab.waitToExist()
@@ -108,12 +109,13 @@ class LoginTests: CoreUITestCase {
             ])
         }
 
-        LoginStartMDMLogin.cell(host: user.host, username: user.username).tap()
-
-        Dashboard.coursesLabel.waitToExist()
+        LoginStartMDMLogin.cell(host: user.host, username: user.username).tapUntil {
+            Dashboard.coursesLabel.exists
+        }
         Dashboard.courseCard(id: "247").waitToExist()
         TabBar.dashboardTab.waitToExist()
 
+        reset()
         launch()
     }
 

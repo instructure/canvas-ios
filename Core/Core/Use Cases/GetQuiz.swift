@@ -46,7 +46,6 @@ public class GetQuiz: APIUseCase {
         guard let item = response else { return }
         let quiz = Quiz.save(item, in: client)
         quiz.courseID = courseID
-        let scope = Scope.where(#keyPath(QuizSubmission.quizID), equals: quizID, orderBy: #keyPath(QuizSubmission.attempt), ascending: false)
-        quiz.submission = client.fetch(scope.predicate, sortDescriptors: scope.order).first
+        quiz.submission = client.first(where: #keyPath(QuizSubmission.quizID), equals: quizID)
     }
 }

@@ -82,9 +82,14 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     }
 
     func setInsets() {
+        guard let view = addCommentView, !view.isHidden else {
+            tableView?.contentInset = .zero
+            tableView?.scrollIndicatorInsets = .zero
+            return
+        }
         // Remember top & bottom are flipped by the transform.
-        tableView?.contentInset = UIEdgeInsets(top: addCommentView?.frame.height ?? 0, left: 0, bottom: 0, right: 0)
-        tableView?.scrollIndicatorInsets = UIEdgeInsets(top: addCommentView?.frame.height ?? 0, left: 0, bottom: 0, right: 0)
+        tableView?.contentInset = UIEdgeInsets(top: view.frame.height, left: 0, bottom: 0, right: 0)
+        tableView?.scrollIndicatorInsets = UIEdgeInsets(top: view.frame.height, left: 0, bottom: 0, right: 0)
     }
 
     @IBAction func addCommentButtonPressed(_ sender: UIButton) {
@@ -188,6 +193,10 @@ extension SubmissionCommentsViewController: UIImagePickerControllerDelegate, UIN
 
 extension SubmissionCommentsViewController: SubmissionCommentsViewProtocol {
     func reload() {
+        if let assignment = presenter?.assignment.first {
+            addCommentView?.isHidden = !assignment.isOpenForSubmissions()
+            setInsets()
+        }
         emptyContainer?.isHidden = presenter?.comments.isEmpty == false
         guard let changes = presenter?.comments.changes, changes.count == 1 else {
             tableView?.reloadData()

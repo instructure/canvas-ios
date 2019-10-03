@@ -44,7 +44,13 @@ public class GetSubmissionComments: APIUseCase {
 
     public var scope: Scope {
         return Scope(
-            predicate: NSPredicate(format: "%K == %@", #keyPath(SubmissionComment.submissionID), submissionID),
+            predicate: NSPredicate(
+                format: "%K == %@ AND %K == %@",
+                #keyPath(SubmissionComment.assignmentID),
+                assignmentID,
+                #keyPath(SubmissionComment.userID),
+                userID
+            ),
             order: [NSSortDescriptor(key: #keyPath(SubmissionComment.createdAt), ascending: false)]
         )
     }

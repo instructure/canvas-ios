@@ -210,7 +210,7 @@ open class HelmManager: NSObject {
                 let sideBySideViews = splitViewController.viewControllers.count > 1
                 let viewCanExpandCollapse = !canBecomeMaster && sideBySideViews
                 if (viewCanExpandCollapse) {
-                    viewController.navigationItem.leftBarButtonItem = splitViewController.prettyDisplayModeButtonItem
+                    viewController.navigationItem.leftBarButtonItem = splitViewController.prettyDisplayModeButtonItem(splitViewController.displayMode)
                     viewController.navigationItem.leftItemsSupplementBackButton = true
                 }
                 

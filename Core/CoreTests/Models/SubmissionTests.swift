@@ -180,8 +180,10 @@ class SubmissionTests: CoreTestCase {
         let comments: [SubmissionComment] = databaseClient.fetch()
         let comment = comments.first
         XCTAssertNotNil(comment)
-        XCTAssertNotNil(comment?.submissionID)
-        XCTAssertEqual(comment?.submissionID, submission?.id)
+        XCTAssertNotNil(comment?.assignmentID)
+        XCTAssertNotNil(comment?.userID)
+        XCTAssertEqual(comment?.assignmentID, submission?.assignmentID)
+        XCTAssertEqual(comment?.userID, submission?.userID)
         let fileIDs = comment?.attachments?.map { $0.id }
         XCTAssertTrue(fileIDs?.contains("1") == true)
         XCTAssertTrue(fileIDs?.contains("2") == true)

@@ -50,7 +50,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
         User.make(from: APIUser.make(id: "2", name: "Jane Doe", sortable_name: "Doe, Jane"), courseID: "1")
 
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 5)
+        wait(for: [expectation], timeout: 30)
         XCTAssertEqual(presenter.users.count, 2)
         XCTAssertEqual(presenter.users.first!.id, "2") // Jane
         XCTAssertEqual(presenter.users.last!.id, "1") // John

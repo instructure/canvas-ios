@@ -47,11 +47,23 @@ extension UIColor {
     }
 
     public var hexString: String {
+        return "#\(String(intValue, radix: 16))".replacingOccurrences(of: "#ff", with: "#")
+    }
+
+    public convenience init(intValue value: UInt32) {
+        self.init(
+            red: CGFloat((value & 0xff0000) >> 16) / 255,
+            green: CGFloat((value & 0x00ff00) >> 8) / 255,
+            blue: CGFloat((value & 0x0000ff) >> 0) / 255,
+            alpha: CGFloat((value & 0xff000000) >> 24) / 255
+        )
+    }
+
+    public var intValue: UInt32 {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 1
         getRed(&red, green: &green, blue: &blue, alpha: &alpha) // assume success
-        let toInt = { (n: CGFloat) in return Int(max(0.0, min(1.0, n)) * 255) }
-        let num = (toInt(alpha) << 24) + (toInt(red) << 16) + (toInt(green) << 8) + toInt(blue)
-        return "#\(String(num, radix: 16))".replacingOccurrences(of: "#ff", with: "#")
+        let toInt = { (n: CGFloat) in return UInt32(max(0.0, min(1.0, n)) * 255) }
+        return (toInt(alpha) << 24) + (toInt(red) << 16) + (toInt(green) << 8) + toInt(blue)
     }
 
     // MARK: App Logo Colors

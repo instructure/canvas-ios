@@ -21,6 +21,7 @@ import XCTest
 
 public protocol Element {
     var elementType: XCUIElement.ElementType { get }
+    var rawElement: XCUIElement { get }
     var exists: Bool { get }
     var id: String { get }
     var isEnabled: Bool { get }
@@ -120,67 +121,67 @@ public extension Element {
     }
 }
 
-public struct XCUIElementWrapper: Element {
-    var element: XCUIElement {
-        return finder()
-    }
-    private let finder: () -> XCUIElement
+public struct XCUIElementQueryWrapper: Element {
+    public let query: XCUIElementQuery
+    public let index: Int
 
-    public init(_ finder: @autoclosure @escaping () -> XCUIElement) {
-        self.finder = finder
+    // A negative index counts backwards from the end, e.g. -1 is the last matching element
+    public init(_ query: XCUIElementQuery, index: Int = 0) {
+        self.query = query
+        self.index = index
     }
 
-    public var elementType: XCUIElement.ElementType {
-        return element.elementType
-    }
     public var exists: Bool {
-        return element.exists
+        app.waitForSnapshot()
+        return rawElement.exists
     }
+
+    public var elementType: XCUIElement.ElementType { return rawElement.elementType }
+    public var rawElement: XCUIElement {
+        let rawIndex: Int
+        if index < 0 {
+            rawIndex = query.count + index
+        } else {
+            rawIndex = index
+        }
+        return query.element(boundBy: rawIndex)
+    }
+    public var id: String { return rawElement.identifier }
+    public var isEnabled: Bool { return exists && rawElement.isEnabled }
+    public var isSelected: Bool { return rawElement.isSelected }
+    public var isVisible: Bool { return exists && rawElement.isHittable }
+
     public func frame(file: StaticString = #file, line: UInt = #line) -> CGRect {
         waitToExist(30, file: file, line: line)
-        return element.frame
-    }
-    public var id: String {
-        return element.identifier
-    }
-    public var isEnabled: Bool {
-        guard exists else { return false }
-        return element.isEnabled
-    }
-    public var isSelected: Bool {
-        return element.isSelected
-    }
-    public var isVisible: Bool {
-        guard exists else { return false }
-        return element.isHittable
+        return rawElement.frame
     }
     public func label(file: StaticString = #file, line: UInt = #line) -> String {
         waitToExist(30, file: file, line: line)
-        return element.label
+        return rawElement.label
     }
     public func value(file: StaticString = #file, line: UInt = #line) -> String? {
         waitToExist(30, file: file, line: line)
-        return element.value as? String
+        return rawElement.value as? String
     }
 
     @discardableResult
     public func pick(column: Int, value: String, file: StaticString, line: UInt) -> Element {
         waitToExist(file: file, line: line)
-        element.pickerWheels.allElementsBoundByIndex[column].adjust(toPickerWheelValue: value)
+        rawElement.pickerWheels.allElementsBoundByIndex[column].adjust(toPickerWheelValue: value)
         return self
     }
 
     @discardableResult
     public func tap(file: StaticString, line: UInt) -> Element {
         waitToExist(file: file, line: line)
-        element.tap()
+        rawElement.tap()
         return self
     }
 
     @discardableResult
     public func tapAt(_ point: CGPoint, file: StaticString, line: UInt) -> Element {
         waitToExist(file: file, line: line)
-        element.coordinate(withNormalizedOffset: .zero)
+        rawElement.coordinate(withNormalizedOffset: .zero)
             .withOffset(CGVector(dx: point.x, dy: point.y))
             .tap()
         return self
@@ -189,32 +190,33 @@ public struct XCUIElementWrapper: Element {
     @discardableResult
     public func typeText(_ text: String, file: StaticString, line: UInt) -> Element {
         var taps = 0
-        while element.value(forKey: "hasKeyboardFocus") as? Bool != true, taps < 5 {
+        while rawElement.value(forKey: "hasKeyboardFocus") as? Bool != true, taps < 5 {
             taps += 1
             tap(file: file, line: line)
+            sleep(1)
         }
-        element.typeText(text)
+        rawElement.typeText(text)
         return self
     }
 
     @discardableResult
     public func swipeDown(file: StaticString, line: UInt) -> Element {
         waitToExist(file: file, line: line)
-        element.swipeDown()
+        rawElement.swipeDown()
         return self
     }
 
     @discardableResult
     public func swipeUp(file: StaticString, line: UInt) -> Element {
         waitToExist(file: file, line: line)
-        element.swipeUp()
+        rawElement.swipeUp()
         return self
     }
 
     @discardableResult
     public func waitToExist(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element {
-        if !element.exists {
-            XCTAssertTrue(element.waitForExistence(timeout: timeout), "Element \(id) not found", file: file, line: line)
+        if !exists {
+            XCTAssertTrue(rawElement.waitForExistence(timeout: timeout), "Element \(id) not found", file: file, line: line)
         }
         return self
     }
@@ -222,10 +224,10 @@ public struct XCUIElementWrapper: Element {
     @discardableResult
     public func waitToVanish(_ timeout: TimeInterval, file: StaticString, line: UInt) -> Element {
         let deadline = Date().addingTimeInterval(timeout)
-        while element.exists, Date() < deadline {
+        while rawElement.exists, Date() < deadline {
             sleep(1)
         }
-        XCTAssertFalse(element.exists, "Element \(id) still exists", file: file, line: line)
+        XCTAssertFalse(rawElement.exists, "Element \(id) still exists", file: file, line: line)
         return self
     }
 }

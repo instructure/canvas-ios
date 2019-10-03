@@ -33,6 +33,10 @@ class UIColorExtensionsTests: XCTestCase {
         XCTAssertNil(UIColor(hexString: "#nothex"))
     }
 
+    func testIntValue() {
+        XCTAssertEqual(UIColor(intValue: 0x12345678).intValue, 0x12345678)
+    }
+
     func testNamed() {
         for name in UIColor.Name.allCases {
             XCTAssertNotNil(UIColor.named(name, inHighContrast: false))

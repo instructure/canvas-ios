@@ -28,7 +28,7 @@ enum CoursePeople {
 
 enum PersonContextCard {
     static func emailLabel(_ email: String) -> Element {
-        return XCUIElementWrapper(app.staticTexts[email])
+        return app.staticTexts.matching(label: email).firstElement
     }
 }
 
