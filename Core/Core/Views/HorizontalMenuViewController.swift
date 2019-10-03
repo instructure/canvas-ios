@@ -173,8 +173,9 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
         } else {
             let identifier = "child_\(indexPath.item)"
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-            guard let vc = delegate?.viewControllers[indexPath.item] else { fatalError("\(#function) delegate nil") }
-            embed(vc, in: cell.contentView)
+            if let vc = delegate?.viewControllers[indexPath.item] {
+                embed(vc, in: cell.contentView)
+            }
             return cell
         }
     }
