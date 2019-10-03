@@ -45,7 +45,7 @@ class PostSettingsViewController: HorizontalMenuViewController {
         configurePost()
         configureHide()
 
-        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.useModalStyle()
 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
     }

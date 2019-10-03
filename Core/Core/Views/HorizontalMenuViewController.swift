@@ -80,7 +80,7 @@ open class HorizontalMenuViewController: UIViewController {
 
         menu = UICollectionView(frame: .zero, collectionViewLayout: layout)
         guard let menu = menu else { return }
-        menu.backgroundColor = .white
+        menu.backgroundColor = UIColor.named(.backgroundLightest)
         menu.register(MenuCell.self, forCellWithReuseIdentifier: String(describing: MenuCell.self))
         menu.showsHorizontalScrollIndicator = false
         menu.dataSource = self
@@ -102,6 +102,7 @@ open class HorizontalMenuViewController: UIViewController {
 
         pages = UICollectionView(frame: .zero, collectionViewLayout: layout)
         guard let pages = pages, let menu = menu else { return }
+        pages.backgroundColor = UIColor.named(.backgroundLightest)
         pages.isPagingEnabled = true
         pages.showsHorizontalScrollIndicator = false
         pages.dataSource = self
@@ -211,12 +212,15 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
     override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: { [weak self] _ in
-            self?.layoutViewControllers()
-            self?.reload()
-            guard let ip = self?.selectedIndexPath else { return }
-            self?.menu?.scrollToItem(at: ip, at: .left, animated: false)
-            self?.pages?.scrollToItem(at: ip, at: .left, animated: false)
+            self?.refreshOnLayoutTransitions()
         }, completion: nil)
+    }
+
+    func refreshOnLayoutTransitions() {
+        layoutViewControllers()
+        reload()
+        menu?.scrollToItem(at: selectedIndexPath, at: .left, animated: false)
+        pages?.scrollToItem(at: selectedIndexPath, at: .left, animated: false)
     }
 
     public class MenuCell: UICollectionViewCell {
@@ -280,8 +284,8 @@ public extension HorizontalPagedMenuDelegate {
 extension HorizontalMenuViewController: SplitViewControllerObserverProtocol {
     public func willChangeDisplayModes() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.059) { [weak self] in
-            UIView.animate(withDuration: 0.4) {
-                self?.layoutViewControllers()
+            UIView.animate(withDuration: 0.2) {
+                self?.refreshOnLayoutTransitions()
             }
         }
     }
