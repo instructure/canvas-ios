@@ -216,7 +216,7 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
             guard let ip = self?.selectedIndexPath else { return }
             self?.menu?.scrollToItem(at: ip, at: .left, animated: false)
             self?.pages?.scrollToItem(at: ip, at: .left, animated: false)
-            }, completion: nil)
+        }, completion: nil)
     }
 
     public class MenuCell: UICollectionViewCell {
