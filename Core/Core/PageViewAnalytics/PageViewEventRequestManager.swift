@@ -43,19 +43,20 @@ class PageViewEventRequestManager {
             let count = min(self.maxBatchCount, self.persistence.queueCount)
             guard count > 0 else { return handler(nil) }
 
-            self.backgroundAppHelper?.startBackgroundTask(taskName: "send pageview events")
+            let taskName = "send pageview events"
+            self.backgroundAppHelper?.startBackgroundTask(taskName: taskName)
 
             let events = self.persistence.batchOfEvents(count)?.map { $0.apiEvent(token) } ?? []
 
             self.env.api.makeRequest(PostPandataEventsRequest(token: token, events: events)) { (response, _, error) in
                 guard response?.lowercased() == "\"ok\"", error == nil else {
                     handler(error)
-                    self.backgroundAppHelper?.endBackgroundTask()
+                    self.backgroundAppHelper?.endBackgroundTask(taskName: taskName)
                     return
                 }
                 self.persistence.dequeue(count, handler: {
                     handler(nil)
-                    self.backgroundAppHelper?.endBackgroundTask()
+                    self.backgroundAppHelper?.endBackgroundTask(taskName: taskName)
                 })
             }
         }
@@ -75,14 +76,15 @@ class PageViewEventRequestManager {
             return handler(token)
         }
 
-        self.backgroundAppHelper?.startBackgroundTask(taskName: "fetch pandata token")
+        let taskName = "fetch pandata token"
+        self.backgroundAppHelper?.startBackgroundTask(taskName: taskName)
 
         env.api.makeRequest(PostPandataEventsTokenRequest()) { [weak self] (token, _, _) in
             if let token = token {
                 self?.storePandataEndpointInfo(token)
             }
             handler(token)
-            self?.backgroundAppHelper?.endBackgroundTask()
+            self?.backgroundAppHelper?.endBackgroundTask(taskName: taskName)
         }
     }
 }

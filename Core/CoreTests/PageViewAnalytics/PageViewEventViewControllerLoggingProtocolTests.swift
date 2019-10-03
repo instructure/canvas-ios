@@ -83,11 +83,18 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
 extension PageViewEventViewControllerLoggingProtocolTests: PageViewEventViewControllerLoggingProtocol {}
 
 class TestAppBackgroundHelper: AppBackgroundHelperProtocol {
+    var tasks: [String: [String]] = [:]
     func startBackgroundTask(taskName: String) {
-
+        append("start", to: taskName)
     }
 
-    func endBackgroundTask() {
+    func endBackgroundTask(taskName: String) {
+        append("end", to: taskName)
+    }
 
+    private func append(_ event: String, to taskName: String) {
+        var events = tasks[taskName] ?? []
+        events.append(event)
+        tasks[taskName] = events
     }
 }
