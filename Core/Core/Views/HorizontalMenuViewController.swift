@@ -276,3 +276,13 @@ public extension HorizontalPagedMenuDelegate {
 
     var menuItemFont: UIFont { .scaledNamedFont(.semibold16) }
 }
+
+extension HorizontalMenuViewController: SplitViewControllerObserverProtocol {
+    public func willChangeDisplayModes() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.059) { [weak self] in
+            UIView.animate(withDuration: 0.4) {
+                self?.layoutViewControllers()
+            }
+        }
+    }
+}
