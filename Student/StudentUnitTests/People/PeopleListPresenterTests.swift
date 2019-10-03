@@ -51,7 +51,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
         User.make(from: APIUser.make(id: "2", name: "Jane Doe", sortable_name: "Doe, Jane"), courseID: "1")
 
         expectationPredicate = {
-            self.presenter.users.count == 2 && self.presenter.users.first?.id.isEmpty == false
+            self.presenter.users.count == 2 && self.presenter.users.allSatisfy { !$0.isEmpty }
         }
         presenter.viewIsReady()
 
