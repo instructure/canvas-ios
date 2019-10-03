@@ -109,7 +109,9 @@ class PageListPresenterTests: CoreTestCase {
 extension PageListPresenterTests: PageListViewProtocol {
 
     func update(isLoading: Bool) {
-        update.fulfill()
+        if (updateExpectationPredicate()) {
+            update.fulfill()
+        }
     }
 
     func showError(_ error: Error) {
