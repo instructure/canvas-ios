@@ -24,11 +24,11 @@ script_dir="$(dirname "$0")"
 cd "$script_dir/.."
 
 usage() {
-    echo "usage: $0 [--teacher] testClass.method"
+    echo "usage: find-flakey-pairs-of-tests.sh [--teacher] testClass.method"
 }
 
 TEST_SUITE=StudentUITests
-while [[ "$1" != "" ]]; do
+while [[ "$#" -gt 0 && "$1" != "" ]]; do
     case $1 in
         --teacher )   TEST_SUITE=TeacherUITests
                       ;;
