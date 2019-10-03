@@ -51,5 +51,7 @@ class ParentTestCase: XCTestCase {
         env.currentSession = currentSession
         MockURLSession.reset()
         MockUploadManager.reset()
+        ExperimentalFeature.allEnabled = false
+        Parent.currentStudentID = "1"
     }
 }

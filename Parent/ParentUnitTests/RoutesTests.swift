@@ -21,30 +21,13 @@ import Foundation
 import XCTest
 @testable import Core
 
-class RoutesTests: XCTestCase {
-    var experimentalFeaturesEnabled: Bool!
-    var currentStudentID: String?
-
-    override func setUp() {
-        super.setUp()
-        experimentalFeaturesEnabled = ExperimentalFeature.allEnabled
-        self.currentStudentID = Parent.currentStudentID
-        Parent.currentStudentID = "1"
-    }
-
-    override func tearDown() {
-        ExperimentalFeature.allEnabled = experimentalFeaturesEnabled
-        Parent.currentStudentID = self.currentStudentID
-        super.tearDown()
-    }
-
+class RoutesTests: ParentTestCase {
     func testCourseGrades() {
-        ExperimentalFeature.allEnabled = false
-        XCTAssert(router.match(.parse("/courses/1/grades")) is CalendarEventWeekPageViewController)
+        XCTAssert(Parent.router.match(.parse("/courses/1/grades")) is CalendarEventWeekPageViewController)
     }
 
     func testCourseGradesParent3() {
         ExperimentalFeature.allEnabled = true
-        XCTAssert(router.match(.parse("/courses/1/grades")) is GradesViewController)
+        XCTAssert(Parent.router.match(.parse("/courses/1/grades")) is GradesViewController)
     }
 }
