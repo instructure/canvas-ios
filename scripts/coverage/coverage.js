@@ -91,7 +91,8 @@ function reportCoverage () {
   }
 
   console.log(`Reading Xcode coverage report ${folder}`)
-  const report = JSON.parse(run(`xcrun xccov view --json ${folder}/*Test/*.xccovreport`))
+  run(`xcrun xccov view --report --json ${folder} > scripts/coverage/tmp.json`)
+  const report = JSON.parse(readFileSync('scripts/coverage/tmp.json'))
 
   try {
     console.log(`Reading Jest Istanbul coverage report`)

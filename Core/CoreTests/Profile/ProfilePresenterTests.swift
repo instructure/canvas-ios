@@ -22,7 +22,7 @@ import TestsFoundation
 
 class ProfilePresenterTests: CoreTestCase {
     var enrollment = HelpLinkEnrollment.student
-    let view = MockView()
+    lazy var view = MockView(self)
 
     override func setUp() {
         super.setUp()
@@ -56,14 +56,16 @@ class ProfilePresenterTests: CoreTestCase {
 
     func testActAsUserWithPermission() {
         api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make(become_user: true))
-        presenter.cells.first(where: { $0.id == "actAsUser" })?.block(UITableViewCell())
-        XCTAssertEqual(view.routedTo, Route.actAsUser)
+        view.expect(route: Route.actAsUser) {
+            presenter.cells.first(where: { $0.id == "actAsUser" })?.block(UITableViewCell())
+        }
     }
 
     func testActAsUserInSiteadmin() {
         environment.currentSession = LoginSession.make(baseURL: URL(string: "https://siteadmin.instructure.com")!)
-        presenter.cells.first(where: { $0.id == "actAsUser" })?.block(UITableViewCell())
-        XCTAssertEqual(view.routedTo, Route.actAsUser)
+        view.expect(route: Route.actAsUser) {
+            presenter.cells.first(where: { $0.id == "actAsUser" })?.block(UITableViewCell())
+        }
     }
 
     func testLogout() {
@@ -93,8 +95,9 @@ class ProfilePresenterTests: CoreTestCase {
         XCTAssertFalse(presenter.cells.contains(where: { $0.id == "developerMenu" }))
         presenter.didTapVersion()
         XCTAssertTrue(presenter.showDevMenu)
-        presenter.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
-        XCTAssertEqual(view.routedTo, Route.developerMenu)
+        view.expect(route: Route.developerMenu) {
+            presenter.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
+        }
     }
 
     func testNoExtras() {
@@ -110,50 +113,64 @@ class ProfilePresenterTests: CoreTestCase {
             ]),
         ])
         presenter.cells.first(where: { $0.id == "help" })?.block(UITableViewCell())
-        XCTAssertTrue(view.helpShown)
+        wait(for: [view.helpShown], timeout: 5)
         presenter.cells.first(where: { $0.id.hasPrefix("lti") })?.block(UITableViewCell())
-        XCTAssertNotNil(view.lti)
+        wait(for: [view.ltiExpectation], timeout: 5)
     }
 
     func testObserver() {
         enrollment = .observer
-        presenter.cells.first(where: { $0.id == "manageChildren" })?.block(UITableViewCell())
-        XCTAssertEqual(view.routedTo, Route.profileObservees)
+        view.expect(route: Route.profileObservees) {
+            presenter.cells.first(where: { $0.id == "manageChildren" })?.block(UITableViewCell())
+        }
         XCTAssertFalse(presenter.cells.contains(where: { $0.id == "files" }))
         XCTAssertFalse(presenter.cells.contains(where: { $0.id == "showGrades" }))
         XCTAssertFalse(presenter.cells.contains(where: { $0.id == "colorOverlay" }))
         XCTAssertFalse(presenter.cells.contains(where: { $0.id == "settings" }))
-        presenter.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
-        XCTAssertEqual(view.routedTo, Route.developerMenu)
+        view.expect(route: Route.developerMenu) {
+            presenter.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
+        }
     }
 
     func testStudent() {
         enrollment = .student
         XCTAssertFalse(presenter.cells.contains(where: { $0.id == "manageChildren" }))
-        presenter.cells.first(where: { $0.id == "files" })?.block(UITableViewCell())
-        XCTAssertEqual(view.routedTo, Route.files())
+        view.expect(route: Route.files()) {
+            presenter.cells.first(where: { $0.id == "files" })?.block(UITableViewCell())
+        }
         XCTAssertNoThrow(presenter.cells.first(where: { $0.id == "showGrades" })?.block(UITableViewCell()))
         XCTAssertNoThrow(presenter.cells.first(where: { $0.id == "colorOverlay" })?.block(UITableViewCell()))
-        presenter.cells.first(where: { $0.id == "settings" })?.block(UITableViewCell())
-        XCTAssertEqual(view.routedTo, Route.profileSettings)
-        presenter.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
-        XCTAssertEqual(view.routedTo, Route.developerMenu)
+        view.expect(route: Route.profileSettings) {
+            presenter.cells.first(where: { $0.id == "settings" })?.block(UITableViewCell())
+        }
+        view.expect(route: Route.developerMenu) {
+            presenter.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
+        }
     }
 
     func testTeacher() {
         enrollment = .teacher
         XCTAssertFalse(presenter.cells.contains(where: { $0.id == "manageChildren" }))
-        presenter.cells.first(where: { $0.id == "files" })?.block(UITableViewCell())
-        XCTAssertEqual(view.routedTo, Route.files())
+        view.expect(route: Route.files()) {
+            presenter.cells.first(where: { $0.id == "files" })?.block(UITableViewCell())
+        }
         XCTAssertFalse(presenter.cells.contains(where: { $0.id == "showGrades" }))
         XCTAssertNoThrow(presenter.cells.first(where: { $0.id == "colorOverlay" })?.block(UITableViewCell()))
-        presenter.cells.first(where: { $0.id == "settings" })?.block(UITableViewCell())
-        XCTAssertEqual(view.routedTo, Route.profileSettings)
-        presenter.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
-        XCTAssertEqual(view.routedTo, Route.developerMenu)
+        view.expect(route: Route.profileSettings) {
+            presenter.cells.first(where: { $0.id == "settings" })?.block(UITableViewCell())
+        }
+        view.expect(route: Route.developerMenu) {
+            presenter.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
+        }
     }
 
     class MockView: ProfileViewProtocol {
+        let testCase: XCTestCase
+
+        init(_ testCase: XCTestCase) {
+            self.testCase = testCase
+        }
+
         var onReload: (() -> Void)?
         var reloaded = 0
         func reload() {
@@ -161,14 +178,23 @@ class ProfilePresenterTests: CoreTestCase {
             onReload?()
         }
 
-        var routedTo: Route?
-        func route(to: Route, options: RouteOptions?) {
-            routedTo = to
+        func expect(route: Route, file: StaticString = #file, line: UInt = #line, block: () -> Void) {
+            routeExpectation = XCTestExpectation(description: "route to \(route)")
+            block()
+            testCase.wait(for: [routeExpectation!], timeout: 5)
+            XCTAssertEqual(routedTo, route, file: file, line: line)
         }
 
-        var helpShown = false
+        var routedTo: Route?
+        var routeExpectation: XCTestExpectation?
+        func route(to: Route, options: RouteOptions?) {
+            routedTo = to
+            routeExpectation?.fulfill()
+        }
+
+        let helpShown = XCTestExpectation(description: "help shown")
         func showHelpMenu(from cell: UITableViewCell) {
-            helpShown = true
+            helpShown.fulfill()
         }
 
         var teacherSettingsShown = false
@@ -176,9 +202,9 @@ class ProfilePresenterTests: CoreTestCase {
             teacherSettingsShown = true
         }
 
-        var lti: URL?
+        let ltiExpectation = XCTestExpectation(description: "lti launched")
         func launchLTI(url: URL) {
-            lti = url
+            ltiExpectation.fulfill()
         }
 
         func showError(_ error: Error) {}

@@ -30,7 +30,7 @@ class PageListPresenterTests: CoreTestCase {
 
     let update = XCTestExpectation(description: "presenter updated")
     var onUpdateNavBar: ((String?, UIColor?) -> Void)?
-    var onUpdate: () -> Void = {}
+    var updateExpectationPredicate: () -> Bool = { return true }
 
     var color: UIColor?
     var navigationController: UINavigationController?
@@ -79,20 +79,16 @@ class PageListPresenterTests: CoreTestCase {
 
     func testLoadPages() {
         Page.make(from: .make(title: "Answers Page"))
-        let expectation = self.expectation(description: "pages")
-        expectation.assertForOverFulfill = false
-        onUpdate = {
-            if self.coursePresenter.pages.first?.title == "Answers Page" {
-                expectation.fulfill()
-            }
-        }
+        updateExpectationPredicate = { self.coursePresenter.pages.first?.title == "Answers Page" }
         coursePresenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        wait(for: [update], timeout: 1)
     }
 
     func testLoadFrontPage() {
         Page.make(from: .make(front_page: true, title: "Front Page"))
+        updateExpectationPredicate = { self.coursePresenter.frontPage.first?.title == "Front Page" }
         coursePresenter.viewIsReady()
+        wait(for: [update], timeout: 1)
         XCTAssertEqual(coursePresenter.frontPage.first?.title, "Front Page")
         XCTAssertEqual(coursePresenter.frontPage.first?.isFrontPage, true)
     }
@@ -111,9 +107,11 @@ class PageListPresenterTests: CoreTestCase {
 }
 
 extension PageListPresenterTests: PageListViewProtocol {
+
     func update(isLoading: Bool) {
-        update.fulfill()
-        onUpdate()
+        if (updateExpectationPredicate()) {
+            update.fulfill()
+        }
     }
 
     func showError(_ error: Error) {
