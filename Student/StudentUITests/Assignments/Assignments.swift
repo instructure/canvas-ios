@@ -44,7 +44,7 @@ enum AssignmentDetails: String, ElementWrapper {
     }
 
     static func link(_ description: String) -> Element {
-        return XCUIElementWrapper(app.webViews.staticTexts[description])
+        return app.webViews.staticTexts.matching(label: description).firstElement
     }
 }
 
@@ -66,14 +66,14 @@ enum GradesList {
 
 enum QuizzesNext {
     static func text(_ description: String) -> Element {
-        return XCUIElementWrapper(app.webViews.staticTexts[description])
+        return app.webViews.staticTexts.matching(label: description).firstElement
     }
 
     static var beginButton: Element {
-        return XCUIElementWrapper(app.webViews.buttons["Begin"])
+        return app.webViews.buttons.matching(label: "Begin").firstElement
     }
 
     static var doneButton: Element {
-        return XCUIElementWrapper(app.buttons["Done"].firstMatch)
+        return app.buttons.matching(label: "Done").firstElement
     }
 }

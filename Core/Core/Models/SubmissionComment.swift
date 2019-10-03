@@ -21,6 +21,7 @@ import CoreData
 
 final public class SubmissionComment: NSManagedObject {
     @NSManaged public var id: String
+    @NSManaged public var assignmentID: String
     @NSManaged public var authorAvatarURL: URL?
     @NSManaged public var authorID: String
     @NSManaged public var authorName: String
@@ -31,7 +32,7 @@ final public class SubmissionComment: NSManagedObject {
     @NSManaged public var mediaName: String?
     @NSManaged public var mediaTypeRaw: String?
     @NSManaged public var mediaURL: URL?
-    @NSManaged public var submissionID: String
+    @NSManaged public var userID: String
     @NSManaged public var attachments: Set<File>?
 
     public var mediaType: MediaCommentType? {
@@ -49,10 +50,11 @@ final public class SubmissionComment: NSManagedObject {
     }
 
     @discardableResult
-    static public func save(_ item: APISubmissionComment, forSubmission submissionID: String, replacing id: String? = nil, in client: NSManagedObjectContext) -> SubmissionComment {
+    static public func save(_ item: APISubmissionComment, for submission: APISubmission, replacing id: String? = nil, in client: NSManagedObjectContext) -> SubmissionComment {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(SubmissionComment.id), id ?? item.id)
         let model: SubmissionComment = client.fetch(predicate).first ?? client.insert()
         model.id = item.id
+        model.assignmentID = submission.assignment_id.value
         model.authorAvatarURL = item.author.avatar_image_url
         model.authorID = item.author_id
         model.authorName = item.author.display_name
@@ -63,7 +65,7 @@ final public class SubmissionComment: NSManagedObject {
         model.mediaName = item.media_comment?.display_name
         model.mediaType = item.media_comment?.media_type
         model.mediaURL = item.media_comment?.url
-        model.submissionID = submissionID
+        model.userID = submission.user_id.value
         if let attachments = item.attachments {
             model.attachments = Set(File.save(attachments, in: client))
         }
@@ -77,13 +79,14 @@ final public class SubmissionComment: NSManagedObject {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(SubmissionComment.id), id)
         let model: SubmissionComment = client.fetch(predicate).first ?? client.insert()
         model.id = id
+        model.assignmentID = item.assignment_id.value
         model.authorAvatarURL = item.user?.avatar_url
         model.authorID = item.user_id.value
         model.authorName = item.user?.short_name ?? ""
         model.comment = ""
         model.createdAt = submittedAt
         model.editedAt = submittedAt
-        model.submissionID = item.id.value
+        model.userID = item.user_id.value
         return model
     }
 }

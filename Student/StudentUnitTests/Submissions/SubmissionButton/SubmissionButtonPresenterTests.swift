@@ -150,6 +150,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         presenter.arcID = .some("1")
         presenter.submitAssignment(a, button: button)
         let alert = view.presented as? UIAlertController
+        drainMainQueue()
         XCTAssertNotNil(alert)
         XCTAssertEqual(alert?.actions.count, 3)
     }
@@ -157,6 +158,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     func testSubmitTypeMissingSubmission() {
         let a = Assignment.make(from: .make(submission: nil))
         presenter.submitType(.online_text_entry, for: a, button: UIView())
+        drainMainQueue()
         XCTAssertNil(view.presented)
         XCTAssert(router.calls.isEmpty)
     }
@@ -165,18 +167,14 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         let a = Assignment.make(from: .make(
             discussion_topic: .make(html_url: URL(string: "/discussion"))
         ))
-        var asyncDone = expectation(description: "async task complete")
         presenter.submitType(.external_tool, for: a, button: UIView())
-        DispatchQueue.main.async { asyncDone.fulfill() }
-        wait(for: [asyncDone], timeout: 1)
+        drainMainQueue()
         XCTAssert(router.viewControllerCalls.isEmpty)
 
         let request = GetSessionlessLaunchURLRequest(context: ContextModel(.course, id: "1"), id: nil, url: nil, assignmentID: "1", moduleItemID: nil, launchType: .assessment)
         api.mock(request, value: APIGetSessionlessLaunchResponse(url: URL(string: "https://instructure.com")!))
-        asyncDone = expectation(description: "async task complete")
         presenter.submitType(.external_tool, for: a, button: UIView())
-        DispatchQueue.main.async { asyncDone.fulfill() }
-        wait(for: [asyncDone], timeout: 1)
+        drainMainQueue()
         XCTAssert(router.viewControllerCalls.first?.0 is SFSafariViewController)
     }
 
@@ -184,43 +182,51 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         let url = URL(string: "/discussion")!
         let a = Assignment.make(from: .make(discussion_topic: .make()))
         presenter.submitType(.discussion_topic, for: a, button: UIView())
+        drainMainQueue()
         XCTAssert(router.calls.isEmpty)
 
         a.discussionTopic?.htmlUrl = url
         presenter.submitType(.discussion_topic, for: a, button: UIView())
+        drainMainQueue()
         XCTAssert(router.lastRoutedTo(URL(string: "/discussion")!))
     }
 
     func testSubmitTypeMedia() {
         let a = Assignment.make()
         presenter.submitType(.media_recording, for: a, button: UIView())
+        drainMainQueue()
         XCTAssert(view.presented is UIAlertController)
     }
 
     func testSubmitTypeText() {
         let a = Assignment.make()
         presenter.submitType(.online_text_entry, for: a, button: UIView())
+        drainMainQueue()
         XCTAssert(router.viewControllerCalls.last?.0 is TextSubmissionViewController)
     }
 
     func testSubmitTypeQuiz() {
         let a = Assignment.make()
         presenter.submitType(.online_quiz, for: a, button: UIView())
+        drainMainQueue()
         XCTAssert(router.calls.isEmpty)
         a.quizID = "1"
         presenter.submitType(.online_quiz, for: a, button: UIView())
+        drainMainQueue()
         XCTAssert(router.lastRoutedTo(Route.takeQuiz(forCourse: "1", quizID: "1")))
     }
 
     func testSubmitTypeUpload() {
         let a = Assignment.make()
         presenter.submitType(.online_upload, for: a, button: UIView())
+        drainMainQueue()
         XCTAssert(view.presented is UINavigationController)
     }
 
     func testSubmitTypeURL() {
         let a = Assignment.make()
         presenter.submitType(.online_url, for: a, button: UIView())
+        drainMainQueue()
         XCTAssert(router.viewControllerCalls.last?.0 is UrlSubmissionViewController)
     }
 
@@ -228,6 +234,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         let a = Assignment.make()
         presenter.arcID = .some("4")
         presenter.submitArc(assignment: a)
+        drainMainQueue()
         let nav = view.presented as? UINavigationController
         XCTAssertNotNil(nav)
         XCTAssertNotNil(nav?.topViewController as? ArcSubmissionViewController)

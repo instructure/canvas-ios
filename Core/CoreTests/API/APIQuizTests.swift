@@ -16,19 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
-import Foundation
+import XCTest
 @testable import Core
 
-extension SubmissionComment {
-    @discardableResult
-    public static func make(
-        from api: APISubmissionComment = .make(),
-        for submission: APISubmission = .make(),
-        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
-    ) -> SubmissionComment {
-        let model = SubmissionComment.save(api, for: submission, in: context)
-        try! context.save()
-        return model
+class APIQuizRequestableTests: XCTestCase {
+    func testGetQuizzesRequest() {
+        XCTAssertEqual(GetQuizzesRequest(courseID: "7").path, "courses/7/quizzes?per_page=100")
+    }
+
+    func testGetQuizRequest() {
+        XCTAssertEqual(GetQuizRequest(courseID: "71", quizID: "2").path, "courses/71/quizzes/2")
+    }
+
+    func testGetQuizSubmissionsRequest() {
+        XCTAssertEqual(GetQuizSubmissionRequest(courseID: "45", quizID: "17").path, "courses/45/quizzes/17/submission")
     }
 }

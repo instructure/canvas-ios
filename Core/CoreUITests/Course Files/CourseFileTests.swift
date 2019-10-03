@@ -29,12 +29,10 @@ class CourseFileTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return CourseFileTests.self }
 
     func testPreviewCourseFile() {
-        Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.files.tap()
 
-        FilesList.file(id: "10528").waitToExist()
         FilesList.file(id: "10528").tap()
 
         // need be on the next page before checking for image
@@ -48,7 +46,7 @@ class CourseFileTests: CoreUITestCase {
 
         CourseNavigation.pages.tap()
         PagesList.page(index: 1).tap()
-        XCUIElementWrapper(app.links.firstMatch).tap()
+        app.links.firstElement.tap()
         app.find(type: .image).waitToExist()
     }
 }

@@ -57,7 +57,7 @@ class GetSubmissionCommentsTests: CoreTestCase {
 
         let comments: [SubmissionComment] = databaseClient.fetch()
         XCTAssertEqual(comments.count, 4)
-        XCTAssertEqual(comments.first?.submissionID, apiSubmission.id.value)
+        XCTAssertEqual(comments.first?.userID, apiSubmission.user_id.value)
     }
 
     func testCacheKey() {
@@ -73,7 +73,13 @@ class GetSubmissionCommentsTests: CoreTestCase {
     func testScope() {
         let getSubmission = GetSubmissionComments(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3", submissionID: "4")
         let scope = Scope(
-            predicate: NSPredicate(format: "%K == %@", #keyPath(SubmissionComment.submissionID), "4"),
+            predicate: NSPredicate(
+                format: "%K == %@ AND %K == %@",
+                #keyPath(SubmissionComment.assignmentID),
+                "2",
+                #keyPath(SubmissionComment.userID),
+                "3"
+            ),
             order: [NSSortDescriptor(key: #keyPath(SubmissionComment.createdAt), ascending: false)]
         )
         XCTAssertEqual(getSubmission.scope, scope)

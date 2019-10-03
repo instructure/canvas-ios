@@ -77,7 +77,7 @@ jobs=6
 parallel '
 set -euo pipefail
 xcrun simctl delete ip8-{} || true
-xcrun simctl create ip8-{} "iPhone 8" com.apple.CoreSimulator.SimRuntime.iOS-12-4
+xcrun simctl create ip8-{} "iPhone 8" com.apple.CoreSimulator.SimRuntime.iOS-13-0
 xcrun simctl boot ip8-{}
 ' ::: $(seq $jobs)
 

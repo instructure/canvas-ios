@@ -125,6 +125,11 @@ public class UITestHelpers {
         }
     }
 
+    @discardableResult
+    func send(_ message: IPCDriverServerMessage) -> Data? {
+        return ipcDriverClient?.requestRemote(message)
+    }
+
     func run(_ helper: Helper) -> Data? {
         print("Running UI Test Helper \(helper)")
         switch helper {
@@ -156,7 +161,14 @@ public class UITestHelpers {
     func reset() {
         LoginSession.clearAll()
         UserDefaults.standard.removeObject(forKey: MDMManager.MDMUserDefaultsKey)
-        (appDelegate as? LoginDelegate)?.changeUser()
+
+        guard let loginDelegate = appDelegate as? LoginDelegate, let window = window else { fatalError() }
+
+        // horrible hack to get rid of old modally presented controllers that stick around after the rootViewController is changed
+        window.rootViewController = nil
+        window.subviews.forEach { $0.removeFromSuperview() }
+        window.rootViewController = LoginNavigationController.create(loginDelegate: loginDelegate)
+
         resetDatabase()
         MockDistantURLSession.reset()
         setAnimationsEnabled(false)
@@ -183,7 +195,7 @@ public class UITestHelpers {
     }
 
     func logIn(_ entry: LoginSession) {
-        guard let loginDelegate = appDelegate as? LoginDelegate else { return }
+        guard let loginDelegate = appDelegate as? LoginDelegate else { fatalError() }
         loginDelegate.userDidLogin(session: entry)
     }
 

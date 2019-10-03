@@ -43,11 +43,14 @@ open class CoreUITestCase: XCTestCase {
 
     open override func perform(_ run: XCTestRun) {
         guard type(of: self) != abstractTestClass else { return }
+
+        CoreUITestCase.currentTestCase = self
         if ProcessInfo.processInfo.environment["LIST_TESTS_ONLY"] == "YES" {
             print("UI_TEST: \(Bundle(for: type(of: self)).bundleURL.deletingPathExtension().lastPathComponent) \(name)")
         } else {
             super.perform(run)
         }
+        CoreUITestCase.currentTestCase = nil
     }
 
     open class CoreUITestRun: XCTestCaseRun {
@@ -116,14 +119,33 @@ open class CoreUITestCase: XCTestCase {
         super.tearDown()
     }
 
-    let ipcAppClient = IPCClient(serverPortName: IPCAppServer.portName(id: "\(ProcessInfo.processInfo.processIdentifier)"))
-    let ipcDriverServer = IPCDriverServer(machPortName: IPCDriverServer.portName(id: "\(ProcessInfo.processInfo.processIdentifier)"))
+    var failTestOnMissingMock = true
+    static var currentTestCase: CoreUITestCase?
+
+    class ServerDelegate: IPCDriverServerDelegate {
+        public func handler(_ message: IPCDriverServerMessage) -> Data? {
+            switch message {
+            case .mockNotFound(let reason):
+                if currentTestCase?.failTestOnMissingMock == true {
+                    XCTFail(reason)
+                } else {
+                    print("missing mock (allowed): \(reason)")
+                }
+            }
+            // unreachable
+            return nil
+        }
+    }
+    static let delegate = ServerDelegate()
+
+    let ipcAppClient: IPCClient = IPCClient(serverPortName: IPCAppServer.portName(id: "\(ProcessInfo.processInfo.processIdentifier)"))
+    static let ipcDriverServer: IPCDriverServer = IPCDriverServer(machPortName: IPCDriverServer.portName(id: "\(ProcessInfo.processInfo.processIdentifier)"), delegate: delegate)
 
     open func launch(_ block: ((XCUIApplication) -> Void)? = nil) {
         let app = XCUIApplication()
         app.launchEnvironment["IS_UI_TEST"] = "TRUE"
         app.launchEnvironment["APP_IPC_PORT_NAME"] = ipcAppClient.serverPortName
-        app.launchEnvironment["DRIVER_IPC_PORT_NAME"] = ipcDriverServer.machPortName
+        app.launchEnvironment["DRIVER_IPC_PORT_NAME"] = CoreUITestCase.ipcDriverServer.machPortName
         block?(app)
         app.launch()
         // Wait for RN to finish loading
@@ -313,6 +335,10 @@ open class CoreUITestCase: XCTestCase {
         mockEncodableRequest("users/self/todo", value: [String]())
         mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
         mockEncodableRequest("dashboard/dashboard_cards", value: [String]())
+
+        let pixel = UIImage(data: Data(base64Encoded: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=")!)!
+        mockDataRequest(URLRequest(url: URL(string: "https://instructure-uploads.s3.amazonaws.com/account_70000000000010/attachments/64473710/canvas_logomark_only2x.png")!),
+                        data: pixel.pngData()!)
     }
 
     // MARK: mock (primitive)
@@ -350,5 +376,4 @@ open class CoreUITestCase: XCTestCase {
         downloadMocks.append(message)
         send(.mockDownload(message))
     }
-
 }

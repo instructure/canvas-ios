@@ -35,6 +35,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
     var navigationItem: UINavigationItem = UINavigationItem(title: "")
 
     var expectation = XCTestExpectation(description: "View updated")
+    var expectationPredicate: () -> Bool = { true }
     var navbarExpectation = XCTestExpectation(description: "Navbar updated")
     let context = ContextModel(.course, id: "1")
 
@@ -49,7 +50,11 @@ class PeopleListPresenterTests: PersistenceTestCase {
         User.make(from: APIUser.make(id: "1", name: "John Doe", sortable_name: "Doe, John"), courseID: "1")
         User.make(from: APIUser.make(id: "2", name: "Jane Doe", sortable_name: "Doe, Jane"), courseID: "1")
 
+        expectationPredicate = {
+            self.presenter.users.count == 2 && self.presenter.users.first?.id.isEmpty == false
+        }
         presenter.viewIsReady()
+
         wait(for: [expectation], timeout: 5)
         XCTAssertEqual(presenter.users.count, 2)
         XCTAssertEqual(presenter.users.first!.id, "2") // Jane
@@ -90,7 +95,9 @@ class PeopleListPresenterTests: PersistenceTestCase {
 
 extension PeopleListPresenterTests: PeopleListViewProtocol {
     func update() {
-        expectation.fulfill()
+        if (expectationPredicate()) {
+            expectation.fulfill()
+        }
     }
 
     func updateNavBar(subtitle: String?, color: UIColor?) {

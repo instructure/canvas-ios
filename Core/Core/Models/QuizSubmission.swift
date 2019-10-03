@@ -43,7 +43,7 @@ public final class QuizSubmission: NSManagedObject {
     public static func save(_ item: APIQuizSubmission, in context: NSManagedObjectContext) -> QuizSubmission {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(QuizSubmission.id), item.id.value)
         let model: QuizSubmission = context.fetch(predicate).first ?? context.insert()
-        model.attempt = item.attempt
+        model.attempt = item.attempt ?? 0
         model.attemptsLeft = item.attempts_left
         model.endAt = item.end_at
         model.extraTime = item.extra_time ?? 0

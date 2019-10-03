@@ -22,10 +22,10 @@ public enum NavBar: String, ElementWrapper {
     case title, subtitle
 
     public static var backButton: Element {
-        return XCUIElementWrapper(app.navigationBars.buttons["Back"].firstMatch)
+        return app.navigationBars.buttons.matching(label: "Back").firstElement
     }
 
     public static var dismissButton: Element {
-        return app.find(id: "screen.dismiss")
+        return app.navigationBars.buttons.matching(id: "screen.dismiss").lastElement
     }
 }

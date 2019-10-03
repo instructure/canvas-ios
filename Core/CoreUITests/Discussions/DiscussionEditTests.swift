@@ -59,7 +59,7 @@ class DiscussionEditTests: CoreUITestCase {
         DiscussionEdit.invalidTitleLabel.waitToExist()
 
         DiscussionEdit.titleField.typeText("Discuss This")
-        XCUIElementWrapper(app.webViews.firstMatch).typeText("A new topic")
+        app.webViews.firstElement.typeText("A new topic")
         DiscussionEdit.doneButton.tap()
         DiscussionEdit.titleField.waitToVanish()
     }
@@ -69,6 +69,7 @@ class DiscussionEditTests: CoreUITestCase {
         mockData(ListDiscussionTopicsRequest(context: course1), value: [])
         mockData(ListDiscussionTopicsRequest(context: course1, perPage: nil, include: []), value: [])
         mockEncodableRequest("courses/\(course1.id)/settings", value: ["allow_student_forum_attachments": true])
+        mockEncodableRequest("conversations?include%5B%5D=participant_avatars&per_page=50", value: [String]())
 
         let targetUrl = "https://canvas.s3.bucket.com/bucket/1"
         mockEncodableRequest("users/self/files", value: FileUploadTarget.make(upload_url: URL(string: targetUrl)!))
@@ -84,14 +85,13 @@ class DiscussionEditTests: CoreUITestCase {
         }
 
         let photo = app.find(labelContaining: "Photo, ")
-        app.find(label: "Camera Roll").tapUntil { photo.exists }
+        app.find(label: "All Photos").tapUntil { photo.exists }
         photo.tap()
 
         app.find(label: "Upload complete").waitToExist()
-        let img = XCUIElementWrapper(app.images.firstMatch)
-        XCTAssertFalse(img.exists)
-        app.find(label: "Upload complete").tapUntil { img.exists }
-        app.find(id: "screen.dismiss").tap()
+        let img = app.images["AttachmentView.image"]
+        app.find(label: "Upload complete").tapUntil { img.exists == true }
+        NavBar.dismissButton.tap()
         app.find(id: "attachments.attachment-row.0.remove.btn").tap()
         app.find(label: "Remove").tap()
 
@@ -99,8 +99,7 @@ class DiscussionEditTests: CoreUITestCase {
 
         Attachments.addButton.tap()
         app.find(label: "Choose From Library").tap()
-
-        app.find(label: "Camera Roll").tapUntil { photo.exists }
+        app.find(label: "All Photos").tapUntil { photo.exists }
         photo.tap()
         app.find(label: "Upload complete").waitToExist()
 

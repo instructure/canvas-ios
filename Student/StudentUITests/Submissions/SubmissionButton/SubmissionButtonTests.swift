@@ -85,7 +85,7 @@ class SubmissionButtonTests: StudentUITestCase {
         let assignment = mock(assignment: .make(quiz_id: quiz.id, submission_types: [ .online_quiz ]))
         mockData(GetQuizRequest(courseID: course.id.value, quizID: quiz.id.value), value: .make())
         let submission = APIQuizSubmission.make()
-        mockData(GetQuizSubmissionsRequest(courseID: course.id.value, quizID: quiz.id.value), value: .init(quiz_submissions: [submission]))
+        mockData(GetQuizSubmissionRequest(courseID: course.id.value, quizID: quiz.id.value), value: .init(quiz_submissions: [submission]))
         mockEncodableRequest("courses/\(course.id)/quizzes/\(quiz.id)/submission", value: submission)
 
         logIn()

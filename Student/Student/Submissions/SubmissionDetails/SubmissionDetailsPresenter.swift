@@ -64,7 +64,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     var quizzes: Store<GetQuiz>?
-    var quizSubmissions: Store<GetQuizSubmissions>?
+    var quizSubmission: Store<GetQuizSubmission>?
 
     var selectedAttempt: Int = 0
     var selectedFileID: String?
@@ -97,10 +97,10 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
                 self?.update()
             } }
             quizzes?.refresh()
-            quizSubmissions = assignment.first?.quizID.flatMap { quizID in env.subscribe(GetQuizSubmissions(courseID: context.id, quizID: quizID)) { [weak self] in
+            quizSubmission = assignment.first?.quizID.flatMap { quizID in env.subscribe(GetQuizSubmission(courseID: context.id, quizID: quizID)) { [weak self] in
                 self?.update()
             } }
-            quizSubmissions?.refresh()
+            quizSubmission?.refresh()
         }
 
         let assignment = self.assignment.first
