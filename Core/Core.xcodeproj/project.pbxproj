@@ -31,8 +31,6 @@
 		3B1669DD233DAF3B00B2EFAB /* SyllabusPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1669DC233DAF3B00B2EFAB /* SyllabusPresenterTests.swift */; };
 		3B166A572343CEAF00B2EFAB /* HorizontalMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B166A562343CEAF00B2EFAB /* HorizontalMenuViewController.swift */; };
 		3B18E82D230C9F3D006CAF5C /* APIPostPolicyRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18E82C230C9F3D006CAF5C /* APIPostPolicyRequestable.swift */; };
-		3B22E4F9234698E1000D9B91 /* SplitViewControllerObserverProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22E4F8234698E1000D9B91 /* SplitViewControllerObserverProtocol.swift */; };
-		3B22E4FC23469C63000D9B91 /* SplitViewControllerObserverProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22E4FB23469C63000D9B91 /* SplitViewControllerObserverProtocolTests.swift */; };
 		3B300C852277981100743C59 /* RubricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B300C842277981100743C59 /* RubricTests.swift */; };
 		3B339B6A226FA9AF00D3283D /* ChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */; };
 		3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */; };
@@ -721,8 +719,6 @@
 		3B1669DC233DAF3B00B2EFAB /* SyllabusPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusPresenterTests.swift; sourceTree = "<group>"; };
 		3B166A562343CEAF00B2EFAB /* HorizontalMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMenuViewController.swift; sourceTree = "<group>"; };
 		3B18E82C230C9F3D006CAF5C /* APIPostPolicyRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPostPolicyRequestable.swift; sourceTree = "<group>"; };
-		3B22E4F8234698E1000D9B91 /* SplitViewControllerObserverProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewControllerObserverProtocol.swift; sourceTree = "<group>"; };
-		3B22E4FB23469C63000D9B91 /* SplitViewControllerObserverProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewControllerObserverProtocolTests.swift; sourceTree = "<group>"; };
 		3B300C842277981100743C59 /* RubricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricTests.swift; sourceTree = "<group>"; };
 		3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleView.swift; sourceTree = "<group>"; };
 		3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatBubbleView.xib; sourceTree = "<group>"; };
@@ -1706,7 +1702,6 @@
 		3B22E4F7234698BF000D9B91 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				3B22E4F8234698E1000D9B91 /* SplitViewControllerObserverProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1714,7 +1709,6 @@
 		3B22E4FA23469C4B000D9B91 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				3B22E4FB23469C63000D9B91 /* SplitViewControllerObserverProtocolTests.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -3430,7 +3424,6 @@
 				B1A890B8224ED64B00CEE000 /* UIScrollViewExtensions.swift in Sources */,
 				7D364F2421AE04B20028E3EA /* CoreWebViewController.swift in Sources */,
 				7DF4FFCE21711EB3007E5F81 /* Group.swift in Sources */,
-				3B22E4F9234698E1000D9B91 /* SplitViewControllerObserverProtocol.swift in Sources */,
 				7DAC286B22B1701B00C0B692 /* QuizHideResults.swift in Sources */,
 				EE584C7F22F2048D00D1E201 /* PageListPresenter.swift in Sources */,
 				7D8262FB212B3B3000BD268D /* APIEnrollment.swift in Sources */,
@@ -3772,7 +3765,6 @@
 				B150C63E2298E6410096D58C /* GetArcTests.swift in Sources */,
 				B14B7055229468BC00B568D6 /* FilePickerPresenterTests.swift in Sources */,
 				7DCF203E216D5C4C003AF358 /* LockStatusViewable.swift in Sources */,
-				3B22E4FC23469C63000D9B91 /* SplitViewControllerObserverProtocolTests.swift in Sources */,
 				7D71807B233FCD0A0053FC7A /* UserProfileTests.swift in Sources */,
 				9F10A66B2293191200E3360C /* UserSettingsTests.swift in Sources */,
 				B1A890BA224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift in Sources */,

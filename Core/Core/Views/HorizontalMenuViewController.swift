@@ -39,10 +39,15 @@ open class HorizontalMenuViewController: UIViewController {
         return delegate?.menuHeight ?? HorizontalMenuViewController.defaultMenuHeight
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     override open func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         view.backgroundColor = UIColor.named(.backgroundLightest)
+        NotificationCenter.default.addObserver(self, selector: #selector(splitViewControllerWillChangeDisplayModes), name: NSNotification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: nil)
     }
 
     public func reload() {
@@ -223,6 +228,14 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
         pages?.scrollToItem(at: selectedIndexPath, at: .left, animated: false)
     }
 
+    @objc public func splitViewControllerWillChangeDisplayModes() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.04) { [weak self] in
+            UIView.animate(withDuration: 0.1) {
+                self?.refreshOnLayoutTransitions()
+            }
+        }
+    }
+
     public class MenuCell: UICollectionViewCell {
         public var title: UILabel?
         public var selectionColor: UIColor? = UIColor.named(.borderDarkest)
@@ -281,12 +294,4 @@ public extension HorizontalPagedMenuDelegate {
     var menuItemFont: UIFont { .scaledNamedFont(.semibold16) }
 }
 
-extension HorizontalMenuViewController: SplitViewControllerObserverProtocol {
-    public func willChangeDisplayModes() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.059) { [weak self] in
-            UIView.animate(withDuration: 0.2) {
-                self?.refreshOnLayoutTransitions()
-            }
-        }
-    }
-}
+
