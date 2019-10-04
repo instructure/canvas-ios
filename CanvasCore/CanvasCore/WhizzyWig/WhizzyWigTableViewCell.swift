@@ -127,6 +127,9 @@ open class WhizzyWigTableViewCell: UITableViewCell {
         indexPath = IndexPath(row: 0, section: 0)
         cellSizeUpdated = {_ in }
         readMore = nil
+        expectedHeight = 0
+        lastContentHeight = nil
+        lastContentWidth = nil
     }
 
     @objc open func readMoreButtonWasTapped(_ sender: UIButton) {

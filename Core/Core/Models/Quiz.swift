@@ -97,9 +97,10 @@ extension Quiz: DueViewable, GradeViewable, LockStatusViewable {
     }
 
     public var timeLimitText: String? {
-        guard let limit = timeLimit else {
+        guard var limit = timeLimit else {
             return NSLocalizedString("None", bundle: .core, comment: "")
         }
+        limit += submission?.extraTime ?? 0
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
         formatter.unitsStyle = .brief

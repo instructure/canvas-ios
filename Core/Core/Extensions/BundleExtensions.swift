@@ -28,7 +28,7 @@ public extension Bundle {
     static let parentBundleID = "com.instructure.parentapp"
     static let coreBundleID = "com.instructure.core"
     static let studentUITestsBundleID = "com.instructure.StudentUITests.xctrunner"
-    static let teacherUITestsBundleID = "com.apple.test.TeacherUITests-Runner"
+    static let teacherUITestsBundleID = "com.instructure.TeacherUITests.xctrunner"
 
     func appGroupID(bundleID: String? = nil) -> String? {
         if (bundleID ?? bundleIdentifier)?.hasPrefix(Bundle.studentBundleID) == true {

@@ -22,6 +22,7 @@ extension UINavigationBar {
     public func useContextColor(_ color: UIColor?) {
         let foreground = UIColor.named(.textLightest)
         let background = color?.ensureContrast(against: foreground)
+        titleTextAttributes = [.foregroundColor: foreground]
         tintColor = foreground
         barTintColor = background
         barStyle = .black
@@ -31,6 +32,7 @@ extension UINavigationBar {
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
         let background = brand.navBackground
         let foreground = brand.navTextColor.ensureContrast(against: background)
+        titleTextAttributes = [.foregroundColor: foreground]
         tintColor = foreground
         barTintColor = background
         barStyle = background.luminance < 0.5 ? .black : .default
@@ -38,7 +40,9 @@ extension UINavigationBar {
     }
 
     public func useModalStyle(brand: Brand = Brand.shared) {
-        tintColor = brand.linkColor.ensureContrast(against: .named(.backgroundLightest))
+        let foreground = brand.linkColor.ensureContrast(against: .named(.backgroundLightest))
+        titleTextAttributes = [.foregroundColor: foreground]
+        tintColor = foreground
         barTintColor = .named(.backgroundLightest)
         barStyle = .default
         isTranslucent = true

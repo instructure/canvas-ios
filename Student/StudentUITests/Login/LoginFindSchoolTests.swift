@@ -39,7 +39,7 @@ class LoginFindSchoolTests: StudentUITestCase {
         XCTAssertEqual(LoginFindAccountResult.emptyCell.label(), "How do I find my school?")
 
         LoginFindSchool.searchField.typeText("zxzx")
-        XCUIElementWrapper(app.activityIndicators.firstMatch).waitToVanish()
+        app.activityIndicators.firstElement.waitToVanish()
 
         XCTAssertEqual(LoginFindAccountResult.emptyCell.label(), "Can’t find your school? Try typing the full school URL. Tap here for help.")
     }

@@ -52,7 +52,7 @@ public struct APICourse: Codable, Equatable {
     // let public_description: String?
     // let storage_quota_mb: Double?
     // let storage_quota_used_mb: Double? // include[]=storage_quota_used_mb
-    // let hide_final_grades: Bool?
+    let hide_final_grades: Bool?
     // let license: String?
     // let allow_student_assignment_edits: Bool?
     // let allow_wiki_comments: Bool?

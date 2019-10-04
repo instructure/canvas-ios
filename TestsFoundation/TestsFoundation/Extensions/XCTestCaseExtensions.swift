@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,19 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
 import Foundation
-@testable import Core
+import XCTest
 
-extension SubmissionComment {
-    @discardableResult
-    public static func make(
-        from api: APISubmissionComment = .make(),
-        for submission: APISubmission = .make(),
-        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
-    ) -> SubmissionComment {
-        let model = SubmissionComment.save(api, for: submission, in: context)
-        try! context.save()
-        return model
+public extension XCTestCase {
+    // make sure anything sitting on the main queue is run before returning
+    func drainMainQueue() {
+        while (CFRunLoopRunInMode(.defaultMode, 0, true) == .handledSource) {
+        }
     }
 }

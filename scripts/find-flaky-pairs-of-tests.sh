@@ -24,11 +24,11 @@ script_dir="$(dirname "$0")"
 cd "$script_dir/.."
 
 usage() {
-    echo "usage: $0 [--teacher] testClass.method"
+    echo "usage: find-flaky-pairs-of-tests.sh [--teacher] testClass.method"
 }
 
 TEST_SUITE=StudentUITests
-while [[ "$1" != "" ]]; do
+while [[ "$#" -gt 0 && "$1" != "" ]]; do
     case $1 in
         --teacher )   TEST_SUITE=TeacherUITests
                       ;;
@@ -77,7 +77,7 @@ jobs=6
 parallel '
 set -euo pipefail
 xcrun simctl delete ip8-{} || true
-xcrun simctl create ip8-{} "iPhone 8" com.apple.CoreSimulator.SimRuntime.iOS-12-4
+xcrun simctl create ip8-{} "iPhone 8" com.apple.CoreSimulator.SimRuntime.iOS-13-0
 xcrun simctl boot ip8-{}
 ' ::: $(seq $jobs)
 

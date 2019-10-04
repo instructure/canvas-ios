@@ -27,6 +27,7 @@ class PageViewEventRequestManagerTests: CoreTestCase {
     var expectation = XCTestExpectation(description: "expectation")
     var writeWait1 = XCTestExpectation(description: "expectation")
     var requestManager: PageViewEventRequestManager!
+    let backgroundHelper = TestAppBackgroundHelper()
 
     override func setUp() {
         super.setUp()
@@ -40,6 +41,7 @@ class PageViewEventRequestManagerTests: CoreTestCase {
         Clock.mockNow(date)
 
         requestManager = PageViewEventRequestManager(persistence: p, env: environment)
+        requestManager.backgroundAppHelper = backgroundHelper
     }
 
     override func tearDown() {
@@ -83,6 +85,8 @@ class PageViewEventRequestManagerTests: CoreTestCase {
         wait(for: [expectation], timeout: 5)
 
         XCTAssertEqual(p.queueCount, 0)
+        XCTAssertEqual(["start", "end"], backgroundHelper.tasks["fetch pandata token"])
+        XCTAssertEqual(["start", "end"], backgroundHelper.tasks["send pageview events"])
     }
 
     func testCleanup() {

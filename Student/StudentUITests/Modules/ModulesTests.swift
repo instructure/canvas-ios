@@ -95,7 +95,7 @@ class ModulesTests: CoreUITestCase {
         ModulesDetail.module(index: 4).tap()
         ModulesDetail.moduleItem(index: 0).tap()
 
-        XCUIElementWrapper(app.webViews.staticTexts.firstMatch).waitToExist(60)
+        app.webViews.staticTexts.firstElement.waitToExist(60)
     }
 
     func testLaunchIntoExternalToolModuleItem() {

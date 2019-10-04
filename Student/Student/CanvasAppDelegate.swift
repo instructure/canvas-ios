@@ -286,16 +286,15 @@ extension AppDelegate {
 extension AppDelegate {
     func setupPageViewLogging() {
         class BackgroundAppHelper: AppBackgroundHelperProtocol {
-            var task: UIBackgroundTaskIdentifier?
+            var tasks: [String: UIBackgroundTaskIdentifier] = [:]
             func startBackgroundTask(taskName: String) {
-                task = UIBackgroundTaskIdentifier.invalid
-                task = UIApplication.shared.beginBackgroundTask(withName: taskName) { [weak self] in
-                    self?.task = UIBackgroundTaskIdentifier.invalid
+                tasks[taskName] = UIApplication.shared.beginBackgroundTask(withName: taskName) { [weak self] in
+                    self?.tasks[taskName] = .invalid
                 }
             }
 
-            func endBackgroundTask() {
-                if let task = task {
+            func endBackgroundTask(taskName: String) {
+                if let task = tasks[taskName] {
                     UIApplication.shared.endBackgroundTask(task)
                 }
             }

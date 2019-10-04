@@ -70,6 +70,7 @@ public class UploadMediaComment {
         }
         env.database.performBackgroundTask { client in
             let placeholder: SubmissionComment = client.insert()
+            placeholder.assignmentID = self.assignmentID
             placeholder.authorAvatarURL = session.userAvatarURL
             placeholder.authorID = session.userID
             placeholder.authorName = session.userName
@@ -79,7 +80,7 @@ public class UploadMediaComment {
             placeholder.mediaID = "_"
             placeholder.mediaType = self.type
             placeholder.mediaURL = self.url
-            placeholder.submissionID = self.submissionID
+            placeholder.userID = self.userID
             do {
                 try client.save()
                 self.placeholderID = placeholder.id
@@ -101,11 +102,11 @@ public class UploadMediaComment {
         let body = PutSubmissionGradeRequest.Body(comment: .init(mediaID: mediaID, type: type, forGroup: isGroup), submission: nil)
         task = env.api.makeRequest(PutSubmissionGradeRequest(courseID: courseID, assignmentID: assignmentID, userID: userID, body: body)) { data, _, error in
             self.task = nil
-            guard error == nil, let comment = data?.submission_comments?.last else {
+            guard error == nil, let submission = data, let comment = submission.submission_comments?.last else {
                 return self.callback(nil, error)
             }
             self.env.database.performBackgroundTask { client in
-                let comment = SubmissionComment.save(comment, forSubmission: self.submissionID, replacing: self.placeholderID, in: client)
+                let comment = SubmissionComment.save(comment, for: submission, replacing: self.placeholderID, in: client)
                 var e: Error?
                 defer { self.callback(comment, e) }
                 do {

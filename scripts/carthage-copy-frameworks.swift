@@ -1,6 +1,7 @@
+#!/usr/bin/xcrun --sdk macosx swift
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2835-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,19 +17,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-@testable import Core
+// Wrap "carthage copy-frameworks" in a global lock to avoid build problems
+// see https://github.com/Carthage/Carthage/issues/2835
 
-class APIQuizRequestableTests: XCTestCase {
-    func testGetQuizzesRequest() {
-        XCTAssertEqual(GetQuizzesRequest(courseID: "7").path, "courses/7/quizzes?per_page=100")
-    }
+import Foundation
 
-    func testGetQuizRequest() {
-        XCTAssertEqual(GetQuizRequest(courseID: "71", quizID: "2").path, "courses/71/quizzes/2")
-    }
 
-    func testGetQuizSubmissionsRequest() {
-        XCTAssertEqual(GetQuizSubmissionsRequest(courseID: "45", quizID: "17").path, "courses/45/quizzes/17/submissions")
-    }
+let tempRoot = ProcessInfo.processInfo.environment["TEMP_ROOT"] ?? "/tmp"
+let lock = NSDistributedLock(path: "\(tempRoot)/carthage-build-lock")!
+while !lock.`try`() {
+    print("failed to lock...")
+    sleep(1)
 }
+defer { lock.unlock() }
+
+let task = Process()
+task.executableURL = URL(fileURLWithPath: "/usr/local/bin/carthage")
+task.arguments = ["copy-frameworks"]
+try task.run()
