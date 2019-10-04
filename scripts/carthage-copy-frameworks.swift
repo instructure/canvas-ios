@@ -21,17 +21,62 @@
 // see https://github.com/Carthage/Carthage/issues/2835
 
 import Foundation
+import Darwin
 
+class FileLock {
+    let path: String
+    let fd: Int32
+
+    init?(path: String) {
+        self.path = path
+        fd = open(path, O_CREAT | O_RDWR, 0o666)
+        if fd < 0 {
+            return nil
+        }
+    }
+
+    deinit {
+        unlock()
+        close(fd)
+    }
+}
+
+extension FileLock: NSLocking {
+    func tryLock() -> Bool {
+        return flock(fd, LOCK_EX | LOCK_NB) == 0
+    }
+
+    func lock() {
+        lock(timeout: 60)
+    }
+
+    func lock(timeout: TimeInterval) {
+        let deadline = Date() + timeout
+        var locked = tryLock()
+        while Date() < deadline, !locked {
+            sleep(1)
+            locked = tryLock()
+        }
+        if !locked {
+            print("error: Failed to lock \(path) after \(timeout) seconds, aborting")
+            exit(1)
+        }
+    }
+
+    func unlock() {
+        flock(fd, LOCK_UN)
+    }
+}
 
 let tempRoot = ProcessInfo.processInfo.environment["TEMP_ROOT"] ?? "/tmp"
-let lock = NSDistributedLock(path: "\(tempRoot)/carthage-build-lock")!
-while !lock.`try`() {
-    print("failed to lock...")
-    sleep(1)
-}
-defer { lock.unlock() }
+let lock = FileLock(path: "\(tempRoot)/carthage-build-lock")!
+lock.lock()
 
 let task = Process()
 task.executableURL = URL(fileURLWithPath: "/usr/local/bin/carthage")
 task.arguments = ["copy-frameworks"]
-try task.run()
+task.launch()
+task.waitUntilExit()
+
+lock.unlock()
+exit(task.terminationStatus)
