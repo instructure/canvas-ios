@@ -48,7 +48,7 @@ platform :ios do
       scheme: 'StudentUITests',
       testrun_completed_block: test_run_block,
       parallel_testrun_count: 4,
-      batch_count: 10
+      batch_count: 30
     )
     unless result[:failed_testcount].zero?
       UI.message("There are #{result[:failed_testcount]} legitimate failing tests")
