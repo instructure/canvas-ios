@@ -19,23 +19,19 @@
 import UIKit
 import Core
 
-class CourseDetailsViewController: UIViewController {
-    @IBOutlet weak var menu: HorizontalMenuView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var menuHeight: NSLayoutConstraint!
+class CourseDetailsViewController: HorizontalMenuViewController {
     private var gradesViewController: GradesViewController!
     private var syllabusViewController: Core.SyllabusViewController!
-    @IBOutlet weak var containerA: UIView!
-    @IBOutlet weak var containerB: UIView!
     var courseID: String = ""
     var studentID: String = ""
+    var viewControllers: [UIViewController] = []
 
     enum MenuItem: Int {
         case grades, syllabus
     }
 
     static func create(courseID: String, studentID: String) -> CourseDetailsViewController {
-        let controller = loadFromStoryboard()
+        let controller = CourseDetailsViewController(nibName: nil, bundle: nil)
         controller.courseID = courseID
         controller.studentID = studentID
         return controller
@@ -46,55 +42,28 @@ class CourseDetailsViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
 
-        configureMenu()
+        delegate = self
         configureGrades()
         configureSyllabus()
-        scrollView.delegate = self
     }
 
-    func configureMenu() {
-        menu.delegate = self
-        menuHeight.constant = 1
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        layoutViewControllers()
     }
 
     func configureGrades() {
         gradesViewController = GradesViewController.create(courseID: courseID, studentID: studentID)
-        embed(gradesViewController, in: containerA)
+        viewControllers.append(gradesViewController)
     }
 
     func configureSyllabus() {
         syllabusViewController = Core.SyllabusViewController.create(courseID: courseID)
-        embed(syllabusViewController, in: containerB)
-    }
-
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let ratio = self.scrollView.contentOffsetRatio
-        coordinator.animate(alongsideTransition: { [weak self] _ in
-            ratio.x >= 0.5 ? self?.showSyllabus() : self?.showGrades()
-            self?.menu.reload()
-            }, completion: nil)
-    }
-
-    func showGrades() {
-        scrollView.scrollRectToVisible(containerA.frame, animated: true)
-    }
-
-    func showSyllabus() {
-        scrollView.scrollRectToVisible(containerB.frame, animated: true)
+        viewControllers.append(syllabusViewController)
     }
 }
 
-extension CourseDetailsViewController: UIScrollViewDelegate {
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if containerB.frame.contains(scrollView.contentOffset) {
-            menu.selectMenuItem(at: IndexPath(row: MenuItem.syllabus.rawValue, section: 0), animated: true)
-        } else {
-            menu.selectMenuItem(at: IndexPath(row: MenuItem.grades.rawValue, section: 0), animated: true)
-        }
-    }
-}
-
-extension CourseDetailsViewController: HorizontalMenuDelegate {
+extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
     func accessibilityIdentifier(at: IndexPath) -> String {
         guard let menuItem = MenuItem(rawValue: at.row) else { return "" }
         var identifier: String
@@ -105,20 +74,8 @@ extension CourseDetailsViewController: HorizontalMenuDelegate {
         return "CourseDetail.\(identifier)MenuItem"
     }
 
-    var selectedColor: UIColor? {
+    var menuItemSelectedColor: UIColor? {
         return Brand.shared.buttonPrimaryBackground
-    }
-
-    var maxItemWidth: CGFloat {
-        return 200
-    }
-
-    var measurementFont: UIFont {
-        return .scaledNamedFont(.semibold16)
-    }
-
-    func menuItemCount() -> Int {
-        return 2
     }
 
     func menuItemTitle(at: IndexPath) -> String {
@@ -128,16 +85,6 @@ extension CourseDetailsViewController: HorizontalMenuDelegate {
             return NSLocalizedString("Grades", comment: "")
         case .syllabus:
             return NSLocalizedString("Syllabus", comment: "")
-        }
-    }
-
-    func didSelectItem(at: IndexPath) {
-        guard let item = MenuItem(rawValue: at.row) else { return }
-        switch item {
-        case .grades:
-            showGrades()
-        case .syllabus:
-            showSyllabus()
         }
     }
 }
