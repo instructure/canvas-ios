@@ -62,6 +62,10 @@ public struct UTI: Equatable {
         return UTI(rawValue: kUTTypeURL as String)
     }
 
+    public static var fileURL: UTI {
+        return UTI(rawValue: kUTTypeFileURL as String)
+    }
+
     public var isVideo: Bool {
         return UTTypeConformsTo(rawValue as CFString, kUTTypeMovie)
     }
