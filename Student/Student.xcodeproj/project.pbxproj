@@ -2637,10 +2637,10 @@
 			children = (
 				7DCF0ED922F8A050000AACCE /* ArcSubmission */,
 				7DCF0EDC22F8A050000AACCE /* SubmissionButton */,
-				7DCF0EE322F8A050000AACCE /* SubmissionRubric */,
 				7DCF0EEE22F8A050000AACCE /* SubmissionComments */,
 				7DCF0EFD22F8A050000AACCE /* SubmissionDetails */,
 				7DCF0F0122F8A050000AACCE /* SubmissionFiles */,
+				7DCF0EE322F8A050000AACCE /* SubmissionRubric */,
 				7DCF0F0522F8A050000AACCE /* TextSubmission */,
 				7DCF0F0922F8A050000AACCE /* urlSubmission */,
 			);

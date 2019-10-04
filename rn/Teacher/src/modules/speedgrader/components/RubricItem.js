@@ -34,7 +34,7 @@ import { LinkButton } from '../../../common/buttons'
 import CircleToggle from '../../../common/components/CircleToggle'
 import Images from '../../../images'
 import ChatBubble from '../comments/ChatBubble'
-import colors from '../../../common/colors'
+import { colors } from '../../../common/stylesheet'
 
 const CANCEL = 2
 const DELETE = 1
@@ -184,7 +184,7 @@ export default class RubricItem extends Component<RubricItemProps, RubricItemSta
           >
             { isCustomGrade
               ? i18n.number(this.state.selectedPoints || 0)
-              : <Image style={{ tintColor: colors.grey4 }} source={Images.add} />
+              : <Image style={{ tintColor: colors.textDark }} source={Images.add} />
             }
           </CircleToggle>
         </View>
@@ -202,7 +202,7 @@ export default class RubricItem extends Component<RubricItemProps, RubricItemSta
             <Text accessible={false} style={{
               fontSize: 12,
               alignSelf: 'center',
-              color: colors.grey4,
+              color: colors.textDark,
               paddingHorizontal: 6,
             }}>•</Text>
           }
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
   noScoreText: {
     marginTop: 2,
     fontSize: 12,
-    color: colors.grey5,
+    color: colors.textDark,
   },
   ratings: {
     flexDirection: 'row',
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
   editButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#73818C',
+    color: colors.textDark,
   },
 })
 

@@ -26,7 +26,7 @@ import {
   StyleSheet,
 } from 'react-native'
 
-import colors from '../colors'
+import { colors } from '../stylesheet'
 
 type Props = {
   depth: number,
@@ -78,7 +78,7 @@ export default class ThreadedLinesView extends PureComponent<Props> {
 
 const style = StyleSheet.create({
   threadLine: {
-    backgroundColor: colors.grey1,
+    backgroundColor: colors.backgroundLight,
     width: 1,
     flex: 1,
   },

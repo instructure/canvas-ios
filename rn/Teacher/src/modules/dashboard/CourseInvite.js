@@ -22,14 +22,13 @@ import i18n from 'format-message'
 import React from 'react'
 import {
   Image,
-  StyleSheet,
   TouchableHighlight,
   View,
   LayoutAnimation,
   NativeModules,
 } from 'react-native'
 import images from '../../images'
-import { createStyleSheet } from '../../common/branding'
+import { createStyleSheet } from '../../common/stylesheet'
 import {
   Text,
 } from '../../common/text'
@@ -149,13 +148,13 @@ export default class CourseInvite extends React.Component<Props> {
   }
 }
 
-const styles = createStyleSheet(colors => ({
+const styles = createStyleSheet((colors, vars) => ({
   content: {
-    borderColor: colors.checkmarkGreen,
+    borderColor: colors.borderSuccess,
     borderWidth: 1,
   },
   icon: {
-    tintColor: 'white',
+    tintColor: colors.textLightest,
     marginTop: 14,
   },
   rowContent: {
@@ -165,7 +164,7 @@ const styles = createStyleSheet(colors => ({
     width: 40,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    backgroundColor: colors.checkmarkGreen,
+    backgroundColor: colors.backgroundSuccess,
   },
   inviteDetails: {
     flex: 1,
@@ -193,20 +192,20 @@ const styles = createStyleSheet(colors => ({
     height: 40,
     borderRadius: 4,
     margin: 4,
-    backgroundColor: colors.checkmarkGreen,
+    backgroundColor: colors.backgroundSuccess,
   },
   buttonText: {
-    color: 'white',
+    color: colors.white,
     fontSize: 16,
     fontWeight: '600',
   },
   declineButton: {
-    backgroundColor: 'white',
-    borderColor: colors.grey4,
-    borderWidth: StyleSheet.hairlineWidth,
+    backgroundColor: colors.backgroundLightest,
+    borderColor: colors.borderDark,
+    borderWidth: vars.hairlineWidth,
   },
   declineButtonText: {
-    color: colors.secondaryButton,
+    color: colors.textDark,
   },
   action: {
     position: 'absolute',
@@ -216,6 +215,6 @@ const styles = createStyleSheet(colors => ({
   },
   dismissIcon: {
     width: 16,
-    tintColor: colors.grey4,
+    tintColor: colors.textDark,
   },
 }))

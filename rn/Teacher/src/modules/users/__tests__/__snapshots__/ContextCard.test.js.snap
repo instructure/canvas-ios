@@ -41,7 +41,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -51,7 +51,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -95,7 +95,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "white",
+                    "backgroundColor": "#FFFFFF",
                     "borderRadius": 8,
                     "bottom": -6,
                     "height": 16,
@@ -109,7 +109,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/publish-small.png",
+                      "uri": "publishSolid",
                     }
                   }
                   style={
@@ -149,6 +149,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                   ],
@@ -230,7 +231,7 @@ exports[`ContextCard renders 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -240,7 +241,7 @@ exports[`ContextCard renders 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -284,7 +285,7 @@ exports[`ContextCard renders 1`] = `
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "white",
+                    "backgroundColor": "#FFFFFF",
                     "borderRadius": 8,
                     "bottom": -6,
                     "height": 16,
@@ -298,7 +299,7 @@ exports[`ContextCard renders 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/publish-small.png",
+                      "uri": "publishSolid",
                     }
                   }
                   style={
@@ -338,6 +339,7 @@ exports[`ContextCard renders 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                   ],
@@ -477,7 +479,7 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -487,7 +489,7 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -531,7 +533,7 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "white",
+                    "backgroundColor": "#FFFFFF",
                     "borderRadius": 8,
                     "bottom": -6,
                     "height": 16,
@@ -545,7 +547,7 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/publish-small.png",
+                      "uri": "publishSolid",
                     }
                   }
                   style={
@@ -585,6 +587,7 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                   ],
@@ -689,7 +692,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -699,7 +702,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -743,7 +746,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "white",
+                    "backgroundColor": "#FFFFFF",
                     "borderRadius": 8,
                     "bottom": -6,
                     "height": 16,
@@ -757,7 +760,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/publish-small.png",
+                      "uri": "publishSolid",
                     }
                   }
                   style={
@@ -797,6 +800,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                   ],
@@ -878,7 +882,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -888,7 +892,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -932,7 +936,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "white",
+                    "backgroundColor": "#FFFFFF",
                     "borderRadius": 8,
                     "bottom": -6,
                     "height": 16,
@@ -946,7 +950,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/publish-small.png",
+                      "uri": "publishSolid",
                     }
                   }
                   style={
@@ -986,6 +990,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                   ],
@@ -1067,7 +1072,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -1077,7 +1082,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -1121,7 +1126,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "white",
+                    "backgroundColor": "#FFFFFF",
                     "borderRadius": 8,
                     "bottom": -6,
                     "height": 16,
@@ -1135,7 +1140,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/publish-small.png",
+                      "uri": "publishSolid",
                     }
                   }
                   style={
@@ -1175,6 +1180,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                   ],

@@ -38,6 +38,7 @@ import { httpClient, isAbort } from '../../canvas-api'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import { isRegularDisplayMode } from '../../routing/utils'
 import type { TraitCollection } from '../../routing/Navigator'
+import { vars } from '../../common/stylesheet'
 
 export type Props = NavigationProps & {
   onSelect: (selected: AddressBookResult[]) => void,
@@ -107,7 +108,7 @@ export class PeopleList extends Component<Props, any> {
       context: this.props.context || this._courseContext(),
       filters: [],
       showFilter: this.props.showFilter === undefined ? true : this.props.showFilter,
-      marginBottom: global.tabBarHeight,
+      marginBottom: vars.tabBarHeight,
       selectedRowID: null,
     }
   }
@@ -388,16 +389,16 @@ const styles = StyleSheet.create({
   avatar: {
     width: 40,
     height: 40,
-    marginRight: global.style.defaultPadding,
+    marginRight: vars.padding,
   },
   filterButton: {
     marginBottom: 1,
   },
   headerContainer: {
-    paddingTop: global.style.defaultPadding,
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
-    paddingBottom: global.style.defaultPadding / 2,
+    paddingTop: vars.padding,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
+    paddingBottom: vars.padding / 2,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',

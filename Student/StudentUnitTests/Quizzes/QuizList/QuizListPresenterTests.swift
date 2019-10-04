@@ -53,7 +53,7 @@ class QuizListPresenterTests: PersistenceTestCase {
         XCTAssertNil(resultingBackgroundColor)
 
         let c = Course.make()
-        Color.make(canvasContextID: c.canvasContextID, color: UIColor.red)
+        ContextColor.make(canvasContextID: c.canvasContextID, color: UIColor.red)
 
         let expectation = self.expectation(description: "navbar")
         expectation.assertForOverFulfill = false

@@ -25,7 +25,7 @@ import { View, Image, StyleSheet } from 'react-native'
 import Images from '../../../images'
 import i18n from 'format-message'
 import { Text } from '../../../common/text'
-import colors from '../../../common/colors'
+import { colors } from '../../../common/stylesheet'
 
 export default class PublishedIcon extends React.Component<Object> {
   render () {
@@ -73,18 +73,18 @@ const internalStyle = StyleSheet.create({
   text: {
     marginLeft: 6,
     fontWeight: '500',
-    color: colors.grey4,
+    color: colors.textDark,
   },
-  publishedTextStyle: { color: colors.checkmarkGreen },
-  unPublishedTextStyle: { color: colors.grey4 },
+  publishedTextStyle: { color: colors.textSuccess },
+  unPublishedTextStyle: { color: colors.textDark },
   publishedIcon: {
     height: iconSize,
     width: iconSize,
-    tintColor: colors.checkmarkGreen,
+    tintColor: colors.textSuccess,
   },
   unpublishedIcon: {
     height: iconSize,
     width: iconSize,
-    tintColor: colors.grey4,
+    tintColor: colors.textDark,
   },
 })

@@ -11,7 +11,7 @@ exports[`renders correctly 1`] = `
       Array [
         Object {
           "alignItems": "flex-start",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "padding": 16,
@@ -40,14 +40,10 @@ exports[`renders correctly 1`] = `
               "overflow": "hidden",
             },
             Object {
+              "backgroundColor": "#F5F5F5",
+              "borderRadius": 20,
               "height": 40,
               "width": 40,
-            },
-            Object {
-              "borderRadius": 20,
-            },
-            Object {
-              "backgroundColor": "#F5F5F5",
             },
           ]
         }
@@ -183,7 +179,7 @@ exports[`renders correctly with a bunch of people in there 1`] = `
       Array [
         Object {
           "alignItems": "flex-start",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "padding": 16,
@@ -216,14 +212,10 @@ exports[`renders correctly with a bunch of people in there 1`] = `
               "overflow": "hidden",
             },
             Object {
+              "backgroundColor": "#F5F5F5",
+              "borderRadius": 20,
               "height": 40,
               "width": 40,
-            },
-            Object {
-              "borderRadius": 20,
-            },
-            Object {
-              "backgroundColor": "#F5F5F5",
             },
           ]
         }
@@ -359,7 +351,7 @@ exports[`renders correctly with different data 1`] = `
       Array [
         Object {
           "alignItems": "flex-start",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "padding": 16,
@@ -405,14 +397,10 @@ exports[`renders correctly with different data 1`] = `
               "overflow": "hidden",
             },
             Object {
+              "backgroundColor": "#F5F5F5",
+              "borderRadius": 20,
               "height": 40,
               "width": 40,
-            },
-            Object {
-              "borderRadius": 20,
-            },
-            Object {
-              "backgroundColor": "#F5F5F5",
             },
           ]
         }
@@ -452,14 +440,14 @@ exports[`renders correctly with different data 1`] = `
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/star-filled.png",
+              "uri": "starSolid",
             }
           }
           style={
             Object {
               "height": 14,
               "marginRight": 2,
-              "tintColor": "#374A59",
+              "tintColor": "#008EE2",
               "width": 14,
             }
           }

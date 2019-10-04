@@ -24,7 +24,6 @@ import React, { Component } from 'react'
 import {
   View,
   Image,
-  StyleSheet,
   Text,
   ActionSheetIOS,
   ActivityIndicator,
@@ -37,7 +36,7 @@ import {
 import i18n from 'format-message'
 
 import Screen from '../../routing/Screen'
-import Colors from '../colors'
+import { colors, createStyleSheet } from '../stylesheet'
 import Images from '../../images'
 import Navigator from '../../routing/Navigator'
 import Video from './Video'
@@ -140,7 +139,7 @@ export default class AttachmentView extends Component<Props, State> {
       case 'zip':
       case 'flash':
         body = <View style={styles.centeredContainer}>
-          <Text style={{ textAlign: 'center', color: Colors.darkText, fontSize: 14 }}>{i18n('Previewing this file type is not supported')}</Text>
+          <Text style={{ textAlign: 'center', color: colors.textDarkest, fontSize: 14 }}>{i18n('Previewing this file type is not supported')}</Text>
         </View>
         break
       default:
@@ -175,8 +174,8 @@ export default class AttachmentView extends Component<Props, State> {
     return (
       <Screen
         title={i18n('Attachment')}
-        navBarTitleColors={Colors.darkText}
-        navBarButtonColor={Colors.link}
+        navBarTitleColors={colors.textDarkest}
+        navBarButtonColor={colors.linkColor}
         drawUnderNavBar
         rightBarButtons={[{
           testID: 'attachment-view.share-btn',
@@ -198,7 +197,7 @@ export default class AttachmentView extends Component<Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
   },
@@ -212,7 +211,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
-    backgroundColor: Colors.grey1,
+    backgroundColor: colors.backgroundLight,
   },
   image: {
     top: 0,
@@ -225,6 +224,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   errorText: {
-    padding: global.style.defaultPadding,
+    padding: vars.padding,
   },
-})
+}))

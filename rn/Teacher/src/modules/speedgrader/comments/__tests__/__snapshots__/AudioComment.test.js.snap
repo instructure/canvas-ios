@@ -36,7 +36,7 @@ exports[`AudioComment moves the scrubber with the current time 1`] = `
         Object {
           "height": 18,
           "marginRight": 6,
-          "tintColor": "grey",
+          "tintColor": "#8B969E",
           "width": 18,
         }
       }
@@ -79,7 +79,7 @@ exports[`AudioComment moves the scrubber with the current time 1`] = `
             style={
               Array [
                 Object {
-                  "backgroundColor": "#1790DF",
+                  "backgroundColor": "#008EE2",
                   "borderRadius": 1,
                   "bottom": 2,
                   "position": "absolute",
@@ -115,7 +115,7 @@ exports[`AudioComment moves the scrubber with the current time 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#EB0F21",
+                "backgroundColor": "#EE0612",
                 "flex": 1,
                 "margin": 6,
               }
@@ -150,7 +150,7 @@ exports[`AudioComment renders default 1`] = `
     onPress={[Function]}
     style={
       Object {
-        "borderColor": "#73818B",
+        "borderColor": "#8B969E",
         "borderRadius": 3,
         "borderWidth": 1,
         "paddingHorizontal": 6,
@@ -178,7 +178,7 @@ exports[`AudioComment renders default 1`] = `
           Object {
             "height": 18,
             "marginRight": 6,
-            "tintColor": "grey",
+            "tintColor": "#8B969E",
             "width": 18,
           }
         }
@@ -191,7 +191,7 @@ exports[`AudioComment renders default 1`] = `
               "fontSize": 16,
             },
             Object {
-              "color": "#73818B",
+              "color": "#8B969E",
               "fontSize": 14,
               "fontWeight": "400",
             },
@@ -227,7 +227,7 @@ exports[`AudioComment renders from them 1`] = `
     onPress={[Function]}
     style={
       Object {
-        "borderColor": "#73818B",
+        "borderColor": "#8B969E",
         "borderRadius": 3,
         "borderWidth": 1,
         "paddingHorizontal": 6,
@@ -255,7 +255,7 @@ exports[`AudioComment renders from them 1`] = `
           Object {
             "height": 18,
             "marginRight": 6,
-            "tintColor": "grey",
+            "tintColor": "#8B969E",
             "width": 18,
           }
         }
@@ -268,7 +268,7 @@ exports[`AudioComment renders from them 1`] = `
               "fontSize": 16,
             },
             Object {
-              "color": "#73818B",
+              "color": "#8B969E",
               "fontSize": 14,
               "fontWeight": "400",
             },

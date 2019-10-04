@@ -27,8 +27,8 @@ class GetCustomColorsTests: CoreTestCase {
     }
 
     func testScope() {
-        let course = Color.make(canvasContextID: "course_1")
-        let group = Color.make(canvasContextID: "group_1")
+        let course = ContextColor.make(canvasContextID: "course_1")
+        let group = ContextColor.make(canvasContextID: "group_1")
         XCTAssert(useCase.scope.predicate.evaluate(with: course))
         XCTAssert(useCase.scope.predicate.evaluate(with: group))
     }
@@ -36,7 +36,7 @@ class GetCustomColorsTests: CoreTestCase {
     func testWrite() {
         let response = APICustomColors(custom_colors: ["course_1": "#fff", "group_2": "#000"])
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
-        let colors: [Color] = databaseClient.fetch()
+        let colors: [ContextColor] = databaseClient.fetch()
         XCTAssertEqual(colors.count, 2)
     }
 }

@@ -48,7 +48,7 @@ class PageListPresenterTests: CoreTestCase {
         XCTAssertNil(resultingBackgroundColor)
 
         let g = Group.make(from: .make(id: "42"), in: databaseClient)
-        Color.make(canvasContextID: g.canvasContextID, color: UIColor.red)
+        ContextColor.make(canvasContextID: g.canvasContextID, color: UIColor.red)
 
         let expectation = self.expectation(description: "navbar")
         expectation.assertForOverFulfill = false
@@ -65,7 +65,7 @@ class PageListPresenterTests: CoreTestCase {
         XCTAssertNil(resultingBackgroundColor)
 
         let c = Course.make(from: .make(id: "42"), in: databaseClient)
-        Color.make(canvasContextID: c.canvasContextID, color: UIColor.red)
+        ContextColor.make(canvasContextID: c.canvasContextID, color: UIColor.red)
 
         let expectation = self.expectation(description: "navbar")
         expectation.assertForOverFulfill = false

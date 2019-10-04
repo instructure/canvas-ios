@@ -79,7 +79,7 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
 
     func testUseCaseFetchesData() {
         let group = Group.make()
-        let color = Color.make(canvasContextID: group.canvasContextID, color: UIColor(hexString: "#ff0")!)
+        let color = ContextColor.make(canvasContextID: group.canvasContextID, color: UIColor(hexString: "#ff0")!)
         Tab.make()
 
         let expectData = XCTestExpectation(description: "fetches data")

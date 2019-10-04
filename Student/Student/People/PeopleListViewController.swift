@@ -39,6 +39,7 @@ class PeopleListViewController: UIViewController, PeopleListViewProtocol {
     }
 
     override func viewDidLoad() {
+        view.backgroundColor = .named(.backgroundLightest)
         tableView.delegate = self
         tableView.dataSource = self
 

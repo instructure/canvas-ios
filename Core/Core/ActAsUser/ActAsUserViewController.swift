@@ -63,6 +63,11 @@ public class ActAsUserViewController: UITableViewController {
         animatePanda()
     }
 
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.useModalStyle()
+    }
+
     func animatePanda() {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [weak self] in
             self?.redPandaTopConstraint.constant -= 30

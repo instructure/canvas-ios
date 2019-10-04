@@ -22,7 +22,6 @@ import React, { PureComponent } from 'react'
 import {
   View,
   Image,
-  StyleSheet,
   Animated,
   NativeModules,
 } from 'react-native'
@@ -30,6 +29,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { LinkButton } from '../../../common/buttons'
 import { Text } from '../../../common/text'
 import i18n from 'format-message'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 const { NativeAccessibility } = NativeModules
 
@@ -143,7 +143,7 @@ export default class Tutorial extends PureComponent<Props, State> {
             textStyle={styles.buttonText}
             onPress={this.onPress}
             hitSlop={{ top: 10, left: 10, right: 10, bottom: 10 }}
-            underlayColor='#fff'
+            underlayColor='#ffffff00'
             testID={`tutorial.button-${currentTutorial.id}`}
           >
             {i18n('OK')}
@@ -154,7 +154,7 @@ export default class Tutorial extends PureComponent<Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   tutorial: {
     position: 'absolute',
     top: 0,
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   box: {
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     borderRadius: 8,
     padding: 16,
     marginHorizontal: 40,
@@ -189,4 +189,4 @@ const styles = StyleSheet.create({
   image: {
     marginBottom: 24,
   },
-})
+}))

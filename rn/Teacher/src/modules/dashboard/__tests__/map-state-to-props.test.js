@@ -295,7 +295,6 @@ describe('groups', () => {
       id: '3',
       name: 'c',
       contextName: 'Account Group',
-      color: '#7F91A7',
     }])
   })
 
@@ -327,7 +326,6 @@ describe('groups', () => {
       id: '3',
       name: 'c',
       contextName: 'Account Group',
-      color: '#7F91A7',
     }])
   })
 

@@ -23,7 +23,7 @@ exports[`UserSubmissionRow renders 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -33,7 +33,7 @@ exports[`UserSubmissionRow renders 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
         },
       ]
     }
@@ -77,7 +77,7 @@ exports[`UserSubmissionRow renders 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderRadius": 8,
               "bottom": -6,
               "height": 16,
@@ -91,7 +91,7 @@ exports[`UserSubmissionRow renders 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/publish-small.png",
+                "uri": "publishSolid",
               }
             }
             style={
@@ -131,6 +131,7 @@ exports[`UserSubmissionRow renders 1`] = `
             },
             Array [
               Object {
+                "color": "#2D3B45",
                 "fontWeight": "600",
               },
             ],
@@ -155,7 +156,7 @@ exports[`UserSubmissionRow renders 1`] = `
                 "marginBottom": 8,
               },
               Object {
-                "color": "#07AF1F",
+                "color": "#00AC18",
               },
             ],
           ]
@@ -181,7 +182,7 @@ exports[`UserSubmissionRow renders 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#f5f5f5",
+                "backgroundColor": "#F5F5F5",
                 "borderColor": "transparent",
                 "flex": 1,
                 "height": 18,
@@ -235,7 +236,7 @@ exports[`UserSubmissionRow renders 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#7F91A7",
+                "color": "#8B969E",
                 "flex": 0,
                 "fontSize": 14,
                 "fontWeight": "500",
@@ -275,7 +276,7 @@ exports[`UserSubmissionRow renders complete 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -285,7 +286,7 @@ exports[`UserSubmissionRow renders complete 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
         },
       ]
     }
@@ -329,7 +330,7 @@ exports[`UserSubmissionRow renders complete 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderRadius": 8,
               "bottom": -6,
               "height": 16,
@@ -343,7 +344,7 @@ exports[`UserSubmissionRow renders complete 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/publish-small.png",
+                "uri": "publishSolid",
               }
             }
             style={
@@ -383,6 +384,7 @@ exports[`UserSubmissionRow renders complete 1`] = `
             },
             Array [
               Object {
+                "color": "#2D3B45",
                 "fontWeight": "600",
               },
             ],
@@ -407,7 +409,7 @@ exports[`UserSubmissionRow renders complete 1`] = `
                 "marginBottom": 8,
               },
               Object {
-                "color": "#07AF1F",
+                "color": "#00AC18",
               },
             ],
           ]
@@ -433,7 +435,7 @@ exports[`UserSubmissionRow renders complete 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#f5f5f5",
+                "backgroundColor": "#F5F5F5",
                 "borderColor": "transparent",
                 "flex": 1,
                 "height": 18,
@@ -487,7 +489,7 @@ exports[`UserSubmissionRow renders complete 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#7F91A7",
+                "color": "#8B969E",
                 "flex": 0,
                 "fontSize": 14,
                 "fontWeight": "500",
@@ -527,7 +529,7 @@ exports[`UserSubmissionRow renders discussion 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -537,7 +539,7 @@ exports[`UserSubmissionRow renders discussion 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
         },
       ]
     }
@@ -581,7 +583,7 @@ exports[`UserSubmissionRow renders discussion 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderRadius": 8,
               "bottom": -6,
               "height": 16,
@@ -595,7 +597,7 @@ exports[`UserSubmissionRow renders discussion 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/publish-small.png",
+                "uri": "publishSolid",
               }
             }
             style={
@@ -635,6 +637,7 @@ exports[`UserSubmissionRow renders discussion 1`] = `
             },
             Array [
               Object {
+                "color": "#2D3B45",
                 "fontWeight": "600",
               },
             ],
@@ -659,7 +662,7 @@ exports[`UserSubmissionRow renders discussion 1`] = `
                 "marginBottom": 8,
               },
               Object {
-                "color": "#07AF1F",
+                "color": "#00AC18",
               },
             ],
           ]
@@ -685,7 +688,7 @@ exports[`UserSubmissionRow renders discussion 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#f5f5f5",
+                "backgroundColor": "#F5F5F5",
                 "borderColor": "transparent",
                 "flex": 1,
                 "height": 18,
@@ -739,7 +742,7 @@ exports[`UserSubmissionRow renders discussion 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#7F91A7",
+                "color": "#8B969E",
                 "flex": 0,
                 "fontSize": 14,
                 "fontWeight": "500",
@@ -779,7 +782,7 @@ exports[`UserSubmissionRow renders excused 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -789,7 +792,7 @@ exports[`UserSubmissionRow renders excused 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
         },
       ]
     }
@@ -833,7 +836,7 @@ exports[`UserSubmissionRow renders excused 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderRadius": 8,
               "bottom": -6,
               "height": 16,
@@ -847,7 +850,7 @@ exports[`UserSubmissionRow renders excused 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/publish-small.png",
+                "uri": "publishSolid",
               }
             }
             style={
@@ -887,6 +890,7 @@ exports[`UserSubmissionRow renders excused 1`] = `
             },
             Array [
               Object {
+                "color": "#2D3B45",
                 "fontWeight": "600",
               },
             ],
@@ -947,7 +951,7 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -957,7 +961,7 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
         },
       ]
     }
@@ -1001,7 +1005,7 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderRadius": 8,
               "bottom": -6,
               "height": 16,
@@ -1015,7 +1019,7 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/publish-small.png",
+                "uri": "publishSolid",
               }
             }
             style={
@@ -1055,6 +1059,7 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
             },
             Array [
               Object {
+                "color": "#2D3B45",
                 "fontWeight": "600",
               },
             ],
@@ -1079,7 +1084,7 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
                 "marginBottom": 8,
               },
               Object {
-                "color": "#07AF1F",
+                "color": "#00AC18",
               },
             ],
           ]
@@ -1105,7 +1110,7 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#f5f5f5",
+                "backgroundColor": "#F5F5F5",
                 "borderColor": "transparent",
                 "flex": 1,
                 "height": 18,
@@ -1159,7 +1164,7 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#7F91A7",
+                "color": "#8B969E",
                 "flex": 0,
                 "fontSize": 14,
                 "fontWeight": "500",
@@ -1199,7 +1204,7 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -1209,7 +1214,7 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
         },
       ]
     }
@@ -1253,7 +1258,7 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderRadius": 8,
               "bottom": -6,
               "height": 16,
@@ -1267,7 +1272,7 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/publish-small.png",
+                "uri": "publishSolid",
               }
             }
             style={
@@ -1307,6 +1312,7 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
             },
             Array [
               Object {
+                "color": "#2D3B45",
                 "fontWeight": "600",
               },
             ],
@@ -1331,7 +1337,7 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
                 "marginBottom": 8,
               },
               Object {
-                "color": "#07AF1F",
+                "color": "#00AC18",
               },
             ],
           ]
@@ -1357,7 +1363,7 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#f5f5f5",
+                "backgroundColor": "#F5F5F5",
                 "borderColor": "transparent",
                 "flex": 1,
                 "height": 18,
@@ -1411,7 +1417,7 @@ exports[`UserSubmissionRow renders missing submittion types 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#7F91A7",
+                "color": "#8B969E",
                 "flex": 0,
                 "fontSize": 14,
                 "fontWeight": "500",
@@ -1451,7 +1457,7 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -1461,7 +1467,7 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
         },
       ]
     }
@@ -1505,7 +1511,7 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderRadius": 8,
               "bottom": -6,
               "height": 16,
@@ -1519,7 +1525,7 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/publish-small.png",
+                "uri": "publishSolid",
               }
             }
             style={
@@ -1559,6 +1565,7 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
             },
             Array [
               Object {
+                "color": "#2D3B45",
                 "fontWeight": "600",
               },
             ],
@@ -1583,7 +1590,7 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
                 "marginBottom": 8,
               },
               Object {
-                "color": "#07AF1F",
+                "color": "#00AC18",
               },
             ],
           ]
@@ -1608,7 +1615,7 @@ exports[`UserSubmissionRow renders needs grading 1`] = `
               },
               Array [
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "borderRadius": 9,
                   "borderWidth": 1,
                   "fontSize": 11,
@@ -1660,7 +1667,7 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -1670,7 +1677,7 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
         },
       ]
     }
@@ -1714,7 +1721,7 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderRadius": 8,
               "bottom": -6,
               "height": 16,
@@ -1728,7 +1735,7 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/publish-small.png",
+                "uri": "publishSolid",
               }
             }
             style={
@@ -1768,6 +1775,7 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
             },
             Array [
               Object {
+                "color": "#2D3B45",
                 "fontWeight": "600",
               },
             ],
@@ -1792,7 +1800,7 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
                 "marginBottom": 8,
               },
               Object {
-                "color": "#07AF1F",
+                "color": "#00AC18",
               },
             ],
           ]
@@ -1818,7 +1826,7 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#f5f5f5",
+                "backgroundColor": "#F5F5F5",
                 "borderColor": "transparent",
                 "flex": 1,
                 "height": 18,
@@ -1872,7 +1880,7 @@ exports[`UserSubmissionRow renders online quiz 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#7F91A7",
+                "color": "#8B969E",
                 "flex": 0,
                 "fontSize": 14,
                 "fontWeight": "500",
@@ -1912,7 +1920,7 @@ exports[`UserSubmissionRow renders published 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -1922,7 +1930,7 @@ exports[`UserSubmissionRow renders published 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
         },
       ]
     }
@@ -1966,7 +1974,7 @@ exports[`UserSubmissionRow renders published 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderRadius": 8,
               "bottom": -6,
               "height": 16,
@@ -1980,7 +1988,7 @@ exports[`UserSubmissionRow renders published 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/publish-small.png",
+                "uri": "publishSolid",
               }
             }
             style={
@@ -2020,6 +2028,7 @@ exports[`UserSubmissionRow renders published 1`] = `
             },
             Array [
               Object {
+                "color": "#2D3B45",
                 "fontWeight": "600",
               },
             ],
@@ -2044,7 +2053,7 @@ exports[`UserSubmissionRow renders published 1`] = `
                 "marginBottom": 8,
               },
               Object {
-                "color": "#07AF1F",
+                "color": "#00AC18",
               },
             ],
           ]
@@ -2070,7 +2079,7 @@ exports[`UserSubmissionRow renders published 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#f5f5f5",
+                "backgroundColor": "#F5F5F5",
                 "borderColor": "transparent",
                 "flex": 1,
                 "height": 18,
@@ -2124,7 +2133,7 @@ exports[`UserSubmissionRow renders published 1`] = `
                 "fontSize": 16,
               },
               Object {
-                "color": "#7F91A7",
+                "color": "#8B969E",
                 "flex": 0,
                 "fontSize": 14,
                 "fontWeight": "500",

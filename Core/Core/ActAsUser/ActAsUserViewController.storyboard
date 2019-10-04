@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,10 +20,10 @@
                             <tableViewSection id="WTK-Fo-WfN">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Ujf-ZI-lph">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="600"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ujf-ZI-lph" id="yHC-jx-Mjk">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="599.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhitePanda" translatesAutoresizingMaskIntoConstraints="NO" id="LKN-2A-NNy">
@@ -35,10 +34,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedPanda" translatesAutoresizingMaskIntoConstraints="NO" id="guS-ZP-xtv">
-                                                    <rect key="frame" x="126.5" y="71" width="16" height="16"/>
+                                                    <rect key="frame" x="-7.5" y="71" width="150" height="206"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7VT-dD-ZDS" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="185" width="295" height="117"/>
+                                                    <rect key="frame" x="40" y="185" width="295" height="162.5"/>
                                                     <string key="text">"Act as" is essentially logging in as this user without a password. You will be able to take any actions as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -49,12 +48,11 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User ID" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="q3d-B6-ITy" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="326" width="295" height="50"/>
+                                                    <rect key="frame" x="40" y="371.5" width="295" height="50"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="ActAsUser.userIDField"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="mB5-Hi-Lbx"/>
                                                     </constraints>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <userDefinedRuntimeAttributes>
@@ -63,12 +61,11 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Domain" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="eC8-Jz-lGK" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="388" width="295" height="50"/>
+                                                    <rect key="frame" x="40" y="433.5" width="295" height="50"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="ActAsUser.domainField"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="NvL-5f-zSp"/>
                                                     </constraints>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                     <userDefinedRuntimeAttributes>
@@ -77,7 +74,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDI-G5-vxn" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                    <rect key="frame" x="40" y="450" width="295" height="50"/>
+                                                    <rect key="frame" x="40" y="495.5" width="295" height="50"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="ActAsUser.actAsUserButton"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="nwi-dr-yNw"/>
@@ -93,6 +90,7 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <color key="backgroundColor" name="backgroundLightest"/>
                                             <constraints>
                                                 <constraint firstItem="LKN-2A-NNy" firstAttribute="leading" secondItem="guS-ZP-xtv" secondAttribute="trailing" constant="3" id="0Ee-Iv-qK7"/>
                                                 <constraint firstItem="eC8-Jz-lGK" firstAttribute="leading" secondItem="yHC-jx-Mjk" secondAttribute="leadingMargin" constant="24" id="2au-Ew-Hhy"/>
@@ -139,5 +137,8 @@
     <resources>
         <image name="RedPanda" width="75" height="103"/>
         <image name="WhitePanda" width="84" height="103"/>
+        <namedColor name="backgroundLightest">
+            <color red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

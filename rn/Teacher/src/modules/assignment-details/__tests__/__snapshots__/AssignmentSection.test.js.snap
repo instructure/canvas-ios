@@ -6,7 +6,7 @@ exports[`render 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "paddingBottom": 16,
           "paddingLeft": 16,
@@ -83,7 +83,7 @@ exports[`render first row 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "paddingBottom": 16,
           "paddingLeft": 16,
@@ -134,7 +134,7 @@ exports[`render no title 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "paddingBottom": 16,
           "paddingLeft": 16,

@@ -170,7 +170,7 @@ exports[`People List renders 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#374A59",
+                            "color": "#008EE2",
                             "fontSize": 16,
                             "fontWeight": "500",
                           },
@@ -423,7 +423,7 @@ exports[`People List test update filter 1`] = `
                         },
                         Array [
                           Object {
-                            "color": "#374A59",
+                            "color": "#008EE2",
                             "fontSize": 16,
                             "fontWeight": "500",
                           },

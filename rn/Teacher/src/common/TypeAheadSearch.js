@@ -23,6 +23,7 @@ import SearchBar from 'react-native-search-bar'
 import { httpClient, isAbort } from '../canvas-api'
 import { parseNext } from '../canvas-api/utils/pagination'
 import i18n from 'format-message'
+import { colors } from './stylesheet'
 
 export type TypeAheadSearchResults = (results: ?any[], error: ?string) => void
 
@@ -94,7 +95,9 @@ export default class TypeAheadSearch extends Component<Props> {
         onCancelButtonPress={() => this.searchBar.unFocus()}
         placeholder={this.props.placeholder}
         hideBackground
-        textFieldBackgroundColor='#F1F1F2'
+        textFieldBackgroundColor={colors.backgroundLight}
+        textColor={colors.textDarkest}
+        tintColor={colors.textDark}
       />
     )
   }

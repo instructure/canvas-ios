@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactNative, {
   View,
-  StyleSheet,
   LayoutAnimation,
   PickerIOS,
   DatePickerIOS,
@@ -38,7 +37,7 @@ import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
 import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import Images from '../../../images'
 import ModalOverlay from '../../../common/components/ModalOverlay'
@@ -217,8 +216,8 @@ export class DiscussionEdit extends Component<Props, any> {
             accessibilityLabel: i18n('Edit attachment ({count})', { count: this.state.attachment ? '1' : i18n('none') }),
             badge: this.state.attachment && {
               text: '1',
-              backgroundColor: processColor('#008EE2'),
-              textColor: processColor('white'),
+              backgroundColor: processColor(colors.backgroundInfo),
+              textColor: processColor(colors.white),
             },
           } : null,
         ]}
@@ -566,23 +565,23 @@ export class DiscussionEdit extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.backgroundLight,
   },
   description: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.seperatorColor,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
-    backgroundColor: 'white',
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    backgroundColor: colors.backgroundLightest,
     height: 200,
   },
   deleteButtonTitle: {
-    color: '#EE0612',
+    color: colors.textDanger,
   },
-})
+}))
 
 export function mapStateToProps ({ entities }: AppState, { context, contextID, discussionID }: OwnProps): State {
   let discussion = {}

@@ -4,8 +4,8 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
 <Screen
   customPageViewPath="/conversations"
   drawUnderNavBar={true}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
   rightBarButtons={
     Array [
@@ -20,13 +20,13 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
     ]
   }
   showDismissButton={true}
-  statusBarStyle="light"
+  statusBarStyle="default"
   title="Message Details"
 >
   <View
     style={
       Object {
-        "backgroundColor": "#f5f5f5",
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
@@ -38,7 +38,7 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderTopColor": "#C7CDD1",
               "borderTopWidth": 0.5,
               "flexDirection": "row",
@@ -70,13 +70,13 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/images/star-lined.png",
+                  "uri": "starLine",
                 }
               }
               style={
                 Object {
                   "height": 24,
-                  "tintColor": "#374A59",
+                  "tintColor": "#008EE2",
                   "width": 24,
                 }
               }
@@ -89,7 +89,7 @@ exports[`ConversationDetails doesnt render messages that are pendingDelete 1`] =
       renderItem={[Function]}
       style={
         Object {
-          "backgroundColor": "#f5f5f5",
+          "backgroundColor": "#F5F5F5",
         }
       }
     />
@@ -101,8 +101,8 @@ exports[`ConversationDetails renders correctly 1`] = `
 <Screen
   customPageViewPath="/conversations"
   drawUnderNavBar={true}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
   rightBarButtons={
     Array [
@@ -117,13 +117,13 @@ exports[`ConversationDetails renders correctly 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="light"
+  statusBarStyle="default"
   title="Message Details"
 >
   <View
     style={
       Object {
-        "backgroundColor": "#f5f5f5",
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
@@ -135,7 +135,7 @@ exports[`ConversationDetails renders correctly 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderTopColor": "#C7CDD1",
               "borderTopWidth": 0.5,
               "flexDirection": "row",
@@ -167,13 +167,13 @@ exports[`ConversationDetails renders correctly 1`] = `
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/images/star-lined.png",
+                  "uri": "starLine",
                 }
               }
               style={
                 Object {
                   "height": 24,
-                  "tintColor": "#374A59",
+                  "tintColor": "#008EE2",
                   "width": 24,
                 }
               }
@@ -186,7 +186,7 @@ exports[`ConversationDetails renders correctly 1`] = `
       renderItem={[Function]}
       style={
         Object {
-          "backgroundColor": "#f5f5f5",
+          "backgroundColor": "#F5F5F5",
         }
       }
     />
@@ -198,8 +198,8 @@ exports[`ConversationDetails renders correctly with no conversation 1`] = `
 <Screen
   customPageViewPath="/conversations"
   drawUnderNavBar={true}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
   rightBarButtons={
     Array [
@@ -214,13 +214,13 @@ exports[`ConversationDetails renders correctly with no conversation 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="light"
+  statusBarStyle="default"
   title="Message Details"
 >
   <View
     style={
       Object {
-        "backgroundColor": "#f5f5f5",
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
@@ -233,7 +233,7 @@ exports[`ConversationDetails renders correctly with no conversation 1`] = `
       renderItem={[Function]}
       style={
         Object {
-          "backgroundColor": "#f5f5f5",
+          "backgroundColor": "#F5F5F5",
         }
       }
     />
@@ -245,8 +245,8 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
 <Screen
   customPageViewPath="/conversations"
   drawUnderNavBar={true}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
   rightBarButtons={
     Array [
@@ -261,13 +261,13 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="light"
+  statusBarStyle="default"
   title="Message Details"
 >
   <View
     style={
       Object {
-        "backgroundColor": "#f5f5f5",
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
@@ -279,7 +279,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderTopColor": "#C7CDD1",
               "borderTopWidth": 0.5,
               "flexDirection": "row",
@@ -311,13 +311,13 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/images/star-lined.png",
+                  "uri": "starLine",
                 }
               }
               style={
                 Object {
                   "height": 24,
-                  "tintColor": "#374A59",
+                  "tintColor": "#008EE2",
                   "width": 24,
                 }
               }
@@ -347,7 +347,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
       renderItem={[Function]}
       style={
         Object {
-          "backgroundColor": "#f5f5f5",
+          "backgroundColor": "#F5F5F5",
         }
       }
     />
@@ -433,8 +433,8 @@ exports[`ConversationDetails renders with alternate data 1`] = `
 <Screen
   customPageViewPath="/conversations"
   drawUnderNavBar={true}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
   rightBarButtons={
     Array [
@@ -449,13 +449,13 @@ exports[`ConversationDetails renders with alternate data 1`] = `
     ]
   }
   showDismissButton={true}
-  statusBarStyle="light"
+  statusBarStyle="default"
   title="Message Details"
 >
   <View
     style={
       Object {
-        "backgroundColor": "#f5f5f5",
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
@@ -467,7 +467,7 @@ exports[`ConversationDetails renders with alternate data 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderTopColor": "#C7CDD1",
               "borderTopWidth": 0.5,
               "flexDirection": "row",
@@ -499,13 +499,13 @@ exports[`ConversationDetails renders with alternate data 1`] = `
             <Image
               source={
                 Object {
-                  "testUri": "../../../src/images/star-filled.png",
+                  "uri": "starSolid",
                 }
               }
               style={
                 Object {
                   "height": 24,
-                  "tintColor": "#374A59",
+                  "tintColor": "#008EE2",
                   "width": 24,
                 }
               }
@@ -518,7 +518,7 @@ exports[`ConversationDetails renders with alternate data 1`] = `
       renderItem={[Function]}
       style={
         Object {
-          "backgroundColor": "#f5f5f5",
+          "backgroundColor": "#F5F5F5",
         }
       }
     />

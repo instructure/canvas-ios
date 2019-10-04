@@ -24,7 +24,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import BaseButton from 'react-native-button'
-import { createStyleSheet } from './branding'
+import { createStyleSheet } from './stylesheet'
 import { Text } from './text'
 
 type ButtonProps = React.ElementConfig<typeof BaseButton>
@@ -58,13 +58,13 @@ export const LinkButton = ({ children, textStyle, ...props }: LinkButtonProps) =
 
 const styles = createStyleSheet(colors => ({
   container: {
-    backgroundColor: colors.primaryButtonColor,
+    backgroundColor: colors.buttonPrimaryBackground,
     overflow: 'hidden',
     padding: 10,
     borderRadius: 8,
   },
   text: {
-    color: colors.primaryButtonTextColor,
+    color: colors.buttonPrimaryText,
   },
 }))
 
@@ -72,6 +72,6 @@ const linkButtonStyles = createStyleSheet(colors => ({
   text: {
     fontSize: 16,
     fontWeight: '500',
-    color: colors.primaryButtonColor,
+    color: colors.linkColor,
   },
 }))

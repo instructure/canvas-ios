@@ -22,11 +22,11 @@ import React, { Component } from 'react'
 import {
   View,
   ScrollView,
-  StyleSheet,
   TouchableHighlight,
 } from 'react-native'
 
 import i18n from 'format-message'
+import { colors, createStyleSheet } from '../../stylesheet'
 
 type Props = {
   pickedColor: (color: string) => void,
@@ -58,7 +58,7 @@ export default class ColorPicker extends Component<Props, any> {
               const style = {
                 backgroundColor: color,
                 borderWidth: color === '#FFFFFF' ? 1 : 0,
-                borderColor: color === '#FFFFFF' ? '#E6E9EA' : 'transparent',
+                borderColor: color === '#FFFFFF' ? colors.borderMedium : 'transparent',
               }
               return (
                 <TouchableHighlight
@@ -84,11 +84,11 @@ export default class ColorPicker extends Component<Props, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   container: {
     borderTopWidth: 1,
-    borderTopColor: '#C7CDD1',
-    backgroundColor: 'white',
+    borderTopColor: colors.borderMedium,
+    backgroundColor: colors.backgroundLightest,
   },
   optionContainer: {
     width: 44,
@@ -106,4 +106,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-})
+}))

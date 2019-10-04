@@ -22,14 +22,13 @@
 
 import React, { Component } from 'react'
 import { Text } from '../../../common/text'
-import color from '../../../common/colors'
+import { createStyleSheet } from '../../../common/stylesheet'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 
 import {
   View,
   TouchableHighlight,
   Image,
-  StyleSheet,
 } from 'react-native'
 
 export default class AssignmentSection extends Component<Object> {
@@ -67,13 +66,13 @@ export default class AssignmentSection extends Component<Object> {
   }
 }
 
-const assignmentSectionStyles = StyleSheet.create({
+const assignmentSectionStyles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
-    paddingBottom: global.style.defaultPadding,
-    backgroundColor: 'white',
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
+    paddingBottom: vars.padding,
+    backgroundColor: colors.backgroundLightest,
   },
   innerContainer: {
     flex: 1,
@@ -81,9 +80,9 @@ const assignmentSectionStyles = StyleSheet.create({
     alignItems: 'center',
   },
   divider: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: color.grey2,
-    paddingBottom: global.style.defaultPadding,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
+    paddingBottom: vars.padding,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -91,13 +90,13 @@ const assignmentSectionStyles = StyleSheet.create({
     marginBottom: 4,
   },
   header: {
-    color: color.grey4,
+    color: colors.textDark,
     fontWeight: '500',
     fontSize: 16,
     paddingTop: 2,
   },
   image: {
-    tintColor: color.grey4,
+    tintColor: colors.textDark,
     height: 19,
     width: 19,
     marginRight: 5,
@@ -110,4 +109,4 @@ const assignmentSectionStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
-})
+}))

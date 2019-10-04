@@ -21,10 +21,10 @@ import Foundation
 @testable import Core
 import XCTest
 
-class ColorTests: CoreTestCase {
+class ContextColorTests: CoreTestCase {
     func testSave() {
         let response = APICustomColors(custom_colors: ["course_1": "#000", "group_1": "#fff"])
-        let result = Color.save(response, in: databaseClient)
+        let result = ContextColor.save(response, in: databaseClient)
         XCTAssertEqual(result.count, 2)
         let course = result.first { $0.canvasContextID == "course_1" }!
         XCTAssertEqual(course.color.hexString, "#000000")
@@ -34,7 +34,7 @@ class ColorTests: CoreTestCase {
 
     func testSaveSkipsNonColors() {
         let response = APICustomColors(custom_colors: ["course_1": "#000", "group_1": "not a color"])
-        let result = Color.save(response, in: databaseClient)
+        let result = ContextColor.save(response, in: databaseClient)
         XCTAssertEqual(result.count, 1)
         XCTAssertEqual(result.first?.canvasContextID, "course_1")
     }

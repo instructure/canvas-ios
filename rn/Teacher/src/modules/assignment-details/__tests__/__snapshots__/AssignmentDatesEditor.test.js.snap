@@ -37,7 +37,7 @@ exports[`render correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#73818C",
+                "color": "#8B969E",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -121,7 +121,7 @@ exports[`render correctly 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "flex": 1,
               "flexDirection": "row",
               "justifyContent": "space-between",
@@ -173,7 +173,7 @@ exports[`render correctly 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
               "minHeight": 54,
@@ -208,7 +208,7 @@ exports[`render correctly 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "justifyContent": "space-between",
@@ -308,7 +308,7 @@ exports[`render correctly 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
               "minHeight": 54,
@@ -343,7 +343,7 @@ exports[`render correctly 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "justifyContent": "space-between",
@@ -443,7 +443,7 @@ exports[`render correctly 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
               "minHeight": 54,
@@ -478,7 +478,7 @@ exports[`render correctly 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "justifyContent": "space-between",
@@ -612,7 +612,7 @@ exports[`render correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
             "paddingLeft": 16,
@@ -634,7 +634,7 @@ exports[`render correctly 1`] = `
                 "width": 18,
               },
               Object {
-                "tintColor": "#374A59",
+                "tintColor": "#008EE2",
               },
             ]
           }
@@ -653,7 +653,7 @@ exports[`render correctly 1`] = `
                   "fontWeight": "600",
                 },
                 Object {
-                  "color": "#374A59",
+                  "color": "#008EE2",
                 },
               ],
             ]
@@ -712,7 +712,7 @@ exports[`render correctly with overide 1`] = `
           style={
             Array [
               Object {
-                "color": "#73818C",
+                "color": "#8B969E",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -796,7 +796,7 @@ exports[`render correctly with overide 1`] = `
           style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "flex": 1,
               "flexDirection": "row",
               "justifyContent": "space-between",
@@ -848,7 +848,7 @@ exports[`render correctly with overide 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
               "minHeight": 54,
@@ -883,7 +883,7 @@ exports[`render correctly with overide 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "justifyContent": "space-between",
@@ -983,7 +983,7 @@ exports[`render correctly with overide 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
               "minHeight": 54,
@@ -1018,7 +1018,7 @@ exports[`render correctly with overide 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "justifyContent": "space-between",
@@ -1118,7 +1118,7 @@ exports[`render correctly with overide 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
               "minHeight": 54,
@@ -1153,7 +1153,7 @@ exports[`render correctly with overide 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "justifyContent": "space-between",
@@ -1287,7 +1287,7 @@ exports[`render correctly with overide 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
             "paddingLeft": 16,
@@ -1309,7 +1309,7 @@ exports[`render correctly with overide 1`] = `
                 "width": 18,
               },
               Object {
-                "tintColor": "#374A59",
+                "tintColor": "#008EE2",
               },
             ]
           }
@@ -1328,7 +1328,7 @@ exports[`render correctly with overide 1`] = `
                   "fontWeight": "600",
                 },
                 Object {
-                  "color": "#374A59",
+                  "color": "#008EE2",
                 },
               ],
             ]

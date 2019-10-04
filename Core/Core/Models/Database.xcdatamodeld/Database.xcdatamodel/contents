@@ -52,10 +52,6 @@
         <attribute name="title" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="Color" representedClassName="Core.Color" syncable="YES">
-        <attribute name="canvasContextID" attributeType="String"/>
-        <attribute name="colorRaw" attributeType="Integer 32" valueTransformerName="" defaultValueString="0" usesScalarValueType="YES" customClassName="UIKit.UIColor"/>
-    </entity>
     <entity name="CommunicationChannel" representedClassName="Core.CommunicationChannel" syncable="YES">
         <attribute name="address" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
@@ -63,6 +59,10 @@
         <attribute name="typeRaw" attributeType="String"/>
         <attribute name="userID" attributeType="String"/>
         <attribute name="workflowStateRaw" attributeType="String"/>
+    </entity>
+    <entity name="ContextColor" representedClassName="Core.ContextColor" syncable="YES">
+        <attribute name="canvasContextID" attributeType="String"/>
+        <attribute name="colorRaw" attributeType="Integer 32" valueTransformerName="" defaultValueString="0" usesScalarValueType="YES" customClassName="UIKit.UIColor"/>
     </entity>
     <entity name="Course" representedClassName="Core.Course" syncable="YES">
         <attribute name="arcEnabledRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -485,7 +485,7 @@
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="463"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="150"/>
-        <element name="Color" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
+        <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="195"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>

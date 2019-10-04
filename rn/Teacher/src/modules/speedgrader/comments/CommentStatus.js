@@ -21,12 +21,12 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Dimensions,
   Animated,
   Easing,
 } from 'react-native'
 import DrawerState from '../utils/drawer-state'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 const DEVICE_WIDTH = Dimensions.get('window').width
 
@@ -107,7 +107,7 @@ export default class CommentStatus extends Component<CommentStatusProps, Comment
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   statusBar: {
     position: 'absolute',
     bottom: 50,
@@ -117,6 +117,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   progress: {
-    backgroundColor: '#008EE2',
+    backgroundColor: colors.backgroundInfo,
   },
-})
+}))

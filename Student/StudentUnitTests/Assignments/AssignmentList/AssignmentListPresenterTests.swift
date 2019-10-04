@@ -68,7 +68,7 @@ class AssignmentListPresenterTests: PersistenceTestCase {
     func testLoadCourseColorsAndTitle() {
         //  given
         let expected = Course.make()
-        let expectedColor = Color.make()
+        let expectedColor = ContextColor.make()
 
         //  when
         presenter.viewIsReady()

@@ -87,6 +87,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
 
         // Navigation Bar
         navigationItem.titleView = titleSubtitleView
@@ -94,7 +95,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
         // Loading
         scrollView?.isHidden = true
-        loadingView?.color = Brand.shared.primary.ensureContrast(against: .named(.white))
+        scrollView?.backgroundColor = .named(.backgroundLightest)
+        loadingView?.color = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         scrollView?.addSubview(refreshControl)

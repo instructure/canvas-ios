@@ -22,11 +22,10 @@ import React, { Component } from 'react'
 import {
   FlatList,
   Image,
-  StyleSheet,
 } from 'react-native'
 import Screen from '../../routing/Screen'
-import Colors from '../../common/colors'
-import Images from '../../images'
+import { colors, createStyleSheet } from '../stylesheet'
+import icon from '../../images/inst-icons'
 import Row from './rows/Row'
 
 type Props = {
@@ -42,8 +41,8 @@ export default class PickerPage extends Component<Props> {
     return (
       <Screen
         title={title}
-        navBarTitleColors={Colors.darkText}
-        navBarButtonColor={Colors.link}
+        navBarTitleColors={colors.textDarkest}
+        navBarButtonColor={colors.linkColor}
         drawUnderNavBar
       >
         <FlatList
@@ -60,7 +59,7 @@ export default class PickerPage extends Component<Props> {
                 key === selectedValue &&
                 <Image
                   style={styles.check}
-                  source={Images.check}
+                  source={icon('check', 'solid')}
                 />
               }
               accessibilityTraits={key === selectedValue ? ['button', 'selected'] : 'button'}
@@ -72,15 +71,15 @@ export default class PickerPage extends Component<Props> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
-    backgroundColor: Colors.grey1,
+    backgroundColor: colors.backgroundLight,
   },
   check: {
-    tintColor: Colors.checkmarkGreen,
+    tintColor: colors.textSuccess,
     height: 20,
     width: 20,
     resizeMode: 'contain',
-    marginLeft: global.style.defaultPadding,
+    marginLeft: vars.padding,
   },
-})
+}))

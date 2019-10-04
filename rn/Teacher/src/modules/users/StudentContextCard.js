@@ -22,14 +22,13 @@ import React, { Component } from 'react'
 import {
   FlatList,
   View,
-  StyleSheet,
 } from 'react-native'
 import { Text, SubTitle } from '../../common/text'
 import Screen from '../../routing/Screen'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 import ErrorView from '../../common/components/ErrorView'
 import Avatar from '../../common/components/Avatar'
-import colors from '../../common/colors'
+import { createStyleSheet } from '../../common/stylesheet'
 import i18n from 'format-message'
 import Images from '../../images'
 import UserSubmissionRow from './UserSubmissionRow'
@@ -237,14 +236,14 @@ export class ContextCard extends Component<ContextCardProps> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   header: {
     paddingTop: 8,
   },
   headerSection: {
     padding: 16,
-    borderBottomColor: colors.seperatorColor,
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    borderBottomWidth: vars.hairlineWidth,
   },
   user: {
     display: 'flex',
@@ -269,27 +268,27 @@ const styles = StyleSheet.create({
   largeText: {
     fontSize: 28,
     fontWeight: '800',
-    color: colors.darkText,
+    color: colors.textDarkest,
     flex: 1,
   },
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.darkText,
+    color: colors.textDarkest,
   },
   textWrapper: {
     flex: 1,
   },
   outOf: {
     fontSize: 12,
-    color: colors.lightText,
+    color: colors.textDark,
     top: -3,
     fontWeight: '600',
   },
   analyticsGroup: {
     flex: 1,
   },
-})
+}))
 
 export function props (props: any) {
   const data = props.data

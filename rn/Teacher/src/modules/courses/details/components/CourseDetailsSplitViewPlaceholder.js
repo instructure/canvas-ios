@@ -27,7 +27,7 @@ import {
 import { Text } from '../../../../common/text'
 import Screen from '../../../../routing/Screen'
 import Images from '../../../../images/'
-import colors from '../../../../common/colors'
+import { colors } from '../../../../common/stylesheet'
 
 export default class CourseDetailsSplitViewPlaceholder extends Component<*> {
   render () {
@@ -68,17 +68,17 @@ const style = StyleSheet.create({
   icon: {
     width: 80,
     height: 80,
-    tintColor: colors.grey2,
+    tintColor: colors.borderMedium,
   },
   courseName: {
     fontWeight: '500',
     fontSize: 24,
     marginTop: 32,
-    color: colors.darkText,
+    color: colors.textDarkest,
   },
   term: {
     marginTop: 4,
-    color: colors.grey4,
+    color: colors.textDark,
     fontWeight: '600',
   },
 })

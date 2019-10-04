@@ -58,7 +58,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         //  given
         Assignment.make()
         let c = Course.make()
-        Color.make(canvasContextID: c.canvasContextID)
+        ContextColor.make(canvasContextID: c.canvasContextID)
 
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 1)

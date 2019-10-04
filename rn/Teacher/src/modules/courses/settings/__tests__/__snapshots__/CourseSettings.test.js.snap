@@ -233,7 +233,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "flex": 0,
             },
             Object {
@@ -480,7 +480,7 @@ exports[`CourseSettings renders 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "flex": 0,
             },
             Object {
@@ -727,7 +727,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "flex": 0,
             },
             Object {
@@ -958,7 +958,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "flex": 0,
             },
             Object {
@@ -1205,7 +1205,7 @@ exports[`CourseSettings renders with image url 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "flex": 0,
             },
             Object {
@@ -1436,7 +1436,7 @@ exports[`CourseSettings renders without image url 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "flex": 0,
             },
             Object {
@@ -1662,7 +1662,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
                     "textAlign": "right",
                   },
                   Object {
-                    "color": "#374A59",
+                    "color": "#008EE2",
                   },
                 ]
               }
@@ -1721,7 +1721,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "#FFFFFF",
               "flex": 0,
             },
             Object {

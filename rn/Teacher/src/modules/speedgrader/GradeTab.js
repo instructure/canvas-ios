@@ -29,7 +29,7 @@ import {
 import { connect } from 'react-redux'
 import i18n from 'format-message'
 import { Heading1, Text } from '../../common/text'
-import colors from '../../common/colors'
+import { colors } from '../../common/stylesheet'
 import RubricItem from './components/RubricItem'
 import SpeedGraderActions from './actions'
 import GradePicker from './components/GradePicker'
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   pointsText: {
-    color: colors.grey4,
+    color: colors.textDark,
     fontSize: 14,
   },
 })

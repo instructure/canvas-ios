@@ -63,7 +63,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
 
     func testLoadCourse() {
         let course = Course.make()
-        Color.make(canvasContextID: context.canvasContextID, color: UIColor.red)
+        ContextColor.make(canvasContextID: context.canvasContextID, color: UIColor.red)
 
         presenter.viewIsReady()
         wait(for: [navbarExpectation], timeout: 5)
@@ -74,7 +74,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
     func testLoadGroup() {
         let group = Group.make()
         let groupContext = ContextModel(.group, id: group.id)
-        Color.make(canvasContextID: groupContext.canvasContextID, color: UIColor.blue)
+        ContextColor.make(canvasContextID: groupContext.canvasContextID, color: UIColor.blue)
 
         presenter = PeopleListPresenter(env: env, viewController: self, context: groupContext)
         presenter.viewIsReady()

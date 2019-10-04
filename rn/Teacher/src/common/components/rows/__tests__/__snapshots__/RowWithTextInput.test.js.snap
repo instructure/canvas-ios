@@ -12,6 +12,7 @@ exports[`RowWithTextInput renders 1`] = `
     style={
       Array [
         Object {
+          "color": "#2D3B45",
           "flex": 1,
         },
         undefined,
@@ -41,6 +42,7 @@ exports[`RowWithTextInput renders with a title 1`] = `
         style={
           Array [
             Object {
+              "color": "#2D3B45",
               "flex": 1,
             },
             Object {

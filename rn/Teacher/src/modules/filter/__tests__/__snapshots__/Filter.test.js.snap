@@ -49,7 +49,7 @@ exports[`Filter renders the filter options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -59,7 +59,7 @@ exports[`Filter renders the filter options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -89,6 +89,7 @@ exports[`Filter renders the filter options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -133,7 +134,7 @@ exports[`Filter renders the filter options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -143,7 +144,7 @@ exports[`Filter renders the filter options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -173,6 +174,7 @@ exports[`Filter renders the filter options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -217,7 +219,7 @@ exports[`Filter renders the filter options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -227,7 +229,7 @@ exports[`Filter renders the filter options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -257,6 +259,7 @@ exports[`Filter renders the filter options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -301,7 +304,7 @@ exports[`Filter renders the filter options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -311,7 +314,7 @@ exports[`Filter renders the filter options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -341,6 +344,7 @@ exports[`Filter renders the filter options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -385,7 +389,7 @@ exports[`Filter renders the filter options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -395,7 +399,7 @@ exports[`Filter renders the filter options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -425,6 +429,7 @@ exports[`Filter renders the filter options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -469,7 +474,7 @@ exports[`Filter renders the filter options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -479,7 +484,7 @@ exports[`Filter renders the filter options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -509,6 +514,7 @@ exports[`Filter renders the filter options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -553,7 +559,7 @@ exports[`Filter renders the filter options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -563,7 +569,7 @@ exports[`Filter renders the filter options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -593,6 +599,7 @@ exports[`Filter renders the filter options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -665,7 +672,7 @@ exports[`Filter renders with preselected options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -675,7 +682,7 @@ exports[`Filter renders with preselected options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -705,6 +712,7 @@ exports[`Filter renders with preselected options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -713,7 +721,7 @@ exports[`Filter renders with preselected options 1`] = `
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#73818C",
+                        "color": "#8B969E",
                       },
                     ],
                   ],
@@ -751,7 +759,7 @@ exports[`Filter renders with preselected options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -761,7 +769,7 @@ exports[`Filter renders with preselected options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -791,6 +799,7 @@ exports[`Filter renders with preselected options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -799,7 +808,7 @@ exports[`Filter renders with preselected options 1`] = `
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#73818C",
+                        "color": "#8B969E",
                       },
                     ],
                   ],
@@ -837,7 +846,7 @@ exports[`Filter renders with preselected options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -847,7 +856,7 @@ exports[`Filter renders with preselected options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -877,6 +886,7 @@ exports[`Filter renders with preselected options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -885,7 +895,7 @@ exports[`Filter renders with preselected options 1`] = `
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#73818C",
+                        "color": "#8B969E",
                       },
                     ],
                   ],
@@ -923,7 +933,7 @@ exports[`Filter renders with preselected options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -933,7 +943,7 @@ exports[`Filter renders with preselected options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -963,6 +973,7 @@ exports[`Filter renders with preselected options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -971,7 +982,7 @@ exports[`Filter renders with preselected options 1`] = `
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#73818C",
+                        "color": "#8B969E",
                       },
                     ],
                   ],
@@ -1009,7 +1020,7 @@ exports[`Filter renders with preselected options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -1019,7 +1030,7 @@ exports[`Filter renders with preselected options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -1049,6 +1060,7 @@ exports[`Filter renders with preselected options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -1082,31 +1094,20 @@ exports[`Filter renders with preselected options 1`] = `
                 }
               }
             >
-              <View
-                style={
+              <Image
+                source={
                   Object {
-                    "backgroundColor": "#008EE2",
-                    "borderRadius": 12,
-                    "height": 24,
-                    "padding": 6,
-                    "width": 24,
+                    "uri": "checkSolid",
                   }
                 }
-              >
-                <Image
-                  source={
-                    Object {
-                      "testUri": "../../../src/images/check-white.png",
-                    }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "#008EE2",
+                    "width": 18,
                   }
-                  style={
-                    Object {
-                      "height": 12,
-                      "width": 12,
-                    }
-                  }
-                />
-              </View>
+                }
+              />
             </View>
           </View>
         </View>
@@ -1137,7 +1138,7 @@ exports[`Filter renders with preselected options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -1147,7 +1148,7 @@ exports[`Filter renders with preselected options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -1177,6 +1178,7 @@ exports[`Filter renders with preselected options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -1185,7 +1187,7 @@ exports[`Filter renders with preselected options 1`] = `
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#73818C",
+                        "color": "#8B969E",
                       },
                     ],
                   ],
@@ -1223,7 +1225,7 @@ exports[`Filter renders with preselected options 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -1233,7 +1235,7 @@ exports[`Filter renders with preselected options 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -1263,6 +1265,7 @@ exports[`Filter renders with preselected options 1`] = `
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -1271,7 +1274,7 @@ exports[`Filter renders with preselected options 1`] = `
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#73818C",
+                        "color": "#8B969E",
                       },
                     ],
                   ],
@@ -1337,7 +1340,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -1347,7 +1350,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -1377,6 +1380,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -1385,7 +1389,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#73818C",
+                        "color": "#8B969E",
                       },
                     ],
                   ],
@@ -1423,7 +1427,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -1433,7 +1437,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -1463,6 +1467,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -1471,7 +1476,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#73818C",
+                        "color": "#8B969E",
                       },
                     ],
                   ],
@@ -1509,7 +1514,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -1519,7 +1524,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -1549,6 +1554,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -1557,7 +1563,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#73818C",
+                        "color": "#8B969E",
                       },
                     ],
                   ],
@@ -1595,7 +1601,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -1605,7 +1611,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -1635,6 +1641,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -1643,7 +1650,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#73818C",
+                        "color": "#8B969E",
                       },
                     ],
                   ],
@@ -1681,7 +1688,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -1691,7 +1698,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -1721,6 +1728,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -1754,31 +1762,20 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 }
               }
             >
-              <View
-                style={
+              <Image
+                source={
                   Object {
-                    "backgroundColor": "#008EE2",
-                    "borderRadius": 12,
-                    "height": 24,
-                    "padding": 6,
-                    "width": 24,
+                    "uri": "checkSolid",
                   }
                 }
-              >
-                <Image
-                  source={
-                    Object {
-                      "testUri": "../../../src/images/check-white.png",
-                    }
+                style={
+                  Object {
+                    "height": 18,
+                    "tintColor": "#008EE2",
+                    "width": 18,
                   }
-                  style={
-                    Object {
-                      "height": 12,
-                      "width": 12,
-                    }
-                  }
-                />
-              </View>
+                }
+              />
             </View>
           </View>
         </View>
@@ -1809,7 +1806,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -1819,7 +1816,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -1849,6 +1846,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -1857,7 +1855,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#73818C",
+                        "color": "#8B969E",
                       },
                     ],
                   ],
@@ -1895,7 +1893,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -1905,7 +1903,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
             ]
           }
@@ -1935,6 +1933,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                   },
                   Array [
                     Object {
+                      "color": "#2D3B45",
                       "fontWeight": "600",
                     },
                     Array [
@@ -1943,7 +1942,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
                         "fontWeight": "400",
                       },
                       Object {
-                        "color": "#73818C",
+                        "color": "#8B969E",
                       },
                     ],
                   ],

@@ -128,7 +128,7 @@ exports[`DiscussionsRow renders 1`] = `
               Object {
                 "alignSelf": "center",
                 "height": 18,
-                "tintColor": "#73818C",
+                "tintColor": "#8B969E",
                 "transform": Array [
                   Object {
                     "rotate": "180deg",
@@ -145,7 +145,7 @@ exports[`DiscussionsRow renders 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#008EE4",
+        "backgroundColor": "#008EE2",
         "borderRadius": 2.5,
         "height": 5,
         "left": 8,
@@ -286,7 +286,7 @@ exports[`DiscussionsRow renders published 1`] = `
               Object {
                 "alignSelf": "center",
                 "height": 18,
-                "tintColor": "#73818C",
+                "tintColor": "#8B969E",
                 "transform": Array [
                   Object {
                     "rotate": "180deg",
@@ -303,7 +303,7 @@ exports[`DiscussionsRow renders published 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#008EE4",
+        "backgroundColor": "#008EE2",
         "borderRadius": 2.5,
         "height": 5,
         "left": 8,
@@ -444,7 +444,7 @@ exports[`DiscussionsRow renders unpublished 1`] = `
               Object {
                 "alignSelf": "center",
                 "height": 18,
-                "tintColor": "#73818C",
+                "tintColor": "#8B969E",
                 "transform": Array [
                   Object {
                     "rotate": "180deg",
@@ -461,7 +461,7 @@ exports[`DiscussionsRow renders unpublished 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#008EE4",
+        "backgroundColor": "#008EE2",
         "borderRadius": 2.5,
         "height": 5,
         "left": 8,
@@ -584,7 +584,7 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
               Object {
                 "alignSelf": "center",
                 "height": 18,
-                "tintColor": "#73818C",
+                "tintColor": "#8B969E",
                 "transform": Array [
                   Object {
                     "rotate": "180deg",
@@ -601,7 +601,7 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#008EE4",
+        "backgroundColor": "#008EE2",
         "borderRadius": 2.5,
         "height": 5,
         "left": 8,
@@ -742,7 +742,7 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
               Object {
                 "alignSelf": "center",
                 "height": 18,
-                "tintColor": "#73818C",
+                "tintColor": "#8B969E",
                 "transform": Array [
                   Object {
                     "rotate": "180deg",
@@ -888,7 +888,7 @@ exports[`DiscussionsRow renders with points possible 1`] = `
               Object {
                 "alignSelf": "center",
                 "height": 18,
-                "tintColor": "#73818C",
+                "tintColor": "#8B969E",
                 "transform": Array [
                   Object {
                     "rotate": "180deg",
@@ -905,7 +905,7 @@ exports[`DiscussionsRow renders with points possible 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#008EE4",
+        "backgroundColor": "#008EE2",
         "borderRadius": 2.5,
         "height": 5,
         "left": 8,
@@ -1028,7 +1028,7 @@ exports[`DiscussionsRow renders without points possible 1`] = `
               Object {
                 "alignSelf": "center",
                 "height": 18,
-                "tintColor": "#73818C",
+                "tintColor": "#8B969E",
                 "transform": Array [
                   Object {
                     "rotate": "180deg",
@@ -1045,7 +1045,7 @@ exports[`DiscussionsRow renders without points possible 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#008EE4",
+        "backgroundColor": "#008EE2",
         "borderRadius": 2.5,
         "height": 5,
         "left": 8,

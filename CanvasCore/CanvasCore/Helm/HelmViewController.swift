@@ -159,6 +159,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
     
     override public func loadView() {
         self.view = RCTRootView(bridge: HelmManager.shared.bridge, moduleName: moduleName, initialProperties: props)
+        view.backgroundColor = .named(.backgroundLightest)
     }
     
     // Do stuff that you'd usually do in viewDidLoad here, rather than there.

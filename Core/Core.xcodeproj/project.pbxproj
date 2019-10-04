@@ -395,11 +395,12 @@
 		7DEAD09E22790B720030C28A /* RichContentEditorPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAD09D22790B720030C28A /* RichContentEditorPresenterTests.swift */; };
 		7DEB5C3A224EB02B00F28404 /* CreateTextComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */; };
 		7DEB5C3C224EBF2D00F28404 /* CreateTextCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */; };
+		7DF2F5FB2347DAEA00C1802C /* UIColorInstColorsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF2F5FA2347DAE900C1802C /* UIColorInstColorsExtensions.swift */; };
 		7DF4001B2174FA24007E5F81 /* UITableViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4001A2174FA24007E5F81 /* UITableViewExtensionsTests.swift */; };
 		7DF4001E217509D6007E5F81 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4001C217509D6007E5F81 /* Quiz.swift */; };
 		7DF4FFBF21700133007E5F81 /* TabViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFBE21700133007E5F81 /* TabViewable.swift */; };
 		7DF4FFC121700BCE007E5F81 /* TabViewableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC021700BCE007E5F81 /* TabViewableTests.swift */; };
-		7DF4FFC6217113DA007E5F81 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC4217113DA007E5F81 /* Color.swift */; };
+		7DF4FFC6217113DA007E5F81 /* ContextColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC4217113DA007E5F81 /* ContextColor.swift */; };
 		7DF4FFCA217116BC007E5F81 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC8217116BC007E5F81 /* Course.swift */; };
 		7DF4FFCE21711EB3007E5F81 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFCC21711EB3007E5F81 /* Group.swift */; };
 		7DF4FFD22171322E007E5F81 /* TTL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFD02171322E007E5F81 /* TTL.swift */; };
@@ -473,7 +474,7 @@
 		B11D321721E464AB00F37ABF /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D321621E464AB00F37ABF /* Store.swift */; };
 		B12A763821914059000693DE /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A763721914059000693DE /* fileupload.txt */; };
 		B12A763A2191459F000693DE /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
-		B133A78A221F59A3000E393E /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A789221F59A3000E393E /* ColorTests.swift */; };
+		B133A78A221F59A3000E393E /* ContextColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A789221F59A3000E393E /* ContextColorTests.swift */; };
 		B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B704C228F30A100B568D6 /* UploadFileComment.swift */; };
 		B14B7055229468BC00B568D6 /* FilePickerPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B7054229468BC00B568D6 /* FilePickerPresenterTests.swift */; };
 		B14B70572294758600B568D6 /* UploadFileCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B70562294758600B568D6 /* UploadFileCommentTests.swift */; };
@@ -1231,11 +1232,12 @@
 		7DEAD09D22790B720030C28A /* RichContentEditorPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorPresenterTests.swift; sourceTree = "<group>"; };
 		7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTextComment.swift; sourceTree = "<group>"; };
 		7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTextCommentTests.swift; sourceTree = "<group>"; };
+		7DF2F5FA2347DAE900C1802C /* UIColorInstColorsExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorInstColorsExtensions.swift; sourceTree = "<group>"; };
 		7DF4001A2174FA24007E5F81 /* UITableViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensionsTests.swift; sourceTree = "<group>"; };
 		7DF4001C217509D6007E5F81 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		7DF4FFBE21700133007E5F81 /* TabViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewable.swift; sourceTree = "<group>"; };
 		7DF4FFC021700BCE007E5F81 /* TabViewableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewableTests.swift; sourceTree = "<group>"; };
-		7DF4FFC4217113DA007E5F81 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		7DF4FFC4217113DA007E5F81 /* ContextColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextColor.swift; sourceTree = "<group>"; };
 		7DF4FFC8217116BC007E5F81 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		7DF4FFCC21711EB3007E5F81 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		7DF4FFD02171322E007E5F81 /* TTL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTL.swift; sourceTree = "<group>"; };
@@ -1309,7 +1311,7 @@
 		B11D321621E464AB00F37ABF /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B12A763721914059000693DE /* fileupload.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fileupload.txt; sourceTree = "<group>"; };
 		B12A76392191459F000693DE /* file-post-body.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "file-post-body.txt"; sourceTree = "<group>"; };
-		B133A789221F59A3000E393E /* ColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
+		B133A789221F59A3000E393E /* ContextColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextColorTests.swift; sourceTree = "<group>"; };
 		B1445300212E5B6E0009D848 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
 		B14B704C228F30A100B568D6 /* UploadFileComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileComment.swift; sourceTree = "<group>"; };
 		B14B7054229468BC00B568D6 /* FilePickerPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerPresenterTests.swift; sourceTree = "<group>"; };
@@ -1870,8 +1872,8 @@
 				7DCF1EC3216BE0C3003AF358 /* Viewable */,
 				7DF4FFDA21713636007E5F81 /* Assignment.swift */,
 				3B635B32225CDC95001F353D /* CalendarEvent.swift */,
-				7DF4FFC4217113DA007E5F81 /* Color.swift */,
 				7D062AF3212496E600677F66 /* Context.swift */,
+				7DF4FFC4217113DA007E5F81 /* ContextColor.swift */,
 				7D062AF82124A0F400677F66 /* ContextModel.swift */,
 				7DF4FFC8217116BC007E5F81 /* Course.swift */,
 				7DCF1EA9216BC1A5003AF358 /* CourseDefaultView.swift */,
@@ -1933,7 +1935,7 @@
 				3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */,
 				B19792F6217697E30000369C /* AssignmentTests.swift */,
 				3BD364AE225E36FC006CEBD8 /* CalendarEventItemTests.swift */,
-				B133A789221F59A3000E393E /* ColorTests.swift */,
+				B133A789221F59A3000E393E /* ContextColorTests.swift */,
 				7D062AF621249E7700677F66 /* ContextModelTests.swift */,
 				7D062AFA2124A14700677F66 /* ContextTests.swift */,
 				7DCF1EAB216BC360003AF358 /* CourseDefaultViewTests.swift */,
@@ -2130,11 +2132,11 @@
 		7D2E82832270BB7600735854 /* FilePicker */ = {
 			isa = PBXGroup;
 			children = (
-				7D2E827E2270BB7600735854 /* FilePickerProgressView.swift */,
 				7D2E827F2270BB7600735854 /* FilePickerCell.swift */,
-				7D2E82812270BB7600735854 /* FilePickerViewController.swift */,
-				7D2E82822270BB7600735854 /* FilePickerViewController.storyboard */,
 				B1AC8593228F08CA00D6BD0B /* FilePickerPresenter.swift */,
+				7D2E827E2270BB7600735854 /* FilePickerProgressView.swift */,
+				7D2E82822270BB7600735854 /* FilePickerViewController.storyboard */,
+				7D2E82812270BB7600735854 /* FilePickerViewController.swift */,
 			);
 			path = FilePicker;
 			sourceTree = "<group>";
@@ -2226,6 +2228,7 @@
 				B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */,
 				7D20F61821C3166800B77E5E /* UICollectionViewExtensions.swift */,
 				789C9BC02138516300B37AC4 /* UIColorExtensions.swift */,
+				7DF2F5FA2347DAE900C1802C /* UIColorInstColorsExtensions.swift */,
 				7DD7F88F215ADFA5006E1715 /* UIFontExtensions.swift */,
 				7D10194A215E97D90058FDD1 /* UIImageExtensions.swift */,
 				7DA20E8E21680DBF00F5FD19 /* UIImageInstIconsExtensions.swift */,
@@ -3454,7 +3457,7 @@
 				3BF3428C233D2CC00095D0D3 /* SyllabusViewController.swift in Sources */,
 				EEC3EF6522E25FDC00799FE2 /* APIPageRequestable.swift in Sources */,
 				9FAE40FF21B6C54700FE7F58 /* APIExternalToolRequestable.swift in Sources */,
-				7DF4FFC6217113DA007E5F81 /* Color.swift in Sources */,
+				7DF4FFC6217113DA007E5F81 /* ContextColor.swift in Sources */,
 				7DCF1EAE216BC48F003AF358 /* EnrollmentState.swift in Sources */,
 				7DBED01B2330158F00392F3C /* UploadAvatar.swift in Sources */,
 				3B635B2B225CD298001F353D /* APICalendarEvent.swift in Sources */,
@@ -3592,6 +3595,7 @@
 				7D54501121BDFB5C0008E75D /* LoginFindSchoolPresenter.swift in Sources */,
 				7D062AF92124A0F400677F66 /* ContextModel.swift in Sources */,
 				3B635B31225CDC2C001F353D /* GetCalendarEvents.swift in Sources */,
+				7DF2F5FB2347DAEA00C1802C /* UIColorInstColorsExtensions.swift in Sources */,
 				7DCF1EAA216BC1A5003AF358 /* CourseDefaultView.swift in Sources */,
 				7D63F77D215D31A600151E49 /* DynamicButton.swift in Sources */,
 				3B166A572343CEAF00B2EFAB /* HorizontalMenuViewController.swift in Sources */,
@@ -3785,7 +3789,7 @@
 				3B158CBA22E25E3B0039A568 /* PageViewEventViewControllerLoggingProtocolTests.swift in Sources */,
 				B1E789BD21B1D3D50087FE4A /* LogEventListPresenterTests.swift in Sources */,
 				3B60439F232AACEA00757B93 /* GetAssignmentGroupUseCaseTests.swift in Sources */,
-				B133A78A221F59A3000E393E /* ColorTests.swift in Sources */,
+				B133A78A221F59A3000E393E /* ContextColorTests.swift in Sources */,
 				7D7110CC2139AB310085C2E5 /* URLComponentsExtensionsTests.swift in Sources */,
 				7DF4FFC121700BCE007E5F81 /* TabViewableTests.swift in Sources */,
 				9F10A66F22931E7900E3360C /* GetUserSettingsTests.swift in Sources */,

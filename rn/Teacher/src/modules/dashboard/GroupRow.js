@@ -77,10 +77,6 @@ export default class GroupRow extends React.Component<GroupRowProps & { onPress:
 }
 
 const styles = StyleSheet.create({
-  icon: {
-    tintColor: 'white',
-    marginTop: 15.5,
-  },
   rowContent: {
     flexDirection: 'row',
     minHeight: 82,

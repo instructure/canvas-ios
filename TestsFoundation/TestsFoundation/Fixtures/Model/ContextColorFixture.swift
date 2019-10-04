@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2017-present  Instructure, Inc.
+// Copyright (C) 2018-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,16 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
+import CoreData
+import Foundation
+@testable import Core
 
-import React from 'react'
-import 'react-native'
-import UI from '../UI'
-import renderer from 'react-test-renderer'
-
-test('renders UI correctly', () => {
-  let tree = renderer.create(
-    <UI />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+extension ContextColor {
+    @discardableResult
+    public static func make(
+        canvasContextID: String = "course_1",
+        color: UIColor = .red,
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> ContextColor {
+        let model: ContextColor = context.insert()
+        model.canvasContextID = canvasContextID
+        model.color = color
+        try! context.save()
+        return model
+    }
+}

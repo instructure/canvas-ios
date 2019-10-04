@@ -176,7 +176,7 @@ class ModuleListPresenterTests: TeacherTestCase {
         }
         presenter.viewIsReady()
         Course.make(from: .make(id: "1"))
-        Color.make(canvasContextID: "course_1", color: color)
+        ContextColor.make(canvasContextID: "course_1", color: color)
 
         wait(for: [reloaded], timeout: 9)
     }

@@ -17,6 +17,7 @@
 //
 
 import XCTest
+import SwiftUI
 @testable import Core
 
 class UIColorExtensionsTests: XCTestCase {
@@ -38,9 +39,12 @@ class UIColorExtensionsTests: XCTestCase {
     }
 
     func testNamed() {
-        for name in UIColor.Name.allCases {
+        for name in InstColorName.allCases {
             XCTAssertNotNil(UIColor.named(name, inHighContrast: false))
             XCTAssertNotNil(UIColor.named(name, inHighContrast: true))
+            if #available(iOS 13, *) {
+                XCTAssertNotNil(Color.named(name))
+            }
         }
     }
 

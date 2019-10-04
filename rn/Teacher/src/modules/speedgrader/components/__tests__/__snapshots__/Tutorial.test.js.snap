@@ -21,7 +21,7 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
   <View
     style={
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderRadius": 8,
         "marginHorizontal": 40,
         "padding": 16,
@@ -77,7 +77,7 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
       }
       onPress={[Function]}
       testID="tutorial.button-1"
-      underlayColor="#fff"
+      underlayColor="#ffffff00"
     >
       <View>
         <Text
@@ -89,7 +89,7 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
               },
               Array [
                 Object {
-                  "color": "#374A59",
+                  "color": "#008EE2",
                   "fontSize": 16,
                   "fontWeight": "500",
                 },

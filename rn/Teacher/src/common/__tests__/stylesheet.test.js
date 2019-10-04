@@ -16,14 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
-
 import {
-  branding,
+  colors,
   createStyleSheet,
-  setupBrandingFromNativeBrandingInfo,
-} from '../branding'
-import colors from '../colors'
+  vars,
+  setupBranding,
+} from '../stylesheet'
 
 const emptyBrand = {
   buttonPrimaryBackground: 'white',
@@ -44,21 +42,20 @@ const emptyBrand = {
   primary: 'white',
 }
 
-describe('setupBrandingFromNativeBrandingInfo', () => {
+describe('setupBranding', () => {
   it('parses native branding info', () => {
     let expected = {
-      link: 'linkColor',
-      navBarColor: 'navBarColor',
-      primaryButtonTextColor: 'primaryButtonTextColor',
-      primaryButtonColor: 'primaryButtonColor',
+      buttonPrimaryBackground: 'primaryButtonColor',
+      buttonPrimaryText: 'primaryButtonTextColor',
       fontColorDark: 'fontColorDark',
-      headerImage: './src/images/canvas-logo.png',
-      navBarButtonColor: 'navBarButtonColor',
-      navBarTextColor: 'navBarTextColor',
-      primaryBrandColor: '#374A59',
+      linkColor: 'linkColor',
+      navBackground: 'navBarColor',
+      navIconFill: 'navBarButtonColor',
+      navTextColor: 'navBarTextColor',
+      primary: '#374A59',
     }
 
-    setupBrandingFromNativeBrandingInfo({
+    setupBranding({
       ...emptyBrand,
       buttonPrimaryBackground: 'primaryButtonColor',
       buttonPrimaryText: 'primaryButtonTextColor',
@@ -71,18 +68,17 @@ describe('setupBrandingFromNativeBrandingInfo', () => {
       primary: '#374A59',
     })
 
-    expect(branding).toEqual(expected)
+    expect(colors).toMatchObject(expected)
+    expect(vars.headerImageURL).toBe('./src/images/canvas-logo.png')
   })
 
   it('updates created StyleSheet', () => {
-    setupBrandingFromNativeBrandingInfo({ ...emptyBrand, primary: 'red' })
+    setupBranding({ ...emptyBrand, primary: 'red' })
     const sheet = createStyleSheet(colors => ({
-      test: { color: colors.primaryBrandColor },
+      test: { color: colors.primary },
     }))
-    // $FlowFixMe StyleSheet doesn't convert to number in tests
     expect(sheet.test.color).toBe('red')
-    setupBrandingFromNativeBrandingInfo({ ...emptyBrand, primary: 'blue' })
-    // $FlowFixMe StyleSheet doesn't convert to number in tests
+    setupBranding({ ...emptyBrand, primary: 'blue' })
     expect(sheet.test.color).toBe('blue')
   })
 })
@@ -91,8 +87,8 @@ describe('createStyleSheet', () => {
   it('calls the passed function with colors', () => {
     const factory = jest.fn(() => ({}))
     createStyleSheet(factory)
-    expect(factory).toHaveBeenCalledWith(colors)
-    setupBrandingFromNativeBrandingInfo(emptyBrand)
+    expect(factory).toHaveBeenCalledWith(colors, vars)
+    setupBranding(emptyBrand)
     expect(factory).toHaveBeenCalledTimes(2)
   })
 })

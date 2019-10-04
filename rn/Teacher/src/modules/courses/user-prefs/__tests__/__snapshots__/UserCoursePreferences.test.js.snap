@@ -93,7 +93,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#fff",
+                      "color": "#FFFFFF",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -292,7 +292,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#BD3C14"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -322,7 +322,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#FF2717"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -352,7 +352,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#E71F63"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -382,7 +382,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#8F3E97"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -412,7 +412,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#65499D"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -442,7 +442,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#4554A4"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -472,7 +472,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#1770AB"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -502,7 +502,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#0B9BE3"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -532,7 +532,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#06A3B7"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -562,7 +562,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#009688"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -592,7 +592,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#009606"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -622,7 +622,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#8D9900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -652,7 +652,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#D97900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -682,7 +682,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#FD5D10"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -712,7 +712,7 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
                   }
                 }
                 testID="colorButton.#F06291"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -841,7 +841,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#fff",
+                      "color": "#FFFFFF",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -1040,7 +1040,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#BD3C14"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1070,7 +1070,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#FF2717"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1100,7 +1100,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#E71F63"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1130,7 +1130,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#8F3E97"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1160,7 +1160,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#65499D"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1190,7 +1190,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#4554A4"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1220,7 +1220,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#1770AB"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1250,7 +1250,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#0B9BE3"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1280,7 +1280,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#06A3B7"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1310,7 +1310,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#009688"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1340,7 +1340,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#009606"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1370,7 +1370,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#8D9900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1400,7 +1400,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#D97900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1430,7 +1430,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#FD5D10"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1460,7 +1460,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#F06291"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1490,7 +1490,7 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1619,7 +1619,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#fff",
+                      "color": "#FFFFFF",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -1818,7 +1818,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#BD3C14"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1848,7 +1848,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#FF2717"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1878,7 +1878,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#E71F63"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1908,7 +1908,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#8F3E97"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1938,7 +1938,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#65499D"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1968,7 +1968,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#4554A4"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -1998,7 +1998,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#1770AB"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2028,7 +2028,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#0B9BE3"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2058,7 +2058,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#06A3B7"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2088,7 +2088,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#009688"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2118,7 +2118,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#009606"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2148,7 +2148,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#8D9900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2178,7 +2178,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#D97900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2208,7 +2208,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#FD5D10"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2238,7 +2238,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#F06291"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2268,7 +2268,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2298,7 +2298,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2328,7 +2328,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2358,7 +2358,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2388,7 +2388,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2418,7 +2418,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2448,7 +2448,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2577,7 +2577,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#fff",
+                      "color": "#FFFFFF",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -2776,7 +2776,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#BD3C14"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2806,7 +2806,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#FF2717"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2836,7 +2836,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#E71F63"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2866,7 +2866,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#8F3E97"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2896,7 +2896,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#65499D"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2926,7 +2926,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#4554A4"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2956,7 +2956,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#1770AB"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -2986,7 +2986,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#0B9BE3"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3016,7 +3016,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#06A3B7"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3046,7 +3046,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#009688"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3076,7 +3076,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#009606"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3106,7 +3106,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#8D9900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3136,7 +3136,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#D97900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3166,7 +3166,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#FD5D10"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3196,7 +3196,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#F06291"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3226,7 +3226,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3256,7 +3256,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3286,7 +3286,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3316,7 +3316,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3346,7 +3346,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3376,7 +3376,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3406,7 +3406,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3535,7 +3535,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#fff",
+                      "color": "#FFFFFF",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -3734,7 +3734,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#BD3C14"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3764,7 +3764,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#FF2717"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3794,7 +3794,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#E71F63"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3824,7 +3824,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#8F3E97"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3854,7 +3854,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#65499D"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3884,7 +3884,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#4554A4"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3914,7 +3914,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#1770AB"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3944,7 +3944,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#0B9BE3"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -3974,7 +3974,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#06A3B7"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4004,7 +4004,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#009688"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4034,7 +4034,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#009606"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4064,7 +4064,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#8D9900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4094,7 +4094,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#D97900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4124,7 +4124,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#FD5D10"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4154,7 +4154,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#F06291"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4184,7 +4184,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4214,7 +4214,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4244,7 +4244,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4274,7 +4274,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4304,7 +4304,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4334,7 +4334,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4364,7 +4364,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4493,7 +4493,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#fff",
+                      "color": "#FFFFFF",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -4692,7 +4692,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#BD3C14"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4722,7 +4722,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#FF2717"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4752,7 +4752,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#E71F63"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4782,7 +4782,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#8F3E97"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4812,7 +4812,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#65499D"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4842,7 +4842,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#4554A4"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4872,7 +4872,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#1770AB"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4902,7 +4902,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#0B9BE3"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4932,7 +4932,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#06A3B7"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4962,7 +4962,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#009688"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -4992,7 +4992,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#009606"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5022,7 +5022,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#8D9900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5052,7 +5052,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#D97900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5082,7 +5082,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#FD5D10"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5112,7 +5112,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#F06291"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5142,7 +5142,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5172,7 +5172,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5202,7 +5202,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5232,7 +5232,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5262,7 +5262,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5292,7 +5292,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5322,7 +5322,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5451,7 +5451,7 @@ exports[`UserCoursePreferences renders 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#fff",
+                      "color": "#FFFFFF",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -5666,7 +5666,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#BD3C14"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5696,7 +5696,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#FF2717"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5726,7 +5726,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#E71F63"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5756,7 +5756,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#8F3E97"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5786,7 +5786,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#65499D"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5816,7 +5816,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#4554A4"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5846,7 +5846,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#1770AB"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5876,7 +5876,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#0B9BE3"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5906,7 +5906,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#06A3B7"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5936,7 +5936,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#009688"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5966,7 +5966,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#009606"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -5996,7 +5996,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#8D9900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6026,7 +6026,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#D97900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6056,7 +6056,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#FD5D10"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6086,7 +6086,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#F06291"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6116,7 +6116,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6146,7 +6146,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6176,7 +6176,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6206,7 +6206,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6236,7 +6236,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6266,7 +6266,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6296,7 +6296,7 @@ exports[`UserCoursePreferences renders 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6425,7 +6425,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#fff",
+                      "color": "#FFFFFF",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -6624,7 +6624,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#BD3C14"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6654,7 +6654,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#FF2717"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6684,7 +6684,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#E71F63"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6714,7 +6714,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#8F3E97"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6744,7 +6744,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#65499D"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6774,7 +6774,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#4554A4"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6804,7 +6804,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#1770AB"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6834,7 +6834,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#0B9BE3"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6864,7 +6864,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#06A3B7"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6894,7 +6894,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#009688"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6924,7 +6924,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#009606"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6954,7 +6954,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#8D9900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -6984,7 +6984,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#D97900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7014,7 +7014,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#FD5D10"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7044,7 +7044,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#F06291"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7074,7 +7074,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7104,7 +7104,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7134,7 +7134,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7164,7 +7164,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7194,7 +7194,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7224,7 +7224,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7254,7 +7254,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7383,7 +7383,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#fff",
+                      "color": "#FFFFFF",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -7582,7 +7582,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#BD3C14"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7612,7 +7612,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#FF2717"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7642,7 +7642,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#E71F63"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7672,7 +7672,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#8F3E97"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7702,7 +7702,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#65499D"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7732,7 +7732,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#4554A4"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7762,7 +7762,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#1770AB"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7792,7 +7792,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#0B9BE3"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7822,7 +7822,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#06A3B7"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7852,7 +7852,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#009688"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7882,7 +7882,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#009606"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7912,7 +7912,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#8D9900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7942,7 +7942,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#D97900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -7972,7 +7972,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#FD5D10"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8002,7 +8002,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#F06291"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8032,7 +8032,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8062,7 +8062,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8092,7 +8092,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8122,7 +8122,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8152,7 +8152,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8182,7 +8182,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8212,7 +8212,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8341,7 +8341,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#fff",
+                      "color": "#FFFFFF",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -8543,7 +8543,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#BD3C14"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8573,7 +8573,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#FF2717"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8603,7 +8603,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#E71F63"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8633,7 +8633,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#8F3E97"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8663,7 +8663,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#65499D"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8693,7 +8693,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#4554A4"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8723,7 +8723,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#1770AB"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8753,7 +8753,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#0B9BE3"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8783,7 +8783,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#06A3B7"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8813,7 +8813,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#009688"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8843,7 +8843,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#009606"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8873,7 +8873,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#8D9900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8903,7 +8903,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#D97900"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8933,7 +8933,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#FD5D10"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8963,7 +8963,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#F06291"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -8993,7 +8993,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -9023,7 +9023,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -9053,7 +9053,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -9083,7 +9083,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -9113,7 +9113,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -9143,7 +9143,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
@@ -9173,7 +9173,7 @@ exports[`UserCoursePreferences renders without the color overlay 1`] = `
                   }
                 }
                 testID="colorButton.#FFFFFF00"
-                underlayColor="#fff"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={

@@ -20,7 +20,7 @@ import Foundation
 import CoreData
 import UIKit
 
-public final class Color: NSManagedObject {
+public final class ContextColor: NSManagedObject {
     @NSManaged public var canvasContextID: String
     @NSManaged public var colorRaw: UInt32
 
@@ -30,11 +30,11 @@ public final class Color: NSManagedObject {
     }
 
     @discardableResult
-    public static func save(_ item: APICustomColors, in context: NSManagedObjectContext) -> [Color] {
+    public static func save(_ item: APICustomColors, in context: NSManagedObjectContext) -> [ContextColor] {
         return item.custom_colors.compactMap { record in
             guard let color = UIColor(hexString: record.value) else { return nil }
-            let predicate = NSPredicate(format: "%K == %@", #keyPath(Color.canvasContextID), record.key)
-            let model: Color = context.fetch(predicate).first ?? context.insert()
+            let predicate = NSPredicate(format: "%K == %@", #keyPath(ContextColor.canvasContextID), record.key)
+            let model: ContextColor = context.fetch(predicate).first ?? context.insert()
             model.canvasContextID = record.key
             model.color = color
             return model
