@@ -43,7 +43,12 @@ open class HorizontalMenuViewController: UIViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         view.backgroundColor = UIColor.named(.backgroundLightest)
-        NotificationCenter.default.addObserver(self, selector: #selector(splitViewControllerWillChangeDisplayModes), name: NSNotification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: nil)
+    }
+
+    override open func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        pages?.collectionViewLayout.invalidateLayout()
+        menu?.collectionViewLayout.invalidateLayout()
     }
 
     public func reload() {
