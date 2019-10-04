@@ -264,6 +264,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     func testPickFilesImages() {
         let a = Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: [ "jpg" ]))
         presenter.pickFiles(for: a)
+        drainMainQueue()
         let filePicker = (view.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
         XCTAssertEqual(filePicker?.sources, [.files, .library, .camera])
     }
@@ -304,6 +305,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     func testSendAudioRecording() {
         let url = URL(string: "data:audio/x-aac,")!
         presenter.send(audioRecorder, url: url)
+        drainMainQueue()
         XCTAssertNotNil(view.presented)
     }
 

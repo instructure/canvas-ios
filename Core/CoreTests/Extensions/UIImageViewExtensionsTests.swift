@@ -101,7 +101,7 @@ class UIImageViewExtensionsTests: XCTestCase {
         }
         view1.load(url: svgUrl)
         view2.load(url: svgUrl)
-        wait(for: [expectation1, expectation2], timeout: 5.0)
+        wait(for: [expectation1, expectation2], timeout: 10.0)
     }
 
     func testLoadGif() {

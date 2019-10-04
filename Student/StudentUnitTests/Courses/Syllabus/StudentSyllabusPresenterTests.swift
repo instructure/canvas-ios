@@ -59,7 +59,7 @@ class StudentSyllabusPresenterTests: PersistenceTestCase {
 
         //  when
         presenter.viewIsReady()
-        wait(for: [navBarExpectation], timeout: 0.1)
+        wait(for: [navBarExpectation], timeout: 1.0)
         //  then
         XCTAssertEqual(courseCode, "abc")
         XCTAssertEqual(backgroundColor, UIColor.red)
@@ -72,7 +72,7 @@ class StudentSyllabusPresenterTests: PersistenceTestCase {
 
         //  when
         presenter.viewIsReady()
-        wait(for: [assignmentsOnlyExpectation], timeout: 0.1)
+        wait(for: [assignmentsOnlyExpectation], timeout: 1.0)
         //  then
         XCTAssertTrue(didCallShowAssignmentsOnly)
     }
@@ -83,7 +83,7 @@ class StudentSyllabusPresenterTests: PersistenceTestCase {
 
         //  when
         presenter.viewIsReady()
-        wait(for: [assignmentsOnlyExpectation], timeout: 0.1)
+        wait(for: [assignmentsOnlyExpectation], timeout: 1.0)
         //  then
         XCTAssertFalse(didCallShowAssignmentsOnly)
     }
