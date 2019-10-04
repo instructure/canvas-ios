@@ -290,5 +290,3 @@ public extension HorizontalPagedMenuDelegate {
 
     var menuItemFont: UIFont { .scaledNamedFont(.semibold16) }
 }
-
-
