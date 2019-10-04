@@ -372,7 +372,6 @@
 		7DCF0F8B22F8A84D000AACCE /* SyllabusActionableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA222F89FC2000AACCE /* SyllabusActionableItemsViewController.swift */; };
 		7DCF0F8C22F8A84D000AACCE /* StudentSyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */; };
 		7DCF0F8D22F8A84D000AACCE /* StudentSyllabusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA422F89FC2000AACCE /* StudentSyllabusPresenter.swift */; };
-		7DCF0F8E22F8A84D000AACCE /* StudentSyllabusViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA522F89FC2000AACCE /* StudentSyllabusViewController.storyboard */; };
 		7DCF0F8F22F8A84D000AACCE /* CourseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA722F89FC2000AACCE /* CourseNavigationViewController.swift */; };
 		7DCF0F9022F8A84D000AACCE /* CourseNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA822F89FC2000AACCE /* CourseNavigationPresenter.swift */; };
 		7DCF0F9122F8A84D000AACCE /* CourseListCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EAA22F89FC2000AACCE /* CourseListCourseCell.swift */; };
@@ -1132,7 +1131,6 @@
 		7DCF0EA222F89FC2000AACCE /* SyllabusActionableItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsViewController.swift; sourceTree = "<group>"; };
 		7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusViewController.swift; sourceTree = "<group>"; };
 		7DCF0EA422F89FC2000AACCE /* StudentSyllabusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusPresenter.swift; sourceTree = "<group>"; };
-		7DCF0EA522F89FC2000AACCE /* StudentSyllabusViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StudentSyllabusViewController.storyboard; sourceTree = "<group>"; };
 		7DCF0EA722F89FC2000AACCE /* CourseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationViewController.swift; sourceTree = "<group>"; };
 		7DCF0EA822F89FC2000AACCE /* CourseNavigationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenter.swift; sourceTree = "<group>"; };
 		7DCF0EAA22F89FC2000AACCE /* CourseListCourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListCourseCell.swift; sourceTree = "<group>"; };
@@ -2401,7 +2399,6 @@
 				7DCF0EA222F89FC2000AACCE /* SyllabusActionableItemsViewController.swift */,
 				7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */,
 				7DCF0EA422F89FC2000AACCE /* StudentSyllabusPresenter.swift */,
-				7DCF0EA522F89FC2000AACCE /* StudentSyllabusViewController.storyboard */,
 			);
 			path = Syllabus;
 			sourceTree = "<group>";
@@ -3639,7 +3636,6 @@
 				7DCF0FB522F8A8D7000AACCE /* SubmissionCommentFileView.xib in Resources */,
 				7DCF0FAF22F8A8D7000AACCE /* RubricViewController.storyboard in Resources */,
 				9F900E80232187D900BB44B4 /* PeopleListViewController.storyboard in Resources */,
-				7DCF0F8E22F8A84D000AACCE /* StudentSyllabusViewController.storyboard in Resources */,
 				B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */,
 				7DCF0F8922F8A84D000AACCE /* CourseCardCell.xib in Resources */,
 				7DCF0F9422F8A84D000AACCE /* CourseListViewController.storyboard in Resources */,
@@ -3886,7 +3882,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "\"${SRCROOT}/../scripts/carthage-copy-frameworks.swift\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
