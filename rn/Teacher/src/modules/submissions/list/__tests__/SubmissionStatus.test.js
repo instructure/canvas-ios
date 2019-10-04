@@ -23,6 +23,7 @@ import React from 'react'
 import SubmissionStatusLabel from '../SubmissionStatusLabel'
 import * as templates from '../../../../__templates__'
 import renderer from 'react-test-renderer'
+import { shallow } from 'enzyme'
 
 describe('SubmissionStatus', () => {
   it('status `none` renders properly', () => {
@@ -51,6 +52,13 @@ describe('SubmissionStatus', () => {
       <SubmissionStatusLabel submission={templates.submission({ submittedAt: new Date().toISOString() })} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
+  })
+
+  it('status `submitted` renders properly submitted_at', () => {
+    let tree = shallow(
+      <SubmissionStatusLabel submission={templates.submission({ submitted_at: new Date().toISOString() })} />
+    )
+    expect(tree.find('Text').children().text()).toEqual('Submitted')
   })
 
   it('status `excused` does not render anything', () => {
