@@ -67,4 +67,8 @@ class UTITests: XCTestCase {
     func testURL() {
         XCTAssertEqual(UTI.url.rawValue, "public.url")
     }
+
+    func testFileURL() {
+        XCTAssertEqual(UTI.fileURL.rawValue, "public.file-url")
+    }
 }
