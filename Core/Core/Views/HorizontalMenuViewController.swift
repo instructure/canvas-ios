@@ -39,10 +39,6 @@ open class HorizontalMenuViewController: UIViewController {
         return delegate?.menuHeight ?? HorizontalMenuViewController.defaultMenuHeight
     }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
     override open func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
