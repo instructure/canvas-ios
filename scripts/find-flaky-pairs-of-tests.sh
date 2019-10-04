@@ -24,7 +24,7 @@ script_dir="$(dirname "$0")"
 cd "$script_dir/.."
 
 usage() {
-    echo "usage: find-flakey-pairs-of-tests.sh [--teacher] testClass.method"
+    echo "usage: find-flaky-pairs-of-tests.sh [--teacher] testClass.method"
 }
 
 TEST_SUITE=StudentUITests
