@@ -3886,7 +3886,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "\"${SRCROOT}/../scripts/carthage-copy-frameworks.swift\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
