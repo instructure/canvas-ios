@@ -25,7 +25,7 @@ public func ToDoTabViewController(session: Session) throws -> UIViewController {
         
     let list = try ToDoListViewController(session: session)
 
-    let split = SplitViewController()
+    let split = HelmSplitViewController()
     split.preferredDisplayMode = .allVisible
     let masterNav = UINavigationController(rootViewController: list)
     let detailNav = UINavigationController()
