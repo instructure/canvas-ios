@@ -916,7 +916,8 @@
 /* No comment provided by engineer. */
 "Past" = "Ddoe";
 
-/* Title for the people view */
+/* People list title
+   Title for People view controller */
 "People" = "Pobl";
 
 /* No comment provided by engineer. */

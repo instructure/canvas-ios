@@ -1170,7 +1170,7 @@
     "message": "Publicar en..."
   },
   "practice_quiz_19a8505d": {
-    "message": "Evaluación de las prácticas"
+    "message": "Evaluación de práctica"
   },
   "practice_quizzes_surveys_do_not_have_detail_views_25ce31b6": {
     "message": "Las evaluaciones y encuestas de práctica no tienen vistas detalladas."
@@ -1215,7 +1215,7 @@
     "message": "Vista previa de la evaluación"
   },
   "quiz_score_to_keep_d1f7c4b1": {
-    "message": "Calificación de la evaluación para guardar"
+    "message": "Mantener la puntuación"
   },
   "quiz_submission_dca0c013": {
     "message": "Presentación de la evaluación"

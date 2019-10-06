@@ -166,7 +166,7 @@
 /* five minutes */
 "5 minutes" = "5 meneti";
 
-/* Settings entry title for About */
+/* Name of a tab displaying Canvas Info including legal info */
 "About" = "Mō";
 
 /* Access Denied from the server */
@@ -349,9 +349,6 @@
 
 /* Choose an existing picture or video to use in a comment. */
 "Choose from Library..." = "Kōwhiri mai i te whare Pukapuka";
-
-/* Button to select a landing page */
-"Choose Landing Page" = "Kōwhiri tauranga Whārangi";
 
 /* Text for button to allow user to choose a set of assignments to do */
 "Choose option" = "Whiriwhiri kōwhiringa";

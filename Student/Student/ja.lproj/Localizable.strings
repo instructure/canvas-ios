@@ -166,7 +166,7 @@
 /* five minutes */
 "5 minutes" = "5 分";
 
-/* Settings entry title for About */
+/* Name of a tab displaying Canvas Info including legal info */
 "About" = "情報";
 
 /* Access Denied from the server */
@@ -349,9 +349,6 @@
 
 /* Choose an existing picture or video to use in a comment. */
 "Choose from Library..." = "ライブラリから選択...";
-
-/* Button to select a landing page */
-"Choose Landing Page" = "ランディングページを選択する";
 
 /* Text for button to allow user to choose a set of assignments to do */
 "Choose option" = "オプションを選択する";

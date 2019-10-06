@@ -916,7 +916,8 @@
 /* No comment provided by engineer. */
 "Past" = "过去";
 
-/* Title for the people view */
+/* People list title
+   Title for People view controller */
 "People" = "人员";
 
 /* No comment provided by engineer. */
