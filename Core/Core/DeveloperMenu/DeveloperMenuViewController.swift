@@ -54,7 +54,7 @@ public class DeveloperMenuViewController: UIViewController {
     @IBOutlet var routeTextField: UITextField?
     @IBOutlet var routeMethod: UISegmentedControl?
     @IBOutlet var tableView: UITableView?
-    var routeHistory: [DevMenuRouteInfo] = []
+    var routeHistory: [String] = []
 
     var env: AppEnvironment?
 
@@ -79,7 +79,7 @@ public class DeveloperMenuViewController: UIViewController {
 
         routeMethod?.selectedSegmentIndex = restoreModalSelection()
 
-        routeHistory = DevMenuRouteInfo.restoreRouteHistory()
+        routeHistory = DeveloperMenuViewController.restoreRouteHistory()
     }
 
     @objc func enterPressed() {
@@ -163,7 +163,7 @@ extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegat
             return cell
         } else {
             let cell = tableView.dequeue(for: indexPath)
-            cell.textLabel?.text = routeHistory[indexPath.row].url?.path
+            cell.textLabel?.text = URL(string: routeHistory[indexPath.row])?.path
             return cell
         }
     }
@@ -192,7 +192,7 @@ extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegat
             case .enableAllExperimentalFeatures: break
             }
         } else {
-            showRoute(routeHistory[indexPath.row].url?.absoluteString ?? "")
+            showRoute(routeHistory[indexPath.row])
         }
     }
 
@@ -203,38 +203,27 @@ extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegat
 }
 
 
-struct DevMenuRouteInfo: Codable {
-    let url: URL?
-    let createdAt: Date
+extension DeveloperMenuViewController {
 
-    static func restoreRouteHistory() -> [DevMenuRouteInfo] {
+    static func restoreRouteHistory() -> [String] {
         let key = DeveloperMenuViewController.DeveloperUserDefaultKeys.routeHistory
-        if let routesData = UserDefaults.standard.data(forKey: key) {
-            let d = JSONDecoder()
-            let all: [DevMenuRouteInfo] = (try? d.decode([DevMenuRouteInfo].self, from: routesData)) ?? []
-            return all
-        }
-        return []
+        return UserDefaults.standard.array(forKey: key) as? [String] ?? []
     }
 
-    static func recordRouteInHistory(_ route: DevMenuRouteInfo) {
-        guard let url = route.url else { return }
+    static func recordRouteInHistory(_ route: String?) {
+        guard let url = route else { return }
         let ignore = [
-            URL(string: "/dev-menu")!,
-            URL(string: "/profile")!
+            "/dev-menu",
+            "/profile"
         ]
 
         if ignore.contains(url) { return }
 
-
-        let key = DeveloperMenuViewController.DeveloperUserDefaultKeys.routeHistory
-        let enc = JSONEncoder()
         var all = restoreRouteHistory()
-        all.insert(route, at: 0)
+        all.insert(url, at: 0)
+        let saveSubset = Array( all.prefix(10) )
 
-        if let data = try? enc.encode(Array( all.prefix(10) )) {
-            UserDefaults.standard.set(data, forKey: key)
-            UserDefaults.standard.synchronize()
-        }
+        UserDefaults.standard.set(saveSubset, forKey: DeveloperUserDefaultKeys.routeHistory)
+        UserDefaults.standard.synchronize()
     }
 }

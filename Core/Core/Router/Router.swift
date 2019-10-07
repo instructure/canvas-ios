@@ -129,7 +129,7 @@ public class Router: RouterProtocol {
     public func route(to url: URLComponents, from: UIViewController, options: RouteOptions? = nil) {
         let url = cleanURL(url)
         #if DEBUG
-        DevMenuRouteInfo.recordRouteInHistory(DevMenuRouteInfo(url: url.url, createdAt: Date()))
+        DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
         #endif
         for route in handlers {
             if let params = route.match(url) {
