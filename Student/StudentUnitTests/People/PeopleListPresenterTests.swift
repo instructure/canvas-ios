@@ -49,7 +49,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
     func testLoadUsers() {
         api.mock(GetContextUsersRequest(context: context), value: [
             .make(id: "1", name: "John Doe", sortable_name: "Doe, John"),
-            .make(id: "2", name: "Jane Doe", sortable_name: "Doe, Jane")
+            .make(id: "2", name: "Jane Doe", sortable_name: "Doe, Jane"),
         ])
 
         expectationPredicate = {

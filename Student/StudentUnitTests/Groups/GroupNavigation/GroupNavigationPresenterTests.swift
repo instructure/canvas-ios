@@ -50,7 +50,7 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
         let expectation = XCTestExpectation(description: "on update")
         expectation.assertForOverFulfill = false
         onUpdate = {
-            if self.presenter.tabs.count == 1  {
+            if self.presenter.tabs.count == 1 {
                 expectation.fulfill()
             }
         }
