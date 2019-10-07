@@ -24,6 +24,10 @@ public struct GetTabsRequest: APIRequestable {
 
     let context: Context
 
+    public init (context: Context) {
+        self.context = context
+    }
+
     public var path: String {
         return "\(context.pathComponent)/tabs?per_page=100"
     }

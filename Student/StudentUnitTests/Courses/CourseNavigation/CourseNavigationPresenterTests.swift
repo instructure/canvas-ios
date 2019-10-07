@@ -22,7 +22,8 @@ import Core
 import TestsFoundation
 
 class CourseNavigationPresenterTests: PersistenceTestCase {
-    lazy var presenter = CourseNavigationPresenter(courseID: "1", view: self, env: env)
+    let context = ContextModel(.course, id: "1")
+    lazy var presenter = CourseNavigationPresenter(courseID: context.id, view: self, env: env)
     var resultingError: NSError?
     var navigationController: UINavigationController?
 
@@ -33,33 +34,32 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
         return expect
     }()
 
-    @discardableResult
-    func tab() -> Tab {
-        return Tab.make(context: ContextModel(.course, id: "1"))
-    }
-
     func testLoadTabs() {
         Course.make()
-        let expected = tab()
+        api.mock(GetTabsRequest(context: context), value: [.make(label: "Tab")])
+
         let expectation = XCTestExpectation(description: "loaded tab")
         expectation.assertForOverFulfill = false
         onUpdate = {
-            if self.presenter.tabs.first?.id == expected.id {
+            if self.presenter.tabs.first?.label == "Tab" {
                 expectation.fulfill()
             }
         }
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 5)
     }
 
     func testTabsAreOrderedByPosition() {
-        Tab.make(from: .make(id: "b", position: 2), context: ContextModel(.course, id: "1"))
-        Tab.make(from: .make(id: "c", position: 3), context: ContextModel(.course, id: "1"))
-        Tab.make(from: .make(id: "a", position: 1), context: ContextModel(.course, id: "1"))
+        api.mock(GetTabsRequest(context: context), value: [
+            .make(id: "b", html_url: URL(string: "https://google.com/b")!, position: 2),
+            .make(id: "c", html_url: URL(string: "https://google.com/c")!, position: 3),
+            .make(id: "a", html_url: URL(string: "https://google.com/a")!, position: 1),
+        ])
 
         let expectation = XCTestExpectation(description: "orders by position")
         expectation.assertForOverFulfill = false
         onUpdate = {
+            print(self.presenter.tabs.count)
             if self.presenter.tabs.count == 3,
                 self.presenter.tabs.first?.id == "a",
                 self.presenter.tabs.last?.id == "c" {
@@ -67,19 +67,7 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
             }
         }
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
-    }
-
-    func testUseCaseFetchesData() {
-        let tab = self.tab()
-        let expectation = XCTestExpectation(description: "fetches data")
-        onUpdate = {
-            if self.presenter.tabs.first?.label == tab.label {
-                expectation.fulfill()
-            }
-        }
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 5)
     }
 }
 

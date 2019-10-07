@@ -84,7 +84,7 @@ class RichContentEditorPresenterTests: CoreTestCase {
     func testLoadHTML() {
         let expectation = XCTestExpectation(description: "loads html")
         onLoadHTML = { expectation.fulfill() }
-        FeatureFlag.make(context: presenter.context, enabled: true)
+        api.mock(GetEnabledFeatureFlagsRequest(context: presenter.context), value: ["feature_flag"])
         presenter.viewIsReady()
         wait(for: [expectation], timeout: 1)
     }

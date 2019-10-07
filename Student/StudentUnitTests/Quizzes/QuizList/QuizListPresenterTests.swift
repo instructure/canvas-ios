@@ -28,7 +28,7 @@ class QuizListPresenterTests: PersistenceTestCase {
     var resultingBackgroundColor: UIColor?
     var presenter: QuizListPresenter!
 
-    let update = XCTestExpectation(description: "presenter updated")
+    var updateExpectation: XCTestExpectation!
     var onUpdateNavBar: ((String?, UIColor?) -> Void)?
 
     var color: UIColor?
@@ -38,6 +38,7 @@ class QuizListPresenterTests: PersistenceTestCase {
 
     override func setUp() {
         super.setUp()
+        updateExpectation = XCTestExpectation(description: "presenter updated")
         presenter = QuizListPresenter(env: env, view: self, courseID: "1")
     }
 
@@ -66,11 +67,15 @@ class QuizListPresenterTests: PersistenceTestCase {
     }
 
     func testLoadQuizzes() {
-        Quiz.make(from: .make(id: "a", quiz_type: .assignment))
-        Quiz.make(from: .make(id: "g", quiz_type: .graded_survey))
-        Quiz.make(from: .make(id: "p", quiz_type: .practice_quiz))
-        Quiz.make(from: .make(id: "s", quiz_type: .survey))
+        api.mock(GetQuizzesRequest(courseID: "1"), value: [
+            .make(id: "a", quiz_type: .assignment),
+            .make(id: "g", quiz_type: .graded_survey),
+            .make(id: "p", quiz_type: .practice_quiz),
+            .make(id: "s", quiz_type: .survey),
+        ])
+
         presenter.viewIsReady()
+        wait(for: [updateExpectation], timeout: 5)
 
         XCTAssertEqual(presenter.quiz(IndexPath(row: 0, section: 0))?.quizType, QuizType.assignment)
         XCTAssertEqual(presenter.quiz(IndexPath(row: 0, section: 1))?.quizType, QuizType.practice_quiz)
@@ -87,18 +92,24 @@ class QuizListPresenterTests: PersistenceTestCase {
     }
 
     func testSection() {
-        Quiz.make(from: .make(quiz_type: .survey))
+        api.mock(GetQuizzesRequest(courseID: "1"), value: [.make(quiz_type: .survey)])
+
         presenter.viewIsReady()
+        wait(for: [updateExpectation], timeout: 5)
+
         XCTAssertEqual(presenter.section(0)?.name, "survey")
     }
 
     func testSectionTitle() {
-        Quiz.make(from: .make(id: "i", quiz_type: .assignment)).setValue("invalid", forKey: "quizTypeRaw")
-        Quiz.make(from: .make(id: "a", quiz_type: .assignment))
-        Quiz.make(from: .make(id: "g", quiz_type: .graded_survey))
-        Quiz.make(from: .make(id: "p", quiz_type: .practice_quiz))
-        Quiz.make(from: .make(id: "s", quiz_type: .survey))
+        api.mock(GetQuizzesRequest(courseID: "1"), value: [
+            .make(id: "a", quiz_type: .assignment),
+            .make(id: "g", quiz_type: .graded_survey),
+            .make(id: "p", quiz_type: .practice_quiz),
+            .make(id: "s", quiz_type: .survey),
+        ])
+
         presenter.viewIsReady()
+        wait(for: [updateExpectation], timeout: 5)
 
         XCTAssertEqual(presenter.sectionTitle(0), "Assignments")
         XCTAssertEqual(presenter.sectionTitle(1), "Practice Quizzes")
@@ -118,7 +129,9 @@ class QuizListPresenterTests: PersistenceTestCase {
 
 extension QuizListPresenterTests: QuizListViewProtocol {
     func update(isLoading: Bool) {
-        update.fulfill()
+        if presenter.colors.pending == false && presenter.course.pending == false && presenter.quizzes.pending == false {
+            updateExpectation.fulfill()
+        }
     }
 
     func showError(_ error: Error) {

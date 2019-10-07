@@ -47,11 +47,13 @@ class PeopleListPresenterTests: PersistenceTestCase {
     }
 
     func testLoadUsers() {
-        User.make(from: APIUser.make(id: "1", name: "John Doe", sortable_name: "Doe, John"), courseID: "1")
-        User.make(from: APIUser.make(id: "2", name: "Jane Doe", sortable_name: "Doe, Jane"), courseID: "1")
+        api.mock(GetContextUsersRequest(context: context), value: [
+            .make(id: "1", name: "John Doe", sortable_name: "Doe, John"),
+            .make(id: "2", name: "Jane Doe", sortable_name: "Doe, Jane")
+        ])
 
         expectationPredicate = {
-            self.presenter.users.count == 2 && self.presenter.users.allSatisfy { !$0.id.isEmpty }
+            self.presenter.users.pending == false && self.presenter.users.count == 2 && self.presenter.users.allSatisfy { !$0.id.isEmpty }
         }
         presenter.viewIsReady()
 

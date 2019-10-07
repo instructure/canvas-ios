@@ -74,6 +74,9 @@ class QuizListPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func section(_ index: Int) -> NSFetchedResultsSectionInfo? {
+        if sectionIndex.indices.contains(index) == false {
+            return nil
+        }
         return quizzes.sections?[sectionIndex[index]]
     }
 

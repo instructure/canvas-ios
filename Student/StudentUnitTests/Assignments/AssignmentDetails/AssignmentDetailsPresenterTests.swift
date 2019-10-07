@@ -189,11 +189,12 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
     func testArcIDSome() {
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .pending)
-        Assignment.make()
-        Course.make()
-        ExternalTool.make(from: .make(id: "4", domain: "arc.instructure.com"), forCourse: "1")
+        api.mock(GetAssignmentRequest(courseID: "1", assignmentID: "1", include: [.submission]), value: .make())
+        api.mock(GetCourseRequest(courseID: "1", include: GetCourseRequest.defaultIncludes), value: .make())
+        api.mock(GetExternalToolsRequest(context: ContextModel(canvasContextID: "course_1")!, includeParents: true, perPage: 99), value: [.make(id: "4", domain: "arc.instructure.com")])
+
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.5)
+        wait(for: [expectation], timeout: 5)
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .some("4"))
     }
 
@@ -467,7 +468,9 @@ extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
         resultingBaseURL = baseURL
         resultingQuiz = quiz
         onUpdate?()
-        expectation.fulfill()
+        if presenter.assignments.pending == false && presenter.colors.pending == false && presenter.courses.pending == false && presenter.arc.pending == false {
+            expectation.fulfill()
+        }
     }
 
     func showError(_ error: Error) {

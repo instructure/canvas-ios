@@ -52,14 +52,14 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
     }
 
     func testUseCaseFetchesData() {
-        //  given
-        Assignment.make(from: .make(name: "Assignment One"))
+        api.mock(GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [], querySize: 100), value: [.make(name: "Assignment One")])
+        api.mock(GetCalendarEventsRequest(context: ContextModel(.course, id: "1")), value: [.make(title: "Calendar Event")])
 
-        //   when
         presenter.viewIsReady()
+        wait(for: [expectation], timeout: 5)
 
-        //  then
-        XCTAssertEqual(models.first?.title, "Assignment One")
+        XCTAssertEqual(presenter.assignments.first?.name, "Assignment One")
+        XCTAssertEqual(presenter.calendarEvents.first?.title, "Calendar Event")
     }
 
     func testLoadCourseColorsAndTitle() {
@@ -117,7 +117,9 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
 extension SyllabusActionableItemsPresenterTests: SyllabusActionableItemsViewProtocol {
     func update(models: [SyllabusActionableItemsViewController.ViewModel]) {
         self.models = models
-        expectation.fulfill()
+        if presenter.course.pending == false && presenter.assignments.pending == false && presenter.calendarEvents.pending == false {
+            expectation.fulfill()
+        }
     }
 
     var navigationController: UINavigationController? {

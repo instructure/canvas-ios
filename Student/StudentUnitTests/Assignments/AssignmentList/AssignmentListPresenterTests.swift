@@ -44,25 +44,11 @@ class AssignmentListPresenterTests: PersistenceTestCase {
     }
 
     func testLoadAssignments() {
-        //  given
-        let expected = Assignment.make()
+        api.mock(GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [], querySize: 100), value: [.make()])
 
-        //  when
         presenter.viewIsReady()
-
-        //  then
-        XCTAssert(presenter.assignments.first! === expected)
-    }
-
-    func testUseCaseFetchesData() {
-        //  given
-        Assignment.make(from: .make(name: "Assignment One"))
-
-        //   when
-        presenter.viewIsReady()
-
-        //  then
-        XCTAssertEqual(presenter.assignments.first?.name, "Assignment One")
+        wait(for: [expectation], timeout: 5)
+        XCTAssertEqual(presenter.assignments.count, 1)
     }
 
     func testLoadCourseColorsAndTitle() {
@@ -91,7 +77,9 @@ class AssignmentListPresenterTests: PersistenceTestCase {
 
 extension AssignmentListPresenterTests: AssignmentListViewProtocol {
     func update() {
-        expectation.fulfill()
+        if presenter.course.pending == false && presenter.assignments.pending == false {
+            expectation.fulfill()
+        }
     }
 
     var navigationController: UINavigationController? {

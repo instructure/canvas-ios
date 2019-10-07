@@ -25,7 +25,8 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
 
     var resultingColor: UIColor?
     var resultingTitle = ""
-    lazy var presenter = GroupNavigationPresenter(groupID: Group.make().id, view: self, env: env)
+    let context = ContextModel(.group, id: "1")
+    lazy var presenter = GroupNavigationPresenter(groupID: context.id, view: self, env: env)
     var resultingError: NSError?
     var onUpdateNavBar: (() -> Void)?
     lazy var expectUpdateNavBar: XCTestExpectation = {
@@ -42,28 +43,29 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
     var navigationController: UINavigationController?
 
     func testLoadTabs() {
-        //  given
         Group.make()
-        let expected = Tab.make()
+        api.mock(GetTabsRequest(context: context), value: [.make()])
 
         //  when
         let expectation = XCTestExpectation(description: "on update")
         expectation.assertForOverFulfill = false
         onUpdate = {
-            if self.presenter.tabs.first?.id == expected.id {
+            if self.presenter.tabs.count == 1  {
                 expectation.fulfill()
             }
         }
-        presenter.viewIsReady()
 
-        // then
+        presenter.viewIsReady()
         wait(for: [expectation], timeout: 1)
     }
 
     func testTabsAreOrderedByPosition() {
-        Tab.make(from: .make(id: "b", position: 2), context: ContextModel(.group, id: "1"))
-        Tab.make(from: .make(id: "c", position: 3), context: ContextModel(.group, id: "1"))
-        Tab.make(from: .make(id: "a", position: 1), context: ContextModel(.group, id: "1"))
+        api.mock(GetTabsRequest(context: context), value: [
+            .make(id: "b", html_url: URL(string: "https://google.com/b")!, position: 2),
+            .make(id: "c", html_url: URL(string: "https://google.com/c")!, position: 3),
+            .make(id: "a", html_url: URL(string: "https://google.com/a")!, position: 1),
+        ])
+
         let expectation = XCTestExpectation(description: "on update")
         expectation.assertForOverFulfill = false
         onUpdate = {

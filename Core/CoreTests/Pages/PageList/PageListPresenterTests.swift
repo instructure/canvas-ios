@@ -78,7 +78,7 @@ class PageListPresenterTests: CoreTestCase {
     }
 
     func testLoadPages() {
-        Page.make(from: .make(title: "Answers Page"))
+        api.mock(GetPagesRequest(context: ContextModel(.course, id: "42")), value: [.make(title: "Answers Page")])
         updateExpectationPredicate = { self.coursePresenter.pages.first?.title == "Answers Page" }
         coursePresenter.viewIsReady()
         wait(for: [update], timeout: 1)

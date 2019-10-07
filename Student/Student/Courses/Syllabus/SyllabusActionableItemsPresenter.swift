@@ -38,11 +38,11 @@ class SyllabusActionableItemsPresenter {
         self?.update()
     }
 
-    private lazy var assignments = env.subscribe(GetAssignments(courseID: self.courseID, sort: sort)) { [weak self] in
+    public lazy var assignments = env.subscribe(GetAssignments(courseID: self.courseID, sort: sort)) { [weak self] in
         self?.updateAssignments()
     }
 
-    private lazy var calendarEvents = env.subscribe(GetCalendarEvents(context: ContextModel(.course, id: courseID))) { [weak self] in
+    public lazy var calendarEvents = env.subscribe(GetCalendarEvents(context: ContextModel(.course, id: courseID))) { [weak self] in
         self?.updateCalendarEvents()
     }
 
