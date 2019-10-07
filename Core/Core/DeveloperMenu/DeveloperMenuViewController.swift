@@ -202,7 +202,6 @@ extension DeveloperMenuViewController: UITableViewDataSource, UITableViewDelegat
     }
 }
 
-
 extension DeveloperMenuViewController {
 
     static func restoreRouteHistory() -> [String] {
@@ -214,7 +213,7 @@ extension DeveloperMenuViewController {
         guard let url = route else { return }
         let ignore = [
             "/dev-menu",
-            "/profile"
+            "/profile",
         ]
 
         if ignore.contains(url) { return }
