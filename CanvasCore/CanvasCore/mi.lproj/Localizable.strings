@@ -38,17 +38,8 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "Ngā Kōeke Katoa o te Wā";
 
-/* No comment provided by engineer. */
-"All notifications are currently disabled." = "Kua monokia ngā whakamōhiotanga katoa i tēnei wā.";
-
-/* No comment provided by engineer. */
-"All notifications are currently enabled." = "Kua whakahohehia ngā whakamōhiotanga katoa i tēnei wā.";
-
 /* all pages segmented control title */
 "All Pages" = "Whārangi Katoa";
-
-/* No comment provided by engineer. */
-"Allow Notifications in Settings" = "Tukua Ngā Whakamōhiotanga i roto i Tautuhinga";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Ngā ngana e whakāetia ana";
@@ -95,12 +86,6 @@
 /* Title for screen to build a panda avatar */
 "Build Your Panda!" = "Hanga tō Panda!";
 
-/* Alert title when unable to parse JSON for communication channels */
-"Can't Display Communication Channels" = "Kāore e taea te Whakātu Hongere kōrero";
-
-/* Alert title when unable to parse JSON for notification preferences */
-"Can't Display Notification Preferences" = "Kāore e taea te Whakātu Manakohanga Whakamōhiotanga";
-
 /* Cancel Audio recording.
    Cancel button title
    Cancel upload */
@@ -108,9 +93,6 @@
 
 /* No comment provided by engineer. */
 "Change Section" = "Huri te wāhanga";
-
-/* Description for Chat communication channel */
-"Chat" = "kōrerorero";
 
 /* Choose a file */
 "Choose a File" = "Kōwhiria he Kōnae";
@@ -136,26 +118,11 @@
 /* No comment provided by engineer. */
 "Comments" = "Ngā Kōrerorero";
 
-/* Title of a screen that shows all of our open source components */
-"Components" = "Ngā wāhanga";
-
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Haere tonu Quiz";
 
-/* Notification display name for conversations group */
-"Conversations" = "kōrero";
-
-/* Alert title when unable to load notification preferences */
-"Could not load notification preferences" = "Kāore i taea te uta manakohanga whakamōhiotanga";
-
 /* Failure reason for why it couldn't associate a tab with a context */
 "Could not parse context id from URL" = "Kāore i taea te poroporo horopaki id i URL";
-
-/* Error title for being unable to update a push notification preference */
-"Could not update" = "Kāore i taea te whakahōu";
-
-/* Notification display name for course activities group */
-"Course Activities" = "Mahi akoranga";
 
 /* Header label for a screen that customizes a course */
 "Customize" = "Whakaritea";
@@ -190,9 +157,6 @@
 /* label to be read for visually impaired users with discusstion topic assignment types */
 "discussion topic" = "kaupapa kōrero";
 
-/* Notification display name for discussions group */
-"Discussions" = "Ngā Kōrerorero";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Hapa kōpae";
 
@@ -208,9 +172,6 @@
 
 /* due date label for quiz due date */
 "Due Date" = "Rā e tika ana";
-
-/* Description for email communication channel */
-"Email" = "Īmēra";
 
 /* Data encoding error title */
 "Encoding Error" = "Hapa Whakawaehere";
@@ -293,9 +254,6 @@
 /* Green course color button */
 "Green" = "Kākāriki";
 
-/* Notification display name for groups group */
-"Groups" = "rōpū";
-
 /* Non favorite hidden courses or groups */
 "Hidden" = "Huna";
 
@@ -358,9 +316,6 @@
 /* Next button for advancing a quiz */
 "Next" = "E haere ake nei";
 
-/* Alert title when unable to load communication channels */
-"No Communication Channels Found" = "Kāore he Teihana Kōrero Kitea";
-
 /* A quiz that has no due date */
 "No Due Date" = "Kaore he rā tika";
 
@@ -388,17 +343,8 @@
 /* Error title for push notification registration error */
 "Notification Error" = "Hapa whakamōhiotanga";
 
-/* Title for the notification preferences page */
-"Notification Preferences" = "whakamōhiotanga Manakohanga";
-
-/* No comment provided by engineer. */
-"Off" = "atu";
-
 /* OK Button Title */
 "OK" = "Ae";
-
-/* No comment provided by engineer. */
-"On" = "i runga i";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Tuwhera i roto i te Safari";
@@ -451,9 +397,6 @@
 
 /* Purple course color button */
 "Purple" = "Waiporoporo";
-
-/* Description for Push Notification channel */
-"Push Notifications" = "Pana ngā Whakamōhiotanga";
 
 /* accessibility label for a quiz question */
 "Question" = "Pātai";
@@ -536,9 +479,6 @@
 /* button for retaking quiz */
 "Retake Quiz" = "Tangohia Quiz";
 
-/* Notification display name for scheduling group */
-"Scheduling" = "Hōtaka";
-
 /* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
 "Select all that apply" = "Tīpakohia katoa e te tono";
 
@@ -559,12 +499,6 @@
 
 /* Text for a button that toggles to show a timer for a timed quiz */
 "Show Timer" = "Whakātu Matawā";
-
-/* Description for Slack communication channel */
-"Slack" = "Slack";
-
-/* Description for SMS communication channel */
-"SMS" = "SMS";
 
 /* Error message displayed when the file is unrecognized. */
 "Something went wrong. Check the file format and try again." = "I hē tētahi mea. Tirohia te hōputu kōnae, me ngana anō";
@@ -599,9 +533,6 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Tangohia Quiz";
-
-/* No comment provided by engineer. */
-"Tap to toggle" = "Pātō anō ki toggle";
 
 /* Teal course color button */
 "Teal" = "Tira";
@@ -711,21 +642,6 @@
 /* Total grade label */
 "Total Grade" = "Kōeke Tapeke";
 
-/* Description for Twitter communication channel */
-"Twitter" = "Twitter";
-
-/* Alert message when unable to parse JSON for communication channels */
-"Unable to display any Communication Channels returned from the server at this time." = "Kaore e taea te whakāu i tētahi Awakeri Kōrero hoki i te tūmau i tēnei wā.";
-
-/* Alert message when unable to parse JSON for notification preferences */
-"Unable to display any notification preferences returned from the server at this time." = "Kaore e taea te whakātu i tētahi manakohanga whakamōhiotanga hoki i te tūmau i tēnei wā";
-
-/* Alert message when unable to load communication channels */
-"Unable to load any Communication Channels at this time." = "Kaore e taea te uta Awakeri Kōrero i tēnei wā.";
-
-/* Alert message when unable to load notification preferences */
-"Unable to load any notification preferences at this time.  Error: %@" = "Kaore e taea te uta ngā whakamōhiotanga manakohanga i tēnei wā.  Hapa: %@";
-
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "Kaore i taea te poporo JSON mo ngā awakeri kōrero";
 
@@ -765,14 +681,8 @@
 /* a warning message */
 "Warning" = "whakatūpato";
 
-/* Error message for being unable to update a push notification preference */
-"We were not able to update this value with the server" = "Kaore i taea te whakahōu i tēnei uara ki te tūmau ";
-
 /* Yellow course color button */
 "Yellow" = "Kōwhai";
-
-/* Description for Yo communication channel */
-"Yo" = "Yo";
 
 /* Shows time limit on a quiz */
 "You have %d minutes." = "Kei ia koe %d ngā meneti";

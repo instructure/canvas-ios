@@ -916,7 +916,8 @@
 /* No comment provided by engineer. */
 "Past" = "O muri";
 
-/* Title for the people view */
+/* People list title
+   Title for People view controller */
 "People" = "Tāngata";
 
 /* No comment provided by engineer. */

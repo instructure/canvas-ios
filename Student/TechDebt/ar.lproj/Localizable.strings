@@ -916,7 +916,8 @@
 /* No comment provided by engineer. */
 "Past" = "الماضي";
 
-/* Title for the people view */
+/* People list title
+   Title for People view controller */
 "People" = "أشخاص";
 
 /* No comment provided by engineer. */

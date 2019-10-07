@@ -38,17 +38,8 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "Vsa ocenjevalna obdobja";
 
-/* No comment provided by engineer. */
-"All notifications are currently disabled." = "Vsa sporočila so trenutno onemogočena.";
-
-/* No comment provided by engineer. */
-"All notifications are currently enabled." = "Vsa sporočila so trenutno omogočena.";
-
 /* all pages segmented control title */
 "All Pages" = "Vse strani";
-
-/* No comment provided by engineer. */
-"Allow Notifications in Settings" = "Dovoli sporočila v nastavitvah";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Dovoljeni poskusi";
@@ -95,12 +86,6 @@
 /* Title for screen to build a panda avatar */
 "Build Your Panda!" = "Ustvarite svojega pando.";
 
-/* Alert title when unable to parse JSON for communication channels */
-"Can't Display Communication Channels" = "Prikaz komunikacijskih kanalov ni mogoč.";
-
-/* Alert title when unable to parse JSON for notification preferences */
-"Can't Display Notification Preferences" = "Prikaz prednostnih nastavitev za sporočila ni mogoč.";
-
 /* Cancel Audio recording.
    Cancel button title
    Cancel upload */
@@ -108,9 +93,6 @@
 
 /* No comment provided by engineer. */
 "Change Section" = "Spremeni sekcijo";
-
-/* Description for Chat communication channel */
-"Chat" = "Klepet";
 
 /* Choose a file */
 "Choose a File" = "Izberi datoteko";
@@ -136,26 +118,11 @@
 /* No comment provided by engineer. */
 "Comments" = "Komentarji";
 
-/* Title of a screen that shows all of our open source components */
-"Components" = "Komponente";
-
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Nadaljuj s kvizom";
 
-/* Notification display name for conversations group */
-"Conversations" = "Pogovori";
-
-/* Alert title when unable to load notification preferences */
-"Could not load notification preferences" = "Prednostnih nastavitev sporočil ni bilo mogoče naložiti.";
-
 /* Failure reason for why it couldn't associate a tab with a context */
 "Could not parse context id from URL" = "ID-ja konteksta iz naslova URL ni bilo mogoče razčleniti.";
-
-/* Error title for being unable to update a push notification preference */
-"Could not update" = "Posodobitev ni bila mogoča.";
-
-/* Notification display name for course activities group */
-"Course Activities" = "Aktivnosti pri predmetu";
 
 /* Header label for a screen that customizes a course */
 "Customize" = "Prilagodi po meri";
@@ -190,9 +157,6 @@
 /* label to be read for visually impaired users with discusstion topic assignment types */
 "discussion topic" = "tema razprave";
 
-/* Notification display name for discussions group */
-"Discussions" = "Razprave";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Napaka na disku";
 
@@ -208,9 +172,6 @@
 
 /* due date label for quiz due date */
 "Due Date" = "Rok";
-
-/* Description for email communication channel */
-"Email" = "E-pošta";
 
 /* Data encoding error title */
 "Encoding Error" = "Napaka pri kodiranju";
@@ -293,9 +254,6 @@
 /* Green course color button */
 "Green" = "Zeleno";
 
-/* Notification display name for groups group */
-"Groups" = "Skupine";
-
 /* Non favorite hidden courses or groups */
 "Hidden" = "Skrito";
 
@@ -358,9 +316,6 @@
 /* Next button for advancing a quiz */
 "Next" = "Naprej";
 
-/* Alert title when unable to load communication channels */
-"No Communication Channels Found" = "Ni najdenih komunikacijskih kanalov.";
-
 /* A quiz that has no due date */
 "No Due Date" = "Ni roka.";
 
@@ -388,17 +343,8 @@
 /* Error title for push notification registration error */
 "Notification Error" = "Napaka pri sporočilu";
 
-/* Title for the notification preferences page */
-"Notification Preferences" = "Prednostne nastavitve sporočil";
-
-/* No comment provided by engineer. */
-"Off" = "Izklopljeno";
-
 /* OK Button Title */
 "OK" = "V redu";
-
-/* No comment provided by engineer. */
-"On" = "Vklopljeno";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Odpri v brskalniku Safari";
@@ -451,9 +397,6 @@
 
 /* Purple course color button */
 "Purple" = "Škrlatno";
-
-/* Description for Push Notification channel */
-"Push Notifications" = "Potisni sporočila";
 
 /* accessibility label for a quiz question */
 "Question" = "Vprašanje";
@@ -536,9 +479,6 @@
 /* button for retaking quiz */
 "Retake Quiz" = "Ponovno opravljanje kviza";
 
-/* Notification display name for scheduling group */
-"Scheduling" = "Razporejanje";
-
 /* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
 "Select all that apply" = "Izberi vse, ki veljajo.";
 
@@ -559,12 +499,6 @@
 
 /* Text for a button that toggles to show a timer for a timed quiz */
 "Show Timer" = "Prikaži časovnik";
-
-/* Description for Slack communication channel */
-"Slack" = "Slack";
-
-/* Description for SMS communication channel */
-"SMS" = "SMS";
 
 /* Error message displayed when the file is unrecognized. */
 "Something went wrong. Check the file format and try again." = "Prišlo je do težav. Preverite obliko zapisa datoteke in poskusite znova.";
@@ -599,9 +533,6 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Opravi kviz";
-
-/* No comment provided by engineer. */
-"Tap to toggle" = "Tapnite za preklop";
 
 /* Teal course color button */
 "Teal" = "Zelenomodra";
@@ -711,21 +642,6 @@
 /* Total grade label */
 "Total Grade" = "Skupna ocena";
 
-/* Description for Twitter communication channel */
-"Twitter" = "Twitter";
-
-/* Alert message when unable to parse JSON for communication channels */
-"Unable to display any Communication Channels returned from the server at this time." = "Trenutno ni mogoče prikazati nobenih komunikacijskih kanalov, ki jih je vrnil strežnik.";
-
-/* Alert message when unable to parse JSON for notification preferences */
-"Unable to display any notification preferences returned from the server at this time." = "Trenutno ni mogoče prikazati nobenih prednostnih nastavitev sporočil, ki jih je vrnil strežnik.";
-
-/* Alert message when unable to load communication channels */
-"Unable to load any Communication Channels at this time." = "Trenutno ni bilo mogoče naložiti nobenih komunikacijskih kanalov.";
-
-/* Alert message when unable to load notification preferences */
-"Unable to load any notification preferences at this time.  Error: %@" = "Trenutno ni bilo mogoče naložiti nobenih prednostnih nastavitev.  Napaka: %@";
-
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "Datoteke JSON ni bilo mogoče razčleniti za komunikacijske kanale.";
 
@@ -765,14 +681,8 @@
 /* a warning message */
 "Warning" = "Opozorilo";
 
-/* Error message for being unable to update a push notification preference */
-"We were not able to update this value with the server" = "Posodobitev te vrednosti s strežnikom ni bila mogoča.";
-
 /* Yellow course color button */
 "Yellow" = "Rumeno";
-
-/* Description for Yo communication channel */
-"Yo" = "Hej!";
 
 /* Shows time limit on a quiz */
 "You have %d minutes." = "Imate %d minut.";

@@ -38,17 +38,8 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "All Grading Periods";
 
-/* No comment provided by engineer. */
-"All notifications are currently disabled." = "All notifications are currently disabled.";
-
-/* No comment provided by engineer. */
-"All notifications are currently enabled." = "All notifications are currently enabled.";
-
 /* all pages segmented control title */
 "All Pages" = "All Pages";
-
-/* No comment provided by engineer. */
-"Allow Notifications in Settings" = "Allow Notifications in Settings";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Allowed Attempts";
@@ -95,12 +86,6 @@
 /* Title for screen to build a panda avatar */
 "Build Your Panda!" = "Build Your Panda!";
 
-/* Alert title when unable to parse JSON for communication channels */
-"Can't Display Communication Channels" = "Can't Display Communication Channels";
-
-/* Alert title when unable to parse JSON for notification preferences */
-"Can't Display Notification Preferences" = "Can't Display Notification Preferences";
-
 /* Cancel Audio recording.
    Cancel button title
    Cancel upload */
@@ -108,9 +93,6 @@
 
 /* No comment provided by engineer. */
 "Change Section" = "Change Section";
-
-/* Description for Chat communication channel */
-"Chat" = "Chat";
 
 /* Choose a file */
 "Choose a File" = "Choose a File";
@@ -136,26 +118,11 @@
 /* No comment provided by engineer. */
 "Comments" = "Comments";
 
-/* Title of a screen that shows all of our open source components */
-"Components" = "Components";
-
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Continue Quiz";
 
-/* Notification display name for conversations group */
-"Conversations" = "Conversations";
-
-/* Alert title when unable to load notification preferences */
-"Could not load notification preferences" = "Could not load notification preferences";
-
 /* Failure reason for why it couldn't associate a tab with a context */
 "Could not parse context id from URL" = "Could not parse context ID from URL";
-
-/* Error title for being unable to update a push notification preference */
-"Could not update" = "Could not update";
-
-/* Notification display name for course activities group */
-"Course Activities" = "Subject Activities";
 
 /* Header label for a screen that customizes a course */
 "Customize" = "Customise";
@@ -190,9 +157,6 @@
 /* label to be read for visually impaired users with discusstion topic assignment types */
 "discussion topic" = "discussion topic";
 
-/* Notification display name for discussions group */
-"Discussions" = "Discussions";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Disk Error";
 
@@ -208,9 +172,6 @@
 
 /* due date label for quiz due date */
 "Due Date" = "Due Date";
-
-/* Description for email communication channel */
-"Email" = "Email";
 
 /* Data encoding error title */
 "Encoding Error" = "Encoding Error";
@@ -293,9 +254,6 @@
 /* Green course color button */
 "Green" = "Green";
 
-/* Notification display name for groups group */
-"Groups" = "Groups";
-
 /* Non favorite hidden courses or groups */
 "Hidden" = "Hidden";
 
@@ -358,9 +316,6 @@
 /* Next button for advancing a quiz */
 "Next" = "Next";
 
-/* Alert title when unable to load communication channels */
-"No Communication Channels Found" = "No Communication Channels Found";
-
 /* A quiz that has no due date */
 "No Due Date" = "No Due Date";
 
@@ -388,17 +343,8 @@
 /* Error title for push notification registration error */
 "Notification Error" = "Notification Error";
 
-/* Title for the notification preferences page */
-"Notification Preferences" = "Notification Preferences";
-
-/* No comment provided by engineer. */
-"Off" = "Off";
-
 /* OK Button Title */
 "OK" = "OK";
-
-/* No comment provided by engineer. */
-"On" = "On";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Open in Safari";
@@ -451,9 +397,6 @@
 
 /* Purple course color button */
 "Purple" = "Purple";
-
-/* Description for Push Notification channel */
-"Push Notifications" = "Push Notifications";
 
 /* accessibility label for a quiz question */
 "Question" = "Question";
@@ -536,9 +479,6 @@
 /* button for retaking quiz */
 "Retake Quiz" = "Retake Quiz";
 
-/* Notification display name for scheduling group */
-"Scheduling" = "Scheduling";
-
 /* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
 "Select all that apply" = "Select all that apply.";
 
@@ -559,12 +499,6 @@
 
 /* Text for a button that toggles to show a timer for a timed quiz */
 "Show Timer" = "Show Timer";
-
-/* Description for Slack communication channel */
-"Slack" = "Slack";
-
-/* Description for SMS communication channel */
-"SMS" = "SMS";
 
 /* Error message displayed when the file is unrecognized. */
 "Something went wrong. Check the file format and try again." = "Something went wrong. Check the file format and try again.";
@@ -599,9 +533,6 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Take Quiz";
-
-/* No comment provided by engineer. */
-"Tap to toggle" = "Tap to toggle";
 
 /* Teal course color button */
 "Teal" = "Teal";
@@ -711,21 +642,6 @@
 /* Total grade label */
 "Total Grade" = "Total Grade";
 
-/* Description for Twitter communication channel */
-"Twitter" = "Twitter";
-
-/* Alert message when unable to parse JSON for communication channels */
-"Unable to display any Communication Channels returned from the server at this time." = "We were unable to display any Communication Channels returned from the server at this time.";
-
-/* Alert message when unable to parse JSON for notification preferences */
-"Unable to display any notification preferences returned from the server at this time." = "We are unable to display any notification preferences returned from the server at this time.";
-
-/* Alert message when unable to load communication channels */
-"Unable to load any Communication Channels at this time." = "Unable to load any Communication Channels at this time.";
-
-/* Alert message when unable to load notification preferences */
-"Unable to load any notification preferences at this time.  Error: %@" = "Unable to load any notification preferences at this time.  Error: %@";
-
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "Unable to parse JSON for communication channels";
 
@@ -765,14 +681,8 @@
 /* a warning message */
 "Warning" = "Warning";
 
-/* Error message for being unable to update a push notification preference */
-"We were not able to update this value with the server" = "We were not able to update this value with the server.";
-
 /* Yellow course color button */
 "Yellow" = "Yellow";
-
-/* Description for Yo communication channel */
-"Yo" = "Yo";
 
 /* Shows time limit on a quiz */
 "You have %d minutes." = "You have %d minutes.";
