@@ -17,20 +17,22 @@ jobs:
         run: brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
       - name: Brew Install
         run: brew install swiftlint xcbeautify
-      # - name: SwiftLint
-      #   run: ./scripts/runSwiftLint.sh
+      - name: Use XCode 11
+        run: xcode-select -s /Applications/Xcode_11.app/Contents/Developer
+      - name: SwiftLint
+        run: ./scripts/runSwiftLint.sh
       - uses: actions/setup-node@master
         with:
           node-version: 10.16.0
       - name: YARN Install Teacher
         run: yarn
         working-directory: ./rn/Teacher
-      # - name: YARN Lint
-      #   run: yarn lint
-      #   working-directory: ./rn/Teacher
-      # - name: YARN Test
-      #   run: yarn test --silent --coverage --color
-      #   working-directory: ./rn/Teacher
+      - name: YARN Lint
+        run: yarn lint
+        working-directory: ./rn/Teacher
+      - name: YARN Test
+        run: yarn test --silent --coverage --color
+        working-directory: ./rn/Teacher
       - name: Install react-native-cli
         run: yarn global add react-native-cli
       - name: Canvas iOS Secrets
@@ -39,12 +41,8 @@ jobs:
           ../secrets/scripts/setup-dev-secrets.sh
       - name: Carthage Bootstrap
         run: carthage bootstrap --platform iOS
-        env:
-          DEVELOPER_DIR: /Applications/Xcode_11.app/Contents/Developer
       - name: CocoaPods Install
         run: pod install
-        env:
-          DEVELOPER_DIR: /Applications/Xcode_11.app/Contents/Developer
       - name: Run CITests
         run: |
           set -o pipefail && xcodebuild \
@@ -55,5 +53,4 @@ jobs:
             -configuration Debug \
             test | xcbeautify
         env:
-          DEVELOPER_DIR: /Applications/Xcode_11.app/Contents/Developer
           NSUnbufferedIO: YES

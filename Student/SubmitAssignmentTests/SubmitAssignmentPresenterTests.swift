@@ -55,7 +55,7 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
         presenter.view = self
         presenter.uploadManager = uploadManager
         // SubmitAssignmentPresenter calls env.userDidLogin, so need to reset after
-        env.api = api
+        env.api = URLSessionAPI()
         env.database = database
         env.userDefaults?.reset()
     }

@@ -99,15 +99,21 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
     }
 
     func testSortOrder() {
-        Assignment.make(from: .make(id: "1", name: "a", due_at: Date(fromISOString: "2017-05-15T20:00:00Z")))
-        Assignment.make(from: .make(id: "2", name: "b", due_at: Date(fromISOString: "2018-05-15T20:00:00Z")))
-        Assignment.make(from: .make(id: "3", name: "c", due_at: nil))
+        api.mock(GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [], querySize: 100), value: [
+            .make(id: "1", name: "a", due_at: Date(fromISOString: "2017-05-15T20:00:00Z")),
+            .make(id: "2", name: "b", due_at: Date(fromISOString: "2018-05-15T20:00:00Z")),
+            .make(id: "3", name: "c", due_at: nil),
+        ])
 
-        CalendarEventItem.make(from: .make(id: "1", title: "cA", end_at: Date(fromISOString: "2016-05-15T20:00:00Z")))
-        CalendarEventItem.make(from: .make(id: "2", title: "cB", end_at: Date(fromISOString: "2017-06-15T20:00:00Z")))
-        CalendarEventItem.make(from: .make(id: "3", title: "cC", end_at: nil))
+        api.mock(GetCalendarEventsRequest(context: ContextModel(.course, id: "1")), value: [
+            .make(id: "1", title: "cA", end_at: Date(fromISOString: "2016-05-15T20:00:00Z")),
+            .make(id: "2", title: "cB", end_at: Date(fromISOString: "2017-06-15T20:00:00Z")),
+            .make(id: "3", title: "cC", end_at: nil),
+        ])
 
         presenter.viewIsReady()
+
+        wait(for: [expectation], timeout: 5)
 
         let order = models.map { $0.title }
         XCTAssertEqual(order, ["cA", "a", "cB", "b", "c", "cC"])

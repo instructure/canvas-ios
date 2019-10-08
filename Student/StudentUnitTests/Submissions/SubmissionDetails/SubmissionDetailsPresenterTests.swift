@@ -294,7 +294,7 @@ class SubmissionDetailsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .pending)
         Assignment.make()
         Course.make()
-        ExternalTool.make(from: .make(id: "4", domain: "arc.instructure.com"), forCourse: "1")
+        api.mock(GetExternalToolsRequest(context: ContextModel(.course, id: "1"), includeParents: true, perPage: 99), value: [.make(id: "4", domain: "arc.instructure.com")])
         presenter.viewIsReady()
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .some("4"))
     }

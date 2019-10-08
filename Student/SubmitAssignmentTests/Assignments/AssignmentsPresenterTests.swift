@@ -38,8 +38,9 @@ class AssignmentsPresenterTests: SubmitAssignmentTests, AssignmentsView {
     }
 
     func testCallback() {
-        Assignment.make(from: .make(course_id: "1", name: "Selected Assignment"))
-        Course.make(from: .make(id: ID(stringLiteral: "1")))
+        api.mock(GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [], querySize: 100), value: [
+            .make(course_id: "1", name: "Selected Assignment")
+        ])
         let expectation = XCTestExpectation(description: "callback was called")
         var assignment: Assignment?
         let presenter = AssignmentsPresenter(environment: env, courseID: "1", selectedAssignmentID: nil) { a in

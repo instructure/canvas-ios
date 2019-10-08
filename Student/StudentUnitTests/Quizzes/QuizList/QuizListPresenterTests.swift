@@ -95,7 +95,11 @@ class QuizListPresenterTests: PersistenceTestCase {
         api.mock(GetQuizzesRequest(courseID: "1"), value: [.make(quiz_type: .survey)])
 
         presenter.viewIsReady()
-        wait(for: [updateExpectation], timeout: 5)
+        wait(for: [updateExpectation], timeout: 0.1)
+
+        if presenter.section(0)?.name != "survey" {
+            print(presenter.quizzes.count)
+        }
 
         XCTAssertEqual(presenter.section(0)?.name, "survey")
     }
