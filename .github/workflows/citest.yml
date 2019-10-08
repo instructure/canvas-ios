@@ -14,8 +14,8 @@ jobs:
         with:
           fetch-depth: 1
       - uses: webfactory/ssh-agent@v0.1.1
-          with:
-            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       # - name: Brew Install
       #   run: brew install swiftlint
       # - name: SwiftLint
