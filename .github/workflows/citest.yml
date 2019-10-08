@@ -30,7 +30,7 @@ jobs:
       #   run: yarn test
       #   working-directory: ./rn/Teacher
       - name: Clone Canvas iOS Secrets
-        run: git clone https://$GITHUB_ACCESS_TOKEN@github.com/instructure/steps-canvas-ios-secrets
+        run: git clone https://ios-danger:$GITHUB_ACCESS_TOKEN@github.com/instructure/steps-canvas-ios-secrets
         working-directory: ../
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
