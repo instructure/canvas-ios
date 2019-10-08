@@ -166,6 +166,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/:context/:contextID/files/:fileID', wrap(ViewFile), store, { deepLink: true })
     registerScreen('/:context/:contextID/files/:fileID/download', wrap(ViewFile), store, { deepLink: true })
 
+    registerScreen('/accounts', null, store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/assignments/syllabus', null, store, { showInWebView: true, deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID', wrap(AssignmentDetails), store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID/edit', wrap(AssignmentDetailsEdit), store)

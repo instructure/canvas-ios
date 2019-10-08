@@ -22,6 +22,10 @@ import Core
 
 extension AppDelegate {
     @objc func registerNativeRoutes() {
+        HelmManager.shared.registerNativeViewController(for: "/accounts", factory: { _ in
+            return AccountListViewController.create()
+        })
+
         HelmManager.shared.registerNativeViewController(for: "/attendance", factory: { props in
             guard
                 let destinationURL = (props["launchURL"] as? String).flatMap(URL.init(string:)),

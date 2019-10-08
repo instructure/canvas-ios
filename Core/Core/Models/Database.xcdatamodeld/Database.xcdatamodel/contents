@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Account" representedClassName="Core.Account" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+    </entity>
     <entity name="AlertThreshold" representedClassName="Core.AlertThreshold" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="observerID" optional="YES" attributeType="String"/>
@@ -518,5 +522,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="180"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="Account" positionX="-540" positionY="-18" width="128" height="73"/>
     </elements>
 </model>

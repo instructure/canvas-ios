@@ -41,3 +41,9 @@ public struct APIAccountResult: Codable, Equatable {
         authentication_provider = auth
     }
 }
+
+// https://canvas.instructure.com/doc/api/accounts.html#Account
+public struct APIAccount: Codable, Equatable {
+    let id: ID
+    let name: String
+}

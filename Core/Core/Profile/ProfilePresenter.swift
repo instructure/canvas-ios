@@ -46,6 +46,10 @@ public class ProfilePresenter {
         self?.view?.reload()
     }
 
+    lazy var accounts = env.subscribe(GetAccounts()) { [weak self] in
+        self?.view?.reload()
+    }
+
     var canActAsUser: Bool {
         if env.currentSession?.baseURL.host?.hasPrefix("siteadmin.") == true {
             return true
@@ -56,6 +60,12 @@ public class ProfilePresenter {
 
     var cells: [ProfileViewCell] {
         var cells: [ProfileViewCell] = []
+
+        if enrollment == .teacher && !accounts.isEmpty {
+            cells.append(ProfileViewCell("admin", name: NSLocalizedString("Admin", comment: "")) { [weak self] _ in
+                self?.view?.route(to: .accounts, options: nil)
+            })
+        }
 
         if enrollment == .observer {
             cells.append(ProfileViewCell("manageChildren", name: NSLocalizedString("Manage Children", comment: "")) { [weak self] _ in
@@ -149,6 +159,7 @@ public class ProfilePresenter {
     }
 
     public func viewIsReady() {
+        accounts.refresh()
         helpLinks.refresh()
         permissions.refresh()
         settings.refresh()

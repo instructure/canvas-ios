@@ -162,6 +162,15 @@ public class MockURLSession: URLSession {
         mock(request, data: data, response: response, error: error, taskID: taskID)
     }
 
+    public static func mock<S, U>(
+        _ store: S,
+        value: U.Request.Response? = nil,
+        response: URLResponse? = nil,
+        error: Error? = nil
+    ) where S: Store<U>, U: APIUseCase {
+        mock(store.useCase.request, value: value, response: response, error: error)
+    }
+
     @discardableResult
     public static func mock(_ request: URLRequest, data: Data? = nil, response: URLResponse? = nil, error: Error? = nil, taskID: Int = 0) -> MockDataTask {
         let task = MockDataTask()

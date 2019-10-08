@@ -35,3 +35,10 @@ public struct GetAccountsSearchRequest: APIRequestable {
         HttpHeader.authorization: nil,
     ]
 }
+
+// https://canvas.instructure.com/doc/api/accounts.html#method.accounts.index
+public struct GetAccountsRequest: APIRequestable {
+    public typealias Response = [APIAccount]
+
+    public let path = "accounts"
+}

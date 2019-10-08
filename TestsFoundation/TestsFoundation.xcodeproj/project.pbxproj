@@ -67,6 +67,7 @@
 		9F62EDD62326C9E800EA9F79 /* APISearchRecipientFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F62EDD52326C9E800EA9F79 /* APISearchRecipientFixture.swift */; };
 		9F6878B322396A7900E559CE /* APIMediaCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B222396A7900E559CE /* APIMediaCommentFixture.swift */; };
 		9F6878B52239701F00E559CE /* MediaCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6878B42239701F00E559CE /* MediaCommentFixture.swift */; };
+		B107F6DB234CD937000DAC83 /* APIAccountFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F6DA234CD937000DAC83 /* APIAccountFixture.swift */; };
 		B119B4BF230720FF00A74062 /* FeatureFlagFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119B4BE230720FF00A74062 /* FeatureFlagFixture.swift */; };
 		B141ABE4231EE16F00E73D84 /* APIOAuthTokenFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B141ABE3231EE16F00E73D84 /* APIOAuthTokenFixture.swift */; };
 		B150C6362298D67E0096D58C /* ExternalToolFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C6352298D67E0096D58C /* ExternalToolFixture.swift */; };
@@ -160,6 +161,7 @@
 		9F62EDD52326C9E800EA9F79 /* APISearchRecipientFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISearchRecipientFixture.swift; sourceTree = "<group>"; };
 		9F6878B222396A7900E559CE /* APIMediaCommentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMediaCommentFixture.swift; sourceTree = "<group>"; };
 		9F6878B42239701F00E559CE /* MediaCommentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCommentFixture.swift; sourceTree = "<group>"; };
+		B107F6DA234CD937000DAC83 /* APIAccountFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountFixture.swift; sourceTree = "<group>"; };
 		B119B4BE230720FF00A74062 /* FeatureFlagFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagFixture.swift; sourceTree = "<group>"; };
 		B141ABE3231EE16F00E73D84 /* APIOAuthTokenFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOAuthTokenFixture.swift; sourceTree = "<group>"; };
 		B150C6352298D67E0096D58C /* ExternalToolFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolFixture.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		3B0CEB9121504B6F00D07CFA /* API */ = {
 			isa = PBXGroup;
 			children = (
+				B107F6DA234CD937000DAC83 /* APIAccountFixture.swift */,
 				7D148646230B49DC003944A2 /* APIAccountNotificationFixture.swift */,
 				7DB0A1D321C1C90D009ABB40 /* APIAccountResultsFixture.swift */,
 				7D6C8C6A22EA0C5900E5ADD8 /* APIActivityFixture.swift */,
@@ -598,6 +601,7 @@
 				E8BE4F5C233E73E100DC399A /* XCUIElementQueryExtensions.swift in Sources */,
 				B15CA280221DFED00014FB02 /* ModuleFixture.swift in Sources */,
 				7D47769A21AF396500B441CE /* APIQuiz.swift in Sources */,
+				B107F6DB234CD937000DAC83 /* APIAccountFixture.swift in Sources */,
 				7DCF2048216D6597003AF358 /* APIQuizFixture.swift in Sources */,
 				3BD364AD225D3D8A006CEBD8 /* APIDiscussionTopicFixture.swift in Sources */,
 				B1C6BF6521BF2C2B00C8C585 /* UIBarButtonItemExtensions.swift in Sources */,
