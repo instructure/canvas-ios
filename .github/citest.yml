@@ -1,0 +1,25 @@
+name: CITest
+on:
+  push:
+    branches:
+      - '*'
+      - '!master'
+
+jobs:
+  citest:
+    name: CITest
+    runs-on: macOS-10.14
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@master
+        with:
+          node-version: 10.16.0
+      - name: Carthage Bootstrap
+        run: carthage bootstrap --platform iOS
+      - name: YARN Install
+        run: yarn
+        working-directory: ./rn/Teacher
+      - name: CocoaPods Install
+        run: pod install
