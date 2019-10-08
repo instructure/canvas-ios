@@ -20,10 +20,16 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: 10.16.0
-      - name: Carthage Bootstrap
-        run: carthage bootstrap --platform iOS
       - name: YARN Install
         run: yarn
         working-directory: ./rn/Teacher
+      - name: YARN Lint
+        run: yarn lint
+        working-directory: ./rn/Teacher
+      - name: YARN Test
+        run: yarn test
+        working-directory: ./rn/Teacher
+      - name: Carthage Bootstrap
+        run: carthage bootstrap --platform iOS
       - name: CocoaPods Install
         run: pod install
