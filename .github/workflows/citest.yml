@@ -13,9 +13,6 @@ jobs:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 1
-      - uses: webfactory/ssh-agent@v0.1.1
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       # - name: Brew Install
       #   run: brew install swiftlint
       # - name: SwiftLint
@@ -33,7 +30,7 @@ jobs:
       #   run: yarn test
       #   working-directory: ./rn/Teacher
       - name: Clone Canvas iOS Secrets
-        run: git clone git@github.com:instructure/steps-canvas-ios-secrets.git
+        run: git clone https://ios-danger:${{ secrets.DANGER_GITHUB_TOKEN }}@github.com/instructure/steps-canvas-ios-secrets
         working-directory: ../
       - name: Setup Canvas iOS Secrets
         run: ../steps-canvas-ios-secrets/scripts/setup-dev-secrets.sh
