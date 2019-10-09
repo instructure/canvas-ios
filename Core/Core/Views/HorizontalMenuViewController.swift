@@ -47,7 +47,7 @@ open class HorizontalMenuViewController: UIViewController {
             self,
             selector: #selector(splitViewControllerWillChangeDisplayModes),
             name: Notification.Name.SplitViewControllerWillChangeDisplayModeNotification,
-            object: nil,
+            object: nil
         )
     }
 
