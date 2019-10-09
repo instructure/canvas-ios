@@ -67,12 +67,16 @@ enum ProfileSettings {
     }
 }
 
-enum LandingPageCell: String, ElementWrapper, CaseIterable {
-    case dashboard     = "0"
-    case calendar      = "1"
-    case todo          = "2"
-    case notifications = "3"
-    case inbox         = "4"
+enum LandingPageCell: Int, ElementWrapper, CaseIterable {
+    case dashboard
+    case calendar
+    case todo
+    case notifications
+    case inbox
+
+    var element: Element {
+        return ItemPickerItem(row: rawValue).element
+    }
 
     var relatedTab: TabBar {
         switch self {

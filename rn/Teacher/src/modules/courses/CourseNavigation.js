@@ -111,7 +111,7 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
         if (tab.id === 'pages') {
           const url = `/courses/${this.props.courseID}/pages`
           this.props.navigator.show(url)
-        } else if (tab.id === 'collaborations' || tab.id === 'conferences') {
+        } else if (tab.id === 'collaborations' || tab.id === 'conferences' || tab.id === 'outcomes') {
           this.props.navigator.show(tab.full_url)
         } else if (isTeacher() || tab.id === 'syllabus') {
           this.props.navigator.show(tab.html_url)
