@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
 import Core
 
 public class TestRouter: RouterProtocol {
@@ -28,12 +28,16 @@ public class TestRouter: RouterProtocol {
         return nil
     }
 
+    public var routeExpectation = XCTestExpectation(description: "route")
     public func route(to url: URLComponents, from: UIViewController, options: RouteOptions? = nil) {
         calls.append((url, from, options))
+        routeExpectation.fulfill()
     }
 
+    public var showExpectation = XCTestExpectation(description: "show")
     public func show(_ view: UIViewController, from: UIViewController, options: RouteOptions?) {
         viewControllerCalls.append((view, from, options))
+        showExpectation.fulfill()
     }
 
     public func lastRoutedTo(_ route: Route) -> Bool {
@@ -50,5 +54,10 @@ public class TestRouter: RouterProtocol {
 
     public func lastRoutedTo(_ url: URL, withOptions options: RouteOptions?) -> Bool {
         return lastRoutedTo(url) && calls.last?.2 == options
+    }
+
+    public func resetExpectations() {
+        routeExpectation = XCTestExpectation(description: "route")
+        showExpectation = XCTestExpectation(description: "show")
     }
 }
