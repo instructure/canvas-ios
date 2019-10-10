@@ -70,11 +70,12 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
     let imagePicker = MockImagePicker()
     var presenter: SubmissionButtonPresenter!
     let filePicker = MockFilePicker()
-    let view = View()
+    var view: View!
 
     override func setUp() {
         super.setUp()
         router.resetExpectations()
+        view = View()
         presenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: "1")
         presenter.assignment = Assignment.make(from: .make(submission: .make()))
         presenter.arcID = .none
@@ -231,7 +232,7 @@ class SubmissionButtonPresenterTests: PersistenceTestCase {
         XCTAssert(router.viewControllerCalls.last?.0 is UrlSubmissionViewController)
     }
 
-    func xtestSubmitArc() {
+    func testSubmitArc() {
         let a = Assignment.make()
         presenter.arcID = .some("4")
         presenter.submitArc(assignment: a)
