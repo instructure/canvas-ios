@@ -35,5 +35,5 @@ xcrun xcresulttool get --format json --path scripts/coverage/citests.xcresult | 
 curl -LF 'data=<flaky.json' -X POST "$POST_TO_GOOGLE_SHEETS_URL"
 jq -ac '.[]' < flaky.json |\
     while IFS= read -r line; do
-        curl -X POST -H "Content-Type: application/json" --raw-data "$line" "$SUMO_ENDPOINT_URL"
+        curl -X POST -H "Content-Type: application/json" --data-raw "$line" "$SUMO_ENDPOINT_URL"
     done
