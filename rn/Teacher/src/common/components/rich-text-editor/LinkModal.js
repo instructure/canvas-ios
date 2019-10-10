@@ -159,6 +159,7 @@ const styles = createStyleSheet(colors => ({
   },
   textInput: {
     height: 20,
+    color: colors.textDarkest,
   },
   actionsContainer: {
     flexDirection: 'row',

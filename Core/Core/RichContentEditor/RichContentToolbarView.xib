@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,9 +36,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jRn-ls-w11">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l96-gQ-7lq" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l96-gQ-7lq" customClass="DividerView" customModule="Core" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="PAh-1s-jaz"/>
                             </constraints>
@@ -209,7 +207,7 @@
                             </constraints>
                         </scrollView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="backgroundLightest"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="l96-gQ-7lq" secondAttribute="trailing" id="7Oj-ly-ns0"/>
                         <constraint firstItem="l96-gQ-7lq" firstAttribute="leading" secondItem="jRn-ls-w11" secondAttribute="leading" id="DS4-Ai-ewr"/>
@@ -223,9 +221,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oy8-V8-FQe">
                     <rect key="frame" x="0.0" y="45" width="375" height="45"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBL-kd-0wv" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBL-kd-0wv" customClass="DividerView" customModule="Core" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="PYK-gT-v8S"/>
                             </constraints>
@@ -410,7 +407,7 @@
                             </constraints>
                         </scrollView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="backgroundLightest"/>
                     <constraints>
                         <constraint firstItem="QP5-dZ-0qm" firstAttribute="leading" secondItem="Oy8-V8-FQe" secondAttribute="leading" id="2sg-PG-EGy"/>
                         <constraint firstAttribute="trailing" secondItem="QP5-dZ-0qm" secondAttribute="trailing" id="5Ao-h2-mJR"/>
@@ -436,6 +433,12 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="138" y="116"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="backgroundLightest">
+            <color red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

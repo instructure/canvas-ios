@@ -49,6 +49,7 @@ class ModuleListViewController: UIViewController, ModuleListViewProtocol {
 
         setupTitleViewInNavbar(title: NSLocalizedString("Modules", bundle: .teacher, comment: ""))
 
+        tableView.backgroundColor = .named(.backgroundLight)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()

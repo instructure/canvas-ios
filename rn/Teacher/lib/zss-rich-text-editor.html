@@ -13,10 +13,16 @@
   -webkit-touch-callout: none;
 }
 
+html {
+    background: #FFFFFF;
+    color: #2D3B45;
+    font: -apple-system-body;
+    font-size: 16px;
+}
+
 html, body {
   padding: 0;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -58,11 +64,27 @@ div.zs_editor_content {
 
 [placeholder]:empty:before {
   content: attr(placeholder);
-  color: #CBCBD0;
+  color: #8B969E;
 }
 
 p.zss_final_video_comment {
   display: none;
+}
+
+@media (prefers-contrast: high) {
+    [placeholder]:empty:before {
+      color: #556572;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+      background: #2D3B45;
+      color: #FFFFFF;
+  }
+  [placeholder]:empty:before {
+    color: #C7CDD1;
+  }
 }
 </style>
 </head>

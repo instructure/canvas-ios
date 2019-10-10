@@ -72,6 +72,7 @@ exports[`LinkModal renders 1`] = `
             rejectResponderTermination={true}
             style={
               Object {
+                "color": "#2D3B45",
                 "height": 20,
               }
             }
@@ -102,6 +103,7 @@ exports[`LinkModal renders 1`] = `
             rejectResponderTermination={true}
             style={
               Object {
+                "color": "#2D3B45",
                 "height": 20,
               }
             }
