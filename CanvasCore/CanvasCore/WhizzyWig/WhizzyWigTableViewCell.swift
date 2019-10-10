@@ -124,6 +124,7 @@ open class WhizzyWigTableViewCell: UITableViewCell {
     }
     
     open override func prepareForReuse() {
+        super.prepareForReuse()
         indexPath = IndexPath(row: 0, section: 0)
         cellSizeUpdated = {_ in }
         readMore = nil

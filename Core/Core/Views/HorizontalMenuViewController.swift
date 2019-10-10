@@ -43,6 +43,7 @@ open class HorizontalMenuViewController: UIViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         view.backgroundColor = UIColor.named(.backgroundLightest)
+        NotificationCenter.default.addObserver(self, selector: #selector(splitViewControllerWillChangeDisplayModes), name: Notification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: nil)
     }
 
     override open func viewWillLayoutSubviews() {
@@ -96,7 +97,6 @@ open class HorizontalMenuViewController: UIViewController {
         menu.pinToLeftAndRightOfSuperview()
         menuHeightConstraint = menu.addConstraintsWithVFL("V:[view(height)]", metrics: ["height": menuCellHeight])?.first
         menu.addConstraintsWithVFL("V:|[view]")
-
     }
 
     func setupPages() {

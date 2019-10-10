@@ -57,4 +57,10 @@ class DetailsDescriptionCell: WhizzyWigTableViewCell {
         contentView.addConstraints(horizontalConstraints)
     }
 
+    override func prepareForReuse() {
+        // don't call super because this tableView is broken
+        indexPath = IndexPath(row: 0, section: 0)
+        cellSizeUpdated = {_ in }
+        readMore = nil
+    }
 }
