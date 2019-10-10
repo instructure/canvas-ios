@@ -16,14 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import XCTest
 
-public extension XCTestCase {
-    // make sure anything sitting on the main queue is run before returning
-    func drainMainQueue() {
-        XCTAssertTrue(Thread.current.isMainThread)
-        while (CFRunLoopRunInMode(.defaultMode, 0, true) == .handledSource) {
+class XCTestCaseTests: XCTestCase {
+
+    func testDrainMainQueueDrainsNestedAsyncs() {
+        var allNestsCalled = false
+        DispatchQueue.main.async {
+            usleep(100)
+            DispatchQueue.main.async {
+                usleep(100)
+                DispatchQueue.main.async {
+                    usleep(100)
+                    allNestsCalled = true
+                }
+            }
         }
+
+        drainMainQueue()
+        XCTAssertTrue(allNestsCalled)
     }
 }
