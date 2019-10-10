@@ -42,6 +42,10 @@ class SyllabusActionableItemsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTitleViewInNavbar(title: NSLocalizedString("Assignments", comment: ""))
+        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.separatorInset = .zero
+        tableView.separatorColor = .named(.borderMedium)
+        tableView.tableFooterView = UIView()
         tableView.register(SyllabusActionableItemsCell.self, forCellReuseIdentifier: String(describing: SyllabusActionableItemsCell.self))
         presenter?.viewIsReady()
     }
@@ -57,6 +61,7 @@ class SyllabusActionableItemsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(SyllabusActionableItemsCell.self, for: indexPath)
+        cell.backgroundColor = .named(.backgroundLightest)
         cell.textLabel?.text = models[indexPath.row].title
         cell.textLabel?.font = UIFont.scaledNamedFont(.regular16)
         cell.textLabel?.textColor = UIColor.named(.textDarkest)
