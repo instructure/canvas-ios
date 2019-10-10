@@ -24,5 +24,10 @@ public extension XCTestCase {
     func drainMainQueue() {
         while (CFRunLoopRunInMode(.defaultMode, 0, true) == .handledSource) {
         }
+        let expectation = XCTestExpectation(description: "dispatch asyncAfter")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
     }
 }

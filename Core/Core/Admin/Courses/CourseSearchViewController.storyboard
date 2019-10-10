@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Course Search View Controller-->
+        <scene sceneID="Bje-4s-8F4">
+            <objects>
+                <viewController storyboardIdentifier="CourseSearchViewController" id="FI6-sl-4kX" customClass="CourseSearchViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HLu-KQ-erL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="aIf-Qf-sxe">
+                                <rect key="frame" x="0.0" y="4" width="320" height="90"/>
+                                <subviews>
+                                    <searchBar contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" searchBarStyle="minimal" placeholder="Search courses..." translatesAutoresizingMaskIntoConstraints="NO" id="pP2-Uv-grB">
+                                        <rect key="frame" x="12" y="0.0" width="296" height="56"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="FI6-sl-4kX" id="7xv-l8-chM"/>
+                                        </connections>
+                                    </searchBar>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="2cn-3r-Y9T">
+                                        <rect key="frame" x="12" y="59" width="296" height="31"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qcV-yQ-4WG">
+                                                <rect key="frame" x="8" y="0.0" width="280" height="32"/>
+                                                <segments>
+                                                    <segment title="Courses"/>
+                                                    <segment title="Teachers"/>
+                                                </segments>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="8" bottom="0.0" trailing="8"/>
+                                    </stackView>
+                                </subviews>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="12" bottom="0.0" trailing="12"/>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bdz-Nc-ztU">
+                                <rect key="frame" x="0.0" y="102" width="320" height="466"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CourseSearchCell" id="39Y-7j-HyW" customClass="CourseSearchCell" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="78"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="39Y-7j-HyW" id="YZ6-RS-xSi">
+                                            <rect key="frame" x="0.0" y="0.0" width="294" height="78"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="90L-qf-086">
+                                                    <rect key="frame" x="0.0" y="0.0" width="294" height="78"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a5j-LO-C9T" customClass="PublishedIconView" customModule="Core" customModuleProvider="target">
+                                                            <rect key="frame" x="12" y="31" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="16" id="DjB-zY-B4G"/>
+                                                                <constraint firstAttribute="height" constant="16" id="FrY-E5-uDj"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TdK-wh-jGK">
+                                                            <rect key="frame" x="40" y="8.5" width="246" height="61.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l71-2R-CdT" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="246" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Teacher Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4I-Rs-tc7" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="20.5" width="246" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" text="Term" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0SU-kA-DcT" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="41" width="246" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="12" bottom="8" trailing="8"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="90L-qf-086" secondAttribute="bottom" id="H7m-Sq-zf8"/>
+                                                <constraint firstItem="90L-qf-086" firstAttribute="leading" secondItem="YZ6-RS-xSi" secondAttribute="leading" id="J7f-nv-CY6"/>
+                                                <constraint firstAttribute="trailing" secondItem="90L-qf-086" secondAttribute="trailing" id="n4t-fA-fQO"/>
+                                                <constraint firstItem="90L-qf-086" firstAttribute="top" secondItem="YZ6-RS-xSi" secondAttribute="top" id="oEw-K5-PTg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="courseNameLabel" destination="l71-2R-CdT" id="BgW-CD-909"/>
+                                            <outlet property="publishedIcon" destination="a5j-LO-C9T" id="yxF-It-1BO"/>
+                                            <outlet property="teachersLabel" destination="l4I-Rs-tc7" id="UQ6-dm-fV1"/>
+                                            <outlet property="termLabel" destination="0SU-kA-DcT" id="X3n-Wj-Nkn"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="delegate" destination="FI6-sl-4kX" id="OQh-kk-0N6"/>
+                                </connections>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="TUc-xw-Ebb">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search term must be at least 3 characters" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYV-DA-wWh" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="16" y="263.5" width="288" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZKq-eF-YV2" customClass="EmptyView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="102" width="320" height="466"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="No courses found"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="imageWidth">
+                                        <real key="value" value="225"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="imageHeight">
+                                        <real key="value" value="122"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="imageName" value="emptyFiles"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9pS-Pd-vxC" firstAttribute="trailing" secondItem="Bdz-Nc-ztU" secondAttribute="trailing" id="2bw-B9-eCb"/>
+                            <constraint firstItem="aIf-Qf-sxe" firstAttribute="trailing" secondItem="9pS-Pd-vxC" secondAttribute="trailing" id="5LR-IO-s0D"/>
+                            <constraint firstAttribute="trailing" secondItem="UYV-DA-wWh" secondAttribute="trailing" constant="16" id="5Tf-QL-pET"/>
+                            <constraint firstItem="ZKq-eF-YV2" firstAttribute="bottom" secondItem="Bdz-Nc-ztU" secondAttribute="bottom" id="6MV-5R-CMW"/>
+                            <constraint firstItem="TUc-xw-Ebb" firstAttribute="centerX" secondItem="HLu-KQ-erL" secondAttribute="centerX" id="EaC-wy-RBx"/>
+                            <constraint firstItem="ZKq-eF-YV2" firstAttribute="trailing" secondItem="Bdz-Nc-ztU" secondAttribute="trailing" id="RvS-H1-5Q5"/>
+                            <constraint firstItem="UYV-DA-wWh" firstAttribute="leading" secondItem="HLu-KQ-erL" secondAttribute="leading" constant="16" id="Umc-ZF-rhq"/>
+                            <constraint firstItem="aIf-Qf-sxe" firstAttribute="top" secondItem="9pS-Pd-vxC" secondAttribute="top" constant="4" id="Xt1-bX-qgR"/>
+                            <constraint firstItem="Bdz-Nc-ztU" firstAttribute="leading" secondItem="9pS-Pd-vxC" secondAttribute="leading" id="awN-79-68c"/>
+                            <constraint firstItem="aIf-Qf-sxe" firstAttribute="leading" secondItem="9pS-Pd-vxC" secondAttribute="leading" id="bvL-OK-iVN"/>
+                            <constraint firstItem="ZKq-eF-YV2" firstAttribute="leading" secondItem="Bdz-Nc-ztU" secondAttribute="leading" id="cEd-9C-M2a"/>
+                            <constraint firstItem="UYV-DA-wWh" firstAttribute="centerY" secondItem="HLu-KQ-erL" secondAttribute="centerY" id="fFR-y3-Cme"/>
+                            <constraint firstItem="ZKq-eF-YV2" firstAttribute="top" secondItem="Bdz-Nc-ztU" secondAttribute="top" id="fxT-JS-IsW"/>
+                            <constraint firstItem="Bdz-Nc-ztU" firstAttribute="top" secondItem="aIf-Qf-sxe" secondAttribute="bottom" constant="8" id="irV-zj-vIR"/>
+                            <constraint firstItem="9pS-Pd-vxC" firstAttribute="bottom" secondItem="Bdz-Nc-ztU" secondAttribute="bottom" id="oym-1D-MYM"/>
+                            <constraint firstItem="TUc-xw-Ebb" firstAttribute="centerY" secondItem="HLu-KQ-erL" secondAttribute="centerY" id="xyw-H1-exY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9pS-Pd-vxC"/>
+                    </view>
+                    <connections>
+                        <outlet property="emptyView" destination="ZKq-eF-YV2" id="8Fe-MA-cEq"/>
+                        <outlet property="loadingIndicator" destination="TUc-xw-Ebb" id="xaf-Xe-MbP"/>
+                        <outlet property="minimumSearchLabel" destination="UYV-DA-wWh" id="cjK-Zv-Dpc"/>
+                        <outlet property="searchBar" destination="pP2-Uv-grB" id="Iv3-2Y-lQb"/>
+                        <outlet property="searchBySegmentedControl" destination="qcV-yQ-4WG" id="1pm-hH-ovc"/>
+                        <outlet property="tableView" destination="Bdz-Nc-ztU" id="UKu-oV-rXa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zUH-KP-AGE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="67" y="86"/>
+        </scene>
+    </scenes>
+</document>

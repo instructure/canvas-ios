@@ -69,6 +69,7 @@ public struct APICourse: Codable, Equatable {
     let image_download_url: String? // include[]=course_image, api sometimes returns an empty string instead of nil so don't use URL
     let is_favorite: Bool? // include[]=favorites
     let sections: [APISection]? // include[]=sections
+    let teachers: [Teacher]? // /accounts/:accountID/courses include[]=teachers
 
     // https://canvas.instructure.com/doc/api/courses.html#Term
     struct Term: Codable, Equatable {
@@ -81,5 +82,16 @@ public struct APICourse: Codable, Equatable {
     struct Permissions: Codable, Equatable {
         let create_announcement: Bool
         let create_discussion_topic: Bool
+    }
+
+    struct Teacher: Codable, Equatable {
+        let id: ID
+        let display_name: String
+    }
+}
+
+extension APICourse: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

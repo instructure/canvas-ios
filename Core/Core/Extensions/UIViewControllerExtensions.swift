@@ -120,6 +120,12 @@ extension UIViewController {
         }
         child.didMove(toParent: self)
     }
+
+    public func alertError(_ error: Error) {
+        let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 public enum PermissionError {

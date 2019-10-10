@@ -42,3 +42,42 @@ public struct GetAccountsRequest: APIRequestable {
 
     public let path = "accounts"
 }
+
+// https://canvas.instructure.com/doc/api/accounts.html#method.accounts.courses_api
+public struct GetAccountCoursesRequest: APIRequestable {
+    public typealias Response = [APICourse]
+
+    public enum SearchBy: String, Codable {
+        case course
+        case teacher
+    }
+
+    public let accountID: String
+    public let searchTerm: String?
+    public let searchBy: SearchBy?
+
+    public init(accountID: String, searchTerm: String?, searchBy: SearchBy?) {
+        self.accountID = accountID
+        self.searchTerm = searchTerm
+        self.searchBy = searchBy
+    }
+
+    public var path: String {
+        let context = ContextModel(.account, id: accountID)
+        return "\(context.pathComponent)/courses"
+    }
+    public var query: [APIQueryItem] {
+        var query: [APIQueryItem] = [
+            .include(["teachers", "term"]),
+            .value("sort", "sis_course_id"),
+            .value("order", "desc"),
+        ]
+        if let searchTerm = searchTerm {
+            query.append(.value("search_term", searchTerm))
+        }
+        if let searchBy = searchBy {
+            query.append(.value("search_by", searchBy.rawValue))
+        }
+        return query
+    }
+}

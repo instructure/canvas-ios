@@ -43,7 +43,8 @@ extension APICourse {
         access_restricted_by_date: Bool? = nil,
         image_download_url: String? = nil,
         is_favorite: Bool? = nil,
-        sections: [APISection]? = nil
+        sections: [APISection]? = nil,
+        teachers: [Teacher]? = nil
     ) -> APICourse {
         return APICourse(
             id: id,
@@ -63,7 +64,8 @@ extension APICourse {
             access_restricted_by_date: access_restricted_by_date,
             image_download_url: image_download_url,
             is_favorite: is_favorite,
-            sections: sections
+            sections: sections,
+            teachers: teachers
         )
     }
 }

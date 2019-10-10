@@ -60,6 +60,11 @@ extension AccountListViewController: UITableViewDataSource, UITableViewDelegate 
         return cell
     }
 
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let account = presenter?.accounts[indexPath] else { return }
+        presenter?.show(account, from: self)
+    }
+
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.isBottomReached() {
             presenter?.accounts.getNextPage()

@@ -18,27 +18,32 @@
 
 import Foundation
 
-protocol AccountListView: class {
-    func reload()
-}
+@dynamicCallable
+public class Throttle {
+    public var delay: TimeInterval
+    public let queue: DispatchQueue
+    private var workItem: DispatchWorkItem?
 
-class AccountListPresenter {
-    weak var view: AccountListView?
-    let env: AppEnvironment
-
-    lazy var accounts = env.subscribe(GetAccounts()) { [weak self] in
-        self?.view?.reload()
+    public init(delay: Double = 0.002, queue: DispatchQueue = .main) {
+        self.delay = delay
+        self.queue = queue
     }
 
-    init(env: AppEnvironment = .shared) {
-        self.env = env
+    public func dynamicallyCall(withArguments args: [() -> Void]) {
+        execute(args[0])
     }
 
-    func viewIsReady() {
-        accounts.refresh()
+    public func execute(_ block: @escaping () -> Void) {
+        workItem?.cancel()
+        workItem = DispatchWorkItem(block: block)
+        if delay == 0 {
+            queue.async(execute: workItem!)
+        } else {
+            queue.asyncAfter(deadline: .now() + delay, execute: workItem!)
+        }
     }
 
-    func show(_ account: Account, from viewController: UIViewController) {
-        env.router.route(to: .courseSearch(accountID: account.id), from: viewController, options: [.detail, .embedInNav])
+    public func notify(execute block: @escaping () -> Void) {
+        workItem?.notify(queue: queue, execute: block)
     }
 }

@@ -211,23 +211,7 @@ open class AttendanceViewController: UIViewController {
             })
         }
     }
-    
-    @objc func alertError(_ error: Error) {
-        let alert = UIAlertController(
-            title: NSLocalizedString("Attendance Error", tableName: "Localizable", bundle: .core, value: "", comment: "Error title for attendance app"),
-            message: error.localizedDescription,
-            preferredStyle: .alert
-        )
-        
-        alert.addAction(UIAlertAction(
-            title: NSLocalizedString("Dismiss", tableName: "Localizable", bundle: .core, value: "", comment: "Dismiss an error alert"),
-            style: .default,
-            handler: nil
-        ))
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
+
     func prepareStatusControllers(for statuses: [Status]) {
         let existingControllers = statii
         statii = statuses.enumerated().map { index, status in

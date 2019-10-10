@@ -26,6 +26,12 @@ extension AppDelegate {
             return AccountListViewController.create()
         })
 
+        HelmManager.shared.registerNativeViewController(for: "/accounts/:accountID/courses", factory: { props in
+            guard let accountID = props["accountID"] as? String else { return nil }
+            guard #available(iOS 13.0, *) else { return nil }
+            return CourseSearchViewController.create(accountID: accountID)
+        })
+
         HelmManager.shared.registerNativeViewController(for: "/attendance", factory: { props in
             guard
                 let destinationURL = (props["launchURL"] as? String).flatMap(URL.init(string:)),

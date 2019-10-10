@@ -60,14 +60,26 @@ public class MockURLSession: URLSession {
         public var resumed = false
         public var canceled = false
 
+        public var paused = false {
+            didSet {
+                if !paused && state == .running {
+                    resume()
+                }
+            }
+        }
+
         public var _state: URLSessionTask.State = .suspended
         public override var state: URLSessionTask.State {
             return _state
         }
 
         public override func resume() {
-            callback?(mock?.data, mock?.response, mock?.error)
+            _state = .running
             resumed = true
+            if paused {
+                return
+            }
+            callback?(mock?.data, mock?.response, mock?.error)
             _state = .completed
         }
 
@@ -120,6 +132,7 @@ public class MockURLSession: URLSession {
         dataMocks = [:]
     }
 
+    @discardableResult
     public static func mock<R: APIRequestable>(
         _ requestable: R,
         value: R.Response? = nil,
@@ -128,16 +141,17 @@ public class MockURLSession: URLSession {
         baseURL: URL = URL(string: "https://canvas.instructure.com")!,
         accessToken: String? = nil,
         taskID: Int = 0
-    ) {
+    ) -> MockDataTask {
         var data: Data?
         if let value = value {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
             data = try! encoder.encode(value)
         }
-        mock(requestable, data: data, response: response, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
+        return mock(requestable, data: data, response: response, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
     }
 
+    @discardableResult
     public static func mock<R: APIRequestable>(
         _ requestable: R,
         response: URLResponse? = nil,
@@ -145,10 +159,11 @@ public class MockURLSession: URLSession {
         baseURL: URL = URL(string: "https://canvas.instructure.com")!,
         accessToken: String? = nil,
         taskID: Int = 0
-    ) {
-        mock(requestable, value: nil, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
+    ) -> MockDataTask {
+        return mock(requestable, value: nil, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
     }
 
+    @discardableResult
     public static func mock<R: APIRequestable>(
         _ requestable: R,
         data: Data? = nil,
@@ -157,18 +172,19 @@ public class MockURLSession: URLSession {
         baseURL: URL = URL(string: "https://canvas.instructure.com")!,
         accessToken: String? = nil,
         taskID: Int = 0
-    ) {
+    ) -> MockDataTask {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
-        mock(request, data: data, response: response, error: error, taskID: taskID)
+        return mock(request, data: data, response: response, error: error, taskID: taskID)
     }
 
+    @discardableResult
     public static func mock<S, U>(
         _ store: S,
         value: U.Request.Response? = nil,
         response: URLResponse? = nil,
         error: Error? = nil
-    ) where S: Store<U>, U: APIUseCase {
-        mock(store.useCase.request, value: value, response: response, error: error)
+    ) -> MockDataTask where S: Store<U>, U: APIUseCase {
+        return mock(store.useCase.request, value: value, response: response, error: error)
     }
 
     @discardableResult
