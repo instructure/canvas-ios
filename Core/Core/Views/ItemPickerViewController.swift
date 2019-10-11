@@ -71,6 +71,7 @@ public class ItemPickerViewController: UIViewController {
         tableView.delegate = self
         tableView.registerCell(RightDetailTableViewCell.self)
         tableView.registerCell(SubtitleTableViewCell.self)
+        tableView.registerHeaderFooterView(GroupedSectionHeaderView.self, fromNib: false)
         tableView.separatorColor = .named(.borderMedium)
         tableView.separatorInset = .zero
         tableView.tintColor = Brand.shared.primary
@@ -82,8 +83,10 @@ extension ItemPickerViewController: UITableViewDataSource, UITableViewDelegate {
         return sections.count
     }
 
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].title
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header: GroupedSectionHeaderView = tableView.dequeueHeaderFooter()
+        header.titleLabel.text = sections[section].title
+        return header
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

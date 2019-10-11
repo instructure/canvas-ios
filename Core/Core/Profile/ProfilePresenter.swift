@@ -61,8 +61,8 @@ public class ProfilePresenter {
     var cells: [ProfileViewCell] {
         var cells: [ProfileViewCell] = []
 
-        if enrollment == .teacher && !accounts.isEmpty {
-            cells.append(ProfileViewCell("admin", name: NSLocalizedString("Admin", comment: "")) { [weak self] _ in
+        if #available(iOS 13, *), enrollment == .teacher, !accounts.isEmpty {
+            cells.append(ProfileViewCell("admin", type: .rightDetail(NSLocalizedString("BETA", comment: "")), name: NSLocalizedString("Admin", comment: "")) { [weak self] _ in
                 self?.view?.route(to: .accounts, options: nil)
             })
         }

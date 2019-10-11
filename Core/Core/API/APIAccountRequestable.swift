@@ -55,11 +55,13 @@ public struct GetAccountCoursesRequest: APIRequestable {
     public let accountID: String
     public let searchTerm: String?
     public let searchBy: SearchBy?
+    public let enrollmentTermID: String?
 
-    public init(accountID: String, searchTerm: String?, searchBy: SearchBy?) {
+    public init(accountID: String, searchTerm: String?, searchBy: SearchBy?, enrollmentTermID: String?) {
         self.accountID = accountID
         self.searchTerm = searchTerm
         self.searchBy = searchBy
+        self.enrollmentTermID = enrollmentTermID
     }
 
     public var path: String {
@@ -78,6 +80,24 @@ public struct GetAccountCoursesRequest: APIRequestable {
         if let searchBy = searchBy {
             query.append(.value("search_by", searchBy.rawValue))
         }
+        if let enrollmentTermID = enrollmentTermID {
+            query.append(.value("enrollment_term_id", enrollmentTermID))
+        }
         return query
+    }
+}
+
+// https://canvas.instructure.com/doc/api/enrollment_terms.html#method.terms_api.index
+public struct GetAccountTermsRequest: APIRequestable {
+    public typealias Response = EnrollmentTerms
+
+    public struct EnrollmentTerms: Codable {
+        let enrollment_terms: [APITerm]
+    }
+
+    public let accountID: String
+    public var path: String {
+        let context = ContextModel(.account, id: accountID)
+        return "\(context.pathComponent)/terms"
     }
 }

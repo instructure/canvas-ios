@@ -41,7 +41,7 @@ public struct APICourse: Codable, Equatable {
     let default_view: CourseDefaultView?
     let syllabus_body: String? // include[]=syllabus_body
     // let needs_grading_count: Int? // include[]=needs_grading_count
-    let term: Term? // include[]=term
+    let term: APITerm? // include[]=term
     // let course_progress: ?
     // let apply_assignment_group_weights: Bool?
     let permissions: Permissions?
@@ -70,14 +70,6 @@ public struct APICourse: Codable, Equatable {
     let is_favorite: Bool? // include[]=favorites
     let sections: [APISection]? // include[]=sections
     let teachers: [Teacher]? // /accounts/:accountID/courses include[]=teachers
-
-    // https://canvas.instructure.com/doc/api/courses.html#Term
-    struct Term: Codable, Equatable {
-        let id: String
-        let name: String
-        let start_at: Date?
-        let end_at: Date?
-    }
 
     struct Permissions: Codable, Equatable {
         let create_announcement: Bool

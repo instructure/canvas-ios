@@ -33,14 +33,21 @@ public class AccountListViewController: UIViewController, AccountListView {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("Accounts I Manage", comment: "")
-        tableView.registerCell(UITableViewCell.self)
+        title = NSLocalizedString("Accounts", comment: "")
+        tableView.registerCell(RightDetailTableViewCell.self)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
         tableView.pin(inside: view)
         presenter?.viewIsReady()
+    }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: true)
+        }
     }
 
     public func reload() {
@@ -54,7 +61,7 @@ extension AccountListViewController: UITableViewDataSource, UITableViewDelegate 
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(for: indexPath) as UITableViewCell
+        let cell = tableView.dequeue(for: indexPath) as RightDetailTableViewCell
         cell.textLabel?.text = presenter?.accounts[indexPath]?.name
         cell.accessoryType = .disclosureIndicator
         return cell

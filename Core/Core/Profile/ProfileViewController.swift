@@ -29,6 +29,7 @@ public typealias ProfileViewCellBlock = (UITableViewCell) -> Void
 
 public enum ProfileViewCellAccessoryType {
     case toggle(Bool)
+    case rightDetail(String)
 }
 
 public struct ProfileViewCell {
@@ -151,7 +152,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             cell.accessibilityIdentifier = "Profile.\(item.id)Button"
             cell.nameLabel?.text = item.name
             switch item.type {
-            case .toggle(let isOn)?:
+            case .toggle(let isOn):
                 let toggle = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
                 toggle.isOn = isOn
                 toggle.tag = indexPath.row
@@ -159,6 +160,13 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
                 toggle.addTarget(self, action: #selector(toggleChanged), for: .valueChanged)
                 cell.accessoryView = toggle
                 cell.accessibilityIdentifier = "Profile.\(item.id)Toggle"
+            case .rightDetail(let text):
+                let label = UILabel()
+                label.text = text
+                label.font = UIFont.scaledNamedFont(.medium10)
+                label.textColor = UIColor.named(.textDark)
+                label.sizeToFit()
+                cell.accessoryView = label
             case .none:
                 cell.accessoryView = nil
             }

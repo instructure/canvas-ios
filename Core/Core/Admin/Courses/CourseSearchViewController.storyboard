@@ -26,16 +26,35 @@
                                             <outlet property="delegate" destination="FI6-sl-4kX" id="7xv-l8-chM"/>
                                         </connections>
                                     </searchBar>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="2cn-3r-Y9T">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2cn-3r-Y9T">
                                         <rect key="frame" x="12" y="59" width="296" height="31"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qcV-yQ-4WG">
-                                                <rect key="frame" x="8" y="0.0" width="280" height="32"/>
+                                                <rect key="frame" x="8" y="0.0" width="202" height="32"/>
                                                 <segments>
                                                     <segment title="Courses"/>
                                                     <segment title="Teachers"/>
                                                 </segments>
                                             </segmentedControl>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsC-xp-5DD">
+                                                <rect key="frame" x="218" y="0.0" width="31" height="31"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="31" id="LbL-uv-gyR"/>
+                                                    <constraint firstAttribute="height" constant="31" id="Wv2-yT-DwE"/>
+                                                </constraints>
+                                                <inset key="contentEdgeInsets" minX="6" minY="6" maxX="6" maxY="6"/>
+                                                <state key="normal" image="filterLine"/>
+                                                <connections>
+                                                    <action selector="filterButtonPressed:" destination="FI6-sl-4kX" eventType="touchUpInside" id="YQ1-DR-Hv6"/>
+                                                </connections>
+                                            </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="QwZ-SJ-m5w">
+                                                <rect key="frame" x="257" y="0.0" width="31" height="31"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="31" id="iuO-VW-uoB"/>
+                                                    <constraint firstAttribute="height" constant="31" id="nFm-gi-GAg"/>
+                                                </constraints>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="8" bottom="0.0" trailing="8"/>
                                     </stackView>
@@ -172,6 +191,9 @@
                     </view>
                     <connections>
                         <outlet property="emptyView" destination="ZKq-eF-YV2" id="8Fe-MA-cEq"/>
+                        <outlet property="filterButton" destination="xsC-xp-5DD" id="JVO-7N-ZOX"/>
+                        <outlet property="filterLoadingIndicator" destination="QwZ-SJ-m5w" id="kqu-Et-2Nj"/>
+                        <outlet property="keyboardSpace" destination="oym-1D-MYM" id="2ke-dB-6eW"/>
                         <outlet property="loadingIndicator" destination="TUc-xw-Ebb" id="xaf-Xe-MbP"/>
                         <outlet property="minimumSearchLabel" destination="UYV-DA-wWh" id="cjK-Zv-Dpc"/>
                         <outlet property="searchBar" destination="pP2-Uv-grB" id="Iv3-2Y-lQb"/>
@@ -184,4 +206,7 @@
             <point key="canvasLocation" x="67" y="86"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="filterLine" width="24" height="24"/>
+    </resources>
 </document>
