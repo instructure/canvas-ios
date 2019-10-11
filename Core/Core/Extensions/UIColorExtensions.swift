@@ -90,7 +90,7 @@ extension UIColor {
     /// `0.0` for darkest black and `1.0` for lightest white.
     public var luminance: CGFloat {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0
-        assert(getRed(&red, green: &green, blue: &blue, alpha: nil)) // assume success
+        getRed(&red, green: &green, blue: &blue, alpha: nil) // assume success
         let convert = { (c: CGFloat) -> CGFloat in
             return c <= 0.03928 ? c / 12.92 : pow((c + 0.055) / 1.055, 2.4)
         }
