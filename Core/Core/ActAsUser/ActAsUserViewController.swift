@@ -40,6 +40,7 @@ public class ActAsUserViewController: UITableViewController {
     }
 
     override public func viewDidLoad() {
+        tableView.backgroundColor = .named(.backgroundLightest)
         navigationItem.rightBarButtonItems = [] // remove Done added by Helm
         addCancelButton()
         title = NSLocalizedString("Act as User", bundle: .core, comment: "")

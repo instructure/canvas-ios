@@ -94,7 +94,7 @@ export class ToDoList extends Component<Props, State> {
       <Screen
         navBarColor={colors.navBackground}
         navBarButtonColor={colors.navTextColor}
-        statusBarStyle={colors.statusBarStyle}
+        navBarStyle={vars.navBarStyle}
         drawUnderNavBar
         navBarImage={vars.headerImageURL}
         customPageViewPath={'/'}

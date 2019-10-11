@@ -30,6 +30,7 @@ public class RichContentToolbarView: UIView {
     @IBOutlet weak var linkButton: DynamicButton?
     @IBOutlet weak var cameraButton: DynamicButton?
     @IBOutlet weak var libraryButton: DynamicButton?
+    @IBOutlet weak var toolsView: UIView?
 
     @IBOutlet weak var buttonStack: UIStackView?
     @IBOutlet weak var colorPickerHeight: NSLayoutConstraint?
@@ -75,6 +76,7 @@ public class RichContentToolbarView: UIView {
         linkButton?.accessibilityLabel = NSLocalizedString("Link", bundle: .core, comment: "")
         cameraButton?.accessibilityLabel = NSLocalizedString("Camera", bundle: .core, comment: "")
         libraryButton?.accessibilityLabel = NSLocalizedString("Image", bundle: .core, comment: "")
+        toolsView?.backgroundColor = .named(.backgroundLightest)
 
         let colors = colorPickerStack?.arrangedSubviews
         colors?[0].accessibilityValue = NSLocalizedString("white", bundle: .core, comment: "")
@@ -91,6 +93,7 @@ public class RichContentToolbarView: UIView {
         }
 
         colorPickerHeight?.constant = 0
+        colorPickerView?.backgroundColor = .named(.backgroundLightest)
         colorPickerView?.alpha = 0
         colorPickerView?.transform = CGAffineTransform(translationX: 0, y: 45)
 

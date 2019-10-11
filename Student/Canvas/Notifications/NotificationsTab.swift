@@ -33,7 +33,7 @@ func NotificationsTab(session: Session) throws -> UIViewController {
     let detailNav = UINavigationController()
     masterNav.navigationBar.useGlobalNavStyle()
     detailNav.navigationBar.useGlobalNavStyle()
-    detailNav.view.backgroundColor = UIColor.white
+    detailNav.view.backgroundColor = .named(.backgroundLightest)
     split.viewControllers = [masterNav, detailNav]
     
     activityStream.navigationItem.title = title

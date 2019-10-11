@@ -125,7 +125,5 @@
 	<true/>
 	<key>VersionName</key>
 	<string>Innovative Panda</string>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 </dict>
 </plist>

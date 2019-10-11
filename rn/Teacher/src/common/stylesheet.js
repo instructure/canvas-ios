@@ -51,12 +51,12 @@ export const vars = {
   absoluteFillObject: StyleSheet.absoluteFillObject,
   hairlineWidth: StyleSheet.hairlineWidth,
   headerImageURL: require('../images/canvas-logo.png'),
+  navBarStyle: 'light',
   padding: 16,
-  statusBarStyle: 'light', // set to contrast with navBarColor
   tabBarHeight: 49,
 }
 
-export function isDark (color: string): boolean {
+export function isDark (color) {
   const c = processColor(color) || 0
   const yiq = (
     ((c >> 16) & 0xFF) * 299 +
@@ -69,7 +69,7 @@ export function isDark (color: string): boolean {
 export function setupBranding (brand) {
   Object.assign(colors, brand)
   vars.headerImageURL = brand.headerImageUrl || vars.headerImageURL
-  vars.statusBarStyle = isDark(colors.navBackground) ? 'light' : 'default'
+  vars.navBarStyle = isDark(colors.navBackground) ? 'dark' : 'light'
   updateStyleSheets()
 }
 

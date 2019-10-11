@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,12 +24,14 @@
                                     <constraint firstAttribute="height" constant="45" id="ybQ-cA-ifj"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="204-4B-1Ec">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="204-4B-1Ec" customClass="DividerView" customModule="Parent" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="1"/>
-                                <color key="backgroundColor" name="borderMedium"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="XE5-I8-XP5"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="WLQ-8A-Cpm">
                                 <rect key="frame" x="0.0" y="45" width="414" height="817"/>
@@ -88,9 +89,4 @@
             <point key="canvasLocation" x="-94" y="3"/>
         </scene>
     </scenes>
-    <resources>
-        <namedColor name="borderMedium">
-            <color red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

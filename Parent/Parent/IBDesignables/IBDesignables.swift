@@ -20,3 +20,4 @@ import Core
 
 @IBDesignable
 class AvatarView: Core.AvatarView {}
+class DividerView: Core.DividerView {}
