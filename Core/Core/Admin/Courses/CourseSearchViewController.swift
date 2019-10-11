@@ -357,6 +357,7 @@ class CourseSearchFilterOptionsViewController: UIViewController, UITableViewDele
         title = NSLocalizedString("Filter", comment: "")
         let reset = UIBarButtonItem(title: NSLocalizedString("Reset", comment: ""), style: .plain, target: self, action: #selector(resetButtonPressed))
         navigationItem.rightBarButtonItem = reset
+        tableView.backgroundColor = .named(.backgroundLight)
         configureTableView()
         configureDataSource()
     }

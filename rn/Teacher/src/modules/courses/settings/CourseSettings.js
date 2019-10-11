@@ -221,6 +221,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   primaryText: {
     flex: 2,
@@ -234,7 +235,6 @@ const styles = StyleSheet.create({
     color: colors.darkText,
     fontSize: 16,
     textAlign: 'right',
-    lineHeight: 54,
   },
   separator: {
     backgroundColor: '#C7CDD1',

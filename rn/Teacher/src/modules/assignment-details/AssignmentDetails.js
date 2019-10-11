@@ -396,7 +396,7 @@ AssignmentDetails.propTypes = {
 let Refreshed = refresh(
   props => {
     props.refreshAssignmentList(props.courseID)
-    props.refreshCourses()
+    props.refreshCourse(props.courseID)
     props.refreshAssignmentDetails(props.courseID, props.assignmentID, props.showSubmissionSummary)
   },
   props => !props.assignmentDetails || !props.course || !props.courseColor,
