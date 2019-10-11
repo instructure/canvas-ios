@@ -100,10 +100,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="CdB-fh-KOY">
-                                                    <rect key="frame" x="15" y="5" width="319" height="17.5"/>
+                                                    <rect key="frame" x="15" y="5" width="326" height="17.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQS-d3-6zu" customClass="DynamicLabel" customModule="Teacher" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.5" width="303" height="17"/>
+                                                            <rect key="frame" x="0.0" y="0.5" width="310" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -113,7 +113,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ahp-vo-ISY" customClass="PublishedIconView" customModule="Core">
-                                                            <rect key="frame" x="307" y="3" width="12" height="12"/>
+                                                            <rect key="frame" x="314" y="3" width="12" height="12"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="12" id="jt5-oJ-Eux"/>
                                                                 <constraint firstAttribute="height" constant="12" id="zc0-hu-MBy"/>
@@ -129,7 +129,7 @@
                                                 <constraint firstItem="CdB-fh-KOY" firstAttribute="top" secondItem="SeG-X8-Qxd" secondAttribute="top" constant="5" id="U6G-wB-VYY"/>
                                                 <constraint firstAttribute="bottom" secondItem="CdB-fh-KOY" secondAttribute="bottom" constant="5" id="i6X-aL-RqN"/>
                                                 <constraint firstItem="CdB-fh-KOY" firstAttribute="leading" secondItem="SeG-X8-Qxd" secondAttribute="leadingMargin" id="nQ2-qs-fHo"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="CdB-fh-KOY" secondAttribute="trailing" constant="26" id="ybq-Mh-lvr"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="CdB-fh-KOY" secondAttribute="trailing" constant="19" id="ybq-Mh-lvr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <userDefinedRuntimeAttributes>
