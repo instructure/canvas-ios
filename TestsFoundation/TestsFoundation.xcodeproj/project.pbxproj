@@ -70,6 +70,7 @@
 		B107F6DB234CD937000DAC83 /* APIAccountFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F6DA234CD937000DAC83 /* APIAccountFixture.swift */; };
 		B119B4BF230720FF00A74062 /* FeatureFlagFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119B4BE230720FF00A74062 /* FeatureFlagFixture.swift */; };
 		B141ABE4231EE16F00E73D84 /* APIOAuthTokenFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B141ABE3231EE16F00E73D84 /* APIOAuthTokenFixture.swift */; };
+		B14C7C36235166C8002C413A /* APITermFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14C7C35235166C8002C413A /* APITermFixture.swift */; };
 		B150C6362298D67E0096D58C /* ExternalToolFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C6352298D67E0096D58C /* ExternalToolFixture.swift */; };
 		B150C6382298D6F20096D58C /* APIExternalToolFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C6372298D6F20096D58C /* APIExternalToolFixture.swift */; };
 		B15CA280221DFED00014FB02 /* ModuleFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA27F221DFED00014FB02 /* ModuleFixture.swift */; };
@@ -164,6 +165,7 @@
 		B107F6DA234CD937000DAC83 /* APIAccountFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountFixture.swift; sourceTree = "<group>"; };
 		B119B4BE230720FF00A74062 /* FeatureFlagFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagFixture.swift; sourceTree = "<group>"; };
 		B141ABE3231EE16F00E73D84 /* APIOAuthTokenFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOAuthTokenFixture.swift; sourceTree = "<group>"; };
+		B14C7C35235166C8002C413A /* APITermFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITermFixture.swift; sourceTree = "<group>"; };
 		B150C6352298D67E0096D58C /* ExternalToolFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolFixture.swift; sourceTree = "<group>"; };
 		B150C6372298D6F20096D58C /* APIExternalToolFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIExternalToolFixture.swift; sourceTree = "<group>"; };
 		B15CA27F221DFED00014FB02 /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				9F62EDD52326C9E800EA9F79 /* APISearchRecipientFixture.swift */,
 				B1A32BDF2159A28D0071B41E /* APISubmissionFixture.swift */,
 				3B0CEBA021504C2500D07CFA /* APITabFixture.swift */,
+				B14C7C35235166C8002C413A /* APITermFixture.swift */,
 				7D6C8C6E22EFA29F00E5ADD8 /* APITodoFixture.swift */,
 				7DB0A1C821C07F39009ABB40 /* APIUserFixture.swift */,
 			);
@@ -558,6 +561,7 @@
 				9F4B53AC2180FFDF0056A557 /* FileFixture.swift in Sources */,
 				3B0CEBA521504C2500D07CFA /* APICourseFixture.swift in Sources */,
 				7D2DC2FF219A0514008FE29A /* APIDocViewerFixture.swift in Sources */,
+				B14C7C36235166C8002C413A /* APITermFixture.swift in Sources */,
 				3B635B39225CE613001F353D /* APICalendarEventFixture.swift in Sources */,
 				B19792EF21751FBC0000369C /* TestPersistence.swift in Sources */,
 				B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */,

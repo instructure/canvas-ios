@@ -26,13 +26,17 @@ struct CourseSearchFilter: Equatable {
 
     var searchTerm: String?
     var searchBy: SearchBy
-    var hideCoursesWithoutStudents: Bool
     var term: APITerm?
+
+    /// If true, include only courses with at least one enrollment.
+    /// If false, include only courses with no enrollments.
+    /// If not nil, do not filter on course enrollment status.
+    var hideCoursesWithoutStudents: Bool?
 
     init(
         searchTerm: String? = nil,
         searchBy: SearchBy = .courses,
-        hideCoursesWithoutStudents: Bool = false,
+        hideCoursesWithoutStudents: Bool? = nil,
         term: APITerm? = nil
     ) {
         self.searchTerm = searchTerm
@@ -133,8 +137,6 @@ public class CourseSearchViewController: UIViewController, UISearchBarDelegate, 
     func configureFilterButton() {
         filterButton.setImage(.icon(.filter), for: .normal)
         filterButton.adjustsImageWhenHighlighted = false
-        filterButton.layer.cornerRadius = 4
-        filterButton.clipsToBounds = true
         filterButton.roundCorners(corners: .allCorners, radius: 4)
         updateFilterButton()
     }
@@ -185,7 +187,8 @@ public class CourseSearchViewController: UIViewController, UISearchBarDelegate, 
             accountID: self.accountID,
             searchTerm: searchTerm,
             searchBy: searchBy,
-            enrollmentTermID: filter.term?.id
+            enrollmentTermID: filter.term?.id.value,
+            hideCoursesWithoutStudents: filter.hideCoursesWithoutStudents
         )
         self.searchTask?.cancel()
         self.searchTask = self.env.api.makeRequest(request) { [weak self] response, urlResponse, error in
@@ -210,7 +213,7 @@ public class CourseSearchViewController: UIViewController, UISearchBarDelegate, 
     }
 
     func updateFilterButton() {
-        let active = filter.hideCoursesWithoutStudents || filter.term != nil
+        let active = filter.hideCoursesWithoutStudents == true || filter.term != nil
         filterButton.layer.borderWidth = active ? 0 : 1.3
         filterButton.layer.borderColor = active ? nil : Brand.shared.buttonPrimaryBackground.cgColor
         filterButton.backgroundColor = active ? Brand.shared.buttonPrimaryBackground : nil
@@ -237,7 +240,9 @@ public class CourseSearchViewController: UIViewController, UISearchBarDelegate, 
 
     @IBAction func filterButtonPressed(_ sender: UIButton) {
         guard let terms = terms else { return }
-        let filterOptions = CourseSearchFilterOptionsViewController(terms: terms, filter: filter)
+        let filterOptions = CourseSearchFilterOptionsViewController()
+        filterOptions.terms = terms
+        filterOptions.filter = filter
         filterOptions.delegate = self
         show(filterOptions, sender: self)
     }
@@ -278,22 +283,21 @@ public class CourseSearchViewController: UIViewController, UISearchBarDelegate, 
     func loadTerms() {
         filterButton.isHidden = true
         filterLoadingIndicator.startAnimating()
+        terms = []
         let request = GetAccountTermsRequest(accountID: accountID)
         exhaustTerms(request)
     }
 
     func exhaustTerms<R>(_ request: R) where R: APIRequestable, R.Response == GetAccountTermsRequest.Response {
-        var terms: [APITerm] = []
         env.api.makeRequest(request) { [weak self] response, urlResponse, error in
             guard let self = self else { return }
             if let response = response {
-                terms.append(contentsOf: response.enrollment_terms)
+                self.terms?.append(contentsOf: response.enrollment_terms)
             }
             if let urlResponse = urlResponse, let next = request.getNext(from: urlResponse) {
                 self.exhaustTerms(next)
             } else {
                 DispatchQueue.main.async {
-                    self.terms = terms
                     self.filterLoadingIndicator.stopAnimating()
                     self.filterButton.isHidden = false
                 }
@@ -308,164 +312,4 @@ class CourseSearchCell: UITableViewCell {
     @IBOutlet weak var courseNameLabel: UILabel!
     @IBOutlet weak var teachersLabel: UILabel!
     @IBOutlet weak var termLabel: UILabel!
-}
-
-@available(iOS 13, *)
-protocol CourseSearchFilterOptionsDelegate: class {
-    func courseSearchFilterOptions(_ filterOptions: CourseSearchFilterOptionsViewController, didChangeFilter filter: CourseSearchFilter)
-}
-
-@available(iOS 13, *)
-class CourseSearchFilterOptionsViewController: UIViewController, UITableViewDelegate, ItemPickerDelegate {
-    enum Section: CaseIterable {
-        case main, term
-    }
-
-    enum ItemType: Hashable {
-        case hideCoursesWithoutStudents
-        case term(APITerm?)
-    }
-
-    enum TermSection: Int {
-        case all, active, past
-    }
-
-    let tableView = UITableView(frame: .zero, style: .grouped)
-    var dataSource: UITableViewDiffableDataSource<Section, ItemType>!
-
-    let pastTerms: [APITerm]
-    let activeTerms: [APITerm]
-    var filter: CourseSearchFilter
-    weak var delegate: CourseSearchFilterOptionsDelegate?
-
-    init(terms: [APITerm], filter: CourseSearchFilter) {
-        self.filter = filter
-        activeTerms = terms.filter { $0.workflow_state == .active }
-        pastTerms = terms.filter { term in
-            if let endAt = term.end_at, endAt < Clock.now {
-                return true
-            }
-            return false
-        }
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = NSLocalizedString("Filter", comment: "")
-        let reset = UIBarButtonItem(title: NSLocalizedString("Reset", comment: ""), style: .plain, target: self, action: #selector(resetButtonPressed))
-        navigationItem.rightBarButtonItem = reset
-        tableView.backgroundColor = .named(.backgroundLight)
-        configureTableView()
-        configureDataSource()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selectedIndexPath, animated: true)
-        }
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        delegate?.courseSearchFilterOptions(self, didChangeFilter: filter)
-    }
-
-    func configureTableView() {
-        tableView.delegate = self
-        tableView.registerCell(RightDetailTableViewCell.self)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tableView)
-        tableView.pin(inside: view)
-    }
-
-    func configureDataSource() {
-        dataSource = UITableViewDiffableDataSource(tableView: tableView) { tableView, indexPath, item in
-            let cell = tableView.dequeue(for: indexPath) as RightDetailTableViewCell
-            switch item {
-            case .hideCoursesWithoutStudents:
-                cell.textLabel?.text = NSLocalizedString("Hide Courses Without Students", comment: "")
-                cell.detailTextLabel?.text = nil
-                cell.accessoryType = self.filter.hideCoursesWithoutStudents == true ? .checkmark : .none
-            case .term(let term):
-                cell.textLabel?.text = NSLocalizedString("Show courses from", comment: "")
-                cell.detailTextLabel?.text = term?.name ?? NSLocalizedString("All Terms", comment: "")
-                cell.accessoryType = .disclosureIndicator
-            }
-
-            return cell
-        }
-        reloadData()
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
-        switch item {
-        case .hideCoursesWithoutStudents:
-            self.filter.hideCoursesWithoutStudents.toggle()
-            var snapshot = dataSource.snapshot()
-            snapshot.reloadItems([.hideCoursesWithoutStudents])
-            dataSource.apply(snapshot)
-        case .term(let term):
-            var selected: IndexPath?
-            if let selectedTerm = term {
-                if let activeRow = activeTerms.firstIndex(of: selectedTerm) {
-                    selected = IndexPath(row: activeRow, section: 1)
-                } else if let pastRow = pastTerms.firstIndex(of: selectedTerm) {
-                    selected = IndexPath(row: pastRow, section: 2)
-                }
-            } else {
-                selected = IndexPath(row: 0, section: 0)
-            }
-            let picker = ItemPickerViewController.create(
-                title: NSLocalizedString("Term", comment: ""),
-                sections: [
-                    ItemPickerSection(items: [ItemPickerItem(title: NSLocalizedString("All Terms", comment: ""))]),
-                    ItemPickerSection(
-                        title: NSLocalizedString("Active", comment: ""),
-                        items: activeTerms.map { ItemPickerItem(title: $0.name) }
-                    ),
-                    ItemPickerSection(
-                        title: NSLocalizedString("Past", comment: ""),
-                        items: pastTerms.map { ItemPickerItem(title: $0.name) }
-                    ),
-                ],
-                selected: selected,
-                delegate: self
-            )
-            show(picker, sender: self)
-        }
-    }
-
-    func itemPicker(_ itemPicker: ItemPickerViewController, didSelectRowAt indexPath: IndexPath) {
-        var snapshot = dataSource.snapshot()
-        let old = snapshot.itemIdentifiers(inSection: .term)
-        snapshot.deleteItems(old)
-        switch indexPath.section {
-        case 1:
-            filter.term = activeTerms[indexPath.row]
-        case 2:
-            filter.term = pastTerms[indexPath.row]
-        default:
-            filter.term = nil
-        }
-        snapshot.appendItems([.term(filter.term)], toSection: .term)
-        dataSource.apply(snapshot)
-    }
-
-    @objc func resetButtonPressed() {
-        filter = CourseSearchFilter()
-        reloadData()
-    }
-
-    func reloadData() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, ItemType>()
-        snapshot.appendSections(Section.allCases)
-        snapshot.appendItems([.hideCoursesWithoutStudents], toSection: .main)
-        snapshot.appendItems([.term(filter.term)], toSection: .term)
-        dataSource.apply(snapshot, animatingDifferences: false)
-    }
 }

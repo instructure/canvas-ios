@@ -37,7 +37,7 @@ extension APICourse {
         ), ],
         default_view: CourseDefaultView? = nil,
         syllabus_body: String? = nil,
-        term: Term? = nil,
+        term: APITerm? = nil,
         permissions: Permissions? = nil,
         hide_final_grades: Bool? = false,
         access_restricted_by_date: Bool? = nil,

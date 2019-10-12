@@ -56,12 +56,20 @@ public struct GetAccountCoursesRequest: APIRequestable {
     public let searchTerm: String?
     public let searchBy: SearchBy?
     public let enrollmentTermID: String?
+    public let hideCoursesWithoutStudents: Bool?
 
-    public init(accountID: String, searchTerm: String?, searchBy: SearchBy?, enrollmentTermID: String?) {
+    public init(
+        accountID: String,
+        searchTerm: String? = nil,
+        searchBy: SearchBy? = nil,
+        enrollmentTermID: String? = nil,
+        hideCoursesWithoutStudents: Bool? = nil
+    ) {
         self.accountID = accountID
         self.searchTerm = searchTerm
         self.searchBy = searchBy
         self.enrollmentTermID = enrollmentTermID
+        self.hideCoursesWithoutStudents = hideCoursesWithoutStudents
     }
 
     public var path: String {
@@ -82,6 +90,9 @@ public struct GetAccountCoursesRequest: APIRequestable {
         }
         if let enrollmentTermID = enrollmentTermID {
             query.append(.value("enrollment_term_id", enrollmentTermID))
+        }
+        if let hideCoursesWithoutStudents = hideCoursesWithoutStudents {
+            query.append(.bool("with_enrollments", hideCoursesWithoutStudents))
         }
         return query
     }

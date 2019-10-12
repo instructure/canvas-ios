@@ -487,6 +487,7 @@
 		B14B704D228F30A100B568D6 /* UploadFileComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B704C228F30A100B568D6 /* UploadFileComment.swift */; };
 		B14B7055229468BC00B568D6 /* FilePickerPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B7054229468BC00B568D6 /* FilePickerPresenterTests.swift */; };
 		B14B70572294758600B568D6 /* UploadFileCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B70562294758600B568D6 /* UploadFileCommentTests.swift */; };
+		B14C7C3823520A67002C413A /* CourseSearchFilterOptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14C7C3723520A67002C413A /* CourseSearchFilterOptionsViewControllerTests.swift */; };
 		B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14D55602130B6740066D275 /* TestOperationQueue.swift */; };
 		B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14FE5D82134F68800328CD7 /* CoreTestCase.swift */; };
 		B150C624229733C50096D58C /* GetArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C623229733C50096D58C /* GetArc.swift */; };
@@ -575,6 +576,7 @@
 		B1CA334023392A140015CBB4 /* GetContextUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA333F23392A140015CBB4 /* GetContextUsers.swift */; };
 		B1CA33462339434A0015CBB4 /* GetContextUsersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */; };
 		B1CA3348233948870015CBB4 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA3347233948870015CBB4 /* UserTests.swift */; };
+		B1D38C7823515C8100EC7EC8 /* CourseSearchFilterOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D38C7723515C8100EC7EC8 /* CourseSearchFilterOptionsViewController.swift */; };
 		B1E789A421B0EC1A0087FE4A /* LogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789A321B0EC1A0087FE4A /* LogEvent.swift */; };
 		B1E789A721B0ED490087FE4A /* LogEventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789A621B0ED490087FE4A /* LogEventListViewController.swift */; };
 		B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1E789AA21B0EF130087FE4A /* LogEventListViewController.storyboard */; };
@@ -1336,6 +1338,7 @@
 		B14B704C228F30A100B568D6 /* UploadFileComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileComment.swift; sourceTree = "<group>"; };
 		B14B7054229468BC00B568D6 /* FilePickerPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerPresenterTests.swift; sourceTree = "<group>"; };
 		B14B70562294758600B568D6 /* UploadFileCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileCommentTests.swift; sourceTree = "<group>"; };
+		B14C7C3723520A67002C413A /* CourseSearchFilterOptionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFilterOptionsViewControllerTests.swift; sourceTree = "<group>"; };
 		B14D55602130B6740066D275 /* TestOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOperationQueue.swift; sourceTree = "<group>"; };
 		B14FE5D82134F68800328CD7 /* CoreTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTestCase.swift; sourceTree = "<group>"; };
 		B150C623229733C50096D58C /* GetArc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArc.swift; sourceTree = "<group>"; };
@@ -1422,6 +1425,7 @@
 		B1CA333F23392A140015CBB4 /* GetContextUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsers.swift; sourceTree = "<group>"; };
 		B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsersTests.swift; sourceTree = "<group>"; };
 		B1CA3347233948870015CBB4 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		B1D38C7723515C8100EC7EC8 /* CourseSearchFilterOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSearchFilterOptionsViewController.swift; sourceTree = "<group>"; };
 		B1E789A321B0EC1A0087FE4A /* LogEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEvent.swift; sourceTree = "<group>"; };
 		B1E789A621B0ED490087FE4A /* LogEventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventListViewController.swift; sourceTree = "<group>"; };
 		B1E789AA21B0EF130087FE4A /* LogEventListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogEventListViewController.storyboard; sourceTree = "<group>"; };
@@ -2638,6 +2642,7 @@
 		B107F6DE234CDFFE000DAC83 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				B1D38C7723515C8100EC7EC8 /* CourseSearchFilterOptionsViewController.swift */,
 				B107F6DF234CE43D000DAC83 /* CourseSearchViewController.swift */,
 				B107F6E1234CE587000DAC83 /* CourseSearchViewController.storyboard */,
 			);
@@ -2647,6 +2652,7 @@
 		B10F6CED234D8A10003E658E /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				B14C7C3723520A67002C413A /* CourseSearchFilterOptionsViewControllerTests.swift */,
 				B10F6CEE234D8A28003E658E /* CourseSearchViewControllerTests.swift */,
 			);
 			path = Courses;
@@ -3408,6 +3414,7 @@
 				7D9BB1E822527F310058D9C6 /* GetContextPermissions.swift in Sources */,
 				B1A32BDC21599F1C0071B41E /* APISubmission.swift in Sources */,
 				B19792F3217634D30000369C /* Scope.swift in Sources */,
+				B1D38C7823515C8100EC7EC8 /* CourseSearchFilterOptionsViewController.swift in Sources */,
 				B1E789AF21B0F9370087FE4A /* Logger.swift in Sources */,
 				3B60439B232AAC4E00757B93 /* APIAssignmentGroup.swift in Sources */,
 				B1A32BD821599C610071B41E /* APIAssignment.swift in Sources */,
@@ -3812,6 +3819,7 @@
 				7D37BE9121C849D10063FAAC /* DocViewerPresenterTests.swift in Sources */,
 				7DC23092213D710000318ED0 /* UIImageViewExtensionsTests.swift in Sources */,
 				7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */,
+				B14C7C3823520A67002C413A /* CourseSearchFilterOptionsViewControllerTests.swift in Sources */,
 				3B158CB322E16D0E0039A568 /* PageViewEventRequestManagerTests.swift in Sources */,
 				7DD694812194CE8C00BA4984 /* DateExtensionsTests.swift in Sources */,
 				7DCF1EA2216BB7E4003AF358 /* SubmissionTypeTests.swift in Sources */,

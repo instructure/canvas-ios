@@ -44,7 +44,7 @@ class CourseSearchViewControllerTests: CoreTestCase {
     func testViewDidLoad() throws {
         let courses: [APICourse] = [.make(
             name: "Course One",
-            term: APICourse.Term(id: "1", name: "Term 1", start_at: nil, end_at: nil),
+            term: APITerm.make(name: "Term 1"),
             teachers: [
                 APICourse.Teacher(id: "1", display_name: "One"),
                 APICourse.Teacher(id: "2", display_name: "Two"),
@@ -55,6 +55,7 @@ class CourseSearchViewControllerTests: CoreTestCase {
         load()
         drainMainQueue()
         XCTAssertEqual(viewController.title, "Courses")
+        XCTAssertEqual(viewController.tableView.delegate as? CourseSearchViewController, viewController)
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 1)
         let cell = try XCTUnwrap(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CourseSearchCell)
         XCTAssertEqual(cell.courseNameLabel.text, "Course One")
@@ -64,12 +65,14 @@ class CourseSearchViewControllerTests: CoreTestCase {
         XCTAssertEqual(viewController.tableView.contentInset.bottom, -viewController.tableFooterHeight)
         XCTAssertTrue(viewController.emptyView.isHidden)
         XCTAssertNil(viewController.emptyView.bodyText)
+        XCTAssertTrue(viewController.filterLoadingIndicator.hidesWhenStopped)
+        XCTAssertFalse(viewController.filterButton.adjustsImageWhenHighlighted)
     }
 
     func testSearchBarTextDidChange() throws {
         let result = APICourse.make(
             name: "Intro to Geometry",
-            term: APICourse.Term(id: "1", name: "Term 1", start_at: nil, end_at: nil),
+            term: APITerm.make(name: "Term 1"),
             teachers: [
                 APICourse.Teacher(id: "1", display_name: "One"),
                 APICourse.Teacher(id: "2", display_name: "Two"),
@@ -185,14 +188,14 @@ class CourseSearchViewControllerTests: CoreTestCase {
     func testSearchByDidChange() {
         api.mock(GetAccountCoursesRequest(accountID: "1", searchTerm: nil, searchBy: .teacher), value: [.make(id: "1")])
         load()
-        viewController.searchBySegmentedControl.selectedSegmentIndex = CourseSearchViewController.SearchBy.teachers.rawValue
+        viewController.searchBySegmentedControl.selectedSegmentIndex = CourseSearchFilter.SearchBy.teachers.rawValue
         viewController.searchBySegmentedControl.sendActions(for: .valueChanged)
         drainMainQueue()
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 1)
         XCTAssertEqual(viewController.searchBar.placeholder, "Search courses by teacher...")
 
         api.mock(GetAccountCoursesRequest(accountID: "1", searchTerm: nil, searchBy: .course), value: [.make(id: "1")])
-        viewController.searchBySegmentedControl.selectedSegmentIndex = CourseSearchViewController.SearchBy.courses.rawValue
+        viewController.searchBySegmentedControl.selectedSegmentIndex = CourseSearchFilter.SearchBy.courses.rawValue
         viewController.searchBySegmentedControl.sendActions(for: .valueChanged)
         drainMainQueue()
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 1)
@@ -242,5 +245,106 @@ class CourseSearchViewControllerTests: CoreTestCase {
         XCTAssertNotNil(viewController.tableView.indexPathForSelectedRow)
         viewController.viewWillAppear(false)
         XCTAssertNil(viewController.tableView.indexPathForSelectedRow)
+    }
+
+    func testFilterButtonWaitsForAllTermsToLoad() {
+        // first page
+        let next = "https://canvas.instructure.com/api/v1/accounts/1/terms?page=2"
+        let page1 = GetAccountTermsRequest.Response(enrollment_terms: [.make(id: "1")])
+        let task = api.mock(GetAccountTermsRequest(accountID: "1"), value: page1, response: HTTPURLResponse(next: next))
+        task.paused = true
+
+        // second page
+        let nextPage = GetNextRequest<GetAccountTermsRequest.Response>(path: next)
+        let page2 = GetAccountTermsRequest.Response(enrollment_terms: [.make(id: "2")])
+        api.mock(nextPage, value: page2)
+
+        load()
+
+        // loading
+        XCTAssertTrue(viewController.filterButton.isHidden)
+        XCTAssertTrue(viewController.filterLoadingIndicator.isAnimating)
+
+        // loaded
+        task.paused = false
+        drainMainQueue()
+        XCTAssertFalse(viewController.filterButton.isHidden)
+        XCTAssertFalse(viewController.filterLoadingIndicator.isAnimating)
+        XCTAssertEqual(viewController.terms?.count, 2)
+    }
+
+    func testErrorLoadingTerms() {
+        api.mock(GetAccountTermsRequest(accountID: "1"), error: NSError.internalError())
+        load()
+        drainMainQueue()
+        XCTAssertFalse(viewController.filterButton.isHidden)
+        XCTAssertFalse(viewController.filterLoadingIndicator.isAnimating)
+        XCTAssertEqual(viewController.terms?.count, 0)
+    }
+
+    func testFilterButtonPressed() throws {
+        let window = UIWindow()
+        window.isHidden = false
+        let nav = UINavigationController(rootViewController: viewController)
+        window.rootViewController = nav
+        load()
+        XCTAssertEqual(
+            viewController.filterButton.target(
+                forAction: #selector(CourseSearchViewController.filterButtonPressed(_:)),
+                withSender: viewController.filterButton) as? CourseSearchViewController,
+            viewController
+        )
+        let term = APITerm.make()
+        viewController.terms = [term]
+        viewController.filter = CourseSearchFilter(term: term)
+        viewController.filterButtonPressed(viewController.filterButton)
+        XCTAssertEqual(nav.viewControllers.count, 2)
+        let filterOptions = try XCTUnwrap(nav.viewControllers.last as? CourseSearchFilterOptionsViewController)
+        XCTAssertEqual(filterOptions.delegate as? CourseSearchViewController, viewController)
+        XCTAssertEqual(filterOptions.filter, viewController.filter)
+        XCTAssertEqual(filterOptions.terms, viewController.terms)
+    }
+
+    func testFilterOptionsDidChange() throws {
+        api.mock(GetAccountCoursesRequest(accountID: "1", searchTerm: nil, searchBy: .teacher, enrollmentTermID: "1", hideCoursesWithoutStudents: true), value: [.make(id: "3", name: "After filter")])
+        load()
+        let filter = CourseSearchFilter(searchTerm: nil, searchBy: .teachers, hideCoursesWithoutStudents: true, term: .make(id: "1"))
+        let filterOptions = CourseSearchFilterOptionsViewController()
+        viewController.courseSearchFilterOptions(filterOptions, didChangeFilter: filter)
+        drainMainQueue()
+        XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 1)
+        let cell = try XCTUnwrap(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CourseSearchCell)
+        XCTAssertEqual(cell.courseNameLabel.text, "After filter")
+        XCTAssertEqual(viewController.filter, filter)
+    }
+
+    func testFilterButtonAppearance() {
+        load()
+        assertFilterButtonIsNotActive()
+        viewController.filter = CourseSearchFilter(searchTerm: nil, searchBy: .courses, hideCoursesWithoutStudents: true, term: nil)
+        assertFilterButtonIsActive()
+        viewController.filter = CourseSearchFilter(searchTerm: nil, searchBy: .courses, hideCoursesWithoutStudents: nil, term: .make())
+        assertFilterButtonIsActive()
+        viewController.filter = CourseSearchFilter(searchTerm: nil, searchBy: .teachers, hideCoursesWithoutStudents: nil, term: nil)
+        assertFilterButtonIsNotActive()
+        viewController.filter = CourseSearchFilter(searchTerm: nil, searchBy: .courses, hideCoursesWithoutStudents: nil, term: nil)
+    }
+
+    func assertFilterButtonIsNotActive() {
+        let filterButton = viewController.filterButton!
+        XCTAssertEqual(filterButton.layer.borderWidth, 1.3)
+        XCTAssertEqual(filterButton.layer.borderColor, Brand.shared.buttonPrimaryBackground.cgColor)
+        XCTAssertNil(filterButton.backgroundColor)
+        XCTAssertEqual(filterButton.tintColor, Brand.shared.buttonPrimaryBackground)
+        XCTAssertEqual(filterButton.image(for: .normal), .icon(.filter, .line))
+    }
+
+    func assertFilterButtonIsActive() {
+        let filterButton = viewController.filterButton!
+        XCTAssertEqual(filterButton.layer.borderWidth, 0)
+        XCTAssertEqual(filterButton.layer.borderColor, nil)
+        XCTAssertEqual(filterButton.backgroundColor, Brand.shared.buttonPrimaryBackground)
+        XCTAssertEqual(filterButton.tintColor, Brand.shared.buttonPrimaryText)
+        XCTAssertEqual(filterButton.image(for: .normal), .icon(.filter, .solid))
     }
 }

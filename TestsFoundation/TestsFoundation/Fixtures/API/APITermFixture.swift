@@ -17,22 +17,22 @@
 //
 
 import Foundation
+@testable import Core
 
-// https://canvas.instructure.com/doc/api/enrollment_terms.html#EnrollmentTerm
-public struct APITerm: Codable, Equatable {
-    public enum WorkflowState: String, Codable {
-        case active, deleted
-    }
-
-    public let id: ID
-    public let name: String
-    public let start_at: Date?
-    public let end_at: Date?
-    public let workflow_state: WorkflowState?
-}
-
-extension APITerm: Hashable {
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+extension APITerm {
+    public static func make(
+        id: ID = "1",
+        name: String = "Term 1",
+        start_at: Date? = nil,
+        end_at: Date? = nil,
+        workflow_state: WorkflowState? = nil
+    ) -> APITerm {
+        return APITerm(
+            id: id,
+            name: name,
+            start_at: start_at,
+            end_at: end_at,
+            workflow_state: workflow_state
+        )
     }
 }
