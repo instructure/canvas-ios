@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Kontoen har ingen brukervilkår"
   },
-  "act_as_user_d7ef0e48": {
-    "message": "Opptre som bruker"
-  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Legg til noen få av favorittkursene dine så dette blir hjemmet ditt"
   },
@@ -269,9 +266,6 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Endre { discussionTitle } til annen gruppering"
   },
-  "change_user_1b7c4f23": {
-    "message": "Endre bruker"
-  },
   "choose_color_11148181": {
     "message": "Velg { color }"
   },
@@ -307,9 +301,6 @@
   },
   "color_a363e1b0": {
     "message": "Farge"
-  },
-  "color_overlay_fb5ecce7": {
-    "message": "Fargelegg overlayet"
   },
   "comment_7ef1428e": {
     "message": "Kommentere"
@@ -410,6 +401,12 @@
   "creative_commons_license_ba94fd4d": {
     "message": "Creative Commons-lisens"
   },
+  "current_grade_6d0b8ef7": {
+    "message": "Gjeldende vurdering"
+  },
+  "current_grade_grade_5b083a30": {
+    "message": "Gjeldende vurdering { grade }"
+  },
   "customize_course_eefa9c21": {
     "message": "Skreddersy fag"
   },
@@ -472,9 +469,6 @@
   },
   "details_98a31b68": {
     "message": "Detaljer"
-  },
-  "developer_menu_1e80da35": {
-    "message": "Utvikler-meny"
   },
   "discussion_details_5728ea3d": {
     "message": "Diskusjonsdetaljer"
@@ -868,9 +862,6 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Lås spørsmål etter svar er avgitt"
-  },
-  "log_out_379ba28a": {
-    "message": "Logg Ut"
   },
   "long_description_7d89285c": {
     "message": "Lang Beskrivelse"
@@ -1406,9 +1397,6 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Vis riktige svar på"
   },
-  "show_grades_8680e38e": {
-    "message": "Vis vurderinger"
-  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Vis ett spørsmål om gangen"
   },
@@ -1435,9 +1423,6 @@
   },
   "start_recording_189496b9": {
     "message": "Start opptak"
-  },
-  "stop_act_as_user_4f2a4f22": {
-    "message": "Avslutt å opptre som bruker"
   },
   "stop_playing_audio_96aed3bc": {
     "message": "Stopp avspilling av lyd"
@@ -1516,9 +1501,6 @@
   },
   "terms_of_use_62ee73ad": {
     "message": "Brukervilkår"
-  },
-  "terms_of_use_6542769b": {
-    "message": "Bruksvilkår"
   },
   "text_color_colorhex_62e206a5": {
     "message": "Tekstfarge ({ colorHex })"
@@ -1790,9 +1772,6 @@
   },
   "view_responses_d2874266": {
     "message": "Vis svar"
-  },
-  "visit_the_canvas_guides_7328b93f": {
-    "message": "Besøk Canvas-guidene"
   },
   "welcome_73d18b4d": {
     "message": "Velkommen!"

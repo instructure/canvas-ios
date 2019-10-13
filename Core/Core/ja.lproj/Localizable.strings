@@ -7,6 +7,12 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
 
+/* No comment provided by engineer. */
+"%@ out of %@" = "%1$@中%2$@";
+
+/* No comment provided by engineer. */
+"%@ out of %@ (%@)" = "%1$@%2$@ 中の (%3$@)";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "親";
 
@@ -77,16 +83,37 @@
 "Casual question or suggestion" = "気軽なご質問または提案";
 
 /* No comment provided by engineer. */
+"Change Profile Image" = "プロフィール画像を変更する";
+
+/* No comment provided by engineer. */
+"Change User" = "ユーザーを変更する";
+
+/* No comment provided by engineer. */
 "Check network and try again!" = "ネットワークをチェックして、もういちど試してください。";
 
 /* No comment provided by engineer. */
+"Choose Photo" = "写真を選択する";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "プロフィール写真を選択する";
+
+/* No comment provided by engineer. */
 "Clear recording" = "録音をクリアする";
+
+/* No comment provided by engineer. */
+"Close" = "閉じる";
 
 /* No comment provided by engineer. */
 "Close App" = "アプリを閉じる";
 
 /* No comment provided by engineer. */
 "Closed" = "終了済み";
+
+/* No comment provided by engineer. */
+"Collapse" = "折りたたみ";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "カラーオーバーレイ";
 
 /* No comment provided by engineer. */
 "Comment" = "コメント";
@@ -122,6 +149,12 @@
 "Describe the problem" = "問題を説明";
 
 /* No comment provided by engineer. */
+"Designer" = "設計者";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "開発者用メニュー";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "ディスカッションのコメント";
 
 /* No comment provided by engineer. */
@@ -144,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "免除";
+
+/* No comment provided by engineer. */
+"Expand" = "展開";
 
 /* No comment provided by engineer. */
 "External Tool" = "外部ツール";
@@ -224,6 +260,9 @@
 "Italic" = "イタリック体";
 
 /* No comment provided by engineer. */
+"Late" = "遅れている";
+
+/* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
@@ -269,10 +308,19 @@
 "Log In Again" = "もう一度ログインしてください。";
 
 /* No comment provided by engineer. */
+"Log Out" = "ログアウト";
+
+/* No comment provided by engineer. */
+"Manage Children" = "「子」を管理する";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "手動 O承認ログイン";
 
 /* No comment provided by engineer. */
 "Media Recording" = "メディアレコーディング";
+
+/* No comment provided by engineer. */
+"Missing" = "欠如";
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
@@ -300,6 +348,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "緊急ではありません";
+
+/* No comment provided by engineer. */
+"Observer" = "オブザーバー";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -401,6 +452,9 @@
 "Settings" = "設定";
 
 /* No comment provided by engineer. */
+"Show Grades" = "成績を表示";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "サイト管理者ログイン";
 
 /* No comment provided by engineer. */
@@ -416,10 +470,16 @@
 "Start recording" = "録画開始";
 
 /* No comment provided by engineer. */
+"Stop Act as User" = "ユーザーとして行動することを止める";
+
+/* No comment provided by engineer. */
 "Stop acting as..." = "以下として行動することを止める";
 
 /* No comment provided by engineer. */
 "Stop recording" = "録画停止";
+
+/* No comment provided by engineer. */
+"Student" = "受講者";
 
 /* No comment provided by engineer. */
 "Style" = "スタイル";
@@ -442,8 +502,17 @@
 /* No comment provided by engineer. */
 "Success!" = "成功です！";
 
+/* Teacher's Assistant (abbreviated) */
+"TA" = "TA";
+
+/* No comment provided by engineer. */
+"Take Photo" = "写真を撮る";
+
 /* No comment provided by engineer. */
 "Tap here for help." = "ここをタップしてヘルプを表示します。";
+
+/* No comment provided by engineer. */
+"Teacher" = "講師";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "利用規約";

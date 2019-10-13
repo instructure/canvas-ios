@@ -50,6 +50,9 @@
 "Assignment reminder" = "課題のリマインダ";
 
 /* No comment provided by engineer. */
+"Back" = "戻る";
+
+/* No comment provided by engineer. */
 "Cancel" = "キャンセル";
 
 /* Percent value is over 100 */
@@ -96,6 +99,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NSManagedObjectModelの読込に失敗しました";
+
+/* No comment provided by engineer. */
+"Grades" = "成績";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "高い課題成績は、低い課題成績より低くしないでください";

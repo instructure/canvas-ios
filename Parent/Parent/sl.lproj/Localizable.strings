@@ -50,6 +50,9 @@
 "Assignment reminder" = "Opomnik za nalogo";
 
 /* No comment provided by engineer. */
+"Back" = "Nazaj";
+
+/* No comment provided by engineer. */
 "Cancel" = "Prekliči";
 
 /* Percent value is over 100 */
@@ -96,6 +99,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Nalaganje (discussionKitModelName) NSManagedObjectModel ni uspelo";
+
+/* No comment provided by engineer. */
+"Grades" = "Ocene";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Visoka ocena naloge ne more biti nižja od nizke ocene naloge.";

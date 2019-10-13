@@ -7,6 +7,12 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* No comment provided by engineer. */
+"%@ out of %@" = "%1$@ de %2$@";
+
+/* No comment provided by engineer. */
+"%@ out of %@ (%@)" = "%1$@ de %2$@ (%3$@)";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "um pai";
 
@@ -77,16 +83,37 @@
 "Casual question or suggestion" = "Pergunta casual ou sugestão";
 
 /* No comment provided by engineer. */
+"Change Profile Image" = "Mudar a imagem do perfil";
+
+/* No comment provided by engineer. */
+"Change User" = "Mudar utilizador";
+
+/* No comment provided by engineer. */
 "Check network and try again!" = "Verifique a rede e tente novamente.";
 
 /* No comment provided by engineer. */
+"Choose Photo" = "Escolher Fotografia";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Escolher fotografia de Perfil";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Gravação clara";
+
+/* No comment provided by engineer. */
+"Close" = "Fechar";
 
 /* No comment provided by engineer. */
 "Close App" = "Fechar App";
 
 /* No comment provided by engineer. */
 "Closed" = "Fechado";
+
+/* No comment provided by engineer. */
+"Collapse" = "Recolher";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "Sobreposição de cores";
 
 /* No comment provided by engineer. */
 "Comment" = "Comentário";
@@ -122,6 +149,12 @@
 "Describe the problem" = "Descreva o problema";
 
 /* No comment provided by engineer. */
+"Designer" = "Designer";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "Menu do desenvolvedor";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Comentário de Discussão";
 
 /* No comment provided by engineer. */
@@ -144,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Desculpado";
+
+/* No comment provided by engineer. */
+"Expand" = "Expandir";
 
 /* No comment provided by engineer. */
 "External Tool" = "Ferramenta Externa";
@@ -224,6 +260,9 @@
 "Italic" = "Itálico";
 
 /* No comment provided by engineer. */
+"Late" = "Atrasado";
+
+/* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
@@ -269,10 +308,19 @@
 "Log In Again" = "Faça o login novamente";
 
 /* No comment provided by engineer. */
+"Log Out" = "Sair";
+
+/* No comment provided by engineer. */
+"Manage Children" = "Gerir crianças";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Login Manual OAuth";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Gravação de mídia";
+
+/* No comment provided by engineer. */
+"Missing" = "Em falta";
 
 /* No comment provided by engineer. */
 "N/A" = "N/D";
@@ -300,6 +348,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Não Urgente";
+
+/* No comment provided by engineer. */
+"Observer" = "Observador";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -401,6 +452,9 @@
 "Settings" = "Definições";
 
 /* No comment provided by engineer. */
+"Show Grades" = "Mostrar Classificações";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Login do administrador do site";
 
 /* No comment provided by engineer. */
@@ -416,10 +470,16 @@
 "Start recording" = "Iniciar gravação";
 
 /* No comment provided by engineer. */
+"Stop Act as User" = "Parar agir como utilizador";
+
+/* No comment provided by engineer. */
 "Stop acting as..." = "Pare de atuar como...";
 
 /* No comment provided by engineer. */
 "Stop recording" = "Parar gravação";
+
+/* No comment provided by engineer. */
+"Student" = "Aluno";
 
 /* No comment provided by engineer. */
 "Style" = "Estilo";
@@ -442,8 +502,17 @@
 /* No comment provided by engineer. */
 "Success!" = "Sucesso!";
 
+/* Teacher's Assistant (abbreviated) */
+"TA" = "Assistente";
+
+/* No comment provided by engineer. */
+"Take Photo" = "Tirar fotografia";
+
 /* No comment provided by engineer. */
 "Tap here for help." = "Toque aqui para ajuda.";
+
+/* No comment provided by engineer. */
+"Teacher" = "Professor";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Termos de uso";

@@ -50,6 +50,9 @@
 "Assignment reminder" = "Tehtävän muistutus";
 
 /* No comment provided by engineer. */
+"Back" = "Takaisin";
+
+/* No comment provided by engineer. */
 "Cancel" = "Peruuta";
 
 /* Percent value is over 100 */
@@ -96,6 +99,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NS:n lataus epäonnistuiManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Grades" = "Arvosanat";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Korkea tehtävän arvosana ei voi olla pienempi kuin alhainen tehtävän arvosana";
