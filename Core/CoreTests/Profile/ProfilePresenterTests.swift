@@ -30,6 +30,7 @@ class ProfilePresenterTests: CoreTestCase {
         api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make(become_user: false))
         api.mock(GetGlobalNavExternalToolsRequest(), value: [])
         api.mock(GetUserSettingsRequest(userID: "self"), value: .make())
+        api.mock(GetAccountsRequest(), value: [])
     }
 
     lazy var presenter: ProfilePresenter = {
@@ -41,7 +42,8 @@ class ProfilePresenterTests: CoreTestCase {
                 !presenter.helpLinks.pending &&
                 !presenter.permissions.pending &&
                 !presenter.settings.pending &&
-                !presenter.tools.pending
+                !presenter.tools.pending &&
+                !presenter.accounts.pending
             ) { ready.fulfill() }
         }
         presenter.viewIsReady()
@@ -65,6 +67,14 @@ class ProfilePresenterTests: CoreTestCase {
         environment.currentSession = LoginSession.make(baseURL: URL(string: "https://siteadmin.instructure.com")!)
         view.expect(route: Route.actAsUser) {
             presenter.cells.first(where: { $0.id == "actAsUser" })?.block(UITableViewCell())
+        }
+    }
+
+    func testAdmin() {
+        enrollment = .teacher
+        api.mock(GetAccountsRequest(), value: [.make()])
+        view.expect(route: .accounts) {
+            presenter.cells.first(where: { $0.id == "admin" })?.block(UITableViewCell())
         }
     }
 

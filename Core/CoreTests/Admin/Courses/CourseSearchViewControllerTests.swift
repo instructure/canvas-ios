@@ -22,18 +22,26 @@ import XCTest
 
 @available(iOS 13.0, *)
 class CourseSearchViewControllerTests: CoreTestCase {
+    var window: UIWindow!
+    var nav: UINavigationController!
     var viewController: CourseSearchViewController!
+    var root: UIViewController?
 
     override func setUp() {
         super.setUp()
+        root = UIApplication.shared.keyWindow?.rootViewController
         UIView.setAnimationsEnabled(false)
         api.mock(GetAccountCoursesRequest(accountID: "1", searchTerm: nil, searchBy: .course), value: [])
         viewController = CourseSearchViewController.create(env: environment, accountID: "1")
         viewController.throttle.delay = 0
+        nav = UINavigationController(rootViewController: viewController)
+        UIApplication.shared.keyWindow!.rootViewController = nav
     }
 
     override func tearDown() {
         drainMainQueue()
+        nav.viewControllers = []
+        UIApplication.shared.keyWindow?.rootViewController = root
         super.tearDown()
     }
 
@@ -104,9 +112,6 @@ class CourseSearchViewControllerTests: CoreTestCase {
     func testSearchRequestError() throws {
         api.mock(GetAccountCoursesRequest(accountID: "1", searchTerm: "fail", searchBy: .course), error: NSError.instructureError("Something went wrong"))
         load()
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.isHidden = false
-        window.rootViewController = viewController
         viewController.searchBar.text = "fail"
         viewController.searchBar(viewController.searchBar, textDidChange: "fail")
         drainMainQueue()
@@ -173,9 +178,6 @@ class CourseSearchViewControllerTests: CoreTestCase {
         api.mock(nextRequest, error: NSError.instructureError("Oops"))
         load()
         drainMainQueue()
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.isHidden = false
-        window.rootViewController = viewController
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         scrollView.contentSize = CGSize(width: 100, height: 300)
         scrollView.contentOffset.y = 150
@@ -283,10 +285,6 @@ class CourseSearchViewControllerTests: CoreTestCase {
     }
 
     func testFilterButtonPressed() throws {
-        let window = UIWindow()
-        window.isHidden = false
-        let nav = UINavigationController(rootViewController: viewController)
-        window.rootViewController = nav
         load()
         XCTAssertEqual(
             viewController.filterButton.target(

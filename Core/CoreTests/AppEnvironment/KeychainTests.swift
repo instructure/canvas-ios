@@ -84,18 +84,4 @@ class KeychainTests: XCTestCase {
         let shouldBeNil = keychain.getData(for: key)
         XCTAssertNil(shouldBeNil)
     }
-
-    func testSharedInstance() {
-        let key = "foo"
-        let str = "test"
-
-        Keychain.shared.setData(str.data(using: .utf8)!, for: key)
-
-        if let data = Keychain.shared.getData(for: key) {
-            let value = String(data: data, encoding: .utf8)
-            XCTAssertEqual(str, value)
-        } else {
-            XCTFail()
-        }
-    }
 }

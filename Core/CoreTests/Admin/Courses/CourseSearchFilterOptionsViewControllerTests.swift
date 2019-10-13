@@ -29,9 +29,9 @@ class CourseSearchFilterOptionsViewControllerTests: CoreTestCase {
         }
     }
 
-    var window: UIWindow!
     var nav: UINavigationController!
     var viewController: CourseSearchFilterOptionsViewController!
+    var root: UIViewController?
     var delegate = Delegate()
 
     var withoutStudentsCell: RightDetailTableViewCell {
@@ -44,20 +44,17 @@ class CourseSearchFilterOptionsViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
+        root = UIApplication.shared.keyWindow?.rootViewController
         viewController = CourseSearchFilterOptionsViewController()
         viewController.delegate = delegate
         nav = UINavigationController(rootViewController: viewController)
-        window = UIWindow()
-        window.isHidden = false
-        window.rootViewController = nav
+        UIApplication.shared.keyWindow!.rootViewController = nav
     }
 
     override func tearDown() {
+        drainMainQueue()
         nav.viewControllers = []
-        window.isHidden = true
-        window.rootViewController = nil
-        window = nil
-        super.tearDown()
+        UIApplication.shared.keyWindow?.rootViewController = root
     }
 
     func load() {
