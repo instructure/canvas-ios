@@ -44,7 +44,7 @@ open class FetchedTableViewController<M: NSManagedObject>: TableViewController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.backgroundColor = .named(tableView.style == .grouped ? .backgroundGrouped : .backgroundLightest)
         tableView.separatorInset = .zero
         tableView.separatorColor = .named(.borderMedium)
         tableView.tableFooterView = UIView()
