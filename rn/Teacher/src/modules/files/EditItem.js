@@ -423,7 +423,7 @@ export default class EditItem extends Component<Props, State> {
 const styles = createStyleSheet(colors => ({
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: colors.backgroundGrouped,
   },
   title: {
     height: 45,

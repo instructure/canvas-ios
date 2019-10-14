@@ -48,6 +48,8 @@ public class PageTemplateRenderer: NSObject {
         template = template.replacingOccurrences(of: "{$PRIMARY_BUTTON_BACKGROUND$}", with: buttonBack.hexString)
         template = template.replacingOccurrences(of: "{$PRIMARY_BUTTON_TEXT$}", with: buttonFore.hexString)
         template = template.replacingOccurrences(of: "{$LINK_COLOR$}", with: link.hexString)
+        template = template.replacingOccurrences(of: "{$TEXT_COLOR$}", with: UIColor.named(.textDarkest).hexString)
+        template = template.replacingOccurrences(of: "{$BACKGROUND_COLOR$}", with: UIColor.named(.backgroundLightest).hexString)
         template = template.replacingOccurrences(of: "{$LTI_LAUNCH_TEXT$}", with: NSLocalizedString("Launch External Tool", comment: ""))
         template = template.replacingOccurrences(of: "{$CONTENT_DIRECTION$}", with: UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft ? "rtl" : "ltr")
 

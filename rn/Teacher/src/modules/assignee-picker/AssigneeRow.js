@@ -94,7 +94,7 @@ const styles = createStyleSheet((colors, vars) => ({
   },
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundLightest,
+    backgroundColor: colors.backgroundGroupedCell,
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: vars.padding,

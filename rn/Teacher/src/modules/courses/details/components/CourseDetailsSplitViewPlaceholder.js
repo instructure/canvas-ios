@@ -21,13 +21,12 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Image,
 } from 'react-native'
 import { Text } from '../../../../common/text'
 import Screen from '../../../../routing/Screen'
 import Images from '../../../../images/'
-import { colors } from '../../../../common/stylesheet'
+import { createStyleSheet } from '../../../../common/stylesheet'
 
 export default class CourseDetailsSplitViewPlaceholder extends Component<*> {
   render () {
@@ -52,7 +51,7 @@ export default class CourseDetailsSplitViewPlaceholder extends Component<*> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet(colors => ({
   container: {
     flex: 1,
     alignItems: 'center',
@@ -81,4 +80,4 @@ const style = StyleSheet.create({
     color: colors.textDark,
     fontWeight: '600',
   },
-})
+}))

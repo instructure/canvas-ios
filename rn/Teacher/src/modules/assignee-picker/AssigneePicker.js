@@ -153,11 +153,11 @@ export class AssigneePicker extends Component<AssigneePickerProps, any> {
 const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: colors.backgroundGrouped,
   },
   space: {
     height: 40,
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: colors.backgroundGrouped,
     borderBottomWidth: vars.hairlineWidth,
     borderBottomColor: colors.borderMedium,
   },
@@ -170,7 +170,6 @@ const styles = createStyleSheet((colors, vars) => ({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.backgroundLightest,
     paddingLeft: vars.padding,
     paddingRight: vars.padding,
     paddingVertical: vars.padding / 2,
@@ -191,7 +190,7 @@ const styles = createStyleSheet((colors, vars) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: colors.backgroundLightest,
+    backgroundColor: colors.backgroundGroupedCell,
     paddingRight: vars.padding,
     paddingVertical: vars.padding / 2,
   },

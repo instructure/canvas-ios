@@ -156,7 +156,7 @@ export class QuizEdit extends Component<Props, any> {
         ]}
         dismissButtonTitle={i18n('Cancel')}
       >
-        <View style={{ flex: 1, backgroundColor: colors.backgroundLight }}>
+        <View style={{ flex: 1, backgroundColor: colors.backgroundGrouped }}>
           { this.state.pending && <SavingBanner style={style.savingBanner} />}
           { !this.state.validation.isValid && <UnmetRequirementBanner text={i18n('Invalid field')} testID={'quizEdit.unmet-requirement-banner'}/> }
           <KeyboardAwareScrollView
@@ -614,7 +614,7 @@ export class QuizEdit extends Component<Props, any> {
 const style = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: colors.backgroundGrouped,
   },
   buttonInnerContainer: {
     flex: 1,

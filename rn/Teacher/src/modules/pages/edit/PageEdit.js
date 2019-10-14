@@ -281,7 +281,7 @@ export class PageEdit extends Component<Props, State> {
 const style = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: colors.backgroundGrouped,
   },
   description: {
     borderTopWidth: vars.hairlineWidth,

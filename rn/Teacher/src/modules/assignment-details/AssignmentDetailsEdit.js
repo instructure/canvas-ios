@@ -215,6 +215,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
               defaultValue={this.defaultValueForInput('points_possible')}
               onFocus={this._scrollToInput}
               identifier='assignmentDetails.edit.points_possible.input'
+              style={style.detailRow}
             />
             <RequiredFieldSubscript title={this.state.validation.points} visible={this.state.validation.points} />
 
@@ -226,6 +227,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
               onPress={this.toggleDisplayGradeAsPicker}
               border='bottom'
               testID="assignment-details.toggle-display-grade-as-picker"
+              style={style.detailRow}
             />
             {this.renderDataMapPicker()}
 
@@ -237,6 +239,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
                 value={this.defaultValueForBooleanInput('published')}
                 identifier='published'
                 onValueChange={this._updateToggleValue}
+                style={style.detailRow}
               />
             }
 
@@ -401,13 +404,16 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
 const style = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: colors.backgroundGrouped,
   },
   row: {
     paddingVertical: Math.floor(vars.padding / 2),
     paddingLeft: vars.padding,
     paddingRight: vars.padding,
-    backgroundColor: colors.backgroundLightest,
+    backgroundColor: colors.backgroundGroupedCell,
+  },
+  detailRow: {
+    backgroundColor: colors.backgroundGroupedCell,
   },
   twoColumnRow: {
     flex: 1,
@@ -433,6 +439,7 @@ const style = createStyleSheet((colors, vars) => ({
   },
   title: {
     height: 45,
+    color: colors.textDarkest,
   },
   points: {
     width: 50,
@@ -449,7 +456,6 @@ const style = createStyleSheet((colors, vars) => ({
     right: 0,
   },
   buttonInnerContainer: {
-    backgroundColor: colors.backgroundLightest,
     flexDirection: 'row',
     alignItems: 'center',
     paddingRight: vars.padding,

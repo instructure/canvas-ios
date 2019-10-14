@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import {
   View,
   Image,
-  StyleSheet,
   Alert,
   ActionSheetIOS,
   AccessibilityInfo,
@@ -34,7 +33,7 @@ import { LinkButton } from '../../../common/buttons'
 import CircleToggle from '../../../common/components/CircleToggle'
 import Images from '../../../images'
 import ChatBubble from '../comments/ChatBubble'
-import { colors } from '../../../common/stylesheet'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 
 const CANCEL = 2
 const DELETE = 1
@@ -232,7 +231,7 @@ export default class RubricItem extends Component<RubricItemProps, RubricItemSta
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   container: {
     paddingTop: 16,
     paddingBottom: 12,
@@ -277,7 +276,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.textDark,
   },
-})
+}))
 
 type RubricItemProps = {
   rubricItem: Rubric,

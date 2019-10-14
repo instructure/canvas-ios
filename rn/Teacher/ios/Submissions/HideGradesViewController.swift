@@ -55,7 +55,7 @@ class HideGradesViewController: UIViewController {
     }
 
     func setupTableView() {
-        tableView.backgroundColor = .named(.backgroundLight)
+        tableView.backgroundColor = .named(.backgroundGrouped)
         tableView.registerCell(PostGradesViewController.SectionCell.self)
     }
 

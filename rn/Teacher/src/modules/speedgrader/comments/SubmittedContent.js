@@ -21,11 +21,10 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Image,
   TouchableOpacity,
 } from 'react-native'
-import { colors } from '../../../common/stylesheet'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import { Title, SubTitle } from '../../../common/text'
 
 export type SubmittedContentDataProps = {
@@ -91,7 +90,7 @@ export default class SubmittedContent extends Component<Props, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   row: {
     flexDirection: 'row',
     borderWidth: 1,
@@ -107,4 +106,4 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 6,
   },
-})
+}))

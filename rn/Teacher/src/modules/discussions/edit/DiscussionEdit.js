@@ -568,7 +568,7 @@ export class DiscussionEdit extends Component<Props, any> {
 const style = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: colors.backgroundGrouped,
   },
   description: {
     borderTopWidth: vars.hairlineWidth,

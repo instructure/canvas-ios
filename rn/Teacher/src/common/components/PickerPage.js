@@ -51,6 +51,7 @@ export default class PickerPage extends Component<Props> {
           renderItem={({ item: key }) =>
             <Row
               key={key}
+              style={styles.row}
               border='bottom'
               title={options[key]}
               titleStyles={{ fontWeight: 'normal' }}
@@ -73,7 +74,10 @@ export default class PickerPage extends Component<Props> {
 
 const styles = createStyleSheet((colors, vars) => ({
   container: {
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: colors.backgroundGrouped,
+  },
+  row: {
+    backgroundColor: colors.backgroundGroupedCell,
   },
   check: {
     tintColor: colors.textSuccess,

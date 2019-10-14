@@ -107,7 +107,7 @@ export default class Row extends Component<RowProps> {
     const RowView = this.props.onPress ? TouchableHighlight : View
 
     return (<RowView style={[topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayProps}>
-      <View style={[style.container, { backgroundColor }]}>
+      <View style={[style.container, { backgroundColor }, this.props.style]}>
         { this.props.renderImage && this.props.renderImage() }
         { this.props.image && <Image style={[style.image, { tintColor: this.props.imageTint, height: imageSize.height, width: imageSize.width }]} source={this.props.image} /> }
         <View style={[style.titlesContainer, { marginLeft: hasIcon ? 12 : 0 }]}>

@@ -50,7 +50,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
 
         title = NSLocalizedString("Settings", comment: "")
 
-        tableView.backgroundColor = .named(.backgroundLight)
+        tableView.backgroundColor = .named(.backgroundGrouped)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.refreshControl = UIRefreshControl()
@@ -161,6 +161,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
+        cell.backgroundColor = .named(.backgroundGroupedCell)
         cell.textLabel?.text = row.title
         cell.detailTextLabel?.text = row.detail
         cell.accessoryType = row.hasDisclosure ? .disclosureIndicator : .none

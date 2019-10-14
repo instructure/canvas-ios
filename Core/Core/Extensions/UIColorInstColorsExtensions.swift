@@ -22,9 +22,10 @@ import Foundation
 import SwiftUI
 
 public enum InstColorName: String, CaseIterable {
-    case ash, backgroundAlert, backgroundDanger, backgroundDark, backgroundDarkest, backgroundInfo,
-        backgroundLight, backgroundLightest, backgroundMedium, backgroundSuccess, backgroundWarning,
-        barney, borderAlert, borderDanger, borderDark, borderDarkest, borderInfo, borderLight,
+    case ash, backgroundAlert, backgroundDanger, backgroundDark, backgroundDarkest,
+        backgroundGrouped, backgroundGroupedCell, backgroundInfo, backgroundLight,
+        backgroundLightest, backgroundMedium, backgroundSuccess, backgroundWarning, barney,
+        borderAlert, borderDanger, borderDark, borderDarkest, borderInfo, borderLight,
         borderLightest, borderMedium, borderSuccess, borderWarning, crimson, electric, fire,
         licorice, oxford, porcelain, shamrock, textAlert, textDanger, textDark, textDarkest,
         textInfo, textLight, textLightest, textSuccess, textWarning, tiara, white

@@ -47,6 +47,6 @@ const style = createStyleSheet(colors => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
     height: 'auto',
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: colors.backgroundGrouped,
   },
 }))

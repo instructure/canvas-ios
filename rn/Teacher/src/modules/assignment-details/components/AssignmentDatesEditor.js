@@ -607,7 +607,7 @@ const styles = createStyleSheet((colors, vars) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: colors.backgroundLightest,
+    backgroundColor: colors.backgroundGroupedCell,
     paddingLeft: vars.padding,
     paddingRight: vars.padding,
   },
@@ -631,7 +631,6 @@ const styles = createStyleSheet((colors, vars) => ({
   },
   space: {
     height: 24,
-    backgroundColor: colors.backgroundLight,
   },
   button: {
     minHeight: 54,
@@ -643,7 +642,7 @@ const styles = createStyleSheet((colors, vars) => ({
   },
   buttonInnerContainer: {
     flex: 1,
-    backgroundColor: colors.backgroundLightest,
+    backgroundColor: colors.backgroundGroupedCell,
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: vars.padding,
@@ -676,7 +675,7 @@ const styles = createStyleSheet((colors, vars) => ({
     flex: 1,
     borderBottomWidth: vars.hairlineWidth,
     borderBottomColor: colors.borderMedium,
-    backgroundColor: colors.backgroundLightest,
+    backgroundColor: colors.backgroundGroupedCell,
   },
   deleteDateTypeButton: {
     paddingTop: 8,

@@ -58,7 +58,7 @@ const styles = createStyleSheet((colors, vars) => ({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: colors.backgroundGrouped,
   },
   subscript: {
     marginTop: vars.padding / 4,

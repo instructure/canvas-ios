@@ -31,17 +31,17 @@ const fs = require('fs')
 const { dirname } = require('path')
 
 // Canvas Styleguide colors
-const electric  = { normal: "#008EE2", high: "#0770A3" }
-const shamrock  = { normal: "#00AC18", high: "#127A1B" }
-const barney    = { normal: "#BF32A4", high: "#B8309E" }
-const crimson   = { normal: "#EE0612", high: "#D01A19" }
-const fire      = { normal: "#FC5E13", high: "#C23C0D" }
-const licorice  = { normal: "#2D3B45", high: "#2D3B45" }
-const oxford    = { normal: "#394B58", high: "#394B58" }
-const ash       = { normal: "#8B969E", high: "#556572" }
-const tiara     = { normal: "#C7CDD1", high: "#556572" }
-const porcelain = { normal: "#F5F5F5", high: "#FFFFFF" }
-const white     = { normal: "#FFFFFF", high: "#FFFFFF" }
+const electric  = { normal: '#008EE2', high: '#0770A3' }
+const shamrock  = { normal: '#00AC18', high: '#127A1B' }
+const barney    = { normal: '#BF32A4', high: '#B8309E' }
+const crimson   = { normal: '#EE0612', high: '#D01A19' }
+const fire      = { normal: '#FC5E13', high: '#C23C0D' }
+const licorice  = { normal: '#2D3B45', high: '#2D3B45' }
+const oxford    = { normal: '#394B58', high: '#394B58' }
+const ash       = { normal: '#8B969E', high: '#556572' }
+const tiara     = { normal: '#C7CDD1', high: '#556572' }
+const porcelain = { normal: '#F5F5F5', high: '#FFFFFF' }
+const white     = { normal: '#FFFFFF', high: '#FFFFFF' }
 
 const darkest = {
   light: licorice,
@@ -49,19 +49,19 @@ const darkest = {
 }
 const dark = {
   light: ash,
-  dark: { normal: "#C7CDD1", high: "#C7CDD1" },
+  dark: { normal: '#C7CDD1', high: '#C7CDD1' },
 }
 const medium = {
   light: tiara,
-  dark: { normal: "#556572", high: "#C7CDD1" },
+  dark: { normal: '#556572', high: '#C7CDD1' },
 }
 const light = {
   light: porcelain,
-  dark: { normal: "#23313A", high: "#23313A" },
+  dark: oxford,
 }
 const lightest = {
   light: white,
-  dark: licorice,
+  dark: { normal: '#000000', high: '#000000' },
 }
 
 const colors = {
@@ -88,6 +88,14 @@ const colors = {
   get textDanger () { return colors.crimson },
   get textWarning () { return colors.fire },
 
+  backgroundGrouped: {
+    light: { normal: porcelain.normal, high: ash.normal },
+    dark: lightest.dark,
+  },
+  backgroundGroupedCell: {
+    light: white,
+    dark: { normal: '#1C1C1E', high: '#242426' },
+  },
   backgroundDarkest: darkest,
   backgroundDark: dark,
   backgroundMedium: medium,
@@ -112,6 +120,7 @@ const colors = {
 }
 
 const root = './Core/Core/Assets.xcassets/Colors/'
+require('child_process').execSync(`rm -rf ${root}`)
 write(`${root}/Contents.json`, {
   info: {
     version: 1,
