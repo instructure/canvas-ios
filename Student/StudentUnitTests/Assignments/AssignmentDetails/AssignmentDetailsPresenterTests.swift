@@ -31,7 +31,6 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     var resultingBackgroundColor: UIColor?
     var presenter: AssignmentDetailsPresenter!
     var presentedView: UIViewController?
-    var expectation = XCTestExpectation(description: "expectation")
     var resultingButtonTitle: String?
     var navigationController: UINavigationController?
     var pageViewLogger: MockPageViewLogger = MockPageViewLogger()
@@ -49,39 +48,8 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         super.setUp()
         pageViewLogger = MockPageViewLogger()
         env.pageViewLogger = pageViewLogger
-        expectation = XCTestExpectation(description: "expectation")
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: "target")
         presenter.submissionButtonPresenter = mockButton
-    }
-
-    @discardableResult
-    func mockAssignment(_ assignment: APIAssignment = .make(id: "1", course_id: "1")) -> APIAssignment {
-        api.mock(GetAssignmentRequest(courseID: assignment.course_id.value, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
-        return assignment
-    }
-
-    @discardableResult
-    func mockCourse(_ course: APICourse = .make(id: "1")) -> APICourse {
-        api.mock(GetCourseRequest(courseID: course.id.value, include: GetCourseRequest.defaultIncludes), value: course)
-        return course
-    }
-
-    func mockColor(_ course: APICourse = .make(id: "1"), color: String = "#ff0000") {
-        api.mock(GetCustomColorsRequest(), value: APICustomColors(custom_colors: ["course_\(course.id.value)": color]))
-    }
-
-    func mockArc(_ tool: [APIExternalTool] = [], course: APICourse = .make(id: "1")) {
-        api.mock(GetExternalToolsRequest(context: ContextModel(.course, id: course.id.value), includeParents: true, perPage: 99), value: tool)
-    }
-
-    @discardableResult
-    func mockQuiz(_ quiz: APIQuiz = .make(id: "1"), course: APICourse = .make(id: "1")) -> APIQuiz {
-        api.mock(GetQuizRequest(courseID: course.id.value, quizID: quiz.id.value), value: quiz)
-        return quiz
-    }
-
-    func mockQuizSubmission(_ quizSubmissions: [APIQuizSubmission] = [.make(quiz_id: "1")], course: APICourse = .make(id: "1")) {
-        api.mock(GetQuizSubmissionRequest(courseID: course.id.value, quizID: quizSubmissions[0].quiz_id.value), value: GetQuizSubmissionRequest.Response(quiz_submissions: quizSubmissions))
     }
 
     func testUseCasesSetupProperly() {
@@ -90,105 +58,109 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(presenter.assignments.useCase.courseID, presenter.courseID)
         XCTAssertEqual(presenter.assignments.useCase.assignmentID, presenter.assignmentID)
         XCTAssertEqual(presenter.assignments.useCase.include, [.submission])
+
+        XCTAssertEqual(presenter.arc.useCase.courseID, presenter.courseID)
     }
 
     func testLoadCourse() {
-        //  given
-        let c = mockCourse()
-        mockColor(c)
-        mockAssignment()
-        mockArc()
-
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        let c = Course.make()
+        Assignment.make()
+        presenter.courses.eventHandler()
         XCTAssertEqual(resultingSubtitle, c.name)
+    }
+
+    func testLoadColor() {
+        let c = Course.make()
+        Assignment.make()
+        Color.make(canvasContextID: c.canvasContextID)
+
+        presenter.colors.eventHandler()
         XCTAssertEqual(resultingBackgroundColor, UIColor.red)
     }
 
     func testLoadAssignment() {
-        //  given
-        mockCourse()
-        let expected = mockAssignment()
-        mockColor()
-        mockArc()
+        Course.make()
+        let expected = Assignment.make()
 
-        //  when
+        presenter.assignments.eventHandler()
+
+        XCTAssertEqual(resultingAssignment, expected)
+        XCTAssertEqual(presenter!.userID!, expected.submission!.userID)
+    }
+
+    func testLoadQuiz() {
+        Course.make()
+        Assignment.make(from: .make(quiz_id: "1"))
+        let quiz = Quiz.make(from: .make(id: "1"))
+        quiz.submission = QuizSubmission.make()
+        try! databaseClient.save()
+
+        presenter.update()
+        let quizStore = presenter.quizzes as! TestStore
+        let quizSubmissionStore = presenter.quizSubmission as! TestStore
+
+        wait(for: [quizStore.refreshExpectation, quizSubmissionStore.refreshExpectation], timeout: 0.1)
+
+        presenter.quizzes?.eventHandler()
+        XCTAssertEqual(resultingQuiz, quiz)
+        XCTAssertEqual(resultingQuiz?.submission, quiz.submission)
+    }
+
+    func testViewIsReady() {
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
-        //  then
-        XCTAssertEqual(resultingAssignment!.id, expected.id.value)
-        XCTAssertEqual(presenter!.userID!, expected.submission!.values[0].user_id.value)
+        let coursesStore = presenter.courses as! TestStore
+        let assignmentsStore = presenter.assignments as! TestStore
+        let colorsStore = presenter.colors as! TestStore
+        let arcStore = presenter.arc as! TestStore
+
+        presenter.viewIsReady()
+        wait(for: [coursesStore.refreshExpectation, assignmentsStore.refreshExpectation, colorsStore.refreshExpectation, arcStore.refreshExpectation], timeout: 0.1)
     }
 
     func testBaseURLWithNilFragment() {
-        mockCourse()
-        mockColor()
-        mockArc()
+        Course.make()
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
-        mockAssignment(.make(html_url: expected))
+        Assignment.make(from: .make(html_url: expected))
 
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: nil)
+        presenter.assignments.eventHandler()
 
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
         XCTAssertEqual(resultingBaseURL, expected)
     }
 
     func testBaseURLWithFragment() {
-        mockCourse()
-        mockColor()
-        mockArc()
+        Course.make()
         let url = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         let fragment = "fragment"
-        mockAssignment(.make(html_url: url))
+        Assignment.make(from: .make(html_url: url))
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1#fragment")!
 
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: fragment)
 
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        presenter.assignments.eventHandler()
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
     }
 
     func testBaseURLWithEmptyFragment() {
-        mockCourse()
-        mockColor()
-        mockArc()
+        Course.make()
+
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         let fragment = ""
-        mockAssignment(.make(html_url: expected))
+        Assignment.make(from: .make(html_url: expected))
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: fragment)
 
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        presenter.assignments.eventHandler()
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
     }
 
-    func testUseCaseFetchesData() {
-        //  given
-        mockCourse()
-        mockColor()
-        mockArc()
-        let expected = mockAssignment(.make(quiz_id: "1"))
-        mockQuiz()
-        mockQuizSubmission()
-
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
-
-        //  then
-        XCTAssertEqual(resultingAssignment?.name, expected.name)
-    }
 
     func testRoutesToSubmission() {
-        mockCourse()
-        mockColor()
-        mockArc()
-        mockAssignment(.make(id: "1", submission: .make(user_id: "2")))
+        Course.make()
+        Assignment.make(from: .make(id: "1", submission: .make(user_id: "2")))
 
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
-
+        // must go through the update method in order to set the userID to the user id
+        // from the submission
+        presenter.assignments.eventHandler()
         let router = env.router as? TestRouter
 
         presenter.routeToSubmission(view: UIViewController())
@@ -215,13 +187,8 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         presenter.submit(button: UIView())
         XCTAssertFalse(mockButton.submitted)
 
-        mockCourse()
-        mockColor()
-        mockArc()
-        mockAssignment()
+        Assignment.make()
 
-        presenter.refresh()
-        wait(for: [expectation], timeout: 5)
         presenter.submit(button: UIView())
         XCTAssertTrue(mockButton.submitted)
     }
@@ -230,13 +197,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         presenter.viewFileSubmission()
         XCTAssertNil(presentedView)
 
-        mockCourse()
-        mockColor()
-        mockArc()
-        mockAssignment()
-
-        presenter.refresh()
-        wait(for: [expectation], timeout: 5)
+        Assignment.make()
 
         presenter.viewFileSubmission()
         XCTAssertNotNil(presentedView)
@@ -244,188 +205,150 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
 
     func testArcIDNone() {
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .pending)
-        mockCourse()
-        mockColor()
-        mockArc()
-        mockAssignment()
 
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 0.5)
+        presenter.arc.eventHandler()
 
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .none)
     }
 
     func testArcIDSome() {
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .pending)
-        mockCourse()
-        mockColor()
-        mockArc([.make(id: "4", domain: "arc.instructure.com")])
-        mockAssignment()
 
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 5)
+        ExternalTool.make(from: .make(id: "4", domain: "arc.instructure.com"))
+        presenter.arc.eventHandler()
+
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .some("4"))
     }
 
     func testDueSectionIsHiddenBeforeAvailability() {
         setupIsHiddenTest(lockStatus: .before)
-        wait(for: [expectation], timeout: 1)
         XCTAssertTrue( presenter.dueSectionIsHidden() )
     }
 
     func testDueSectionNotHiddenAfterAvailability() {
         setupIsHiddenTest(lockStatus: .after)
-        wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.dueSectionIsHidden() )
     }
 
     func testDueSectionNotHidden() {
         setupIsHiddenTest(lockStatus: .unlocked)
-        wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.dueSectionIsHidden() )
     }
 
     func testLockedSectionIsHiddenBeforeAvailability() {
         setupIsHiddenTest(lockStatus: .before)
-        wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.lockedSectionIsHidden() )
         XCTAssertFalse( presenter.lockedIconContainerViewIsHidden() )
     }
 
     func testLockedSectionNotHiddenAfterAvailability() {
         setupIsHiddenTest(lockStatus: .after)
-        wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.lockedSectionIsHidden() )
         XCTAssertTrue( presenter.lockedIconContainerViewIsHidden() )
     }
 
     func testLockedSectionNotHidden() {
         setupIsHiddenTest(lockStatus: .unlocked)
-        wait(for: [expectation], timeout: 1)
         XCTAssertTrue( presenter.lockedSectionIsHidden() )
         XCTAssertTrue( presenter.lockedIconContainerViewIsHidden() )
     }
 
     func testFileTypesIsHiddenBeforeAvailability() {
         setupIsHiddenTest(lockStatus: .before)
-        wait(for: [expectation], timeout: 1)
         XCTAssertTrue(presenter.assignments.first?.hasFileTypes ?? false)
         XCTAssertTrue( presenter.fileTypesSectionIsHidden() )
     }
 
     func testFileTypesSectionNotHiddenAfterAvailability() {
         setupIsHiddenTest(lockStatus: .after)
-        wait(for: [expectation], timeout: 1)
         XCTAssertTrue(presenter.assignments.first?.hasFileTypes ?? false)
         XCTAssertFalse( presenter.fileTypesSectionIsHidden() )
     }
 
     func testFileTypesSectionNotHidden() {
         setupIsHiddenTest(lockStatus: .unlocked)
-        wait(for: [expectation], timeout: 1)
         XCTAssertTrue(presenter.assignments.first?.hasFileTypes ?? false)
         XCTAssertFalse( presenter.fileTypesSectionIsHidden() )
     }
 
     func testSubmissionTypesIsHiddenBeforeAvailability() {
         setupIsHiddenTest(lockStatus: .before)
-        wait(for: [expectation], timeout: 1)
         XCTAssertTrue( presenter.submissionTypesSectionIsHidden() )
     }
 
     func testSubmissionTypesSectionNotHiddenAfterAvailability() {
         setupIsHiddenTest(lockStatus: .after)
-        wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.submissionTypesSectionIsHidden() )
     }
 
     func testSubmissionTypesSectionNotHidden() {
         setupIsHiddenTest(lockStatus: .unlocked)
-        wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.submissionTypesSectionIsHidden() )
     }
 
     func testGradesSectionIsHiddenBeforeAvailability() {
         setupIsHiddenTest(lockStatus: .before)
-        wait(for: [expectation], timeout: 1)
         XCTAssertTrue( presenter.gradesSectionIsHidden() )
     }
 
     func testGradesSectionNotHiddenAfterAvailability() {
-        mockCourse()
-        mockColor()
-        mockArc()
-        mockAssignment(.make(submission: APISubmission.make(workflow_state: .graded), unlock_at: Date().addYears(-1), locked_for_user: true, lock_explanation: "this is locked"))
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        Assignment.make(from: .make(submission: APISubmission.make(workflow_state: .graded), unlock_at: Date().addYears(-1), locked_for_user: true, lock_explanation: "this is locked"))
         XCTAssertFalse( presenter.gradesSectionIsHidden() )
     }
 
     func testGradesSectionNotHidden() {
-        mockCourse()
-        mockColor()
-        mockArc()
-        mockAssignment(.make(submission: APISubmission.make(workflow_state: .graded)))
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        Assignment.make(from: .make(submission: APISubmission.make(workflow_state: .graded)))
         XCTAssertFalse( presenter.gradesSectionIsHidden() )
     }
 
     func testViewSubmissionButtonSectionIsHiddenBeforeAvailability() {
         setupIsHiddenTest(lockStatus: .before)
-        wait(for: [expectation], timeout: 1)
         XCTAssertTrue( presenter.viewSubmissionButtonSectionIsHidden() )
     }
 
     func testViewSubmissionButtonSectionNotHiddenAfterAvailability() {
         setupIsHiddenTest(lockStatus: .after)
-        wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.viewSubmissionButtonSectionIsHidden() )
     }
 
     func testViewSubmissionButtonSectionNotHidden() {
         setupIsHiddenTest(lockStatus: .unlocked)
-        wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.viewSubmissionButtonSectionIsHidden() )
     }
 
     func testDescriptionSectionIsHiddenBeforeAvailability() {
         setupIsHiddenTest(lockStatus: .before)
-        wait(for: [expectation], timeout: 1)
         XCTAssertTrue( presenter.descriptionIsHidden() )
     }
 
     func testDescriptionSectionNotHiddenAfterAvailability() {
         setupIsHiddenTest(lockStatus: .after)
-        wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.descriptionIsHidden() )
     }
 
     func testDescriptionSectionNotHidden() {
         setupIsHiddenTest(lockStatus: .unlocked)
-        wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.descriptionIsHidden() )
     }
 
     func testSubmitAssignmentButtonIsHiddenBeforeAvailability() {
         setupIsHiddenTest(lockStatus: .before)
-        wait(for: [expectation], timeout: 1)
         XCTAssertTrue( presenter.submitAssignmentButtonIsHidden() )
     }
 
     func testSubmitAssignmentButtonNotHiddenAfterAvailability() {
         setupIsHiddenTest(lockStatus: .after)
-        wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
     }
 
     func testSubmitAssignmentButtonNotHidden() {
         setupIsHiddenTest(lockStatus: .unlocked)
-        wait(for: [expectation], timeout: 1)
         XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
     }
 
     func testPostsViewCompletedRequirement() {
+        Course.make()
+        Assignment.make()
         let expectation = XCTestExpectation(description: "notification")
         var notification: Notification?
         let token = NotificationCenter.default.addObserver(forName: .CompletedModuleItemRequirement, object: nil, queue: nil) {
@@ -442,82 +365,50 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testSubmitAssignmentButtonIsHiddenWhenNotSubmittable() {
-        mockCourse()
-        mockColor()
-        mockArc()
-        mockAssignment(.make(submission_types: [ .none ]))
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        Assignment.make(from: .make(submission_types: [ .none ]))
         XCTAssertTrue(presenter.submitAssignmentButtonIsHidden())
     }
 
     func testSubmitAssignmentButtonHiddenForExcused() {
-        mockCourse()
-        mockColor()
-        mockArc()
-        mockAssignment(.make(submission: APISubmission.make(excused: true, workflow_state: .graded), submission_types: [ .online_text_entry ]))
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        Assignment.make(from: .make(submission: APISubmission.make(excused: true, workflow_state: .graded), submission_types: [ .online_text_entry ]))
         XCTAssertTrue(presenter.submitAssignmentButtonIsHidden())
     }
 
     func setupIsHiddenTest(lockStatus: LockStatus) {
-        mockCourse()
-        mockColor()
-        mockArc()
-
         switch lockStatus {
         case .unlocked:
-            mockAssignment(.make(submission_types: [ .online_upload ], allowed_extensions: ["png"]))
+            Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: ["png"]))
         case .before:
-            mockAssignment(.make(submission_types: [ .online_upload ], allowed_extensions: ["png"], unlock_at: Date().addYears(1), locked_for_user: true, lock_explanation: "this is locked"))
+            Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: ["png"], unlock_at: Date().addYears(1), locked_for_user: true, lock_explanation: "this is locked"))
         case .after:
-            mockAssignment(.make(submission_types: [ .online_upload ], allowed_extensions: ["png"], unlock_at: Date().addYears(-1), locked_for_user: true, lock_explanation: "this is locked"))
+            Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: ["png"], unlock_at: Date().addYears(-1), locked_for_user: true, lock_explanation: "this is locked"))
         }
-        presenter.viewIsReady()
     }
 
     func testPageViewLogging() {
-        let c = mockCourse()
-        mockColor()
-        mockArc()
-        let a = mockAssignment()
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
-
         presenter.viewDidAppear()
         presenter.viewDidDisappear()
 
-        XCTAssertEqual(pageViewLogger.eventName, "/courses/\(c.id.value)/assignments/\(a.id.value)")
+        XCTAssertEqual(pageViewLogger.eventName, "/courses/\(presenter.courseID)/assignments/\(presenter.assignmentID)")
     }
 
     func testAssignmentDescription() {
-        mockCourse()
-        mockColor()
-        mockArc()
-        let a = mockAssignment()
-
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(presenter.assignmentDescription(), a.description)
+        let a = Assignment.make()
+        XCTAssertEqual(presenter.assignmentDescription(), a.details)
     }
 
     func testAssignmentDescriptionThatIsEmpty() {
-        mockCourse()
-        mockColor()
-        mockArc()
-        mockAssignment()
+        Assignment.make(from: .make(description: ""))
         XCTAssertEqual(presenter.assignmentDescription(), "No Content")
     }
 
     func testCreatesSubmissionWhenOnlineUploadFinishes() {
-        mockCourse()
-        mockColor()
-        mockArc()
-        mockAssignment(.make(submission: nil))
+        // setup the notification listening
         presenter.viewIsReady()
 
-        wait(for: [expectation], timeout: 5)
+        Course.make()
+        Assignment.make(from: .make(submission: .make(submitted_at: nil, workflow_state: .unsubmitted)))
+
         NotificationCenter.default.post(name: UploadManager.AssignmentSubmittedNotification, object: nil, userInfo: [
             "assignmentID": "1",
             "submission": APISubmission.make(),
@@ -527,21 +418,22 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testUpdatesWhenOnlineUploadStateChanges() throws {
-        mockCourse()
-        mockColor()
-        mockArc()
-        let assignment = mockAssignment()
+        Course.make()
+        let assignment = Assignment.make()
 
         let url = URL.temporaryDirectory.appendingPathComponent("assignment-details.txt")
         FileManager.default.createFile(atPath: url.path, contents: "test".data(using: .utf8), attributes: nil)
-        let file = try UploadManager.shared.add(environment: env, url: url, batchID: "assignment-\(assignment.id.value)")
-        presenter.viewIsReady()
+        let file = try UploadManager.shared.add(environment: env, url: url, batchID: "assignment-\(assignment.id)")
+
         let expectation = XCTestExpectation(description: "update was called after online upload updated")
         expectation.expectedFulfillmentCount = 1
         expectation.assertForOverFulfill = false
         onUpdate = {
             expectation.fulfill()
         }
+
+        presenter.assignments.eventHandler()
+
         file.uploadError = "it failed"
         try UploadManager.shared.viewContext.save()
         file.uploadError = "im telling you, IT FAILED!!"
@@ -566,9 +458,6 @@ extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
         resultingBaseURL = baseURL
         resultingQuiz = quiz
         onUpdate?()
-        if presenter.assignments.pending == false && presenter.colors.pending == false && presenter.courses.pending == false && presenter.arc.pending == false {
-            expectation.fulfill()
-        }
     }
 
     func showError(_ error: Error) {
