@@ -21,7 +21,7 @@ exports[`renders favorited correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "#2D3B45",
+        "backgroundColor": "#FFFFFF",
         "flexDirection": "row",
         "paddingHorizontal": 16,
         "paddingVertical": 16,
@@ -87,7 +87,7 @@ exports[`renders unfavorited correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "#2D3B45",
+        "backgroundColor": "#FFFFFF",
         "flexDirection": "row",
         "paddingHorizontal": 16,
         "paddingVertical": 16,

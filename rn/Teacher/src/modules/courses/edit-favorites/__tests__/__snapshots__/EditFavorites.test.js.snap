@@ -105,7 +105,7 @@ exports[`renders correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#2D3B45",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -172,7 +172,7 @@ exports[`renders correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#2D3B45",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -328,7 +328,7 @@ exports[`renders correctly as student 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#2D3B45",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -395,7 +395,7 @@ exports[`renders correctly as student 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#2D3B45",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -505,7 +505,7 @@ exports[`renders correctly as student 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#2D3B45",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -572,7 +572,7 @@ exports[`renders correctly as student 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#2D3B45",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -728,7 +728,7 @@ exports[`updates when courses prop changes 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#2D3B45",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -884,7 +884,7 @@ exports[`updates when courses prop changes 2`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#2D3B45",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,

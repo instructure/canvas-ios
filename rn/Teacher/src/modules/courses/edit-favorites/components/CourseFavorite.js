@@ -69,7 +69,7 @@ const styles = createStyleSheet(colors => ({
     paddingVertical: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.backgroundDarkest,
+    backgroundColor: colors.backgroundLightest,
   },
   courseName: {
     marginRight: 16,
