@@ -46,7 +46,7 @@ class CourseSearchFilterOptionsViewControllerTests: CoreTestCase {
         super.setUp()
         root = UIApplication.shared.keyWindow?.rootViewController
         viewController = CourseSearchFilterOptionsViewController()
-        viewController.delegate = delegate
+        viewController.delegate = listener
         nav = UINavigationController(rootViewController: viewController)
         UIApplication.shared.keyWindow!.rootViewController = nav
     }
