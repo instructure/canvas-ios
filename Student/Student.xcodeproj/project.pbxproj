@@ -368,8 +368,6 @@
 		7DCF0F8722F8A831000AACCE /* AssignmentDetailsSectionContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9B22F89FB0000AACCE /* AssignmentDetailsSectionContainerView.xib */; };
 		7DCF0F8822F8A84D000AACCE /* CourseCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9E22F89FC2000AACCE /* CourseCardCell.swift */; };
 		7DCF0F8922F8A84D000AACCE /* CourseCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9F22F89FC2000AACCE /* CourseCardCell.xib */; };
-		7DCF0F8A22F8A84D000AACCE /* SyllabusActionableItemsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA122F89FC2000AACCE /* SyllabusActionableItemsPresenter.swift */; };
-		7DCF0F8B22F8A84D000AACCE /* SyllabusActionableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA222F89FC2000AACCE /* SyllabusActionableItemsViewController.swift */; };
 		7DCF0F8C22F8A84D000AACCE /* StudentSyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */; };
 		7DCF0F8D22F8A84D000AACCE /* StudentSyllabusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA422F89FC2000AACCE /* StudentSyllabusPresenter.swift */; };
 		7DCF0F8F22F8A84D000AACCE /* CourseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA722F89FC2000AACCE /* CourseNavigationViewController.swift */; };
@@ -1127,8 +1125,6 @@
 		7DCF0E9B22F89FB0000AACCE /* AssignmentDetailsSectionContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignmentDetailsSectionContainerView.xib; sourceTree = "<group>"; };
 		7DCF0E9E22F89FC2000AACCE /* CourseCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCardCell.swift; sourceTree = "<group>"; };
 		7DCF0E9F22F89FC2000AACCE /* CourseCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseCardCell.xib; sourceTree = "<group>"; };
-		7DCF0EA122F89FC2000AACCE /* SyllabusActionableItemsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenter.swift; sourceTree = "<group>"; };
-		7DCF0EA222F89FC2000AACCE /* SyllabusActionableItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsViewController.swift; sourceTree = "<group>"; };
 		7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusViewController.swift; sourceTree = "<group>"; };
 		7DCF0EA422F89FC2000AACCE /* StudentSyllabusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusPresenter.swift; sourceTree = "<group>"; };
 		7DCF0EA722F89FC2000AACCE /* CourseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationViewController.swift; sourceTree = "<group>"; };
@@ -2395,8 +2391,6 @@
 		7DCF0EA622F89FC2000AACCE /* Syllabus */ = {
 			isa = PBXGroup;
 			children = (
-				7DCF0EA122F89FC2000AACCE /* SyllabusActionableItemsPresenter.swift */,
-				7DCF0EA222F89FC2000AACCE /* SyllabusActionableItemsViewController.swift */,
 				7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */,
 				7DCF0EA422F89FC2000AACCE /* StudentSyllabusPresenter.swift */,
 			);
@@ -3919,7 +3913,6 @@
 				7DCF0FAC22F8A8D7000AACCE /* RubricViewController.swift in Sources */,
 				7DCF0FCB22F8A8D7000AACCE /* SubmissionFilesViewController.swift in Sources */,
 				5EB46DF41D21A75C00C859A4 /* CalendarDayListCell.swift in Sources */,
-				7DCF0F8B22F8A84D000AACCE /* SyllabusActionableItemsViewController.swift in Sources */,
 				7DCF0F8D22F8A84D000AACCE /* StudentSyllabusPresenter.swift in Sources */,
 				5EB46DF21D21A75C00C859A4 /* CalendarDate.swift in Sources */,
 				5EB46DFF1D21A75C00C859A4 /* CalendarDayDetailViewController.swift in Sources */,
@@ -3931,7 +3924,6 @@
 				5EB46DF71D21A75C00C859A4 /* CalendarMonthHeaderView.swift in Sources */,
 				7DCF0FA222F8A897000AACCE /* IconView.swift in Sources */,
 				49A04E571CF64C7F0051E1E7 /* CanvasTabBar.swift in Sources */,
-				7DCF0F8A22F8A84D000AACCE /* SyllabusActionableItemsPresenter.swift in Sources */,
 				7DCF0FA322F8A8A9000AACCE /* QuizListCell.swift in Sources */,
 				5EB46E021D21A75C00C859A4 /* CalendarDayPageViewController.swift in Sources */,
 				7DCF0FB222F8A8D7000AACCE /* SubmissionCommentAttemptCell.swift in Sources */,

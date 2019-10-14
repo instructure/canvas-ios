@@ -22,16 +22,25 @@ import Core
 class CourseDetailsViewController: HorizontalMenuViewController {
     private var gradesViewController: GradesViewController!
     private var syllabusViewController: Core.SyllabusViewController!
+    private var summaryViewController: Core.SyllabusActionableItemsViewController!
     var courseID: String = ""
     var studentID: String = ""
     var viewControllers: [UIViewController] = []
+    var readyToLayoutTabs: Bool = false
+    var didLayoutTabs: Bool = false
+    var env: AppEnvironment!
 
     enum MenuItem: Int {
-        case grades, syllabus
+        case grades, syllabus, summary
     }
 
-    static func create(courseID: String, studentID: String) -> CourseDetailsViewController {
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID, include: GetCourseRequest.defaultIncludes + [.observedUsers])) { [weak self] in
+        self?.courseReady()
+    }
+
+    static func create(courseID: String, studentID: String, env: AppEnvironment = .shared) -> CourseDetailsViewController {
         let controller = CourseDetailsViewController(nibName: nil, bundle: nil)
+        controller.env = env
         controller.courseID = courseID
         controller.studentID = studentID
         return controller
@@ -43,13 +52,13 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
 
         delegate = self
-        configureGrades()
-        configureSyllabus()
+        courses.refresh()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        layoutViewControllers()
+        readyToLayoutTabs = true
+        courseReady()
     }
 
     func configureGrades() {
@@ -61,6 +70,23 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         syllabusViewController = Core.SyllabusViewController.create(courseID: courseID)
         viewControllers.append(syllabusViewController)
     }
+
+    func configureSummary() {
+        summaryViewController = Core.SyllabusActionableItemsViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt)
+        viewControllers.append(summaryViewController)
+    }
+
+    func courseReady() {
+        if !courses.pending && readyToLayoutTabs, !didLayoutTabs, let course = courses.first {
+            didLayoutTabs = true
+            configureGrades()
+            if let body = course.syllabusBody, !body.isEmpty {
+                configureSyllabus()
+                configureSummary()
+            }
+            layoutViewControllers()
+        }
+    }
 }
 
 extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
@@ -70,6 +96,7 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
         switch menuItem {
         case .grades: identifier = "grades"
         case .syllabus: identifier = "syllabus"
+        case .summary: identifier = "summary"
         }
         return "CourseDetail.\(identifier)MenuItem"
     }
@@ -85,6 +112,8 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
             return NSLocalizedString("Grades", comment: "")
         case .syllabus:
             return NSLocalizedString("Syllabus", comment: "")
+        case .summary:
+            return NSLocalizedString("Summary", comment: "")
         }
     }
 }

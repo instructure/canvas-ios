@@ -17,9 +17,8 @@
 //
 
 import UIKit
-import Core
 
-class SyllabusActionableItemsViewController: UITableViewController {
+public class SyllabusActionableItemsViewController: UITableViewController {
 
     struct ViewModel {
         var id: String
@@ -31,31 +30,25 @@ class SyllabusActionableItemsViewController: UITableViewController {
     }
     var models: [ViewModel] = []
     var presenter: SyllabusActionableItemsPresenter?
-    var color: UIColor?
-    var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
+    public var color: UIColor?
+    public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
-    convenience init(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .dueAt) {
+    public convenience init(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .dueAt) {
         self.init(nibName: nil, bundle: nil)
         presenter = SyllabusActionableItemsPresenter(view: self, courseID: courseID, sort: sort)
     }
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: NSLocalizedString("Assignments", comment: ""))
         tableView.register(SyllabusActionableItemsCell.self, forCellReuseIdentifier: String(describing: SyllabusActionableItemsCell.self))
         presenter?.viewIsReady()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.useContextColor(color)
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(SyllabusActionableItemsCell.self, for: indexPath)
         cell.textLabel?.text = models[indexPath.row].title
         cell.textLabel?.font = UIFont.scaledNamedFont(.regular16)
@@ -68,7 +61,7 @@ class SyllabusActionableItemsViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let htmlUrl = models[indexPath.row].htmlUrl
         presenter?.select(htmlUrl, from: self)
     }
@@ -78,6 +71,10 @@ extension SyllabusActionableItemsViewController: SyllabusActionableItemsViewProt
     func update(models: [ViewModel]) {
         self.models = models
         tableView.reloadData()
+    }
+
+    func updateColor(_ color: UIColor?) {
+        self.color = color
     }
 }
 
