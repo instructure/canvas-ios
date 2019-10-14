@@ -7,6 +7,12 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Średnia ocen";
 
+/* No comment provided by engineer. */
+"%@ out of %@" = "%1$@ z %2$@";
+
+/* No comment provided by engineer. */
+"%@ out of %@ (%@)" = "%1$@ z %2$@ (%3$@)";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "rodzic";
 
@@ -77,16 +83,37 @@
 "Casual question or suggestion" = "Nieformalne pytanie lub sugestia";
 
 /* No comment provided by engineer. */
+"Change Profile Image" = "Zmień zdjęcie profilowe";
+
+/* No comment provided by engineer. */
+"Change User" = "Zmień użytkownika";
+
+/* No comment provided by engineer. */
 "Check network and try again!" = "Sprawdź sieć i spróbuj ponownie!";
 
 /* No comment provided by engineer. */
+"Choose Photo" = "Wybierz zdjęcie";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Wybierz zdjęcie profilowe";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Wyczyść nagranie";
+
+/* No comment provided by engineer. */
+"Close" = "Zamknij";
 
 /* No comment provided by engineer. */
 "Close App" = "Zamknij aplikację";
 
 /* No comment provided by engineer. */
 "Closed" = "Zamknięte";
+
+/* No comment provided by engineer. */
+"Collapse" = "Zwiń";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "Kolor nakładki";
 
 /* No comment provided by engineer. */
 "Comment" = "Komentarz";
@@ -122,6 +149,12 @@
 "Describe the problem" = "Opisz problem";
 
 /* No comment provided by engineer. */
+"Designer" = "Projektant";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "Menu programisty";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Komentarz do dyskusji";
 
 /* No comment provided by engineer. */
@@ -144,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Usprawiedliwiony";
+
+/* No comment provided by engineer. */
+"Expand" = "Rozwiń";
 
 /* No comment provided by engineer. */
 "External Tool" = "Narzędzie zewnętrzne";
@@ -224,6 +260,9 @@
 "Italic" = "Kursywa";
 
 /* No comment provided by engineer. */
+"Late" = "Późno";
+
+/* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
@@ -269,10 +308,19 @@
 "Log In Again" = "Zaloguj się ponownie";
 
 /* No comment provided by engineer. */
+"Log Out" = "Wyloguj";
+
+/* No comment provided by engineer. */
+"Manage Children" = "Zarządzaj dziećmi";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Logowanie ręcznie OAuth";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Nagranie multimedialne";
+
+/* No comment provided by engineer. */
+"Missing" = "Brak";
 
 /* No comment provided by engineer. */
 "N/A" = "Nd.";
@@ -300,6 +348,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Niepilne";
+
+/* No comment provided by engineer. */
+"Observer" = "Obserwujący";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -401,6 +452,9 @@
 "Settings" = "Ustawienia";
 
 /* No comment provided by engineer. */
+"Show Grades" = "Pokaż oceny";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Login admina witryny";
 
 /* No comment provided by engineer. */
@@ -416,10 +470,16 @@
 "Start recording" = "Rozpocznij nagrywanie";
 
 /* No comment provided by engineer. */
+"Stop Act as User" = "Zatrzymaj podszywanie się jako użytkownik";
+
+/* No comment provided by engineer. */
 "Stop acting as..." = "Zatrzymaj podszywanie się jako...";
 
 /* No comment provided by engineer. */
 "Stop recording" = "Zatrzymaj nagrywanie";
+
+/* No comment provided by engineer. */
+"Student" = "Uczestnik";
 
 /* No comment provided by engineer. */
 "Style" = "Styl";
@@ -442,8 +502,17 @@
 /* No comment provided by engineer. */
 "Success!" = "Zakończono powodzeniem!";
 
+/* Teacher's Assistant (abbreviated) */
+"TA" = "TA";
+
+/* No comment provided by engineer. */
+"Take Photo" = "Zrób zdjęcie";
+
 /* No comment provided by engineer. */
 "Tap here for help." = "Stuknij tutaj, aby uzyskać pomoc.";
+
+/* No comment provided by engineer. */
+"Teacher" = "Nauczyciel";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Warunki korzystania";

@@ -50,6 +50,9 @@
 "Assignment reminder" = "Напоминание о тестировании";
 
 /* No comment provided by engineer. */
+"Back" = "Назад";
+
+/* No comment provided by engineer. */
 "Cancel" = "Отменить";
 
 /* Percent value is over 100 */
@@ -96,6 +99,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Не удалось загрузить (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Grades" = "Оценки";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Высокая оценка за задание не может быть ниже низкой оценки за задание";

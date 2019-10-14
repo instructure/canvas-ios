@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "У учетной записи нет условия использования"
   },
-  "act_as_user_d7ef0e48": {
-    "message": "Действовать как пользователь"
-  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Добавьте несколько избранных курсов, чтобы сделать это место вашим домом."
   },
@@ -269,9 +266,6 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Изменить { discussionTitle } на другое группирование"
   },
-  "change_user_1b7c4f23": {
-    "message": "Сменить пользователя"
-  },
   "choose_color_11148181": {
     "message": "Выбрать { color }"
   },
@@ -307,9 +301,6 @@
   },
   "color_a363e1b0": {
     "message": "Цвет"
-  },
-  "color_overlay_fb5ecce7": {
-    "message": "Наложение цветов"
   },
   "comment_7ef1428e": {
     "message": "Комментарий"
@@ -410,6 +401,12 @@
   "creative_commons_license_ba94fd4d": {
     "message": "Лицензия творческого сообщества"
   },
+  "current_grade_6d0b8ef7": {
+    "message": "Текущая оценка"
+  },
+  "current_grade_grade_5b083a30": {
+    "message": "Текущая оценка { grade }"
+  },
   "customize_course_eefa9c21": {
     "message": "Настроить курс"
   },
@@ -472,9 +469,6 @@
   },
   "details_98a31b68": {
     "message": "Подробности"
-  },
-  "developer_menu_1e80da35": {
-    "message": "Меню программиста"
   },
   "discussion_details_5728ea3d": {
     "message": "Сведения об обсуждении"
@@ -868,9 +862,6 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Заблокировать вопросы после ответа на них"
-  },
-  "log_out_379ba28a": {
-    "message": "Выйти"
   },
   "long_description_7d89285c": {
     "message": "Длинное описание"
@@ -1406,9 +1397,6 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Показать правильные ответы в"
   },
-  "show_grades_8680e38e": {
-    "message": "Показать оценки"
-  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Показывать по одному вопросу за раз"
   },
@@ -1435,9 +1423,6 @@
   },
   "start_recording_189496b9": {
     "message": "Запустить запись"
-  },
-  "stop_act_as_user_4f2a4f22": {
-    "message": "Отключить функцию «Действовать как пользователь»"
   },
   "stop_playing_audio_96aed3bc": {
     "message": "Остановить воспроизведение аудио"
@@ -1515,9 +1500,6 @@
     "message": "Бирюзовый"
   },
   "terms_of_use_62ee73ad": {
-    "message": "Условия использования"
-  },
-  "terms_of_use_6542769b": {
     "message": "Условия использования"
   },
   "text_color_colorhex_62e206a5": {
@@ -1790,9 +1772,6 @@
   },
   "view_responses_d2874266": {
     "message": "Просмотреть ответы"
-  },
-  "visit_the_canvas_guides_7328b93f": {
-    "message": "Просмотреть руководства Canvas"
   },
   "welcome_73d18b4d": {
     "message": "Добро пожаловать!"

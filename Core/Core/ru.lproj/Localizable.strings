@@ -7,6 +7,12 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Балл GPA";
 
+/* No comment provided by engineer. */
+"%@ out of %@" = "%1$@ из %2$@";
+
+/* No comment provided by engineer. */
+"%@ out of %@ (%@)" = "%1$@ из %2$@ (%3$@)";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "родитель";
 
@@ -77,16 +83,37 @@
 "Casual question or suggestion" = "Обычный вопрос или предложение";
 
 /* No comment provided by engineer. */
+"Change Profile Image" = "Изменить изображение профиля";
+
+/* No comment provided by engineer. */
+"Change User" = "Сменить пользователя";
+
+/* No comment provided by engineer. */
 "Check network and try again!" = "Проверьте сеть и попробуйте еще раз!";
 
 /* No comment provided by engineer. */
+"Choose Photo" = "Выбрать фото";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Выбор фото профиля";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Удалить запись";
+
+/* No comment provided by engineer. */
+"Close" = "Закрыть";
 
 /* No comment provided by engineer. */
 "Close App" = "Закрыть приложение";
 
 /* No comment provided by engineer. */
 "Closed" = "Закрыто";
+
+/* No comment provided by engineer. */
+"Collapse" = "Свернуть";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "Наложение цветов";
 
 /* No comment provided by engineer. */
 "Comment" = "Комментарий";
@@ -122,6 +149,12 @@
 "Describe the problem" = "Опишите проблему";
 
 /* No comment provided by engineer. */
+"Designer" = "Дизайнер";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "Меню программиста";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Комментарий к дискуссии";
 
 /* No comment provided by engineer. */
@@ -144,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "По уважительной причине";
+
+/* No comment provided by engineer. */
+"Expand" = "Развернуть";
 
 /* No comment provided by engineer. */
 "External Tool" = "Внешний инструмент";
@@ -224,6 +260,9 @@
 "Italic" = "Курсив";
 
 /* No comment provided by engineer. */
+"Late" = "Поздно";
+
+/* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
@@ -269,10 +308,19 @@
 "Log In Again" = "Войдите заново";
 
 /* No comment provided by engineer. */
+"Log Out" = "Выйти";
+
+/* No comment provided by engineer. */
+"Manage Children" = "Управление детьми";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Ручной вход в OAuth";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Запись на носитель";
+
+/* No comment provided by engineer. */
+"Missing" = "Отсутствует";
 
 /* No comment provided by engineer. */
 "N/A" = "Н/Д";
@@ -300,6 +348,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Не срочно";
+
+/* No comment provided by engineer. */
+"Observer" = "Наблюдатель";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -401,6 +452,9 @@
 "Settings" = "Настройки";
 
 /* No comment provided by engineer. */
+"Show Grades" = "Показать оценки";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Учетная запись администратора";
 
 /* No comment provided by engineer. */
@@ -416,10 +470,16 @@
 "Start recording" = "Запустить запись";
 
 /* No comment provided by engineer. */
+"Stop Act as User" = "Отключить функцию «Действовать как пользователь»";
+
+/* No comment provided by engineer. */
 "Stop acting as..." = "Прекратить действовать как...";
 
 /* No comment provided by engineer. */
 "Stop recording" = "Остановить запись";
+
+/* No comment provided by engineer. */
+"Student" = "Студент";
 
 /* No comment provided by engineer. */
 "Style" = "Стиль";
@@ -442,8 +502,17 @@
 /* No comment provided by engineer. */
 "Success!" = "Успешно!";
 
+/* Teacher's Assistant (abbreviated) */
+"TA" = "TA";
+
+/* No comment provided by engineer. */
+"Take Photo" = "Сделать снимок";
+
 /* No comment provided by engineer. */
 "Tap here for help." = "Прикоснитесь здесь для получения помощи.";
+
+/* No comment provided by engineer. */
+"Teacher" = "Преподаватель";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Условия использования";

@@ -50,6 +50,9 @@
 "Assignment reminder" = "Przypomnienie o zadaniu";
 
 /* No comment provided by engineer. */
+"Back" = "Wstecz";
+
+/* No comment provided by engineer. */
 "Cancel" = "Anuluj";
 
 /* Percent value is over 100 */
@@ -96,6 +99,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Nie udało się wczytać (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Grades" = "Oceny";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Wysoka ocena za zadanie nie może być niższa od niskiej oceny za zadanie";
