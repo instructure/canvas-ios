@@ -18,10 +18,11 @@
 
 import Foundation
 
-class Keychain {
+public class Keychain {
     private let serviceName: String
     private let accessGroup: String?
-    static let shared = Keychain()
+    public static var app = Keychain(serviceName: "com.instructure.shared-credentials", accessGroup: Bundle.main.appGroupID())
+    public static var shared = Keychain(serviceName: "com.instructure.shared-credentials", accessGroup: "group.instructure.shared")
 
     init(serviceName: String = Bundle.main.bundleIdentifier ?? "com.instructure.general-purpose-keychain", accessGroup: String? = nil) {
         self.serviceName = serviceName

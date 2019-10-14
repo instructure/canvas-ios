@@ -25,6 +25,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   processColor,
+  NativeModules,
+  Alert,
+  Linking,
 } from 'react-native'
 
 import Images from '../../images'
@@ -42,6 +45,7 @@ import * as LTITools from '../../common/LTITools'
 import TabsList from '../tabs/TabsList'
 import { logEvent } from '@common/CanvasAnalytics'
 import showColorOverlayForCourse from '../../common/show-color-overlay-for-course'
+import { getFakeStudents } from '../../canvas-api'
 
 type RoutingParams = {
   +courseID: string,
@@ -64,13 +68,26 @@ export type CourseNavigationProps = CourseNavigationDataProps
   & RefreshProps
   & { navigator: Navigator }
 
+const { NativeLogin } = NativeModules
+
 export class CourseNavigation extends Component<CourseNavigationProps, any> {
+  static defaultProps = {
+    getFakeStudents,
+  }
+
   state = {
     windowTraits: currentWindowTraits(),
     selectedTabId: null,
   }
 
   homeDidShow: boolean = false
+
+  async getFakeStudentID () {
+    let { data } = await this.props.getFakeStudents(this.props.courseID)
+    if (data && data.length && data[0].id != null) {
+      return data[0].id
+    }
+  }
 
   componentWillMount () {
     this.props.navigator.traitCollection((traits) => {
@@ -81,6 +98,35 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
   editCourse = () => {
     let course = this.props.course || {}
     this.props.navigator.show(`/courses/${course.id}/settings`, { modal: true, modalPresentationStyle: 'formsheet' })
+  }
+
+  launchStudentView = async () => {
+    try {
+      let fakeStudentID = await this.getFakeStudentID()
+      if (fakeStudentID == null) {
+        Alert.alert(
+          i18n('Student View Enrollment Not Found'),
+          i18n('You must access Student View for this course once from the website before using Student View in the app.'),
+          [
+            { text: i18n('OK'), onPress: null, style: 'cancel' },
+          ]
+        )
+        return
+      }
+      let canOpen = await Linking.canOpenURL('canvas-student:')
+      if (!canOpen) {
+        return Linking.openURL('https://apps.apple.com/us/app/canvas-student/id480883488')
+      }
+      NativeLogin.actAsFakeStudentWithID(fakeStudentID)
+    } catch (e) {
+      Alert.alert(
+        i18n('Error'),
+        i18n('Please try again.'),
+        [
+          { text: i18n('OK'), onPress: null, style: 'cancel' },
+        ]
+      )
+    }
   }
 
   onTraitCollectionChange = () => {
@@ -169,6 +215,9 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
     const courseCode = course.course_code || ''
     const name = course.name || ''
     const termName = (course.term || {}).name || ''
+    const canUseStudentView = isTeacher() &&
+      this.props.permissions &&
+      this.props.permissions.use_student_view
 
     let compactMode = this.state.windowTraits.horizontal === 'compact'
     let screenProps = {}
@@ -211,11 +260,13 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
           defaultView={course.default_view}
           imageURL={course.image_download_url}
           onSelectTab={this.selectTab}
+          onSelectStudentView={this.launchStudentView}
           refreshing={this.props.refreshing}
           onRefresh={this.props.refresh}
           attendanceTabID={this.props.attendanceTabID}
           selectedTabId={this.state.selectedTabId}
           windowTraits={this.state.windowTraits}
+          canUseStudentView={canUseStudentView}
         />
       </Screen>
     )
@@ -239,6 +290,7 @@ export function mapStateToProps (state: AppState, { courseID }: RoutingParams): 
   const {
     course,
     color,
+    permissions,
   } = courseState
 
   const pending = state.favoriteCourses.pending +
@@ -267,6 +319,7 @@ export function mapStateToProps (state: AppState, { courseID }: RoutingParams): 
     error,
     attendanceTabID,
     showColorOverlay: showColorOverlayForCourse(course, state.userInfo.userSettings.hide_dashcard_color_overlays || false),
+    permissions,
   }
 }
 
@@ -278,6 +331,7 @@ export let Refreshed: any = refresh(
     props.refreshCourses()
     props.refreshTabs(props.courseID)
     props.getUserSettings()
+    props.getCoursePermissions(props.courseID)
   },
   props => !props.course || props.tabs.length === 0,
   props => Boolean(props.pending)

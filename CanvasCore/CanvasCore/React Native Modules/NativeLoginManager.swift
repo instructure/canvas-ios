@@ -54,7 +54,8 @@ extension NativeLoginManager {
                 "name": entry.userName,
                 "primary_email": entry.userEmail,
             ],
-            "wasReload": wasReload
+            "wasReload": wasReload,
+            "isFakeStudent": entry.isFakeStudent
         ]
         if let actAsUserID = entry.actAsUserID {
             body["actAsUserID"] = actAsUserID

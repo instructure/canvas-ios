@@ -78,6 +78,7 @@ const loginHandler = async ({
   countryCode,
   locale,
   wasReload,
+  isFakeStudent,
 }: {
   appId: AppId,
   authToken: string,
@@ -89,6 +90,7 @@ const loginHandler = async ({
   countryCode: string,
   locale: string,
   wasReload: boolean,
+  isFakeStudent: boolean,
 }) => {
   setupI18n(locale || NativeModules.SettingsManager.settings.AppleLocale)
   App.setCurrentApp(appId)
@@ -102,7 +104,7 @@ const loginHandler = async ({
     setupBrandingFromNativeBrandingInfo(branding)
   }
 
-  const session = { authToken, baseURL, user, actAsUserID, refreshToken, clientID, clientSecret }
+  const session = { authToken, baseURL, user, actAsUserID, refreshToken, clientID, clientSecret, isFakeStudent }
   const previous = getSessionUnsafe()
   if (previous && !compareSessions(session, previous)) {
     logout()

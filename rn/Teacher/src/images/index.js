@@ -37,6 +37,7 @@ const images = {
     settings: require('./course/Settings.png'),
     placeholder: require('./course/Placeholder.png'),
     attendance: require('./course/attendance-icon.png'),
+    studentView: require('./course/student-view.png'),
   },
   dashboard: {
     calendar: require('./dashboard/calendar.png'),

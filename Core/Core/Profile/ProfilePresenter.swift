@@ -124,7 +124,8 @@ public class ProfilePresenter {
             delegate.changeUser()
         })
         if env.currentSession?.actAsUserID != nil {
-            cells.append(ProfileViewCell("logOut", name: NSLocalizedString("Stop Act as User", comment: "")) { [weak self] _ in
+            let name = env.currentSession?.isFakeStudent == true ? NSLocalizedString("Leave Student View", comment: "") : NSLocalizedString("Stop Act as User", comment: "")
+            cells.append(ProfileViewCell("logOut", name: name) { [weak self] _ in
                 guard let session = self?.env.currentSession else { return }
                 self?.env.loginDelegate?.stopActing(as: session)
             })

@@ -277,6 +277,31 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         userDidStopActing(as: session)
         if wasCurrent { changeUser() }
     }
+
+    func actAsFakeStudent(withID fakeStudentID: String) {
+        guard let session = environment.currentSession else { return }
+        let entry = LoginSession(
+            accessToken: session.accessToken,
+            baseURL: session.baseURL,
+            expiresAt: session.expiresAt,
+            lastUsedAt: Date(),
+            locale: session.locale,
+            masquerader: (session.originalBaseURL ?? session.baseURL)
+                .appendingPathComponent("fake-students")
+                .appendingPathComponent(session.originalUserID ?? session.userID),
+            refreshToken: session.refreshToken,
+            userAvatarURL: nil,
+            userID: fakeStudentID,
+            userName: NSLocalizedString("Test Student", comment: ""),
+            userEmail: session.userEmail,
+            clientID: session.clientID,
+            clientSecret: session.clientSecret
+        )
+        LoginSession.add(entry, to: .shared, forKey: .fakeStudents)
+        if let url = URL(string: "canvas-student:student_view") {
+            UIApplication.shared.open(url)
+        }
+    }
 }
 
 // MARK: Crashlytics
