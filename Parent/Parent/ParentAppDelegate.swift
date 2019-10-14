@@ -33,6 +33,7 @@ var currentStudentID: String?
 @UIApplicationMain
 class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
+    var studentsRefresher: Refresher?
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -106,6 +107,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             let refresher = try Student.observedStudentsRefresher(session)
             refresher.refreshingCompleted.observeValues { [weak self] _ in
                 guard let self = self, let window = self.window else { return }
+                self.studentsRefresher = nil
 
                 let controller = UINavigationController(rootViewController: DashboardViewController.create(session: session))
                 controller.view.layoutIfNeeded()
@@ -114,6 +116,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
                 }, completion: nil)
             }
             refresher.refresh(true)
+            studentsRefresher = refresher
         } catch let e as NSError {
             print(e)
         }
