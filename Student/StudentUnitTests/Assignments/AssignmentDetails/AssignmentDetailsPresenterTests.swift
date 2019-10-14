@@ -84,6 +84,14 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         api.mock(GetQuizSubmissionRequest(courseID: course.id.value, quizID: quizSubmissions[0].quiz_id.value), value: GetQuizSubmissionRequest.Response(quiz_submissions: quizSubmissions))
     }
 
+    func testUseCasesSetupProperly() {
+        XCTAssertEqual(presenter.courses.useCase.courseID, presenter.courseID)
+
+        XCTAssertEqual(presenter.assignments.useCase.courseID, presenter.courseID)
+        XCTAssertEqual(presenter.assignments.useCase.assignmentID, presenter.assignmentID)
+        XCTAssertEqual(presenter.assignments.useCase.include, [.submission])
+    }
+
     func testLoadCourse() {
         //  given
         let c = mockCourse()
