@@ -66,6 +66,9 @@ exports[`PickerPage renders the given options as rows: a 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
         },
+        Object {
+          "backgroundColor": "#FFFFFF",
+        },
       ]
     }
   >
@@ -140,6 +143,9 @@ exports[`PickerPage renders the given options as rows: b 1`] = `
           "paddingLeft": 16,
           "paddingRight": 16,
           "paddingTop": 12,
+        },
+        Object {
+          "backgroundColor": "#FFFFFF",
         },
         Object {
           "backgroundColor": "#FFFFFF",
@@ -252,6 +258,9 @@ exports[`PickerPage renders the given options as rows: c 1`] = `
           "paddingLeft": 16,
           "paddingRight": 16,
           "paddingTop": 12,
+        },
+        Object {
+          "backgroundColor": "#FFFFFF",
         },
         Object {
           "backgroundColor": "#FFFFFF",

@@ -582,7 +582,6 @@ exports[`render correctly 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#F5F5F5",
         "height": 24,
       }
     }
@@ -666,7 +665,6 @@ exports[`render correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#F5F5F5",
           "height": 24,
         }
       }
@@ -1257,7 +1255,6 @@ exports[`render correctly with overide 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#F5F5F5",
         "height": 24,
       }
     }
@@ -1341,7 +1338,6 @@ exports[`render correctly with overide 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#F5F5F5",
           "height": 24,
         }
       }

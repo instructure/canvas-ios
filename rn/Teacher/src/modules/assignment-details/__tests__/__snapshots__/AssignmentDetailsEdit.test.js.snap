@@ -232,6 +232,7 @@ exports[`error occurs when done pressed 1`] = `
                 "fontSize": 17,
               },
               Object {
+                "color": "#2D3B45",
                 "height": 45,
               },
             ]
@@ -299,7 +300,6 @@ exports[`error occurs when done pressed 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
                 "flexDirection": "row",
                 "paddingRight": 16,
               }
@@ -425,6 +425,9 @@ exports[`error occurs when done pressed 1`] = `
                 "paddingLeft": 16,
                 "paddingRight": 16,
                 "paddingTop": 12,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "backgroundColor": "#FFFFFF",
@@ -556,6 +559,9 @@ exports[`error occurs when done pressed 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -675,6 +681,9 @@ exports[`error occurs when done pressed 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -734,6 +743,11 @@ exports[`error occurs when done pressed 1`] = `
                 border="bottom"
                 identifier="published"
                 onValueChange={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  }
+                }
                 testID="published"
                 tintColor={null}
                 title="Publish"
@@ -1034,6 +1048,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                 "fontSize": 17,
               },
               Object {
+                "color": "#2D3B45",
                 "height": 45,
               },
             ]
@@ -1101,7 +1116,6 @@ exports[`modal saving is shown on assignment update 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
                 "flexDirection": "row",
                 "paddingRight": 16,
               }
@@ -1227,6 +1241,9 @@ exports[`modal saving is shown on assignment update 1`] = `
                 "paddingLeft": 16,
                 "paddingRight": 16,
                 "paddingTop": 12,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "backgroundColor": "#FFFFFF",
@@ -1358,6 +1375,9 @@ exports[`modal saving is shown on assignment update 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -1477,6 +1497,9 @@ exports[`modal saving is shown on assignment update 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -1536,6 +1559,11 @@ exports[`modal saving is shown on assignment update 1`] = `
                 border="bottom"
                 identifier="published"
                 onValueChange={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  }
+                }
                 testID="published"
                 tintColor={null}
                 title="Publish"
@@ -1836,6 +1864,7 @@ exports[`renders 1`] = `
                 "fontSize": 17,
               },
               Object {
+                "color": "#2D3B45",
                 "height": 45,
               },
             ]
@@ -1903,7 +1932,6 @@ exports[`renders 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
                 "flexDirection": "row",
                 "paddingRight": 16,
               }
@@ -2029,6 +2057,9 @@ exports[`renders 1`] = `
                 "paddingLeft": 16,
                 "paddingRight": 16,
                 "paddingTop": 12,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "backgroundColor": "#FFFFFF",
@@ -2160,6 +2191,9 @@ exports[`renders 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -2279,6 +2313,9 @@ exports[`renders 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -2338,6 +2375,11 @@ exports[`renders 1`] = `
                 border="bottom"
                 identifier="published"
                 onValueChange={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  }
+                }
                 testID="published"
                 tintColor={null}
                 title="Publish"
@@ -2638,6 +2680,7 @@ exports[`saving invalid dates displays banner 1`] = `
                 "fontSize": 17,
               },
               Object {
+                "color": "#2D3B45",
                 "height": 45,
               },
             ]
@@ -2705,7 +2748,6 @@ exports[`saving invalid dates displays banner 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
                 "flexDirection": "row",
                 "paddingRight": 16,
               }
@@ -2831,6 +2873,9 @@ exports[`saving invalid dates displays banner 1`] = `
                 "paddingLeft": 16,
                 "paddingRight": 16,
                 "paddingTop": 12,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "backgroundColor": "#FFFFFF",
@@ -2962,6 +3007,9 @@ exports[`saving invalid dates displays banner 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -3081,6 +3129,9 @@ exports[`saving invalid dates displays banner 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -3140,6 +3191,11 @@ exports[`saving invalid dates displays banner 1`] = `
                 border="bottom"
                 identifier="published"
                 onValueChange={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  }
+                }
                 testID="published"
                 tintColor={null}
                 title="Publish"
@@ -3447,6 +3503,7 @@ exports[`saving invalid name displays banner 1`] = `
                 "fontSize": 17,
               },
               Object {
+                "color": "#2D3B45",
                 "height": 45,
               },
             ]
@@ -3542,7 +3599,6 @@ exports[`saving invalid name displays banner 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
                 "flexDirection": "row",
                 "paddingRight": 16,
               }
@@ -3668,6 +3724,9 @@ exports[`saving invalid name displays banner 1`] = `
                 "paddingLeft": 16,
                 "paddingRight": 16,
                 "paddingTop": 12,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "backgroundColor": "#FFFFFF",
@@ -3799,6 +3858,9 @@ exports[`saving invalid name displays banner 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -3918,6 +3980,9 @@ exports[`saving invalid name displays banner 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -3977,6 +4042,11 @@ exports[`saving invalid name displays banner 1`] = `
                 border="bottom"
                 identifier="published"
                 onValueChange={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  }
+                }
                 testID="published"
                 tintColor={null}
                 title="Publish"
@@ -4280,6 +4350,7 @@ exports[`saving invalid points possible displays banner 1`] = `
                 "fontSize": 17,
               },
               Object {
+                "color": "#2D3B45",
                 "height": 45,
               },
             ]
@@ -4347,7 +4418,6 @@ exports[`saving invalid points possible displays banner 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
                 "flexDirection": "row",
                 "paddingRight": 16,
               }
@@ -4473,6 +4543,9 @@ exports[`saving invalid points possible displays banner 1`] = `
                 "paddingLeft": 16,
                 "paddingRight": 16,
                 "paddingTop": 12,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "backgroundColor": "#FFFFFF",
@@ -4632,6 +4705,9 @@ exports[`saving invalid points possible displays banner 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -4751,6 +4827,9 @@ exports[`saving invalid points possible displays banner 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -4810,6 +4889,11 @@ exports[`saving invalid points possible displays banner 1`] = `
                 border="bottom"
                 identifier="published"
                 onValueChange={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  }
+                }
                 testID="published"
                 tintColor={null}
                 title="Publish"
@@ -5113,6 +5197,7 @@ exports[`saving negative points possible displays banner 1`] = `
                 "fontSize": 17,
               },
               Object {
+                "color": "#2D3B45",
                 "height": 45,
               },
             ]
@@ -5180,7 +5265,6 @@ exports[`saving negative points possible displays banner 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
                 "flexDirection": "row",
                 "paddingRight": 16,
               }
@@ -5306,6 +5390,9 @@ exports[`saving negative points possible displays banner 1`] = `
                 "paddingLeft": 16,
                 "paddingRight": 16,
                 "paddingTop": 12,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "backgroundColor": "#FFFFFF",
@@ -5465,6 +5552,9 @@ exports[`saving negative points possible displays banner 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -5584,6 +5674,9 @@ exports[`saving negative points possible displays banner 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
         >
@@ -5643,6 +5736,11 @@ exports[`saving negative points possible displays banner 1`] = `
                 border="bottom"
                 identifier="published"
                 onValueChange={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  }
+                }
                 testID="published"
                 tintColor={null}
                 title="Publish"

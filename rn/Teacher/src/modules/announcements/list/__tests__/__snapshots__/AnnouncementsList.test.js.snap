@@ -267,6 +267,7 @@ exports[`AnnouncementsList renders 1`] = `
                 Object {
                   "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -413,6 +414,7 @@ exports[`AnnouncementsList renders 1`] = `
                 Object {
                   "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -674,6 +676,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                 Object {
                   "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -820,6 +823,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                 Object {
                   "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -988,6 +992,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                 Object {
                   "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -1134,6 +1139,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                 Object {
                   "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >

@@ -36,6 +36,7 @@ exports[`QuizRow renders 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
         },
+        undefined,
       ]
     }
   >
@@ -338,6 +339,7 @@ exports[`QuizRow renders multiple question count 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
         },
+        undefined,
       ]
     }
   >
@@ -640,6 +642,7 @@ exports[`QuizRow renders published 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
         },
+        undefined,
       ]
     }
   >
@@ -943,6 +946,7 @@ exports[`QuizRow renders selected 1`] = `
         Object {
           "backgroundColor": "#F5F5F5",
         },
+        undefined,
       ]
     }
   >
@@ -1245,6 +1249,7 @@ exports[`QuizRow renders single question count 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
         },
+        undefined,
       ]
     }
   >
@@ -1547,6 +1552,7 @@ exports[`QuizRow renders unpublished 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
         },
+        undefined,
       ]
     }
   >
@@ -1849,6 +1855,7 @@ exports[`QuizRow renders without points possible 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
         },
+        undefined,
       ]
     }
   >

@@ -29,6 +29,7 @@ exports[`Render row with detail label 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
         },
+        undefined,
       ]
     }
   >

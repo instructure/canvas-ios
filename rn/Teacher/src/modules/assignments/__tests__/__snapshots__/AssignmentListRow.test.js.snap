@@ -40,6 +40,7 @@ exports[`renders correctly 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
             },
+            undefined,
           ]
         }
       >
@@ -255,6 +256,7 @@ exports[`renders correctly assignment icon 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
             },
+            undefined,
           ]
         }
       >
@@ -470,6 +472,7 @@ exports[`renders correctly discussion icon 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
             },
+            undefined,
           ]
         }
       >
@@ -685,6 +688,7 @@ exports[`renders correctly not published icon 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
             },
+            undefined,
           ]
         }
       >
@@ -900,6 +904,7 @@ exports[`renders correctly published icon 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
             },
+            undefined,
           ]
         }
       >
@@ -1115,6 +1120,7 @@ exports[`renders correctly quiz icon 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
             },
+            undefined,
           ]
         }
       >
@@ -1330,6 +1336,7 @@ exports[`renders correctly with closed due dates 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
             },
+            undefined,
           ]
         }
       >
@@ -1545,6 +1552,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
             },
+            undefined,
           ]
         }
       >
@@ -1788,6 +1796,7 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
             Object {
               "backgroundColor": "#FFFFFF",
             },
+            undefined,
           ]
         }
       >
@@ -2003,6 +2012,7 @@ exports[`renders correctly with open due dates 1`] = `
             Object {
               "backgroundColor": "#FFFFFF",
             },
+            undefined,
           ]
         }
       >
@@ -2218,6 +2228,7 @@ exports[`renders correctly with selected props 1`] = `
             Object {
               "backgroundColor": "#F5F5F5",
             },
+            undefined,
           ]
         }
       >

@@ -40,6 +40,7 @@ exports[`Render the base row 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
         },
+        undefined,
       ]
     }
   >

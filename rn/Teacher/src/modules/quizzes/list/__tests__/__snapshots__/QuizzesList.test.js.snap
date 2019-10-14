@@ -145,6 +145,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                   Object {
                     "backgroundColor": "#FFFFFF",
                   },
+                  undefined,
                 ]
               }
             >
@@ -446,6 +447,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                   Object {
                     "backgroundColor": "#FFFFFF",
                   },
+                  undefined,
                 ]
               }
             >
@@ -815,6 +817,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                   Object {
                     "backgroundColor": "#FFFFFF",
                   },
+                  undefined,
                 ]
               }
             >
@@ -1116,6 +1119,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                   Object {
                     "backgroundColor": "#FFFFFF",
                   },
+                  undefined,
                 ]
               }
             >

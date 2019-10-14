@@ -240,6 +240,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                       Object {
                         "backgroundColor": "#FFFFFF",
                       },
+                      undefined,
                     ]
                   }
                 >
@@ -606,6 +607,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                       Object {
                         "backgroundColor": "#FFFFFF",
                       },
+                      undefined,
                     ]
                   }
                 >
@@ -1048,6 +1050,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                       Object {
                         "backgroundColor": "#FFFFFF",
                       },
+                      undefined,
                     ]
                   }
                 >
@@ -1390,6 +1393,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                       Object {
                         "backgroundColor": "#FFFFFF",
                       },
+                      undefined,
                     ]
                   }
                 >
@@ -1808,6 +1812,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                       Object {
                         "backgroundColor": "#FFFFFF",
                       },
+                      undefined,
                     ]
                   }
                 >
@@ -2174,6 +2179,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                       Object {
                         "backgroundColor": "#FFFFFF",
                       },
+                      undefined,
                     ]
                   }
                 >
@@ -2616,6 +2622,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                       Object {
                         "backgroundColor": "#FFFFFF",
                       },
+                      undefined,
                     ]
                   }
                 >
@@ -2982,6 +2989,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                       Object {
                         "backgroundColor": "#FFFFFF",
                       },
+                      undefined,
                     ]
                   }
                 >
@@ -3391,6 +3399,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                       Object {
                         "backgroundColor": "#FFFFFF",
                       },
+                      undefined,
                     ]
                   }
                 >

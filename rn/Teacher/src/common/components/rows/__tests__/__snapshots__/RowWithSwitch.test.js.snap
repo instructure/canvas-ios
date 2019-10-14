@@ -35,6 +35,7 @@ exports[`Render row with switch 1`] = `
         Object {
           "backgroundColor": "#FFFFFF",
         },
+        undefined,
       ]
     }
   >

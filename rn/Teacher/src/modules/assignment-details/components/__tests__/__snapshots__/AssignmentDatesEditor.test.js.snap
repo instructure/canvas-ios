@@ -1724,7 +1724,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#F5F5F5",
         "height": 24,
       }
     }
@@ -1808,7 +1807,6 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#F5F5F5",
           "height": 24,
         }
       }
@@ -2923,7 +2921,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#F5F5F5",
         "height": 24,
       }
     }
@@ -3007,7 +3004,6 @@ exports[`snapshots! render with multiple due dates 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#F5F5F5",
           "height": 24,
         }
       }
@@ -3551,7 +3547,6 @@ exports[`snapshots! render with single due date 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#F5F5F5",
         "height": 24,
       }
     }
@@ -3635,7 +3630,6 @@ exports[`snapshots! render with single due date 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#F5F5F5",
           "height": 24,
         }
       }

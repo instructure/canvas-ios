@@ -5,6 +5,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
   customPageViewPath={null}
   navBarButtonColor="#FFFFFF"
   navBarColor="#394B58"
+  navBarStyle="light"
   navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
@@ -66,6 +67,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -275,6 +277,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -484,6 +487,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -832,6 +836,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
   customPageViewPath={null}
   navBarButtonColor="#FFFFFF"
   navBarColor="#394B58"
+  navBarStyle="light"
   navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
@@ -893,6 +898,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -1102,6 +1108,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -1311,6 +1318,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -1659,6 +1667,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
   customPageViewPath={null}
   navBarButtonColor="#FFFFFF"
   navBarColor="#394B58"
+  navBarStyle="light"
   navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
@@ -1720,6 +1729,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -1929,6 +1939,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -2138,6 +2149,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -2486,6 +2498,7 @@ exports[`FilesList sending weird data into the progress update function should n
   customPageViewPath={null}
   navBarButtonColor="#FFFFFF"
   navBarColor="#394B58"
+  navBarStyle="light"
   navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
@@ -2547,6 +2560,7 @@ exports[`FilesList sending weird data into the progress update function should n
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -2756,6 +2770,7 @@ exports[`FilesList sending weird data into the progress update function should n
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -2965,6 +2980,7 @@ exports[`FilesList sending weird data into the progress update function should n
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -3320,6 +3336,7 @@ exports[`FilesList should render 1`] = `
   customPageViewPath={null}
   navBarButtonColor="#FFFFFF"
   navBarColor="#394B58"
+  navBarStyle="light"
   navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
@@ -3381,6 +3398,7 @@ exports[`FilesList should render 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -3590,6 +3608,7 @@ exports[`FilesList should render 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -3799,6 +3818,7 @@ exports[`FilesList should render 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -4036,7 +4056,6 @@ exports[`FilesList should render for course files 1`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -4084,6 +4103,7 @@ exports[`FilesList should render for course files 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -4293,6 +4313,7 @@ exports[`FilesList should render for course files 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -4502,6 +4523,7 @@ exports[`FilesList should render for course files 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -4731,6 +4753,7 @@ exports[`FilesList should render for user files 1`] = `
   customPageViewPath={null}
   navBarButtonColor="#FFFFFF"
   navBarColor="#394B58"
+  navBarStyle="light"
   navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
@@ -4792,6 +4815,7 @@ exports[`FilesList should render for user files 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5001,6 +5025,7 @@ exports[`FilesList should render for user files 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5210,6 +5235,7 @@ exports[`FilesList should render for user files 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5446,6 +5472,7 @@ exports[`FilesList should render with folders 1`] = `
   customPageViewPath={null}
   navBarButtonColor="#FFFFFF"
   navBarColor="#394B58"
+  navBarStyle="light"
   navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
@@ -5507,6 +5534,7 @@ exports[`FilesList should render with folders 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5716,6 +5744,7 @@ exports[`FilesList should render with folders 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5925,6 +5954,7 @@ exports[`FilesList should render with folders 1`] = `
                     Object {
                       "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -6168,6 +6198,7 @@ exports[`FilesList should render with no data at all 1`] = `
   customPageViewPath={null}
   navBarButtonColor="#FFFFFF"
   navBarColor="#394B58"
+  navBarStyle="light"
   navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={

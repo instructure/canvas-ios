@@ -214,6 +214,7 @@ exports[`AnnouncementEdit renders 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              undefined,
             ]
           }
         >
@@ -369,6 +370,7 @@ exports[`AnnouncementEdit renders 1`] = `
                 Object {
                   "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -509,6 +511,7 @@ exports[`AnnouncementEdit renders 1`] = `
                 Object {
                   "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -613,6 +616,7 @@ exports[`AnnouncementEdit renders 1`] = `
                 Object {
                   "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >

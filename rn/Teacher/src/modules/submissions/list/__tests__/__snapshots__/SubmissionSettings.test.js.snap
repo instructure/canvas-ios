@@ -62,6 +62,7 @@ exports[`SubmissionSettings renders properly 1`] = `
               Object {
                 "backgroundColor": "#FFFFFF",
               },
+              undefined,
             ]
           }
         >

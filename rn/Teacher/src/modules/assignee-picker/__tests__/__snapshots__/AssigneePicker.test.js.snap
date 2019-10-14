@@ -545,7 +545,6 @@ exports[`render correctly 1`] = `
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "paddingLeft": 16,
