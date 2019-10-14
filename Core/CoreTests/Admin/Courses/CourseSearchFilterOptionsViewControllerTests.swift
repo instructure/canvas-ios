@@ -32,7 +32,7 @@ class CourseSearchFilterOptionsViewControllerTests: CoreTestCase {
     var nav: UINavigationController!
     var viewController: CourseSearchFilterOptionsViewController!
     var root: UIViewController?
-    var delegate = Delegate()
+    var listener = Delegate()
 
     var withoutStudentsCell: RightDetailTableViewCell {
         return try! XCTUnwrap(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? RightDetailTableViewCell)
@@ -153,6 +153,6 @@ class CourseSearchFilterOptionsViewControllerTests: CoreTestCase {
         load()
         viewController.filter = filter
         viewController.viewWillDisappear(false)
-        XCTAssertEqual(delegate.filter, filter)
+        XCTAssertEqual(listener.filter, filter)
     }
 }

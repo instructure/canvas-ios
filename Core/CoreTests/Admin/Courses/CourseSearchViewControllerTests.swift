@@ -50,15 +50,17 @@ class CourseSearchViewControllerTests: CoreTestCase {
     }
 
     func testViewDidLoad() throws {
-        let courses: [APICourse] = [.make(
-            name: "Course One",
-            term: APITerm.make(name: "Term 1"),
-            teachers: [
-                APICourse.Teacher(id: "1", display_name: "One"),
-                APICourse.Teacher(id: "2", display_name: "Two"),
-                APICourse.Teacher(id: "3", display_name: "Three")
-            ]
-        )]
+        let courses: [APICourse] = [
+            .make(
+                name: "Course One",
+                term: APITerm.make(name: "Term 1"),
+                teachers: [
+                    APICourse.Teacher(id: "1", display_name: "One"),
+                    APICourse.Teacher(id: "2", display_name: "Two"),
+                    APICourse.Teacher(id: "3", display_name: "Three"),
+                ]
+            ),
+        ]
         api.mock(GetAccountCoursesRequest(accountID: "1", searchTerm: nil, searchBy: .course), value: courses)
         load()
         drainMainQueue()
@@ -85,7 +87,7 @@ class CourseSearchViewControllerTests: CoreTestCase {
                 APICourse.Teacher(id: "1", display_name: "One"),
                 APICourse.Teacher(id: "2", display_name: "Two"),
                 APICourse.Teacher(id: "3", display_name: "Three"),
-                APICourse.Teacher(id: "3", display_name: "Four")
+                APICourse.Teacher(id: "3", display_name: "Four"),
             ]
         )
         api.mock(GetAccountCoursesRequest(accountID: "1", searchTerm: "intro", searchBy: .course), value: [result])

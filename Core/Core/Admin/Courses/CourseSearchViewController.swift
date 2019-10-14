@@ -268,7 +268,7 @@ public class CourseSearchViewController: UIViewController, UISearchBarDelegate, 
                     self.alertError(error ?? NSError.internalError())
                     return
                 }
-                self.courses = self.courses + courses
+                self.courses += courses
                 if let urlResponse = urlResponse {
                     self.nextPage = nextPage.getNext(from: urlResponse)
                 }
@@ -289,7 +289,7 @@ public class CourseSearchViewController: UIViewController, UISearchBarDelegate, 
     }
 
     func exhaustTerms<R>(_ request: R) where R: APIRequestable, R.Response == GetAccountTermsRequest.Response {
-        env.api.makeRequest(request) { [weak self] response, urlResponse, error in
+        env.api.makeRequest(request) { [weak self] response, urlResponse, _ in
             guard let self = self else { return }
             if let response = response {
                 self.terms?.append(contentsOf: response.enrollment_terms)
