@@ -43,7 +43,7 @@ public class TestEnvironment: AppEnvironment {
         self.logger = TestLogger()
     }
 
-    override public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler) -> Store<U> where U : UseCase {
+    override public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler) -> Store<U> where U: UseCase {
         return TestStore(env: self, useCase: useCase, eventHandler: callback)
     }
 }

@@ -153,7 +153,6 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
     }
 
-
     func testRoutesToSubmission() {
         Course.make()
         Assignment.make(from: .make(id: "1", submission: .make(user_id: "2")))

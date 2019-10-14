@@ -61,5 +61,3 @@ class PersistenceTestCase: XCTestCase {
         LoginSession.clearAll()
     }
 }
-
-
