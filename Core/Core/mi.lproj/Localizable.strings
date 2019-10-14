@@ -7,6 +7,12 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* No comment provided by engineer. */
+"%@ out of %@" = "%1$@ i waho i te %2$@";
+
+/* No comment provided by engineer. */
+"%@ out of %@ (%@)" = "%1$@ i waho i te %2$@ (%3$@)";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "he matua";
 
@@ -77,16 +83,37 @@
 "Casual question or suggestion" = "Pātai tūao whakāro puaki rānei";
 
 /* No comment provided by engineer. */
+"Change Profile Image" = "Huriai te Kōtaha Āhua";
+
+/* No comment provided by engineer. */
+"Change User" = "Huri Kaiwhakamahi";
+
+/* No comment provided by engineer. */
 "Check network and try again!" = "Tirohia te whatunga ka ngana anō!";
 
 /* No comment provided by engineer. */
+"Choose Photo" = "Kōwhiri Whakāhua";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Kōwhiri Pikitia Kōtaha";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Mukua te tāhopu";
+
+/* No comment provided by engineer. */
+"Close" = "Katia";
 
 /* No comment provided by engineer. */
 "Close App" = "Kati Taupānga";
 
 /* No comment provided by engineer. */
 "Closed" = "katia";
+
+/* No comment provided by engineer. */
+"Collapse" = "Hinga";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "Tae Paparua";
 
 /* No comment provided by engineer. */
 "Comment" = "Kōrero";
@@ -122,6 +149,12 @@
 "Describe the problem" = "Whakāhuatia te raruraru";
 
 /* No comment provided by engineer. */
+"Designer" = "Kaitātai";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "Tahua Whakawhanake";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Kōrerorero kōrero";
 
 /* No comment provided by engineer. */
@@ -144,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Whakawātea";
+
+/* No comment provided by engineer. */
+"Expand" = "Whakawhānui";
 
 /* No comment provided by engineer. */
 "External Tool" = "Taputapu waho";
@@ -224,6 +260,9 @@
 "Italic" = "Tuhinga";
 
 /* No comment provided by engineer. */
+"Late" = "Tūreiti";
+
+/* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts whiu tōmuri";
 
 /* No comment provided by engineer. */
@@ -269,10 +308,19 @@
 "Log In Again" = "Takiuru Anō";
 
 /* No comment provided by engineer. */
+"Log Out" = "Takiputa";
+
+/* No comment provided by engineer. */
+"Manage Children" = "Whakahaere ngā tamariki";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Mahi ā ringa OAuth Takiuru";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Hopu pāpāho";
+
+/* No comment provided by engineer. */
+"Missing" = "Ngaro";
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
@@ -300,6 +348,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Kaore i te Whakahihiri";
+
+/* No comment provided by engineer. */
+"Observer" = "Kaimātakitaki";
 
 /* No comment provided by engineer. */
 "OK" = "Ae";
@@ -401,6 +452,9 @@
 "Settings" = "Ngā Tautuhinga";
 
 /* No comment provided by engineer. */
+"Show Grades" = "Whakātu Ngā Kōeke";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Takiuru Whakahaere Pae";
 
 /* No comment provided by engineer. */
@@ -416,10 +470,16 @@
 "Start recording" = "Tīmata tāhopu";
 
 /* No comment provided by engineer. */
+"Stop Act as User" = "Kati Mahi hei Kaiwhakamahi";
+
+/* No comment provided by engineer. */
 "Stop acting as..." = "Kāti te mahi hei ....";
 
 /* No comment provided by engineer. */
 "Stop recording" = "Mutu tāhopu";
+
+/* No comment provided by engineer. */
+"Student" = "Ākonga";
 
 /* No comment provided by engineer. */
 "Style" = "Kāhua";
@@ -442,8 +502,17 @@
 /* No comment provided by engineer. */
 "Success!" = "Angitu!";
 
+/* Teacher's Assistant (abbreviated) */
+"TA" = "TA";
+
+/* No comment provided by engineer. */
+"Take Photo" = "Tangohia Whakāhua";
+
 /* No comment provided by engineer. */
 "Tap here for help." = "Pātō ki kōnei mo te awhina";
+
+/* No comment provided by engineer. */
+"Teacher" = "Kaiako";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Ngā ritenga whakamahi";

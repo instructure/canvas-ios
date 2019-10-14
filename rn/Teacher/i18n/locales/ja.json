@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "アカウントに使用条件なし"
   },
-  "act_as_user_d7ef0e48": {
-    "message": "ユーザーとして行動する"
-  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "お気に入りのコースをいくつか追加して、この場所をあなたのホームにしてください。"
   },
@@ -269,9 +266,6 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "{ discussionTitle } を別のグループに変更する"
   },
-  "change_user_1b7c4f23": {
-    "message": "ユーザーを変更する"
-  },
   "choose_color_11148181": {
     "message": "選択{ color }"
   },
@@ -307,9 +301,6 @@
   },
   "color_a363e1b0": {
     "message": "カラー"
-  },
-  "color_overlay_fb5ecce7": {
-    "message": "カラーオーバーレイ"
   },
   "comment_7ef1428e": {
     "message": "コメント"
@@ -410,6 +401,12 @@
   "creative_commons_license_ba94fd4d": {
     "message": "Creative Commons ライセンス"
   },
+  "current_grade_6d0b8ef7": {
+    "message": "現在の成績"
+  },
+  "current_grade_grade_5b083a30": {
+    "message": "現在の成績 { grade }"
+  },
   "customize_course_eefa9c21": {
     "message": "コースをカスタマイズ"
   },
@@ -472,9 +469,6 @@
   },
   "details_98a31b68": {
     "message": "詳細"
-  },
-  "developer_menu_1e80da35": {
-    "message": "開発者用メニュー"
   },
   "discussion_details_5728ea3d": {
     "message": "ディスカッションの詳細"
@@ -868,9 +862,6 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "解答の後で問題をロックする"
-  },
-  "log_out_379ba28a": {
-    "message": "ログアウト"
   },
   "long_description_7d89285c": {
     "message": "長い説明"
@@ -1406,9 +1397,6 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "正解を表示"
   },
-  "show_grades_8680e38e": {
-    "message": "成績を表示"
-  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "一度に1つの質問を表示する"
   },
@@ -1435,9 +1423,6 @@
   },
   "start_recording_189496b9": {
     "message": "録画開始"
-  },
-  "stop_act_as_user_4f2a4f22": {
-    "message": "ユーザーとして行動することを止める"
   },
   "stop_playing_audio_96aed3bc": {
     "message": "音声再生を中止する"
@@ -1516,9 +1501,6 @@
   },
   "terms_of_use_62ee73ad": {
     "message": "利用規約/使用条件"
-  },
-  "terms_of_use_6542769b": {
-    "message": "利用規約"
   },
   "text_color_colorhex_62e206a5": {
     "message": "テキストカラー ({ colorHex })"
@@ -1790,9 +1772,6 @@
   },
   "view_responses_d2874266": {
     "message": "応答を表示"
-  },
-  "visit_the_canvas_guides_7328b93f": {
-    "message": " Canvas ガイドに進む"
   },
   "welcome_73d18b4d": {
     "message": "どういたしまして！"

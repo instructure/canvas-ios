@@ -7,6 +7,12 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
 
+/* No comment provided by engineer. */
+"%@ out of %@" = "%1$@滿分為%2$@";
+
+/* No comment provided by engineer. */
+"%@ out of %@ (%@)" = "%1$@滿分為 %2$@ (%3$@)";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "父母";
 
@@ -77,16 +83,37 @@
 "Casual question or suggestion" = "隨意的問題或建議";
 
 /* No comment provided by engineer. */
+"Change Profile Image" = "更改個人檔案圖片";
+
+/* No comment provided by engineer. */
+"Change User" = "變更使用者";
+
+/* No comment provided by engineer. */
 "Check network and try again!" = "請檢查網路並重試！";
 
 /* No comment provided by engineer. */
+"Choose Photo" = "選擇照片";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "選擇個人檔案照片";
+
+/* No comment provided by engineer. */
 "Clear recording" = "清除錄製";
+
+/* No comment provided by engineer. */
+"Close" = "關閉";
 
 /* No comment provided by engineer. */
 "Close App" = "關閉應用程式";
 
 /* No comment provided by engineer. */
 "Closed" = "已關閉";
+
+/* No comment provided by engineer. */
+"Collapse" = "收起";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "顏色覆蓋";
 
 /* No comment provided by engineer. */
 "Comment" = "評論";
@@ -122,6 +149,12 @@
 "Describe the problem" = "請描述問題";
 
 /* No comment provided by engineer. */
+"Designer" = "設計師";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "開發人員選單";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "討論區評論";
 
 /* No comment provided by engineer. */
@@ -144,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "已免除";
+
+/* No comment provided by engineer. */
+"Expand" = "展開";
 
 /* No comment provided by engineer. */
 "External Tool" = "外部工具";
@@ -224,6 +260,9 @@
 "Italic" = "斜體";
 
 /* No comment provided by engineer. */
+"Late" = "逾期";
+
+/* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
@@ -269,10 +308,19 @@
 "Log In Again" = "重新登入";
 
 /* No comment provided by engineer. */
+"Log Out" = "登出";
+
+/* No comment provided by engineer. */
+"Manage Children" = "管理兒童";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "手動 OAuth 登入";
 
 /* No comment provided by engineer. */
 "Media Recording" = "媒體錄製";
+
+/* No comment provided by engineer. */
+"Missing" = "缺少";
 
 /* No comment provided by engineer. */
 "N/A" = "不適用";
@@ -300,6 +348,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "非緊急";
+
+/* No comment provided by engineer. */
+"Observer" = "觀察者";
 
 /* No comment provided by engineer. */
 "OK" = "確定";
@@ -401,6 +452,9 @@
 "Settings" = "設定";
 
 /* No comment provided by engineer. */
+"Show Grades" = "顯示成績";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "網站管理員登入";
 
 /* No comment provided by engineer. */
@@ -416,10 +470,16 @@
 "Start recording" = "開始錄製";
 
 /* No comment provided by engineer. */
+"Stop Act as User" = "停止作為使用者";
+
+/* No comment provided by engineer. */
 "Stop acting as..." = "停止作為...";
 
 /* No comment provided by engineer. */
 "Stop recording" = "停止錄製";
+
+/* No comment provided by engineer. */
+"Student" = "學生";
 
 /* No comment provided by engineer. */
 "Style" = "樣式";
@@ -442,8 +502,17 @@
 /* No comment provided by engineer. */
 "Success!" = "成功！";
 
+/* Teacher's Assistant (abbreviated) */
+"TA" = "助教";
+
+/* No comment provided by engineer. */
+"Take Photo" = "拍攝照片";
+
 /* No comment provided by engineer. */
 "Tap here for help." = "點按此處獲取支援。";
+
+/* No comment provided by engineer. */
+"Teacher" = "教師";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "使用條款";

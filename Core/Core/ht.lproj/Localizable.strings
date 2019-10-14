@@ -7,6 +7,12 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* No comment provided by engineer. */
+"%@ out of %@" = "%1$@ sou %2$@";
+
+/* No comment provided by engineer. */
+"%@ out of %@ (%@)" = "%1$@ sou %2$@ (%3$@)";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "yon paran";
 
@@ -77,16 +83,37 @@
 "Casual question or suggestion" = "Kesyon oswa sijesyon pa aza";
 
 /* No comment provided by engineer. */
+"Change Profile Image" = "Chanje Imaj Pwofil";
+
+/* No comment provided by engineer. */
+"Change User" = "Chanje Itilizatè";
+
+/* No comment provided by engineer. */
 "Check network and try again!" = "Verifye rezo an epi eseye ankò!";
 
 /* No comment provided by engineer. */
+"Choose Photo" = "Chwazi Foto";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Chwazi Foto Pwofil";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Efase anrejistreman";
+
+/* No comment provided by engineer. */
+"Close" = "Fèmen";
 
 /* No comment provided by engineer. */
 "Close App" = "Fèmen App";
 
 /* No comment provided by engineer. */
 "Closed" = "Fèmen";
+
+/* No comment provided by engineer. */
+"Collapse" = "Redwi";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "Sipèpozisyon Koulè";
 
 /* No comment provided by engineer. */
 "Comment" = "Kòmantè";
@@ -122,6 +149,12 @@
 "Describe the problem" = "Dekri pwoblèm nan";
 
 /* No comment provided by engineer. */
+"Designer" = "Kreyatè";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "Meni Developè";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Kòmantè Diskisyon";
 
 /* No comment provided by engineer. */
@@ -144,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Egzante";
+
+/* No comment provided by engineer. */
+"Expand" = "Elaji";
 
 /* No comment provided by engineer. */
 "External Tool" = "Zouti Ekstèn";
@@ -224,6 +260,9 @@
 "Italic" = "Italik";
 
 /* No comment provided by engineer. */
+"Late" = "An reta";
+
+/* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
@@ -269,10 +308,19 @@
 "Log In Again" = "Konekte Ankò";
 
 /* No comment provided by engineer. */
+"Log Out" = "Dekonekte";
+
+/* No comment provided by engineer. */
+"Manage Children" = "Jere Timoun yo";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Koneksyon OAuth Manyèl";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Anrejistreman Medya";
+
+/* No comment provided by engineer. */
+"Missing" = "Manke";
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
@@ -300,6 +348,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Pa Ijan";
+
+/* No comment provided by engineer. */
+"Observer" = "Obsèvatè";
 
 /* No comment provided by engineer. */
 "OK" = "DAKO";
@@ -401,6 +452,9 @@
 "Settings" = "Paramèt";
 
 /* No comment provided by engineer. */
+"Show Grades" = "Afiche Klas";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Koneksyon Admin Sit";
 
 /* No comment provided by engineer. */
@@ -416,10 +470,16 @@
 "Start recording" = "Kòmanse anrejistreman";
 
 /* No comment provided by engineer. */
+"Stop Act as User" = "Sispann Aji tankou Itilizatè";
+
+/* No comment provided by engineer. */
 "Stop acting as..." = "Sispann aji tankou...";
 
 /* No comment provided by engineer. */
 "Stop recording" = "Kanpe anrejistreman";
+
+/* No comment provided by engineer. */
+"Student" = "Elèv";
 
 /* No comment provided by engineer. */
 "Style" = "Estil";
@@ -442,8 +502,17 @@
 /* No comment provided by engineer. */
 "Success!" = "Reyisi!";
 
+/* Teacher's Assistant (abbreviated) */
+"TA" = "TA";
+
+/* No comment provided by engineer. */
+"Take Photo" = "Fè Foto";
+
 /* No comment provided by engineer. */
 "Tap here for help." = "Tape la pou èd.";
+
+/* No comment provided by engineer. */
+"Teacher" = "Pwofesè";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Kondisyon Itilizasyon";

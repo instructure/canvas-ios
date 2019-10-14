@@ -50,6 +50,9 @@
 "Assignment reminder" = "Nodyn atgoffa ar gyfer aseiniad";
 
 /* No comment provided by engineer. */
+"Back" = "Yn ôl";
+
+/* No comment provided by engineer. */
 "Cancel" = "Canslo";
 
 /* Percent value is over 100 */
@@ -96,6 +99,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Wedi methu llwytho (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Grades" = "Graddau";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Ni all gradd aseiniad uchel fod yn is na gradd aseiniad isel";

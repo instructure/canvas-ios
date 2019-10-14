@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Tilillä ei ole käyttöehtoja"
   },
-  "act_as_user_d7ef0e48": {
-    "message": "Toimi käyttäjänä"
-  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Lisää muutama suosikkikurssisi ja tee tästä paikasta kotisi."
   },
@@ -269,9 +266,6 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Vaihda { discussionTitle } erilaiseen ryhmitykseen"
   },
-  "change_user_1b7c4f23": {
-    "message": "Change User (Vaihda käyttäjää)"
-  },
   "choose_color_11148181": {
     "message": "Valitse { color }"
   },
@@ -307,9 +301,6 @@
   },
   "color_a363e1b0": {
     "message": "Väri"
-  },
-  "color_overlay_fb5ecce7": {
-    "message": "Värin päällys"
   },
   "comment_7ef1428e": {
     "message": "Kommentti"
@@ -410,6 +401,12 @@
   "creative_commons_license_ba94fd4d": {
     "message": "Creative Commons -lisenssi"
   },
+  "current_grade_6d0b8ef7": {
+    "message": "Kurssin arvosana"
+  },
+  "current_grade_grade_5b083a30": {
+    "message": "Kurssin arvosana { grade }"
+  },
   "customize_course_eefa9c21": {
     "message": "Mukauta kurssi"
   },
@@ -472,9 +469,6 @@
   },
   "details_98a31b68": {
     "message": "Lisätiedot"
-  },
-  "developer_menu_1e80da35": {
-    "message": "Sovelluskehittäjän valikko"
   },
   "discussion_details_5728ea3d": {
     "message": "Keskustelun tiedot"
@@ -868,9 +862,6 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Lukitse kysymykset vastaamisen jälkeen"
-  },
-  "log_out_379ba28a": {
-    "message": "Kirjaudu ulos"
   },
   "long_description_7d89285c": {
     "message": "Pitkä kuvaus"
@@ -1406,9 +1397,6 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Näytä oikeat vastaukset ensin"
   },
-  "show_grades_8680e38e": {
-    "message": "Näytä arvosanat"
-  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Näytä yksi kysymys kerrallaan"
   },
@@ -1435,9 +1423,6 @@
   },
   "start_recording_189496b9": {
     "message": "Aloita nauhoitus"
-  },
-  "stop_act_as_user_4f2a4f22": {
-    "message": "Lopeta toimiminen käyttäjänä"
   },
   "stop_playing_audio_96aed3bc": {
     "message": "Lopeta äänen toisto"
@@ -1515,9 +1500,6 @@
     "message": "Sinivihreä"
   },
   "terms_of_use_62ee73ad": {
-    "message": "Käyttöehdot"
-  },
-  "terms_of_use_6542769b": {
     "message": "Käyttöehdot"
   },
   "text_color_colorhex_62e206a5": {
@@ -1790,9 +1772,6 @@
   },
   "view_responses_d2874266": {
     "message": "Tarkastele vastauksia"
-  },
-  "visit_the_canvas_guides_7328b93f": {
-    "message": "Käy Canvas-oppaissa"
   },
   "welcome_73d18b4d": {
     "message": "Tervetuloa!"
