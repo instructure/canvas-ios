@@ -21,19 +21,20 @@ import XCTest
 class XCTestCaseTests: XCTestCase {
 
     func testDrainMainQueueDrainsNestedAsyncs() {
-        var allNestsCalled = false
-        DispatchQueue.main.async {
-            usleep(100)
+        for _ in 0..<10 {
+            var allNestsCalled = false
             DispatchQueue.main.async {
-                usleep(100)
+                usleep(10)
                 DispatchQueue.main.async {
-                    usleep(100)
-                    allNestsCalled = true
+                    usleep(10)
+                    DispatchQueue.main.async {
+                        usleep(10)
+                        allNestsCalled = true
+                    }
                 }
             }
+            drainMainQueue()
+            XCTAssertTrue(allNestsCalled)
         }
-
-        drainMainQueue()
-        XCTAssertTrue(allNestsCalled)
     }
 }
