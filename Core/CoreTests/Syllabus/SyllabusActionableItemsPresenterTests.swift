@@ -60,13 +60,6 @@ class SyllabusActionableItemsPresenterTests: CoreTestCase {
         XCTAssertEqual(presenter.calendarEvents.useCase.context.id, presenter.courseID)
     }
 
-    func testLoadCourse() {
-        let course = Course.make()
-        presenter.course.eventHandler()
-
-        XCTAssertEqual(resultingSubtitle, course.name)
-    }
-
     func testLoadColors() {
         let course = Course.make()
         Color.make(canvasContextID: course.canvasContextID)
@@ -96,18 +89,9 @@ class SyllabusActionableItemsPresenterTests: CoreTestCase {
         XCTAssertEqual(models[0].title, calendarEvent.title)
     }
 
-    func testViewIsReady() {
-        presenter.viewIsReady()
-        let colorStore = presenter.color as! TestStore
-        let courseStore = presenter.course as! TestStore
-        let assignmentsStore = presenter.assignments as! TestStore
-        let calendarStore = presenter.calendarEvents as! TestStore
-        wait(for: [colorStore.refreshExpectation, courseStore.refreshExpectation, assignmentsStore.exhaustExpectation, calendarStore.exhaustExpectation], timeout: 0.1)
-    }
-
     func testSelect() {
         let htmlURL = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
-        let router = env.router as? TestRouter
+        let router = environment.router as? TestRouter
         XCTAssertNoThrow(presenter.select(htmlURL, from: UIViewController()))
         XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(htmlURL))
     }
