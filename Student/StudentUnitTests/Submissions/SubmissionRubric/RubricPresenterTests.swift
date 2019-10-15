@@ -131,7 +131,13 @@ class RubricPresenterTests: PersistenceTestCase {
         let colorsStore = presenter.colors as! TestStore
         let coursesStore = presenter.courses as! TestStore
 
-        wait(for: [assignmentsStore.refreshExpectation, submissionsStore.refreshExpectation, rubricsStore.refreshExpectation, colorsStore.refreshExpectation, coursesStore.refreshExpectation], timeout: 0.1)
+        wait(for: [
+            assignmentsStore.refreshExpectation,
+            submissionsStore.refreshExpectation,
+            rubricsStore.refreshExpectation,
+            colorsStore.refreshExpectation,
+            coursesStore.refreshExpectation,
+        ], timeout: 0.1)
     }
 
     func testViewEmptyState() {
