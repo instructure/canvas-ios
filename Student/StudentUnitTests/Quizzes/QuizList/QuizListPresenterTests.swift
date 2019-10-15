@@ -57,7 +57,7 @@ class QuizListPresenterTests: PersistenceTestCase {
 
     func testLoadCourse() {
         let c = Course.make()
-        Color.make(canvasContextID: c.canvasContextID)
+        ContextColor.make(canvasContextID: c.canvasContextID)
 
         presenter.course.eventHandler()
         XCTAssertEqual(resultingSubtitle, c.name)
