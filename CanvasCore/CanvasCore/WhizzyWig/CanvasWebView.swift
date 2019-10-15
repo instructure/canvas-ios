@@ -233,10 +233,11 @@ public class CanvasWebView: WKWebView {
 
     /// Reloads `self` with an authenticated url for `src`
     @objc func loadFrame(src: String) {
+        let url = URL(string: src)
         let request = GetWebSessionRequest(to: url)
         AppEnvironment.shared.api.makeRequest(request) { [weak self] response, urlResponse, error in
             DispatchQueue.main.async {
-                guard let response = response, error != nil else {
+                guard let response = response else {
                     self?.onError?(error ?? NSError.internalError())
                     return
                 }
