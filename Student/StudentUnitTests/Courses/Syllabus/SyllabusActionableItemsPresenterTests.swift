@@ -107,22 +107,21 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
     }
 
     func testSelect() {
-        let a = Assignment.make()
+        let htmlURL = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         let router = env.router as? TestRouter
-        XCTAssertNoThrow(presenter.select(a.htmlURL, from: UIViewController()))
-        XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(a.htmlURL))
+        XCTAssertNoThrow(presenter.select(htmlURL, from: UIViewController()))
+        XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(htmlURL))
     }
 
     func testFormattedDateNoDueDate() {
-        let a = Assignment.make()
-        let str = presenter.formattedDueDate(a.dueAt)
+        let str = presenter.formattedDueDate(nil)
         XCTAssertEqual(str, "No Due Date")
     }
 
     func testFormattedDate() {
         NSTimeZone.default = NSTimeZone(forSecondsFromGMT: 0) as TimeZone
-        let a = Assignment.make(from: .make(due_at: Date(fromISOString: "2018-05-15T20:00:00Z")))
-        let str = presenter.formattedDueDate(a.dueAt)
+        let date = Date(fromISOString: "2018-05-15T20:00:00Z")
+        let str = presenter.formattedDueDate(date)
         XCTAssertEqual(str, "May 15, 2018 at 8:00 PM")
     }
 
