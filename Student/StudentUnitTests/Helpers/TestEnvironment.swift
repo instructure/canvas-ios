@@ -22,17 +22,6 @@ import TestsFoundation
 import CoreData
 import XCTest
 
-//func testEnvironment() -> AppEnvironment {
-//    let env = AppEnvironment.shared
-//    env.api = URLSessionAPI(loginSession: .make(), urlSession: MockURLSession())
-//    env.database = singleSharedTestDatabase
-//    env.globalDatabase = singleSharedTestDatabase
-//    env.router = TestRouter()
-//    env.logger = TestLogger()
-//
-//    return env
-//}
-
 public class TestEnvironment: AppEnvironment {
     override public init() {
         super.init()

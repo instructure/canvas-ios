@@ -102,7 +102,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
         let usersStore = presenter.users as! TestStore
         let courseStore = presenter.course as! TestStore
 
-        wait(for: [colorsStore.refreshExpectation, usersStore.exhaustExpectation, courseStore.refreshExpectation], timeout: 0.1)
+        wait(for: [colorsStore.refreshExpectation, usersStore.refreshExpectation, courseStore.refreshExpectation], timeout: 0.1)
     }
 
     func testViewIsReadyGroup() {
@@ -112,7 +112,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
         let usersStore = presenter.users as! TestStore
         let groupStore = presenter.group as! TestStore
 
-        wait(for: [colorsStore.refreshExpectation, usersStore.exhaustExpectation, groupStore.refreshExpectation], timeout: 0.1)
+        wait(for: [colorsStore.refreshExpectation, usersStore.refreshExpectation, groupStore.refreshExpectation], timeout: 0.1)
      }
 
     func testSendsToContextCard() {
