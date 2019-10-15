@@ -132,8 +132,19 @@ public struct XCUIElementQueryWrapper: Element {
     }
 
     public var exists: Bool {
-        app.waitForSnapshot()
-        return rawElement.exists
+        let timeout: TimeInterval = 30
+
+        let deadline = Date().addingTimeInterval(timeout)
+
+        while Date() < deadline {
+            do {
+                return try query.allMatchingSnapshots().count > 0
+            } catch {
+                usleep(200)
+            }
+        }
+        XCTFail("Failed to get snapshot within \(timeout) seconds")
+        return false
     }
 
     public var elementType: XCUIElement.ElementType { return rawElement.elementType }

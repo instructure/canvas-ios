@@ -19,7 +19,7 @@
 import Foundation
 
 public class GetGroup: APIUseCase {
-    let groupID: String
+    public let groupID: String
     public typealias Model = Group
 
     public var request: GetGroupRequest {

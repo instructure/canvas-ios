@@ -36,7 +36,9 @@ class CoursesPresenterTests: SubmitAssignmentTests, CoursesView {
     }
 
     func testCallback() {
-        Course.make(from: .make(name: "Selected Course"))
+        api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 10), value: [
+            .make(name: "Selected Course"),
+        ])
         let expectation = XCTestExpectation(description: "callback was called")
         var course: Course?
         let presenter = CoursesPresenter(environment: env, selectedCourseID: nil) { c in

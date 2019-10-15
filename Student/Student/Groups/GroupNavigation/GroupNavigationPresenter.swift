@@ -31,6 +31,10 @@ class GroupNavigationPresenter {
     var context: Context
     let env: AppEnvironment
 
+    lazy var color = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.update()
+    }
+
     lazy var groups: Store<GetGroup> = {
         let useCase = GetGroup(groupID: context.id)
         return self.env.subscribe(useCase) { [weak self] in
@@ -53,7 +57,8 @@ class GroupNavigationPresenter {
 
     func viewIsReady() {
         groups.refresh()
-        tabs.refresh()
+        tabs.exhaust(while: { _ in true })
+        color.refresh()
     }
 
     func update() {

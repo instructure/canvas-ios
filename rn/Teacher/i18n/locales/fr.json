@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Le compte n'a pas de Conditions d'utilisation"
   },
-  "act_as_user_d7ef0e48": {
-    "message": "Agir en tant qu'utilisateur"
-  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Ajouter quelques-uns de vos cours préférés pour personnaliser cet endroit à votre goût"
   },
@@ -269,9 +266,6 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Déplacer { discussionTitle } vers un groupement différent"
   },
-  "change_user_1b7c4f23": {
-    "message": "Changer d'utilisateur"
-  },
   "choose_color_11148181": {
     "message": "Choisir { color }"
   },
@@ -307,9 +301,6 @@
   },
   "color_a363e1b0": {
     "message": "Couleur"
-  },
-  "color_overlay_fb5ecce7": {
-    "message": "Surimpression couleurs"
   },
   "comment_7ef1428e": {
     "message": "Commenter"
@@ -410,6 +401,12 @@
   "creative_commons_license_ba94fd4d": {
     "message": "Licence Creative Commons"
   },
+  "current_grade_6d0b8ef7": {
+    "message": "Note actuelle"
+  },
+  "current_grade_grade_5b083a30": {
+    "message": "Note actuelle { grade }"
+  },
   "customize_course_eefa9c21": {
     "message": "Personnaliser cours"
   },
@@ -472,9 +469,6 @@
   },
   "details_98a31b68": {
     "message": "Détails"
-  },
-  "developer_menu_1e80da35": {
-    "message": "Menu Développeur"
   },
   "discussion_details_5728ea3d": {
     "message": "Détails de la discussion"
@@ -868,9 +862,6 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Verrouiller les questions après les réponses"
-  },
-  "log_out_379ba28a": {
-    "message": "Se déconnecter"
   },
   "long_description_7d89285c": {
     "message": "Description longue"
@@ -1406,9 +1397,6 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Montrer les réponses correctes à"
   },
-  "show_grades_8680e38e": {
-    "message": "Afficher les notes"
-  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Montrer une question à la fois"
   },
@@ -1435,9 +1423,6 @@
   },
   "start_recording_189496b9": {
     "message": "Démarrer l’enregistrement"
-  },
-  "stop_act_as_user_4f2a4f22": {
-    "message": "Arrêt Agir en tant qu'utilisateur"
   },
   "stop_playing_audio_96aed3bc": {
     "message": "Arrêter la lecture audio"
@@ -1515,9 +1500,6 @@
     "message": "Sarcelle"
   },
   "terms_of_use_62ee73ad": {
-    "message": "Conditions d'utilisation"
-  },
-  "terms_of_use_6542769b": {
     "message": "Conditions d'utilisation"
   },
   "text_color_colorhex_62e206a5": {
@@ -1790,9 +1772,6 @@
   },
   "view_responses_d2874266": {
     "message": "Voir les réponses"
-  },
-  "visit_the_canvas_guides_7328b93f": {
-    "message": "Visiter les guides de Canvas"
   },
   "welcome_73d18b4d": {
     "message": "Bienvenue !"

@@ -7,6 +7,12 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* No comment provided by engineer. */
+"%@ out of %@" = "%1$@ / %2$@";
+
+/* No comment provided by engineer. */
+"%@ out of %@ (%@)" = "%1$@ / %2$@ (%3$@)";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "vanhempi";
 
@@ -77,16 +83,37 @@
 "Casual question or suggestion" = "Huoleton kysymys tai ehdotus";
 
 /* No comment provided by engineer. */
+"Change Profile Image" = "Vaihda profiilikuva";
+
+/* No comment provided by engineer. */
+"Change User" = "Vaihda käyttäjää";
+
+/* No comment provided by engineer. */
 "Check network and try again!" = "Tarkasta verkkoyhteys ja yritä uudelleen!";
 
 /* No comment provided by engineer. */
+"Choose Photo" = "Valitse valokuva";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Valitse profiilikuva";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Tyhjennä nauhoitus";
+
+/* No comment provided by engineer. */
+"Close" = "Sulje";
 
 /* No comment provided by engineer. */
 "Close App" = "Sulje sovellus";
 
 /* No comment provided by engineer. */
 "Closed" = "Suljettu";
+
+/* No comment provided by engineer. */
+"Collapse" = "Kutista";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "Värin päällys";
 
 /* No comment provided by engineer. */
 "Comment" = "Kommentti";
@@ -122,6 +149,12 @@
 "Describe the problem" = "Kuvaa ongelma";
 
 /* No comment provided by engineer. */
+"Designer" = "Suunnittelija";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "Sovelluskehittäjän valikko";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Keskustelua koskeva kommentti";
 
 /* No comment provided by engineer. */
@@ -144,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Annettu anteeksi";
+
+/* No comment provided by engineer. */
+"Expand" = "Laajenna";
 
 /* No comment provided by engineer. */
 "External Tool" = "Ulkoinen työkalu";
@@ -224,6 +260,9 @@
 "Italic" = "Kursiivi";
 
 /* No comment provided by engineer. */
+"Late" = "Myöhään";
+
+/* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
@@ -269,10 +308,19 @@
 "Log In Again" = "Kirjaudu uudelleen sisään";
 
 /* No comment provided by engineer. */
+"Log Out" = "Kirjaudu ulos";
+
+/* No comment provided by engineer. */
+"Manage Children" = "Hallitse lapsia";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuaalinen OAuth-sisäänkirjautuminen";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Median nauhoitus";
+
+/* No comment provided by engineer. */
+"Missing" = "Puuttuu";
 
 /* No comment provided by engineer. */
 "N/A" = "Ei sovellettavissa";
@@ -300,6 +348,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ei kiireellinen";
+
+/* No comment provided by engineer. */
+"Observer" = "Havainnoija";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -401,6 +452,9 @@
 "Settings" = "Asetukset";
 
 /* No comment provided by engineer. */
+"Show Grades" = "Näytä arvosanat";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Sivuston pääkäyttäjän kirjautuminen";
 
 /* No comment provided by engineer. */
@@ -416,10 +470,16 @@
 "Start recording" = "Aloita nauhoitus";
 
 /* No comment provided by engineer. */
+"Stop Act as User" = "Lopeta toimiminen käyttäjänä";
+
+/* No comment provided by engineer. */
 "Stop acting as..." = "Lopeta toimimasta käyttäjänä...";
 
 /* No comment provided by engineer. */
 "Stop recording" = "Pysäytä nauhoitus";
+
+/* No comment provided by engineer. */
+"Student" = "Opiskelija";
 
 /* No comment provided by engineer. */
 "Style" = "Tyyli";
@@ -442,8 +502,17 @@
 /* No comment provided by engineer. */
 "Success!" = "Onnistui!";
 
+/* Teacher's Assistant (abbreviated) */
+"TA" = "Apuopettaja";
+
+/* No comment provided by engineer. */
+"Take Photo" = "Ota valokuva";
+
 /* No comment provided by engineer. */
 "Tap here for help." = "Avaa ohje napauttamalla tässä.";
+
+/* No comment provided by engineer. */
+"Teacher" = "Opettaja";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Käyttöehdot";

@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Kontot har inga användarvillkor"
   },
-  "act_as_user_d7ef0e48": {
-    "message": "Agera som användare"
-  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Lägg till några av dina favoritkurser för att göra denna plats ditt hem."
   },
@@ -269,9 +266,6 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Ändra { discussionTitle } till en annan gruppering"
   },
-  "change_user_1b7c4f23": {
-    "message": "Byt användare"
-  },
   "choose_color_11148181": {
     "message": "Välj { color }"
   },
@@ -307,9 +301,6 @@
   },
   "color_a363e1b0": {
     "message": "Färg"
-  },
-  "color_overlay_fb5ecce7": {
-    "message": "Färgöverlagring"
   },
   "comment_7ef1428e": {
     "message": "Kommentera"
@@ -410,6 +401,12 @@
   "creative_commons_license_ba94fd4d": {
     "message": "Creative Commons licens"
   },
+  "current_grade_6d0b8ef7": {
+    "message": "Aktuell bedömning"
+  },
+  "current_grade_grade_5b083a30": {
+    "message": "Aktuell bedömning { grade }"
+  },
   "customize_course_eefa9c21": {
     "message": "Anpassa kurs"
   },
@@ -472,9 +469,6 @@
   },
   "details_98a31b68": {
     "message": "Detaljer"
-  },
-  "developer_menu_1e80da35": {
-    "message": "Utvecklarmeny"
   },
   "discussion_details_5728ea3d": {
     "message": "Diskussiondetaljer"
@@ -868,9 +862,6 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Lås frågor efter svar har getts"
-  },
-  "log_out_379ba28a": {
-    "message": "Logga ut"
   },
   "long_description_7d89285c": {
     "message": "Lång beskrivning"
@@ -1406,9 +1397,6 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Visa rätt svar kl."
   },
-  "show_grades_8680e38e": {
-    "message": "Visa bedömningar"
-  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Visa en fråga åt gången"
   },
@@ -1435,9 +1423,6 @@
   },
   "start_recording_189496b9": {
     "message": "Påbörja inspelning"
-  },
-  "stop_act_as_user_4f2a4f22": {
-    "message": "Sluta uppträda som användare"
   },
   "stop_playing_audio_96aed3bc": {
     "message": "Stoppa uppspelning av ljud"
@@ -1515,9 +1500,6 @@
     "message": "Teal"
   },
   "terms_of_use_62ee73ad": {
-    "message": "Användarvillkor"
-  },
-  "terms_of_use_6542769b": {
     "message": "Användarvillkor"
   },
   "text_color_colorhex_62e206a5": {
@@ -1790,9 +1772,6 @@
   },
   "view_responses_d2874266": {
     "message": "Visa svar"
-  },
-  "visit_the_canvas_guides_7328b93f": {
-    "message": "Besök Canvas Guides"
   },
   "welcome_73d18b4d": {
     "message": "Välkommen!"

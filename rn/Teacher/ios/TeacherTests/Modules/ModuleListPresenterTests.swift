@@ -267,50 +267,6 @@ class ModuleListPresenterTests: TeacherTestCase {
         XCTAssertTrue(presenter.isSectionExpanded(1))
     }
 
-    func testGetsNextPage() {
-        let page1Request = GetModulesRequest(courseID: "1")
-        let page1Response = [
-            APIModule.make(
-                id: "1",
-                position: 1
-            ),
-        ]
-        let prev = "https://cgnuonline-eniversity.edu/api/v1/courses/1/modules"
-        let curr = "https://cgnuonline-eniversity.edu/api/v1/courses/1/modules?page=2"
-        let next = "https://cgnuonline-eniversity.edu/api/v1/courses/1/modules?page=3"
-        let headers = [
-            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
-        ]
-        let urlResponse = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
-        api.mock(page1Request, value: page1Response, response: urlResponse, error: nil)
-        let page2Request = page1Request.getNext(from: urlResponse)!
-        let page2Response = [
-            APIModule.make(
-                id: "2",
-                position: 2
-            ),
-        ]
-        api.mock(page2Request, value: page2Response, response: nil, error: nil)
-        var reloaded = expectation(description: "first page")
-        reloaded.assertForOverFulfill = false
-        view.onReloadModules = {
-            if self.presenter.modules.count == 1 {
-                reloaded.fulfill()
-            }
-        }
-        presenter.viewIsReady()
-        wait(for: [reloaded], timeout: 9)
-        reloaded = expectation(description: "second page")
-        reloaded.assertForOverFulfill = false
-        view.onReloadModules = {
-            if self.presenter.modules.count == 2 {
-                reloaded.fulfill()
-            }
-        }
-        presenter.getNextPage()
-        wait(for: [reloaded], timeout: 9)
-    }
-
     func testTappedSection() {
         let loaded = expectation(description: "loaded module")
         loaded.assertForOverFulfill = false

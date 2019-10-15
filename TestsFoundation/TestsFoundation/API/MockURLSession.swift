@@ -146,7 +146,7 @@ public class MockURLSession: URLSession {
         accessToken: String? = nil,
         taskID: Int = 0
     ) {
-        mock(requestable, value: nil, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
+        mock(requestable, value: nil, response: response, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
     }
 
     public static func mock<R: APIRequestable>(

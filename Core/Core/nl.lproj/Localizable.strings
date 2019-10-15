@@ -7,6 +7,12 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* No comment provided by engineer. */
+"%@ out of %@" = "%1$@ van de %2$@";
+
+/* No comment provided by engineer. */
+"%@ out of %@ (%@)" = "%1$@ van de %2$@ (%3$@)";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "een ouder";
 
@@ -77,16 +83,37 @@
 "Casual question or suggestion" = "Informele vraag of suggestie";
 
 /* No comment provided by engineer. */
+"Change Profile Image" = "Profielafbeelding veranderen";
+
+/* No comment provided by engineer. */
+"Change User" = "Gebruiker wijzigen";
+
+/* No comment provided by engineer. */
 "Check network and try again!" = "Controleer het netwerk en probeer het nogmaals!";
 
 /* No comment provided by engineer. */
+"Choose Photo" = "Foto kiezen";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Profielfoto kiezen";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Opname wissen";
+
+/* No comment provided by engineer. */
+"Close" = "Sluiten";
 
 /* No comment provided by engineer. */
 "Close App" = "App sluiten";
 
 /* No comment provided by engineer. */
 "Closed" = "Gesloten";
+
+/* No comment provided by engineer. */
+"Collapse" = "Samenvouwen";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "Kleurenoverlay";
 
 /* No comment provided by engineer. */
 "Comment" = "Opmerking";
@@ -122,6 +149,12 @@
 "Describe the problem" = "Beschrijf het probleem";
 
 /* No comment provided by engineer. */
+"Designer" = "Ontwerper";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "Menu Ontwikkelaar";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Opmerking bij discussie";
 
 /* No comment provided by engineer. */
@@ -144,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Vrijgesteld";
+
+/* No comment provided by engineer. */
+"Expand" = "Uitvouwen";
 
 /* No comment provided by engineer. */
 "External Tool" = "Externe tool";
@@ -224,6 +260,9 @@
 "Italic" = "Cursief";
 
 /* No comment provided by engineer. */
+"Late" = "Te laat";
+
+/* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
@@ -269,10 +308,19 @@
 "Log In Again" = "Opnieuw aanmelden";
 
 /* No comment provided by engineer. */
+"Log Out" = "Afmelden";
+
+/* No comment provided by engineer. */
+"Manage Children" = "Kinderen beheren";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Handmatige OAuth Login";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Media opnames";
+
+/* No comment provided by engineer. */
+"Missing" = "Ontbrekend";
 
 /* No comment provided by engineer. */
 "N/A" = "N.v.t.";
@@ -300,6 +348,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Niet urgent";
+
+/* No comment provided by engineer. */
+"Observer" = "Waarnemer";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -401,6 +452,9 @@
 "Settings" = "Instellingen";
 
 /* No comment provided by engineer. */
+"Show Grades" = "Cijfers tonen";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Aanmelding sitebeheer";
 
 /* No comment provided by engineer. */
@@ -416,10 +470,16 @@
 "Start recording" = "Opname starten";
 
 /* No comment provided by engineer. */
+"Stop Act as User" = "Stop met optreden als gebruiker";
+
+/* No comment provided by engineer. */
 "Stop acting as..." = "Stop met optreden als...";
 
 /* No comment provided by engineer. */
 "Stop recording" = "Opname stoppen";
+
+/* No comment provided by engineer. */
+"Student" = "Cursist";
 
 /* No comment provided by engineer. */
 "Style" = "Stijl";
@@ -442,8 +502,17 @@
 /* No comment provided by engineer. */
 "Success!" = "Gelukt!";
 
+/* Teacher's Assistant (abbreviated) */
+"TA" = "Onderwijsassistent";
+
+/* No comment provided by engineer. */
+"Take Photo" = "Foto maken";
+
 /* No comment provided by engineer. */
 "Tap here for help." = "Tik hier voor hulp.";
+
+/* No comment provided by engineer. */
+"Teacher" = "Docent";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Gebruiksvoorwaarden";

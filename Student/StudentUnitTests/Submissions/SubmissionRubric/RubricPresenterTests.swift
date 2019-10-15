@@ -37,10 +37,22 @@ class RubricPresenterTests: PersistenceTestCase {
         presenter = RubricPresenter(env: env, view: self, courseID: courseID, assignmentID: assignmentID, userID: userID)
     }
 
-    func testViewIsReady() {
+    func testUseCasesSetupProperly() {
+        XCTAssertEqual(presenter.assignments.useCase.courseID, presenter.courseID)
+        XCTAssertEqual(presenter.assignments.useCase.assignmentID, presenter.assignmentID)
+        XCTAssertEqual(presenter.assignments.useCase.include, [.submission])
+
+        XCTAssertEqual(presenter.submissions.useCase.context.canvasContextID, "course_\(presenter.courseID)")
+        XCTAssertEqual(presenter.submissions.useCase.assignmentID, presenter.assignmentID)
+        XCTAssertEqual(presenter.submissions.useCase.userID, presenter.userID)
+
+        XCTAssertEqual(presenter.courses.useCase.courseID, presenter.courseID)
+    }
+
+    func setupData() -> [RubricViewModel] {
+        Assignment.make()
         Course.make()
         ContextColor.make()
-        Assignment.make()
         let rubric = Rubric.make(from: .make(id: "1", ratings: [
             .make(id: "1", points: 10, position: 1),
             .make(id: "2", points: 25, position: 2),
@@ -49,8 +61,7 @@ class RubricPresenterTests: PersistenceTestCase {
             "1": .make(points: 10.0, rating_id: "1"),
             "2": .make(points: 25.0, rating_id: "2"),
         ]))
-
-        let expected: [RubricViewModel] = [
+        return [
             RubricViewModel(
                 id: "1",
                 title: "Effort",
@@ -65,16 +76,72 @@ class RubricPresenterTests: PersistenceTestCase {
                 hideRubricPoints: false
             ),
         ]
+    }
 
-        presenter.viewIsReady()
+    func testLoadAssignments() {
+        let expected = setupData()
 
+        presenter.assignments.eventHandler()
         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
         XCTAssertEqual(models.count, expected.count)
         XCTAssertEqual(models.first, expected.first)
     }
 
-    func testViewEmptyState() {
+    func testLoadSubmissions() {
+         let expected = setupData()
+
+         presenter.submissions.eventHandler()
+         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
+         XCTAssertEqual(models.count, expected.count)
+         XCTAssertEqual(models.first, expected.first)
+    }
+
+    func testLoadRubrics() {
+         let expected = setupData()
+
+         presenter.rubrics.eventHandler()
+         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
+         XCTAssertEqual(models.count, expected.count)
+         XCTAssertEqual(models.first, expected.first)
+    }
+
+    func testLoadColors() {
+         let expected = setupData()
+
+         presenter.colors.eventHandler()
+         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
+         XCTAssertEqual(models.count, expected.count)
+         XCTAssertEqual(models.first, expected.first)
+    }
+
+    func testLoadCourses() {
+         let expected = setupData()
+
+         presenter.courses.eventHandler()
+         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
+         XCTAssertEqual(models.count, expected.count)
+         XCTAssertEqual(models.first, expected.first)
+    }
+
+    func testViewIsReady() {
         presenter.viewIsReady()
+        let assignmentsStore = presenter.assignments as! TestStore
+        let submissionsStore = presenter.submissions as! TestStore
+        let rubricsStore = presenter.rubrics as! TestStore
+        let colorsStore = presenter.colors as! TestStore
+        let coursesStore = presenter.courses as! TestStore
+
+        wait(for: [
+            assignmentsStore.refreshExpectation,
+            submissionsStore.refreshExpectation,
+            rubricsStore.refreshExpectation,
+            colorsStore.refreshExpectation,
+            coursesStore.refreshExpectation,
+        ], timeout: 0.1)
+    }
+
+    func testViewEmptyState() {
+        presenter.update()
         XCTAssertTrue(showEmptyStateFlag)
     }
 
@@ -107,7 +174,7 @@ class RubricPresenterTests: PersistenceTestCase {
             ),
         ]
 
-        presenter.viewIsReady()
+        presenter.update()
 
         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
         XCTAssertEqual(models.count, expected.count)

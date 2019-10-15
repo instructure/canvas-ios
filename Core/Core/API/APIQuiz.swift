@@ -95,6 +95,10 @@ public struct GetQuizzesRequest: APIRequestable {
 
     let courseID: String
 
+    public init (courseID: String) {
+        self.courseID = courseID
+    }
+
     public var path: String {
         let context = ContextModel(.course, id: courseID)
         return "\(context.pathComponent)/quizzes?per_page=100"

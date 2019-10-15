@@ -20,13 +20,36 @@ import Foundation
 @testable import Core
 import TestsFoundation
 import CoreData
+import XCTest
 
-func testEnvironment() -> AppEnvironment {
-    let env = AppEnvironment.shared
-    env.api = URLSessionAPI(loginSession: .make(), urlSession: MockURLSession())
-    env.database = singleSharedTestDatabase
-    env.globalDatabase = singleSharedTestDatabase
-    env.router = TestRouter()
-    env.logger = TestLogger()
-    return env
+public class TestEnvironment: AppEnvironment {
+    override public init() {
+        super.init()
+        self.api = URLSessionAPI(loginSession: .make(), urlSession: MockURLSession())
+        self.database = singleSharedTestDatabase
+        self.globalDatabase = singleSharedTestDatabase
+        self.router = TestRouter()
+        self.logger = TestLogger()
+    }
+
+    override public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler) -> Store<U> where U: UseCase {
+        return TestStore(env: self, useCase: useCase, eventHandler: callback)
+    }
+}
+
+public class TestStore<U: UseCase>: Store<U> {
+    let refreshExpectation = XCTestExpectation(description: "Refresh")
+    override public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) {
+        refreshExpectation.fulfill()
+    }
+
+    let exhaustExpectation = XCTestExpectation(description: "Exhaust")
+    override public func exhaust(while condition: @escaping (U.Response) -> Bool) {
+        exhaustExpectation.fulfill()
+    }
+
+    let getNextPageExpectation = XCTestExpectation(description: "Next Page")
+    override public func getNextPage(_ callback: ((U.Response?) -> Void)? = nil) {
+        getNextPageExpectation.fulfill()
+    }
 }
