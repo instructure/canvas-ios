@@ -44,6 +44,7 @@ public class SyllabusActionableItemsViewController: UITableViewController {
         super.viewDidLoad()
         tableView.register(SyllabusActionableItemsCell.self, forCellReuseIdentifier: String(describing: SyllabusActionableItemsCell.self))
         presenter?.viewIsReady()
+        tableView.showsVerticalScrollIndicator = false
     }
 
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
