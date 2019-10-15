@@ -47,7 +47,7 @@ class PeopleListPresenter {
 
     func viewIsReady() {
         colors.refresh()
-        users.refresh()
+        users.exhaust(while: { _ in true })
 
         if context.contextType == .course {
             course.refresh()

@@ -43,28 +43,40 @@ class AssignmentListPresenterTests: PersistenceTestCase {
         presenter = AssignmentListPresenter(env: env, view: self, courseID: "1")
     }
 
-    func testLoadAssignments() {
-        api.mock(GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [], querySize: 100), value: [.make()])
+    func testUseCasesSetupProperly() {
+        XCTAssertEqual(presenter.course.useCase.courseID, presenter.courseID)
 
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 5)
+        XCTAssertEqual(presenter.assignments.useCase.courseID, presenter.courseID)
+        XCTAssertEqual(presenter.assignments.useCase.sort, .position)
+    }
+
+    func testLoadColor() {
+        let course = Course.make()
+        Color.make(canvasContextID: course.canvasContextID)
+        presenter.color.eventHandler()
+        XCTAssertEqual(resultingBackgroundColor, UIColor.red)
+    }
+
+    func testLoadCourse() {
+        let course = Course.make()
+        presenter.course.eventHandler()
+        XCTAssertEqual(resultingSubtitle, course.name)
+    }
+
+    func testLoadAssignments() {
+        Assignment.make()
+        presenter.assignments.eventHandler()
+        wait(for: [expectation], timeout: 0.1)
         XCTAssertEqual(presenter.assignments.count, 1)
     }
 
-    func testLoadCourseColorsAndTitle() {
-        //  given
-        let expected = Course.make()
-        let expectedColor = Color.make()
-
-        //  when
+    func testViewIsReady() {
         presenter.viewIsReady()
-        XCTAssertEqual(presenter.course.count, 1)
-        wait(for: [expectation], timeout: 0.4)
-        presenter.loadColor()
+        let colorStore = presenter.color as! TestStore
+        let courseStore = presenter.course as! TestStore
+        let assignmentsStore = presenter.assignments as! TestStore
 
-        //  then
-        XCTAssertEqual(resultingBackgroundColor, expectedColor.color)
-        XCTAssertEqual(resultingSubtitle, expected.name)
+        wait(for: [colorStore.refreshExpectation, courseStore.refreshExpectation, assignmentsStore.exhaustExpectation], timeout: 0.1)
     }
 
     func testSelect() {
@@ -77,9 +89,7 @@ class AssignmentListPresenterTests: PersistenceTestCase {
 
 extension AssignmentListPresenterTests: AssignmentListViewProtocol {
     func update() {
-        if presenter.course.pending == false && presenter.assignments.pending == false {
-            expectation.fulfill()
-        }
+        expectation.fulfill()
     }
 
     var navigationController: UINavigationController? {

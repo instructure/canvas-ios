@@ -51,31 +51,59 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
         super.tearDown()
     }
 
-    func testUseCaseFetchesData() {
-        api.mock(GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [], querySize: 100), value: [.make(name: "Assignment One")])
-        api.mock(GetCalendarEventsRequest(context: ContextModel(.course, id: "1")), value: [.make(title: "Calendar Event")])
+    func testUseCasesSetupProperly() {
+        XCTAssertEqual(presenter.course.useCase.courseID, presenter.courseID)
 
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 5)
+        XCTAssertEqual(presenter.assignments.useCase.courseID, presenter.courseID)
+        XCTAssertEqual(presenter.assignments.useCase.sort, .dueAt)
 
-        XCTAssertEqual(presenter.assignments.first?.name, "Assignment One")
-        XCTAssertEqual(presenter.calendarEvents.first?.title, "Calendar Event")
+        XCTAssertEqual(presenter.calendarEvents.useCase.context.contextType, .course)
+        XCTAssertEqual(presenter.calendarEvents.useCase.context.id, presenter.courseID)
     }
 
-    func testLoadCourseColorsAndTitle() {
-        //  given
-        let expected = Course.make()
-        let expectedColor = Color.make()
+    func testLoadCourse() {
+        let course = Course.make()
+        presenter.course.eventHandler()
 
-        //  when
+        XCTAssertEqual(resultingSubtitle, course.name)
+    }
+
+    func testLoadColors() {
+        let course = Course.make()
+        Color.make(canvasContextID: course.canvasContextID)
+
+        presenter.color.eventHandler()
+
+        XCTAssertEqual(resultingBackgroundColor, UIColor.red)
+    }
+
+    func testLoadAssignments() {
+        let assignment = Assignment.make()
+        // the update method on the view is only called if both events fire twice
+        presenter.assignments.eventHandler()
+        presenter.assignments.eventHandler()
+        presenter.calendarEvents.eventHandler()
+        presenter.calendarEvents.eventHandler()
+        XCTAssertEqual(models[0].title, assignment.name)
+    }
+
+    func testLoadCalendarEvents() {
+        let calendarEvent = CalendarEventItem.make()
+        // the update method on the view is only called if both events fire twice
+        presenter.assignments.eventHandler()
+        presenter.assignments.eventHandler()
+        presenter.calendarEvents.eventHandler()
+        presenter.calendarEvents.eventHandler()
+        XCTAssertEqual(models[0].title, calendarEvent.title)
+    }
+
+    func testViewIsReady() {
         presenter.viewIsReady()
-        XCTAssertEqual(presenter.course.count, 1)
-        wait(for: [expectation], timeout: 0.4)
-        presenter.loadColor()
-
-        //  then
-        XCTAssertEqual(resultingBackgroundColor, expectedColor.color)
-        XCTAssertEqual(resultingSubtitle, expected.name)
+        let colorStore = presenter.color as! TestStore
+        let courseStore = presenter.course as! TestStore
+        let assignmentsStore = presenter.assignments as! TestStore
+        let calendarStore = presenter.calendarEvents as! TestStore
+        wait(for: [colorStore.refreshExpectation, courseStore.refreshExpectation, assignmentsStore.exhaustExpectation, calendarStore.exhaustExpectation], timeout: 0.1)
     }
 
     func testSelect() {
@@ -99,21 +127,19 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
     }
 
     func testSortOrder() {
-        api.mock(GetAssignmentsRequest(courseID: "1", orderBy: .position, include: [], querySize: 100), value: [
-            .make(id: "1", name: "a", due_at: Date(fromISOString: "2017-05-15T20:00:00Z")),
-            .make(id: "2", name: "b", due_at: Date(fromISOString: "2018-05-15T20:00:00Z")),
-            .make(id: "3", name: "c", due_at: nil),
-        ])
+        Assignment.make(from: .make(id: "1", name: "a", due_at: Date(fromISOString: "2017-05-15T20:00:00Z")))
+        Assignment.make(from: .make(id: "2", name: "b", due_at: Date(fromISOString: "2018-05-15T20:00:00Z")))
+        Assignment.make(from: .make(id: "3", name: "c", due_at: nil))
 
-        api.mock(GetCalendarEventsRequest(context: ContextModel(.course, id: "1")), value: [
-            .make(id: "1", title: "cA", end_at: Date(fromISOString: "2016-05-15T20:00:00Z")),
-            .make(id: "2", title: "cB", end_at: Date(fromISOString: "2017-06-15T20:00:00Z")),
-            .make(id: "3", title: "cC", end_at: nil),
-        ])
+        CalendarEventItem.make(from: .make(id: "1", title: "cA", end_at: Date(fromISOString: "2016-05-15T20:00:00Z")))
+        CalendarEventItem.make(from: .make(id: "2", title: "cB", end_at: Date(fromISOString: "2017-06-15T20:00:00Z")))
+        CalendarEventItem.make(from: .make(id: "3", title: "cC", end_at: nil))
 
-        presenter.viewIsReady()
-
-        wait(for: [expectation], timeout: 5)
+        // the update method on the view is only called if both events fire twice
+        presenter.assignments.eventHandler()
+        presenter.assignments.eventHandler()
+        presenter.calendarEvents.eventHandler()
+        presenter.calendarEvents.eventHandler()
 
         let order = models.map { $0.title }
         XCTAssertEqual(order, ["cA", "a", "cB", "b", "c", "cC"])
@@ -123,9 +149,6 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
 extension SyllabusActionableItemsPresenterTests: SyllabusActionableItemsViewProtocol {
     func update(models: [SyllabusActionableItemsViewController.ViewModel]) {
         self.models = models
-        if presenter.course.pending == false && presenter.assignments.pending == false && presenter.calendarEvents.pending == false {
-            expectation.fulfill()
-        }
     }
 
     var navigationController: UINavigationController? {

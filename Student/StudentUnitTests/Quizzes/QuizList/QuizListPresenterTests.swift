@@ -42,6 +42,34 @@ class QuizListPresenterTests: PersistenceTestCase {
         presenter = QuizListPresenter(env: env, view: self, courseID: "1")
     }
 
+    func testUseCasesSetupProperly() {
+        XCTAssertEqual(presenter.course.useCase.courseID, presenter.courseID)
+        XCTAssertEqual(presenter.quizzes.useCase.courseID, presenter.courseID)
+    }
+
+    func testLoadColors() {
+        let c = Course.make()
+        Color.make(canvasContextID: c.canvasContextID)
+
+        presenter.colors.eventHandler()
+        XCTAssertEqual(resultingBackgroundColor, UIColor.red)
+    }
+
+    func testLoadCourse() {
+        let c = Course.make()
+        Color.make(canvasContextID: c.canvasContextID)
+
+        presenter.course.eventHandler()
+        XCTAssertEqual(resultingSubtitle, c.name)
+    }
+
+    func testLoadQuizzes() {
+        Quiz.make()
+
+        presenter.quizzes.eventHandler()
+        wait(for: [updateExpectation], timeout: 0.1)
+    }
+
     func testQuizListItemModelGradeViewableStubs() {
         let quiz = Quiz.make()
         XCTAssertEqual(quiz.gradingType, .points)
@@ -49,33 +77,13 @@ class QuizListPresenterTests: PersistenceTestCase {
         XCTAssertEqual(quiz.viewableScore, nil)
     }
 
-    func testLoadCourse() {
-        XCTAssertNil(resultingSubtitle)
-        XCTAssertNil(resultingBackgroundColor)
+    func testQuizzes() {
+        Quiz.make(from: .make(id: "a", quiz_type: .assignment))
+        Quiz.make(from: .make(id: "g", quiz_type: .graded_survey))
+        Quiz.make(from: .make(id: "p", quiz_type: .practice_quiz))
+        Quiz.make(from: .make(id: "s", quiz_type: .survey))
 
-        let c = Course.make()
-        Color.make(canvasContextID: c.canvasContextID, color: UIColor.red)
-
-        let expectation = self.expectation(description: "navbar")
-        expectation.assertForOverFulfill = false
-        onUpdateNavBar = {
-            if $0 == c.name && $1 == c.color { expectation.fulfill() }
-        }
-        presenter.viewIsReady()
-
-        wait(for: [expectation], timeout: 5)
-    }
-
-    func testLoadQuizzes() {
-        api.mock(GetQuizzesRequest(courseID: "1"), value: [
-            .make(id: "a", quiz_type: .assignment),
-            .make(id: "g", quiz_type: .graded_survey),
-            .make(id: "p", quiz_type: .practice_quiz),
-            .make(id: "s", quiz_type: .survey),
-        ])
-
-        presenter.viewIsReady()
-        wait(for: [updateExpectation], timeout: 5)
+        presenter.quizzes.eventHandler()
 
         XCTAssertEqual(presenter.quiz(IndexPath(row: 0, section: 0))?.quizType, QuizType.assignment)
         XCTAssertEqual(presenter.quiz(IndexPath(row: 0, section: 1))?.quizType, QuizType.practice_quiz)
@@ -92,28 +100,19 @@ class QuizListPresenterTests: PersistenceTestCase {
     }
 
     func testSection() {
-        api.mock(GetQuizzesRequest(courseID: "1"), value: [.make(quiz_type: .survey)])
-
-        presenter.viewIsReady()
-        wait(for: [updateExpectation], timeout: 0.1)
-
-        if presenter.section(0)?.name != "survey" {
-            print(presenter.quizzes.count)
-        }
+        Quiz.make(from: .make(quiz_type: .survey))
+        presenter.quizzes.eventHandler()
 
         XCTAssertEqual(presenter.section(0)?.name, "survey")
     }
 
     func testSectionTitle() {
-        api.mock(GetQuizzesRequest(courseID: "1"), value: [
-            .make(id: "a", quiz_type: .assignment),
-            .make(id: "g", quiz_type: .graded_survey),
-            .make(id: "p", quiz_type: .practice_quiz),
-            .make(id: "s", quiz_type: .survey),
-        ])
+        Quiz.make(from: .make(id: "a", quiz_type: .assignment))
+        Quiz.make(from: .make(id: "g", quiz_type: .graded_survey))
+        Quiz.make(from: .make(id: "p", quiz_type: .practice_quiz))
+        Quiz.make(from: .make(id: "s", quiz_type: .survey))
 
-        presenter.viewIsReady()
-        wait(for: [updateExpectation], timeout: 5)
+        presenter.quizzes.eventHandler()
 
         XCTAssertEqual(presenter.sectionTitle(0), "Assignments")
         XCTAssertEqual(presenter.sectionTitle(1), "Practice Quizzes")
@@ -133,9 +132,7 @@ class QuizListPresenterTests: PersistenceTestCase {
 
 extension QuizListPresenterTests: QuizListViewProtocol {
     func update(isLoading: Bool) {
-        if presenter.colors.pending == false && presenter.course.pending == false && presenter.quizzes.pending == false {
-            updateExpectation.fulfill()
-        }
+        updateExpectation.fulfill()
     }
 
     func showError(_ error: Error) {

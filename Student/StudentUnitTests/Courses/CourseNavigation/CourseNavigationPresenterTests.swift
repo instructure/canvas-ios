@@ -23,9 +23,11 @@ import TestsFoundation
 
 class CourseNavigationPresenterTests: PersistenceTestCase {
     let context = ContextModel(.course, id: "1")
-    lazy var presenter = CourseNavigationPresenter(courseID: context.id, view: self, env: env)
+    var presenter: CourseNavigationPresenter!
     var resultingError: NSError?
     var navigationController: UINavigationController?
+    var resultingTitle: String?
+    var resultingBackgroundColor: UIColor?
 
     var onUpdate: (() -> Void)?
     lazy var expectUpdate: XCTestExpectation = {
@@ -34,49 +36,65 @@ class CourseNavigationPresenterTests: PersistenceTestCase {
         return expect
     }()
 
-    func testLoadTabs() {
-        Course.make()
-        api.mock(GetTabsRequest(context: context), value: [.make(label: "Tab")])
+    override func setUp() {
+        super.setUp()
+        presenter = CourseNavigationPresenter(courseID: context.id, view: self, env: env)
+    }
 
-        let expectation = XCTestExpectation(description: "loaded tab")
-        expectation.assertForOverFulfill = false
-        onUpdate = {
-            if self.presenter.tabs.first?.label == "Tab" {
-                expectation.fulfill()
-            }
-        }
+    func testUseCasesSetupProperly() {
+        XCTAssertEqual(presenter.courses.useCase.courseID, presenter.context.id)
+        XCTAssertEqual(presenter.tabs.useCase.context.canvasContextID, presenter.context.canvasContextID)
+    }
+
+    func testLoadColor() {
+        Course.make()
+        Color.make()
+
+        presenter.color.eventHandler()
+        XCTAssertEqual(resultingBackgroundColor, UIColor.red)
+    }
+
+    func testLoadCourse() {
+        let course = Course.make()
+        presenter.courses.eventHandler()
+        XCTAssertEqual(resultingTitle, course.name)
+    }
+
+    func testLoadTabs() {
+        let tab = Tab.make(from: .make(label: "tab"), context: context)
+        presenter.tabs.eventHandler()
+        wait(for: [expectUpdate], timeout: 0.1)
+        XCTAssertEqual(presenter.tabs.first?.label, tab.label)
+    }
+
+    func testViewIsReady() {
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 5)
+        let colorStore = presenter.color as! TestStore
+        let courseStore = presenter.courses as! TestStore
+        let tabStore = presenter.tabs as! TestStore
+        wait(for: [colorStore.refreshExpectation, courseStore.refreshExpectation, tabStore.exhaustExpectation], timeout: 0.1)
     }
 
     func testTabsAreOrderedByPosition() {
-        api.mock(GetTabsRequest(context: context), value: [
-            .make(id: "b", html_url: URL(string: "https://google.com/b")!, position: 2),
-            .make(id: "c", html_url: URL(string: "https://google.com/c")!, position: 3),
-            .make(id: "a", html_url: URL(string: "https://google.com/a")!, position: 1),
-        ])
+        Tab.make(from: .make(id: "b", html_url: URL(string: "https://google.com/b")!, position: 2), context: context)
+        Tab.make(from: .make(id: "c", html_url: URL(string: "https://google.com/c")!, position: 3), context: context)
+        Tab.make(from: .make(id: "a", html_url: URL(string: "https://google.com/a")!, position: 1), context: context)
 
-        let expectation = XCTestExpectation(description: "orders by position")
-        expectation.assertForOverFulfill = false
-        onUpdate = {
-            print(self.presenter.tabs.count)
-            if self.presenter.tabs.count == 3,
-                self.presenter.tabs.first?.id == "a",
-                self.presenter.tabs.last?.id == "c" {
-                expectation.fulfill()
-            }
-        }
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 5)
+        presenter.tabs.eventHandler()
+        wait(for: [expectUpdate], timeout: 0.1)
+        XCTAssertEqual(presenter.tabs.count, 3)
+        XCTAssertEqual(presenter.tabs.first?.id, "a")
+        XCTAssertEqual(presenter.tabs.last?.id, "c")
     }
 }
 
 extension CourseNavigationPresenterTests: CourseNavigationViewProtocol {
     func updateNavBar(title: String?, backgroundColor: UIColor?) {
+        resultingTitle = title
+        resultingBackgroundColor = backgroundColor
     }
 
     func update() {
-        onUpdate?()
         expectUpdate.fulfill()
     }
 

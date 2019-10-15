@@ -38,6 +38,10 @@ class SyllabusActionableItemsPresenter {
         self?.update()
     }
 
+    lazy var color = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.update()
+    }
+
     public lazy var assignments = env.subscribe(GetAssignments(courseID: self.courseID, sort: sort)) { [weak self] in
         self?.updateAssignments()
     }
@@ -57,6 +61,7 @@ class SyllabusActionableItemsPresenter {
         assignments.exhaust(while: { _ in true })
         calendarEvents.exhaust(while: { _ in true })
         course.refresh()
+        color.refresh()
         update()
     }
 

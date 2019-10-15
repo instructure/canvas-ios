@@ -25,8 +25,9 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
 
     var resultingColor: UIColor?
     var resultingTitle = ""
+    var resultingBackgroundColor: UIColor?
     let context = ContextModel(.group, id: "1")
-    lazy var presenter = GroupNavigationPresenter(groupID: context.id, view: self, env: env)
+    var presenter: GroupNavigationPresenter!
     var resultingError: NSError?
     var onUpdateNavBar: (() -> Void)?
     lazy var expectUpdateNavBar: XCTestExpectation = {
@@ -35,84 +36,73 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
         return expect
     }()
     var onUpdate: (() -> Void)?
-    lazy var expectUpdate: XCTestExpectation = {
-        let expect = XCTestExpectation(description: "update called")
-        expect.assertForOverFulfill = false
-        return expect
-    }()
+    var expectUpdate: XCTestExpectation!
     var navigationController: UINavigationController?
 
-    func testLoadTabs() {
+    override func setUp() {
+        super.setUp()
+        presenter = GroupNavigationPresenter(groupID: context.id, view: self, env: env)
+        expectUpdate = XCTestExpectation(description: "update called")
+    }
+
+    func testUseCaseSetupProperly() {
+        XCTAssertEqual(presenter.groups.useCase.groupID, presenter.context.id)
+        XCTAssertEqual(presenter.tabs.useCase.context.canvasContextID, presenter.context.canvasContextID)
+    }
+
+    func testLoadColor() {
         Group.make()
-        api.mock(GetTabsRequest(context: context), value: [.make()])
+        Color.make(canvasContextID: context.canvasContextID)
 
-        //  when
-        let expectation = XCTestExpectation(description: "on update")
-        expectation.assertForOverFulfill = false
-        onUpdate = {
-            if self.presenter.tabs.count == 1 {
-                expectation.fulfill()
-            }
-        }
+        presenter.color.eventHandler()
+        XCTAssertEqual(resultingBackgroundColor, UIColor.red)
+        XCTAssertEqual(resultingColor, UIColor.red)
+    }
 
+    func testLoadGroup() {
+        let group = Group.make()
+        presenter.groups.eventHandler()
+        XCTAssertEqual(resultingTitle, group.name)
+    }
+
+    func testLoadTabs() {
+        let tab = Tab.make()
+        presenter.tabs.eventHandler()
+        wait(for: [expectUpdate], timeout: 0.1)
+        XCTAssertEqual(presenter.tabs.first, tab)
+    }
+
+    func testViewIsReady() {
         presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
+        let colorStore = presenter.color as! TestStore
+        let groupStore = presenter.groups as! TestStore
+        let tabsStore = presenter.tabs as! TestStore
+
+        wait(for: [colorStore.refreshExpectation, groupStore.refreshExpectation, tabsStore.exhaustExpectation], timeout: 0.1)
     }
 
     func testTabsAreOrderedByPosition() {
-        api.mock(GetTabsRequest(context: context), value: [
-            .make(id: "b", html_url: URL(string: "https://google.com/b")!, position: 2),
-            .make(id: "c", html_url: URL(string: "https://google.com/c")!, position: 3),
-            .make(id: "a", html_url: URL(string: "https://google.com/a")!, position: 1),
-        ])
+        Tab.make(from: .make(id: "b", html_url: URL(string: "https://google.com/b")!, position: 2))
+        Tab.make(from: .make(id: "c", html_url: URL(string: "https://google.com/c")!, position: 3))
+        Tab.make(from: .make(id: "a", html_url: URL(string: "https://google.com/a")!, position: 1))
 
-        let expectation = XCTestExpectation(description: "on update")
-        expectation.assertForOverFulfill = false
-        onUpdate = {
-            if self.presenter.tabs.count == 3,
-                self.presenter.tabs.first?.id == "a",
-                self.presenter.tabs.last?.id == "c" {
-                expectation.fulfill()
-            }
-        }
-        presenter.viewIsReady()
-        wait(for: [expectation], timeout: 1)
-    }
+        presenter.tabs.eventHandler()
+        wait(for: [expectUpdate], timeout: 0.1)
 
-    func testUseCaseFetchesData() {
-        let group = Group.make()
-        let color = Color.make(canvasContextID: group.canvasContextID, color: UIColor(hexString: "#ff0")!)
-        Tab.make()
-
-        let expectData = XCTestExpectation(description: "fetches data")
-        expectData.assertForOverFulfill = false
-        let expectTitle = XCTestExpectation(description: "fetches group")
-        expectTitle.assertForOverFulfill = false
-        onUpdateNavBar = {
-            if self.resultingTitle == group.name {
-                expectTitle.fulfill()
-            }
-        }
-        onUpdate = {
-            if self.resultingColor == color.color && self.presenter.tabs.count == 1 {
-                expectData.fulfill()
-            }
-        }
-        presenter.viewIsReady()
-        wait(for: [expectData, expectTitle], timeout: 1)
+        XCTAssertEqual(presenter.tabs.count, 3)
+        XCTAssertEqual(presenter.tabs.first?.id, "a")
+        XCTAssertEqual(presenter.tabs.last?.id, "c")
     }
 }
 
 extension GroupNavigationPresenterTests: GroupNavigationViewProtocol {
     func updateNavBar(title: String, backgroundColor: UIColor) {
         resultingTitle = title
-        onUpdateNavBar?()
-        expectUpdateNavBar.fulfill()
+        resultingBackgroundColor = backgroundColor
     }
 
     func update(color: UIColor) {
         resultingColor = color
-        onUpdate?()
         expectUpdate.fulfill()
     }
 
