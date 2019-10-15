@@ -29,6 +29,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     var readyToLayoutTabs: Bool = false
     var didLayoutTabs: Bool = false
     var env: AppEnvironment!
+    var colorScheme: ColorScheme?
 
     enum MenuItem: Int {
         case grades, syllabus, summary
@@ -48,6 +49,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        colorScheme = ColorCoordinator.colorSchemeForStudentID(studentID)
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
 
@@ -62,7 +64,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureGrades() {
-        gradesViewController = GradesViewController.create(courseID: courseID, studentID: studentID)
+        gradesViewController = GradesViewController.create(courseID: courseID, studentID: studentID, colorDelegate: self)
         viewControllers.append(gradesViewController)
     }
 
@@ -72,7 +74,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureSummary() {
-        summaryViewController = Core.SyllabusActionableItemsViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt)
+        summaryViewController = Core.SyllabusActionableItemsViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt, colorDelegate: self)
         viewControllers.append(summaryViewController)
     }
 
@@ -89,6 +91,12 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 }
 
+extension CourseDetailsViewController: ColorDelegate {
+    var iconColor: UIColor? {
+        return colorScheme?.mainColor
+    }
+}
+
 extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
     func accessibilityIdentifier(at: IndexPath) -> String {
         guard let menuItem = MenuItem(rawValue: at.row) else { return "" }
@@ -102,7 +110,7 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
     }
 
     var menuItemSelectedColor: UIColor? {
-        return Brand.shared.buttonPrimaryBackground
+        return colorScheme?.mainColor
     }
 
     func menuItemTitle(at: IndexPath) -> String {

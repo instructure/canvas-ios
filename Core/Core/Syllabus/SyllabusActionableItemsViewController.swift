@@ -31,11 +31,13 @@ public class SyllabusActionableItemsViewController: UITableViewController {
     var models: [ViewModel] = []
     var presenter: SyllabusActionableItemsPresenter?
     public var color: UIColor?
+    public weak var colorDelegate: ColorDelegate?
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
-    public convenience init(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .dueAt) {
+    public convenience init(env: AppEnvironment = .shared, courseID: String, sort: GetAssignments.Sort = .dueAt, colorDelegate: ColorDelegate? = nil) {
         self.init(nibName: nil, bundle: nil)
         presenter = SyllabusActionableItemsPresenter(view: self, courseID: courseID, sort: sort)
+        self.colorDelegate = colorDelegate
     }
 
     override public func viewDidLoad() {
@@ -54,7 +56,7 @@ public class SyllabusActionableItemsViewController: UITableViewController {
         cell.textLabel?.font = UIFont.scaledNamedFont(.regular16)
         cell.textLabel?.textColor = UIColor.named(.textDarkest)
         cell.imageView?.image = models[indexPath.row].image
-        cell.imageView?.tintColor = color
+        cell.imageView?.tintColor = colorDelegate?.iconColor ?? color
         cell.detailTextLabel?.text = models[indexPath.row].formattedDate
         cell.detailTextLabel?.textColor = UIColor.named(.textDark)
         cell.detailTextLabel?.font = UIFont.scaledNamedFont(.regular14)
