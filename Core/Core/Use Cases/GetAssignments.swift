@@ -26,7 +26,7 @@ public class GetAssignments: CollectionUseCase {
 
     public typealias Model = Assignment
     public let courseID: String
-    private let sort: Sort
+    public let sort: Sort
     let include: [GetAssignmentsRequest.Include]
     let updateSubmission: Bool
     let requestQuerySize: Int

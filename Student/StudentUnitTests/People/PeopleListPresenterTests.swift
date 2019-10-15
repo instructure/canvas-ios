@@ -46,42 +46,74 @@ class PeopleListPresenterTests: PersistenceTestCase {
         presenter = PeopleListPresenter(env: env, viewController: self, context: context)
     }
 
+    func testUseCasesSetupProperly() {
+        XCTAssertEqual(presenter.course.useCase.courseID, presenter.context.id)
+        XCTAssertEqual(presenter.group.useCase.groupID, presenter.context.id)
+        XCTAssertEqual(presenter.users.useCase.context.canvasContextID, presenter.context.canvasContextID)
+    }
+
+    func testLoadCourseColors() {
+        Course.make()
+        Color.make()
+
+        presenter.colors.eventHandler()
+        XCTAssertEqual(resultingBackgroundColor, UIColor.red)
+    }
+
+    func testLoadGroupColors() {
+        let group = Group.make()
+        Color.make(canvasContextID: group.canvasContextID, color: UIColor.blue)
+
+        presenter.colors.eventHandler()
+        XCTAssertEqual(resultingBackgroundColor, UIColor.blue)
+    }
+
+    func testLoadCourse() {
+        let course = Course.make()
+        Color.make()
+
+        presenter.course.eventHandler()
+        XCTAssertEqual(resultingSubtitle, course.name)
+    }
+
+    func testLoadGroup() {
+        let group = Group.make()
+        Color.make(canvasContextID: group.canvasContextID)
+
+        presenter.group.eventHandler()
+        XCTAssertEqual(resultingSubtitle, group.name)
+    }
+
     func testLoadUsers() {
-        User.make(from: APIUser.make(id: "1", name: "John Doe", sortable_name: "Doe, John"), courseID: "1")
-        User.make(from: APIUser.make(id: "2", name: "Jane Doe", sortable_name: "Doe, Jane"), courseID: "1")
+        User.make(from: .make(id: "1", name: "John Doe", sortable_name: "Doe, John"), courseID: context.id)
+        User.make(from: .make(id: "2", name: "Jane Doe", sortable_name: "Doe, Jane"), courseID: context.id)
 
-        expectationPredicate = {
-            self.presenter.users.count == 2 && self.presenter.users.allSatisfy { !$0.id.isEmpty }
-        }
-        presenter.viewIsReady()
+        presenter.users.eventHandler()
 
-        wait(for: [expectation], timeout: 5)
+        wait(for: [expectation], timeout: 0.1)
         XCTAssertEqual(presenter.users.count, 2)
         XCTAssertEqual(presenter.users.first!.id, "2") // Jane
         XCTAssertEqual(presenter.users.last!.id, "1") // John
     }
 
-    func testLoadCourse() {
-        let course = Course.make()
-        Color.make(canvasContextID: context.canvasContextID, color: UIColor.red)
-
+    func testViewIsReadyCourse() {
         presenter.viewIsReady()
-        wait(for: [navbarExpectation], timeout: 5)
-        XCTAssertEqual(resultingSubtitle, course.name)
-        XCTAssertEqual(resultingBackgroundColor, UIColor.red)
+        let colorsStore = presenter.colors as! TestStore
+        let usersStore = presenter.users as! TestStore
+        let courseStore = presenter.course as! TestStore
+
+        wait(for: [colorsStore.refreshExpectation, usersStore.refreshExpectation, courseStore.refreshExpectation], timeout: 0.1)
     }
 
-    func testLoadGroup() {
-        let group = Group.make()
-        let groupContext = ContextModel(.group, id: group.id)
-        Color.make(canvasContextID: groupContext.canvasContextID, color: UIColor.blue)
-
-        presenter = PeopleListPresenter(env: env, viewController: self, context: groupContext)
+    func testViewIsReadyGroup() {
+        presenter = PeopleListPresenter(env: env, viewController: self, context: ContextModel(.group, id: "1"))
         presenter.viewIsReady()
-        wait(for: [navbarExpectation], timeout: 5)
-        XCTAssertEqual(resultingSubtitle, group.name)
-        XCTAssertEqual(resultingBackgroundColor, UIColor.blue)
-    }
+        let colorsStore = presenter.colors as! TestStore
+        let usersStore = presenter.users as! TestStore
+        let groupStore = presenter.group as! TestStore
+
+        wait(for: [colorsStore.refreshExpectation, usersStore.refreshExpectation, groupStore.refreshExpectation], timeout: 0.1)
+     }
 
     func testSendsToContextCard() {
         let user = User.make()
@@ -95,9 +127,7 @@ class PeopleListPresenterTests: PersistenceTestCase {
 
 extension PeopleListPresenterTests: PeopleListViewProtocol {
     func update() {
-        if (expectationPredicate()) {
-            expectation.fulfill()
-        }
+        expectation.fulfill()
     }
 
     func updateNavBar(subtitle: String?, color: UIColor?) {

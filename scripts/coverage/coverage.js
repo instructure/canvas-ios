@@ -43,7 +43,7 @@ program
   .version(require('../../package.json').version)
   .option('--device [name]', 'Run XCTest on [name]', 'iPhone 8')
   .option('--html', 'Deprecated, html reports are always generated')
-  .option('--os [name]', 'Run XCTest on [name]', '12.2')
+  .option('--os [name]', 'Run XCTest on [name]', '13.0')
   .option('--scheme [name]', 'Report coverage for scheme [name]', 'CITests')
   .option('--test', 'Run XCTest for scheme before generating reports')
   .parse(process.argv)

@@ -90,7 +90,6 @@ class RubricPresenter {
 
     func update() {
         if rubrics.count > 0, let rubrics = rubrics.all, let assignment = assignments.first, courses.first?.color != nil {
-
             let assessments = submissions.first?.rubricAssessments
             let models = transformRubricsToViewModels(rubrics, assessments: assessments, hideRubricPoints: assignment.hideRubricPoints)
             view?.update(models)

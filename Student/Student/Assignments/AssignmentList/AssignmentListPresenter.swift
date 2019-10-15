@@ -30,8 +30,13 @@ class AssignmentListPresenter {
     let env: AppEnvironment
     weak var view: AssignmentListViewProtocol?
 
+    lazy var color = env.subscribe(GetCustomColors()) { [weak self] in
+        self?.updateNavbar()
+    }
+
     lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
+        self?.updateNavbar()
     }
 
     lazy var assignments = env.subscribe(GetAssignments(courseID: self.courseID, sort: sort)) { [weak self] in
@@ -46,17 +51,17 @@ class AssignmentListPresenter {
     }
 
     func viewIsReady() {
-        assignments.refresh()
+        assignments.exhaust(while: { _ in true })
         course.refresh()
-        update()
+        color.refresh()
+        view?.update()
     }
 
     func update() {
         view?.update()
-        loadColor()
     }
 
-    func loadColor() {
+    func updateNavbar() {
         guard let course = course.first else { return }
         view?.updateNavBar(subtitle: course.name, color: course.color)
     }

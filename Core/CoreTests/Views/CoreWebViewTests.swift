@@ -62,10 +62,11 @@ class CoreWebViewTests: CoreTestCase {
 
         let expectation = XCTestExpectation(description: "constraint is updated")
         let constraint = view.heightAnchor.constraint(equalToConstant: 0)
-        view.addConstraint(constraint)
         let observation = constraint.observe(\.constant, options: .new) { _, _ in
             expectation.fulfill()
         }
+
+        view.addConstraint(constraint)
 
         view.loadHTMLString("some content")
         wait(for: [expectation], timeout: 30)
