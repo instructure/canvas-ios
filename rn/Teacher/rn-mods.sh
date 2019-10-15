@@ -33,3 +33,7 @@ sed -i '' 's#<fishhook/fishhook.h>#\"fishhook.h\"#g' ./node_modules/react-native
 # https://github.com/facebook/react-native/issues/18079
 # set the warning condition true. (it warns if false)
 sed -i '' -e "s/flatStyles == null || flatStyles.flexWrap !== 'wrap'/true/g" ./node_modules/react-native/Libraries/Lists/VirtualizedList.js
+
+# react-native-image-picker is broken in iOS 13
+# https://github.com/react-native-community/react-native-image-picker/issues/1179
+sed -i '' -e "s/moveItemAtURL:videoURL/copyItemAtURL:videoURL/g" ./node_modules/react-native-image-picker/ios/ImagePickerManager.m
