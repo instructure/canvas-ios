@@ -302,7 +302,7 @@ const styles = createStyleSheet((colors, vars) => ({
     paddingLeft: 16,
     paddingRight: 16,
     flex: 1,
-    backgroundColor: colors.backgroundLight,
+    backgroundColor: colors.backgroundDark,
   },
   centeredText: {
     height: 200,
