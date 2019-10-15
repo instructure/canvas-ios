@@ -7,6 +7,12 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Medelbetyg";
 
+/* No comment provided by engineer. */
+"%@ out of %@" = "%1$@ av %2$@";
+
+/* No comment provided by engineer. */
+"%@ out of %@ (%@)" = "%1$@ av %2$@ (%3$@)";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "en förälder";
 
@@ -77,16 +83,37 @@
 "Casual question or suggestion" = "Informell fråga eller förslag";
 
 /* No comment provided by engineer. */
+"Change Profile Image" = "Ändra profilbild";
+
+/* No comment provided by engineer. */
+"Change User" = "Byt användare";
+
+/* No comment provided by engineer. */
 "Check network and try again!" = "Kontrollera nätverket och försök igen!";
 
 /* No comment provided by engineer. */
+"Choose Photo" = "Välj foto";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Välj profilbild";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Rensa inspelning";
+
+/* No comment provided by engineer. */
+"Close" = "Stäng";
 
 /* No comment provided by engineer. */
 "Close App" = "Stäng appen";
 
 /* No comment provided by engineer. */
 "Closed" = "Stängda";
+
+/* No comment provided by engineer. */
+"Collapse" = "Minska";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "Färgöverlagring";
 
 /* No comment provided by engineer. */
 "Comment" = "Kommentera";
@@ -122,6 +149,12 @@
 "Describe the problem" = "Beskriv problemet";
 
 /* No comment provided by engineer. */
+"Designer" = "Designer";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "Utvecklarmeny";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Diskussionskommentar";
 
 /* No comment provided by engineer. */
@@ -144,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Slipper göra";
+
+/* No comment provided by engineer. */
+"Expand" = "Expandera";
 
 /* No comment provided by engineer. */
 "External Tool" = "Externt verktyg";
@@ -224,6 +260,9 @@
 "Italic" = "Kursiv";
 
 /* No comment provided by engineer. */
+"Late" = "Sen";
+
+/* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
@@ -269,10 +308,19 @@
 "Log In Again" = "Logga in igen";
 
 /* No comment provided by engineer. */
+"Log Out" = "Logga ut";
+
+/* No comment provided by engineer. */
+"Manage Children" = "Hantera barn";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuell OAuth-inloggning";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Mediainspelning";
+
+/* No comment provided by engineer. */
+"Missing" = "Saknas";
 
 /* No comment provided by engineer. */
 "N/A" = "Ej tillgängligt";
@@ -300,6 +348,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ej brådskande";
+
+/* No comment provided by engineer. */
+"Observer" = "Observatör";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -401,6 +452,9 @@
 "Settings" = "Inställningar";
 
 /* No comment provided by engineer. */
+"Show Grades" = "Visa bedömningar";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Sidoadministratörs inloggning";
 
 /* No comment provided by engineer. */
@@ -416,10 +470,16 @@
 "Start recording" = "Påbörja inspelning";
 
 /* No comment provided by engineer. */
+"Stop Act as User" = "Sluta uppträda som användare";
+
+/* No comment provided by engineer. */
 "Stop acting as..." = "Sluta uppträda som...";
 
 /* No comment provided by engineer. */
 "Stop recording" = "Stoppa inspelning";
+
+/* No comment provided by engineer. */
+"Student" = "Elev";
 
 /* No comment provided by engineer. */
 "Style" = "Stil";
@@ -442,8 +502,17 @@
 /* No comment provided by engineer. */
 "Success!" = "Lyckades!";
 
+/* Teacher's Assistant (abbreviated) */
+"TA" = "Lärarassistent";
+
+/* No comment provided by engineer. */
+"Take Photo" = "Ta ett foto";
+
 /* No comment provided by engineer. */
 "Tap here for help." = "Tryck här för hjälp.";
+
+/* No comment provided by engineer. */
+"Teacher" = "Lärare";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Användarvillkor";

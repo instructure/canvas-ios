@@ -31,7 +31,7 @@ open class WhizzyWigTableViewCell: UITableViewCell {
         }
     }
     
-    @objc var minHeight: CGFloat = 0.0
+    @objc var minHeight: CGFloat = 80.0
     @objc var maxHeight: CGFloat = 6144.0
     
     @objc public let whizzyWigView = WhizzyWigView(frame: CGRect(x: 0, y: 0, width: 320, height: 43))
@@ -124,9 +124,13 @@ open class WhizzyWigTableViewCell: UITableViewCell {
     }
     
     open override func prepareForReuse() {
+        super.prepareForReuse()
         indexPath = IndexPath(row: 0, section: 0)
         cellSizeUpdated = {_ in }
         readMore = nil
+        expectedHeight = 0
+        lastContentHeight = nil
+        lastContentWidth = nil
     }
 
     @objc open func readMoreButtonWasTapped(_ sender: UIButton) {

@@ -7,6 +7,12 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ المعدل التراكمي";
 
+/* No comment provided by engineer. */
+"%@ out of %@" = "%1$@ من إجمالي %2$@";
+
+/* No comment provided by engineer. */
+"%@ out of %@ (%@)" = "%1$@ من إجمالي %2$@ (%3$@)";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "ولي أمر";
 
@@ -77,16 +83,37 @@
 "Casual question or suggestion" = "مجرد سؤال عابر أو اقتراح";
 
 /* No comment provided by engineer. */
+"Change Profile Image" = "تغيير صورة الملف التعريفي";
+
+/* No comment provided by engineer. */
+"Change User" = "تغيير المستخدم";
+
+/* No comment provided by engineer. */
 "Check network and try again!" = "تحقق من الشبكة وحاول مرة أخرى!";
 
 /* No comment provided by engineer. */
+"Choose Photo" = "اختيار صورة";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "اختيار صورة الملف التعريفي";
+
+/* No comment provided by engineer. */
 "Clear recording" = "مسح التسجيل";
+
+/* No comment provided by engineer. */
+"Close" = "إغلاق";
 
 /* No comment provided by engineer. */
 "Close App" = "إغلاق التطبيق";
 
 /* No comment provided by engineer. */
 "Closed" = "مغلق";
+
+/* No comment provided by engineer. */
+"Collapse" = "طي";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "تراكب لوني";
 
 /* No comment provided by engineer. */
 "Comment" = "تعليق";
@@ -122,6 +149,12 @@
 "Describe the problem" = "قم بوصف المشكلة";
 
 /* No comment provided by engineer. */
+"Designer" = "المصمم";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "قائمة المطورين";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "تعليق على النقاش";
 
 /* No comment provided by engineer. */
@@ -144,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "معفى";
+
+/* No comment provided by engineer. */
+"Expand" = "توسيع";
 
 /* No comment provided by engineer. */
 "External Tool" = "أداة خارجية";
@@ -224,6 +260,9 @@
 "Italic" = "مائل";
 
 /* No comment provided by engineer. */
+"Late" = "متأخر";
+
+/* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
@@ -269,10 +308,19 @@
 "Log In Again" = "تسجيل الدخول مجددًا";
 
 /* No comment provided by engineer. */
+"Log Out" = "تسجيل الخروج";
+
+/* No comment provided by engineer. */
+"Manage Children" = "إدارة الأطفال";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "تسجيل دخول OAuth يدوي ";
 
 /* No comment provided by engineer. */
 "Media Recording" = "تسجيل الوسائط";
+
+/* No comment provided by engineer. */
+"Missing" = "مفقود";
 
 /* No comment provided by engineer. */
 "N/A" = "لا يوجد";
@@ -300,6 +348,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "ليس عاجلاً";
+
+/* No comment provided by engineer. */
+"Observer" = "المراقب";
 
 /* No comment provided by engineer. */
 "OK" = "موافق";
@@ -401,6 +452,9 @@
 "Settings" = "إعدادات";
 
 /* No comment provided by engineer. */
+"Show Grades" = "عرض التقديرات";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "تسجيل دخول مسؤول الموقع";
 
 /* No comment provided by engineer. */
@@ -416,10 +470,16 @@
 "Start recording" = "بدء تسجيل";
 
 /* No comment provided by engineer. */
+"Stop Act as User" = "إيقاف التصرف كمستخدم";
+
+/* No comment provided by engineer. */
 "Stop acting as..." = "إيقاف التصرف باعتبارك...";
 
 /* No comment provided by engineer. */
 "Stop recording" = "إيقاف التسجيل";
+
+/* No comment provided by engineer. */
+"Student" = "الطالب";
 
 /* No comment provided by engineer. */
 "Style" = "النمط";
@@ -442,8 +502,17 @@
 /* No comment provided by engineer. */
 "Success!" = "نجاح!";
 
+/* Teacher's Assistant (abbreviated) */
+"TA" = "مساعد المعلم";
+
+/* No comment provided by engineer. */
+"Take Photo" = "التقاط صورة";
+
 /* No comment provided by engineer. */
 "Tap here for help." = "اضغط هنا للحصول على المساعدة.";
+
+/* No comment provided by engineer. */
+"Teacher" = "المعلم";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "شروط الاستخدام";

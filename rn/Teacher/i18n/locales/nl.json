@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "Account heeft geen gebruiksvoorwaarden"
   },
-  "act_as_user_d7ef0e48": {
-    "message": "Optreden als gebruiker"
-  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Voeg enkele van je favoriete cursussen toe om hiervan je startpagina te maken."
   },
@@ -269,9 +266,6 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Geef { discussionTitle } een andere groepering"
   },
-  "change_user_1b7c4f23": {
-    "message": "Gebruiker wijzigen"
-  },
   "choose_color_11148181": {
     "message": "Kiezen { color }"
   },
@@ -307,9 +301,6 @@
   },
   "color_a363e1b0": {
     "message": "Kleur"
-  },
-  "color_overlay_fb5ecce7": {
-    "message": "Kleurenoverlay"
   },
   "comment_7ef1428e": {
     "message": "Opmerking"
@@ -410,6 +401,12 @@
   "creative_commons_license_ba94fd4d": {
     "message": "Creative Commons-licentie"
   },
+  "current_grade_6d0b8ef7": {
+    "message": "Huidig cijfer"
+  },
+  "current_grade_grade_5b083a30": {
+    "message": "Huidig cijfer { grade }"
+  },
   "customize_course_eefa9c21": {
     "message": "Cursus aanpassen"
   },
@@ -472,9 +469,6 @@
   },
   "details_98a31b68": {
     "message": "Details"
-  },
-  "developer_menu_1e80da35": {
-    "message": "Menu Ontwikkelaar"
   },
   "discussion_details_5728ea3d": {
     "message": "Details over discussie"
@@ -868,9 +862,6 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Vergrendel vragen na beantwoording"
-  },
-  "log_out_379ba28a": {
-    "message": "Afmelden"
   },
   "long_description_7d89285c": {
     "message": "Lange beschrijving"
@@ -1406,9 +1397,6 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Juiste antwoorden tonen op"
   },
-  "show_grades_8680e38e": {
-    "message": "Cijfers tonen"
-  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Een antwoord per keer tonen"
   },
@@ -1435,9 +1423,6 @@
   },
   "start_recording_189496b9": {
     "message": "Opname starten"
-  },
-  "stop_act_as_user_4f2a4f22": {
-    "message": "Stop met optreden als gebruiker"
   },
   "stop_playing_audio_96aed3bc": {
     "message": "Stoppen met audio afspelen "
@@ -1515,9 +1500,6 @@
     "message": "Groenblauw"
   },
   "terms_of_use_62ee73ad": {
-    "message": "Gebruiksvoorwaarden"
-  },
-  "terms_of_use_6542769b": {
     "message": "Gebruiksvoorwaarden"
   },
   "text_color_colorhex_62e206a5": {
@@ -1790,9 +1772,6 @@
   },
   "view_responses_d2874266": {
     "message": "Antwoorden weergeven"
-  },
-  "visit_the_canvas_guides_7328b93f": {
-    "message": "Bezoek de Canvas-handleidingen"
   },
   "welcome_73d18b4d": {
     "message": "Welkom!"

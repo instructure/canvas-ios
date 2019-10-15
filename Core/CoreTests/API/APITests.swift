@@ -76,13 +76,11 @@ class APITests: XCTestCase {
         }
     }
 
+    var api: URLSessionAPI!
     override func setUp() {
         super.setUp()
-        URLSessionAPI.defaultURLSession = {
-            let configuration = URLSessionConfiguration.ephemeral
-            configuration.urlCache = nil
-            return URLSession(configuration: configuration)
-        }()
+        MockURLSession.reset()
+        api = AppEnvironment.shared.api as? URLSessionAPI
         AppEnvironment.shared.currentSession = LoginSession.make()
         ExperimentalFeature.allEnabled = true
     }
@@ -93,13 +91,11 @@ class APITests: XCTestCase {
     }
 
     func testIdentifier() {
-        let api = URLSessionAPI()
         XCTAssertEqual(api.identifier, api.urlSession.configuration.identifier)
     }
 
     func testUrlSession() {
-        let session = URLSessionAPI().urlSession
-        XCTAssertNil(session.configuration.urlCache)
+        XCTAssertNotNil(api.urlSession.configuration.urlCache)
     }
 
     func testBaseURL() {
@@ -111,7 +107,7 @@ class APITests: XCTestCase {
 
     func testMakeRequestInvalidPath() {
         let expectation = XCTestExpectation(description: "request callback runs")
-        let task = URLSessionAPI().makeRequest(InvalidPath()) { value, response, error in
+        let task = api.makeRequest(InvalidPath()) { value, response, error in
             XCTAssertNil(value)
             XCTAssertNil(response)
             XCTAssertNotNil(error)
@@ -122,8 +118,9 @@ class APITests: XCTestCase {
     }
 
     func testMakeRequestUnsupported() {
+        MockURLSession.mock(InvalidScheme(), error: NSError.internalError())
         let expectation = XCTestExpectation(description: "request callback runs")
-        let task = URLSessionAPI().makeRequest(InvalidScheme()) { value, response, error in
+        let task = api.makeRequest(InvalidScheme()) { value, response, error in
             XCTAssertNil(value)
             XCTAssertNil(response)
             XCTAssertNotNil(error)
@@ -134,8 +131,14 @@ class APITests: XCTestCase {
     }
 
     func testMakeRequestWrongResponse() {
+        var data: Data?
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        data = try! encoder.encode([APIAccountResult.make()])
+        MockURLSession.mock(WrongResponse(), data: data, response: HTTPURLResponse(url: api.baseURL, statusCode: 200, httpVersion: nil, headerFields: nil), error: NSError.internalError())
+
         let expectation = XCTestExpectation(description: "request callback runs")
-        let task = URLSessionAPI().makeRequest(WrongResponse()) { value, response, error in
+        let task = api.makeRequest(WrongResponse()) { value, response, error in
             XCTAssertNil(value)
             XCTAssertNotNil(response)
             XCTAssertNotNil(error)
@@ -146,8 +149,9 @@ class APITests: XCTestCase {
     }
 
     func testNoCredsNeeded() {
+        MockURLSession.mock(GetAccountsSearchRequest(), value: [APIAccountResult.make()], response: HTTPURLResponse(url: api.baseURL, statusCode: 200, httpVersion: nil, headerFields: nil))
         let expectation = XCTestExpectation(description: "request callback runs")
-        let task = URLSessionAPI().makeRequest(GetAccountsSearchRequest()) { value, response, error in
+        let task = api.makeRequest(GetAccountsSearchRequest()) { value, response, error in
             XCTAssertNotNil(value)
             XCTAssertNotNil(response)
             XCTAssertNil(error)
@@ -158,8 +162,9 @@ class APITests: XCTestCase {
     }
 
     func testNoContentNeeded() {
+        MockURLSession.mock(GetNoContent(), value: nil, response: HTTPURLResponse(url: api.baseURL, statusCode: 200, httpVersion: nil, headerFields: nil))
         let expectation = XCTestExpectation(description: "request callback runs")
-        let task = URLSessionAPI().makeRequest(GetNoContent()) { value, response, error in
+        let task = api.makeRequest(GetNoContent()) { value, response, error in
             XCTAssertNil(value)
             XCTAssertNotNil(response)
             XCTAssertNil(error)
@@ -170,8 +175,25 @@ class APITests: XCTestCase {
     }
 
     func testMakeDownloadRequest() {
+        let downloadURL = URL(string: "https://download.com/download")!
+        let tempURL = URL(string: "file://test/file.txt")
+        MockURLSession.mockDownload(downloadURL, value: tempURL, response: HTTPURLResponse(url: api.baseURL, statusCode: 200, httpVersion: nil, headerFields: nil), error: nil)
         let expectation = XCTestExpectation(description: "request callback runs")
-        let task = URLSessionAPI().makeDownloadRequest(URL(string: "custom://host.tld/api/v1")!) { url, response, error in
+        let task = api.makeDownloadRequest(downloadURL) { url, response, error in
+            XCTAssertEqual(url, tempURL)
+            XCTAssertNotNil(response)
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertNotNil(task)
+    }
+
+    func testMakeDownloadRequestError() {
+        let downloadURL = URL(string: "custom://host.tld/api/v1")!
+        MockURLSession.mockDownload(downloadURL, value: nil, response: nil, error: NSError.internalError())
+        let expectation = XCTestExpectation(description: "request callback runs")
+        let task = api.makeDownloadRequest(downloadURL) { url, response, error in
             XCTAssertNil(url)
             XCTAssertNil(response)
             XCTAssertNotNil(error)
@@ -185,14 +207,14 @@ class APITests: XCTestCase {
         UUID.mock("testfile")
         let url = URL(fileURLWithPath: "/file.png")
         let request = UploadFile(body: url)
-        XCTAssertNoThrow(try URLSessionAPI().uploadTask(request))
+        XCTAssertNoThrow(try api.uploadTask(request))
     }
 
     func testMakeUploadRequestEncodesToFile() {
         UUID.mock("testfile")
         let url = URL(fileURLWithPath: "/file.png")
         let request = UploadFile(body: url)
-        try! URLSessionAPI().uploadTask(request)
+        try! api.uploadTask(request)
         let file = URL.temporaryDirectory.appendingPathComponent(UUID.string)
         XCTAssert(FileManager.default.fileExists(atPath: file.path))
         let value = try? String(contentsOf: file, encoding: .utf8)
@@ -222,7 +244,7 @@ class APITests: XCTestCase {
             clientSecret: "client-secret"
         )
         AppEnvironment.shared.currentSession = session
-        let api = URLSessionAPI(loginSession: session, urlSession: MockURLSession())
+        api.loginSession = session
         let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
         let request = URLRequest(url: url)
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
@@ -270,7 +292,7 @@ class APITests: XCTestCase {
             clientID: "client-id",
             clientSecret: "client-secret"
         )
-        let api = URLSessionAPI(loginSession: session, urlSession: MockURLSession())
+        api.loginSession = session
         let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
         let request = URLRequest(url: url)
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
@@ -310,7 +332,7 @@ class APITests: XCTestCase {
             clientID: "client-id",
             clientSecret: "client-secret"
         )
-        let api = URLSessionAPI(loginSession: session, urlSession: MockURLSession())
+        api.loginSession = session
         let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
         let request = URLRequest(url: url)
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)

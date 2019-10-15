@@ -50,6 +50,9 @@
 "Assignment reminder" = "Opgavepåmindelse";
 
 /* No comment provided by engineer. */
+"Back" = "Tilbage";
+
+/* No comment provided by engineer. */
 "Cancel" = "Annuller";
 
 /* Percent value is over 100 */
@@ -96,6 +99,9 @@
 
 /* Error Message when the app can't load an object model from the database */
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Kunne ikke indlæse (discussionKitModelName) NSManagedObjectModel";
+
+/* No comment provided by engineer. */
+"Grades" = "Vurderinger";
 
 /* High Assignment Grade too Low */
 "High assignment grade cannot be lower than low assignment grade" = "Høj opgavevurdering kan ikke være lavere end lav opgavevurdering";

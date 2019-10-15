@@ -54,7 +54,7 @@ class StudentSyllabusPresenter {
         view?.updateNavBar(courseCode: courses.first?.courseCode, backgroundColor: courses.first?.color)
         if let html = courses.first?.syllabusBody, courses.first != nil, !html.isEmpty {
             view?.updateMenuHeight()
-        } else if courses.first != nil {
+        } else if courses.first != nil && !courses.pending && !colors.pending {
             view?.showAssignmentsOnly()
         }
     }

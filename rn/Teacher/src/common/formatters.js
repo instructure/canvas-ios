@@ -113,7 +113,7 @@ export function formatStudentGrade (assignment: Assignment) {
       }
       return `${status} / ${pointsPossible}`
     case 'points':
-      return `${formatGrade(Number(grade))} / ${pointsPossible}`
+      return `${score} / ${pointsPossible}`
     case 'percent':
     case 'letter_grade':
     case 'gpa_scale':

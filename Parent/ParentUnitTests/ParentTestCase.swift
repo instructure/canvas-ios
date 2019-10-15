@@ -20,6 +20,7 @@ import XCTest
 import Core
 import TestsFoundation
 import CoreData
+import CanvasCore
 @testable import Parent
 
 class ParentTestCase: XCTestCase {
@@ -51,5 +52,8 @@ class ParentTestCase: XCTestCase {
         env.currentSession = currentSession
         MockURLSession.reset()
         MockUploadManager.reset()
+        ExperimentalFeature.allEnabled = false
+        Parent.currentStudentID = "1"
+        Parent.legacySession = Session.current
     }
 }

@@ -26,7 +26,7 @@ public func resetSingleSharedTestDatabase() -> NSPersistentContainer {
     let bundle = Bundle.core
     let modelURL = bundle.url(forResource: "Database", withExtension: "momd")!
     let model = NSManagedObjectModel(contentsOf: modelURL)!
-    let container = NSPersistentContainer(name: "Database", managedObjectModel: model)
+    let container = TestDatabase(name: "Database", managedObjectModel: model)
     let description = NSPersistentStoreDescription()
     description.type = NSInMemoryStoreType
     description.shouldAddStoreAsynchronously = false
@@ -43,4 +43,12 @@ public func resetSingleSharedTestDatabase() -> NSPersistentContainer {
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
     return container
+}
+
+class TestDatabase: NSPersistentContainer {
+    override  func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
+        self.viewContext.performAndWait {
+            block(self.viewContext)
+        }
+    }
 }

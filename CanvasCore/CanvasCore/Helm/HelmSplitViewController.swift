@@ -97,15 +97,8 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
             top?.navigationItem.leftItemsSupplementBackButton = true
             if top?.isKind(of: EmptyViewController.self) == false {
                 top?.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(displayMode)
+                NotificationCenter.default.post(name: NSNotification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: nil)
             }
-        }
-    }
-
-    open func targetDisplayModeForAction(in svc: UISplitViewController) -> UISplitViewController.DisplayMode {
-        if svc.displayMode == .primaryOverlay || svc.displayMode == .primaryHidden {
-            return .allVisible
-        } else {
-            return .primaryHidden
         }
     }
 
@@ -117,7 +110,9 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
                 return true
             } else {
                 // Remove the display mode button item
-                nav.topViewController?.navigationItem.leftBarButtonItem = nil
+                for vc in nav.viewControllers {
+                    vc.navigationItem.leftBarButtonItem = nil
+                }
             }
         }
         
@@ -128,22 +123,30 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
         if let nav = primaryViewController as? UINavigationController, nav.viewControllers.count >= 2 {
             var newDeets = nav.viewControllers[nav.viewControllers.count - 1]
             nav.popViewController(animated: true)
-            
+
             if let helmVC = newDeets as? HelmViewController {
                 if HelmManager.shared.masterModules.contains(helmVC.moduleName) {
                     newDeets = UINavigationController(rootViewController: EmptyViewController())
                 }
             }
-            
+
             if !(newDeets is UINavigationController) {
-                let nav = HelmNavigationController(rootViewController: newDeets)
-                return nav
+                newDeets = HelmNavigationController(rootViewController: newDeets)
             }
-            
+
+            let viewControllers = (newDeets as? UINavigationController)?.viewControllers ?? [newDeets]
+            for vc in viewControllers {
+                vc.navigationItem.leftItemsSupplementBackButton = true
+                vc.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(splitViewController.displayMode)
+            }
+
+            if let nav = newDeets as? UINavigationController {
+                nav.syncStyles()
+            }
+
             return newDeets
         }
         
         return nil
     }
 }
-

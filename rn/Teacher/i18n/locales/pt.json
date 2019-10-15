@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "A conta não possui termos de uso"
   },
-  "act_as_user_d7ef0e48": {
-    "message": "Atuar como utilizador"
-  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Adicione algumas de suas disciplinas favoritas para fazer deste lugar sua casa."
   },
@@ -269,9 +266,6 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Alterar { discussionTitle } para o agrupamento diferente"
   },
-  "change_user_1b7c4f23": {
-    "message": "Mudar utilizador"
-  },
   "choose_color_11148181": {
     "message": "Escolher { color }"
   },
@@ -307,9 +301,6 @@
   },
   "color_a363e1b0": {
     "message": "Cor"
-  },
-  "color_overlay_fb5ecce7": {
-    "message": "Sobreposição de cores"
   },
   "comment_7ef1428e": {
     "message": "Comentário"
@@ -410,6 +401,12 @@
   "creative_commons_license_ba94fd4d": {
     "message": "Licença Creative Commons"
   },
+  "current_grade_6d0b8ef7": {
+    "message": "Classificação Atual"
+  },
+  "current_grade_grade_5b083a30": {
+    "message": "Classificação atual { grade }"
+  },
   "customize_course_eefa9c21": {
     "message": "Personalizar disciplina"
   },
@@ -472,9 +469,6 @@
   },
   "details_98a31b68": {
     "message": "Detalhes"
-  },
-  "developer_menu_1e80da35": {
-    "message": "Menu do desenvolvedor"
   },
   "discussion_details_5728ea3d": {
     "message": "Detalhes da discussão"
@@ -868,9 +862,6 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Bloquear perguntas após a resposta"
-  },
-  "log_out_379ba28a": {
-    "message": "Sair"
   },
   "long_description_7d89285c": {
     "message": "Descrição longa"
@@ -1406,9 +1397,6 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "Mostrar Respostas Corretas em"
   },
-  "show_grades_8680e38e": {
-    "message": "Mostrar Classificações"
-  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "Mostrar um Pergunta por vez"
   },
@@ -1435,9 +1423,6 @@
   },
   "start_recording_189496b9": {
     "message": "Iniciar gravação"
-  },
-  "stop_act_as_user_4f2a4f22": {
-    "message": "Parar agir como utilizador"
   },
   "stop_playing_audio_96aed3bc": {
     "message": "Parar reprodução áudio"
@@ -1516,9 +1501,6 @@
   },
   "terms_of_use_62ee73ad": {
     "message": "Termos de uso"
-  },
-  "terms_of_use_6542769b": {
-    "message": "Termos de Utilização"
   },
   "text_color_colorhex_62e206a5": {
     "message": "Cor do texto ({ colorHex })"
@@ -1790,9 +1772,6 @@
   },
   "view_responses_d2874266": {
     "message": "Ver respostas"
-  },
-  "visit_the_canvas_guides_7328b93f": {
-    "message": "Visite os Guias do Canvas "
   },
   "welcome_73d18b4d": {
     "message": "Bem-vindo!"

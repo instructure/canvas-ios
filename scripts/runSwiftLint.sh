@@ -35,7 +35,7 @@ if [ "$#" -eq 1 ]; then
 		STRICT=""
 		COMMAND="FIXING"
 	fi
-	
+
 fi
 
 declare -a names=("core" "student" "teacher" "parent")
@@ -49,6 +49,6 @@ for (( i=0; i<${arraylength}; i++ ));
 do
 	echo "[${names[$i]}]"
 	pushd ${paths[$i]} > /dev/null 2>&1
-	swiftlint ${FIX} --config ${LINT_CONFIG_FILE_PATH} ${STRICT}  #> /dev/null 2>&1
+	swiftlint ${FIX} --config ${LINT_CONFIG_FILE_PATH} ${STRICT} 2>&1 #> /dev/null
 	popd > /dev/null 2>&1
 done

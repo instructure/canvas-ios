@@ -31,7 +31,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
         return df
     }()
 
-    init(context: Context, startDate: Date = Clock.now.addYears(-2), endDate: Date = Clock.now.addYears(1)) {
+    public init(context: Context, startDate: Date = Clock.now.addYears(-2), endDate: Date = Clock.now.addYears(1)) {
         self.context = context
         self.startDate = startDate
         self.endDate = endDate

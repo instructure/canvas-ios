@@ -27,7 +27,7 @@ func NotificationsTab(session: Session) throws -> UIViewController {
     let activityStream = try ActivityStreamTableViewController(session: session)
     activityStream.title = title
     
-    let split = SplitViewController()
+    let split = HelmSplitViewController()
     split.preferredDisplayMode = .allVisible
     let masterNav = UINavigationController(rootViewController: activityStream)
     let detailNav = UINavigationController()

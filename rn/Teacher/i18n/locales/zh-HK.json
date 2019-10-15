@@ -26,9 +26,6 @@
   "account_has_no_terms_of_use_1048a785": {
     "message": "帳戶未有使用條款"
   },
-  "act_as_user_d7ef0e48": {
-    "message": "作為使用者"
-  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "添加一些自己喜愛的課程以使此處有如家的感覺。"
   },
@@ -269,9 +266,6 @@
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "更改 { discussionTitle } 至其他群組"
   },
-  "change_user_1b7c4f23": {
-    "message": "變更使用者"
-  },
   "choose_color_11148181": {
     "message": "選擇{ color }"
   },
@@ -307,9 +301,6 @@
   },
   "color_a363e1b0": {
     "message": "顏色"
-  },
-  "color_overlay_fb5ecce7": {
-    "message": "顏色覆蓋"
   },
   "comment_7ef1428e": {
     "message": "評論"
@@ -410,6 +401,12 @@
   "creative_commons_license_ba94fd4d": {
     "message": "Creative Commons 許可"
   },
+  "current_grade_6d0b8ef7": {
+    "message": "目前評分"
+  },
+  "current_grade_grade_5b083a30": {
+    "message": "目前評分 { grade }"
+  },
   "customize_course_eefa9c21": {
     "message": "定制課程"
   },
@@ -472,9 +469,6 @@
   },
   "details_98a31b68": {
     "message": "詳情"
-  },
-  "developer_menu_1e80da35": {
-    "message": "開發人員選單"
   },
   "discussion_details_5728ea3d": {
     "message": "討論詳細資料"
@@ -868,9 +862,6 @@
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "回答後鎖定問題"
-  },
-  "log_out_379ba28a": {
-    "message": "登出"
   },
   "long_description_7d89285c": {
     "message": "完整描述"
@@ -1406,9 +1397,6 @@
   "show_correct_answers_at_a5475aa3": {
     "message": "將正確答案顯示在"
   },
-  "show_grades_8680e38e": {
-    "message": "顯示成績"
-  },
   "show_one_question_at_a_time_52f5b1a0": {
     "message": "每次顯示一個問題"
   },
@@ -1435,9 +1423,6 @@
   },
   "start_recording_189496b9": {
     "message": "開始錄製"
-  },
-  "stop_act_as_user_4f2a4f22": {
-    "message": "停止作為使用者"
   },
   "stop_playing_audio_96aed3bc": {
     "message": "停止播放音頻"
@@ -1515,9 +1500,6 @@
     "message": "深青色"
   },
   "terms_of_use_62ee73ad": {
-    "message": "使用條款"
-  },
-  "terms_of_use_6542769b": {
     "message": "使用條款"
   },
   "text_color_colorhex_62e206a5": {
@@ -1790,9 +1772,6 @@
   },
   "view_responses_d2874266": {
     "message": "檢視回應"
-  },
-  "visit_the_canvas_guides_7328b93f": {
-    "message": "瀏覽 Canvas 指南"
   },
   "welcome_73d18b4d": {
     "message": "歡迎！"

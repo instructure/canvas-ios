@@ -166,7 +166,7 @@
 /* five minutes */
 "5 minutes" = "5 minutos";
 
-/* Settings entry title for About */
+/* Name of a tab displaying Canvas Info including legal info */
 "About" = "Sobre";
 
 /* Access Denied from the server */
@@ -349,9 +349,6 @@
 
 /* Choose an existing picture or video to use in a comment. */
 "Choose from Library..." = "Elegir desde la biblioteca...";
-
-/* Button to select a landing page */
-"Choose Landing Page" = "Elegir la página de destino";
 
 /* Text for button to allow user to choose a set of assignments to do */
 "Choose option" = "Elegir opción";

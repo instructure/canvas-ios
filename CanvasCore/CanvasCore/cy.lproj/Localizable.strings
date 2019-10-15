@@ -38,17 +38,8 @@
 /* option to view results for all grading periods */
 "All Grading Periods" = "Pob Cyfnod Graddio";
 
-/* No comment provided by engineer. */
-"All notifications are currently disabled." = "Pob hysbysiad wedi'i analluogi ar hyn o bryd.";
-
-/* No comment provided by engineer. */
-"All notifications are currently enabled." = "Pob hysbysiad wedi'i alluogi ar hyn o bryd.";
-
 /* all pages segmented control title */
 "All Pages" = "Pob Tudalen";
-
-/* No comment provided by engineer. */
-"Allow Notifications in Settings" = "Caniatáu Hysbysiadau yn eich Gosodiadau";
 
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Ymgeisiau a ganiateir";
@@ -95,12 +86,6 @@
 /* Title for screen to build a panda avatar */
 "Build Your Panda!" = "Creu eich Panda!";
 
-/* Alert title when unable to parse JSON for communication channels */
-"Can't Display Communication Channels" = "Methu dangos y Sianeli Cyfathrebu";
-
-/* Alert title when unable to parse JSON for notification preferences */
-"Can't Display Notification Preferences" = "Methu dangos Dewisiadau Hysbysiadau";
-
 /* Cancel Audio recording.
    Cancel button title
    Cancel upload */
@@ -108,9 +93,6 @@
 
 /* No comment provided by engineer. */
 "Change Section" = "Newid yr Adran";
-
-/* Description for Chat communication channel */
-"Chat" = "Sgwrsio";
 
 /* Choose a file */
 "Choose a File" = "Dewiswch Ffeil";
@@ -136,26 +118,11 @@
 /* No comment provided by engineer. */
 "Comments" = "Sylwadau";
 
-/* Title of a screen that shows all of our open source components */
-"Components" = "Cydrannau";
-
 /* Button for electing to be late on a quiz */
 "Continue Quiz" = "Parhau â'r Cwis";
 
-/* Notification display name for conversations group */
-"Conversations" = "Sgyrsiau";
-
-/* Alert title when unable to load notification preferences */
-"Could not load notification preferences" = "Methu llwytho dewisiadau hysbysiadau";
-
 /* Failure reason for why it couldn't associate a tab with a context */
 "Could not parse context id from URL" = "Doedd dim modd dosrannu’r ID cynnwys o'r URL";
-
-/* Error title for being unable to update a push notification preference */
-"Could not update" = "Methu diweddaru";
-
-/* Notification display name for course activities group */
-"Course Activities" = "Gweithgareddau Cwrs";
 
 /* Header label for a screen that customizes a course */
 "Customize" = "Addasu";
@@ -190,9 +157,6 @@
 /* label to be read for visually impaired users with discusstion topic assignment types */
 "discussion topic" = "pwnc trafod";
 
-/* Notification display name for discussions group */
-"Discussions" = "Trafodaeth";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Gwall ar y Ddisg";
 
@@ -208,9 +172,6 @@
 
 /* due date label for quiz due date */
 "Due Date" = "Dyddiad Erbyn";
-
-/* Description for email communication channel */
-"Email" = "E-bost";
 
 /* Data encoding error title */
 "Encoding Error" = "Gwall Amgodio";
@@ -293,9 +254,6 @@
 /* Green course color button */
 "Green" = "Gwyrdd";
 
-/* Notification display name for groups group */
-"Groups" = "Grwpiau";
-
 /* Non favorite hidden courses or groups */
 "Hidden" = "Cudd";
 
@@ -358,9 +316,6 @@
 /* Next button for advancing a quiz */
 "Next" = "Nesaf";
 
-/* Alert title when unable to load communication channels */
-"No Communication Channels Found" = "Heb ganfod Sianeli Cyfathrebu";
-
 /* A quiz that has no due date */
 "No Due Date" = "Dim Dyddiad Erbyn";
 
@@ -388,17 +343,8 @@
 /* Error title for push notification registration error */
 "Notification Error" = "Gwall Hysbysu";
 
-/* Title for the notification preferences page */
-"Notification Preferences" = "Dewisiadau Hysbysiadau";
-
-/* No comment provided by engineer. */
-"Off" = "Diffodd";
-
 /* OK Button Title */
 "OK" = "Iawn";
-
-/* No comment provided by engineer. */
-"On" = "Ar Waith";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Agor yn y Porwr";
@@ -451,9 +397,6 @@
 
 /* Purple course color button */
 "Purple" = "Porffor";
-
-/* Description for Push Notification channel */
-"Push Notifications" = "Hysbysiadau Marchnata";
 
 /* accessibility label for a quiz question */
 "Question" = "Cwestiwn";
@@ -536,9 +479,6 @@
 /* button for retaking quiz */
 "Retake Quiz" = "Gwneud y Cwis eto";
 
-/* Notification display name for scheduling group */
-"Scheduling" = "Trefnu";
-
 /* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
 "Select all that apply" = "Dewiswch bob un sy'n berthnasol";
 
@@ -559,12 +499,6 @@
 
 /* Text for a button that toggles to show a timer for a timed quiz */
 "Show Timer" = "Dangos yr Amserydd";
-
-/* Description for Slack communication channel */
-"Slack" = "Slack";
-
-/* Description for SMS communication channel */
-"SMS" = "SMS";
 
 /* Error message displayed when the file is unrecognized. */
 "Something went wrong. Check the file format and try again." = "Aeth rhywbeth o’i le. Gwnewch yn siŵr bod fformat y ffeil yn iawn a rhoi cynnig arall arni.";
@@ -599,9 +533,6 @@
 
 /* Button for taking the quiz */
 "Take Quiz" = "Gwnewch y Cwis";
-
-/* No comment provided by engineer. */
-"Tap to toggle" = "Tapiwch i doglo";
 
 /* Teal course color button */
 "Teal" = "Glaswyrdd";
@@ -711,21 +642,6 @@
 /* Total grade label */
 "Total Grade" = "Gradd Gyffredinol";
 
-/* Description for Twitter communication channel */
-"Twitter" = "Twitter";
-
-/* Alert message when unable to parse JSON for communication channels */
-"Unable to display any Communication Channels returned from the server at this time." = "Does dim modd dangos unrhyw Sianeli Cyfathrebu sydd wedi'u dychwelyd o'r gweinydd ar hyn o bryd.";
-
-/* Alert message when unable to parse JSON for notification preferences */
-"Unable to display any notification preferences returned from the server at this time." = "Does dim modd dangos unrhyw ddewisiadau hysbysiadau sydd wedi'u dychwelyd o'r gweinydd ar hyn o bryd.";
-
-/* Alert message when unable to load communication channels */
-"Unable to load any Communication Channels at this time." = "Does dim modd llwytho Sianeli Cyfathrebu ar hyn o bryd.";
-
-/* Alert message when unable to load notification preferences */
-"Unable to load any notification preferences at this time.  Error: %@" = "Does dim modd llwytho unrhyw ddymuniadau o ran hysbysiadau ar hyn o bryd.  Gwall: %@";
-
 /* Error message when parsing communication preferences */
 "Unable to parse JSON for communication channels" = "Methu dosrannu JSON ar gyfer sianeli cyfathrebu";
 
@@ -765,14 +681,8 @@
 /* a warning message */
 "Warning" = "Rhybudd";
 
-/* Error message for being unable to update a push notification preference */
-"We were not able to update this value with the server" = "Doedd dim modd i ni ddiweddaru’r gwerth hwn gyda'r gweinydd";
-
 /* Yellow course color button */
 "Yellow" = "Melyn";
-
-/* Description for Yo communication channel */
-"Yo" = "Yo";
 
 /* Shows time limit on a quiz */
 "You have %d minutes." = "Mae gennych chi %d munud.";

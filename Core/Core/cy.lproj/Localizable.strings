@@ -7,6 +7,12 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* No comment provided by engineer. */
+"%@ out of %@" = "%1$@ allan o %2$@";
+
+/* No comment provided by engineer. */
+"%@ out of %@ (%@)" = "%1$@ allan o %2$@ (%3$@)";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "rhiant";
 
@@ -77,16 +83,37 @@
 "Casual question or suggestion" = "Awgrym neu gwestiwn anffurfiol";
 
 /* No comment provided by engineer. */
+"Change Profile Image" = "Newid Llun Proffil";
+
+/* No comment provided by engineer. */
+"Change User" = "Newid Defnyddiwr";
+
+/* No comment provided by engineer. */
 "Check network and try again!" = "Gwiriwch y rhwydwaith a rhoi cynnig arall arni!";
 
 /* No comment provided by engineer. */
+"Choose Photo" = "Dewiswch Lun";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Dewiswch Lun Proffil";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Clirio’r recordiad";
+
+/* No comment provided by engineer. */
+"Close" = "Cau";
 
 /* No comment provided by engineer. */
 "Close App" = "Cau’r Ap";
 
 /* No comment provided by engineer. */
 "Closed" = "Wedi cau";
+
+/* No comment provided by engineer. */
+"Collapse" = "Crebachu";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "Gorchudd Lliw";
 
 /* No comment provided by engineer. */
 "Comment" = "Sylw";
@@ -122,6 +149,12 @@
 "Describe the problem" = "Disgrifiwch y broblem";
 
 /* No comment provided by engineer. */
+"Designer" = "Dylunydd";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "Dewislen Datblygwr";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Sylw ar Drafodaeth";
 
 /* No comment provided by engineer. */
@@ -144,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Wedi esgusodi";
+
+/* No comment provided by engineer. */
+"Expand" = "Ehangu";
 
 /* No comment provided by engineer. */
 "External Tool" = "Adnodd Allanol";
@@ -224,6 +260,9 @@
 "Italic" = "Italig";
 
 /* No comment provided by engineer. */
+"Late" = "Yn Hwyr";
+
+/* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
@@ -269,10 +308,19 @@
 "Log In Again" = "Mewngofnodi Eto";
 
 /* No comment provided by engineer. */
+"Log Out" = "Allgofnodi";
+
+/* No comment provided by engineer. */
+"Manage Children" = "Rheoli Plant";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "OAuth Login sydd ddim yn awtomatig";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Recordio Cyfryngau";
+
+/* No comment provided by engineer. */
+"Missing" = "Ar goll";
 
 /* No comment provided by engineer. */
 "N/A" = "Amherthnasol";
@@ -300,6 +348,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Dim Brys";
+
+/* No comment provided by engineer. */
+"Observer" = "Arsyllwr";
 
 /* No comment provided by engineer. */
 "OK" = "Iawn";
@@ -401,6 +452,9 @@
 "Settings" = "Gosodiadau";
 
 /* No comment provided by engineer. */
+"Show Grades" = "Dangos Graddau";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Manylion Mewngofnodi Gweinyddwr y Safle";
 
 /* No comment provided by engineer. */
@@ -416,10 +470,16 @@
 "Start recording" = "Dechrau'r recordiad";
 
 /* No comment provided by engineer. */
+"Stop Act as User" = "Stopio Gweithredu fel Defnyddiwr";
+
+/* No comment provided by engineer. */
 "Stop acting as..." = "Stopio gweithredu fel...";
 
 /* No comment provided by engineer. */
 "Stop recording" = "Stopio'r recordiad";
+
+/* No comment provided by engineer. */
+"Student" = "Myfyriwr";
 
 /* No comment provided by engineer. */
 "Style" = "Arddull";
@@ -442,8 +502,17 @@
 /* No comment provided by engineer. */
 "Success!" = "Wedi llwyddo!";
 
+/* Teacher's Assistant (abbreviated) */
+"TA" = "Cynorthwyydd Dysgu";
+
+/* No comment provided by engineer. */
+"Take Photo" = "Tynnu llun gyda chamera";
+
 /* No comment provided by engineer. */
 "Tap here for help." = "Tapiwch yma i gael help.";
+
+/* No comment provided by engineer. */
+"Teacher" = "Athro";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Telerau Defnyddio";

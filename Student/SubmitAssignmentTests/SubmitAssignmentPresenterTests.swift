@@ -55,7 +55,7 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
         presenter.view = self
         presenter.uploadManager = uploadManager
         // SubmitAssignmentPresenter calls env.userDidLogin, so need to reset after
-        env.api = api
+        env.api = URLSessionAPI()
         env.database = database
         env.userDefaults?.reset()
     }
@@ -138,10 +138,43 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
                 expectation.fulfill()
             }
         }
-        let attachment = NSItemProvider(contentsOf: URL(string: "data:text/plain,abcde")!)!
+        let attachment = NSItemProvider(item: Data() as NSSecureCoding, typeIdentifier: UTI.any.rawValue)
         let item = TestExtensionItem(mockAttachments: [attachment])
         presenter.load(items: [item])
         wait(for: [expectation], timeout: 1)
+    }
+
+    func testLoadItemsImage() {
+        presenter.select(course: .make())
+        presenter.select(assignment: .make())
+        let expectation = XCTestExpectation(description: "content is valid")
+        onUpdate = {
+            if self.presenter.isContentValid {
+                expectation.fulfill()
+            }
+        }
+        let attachment = NSItemProvider(item: UIImage.icon(.addImageLine), typeIdentifier: UTI.image.rawValue)
+        let item = TestExtensionItem(mockAttachments: [attachment])
+        presenter.load(items: [item])
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testLoadItemsFileURL() throws {
+        let fileURL = URL.temporaryDirectory.appendingPathComponent("loadFileURL.txt", isDirectory: false)
+        try "test".write(to: fileURL, atomically: false, encoding: .utf8)
+        presenter.select(course: .make())
+        presenter.select(assignment: .make())
+        let expectation = XCTestExpectation(description: "content is valid")
+        onUpdate = {
+            if self.presenter.isContentValid {
+                expectation.fulfill()
+            }
+        }
+        let attachment = NSItemProvider(item: fileURL as NSSecureCoding, typeIdentifier: UTI.fileURL.rawValue)
+        let item = TestExtensionItem(mockAttachments: [attachment])
+        presenter.load(items: [item])
+        wait(for: [expectation], timeout: 1)
+        try FileManager.default.removeItem(at: fileURL)
     }
 
     func testSubmit() {
@@ -153,7 +186,7 @@ class SubmitAssignmentPresenterTests: SubmitAssignmentTests, SubmitAssignmentVie
                 expectation.fulfill()
             }
         }
-        let attachment = NSItemProvider(contentsOf: URL(string: "data:text/plain,abcde")!)!
+        let attachment = NSItemProvider(item: Data() as NSSecureCoding, typeIdentifier: UTI.any.rawValue)
         let item = TestExtensionItem(mockAttachments: [attachment])
         presenter.load(items: [item])
         wait(for: [expectation], timeout: 0.5)

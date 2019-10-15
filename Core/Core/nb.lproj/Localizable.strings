@@ -7,6 +7,12 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* No comment provided by engineer. */
+"%@ out of %@" = "%1$@ ut av %2$@";
+
+/* No comment provided by engineer. */
+"%@ out of %@ (%@)" = "%1$@ ut av %2$@ (%3$@)";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "en foresatt";
 
@@ -77,16 +83,37 @@
 "Casual question or suggestion" = "Tilfeldig spørsmål eller forslag";
 
 /* No comment provided by engineer. */
+"Change Profile Image" = "Endre profilbilde";
+
+/* No comment provided by engineer. */
+"Change User" = "Endre bruker";
+
+/* No comment provided by engineer. */
 "Check network and try again!" = "Sjekk nettverket, og prøv igjen!";
 
 /* No comment provided by engineer. */
+"Choose Photo" = "Velg bilde";
+
+/* No comment provided by engineer. */
+"Choose Profile Picture" = "Velg profilbilde";
+
+/* No comment provided by engineer. */
 "Clear recording" = "Fjern opptak";
+
+/* No comment provided by engineer. */
+"Close" = "Lukk";
 
 /* No comment provided by engineer. */
 "Close App" = "Lukk app";
 
 /* No comment provided by engineer. */
 "Closed" = "Lukket";
+
+/* No comment provided by engineer. */
+"Collapse" = "Skjul";
+
+/* No comment provided by engineer. */
+"Color Overlay" = "Fargeoverlegg";
 
 /* No comment provided by engineer. */
 "Comment" = "Kommentar";
@@ -122,6 +149,12 @@
 "Describe the problem" = "Beskriv problemet";
 
 /* No comment provided by engineer. */
+"Designer" = "Designer";
+
+/* No comment provided by engineer. */
+"Developer Menu" = "Utviklermeny";
+
+/* No comment provided by engineer. */
 "Discussion Comment" = "Diskusjonskommentarer";
 
 /* No comment provided by engineer. */
@@ -144,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Excused" = "Fritatt";
+
+/* No comment provided by engineer. */
+"Expand" = "Utvid";
 
 /* No comment provided by engineer. */
 "External Tool" = "Eksternt verktøy";
@@ -224,6 +260,9 @@
 "Italic" = "Kursiv";
 
 /* No comment provided by engineer. */
+"Late" = "Sent";
+
+/* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
@@ -269,10 +308,19 @@
 "Log In Again" = "Logg inn igjen";
 
 /* No comment provided by engineer. */
+"Log Out" = "Logg Ut";
+
+/* No comment provided by engineer. */
+"Manage Children" = "Administrere barn";
+
+/* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuell OAuth-innlogging";
 
 /* No comment provided by engineer. */
 "Media Recording" = "Medieinnspilling";
+
+/* No comment provided by engineer. */
+"Missing" = "Mangler";
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
@@ -300,6 +348,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Haster ikke";
+
+/* No comment provided by engineer. */
+"Observer" = "Observatør";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -401,6 +452,9 @@
 "Settings" = "Innstillinger";
 
 /* No comment provided by engineer. */
+"Show Grades" = "Vis karakterer";
+
+/* No comment provided by engineer. */
 "Site Admin Login" = "Sideadministratorinnlogging";
 
 /* No comment provided by engineer. */
@@ -416,10 +470,16 @@
 "Start recording" = "Start opptak";
 
 /* No comment provided by engineer. */
+"Stop Act as User" = "Avslutt å opptre som bruker";
+
+/* No comment provided by engineer. */
 "Stop acting as..." = "Slutt å opptre som...";
 
 /* No comment provided by engineer. */
 "Stop recording" = "Stopp opptak";
+
+/* No comment provided by engineer. */
+"Student" = "Student";
 
 /* No comment provided by engineer. */
 "Style" = "Stil";
@@ -442,8 +502,17 @@
 /* No comment provided by engineer. */
 "Success!" = "Vellykket!";
 
+/* Teacher's Assistant (abbreviated) */
+"TA" = "LA";
+
+/* No comment provided by engineer. */
+"Take Photo" = "Ta bilde";
+
 /* No comment provided by engineer. */
 "Tap here for help." = "Trykk her for hjelp.";
+
+/* No comment provided by engineer. */
+"Teacher" = "Lærer";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Bruksvilkår";

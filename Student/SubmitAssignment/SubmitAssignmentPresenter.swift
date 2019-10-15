@@ -170,17 +170,34 @@ class SubmitAssignmentPresenter {
             callback(urls, nil)
             return
         }
-        attachment.loadFileRepresentation(forTypeIdentifier: UTI.any.rawValue) { url, error in
-            guard let url = url, error == nil else {
+        let supported: [UTI] = [.image, .fileURL, .any] // in priority order
+        guard let uti = supported.first(where: { attachment.hasItemConformingToTypeIdentifier($0.rawValue) }) else {
+            let error = NSError.instructureError(NSLocalizedString("Format not supported", comment: ""))
+            callback(nil, error)
+            return
+        }
+        attachment.loadItem(forTypeIdentifier: uti.rawValue, options: nil) { data, error in
+            guard let coding = data, error == nil else {
                 callback(nil, error)
                 return
             }
-            let newURL = self.sharedContainer
+            let directory = self.sharedContainer
                 .appendingPathComponent("share-submit")
                 .appendingPathComponent(UUID.string)
-                .appendingPathComponent(url.lastPathComponent)
             do {
-                try url.move(to: newURL)
+                let newURL: URL
+                if let image = coding as? UIImage {
+                    newURL = try image.write(to: directory, nameIt: "image")
+                } else if let url = coding as? URL {
+                    newURL = directory.appendingPathComponent(url.lastPathComponent)
+                    try url.move(to: newURL, copy: true)
+                } else if let data = coding as? Data {
+                    newURL = directory.appendingPathComponent("file")
+                    try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
+                    try data.write(to: newURL)
+                } else {
+                    throw NSError.instructureError(NSLocalizedString("Format not supported", comment: ""))
+                }
                 urls.append(newURL)
                 self.load(attachments: attachments, into: urls, callback: callback)
             } catch {

@@ -22,8 +22,8 @@ import XCTest
 public extension XCTestCase {
     // make sure anything sitting on the main queue is run before returning
     func drainMainQueue() {
-        let expectation = XCTestExpectation(description: "drain main queue")
-        DispatchQueue.main.async { expectation.fulfill() }
-        wait(for: [expectation], timeout: 5)
+        XCTAssertTrue(Thread.current.isMainThread)
+        while (CFRunLoopRunInMode(.defaultMode, 0, true) == .handledSource) {
+        }
     }
 }

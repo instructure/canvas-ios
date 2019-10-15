@@ -20,5 +20,5 @@ import Foundation
 
 public protocol AppBackgroundHelperProtocol {
     func startBackgroundTask(taskName: String)
-    func endBackgroundTask()
+    func endBackgroundTask(taskName: String)
 }

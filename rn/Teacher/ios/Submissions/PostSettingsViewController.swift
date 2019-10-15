@@ -19,23 +19,19 @@
 import UIKit
 import Core
 
-class PostSettingsViewController: UIViewController {
-    @IBOutlet weak var menu: HorizontalMenuView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var menuHeight: NSLayoutConstraint!
+class PostSettingsViewController: HorizontalMenuViewController {
     private var postGradesViewController: PostGradesViewController!
     private var hideGradesViewController: HideGradesViewController!
-    @IBOutlet weak var containerA: UIView!
-    @IBOutlet weak var containerB: UIView!
     var courseID: String = ""
     var assignmentID: String = ""
+    var viewControllers: [UIViewController] = []
 
     enum MenuItem: Int {
         case post, hide
     }
 
     static func create(courseID: String, assignmentID: String) -> PostSettingsViewController {
-        let controller = loadFromStoryboard()
+        let controller = PostSettingsViewController(nibName: nil, bundle: nil)
         controller.courseID = courseID
         controller.assignmentID = assignmentID
         return controller
@@ -44,58 +40,33 @@ class PostSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Post Settings", comment: "")
-        configureMenu()
+
+        delegate = self
         configurePost()
         configureHide()
-        scrollView.delegate = self
-        navigationController?.navigationBar.barTintColor = UIColor.white
+
+        navigationController?.navigationBar.useModalStyle()
 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
     }
 
-    func configureMenu() {
-        menu.delegate = self
-        menuHeight.constant = 1
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        layoutViewControllers()
     }
 
     func configurePost() {
         postGradesViewController = PostGradesViewController.create(courseID: courseID, assignmentID: assignmentID)
-        embed(postGradesViewController, in: containerA)
+        viewControllers.append(postGradesViewController)
     }
 
     func configureHide() {
         hideGradesViewController = HideGradesViewController.create(courseID: courseID, assignmentID: assignmentID)
-        embed(hideGradesViewController, in: containerB)
-    }
-
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let ratio = self.scrollView.contentOffsetRatio
-        coordinator.animate(alongsideTransition: { [weak self] _ in
-            ratio.x >= 0.5 ? self?.showHide() : self?.showPost()
-            self?.menu.reload()
-            }, completion: nil)
-    }
-
-    func showPost() {
-        scrollView.scrollRectToVisible(containerA.frame, animated: true)
-    }
-
-    func showHide() {
-        scrollView.scrollRectToVisible(containerB.frame, animated: true)
+        viewControllers.append(hideGradesViewController)
     }
 }
 
-extension PostSettingsViewController: UIScrollViewDelegate {
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if containerB.frame.contains(scrollView.contentOffset) {
-            menu.selectMenuItem(at: IndexPath(row: MenuItem.hide.rawValue, section: 0), animated: true)
-        } else {
-            menu.selectMenuItem(at: IndexPath(row: MenuItem.post.rawValue, section: 0), animated: true)
-        }
-    }
-}
-
-extension PostSettingsViewController: HorizontalMenuDelegate {
+extension PostSettingsViewController: HorizontalPagedMenuDelegate {
     func accessibilityIdentifier(at: IndexPath) -> String {
         guard let menuItem = MenuItem(rawValue: at.row) else { return "" }
         var identifier: String
@@ -106,20 +77,12 @@ extension PostSettingsViewController: HorizontalMenuDelegate {
         return "PostSettings.\(identifier)MenuItem"
     }
 
-    var selectedColor: UIColor? {
+    var menuItemSelectedColor: UIColor? {
         return Brand.shared.buttonPrimaryBackground
-    }
-
-    var maxItemWidth: CGFloat {
-        return 200
     }
 
     var measurementFont: UIFont {
         return .scaledNamedFont(.semibold14)
-    }
-
-    func menuItemCount() -> Int {
-        return 2
     }
 
     func menuItemTitle(at: IndexPath) -> String {
@@ -129,16 +92,6 @@ extension PostSettingsViewController: HorizontalMenuDelegate {
             return NSLocalizedString("Post Grades", comment: "")
         case .hide:
             return NSLocalizedString("Hide Grades", comment: "")
-        }
-    }
-
-    func didSelectItem(at: IndexPath) {
-        guard let item = MenuItem(rawValue: at.row) else { return }
-        switch item {
-        case .post:
-            showPost()
-        case .hide:
-            showHide()
         }
     }
 }

@@ -45,7 +45,7 @@ export default class SubmissionStatusLabel extends Component<SubmissionStatusLab
     } else if (submission.missing) {
       color = '#EE0612'
       title = i18n('Missing')
-    } else if (submission.submittedAt != null) {
+    } else if (submission.submittedAt != null || submission.submitted_at != null) {
       color = '#07AF1F'
       title = i18n('Submitted')
     }

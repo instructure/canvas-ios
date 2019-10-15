@@ -38,7 +38,8 @@ class SyllabusTests: StudentUITestCase {
 
         show("/courses/\(course.id)/assignments/syllabus")
 
-        Syllabus.menu.waitToExist()
+        app.find(label: "hello world").waitToExist()
+
         XCTAssertEqual(NavBar.title.label(), "Course Syllabus")
         XCTAssertEqual(NavBar.subtitle.label(), course.course_code)
 

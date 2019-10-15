@@ -43,7 +43,7 @@ program
   .version(require('../../package.json').version)
   .option('--device [name]', 'Run XCTest on [name]', 'iPhone 8')
   .option('--html', 'Deprecated, html reports are always generated')
-  .option('--os [name]', 'Run XCTest on [name]', '12.2')
+  .option('--os [name]', 'Run XCTest on [name]', '13.0')
   .option('--scheme [name]', 'Report coverage for scheme [name]', 'CITests')
   .option('--test', 'Run XCTest for scheme before generating reports')
   .parse(process.argv)
@@ -91,7 +91,8 @@ function reportCoverage () {
   }
 
   console.log(`Reading Xcode coverage report ${folder}`)
-  const report = JSON.parse(run(`xcrun xccov view --json ${folder}`))
+  run(`xcrun xccov view --report --json ${folder} > scripts/coverage/tmp.json`)
+  const report = JSON.parse(readFileSync('scripts/coverage/tmp.json'))
 
   try {
     console.log(`Reading Jest Istanbul coverage report`)

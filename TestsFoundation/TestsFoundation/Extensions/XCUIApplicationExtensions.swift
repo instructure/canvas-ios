@@ -41,11 +41,4 @@ public extension XCUIApplication {
     func find(type: XCUIElement.ElementType, index: Int = 0) -> Element {
         return XCUIElementQueryWrapper(app.descendants(matching: type), index: index)
     }
-
-    func waitForSnapshot(timeout: TimeInterval = 30) {
-        let deadline = Date().addingTimeInterval(timeout)
-        while (try? snapshot()) == nil, Date() < deadline {
-            sleep(1)
-        }
-    }
 }

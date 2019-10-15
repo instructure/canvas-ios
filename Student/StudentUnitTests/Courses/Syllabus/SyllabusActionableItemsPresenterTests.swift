@@ -51,50 +51,77 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
         super.tearDown()
     }
 
-    func testUseCaseFetchesData() {
-        //  given
-        Assignment.make(from: .make(name: "Assignment One"))
+    func testUseCasesSetupProperly() {
+        XCTAssertEqual(presenter.course.useCase.courseID, presenter.courseID)
 
-        //   when
-        presenter.viewIsReady()
+        XCTAssertEqual(presenter.assignments.useCase.courseID, presenter.courseID)
+        XCTAssertEqual(presenter.assignments.useCase.sort, .dueAt)
 
-        //  then
-        XCTAssertEqual(models.first?.title, "Assignment One")
+        XCTAssertEqual(presenter.calendarEvents.useCase.context.contextType, .course)
+        XCTAssertEqual(presenter.calendarEvents.useCase.context.id, presenter.courseID)
     }
 
-    func testLoadCourseColorsAndTitle() {
-        //  given
-        let expected = Course.make()
-        let expectedColor = Color.make()
+    func testLoadCourse() {
+        let course = Course.make()
+        presenter.course.eventHandler()
 
-        //  when
+        XCTAssertEqual(resultingSubtitle, course.name)
+    }
+
+    func testLoadColors() {
+        let course = Course.make()
+        Color.make(canvasContextID: course.canvasContextID)
+
+        presenter.color.eventHandler()
+
+        XCTAssertEqual(resultingBackgroundColor, UIColor.red)
+    }
+
+    func testLoadAssignments() {
+        let assignment = Assignment.make()
+        // the update method on the view is only called if both events fire twice
+        presenter.assignments.eventHandler()
+        presenter.assignments.eventHandler()
+        presenter.calendarEvents.eventHandler()
+        presenter.calendarEvents.eventHandler()
+        XCTAssertEqual(models[0].title, assignment.name)
+    }
+
+    func testLoadCalendarEvents() {
+        let calendarEvent = CalendarEventItem.make()
+        // the update method on the view is only called if both events fire twice
+        presenter.assignments.eventHandler()
+        presenter.assignments.eventHandler()
+        presenter.calendarEvents.eventHandler()
+        presenter.calendarEvents.eventHandler()
+        XCTAssertEqual(models[0].title, calendarEvent.title)
+    }
+
+    func testViewIsReady() {
         presenter.viewIsReady()
-        XCTAssertEqual(presenter.course.count, 1)
-        wait(for: [expectation], timeout: 0.4)
-        presenter.loadColor()
-
-        //  then
-        XCTAssertEqual(resultingBackgroundColor, expectedColor.color)
-        XCTAssertEqual(resultingSubtitle, expected.name)
+        let colorStore = presenter.color as! TestStore
+        let courseStore = presenter.course as! TestStore
+        let assignmentsStore = presenter.assignments as! TestStore
+        let calendarStore = presenter.calendarEvents as! TestStore
+        wait(for: [colorStore.refreshExpectation, courseStore.refreshExpectation, assignmentsStore.exhaustExpectation, calendarStore.exhaustExpectation], timeout: 0.1)
     }
 
     func testSelect() {
-        let a = Assignment.make()
+        let htmlURL = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         let router = env.router as? TestRouter
-        XCTAssertNoThrow(presenter.select(a.htmlURL, from: UIViewController()))
-        XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(a.htmlURL))
+        XCTAssertNoThrow(presenter.select(htmlURL, from: UIViewController()))
+        XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(htmlURL))
     }
 
     func testFormattedDateNoDueDate() {
-        let a = Assignment.make()
-        let str = presenter.formattedDueDate(a.dueAt)
+        let str = presenter.formattedDueDate(nil)
         XCTAssertEqual(str, "No Due Date")
     }
 
     func testFormattedDate() {
         NSTimeZone.default = NSTimeZone(forSecondsFromGMT: 0) as TimeZone
-        let a = Assignment.make(from: .make(due_at: Date(fromISOString: "2018-05-15T20:00:00Z")))
-        let str = presenter.formattedDueDate(a.dueAt)
+        let date = Date(fromISOString: "2018-05-15T20:00:00Z")
+        let str = presenter.formattedDueDate(date)
         XCTAssertEqual(str, "May 15, 2018 at 8:00 PM")
     }
 
@@ -107,7 +134,11 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
         CalendarEventItem.make(from: .make(id: "2", title: "cB", end_at: Date(fromISOString: "2017-06-15T20:00:00Z")))
         CalendarEventItem.make(from: .make(id: "3", title: "cC", end_at: nil))
 
-        presenter.viewIsReady()
+        // the update method on the view is only called if both events fire twice
+        presenter.assignments.eventHandler()
+        presenter.assignments.eventHandler()
+        presenter.calendarEvents.eventHandler()
+        presenter.calendarEvents.eventHandler()
 
         let order = models.map { $0.title }
         XCTAssertEqual(order, ["cA", "a", "cB", "b", "c", "cC"])
@@ -117,7 +148,6 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
 extension SyllabusActionableItemsPresenterTests: SyllabusActionableItemsViewProtocol {
     func update(models: [SyllabusActionableItemsViewController.ViewModel]) {
         self.models = models
-        expectation.fulfill()
     }
 
     var navigationController: UINavigationController? {
