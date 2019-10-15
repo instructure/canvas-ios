@@ -17,11 +17,10 @@
 //
 
 import XCTest
-@testable import Student
-import Core
+@testable import Core
 import TestsFoundation
 
-class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
+class SyllabusActionableItemsPresenterTests: CoreTestCase {
 
     var resultingError: NSError?
     var resultingBaseURL: URL?
@@ -43,7 +42,7 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
         super.setUp()
         originalTimeZone = NSTimeZone.default
         expectation = XCTestExpectation(description: "expectation")
-        presenter = SyllabusActionableItemsPresenter(env: env, view: self, courseID: "1")
+        presenter = SyllabusActionableItemsPresenter(env: environment, view: self, courseID: "1")
     }
 
     override func tearDown() {
@@ -146,6 +145,11 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
 }
 
 extension SyllabusActionableItemsPresenterTests: SyllabusActionableItemsViewProtocol {
+    func updateColor(_ color: UIColor?) {
+        resultingBackgroundColor = color
+        colorExpectation.fulfill()
+    }
+
     func update(models: [SyllabusActionableItemsViewController.ViewModel]) {
         self.models = models
     }
@@ -156,11 +160,5 @@ extension SyllabusActionableItemsPresenterTests: SyllabusActionableItemsViewProt
 
     func showError(_ error: Error) {
         resultingError = error as NSError
-    }
-
-    func updateNavBar(subtitle: String?, color: UIColor?) {
-        resultingBackgroundColor = color
-        resultingSubtitle = subtitle
-        colorExpectation.fulfill()
     }
 }
