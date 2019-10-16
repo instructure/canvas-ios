@@ -51,6 +51,8 @@
 		3B35F06F230EEE1700674FF5 /* APIPostPolicyInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35F06E230EEE1700674FF5 /* APIPostPolicyInfoTests.swift */; };
 		3B35F071230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35F070230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift */; };
 		3B35F073230F01F600674FF5 /* APIGraphQLRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B35F072230F01F600674FF5 /* APIGraphQLRequestableTests.swift */; };
+		3B4687B32355109C00F293A5 /* SyllabusActionableItemsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4687B12355109B00F293A5 /* SyllabusActionableItemsPresenter.swift */; };
+		3B4687B42355109C00F293A5 /* SyllabusActionableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4687B22355109C00F293A5 /* SyllabusActionableItemsViewController.swift */; };
 		3B4B75C7222F09C7002CCBEC /* CreateSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */; };
 		3B4D861323295239005126A5 /* GradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D861223295239005126A5 /* GradesViewController.swift */; };
 		3B4D861523295263005126A5 /* GradesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4D861423295263005126A5 /* GradesViewController.storyboard */; };
@@ -78,6 +80,7 @@
 		3B67BCB821B5E72000055324 /* CreateSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */; };
 		3B69254021A12E020023ED75 /* Int64Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B69253F21A12E020023ED75 /* Int64Extensions.swift */; };
 		3B6D23E72267B9000040D3FE /* APIRubricAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D23E62267B9000040D3FE /* APIRubricAssessment.swift */; };
+		3B6FE4A22356371D00000B9D /* SyllabusActionableItemsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6FE4A12356371C00000B9D /* SyllabusActionableItemsPresenterTests.swift */; };
 		3B801BFA2322F64900D143F0 /* AlertThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B801BF92322F64900D143F0 /* AlertThreshold.swift */; };
 		3B84C38F218B9B51005946BA /* AssignmentDatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */; };
 		3B8F23CD23274FC500788730 /* AlertThresholdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F23CC23274FC500788730 /* AlertThresholdTests.swift */; };
@@ -741,6 +744,8 @@
 		3B35F06E230EEE1700674FF5 /* APIPostPolicyInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPostPolicyInfoTests.swift; sourceTree = "<group>"; };
 		3B35F070230EF1B100674FF5 /* APIPostPolicyRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPostPolicyRequestableTests.swift; sourceTree = "<group>"; };
 		3B35F072230F01F600674FF5 /* APIGraphQLRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGraphQLRequestableTests.swift; sourceTree = "<group>"; };
+		3B4687B12355109B00F293A5 /* SyllabusActionableItemsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenter.swift; sourceTree = "<group>"; };
+		3B4687B22355109C00F293A5 /* SyllabusActionableItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsViewController.swift; sourceTree = "<group>"; };
 		3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmission.swift; sourceTree = "<group>"; };
 		3B4D861223295239005126A5 /* GradesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewController.swift; sourceTree = "<group>"; };
 		3B4D861423295263005126A5 /* GradesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GradesViewController.storyboard; sourceTree = "<group>"; };
@@ -768,6 +773,7 @@
 		3B67BCB721B5E72000055324 /* CreateSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmissionTests.swift; sourceTree = "<group>"; };
 		3B69253F21A12E020023ED75 /* Int64Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64Extensions.swift; sourceTree = "<group>"; };
 		3B6D23E62267B9000040D3FE /* APIRubricAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRubricAssessment.swift; sourceTree = "<group>"; };
+		3B6FE4A12356371C00000B9D /* SyllabusActionableItemsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenterTests.swift; sourceTree = "<group>"; };
 		3B801BF92322F64900D143F0 /* AlertThreshold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertThreshold.swift; sourceTree = "<group>"; };
 		3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDatesTests.swift; sourceTree = "<group>"; };
 		3B8F23CC23274FC500788730 /* AlertThresholdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertThresholdTests.swift; sourceTree = "<group>"; };
@@ -1699,6 +1705,7 @@
 		3B1669DB233DAF2300B2EFAB /* Syllabus */ = {
 			isa = PBXGroup;
 			children = (
+				3B6FE4A12356371C00000B9D /* SyllabusActionableItemsPresenterTests.swift */,
 				3B1669DC233DAF3B00B2EFAB /* SyllabusPresenterTests.swift */,
 			);
 			path = Syllabus;
@@ -1845,6 +1852,8 @@
 		3BF34288233D2C7F0095D0D3 /* Syllabus */ = {
 			isa = PBXGroup;
 			children = (
+				3B4687B12355109B00F293A5 /* SyllabusActionableItemsPresenter.swift */,
+				3B4687B22355109C00F293A5 /* SyllabusActionableItemsViewController.swift */,
 				3BF34289233D2CA10095D0D3 /* SyllabusPresenter.swift */,
 				3BF3428B233D2CC00095D0D3 /* SyllabusViewController.swift */,
 				3BF3428D233D2D010095D0D3 /* SyllabusViewController.storyboard */,
@@ -3309,6 +3318,7 @@
 				B1BB68F421B5F0C90079C78B /* FileUploadContext.swift in Sources */,
 				7D9E80C6233C6A65003C608B /* ProfileSettingsViewController.swift in Sources */,
 				3B158C8D22E12DC50039A568 /* StringExtensions.swift in Sources */,
+				3B4687B42355109C00F293A5 /* SyllabusActionableItemsViewController.swift in Sources */,
 				7DD6CC6321BB6BF7004C4BB6 /* LoginStartPresenter.swift in Sources */,
 				9FBE5369223C2522001EC40C /* PermissionName.swift in Sources */,
 				EE584C8122F2048D00D1E201 /* PageListViewController.swift in Sources */,
@@ -3439,6 +3449,7 @@
 				EEC3EF6922E267BE00799FE2 /* GetPages.swift in Sources */,
 				9FCF1542227B6DB6009D35F6 /* GradeCircleView.swift in Sources */,
 				7D80AC29212C76E600C40ECE /* APIOAuthRequestable.swift in Sources */,
+				3B4687B32355109C00F293A5 /* SyllabusActionableItemsPresenter.swift in Sources */,
 				3B158CA722E1343D0039A568 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */,
 				B1AC8594228F08CA00D6BD0B /* FilePickerPresenter.swift in Sources */,
 				7D29D31C218B87050036437C /* DocViewerAnnotationProvider.swift in Sources */,
@@ -3742,6 +3753,7 @@
 				7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */,
 				3B158CB322E16D0E0039A568 /* PageViewEventRequestManagerTests.swift in Sources */,
 				7DD694812194CE8C00BA4984 /* DateExtensionsTests.swift in Sources */,
+				3B6FE4A22356371D00000B9D /* SyllabusActionableItemsPresenterTests.swift in Sources */,
 				7DCF1EA2216BB7E4003AF358 /* SubmissionTypeTests.swift in Sources */,
 				9F88ED01224A742F00DCCA09 /* EnrollmentTests.swift in Sources */,
 				7D979CCA215BDFD500567627 /* DividerViewTests.swift in Sources */,

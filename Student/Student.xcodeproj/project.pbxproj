@@ -368,8 +368,6 @@
 		7DCF0F8722F8A831000AACCE /* AssignmentDetailsSectionContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9B22F89FB0000AACCE /* AssignmentDetailsSectionContainerView.xib */; };
 		7DCF0F8822F8A84D000AACCE /* CourseCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9E22F89FC2000AACCE /* CourseCardCell.swift */; };
 		7DCF0F8922F8A84D000AACCE /* CourseCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9F22F89FC2000AACCE /* CourseCardCell.xib */; };
-		7DCF0F8A22F8A84D000AACCE /* SyllabusActionableItemsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA122F89FC2000AACCE /* SyllabusActionableItemsPresenter.swift */; };
-		7DCF0F8B22F8A84D000AACCE /* SyllabusActionableItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA222F89FC2000AACCE /* SyllabusActionableItemsViewController.swift */; };
 		7DCF0F8C22F8A84D000AACCE /* StudentSyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */; };
 		7DCF0F8D22F8A84D000AACCE /* StudentSyllabusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA422F89FC2000AACCE /* StudentSyllabusPresenter.swift */; };
 		7DCF0F8F22F8A84D000AACCE /* CourseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA722F89FC2000AACCE /* CourseNavigationViewController.swift */; };
@@ -441,7 +439,6 @@
 		7DCF0FD122F8A8D7000AACCE /* UrlSubmissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F0822F8A050000AACCE /* UrlSubmissionPresenter.swift */; };
 		7DE1161122F8AB5C005BFE98 /* AssignmentListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F0B22F8A096000AACCE /* AssignmentListPresenterTests.swift */; };
 		7DE1161222F8AB5C005BFE98 /* AssignmentDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F0D22F8A096000AACCE /* AssignmentDetailsPresenterTests.swift */; };
-		7DE1161322F8AB5C005BFE98 /* SyllabusActionableItemsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1022F8A096000AACCE /* SyllabusActionableItemsPresenterTests.swift */; };
 		7DE1161422F8AB5C005BFE98 /* StudentSyllabusPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1122F8A096000AACCE /* StudentSyllabusPresenterTests.swift */; };
 		7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */; };
 		7DE1161622F8AB5C005BFE98 /* GroupNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1622F8A096000AACCE /* GroupNavigationPresenterTests.swift */; };
@@ -1127,8 +1124,6 @@
 		7DCF0E9B22F89FB0000AACCE /* AssignmentDetailsSectionContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignmentDetailsSectionContainerView.xib; sourceTree = "<group>"; };
 		7DCF0E9E22F89FC2000AACCE /* CourseCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCardCell.swift; sourceTree = "<group>"; };
 		7DCF0E9F22F89FC2000AACCE /* CourseCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseCardCell.xib; sourceTree = "<group>"; };
-		7DCF0EA122F89FC2000AACCE /* SyllabusActionableItemsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenter.swift; sourceTree = "<group>"; };
-		7DCF0EA222F89FC2000AACCE /* SyllabusActionableItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsViewController.swift; sourceTree = "<group>"; };
 		7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusViewController.swift; sourceTree = "<group>"; };
 		7DCF0EA422F89FC2000AACCE /* StudentSyllabusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusPresenter.swift; sourceTree = "<group>"; };
 		7DCF0EA722F89FC2000AACCE /* CourseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationViewController.swift; sourceTree = "<group>"; };
@@ -1206,7 +1201,6 @@
 		7DCF0F0822F8A050000AACCE /* UrlSubmissionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionPresenter.swift; sourceTree = "<group>"; };
 		7DCF0F0B22F8A096000AACCE /* AssignmentListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F0D22F8A096000AACCE /* AssignmentDetailsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenterTests.swift; sourceTree = "<group>"; };
-		7DCF0F1022F8A096000AACCE /* SyllabusActionableItemsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusActionableItemsPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1122F8A096000AACCE /* StudentSyllabusPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1622F8A096000AACCE /* GroupNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationPresenterTests.swift; sourceTree = "<group>"; };
@@ -2395,8 +2389,6 @@
 		7DCF0EA622F89FC2000AACCE /* Syllabus */ = {
 			isa = PBXGroup;
 			children = (
-				7DCF0EA122F89FC2000AACCE /* SyllabusActionableItemsPresenter.swift */,
-				7DCF0EA222F89FC2000AACCE /* SyllabusActionableItemsViewController.swift */,
 				7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */,
 				7DCF0EA422F89FC2000AACCE /* StudentSyllabusPresenter.swift */,
 			);
@@ -2675,7 +2667,6 @@
 		7DCF0F1222F8A096000AACCE /* Syllabus */ = {
 			isa = PBXGroup;
 			children = (
-				7DCF0F1022F8A096000AACCE /* SyllabusActionableItemsPresenterTests.swift */,
 				7DCF0F1122F8A096000AACCE /* StudentSyllabusPresenterTests.swift */,
 			);
 			path = Syllabus;
@@ -3919,7 +3910,6 @@
 				7DCF0FAC22F8A8D7000AACCE /* RubricViewController.swift in Sources */,
 				7DCF0FCB22F8A8D7000AACCE /* SubmissionFilesViewController.swift in Sources */,
 				5EB46DF41D21A75C00C859A4 /* CalendarDayListCell.swift in Sources */,
-				7DCF0F8B22F8A84D000AACCE /* SyllabusActionableItemsViewController.swift in Sources */,
 				7DCF0F8D22F8A84D000AACCE /* StudentSyllabusPresenter.swift in Sources */,
 				5EB46DF21D21A75C00C859A4 /* CalendarDate.swift in Sources */,
 				5EB46DFF1D21A75C00C859A4 /* CalendarDayDetailViewController.swift in Sources */,
@@ -3931,7 +3921,6 @@
 				5EB46DF71D21A75C00C859A4 /* CalendarMonthHeaderView.swift in Sources */,
 				7DCF0FA222F8A897000AACCE /* IconView.swift in Sources */,
 				49A04E571CF64C7F0051E1E7 /* CanvasTabBar.swift in Sources */,
-				7DCF0F8A22F8A84D000AACCE /* SyllabusActionableItemsPresenter.swift in Sources */,
 				7DCF0FA322F8A8A9000AACCE /* QuizListCell.swift in Sources */,
 				5EB46E021D21A75C00C859A4 /* CalendarDayPageViewController.swift in Sources */,
 				7DCF0FB222F8A8D7000AACCE /* SubmissionCommentAttemptCell.swift in Sources */,
@@ -4199,7 +4188,6 @@
 				7DE1161922F8AB5C005BFE98 /* UIImageStudentExtensionTests.swift in Sources */,
 				7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */,
 				7DE1161F22F8AB5C005BFE98 /* RubricPresenterTests.swift in Sources */,
-				7DE1161322F8AB5C005BFE98 /* SyllabusActionableItemsPresenterTests.swift in Sources */,
 				7DE1162022F8AB5C005BFE98 /* SubmissionCommentsPresenterTests.swift in Sources */,
 				7DE1162122F8AB5C005BFE98 /* SubmissionDetailsPresenterTests.swift in Sources */,
 				7DE1161822F8AB5C005BFE98 /* QuizListPresenterTests.swift in Sources */,

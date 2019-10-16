@@ -17,11 +17,10 @@
 //
 
 import XCTest
-@testable import Student
-import Core
+@testable import Core
 import TestsFoundation
 
-class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
+class SyllabusActionableItemsPresenterTests: CoreTestCase {
 
     var resultingError: NSError?
     var resultingBaseURL: URL?
@@ -43,7 +42,7 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
         super.setUp()
         originalTimeZone = NSTimeZone.default
         expectation = XCTestExpectation(description: "expectation")
-        presenter = SyllabusActionableItemsPresenter(env: env, view: self, courseID: "1")
+        presenter = SyllabusActionableItemsPresenter(env: environment, view: self, courseID: "1")
     }
 
     override func tearDown() {
@@ -59,13 +58,6 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
 
         XCTAssertEqual(presenter.calendarEvents.useCase.context.contextType, .course)
         XCTAssertEqual(presenter.calendarEvents.useCase.context.id, presenter.courseID)
-    }
-
-    func testLoadCourse() {
-        let course = Course.make()
-        presenter.course.eventHandler()
-
-        XCTAssertEqual(resultingSubtitle, course.name)
     }
 
     func testLoadColors() {
@@ -97,18 +89,9 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
         XCTAssertEqual(models[0].title, calendarEvent.title)
     }
 
-    func testViewIsReady() {
-        presenter.viewIsReady()
-        let colorStore = presenter.color as! TestStore
-        let courseStore = presenter.course as! TestStore
-        let assignmentsStore = presenter.assignments as! TestStore
-        let calendarStore = presenter.calendarEvents as! TestStore
-        wait(for: [colorStore.refreshExpectation, courseStore.refreshExpectation, assignmentsStore.exhaustExpectation, calendarStore.exhaustExpectation], timeout: 0.1)
-    }
-
     func testSelect() {
         let htmlURL = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
-        let router = env.router as? TestRouter
+        let router = environment.router as? TestRouter
         XCTAssertNoThrow(presenter.select(htmlURL, from: UIViewController()))
         XCTAssertEqual(router?.calls.last?.0, URLComponents.parse(htmlURL))
     }
@@ -146,6 +129,11 @@ class SyllabusActionableItemsPresenterTests: PersistenceTestCase {
 }
 
 extension SyllabusActionableItemsPresenterTests: SyllabusActionableItemsViewProtocol {
+    func updateColor(_ color: UIColor?) {
+        resultingBackgroundColor = color
+        colorExpectation.fulfill()
+    }
+
     func update(models: [SyllabusActionableItemsViewController.ViewModel]) {
         self.models = models
     }
@@ -156,11 +144,5 @@ extension SyllabusActionableItemsPresenterTests: SyllabusActionableItemsViewProt
 
     func showError(_ error: Error) {
         resultingError = error as NSError
-    }
-
-    func updateNavBar(subtitle: String?, color: UIColor?) {
-        resultingBackgroundColor = color
-        resultingSubtitle = subtitle
-        colorExpectation.fulfill()
     }
 }

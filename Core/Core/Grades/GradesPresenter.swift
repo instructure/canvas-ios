@@ -44,7 +44,7 @@ class GradesPresenter {
         return formatter
     }()
 
-    lazy var courses = env.subscribe(GetCourse(courseID: courseID, include: [.observedUsers, .totalScores])) { [weak self] in
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID, include: GetCourseRequest.defaultIncludes + [.observedUsers])) { [weak self] in
         self?.update()
     }
 
