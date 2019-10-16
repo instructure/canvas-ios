@@ -94,7 +94,8 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         didShowOfflineAlert = false
-        self.quizController.refreshQuiz()
+        quizController.refreshQuiz()
+        takeabilityController?.refreshTakeability()
         startTrackingTimeOnViewController()
     }
 
