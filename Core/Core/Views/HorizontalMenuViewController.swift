@@ -96,7 +96,8 @@ open class HorizontalMenuViewController: UIViewController {
 
         view.addSubview(menu)
         menu.pinToLeftAndRightOfSuperview()
-        menuHeightConstraint = menu.addConstraintsWithVFL("V:[view(height)]", metrics: ["height": menuCellHeight])?.first
+        let h = itemCount == 1 ? 0 : menuCellHeight
+        menuHeightConstraint = menu.addConstraintsWithVFL("V:[view(height)]", metrics: ["height": h])?.first
         menu.addConstraintsWithVFL("V:|[view]")
     }
 

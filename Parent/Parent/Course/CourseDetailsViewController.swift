@@ -22,16 +22,26 @@ import Core
 class CourseDetailsViewController: HorizontalMenuViewController {
     private var gradesViewController: GradesViewController!
     private var syllabusViewController: Core.SyllabusViewController!
+    private var summaryViewController: Core.SyllabusActionableItemsViewController!
     var courseID: String = ""
     var studentID: String = ""
     var viewControllers: [UIViewController] = []
+    var readyToLayoutTabs: Bool = false
+    var didLayoutTabs: Bool = false
+    var env: AppEnvironment!
+    var colorScheme: ColorScheme?
 
     enum MenuItem: Int {
-        case grades, syllabus
+        case grades, syllabus, summary
     }
 
-    static func create(courseID: String, studentID: String) -> CourseDetailsViewController {
+    lazy var courses = env.subscribe(GetCourse(courseID: courseID, include: GetCourseRequest.defaultIncludes + [.observedUsers])) { [weak self] in
+        self?.courseReady()
+    }
+
+    static func create(courseID: String, studentID: String, env: AppEnvironment = .shared) -> CourseDetailsViewController {
         let controller = CourseDetailsViewController(nibName: nil, bundle: nil)
+        controller.env = env
         controller.courseID = courseID
         controller.studentID = studentID
         return controller
@@ -40,27 +50,51 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
+        colorScheme = ColorCoordinator.colorSchemeForStudentID(studentID)
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
 
         delegate = self
-        configureGrades()
-        configureSyllabus()
+        courses.refresh()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        layoutViewControllers()
+        readyToLayoutTabs = true
+        courseReady()
     }
 
     func configureGrades() {
-        gradesViewController = GradesViewController.create(courseID: courseID, studentID: studentID)
+        gradesViewController = GradesViewController.create(courseID: courseID, studentID: studentID, colorDelegate: self)
         viewControllers.append(gradesViewController)
     }
 
     func configureSyllabus() {
         syllabusViewController = Core.SyllabusViewController.create(courseID: courseID)
         viewControllers.append(syllabusViewController)
+    }
+
+    func configureSummary() {
+        summaryViewController = Core.SyllabusActionableItemsViewController(courseID: courseID, sort: GetAssignments.Sort.dueAt, colorDelegate: self)
+        viewControllers.append(summaryViewController)
+    }
+
+    func courseReady() {
+        if !courses.pending && readyToLayoutTabs, !didLayoutTabs, let course = courses.first {
+            didLayoutTabs = true
+            configureGrades()
+            if let body = course.syllabusBody, !body.isEmpty {
+                configureSyllabus()
+                configureSummary()
+            }
+            layoutViewControllers()
+        }
+    }
+}
+
+extension CourseDetailsViewController: ColorDelegate {
+    var iconColor: UIColor? {
+        return colorScheme?.mainColor
     }
 }
 
@@ -71,12 +105,13 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
         switch menuItem {
         case .grades: identifier = "grades"
         case .syllabus: identifier = "syllabus"
+        case .summary: identifier = "summary"
         }
         return "CourseDetail.\(identifier)MenuItem"
     }
 
     var menuItemSelectedColor: UIColor? {
-        return Brand.shared.buttonPrimaryBackground
+        return colorScheme?.mainColor
     }
 
     func menuItemTitle(at: IndexPath) -> String {
@@ -86,6 +121,8 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
             return NSLocalizedString("Grades", comment: "")
         case .syllabus:
             return NSLocalizedString("Syllabus", comment: "")
+        case .summary:
+            return NSLocalizedString("Summary", comment: "")
         }
     }
 }

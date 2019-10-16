@@ -17,10 +17,10 @@
 //
 
 import Foundation
-import Core
 
-protocol SyllabusActionableItemsViewProtocol: ErrorViewController, ColoredNavViewProtocol {
+protocol SyllabusActionableItemsViewProtocol: ErrorViewController {
     func update(models: [SyllabusActionableItemsViewController.ViewModel])
+    func updateColor(_ color: UIColor?)
 }
 
 class SyllabusActionableItemsPresenter {
@@ -100,7 +100,7 @@ class SyllabusActionableItemsPresenter {
 
     func loadColor() {
         guard let course = course.first else { return }
-        view?.updateNavBar(subtitle: course.name, color: course.color)
+        view?.updateColor(course.color)
     }
 
     func select(_ htmlURL: URL, from: UIViewController) {
