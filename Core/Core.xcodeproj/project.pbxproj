@@ -567,6 +567,7 @@
 		B1CA334023392A140015CBB4 /* GetContextUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA333F23392A140015CBB4 /* GetContextUsers.swift */; };
 		B1CA33462339434A0015CBB4 /* GetContextUsersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */; };
 		B1CA3348233948870015CBB4 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA3347233948870015CBB4 /* UserTests.swift */; };
+		B1D5EF5E2357907F00B3ACD3 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5EF5D2357907F00B3ACD3 /* AlertAction.swift */; };
 		B1E789A421B0EC1A0087FE4A /* LogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789A321B0EC1A0087FE4A /* LogEvent.swift */; };
 		B1E789A721B0ED490087FE4A /* LogEventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789A621B0ED490087FE4A /* LogEventListViewController.swift */; };
 		B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1E789AA21B0EF130087FE4A /* LogEventListViewController.storyboard */; };
@@ -1407,6 +1408,7 @@
 		B1CA333F23392A140015CBB4 /* GetContextUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsers.swift; sourceTree = "<group>"; };
 		B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsersTests.swift; sourceTree = "<group>"; };
 		B1CA3347233948870015CBB4 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		B1D5EF5D2357907F00B3ACD3 /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		B1E789A321B0EC1A0087FE4A /* LogEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEvent.swift; sourceTree = "<group>"; };
 		B1E789A621B0ED490087FE4A /* LogEventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventListViewController.swift; sourceTree = "<group>"; };
 		B1E789AA21B0EF130087FE4A /* LogEventListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogEventListViewController.storyboard; sourceTree = "<group>"; };
@@ -2057,6 +2059,7 @@
 			children = (
 				B18359A722244E230005A918 /* AccessIconView.swift */,
 				B18359A9222450DE0005A918 /* AccessIconView.xib */,
+				B1D5EF5D2357907F00B3ACD3 /* AlertAction.swift */,
 				7D005F762239CCEF0040CBD7 /* AvatarView.swift */,
 				3B339B69226FA9AF00D3283D /* ChatBubbleView.swift */,
 				3B339B6B226FAA1000D3283D /* ChatBubbleView.xib */,
@@ -3609,6 +3612,7 @@
 				B1A8CD3722375D6400E2242D /* FileUploadTarget.swift in Sources */,
 				3B346755213052C700F9BC2E /* NSErrorExtensions.swift in Sources */,
 				7D8262EF212B228F00BD268D /* APICourseRequestable.swift in Sources */,
+				B1D5EF5E2357907F00B3ACD3 /* AlertAction.swift in Sources */,
 				3B158CB622E230510039A568 /* Keychain.swift in Sources */,
 				3B5369E2219CDD3500D3F62E /* URLExtensions.swift in Sources */,
 				787BD02121AE5C28000C90A1 /* DiscussionEntry.swift in Sources */,
