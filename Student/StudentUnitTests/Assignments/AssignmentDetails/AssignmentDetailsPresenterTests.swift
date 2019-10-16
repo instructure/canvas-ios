@@ -230,7 +230,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testDueSectionNotHidden() {
-        setupIsHiddenTest(lockStatus: .unlocked)
+        setupIsHiddenTest(lockStatus: .unlocked, lockedForUser: false)
         XCTAssertFalse( presenter.dueSectionIsHidden() )
     }
 
@@ -247,7 +247,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testLockedSectionNotHidden() {
-        setupIsHiddenTest(lockStatus: .unlocked)
+        setupIsHiddenTest(lockStatus: .unlocked, lockedForUser: false)
         XCTAssertTrue( presenter.lockedSectionIsHidden() )
         XCTAssertTrue( presenter.lockedIconContainerViewIsHidden() )
     }
@@ -265,7 +265,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testFileTypesSectionNotHidden() {
-        setupIsHiddenTest(lockStatus: .unlocked)
+        setupIsHiddenTest(lockStatus: .unlocked, lockedForUser: false)
         XCTAssertTrue(presenter.assignments.first?.hasFileTypes ?? false)
         XCTAssertFalse( presenter.fileTypesSectionIsHidden() )
     }
@@ -281,7 +281,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testSubmissionTypesSectionNotHidden() {
-        setupIsHiddenTest(lockStatus: .unlocked)
+        setupIsHiddenTest(lockStatus: .unlocked, lockedForUser: false)
         XCTAssertFalse( presenter.submissionTypesSectionIsHidden() )
     }
 
@@ -311,7 +311,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testViewSubmissionButtonSectionNotHidden() {
-        setupIsHiddenTest(lockStatus: .unlocked)
+        setupIsHiddenTest(lockStatus: .unlocked, lockedForUser: false)
         XCTAssertFalse( presenter.viewSubmissionButtonSectionIsHidden() )
     }
 
@@ -326,7 +326,7 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testDescriptionSectionNotHidden() {
-        setupIsHiddenTest(lockStatus: .unlocked)
+        setupIsHiddenTest(lockStatus: .unlocked, lockedForUser: false)
         XCTAssertFalse( presenter.descriptionIsHidden() )
     }
 
@@ -336,12 +336,17 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
     }
 
     func testSubmitAssignmentButtonNotHiddenAfterAvailability() {
-        setupIsHiddenTest(lockStatus: .after)
+        setupIsHiddenTest(lockStatus: .after, lockedForUser: false)
         XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
     }
 
+    func testSubmitAssignmentButtonNotHiddenAfterAvailabilityWhenLockedForUser() {
+        setupIsHiddenTest(lockStatus: .after, lockedForUser: true)
+        XCTAssertTrue( presenter.submitAssignmentButtonIsHidden() )
+    }
+
     func testSubmitAssignmentButtonNotHidden() {
-        setupIsHiddenTest(lockStatus: .unlocked)
+        setupIsHiddenTest(lockStatus: .unlocked, lockedForUser: false)
         XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
     }
 
@@ -378,14 +383,22 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertTrue(presenter.submitAssignmentButtonIsHidden())
     }
 
-    func setupIsHiddenTest(lockStatus: LockStatus) {
+    func setupIsHiddenTest(lockStatus: LockStatus, lockedForUser: Bool = true) {
         switch lockStatus {
         case .unlocked:
-            Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: ["png"]))
+            Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: ["png"], locked_for_user: lockedForUser))
         case .before:
-            Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: ["png"], unlock_at: Date().addYears(1), locked_for_user: true, lock_explanation: "this is locked"))
+            Assignment.make(from: .make(submission_types: [ .online_upload ],
+                                        allowed_extensions: ["png"],
+                                        unlock_at: Date().addYears(1),
+                                        locked_for_user: lockedForUser,
+                                        lock_explanation: "this is locked"))
         case .after:
-            Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: ["png"], unlock_at: Date().addYears(-1), locked_for_user: true, lock_explanation: "this is locked"))
+            Assignment.make(from: .make(submission_types: [ .online_upload ],
+                                        allowed_extensions: ["png"],
+                                        unlock_at: Date().addYears(-1),
+                                        locked_for_user: lockedForUser,
+                                        lock_explanation: "this is locked"))
         }
     }
 
