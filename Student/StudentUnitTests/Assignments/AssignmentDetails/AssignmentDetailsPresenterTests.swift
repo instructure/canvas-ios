@@ -345,6 +345,11 @@ class AssignmentDetailsPresenterTests: PersistenceTestCase {
         XCTAssertFalse( presenter.submitAssignmentButtonIsHidden() )
     }
 
+    func testSubmitAssignmentButtonIsHiddenWhenLockedForUser() {
+        Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: ["png"], locked_for_user: true))
+        XCTAssertTrue( presenter.submitAssignmentButtonIsHidden() )
+    }
+
     func testPostsViewCompletedRequirement() {
         Course.make()
         Assignment.make()

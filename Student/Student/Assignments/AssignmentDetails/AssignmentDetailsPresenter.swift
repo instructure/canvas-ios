@@ -256,6 +256,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
 
     func submitAssignmentButtonIsHidden() -> Bool {
         return assignment?.lockStatus != .unlocked ||
+            assignment?.lockedForUser == true ||
             assignment?.isSubmittable == false ||
             assignment?.submission?.excused == true
     }
