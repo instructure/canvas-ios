@@ -22,7 +22,6 @@ import i18n from 'format-message'
 import React, { Component } from 'react'
 import ReactNative, {
   View,
-  StyleSheet,
   LayoutAnimation,
   PickerIOS,
   findNodeHandle,
@@ -36,7 +35,7 @@ import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
 import SavingBanner from '../../../common/components/SavingBanner'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
-import colors from '../../../common/colors'
+import { createStyleSheet } from '../../../common/stylesheet'
 import {
   fetchPropsFor,
   type FetchProps,
@@ -279,23 +278,23 @@ export class PageEdit extends Component<Props, State> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.backgroundGrouped,
   },
   description: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.seperatorColor,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
-    backgroundColor: 'white',
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    backgroundColor: colors.backgroundLightest,
     height: 200,
   },
   studentTitle: {
     padding: 12,
   },
-})
+}))
 
 export default fetchPropsFor(PageEdit, ({ courseID, url }: HocProps, api) => ({
   page: !url ? PageModel.newPage : api.getPage('courses', courseID, url),

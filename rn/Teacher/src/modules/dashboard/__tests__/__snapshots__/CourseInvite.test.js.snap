@@ -36,7 +36,7 @@ exports[`CourseInvite can hide 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -134,7 +134,7 @@ exports[`CourseInvite renders action taken -- accept 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -232,7 +232,7 @@ exports[`CourseInvite renders action taken -- reject 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -330,7 +330,7 @@ exports[`CourseInvite renders displayState acted -- accept 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -428,7 +428,7 @@ exports[`CourseInvite renders displayState acted -- reject 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -526,7 +526,7 @@ exports[`CourseInvite renders hidden 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -587,7 +587,7 @@ exports[`CourseInvite renders hidden 1`] = `
                 "margin": 4,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "borderColor": "#8B969E",
                 "borderWidth": 0.5,
               },
@@ -597,12 +597,12 @@ exports[`CourseInvite renders hidden 1`] = `
           style={
             Array [
               Object {
-                "color": "white",
+                "color": "#FFFFFF",
                 "fontSize": 16,
                 "fontWeight": "600",
               },
               Object {
-                "color": "#73818C",
+                "color": "#8B969E",
               },
             ]
           }
@@ -624,7 +624,7 @@ exports[`CourseInvite renders hidden 1`] = `
           onPress={[Function]}
           style={
             Object {
-              "color": "white",
+              "color": "#FFFFFF",
               "fontSize": 16,
               "fontWeight": "600",
             }
@@ -675,7 +675,7 @@ exports[`CourseInvite renders invite 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -736,7 +736,7 @@ exports[`CourseInvite renders invite 1`] = `
                 "margin": 4,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "borderColor": "#8B969E",
                 "borderWidth": 0.5,
               },
@@ -746,12 +746,12 @@ exports[`CourseInvite renders invite 1`] = `
           style={
             Array [
               Object {
-                "color": "white",
+                "color": "#FFFFFF",
                 "fontSize": 16,
                 "fontWeight": "600",
               },
               Object {
-                "color": "#73818C",
+                "color": "#8B969E",
               },
             ]
           }
@@ -773,7 +773,7 @@ exports[`CourseInvite renders invite 1`] = `
           onPress={[Function]}
           style={
             Object {
-              "color": "white",
+              "color": "#FFFFFF",
               "fontSize": 16,
               "fontWeight": "600",
             }
@@ -824,7 +824,7 @@ exports[`CourseInvite renders invite with course section 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -883,7 +883,7 @@ exports[`CourseInvite renders invite with course section 1`] = `
                 "margin": 4,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "borderColor": "#8B969E",
                 "borderWidth": 0.5,
               },
@@ -893,12 +893,12 @@ exports[`CourseInvite renders invite with course section 1`] = `
           style={
             Array [
               Object {
-                "color": "white",
+                "color": "#FFFFFF",
                 "fontSize": 16,
                 "fontWeight": "600",
               },
               Object {
-                "color": "#73818C",
+                "color": "#8B969E",
               },
             ]
           }
@@ -920,7 +920,7 @@ exports[`CourseInvite renders invite with course section 1`] = `
           onPress={[Function]}
           style={
             Object {
-              "color": "white",
+              "color": "#FFFFFF",
               "fontSize": 16,
               "fontWeight": "600",
             }

@@ -19,7 +19,7 @@
 // @flow
 
 import React, { type Element, type ComponentType, Component } from 'react'
-import { SectionList, View, Text, StyleSheet, SafeAreaView } from 'react-native'
+import { SectionList, View, Text, SafeAreaView } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
 import App from '../../app'
@@ -31,7 +31,7 @@ import GroupFavoriteActions from '../../groups/favorites/actions'
 import mapStateToProps from './map-state-to-props'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import SectionHeader from '../../../common/components/rows/SectionHeader'
 import ExperimentalFeature from '../../../common/ExperimentalFeature'
 
@@ -143,8 +143,8 @@ export class FavoritesList extends Component<Props> {
 
     return (
       <Screen
-        navBarTitleColor={colors.darkText}
-        navBarButtonColor={colors.link}
+        navBarTitleColor={colors.textDarkest}
+        navBarButtonColor={colors.linkColor}
         title={i18n('Edit Dashboard')}
         customPageViewPath={'/courses'}
       >
@@ -193,11 +193,11 @@ let Connected = connect(
 )(FavoritesList)
 export default (Connected: FavoritesList)
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
   },
   header: {
     paddingHorizontal: 16,
@@ -209,4 +209,4 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
   },
-})
+}))

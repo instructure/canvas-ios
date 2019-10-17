@@ -52,7 +52,7 @@ class AssignmentListPresenterTests: PersistenceTestCase {
 
     func testLoadColor() {
         let course = Course.make()
-        Color.make(canvasContextID: course.canvasContextID)
+        ContextColor.make(canvasContextID: course.canvasContextID)
         presenter.color.eventHandler()
         XCTAssertEqual(resultingBackgroundColor, UIColor.red)
     }

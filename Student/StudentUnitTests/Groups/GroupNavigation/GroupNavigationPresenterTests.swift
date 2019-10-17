@@ -52,7 +52,7 @@ class GroupNavigationPresenterTests: PersistenceTestCase {
 
     func testLoadColor() {
         Group.make()
-        Color.make(canvasContextID: context.canvasContextID)
+        ContextColor.make(canvasContextID: context.canvasContextID)
 
         presenter.color.eventHandler()
         XCTAssertEqual(resultingBackgroundColor, UIColor.red)

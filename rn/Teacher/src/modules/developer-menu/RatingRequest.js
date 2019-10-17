@@ -23,12 +23,12 @@ import {
   DatePickerIOS,
   NativeModules,
   ScrollView,
-  StyleSheet,
   View,
 } from 'react-native'
 
 import Screen from '../../routing/Screen'
 import { Text } from '../../common/text'
+import { createStyleSheet } from '../../common/stylesheet'
 import RowWithDateInput from '../../common/components/rows/RowWithDateInput'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import RowWithTextInput from '../../common/components/rows/RowWithTextInput'
@@ -227,12 +227,13 @@ export default class RatingRequest extends React.PureComponent<Props, State> {
   }
 }
 
-let styles = StyleSheet.create({
+let styles = createStyleSheet((colors, vars) => ({
   mainContainer: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: colors.backgroundLight,
   },
   paragraph: {
-    padding: global.style.defaultPadding,
+    padding: vars.padding,
+    color: colors.textDark,
   },
-})
+}))

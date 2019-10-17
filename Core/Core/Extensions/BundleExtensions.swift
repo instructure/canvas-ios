@@ -21,7 +21,7 @@ import UIKit
 private class Placeholder {}
 
 public extension Bundle {
-    static let core = Bundle(for: Placeholder.self)
+    @objc static let core = Bundle(for: Placeholder.self)
 
     static let studentBundleID = "com.instructure.icanvas"
     static let teacherBundleID = "com.instructure.ios.teacher"

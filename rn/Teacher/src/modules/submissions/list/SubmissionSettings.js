@@ -29,7 +29,7 @@ import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import { connect } from 'react-redux'
 import AssignmentActions from '../../assignments/actions'
-import branding from '../../../common/branding'
+import { colors } from '../../../common/stylesheet'
 
 type SubmissionSettingsOwnProps = {
   courseID: string,
@@ -67,7 +67,7 @@ export class SubmissionSettings extends PureComponent<SubmissionSettingsProps> {
     return (
       <Screen
         title={i18n('Submission Settings')}
-        navBarButtonColor={branding.link}
+        navBarButtonColor={colors.linkColor}
       >
         <ScrollView style={style.container}>
           <RowSeparator />

@@ -21,13 +21,13 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   ActionSheetIOS,
   ActivityIndicator,
 } from 'react-native'
 
 import { Heading1 } from '../../../common/text'
 import { LinkButton } from '../../../common/buttons'
+import { createStyleSheet } from '../../../common/stylesheet'
 import i18n from 'format-message'
 
 export type CourseFilterProps = {
@@ -103,10 +103,10 @@ export default class CourseFilter extends Component<CourseFilterProps, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   headerWrapper: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgrey',
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
     paddingTop: 16,
     paddingBottom: 8,
     paddingHorizontal: 16,
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   },
   filterButton: {
     marginBottom: 1,
-    marginLeft: global.style.defaultPadding / 2,
+    marginLeft: vars.padding / 2,
     flexShrink: 0,
   },
-})
+}))

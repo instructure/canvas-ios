@@ -29,6 +29,7 @@ class SubmissionCommentTextCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        backgroundColor = .named(.backgroundLightest)
         chatBubbleView?.image = UIImage(named: "chatBubble", in: Bundle.core, compatibleWith: nil)
     }
 

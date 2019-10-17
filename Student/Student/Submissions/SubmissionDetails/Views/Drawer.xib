@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,11 +24,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhc-Hf-2mW" userLabel="DrawerControls">
-                    <rect key="frame" x="0.0" y="0.0" width="413" height="460"/>
+                    <rect key="frame" x="0.0" y="0.0" width="413" height="461"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQw-tB-yGY" userLabel="Gripper">
                             <rect key="frame" x="188.5" y="4" width="36" height="4"/>
-                            <color key="backgroundColor" name="backgroundMedium"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.drawerGripper"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="4" id="tcd-LV-eYZ"/>
@@ -42,7 +39,7 @@
                             </connections>
                         </button>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="RnZ-Eu-Ple">
-                            <rect key="frame" x="16" y="16" width="381" height="437"/>
+                            <rect key="frame" x="16" y="16" width="381" height="438"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="kDR-tw-Pus"/>
                             </constraints>
@@ -67,12 +64,15 @@
                         <outletCollection property="gestureRecognizers" destination="8Cv-db-Q3F" appends="YES" id="Qlk-sd-TIH"/>
                     </connections>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiS-Q8-E9V" userLabel="Border">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiS-Q8-E9V" userLabel="Border" customClass="DividerView" customModule="Student" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="460" width="413" height="1"/>
-                    <color key="backgroundColor" name="borderMedium"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="fb3-3f-fZ5"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvd-Vb-YDD" userLabel="ContentView">
                     <rect key="frame" x="0.0" y="461" width="413" height="0.0"/>
@@ -91,7 +91,7 @@
                 <constraint firstAttribute="bottom" secondItem="zvd-Vb-YDD" secondAttribute="bottom" id="FJ2-ar-mYl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NiS-Q8-E9V" secondAttribute="trailing" id="KIn-5b-LU2"/>
                 <constraint firstAttribute="trailing" secondItem="zvd-Vb-YDD" secondAttribute="trailing" id="WIx-Xa-2a0"/>
-                <constraint firstItem="NiS-Q8-E9V" firstAttribute="top" secondItem="yhc-Hf-2mW" secondAttribute="bottom" id="dtm-r0-lOf"/>
+                <constraint firstItem="NiS-Q8-E9V" firstAttribute="top" secondItem="yhc-Hf-2mW" secondAttribute="bottom" constant="-1" id="dtm-r0-lOf"/>
                 <constraint firstItem="NiS-Q8-E9V" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dyq-A6-Y8w"/>
                 <constraint firstItem="yhc-Hf-2mW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ifu-KH-LSA"/>
                 <constraint firstItem="yhc-Hf-2mW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nMF-Og-j0i"/>
@@ -108,12 +108,4 @@
             </connections>
         </panGestureRecognizer>
     </objects>
-    <resources>
-        <namedColor name="backgroundMedium">
-            <color red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="borderMedium">
-            <color red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

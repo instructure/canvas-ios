@@ -3,10 +3,10 @@
 exports[`FilesList progress function should update the UI correctly 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -20,7 +20,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -56,7 +55,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -66,8 +65,9 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -109,7 +109,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -123,7 +123,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -163,6 +163,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -215,7 +216,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -264,7 +265,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -274,8 +275,9 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -317,7 +319,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -331,7 +333,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -371,6 +373,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -423,7 +426,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -472,7 +475,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -482,8 +485,9 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -525,7 +529,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -539,7 +543,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
+                            "uri": "noSolid",
                           }
                         }
                         style={
@@ -579,6 +583,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -631,7 +636,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -829,10 +834,10 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
 exports[`FilesList progress function should update the UI correctly 2`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -846,7 +851,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -882,7 +886,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -892,8 +896,9 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -935,7 +940,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -949,7 +954,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -989,6 +994,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -1041,7 +1047,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -1090,7 +1096,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -1100,8 +1106,9 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -1143,7 +1150,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -1157,7 +1164,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -1197,6 +1204,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -1249,7 +1257,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -1298,7 +1306,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -1308,8 +1316,9 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -1351,7 +1360,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -1365,7 +1374,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
+                            "uri": "noSolid",
                           }
                         }
                         style={
@@ -1405,6 +1414,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -1457,7 +1467,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -1655,10 +1665,10 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
 exports[`FilesList progress function should update the UI correctly 3`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -1672,7 +1682,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -1708,7 +1717,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -1718,8 +1727,9 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -1761,7 +1771,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -1775,7 +1785,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -1815,6 +1825,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -1867,7 +1878,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -1916,7 +1927,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -1926,8 +1937,9 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -1969,7 +1981,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -1983,7 +1995,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -2023,6 +2035,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -2075,7 +2088,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -2124,7 +2137,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -2134,8 +2147,9 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -2177,7 +2191,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -2191,7 +2205,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
+                            "uri": "noSolid",
                           }
                         }
                         style={
@@ -2231,6 +2245,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -2283,7 +2298,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -2481,10 +2496,10 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
 exports[`FilesList sending weird data into the progress update function should not break all the things 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -2498,7 +2513,6 @@ exports[`FilesList sending weird data into the progress update function should n
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -2534,7 +2548,7 @@ exports[`FilesList sending weird data into the progress update function should n
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -2544,8 +2558,9 @@ exports[`FilesList sending weird data into the progress update function should n
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -2587,7 +2602,7 @@ exports[`FilesList sending weird data into the progress update function should n
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -2601,7 +2616,7 @@ exports[`FilesList sending weird data into the progress update function should n
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -2641,6 +2656,7 @@ exports[`FilesList sending weird data into the progress update function should n
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -2693,7 +2709,7 @@ exports[`FilesList sending weird data into the progress update function should n
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -2742,7 +2758,7 @@ exports[`FilesList sending weird data into the progress update function should n
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -2752,8 +2768,9 @@ exports[`FilesList sending weird data into the progress update function should n
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -2795,7 +2812,7 @@ exports[`FilesList sending weird data into the progress update function should n
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -2809,7 +2826,7 @@ exports[`FilesList sending weird data into the progress update function should n
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -2849,6 +2866,7 @@ exports[`FilesList sending weird data into the progress update function should n
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -2901,7 +2919,7 @@ exports[`FilesList sending weird data into the progress update function should n
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -2950,7 +2968,7 @@ exports[`FilesList sending weird data into the progress update function should n
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -2960,8 +2978,9 @@ exports[`FilesList sending weird data into the progress update function should n
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -3003,7 +3022,7 @@ exports[`FilesList sending weird data into the progress update function should n
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -3017,7 +3036,7 @@ exports[`FilesList sending weird data into the progress update function should n
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
+                            "uri": "noSolid",
                           }
                         }
                         style={
@@ -3057,6 +3076,7 @@ exports[`FilesList sending weird data into the progress update function should n
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -3109,7 +3129,7 @@ exports[`FilesList sending weird data into the progress update function should n
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -3314,10 +3334,10 @@ exports[`FilesList sending weird data into the progress update function should n
 exports[`FilesList should render 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -3331,7 +3351,6 @@ exports[`FilesList should render 1`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -3367,7 +3386,7 @@ exports[`FilesList should render 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -3377,8 +3396,9 @@ exports[`FilesList should render 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -3420,7 +3440,7 @@ exports[`FilesList should render 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -3434,7 +3454,7 @@ exports[`FilesList should render 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -3474,6 +3494,7 @@ exports[`FilesList should render 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -3526,7 +3547,7 @@ exports[`FilesList should render 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -3575,7 +3596,7 @@ exports[`FilesList should render 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -3585,8 +3606,9 @@ exports[`FilesList should render 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -3628,7 +3650,7 @@ exports[`FilesList should render 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -3642,7 +3664,7 @@ exports[`FilesList should render 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -3682,6 +3704,7 @@ exports[`FilesList should render 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -3734,7 +3757,7 @@ exports[`FilesList should render 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -3783,7 +3806,7 @@ exports[`FilesList should render 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -3793,8 +3816,9 @@ exports[`FilesList should render 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -3836,7 +3860,7 @@ exports[`FilesList should render 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -3850,7 +3874,7 @@ exports[`FilesList should render 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
+                            "uri": "noSolid",
                           }
                         }
                         style={
@@ -3890,6 +3914,7 @@ exports[`FilesList should render 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -3942,7 +3967,7 @@ exports[`FilesList should render 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -4014,10 +4039,10 @@ exports[`FilesList should render 1`] = `
 exports[`FilesList should render for course files 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="white"
+  navBarButtonColor="#FFFFFF"
   navBarColor="red"
   navBarStyle="dark"
-  navBarTitleColor="white"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -4031,7 +4056,6 @@ exports[`FilesList should render for course files 1`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -4067,7 +4091,7 @@ exports[`FilesList should render for course files 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -4077,8 +4101,9 @@ exports[`FilesList should render for course files 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -4120,7 +4145,7 @@ exports[`FilesList should render for course files 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -4134,7 +4159,7 @@ exports[`FilesList should render for course files 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -4174,6 +4199,7 @@ exports[`FilesList should render for course files 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -4226,7 +4252,7 @@ exports[`FilesList should render for course files 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -4275,7 +4301,7 @@ exports[`FilesList should render for course files 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -4285,8 +4311,9 @@ exports[`FilesList should render for course files 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -4328,7 +4355,7 @@ exports[`FilesList should render for course files 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -4342,7 +4369,7 @@ exports[`FilesList should render for course files 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -4382,6 +4409,7 @@ exports[`FilesList should render for course files 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -4434,7 +4462,7 @@ exports[`FilesList should render for course files 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -4483,7 +4511,7 @@ exports[`FilesList should render for course files 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -4493,8 +4521,9 @@ exports[`FilesList should render for course files 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -4536,7 +4565,7 @@ exports[`FilesList should render for course files 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -4550,7 +4579,7 @@ exports[`FilesList should render for course files 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
+                            "uri": "noSolid",
                           }
                         }
                         style={
@@ -4590,6 +4619,7 @@ exports[`FilesList should render for course files 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -4642,7 +4672,7 @@ exports[`FilesList should render for course files 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -4721,10 +4751,10 @@ exports[`FilesList should render for course files 1`] = `
 exports[`FilesList should render for user files 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -4738,7 +4768,6 @@ exports[`FilesList should render for user files 1`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -4774,7 +4803,7 @@ exports[`FilesList should render for user files 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -4784,8 +4813,9 @@ exports[`FilesList should render for user files 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -4827,7 +4857,7 @@ exports[`FilesList should render for user files 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -4841,7 +4871,7 @@ exports[`FilesList should render for user files 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -4881,6 +4911,7 @@ exports[`FilesList should render for user files 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -4933,7 +4964,7 @@ exports[`FilesList should render for user files 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -4982,7 +5013,7 @@ exports[`FilesList should render for user files 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -4992,8 +5023,9 @@ exports[`FilesList should render for user files 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5035,7 +5067,7 @@ exports[`FilesList should render for user files 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -5049,7 +5081,7 @@ exports[`FilesList should render for user files 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -5089,6 +5121,7 @@ exports[`FilesList should render for user files 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -5141,7 +5174,7 @@ exports[`FilesList should render for user files 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -5190,7 +5223,7 @@ exports[`FilesList should render for user files 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -5200,8 +5233,9 @@ exports[`FilesList should render for user files 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5243,7 +5277,7 @@ exports[`FilesList should render for user files 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -5257,7 +5291,7 @@ exports[`FilesList should render for user files 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
+                            "uri": "noSolid",
                           }
                         }
                         style={
@@ -5297,6 +5331,7 @@ exports[`FilesList should render for user files 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -5349,7 +5384,7 @@ exports[`FilesList should render for user files 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -5435,10 +5470,10 @@ exports[`FilesList should render for user files 1`] = `
 exports[`FilesList should render with folders 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -5452,7 +5487,6 @@ exports[`FilesList should render with folders 1`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -5488,7 +5522,7 @@ exports[`FilesList should render with folders 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -5498,8 +5532,9 @@ exports[`FilesList should render with folders 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5541,7 +5576,7 @@ exports[`FilesList should render with folders 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -5555,7 +5590,7 @@ exports[`FilesList should render with folders 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -5595,6 +5630,7 @@ exports[`FilesList should render with folders 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -5647,7 +5683,7 @@ exports[`FilesList should render with folders 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -5696,7 +5732,7 @@ exports[`FilesList should render with folders 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -5706,8 +5742,9 @@ exports[`FilesList should render with folders 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5749,7 +5786,7 @@ exports[`FilesList should render with folders 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -5763,7 +5800,7 @@ exports[`FilesList should render with folders 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/publish-small.png",
+                            "uri": "publishSolid",
                           }
                         }
                         style={
@@ -5803,6 +5840,7 @@ exports[`FilesList should render with folders 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -5855,7 +5893,7 @@ exports[`FilesList should render with folders 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -5904,7 +5942,7 @@ exports[`FilesList should render with folders 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "flexDirection": "row",
                       "minHeight": 54,
@@ -5914,8 +5952,9 @@ exports[`FilesList should render with folders 1`] = `
                       "paddingTop": 12,
                     },
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                     },
+                    undefined,
                   ]
                 }
               >
@@ -5957,7 +5996,7 @@ exports[`FilesList should render with folders 1`] = `
                       style={
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 8,
                           "bottom": -6,
                           "height": 16,
@@ -5971,7 +6010,7 @@ exports[`FilesList should render with folders 1`] = `
                       <Image
                         source={
                           Object {
-                            "testUri": "../../../src/images/unpublish-small.png",
+                            "uri": "noSolid",
                           }
                         }
                         style={
@@ -6011,6 +6050,7 @@ exports[`FilesList should render with folders 1`] = `
                         },
                         Array [
                           Object {
+                            "color": "#2D3B45",
                             "fontWeight": "600",
                           },
                         ],
@@ -6063,7 +6103,7 @@ exports[`FilesList should render with folders 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -6156,10 +6196,10 @@ exports[`FilesList should render with folders 1`] = `
 exports[`FilesList should render with no data at all 1`] = `
 <Screen
   customPageViewPath={null}
-  navBarButtonColor="#374A59"
-  navBarColor="#374A59"
+  navBarButtonColor="#FFFFFF"
+  navBarColor="#394B58"
   navBarStyle="light"
-  navBarTitleColor="#374A59"
+  navBarTitleColor="#FFFFFF"
   onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
@@ -6173,7 +6213,6 @@ exports[`FilesList should render with no data at all 1`] = `
       },
     ]
   }
-  statusBarStyle="light"
   title="Files"
 >
   <DropView
@@ -6294,6 +6333,6 @@ exports[`FilesList uses correct icon for videos 1`] = `
   }
   showAccessIcon={true}
   statusOffset={Object {}}
-  tintColor="#73818C"
+  tintColor="#8B969E"
 />
 `;

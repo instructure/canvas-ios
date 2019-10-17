@@ -22,7 +22,7 @@ exports[`AttachmentRow renders 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -32,8 +32,9 @@ exports[`AttachmentRow renders 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
         },
+        undefined,
       ]
     }
   >
@@ -76,6 +77,7 @@ exports[`AttachmentRow renders 1`] = `
             },
             Array [
               Object {
+                "color": "#2D3B45",
                 "fontWeight": "600",
               },
             ],
@@ -115,7 +117,7 @@ exports[`AttachmentRow renders 1`] = `
           }
           onPress={[Function]}
           testID="attachment-row.0.remove.btn"
-          underlayColor="white"
+          underlayColor="#FFFFFF"
         >
           <Image
             source={
@@ -126,7 +128,7 @@ exports[`AttachmentRow renders 1`] = `
             style={
               Object {
                 "height": 14,
-                "tintColor": "black",
+                "tintColor": "#2D3B45",
                 "width": 14,
               }
             }

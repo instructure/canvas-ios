@@ -21,7 +21,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   ActivityIndicator,
   FlatList,
   LayoutAnimation,
@@ -29,7 +28,7 @@ import {
 import { connect } from 'react-redux'
 import i18n from 'format-message'
 import { Heading1, Text } from '../../common/text'
-import colors from '../../common/colors'
+import { createStyleSheet } from '../../common/stylesheet'
 import RubricItem from './components/RubricItem'
 import SpeedGraderActions from './actions'
 import GradePicker from './components/GradePicker'
@@ -202,7 +201,7 @@ export class GradeTab extends Component<GradeTabProps, GradeTabState> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   rubricHeader: {
     paddingHorizontal: 16,
     marginTop: 16,
@@ -215,10 +214,10 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   pointsText: {
-    color: colors.grey4,
+    color: colors.textDark,
     fontSize: 14,
   },
-})
+}))
 
 export function mapStateToProps (state: AppState, ownProps: RubricOwnProps): RubricDataProps {
   let assignment = state.entities.assignments[ownProps.assignmentID].data

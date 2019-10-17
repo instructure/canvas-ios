@@ -43,7 +43,7 @@ export function processConfig (config: Object, id: string, configureCallback: (e
       if (id) {
         obj[key] = configureCallback(id, config[key])
       } else {
-        if (!config.statusBarStyle) {
+        if (!config.navBarStyle) {
           console.warn(`Configuring callback "${key}" with potentially non unique event id`)
         }
         obj[key] = configureCallback(key, config[key])

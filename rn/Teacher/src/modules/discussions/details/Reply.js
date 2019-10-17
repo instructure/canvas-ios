@@ -22,13 +22,12 @@ import React, { Component } from 'react'
 import {
   Image,
   View,
-  StyleSheet,
   ActionSheetIOS,
   TouchableOpacity,
 } from 'react-native'
 import { Text } from '../../../common/text'
 import { LinkButton, Button } from '../../../common/buttons'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet, vars } from '../../../common/stylesheet'
 import Images from '../../../images'
 import Avatar from '../../../common/components/Avatar'
 import CanvasWebView from '../../../common/components/CanvasWebView'
@@ -147,7 +146,7 @@ export default class Reply extends Component<Props, State> {
     participants = participants || {}
 
     let user = this._userFromParticipants(reply, participants)
-    let message = reply.deleted ? `<i style="color:${colors.grey4}">${i18n('Deleted this reply.')}</i>` : reply.message
+    let message = reply.deleted ? `<i style="color:${colors.textDark}">${i18n('Deleted this reply.')}</i>` : reply.message
     const unreadDot = this._renderUnreadDot(reply, readState)
     return (
       <View style={style.parentRow}>
@@ -178,7 +177,7 @@ export default class Reply extends Component<Props, State> {
               ? <RichContent html={message} navigator={this.props.navigator} />
               : <CanvasWebView
                 automaticallySetHeight
-                style={{ flex: 1, margin: -global.style.defaultPadding }}
+                style={{ flex: 1, margin: -vars.padding }}
                 html={message}
                 navigator={this.props.navigator}
                 ref={(ref) => { this.webView = ref }}
@@ -196,7 +195,7 @@ export default class Reply extends Component<Props, State> {
               </TouchableOpacity>
             }
 
-            {reply.deleted && <View style={{ marginTop: global.style.defaultPadding }}/>}
+            {reply.deleted && <View style={{ marginTop: vars.padding }}/>}
             {!reply.deleted && this._renderButtons()}
             {this._renderMoreRepliesButton(depth, reply, maxReplyNodeDepth)}
 
@@ -226,7 +225,7 @@ export default class Reply extends Component<Props, State> {
 
     const buttonTextStyle = {
       fontWeight: '500',
-      color: colors.grey4,
+      color: colors.textDark,
       fontSize: 16,
     }
     let containerStyles = [style.footerButtonsContainer]
@@ -242,7 +241,7 @@ export default class Reply extends Component<Props, State> {
               {i18n('Reply')}
             </LinkButton>
             { this._canEdit() &&
-              <Text style={[style.footer, { color: colors.grey2, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
+              <Text style={[style.footer, { color: colors.borderMedium, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
             }
             { this._canEdit() &&
               <LinkButton style={style.footer} textStyle={buttonTextStyle} onPress={this._actionEdit} testID='discussion.edit-btn'>
@@ -259,7 +258,7 @@ export default class Reply extends Component<Props, State> {
                   buttonTextStyle,
                   {
                     marginRight: 6,
-                    color: this.hasRated() ? colors.primaryBrandColor : buttonTextStyle.color,
+                    color: this.hasRated() ? colors.primary : buttonTextStyle.color,
                   },
                 ]}
                 testID='discussion.reply.rating-count'
@@ -279,7 +278,7 @@ export default class Reply extends Component<Props, State> {
                   source={this.hasRated() ? Images.discussions.rated : Images.discussions.rate}
                   style={[
                     style.ratingIcon,
-                    { tintColor: this.hasRated() ? colors.primaryBrandColor : buttonTextStyle.color },
+                    { tintColor: this.hasRated() ? colors.primary : buttonTextStyle.color },
                   ]}
                 />
               </TouchableOpacity>
@@ -367,7 +366,7 @@ export default class Reply extends Component<Props, State> {
 const AVATAR_SIZE = 24
 const AVATAR_MARGIN_RIGHT = 8
 const unreadDotSize = 6
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   parentRow: {
     flex: 1,
     flexDirection: 'row',
@@ -385,14 +384,14 @@ const style = StyleSheet.create({
   },
   rowA: {
     alignSelf: 'stretch',
-    marginTop: global.style.defaultPadding / 1.25,
+    marginTop: vars.padding / 1.25,
   },
   rowB: {
     flex: 1,
     alignSelf: 'stretch',
   },
   threadLine: {
-    backgroundColor: colors.grey1,
+    backgroundColor: colors.backgroundLight,
     width: 1,
     flex: 1,
   },
@@ -400,14 +399,14 @@ const style = StyleSheet.create({
     height: AVATAR_SIZE,
     width: AVATAR_SIZE,
     borderRadius: AVATAR_SIZE / 2,
-    backgroundColor: colors.grey1,
-    marginTop: global.style.defaultPadding / 1.25,
+    backgroundColor: colors.backgroundLight,
+    marginTop: vars.padding / 1.25,
   },
   unreadDot: {
     width: unreadDotSize,
     height: unreadDotSize,
     borderRadius: unreadDotSize / 2,
-    backgroundColor: '#008EE4',
+    backgroundColor: colors.textInfo,
     position: 'absolute',
     top: 0,
     left: unreadDotSize * -1,
@@ -417,9 +416,9 @@ const style = StyleSheet.create({
     fontWeight: '600',
   },
   date: {
-    color: colors.grey5,
+    color: colors.textDark,
     fontSize: 12,
-    marginBottom: global.style.defaultPadding,
+    marginBottom: vars.padding,
   },
   footer: {
     paddingTop: 2,
@@ -428,7 +427,7 @@ const style = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   footerButtonsContainer: {
-    marginTop: global.style.defaultPadding,
+    marginTop: vars.padding,
     marginBottom: 8,
     flexDirection: 'row',
     flex: 1,
@@ -445,25 +444,25 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   ratingIcon: {
-    tintColor: colors.grey4,
+    tintColor: colors.textDark,
   },
   moreContainer: {
-    marginTop: global.style.defaultPadding,
-    marginBottom: global.style.defaultPadding,
+    marginTop: vars.padding,
+    marginBottom: vars.padding,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     height: 27,
     flex: 1,
-    paddingRight: global.style.defaultPadding,
+    paddingRight: vars.padding,
   },
   moreButton: {
     fontSize: 12,
     fontWeight: 'normal',
-    color: colors.grey4,
+    color: colors.textDark,
   },
   moreButtonContainer: {
-    backgroundColor: colors.grey1,
-    borderColor: colors.grey2,
+    backgroundColor: colors.backgroundLight,
+    borderColor: colors.borderMedium,
     borderWidth: 1,
     borderRadius: 4,
     flex: 1,
@@ -475,14 +474,14 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   attachmentIcon: {
-    tintColor: colors.link,
+    tintColor: colors.linkColor,
     height: 14,
     width: 14,
   },
   attachmentText: {
-    color: colors.link,
+    color: colors.linkColor,
     fontWeight: 'bold',
     marginLeft: 4,
     fontSize: 14,
   },
-})
+}))

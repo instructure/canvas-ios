@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import {
   View,
   TextInput,
-  StyleSheet,
   ScrollView,
   Alert,
   NativeModules,
@@ -38,6 +37,7 @@ import RowSeparator from '../../common/components/rows/RowSeparator'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import ExperimentalFeature from '../../common/ExperimentalFeature'
 import { formattedDueDate } from '../../common/formatters'
+import { createStyleSheet } from '../../common/stylesheet'
 const { NativeNotificationCenter, Helm } = NativeModules
 
 const stagingKey = 'teacher.developermenu.path'
@@ -214,7 +214,7 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
         action: () => this.props.navigator.dismiss(),
       }]}>
         <ScrollView style={styles.mainContainer} >
-          <View style={{ marginTop: 16 }}>
+          <View>
             <TextInput
               value={ path }
               placeholder='enter a route'
@@ -265,14 +265,17 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
   }
 }
 
-let styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   mainContainer: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
   },
   urlInput: {
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderBottomWidth: vars.hairlineWidth,
+    borderColor: colors.borderMedium,
+    borderTopWidth: vars.hairlineWidth,
     fontSize: 20,
   },
-})
+}))

@@ -20,21 +20,18 @@ import UIKit
 import Core
 
 class PeopleListCell: UITableViewCell {
-    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var avatar: AvatarView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var roles: UILabel!
 
     func update(user: User?) {
+        backgroundColor = .named(.backgroundLightest)
         guard let user = user else {
             return
         }
 
-        if let avatarURL = user.avatarURL {
-            avatar.setImageWith(avatarURL)
-            avatar.roundCorners(corners: .allCorners, radius: avatar.frame.width / 2)
-        } else {
-            avatar.image = nil
-        }
+        avatar.name = user.name
+        avatar.url = user.avatarURL
         name.text = user.name
         let roles = user.enrollments?.compactMap { $0.formattedRole } ?? []
         self.roles.text = roles.joined(separator: ", ")

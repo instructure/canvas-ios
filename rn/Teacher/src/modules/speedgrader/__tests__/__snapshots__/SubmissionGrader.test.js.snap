@@ -4,7 +4,7 @@ exports[`SubmissionGrader can render the handle content 1`] = `
 <View
   style={
     Object {
-      "borderBottomColor": "lightgray",
+      "borderBottomColor": "#C7CDD1",
       "borderBottomWidth": 0.5,
       "paddingBottom": 8,
       "paddingHorizontal": 16,
@@ -15,7 +15,7 @@ exports[`SubmissionGrader can render the handle content 1`] = `
     onChange={[Function]}
     selectedIndex={-1}
     testID="speedgrader.segment-control"
-    tintColor="#374A59"
+    tintColor="#008EE2"
     values={
       Array [
         "Grades",
@@ -767,7 +767,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                           <View
                             style={
                               Object {
-                                "borderBottomColor": "lightgray",
+                                "borderBottomColor": "#C7CDD1",
                                 "borderBottomWidth": 0.5,
                                 "paddingBottom": 8,
                                 "paddingHorizontal": 16,
@@ -778,7 +778,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                               onChange={[Function]}
                               selectedIndex={-1}
                               testID="speedgrader.segment-control"
-                              tintColor="#374A59"
+                              tintColor="#008EE2"
                               values={
                                 Array [
                                   "Grades",
@@ -837,7 +837,7 @@ exports[`SubmissionGrader renders wide 1`] = `
       <View
         style={
           Object {
-            "borderBottomColor": "lightgray",
+            "borderBottomColor": "#C7CDD1",
             "borderBottomWidth": 0.5,
             "paddingBottom": 8,
             "paddingHorizontal": 16,
@@ -848,7 +848,7 @@ exports[`SubmissionGrader renders wide 1`] = `
           onChange={[Function]}
           selectedIndex={-1}
           testID="speedgrader.segment-control"
-          tintColor="#374A59"
+          tintColor="#008EE2"
           values={
             Array [
               "Grades",
@@ -1113,7 +1113,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                           <View
                             style={
                               Object {
-                                "borderBottomColor": "lightgray",
+                                "borderBottomColor": "#C7CDD1",
                                 "borderBottomWidth": 0.5,
                                 "paddingBottom": 8,
                                 "paddingHorizontal": 16,
@@ -1124,7 +1124,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                               onChange={[Function]}
                               selectedIndex={-1}
                               testID="speedgrader.segment-control"
-                              tintColor="#374A59"
+                              tintColor="#008EE2"
                               values={
                                 Array [
                                   "Grades",

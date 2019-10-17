@@ -52,7 +52,7 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.backgroundColor = .named(.backgroundLight)
+        tableView.backgroundColor = .named(.backgroundGrouped)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.refreshControl = UIRefreshControl()
@@ -190,20 +190,22 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
         switch channelType {
         case .email:
             let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
+            cell.accessibilityIdentifier = "NotificationCategories.\(row.category)Cell"
+            cell.backgroundColor = .named(.backgroundGroupedCell)
             cell.textLabel?.text = categoryMap[row.category]?.1
             cell.detailTextLabel?.text = row.frequency.name
             cell.accessoryType = .disclosureIndicator
-            cell.accessibilityIdentifier = "NotificationCategories.\(row.category)Cell"
             return cell
         default:
             let cell: SwitchTableViewCell = tableView.dequeue(for: indexPath)
+            cell.accessibilityIdentifier = "NotificationCategories.\(row.category)Toggle"
+            cell.backgroundColor = .named(.backgroundGroupedCell)
             cell.textLabel?.text = categoryMap[row.category]?.1
             cell.toggle.isOn = row.frequency != .never
             cell.onToggleChange = { [weak self] toggle in
                 guard let row = self?.sections[indexPath.section].rows[indexPath.row] else { return }
                 self?.update(row.category, notifications: row.notifications, frequency: toggle.isOn ? .immediately : .never)
             }
-            cell.accessibilityIdentifier = "NotificationCategories.\(row.category)Toggle"
             return cell
         }
     }

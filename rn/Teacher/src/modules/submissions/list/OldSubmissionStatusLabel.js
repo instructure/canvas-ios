@@ -23,6 +23,7 @@ import {
 } from 'react-native'
 import i18n from 'format-message'
 import { Text } from '../../../common/text'
+import { colors } from '../../../common/stylesheet'
 
 type OldSubmissionStatusLabelProps = {
   status: SubmissionStatus,
@@ -32,21 +33,21 @@ type OldSubmissionStatusLabelProps = {
 
 export default class OldSubmissionStatusLabel extends Component<OldSubmissionStatusLabelProps, any> {
   render () {
-    let color: string = '#8B969E' // none
+    let color: string = colors.textDark // none
     let title: string = i18n('Not Submitted')
 
     switch (this.props.status) {
       case 'late':
-        color = '#FC5E13'
+        color = colors.textWarning
         title = i18n('Late')
         break
       case 'missing':
-        color = '#EE0612'
+        color = colors.textDanger
         title = i18n('Missing')
         break
       case 'submitted':
       case 'resubmitted':
-        color = '#07AF1F'
+        color = colors.textSuccess
         title = i18n('Submitted')
         break
       case 'excused':

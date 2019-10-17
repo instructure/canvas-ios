@@ -6,7 +6,7 @@ exports[`SpeedGraderHeader anonymizes the avatar and name 1`] = `
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -27,19 +27,19 @@ exports[`SpeedGraderHeader anonymizes the avatar and name 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
       testID="header.context.button"
-      underlayColor="white"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -92,7 +92,7 @@ exports[`SpeedGraderHeader anonymizes the avatar and name 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -102,7 +102,7 @@ exports[`SpeedGraderHeader anonymizes the avatar and name 1`] = `
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={
@@ -127,7 +127,7 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -148,19 +148,19 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
       testID="header.context.button"
-      underlayColor="white"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -213,7 +213,7 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -223,7 +223,7 @@ exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={
@@ -248,7 +248,7 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -269,19 +269,19 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
       testID="header.context.button"
-      underlayColor="white"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -334,7 +334,7 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -344,7 +344,7 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={
@@ -369,7 +369,7 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -390,19 +390,19 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
       testID="header.groupList.button"
-      underlayColor="white"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -455,7 +455,7 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -465,7 +465,7 @@ exports[`SpeedGraderHeader renders with a group submission 1`] = `
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={
@@ -490,7 +490,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -511,19 +511,19 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
       testID="header.context.button"
-      underlayColor="white"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -576,7 +576,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -586,7 +586,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={
@@ -611,7 +611,7 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -632,19 +632,19 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
       testID="header.context.button"
-      underlayColor="white"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -697,7 +697,7 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -707,7 +707,7 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={
@@ -732,7 +732,7 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -753,19 +753,19 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
       testID="header.context.button"
-      underlayColor="white"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -818,7 +818,7 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -828,7 +828,7 @@ exports[`SpeedGraderHeader renders with an ungraded submission 1`] = `
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={
@@ -853,7 +853,7 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
     Array [
       undefined,
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "marginTop": 16,
       },
     ]
@@ -874,19 +874,19 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
         }
       }
       testID="header.context.button"
-      underlayColor="white"
+      underlayColor="#FFFFFF"
     >
       <View
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "flex": 1,
             "flexDirection": "row",
           }
@@ -939,7 +939,7 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "marginRight": 12,
         }
       }
@@ -949,7 +949,7 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
         delayPressOut={100}
         onPress={[MockFunction]}
         testID="header.navigation-done"
-        underlayColor="white"
+        underlayColor="#FFFFFF"
       >
         <Text
           style={

@@ -60,7 +60,7 @@ exports[`My message rows render correctly 1`] = `
         style={
           Array [
             Object {
-              "color": "#7F91A7",
+              "color": "#8B969E",
               "fontSize": 16,
               "lineHeight": 23,
             },
@@ -154,7 +154,7 @@ exports[`My message rows render correctly 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "color": "white",
+                "color": "#FFFFFF",
               },
             ],
           ]
@@ -232,7 +232,7 @@ exports[`Their message rows render correctly 1`] = `
         style={
           Array [
             Object {
-              "color": "#7F91A7",
+              "color": "#8B969E",
               "fontSize": 16,
               "lineHeight": 23,
             },
@@ -299,7 +299,7 @@ exports[`Their message rows render correctly 1`] = `
               "width": null,
             },
             Object {
-              "tintColor": "#f5f5f5",
+              "tintColor": "#F5F5F5",
               "transform": Array [
                 Object {
                   "scaleX": -1,
@@ -402,7 +402,7 @@ exports[`their submissions render correctly 1`] = `
         style={
           Array [
             Object {
-              "color": "#7F91A7",
+              "color": "#8B969E",
               "fontSize": 16,
               "lineHeight": 23,
             },
@@ -501,7 +501,7 @@ exports[`video comments without url render correctly 1`] = `
         style={
           Array [
             Object {
-              "color": "#7F91A7",
+              "color": "#8B969E",
               "fontSize": 16,
               "lineHeight": 23,
             },

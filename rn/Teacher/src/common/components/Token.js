@@ -19,10 +19,8 @@
 // @flow
 
 import React from 'react'
-import {
-  StyleSheet,
-} from 'react-native'
 import { Text } from '../../common/text'
+import { createStyleSheet } from '../../common/stylesheet'
 
 type TokenProps = {
   +style?: any,
@@ -44,13 +42,13 @@ const Token = (props: TokenProps): * => {
   )
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   token: {
     fontSize: 11,
     fontWeight: '500',
     borderRadius: 9,
     borderWidth: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     paddingTop: 3,
     paddingBottom: 0,
     paddingLeft: 6,
@@ -58,6 +56,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     textAlign: 'center',
   },
-})
+}))
 
 export default Token

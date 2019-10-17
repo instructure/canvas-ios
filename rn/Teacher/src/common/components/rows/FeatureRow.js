@@ -20,11 +20,11 @@
 
 import React, { Component } from 'react'
 import {
-  StyleSheet,
   View,
 } from 'react-native'
 
 import Row, { type RowProps } from './Row'
+import { createStyleSheet } from '../../stylesheet'
 
 export default class FeatureRow extends Component<RowProps, any> {
   render () {
@@ -44,7 +44,7 @@ export default class FeatureRow extends Component<RowProps, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   container: {
     paddingTop: 16,
     paddingBottom: 8,
@@ -62,12 +62,12 @@ const style = StyleSheet.create({
     borderRadius: 4,
   },
   innerContainer: {
-    borderColor: '#e3e3e3',
-    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.borderLight,
+    borderWidth: vars.hairlineWidth,
     borderRadius: 4,
     overflow: 'hidden',
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
   },
   title: {
     fontSize: 24,
@@ -76,5 +76,5 @@ const style = StyleSheet.create({
   subtitle: {
     fontWeight: '600',
   },
-})
+}))
 

@@ -62,7 +62,7 @@ class SyllabusActionableItemsPresenterTests: CoreTestCase {
 
     func testLoadColors() {
         let course = Course.make()
-        Color.make(canvasContextID: course.canvasContextID)
+        ContextColor.make(canvasContextID: course.canvasContextID)
 
         presenter.color.eventHandler()
 

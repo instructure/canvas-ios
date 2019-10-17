@@ -13,7 +13,7 @@ exports[`renders correctly 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "flex": 1,
         "flexDirection": "column",
       }
@@ -44,7 +44,7 @@ exports[`renders correctly 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#f5f5f5",
+                "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "justifyContent": "center",
                 "paddingLeft": 16,
@@ -71,8 +71,7 @@ exports[`renders correctly 1`] = `
                 },
                 Array [
                   Object {
-                    "backgroundColor": "#f5f5f5",
-                    "color": "#73818C",
+                    "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -96,7 +95,7 @@ exports[`renders correctly 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "borderBottomColor": "#e3e3e3",
+                "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 1,
               }
             }
@@ -106,7 +105,7 @@ exports[`renders correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -116,7 +115,7 @@ exports[`renders correctly 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/star-filled.png",
+                    "uri": "starSolid",
                   }
                 }
                 style={
@@ -127,7 +126,7 @@ exports[`renders correctly 1`] = `
                       "width": 20,
                     },
                     Object {
-                      "tintColor": "#374A59",
+                      "tintColor": "#008EE2",
                     },
                   ]
                 }
@@ -163,7 +162,7 @@ exports[`renders correctly 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "borderBottomColor": "#e3e3e3",
+                "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 1,
               }
             }
@@ -173,7 +172,7 @@ exports[`renders correctly 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -183,7 +182,7 @@ exports[`renders correctly 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/star-filled.png",
+                    "uri": "starSolid",
                   }
                 }
                 style={
@@ -194,7 +193,7 @@ exports[`renders correctly 1`] = `
                       "width": 20,
                     },
                     Object {
-                      "tintColor": "#374A59",
+                      "tintColor": "#008EE2",
                     },
                   ]
                 }
@@ -237,7 +236,7 @@ exports[`renders correctly as student 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "flex": 1,
         "flexDirection": "column",
       }
@@ -268,7 +267,7 @@ exports[`renders correctly as student 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#f5f5f5",
+                "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "justifyContent": "center",
                 "paddingLeft": 16,
@@ -295,8 +294,7 @@ exports[`renders correctly as student 1`] = `
                 },
                 Array [
                   Object {
-                    "backgroundColor": "#f5f5f5",
-                    "color": "#73818C",
+                    "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -320,7 +318,7 @@ exports[`renders correctly as student 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "borderBottomColor": "#e3e3e3",
+                "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 1,
               }
             }
@@ -330,7 +328,7 @@ exports[`renders correctly as student 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -340,7 +338,7 @@ exports[`renders correctly as student 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/star-filled.png",
+                    "uri": "starSolid",
                   }
                 }
                 style={
@@ -351,7 +349,7 @@ exports[`renders correctly as student 1`] = `
                       "width": 20,
                     },
                     Object {
-                      "tintColor": "#374A59",
+                      "tintColor": "#008EE2",
                     },
                   ]
                 }
@@ -387,7 +385,7 @@ exports[`renders correctly as student 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "borderBottomColor": "#e3e3e3",
+                "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 1,
               }
             }
@@ -397,7 +395,7 @@ exports[`renders correctly as student 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -407,7 +405,7 @@ exports[`renders correctly as student 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/star-filled.png",
+                    "uri": "starSolid",
                   }
                 }
                 style={
@@ -418,7 +416,7 @@ exports[`renders correctly as student 1`] = `
                       "width": 20,
                     },
                     Object {
-                      "tintColor": "#374A59",
+                      "tintColor": "#008EE2",
                     },
                   ]
                 }
@@ -449,7 +447,7 @@ exports[`renders correctly as student 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#f5f5f5",
+                "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "justifyContent": "center",
                 "paddingLeft": 16,
@@ -473,8 +471,7 @@ exports[`renders correctly as student 1`] = `
                 },
                 Array [
                   Object {
-                    "backgroundColor": "#f5f5f5",
-                    "color": "#73818C",
+                    "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -498,7 +495,7 @@ exports[`renders correctly as student 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "borderBottomColor": "#e3e3e3",
+                "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 1,
               }
             }
@@ -508,7 +505,7 @@ exports[`renders correctly as student 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -518,7 +515,7 @@ exports[`renders correctly as student 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/star-filled.png",
+                    "uri": "starSolid",
                   }
                 }
                 style={
@@ -529,7 +526,7 @@ exports[`renders correctly as student 1`] = `
                       "width": 20,
                     },
                     Object {
-                      "tintColor": "#374A59",
+                      "tintColor": "#008EE2",
                     },
                   ]
                 }
@@ -565,7 +562,7 @@ exports[`renders correctly as student 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "borderBottomColor": "#e3e3e3",
+                "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 1,
               }
             }
@@ -575,7 +572,7 @@ exports[`renders correctly as student 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -585,7 +582,7 @@ exports[`renders correctly as student 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/star-filled.png",
+                    "uri": "starSolid",
                   }
                 }
                 style={
@@ -596,7 +593,7 @@ exports[`renders correctly as student 1`] = `
                       "width": 20,
                     },
                     Object {
-                      "tintColor": "#374A59",
+                      "tintColor": "#008EE2",
                     },
                   ]
                 }
@@ -639,7 +636,7 @@ exports[`updates when courses prop changes 1`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "flex": 1,
         "flexDirection": "column",
       }
@@ -670,7 +667,7 @@ exports[`updates when courses prop changes 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#f5f5f5",
+                "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "justifyContent": "center",
                 "paddingLeft": 16,
@@ -697,8 +694,7 @@ exports[`updates when courses prop changes 1`] = `
                 },
                 Array [
                   Object {
-                    "backgroundColor": "#f5f5f5",
-                    "color": "#73818C",
+                    "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -722,7 +718,7 @@ exports[`updates when courses prop changes 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "borderBottomColor": "#e3e3e3",
+                "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 1,
               }
             }
@@ -732,7 +728,7 @@ exports[`updates when courses prop changes 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -742,7 +738,7 @@ exports[`updates when courses prop changes 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/star-filled.png",
+                    "uri": "starSolid",
                   }
                 }
                 style={
@@ -753,7 +749,7 @@ exports[`updates when courses prop changes 1`] = `
                       "width": 20,
                     },
                     Object {
-                      "tintColor": "#374A59",
+                      "tintColor": "#008EE2",
                     },
                   ]
                 }
@@ -796,7 +792,7 @@ exports[`updates when courses prop changes 2`] = `
     emulateUnlessSupported={true}
     style={
       Object {
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "flex": 1,
         "flexDirection": "column",
       }
@@ -827,7 +823,7 @@ exports[`updates when courses prop changes 2`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#f5f5f5",
+                "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "justifyContent": "center",
                 "paddingLeft": 16,
@@ -854,8 +850,7 @@ exports[`updates when courses prop changes 2`] = `
                 },
                 Array [
                   Object {
-                    "backgroundColor": "#f5f5f5",
-                    "color": "#73818C",
+                    "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -879,7 +874,7 @@ exports[`updates when courses prop changes 2`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "borderBottomColor": "#e3e3e3",
+                "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 1,
               }
             }
@@ -889,7 +884,7 @@ exports[`updates when courses prop changes 2`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flexDirection": "row",
                   "paddingHorizontal": 16,
                   "paddingVertical": 16,
@@ -899,7 +894,7 @@ exports[`updates when courses prop changes 2`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/star-filled.png",
+                    "uri": "starSolid",
                   }
                 }
                 style={
@@ -910,7 +905,7 @@ exports[`updates when courses prop changes 2`] = `
                       "width": 20,
                     },
                     Object {
-                      "tintColor": "#374A59",
+                      "tintColor": "#008EE2",
                     },
                   ]
                 }

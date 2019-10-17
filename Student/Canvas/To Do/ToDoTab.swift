@@ -29,7 +29,7 @@ public func ToDoTabViewController(session: Session) throws -> UIViewController {
     split.preferredDisplayMode = .allVisible
     let masterNav = UINavigationController(rootViewController: list)
     let detailNav = UINavigationController()
-    detailNav.view.backgroundColor = UIColor.white
+    detailNav.view.backgroundColor = .named(.backgroundLightest)
     masterNav.navigationBar.useGlobalNavStyle()
     detailNav.navigationBar.useGlobalNavStyle()
     split.viewControllers = [masterNav, detailNav]

@@ -304,8 +304,6 @@ NativeModules.ModuleItemsProgress = {
   contributedDiscussion: jest.fn(),
 }
 
-import './../../src/common/global-style'
-
 jest.mock('../../src/common/components/AuthenticatedWebView', () => 'AuthenticatedWebView')
 jest.mock('../../src/common/components/A11yGroup', () => 'A11yGroup')
 jest.mock('react-native-device-info', () => {

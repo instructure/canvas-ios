@@ -11,7 +11,7 @@ exports[`Token renders correctly 1`] = `
       },
       Array [
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "borderRadius": 9,
           "borderWidth": 1,
           "fontSize": 11,

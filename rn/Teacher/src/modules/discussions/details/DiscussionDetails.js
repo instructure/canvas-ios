@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   View,
-  StyleSheet,
   TouchableHighlight,
   TouchableOpacity,
   Image,
@@ -49,7 +48,7 @@ import {
   Text,
   SubTitle,
 } from '../../../common/text'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet, vars } from '../../../common/stylesheet'
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
 import Reply from './Reply'
@@ -300,14 +299,14 @@ export class DiscussionDetails extends Component<Props, any> {
                 onPress={this.navigateToContextCard}
               />
             }
-            <View style={[style.authorInfoContainer, { marginLeft: (user && user.display_name) ? global.style.defaultPadding : 0 }]}>
+            <View style={[style.authorInfoContainer, { marginLeft: (user && user.display_name) ? vars.padding : 0 }]}>
               { user && user.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
               { hasValidDate && <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text> }
             </View>
           </View>
 
           <CanvasWebView
-            style={{ flex: 1, marginHorizontal: -global.style.defaultPadding, minHeight: global.style.defaultPadding }}
+            style={{ flex: 1, marginHorizontal: -vars.padding, minHeight: vars.padding }}
             automaticallySetHeight html={discussion.message || ''}
             navigator={this.props.navigator}
           />
@@ -330,17 +329,17 @@ export class DiscussionDetails extends Component<Props, any> {
           {!discussion.locked_for_user && this.props.permissions.post_to_forum &&
             <View style={style.authorContainer}>
               <TouchableHighlight
-                underlayColor='white'
+                underlayColor={colors.backgroundLightest}
                 onPress={this._onPressReply}
                 testID='discussion-reply'
                 accessibilityTraits='button'
               >
-                <View style={[{ backgroundColor: colors.primaryButtonColor }, style.replyButtonWrapper]}>
+                <View style={style.replyButtonWrapper}>
                   <Image
                     source={icon('reply')}
                     style={style.replyButtonImage}
                   />
-                  <Text style={[{ color: colors.primaryButtonTextColor }, style.reply]}>{i18n('Reply')}</Text>
+                  <Text style={style.reply}>{i18n('Reply')}</Text>
                 </View>
               </TouchableHighlight>
             </View>
@@ -386,10 +385,10 @@ export class DiscussionDetails extends Component<Props, any> {
             accessible={true}
             accessibilityTraits={['button']}
             onPress={this._onPopReplyRootPath}
-            underlayColor='white'>
+            underlayColor={colors.backgroundLightest}>
             <View style={style.popReplyStackContainer}>
               <Image source={Images.backIcon} style={style.popReplyStackIcon}/>
-              <Text style={{ paddingLeft: 5, color: colors.link }}>{i18n('Back')}</Text>
+              <Text style={{ paddingLeft: 5, color: colors.linkColor }}>{i18n('Back')}</Text>
             </View>
           </TouchableHighlight>
         </AssignmentSection>
@@ -688,7 +687,7 @@ export class DiscussionDetails extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   sectionListContainer: {
     flex: 1,
   },
@@ -703,19 +702,19 @@ const style = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
   },
-  avatar: { marginTop: global.style.defaultPadding },
+  avatar: { marginTop: vars.padding },
   authorName: {
     fontSize: 14,
     fontWeight: '600',
   },
   authorDate: {
     fontSize: 12,
-    color: colors.grey5,
+    color: colors.textDark,
   },
   topContainer: {
     paddingTop: 14,
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
     paddingBottom: 17,
   },
   pointsContainer: {
@@ -726,11 +725,11 @@ const style = StyleSheet.create({
   },
   points: {
     fontWeight: '500',
-    color: colors.grey4,
+    color: colors.textDark,
     marginRight: 14,
   },
   reply: {
-    color: 'white',
+    color: colors.buttonPrimaryText,
     fontSize: 14,
     marginLeft: 4,
     fontWeight: '500',
@@ -739,10 +738,11 @@ const style = StyleSheet.create({
     width: 18,
     height: 18,
     resizeMode: 'contain',
-    tintColor: colors.primaryButtonTextColor,
+    tintColor: colors.buttonPrimaryText,
     marginRight: 6,
   },
   replyButtonWrapper: {
+    backgroundColor: colors.buttonPrimaryBackground,
     flexDirection: 'row',
     paddingHorizontal: 16,
     paddingVertical: 10,
@@ -752,21 +752,21 @@ const style = StyleSheet.create({
   },
   submission: {
     marginRight: 40,
-    marginTop: global.style.defaultPadding / 2,
+    marginTop: vars.padding / 2,
   },
   attachment: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: global.style.defaultPadding,
+    marginBottom: vars.padding,
   },
   attachmentIcon: {
-    tintColor: colors.link,
+    tintColor: colors.linkColor,
     height: 14,
     width: 14,
   },
   attachmentText: {
-    color: colors.link,
+    color: colors.linkColor,
     fontWeight: 'bold',
     marginLeft: 4,
     fontSize: 14,
@@ -775,30 +775,30 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: global.style.defaultPadding / 2,
+    marginBottom: vars.padding / 2,
   },
   popReplyStackIcon: {
-    tintColor: colors.link,
+    tintColor: colors.linkColor,
   },
   section: {
     flex: 1,
-    paddingTop: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
-    paddingBottom: global.style.defaultPadding,
-    paddingLeft: global.style.defaultPadding,
-    backgroundColor: 'white',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.grey2,
+    paddingTop: vars.padding,
+    paddingRight: vars.padding,
+    paddingBottom: vars.padding,
+    paddingLeft: vars.padding,
+    backgroundColor: colors.backgroundLightest,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
   },
   row: {
     flex: 1,
     flexDirection: 'row',
-    paddingHorizontal: global.style.defaultPadding,
+    paddingHorizontal: vars.padding,
   },
   sectionsText: {
     marginTop: 8,
   },
-})
+}))
 
 export function mapStateToProps ({ entities }: AppState, ownProps: OwnProps): State {
   const contextID = ownProps.contextID

@@ -146,7 +146,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
               },
               Array [
                 Object {
-                  "color": "#374A59",
+                  "color": "#008EE2",
                   "fontSize": 16,
                   "fontWeight": "500",
                 },
@@ -312,7 +312,7 @@ exports[`RubricItem renders 1`] = `
               },
               Array [
                 Object {
-                  "color": "#374A59",
+                  "color": "#008EE2",
                   "fontSize": 16,
                   "fontWeight": "500",
                 },
@@ -478,7 +478,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
               },
               Array [
                 Object {
-                  "color": "#374A59",
+                  "color": "#008EE2",
                   "fontSize": 16,
                   "fontWeight": "500",
                 },
@@ -633,7 +633,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
               },
               Array [
                 Object {
-                  "color": "#374A59",
+                  "color": "#008EE2",
                   "fontSize": 16,
                   "fontWeight": "500",
                 },
@@ -745,7 +745,7 @@ exports[`RubricItem renders with free form 1`] = `
               },
               Array [
                 Object {
-                  "color": "#374A59",
+                  "color": "#008EE2",
                   "fontSize": 16,
                   "fontWeight": "500",
                 },
@@ -803,7 +803,7 @@ exports[`RubricItem renders with free form 1`] = `
               },
               Array [
                 Object {
-                  "color": "#374A59",
+                  "color": "#008EE2",
                   "fontSize": 16,
                   "fontWeight": "500",
                 },
@@ -969,7 +969,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
               },
               Array [
                 Object {
-                  "color": "#374A59",
+                  "color": "#008EE2",
                   "fontSize": 16,
                   "fontWeight": "500",
                 },
@@ -1032,7 +1032,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
               "width": null,
             },
             Object {
-              "tintColor": "#f5f5f5",
+              "tintColor": "#F5F5F5",
               "transform": Array [
                 Object {
                   "scaleX": -1,
@@ -1094,12 +1094,12 @@ exports[`RubricItem will not show the add comment button and will show the comme
               },
               Array [
                 Object {
-                  "color": "#374A59",
+                  "color": "#008EE2",
                   "fontSize": 16,
                   "fontWeight": "500",
                 },
                 Object {
-                  "color": "#73818C",
+                  "color": "#8B969E",
                   "fontSize": 16,
                   "fontWeight": "600",
                 },

@@ -20,16 +20,16 @@ import CoreData
 import Foundation
 
 public class GetCustomColors: APIUseCase {
-    public typealias Model = Color
+    public typealias Model = ContextColor
 
     public let request = GetCustomColorsRequest()
-    public let scope = Scope.all(orderBy: #keyPath(Color.canvasContextID))
+    public let scope = Scope.all(orderBy: #keyPath(ContextColor.canvasContextID))
     public let cacheKey: String? = "get-custom-colors"
 
     public init() {}
 
     public func write(response: APICustomColors?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
-        Color.save(response, in: client)
+        ContextColor.save(response, in: client)
     }
 }

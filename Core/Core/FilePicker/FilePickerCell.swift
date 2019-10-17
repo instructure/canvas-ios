@@ -22,6 +22,7 @@ import UIKit
 class FilePickerCell: UITableViewCell {
     var file: File? {
         didSet {
+            backgroundColor = .named(.backgroundLightest)
             nameLabel.text = file?.localFileURL?.lastPathComponent
             if file?.uploadError != nil {
                 isUserInteractionEnabled = true

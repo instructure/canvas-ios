@@ -45,10 +45,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: global.style.defaultPadding,
+    padding: 16,
   },
   message: {
     textAlign: 'center',
-    marginBottom: global.style.defaultPadding / 2,
+    marginBottom: 8,
   },
 })

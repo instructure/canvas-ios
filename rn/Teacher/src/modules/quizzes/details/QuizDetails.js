@@ -22,7 +22,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   View,
-  StyleSheet,
   TouchableHighlight,
 } from 'react-native'
 import i18n from 'format-message'
@@ -38,7 +37,7 @@ import {
   Heading1,
   Text,
 } from '../../../common/text'
-import colors from '../../../common/colors'
+import { createStyleSheet } from '../../../common/stylesheet'
 import Images from '../../../images'
 import refresh from '../../../utils/refresh'
 import formatter from '../formatter'
@@ -241,11 +240,11 @@ export class QuizDetails extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   topContainer: {
     paddingTop: 14,
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
     paddingBottom: 17,
   },
   pointsContainer: {
@@ -256,7 +255,7 @@ const style = StyleSheet.create({
   },
   points: {
     fontWeight: '500',
-    color: colors.grey4,
+    color: colors.textDark,
     marginRight: 14,
   },
   details: {
@@ -266,50 +265,50 @@ const style = StyleSheet.create({
   },
   previewQuizButton: {
     flex: 1,
-    backgroundColor: '#008EE2',
+    backgroundColor: colors.buttonPrimaryBackground,
     height: 51,
     borderRadius: 4,
-    marginTop: global.style.defaultPadding,
-    marginBottom: global.style.defaultPadding,
-    marginLeft: global.style.defaultPadding,
-    marginRight: global.style.defaultPadding,
+    marginTop: vars.padding,
+    marginBottom: vars.padding,
+    marginLeft: vars.padding,
+    marginRight: vars.padding,
   },
   previewQuizButtonContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 4,
-    backgroundColor: '#008EE2',
+    backgroundColor: colors.buttonPrimaryBackground,
   },
   previewQuizButtonTitle: {
-    color: 'white',
+    color: colors.buttonPrimaryText,
     fontWeight: '600',
   },
   detailsSection: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.grey2,
-    paddingTop: global.style.defaultPadding,
-    paddingBottom: global.style.defaultPadding,
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
+    paddingTop: vars.padding,
+    paddingBottom: vars.padding,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
   },
   header: {
-    color: colors.grey4,
+    color: colors.textDark,
     fontWeight: '500',
     fontSize: 16,
     marginBottom: 4,
   },
   section: {
     flex: 1,
-    paddingTop: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
-    paddingBottom: global.style.defaultPadding,
-    paddingLeft: global.style.defaultPadding,
-    backgroundColor: 'white',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: colors.grey2,
+    paddingTop: vars.padding,
+    paddingRight: vars.padding,
+    paddingBottom: vars.padding,
+    paddingLeft: vars.padding,
+    backgroundColor: colors.backgroundLightest,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
   },
-})
+}))
 
 export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: OwnProps): State {
   let quiz: ?Quiz

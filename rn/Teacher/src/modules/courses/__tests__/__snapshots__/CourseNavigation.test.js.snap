@@ -261,7 +261,9 @@ exports[`CourseNavigation renders correctly 1`] = `
     title="Learn React Native"
     windowTraits={
       Object {
+        "contrast": "normal",
         "horizontal": "compact",
+        "style": "light",
         "vertical": "regular",
       }
     }
@@ -305,7 +307,9 @@ exports[`CourseNavigation renders correctly without tabs 1`] = `
     title="Learn React Native"
     windowTraits={
       Object {
+        "contrast": "normal",
         "horizontal": "compact",
+        "style": "light",
         "vertical": "regular",
       }
     }
@@ -361,7 +365,9 @@ exports[`CourseNavigation renders with empty image url 1`] = `
     title="Learn React Native"
     windowTraits={
       Object {
+        "contrast": "normal",
         "horizontal": "compact",
+        "style": "light",
         "vertical": "regular",
       }
     }
@@ -417,7 +423,9 @@ exports[`CourseNavigation renders with image url 1`] = `
     title="Learn React Native"
     windowTraits={
       Object {
+        "contrast": "normal",
         "horizontal": "compact",
+        "style": "light",
         "vertical": "regular",
       }
     }
@@ -475,7 +483,9 @@ exports[`CourseNavigation renders without image url 1`] = `
     title="Learn React Native"
     windowTraits={
       Object {
+        "contrast": "normal",
         "horizontal": "compact",
+        "style": "light",
         "vertical": "regular",
       }
     }

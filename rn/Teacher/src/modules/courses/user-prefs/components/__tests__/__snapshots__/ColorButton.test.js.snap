@@ -12,7 +12,7 @@ exports[`ColorButton renders selected 1`] = `
     }
   }
   testID="colorButton.#333"
-  underlayColor="#fff"
+  underlayColor="#FFFFFF"
 >
   <View
     style={
@@ -53,7 +53,7 @@ exports[`ColorButton renders unselected 1`] = `
     }
   }
   testID="colorButton.#fff"
-  underlayColor="#fff"
+  underlayColor="#FFFFFF"
 >
   <View
     style={

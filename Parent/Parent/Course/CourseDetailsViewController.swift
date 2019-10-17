@@ -49,6 +49,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
         colorScheme = ColorCoordinator.colorSchemeForStudentID(studentID)
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)

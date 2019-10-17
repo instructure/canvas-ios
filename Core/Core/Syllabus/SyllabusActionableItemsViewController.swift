@@ -42,6 +42,11 @@ public class SyllabusActionableItemsViewController: UITableViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.separatorInset = .zero
+        tableView.separatorColor = .named(.borderMedium)
+        tableView.tableFooterView = UIView()
         tableView.register(SyllabusActionableItemsCell.self, forCellReuseIdentifier: String(describing: SyllabusActionableItemsCell.self))
         presenter?.viewIsReady()
         tableView.showsVerticalScrollIndicator = false
@@ -53,6 +58,7 @@ public class SyllabusActionableItemsViewController: UITableViewController {
 
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(SyllabusActionableItemsCell.self, for: indexPath)
+        cell.backgroundColor = .named(.backgroundLightest)
         cell.textLabel?.text = models[indexPath.row].title
         cell.textLabel?.font = UIFont.scaledNamedFont(.regular16)
         cell.textLabel?.textColor = UIColor.named(.textDarkest)

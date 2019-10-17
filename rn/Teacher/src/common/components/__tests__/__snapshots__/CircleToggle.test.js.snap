@@ -85,7 +85,7 @@ exports[`renders circle toggle when on correctly 1`] = `
         },
         undefined,
         Object {
-          "backgroundColor": "#374A59",
+          "backgroundColor": "#008EE2",
           "borderWidth": 0,
         },
       ]
@@ -100,7 +100,7 @@ exports[`renders circle toggle when on correctly 1`] = `
             "fontSize": 16,
           },
           Object {
-            "color": "white",
+            "color": "#FFFFFF",
             "fontSize": 20,
             "fontWeight": "500",
           },

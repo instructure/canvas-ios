@@ -55,6 +55,7 @@ class LoginFindSchoolViewController: UIViewController, LoginFindSchoolViewProtoc
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
 
         logoView.image = .icon(.instructure, .solid)
         logoView.tintColor = .currentLogoColor()
@@ -117,12 +118,15 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(UITableViewCell.self, for: indexPath)
+        cell.backgroundColor = .named(.backgroundLightest)
+        cell.textLabel?.font = .scaledNamedFont(.regular16)
+        cell.textLabel?.textColor = .named(.textDarkest)
         if accounts.isEmpty {
             cell.textLabel?.accessibilityIdentifier = "LoginFindAccountResult.emptyCell"
             cell.textLabel?.attributedText = searchField?.text?.isEmpty == true ? helpAttributedText : notFoundAttributedText
         } else {
             cell.textLabel?.accessibilityIdentifier = "LoginFindAccountResult.\(accounts[indexPath.row].domain)"
-            cell.textLabel?.text = accounts[indexPath.row].name
+            cell.textLabel?.attributedText = NSAttributedString(string: accounts[indexPath.row].name)
         }
         return cell
     }

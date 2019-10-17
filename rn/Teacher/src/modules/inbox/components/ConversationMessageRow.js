@@ -23,7 +23,6 @@ import * as React from 'react'
 import {
   Image,
   LayoutAnimation,
-  StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
@@ -33,7 +32,7 @@ import Hyperlink from 'react-native-hyperlink'
 import { getSession } from '../../../canvas-api'
 import { LinkButton } from '../../../common/buttons'
 import { logEvent } from '../../../common/CanvasAnalytics'
-import color from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import { Text } from '../../../common/text'
 import Avatar from '../../../common/components/Avatar'
 import Video from '../../../common/components/Video'
@@ -169,7 +168,7 @@ export default class ConversationMessageRow extends React.Component<Props, State
           { this.renderHeader() }
           <TouchableWithoutFeedback onPress={this.toggleExpanded}>
             <View style={styles.body}>
-              <Hyperlink linkStyle={ { color: '#2980b9' } } onPress={this.handleLink}>
+              <Hyperlink linkStyle={ { color: colors.linkColor } } onPress={this.handleLink}>
                 <Text style={styles.bodyText} numberOfLines={this.state.expanded ? 0 : 2}>{message.body}</Text>
               </Hyperlink>
             </View>
@@ -225,20 +224,20 @@ export default class ConversationMessageRow extends React.Component<Props, State
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    padding: global.style.defaultPadding,
+    padding: vars.padding,
     paddingTop: 12,
-    backgroundColor: 'white',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: color.seperatorColor,
+    backgroundColor: colors.backgroundLightest,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
   },
   bottomSpacer: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: color.seperatorColor,
+    backgroundColor: colors.backgroundLight,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
     height: 16,
   },
   header: {
@@ -247,37 +246,37 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: color.seperatorColor,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
   },
   author: {
     fontWeight: '600',
     fontSize: 14,
-    color: color.darkText,
+    color: colors.textDarkest,
   },
   recipient: {
     fontSize: 14,
-    color: color.grey4,
+    color: colors.textDark,
   },
   dateText: {
-    color: color.grey4,
+    color: colors.textDark,
     fontSize: 12,
   },
   body: {
     flex: 1,
-    paddingTop: global.style.defaultPadding,
+    paddingTop: vars.padding,
   },
   bodyText: {
     fontSize: 16,
-    color: color.darkText,
+    color: colors.textDarkest,
   },
   replyButton: {
-    marginTop: global.style.defaultPadding / 2,
+    marginTop: vars.padding / 2,
   },
   avatar: {
     width: 32,
     height: 32,
-    marginRight: global.style.defaultPadding / 2,
+    marginRight: vars.padding / 2,
   },
   kabobButton: {
     justifyContent: 'center',
@@ -289,23 +288,23 @@ const styles = StyleSheet.create({
     width: 18,
     height: 18,
     margin: 3,
-    tintColor: color.grey4,
+    tintColor: colors.textDark,
     transform: [{ rotate: '180deg' }],
   },
   attachment: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: global.style.defaultPadding / 2,
+    marginTop: vars.padding / 2,
   },
   attachmentIcon: {
-    tintColor: color.link,
+    tintColor: colors.linkColor,
     height: 14,
     width: 14,
   },
   attachmentText: {
-    color: color.link,
+    color: colors.linkColor,
     fontWeight: 'bold',
     marginLeft: 4,
     fontSize: 14,
   },
-})
+}))

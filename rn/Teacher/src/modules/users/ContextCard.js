@@ -20,7 +20,6 @@ import React, { Component } from 'react'
 import {
   FlatList,
   View,
-  StyleSheet,
 } from 'react-native'
 import { connect } from 'react-redux'
 import { Text } from '../../common/text'
@@ -28,7 +27,7 @@ import Screen from '../../routing/Screen'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 import ErrorView from '../../common/components/ErrorView'
 import Avatar from '../../common/components/Avatar'
-import colors from '../../common/colors'
+import { colors, createStyleSheet } from '../../common/stylesheet'
 import i18n from 'format-message'
 import Images from '../../images'
 import UserSubmissionRow from './UserSubmissionRow'
@@ -66,7 +65,7 @@ export class ContextCard extends Component {
     }
 
     const selectedBox = { backgroundColor: this.props.courseColor }
-    const selectedText = { color: 'white' }
+    const selectedText = { color: colors.white }
     const gradeSelected = !unpostedGrade && !overrideGrade
     const unpostedSelected = Boolean(unpostedGrade && !overrideGrade)
 
@@ -275,18 +274,18 @@ export class ContextCard extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   user: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     marginTop: 32,
     marginBottom: 24,
   },
   avatar: {
     borderRadius: 40,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     height: 80,
     width: 80,
     shadowColor: 'black',
@@ -295,21 +294,21 @@ const styles = StyleSheet.create({
     shadowRadius: 16,
   },
   userName: {
-    color: colors.darkText,
+    color: colors.textDarkest,
     fontSize: 20,
     fontWeight: 'bold',
     lineHeight: 24,
     marginTop: 12,
   },
   userEmail: {
-    color: colors.darkText,
+    color: colors.textDarkest,
     fontSize: 14,
     fontWeight: '500',
     lineHeight: 17,
     marginTop: 4,
   },
   lastActivity: {
-    color: colors.grey4,
+    color: colors.textDark,
     fontSize: 12,
     fontWeight: '500',
     lineHeight: 14,
@@ -321,8 +320,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   courseLine: {
-    borderTopColor: colors.grey4,
-    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: colors.borderMedium,
+    borderTopWidth: vars.hairlineWidth,
     position: 'absolute',
     top: '50%',
     left: 0,
@@ -330,29 +329,29 @@ const styles = StyleSheet.create({
   },
   courseBox: {
     alignItems: 'center',
-    backgroundColor: 'white',
-    borderColor: colors.grey4,
+    backgroundColor: colors.backgroundLightest,
+    borderColor: colors.borderMedium,
     borderRadius: 4,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: vars.hairlineWidth,
     paddingTop: 8,
     paddingBottom: 12,
     paddingHorizontal: 16,
   },
   courseName: {
-    color: colors.darkText,
+    color: colors.textDarkest,
     fontSize: 16,
     fontWeight: 'bold',
     lineHeight: 19,
   },
   section: {
-    color: colors.darkText,
+    color: colors.textDarkest,
     fontSize: 12,
     fontWeight: '500',
     lineHeight: 14,
     marginTop: 4,
   },
   heading: {
-    color: colors.grey4,
+    color: colors.textDark,
     fontSize: 14,
     fontWeight: '600',
     lineHeight: 17,
@@ -368,25 +367,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     borderRadius: 8,
-    backgroundColor: colors.grey1,
+    backgroundColor: colors.backgroundLight,
     paddingHorizontal: 8,
     paddingVertical: 12,
     marginHorizontal: 4,
   },
   largeText: {
-    color: colors.darkText,
+    color: colors.textDarkest,
     fontSize: 20,
     fontWeight: 'bold',
     lineHeight: 24,
   },
   label: {
-    color: colors.darkText,
+    color: colors.textDarkest,
     fontSize: 12,
     fontWeight: '500',
     lineHeight: 14,
     marginTop: 4,
   },
-})
+}))
 
 export function props (props) {
   const data = props.data

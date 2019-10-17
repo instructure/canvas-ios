@@ -71,6 +71,7 @@ public extension RouterProtocol {
                     view.addDoneButton(side: .left)
                 }
                 let nav = view as? UINavigationController ?? UINavigationController(rootViewController: view)
+                nav.navigationBar.useModalStyle()
                 if options?.contains(.formSheet) == true {
                     nav.modalPresentationStyle = .formSheet
                 }

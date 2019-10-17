@@ -28,8 +28,8 @@ exports[`FeatureRow renders 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
-          "borderColor": "#e3e3e3",
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#F5F5F5",
           "borderRadius": 4,
           "borderWidth": 0.5,
           "flex": 1,

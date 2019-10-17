@@ -48,7 +48,7 @@ exports[`url submission renders correctly 1`] = `
               },
               Array [
                 Object {
-                  "color": "#374A59",
+                  "color": "#008EE2",
                   "fontSize": 16,
                   "fontWeight": "500",
                 },
@@ -67,7 +67,7 @@ exports[`url submission renders correctly 1`] = `
       style={
         Array [
           Object {
-            "color": "#7F91A7",
+            "color": "#8B969E",
             "fontSize": 16,
             "lineHeight": 23,
           },

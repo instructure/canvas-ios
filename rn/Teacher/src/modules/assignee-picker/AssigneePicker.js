@@ -26,13 +26,12 @@ import {
   ScrollView,
   Image,
   TouchableHighlight,
-  StyleSheet,
 } from 'react-native'
 
 import { connect } from 'react-redux'
 import { find } from 'lodash'
 import i18n from 'format-message'
-import colors from '../../common/colors'
+import { createStyleSheet } from '../../common/stylesheet'
 import AssigneeRow from './AssigneeRow'
 import Images from '../../images'
 import { pickerMapStateToProps, type AssigneePickerProps, type Assignee } from './map-state-to-props'
@@ -151,30 +150,29 @@ export class AssigneePicker extends Component<AssigneePickerProps, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: colors.grey1,
+    backgroundColor: colors.backgroundGrouped,
   },
   space: {
     height: 40,
-    backgroundColor: colors.grey1,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
+    backgroundColor: colors.backgroundGrouped,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
   },
   button: {
     height: 'auto',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
   },
   buttonContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'white',
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
-    paddingVertical: global.style.defaultPadding / 2,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
+    paddingVertical: vars.padding / 2,
   },
   buttonText: {
     color: colors.primaryButton,
@@ -192,11 +190,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
-    paddingRight: global.style.defaultPadding,
-    paddingVertical: global.style.defaultPadding / 2,
+    backgroundColor: colors.backgroundGroupedCell,
+    paddingRight: vars.padding,
+    paddingVertical: vars.padding / 2,
   },
-})
+}))
 
 let Connected = connect(pickerMapStateToProps, { ...Actions, ...EnrollmentActions, ...UserActions, ...GroupActions })(AssigneePicker)
 export default (Connected: Component<AssigneePickerProps, any>)

@@ -5,7 +5,7 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
   contentStyle={
     Array [
       Object {
-        "borderColor": "#374A59",
+        "borderColor": "#008EE2",
         "borderWidth": 1,
       },
     ]
@@ -27,7 +27,7 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
             "width": 40,
           },
           Object {
-            "backgroundColor": "#374A59",
+            "backgroundColor": "#008EE2",
           },
         ]
       }
@@ -41,7 +41,7 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -90,14 +90,7 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
       <CanvasWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
-        html="
-<style>
-  html, body {
-    color: #2D3B45;
-    font-size: 16px;
-  }
-</style>
-Don’t forget your permission slips this Wednesday."
+        html="Don’t forget your permission slips this Wednesday."
         isOpaque={false}
         navigator={
           Object {
@@ -165,7 +158,7 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -214,14 +207,7 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
       <CanvasWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
-        html="
-<style>
-  html, body {
-    color: #2D3B45;
-    font-size: 16px;
-  }
-</style>
-Don’t forget your permission slips this Wednesday."
+        html="Don’t forget your permission slips this Wednesday."
         isOpaque={false}
         navigator={
           Object {
@@ -253,7 +239,7 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
   contentStyle={
     Array [
       Object {
-        "borderColor": "#374A59",
+        "borderColor": "#008EE2",
         "borderWidth": 1,
       },
     ]
@@ -275,7 +261,7 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
             "width": 40,
           },
           Object {
-            "backgroundColor": "#374A59",
+            "backgroundColor": "#008EE2",
           },
         ]
       }
@@ -289,7 +275,7 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -338,14 +324,7 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
       <CanvasWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
-        html="
-<style>
-  html, body {
-    color: #2D3B45;
-    font-size: 16px;
-  }
-</style>
-Don’t forget your permission slips this Wednesday."
+        html="Don’t forget your permission slips this Wednesday."
         isOpaque={false}
         navigator={
           Object {
@@ -377,7 +356,7 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
   contentStyle={
     Array [
       Object {
-        "borderColor": "#374A59",
+        "borderColor": "#008EE2",
         "borderWidth": 1,
       },
     ]
@@ -399,7 +378,7 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
             "width": 40,
           },
           Object {
-            "backgroundColor": "#374A59",
+            "backgroundColor": "#008EE2",
           },
         ]
       }
@@ -413,7 +392,7 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -462,14 +441,7 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
       <CanvasWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
-        html="
-<style>
-  html, body {
-    color: #2D3B45;
-    font-size: 16px;
-  }
-</style>
-Don’t forget your permission slips this Wednesday."
+        html="Don’t forget your permission slips this Wednesday."
         isOpaque={false}
         navigator={
           Object {
@@ -501,7 +473,7 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
   contentStyle={
     Array [
       Object {
-        "borderColor": "#374A59",
+        "borderColor": "#008EE2",
         "borderWidth": 1,
       },
     ]
@@ -523,7 +495,7 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
             "width": 40,
           },
           Object {
-            "backgroundColor": "#374A59",
+            "backgroundColor": "#008EE2",
           },
         ]
       }
@@ -537,7 +509,7 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -586,14 +558,7 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
       <CanvasWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
-        html="
-<style>
-  html, body {
-    color: #2D3B45;
-    font-size: 16px;
-  }
-</style>
-Don’t forget your permission slips this Wednesday."
+        html="Don’t forget your permission slips this Wednesday."
         isOpaque={false}
         navigator={
           Object {
@@ -661,7 +626,7 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
         style={
           Object {
             "marginTop": 14,
-            "tintColor": "white",
+            "tintColor": "#FFFFFF",
           }
         }
       />
@@ -710,14 +675,7 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
       <CanvasWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
-        html="
-<style>
-  html, body {
-    color: #2D3B45;
-    font-size: 16px;
-  }
-</style>
-Don’t forget your permission slips this Wednesday."
+        html="Don’t forget your permission slips this Wednesday."
         isOpaque={false}
         navigator={
           Object {
