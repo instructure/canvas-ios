@@ -342,7 +342,7 @@ export default graphql(query, {
   props,
 })(SubmissionList)
 
-function createFilterFromSection (section) {
+export function createFilterFromSection (section) {
   return {
     type: `section.${section.id}`,
     title: () => section.name,
@@ -353,6 +353,11 @@ function createFilterFromSection (section) {
       return {
         sectionIDs: [section.id],
       }
+    },
+    // need this for speedgrader
+    filterFunc: (submission) => {
+      if (!submission || !submission.allSectionIDs) return false
+      return submission.allSectionIDs.includes(section.id)
     },
   }
 }

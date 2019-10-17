@@ -21,6 +21,7 @@
 import React from 'react'
 import {
   SubmissionList,
+  createFilterFromSection,
   props as graphqlProps,
 } from '../SubmissionList'
 import renderer from 'react-test-renderer'
@@ -31,6 +32,7 @@ import ExperimentalFeature from '../../../../common/ExperimentalFeature'
 
 const template = {
   ...require('../../../../__templates__/helm'),
+  ...require('../__templates__/submission-props'),
 }
 
 jest
@@ -412,5 +414,43 @@ describe('graphql props', () => {
 
     results.assignment.groupSet = undefined
     expect(graphqlProps({ data: results }).isGroupGradedAssignment).toBeFalsy()
+  })
+})
+
+describe('createFilterFromSection', () => {
+  it('works', () => {
+    let filterOption = createFilterFromSection(templates.section())
+    expect(filterOption).toMatchObject({
+      type: 'section.1',
+      disabled: false,
+      selected: false,
+      exclusive: false,
+    })
+  })
+
+  it('gives the right name', () => {
+    let section = templates.section()
+    let filterOption = createFilterFromSection(section)
+    expect(filterOption.title()).toEqual(section.name)
+  })
+
+  it('getFilter', () => {
+    let section = templates.section()
+    let filterOptions = createFilterFromSection(section)
+    expect(filterOptions.getFilter()).toEqual({
+      sectionIDs: [section.id],
+    })
+  })
+
+  it('filterFunc', () => {
+    let section = templates.section()
+    let submission = template.submissionProps()
+    let filterOption = createFilterFromSection(section)
+    expect(filterOption.filterFunc()).toEqual(false)
+    expect(filterOption.filterFunc(submission)).toEqual(false)
+    submission.allSectionIDs = ['1234']
+    expect(filterOption.filterFunc(submission)).toEqual(false)
+    submission.allSectionIDs = [section.id]
+    expect(filterOption.filterFunc(submission)).toEqual(true)
   })
 })
