@@ -32,7 +32,7 @@ import ExperimentalFeature from '../../../../common/ExperimentalFeature'
 
 const template = {
   ...require('../../../../__templates__/helm'),
-  ...require('../__templates__/submission-props')
+  ...require('../__templates__/submission-props'),
 }
 
 jest
@@ -438,7 +438,7 @@ describe('createFilterFromSection', () => {
     let section = templates.section()
     let filterOptions = createFilterFromSection(section)
     expect(filterOptions.getFilter()).toEqual({
-      sectionIDs: [section.id]
+      sectionIDs: [section.id],
     })
   })
 
