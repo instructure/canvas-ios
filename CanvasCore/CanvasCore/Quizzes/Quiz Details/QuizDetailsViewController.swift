@@ -66,6 +66,7 @@ class QuizDetailsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isTranslucent = false
         prepareTable()
         prepareDescriptionCell()
     }
