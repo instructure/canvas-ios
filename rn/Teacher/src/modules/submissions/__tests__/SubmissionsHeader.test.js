@@ -69,3 +69,28 @@ test('SubmissionHeader anonymous and muted', () => {
 
   expect(tree).toMatchSnapshot()
 })
+
+test('SubmissionHeader muted grading but new gradebook', () => {
+  const tree = renderer.create(
+    <SubmissionsHeader
+      filterOptions={defaultFilterOptions()}
+      muted
+      newGradebookEnabled
+    />
+  ).toJSON()
+
+  expect(tree).toMatchSnapshot()
+})
+
+test('SubmissionHeader muted grading but new gradebook', () => {
+  const tree = renderer.create(
+    <SubmissionsHeader
+      filterOptions={defaultFilterOptions()}
+      muted
+      anonymous
+      newGradebookEnabled
+    />
+  ).toJSON()
+
+  expect(tree).toMatchSnapshot()
+})

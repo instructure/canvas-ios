@@ -311,3 +311,194 @@ exports[`SubmissionHeader muted grading 1`] = `
   </TouchableOpacity>
 </View>
 `;
+
+exports[`SubmissionHeader muted grading but new gradebook 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "borderBottomColor": "lightgrey",
+      "borderBottomWidth": 0.5,
+      "flexDirection": "row",
+      "height": "auto",
+      "justifyContent": "space-between",
+      "paddingBottom": 8,
+      "paddingHorizontal": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+      }
+    }
+  >
+    <Text
+      accessibilityRole="header"
+      numberOfLines={1}
+      style={
+        Array [
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 24,
+            "fontWeight": "800",
+          },
+          undefined,
+        ]
+      }
+    >
+      All Submissions
+    </Text>
+  </View>
+  <TouchableOpacity
+    accessibilityLabel="Filter Submissions. (0) selected."
+    accessibilityTraits="button"
+    hitSlop={
+      Object {
+        "bottom": 15,
+        "left": 15,
+        "right": 15,
+        "top": 15,
+      }
+    }
+    onPress={[Function]}
+    style={
+      Object {
+        "marginBottom": 1,
+        "width": "auto",
+      }
+    }
+    testID="submission-list.filter"
+  >
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#374A59",
+                "fontSize": 16,
+                "fontWeight": "500",
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        Filter
+      </Text>
+    </View>
+  </TouchableOpacity>
+</View>
+`;
+
+exports[`SubmissionHeader muted grading but new gradebook 2`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "borderBottomColor": "lightgrey",
+      "borderBottomWidth": 0.5,
+      "flexDirection": "row",
+      "height": "auto",
+      "justifyContent": "space-between",
+      "paddingBottom": 8,
+      "paddingHorizontal": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+      }
+    }
+  >
+    <Text
+      accessibilityRole="header"
+      numberOfLines={1}
+      style={
+        Array [
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 24,
+            "fontWeight": "800",
+          },
+          undefined,
+        ]
+      }
+    >
+      All Submissions
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "color": "#8B969E",
+            "fontSize": 14,
+            "fontWeight": "500",
+          },
+        ]
+      }
+    >
+      Anonymous grading
+    </Text>
+  </View>
+  <TouchableOpacity
+    accessibilityLabel="Filter Submissions. (0) selected."
+    accessibilityTraits="button"
+    hitSlop={
+      Object {
+        "bottom": 15,
+        "left": 15,
+        "right": 15,
+        "top": 15,
+      }
+    }
+    onPress={[Function]}
+    style={
+      Object {
+        "marginBottom": 1,
+        "width": "auto",
+      }
+    }
+    testID="submission-list.filter"
+  >
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#374A59",
+                "fontSize": 16,
+                "fontWeight": "500",
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        Filter
+      </Text>
+    </View>
+  </TouchableOpacity>
+</View>
+`;

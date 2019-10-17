@@ -204,7 +204,8 @@ export class SubmissionList extends Component<Props, State> {
       },
     ]
 
-    if (this.state.flags.includes('new_gradebook')) {
+    let newGradebookEnabled = this.state.flags.includes('new_gradebook')
+    if (newGradebookEnabled) {
       rightBarButtons.push({
         image: icon('eye', 'solid'),
         testID: 'SubmissionsList.postpolicy',
@@ -242,6 +243,7 @@ export class SubmissionList extends Component<Props, State> {
               anonymous={this.props.anonymous}
               muted={this.props.muted}
               navigator={this.props.navigator}
+              newGradebookEnabled={newGradebookEnabled}
             />
             <FlatList
               data={this.props.submissions}
