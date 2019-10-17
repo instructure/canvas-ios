@@ -54,46 +54,23 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open class CoreUITestRun: XCTestCaseRun {
-        var needsRetry = false
-
-        // Don't set this above 1!
-        // There seems to be a bug in how this interacts with XCTest causing too many retries to look like success (!!)
-        var retries = 1
         override open func recordFailure(withDescription description: String, inFile filePath: String?, atLine lineNumber: Int, expected: Bool) {
-            if needsRetry { return }
-            if retries > 0 {
-                retries -= 1
-                // TODO: collect this information across builds
-                print("WARN: \(description) at \(filePath ?? "<unknown>"):\(lineNumber), will retry with clean launch...")
-                needsRetry = true
-            } else {
-                super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
-            }
+            CoreUITestCase.needsLaunch = true
+            super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
         }
-    }
-
-    @objc var shouldHaltWhenReceivesControl: Bool {
-        return (testRun as? CoreUITestRun)?.needsRetry ?? false
     }
 
     override open var testRunClass: AnyClass? { return CoreUITestRun.self }
 
-    open override func invokeTest() {
-        super.invokeTest()
-        if let run = testRun as? CoreUITestRun, run.needsRetry {
-            run.needsRetry = false
-            app.terminate()
-            invokeTest()
-        }
-    }
+    private let isRetry = ProcessInfo.processInfo.environment["CANVAS_TEST_IS_RETRY"] == "YES"
 
-    private static var firstRun = true
+    private static var needsLaunch = true
     open override func setUp() {
         super.setUp()
         LoginSession.useTestKeychain()
         continueAfterFailure = false
-        if CoreUITestCase.firstRun || app.state != .runningForeground {
-            CoreUITestCase.firstRun = false
+        if CoreUITestCase.needsLaunch || app.state != .runningForeground || isRetry {
+            CoreUITestCase.needsLaunch = false
             launch()
             if currentSession() != nil {
                 homeScreen.waitToExist()
@@ -104,7 +81,7 @@ open class CoreUITestCase: XCTestCase {
             logInUser(user)
             homeScreen.waitToExist()
         }
-        // If this is a retry, re-install the old mocks
+        // re-install the existing mocks
         for message in dataMocks {
             send(.mockData(message))
         }
