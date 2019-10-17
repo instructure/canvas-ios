@@ -52,10 +52,10 @@ class Persistency {
         restoreQueuedEventsFromFile()
     }
 
-    func addToQueue(_ event: PageViewEvent) {
+    func addToQueue(_ event: PageViewEvent, completionHandler: EmptyHandler? = nil) {
         dispatchQueue.async(flags: .barrier) { [weak self] in
             self?.queuedEvents.append(event)
-            self?.saveToFile()
+            self?.saveToFile(completionHandler)
         }
     }
 
