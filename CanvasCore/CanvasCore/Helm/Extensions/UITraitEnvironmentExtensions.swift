@@ -20,13 +20,11 @@ import UIKit
 
 extension UITraitEnvironment {
     public func sizeClassInfoForJavascriptConsumption() -> [String: String] {
-        let horizontalKey = "horizontal"
-        let verticalKey = "vertical"
-        var data = [String:String]()
-        let horizontalSizeClass = self.traitCollection.horizontalSizeClass
-        let verticalSizeClass  = self.traitCollection.verticalSizeClass
-        data[horizontalKey] = horizontalSizeClass.description
-        data[verticalKey] = verticalSizeClass.description
-        return data
+        return [
+            "style": traitCollection.userInterfaceStyle == .dark ? "dark" : "light",
+            "contrast": UIAccessibility.isDarkerSystemColorsEnabled ? "high" : "normal",
+            "horizontal": traitCollection.horizontalSizeClass.description,
+            "vertical": traitCollection.verticalSizeClass.description,
+        ]
     }
 }

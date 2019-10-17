@@ -24,10 +24,9 @@ import {
   Image,
   Text,
   TouchableHighlight,
-  StyleSheet,
 } from 'react-native'
-import colors from '../colors'
-import Images from '../../images'
+import { colors, createStyleSheet } from '../stylesheet'
+import icon from '../../images/inst-icons'
 import i18n from 'format-message'
 
 type Props = {
@@ -47,7 +46,7 @@ export default class Avatar extends PureComponent<Props, any> {
 
     // There are a few different forms that the default picture can take
     const defaults = ['images/dotted_pic.png', 'images/messages/avatar-50.png']
-    if (defaults.filter(d => decodeURIComponent(url).includes(d)).length) {
+    if (defaults.some(d => decodeURIComponent(url).includes(d))) {
       return null
     }
 
@@ -61,47 +60,51 @@ export default class Avatar extends PureComponent<Props, any> {
 
     const group = 'images/messages/avatar-group-50.png'
     if (url.includes(group)) {
-      return Images.group
+      return icon('group', 'line')
     }
 
     return null
   }
 
   render () {
-    const url = this.imageURL()
-    let source = { uri: url }
+    const uri = this.imageURL()
     const height = this.props.height || 40
     const width = height
     let borderRadius = Math.round(height / 2)
     const fontSize = Math.round(height / 2.25)
     const replacement = this.replacementImage()
-    if (replacement) {
-      source = replacement
-      borderRadius = 0
-    }
 
-    let border = { borderRadius }
+    const style = {
+      backgroundColor: replacement
+        ? colors.backgroundLightest
+        : colors.backgroundLight,
+      borderRadius,
+      height,
+      width,
+    }
     if (this.props.border) {
-      border = {
-        ...border,
-        borderColor: 'white',
-        borderStyle: 'solid',
-        borderWidth: 4,
-      }
-    }
-
-    const containerStyles = [styles.imageContainer, { height, width }, { ...border }]
-    if (!replacement) {
-      containerStyles.push({ backgroundColor: '#F5F5F5' })
+      style.borderColor = colors.backgroundLightest
+      style.borderStyle = 'solid'
+      style.borderWidth = 4
     }
 
     let comp
-
-    if (url) {
+    if (replacement) {
       comp = (
-        <View style={containerStyles} accessibilityLabel=''>
+        <View style={[styles.imageContainer, style]} accessibilityLabel=''>
+          <View style={[styles.group, { height, width, borderRadius }]}>
+            <Image
+              source={replacement}
+              style={{ height: height * 0.6, width: width * 0.6, tintColor: colors.textDark }}
+            />
+          </View>
+        </View>
+      )
+    } else if (uri) {
+      comp = (
+        <View style={[styles.imageContainer, style]} accessibilityLabel=''>
           <Image
-            source={source}
+            source={{ uri }}
             style={{ height, width }}
           />
         </View>
@@ -138,21 +141,27 @@ export default class Avatar extends PureComponent<Props, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   imageContainer: {
     overflow: 'hidden',
   },
+  group: {
+    borderColor: colors.borderMedium,
+    borderWidth: vars.hairlineWidth,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   altImage: {
-    borderColor: colors.seperatorColor,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.borderMedium,
+    borderWidth: vars.hairlineWidth,
     overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
   },
   altImageText: {
-    color: colors.secondaryButton,
+    color: colors.textDark,
     fontWeight: '600',
     backgroundColor: 'transparent',
   },
-})
+}))

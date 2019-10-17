@@ -23,7 +23,7 @@ import XCTest
 class CourseTests: CoreTestCase {
     func testColor() {
         let a = Course.make()
-        _ = Color.make()
+        ContextColor.make()
 
         XCTAssertEqual(a.color, UIColor.red)
     }

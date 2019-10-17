@@ -22,14 +22,12 @@ import i18n from 'format-message'
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   FlatList,
   Image,
 } from 'react-native'
 import Screen from '../../../routing/Screen'
-import color from '../../../common/colors'
+import { colors, createStyleSheet, vars } from '../../../common/stylesheet'
 import images from '../../../images'
-import branding from '../../../common/branding'
 import {
   fetchPropsFor,
   ToDoModel,
@@ -94,11 +92,11 @@ export class ToDoList extends Component<Props, State> {
   render () {
     return (
       <Screen
-        navBarColor={color.navBarColor}
-        navBarButtonColor={color.navBarTextColor}
-        statusBarStyle={color.statusBarStyle}
+        navBarColor={colors.navBackground}
+        navBarButtonColor={colors.navTextColor}
+        navBarStyle={vars.navBarStyle}
         drawUnderNavBar
-        navBarImage={branding.headerImage}
+        navBarImage={vars.headerImageURL}
         customPageViewPath={'/'}
       >
         <View style={styles.container} onLayout={this.handleLayout}>
@@ -161,7 +159,7 @@ export class ToDoList extends Component<Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   container: {
     flex: 1,
   },
@@ -170,15 +168,15 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
   },
   emptyImage: {
     marginBottom: 24,
   },
   emptyText: {
-    color: color.grey4,
+    color: colors.textDark,
     fontSize: 18,
   },
-})
+}))
 
 export default fetchPropsFor(ToDoList, (_, api) => api.getToDos())

@@ -21,11 +21,10 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Image,
   TouchableOpacity,
 } from 'react-native'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import { Title, SubTitle } from '../../../common/text'
 
 export type SubmittedContentDataProps = {
@@ -64,7 +63,7 @@ export default class SubmittedContent extends Component<Props, any> {
           testID={`submitted-content.icon-${this.props.contentID}`}
           resizeMode='center'
           style={{
-            tintColor: colors.primaryButtonColor,
+            tintColor: colors.buttonPrimaryBackground,
             width: 18,
             height: 18,
           }}
@@ -91,11 +90,11 @@ export default class SubmittedContent extends Component<Props, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   row: {
     flexDirection: 'row',
     borderWidth: 1,
-    borderColor: colors.seperatorColor,
+    borderColor: colors.borderMedium,
     borderRadius: 4,
     overflow: 'hidden',
     paddingVertical: 6,
@@ -107,4 +106,4 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 6,
   },
-})
+}))

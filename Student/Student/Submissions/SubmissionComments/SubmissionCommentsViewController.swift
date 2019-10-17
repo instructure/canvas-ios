@@ -57,6 +57,8 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
+        tableView?.backgroundColor = .named(.backgroundLightest)
         addCommentBorderView?.backgroundColor = .named(.backgroundLightest)
         addCommentBorderView?.layer.borderColor = UIColor.named(.borderMedium).cgColor
         addCommentBorderView?.layer.borderWidth = 1 / UIScreen.main.scale

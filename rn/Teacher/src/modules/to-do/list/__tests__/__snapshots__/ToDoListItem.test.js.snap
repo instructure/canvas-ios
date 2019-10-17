@@ -48,7 +48,7 @@ exports[`ToDoListItem renders 1`] = `
         Array [
           Object {
             "alignSelf": "flex-start",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderRadius": 9,
             "borderWidth": 1,
             "flex": 0,
@@ -62,8 +62,8 @@ exports[`ToDoListItem renders 1`] = `
             "paddingTop": 3,
           },
           Object {
-            "borderColor": "#374A59",
-            "color": "#374A59",
+            "borderColor": "#008EE2",
+            "color": "#008EE2",
           },
         ]
       }
@@ -122,7 +122,7 @@ exports[`ToDoListItem renders discussion 1`] = `
         Array [
           Object {
             "alignSelf": "flex-start",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderRadius": 9,
             "borderWidth": 1,
             "flex": 0,
@@ -136,8 +136,8 @@ exports[`ToDoListItem renders discussion 1`] = `
             "paddingTop": 3,
           },
           Object {
-            "borderColor": "#374A59",
-            "color": "#374A59",
+            "borderColor": "#008EE2",
+            "color": "#008EE2",
           },
         ]
       }
@@ -196,7 +196,7 @@ exports[`ToDoListItem renders null due date 1`] = `
         Array [
           Object {
             "alignSelf": "flex-start",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderRadius": 9,
             "borderWidth": 1,
             "flex": 0,
@@ -210,8 +210,8 @@ exports[`ToDoListItem renders null due date 1`] = `
             "paddingTop": 3,
           },
           Object {
-            "borderColor": "#374A59",
-            "color": "#374A59",
+            "borderColor": "#008EE2",
+            "color": "#008EE2",
           },
         ]
       }
@@ -270,7 +270,7 @@ exports[`ToDoListItem renders published assignment 1`] = `
         Array [
           Object {
             "alignSelf": "flex-start",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderRadius": 9,
             "borderWidth": 1,
             "flex": 0,
@@ -284,8 +284,8 @@ exports[`ToDoListItem renders published assignment 1`] = `
             "paddingTop": 3,
           },
           Object {
-            "borderColor": "#374A59",
-            "color": "#374A59",
+            "borderColor": "#008EE2",
+            "color": "#008EE2",
           },
         ]
       }
@@ -344,7 +344,7 @@ exports[`ToDoListItem renders quiz 1`] = `
         Array [
           Object {
             "alignSelf": "flex-start",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderRadius": 9,
             "borderWidth": 1,
             "flex": 0,
@@ -358,8 +358,8 @@ exports[`ToDoListItem renders quiz 1`] = `
             "paddingTop": 3,
           },
           Object {
-            "borderColor": "#374A59",
-            "color": "#374A59",
+            "borderColor": "#008EE2",
+            "color": "#008EE2",
           },
         ]
       }
@@ -418,7 +418,7 @@ exports[`ToDoListItem renders unpublished assignment 1`] = `
         Array [
           Object {
             "alignSelf": "flex-start",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderRadius": 9,
             "borderWidth": 1,
             "flex": 0,
@@ -432,8 +432,8 @@ exports[`ToDoListItem renders unpublished assignment 1`] = `
             "paddingTop": 3,
           },
           Object {
-            "borderColor": "#374A59",
-            "color": "#374A59",
+            "borderColor": "#008EE2",
+            "color": "#008EE2",
           },
         ]
       }

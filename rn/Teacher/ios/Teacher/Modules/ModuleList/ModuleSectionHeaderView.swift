@@ -81,12 +81,12 @@ class ModuleSectionHeaderView: UIView {
 
     init() {
         super.init(frame: .zero)
-        loadFromXib()
+        loadFromXib().backgroundColor = .named(.backgroundLightest)
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        loadFromXib()
+        loadFromXib().backgroundColor = .named(.backgroundLightest)
     }
 
     @IBAction

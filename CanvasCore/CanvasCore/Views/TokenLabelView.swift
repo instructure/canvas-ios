@@ -63,7 +63,7 @@ public class TokenView: UILabel {
     
     public override var text: String? {
         set {
-            super.text = newValue?.lowercased()
+            super.text = newValue?.localizedUppercase
             invalidateIntrinsicContentSize()
         } get {
             return super.text

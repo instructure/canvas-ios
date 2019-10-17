@@ -23,6 +23,18 @@ public class TestRouter: RouterProtocol {
     public init() {}
     public var calls = [(URLComponents, UIViewController, RouteOptions?)]()
     public var viewControllerCalls = [(UIViewController, UIViewController, RouteOptions?)]()
+    public var presented: UIViewController? {
+        if viewControllerCalls.last?.2?.contains(.modal) == true {
+            return viewControllerCalls.last?.0
+        }
+        return nil
+    }
+
+    @discardableResult
+    public func dismiss() -> UIViewController? {
+        assert(presented != nil)
+        return viewControllerCalls.popLast()?.0
+    }
 
     public func match(_ url: URLComponents) -> UIViewController? {
         return nil

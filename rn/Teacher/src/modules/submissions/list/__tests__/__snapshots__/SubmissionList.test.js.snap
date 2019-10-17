@@ -20,7 +20,7 @@ exports[`SubmissionList loaded 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "borderBottomColor": "lightgrey",
+          "borderBottomColor": "#C7CDD1",
           "borderBottomWidth": 0.5,
           "flexDirection": "row",
           "height": "auto",
@@ -93,7 +93,7 @@ exports[`SubmissionList loaded 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#374A59",
+                    "color": "#008EE2",
                     "fontSize": 16,
                     "fontWeight": "500",
                   },
@@ -130,7 +130,7 @@ exports[`SubmissionList loaded 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "paddingBottom": 10,
@@ -169,14 +169,10 @@ exports[`SubmissionList loaded 1`] = `
                           "overflow": "hidden",
                         },
                         Object {
+                          "backgroundColor": "#F5F5F5",
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
-                        },
-                        Object {
-                          "borderRadius": 20,
-                        },
-                        Object {
-                          "backgroundColor": "#F5F5F5",
                         },
                       ]
                     }
@@ -256,7 +252,7 @@ exports[`SubmissionList loaded 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#374A59",
+                        "color": "#2D3B45",
                         "fontSize": 14,
                         "fontWeight": "600",
                       },
@@ -295,7 +291,7 @@ exports[`SubmissionList loaded 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "paddingBottom": 10,
@@ -334,14 +330,10 @@ exports[`SubmissionList loaded 1`] = `
                           "overflow": "hidden",
                         },
                         Object {
+                          "backgroundColor": "#F5F5F5",
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
-                        },
-                        Object {
-                          "borderRadius": 20,
-                        },
-                        Object {
-                          "backgroundColor": "#F5F5F5",
                         },
                       ]
                     }
@@ -399,7 +391,7 @@ exports[`SubmissionList loaded 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#374A59",
+                        "color": "#2D3B45",
                         "fontSize": 14,
                         "fontWeight": "600",
                       },
@@ -438,7 +430,7 @@ exports[`SubmissionList loaded 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "paddingBottom": 10,
@@ -477,14 +469,10 @@ exports[`SubmissionList loaded 1`] = `
                           "overflow": "hidden",
                         },
                         Object {
+                          "backgroundColor": "#F5F5F5",
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
-                        },
-                        Object {
-                          "borderRadius": 20,
-                        },
-                        Object {
-                          "backgroundColor": "#F5F5F5",
                         },
                       ]
                     }
@@ -555,7 +543,7 @@ exports[`SubmissionList loaded 1`] = `
                   Late
                 </Text>
                 <Text
-                  color="#368BD8"
+                  color="#008EE2"
                   style={
                     Array [
                       Object {
@@ -564,7 +552,7 @@ exports[`SubmissionList loaded 1`] = `
                       },
                       Array [
                         Object {
-                          "backgroundColor": "white",
+                          "backgroundColor": "#FFFFFF",
                           "borderRadius": 9,
                           "borderWidth": 1,
                           "fontSize": 11,
@@ -577,8 +565,8 @@ exports[`SubmissionList loaded 1`] = `
                           "textAlign": "center",
                         },
                         Object {
-                          "borderColor": "#368BD8",
-                          "color": "#368BD8",
+                          "borderColor": "#008EE2",
+                          "color": "#008EE2",
                         },
                         Object {
                           "alignSelf": "flex-start",
@@ -600,7 +588,7 @@ exports[`SubmissionList loaded 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#374A59",
+                        "color": "#2D3B45",
                         "fontSize": 14,
                         "fontWeight": "600",
                       },
@@ -639,7 +627,7 @@ exports[`SubmissionList loaded 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "paddingBottom": 10,
@@ -678,14 +666,10 @@ exports[`SubmissionList loaded 1`] = `
                           "overflow": "hidden",
                         },
                         Object {
+                          "backgroundColor": "#F5F5F5",
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
-                        },
-                        Object {
-                          "borderRadius": 20,
-                        },
-                        Object {
-                          "backgroundColor": "#F5F5F5",
                         },
                       ]
                     }
@@ -747,7 +731,7 @@ exports[`SubmissionList loaded 1`] = `
                         },
                         undefined,
                         Object {
-                          "color": "#07AF1F",
+                          "color": "#00AC18",
                         },
                       ],
                     ]
@@ -765,7 +749,7 @@ exports[`SubmissionList loaded 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#374A59",
+                        "color": "#2D3B45",
                         "fontSize": 14,
                         "fontWeight": "600",
                       },
@@ -807,7 +791,7 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "borderBottomColor": "lightgrey",
+          "borderBottomColor": "#C7CDD1",
           "borderBottomWidth": 0.5,
           "flexDirection": "row",
           "height": "auto",
@@ -880,7 +864,7 @@ exports[`SubmissionList renders correctly with empty list 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#374A59",
+                    "color": "#008EE2",
                     "fontSize": 16,
                     "fontWeight": "500",
                   },
@@ -980,7 +964,7 @@ exports[`renders a group row properly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "paddingBottom": 10,
@@ -1019,14 +1003,10 @@ exports[`renders a group row properly 1`] = `
                   "overflow": "hidden",
                 },
                 Object {
+                  "backgroundColor": "#F5F5F5",
+                  "borderRadius": 20,
                   "height": 40,
                   "width": 40,
-                },
-                Object {
-                  "borderRadius": 20,
-                },
-                Object {
-                  "backgroundColor": "#F5F5F5",
                 },
               ]
             }
@@ -1088,7 +1068,7 @@ exports[`renders a group row properly 1`] = `
                 },
                 undefined,
                 Object {
-                  "color": "#07AF1F",
+                  "color": "#00AC18",
                 },
               ],
             ]
@@ -1106,7 +1086,7 @@ exports[`renders a group row properly 1`] = `
             },
             Array [
               Object {
-                "color": "#374A59",
+                "color": "#2D3B45",
                 "fontSize": 14,
                 "fontWeight": "600",
               },
@@ -1146,7 +1126,7 @@ exports[`renders the row properly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "paddingBottom": 10,
@@ -1185,14 +1165,10 @@ exports[`renders the row properly 1`] = `
                   "overflow": "hidden",
                 },
                 Object {
+                  "backgroundColor": "#F5F5F5",
+                  "borderRadius": 20,
                   "height": 40,
                   "width": 40,
-                },
-                Object {
-                  "borderRadius": 20,
-                },
-                Object {
-                  "backgroundColor": "#F5F5F5",
                 },
               ]
             }
@@ -1272,7 +1248,7 @@ exports[`renders the row properly 1`] = `
             },
             Array [
               Object {
-                "color": "#374A59",
+                "color": "#2D3B45",
                 "fontSize": 14,
                 "fontWeight": "600",
               },

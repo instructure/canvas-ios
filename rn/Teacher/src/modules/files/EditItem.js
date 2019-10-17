@@ -23,14 +23,13 @@ import React, { Component } from 'react'
 import ReactNative, {
   Alert,
   DatePickerIOS,
-  StyleSheet,
   View,
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import api from '../../canvas-api'
 import Screen from '../../routing/Screen'
-import Colors from '../../common/colors'
-import Images from '../../images'
+import { colors, createStyleSheet } from '../../common/stylesheet'
+import icon from '../../images/inst-icons'
 import { FormLabel } from '../../common/text'
 import RequiredFieldSubscript from '../../common/components/RequiredFieldSubscript'
 import Row from '../../common/components/rows/Row'
@@ -299,8 +298,8 @@ export default class EditItem extends Component<Props, State> {
     return (
       <Screen
         title={isFile ? i18n('Edit File') : i18n('Edit Folder')}
-        navBarTitleColors={Colors.darkText}
-        navBarButtonColor={Colors.link}
+        navBarTitleColors={colors.textDarkest}
+        navBarButtonColor={colors.linkColor}
         drawUnderNavBar
         dismissButtonTitle={i18n('Cancel')}
         rightBarButtons={[{
@@ -408,9 +407,9 @@ export default class EditItem extends Component<Props, State> {
             <Row
               border='both'
               title={isFile ? i18n('Delete File') : i18n('Delete Folder')}
-              titleStyles={{ color: Colors.destructiveButtonColor }}
-              image={Images.trash}
-              imageTint={Colors.destructiveButtonColor}
+              titleStyles={{ color: colors.textDanger }}
+              image={icon('trash', 'line')}
+              imageTint={colors.textDanger}
               onPress={this.handleDelete}
               testID='edit-item.delete'
             />
@@ -421,10 +420,10 @@ export default class EditItem extends Component<Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   container: {
     flex: 1,
-    backgroundColor: Colors.grey1,
+    backgroundColor: colors.backgroundGrouped,
   },
   title: {
     height: 45,
@@ -432,4 +431,4 @@ const styles = StyleSheet.create({
   emptyHeader: {
     height: 48,
   },
-})
+}))

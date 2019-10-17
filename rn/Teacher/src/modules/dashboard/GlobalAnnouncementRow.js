@@ -23,12 +23,11 @@ import React from 'react'
 import {
   Image,
   LayoutAnimation,
-  StyleSheet,
   TouchableHighlight,
   View,
 } from 'react-native'
 import images from '../../images'
-import colors from '../../common/colors'
+import { colors, createStyleSheet } from '../../common/stylesheet'
 import {
   Text,
   SubTitle,
@@ -36,15 +35,6 @@ import {
 import { LinkButton } from '../../common/buttons'
 import CanvasWebView from '../../common/components/CanvasWebView'
 import DashboardContent from './DashboardContent'
-
-const MESSAGE_STYLE = `
-<style>
-  html, body {
-    color: ${colors.darkText};
-    font-size: 16px;
-  }
-</style>
-`
 
 type Props = NavigationProps & {
   style?: any,
@@ -76,12 +66,12 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
   getColorFromIcon (icon: AccountNotificationIcon) {
     switch (icon) {
       case 'error':
-        return colors.errorAnnouncementBg
+        return colors.backgroundDanger
       case 'warning':
-        return colors.warningAnnouncementBg
+        return colors.backgroundWarning
       case 'information':
       default:
-        return colors.primaryBrandColor
+        return colors.primary
     }
   }
 
@@ -136,7 +126,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
             <CanvasWebView
               accessibilityElementsHidden={collapsed}
               automaticallySetHeight
-              html={MESSAGE_STYLE + message}
+              html={message}
               navigator={this.props.navigator}
               style={collapsed ? styles.collapsed : styles.expanded}
               isOpaque={false}
@@ -158,10 +148,10 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   icon: {
     marginTop: 14,
-    tintColor: 'white',
+    tintColor: colors.textLightest,
   },
   rowContent: {
     flexDirection: 'row',
@@ -191,4 +181,4 @@ const styles = StyleSheet.create({
   expanded: {
     overflow: 'hidden',
   },
-})
+}))

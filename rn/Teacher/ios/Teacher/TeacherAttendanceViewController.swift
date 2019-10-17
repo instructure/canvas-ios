@@ -32,10 +32,7 @@ class TeacherAttendanceViewController: AttendanceViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController?.navigationBar.shadowImage = nil
-        navigationController?.navigationBar.barTintColor = courseColor
-        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.useContextColor(courseColor)
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -20,7 +20,6 @@
 
 import React, { Component } from 'react'
 import {
-  StyleSheet,
   View,
   Button,
   TextInput,
@@ -28,6 +27,7 @@ import {
 } from 'react-native'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import Screen from '../../../routing/Screen'
+import { createStyleSheet } from '../../stylesheet'
 
 type Props = {
   visible: boolean,
@@ -128,7 +128,7 @@ export default class LinkModal extends Component<Props, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     flexDirection: 'column',
-    backgroundColor: '#e9e9e9',
+    backgroundColor: colors.backgroundLight,
     alignItems: 'stretch',
     borderRadius: 8,
     overflow: 'hidden',
@@ -149,9 +149,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   textInputContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.backgroundLightest,
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: colors.borderMedium,
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 4,
@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 20,
+    color: colors.textDarkest,
   },
   actionsContainer: {
     flexDirection: 'row',
@@ -167,6 +168,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   separator: {
-    backgroundColor: '#ddd',
+    backgroundColor: colors.borderMedium,
   },
-})
+}))

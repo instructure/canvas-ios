@@ -18,15 +18,16 @@
 
 import UIKit
 import AFNetworking
+import Core
 
 extension Status {
     var subtitle: (label: String, tint: UIColor) {
         guard let attendance = attendance else { return ("", .white) }
         
         switch attendance {
-        case .present: return (NSLocalizedString("Present", tableName: "Localizable", bundle: .core, value: "", comment: "Student is present in class"), #colorLiteral(red: 0, green: 0.6745098039, blue: 0.09411764706, alpha: 1))
-        case .late: return (NSLocalizedString("Late", tableName: "Localizable", bundle: .core, value: "", comment: "Student is present in class"), #colorLiteral(red: 0.9882352941, green: 0.368627451, blue: 0.07450980392, alpha: 1))
-        case .absent: return (NSLocalizedString("Absent", tableName: "Localizable", bundle: .core, value: "", comment: "Student is present in class"), #colorLiteral(red: 0.9333333333, green: 0.02352941176, blue: 0.07058823529, alpha: 1))
+        case .present: return (NSLocalizedString("Present", tableName: "Localizable", bundle: .core, value: "", comment: "Student is present in class"), UIColor.named(.backgroundSuccess))
+        case .late: return (NSLocalizedString("Late", tableName: "Localizable", bundle: .core, value: "", comment: "Student is present in class"), UIColor.named(.backgroundWarning))
+        case .absent: return (NSLocalizedString("Absent", tableName: "Localizable", bundle: .core, value: "", comment: "Student is present in class"), UIColor.named(.backgroundDanger))
         }
     }
     
@@ -44,18 +45,17 @@ extension Status {
 class StatusCell: UITableViewCell {
     @objc static let reuseID = "StatusCell"
     
-    @objc let avatarImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 42, height: 42))
+    @objc let avatarView = AvatarView()
     @objc let nameLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
-        
-        avatarImage.layer.cornerRadius = 20
-        avatarImage.clipsToBounds = true
-        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.semibold)
-        nameLabel.textColor = #colorLiteral(red: 0.1764705882, green: 0.231372549, blue: 0.2705882353, alpha: 1)
+        backgroundColor = .named(.backgroundLightest)
+
+        nameLabel.font = .scaledNamedFont(.semibold16)
+        nameLabel.textColor = .named(.textDarkest)
         
         let vertStack = UIStackView()
         vertStack.axis = .vertical
@@ -66,14 +66,14 @@ class StatusCell: UITableViewCell {
         horizontalStack.alignment = .center
         horizontalStack.spacing = 8
         horizontalStack.translatesAutoresizingMaskIntoConstraints = false
-        horizontalStack.addArrangedSubview(avatarImage)
+        horizontalStack.addArrangedSubview(avatarView)
         horizontalStack.addArrangedSubview(vertStack)
         
         let guide = contentView.layoutMarginsGuide
         contentView.addSubview(horizontalStack)
         NSLayoutConstraint.activate([
-            avatarImage.widthAnchor.constraint(equalToConstant: 40),
-            avatarImage.heightAnchor.constraint(equalToConstant: 40),
+            avatarView.widthAnchor.constraint(equalToConstant: 40),
+            avatarView.heightAnchor.constraint(equalToConstant: 40),
             guide.leadingAnchor.constraint(equalTo: horizontalStack.leadingAnchor),
             guide.trailingAnchor.constraint(equalTo: horizontalStack.trailingAnchor),
             guide.topAnchor.constraint(equalTo: horizontalStack.topAnchor),
@@ -94,11 +94,9 @@ class StatusCell: UITableViewCell {
                 i18nLabel += " — \(status.subtitle.label)"
             }
             accessibilityLabel = i18nLabel
-            
-            avatarImage.image = UIImage(named: "People", in: .core, compatibleWith: nil)
-            if let avatar = status.student.avatarURL {
-                avatarImage.setImageWith(avatar)
-            }
+
+            avatarView.name = status.student.name
+            avatarView.url = status.student.avatarURL
             
             accessoryView = UIImageView(image: status.icon)
         }

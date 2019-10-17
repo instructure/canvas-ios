@@ -108,6 +108,7 @@ class ToDoListViewController: FetchedTableViewController<Todo>, PageViewEventVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.useGlobalNavStyle()
         startTrackingTimeOnViewController()
     }
     

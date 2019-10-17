@@ -25,13 +25,12 @@ import {
   View,
   Image,
   TouchableHighlight,
-  StyleSheet,
 } from 'react-native'
 
 import { type Assignee } from './map-state-to-props'
 import Images from '../../images'
 import Button from 'react-native-button'
-import colors from '../../common/colors'
+import { createStyleSheet } from '../../common/stylesheet'
 import { Text } from '../../common/text'
 import Avatar from '../../common/components/Avatar'
 
@@ -86,39 +85,39 @@ export default class AssigneeRow extends Component<Props> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   touchable: {
     flex: 1,
     height: 'auto',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
   },
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundGroupedCell,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
-    paddingVertical: global.style.defaultPadding / 2,
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
+    paddingVertical: vars.padding / 2,
   },
   textContainer: {
     flexDirection: 'column',
     justifyContent: 'center',
   },
   assigneeName: {
-    color: '#2D3B45',
+    color: colors.textDarkest,
     fontWeight: '600',
   },
   assigneeInfo: {
     fontSize: 14,
-    color: colors.grey4,
+    color: colors.textDark,
   },
   imageContainer: {
     height: 40,
     width: 40,
     overflow: 'hidden',
-    marginRight: global.style.defaultPadding,
+    marginRight: vars.padding,
     borderRadius: 20,
   },
   deleteButtonContainer: {
@@ -132,4 +131,4 @@ const styles = StyleSheet.create({
     height: 44,
     width: 44,
   },
-})
+}))

@@ -60,4 +60,11 @@ class APIUserRequestableTests: XCTestCase {
         XCTAssertEqual(request.path, "users/2/profile")
         XCTAssertEqual(request.method, .get)
     }
+
+    func testPostObserveesRequest() {
+        let request = PostObserveesRequest(userID: "self", pairingCode: "abc")
+        XCTAssertEqual(request.method, .post)
+        XCTAssertEqual(request.path, "users/self/observees")
+        XCTAssertEqual(request.queryItems, [URLQueryItem(name: "pairing_code", value: "abc")])
+    }
 }

@@ -290,7 +290,7 @@ exports[`Rubric renders a rubric 1`] = `
                       "marginRight": 4,
                     },
                     Object {
-                      "backgroundColor": "#374A59",
+                      "backgroundColor": "#008EE2",
                       "borderWidth": 0,
                     },
                   ]
@@ -305,7 +305,7 @@ exports[`Rubric renders a rubric 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "white",
+                        "color": "#FFFFFF",
                         "fontSize": 20,
                         "fontWeight": "500",
                       },
@@ -527,7 +527,7 @@ exports[`Rubric renders a rubric 1`] = `
                       },
                       Array [
                         Object {
-                          "color": "#374A59",
+                          "color": "#008EE2",
                           "fontSize": 16,
                           "fontWeight": "500",
                         },
@@ -838,7 +838,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                       "marginRight": 4,
                     },
                     Object {
-                      "backgroundColor": "#374A59",
+                      "backgroundColor": "#008EE2",
                       "borderWidth": 0,
                     },
                   ]
@@ -853,7 +853,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "white",
+                        "color": "#FFFFFF",
                         "fontSize": 20,
                         "fontWeight": "500",
                       },
@@ -895,7 +895,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                       },
                       Array [
                         Object {
-                          "color": "#374A59",
+                          "color": "#008EE2",
                           "fontSize": 16,
                           "fontWeight": "500",
                         },
@@ -953,7 +953,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                       },
                       Array [
                         Object {
-                          "color": "#374A59",
+                          "color": "#008EE2",
                           "fontSize": 16,
                           "fontWeight": "500",
                         },
@@ -994,7 +994,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
         style={
           Object {
             "alignItems": "flex-start",
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderColor": "#C7CDD1",
             "borderRadius": 20,
             "borderWidth": 0.5,
@@ -1013,7 +1013,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           onBlur={[Function]}
           onChangeText={[Function]}
           placeholder="Comment"
-          placeholderTextColor="#7F91A7"
+          placeholderTextColor="#8B969E"
           rejectResponderTermination={true}
           style={
             Object {
@@ -1463,7 +1463,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                       "marginRight": 4,
                     },
                     Object {
-                      "backgroundColor": "#374A59",
+                      "backgroundColor": "#008EE2",
                       "borderWidth": 0,
                     },
                   ]
@@ -1478,7 +1478,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "color": "white",
+                        "color": "#FFFFFF",
                         "fontSize": 20,
                         "fontWeight": "500",
                       },
@@ -1700,7 +1700,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                       },
                       Array [
                         Object {
-                          "color": "#374A59",
+                          "color": "#008EE2",
                           "fontSize": 16,
                           "fontWeight": "500",
                         },

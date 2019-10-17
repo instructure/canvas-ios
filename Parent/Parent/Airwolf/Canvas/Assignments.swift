@@ -30,7 +30,8 @@ extension Assignment {
     }
 
     public static func refresher(_ session: Session, studentID: String, courseID: String, assignmentID: String) throws -> Refresher {
-        let remote = try Assignment.getAssignment(session, courseID: courseID, assignmentID: assignmentID).map { [$0] }
+        let remote = try Assignment.getAssignment(session, courseID: courseID, assignmentID: assignmentID).map { [$0] }.map(insert(studentID, forKey: "studentID"))
+
         let local = predicate(courseID, assignmentID: assignmentID)
         let context = try session.assignmentsManagedObjectContext(studentID)
         let sync = Assignment.syncSignalProducer(local, inContext: context, fetchRemote: remote)

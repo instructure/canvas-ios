@@ -24,10 +24,10 @@ import React from 'react'
 import {
   View,
   Image,
-  StyleSheet,
 } from 'react-native'
 
-import Images from '../../images'
+import instIcon from '../../images/inst-icons'
+import { createStyleSheet } from '../stylesheet'
 import i18n from 'format-message'
 import { isTeacher } from '../../modules/app'
 
@@ -54,7 +54,7 @@ export default class AccessIcon extends React.Component<Props> {
 
   render () {
     const { published, locked, hidden, lock_at, unlock_at } = this.props.entry
-    let icon = Images.publishedSmall
+    let icon = instIcon('publish', 'solid')
     let iconStyle = styles.publishedIcon
     let accessibilityLabel = i18n('Published')
     let showAccessIcon = this.props.showAccessIcon
@@ -62,11 +62,11 @@ export default class AccessIcon extends React.Component<Props> {
       showAccessIcon = isTeacher()
     }
     if (published == null && (hidden || lock_at || unlock_at)) { // eslint-disable-line camelcase
-      icon = Images.restricted
+      icon = instIcon('cloudLock', 'line')
       iconStyle = styles.restrictedIcon
       accessibilityLabel = i18n('Restricted')
     } else if (published === false || (published == null && locked === true)) {
-      icon = Images.unpublishedSmall
+      icon = instIcon('no', 'solid')
       iconStyle = styles.unpublishedIcon
       accessibilityLabel = i18n('Not Published')
     }
@@ -90,7 +90,7 @@ export default class AccessIcon extends React.Component<Props> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   container: {
     flex: 0,
     alignItems: 'center',
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: -6,
     right: -5,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     height: 16,
     width: 16,
     borderRadius: 8,
@@ -109,16 +109,16 @@ const styles = StyleSheet.create({
   publishedIcon: {
     height: 12,
     width: 12,
-    tintColor: '#00AC18',
+    tintColor: colors.textSuccess,
   },
   unpublishedIcon: {
     height: 12,
     width: 12,
-    tintColor: '#8B969E',
+    tintColor: colors.textDark,
   },
   restrictedIcon: {
     height: 14,
     width: 14,
-    tintColor: '#FF0000',
+    tintColor: colors.textWarning,
   },
-})
+}))

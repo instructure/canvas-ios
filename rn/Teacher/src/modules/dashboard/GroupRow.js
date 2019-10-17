@@ -67,7 +67,7 @@ export default class GroupRow extends React.Component<GroupRowProps & { onPress:
             <View style={styles.groupDetails}>
               <Text style={styles.title}>{name}</Text>
               <SubTitle style={[{ color }, styles.context]}>{contextName}</SubTitle>
-              {term && <SubTitle style={styles.term}>{term.toUpperCase()}</SubTitle>}
+              {Boolean(term) && <SubTitle style={styles.term}>{term.toUpperCase()}</SubTitle>}
             </View>
           </DashboardContent>
         </View>
@@ -77,10 +77,6 @@ export default class GroupRow extends React.Component<GroupRowProps & { onPress:
 }
 
 const styles = StyleSheet.create({
-  icon: {
-    tintColor: 'white',
-    marginTop: 15.5,
-  },
   rowContent: {
     flexDirection: 'row',
     minHeight: 82,

@@ -6,7 +6,7 @@ exports[`Avatar renders with border 1`] = `
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderColor": "#C7CDD1",
         "borderWidth": 0.5,
         "justifyContent": "center",
@@ -26,7 +26,7 @@ exports[`Avatar renders with border 1`] = `
       Array [
         Object {
           "backgroundColor": "transparent",
-          "color": "#73818C",
+          "color": "#8B969E",
           "fontWeight": "600",
         },
         Object {
@@ -49,14 +49,10 @@ exports[`Avatar renders with image 1`] = `
         "overflow": "hidden",
       },
       Object {
+        "backgroundColor": "#F5F5F5",
+        "borderRadius": 20,
         "height": 40,
         "width": 40,
-      },
-      Object {
-        "borderRadius": 20,
-      },
-      Object {
-        "backgroundColor": "#F5F5F5",
       },
     ]
   }
@@ -83,7 +79,7 @@ exports[`Avatar renders without default canvas avatar 1`] = `
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderColor": "#C7CDD1",
         "borderWidth": 0.5,
         "justifyContent": "center",
@@ -103,7 +99,7 @@ exports[`Avatar renders without default canvas avatar 1`] = `
       Array [
         Object {
           "backgroundColor": "transparent",
-          "color": "#73818C",
+          "color": "#8B969E",
           "fontWeight": "600",
         },
         Object {
@@ -123,7 +119,7 @@ exports[`Avatar renders without image 1`] = `
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderColor": "#C7CDD1",
         "borderWidth": 0.5,
         "justifyContent": "center",
@@ -143,7 +139,7 @@ exports[`Avatar renders without image 1`] = `
       Array [
         Object {
           "backgroundColor": "transparent",
-          "color": "#73818C",
+          "color": "#8B969E",
           "fontWeight": "600",
         },
         Object {
@@ -163,7 +159,7 @@ exports[`Avatar renders without image but it has a funky name 1`] = `
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#FFFFFF",
         "borderColor": "#C7CDD1",
         "borderWidth": 0.5,
         "justifyContent": "center",
@@ -183,7 +179,7 @@ exports[`Avatar renders without image but it has a funky name 1`] = `
       Array [
         Object {
           "backgroundColor": "transparent",
-          "color": "#73818C",
+          "color": "#8B969E",
           "fontWeight": "600",
         },
         Object {

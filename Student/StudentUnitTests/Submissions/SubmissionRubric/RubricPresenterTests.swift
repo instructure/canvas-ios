@@ -52,7 +52,7 @@ class RubricPresenterTests: PersistenceTestCase {
     func setupData() -> [RubricViewModel] {
         Assignment.make()
         Course.make()
-        Color.make()
+        ContextColor.make()
         let rubric = Rubric.make(from: .make(id: "1", ratings: [
             .make(id: "1", points: 10, position: 1),
             .make(id: "2", points: 25, position: 2),
@@ -157,7 +157,7 @@ class RubricPresenterTests: PersistenceTestCase {
         ]))
         Course.make()
         Assignment.make()
-        Color.make()
+        ContextColor.make()
         let expected: [RubricViewModel] = [
             RubricViewModel(
                 id: "1",

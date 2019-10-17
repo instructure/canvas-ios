@@ -25,7 +25,7 @@ import {
 import Row, { type RowProps } from './Row'
 import i18n from 'format-message'
 
-import colors from '../../colors'
+import { colors } from '../../stylesheet'
 
 export type RowWithSwitchProps = RowProps & {
   value?: boolean,
@@ -51,7 +51,7 @@ export default class RowWithSwitch extends Component<RowWithSwitchProps, any> {
       testID={this.props.identifier}
       onValueChange={this.onValueChange}
       tintColor={null}
-      trackColor={colors.primaryBrandColor} />
+      trackColor={colors.primary} />
     const accessibilityLabel = this.props.accessibilityLabel || `${this.props.title}, ${this.props.value ? i18n('On') : i18n('Off')}`
     return (
       <Row {...this.props}

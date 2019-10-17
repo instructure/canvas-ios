@@ -21,7 +21,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
-import color from '../../../common/colors'
+import { colors } from '../../../common/stylesheet'
 import Screen from '../../../routing/Screen'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import Actions from './actions'
@@ -69,8 +69,8 @@ export class EditReply extends React.Component<Props, any> {
     return (
       <Screen
         title={isEdit ? i18n('Edit') : i18n('Reply')}
-        navBarTitleColor={color.darkText}
-        navBarButtonColor={color.link}
+        navBarTitleColor={colors.textDarkest}
+        navBarButtonColor={colors.linkColor}
         rightBarButtons={[
           {
             title: i18n('Done'),
@@ -85,8 +85,8 @@ export class EditReply extends React.Component<Props, any> {
             accessibilityLabel: i18n('Edit attachment ({count})', { count: this.state.attachment ? '1' : i18n('none') }),
             badge: this.state.attachment && {
               text: '1',
-              backgroundColor: processColor('#008EE2'),
-              textColor: processColor('white'),
+              backgroundColor: processColor(colors.backgroundInfo),
+              textColor: processColor(colors.white),
             },
           },
         ]}

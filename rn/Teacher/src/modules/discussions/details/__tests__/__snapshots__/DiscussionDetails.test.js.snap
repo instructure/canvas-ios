@@ -144,7 +144,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
           <View
             style={
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
                 "flex": 1,
@@ -204,7 +204,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                 <Text
                   style={
                     Object {
-                      "color": "#73818C",
+                      "color": "#8B969E",
                       "fontSize": 12,
                     }
                   }
@@ -329,7 +329,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -431,7 +431,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -725,7 +725,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -754,7 +754,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -849,7 +849,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -873,7 +873,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
             <View
               style={
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "borderTopColor": "#C7CDD1",
                   "borderTopWidth": 0.5,
                   "flex": 1,
@@ -944,7 +944,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                         },
                       ]
@@ -1006,7 +1006,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -1116,7 +1116,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                   onPress={[Function]}
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "borderRadius": 12,
                       "height": 24,
                       "marginTop": 12.8,
@@ -1129,7 +1129,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "flex": 1,
                       "width": 1,
                     }
@@ -1176,7 +1176,7 @@ exports[`DiscussionDetails doesnt render the reply button when the permission is
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                           "marginBottom": 16,
                         },
@@ -1367,7 +1367,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
                 "flex": 1,
@@ -1427,7 +1427,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 <Text
                   style={
                     Object {
-                      "color": "#73818C",
+                      "color": "#8B969E",
                       "fontSize": 12,
                     }
                   }
@@ -1474,23 +1474,19 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 accessibilityTraits="button"
                 onPress={[Function]}
                 testID="discussion-reply"
-                underlayColor="white"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "backgroundColor": "#374A59",
-                      },
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 4,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "paddingHorizontal": 16,
-                        "paddingVertical": 10,
-                      },
-                    ]
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#008EE2",
+                      "borderRadius": 4,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 10,
+                    }
                   }
                 >
                   <Image
@@ -1504,24 +1500,19 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         "height": 18,
                         "marginRight": 6,
                         "resizeMode": "contain",
-                        "tintColor": "white",
+                        "tintColor": "#FFFFFF",
                         "width": 18,
                       }
                     }
                   />
                   <Text
                     style={
-                      Array [
-                        Object {
-                          "color": "white",
-                        },
-                        Object {
-                          "color": "white",
-                          "fontSize": 14,
-                          "fontWeight": "500",
-                          "marginLeft": 4,
-                        },
-                      ]
+                      Object {
+                        "color": "#FFFFFF",
+                        "fontSize": 14,
+                        "fontWeight": "500",
+                        "marginLeft": 4,
+                      }
                     }
                   >
                     Reply
@@ -1620,7 +1611,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -1705,7 +1696,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -1999,7 +1990,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -2028,7 +2019,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -2123,7 +2114,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -2147,7 +2138,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "borderTopColor": "#C7CDD1",
                   "borderTopWidth": 0.5,
                   "flex": 1,
@@ -2218,7 +2209,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                         },
                       ]
@@ -2287,23 +2278,19 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   accessibilityTraits="button"
                   onPress={[Function]}
                   testID="discussion-reply"
-                  underlayColor="white"
+                  underlayColor="#FFFFFF"
                 >
                   <View
                     style={
-                      Array [
-                        Object {
-                          "backgroundColor": "#374A59",
-                        },
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 4,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "paddingHorizontal": 16,
-                          "paddingVertical": 10,
-                        },
-                      ]
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#008EE2",
+                        "borderRadius": 4,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "paddingHorizontal": 16,
+                        "paddingVertical": 10,
+                      }
                     }
                   >
                     <Image
@@ -2317,7 +2304,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           "height": 18,
                           "marginRight": 6,
                           "resizeMode": "contain",
-                          "tintColor": "white",
+                          "tintColor": "#FFFFFF",
                           "width": 18,
                         }
                       }
@@ -2329,17 +2316,12 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Array [
-                            Object {
-                              "color": "white",
-                            },
-                            Object {
-                              "color": "white",
-                              "fontSize": 14,
-                              "fontWeight": "500",
-                              "marginLeft": 4,
-                            },
-                          ],
+                          Object {
+                            "color": "#FFFFFF",
+                            "fontSize": 14,
+                            "fontWeight": "500",
+                            "marginLeft": 4,
+                          },
                         ]
                       }
                     >
@@ -2354,7 +2336,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -2464,7 +2446,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   onPress={[Function]}
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "borderRadius": 12,
                       "height": 24,
                       "marginTop": 12.8,
@@ -2477,7 +2459,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "flex": 1,
                       "width": 1,
                     }
@@ -2524,7 +2506,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                           "marginBottom": 16,
                         },
@@ -2610,7 +2592,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                                 },
                                 Array [
                                   Object {
-                                    "color": "#374A59",
+                                    "color": "#008EE2",
                                     "fontSize": 16,
                                     "fontWeight": "500",
                                   },
@@ -2686,7 +2668,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                                 },
                                 Array [
                                   Object {
-                                    "color": "#374A59",
+                                    "color": "#008EE2",
                                     "fontSize": 16,
                                     "fontWeight": "500",
                                   },
@@ -2778,7 +2760,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
                 "flex": 1,
@@ -2838,7 +2820,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                 <Text
                   style={
                     Object {
-                      "color": "#73818C",
+                      "color": "#8B969E",
                       "fontSize": 12,
                     }
                   }
@@ -2963,7 +2945,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -3058,7 +3040,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "borderTopColor": "#C7CDD1",
                   "borderTopWidth": 0.5,
                   "flex": 1,
@@ -3129,7 +3111,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                         },
                       ]
@@ -3191,7 +3173,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -3301,7 +3283,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                   onPress={[Function]}
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "borderRadius": 12,
                       "height": 24,
                       "marginTop": 12.8,
@@ -3314,7 +3296,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "flex": 1,
                       "width": 1,
                     }
@@ -3361,7 +3343,7 @@ exports[`DiscussionDetails renders closed discussion as student 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                           "marginBottom": 16,
                         },
@@ -3465,7 +3447,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
                 "flex": 1,
@@ -3525,7 +3507,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 <Text
                   style={
                     Object {
-                      "color": "#73818C",
+                      "color": "#8B969E",
                       "fontSize": 12,
                     }
                   }
@@ -3572,23 +3554,19 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 accessibilityTraits="button"
                 onPress={[Function]}
                 testID="discussion-reply"
-                underlayColor="white"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "backgroundColor": "#374A59",
-                      },
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 4,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "paddingHorizontal": 16,
-                        "paddingVertical": 10,
-                      },
-                    ]
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#008EE2",
+                      "borderRadius": 4,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 10,
+                    }
                   }
                 >
                   <Image
@@ -3602,24 +3580,19 @@ exports[`DiscussionDetails renders in student app 1`] = `
                         "height": 18,
                         "marginRight": 6,
                         "resizeMode": "contain",
-                        "tintColor": "white",
+                        "tintColor": "#FFFFFF",
                         "width": 18,
                       }
                     }
                   />
                   <Text
                     style={
-                      Array [
-                        Object {
-                          "color": "white",
-                        },
-                        Object {
-                          "color": "white",
-                          "fontSize": 14,
-                          "fontWeight": "500",
-                          "marginLeft": 4,
-                        },
-                      ]
+                      Object {
+                        "color": "#FFFFFF",
+                        "fontSize": 14,
+                        "fontWeight": "500",
+                        "marginLeft": 4,
+                      }
                     }
                   >
                     Reply
@@ -3718,7 +3691,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -3813,7 +3786,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "borderTopColor": "#C7CDD1",
                   "borderTopWidth": 0.5,
                   "flex": 1,
@@ -3884,7 +3857,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                         },
                       ]
@@ -3953,23 +3926,19 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   accessibilityTraits="button"
                   onPress={[Function]}
                   testID="discussion-reply"
-                  underlayColor="white"
+                  underlayColor="#FFFFFF"
                 >
                   <View
                     style={
-                      Array [
-                        Object {
-                          "backgroundColor": "#374A59",
-                        },
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 4,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "paddingHorizontal": 16,
-                          "paddingVertical": 10,
-                        },
-                      ]
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#008EE2",
+                        "borderRadius": 4,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "paddingHorizontal": 16,
+                        "paddingVertical": 10,
+                      }
                     }
                   >
                     <Image
@@ -3983,7 +3952,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                           "height": 18,
                           "marginRight": 6,
                           "resizeMode": "contain",
-                          "tintColor": "white",
+                          "tintColor": "#FFFFFF",
                           "width": 18,
                         }
                       }
@@ -3995,17 +3964,12 @@ exports[`DiscussionDetails renders in student app 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Array [
-                            Object {
-                              "color": "white",
-                            },
-                            Object {
-                              "color": "white",
-                              "fontSize": 14,
-                              "fontWeight": "500",
-                              "marginLeft": 4,
-                            },
-                          ],
+                          Object {
+                            "color": "#FFFFFF",
+                            "fontSize": 14,
+                            "fontWeight": "500",
+                            "marginLeft": 4,
+                          },
                         ]
                       }
                     >
@@ -4020,7 +3984,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -4130,7 +4094,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                   onPress={[Function]}
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "borderRadius": 12,
                       "height": 24,
                       "marginTop": 12.8,
@@ -4143,7 +4107,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "flex": 1,
                       "width": 1,
                     }
@@ -4190,7 +4154,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                           "marginBottom": 16,
                         },
@@ -4276,7 +4240,7 @@ exports[`DiscussionDetails renders in student app 1`] = `
                                 },
                                 Array [
                                   Object {
-                                    "color": "#374A59",
+                                    "color": "#008EE2",
                                     "fontSize": 16,
                                     "fontWeight": "500",
                                   },
@@ -4451,7 +4415,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
                 "flex": 1,
@@ -4511,7 +4475,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 <Text
                   style={
                     Object {
-                      "color": "#73818C",
+                      "color": "#8B969E",
                       "fontSize": 12,
                     }
                   }
@@ -4558,23 +4522,19 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 accessibilityTraits="button"
                 onPress={[Function]}
                 testID="discussion-reply"
-                underlayColor="white"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "backgroundColor": "#374A59",
-                      },
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 4,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "paddingHorizontal": 16,
-                        "paddingVertical": 10,
-                      },
-                    ]
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#008EE2",
+                      "borderRadius": 4,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 10,
+                    }
                   }
                 >
                   <Image
@@ -4588,24 +4548,19 @@ exports[`DiscussionDetails renders no replies 1`] = `
                         "height": 18,
                         "marginRight": 6,
                         "resizeMode": "contain",
-                        "tintColor": "white",
+                        "tintColor": "#FFFFFF",
                         "width": 18,
                       }
                     }
                   />
                   <Text
                     style={
-                      Array [
-                        Object {
-                          "color": "white",
-                        },
-                        Object {
-                          "color": "white",
-                          "fontSize": 14,
-                          "fontWeight": "500",
-                          "marginLeft": 4,
-                        },
-                      ]
+                      Object {
+                        "color": "#FFFFFF",
+                        "fontSize": 14,
+                        "fontWeight": "500",
+                        "marginLeft": 4,
+                      }
                     }
                   >
                     Reply
@@ -4672,7 +4627,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -4774,7 +4729,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -5068,7 +5023,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -5097,7 +5052,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -5192,7 +5147,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -5216,7 +5171,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "borderTopColor": "#C7CDD1",
                   "borderTopWidth": 0.5,
                   "flex": 1,
@@ -5287,7 +5242,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                         },
                       ]
@@ -5356,23 +5311,19 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   accessibilityTraits="button"
                   onPress={[Function]}
                   testID="discussion-reply"
-                  underlayColor="white"
+                  underlayColor="#FFFFFF"
                 >
                   <View
                     style={
-                      Array [
-                        Object {
-                          "backgroundColor": "#374A59",
-                        },
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 4,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "paddingHorizontal": 16,
-                          "paddingVertical": 10,
-                        },
-                      ]
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#008EE2",
+                        "borderRadius": 4,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "paddingHorizontal": 16,
+                        "paddingVertical": 10,
+                      }
                     }
                   >
                     <Image
@@ -5386,7 +5337,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                           "height": 18,
                           "marginRight": 6,
                           "resizeMode": "contain",
-                          "tintColor": "white",
+                          "tintColor": "#FFFFFF",
                           "width": 18,
                         }
                       }
@@ -5398,17 +5349,12 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Array [
-                            Object {
-                              "color": "white",
-                            },
-                            Object {
-                              "color": "white",
-                              "fontSize": 14,
-                              "fontWeight": "500",
-                              "marginLeft": 4,
-                            },
-                          ],
+                          Object {
+                            "color": "#FFFFFF",
+                            "fontSize": 14,
+                            "fontWeight": "500",
+                            "marginLeft": 4,
+                          },
                         ]
                       }
                     >
@@ -5570,7 +5516,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
                 "flex": 1,
@@ -5630,7 +5576,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                 <Text
                   style={
                     Object {
-                      "color": "#73818C",
+                      "color": "#8B969E",
                       "fontSize": 12,
                     }
                   }
@@ -5677,23 +5623,19 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                 accessibilityTraits="button"
                 onPress={[Function]}
                 testID="discussion-reply"
-                underlayColor="white"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "backgroundColor": "#374A59",
-                      },
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 4,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "paddingHorizontal": 16,
-                        "paddingVertical": 10,
-                      },
-                    ]
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#008EE2",
+                      "borderRadius": 4,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 10,
+                    }
                   }
                 >
                   <Image
@@ -5707,24 +5649,19 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                         "height": 18,
                         "marginRight": 6,
                         "resizeMode": "contain",
-                        "tintColor": "white",
+                        "tintColor": "#FFFFFF",
                         "width": 18,
                       }
                     }
                   />
                   <Text
                     style={
-                      Array [
-                        Object {
-                          "color": "white",
-                        },
-                        Object {
-                          "color": "white",
-                          "fontSize": 14,
-                          "fontWeight": "500",
-                          "marginLeft": 4,
-                        },
-                      ]
+                      Object {
+                        "color": "#FFFFFF",
+                        "fontSize": 14,
+                        "fontWeight": "500",
+                        "marginLeft": 4,
+                      }
                     }
                   >
                     Reply
@@ -5823,7 +5760,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -5925,7 +5862,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -6219,7 +6156,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -6248,7 +6185,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -6343,7 +6280,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -6367,7 +6304,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "borderTopColor": "#C7CDD1",
                   "borderTopWidth": 0.5,
                   "flex": 1,
@@ -6438,7 +6375,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                         },
                       ]
@@ -6507,23 +6444,19 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                   accessibilityTraits="button"
                   onPress={[Function]}
                   testID="discussion-reply"
-                  underlayColor="white"
+                  underlayColor="#FFFFFF"
                 >
                   <View
                     style={
-                      Array [
-                        Object {
-                          "backgroundColor": "#374A59",
-                        },
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 4,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "paddingHorizontal": 16,
-                          "paddingVertical": 10,
-                        },
-                      ]
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#008EE2",
+                        "borderRadius": 4,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "paddingHorizontal": 16,
+                        "paddingVertical": 10,
+                      }
                     }
                   >
                     <Image
@@ -6537,7 +6470,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                           "height": 18,
                           "marginRight": 6,
                           "resizeMode": "contain",
-                          "tintColor": "white",
+                          "tintColor": "#FFFFFF",
                           "width": 18,
                         }
                       }
@@ -6549,17 +6482,12 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Array [
-                            Object {
-                              "color": "white",
-                            },
-                            Object {
-                              "color": "white",
-                              "fontSize": 14,
-                              "fontWeight": "500",
-                              "marginLeft": 4,
-                            },
-                          ],
+                          Object {
+                            "color": "#FFFFFF",
+                            "fontSize": 14,
+                            "fontWeight": "500",
+                            "marginLeft": 4,
+                          },
                         ]
                       }
                     >
@@ -6574,7 +6502,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -6684,7 +6612,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                   onPress={[Function]}
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "borderRadius": 12,
                       "height": 24,
                       "marginTop": 12.8,
@@ -6697,7 +6625,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "flex": 1,
                       "width": 1,
                     }
@@ -6744,7 +6672,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                           "marginBottom": 16,
                         },
@@ -6830,7 +6758,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                                 },
                                 Array [
                                   Object {
-                                    "color": "#374A59",
+                                    "color": "#008EE2",
                                     "fontSize": 16,
                                     "fontWeight": "500",
                                   },
@@ -6906,7 +6834,7 @@ exports[`DiscussionDetails renders properly in rtl 1`] = `
                                 },
                                 Array [
                                   Object {
-                                    "color": "#374A59",
+                                    "color": "#008EE2",
                                     "fontSize": 16,
                                     "fontWeight": "500",
                                   },
@@ -7081,7 +7009,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
                 "flex": 1,
@@ -7141,7 +7069,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 <Text
                   style={
                     Object {
-                      "color": "#73818C",
+                      "color": "#8B969E",
                       "fontSize": 12,
                     }
                   }
@@ -7188,23 +7116,19 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 accessibilityTraits="button"
                 onPress={[Function]}
                 testID="discussion-reply"
-                underlayColor="white"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "backgroundColor": "#374A59",
-                      },
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 4,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "paddingHorizontal": 16,
-                        "paddingVertical": 10,
-                      },
-                    ]
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#008EE2",
+                      "borderRadius": 4,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 10,
+                    }
                   }
                 >
                   <Image
@@ -7218,24 +7142,19 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         "height": 18,
                         "marginRight": 6,
                         "resizeMode": "contain",
-                        "tintColor": "white",
+                        "tintColor": "#FFFFFF",
                         "width": 18,
                       }
                     }
                   />
                   <Text
                     style={
-                      Array [
-                        Object {
-                          "color": "white",
-                        },
-                        Object {
-                          "color": "white",
-                          "fontSize": 14,
-                          "fontWeight": "500",
-                          "marginLeft": 4,
-                        },
-                      ]
+                      Object {
+                        "color": "#FFFFFF",
+                        "fontSize": 14,
+                        "fontWeight": "500",
+                        "marginLeft": 4,
+                      }
                     }
                   >
                     Reply
@@ -7261,7 +7180,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
               accessible={true}
               onPress={[Function]}
               testID="discussion.popToLastDiscussionList"
-              underlayColor="white"
+              underlayColor="#FFFFFF"
             >
               <View
                 style={
@@ -7406,7 +7325,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -7508,7 +7427,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -7802,7 +7721,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -7831,7 +7750,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -7926,7 +7845,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -7950,7 +7869,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "borderTopColor": "#C7CDD1",
                   "borderTopWidth": 0.5,
                   "flex": 1,
@@ -8021,7 +7940,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                         },
                       ]
@@ -8090,23 +8009,19 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   accessibilityTraits="button"
                   onPress={[Function]}
                   testID="discussion-reply"
-                  underlayColor="white"
+                  underlayColor="#FFFFFF"
                 >
                   <View
                     style={
-                      Array [
-                        Object {
-                          "backgroundColor": "#374A59",
-                        },
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 4,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "paddingHorizontal": 16,
-                          "paddingVertical": 10,
-                        },
-                      ]
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#008EE2",
+                        "borderRadius": 4,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "paddingHorizontal": 16,
+                        "paddingVertical": 10,
+                      }
                     }
                   >
                     <Image
@@ -8120,7 +8035,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           "height": 18,
                           "marginRight": 6,
                           "resizeMode": "contain",
-                          "tintColor": "white",
+                          "tintColor": "#FFFFFF",
                           "width": 18,
                         }
                       }
@@ -8132,17 +8047,12 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Array [
-                            Object {
-                              "color": "white",
-                            },
-                            Object {
-                              "color": "white",
-                              "fontSize": 14,
-                              "fontWeight": "500",
-                              "marginLeft": 4,
-                            },
-                          ],
+                          Object {
+                            "color": "#FFFFFF",
+                            "fontSize": 14,
+                            "fontWeight": "500",
+                            "marginLeft": 4,
+                          },
                         ]
                       }
                     >
@@ -8157,7 +8067,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -8214,7 +8124,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       accessible={true}
                       onPress={[Function]}
                       testID="discussion.popToLastDiscussionList"
-                      underlayColor="white"
+                      underlayColor="#FFFFFF"
                     >
                       <View
                         style={
@@ -8303,7 +8213,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   onPress={[Function]}
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "borderRadius": 12,
                       "height": 24,
                       "marginTop": 12.8,
@@ -8316,7 +8226,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "flex": 1,
                       "width": 1,
                     }
@@ -8363,7 +8273,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                           "marginBottom": 16,
                         },
@@ -8446,7 +8356,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 },
                                 Array [
                                   Object {
-                                    "color": "#374A59",
+                                    "color": "#008EE2",
                                     "fontSize": 16,
                                     "fontWeight": "500",
                                   },
@@ -8522,7 +8432,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 },
                                 Array [
                                   Object {
-                                    "color": "#374A59",
+                                    "color": "#008EE2",
                                     "fontSize": 16,
                                     "fontWeight": "500",
                                   },
@@ -8582,7 +8492,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "flex": 1,
                       "width": 1,
                     }
@@ -8608,7 +8518,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   onPress={[Function]}
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "borderRadius": 12,
                       "height": 24,
                       "marginTop": 12.8,
@@ -8621,7 +8531,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "flex": 1,
                       "width": 1,
                     }
@@ -8668,7 +8578,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                           "marginBottom": 16,
                         },
@@ -8754,7 +8664,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 },
                                 Array [
                                   Object {
-                                    "color": "#374A59",
+                                    "color": "#008EE2",
                                     "fontSize": 16,
                                     "fontWeight": "500",
                                   },
@@ -8830,7 +8740,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 },
                                 Array [
                                   Object {
-                                    "color": "#374A59",
+                                    "color": "#008EE2",
                                     "fontSize": 16,
                                     "fontWeight": "500",
                                   },
@@ -9086,7 +8996,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
                 "flex": 1,
@@ -9146,7 +9056,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 <Text
                   style={
                     Object {
-                      "color": "#73818C",
+                      "color": "#8B969E",
                       "fontSize": 12,
                     }
                   }
@@ -9193,23 +9103,19 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 accessibilityTraits="button"
                 onPress={[Function]}
                 testID="discussion-reply"
-                underlayColor="white"
+                underlayColor="#FFFFFF"
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "backgroundColor": "#374A59",
-                      },
-                      Object {
-                        "alignItems": "center",
-                        "borderRadius": 4,
-                        "flexDirection": "row",
-                        "justifyContent": "center",
-                        "paddingHorizontal": 16,
-                        "paddingVertical": 10,
-                      },
-                    ]
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#008EE2",
+                      "borderRadius": 4,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "paddingHorizontal": 16,
+                      "paddingVertical": 10,
+                    }
                   }
                 >
                   <Image
@@ -9223,24 +9129,19 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         "height": 18,
                         "marginRight": 6,
                         "resizeMode": "contain",
-                        "tintColor": "white",
+                        "tintColor": "#FFFFFF",
                         "width": 18,
                       }
                     }
                   />
                   <Text
                     style={
-                      Array [
-                        Object {
-                          "color": "white",
-                        },
-                        Object {
-                          "color": "white",
-                          "fontSize": 14,
-                          "fontWeight": "500",
-                          "marginLeft": 4,
-                        },
-                      ]
+                      Object {
+                        "color": "#FFFFFF",
+                        "fontSize": 14,
+                        "fontWeight": "500",
+                        "marginLeft": 4,
+                      }
                     }
                   >
                     Reply
@@ -9339,7 +9240,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -9441,7 +9342,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -9735,7 +9636,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -9764,7 +9665,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -9859,7 +9760,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           Object {
                             "alignSelf": "center",
                             "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
+                            "borderColor": "#C7CDD1",
                             "borderRightWidth": 2,
                             "borderTopWidth": 2,
                             "height": 10,
@@ -9883,7 +9784,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
             <View
               style={
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "borderTopColor": "#C7CDD1",
                   "borderTopWidth": 0.5,
                   "flex": 1,
@@ -9954,7 +9855,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                         },
                       ]
@@ -10023,23 +9924,19 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   accessibilityTraits="button"
                   onPress={[Function]}
                   testID="discussion-reply"
-                  underlayColor="white"
+                  underlayColor="#FFFFFF"
                 >
                   <View
                     style={
-                      Array [
-                        Object {
-                          "backgroundColor": "#374A59",
-                        },
-                        Object {
-                          "alignItems": "center",
-                          "borderRadius": 4,
-                          "flexDirection": "row",
-                          "justifyContent": "center",
-                          "paddingHorizontal": 16,
-                          "paddingVertical": 10,
-                        },
-                      ]
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#008EE2",
+                        "borderRadius": 4,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "paddingHorizontal": 16,
+                        "paddingVertical": 10,
+                      }
                     }
                   >
                     <Image
@@ -10053,7 +9950,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           "height": 18,
                           "marginRight": 6,
                           "resizeMode": "contain",
-                          "tintColor": "white",
+                          "tintColor": "#FFFFFF",
                           "width": 18,
                         }
                       }
@@ -10065,17 +9962,12 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Array [
-                            Object {
-                              "color": "white",
-                            },
-                            Object {
-                              "color": "white",
-                              "fontSize": 14,
-                              "fontWeight": "500",
-                              "marginLeft": 4,
-                            },
-                          ],
+                          Object {
+                            "color": "#FFFFFF",
+                            "fontSize": 14,
+                            "fontWeight": "500",
+                            "marginLeft": 4,
+                          },
                         ]
                       }
                     >
@@ -10090,7 +9982,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
+                      "backgroundColor": "#FFFFFF",
                       "flex": 1,
                       "paddingBottom": 16,
                       "paddingLeft": 16,
@@ -10200,7 +10092,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   onPress={[Function]}
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "borderRadius": 12,
                       "height": 24,
                       "marginTop": 12.8,
@@ -10213,7 +10105,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 <View
                   style={
                     Object {
-                      "backgroundColor": "#f5f5f5",
+                      "backgroundColor": "#F5F5F5",
                       "flex": 1,
                       "width": 1,
                     }
@@ -10260,7 +10152,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#73818C",
+                          "color": "#8B969E",
                           "fontSize": 12,
                           "marginBottom": 16,
                         },
@@ -10346,7 +10238,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                                 },
                                 Array [
                                   Object {
-                                    "color": "#374A59",
+                                    "color": "#008EE2",
                                     "fontSize": 16,
                                     "fontWeight": "500",
                                   },
@@ -10422,7 +10314,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                                 },
                                 Array [
                                   Object {
-                                    "color": "#374A59",
+                                    "color": "#008EE2",
                                     "fontSize": 16,
                                     "fontWeight": "500",
                                   },

@@ -21,15 +21,13 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   TouchableOpacity,
   ScrollView,
 } from 'react-native'
 
 import { Text } from '../../../common/text'
-import color from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import i18n from 'format-message'
-import branding from '../../../common/branding'
 
 export type InboxFilterHeaderProps = {
   selected: InboxScope,
@@ -56,13 +54,13 @@ export default class InboxFilterHeader extends Component<InboxFilterHeaderProps,
 
   _renderButton = (item: any) => {
     const selected = this.props.selected === item.scope
-    const textStyle = selected ? [styles.selectedButtonText, { color: branding.primaryBrandColor }] : styles.buttonText
+    const textStyle = selected ? [styles.selectedButtonText, { color: colors.primary }] : styles.buttonText
     return (
       <TouchableOpacity testID={`inbox.filter-btn-${item.scope}`} style={styles.button} key={item.scope} onPress={() => this._onPress(item.scope)} accessibilityTraits={selected ? ['button', 'selected'] : 'button'}>
         <Text style={textStyle}>{item.name}</Text>
         { selected &&
           <View
-            style={[styles.selectedLine, { backgroundColor: branding.primaryBrandColor }]}
+            style={[styles.selectedLine, { backgroundColor: colors.primary }]}
           />
         }
       </TouchableOpacity>
@@ -80,11 +78,11 @@ export default class InboxFilterHeader extends Component<InboxFilterHeaderProps,
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     height: 44,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: color.seperatorColor,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
   },
   scrollView: {
     flex: 0,
@@ -99,7 +97,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 14,
     fontWeight: '600',
-    color: color.grey4,
+    color: colors.textDark,
   },
   selectedButtonText: {
     fontSize: 14,
@@ -111,6 +109,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 8,
     right: 8,
-    backgroundColor: branding.primaryBrandColor,
+    backgroundColor: colors.primary,
   },
-})
+}))

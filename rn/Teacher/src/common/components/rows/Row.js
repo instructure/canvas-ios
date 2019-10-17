@@ -21,11 +21,10 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Image,
   TouchableHighlight,
 } from 'react-native'
-import color from '../../colors'
+import { colors, createStyleSheet } from '../../stylesheet'
 
 import DisclosureIndicator from '../DisclosureIndicator'
 import { Text } from '../../text'
@@ -91,10 +90,10 @@ export default class Row extends Component<RowProps> {
     }
 
     let underlayProps = {}
-    let backgroundColor = 'white'
+    let backgroundColor = colors.backgroundLightest
     if (this.props.selected) {
-      underlayProps.underlayColor = color.grey1
-      backgroundColor = color.grey1
+      underlayProps.underlayColor = colors.backgroundLight
+      backgroundColor = colors.backgroundLight
     }
 
     // This broke highlighting basically everywhere, so it needs to be disabled.
@@ -108,7 +107,7 @@ export default class Row extends Component<RowProps> {
     const RowView = this.props.onPress ? TouchableHighlight : View
 
     return (<RowView style={[topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayProps}>
-      <View style={[style.container, { backgroundColor }]}>
+      <View style={[style.container, { backgroundColor }, this.props.style]}>
         { this.props.renderImage && this.props.renderImage() }
         { this.props.image && <Image style={[style.image, { tintColor: this.props.imageTint, height: imageSize.height, width: imageSize.width }]} source={this.props.image} /> }
         <View style={[style.titlesContainer, { marginLeft: hasIcon ? 12 : 0 }]}>
@@ -137,17 +136,17 @@ export default class Row extends Component<RowProps> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
     flexDirection: 'row',
     minHeight: 54,
     alignItems: 'center',
-    paddingTop: Math.floor(global.style.defaultPadding / 1.25),
-    paddingBottom: Math.floor(global.style.defaultPadding / 1.25),
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
-    backgroundColor: 'white',
+    paddingTop: Math.floor(vars.padding / 1.25),
+    paddingBottom: Math.floor(vars.padding / 1.25),
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
+    backgroundColor: colors.backgroundLightest,
   },
   titlesContainer: {
     flex: 1,
@@ -164,22 +163,23 @@ const style = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   topHairline: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: color.seperatorColor,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
   },
   bottomHairline: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: color.seperatorColor,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
   },
   title: {
+    color: colors.textDarkest,
     fontWeight: '600',
   },
   subtitle: {
-    color: '#8B969E',
+    color: colors.textDark,
     fontSize: 14,
     marginTop: 2,
   },
   image: {
     resizeMode: 'contain',
   },
-})
+}))

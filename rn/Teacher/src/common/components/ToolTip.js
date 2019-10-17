@@ -21,12 +21,12 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   TouchableWithoutFeedback,
   Animated,
   Dimensions,
 } from 'react-native'
 import { Text } from '../text'
+import { colors, createStyleSheet, vars } from '../stylesheet'
 
 const INITIAL_SCALE = 0.6
 
@@ -87,14 +87,14 @@ export default class ToolTip extends Component<{}, State> {
       return null
     }
 
-    let pad = global.style.defaultPadding
+    let pad = vars.padding
     const { x, y } = this.state.sourcePoint
     const { screenWidth, toolTipLayoutWidth } = this.state
     let left = pad - x
     let width // undefined until 1st layout
     if (toolTipLayoutWidth) {
       const tipWidth = Math.min(toolTipLayoutWidth, 600) // readable width
-      const paddedWidth = screenWidth - 2 * global.style.defaultPadding
+      const paddedWidth = screenWidth - 2 * vars.padding
       width = Math.min(paddedWidth, tipWidth)
 
       if (tipWidth < paddedWidth) {
@@ -125,7 +125,7 @@ export default class ToolTip extends Component<{}, State> {
               <Text
                 numberOfLines={3}
                 ellipsizeMode='tail'
-                style={{ color: 'white' }}
+                style={{ color: colors.textLightest }}
               >
                 {this.state.tip}
               </Text>
@@ -137,8 +137,7 @@ export default class ToolTip extends Component<{}, State> {
   }
 }
 
-const toolTipColor = '#2D3B45'
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     position: 'absolute',
     top: 0,
@@ -155,7 +154,7 @@ const styles = StyleSheet.create({
     height: 0,
   },
   arrow: {
-    backgroundColor: toolTipColor,
+    backgroundColor: colors.backgroundDarkest,
     transform: [{ rotate: '45deg' }],
     position: 'absolute',
     bottom: 8,
@@ -167,9 +166,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 9,
     left: -30,
-    backgroundColor: toolTipColor,
+    backgroundColor: colors.backgroundDarkest,
     borderRadius: 5,
     padding: 4,
     paddingHorizontal: 8,
   },
-})
+}))

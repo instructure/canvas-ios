@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -54,7 +51,6 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIh-3R-hA7" customClass="RubricCircleView" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="53.5" width="573" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="tOc-eo-ocB"/>
                                 </constraints>
@@ -90,7 +86,6 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="SwY-o5-qfd" secondAttribute="bottom" constant="8" id="Mwq-Qv-o8m"/>
                                     <constraint firstItem="SwY-o5-qfd" firstAttribute="leading" secondItem="w6o-7H-Qcu" secondAttribute="leading" constant="8" id="O0h-oa-uMS"/>
@@ -115,12 +110,14 @@
                                     <constraint firstAttribute="height" constant="8" id="T43-z0-lGs"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kTA-sB-Edy" userLabel="Border">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kTA-sB-Edy" userLabel="Border" customClass="DividerView" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="239" width="573" height="1"/>
-                                <color key="backgroundColor" name="borderDark"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Gkp-nu-QZi"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderDark"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <constraints>
@@ -161,9 +158,4 @@
             <point key="canvasLocation" x="655.20000000000005" y="19.790104947526238"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <namedColor name="borderDark">
-            <color red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

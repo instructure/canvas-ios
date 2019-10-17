@@ -21,7 +21,7 @@ exports[`PickerPage renders the given options as rows 1`] = `
     renderItem={[Function]}
     style={
       Object {
-        "backgroundColor": "#f5f5f5",
+        "backgroundColor": "#F5F5F5",
       }
     }
   />
@@ -54,7 +54,7 @@ exports[`PickerPage renders the given options as rows: a 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -64,7 +64,10 @@ exports[`PickerPage renders the given options as rows: a 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
+        },
+        Object {
+          "backgroundColor": "#FFFFFF",
         },
       ]
     }
@@ -89,6 +92,7 @@ exports[`PickerPage renders the given options as rows: a 1`] = `
         style={
           Array [
             Object {
+              "color": "#2D3B45",
               "fontWeight": "600",
             },
             Object {
@@ -131,7 +135,7 @@ exports[`PickerPage renders the given options as rows: b 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -141,7 +145,10 @@ exports[`PickerPage renders the given options as rows: b 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
+        },
+        Object {
+          "backgroundColor": "#FFFFFF",
         },
       ]
     }
@@ -166,6 +173,7 @@ exports[`PickerPage renders the given options as rows: b 1`] = `
         style={
           Array [
             Object {
+              "color": "#2D3B45",
               "fontWeight": "600",
             },
             Object {
@@ -197,7 +205,7 @@ exports[`PickerPage renders the given options as rows: b 1`] = `
         <Image
           source={
             Object {
-              "testUri": "../../../src/images/check-white.png",
+              "uri": "checkSolid",
             }
           }
           style={
@@ -242,7 +250,7 @@ exports[`PickerPage renders the given options as rows: c 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "flexDirection": "row",
           "minHeight": 54,
@@ -252,7 +260,10 @@ exports[`PickerPage renders the given options as rows: c 1`] = `
           "paddingTop": 12,
         },
         Object {
-          "backgroundColor": "white",
+          "backgroundColor": "#FFFFFF",
+        },
+        Object {
+          "backgroundColor": "#FFFFFF",
         },
       ]
     }
@@ -277,6 +288,7 @@ exports[`PickerPage renders the given options as rows: c 1`] = `
         style={
           Array [
             Object {
+              "color": "#2D3B45",
               "fontWeight": "600",
             },
             Object {

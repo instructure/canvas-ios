@@ -66,9 +66,9 @@ final public class Course: NSManagedObject, Context, WriteableModel {
 
 extension Course {
     public var color: UIColor {
-        let request = NSFetchRequest<Color>(entityName: String(describing: Color.self))
+        let request = NSFetchRequest<ContextColor>(entityName: String(describing: ContextColor.self))
         request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "%K == %@", #keyPath(Color.canvasContextID), canvasContextID)
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(ContextColor.canvasContextID), canvasContextID)
         let color = try? managedObjectContext?.fetch(request).first
         return color?.color ?? .named(.ash)
     }

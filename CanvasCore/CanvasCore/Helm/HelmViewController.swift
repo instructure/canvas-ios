@@ -159,6 +159,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
     
     override public func loadView() {
         self.view = RCTRootView(bridge: HelmManager.shared.bridge, moduleName: moduleName, initialProperties: props)
+        view.backgroundColor = .named(.backgroundLightest)
     }
     
     // Do stuff that you'd usually do in viewDidLoad here, rather than there.
@@ -325,11 +326,13 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
                 navigationController?.syncTintColor(Brand.current.linkColor)
             }
         }
-        
+
         if let c = screenConfig["navBarTitleColor"], let titleColor = RCTConvert.uiColor(c) {
-            navigationController?.navigationBar.titleTextAttributes = convertToOptionalNSAttributedStringKeyDictionary([NSAttributedString.Key.foregroundColor.rawValue: titleColor])
+            navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: titleColor]
+        } else {
+            navigationController?.navigationBar.titleTextAttributes = nil
         }
-        
+
         func barButtonItems(fromConfig config: [[String: Any]]) -> [UIBarButtonItem] {
             var items: [UIBarButtonItem] = []
             for buttonConfig in config {
@@ -460,14 +463,11 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         }
         
         // Status bar props
-        if let statusBarStyle = screenConfig[PropKeys.statusBarStyle] as? String {
-            switch statusBarStyle {
-            case "light":
-                self.statusBarStyle = .lightContent
-                self.navigationController?.navigationBar.barStyle = .black
-            default:
-                self.statusBarStyle = .default
-                self.navigationController?.navigationBar.barStyle = .default
+        if let style = screenConfig[PropKeys.statusBarStyle] as? String {
+            if #available(iOS 13, *) {
+                statusBarStyle = style == "light" ? .lightContent : .darkContent
+            } else {
+                statusBarStyle = style == "light" ? .lightContent : .default
             }
         }
         // TODO: According to Wix's code, this can't be set on viewWillAppear, and they do it on initialization separately...

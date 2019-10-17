@@ -24,7 +24,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Animated,
   RefreshControl,
   DeviceInfo,
@@ -34,6 +33,7 @@ import TabRow from './TabRow'
 import HomeTabRow from './HomeTabRow'
 import OnLayout from 'react-native-on-layout'
 import { isStudent } from '../app'
+import { createStyleSheet } from '../../common/stylesheet'
 
 type TabsListProps = {
   tabs: Array<Tab>,
@@ -219,7 +219,7 @@ export default class TabsList extends Component<TabsListProps, any> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet(colors => ({
   container: {
     flex: 1,
   },
@@ -236,14 +236,14 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     backgroundColor: 'transparent',
-    color: 'white',
+    color: colors.white,
     fontWeight: '600',
     fontSize: 24,
     textAlign: 'center',
     marginBottom: 3,
   },
   headerSubtitle: {
-    color: 'white',
+    color: colors.white,
     opacity: 0.9,
     backgroundColor: 'transparent',
     fontWeight: '600',
@@ -274,10 +274,6 @@ const styles = StyleSheet.create({
   settingsButton: {
     width: 24,
   },
-  navButtonImage: {
-    resizeMode: 'contain',
-    tintColor: 'white',
-  },
   tabContainer: {
     flex: 1,
     justifyContent: 'flex-start',
@@ -287,4 +283,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-})
+}))

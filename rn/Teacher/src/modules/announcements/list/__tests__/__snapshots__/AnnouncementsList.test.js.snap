@@ -255,7 +255,7 @@ exports[`AnnouncementsList renders 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "minHeight": 54,
@@ -265,8 +265,9 @@ exports[`AnnouncementsList renders 1`] = `
                   "paddingTop": 12,
                 },
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -295,6 +296,7 @@ exports[`AnnouncementsList renders 1`] = `
                     },
                     Array [
                       Object {
+                        "color": "#2D3B45",
                         "fontWeight": "600",
                       },
                     ],
@@ -354,7 +356,7 @@ exports[`AnnouncementsList renders 1`] = `
                       Object {
                         "alignSelf": "center",
                         "backgroundColor": "transparent",
-                        "borderColor": "#c7c7cc",
+                        "borderColor": "#C7CDD1",
                         "borderRightWidth": 2,
                         "borderTopWidth": 2,
                         "height": 10,
@@ -400,7 +402,7 @@ exports[`AnnouncementsList renders 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "minHeight": 54,
@@ -410,8 +412,9 @@ exports[`AnnouncementsList renders 1`] = `
                   "paddingTop": 12,
                 },
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -440,6 +443,7 @@ exports[`AnnouncementsList renders 1`] = `
                     },
                     Array [
                       Object {
+                        "color": "#2D3B45",
                         "fontWeight": "600",
                       },
                     ],
@@ -499,7 +503,7 @@ exports[`AnnouncementsList renders 1`] = `
                       Object {
                         "alignSelf": "center",
                         "backgroundColor": "transparent",
-                        "borderColor": "#c7c7cc",
+                        "borderColor": "#C7CDD1",
                         "borderRightWidth": 2,
                         "borderTopWidth": 2,
                         "height": 10,
@@ -660,7 +664,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "minHeight": 54,
@@ -670,8 +674,9 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                   "paddingTop": 12,
                 },
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -700,6 +705,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                     },
                     Array [
                       Object {
+                        "color": "#2D3B45",
                         "fontWeight": "600",
                       },
                     ],
@@ -759,7 +765,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                       Object {
                         "alignSelf": "center",
                         "backgroundColor": "transparent",
-                        "borderColor": "#c7c7cc",
+                        "borderColor": "#C7CDD1",
                         "borderRightWidth": 2,
                         "borderTopWidth": 2,
                         "height": 10,
@@ -805,7 +811,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "minHeight": 54,
@@ -815,8 +821,9 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                   "paddingTop": 12,
                 },
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -845,6 +852,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                     },
                     Array [
                       Object {
+                        "color": "#2D3B45",
                         "fontWeight": "600",
                       },
                     ],
@@ -904,7 +912,7 @@ exports[`AnnouncementsList renders while refreshing 1`] = `
                       Object {
                         "alignSelf": "center",
                         "backgroundColor": "transparent",
-                        "borderColor": "#c7c7cc",
+                        "borderColor": "#C7CDD1",
                         "borderRightWidth": 2,
                         "borderTopWidth": 2,
                         "height": 10,
@@ -972,7 +980,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "minHeight": 54,
@@ -982,8 +990,9 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                   "paddingTop": 12,
                 },
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -1012,6 +1021,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                     },
                     Array [
                       Object {
+                        "color": "#2D3B45",
                         "fontWeight": "600",
                       },
                     ],
@@ -1071,7 +1081,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                       Object {
                         "alignSelf": "center",
                         "backgroundColor": "transparent",
-                        "borderColor": "#c7c7cc",
+                        "borderColor": "#C7CDD1",
                         "borderRightWidth": 2,
                         "borderTopWidth": 2,
                         "height": 10,
@@ -1117,7 +1127,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "minHeight": 54,
@@ -1127,8 +1137,9 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                   "paddingTop": 12,
                 },
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -1157,6 +1168,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                     },
                     Array [
                       Object {
+                        "color": "#2D3B45",
                         "fontWeight": "600",
                       },
                     ],
@@ -1216,7 +1228,7 @@ exports[`AnnouncementsList renders with no create_announcement permission 1`] = 
                       Object {
                         "alignSelf": "center",
                         "backgroundColor": "transparent",
-                        "borderColor": "#c7c7cc",
+                        "borderColor": "#C7CDD1",
                         "borderRightWidth": 2,
                         "borderTopWidth": 2,
                         "height": 10,

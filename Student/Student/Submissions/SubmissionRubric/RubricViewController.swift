@@ -50,6 +50,7 @@ class RubricViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .named(.backgroundLightest)
 
         emptyViewLabel.text = NSLocalizedString("There is no rubric for this assignment", comment: "")
 

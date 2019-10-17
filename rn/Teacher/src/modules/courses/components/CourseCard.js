@@ -28,6 +28,7 @@ import {
 import i18n from 'format-message'
 import { Text } from '../../../common/text'
 import icon from '../../../images/inst-icons'
+import { createStyleSheet } from '../../../common/stylesheet'
 import A11yGroup from '../../../common/components/A11yGroup'
 import { type CourseGradeInfo } from '../../../utils/course-grades'
 
@@ -175,13 +176,13 @@ export default class CourseCard extends Component<Props, State> {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   card: {
     height: 160,
   },
   cardContainer: {
-    borderColor: '#e3e3e3',
-    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.borderLight,
+    borderWidth: vars.hairlineWidth,
     borderRadius: 4,
     shadowColor: '#000',
     shadowRadius: 1,
@@ -191,7 +192,7 @@ const styles = StyleSheet.create({
       height: 1,
     },
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
   },
   imageWrapper: {
     borderTopLeftRadius: 4,
@@ -228,7 +229,7 @@ const styles = StyleSheet.create({
   kabob: {
     width: 18,
     height: 18,
-    tintColor: 'white',
+    tintColor: colors.backgroundLightest,
   },
   titleWrapper: {
     flex: 1,
@@ -241,14 +242,14 @@ const styles = StyleSheet.create({
   },
   code: {
     fontSize: 12,
-    color: '#8B969D',
+    color: colors.textDark,
     marginTop: 2,
     fontWeight: '600',
   },
   gradePill: {
     flex: 1,
     maxWidth: 120,
-    backgroundColor: 'white',
+    backgroundColor: colors.backgroundLightest,
     position: 'absolute',
     top: 8,
     left: 8,
@@ -265,4 +266,4 @@ const styles = StyleSheet.create({
     marginVertical: 3,
     width: 14,
   },
-})
+}))

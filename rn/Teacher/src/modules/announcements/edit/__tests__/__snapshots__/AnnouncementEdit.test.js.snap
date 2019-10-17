@@ -113,7 +113,7 @@ exports[`AnnouncementEdit renders 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#fff",
+                      "color": "#FFFFFF",
                       "fontSize": 24,
                       "fontWeight": "600",
                     },
@@ -167,7 +167,7 @@ exports[`AnnouncementEdit renders 1`] = `
         style={
           Array [
             Object {
-              "color": "#73818C",
+              "color": "#8B969E",
               "fontSize": 14,
               "fontWeight": "600",
               "marginBottom": 8,
@@ -202,7 +202,7 @@ exports[`AnnouncementEdit renders 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
                 "flex": 1,
                 "flexDirection": "row",
                 "minHeight": 54,
@@ -212,8 +212,9 @@ exports[`AnnouncementEdit renders 1`] = `
                 "paddingTop": 12,
               },
               Object {
-                "backgroundColor": "white",
+                "backgroundColor": "#FFFFFF",
               },
+              undefined,
             ]
           }
         >
@@ -241,6 +242,7 @@ exports[`AnnouncementEdit renders 1`] = `
               style={
                 Array [
                   Object {
+                    "color": "#2D3B45",
                     "flex": 1,
                   },
                   undefined,
@@ -257,7 +259,7 @@ exports[`AnnouncementEdit renders 1`] = `
         style={
           Array [
             Object {
-              "color": "#73818C",
+              "color": "#8B969E",
               "fontSize": 14,
               "fontWeight": "600",
               "marginBottom": 8,
@@ -273,7 +275,7 @@ exports[`AnnouncementEdit renders 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderBottomColor": "#C7CDD1",
             "borderBottomWidth": 0.5,
             "borderTopColor": "#C7CDD1",
@@ -317,7 +319,7 @@ exports[`AnnouncementEdit renders 1`] = `
           style={
             Array [
               Object {
-                "color": "#73818C",
+                "color": "#8B969E",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -356,7 +358,7 @@ exports[`AnnouncementEdit renders 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "minHeight": 54,
@@ -366,8 +368,9 @@ exports[`AnnouncementEdit renders 1`] = `
                   "paddingTop": 12,
                 },
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -396,6 +399,7 @@ exports[`AnnouncementEdit renders 1`] = `
                     },
                     Array [
                       Object {
+                        "color": "#2D3B45",
                         "fontWeight": "600",
                       },
                     ],
@@ -450,7 +454,7 @@ exports[`AnnouncementEdit renders 1`] = `
                         Object {
                           "alignSelf": "center",
                           "backgroundColor": "transparent",
-                          "borderColor": "#c7c7cc",
+                          "borderColor": "#C7CDD1",
                           "borderRightWidth": 2,
                           "borderTopWidth": 2,
                           "height": 10,
@@ -495,7 +499,7 @@ exports[`AnnouncementEdit renders 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "minHeight": 54,
@@ -505,8 +509,9 @@ exports[`AnnouncementEdit renders 1`] = `
                   "paddingTop": 12,
                 },
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -535,6 +540,7 @@ exports[`AnnouncementEdit renders 1`] = `
                     },
                     Array [
                       Object {
+                        "color": "#2D3B45",
                         "fontWeight": "600",
                       },
                     ],
@@ -568,7 +574,7 @@ exports[`AnnouncementEdit renders 1`] = `
                   testID="announcements.edit.delay-posting-toggle"
                   tintColor={null}
                   title="Delay Posting"
-                  trackColor="#374A59"
+                  trackColor="#008EE2"
                   value={false}
                 />
               </View>
@@ -598,7 +604,7 @@ exports[`AnnouncementEdit renders 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                   "flex": 1,
                   "flexDirection": "row",
                   "minHeight": 54,
@@ -608,8 +614,9 @@ exports[`AnnouncementEdit renders 1`] = `
                   "paddingTop": 12,
                 },
                 Object {
-                  "backgroundColor": "white",
+                  "backgroundColor": "#FFFFFF",
                 },
+                undefined,
               ]
             }
           >
@@ -638,6 +645,7 @@ exports[`AnnouncementEdit renders 1`] = `
                     },
                     Array [
                       Object {
+                        "color": "#2D3B45",
                         "fontWeight": "600",
                       },
                     ],
@@ -669,7 +677,7 @@ exports[`AnnouncementEdit renders 1`] = `
                   onValueChange={[Function]}
                   tintColor={null}
                   title="Students must post before seeing replies"
-                  trackColor="#374A59"
+                  trackColor="#008EE2"
                   value={false}
                 />
               </View>
@@ -757,7 +765,7 @@ exports[`AnnouncementEdit updates with new props 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "white",
+            "backgroundColor": "#FFFFFF",
             "borderBottomColor": "#C7CDD1",
             "borderBottomWidth": 0.5,
             "borderTopColor": "#C7CDD1",

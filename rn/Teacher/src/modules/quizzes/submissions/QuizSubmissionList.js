@@ -28,7 +28,6 @@ import {
   View,
   Animated,
   Text,
-  StyleSheet,
   FlatList,
 } from 'react-native'
 
@@ -43,7 +42,7 @@ import ActivityIndicatorView from '../../../common/components/ActivityIndicatorV
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import defaultFilterOptions, { type SubmissionFilterOption, oldCreateFilter as createFilter, joinTitles } from '../../filter/filter-options'
-import colors from '../../../common/colors'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 export type QuizSubmissionListNavProps = {
   courseID: string,
@@ -245,13 +244,13 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
   },
   header: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgrey',
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'space-between',
@@ -262,13 +261,13 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#2d3b44',
+    color: colors.textDarkest,
   },
   filterButton: {
     marginBottom: 1,
   },
   practiceQuiz: {
-    backgroundColor: colors.darkText,
+    backgroundColor: colors.textDarkest,
     position: 'absolute',
     bottom: 0,
     left: 0,
@@ -277,11 +276,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   practiceQuizText: {
-    color: '#fff',
+    color: colors.textLightest,
     fontSize: 14,
     fontWeight: '400',
   },
-})
+}))
 
 export function refreshQuizSubmissionData (props: any): void {
   const { courseID, quizID } = props

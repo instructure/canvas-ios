@@ -22,7 +22,7 @@ exports[`renders correctly 1`] = `
     <View
       style={
         Object {
-          "borderBottomColor": "lightgrey",
+          "borderBottomColor": "#C7CDD1",
           "borderBottomWidth": 0.5,
           "paddingBottom": 8,
           "paddingHorizontal": 16,

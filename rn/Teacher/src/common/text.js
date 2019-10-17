@@ -23,9 +23,8 @@
 import * as React from 'react'
 import ReactNative, {
   View,
-  StyleSheet,
 } from 'react-native'
-import colors from './colors'
+import { colors, createStyleSheet } from './stylesheet'
 
 export function Text ({ style, ...props }: Object) {
   return <ReactNative.Text style={ [styles.text, style] } {...props} />
@@ -90,7 +89,7 @@ export function Separated (props: Object) {
           {
             fontSize: props.separatorFontSize || 10,
             alignSelf: 'center',
-            color: colors.grey4,
+            color: colors.textDark,
           },
         ]}
         accessibilityLabel=''
@@ -112,80 +111,80 @@ export function DotSeparated (props: Object) {
   return <Separated {...props} separator={'  •  '} />
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   h1: {
     fontSize: 24,
-    color: colors.darkText,
+    color: colors.textDarkest,
     fontWeight: '800',
   },
   h2: {
     fontSize: 16,
-    color: colors.darkText,
+    color: colors.textDarkest,
     fontWeight: 'bold',
   },
   title: {
     fontSize: 16,
     fontWeight: '600',
-    color: colors.darkText,
+    color: colors.textDarkest,
   },
   subtitle: {
     fontSize: 14,
-    color: colors.lightText,
+    color: colors.textDark,
   },
   p: {
     fontSize: 16,
     lineHeight: 23,
-    color: colors.lightText,
+    color: colors.textDark,
   },
   heavy: {
     fontSize: 24,
-    color: colors.darkText,
+    color: colors.textDarkest,
     fontWeight: '800',
   },
   text: {
     fontSize: 16,
-    color: colors.darkText,
+    color: colors.textDarkest,
   },
   formLabel: {
-    color: colors.grey5,
+    color: colors.textDark,
     fontSize: 14,
     fontWeight: '600',
-    marginLeft: global.style.defaultPadding,
-    marginTop: global.style.defaultPadding,
-    marginBottom: global.style.defaultPadding / 2,
+    marginLeft: vars.padding,
+    marginTop: vars.padding,
+    marginBottom: vars.padding / 2,
   },
   textInput: {
     fontSize: 17,
   },
   modalOverlayText: {
     fontSize: 24,
-    color: '#fff',
+    color: colors.textLightest,
     fontWeight: '600',
   },
   unmetRequirementBannerText: {
     fontSize: 12,
-    color: '#fff',
+    color: colors.white,
     fontWeight: '500',
   },
   unmetRequirementSubscriptText: {
     fontSize: 14,
-    color: '#EE0612',
+    color: colors.textDanger,
     fontWeight: 'normal',
   },
   sectionHeader: {
     flex: 1,
     height: 24,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#C7CDD1',
-    backgroundColor: '#F5F5F5',
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    backgroundColor: colors.backgroundLight,
     justifyContent: 'center',
     paddingLeft: 16,
     paddingRight: 8,
   },
   sectionHeaderTitle: {
     fontSize: 14,
-    backgroundColor: '#F5F5F5',
-    color: '#73818C',
+    backgroundColor: colors.backgroundLight,
+    color: colors.textDark,
     fontWeight: '600',
   },
-})
+}))

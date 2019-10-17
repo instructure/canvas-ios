@@ -22,7 +22,6 @@
  * @flow
  */
 
-import './src/common/global-style'
 import {
   NativeModules,
   NativeEventEmitter,
@@ -34,7 +33,7 @@ import store from './src/redux/store'
 import setupI18n from './i18n/setup'
 import { setSession, compareSessions, getSessionUnsafe, httpCache, getUser } from './src/canvas-api'
 import { registerScreens } from './src/routing/register-screens'
-import { setupBrandingFromNativeBrandingInfo, type Brand } from './src/common/branding'
+import { setupBranding } from './src/common/stylesheet'
 import logoutAction from './src/redux/logout-action'
 import loginVerify from './src/common/login-verify'
 import { hydrateStoreFromPersistedState } from './src/redux/middleware/persist'
@@ -99,7 +98,7 @@ const loginHandler = async ({
   }
 
   if (branding) {
-    setupBrandingFromNativeBrandingInfo(branding)
+    setupBranding(branding)
   }
 
   const session = { authToken, baseURL, user, actAsUserID, refreshToken, clientID, clientSecret }

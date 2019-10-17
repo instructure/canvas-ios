@@ -31,7 +31,7 @@ exports[`LinkModal renders 1`] = `
         style={
           Object {
             "alignItems": "stretch",
-            "backgroundColor": "#e9e9e9",
+            "backgroundColor": "#F5F5F5",
             "borderRadius": 8,
             "flexDirection": "column",
             "overflow": "hidden",
@@ -53,8 +53,8 @@ exports[`LinkModal renders 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderColor": "#ddd",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#C7CDD1",
               "borderWidth": 1,
               "marginBottom": 4,
               "marginLeft": 10,
@@ -72,6 +72,7 @@ exports[`LinkModal renders 1`] = `
             rejectResponderTermination={true}
             style={
               Object {
+                "color": "#2D3B45",
                 "height": 20,
               }
             }
@@ -82,8 +83,8 @@ exports[`LinkModal renders 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderColor": "#ddd",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#C7CDD1",
               "borderWidth": 1,
               "marginBottom": 4,
               "marginLeft": 10,
@@ -102,6 +103,7 @@ exports[`LinkModal renders 1`] = `
             rejectResponderTermination={true}
             style={
               Object {
+                "color": "#2D3B45",
                 "height": 20,
               }
             }
@@ -113,7 +115,7 @@ exports[`LinkModal renders 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#ddd",
+                "backgroundColor": "#C7CDD1",
               },
               Object {
                 "height": 1,
@@ -146,7 +148,7 @@ exports[`LinkModal renders 1`] = `
             style={
               Array [
                 Object {
-                  "backgroundColor": "#ddd",
+                  "backgroundColor": "#C7CDD1",
                 },
                 Object {
                   "width": 1,

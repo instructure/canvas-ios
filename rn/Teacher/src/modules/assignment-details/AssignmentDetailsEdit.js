@@ -32,7 +32,7 @@ import UnmetRequirementBanner from '../../common/components/UnmetRequirementBann
 import RequiredFieldSubscript from '../../common/components/RequiredFieldSubscript'
 import { alertError } from '../../redux/middleware/error-handler'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import color from './../../common/colors'
+import { colors, createStyleSheet } from './../../common/stylesheet'
 import images from '../../images/'
 import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
@@ -41,7 +41,6 @@ import RowWithTextInput from '../../common/components/rows/RowWithTextInput'
 import Screen from '../../routing/Screen'
 import ReactNative, {
   View,
-  StyleSheet,
   PickerIOS,
   TouchableHighlight,
   LayoutAnimation,
@@ -153,8 +152,8 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
     return (
       <Screen
         title={i18n('Edit Assignment')}
-        navBarTitleColor={color.darkText}
-        navBarButtonColor={color.link}
+        navBarTitleColor={colors.textDarkest}
+        navBarButtonColor={colors.linkColor}
         rightBarButtons={[
           {
             title: i18n('Done'),
@@ -197,8 +196,8 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
             >
               <View style={[style.row, style.topRow, style.twoColumnRow]}>
                 <View style={style.buttonInnerContainer}>
-                  <Image source={images.edit} style={[style.buttonImage, { tintColor: color.primaryButtonColor }]} />
-                  <Text style={[style.buttonText, { color: color.primaryButtonColor }]}>{i18n('Edit Description')}</Text>
+                  <Image source={images.edit} style={[style.buttonImage, { tintColor: colors.buttonPrimaryBackground }]} />
+                  <Text style={[style.buttonText, { color: colors.buttonPrimaryBackground }]}>{i18n('Edit Description')}</Text>
                 </View>
                 <DisclosureIndicator />
               </View>
@@ -216,6 +215,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
               defaultValue={this.defaultValueForInput('points_possible')}
               onFocus={this._scrollToInput}
               identifier='assignmentDetails.edit.points_possible.input'
+              style={style.detailRow}
             />
             <RequiredFieldSubscript title={this.state.validation.points} visible={this.state.validation.points} />
 
@@ -227,6 +227,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
               onPress={this.toggleDisplayGradeAsPicker}
               border='bottom'
               testID="assignment-details.toggle-display-grade-as-picker"
+              style={style.detailRow}
             />
             {this.renderDataMapPicker()}
 
@@ -238,6 +239,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
                 value={this.defaultValueForBooleanInput('published')}
                 identifier='published'
                 onValueChange={this._updateToggleValue}
+                style={style.detailRow}
               />
             }
 
@@ -399,16 +401,19 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: colors.backgroundGrouped,
   },
   row: {
-    paddingVertical: Math.floor(global.style.defaultPadding / 2),
-    paddingLeft: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
-    backgroundColor: 'white',
+    paddingVertical: Math.floor(vars.padding / 2),
+    paddingLeft: vars.padding,
+    paddingRight: vars.padding,
+    backgroundColor: colors.backgroundGroupedCell,
+  },
+  detailRow: {
+    backgroundColor: colors.backgroundGroupedCell,
   },
   twoColumnRow: {
     flex: 1,
@@ -417,16 +422,16 @@ const style = StyleSheet.create({
     alignItems: 'center',
     height: 'auto',
     minHeight: 54,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: color.grey2,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
   },
   topRow: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: color.seperatorColor,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
   },
   bottomRow: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: color.seperatorColor,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
   },
   twoColumnRowLeftText: {
     flex: 1,
@@ -434,6 +439,7 @@ const style = StyleSheet.create({
   },
   title: {
     height: 45,
+    color: colors.textDarkest,
   },
   points: {
     width: 50,
@@ -450,23 +456,22 @@ const style = StyleSheet.create({
     right: 0,
   },
   buttonInnerContainer: {
-    backgroundColor: 'white',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingRight: global.style.defaultPadding,
+    paddingRight: vars.padding,
   },
   buttonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#008EE2',
+    color: colors.linkColor,
   },
   buttonImage: {
-    tintColor: color.primaryButton,
+    tintColor: colors.linkColor,
     marginRight: 8,
     height: 18,
     width: 18,
   },
-})
+}))
 
 let Connected = connect(updateMapStateToProps, AssignmentActions)(AssignmentDetailsEdit)
 export default (Connected: Component<AssignmentDetailsProps, any>)

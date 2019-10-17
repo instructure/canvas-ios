@@ -149,6 +149,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         let cell: ProfileTableViewCell = tableView.dequeue(for: indexPath)
         if let item = presenter?.cells[indexPath.row] {
             cell.accessibilityIdentifier = "Profile.\(item.id)Button"
+            cell.backgroundColor = .named(.backgroundLightest)
             cell.nameLabel?.text = item.name
             switch item.type {
             case .toggle(let isOn)?:

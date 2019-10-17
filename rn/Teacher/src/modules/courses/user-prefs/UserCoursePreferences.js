@@ -21,7 +21,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   Image,
   Dimensions,
   NativeModules,
@@ -38,7 +37,7 @@ import { RefreshableScrollView } from '../../../common/components/RefreshableLis
 import { Text, TextInput } from '../../../common/text'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
-import colors from '../../../common/colors'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 import { alertError } from '../../../redux/middleware/error-handler'
 import ModalOverlay from '../../../common/components/ModalOverlay'
 
@@ -224,8 +223,8 @@ export class UserCoursePreferences extends Component<Props, any> {
         title={i18n('Customize Course')}
         subtitle={this.state.name}
         drawUnderNavBar={false}
-        navBarButtonColor={colors.link}
-        navBarTitleColor={colors.darkText}
+        navBarButtonColor={colors.linkColor}
+        navBarTitleColor={colors.textDarkest}
         navBarSubtitleColor={this.props.color}
         rightBarButtons={[{
           title: i18n('Done'),
@@ -257,7 +256,7 @@ const actions = {
 let connected = connect(stateToProps, actions)(Refreshed)
 export default (connected: UserCoursePreferences)
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   imageWrapper: {
     flex: 1,
     minHeight: 235,
@@ -292,7 +291,7 @@ const styles = StyleSheet.create({
     marginBottom: 17,
     height: 19,
     width: 167,
-    color: '#2D3B45',
+    color: colors.textDarkest,
     fontSize: 16,
     lineHeight: 19,
     textAlign: 'right',
@@ -306,7 +305,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginHorizontal: 16,
     fontSize: 14,
-    color: '#8B969E',
+    color: colors.textDark,
   },
   colorButtonsWrapper: {
     flexDirection: 'row',
@@ -315,7 +314,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   separator: {
-    backgroundColor: '#C7CDD1',
-    height: StyleSheet.hairlineWidth,
+    backgroundColor: colors.borderMedium,
+    height: vars.hairlineWidth,
   },
-})
+}))

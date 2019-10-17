@@ -21,18 +21,16 @@
 import React, { Component } from 'react'
 import {
   View,
-  StyleSheet,
   TouchableHighlight,
   Image,
 } from 'react-native'
 
 import { Text } from '../../../common/text'
 import Avatar from '../../../common/components/Avatar'
-import color from '../../../common/colors'
 import { getSession } from '../../../canvas-api'
 import i18n from 'format-message'
-import Images from '../../../images'
-import branding from '../../../common/branding'
+import icon from '../../../images/inst-icons'
+import { colors, createStyleSheet } from '../../../common/stylesheet'
 
 export type ConversationRowProps = {
   conversation: Conversation,
@@ -106,8 +104,8 @@ export default class ConversationRow extends Component<ConversationRowProps, any
           <View style={styles.contentContainer}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               { c.starred &&
-                <Image source={Images.starFilled}
-                  style={{ tintColor: branding.primaryBrandColor, height: 14, width: 14, marginRight: 2 }}
+                <Image source={icon('star', 'solid')}
+                  style={{ tintColor: colors.primary, height: 14, width: 14, marginRight: 2 }}
                 />
               }
               <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -128,13 +126,13 @@ export default class ConversationRow extends Component<ConversationRowProps, any
   }
 }
 
-const styles = StyleSheet.create({
+const styles = createStyleSheet((colors, vars) => ({
   container: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    padding: global.style.defaultPadding,
-    backgroundColor: 'white',
+    padding: vars.padding,
+    backgroundColor: colors.backgroundLightest,
   },
   contentContainer: {
     flex: 1,
@@ -144,24 +142,24 @@ const styles = StyleSheet.create({
   avatar: {
     width: 40,
     height: 40,
-    marginRight: global.style.defaultPadding,
+    marginRight: vars.padding,
   },
   unreadDot: {
     height: 6,
     width: 6,
-    backgroundColor: '#008EE2',
+    backgroundColor: colors.electric,
     borderRadius: 3,
     position: 'absolute',
     top: 8,
     left: 8,
   },
   topHairline: {
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: color.seperatorColor,
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
   },
   bottomHairline: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: color.seperatorColor,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
   },
   names: {
     fontWeight: '600',
@@ -169,16 +167,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   subject: {
-    color: color.darkText,
+    color: colors.textDarkest,
     fontSize: 14,
   },
   message: {
-    color: color.grey4,
+    color: colors.textDark,
     fontSize: 14,
   },
   date: {
-    color: '#8B969E',
+    color: colors.textDark,
     fontSize: 12,
     flexShrink: 0,
   },
-})
+}))

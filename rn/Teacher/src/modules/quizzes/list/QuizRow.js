@@ -20,7 +20,6 @@
 
 import React, { Component } from 'react'
 import {
-  StyleSheet,
   View,
 } from 'react-native'
 import i18n from 'format-message'
@@ -29,8 +28,9 @@ import Row from '../../../common/components/rows/Row'
 import AccessIcon from '../../../common/components/AccessIcon'
 import { formattedDueDateWithStatus } from '../../../common/formatters'
 import { extractDateFromString } from '../../../utils/dateUtils'
-import Images from '../../../images/'
+import Images from '../../../images'
 import { DotSeparated } from '../../../common/text'
+import { createStyleSheet } from '../../../common/stylesheet'
 
 export type Props = {
   quiz: Quiz,
@@ -101,7 +101,7 @@ export default class QuizRow extends Component<Props, any> {
   }
 }
 
-const style = StyleSheet.create({
+const style = createStyleSheet(colors => ({
   details: {
     flexDirection: 'row',
   },
@@ -109,11 +109,11 @@ const style = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   subtitle: {
-    color: '#8B969E',
+    color: colors.textDark,
     fontSize: 14,
     marginTop: 2,
   },
   detailContent: {
     fontSize: 14,
   },
-})
+}))
