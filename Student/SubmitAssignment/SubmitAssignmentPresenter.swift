@@ -43,7 +43,7 @@ class SubmitAssignmentPresenter {
 
     var assignments: Store<GetAssignments>?
     lazy var courses: Store<GetCourses> = env.subscribe(GetCourses()) { [weak self] in
-        if let course = self?.courses.first {
+        if self?.course == nil, let course = self?.courses.first {
             self?.select(course: course)
         }
     }
@@ -90,12 +90,12 @@ class SubmitAssignmentPresenter {
     func loadDefaults() {
         if let courseID = env.userDefaults?.submitAssignmentCourseID {
             defaultCourses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
-                if let course = self?.defaultCourses?.first {
+                if self?.course == nil, let course = self?.defaultCourses?.first {
                     self?.selectCourse(course, autoSelectAssignment: false)
                 }
                 if let assignmentID = self?.env.userDefaults?.submitAssignmentID {
                     self?.defaultAssignments = self?.env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID)) { [weak self] in
-                        self?.assignment = self?.defaultAssignments?.first
+                        self?.assignment = self?.assignment ?? self?.defaultAssignments?.first
                     }
                     self?.defaultAssignments?.refresh(force: true)
                 }
