@@ -77,7 +77,7 @@ class Row extends Component<RowProps, any> {
   }
 }
 
-export const Grade = ({ grade, gradingType }: {grade: ?GradeProp, gradingType: GradingType}) => {
+export const Grade = ({ grade, score, gradingType }) => {
   if (!grade || grade === 'not_submitted' || grade === 'ungraded' || gradingType === 'not_graded') {
     return null
   }
@@ -86,7 +86,7 @@ export const Grade = ({ grade, gradingType }: {grade: ?GradeProp, gradingType: G
   if (grade === 'excused') {
     gradeText = i18n('Excused')
   } else {
-    gradeText = formatGradeText(grade, gradingType)
+    gradeText = formatGradeText({ grade, score, gradingType })
   }
 
   return <Text style={[ styles.gradeText, { alignSelf: 'center' } ]}>{ gradeText }</Text>
@@ -105,7 +105,7 @@ class OldSubmissionRow extends Component<OldSubmissionRowProps, any> {
   }
 
   render () {
-    let { userID, avatarURL, name, status, grade, gradingType, disclosure } = this.props
+    let { userID, avatarURL, name, status, grade, score, gradingType, disclosure } = this.props
     if (disclosure === undefined) {
       disclosure = true
     }
@@ -137,7 +137,7 @@ class OldSubmissionRow extends Component<OldSubmissionRowProps, any> {
             </Token>
           }
         </View>
-        <Grade grade={grade} gradingType={gradingType} />
+        <Grade grade={grade} score={score} gradingType={gradingType} />
       </Row>
     )
   }
