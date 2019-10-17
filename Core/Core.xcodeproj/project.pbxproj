@@ -569,6 +569,7 @@
 		B1CA33462339434A0015CBB4 /* GetContextUsersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */; };
 		B1CA3348233948870015CBB4 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA3347233948870015CBB4 /* UserTests.swift */; };
 		B1D5EF5E2357907F00B3ACD3 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5EF5D2357907F00B3ACD3 /* AlertAction.swift */; };
+		B1D5EF602358D93100B3ACD3 /* LoginWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5EF5F2358D93100B3ACD3 /* LoginWebViewControllerTests.swift */; };
 		B1E789A421B0EC1A0087FE4A /* LogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789A321B0EC1A0087FE4A /* LogEvent.swift */; };
 		B1E789A721B0ED490087FE4A /* LogEventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E789A621B0ED490087FE4A /* LogEventListViewController.swift */; };
 		B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1E789AA21B0EF130087FE4A /* LogEventListViewController.storyboard */; };
@@ -1411,6 +1412,7 @@
 		B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsersTests.swift; sourceTree = "<group>"; };
 		B1CA3347233948870015CBB4 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		B1D5EF5D2357907F00B3ACD3 /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
+		B1D5EF5F2358D93100B3ACD3 /* LoginWebViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebViewControllerTests.swift; sourceTree = "<group>"; };
 		B1E789A321B0EC1A0087FE4A /* LogEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEvent.swift; sourceTree = "<group>"; };
 		B1E789A621B0ED490087FE4A /* LogEventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventListViewController.swift; sourceTree = "<group>"; };
 		B1E789AA21B0EF130087FE4A /* LogEventListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogEventListViewController.storyboard; sourceTree = "<group>"; };
@@ -1759,6 +1761,7 @@
 				DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */,
 				7DB0A1B921BF1904009ABB40 /* LoginStartPresenterTests.swift */,
 				3B3467C821349EC000F9BC2E /* LoginWebPresenterTests.swift */,
+				B1D5EF5F2358D93100B3ACD3 /* LoginWebViewControllerTests.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -3680,6 +3683,7 @@
 				7D70DEA2233EADBB00F5C3D4 /* CommunicationChannelTests.swift in Sources */,
 				7DBED017232FDDB700392F3C /* GetAccountHelpLinksTests.swift in Sources */,
 				7DDC450F215BF4AA003F3209 /* UIFontExtensionsTests.swift in Sources */,
+				B1D5EF602358D93100B3ACD3 /* LoginWebViewControllerTests.swift in Sources */,
 				7D2DC2F62199F27B008FE29A /* DocViewerPointAnnotationTests.swift in Sources */,
 				9F62EDD82326D1E500EA9F79 /* GetSearchRecipientsTests.swift in Sources */,
 				3B635B2F225CD7B3001F353D /* APICalendarEventsRequestableTests.swift in Sources */,
