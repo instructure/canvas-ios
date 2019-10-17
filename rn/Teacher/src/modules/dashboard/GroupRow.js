@@ -67,7 +67,7 @@ export default class GroupRow extends React.Component<GroupRowProps & { onPress:
             <View style={styles.groupDetails}>
               <Text style={styles.title}>{name}</Text>
               <SubTitle style={[{ color }, styles.context]}>{contextName}</SubTitle>
-              {term && <SubTitle style={styles.term}>{term.toUpperCase()}</SubTitle>}
+              {Boolean(term) && <SubTitle style={styles.term}>{term.toUpperCase()}</SubTitle>}
             </View>
           </DashboardContent>
         </View>
