@@ -119,25 +119,26 @@ class SettingsViewController: UIViewController {
             tf.placeholder = NSLocalizedString("Pairing Code", comment: "")
         }
 
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in }))
-        present(alert, animated: true, completion: nil)
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in }))
+        env.router.show(alert, from: self, options: [.modal])
 
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak self] _ in
+        alert.addAction(AlertAction(NSLocalizedString("Add", comment: ""), style: .default, handler: { [weak self] _ in
             guard let textField = alert.textFields?.first, let code = textField.text else { return }
             self?.addPairingCode(code: code)
         }))
     }
 
     private func addPairingCode(code: String) {
-        guard let session = session else { return }
-        try? SettingsAPIClient.shared.addPairingCode(session, observerID: session.user.id, pairingCode: code) { [weak self] error in
+        let request = PostObserveesRequest(userID: "self", pairingCode: code)
+        env.api.makeRequest(request) { [weak self] _, _, error in
+            guard let self = self else { return }
             DispatchQueue.main.async {
                 if let error = error {
-                    let alert = UIAlertController(title: nil, message: error, preferredStyle: .alert)
+                    let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { _ in }))
-                    self?.present(alert, animated: true, completion: nil)
+                    self.env.router.show(alert, from: self, options: [.modal])
                 } else {
-                    self?.observeesViewController?.refresh()
+                    self.observeesViewController?.refresh()
                 }
             }
         }

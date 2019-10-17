@@ -136,6 +136,7 @@
 		9F6B43E42243ECD9003C758B /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */; };
 		B11A2CF720E42D9500A2DBDD /* AccountNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */; };
 		B18F80E423463A060001A666 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F80E323463A060001A666 /* RoutesTests.swift */; };
+		B1AA55D0235785A200DFD184 /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AA55CF235785A200DFD184 /* SettingsViewControllerTests.swift */; };
 		B1F4061522E6393D008FAFE6 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4061022E6393C008FAFE6 /* ReactiveObjC.framework */; };
 		B1F4061622E6393D008FAFE6 /* ReactiveMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4061122E6393C008FAFE6 /* ReactiveMapKit.framework */; };
 		B1F4061722E6393D008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4061222E6393C008FAFE6 /* ReactiveObjCBridge.framework */; };
@@ -860,6 +861,7 @@
 		9F6B43E32243ECD9003C758B /* DashboardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardPresenter.swift; sourceTree = "<group>"; };
 		B11A2CF620E42D9500A2DBDD /* AccountNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationViewController.swift; sourceTree = "<group>"; };
 		B18F80E323463A060001A666 /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
+		B1AA55CF235785A200DFD184 /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
 		B1F4061022E6393C008FAFE6 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = ../Carthage/Build/iOS/ReactiveObjC.framework; sourceTree = "<group>"; };
 		B1F4061122E6393C008FAFE6 /* ReactiveMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveMapKit.framework; path = ../Carthage/Build/iOS/ReactiveMapKit.framework; sourceTree = "<group>"; };
 		B1F4061222E6393C008FAFE6 /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjCBridge.framework; path = ../Carthage/Build/iOS/ReactiveObjCBridge.framework; sourceTree = "<group>"; };
@@ -917,6 +919,7 @@
 			isa = PBXGroup;
 			children = (
 				3B36A2EE2322C54900599A1E /* Fixtures */,
+				B1AA55CE2357857E00DFD184 /* Settings */,
 				3B36A2E92322C27600599A1E /* StudentSettings */,
 				3B36A2E32322C26B00599A1E /* Info.plist */,
 				3B54E3582326F9B000D8D1D2 /* ParentTestCase.swift */,
@@ -1337,6 +1340,14 @@
 			path = Discussions;
 			sourceTree = "<group>";
 		};
+		B1AA55CE2357857E00DFD184 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B1AA55CF235785A200DFD184 /* SettingsViewControllerTests.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		E2CB0046CD9881A39071A512 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1639,6 +1650,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */,
+				B1AA55D0235785A200DFD184 /* SettingsViewControllerTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
 				3B8F23CB2327050F00788730 /* StudentSettingsPresenterTests.swift in Sources */,

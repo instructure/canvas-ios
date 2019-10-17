@@ -152,3 +152,31 @@ public struct GetUserProfileRequest: APIRequestable {
         self.userID = userID
     }
 }
+
+// https://canvas.instructure.com/doc/api/user_observees.html#method.user_observees.create
+public struct PostObserveesRequest: APIRequestable {
+    public typealias Response = APIUser
+
+    public let userID: String
+    public let pairingCode: String?
+
+    public init(userID: String, pairingCode: String? = nil) {
+        self.userID = userID
+        self.pairingCode = pairingCode
+    }
+
+    public let method: APIMethod = .post
+
+    public var path: String {
+        let context = ContextModel(.user, id: userID)
+        return "\(context.pathComponent)/observees"
+    }
+
+    public var query: [APIQueryItem] {
+        var query: [APIQueryItem] = []
+        if let pairingCode = pairingCode {
+            query.append(.value("pairing_code", pairingCode))
+        }
+        return query
+    }
+}
