@@ -317,7 +317,7 @@ exports[`SubmissionHeader muted grading but new gradebook 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "borderBottomColor": "lightgrey",
+      "borderBottomColor": "#C7CDD1",
       "borderBottomWidth": 0.5,
       "flexDirection": "row",
       "height": "auto",
@@ -383,7 +383,7 @@ exports[`SubmissionHeader muted grading but new gradebook 1`] = `
             },
             Array [
               Object {
-                "color": "#374A59",
+                "color": "#008EE2",
                 "fontSize": 16,
                 "fontWeight": "500",
               },
@@ -404,7 +404,7 @@ exports[`SubmissionHeader muted grading but new gradebook 2`] = `
   style={
     Object {
       "alignItems": "center",
-      "borderBottomColor": "lightgrey",
+      "borderBottomColor": "#C7CDD1",
       "borderBottomWidth": 0.5,
       "flexDirection": "row",
       "height": "auto",
@@ -487,7 +487,7 @@ exports[`SubmissionHeader muted grading but new gradebook 2`] = `
             },
             Array [
               Object {
-                "color": "#374A59",
+                "color": "#008EE2",
                 "fontSize": 16,
                 "fontWeight": "500",
               },
