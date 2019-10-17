@@ -84,7 +84,7 @@ export const Grade = ({ submission, gradingType }) => {
   } else if (submission.excused) {
     gradeText = i18n('Excused')
   } else {
-    gradeText = formatGradeText(submission.grade, gradingType)
+    gradeText = formatGradeText({ grade: submission.grade, score: submission.score, gradingType })
   }
 
   return <Text style={[ styles.gradeText, { alignSelf: 'center' } ]}>{ gradeText }</Text>

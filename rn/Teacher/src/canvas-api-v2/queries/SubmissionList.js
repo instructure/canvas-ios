@@ -79,6 +79,7 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
       edges {
         submission: node {
           grade
+          score
           late
           missing
           excused
@@ -113,6 +114,7 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
       edges {
         submission: node {
           grade
+          score
           late
           missing
           excused

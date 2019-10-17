@@ -61,7 +61,12 @@ export default class UserSubmissionRow extends Component<Props, any> {
   grade = () => {
     const submission = this.props.submission
     const assignment = submission.assignment
-    const grade = formatGradeText(submission.grade, assignment.grading_type, assignment.points_possible)
+    const grade = formatGradeText({
+      grade: submission.grade,
+      score: submission.score,
+      gradingType: assignment.grading_type,
+      pointsPossible: assignment.points_possible,
+    })
     let flex = 1
     // if points_possible is zero we would divide by zero and get NaN
     if (assignment.points_possible > 0) {
